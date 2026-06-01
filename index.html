@@ -73,16 +73,15 @@
   }
 
   .mark {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 32px;
+    display: block;
+    width: 46px;
+    height: 46px;
     flex: 0 0 auto;
-    color: #ffffff;
-    background: var(--red);
-    border-radius: 9px;
-    font-size: 13px;
-    line-height: 1;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    background: #ffc51b;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
+    object-fit: cover;
   }
 
   .search {
@@ -539,7 +538,7 @@
 <body>
 <header class="topbar">
     <a class="brand" href="./" aria-label="ZZ home">
-      <span class="mark">ZZ</span>
+      <img class="mark" src="assets/zz-logo.svg" alt="ZZ logo">
     </a>
   <form class="search" role="search">
     <input id="searchInput" type="search" placeholder="Search ZZ" autocomplete="off" aria-label="Search ZZ">

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="ZZ logo">
+  <defs>
+    <clipPath id="circle">
+      <circle cx="256" cy="256" r="256"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#circle)">
+    <circle cx="256" cy="256" r="256" fill="#ffc51b"/>
+    <g fill="none" stroke="#245ee8" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M73 156h88"/>
+      <path d="M121 189h58"/>
+      <path d="M83 365h86"/>
+      <path d="M126 400h67"/>
+      <path d="M223 78h92v108h-92z"/>
+      <path d="M259 72l14-20"/>
+      <path d="M285 72l14-20"/>
+      <path d="M311 72l14-20"/>
+      <path d="M315 213h38v55h-97"/>
+      <path d="M353 268h85v-83"/>
+      <path d="M438 185c0-24-35-24-35 0v36"/>
+      <path d="M226 210h-87v85"/>
+      <path d="M139 295v55"/>
+      <path d="M139 350c0 28-42 28-42 0"/>
+      <path d="M224 220v122h98V220"/>
+      <path d="M224 342v74h77v-37h56v-37"/>
+      <path d="M301 416v49h-74v-50"/>
+      <path d="M227 465h-44v-77h44"/>
+      <path d="M357 379h68v67"/>
+      <path d="M425 446h45v38h-74v-38"/>
+    </g>
+    <circle cx="291" cy="124" r="18" fill="#245ee8"/>
+  </g>
+</svg>
