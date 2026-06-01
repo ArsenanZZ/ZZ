@@ -73,24 +73,16 @@
   }
 
   .mark {
-    position: relative;
+    display: grid;
+    place-items: center;
     width: 44px;
     height: 32px;
     flex: 0 0 auto;
+    color: #ffffff;
     background: var(--red);
     border-radius: 9px;
-  }
-
-  .mark::after {
-    content: "";
-    position: absolute;
-    left: 17px;
-    top: 9px;
-    width: 0;
-    height: 0;
-    border-top: 7px solid transparent;
-    border-bottom: 7px solid transparent;
-    border-left: 11px solid #ffffff;
+    font-size: 13px;
+    line-height: 1;
   }
 
   .search {
@@ -359,30 +351,6 @@
     transform: scale(1.035);
   }
 
-  .play {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 56px;
-    height: 40px;
-    background: rgba(255, 0, 51, .94);
-    border-radius: 11px;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, .28);
-  }
-
-  .play::after {
-    content: "";
-    position: absolute;
-    left: 22px;
-    top: 11px;
-    width: 0;
-    height: 0;
-    border-top: 9px solid transparent;
-    border-bottom: 9px solid transparent;
-    border-left: 14px solid #ffffff;
-  }
-
   .duration {
     position: absolute;
     right: 8px;
@@ -566,13 +534,13 @@
     }
   }
 </style>
+<link rel="stylesheet" href="assets/zz-comments.css">
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="./" aria-label="ZZ home">
-    <span class="mark" aria-hidden="true"></span>
-    <span>ZZ</span>
-  </a>
+    <a class="brand" href="./" aria-label="ZZ home">
+      <span class="mark">ZZ</span>
+    </a>
   <form class="search" role="search">
     <input id="searchInput" type="search" placeholder="Search ZZ" autocomplete="off" aria-label="Search ZZ">
     <button type="submit" aria-label="Search"></button>
@@ -624,7 +592,6 @@
       <article class="video-card" id="wqa" data-category="wqa research" data-title="WQA 2026 Presentation Summaries">
         <a class="thumb" href="wqa/WQA_2026_Presentations_Summary-V2.html">
           <img src="assets/thumb-wqa-presentations.png" alt="WQA 2026 Presentation Summaries thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -639,7 +606,6 @@
       <article class="video-card" data-category="wqa research" data-title="WQA 2026 Expo Observation Report">
         <a class="thumb" href="wqa/WQA_2026_Expo_Observation_Report_EN.html">
           <img src="assets/thumb-wqa-expo.png" alt="WQA 2026 Expo Observation Report thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -654,7 +620,6 @@
       <article class="video-card" data-category="wqa research" data-title="EZsalt Research Report">
         <a class="thumb" href="wqa/EZsalt_Research_Report_2_EN.html">
           <img src="assets/thumb-ezsalt.png" alt="EZsalt Research Report thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -669,7 +634,6 @@
       <article class="video-card" data-category="wqa research" data-title="DROP Research Report">
         <a class="thumb" href="wqa/DROP_Research_Report_EN.html">
           <img src="assets/thumb-drop.png" alt="DROP Research Report thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -684,7 +648,6 @@
       <article class="video-card" id="reading" data-category="reading atomic" data-title="Atomic Habits Reading Home">
         <a class="thumb" href="reading/index.html">
           <img src="assets/thumb-reading-home.png" alt="Atomic Habits Reading Home thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -699,7 +662,6 @@
       <article class="video-card" data-category="reading atomic" data-title="Atomic Habits Bloom Cards">
         <a class="thumb" href="reading/atomic-habits-bloom-cards.html">
           <img src="assets/thumb-atomic-cards.png" alt="Atomic Habits Bloom Cards thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -714,7 +676,6 @@
       <article class="video-card" id="run50" data-category="run50" data-title="Run50 Personal Space">
         <a class="thumb" href="run50/index.html">
           <img src="assets/thumb-run50-home.png" alt="Run50 Personal Space thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -729,7 +690,6 @@
       <article class="video-card" data-category="run50" data-title="Run50 Training Page">
         <a class="thumb" href="run50/run50.html">
           <img src="assets/thumb-run50-training.png" alt="Run50 Training Page thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -744,7 +704,6 @@
       <article class="video-card" data-category="run50 trip marathon travel" data-title="Mainly Marathons New England 2026">
         <a class="thumb" href="run50/mainly-marathons-new-england-2026-guide.html">
           <img src="assets/thumb-trip-new-england.png" alt="Mainly Marathons New England 2026 thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -759,7 +718,6 @@
       <article class="video-card" data-category="run50 atomic reading" data-title="Atomic Habits Full English">
         <a class="thumb" href="run50/atomic-habits-full-english.html">
           <img src="assets/thumb-atomic-full.png" alt="Atomic Habits Full English thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -774,7 +732,6 @@
       <article class="video-card" data-category="run50 atomic reading" data-title="Atomic Habits Study Cards">
         <a class="thumb" href="run50/atomic-habits-bloom-cards.html">
           <img src="assets/thumb-run50-cards.png" alt="Atomic Habits Study Cards thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -789,7 +746,6 @@
       <article class="video-card" id="ro" data-category="ro" data-title="How a Reverse Osmosis System Works">
         <a class="thumb" href="ro/ro-system-explained.html">
           <img src="assets/thumb-ro-system.png" alt="How a Reverse Osmosis System Works thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -804,7 +760,6 @@
       <article class="video-card" data-category="ro" data-title="RO Complete Guide EN">
         <a class="thumb" href="ro/RO-Complete-Guide-EN.html">
           <img src="assets/thumb-ro-guide.png" alt="RO Complete Guide EN thumbnail">
-          <span class="play" aria-hidden="true"></span>
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -876,5 +831,7 @@
     });
   });
 </script>
+<section data-zz-comments></section>
+<script src="assets/zz-comments.js"></script>
 </body>
 </html>

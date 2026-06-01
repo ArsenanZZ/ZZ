@@ -351,7 +351,7 @@ h1{font-size:18px;font-weight:700;color:#26215C;margin-bottom:3px}
       <div class="simreadout">tank pressure · feed steady at <b>60 psi</b></div>
       <div id="simStatus" class="simstatus on">● PRODUCING</div>
       <div class="simctrl">
-        <button id="simProduce" class="simbtn pr">▶ Produce</button>
+        <button id="simProduce" class="simbtn pr">Produce</button>
         <button id="simFaucet" class="simbtn">🚰 Open faucet</button>
         <button id="simReset" class="simbtn">↺ Reset</button>
       </div>
@@ -878,10 +878,14 @@ function ST(n,btn,c){
     else{S.className='simstatus on';S.textContent='○ IDLE · ready';}
   }
   function tick(){if(producing){var p=airGauge(f);if(p<shutoff){f+=0.006;if(f>fMax)f=fMax;}}render();}
-  PB.addEventListener('click',function(){producing=!producing;PB.textContent=producing?'⏸ Pause':'▶ Produce';render();});
+  PB.addEventListener('click',function(){producing=!producing;PB.textContent=producing?'Pause':'Produce';render();});
   document.getElementById('simFaucet').addEventListener('click',function(){f-=0.12;if(f<0)f=0;render();});
-  document.getElementById('simReset').addEventListener('click',function(){f=0;producing=false;PB.textContent='▶ Produce';render();});
+  document.getElementById('simReset').addEventListener('click',function(){f=0;producing=false;PB.textContent='Produce';render();});
   render(); setInterval(tick,55);
 })();
 </script>
+
+<link rel="stylesheet" href="../assets/zz-comments.css">
+<section data-zz-comments></section>
+<script src="../assets/zz-comments.js"></script>
 </body></html>

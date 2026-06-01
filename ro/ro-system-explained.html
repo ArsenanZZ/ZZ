@@ -218,7 +218,7 @@
           <text class="lbl-s" x="740" y="138" text-anchor="middle">splits the stream</text>
           <!-- mini split arrows -->
           <text x="740" y="160" text-anchor="middle" font-size="11" font-family="Space Mono" fill="var(--water)">▼ clean</text>
-          <text x="828" y="112" text-anchor="middle" font-size="11" font-family="Space Mono" fill="var(--reject)">reject ▶</text>
+          <text x="828" y="112" text-anchor="middle" font-size="11" font-family="Space Mono" fill="var(--reject)">reject</text>
         </g>
         <!-- Flow restrictor + Drain -->
         <g>
@@ -379,7 +379,7 @@
           <p class="readout">tank pressure · feed holds steady at <b>60 psi</b></p>
           <div id="status" class="status on">● PRODUCING</div>
           <div class="controls">
-            <button id="produceBtn" class="primary">▶ Produce</button>
+            <button id="produceBtn" class="primary">Produce</button>
             <button id="faucetBtn">🚰 Open faucet</button>
             <button id="resetBtn">↺ Reset</button>
           </div>
@@ -475,7 +475,7 @@
 
   produceBtn.addEventListener('click', function(){
     producing = !producing;
-    produceBtn.textContent = producing ? '⏸ Pause' : '▶ Produce';
+    produceBtn.textContent = producing ? 'Pause' : 'Produce';
     render();
   });
   document.getElementById('faucetBtn').addEventListener('click', function(){
@@ -485,7 +485,7 @@
   });
   document.getElementById('resetBtn').addEventListener('click', function(){
     f = 0; producing = false;
-    produceBtn.textContent = '▶ Produce';
+    produceBtn.textContent = 'Produce';
     render();
   });
 
@@ -493,5 +493,9 @@
   setInterval(tick, 55);
 })();
 </script>
+
+<link rel="stylesheet" href="../assets/zz-comments.css">
+<section data-zz-comments></section>
+<script src="../assets/zz-comments.js"></script>
 </body>
 </html>

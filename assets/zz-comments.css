@@ -1,0 +1,150 @@
+.zz-comments {
+  width: min(1080px, calc(100% - 32px));
+  margin: 56px auto 32px;
+  padding: 24px;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #161616;
+  font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  box-shadow: 0 18px 42px -36px rgba(0, 0, 0, .45);
+}
+
+.zz-comments * {
+  box-sizing: border-box;
+}
+
+.zz-comments-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.zz-comments h2 {
+  margin: 0;
+  color: #111111;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.zz-comments-count,
+.zz-comments-note,
+.zz-comment-time {
+  color: #666666;
+  font-size: 13px;
+}
+
+.zz-comments-form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.zz-comments-row {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.zz-comments input,
+.zz-comments textarea {
+  width: 100%;
+  border: 1px solid #d2d2d2;
+  border-radius: 8px;
+  background: #fafafa;
+  color: #111111;
+  font: inherit;
+  outline: none;
+}
+
+.zz-comments input {
+  min-height: 42px;
+  padding: 9px 12px;
+}
+
+.zz-comments textarea {
+  min-height: 88px;
+  resize: vertical;
+  padding: 11px 12px;
+  line-height: 1.55;
+}
+
+.zz-comments input:focus,
+.zz-comments textarea:focus {
+  border-color: #111111;
+  background: #ffffff;
+}
+
+.zz-comments button {
+  min-height: 42px;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #111111;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.zz-comments-list {
+  display: grid;
+  gap: 12px;
+}
+
+.zz-comment {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 10px;
+  padding: 14px 0;
+  border-top: 1px solid #eeeeee;
+}
+
+.zz-comment-avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ff0033;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.zz-comment-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.zz-comment-text {
+  margin: 5px 0 0;
+  color: #202020;
+  font-size: 14px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.zz-comments-empty {
+  margin: 0;
+  padding: 16px 0 0;
+  border-top: 1px solid #eeeeee;
+  color: #666666;
+  font-size: 14px;
+}
+
+@media (max-width: 720px) {
+  .zz-comments {
+    width: calc(100% - 24px);
+    margin-top: 40px;
+    padding: 18px;
+  }
+
+  .zz-comments-row {
+    grid-template-columns: 1fr;
+  }
+}
