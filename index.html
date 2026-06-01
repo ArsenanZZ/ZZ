@@ -545,7 +545,7 @@
     <input id="searchInput" type="search" placeholder="Search ZZ" autocomplete="off" aria-label="Search ZZ">
     <button type="submit" aria-label="Search"></button>
   </form>
-  <div class="status">13 uploads</div>
+  <div class="status">11 uploads</div>
 </header>
 
 <div class="shell">
@@ -578,14 +578,14 @@
       </div>
       <div class="quick-stats" aria-label="Library stats">
         <div class="stat"><b>4</b><span>channels</span></div>
-        <div class="stat"><b>13</b><span>uploads</span></div>
+        <div class="stat"><b>11</b><span>uploads</span></div>
         <div class="stat"><b>1</b><span>home page</span></div>
       </div>
     </section>
 
     <section class="section-title" aria-label="Uploads heading">
       <h2>Latest uploads</h2>
-      <span class="results" id="resultCount">13 videos</span>
+      <span class="results" id="resultCount">11 videos</span>
     </section>
 
     <section class="video-grid" id="videoGrid" aria-label="ZZ uploads">
@@ -645,30 +645,30 @@
         </div>
       </article>
 
-      <article class="video-card" id="reading" data-category="reading atomic" data-title="Atomic Habits Reading Home">
-        <a class="thumb" href="reading/index.html">
-          <img src="assets/thumb-reading-home.png" alt="Atomic Habits Reading Home thumbnail">
+      <article class="video-card" id="reading" data-category="reading atomic" data-title="Atomic Habits Full English">
+        <a class="thumb" href="reading/atomic-habits-full-english.html">
+          <img src="assets/thumb-atomic-full.png" alt="Atomic Habits Full English thumbnail">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
           <span class="avatar reading">R</span>
           <div>
-            <a class="video-title" href="reading/index.html">Atomic Habits Reading Home</a>
-            <p class="video-sub">Reading · Study cards</p>
+            <a class="video-title" href="reading/atomic-habits-full-english.html">Atomic Habits Full English</a>
+            <p class="video-sub">Reading · Book edition</p>
           </div>
         </div>
       </article>
 
-      <article class="video-card" data-category="reading atomic" data-title="Atomic Habits Bloom Cards">
+      <article class="video-card" data-category="reading atomic" data-title="Atomic Habits Study Cards">
         <a class="thumb" href="reading/atomic-habits-bloom-cards.html">
-          <img src="assets/thumb-atomic-cards.png" alt="Atomic Habits Bloom Cards thumbnail">
+          <img src="assets/thumb-atomic-cards.png" alt="Atomic Habits Study Cards thumbnail">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
           <span class="avatar reading">R</span>
           <div>
-            <a class="video-title" href="reading/atomic-habits-bloom-cards.html">Atomic Habits Bloom Cards</a>
-            <p class="video-sub">Reading · Bloom cards</p>
+            <a class="video-title" href="reading/atomic-habits-bloom-cards.html">Atomic Habits Study Cards</a>
+            <p class="video-sub">Reading · Study cards</p>
           </div>
         </div>
       </article>
@@ -711,34 +711,6 @@
           <div>
             <a class="video-title" href="run50/mainly-marathons-new-england-2026-guide.html">Mainly Marathons New England 2026</a>
             <p class="video-sub">Run50 · Trip guide</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="video-card" data-category="run50 atomic reading" data-title="Atomic Habits Full English">
-        <a class="thumb" href="run50/atomic-habits-full-english.html">
-          <img src="assets/thumb-atomic-full.png" alt="Atomic Habits Full English thumbnail">
-          <span class="duration">HTML</span>
-        </a>
-        <div class="meta">
-          <span class="avatar run50">50</span>
-          <div>
-            <a class="video-title" href="run50/atomic-habits-full-english.html">Atomic Habits Full English</a>
-            <p class="video-sub">Run50 · Book edition</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="video-card" data-category="run50 atomic reading" data-title="Atomic Habits Study Cards">
-        <a class="thumb" href="run50/atomic-habits-bloom-cards.html">
-          <img src="assets/thumb-run50-cards.png" alt="Atomic Habits Study Cards thumbnail">
-          <span class="duration">HTML</span>
-        </a>
-        <div class="meta">
-          <span class="avatar run50">50</span>
-          <div>
-            <a class="video-title" href="run50/atomic-habits-bloom-cards.html">Atomic Habits Study Cards</a>
-            <p class="video-sub">Run50 · Reading cards</p>
           </div>
         </div>
       </article>
@@ -802,7 +774,8 @@
       const matchesQuery = !query || (query.length <= 2
         ? tokens.some(token => token === query)
         : haystack.includes(query));
-      const matchesFilter = currentFilter === 'all' || haystack.includes(currentFilter);
+      const categoryTokens = (card.dataset.category || '').split(/\s+/).filter(Boolean);
+      const matchesFilter = currentFilter === 'all' || categoryTokens.includes(currentFilter);
       const show = matchesQuery && matchesFilter;
       card.hidden = !show;
       if (show) visible += 1;
