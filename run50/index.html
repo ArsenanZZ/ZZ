@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArsenanZZ · 个人空间</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1714;
+    --paper: #f7f4ef;
+    --cream: #ede9e1;
+    --run-primary: #1a2a3a;
+    --run-accent: #c8860a;
+    --trip-primary: #0d6f88;
+    --book-primary: #8d3f3f;
+    --book-accent: #1f6f5b;
+    --muted: #7a7570;
+    --line: #d8d2c8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 60px 40px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .site-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1;
+    letter-spacing: -1px;
+    color: var(--ink);
+  }
+
+  .site-name em {
+    font-style: italic;
+    color: var(--run-accent);
+  }
+
+  .site-tagline {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding-bottom: 6px;
+    white-space: nowrap;
+  }
+
+  /* ── DIVIDER ── */
+  .rule {
+    max-width: 900px;
+    margin: 0 auto 48px;
+    padding: 0 40px;
+  }
+  .rule hr {
+    border: none;
+    border-top: 1.5px solid var(--line);
+  }
+
+  /* ── GRID ── */
+  .cards {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    padding: 28px 26px 24px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-color, var(--ink));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.09);
+    border-color: transparent;
+  }
+  .card:hover::before { transform: scaleX(1); }
+
+  .card-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--card-color, var(--muted));
+    opacity: 0.8;
+  }
+
+  .card-emoji {
+    font-size: 32px;
+    line-height: 1;
+    margin: 2px 0;
+  }
+
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .card-title-zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .card-meta {
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    border-top: 1px solid var(--cream);
+    padding-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-arrow {
+    font-size: 16px;
+    color: var(--card-color, var(--muted));
+    transition: transform 0.2s;
+  }
+  .card:hover .card-arrow { transform: translateX(4px); }
+
+  /* Card themes */
+  .card-run     { --card-color: var(--run-primary); }
+  .card-trip    { --card-color: var(--trip-primary); }
+  .card-en      { --card-color: var(--book-primary); }
+  .card-zh      { --card-color: var(--book-accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--line);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+  footer a:hover { color: var(--ink); }
+
+  .footer-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 600px) {
+    header { flex-direction: column; align-items: flex-start; padding: 40px 24px 24px; }
+    .rule, .cards, footer { padding-left: 24px; padding-right: 24px; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 class="site-name">Arsenan<em>ZZ</em></h1>
+  <p class="site-tagline">Running · Reading · Building</p>
+</header>
+
+<div class="rule"><hr></div>
+
+<div class="cards">
+
+  <!-- Run50 -->
+  <a href="./run50.html" class="card card-run">
+    <div class="card-tag">Project · 进行中</div>
+    <div class="card-emoji">🏃</div>
+    <div class="card-title">Run50</div>
+    <div class="card-title-zh">美国50州马拉松挑战</div>
+    <div class="card-desc">跑遍美国50个州，用双脚丈量这片土地。每一个州，都有一段故事。</div>
+    <div class="card-meta">
+      <span>22 / 50 州完成 · 2024–2026</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <!-- Trip -->
+  <a href="./mainly-marathons-new-england-2026-guide.html" class="card card-trip">
+    <div class="card-tag">Trip · 2026</div>
+    <div class="card-emoji">🗺️</div>
+    <div class="card-title">New England Series</div>
+    <div class="card-title-zh">Mainly Marathons 六日赛攻略</div>
+    <div class="card-desc">2026 年新英格兰六州连续赛旅行作战手册，整合赛程、住宿、转场和恢复策略。</div>
+    <div class="card-meta">
+      <span>6 days · 6 states · race trip</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <!-- Atomic Habits EN -->
+  <a href="./atomic-habits-full-english.html" class="card card-en">
+    <div class="card-tag">Reading · 阅读中</div>
+    <div class="card-emoji">📖</div>
+    <div class="card-title">Atomic Habits</div>
+    <div class="card-title-zh">Full English Edition</div>
+    <div class="card-desc">An Easy &amp; Proven Way to Build Good Habits &amp; Break Bad Ones — James Clear.</div>
+    <div class="card-meta">
+      <span>20 Chapters · 读至 7/31</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <!-- Atomic Habits ZH cards -->
+  <a href="./atomic-habits-bloom-cards.html" class="card card-zh">
+    <div class="card-tag">Reading · 卡片导读</div>
+    <div class="card-emoji">🃏</div>
+    <div class="card-title">原子习惯</div>
+    <div class="card-title-zh">中文卡片精华版</div>
+    <div class="card-desc">每章核心概念提炼，对照英文版同步阅读，快速抓住关键洞察。</div>
+    <div class="card-meta">
+      <span>20 章 · 与英文版对照</span>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  <span class="footer-brand">ArsenanZZ</span>
+  <a href="https://zhennanzhang.bio" target="_blank">zhennanzhang.bio ↗</a>
+</footer>
+
+</body>
+</html>

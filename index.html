@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZZ</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f9f9f9;
+    --panel: #ffffff;
+    --ink: #0f0f0f;
+    --muted: #606060;
+    --line: #e5e5e5;
+    --soft: #f2f2f2;
+    --soft-2: #e9e9e9;
+    --red: #ff0033;
+    --wqa: #008c72;
+    --reading: #8b3f46;
+    --run: #b36a00;
+    --ro: #087c93;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--bg);
+    font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: 224px minmax(220px, 680px) 168px;
+    gap: 18px;
+    align-items: center;
+    min-height: 64px;
+    padding: 0 24px;
+    background: rgba(255, 255, 255, .96);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(12px);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    color: var(--ink);
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: 0;
+  }
+
+  .mark {
+    position: relative;
+    width: 44px;
+    height: 32px;
+    flex: 0 0 auto;
+    background: var(--red);
+    border-radius: 9px;
+  }
+
+  .mark::after {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 9px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 11px solid #ffffff;
+  }
+
+  .search {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 58px;
+    width: 100%;
+  }
+
+  .search input {
+    min-width: 0;
+    height: 42px;
+    padding: 0 16px;
+    color: var(--ink);
+    background: #ffffff;
+    border: 1px solid #cfcfcf;
+    border-right: 0;
+    border-radius: 999px 0 0 999px;
+    outline: none;
+  }
+
+  .search input:focus {
+    border-color: #4b7fd8;
+    box-shadow: inset 0 0 0 1px #4b7fd8;
+  }
+
+  .search button {
+    position: relative;
+    height: 42px;
+    border: 1px solid #cfcfcf;
+    border-radius: 0 999px 999px 0;
+    background: var(--soft);
+    cursor: pointer;
+  }
+
+  .search button::before {
+    content: "";
+    position: absolute;
+    left: 19px;
+    top: 12px;
+    width: 13px;
+    height: 13px;
+    border: 2px solid #333333;
+    border-radius: 50%;
+  }
+
+  .search button::after {
+    content: "";
+    position: absolute;
+    left: 32px;
+    top: 27px;
+    width: 10px;
+    height: 2px;
+    background: #333333;
+    transform: rotate(45deg);
+    transform-origin: left center;
+  }
+
+  .status {
+    justify-self: end;
+    color: var(--muted);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .shell {
+    display: grid;
+    grid-template-columns: 224px minmax(0, 1fr);
+    min-height: calc(100vh - 64px);
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 64px;
+    align-self: start;
+    height: calc(100vh - 64px);
+    padding: 14px 12px;
+    overflow: auto;
+    background: #ffffff;
+    border-right: 1px solid var(--line);
+  }
+
+  .side-link {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    color: var(--ink);
+    font-size: 14px;
+  }
+
+  .side-link:hover,
+  .side-link:focus-visible,
+  .side-link.active {
+    background: var(--soft);
+    outline: none;
+  }
+
+  .ico {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .ico.all { background: var(--red); }
+  .ico.wqa { background: var(--wqa); }
+  .ico.reading { background: var(--reading); }
+  .ico.run50 { background: var(--run); }
+  .ico.ro { background: var(--ro); }
+
+  .side-rule {
+    height: 1px;
+    margin: 12px;
+    background: var(--line);
+  }
+
+  .side-note {
+    margin: 0;
+    padding: 6px 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  main {
+    min-width: 0;
+    padding: 18px 24px 44px;
+  }
+
+  .chips {
+    position: sticky;
+    top: 64px;
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px 0 16px;
+    background: var(--bg);
+  }
+
+  .chip {
+    flex: 0 0 auto;
+    min-height: 34px;
+    padding: 7px 14px;
+    border: 0;
+    border-radius: 9px;
+    color: var(--ink);
+    background: var(--soft-2);
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .chip.active {
+    color: #ffffff;
+    background: var(--ink);
+  }
+
+  .masthead {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: end;
+    margin: 6px 0 22px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .masthead p {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .quick-stats {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 8px;
+    align-items: center;
+  }
+
+  .stat {
+    min-width: 96px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #ffffff;
+  }
+
+  .stat b {
+    display: block;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .stat span {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 18px 0 12px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .results {
+    color: var(--muted);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 26px 18px;
+  }
+
+  .video-card {
+    min-width: 0;
+  }
+
+  .thumb {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    background: #171717;
+  }
+
+  .thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .18s ease;
+  }
+
+  .video-card:hover .thumb img,
+  .video-card:focus-within .thumb img {
+    transform: scale(1.035);
+  }
+
+  .play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 56px;
+    height: 40px;
+    background: rgba(255, 0, 51, .94);
+    border-radius: 11px;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .28);
+  }
+
+  .play::after {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 11px;
+    width: 0;
+    height: 0;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-left: 14px solid #ffffff;
+  }
+
+  .duration {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    padding: 3px 6px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, .84);
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 10px;
+    padding-top: 10px;
+  }
+
+  .avatar {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .avatar.wqa { background: var(--wqa); }
+  .avatar.reading { background: var(--reading); }
+  .avatar.run50 { background: var(--run); }
+  .avatar.ro { background: var(--ro); }
+
+  .video-title {
+    display: -webkit-box;
+    min-height: 40px;
+    overflow: hidden;
+    margin: 0;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.32;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .video-sub {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .empty {
+    display: none;
+    min-height: 160px;
+    place-items: center;
+    border: 1px dashed #cfcfcf;
+    border-radius: 12px;
+    background: #ffffff;
+    color: var(--muted);
+  }
+
+  .empty.show {
+    display: grid;
+  }
+
+  @media (max-width: 1280px) {
+    .video-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 980px) {
+    .topbar {
+      grid-template-columns: auto minmax(0, 1fr);
+      padding: 0 16px;
+    }
+
+    .status {
+      display: none;
+    }
+
+    .shell {
+      grid-template-columns: 76px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      padding: 10px 8px;
+    }
+
+    .side-link {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 4px;
+      padding: 8px 4px;
+      font-size: 11px;
+    }
+
+    .side-note,
+    .side-rule {
+      display: none;
+    }
+
+    .masthead {
+      grid-template-columns: 1fr;
+    }
+
+    .quick-stats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    .topbar {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 12px 14px;
+    }
+
+    .brand {
+      font-size: 22px;
+    }
+
+    .shell {
+      display: block;
+    }
+
+    .sidebar {
+      position: static;
+      display: flex;
+      gap: 8px;
+      height: auto;
+      padding: 10px 14px;
+      overflow-x: auto;
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .side-link {
+      flex: 0 0 auto;
+      grid-template-columns: 28px auto;
+      justify-items: start;
+      min-width: 104px;
+      font-size: 13px;
+    }
+
+    main {
+      padding: 12px 14px 36px;
+    }
+
+    .chips {
+      position: static;
+      padding-top: 0;
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+
+    .video-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px 12px;
+    }
+
+    .quick-stats {
+      display: none;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .video-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    h1 {
+      font-size: 34px;
+    }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="./" aria-label="ZZ home">
+    <span class="mark" aria-hidden="true"></span>
+    <span>ZZ</span>
+  </a>
+  <form class="search" role="search">
+    <input id="searchInput" type="search" placeholder="Search ZZ" autocomplete="off" aria-label="Search ZZ">
+    <button type="submit" aria-label="Search"></button>
+  </form>
+  <div class="status">13 uploads</div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" aria-label="Channels">
+    <a class="side-link active" href="#" data-filter="all"><span class="ico all">ZZ</span><span>Home</span></a>
+    <a class="side-link" href="#wqa" data-filter="wqa"><span class="ico wqa">W</span><span>WQA</span></a>
+    <a class="side-link" href="#reading" data-filter="reading"><span class="ico reading">R</span><span>Reading</span></a>
+    <a class="side-link" href="#run50" data-filter="run50"><span class="ico run50">50</span><span>Run50</span></a>
+    <a class="side-link" href="#ro" data-filter="ro"><span class="ico ro">RO</span><span>RO</span></a>
+    <div class="side-rule"></div>
+    <p class="side-note">ArsenanZZ 的学习内容统一入口</p>
+  </aside>
+
+  <main>
+    <nav class="chips" aria-label="Filters">
+      <button class="chip active" type="button" data-filter="all">All</button>
+      <button class="chip" type="button" data-filter="wqa">WQA</button>
+      <button class="chip" type="button" data-filter="reading">Reading</button>
+      <button class="chip" type="button" data-filter="run50">Run50</button>
+      <button class="chip" type="button" data-filter="ro">RO</button>
+      <button class="chip" type="button" data-filter="trip">Trip</button>
+      <button class="chip" type="button" data-filter="research">Research</button>
+      <button class="chip" type="button" data-filter="atomic">Atomic Habits</button>
+    </nav>
+
+    <section class="masthead" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">ZZ</h1>
+        <p>WQA research, reading notes, Run50, and RO study pages in one clean feed.</p>
+      </div>
+      <div class="quick-stats" aria-label="Library stats">
+        <div class="stat"><b>4</b><span>channels</span></div>
+        <div class="stat"><b>13</b><span>uploads</span></div>
+        <div class="stat"><b>1</b><span>home page</span></div>
+      </div>
+    </section>
+
+    <section class="section-title" aria-label="Uploads heading">
+      <h2>Latest uploads</h2>
+      <span class="results" id="resultCount">13 videos</span>
+    </section>
+
+    <section class="video-grid" id="videoGrid" aria-label="ZZ uploads">
+      <article class="video-card" id="wqa" data-category="wqa research" data-title="WQA 2026 Presentation Summaries">
+        <a class="thumb" href="wqa/WQA_2026_Presentations_Summary-V2.html">
+          <img src="assets/thumb-wqa-presentations.png" alt="WQA 2026 Presentation Summaries thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar wqa">W</span>
+          <div>
+            <a class="video-title" href="wqa/WQA_2026_Presentations_Summary-V2.html">WQA 2026 Presentation Summaries</a>
+            <p class="video-sub">WQA · Presentation notes</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-category="wqa research" data-title="WQA 2026 Expo Observation Report">
+        <a class="thumb" href="wqa/WQA_2026_Expo_Observation_Report_EN.html">
+          <img src="assets/thumb-wqa-expo.png" alt="WQA 2026 Expo Observation Report thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar wqa">W</span>
+          <div>
+            <a class="video-title" href="wqa/WQA_2026_Expo_Observation_Report_EN.html">WQA 2026 Expo Observation Report</a>
+            <p class="video-sub">WQA · Expo field report</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-category="wqa research" data-title="EZsalt Research Report">
+        <a class="thumb" href="wqa/EZsalt_Research_Report_2_EN.html">
+          <img src="assets/thumb-ezsalt.png" alt="EZsalt Research Report thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar wqa">W</span>
+          <div>
+            <a class="video-title" href="wqa/EZsalt_Research_Report_2_EN.html">EZsalt Research Report</a>
+            <p class="video-sub">Research · Product report</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-category="wqa research" data-title="DROP Research Report">
+        <a class="thumb" href="wqa/DROP_Research_Report_EN.html">
+          <img src="assets/thumb-drop.png" alt="DROP Research Report thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar wqa">W</span>
+          <div>
+            <a class="video-title" href="wqa/DROP_Research_Report_EN.html">DROP Research Report</a>
+            <p class="video-sub">Research · Product report</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" id="reading" data-category="reading atomic" data-title="Atomic Habits Reading Home">
+        <a class="thumb" href="reading/index.html">
+          <img src="assets/thumb-reading-home.png" alt="Atomic Habits Reading Home thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar reading">R</span>
+          <div>
+            <a class="video-title" href="reading/index.html">Atomic Habits Reading Home</a>
+            <p class="video-sub">Reading · Study cards</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-category="reading atomic" data-title="Atomic Habits Bloom Cards">
+        <a class="thumb" href="reading/atomic-habits-bloom-cards.html">
+          <img src="assets/thumb-atomic-cards.png" alt="Atomic Habits Bloom Cards thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar reading">R</span>
+          <div>
+            <a class="video-title" href="reading/atomic-habits-bloom-cards.html">Atomic Habits Bloom Cards</a>
+            <p class="video-sub">Reading · Bloom cards</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" id="run50" data-category="run50" data-title="Run50 Personal Space">
+        <a class="thumb" href="run50/index.html">
+          <img src="assets/thumb-run50-home.png" alt="Run50 Personal Space thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/index.html">Run50 Personal Space</a>
+            <p class="video-sub">Run50 · Home</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-category="run50" data-title="Run50 Training Page">
+        <a class="thumb" href="run50/run50.html">
+          <img src="assets/thumb-run50-training.png" alt="Run50 Training Page thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/run50.html">Run50 Training Page</a>
+            <p class="video-sub">Run50 · Training library</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-category="run50 trip marathon travel" data-title="Mainly Marathons New England 2026">
+        <a class="thumb" href="run50/mainly-marathons-new-england-2026-guide.html">
+          <img src="assets/thumb-trip-new-england.png" alt="Mainly Marathons New England 2026 thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/mainly-marathons-new-england-2026-guide.html">Mainly Marathons New England 2026</a>
+            <p class="video-sub">Run50 · Trip guide</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-category="run50 atomic reading" data-title="Atomic Habits Full English">
+        <a class="thumb" href="run50/atomic-habits-full-english.html">
+          <img src="assets/thumb-atomic-full.png" alt="Atomic Habits Full English thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/atomic-habits-full-english.html">Atomic Habits Full English</a>
+            <p class="video-sub">Run50 · Book edition</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-category="run50 atomic reading" data-title="Atomic Habits Study Cards">
+        <a class="thumb" href="run50/atomic-habits-bloom-cards.html">
+          <img src="assets/thumb-run50-cards.png" alt="Atomic Habits Study Cards thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/atomic-habits-bloom-cards.html">Atomic Habits Study Cards</a>
+            <p class="video-sub">Run50 · Reading cards</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" id="ro" data-category="ro" data-title="How a Reverse Osmosis System Works">
+        <a class="thumb" href="ro/ro-system-explained.html">
+          <img src="assets/thumb-ro-system.png" alt="How a Reverse Osmosis System Works thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar ro">RO</span>
+          <div>
+            <a class="video-title" href="ro/ro-system-explained.html">How a Reverse Osmosis System Works</a>
+            <p class="video-sub">RO · System explanation</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-category="ro" data-title="RO Complete Guide EN">
+        <a class="thumb" href="ro/RO-Complete-Guide-EN.html">
+          <img src="assets/thumb-ro-guide.png" alt="RO Complete Guide EN thumbnail">
+          <span class="play" aria-hidden="true"></span>
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar ro">RO</span>
+          <div>
+            <a class="video-title" href="ro/RO-Complete-Guide-EN.html">RO Complete Guide EN</a>
+            <p class="video-sub">RO · Complete guide</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <div class="empty" id="emptyState">No matching uploads</div>
+  </main>
+</div>
+
+<script>
+  const searchInput = document.querySelector('#searchInput');
+  const cards = Array.from(document.querySelectorAll('.video-card'));
+  const chips = Array.from(document.querySelectorAll('.chip'));
+  const sideLinks = Array.from(document.querySelectorAll('.side-link'));
+  const resultCount = document.querySelector('#resultCount');
+  const emptyState = document.querySelector('#emptyState');
+  let currentFilter = 'all';
+
+  function setActiveFilter(filter) {
+    currentFilter = filter;
+    chips.forEach(chip => chip.classList.toggle('active', chip.dataset.filter === filter));
+    sideLinks.forEach(link => link.classList.toggle('active', link.dataset.filter === filter));
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const query = searchInput.value.trim().toLowerCase();
+    let visible = 0;
+
+    cards.forEach(card => {
+      const haystack = `${card.dataset.title} ${card.dataset.category}`.toLowerCase();
+      const tokens = haystack.split(/[^a-z0-9]+/).filter(Boolean);
+      const matchesQuery = !query || (query.length <= 2
+        ? tokens.some(token => token === query)
+        : haystack.includes(query));
+      const matchesFilter = currentFilter === 'all' || haystack.includes(currentFilter);
+      const show = matchesQuery && matchesFilter;
+      card.hidden = !show;
+      if (show) visible += 1;
+    });
+
+    resultCount.textContent = `${visible} video${visible === 1 ? '' : 's'}`;
+    emptyState.classList.toggle('show', visible === 0);
+  }
+
+  document.querySelector('.search').addEventListener('submit', event => {
+    event.preventDefault();
+    applyFilters();
+  });
+
+  searchInput.addEventListener('input', applyFilters);
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => setActiveFilter(chip.dataset.filter));
+  });
+
+  sideLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      const filter = link.dataset.filter;
+      if (filter === 'all') event.preventDefault();
+      setActiveFilter(filter);
+    });
+  });
+</script>
+</body>
+</html>

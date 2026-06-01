@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif;font-size:13px;color:#2c2c2a;background:#f5f4f0;padding:20px}
+h1{font-size:18px;font-weight:700;color:#26215C;margin-bottom:3px}
+.sub{font-size:12px;color:#888;margin-bottom:18px}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.tb{font-size:12px;padding:6px 14px;border-radius:20px;border:1px solid #ccc;background:#fff;color:#666;cursor:pointer;transition:all .15s;font-weight:500}
+.tb:hover{opacity:.85}
+.tb.a{color:#fff;border-color:transparent}
+.tc{display:none;background:#fff;border-radius:10px;padding:20px;border:1px solid #e0dfd8}
+.tc.a{display:block}
+
+/* Metric cards */
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.mc{padding:14px 16px;border-radius:8px;text-align:center}
+.mc .val{font-size:22px;font-weight:700}
+.mc .lbl{font-size:11px;margin-top:4px;opacity:.85}
+.m1{background:#EEEDFE;color:#26215C}
+.m2{background:#E1F5EE;color:#04342C}
+.m3{background:#FAECE7;color:#4A1B0C}
+
+/* Content cards */
+.cd{padding:11px 13px;border-radius:8px;font-size:12px;line-height:1.7;border:1px solid #e0dfd8;background:#fafaf8}
+.cd b{color:#2c2c2a;font-weight:600}
+.cd.red{background:#FCEBEB;border-color:#F7C1C1;color:#501313}.cd.red b{color:#501313}
+.cd.amber{background:#FAEEDA;border-color:#FAC775;color:#412402}.cd.amber b{color:#412402}
+.cd.green{background:#EAF3DE;border-color:#C0DD97;color:#173404}.cd.green b{color:#173404}
+.cd.blue{background:#E6F1FB;border-color:#85B7EB;color:#042C53}.cd.blue b{color:#042C53}
+.cd.purple{background:#EEEDFE;border-color:#CECBF6;color:#26215C}.cd.purple b{color:#26215C}
+
+/* Flow boxes */
+.flow{display:flex;align-items:center;flex-wrap:wrap;gap:3px;margin:8px 0}
+.fbox{font-size:10px;font-weight:600;padding:4px 9px;border-radius:5px;white-space:nowrap}
+.farr{color:#aaa;font-size:13px;padding:0 1px}
+.fg{background:#F1EFE8;color:#444;border:1px solid #B4B2A9}
+.fp{background:#E6F1FB;color:#042C53;border:1px solid #85B7EB}
+.ft{background:#E1F5EE;color:#04342C;border:1px solid #5DCAA5}
+.fa{background:#FAEEDA;color:#412402;border:1px dashed #BA7517}
+.fr{background:#FAECE7;color:#4A1B0C;border:1px solid #F09995}
+.fv{background:#EEEDFE;color:#26215C;border:2px solid #534AB7}
+.fpar{background:#534AB7;color:#fff;border:2px solid #26215C;font-size:9px;padding:4px 8px}
+.pcol{display:flex;flex-direction:column;gap:3px}
+.bcol{display:flex;flex-direction:column;gap:6px}
+.br{display:flex;align-items:center;gap:3px}
+.bl{font-size:10px;color:#aaa;margin-left:4px;white-space:nowrap}
+
+/* Section labels */
+.lbl{font-size:10px;font-weight:700;letter-spacing:.8px;color:#aaa;margin:14px 0 7px;text-transform:uppercase}
+
+/* Callout / highlight bar */
+.hbar{border-left:3px solid #534AB7;border-radius:0 7px 7px 0;background:#EEEDFE;padding:10px 14px;font-size:12px;color:#26215C;line-height:1.7;margin-top:12px}
+.hbar b{color:#26215C}
+.hbar.teal{border-left-color:#0F6E56;background:#E1F5EE;color:#04342C}
+.hbar.teal b{color:#04342C}
+.hbar.coral{border-left-color:#D85A30;background:#FAECE7;color:#4A1B0C}
+.hbar.coral b{color:#4A1B0C}
+
+/* Tables */
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0}
+.tbl th{background:#534AB7;color:#fff;padding:7px 11px;text-align:left;font-weight:600}
+.tbl td{padding:7px 11px;border-bottom:1px solid #eee}
+.tbl tr:nth-child(even) td{background:#faf9f6}
+.chk{color:#0F6E56;font-weight:700}
+.crs{color:#A32D2D;font-weight:700}
+
+/* Bar chart */
+.bar-row{display:flex;align-items:center;gap:10px;margin:6px 0}
+.bar-lbl{width:190px;font-size:11px;color:#666;flex-shrink:0}
+.bar-track{flex:1;background:#F1EFE8;border-radius:4px;height:24px}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:10px;font-size:10px;font-weight:600;color:#fff;white-space:nowrap}
+.bar-tag{font-size:10px;color:#aaa;width:120px;flex-shrink:0;text-align:right}
+
+/* Compare cols */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.cmp-col{border-radius:8px;padding:13px 15px;border:1px solid #e0dfd8}
+.cmp-col h4{font-size:12px;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e0dfd8}
+.cmp-col.bad h4{color:#A32D2D;border-bottom-color:#F7C1C1}
+.cmp-col.good h4{color:#0F6E56;border-bottom-color:#C0DD97}
+.flow-sm{font-size:10px;background:#F1EFE8;border-radius:5px;padding:6px 10px;margin-bottom:10px;line-height:1.8;color:#555}
+
+/* Stage grid */
+.stage-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.stage{padding:10px;border-radius:7px;background:rgba(83,74,183,0.07);font-size:11px}
+.stage.active{border:1px solid #AFA9EC;background:rgba(83,74,183,0.13)}
+.stage h4{font-weight:600;margin-bottom:6px;color:#2c2c2a}
+.stage .note{color:#888;font-size:10px;margin-top:4px}
+
+/* Photos */
+.fig{margin:14px 0}
+.fig img{width:100%;display:block;border-radius:8px;border:1px solid #e0dfd8;background:#f1efe8}
+.fig .cap{font-size:10px;color:#999;margin-top:5px;text-align:center;line-height:1.5}
+.figrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.figrow{grid-template-columns:1fr}}
+
+/* SVG figure frame */
+.svgfig{background:#fafaf8;border:1px solid #e0dfd8;border-radius:8px;padding:12px;margin:12px 0}
+.svgfig svg{display:block;width:100%;height:auto}
+
+/* Tank cross-sections */
+.tanks{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0}
+@media(max-width:560px){.tanks{grid-template-columns:1fr 1fr 1fr}}
+.tankcap{font-size:10px;color:#888;text-align:center;margin-top:4px;font-weight:600}
+
+/* Recovery split */
+.split{display:flex;align-items:stretch;gap:0;height:42px;border-radius:6px;overflow:hidden;margin:10px 0;border:1px solid #e0dfd8}
+.split .seg{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+
+/* Interactive simulator */
+.sim{display:grid;grid-template-columns:1fr 1.1fr;gap:18px;align-items:center;background:#fafaf8;border:1px solid #e0dfd8;border-radius:8px;padding:16px}
+@media(max-width:560px){.sim{grid-template-columns:1fr}}
+.simbig{font-size:34px;font-weight:700;color:#534AB7;line-height:1}
+.simreadout{font-size:11px;color:#888;margin:4px 0}
+.simstatus{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;padding:6px 13px;border-radius:20px;margin:10px 0 8px;border:1.5px solid}
+.simstatus.on{color:#0F6E56;border-color:#0F6E56;background:#E1F5EE}
+.simstatus.off{color:#A32D2D;border-color:#A32D2D;background:#FCEBEB}
+.simctrl{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+.simbtn{font-size:11px;font-weight:700;border:1.5px solid #534AB7;background:#fff;color:#534AB7;padding:8px 13px;border-radius:8px;cursor:pointer;transition:.15s}
+.simbtn:hover{background:#534AB7;color:#fff}
+.simbtn.pr{background:#534AB7;color:#fff}
+.simbtn.pr:hover{background:#3C3489}
+
+/* Animated water-flow pipes */
+.apipe{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.aflow{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:8 18;animation:awater 1.1s linear infinite}
+.aflow-fast{animation-duration:.6s}
+@keyframes awater{to{stroke-dashoffset:-26}}
+.alabel{font-size:10px;fill:#888;font-family:Arial,sans-serif}
+.aboxt{font-size:11px;font-weight:700;font-family:Arial,sans-serif}
+
+/* Flux levers */
+.levers{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0;font-size:12px;font-weight:700}
+.lever{padding:9px 13px;border-radius:8px;text-align:center;line-height:1.4}
+.lever.flux{background:#534AB7;color:#fff}
+.lever.eq{color:#888;font-weight:700;font-size:15px}
+.lever.pp{background:#FAEEDA;color:#412402;border:1px solid #BA7517}
+.lever.ar{background:#E6F1FB;color:#042C53;border:1px solid #85B7EB}
+.lever.orr{color:#aaa;font-size:11px;font-weight:400}
+.lever small{display:block;font-weight:400;font-size:10px;opacity:.85}
+</style></head><body>
+
+<h1>💧 Complete Guide to RO (Reverse Osmosis) Systems</h1>
+<div class="sub">Why choose RO · How water flows &amp; self-balances · System components · Flux metrics · How Tankless works · Parallel vs high-flux membrane · RO vs other methods</div>
+
+<div class="tabs">
+  <button class="tb a" style="background:#534AB7" onclick="ST(0,this,'#534AB7')">① Why RO</button>
+  <button class="tb" onclick="ST(1,this,'#185FA5')">② Flow &amp; Balance</button>
+  <button class="tb" onclick="ST(2,this,'#0F6E56')">③ Components</button>
+  <button class="tb" onclick="ST(3,this,'#BA7517')">④ Flux Metrics</button>
+  <button class="tb" onclick="ST(4,this,'#D85A30')">⑤ How Tankless Works</button>
+  <button class="tb" onclick="ST(5,this,'#185FA5')">⑥ Parallel vs High-Flux</button>
+  <button class="tb" onclick="ST(6,this,'#2c2c2a')">⑦ RO vs Other Methods</button>
+  <button class="tb" onclick="ST(7,this,'#0F6E56')">⑧ Pump vs No-Pump</button>
+</div>
+
+<!-- TAB 1: WHY RO -->
+<div id="tc0" class="tc a">
+  <div class="g3" style="margin-bottom:14px">
+    <div class="mc m1"><div class="val">95–99%</div><div class="lbl">Total TDS removal</div></div>
+    <div class="mc m2"><div class="val">0.0001 μm</div><div class="lbl">Membrane pore size (nanometer scale)</div></div>
+    <div class="mc m3"><div class="val">3–7 stages</div><div class="lbl">Typical number of filter stages</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="cd green">
+      <b>✓ What RO removes</b>
+      Heavy metals (lead / arsenic / mercury / chromium)<br>
+      Nitrate, fluoride, residual chlorine<br>
+      Bacteria, viruses, parasites<br>
+      Pesticides and drug residues<br>
+      Total dissolved solids (TDS)<br>
+      PFAS "forever chemicals"
+    </div>
+    <div class="cd red">
+      <b>⚠ Limits and trade-offs</b>
+      High wastewater ratio (pure : waste = 1:1 ~ 1:3)<br>
+      Needs a booster pump (uses power)<br>
+      Minerals are removed along with the TDS<br>
+      Membrane needs replacing (every 2–3 years)<br>
+      Tank models carry a secondary-contamination risk<br>
+      Tankless models need a high-flux membrane
+    </div>
+  </div>
+
+  <div class="fig">
+    <img loading="lazy" onerror="this.parentNode.style.display='none'"
+      src="https://commons.wikimedia.org/wiki/Special:FilePath/Reverse%20osmosis%20membrane%20coil.jpg?width=900"
+      alt="Spiral-wound reverse osmosis membrane element">
+    <div class="cap">A spiral-wound RO membrane element — the core of every RO system. Photo: Wikimedia Commons</div>
+  </div>
+
+  <div class="lbl">Why RO beats other purification technologies</div>
+  <table class="tbl">
+    <tr><th>Technology</th><th>Remove chlorine / organics</th><th>Remove heavy metals</th><th>Remove bacteria / viruses</th><th>Remove dissolved salt (TDS)</th></tr>
+    <tr><td>Activated carbon filter</td><td class="chk">✓</td><td class="crs">✗</td><td class="crs">✗</td><td class="crs">✗</td></tr>
+    <tr><td>UV disinfection</td><td class="crs">✗</td><td class="crs">✗</td><td class="chk">✓</td><td class="crs">✗</td></tr>
+    <tr><td>Water softener</td><td class="crs">✗</td><td class="crs">✗</td><td class="crs">✗</td><td class="crs">✗ (only swaps Ca/Mg)</td></tr>
+    <tr><td><b>Reverse Osmosis (RO)</b></td><td class="chk"><b>✓</b></td><td class="chk"><b>✓</b></td><td class="chk"><b>✓</b></td><td class="chk"><b>✓</b></td></tr>
+  </table>
+
+  <div class="hbar teal" style="margin-top:14px">
+    💡 <b>Key takeaway:</b> Only RO can handle <b>microbes + heavy metals + chemical pollutants + dissolved salt</b> all in one system. UV only kills microbes; carbon removes chlorine but not dissolved salt; a softener only swaps calcium and magnesium. RO is the most complete home and commercial water-purification technology available today.
+  </div>
+</div>
+
+<!-- TAB 2: FLOW & BALANCE (NEW) -->
+<div id="tc1" class="tc">
+  <div class="cd blue" style="margin-bottom:14px">
+    An RO system moves and balances water using <b>pressure alone</b> — no electronics are needed to decide when to start or stop. This tab follows the water from the city line to your glass, and shows how the system shuts itself off when the tank is full.
+  </div>
+
+  <div class="lbl">Live water flow</div>
+  <div class="svgfig">
+    <svg viewBox="0 0 900 210" aria-label="Animated water flow through the RO system">
+      <!-- feed -->
+      <path class="apipe" stroke="#DAD6C8" stroke-width="7" d="M90 104 H130"/>
+      <path class="aflow" stroke="#9A9482" stroke-width="5" d="M90 104 H130"/>
+      <!-- pre to membrane -->
+      <path class="apipe" stroke="#DAD6C8" stroke-width="7" d="M250 104 H300"/>
+      <path class="aflow" stroke="#9A9482" stroke-width="5" d="M250 104 H300"/>
+      <!-- clean main stub -->
+      <path class="apipe" stroke="#BDD8F2" stroke-width="7" d="M420 96 H470"/>
+      <path class="aflow" stroke="#185FA5" stroke-width="5" d="M420 96 H470"/>
+      <!-- clean up to faucet -->
+      <path class="apipe" stroke="#BDD8F2" stroke-width="7" d="M470 96 V52 H636"/>
+      <path class="aflow" stroke="#185FA5" stroke-width="5" d="M470 96 V52 H636"/>
+      <!-- clean down to tank -->
+      <path class="apipe" stroke="#BDD8F2" stroke-width="7" d="M470 96 V168 H516"/>
+      <path class="aflow" stroke="#185FA5" stroke-width="5" d="M470 96 V168 H516"/>
+      <!-- reject to drain -->
+      <path class="apipe" stroke="#F0CDB8" stroke-width="7" d="M420 120 H720 V166 H756"/>
+      <path class="aflow" stroke="#D85A30" stroke-width="5" d="M420 120 H720 V166 H756"/>
+      <!-- boxes -->
+      <rect x="12" y="84" width="78" height="40" rx="7" fill="#fff" stroke="#B4B2A9" stroke-width="1.6"/>
+      <text class="aboxt" x="51" y="108" text-anchor="middle" fill="#444">Feed</text>
+      <rect x="130" y="84" width="120" height="40" rx="7" fill="#E6F1FB" stroke="#85B7EB" stroke-width="1.6"/>
+      <text class="aboxt" x="190" y="102" text-anchor="middle" fill="#042C53">Pre-filters</text>
+      <text class="alabel" x="190" y="116" text-anchor="middle">PP + carbon</text>
+      <rect x="300" y="78" width="120" height="58" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+      <text class="aboxt" x="360" y="103" text-anchor="middle" fill="#26215C">RO Membrane</text>
+      <text class="alabel" x="360" y="117" text-anchor="middle">splits stream</text>
+      <rect x="636" y="30" width="100" height="44" rx="7" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="1.6"/>
+      <text class="aboxt" x="686" y="56" text-anchor="middle" fill="#04342C">Faucet</text>
+      <rect x="516" y="146" width="100" height="48" rx="7" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.6" stroke-dasharray="4 3"/>
+      <text class="aboxt" x="566" y="167" text-anchor="middle" fill="#412402">Tank</text>
+      <text class="alabel" x="566" y="181" text-anchor="middle">optional</text>
+      <rect x="756" y="144" width="120" height="44" rx="7" fill="#FAECE7" stroke="#F09995" stroke-width="1.6"/>
+      <text class="aboxt" x="816" y="170" text-anchor="middle" fill="#4A1B0C">Drain</text>
+      <text class="alabel" x="478" y="44" fill="#185FA5">clean</text>
+      <text class="alabel" x="610" y="113" fill="#D85A30">reject</text>
+    </svg>
+    <div style="font-size:10px;color:#999;text-align:center;margin-top:4px">Clean water (blue) splits up to the faucet and tank; reject water (orange) flows to the drain.</div>
+  </div>
+
+  <div class="lbl">The full water path</div>
+  <div class="flow">
+    <div class="fbox fg">Feed water<br><span style="font-size:9px;font-weight:400">city ~60 psi</span></div><div class="farr">→</div>
+    <div class="fbox fp">Sediment (PP)<br><span style="font-size:9px;font-weight:400">5μm, sand &amp; rust</span></div><div class="farr">→</div>
+    <div class="fbox fp">Carbon<br><span style="font-size:9px;font-weight:400">chlorine &amp; organics</span></div><div class="farr">→</div>
+    <div class="fbox fv" style="padding:8px 11px">RO Membrane<br><span style="font-size:9px;font-weight:400">splits the stream</span></div><div class="farr">→</div>
+    <div class="fbox fa">Tank<br><span style="font-size:9px;font-weight:400">optional buffer</span></div><div class="farr">→</div>
+    <div class="fbox ft">Post carbon<br><span style="font-size:9px;font-weight:400">polish / taste</span></div><div class="farr">→</div>
+    <div class="fbox fg">Pure water<br><span style="font-size:9px;font-weight:400">to faucet</span></div>
+  </div>
+  <div class="flow" style="margin-top:2px">
+    <div style="width:300px;flex-shrink:0"></div>
+    <div style="font-size:10px;color:#A32D2D;margin-left:6px">↓ reject (concentrate / waste) → drain</div>
+  </div>
+
+  <div class="lbl" style="margin-top:16px">The split at the membrane</div>
+  <p style="font-size:12px;color:#555;line-height:1.7;margin-bottom:6px">The membrane only lets pure water pass through under pressure. The rejected contaminants must be flushed off the membrane surface with some water — that is the reject stream. A typical home system keeps about <b>1 part clean</b> for every <b>3 parts to drain</b>.</p>
+  <div class="split">
+    <div class="seg" style="flex:1;background:#185FA5">CLEAN · 1 part → tank</div>
+    <div class="seg" style="flex:3;background:#D85A30">REJECT · 3 parts → drain</div>
+  </div>
+  <div style="font-size:10px;color:#aaa;text-align:center">Recovery ≈ 25% — bars drawn to scale (1 : 3)</div>
+
+  <div class="lbl" style="margin-top:16px">The pressure tank with a rubber bladder</div>
+  <p style="font-size:12px;color:#555;line-height:1.7;margin-bottom:4px">A rubber <b>bladder</b> holds the clean water; sealed air sits around it. As water fills the bladder, the air is squeezed smaller, so its pressure climbs. That trapped air is the "spring" that pushes water back out when you open the faucet.</p>
+  <div class="tanks">
+    <div>
+      <div class="svgfig" style="margin:0;padding:8px">
+        <svg viewBox="0 0 200 250" aria-label="Empty tank">
+          <rect x="40" y="18" width="120" height="214" rx="30" fill="#F1EBDC" stroke="#2c2c2a" stroke-width="2"/>
+          <path d="M70 28 q30 -13 60 0 q6 25 -30 33 q-36 -8 -30 -33 Z" fill="#9FC2EA" stroke="#185FA5" stroke-width="1.4"/>
+          <rect x="92" y="4" width="16" height="18" rx="3" fill="#fff" stroke="#2c2c2a" stroke-width="1.4"/>
+          <rect x="94" y="232" width="12" height="13" rx="2" fill="#fff" stroke="#2c2c2a" stroke-width="1.4"/>
+          <text x="100" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#BA7517">AIR</text>
+          <text x="100" y="170" text-anchor="middle" font-size="10" fill="#BA7517">▲ pressure</text>
+        </svg>
+      </div>
+      <div class="tankcap">EMPTY · air ≈ 7 psi</div>
+    </div>
+    <div>
+      <div class="svgfig" style="margin:0;padding:8px">
+        <svg viewBox="0 0 200 250" aria-label="Filling tank">
+          <rect x="40" y="18" width="120" height="214" rx="30" fill="#F1EBDC" stroke="#2c2c2a" stroke-width="2"/>
+          <path d="M64 28 q36 -15 72 0 q14 68 -36 80 q-50 -12 -36 -80 Z" fill="#5B9BD5" stroke="#185FA5" stroke-width="1.4"/>
+          <rect x="92" y="4" width="16" height="18" rx="3" fill="#fff" stroke="#2c2c2a" stroke-width="1.4"/>
+          <rect x="94" y="232" width="12" height="13" rx="2" fill="#fff" stroke="#2c2c2a" stroke-width="1.4"/>
+          <text x="100" y="185" text-anchor="middle" font-size="12" font-weight="700" fill="#BA7517">AIR</text>
+          <text x="100" y="78" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">WATER</text>
+        </svg>
+      </div>
+      <div class="tankcap">FILLING · air ≈ 20 psi</div>
+    </div>
+    <div>
+      <div class="svgfig" style="margin:0;padding:8px">
+        <svg viewBox="0 0 200 250" aria-label="Full tank">
+          <rect x="40" y="18" width="120" height="214" rx="30" fill="#F1EBDC" stroke="#2c2c2a" stroke-width="2"/>
+          <path d="M52 26 q48 -13 96 0 q10 172 -48 188 q-58 -16 -48 -188 Z" fill="#185FA5" stroke="#0d3a66" stroke-width="1.4"/>
+          <rect x="92" y="4" width="16" height="18" rx="3" fill="#fff" stroke="#2c2c2a" stroke-width="1.4"/>
+          <rect x="94" y="232" width="12" height="13" rx="2" fill="#fff" stroke="#2c2c2a" stroke-width="1.4"/>
+          <text x="100" y="130" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">WATER</text>
+          <text x="100" y="224" text-anchor="middle" font-size="9" fill="#7a5a18">thin air gap</text>
+        </svg>
+      </div>
+      <div class="tankcap">FULL · air ≈ 35 psi → shut off</div>
+    </div>
+  </div>
+
+  <div class="lbl" style="margin-top:16px">Watch the system shut itself off</div>
+  <p style="font-size:12px;color:#555;line-height:1.7;margin-bottom:8px">Press <b>Produce</b> and watch the tank fill: water rises, the trapped air is squeezed, and pressure climbs. When tank pressure reaches about <b>two-thirds of the feed pressure</b>, the ASO (auto shut-off) valve closes and production stops — no electricity, just pressure. Open the faucet to drop the pressure and it turns back on.</p>
+  <div class="sim">
+    <div style="text-align:center">
+      <svg viewBox="0 0 200 270" style="max-width:150px" aria-label="Interactive tank">
+        <rect x="48" y="16" width="104" height="238" rx="30" fill="#F1EBDC" stroke="#2c2c2a" stroke-width="2.5"/>
+        <clipPath id="simclip"><rect x="50" y="18" width="100" height="234" rx="28"/></clipPath>
+        <g clip-path="url(#simclip)">
+          <rect id="simWater" x="50" y="252" width="100" height="0" fill="#5B9BD5"/>
+          <rect id="simWaterTop" x="50" y="252" width="100" height="5" fill="#185FA5"/>
+        </g>
+        <rect x="92" y="2" width="16" height="18" rx="3" fill="#fff" stroke="#2c2c2a" stroke-width="2"/>
+        <rect x="94" y="252" width="12" height="14" rx="2" fill="#fff" stroke="#2c2c2a" stroke-width="2"/>
+        <text id="simAir" x="100" y="50" text-anchor="middle" font-size="10" font-weight="700" fill="#BA7517">AIR</text>
+      </svg>
+      <div class="simreadout">Tank fill: <span id="simFill">0</span>%<br>(notice it stops well before 100%)</div>
+    </div>
+    <div style="text-align:center">
+      <svg viewBox="0 0 240 140" style="max-width:230px;margin:0 auto" aria-label="Pressure gauge">
+        <path d="M30 130 A90 90 0 0 1 210 130" fill="none" stroke="#E5E1D5" stroke-width="13" stroke-linecap="round"/>
+        <path id="simMark" d="" fill="none" stroke="#A32D2D" stroke-width="3"/>
+        <line id="simNeedle" x1="120" y1="130" x2="120" y2="55" stroke="#534AB7" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="120" cy="130" r="8" fill="#2c2c2a"/>
+        <text x="30" y="128" font-size="9" fill="#aaa" text-anchor="middle">0</text>
+        <text x="210" y="128" font-size="9" fill="#aaa" text-anchor="middle">70</text>
+        <text x="170" y="40" font-size="8" fill="#A32D2D">⅔ = 40</text>
+      </svg>
+      <div class="simbig"><span id="simPsi">7</span><span style="font-size:15px;color:#888"> psi</span></div>
+      <div class="simreadout">tank pressure · feed steady at <b>60 psi</b></div>
+      <div id="simStatus" class="simstatus on">● PRODUCING</div>
+      <div class="simctrl">
+        <button id="simProduce" class="simbtn pr">▶ Produce</button>
+        <button id="simFaucet" class="simbtn">🚰 Open faucet</button>
+        <button id="simReset" class="simbtn">↺ Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="fig" style="margin-top:14px">
+    <img loading="lazy" onerror="this.parentNode.style.display='none'"
+      src="https://commons.wikimedia.org/wiki/Special:FilePath/Cutaway%20of%20a%2016%22%20reverse%20osmosis%20tube.jpg?width=900"
+      alt="Cutaway of a reverse osmosis pressure tube">
+    <div class="cap">Cutaway of an RO pressure tube — feed flows along the rolled membrane; clean water spirals to the center tube. Photo: Wikimedia Commons</div>
+  </div>
+
+  <div class="hbar" style="margin-top:6px">
+    💡 <b>The balance, in one line:</b> feed pressure pushes water <b>forward</b> through the membrane; the filling tank pushes <b>back</b>. When back-pressure ≈ ⅔ of feed → the system rests. Draw water → pressure drops → it wakes up again. That self-regulating loop is why a basic RO system stays balanced without any electronic control.
+  </div>
+</div>
+
+<!-- TAB 3: COMPONENTS -->
+<div id="tc2" class="tc">
+  <div class="lbl">Water path</div>
+  <div class="flow">
+    <div class="fbox fg">Feed</div><div class="farr">→</div>
+    <div class="fbox fp">PP cotton<br><span style="font-size:9px;font-weight:400">5μm, sand &amp; rust</span></div><div class="farr">→</div>
+    <div class="fbox fp">Activated carbon<br><span style="font-size:9px;font-weight:400">chlorine / organics</span></div><div class="farr">→</div>
+    <div class="fbox fv" style="padding:8px 11px">RO membrane<br><span style="font-size:9px;font-weight:400">core · 0.0001μm</span></div><div class="farr">→</div>
+    <div class="fbox fa">Storage tank<br><span style="font-size:9px;font-weight:400">optional (tank model)</span></div><div class="farr">→</div>
+    <div class="fbox ft">Post carbon<br><span style="font-size:9px;font-weight:400">T33 polish</span></div><div class="farr">→</div>
+    <div class="fbox fg">Pure water out<br><span style="font-size:9px;font-weight:400">TDS &lt;10</span></div>
+  </div>
+  <div class="flow" style="margin-top:2px">
+    <div style="width:178px;flex-shrink:0"></div>
+    <div style="font-size:10px;color:#A32D2D;margin-left:106px">↓ concentrate (waste) drains to sewer</div>
+  </div>
+
+  <div class="figrow" style="margin-top:14px">
+    <div class="fig" style="margin:0">
+      <img loading="lazy" onerror="this.parentNode.style.display='none'"
+        src="https://commons.wikimedia.org/wiki/Special:FilePath/Reverse%20osmosis%20membrane%20element%20layers.jpg?width=700"
+        alt="Reverse osmosis membrane element layers">
+      <div class="cap">Unrolled membrane layers — the rolled "jelly-roll" inside the element. Photo: Wikimedia Commons</div>
+    </div>
+    <div class="fig" style="margin:0">
+      <img loading="lazy" onerror="this.parentNode.style.display='none'"
+        src="https://commons.wikimedia.org/wiki/Special:FilePath/Reverse%20osmosis%20membrane%20coil.jpg?width=700"
+        alt="Reverse osmosis membrane coil">
+      <div class="cap">A spiral-wound element — huge membrane area in a small tube. Photo: Wikimedia Commons</div>
+    </div>
+  </div>
+
+  <div class="lbl" style="margin-top:16px">Each stage explained</div>
+  <table class="tbl">
+    <tr><th>Stage</th><th>Component</th><th>Job</th><th>Note</th></tr>
+    <tr><td><b>Pre-stage 1–2</b></td><td>PP cotton (5μm)</td><td>Remove sand, rust, suspended particles</td><td>Protects the RO membrane; used up first</td></tr>
+    <tr><td><b>Pre-stage 1–2</b></td><td>Activated carbon (GAC/CTO)</td><td>Remove chlorine, organics, odor</td><td>Stops chlorine from damaging the membrane</td></tr>
+    <tr><td><b>Core stage 3</b></td><td>RO membrane</td><td>0.0001μm pores, 95–99% salt rejection</td><td>Flux (GPD) sets how fast water is made</td></tr>
+    <tr><td><b>Optional buffer</b></td><td>Storage tank (air bladder)</td><td>Buffers the slow output of a low-flux membrane</td><td>Skipped in Tankless designs</td></tr>
+    <tr><td><b>Post polish</b></td><td>T33 coconut-shell carbon</td><td>Removes storage odor, improves taste</td><td>Final water-quality check</td></tr>
+  </table>
+
+  <div class="hbar" style="margin-top:14px">
+    💡 <b>Two key terms to keep apart:</b><br>
+    <b>Salt Rejection Rate</b> = decides how pure the water is, usually ≥ 95%<br>
+    <b>Flux (GPD)</b> = decides how fast water is made, and whether you can drop the tank and go Tankless<br>
+    Both matter, but <b>flux is the variable that decides the system architecture (tank vs no-tank)</b>.
+  </div>
+</div>
+
+<!-- TAB 4: FLUX -->
+<div id="tc3" class="tc">
+  <div class="cd blue" style="margin-bottom:14px">
+    Flux = how much water an RO membrane produces per unit time under standard conditions. For home use it is usually rated in <b>GPD (gallons per day)</b>.<br>
+    Conversion: <b>1 GPD ≈ 3.785 LPD</b> | The test for going Tankless: <b>production speed ≥ usage speed (≈ 1–2 LPM)</b>
+  </div>
+
+  <div class="lbl">Daily output compared</div>
+  <div class="bar-row">
+    <div class="bar-lbl">50 GPD (189 LPD)</div>
+    <div class="bar-track"><div class="bar-fill" style="width:8%;background:#AFA9EC;color:#26215C">0.13 LPM</div></div>
+    <div class="bar-tag">Entry tank model ✗ needs tank</div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl">100 GPD (378 LPD)</div>
+    <div class="bar-track"><div class="bar-fill" style="width:17%;background:#7F77DD">0.26 LPM</div></div>
+    <div class="bar-tag">Standard home ✗ needs tank</div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl">400 GPD (1514 LPD)</div>
+    <div class="bar-track"><div class="bar-fill" style="width:57%;background:#1D9E75">1.05 LPM ≈ faucet flow</div></div>
+    <div class="bar-tag">Tankless threshold ✓</div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl">600 GPD (2271 LPD)</div>
+    <div class="bar-track"><div class="bar-fill" style="width:76%;background:#0F6E56">1.58 LPM, comfortably enough</div></div>
+    <div class="bar-tag">Mainstream Tankless ✓</div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl">1200 GPD (4542 LPD)</div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#04342C;color:#9FE1CB">3.15 LPM — commercial / clinic / high-use</div></div>
+    <div class="bar-tag">High-demand ✓</div>
+  </div>
+
+  <div class="lbl" style="margin-top:18px">The three core metrics</div>
+  <table class="tbl">
+    <tr><th>Metric</th><th>Full name</th><th>Meaning</th><th>Typical value</th></tr>
+    <tr><td><b>GPD</b></td><td>Gallons Per Day</td><td>Gallons/day, the standard flux unit for RO membranes</td><td>50 ~ 1200 GPD</td></tr>
+    <tr><td><b>Salt Rejection</b></td><td>Salt Rejection Rate</td><td>Percentage of TDS removed</td><td>≥ 95% (good membranes ≥ 98%)</td></tr>
+    <tr><td><b>Recovery</b></td><td>Recovery Rate</td><td>Pure / feed ratio; the rest is waste</td><td>25–50% (advanced models higher)</td></tr>
+  </table>
+
+  <div class="hbar coral" style="margin-top:14px">
+    ⚠️ <b>The key judgment:</b> a 50 GPD membrane makes only 0.13 LPM — far below a normal faucet (1–2 LPM). That is why low-flux RO <b>must</b> have a storage tank — the tank is a buffer for slow production. <b>Only at 400 GPD and above can you truly run a Tankless system that makes water on demand.</b>
+  </div>
+</div>
+
+<!-- TAB 5: TANKLESS -->
+<div id="tc4" class="tc">
+  <div class="cmp">
+    <div class="cmp-col bad">
+      <h4>❌ Traditional tank model (low flux + storage tank)</h4>
+      <div class="flow-sm">Low-flux RO (50–100 GPD) → makes 0.13–0.26 LPM<br>→ storage tank (5–10 L, pressurized bladder) → faucet</div>
+      <table class="tbl" style="font-size:11px">
+        <tr><th>Pain point</th><th>Cause</th></tr>
+        <tr><td>Bacteria risk</td><td>Water sits in the bladder a long time, bacteria can grow</td></tr>
+        <tr><td>Worse taste</td><td>Long storage lowers freshness and flavor</td></tr>
+        <tr><td>Takes space</td><td>The tank fills up the under-sink cabinet</td></tr>
+        <tr><td>Pressure fade</td><td>Output pressure drops as the bladder ages</td></tr>
+        <tr><td>Wait time</td><td>After the tank empties, wait 10–20 min to refill</td></tr>
+      </table>
+    </div>
+    <div class="cmp-col good">
+      <h4>✅ Tankless model (high flux + instant output)</h4>
+      <div class="flow-sm">High-flux RO (400–1200+ GPD) → makes ≥ 1 LPM in real time<br>→ straight to the faucet, make-and-drink</div>
+      <table class="tbl" style="font-size:11px">
+        <tr><th>Benefit</th><th>Why</th></tr>
+        <tr><td>No secondary contamination</td><td>No storage tank, no aging bladder</td></tr>
+        <tr><td>Fresher water</td><td>Made on demand, not stored in a tank</td></tr>
+        <tr><td>Simpler install</td><td>No tank, saves under-sink space</td></tr>
+        <tr><td>No waiting</td><td>Production ≥ usage, always ready</td></tr>
+        <tr><td><b>Only requirement</b></td><td><b>Membrane flux must be ≥ 400 GPD</b></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="lbl">Two engineering routes to Tankless</div>
+  <div class="g2">
+    <div class="cd purple">
+      <b>Route A: one large high-flux membrane</b><br>
+      <div class="flow" style="margin-top:6px">
+        <div class="fbox fg">Feed</div><div class="farr">→</div>
+        <div class="fbox fp">Pre-filter</div><div class="farr">→</div>
+        <div class="fbox fv">High-flux RO<br>400–600 GPD</div><div class="farr">→</div>
+        <div class="fbox ft">Post carbon</div>
+      </div>
+      Simple plumbing, compact, few fittings.<br>But dedicated high-flux membranes cost more, are harder to source, and are a single point of failure.
+    </div>
+    <div class="cd purple">
+      <b>Route B: several standard membranes in parallel (the core value of a Modular Manifold)</b><br>
+      <div class="flow" style="margin-top:6px">
+        <div class="fbox fg">Feed</div><div class="farr">→</div>
+        <div class="fbox fp">Pre-filter</div><div class="farr">→</div>
+        <div class="pcol">
+          <div class="fbox fpar">RO 100GPD ①</div>
+          <div class="fbox fpar">RO 100GPD ②</div>
+          <div class="fbox fpar">RO 100GPD ③</div>
+          <div class="fbox fpar">RO 100GPD ④</div>
+        </div>
+        <div class="farr">→</div>
+        <div class="fbox ft">Post carbon</div>
+      </div>
+      Standard membranes are cheap and easy to get, redundant, and expandable on demand.
+    </div>
+  </div>
+
+  <div class="hbar" style="margin-top:4px">
+    💡 <b>The core logic chain:</b> high flux is the prerequisite for Tankless → Tankless solves the hygiene and taste problems of the old storage tank → parallel membranes / one big membrane are the two ways to reach high flux → a Modular Manifold makes the parallel route simple and practical.
+  </div>
+</div>
+
+<!-- TAB 6: PARALLEL VS SINGLE -->
+<div id="tc5" class="tc">
+  <div class="cd blue" style="margin-bottom:14px">
+    Flux is additive: <b>4 × 100 GPD = 1 × 400 GPD</b> — the two routes give the same total output, but with different engineering trade-offs.
+  </div>
+
+  <div class="g2" style="margin-bottom:12px">
+    <div style="background:#E6F1FB;border:1px solid #85B7EB;border-radius:8px;padding:13px 15px">
+      <div style="font-weight:700;color:#042C53;margin-bottom:10px;font-size:13px">Parallel membranes</div>
+      <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px">
+        <div style="background:#fff;border:1px solid #85B7EB;border-radius:4px;padding:5px 10px;font-size:11px;color:#042C53">RO 100 GPD membrane ①</div>
+        <div style="background:#fff;border:1px solid #85B7EB;border-radius:4px;padding:5px 10px;font-size:11px;color:#042C53">RO 100 GPD membrane ②</div>
+        <div style="background:#fff;border:1px solid #85B7EB;border-radius:4px;padding:5px 10px;font-size:11px;color:#042C53">RO 100 GPD membrane ③</div>
+        <div style="background:#fff;border:1px solid #85B7EB;border-radius:4px;padding:5px 10px;font-size:11px;color:#042C53">RO 100 GPD membrane ④</div>
+      </div>
+      <div style="text-align:center;font-weight:700;color:#185FA5;font-size:13px">= 400 GPD total</div>
+    </div>
+    <div style="background:#EEEDFE;border:2px solid #7F77DD;border-radius:8px;padding:13px 15px">
+      <div style="font-weight:700;color:#26215C;margin-bottom:10px;font-size:13px">Single high-flux membrane</div>
+      <div style="display:flex;align-items:center;justify-content:center;height:96px;background:#fff;border:2px solid #534AB7;border-radius:7px;flex-direction:column;gap:5px;margin-bottom:10px">
+        <div style="font-size:14px;font-weight:700;color:#26215C">High-flux RO membrane</div>
+        <div style="font-size:11px;color:#534AB7">single 400 GPD</div>
+      </div>
+      <div style="text-align:center;font-weight:700;color:#534AB7;font-size:13px">= 400 GPD direct</div>
+    </div>
+  </div>
+
+  <table class="tbl">
+    <tr><th>Comparison</th><th>Parallel membranes</th><th>Single high-flux membrane</th></tr>
+    <tr><td>Redundancy</td><td class="chk">✓ one fails, the rest keep running</td><td class="crs">✗ a single failure stops everything</td></tr>
+    <tr><td>Expandability</td><td class="chk">✓ add membranes to raise flux</td><td class="crs">✗ fixed capacity, cannot expand</td></tr>
+    <tr><td>Filter cost</td><td class="chk">✓ standard size, cheap, easy to source</td><td class="crs">✗ special membrane, pricey, scarce</td></tr>
+    <tr><td>Install complexity</td><td class="crs">✗ more plumbing, more fittings</td><td class="chk">✓ simple plumbing, fast install</td></tr>
+    <tr><td>Space used</td><td class="crs">✗ takes more room</td><td class="chk">✓ compact, small</td></tr>
+    <tr><td>Leak risk</td><td class="crs">✗ more fittings, higher risk</td><td class="chk">✓ fewer fittings, lower risk</td></tr>
+    <tr><td>Maintenance flexibility</td><td class="chk">✓ swap one at a time, no full stop</td><td class="crs">✗ replace whole membrane, system down</td></tr>
+  </table>
+
+  <div class="fig" style="margin-top:14px">
+    <img loading="lazy" onerror="this.parentNode.style.display='none'"
+      src="https://commons.wikimedia.org/wiki/Special:FilePath/Reverse%20osmosis%20system%20at%20Bedok%20NEWater%20Factory.jpg?width=1000"
+      alt="Reverse osmosis system with many membranes in parallel">
+    <div class="cap">A large RO plant — rows of pressure vessels running in parallel, the same idea scaled up. Photo: Wikimedia Commons</div>
+  </div>
+
+  <div class="hbar" style="margin-top:12px">
+    💡 <b>How to choose?</b><br>
+    Want a <b>simple, compact install</b> (e.g. a pro doing a tidy DIY job) → pick a single high-flux membrane.<br>
+    Want <b>redundancy, easy scaling, standard maintenance</b> (e.g. clinics, restaurants, commercial use) → pick parallel membranes.<br>
+    <b>Same core truth: enough membrane area and flux is the only prerequisite for tankless on-demand water.</b>
+  </div>
+</div>
+
+<!-- TAB 7: RO VS OTHERS -->
+<div id="tc6" class="tc">
+  <div class="cd blue" style="margin-bottom:14px">
+    There are many water-purification methods, but each one only solves <b>certain types</b> of contaminant. Knowing where each one stops tells you when RO is necessary and when a simpler method is enough.
+  </div>
+
+  <div class="lbl">Full comparison: capability matrix by technology</div>
+  <table class="tbl">
+    <tr>
+      <th>Method</th>
+      <th>Sediment particles</th>
+      <th>Chlorine / odor</th>
+      <th>Heavy metals</th>
+      <th>Bacteria / viruses</th>
+      <th>Dissolved salt (TDS)</th>
+      <th>Hardness (Ca/Mg)</th>
+    </tr>
+    <tr>
+      <td><b>PP cotton / sediment filter</b></td>
+      <td class="chk">✓ strong</td><td class="crs">✗</td><td class="crs">✗</td><td class="crs">✗</td><td class="crs">✗</td><td class="crs">✗</td>
+    </tr>
+    <tr>
+      <td><b>Activated carbon (GAC/CTO)</b></td>
+      <td class="chk">✓ partial</td><td class="chk">✓ strong</td><td class="crs">✗ very little</td><td class="crs">✗</td><td class="crs">✗</td><td class="crs">✗</td>
+    </tr>
+    <tr>
+      <td><b>Water softener (ion exchange)</b></td>
+      <td class="crs">✗</td><td class="crs">✗</td><td class="crs">✗</td><td class="crs">✗</td><td class="crs">✗ (only swaps)</td><td class="chk">✓ strong</td>
+    </tr>
+    <tr>
+      <td><b>Ultrafiltration (UF, 0.01–0.1μm)</b></td>
+      <td class="chk">✓ strong</td><td class="crs">✗</td><td class="crs">✗</td><td class="chk">✓ bacteria</td><td class="crs">✗</td><td class="crs">✗</td>
+    </tr>
+    <tr>
+      <td><b>Nanofiltration (NF, 0.001μm)</b></td>
+      <td class="chk">✓</td><td class="chk">✓ partial</td><td class="chk">✓ partial</td><td class="chk">✓</td><td class="chk">✓ partial (50–70%)</td><td class="chk">✓ strong</td>
+    </tr>
+    <tr>
+      <td><b>Distillation</b></td>
+      <td class="chk">✓</td><td class="chk">✓ partial</td><td class="chk">✓ strong</td><td class="chk">✓ strong</td><td class="chk">✓ strong</td><td class="chk">✓ strong</td>
+    </tr>
+    <tr style="background:#EEEDFE">
+      <td><b>Reverse Osmosis (0.0001μm)</b></td>
+      <td class="chk"><b>✓ strong</b></td><td class="chk"><b>✓ strong</b></td><td class="chk"><b>✓ strong</b></td><td class="chk"><b>✓ strong</b></td><td class="chk"><b>✓ strong (95–99%)</b></td><td class="chk"><b>✓ strong</b></td>
+    </tr>
+  </table>
+
+  <div class="lbl" style="margin-top:18px">Each method: core trait and best use</div>
+  <div class="g2">
+    <div class="cd">
+      <b>PP cotton / sediment filter</b><br>
+      Pore size 1–20 μm, physically traps large particles. Very cheap, and the first stage in almost every system.<br>
+      <span style="color:#aaa;font-size:11px">✓ Best as: a pre-stage guard; on its own it only removes sediment</span>
+    </div>
+    <div class="cd">
+      <b>Activated carbon (GAC / CTO)</b><br>
+      Porous carbon adsorbs chlorine, organics, and odor. Cannot remove dissolved salt or heavy metals.<br>
+      <span style="color:#aaa;font-size:11px">✓ Best as: dechlorinating city water for taste; pre-stage protection for RO</span>
+    </div>
+    <div class="cd">
+      <b>Water softener (ion-exchange resin)</b><br>
+      Swaps sodium for calcium/magnesium to stop scale, but removes nothing else; needs regular salt regeneration.<br>
+      <span style="color:#aaa;font-size:11px">✓ Best as: protecting appliances and pipes in hard-water areas; often paired with RO</span>
+    </div>
+    <div class="cd">
+      <b>Ultrafiltration (UF)</b><br>
+      Pore size 0.01–0.1 μm, removes bacteria, colloids, and large molecules while keeping minerals; no wastewater.<br>
+      <span style="color:#aaa;font-size:11px">✓ Best as: decent source water, mainly worried about bacteria, wants to keep minerals</span>
+    </div>
+    <div class="cd">
+      <b>Nanofiltration (NF)</b><br>
+      Between UF and RO; removes most hardness and organics, keeps some minerals, with lower waste than RO.<br>
+      <span style="color:#aaa;font-size:11px">✓ Best as: softening + partial purification, for high-end drinking that wants some minerals</span>
+    </div>
+    <div class="cd">
+      <b>Distillation</b><br>
+      Boils and re-condenses, removing nearly everything for very high purity. But very slow, power-hungry, and flat-tasting.<br>
+      <span style="color:#aaa;font-size:11px">✓ Best as: lab-grade ultrapure water; poor home experience (slow, hot, costly)</span>
+    </div>
+  </div>
+
+  <div class="lbl" style="margin-top:4px">Side-by-side on broader dimensions</div>
+  <table class="tbl">
+    <tr>
+      <th>Dimension</th>
+      <th>Carbon</th>
+      <th>UF</th>
+      <th>NF</th>
+      <th>Distillation</th>
+      <th style="background:#3C3489">Reverse Osmosis</th>
+    </tr>
+    <tr>
+      <td><b>Purification completeness</b></td>
+      <td>⭐⭐</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td>
+      <td style="background:#EEEDFE;color:#26215C;font-weight:600">⭐⭐⭐⭐⭐</td>
+    </tr>
+    <tr>
+      <td><b>Output speed</b></td>
+      <td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐</td>
+      <td style="background:#EEEDFE;color:#26215C;font-weight:600">⭐⭐⭐ (high-flux reaches ⭐⭐⭐⭐⭐)</td>
+    </tr>
+    <tr>
+      <td><b>Keeps minerals</b></td>
+      <td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐</td><td>⭐</td>
+      <td style="background:#EEEDFE;color:#26215C;font-weight:600">⭐ (can add a remineralizer after)</td>
+    </tr>
+    <tr>
+      <td><b>Install cost</b></td>
+      <td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td>
+      <td style="background:#EEEDFE;color:#26215C;font-weight:600">⭐⭐⭐</td>
+    </tr>
+    <tr>
+      <td><b>Running cost</b></td>
+      <td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td><td>⭐⭐</td>
+      <td style="background:#EEEDFE;color:#26215C;font-weight:600">⭐⭐⭐ (has a wastewater cost)</td>
+    </tr>
+    <tr>
+      <td><b>Wastewater</b></td>
+      <td>none</td><td>very little</td><td>some</td><td>none</td>
+      <td style="background:#EEEDFE;color:#26215C;font-weight:600">yes (waste ratio 1:1 ~ 1:3)</td>
+    </tr>
+  </table>
+
+  <div class="fig" style="margin-top:14px">
+    <img loading="lazy" onerror="this.parentNode.style.display='none'"
+      src="https://commons.wikimedia.org/wiki/Special:FilePath/Reverse%20osmosis%20desalination%20plant.JPG?width=900"
+      alt="Reverse osmosis desalination plant">
+    <div class="cap">RO scaled to a desalination plant — the same membrane principle used for drinking water and seawater. Photo: Wikimedia Commons</div>
+  </div>
+
+  <div class="hbar teal" style="margin-top:14px">
+    💡 <b>When is RO the best choice?</b><br>
+    · Source TDS is high (&gt;150 ppm) or it contains heavy metals, nitrate, PFAS, etc. → RO is the only effective answer<br>
+    · You need clearly pure drinking water (TDS &lt;50 ppm) → carbon and UF cannot do this<br>
+    · Commercial / medical needs high flux + steady quality → parallel RO gives Tankless<br>
+    <b>When is a simpler method enough?</b><br>
+    · Clean source (city water, TDS &lt;100), only need dechlorination for taste → carbon is enough<br>
+    · Worried about bacteria but not TDS → UF is better value and keeps minerals<br>
+    · Hard-water scale is the main concern → a softener or NF fits better
+  </div>
+</div>
+
+<!-- TAB 8: PUMP VS NO-PUMP -->
+<div id="tc7" class="tc">
+  <div class="cd blue" style="margin-bottom:14px">
+    RO needs pressure to push water through the membrane. That pressure comes from one of two places: your home's existing <b>line pressure</b>, or an added <b>booster pump</b>. Whether a system needs a pump — and whether it can run <b>tankless without one</b> — comes down to how much <b>pressure × membrane area</b> it has.
+  </div>
+
+  <div class="lbl">What drives the water: line pressure vs a pump</div>
+  <div class="g2">
+    <div class="cd green">
+      <b>✓ No pump (line pressure only)</b>
+      Runs on the home's incoming pressure (usually 40–80 psi).<br>
+      Ideal RO pressure ≈ <b>60 psi</b>. Below <b>40 psi</b>, output drops and the membrane fouls early.<br>
+      Simple, silent, no electricity, fewer parts to fail.<br>
+      <span style="color:#173404;font-size:11px">✓ Best when: city pressure is good and steady</span>
+    </div>
+    <div class="cd amber">
+      <b>⚡ Booster pump (electric)</b>
+      Raises pressure to the membrane (often 80–100+ psi) no matter the line pressure.<br>
+      Faster production and better recovery (less wastewater).<br>
+      Needed for low pressure, well water, or upper floors.<br>
+      <span style="color:#412402;font-size:11px">⚠ Cost: uses power, adds noise and parts</span>
+    </div>
+  </div>
+  <div class="cd purple" style="margin-top:10px">
+    <b>A third option — the permeate pump (non-electric):</b> uses the drain water's own energy to cut the back-pressure from the storage tank, so the membrane keeps working at full pressure. It improves recovery and is most useful when line pressure is <b>low (30–50 psi)</b>; it is not for high-pressure lines (≥ ~55 psi).
+  </div>
+
+  <div class="lbl" style="margin-top:16px">The condition for going Tankless</div>
+  <p style="font-size:12px;color:#555;line-height:1.7;margin-bottom:2px">Tankless = no storage tank, water made on demand. There is really only one rule:</p>
+  <div class="hbar" style="margin-top:6px;margin-bottom:6px"><b>Production speed ≥ usage speed</b> (≈ 1–2 LPM at the faucet). In flux terms, that means roughly <b>≥ 400 GPD</b> of total output (see the Flux tab).</div>
+  <p style="font-size:12px;color:#555;line-height:1.7">Permeate flux rises with two things — pressure and membrane area:</p>
+  <div class="levers">
+    <div class="lever flux">Flux ↑<small>more water/min</small></div>
+    <div class="lever eq">=</div>
+    <div class="lever pp">Pressure ↑<small>add a pump</small></div>
+    <div class="lever orr">OR</div>
+    <div class="lever ar">Area ↑<small>bigger / parallel membranes</small></div>
+  </div>
+  <p style="font-size:12px;color:#555;line-height:1.7">So there are two ways to reach tankless flux: push harder (a pump), or give the water more membrane to pass through (more area). This is the key to the next point.</p>
+
+  <div class="lbl" style="margin-top:16px">No-pump tankless RO — how it works</div>
+  <p style="font-size:12px;color:#555;line-height:1.7;margin-bottom:6px">Yes, tankless is possible <b>without a pump</b> — if you get the flux from <b>area</b> instead of pressure. Instead of pushing harder, you give the water far more membrane to flow through, so even on plain line pressure the combined output meets on-demand use. Conditions:</p>
+  <table class="tbl">
+    <tr><th>#</th><th>Condition for no-pump tankless</th></tr>
+    <tr><td><b>1</b></td><td>Good, stable line pressure — ideally around <b>60 psi</b>. The higher and steadier, the better. Weak pressure will not work without a pump.</td></tr>
+    <tr><td><b>2</b></td><td>Large total membrane area — one big high-flux membrane, or several standard membranes <b>in parallel</b> (the Modular Manifold idea) — so the combined permeate reaches ≥ 400 GPD on line pressure alone.</td></tr>
+    <tr><td><b>3</b></td><td>Low-TDS feed water helps — less osmotic pressure to overcome, so more of the line pressure becomes useful flux.</td></tr>
+    <tr><td><b>4</b></td><td>Accept the trade-off: lower recovery (a bit more wastewater) than a pumped system at the same output, and an output that rises and falls with line pressure.</td></tr>
+  </table>
+
+  <div class="svgfig">
+    <svg viewBox="0 0 900 200" aria-label="No-pump vs pumped flow animation">
+      <!-- TOP: no pump -->
+      <path class="apipe" stroke="#DAD6C8" stroke-width="7" d="M84 50 H150"/>
+      <path class="aflow" stroke="#9A9482" stroke-width="5" d="M84 50 H150"/>
+      <path class="apipe" stroke="#BDD8F2" stroke-width="7" d="M262 50 H752"/>
+      <path class="aflow" stroke="#185FA5" stroke-width="5" d="M262 50 H752"/>
+      <rect x="12" y="32" width="72" height="38" rx="7" fill="#fff" stroke="#B4B2A9" stroke-width="1.6"/>
+      <text class="aboxt" x="48" y="55" text-anchor="middle" fill="#444">Feed</text>
+      <rect x="150" y="26" width="112" height="50" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+      <text class="aboxt" x="206" y="48" text-anchor="middle" fill="#26215C">RO Membrane</text>
+      <text class="alabel" x="206" y="62" text-anchor="middle">large / parallel area</text>
+      <rect x="752" y="30" width="104" height="42" rx="7" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="1.6"/>
+      <text class="aboxt" x="804" y="55" text-anchor="middle" fill="#04342C">Faucet</text>
+      <text class="alabel" x="500" y="42" text-anchor="middle" fill="#0F6E56">NO PUMP · line pressure ~60 psi</text>
+      <!-- divider -->
+      <line x1="20" y1="104" x2="880" y2="104" stroke="#eee" stroke-width="1"/>
+      <!-- BOTTOM: pump -->
+      <path class="apipe" stroke="#DAD6C8" stroke-width="7" d="M84 156 H150"/>
+      <path class="aflow" stroke="#9A9482" stroke-width="5" d="M84 156 H150"/>
+      <path class="apipe" stroke="#DAD6C8" stroke-width="7" d="M236 156 H300"/>
+      <path class="aflow aflow-fast" stroke="#9A9482" stroke-width="5" d="M236 156 H300"/>
+      <path class="apipe" stroke="#BDD8F2" stroke-width="9" d="M412 156 H752"/>
+      <path class="aflow aflow-fast" stroke="#185FA5" stroke-width="6" d="M412 156 H752"/>
+      <rect x="12" y="138" width="72" height="38" rx="7" fill="#fff" stroke="#B4B2A9" stroke-width="1.6"/>
+      <text class="aboxt" x="48" y="161" text-anchor="middle" fill="#444">Feed</text>
+      <rect x="150" y="138" width="86" height="38" rx="7" fill="#534AB7" stroke="#26215C" stroke-width="2"/>
+      <text class="aboxt" x="193" y="161" text-anchor="middle" fill="#fff">PUMP</text>
+      <rect x="300" y="132" width="112" height="50" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+      <text class="aboxt" x="356" y="154" text-anchor="middle" fill="#26215C">RO Membrane</text>
+      <text class="alabel" x="356" y="168" text-anchor="middle">smaller area is OK</text>
+      <rect x="752" y="136" width="104" height="42" rx="7" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="1.6"/>
+      <text class="aboxt" x="804" y="161" text-anchor="middle" fill="#04342C">Faucet</text>
+      <text class="alabel" x="582" y="148" text-anchor="middle" fill="#BA7517">BOOSTER PUMP · 80–100+ psi, faster flow</text>
+    </svg>
+    <div style="font-size:10px;color:#999;text-align:center;margin-top:4px">Top: no pump — driven by line pressure, with extra membrane area to make up the flow. Bottom: a booster pump raises pressure (note the faster-moving dashes).</div>
+  </div>
+
+  <div class="lbl" style="margin-top:6px">Pumped tankless vs No-pump tankless</div>
+  <table class="tbl">
+    <tr><th>Item</th><th>Pumped tankless</th><th>No-pump tankless</th></tr>
+    <tr><td>Pressure source</td><td>Electric booster pump</td><td>Home line pressure</td></tr>
+    <tr><td>Works on low pressure</td><td class="chk">✓ yes</td><td class="crs">✗ needs good line pressure</td></tr>
+    <tr><td>Output consistency</td><td class="chk">✓ steady, set by the pump</td><td>Depends on line pressure</td></tr>
+    <tr><td>Recovery (wastewater)</td><td class="chk">✓ better (≈ 1:1 – 2:1)</td><td>Lower recovery, more waste</td></tr>
+    <tr><td>Electricity</td><td class="crs">✗ needs power</td><td class="chk">✓ none</td></tr>
+    <tr><td>Noise / parts</td><td class="crs">✗ pump noise, more parts</td><td class="chk">✓ silent, fewer parts</td></tr>
+    <tr><td>How it reaches high flux</td><td>More pressure</td><td>More membrane area (parallel / big)</td></tr>
+  </table>
+
+  <div class="hbar teal" style="margin-top:14px">
+    💡 <b>The Modular Manifold insight:</b> by paralleling enough standard membranes, you raise the total area enough to hit tankless flux on <b>line pressure alone</b> — a no-pump, no-tank, on-demand system. The trade-off is that you depend on good incoming pressure and accept a little more wastewater. Where line pressure is weak or unreliable, a booster pump is the more dependable route.
+  </div>
+</div>
+
+<script>
+function ST(n,btn,c){
+  document.querySelectorAll('.tc').forEach(e=>e.classList.remove('a'));
+  document.querySelectorAll('.tb').forEach(e=>{
+    e.classList.remove('a');
+    e.style.background='#fff';
+    e.style.color='#666';
+    e.style.borderColor='#ccc';
+  });
+  document.getElementById('tc'+n).classList.add('a');
+  btn.classList.add('a');
+  btn.style.background=c;
+  btn.style.color='#fff';
+  btn.style.borderColor='transparent';
+}
+
+/* ---- Self-balancing tank simulator ---- */
+(function(){
+  var feed=60, shutoff=Math.round(feed*2/3), P0abs=21.7, fMax=0.62;
+  var f=0, producing=true;
+  var W=document.getElementById('simWater'),
+      WT=document.getElementById('simWaterTop'),
+      N=document.getElementById('simNeedle'),
+      PSI=document.getElementById('simPsi'),
+      FILL=document.getElementById('simFill'),
+      S=document.getElementById('simStatus'),
+      PB=document.getElementById('simProduce');
+  if(!W) return;
+  function airGauge(x){return Math.max(0,P0abs/(1-x)-14.7);}
+  function pt(p){var t=Math.min(1,Math.max(0,p/70)),a=Math.PI-t*Math.PI,cx=120,cy=130,r=90;
+    return{x:cx+r*Math.cos(a),y:cy-r*Math.sin(a)};}
+  (function(){var a=pt(38),b=pt(42);
+    document.getElementById('simMark').setAttribute('d','M'+a.x+' '+a.y+' A90 90 0 0 1 '+b.x+' '+b.y);})();
+  function render(){
+    var p=airGauge(f), tip=pt(p);
+    N.setAttribute('x2',tip.x); N.setAttribute('y2',tip.y);
+    PSI.textContent=Math.round(p);
+    FILL.textContent=Math.round((f/fMax)*62);
+    var h=234*(f/fMax)*0.62; if(h>234)h=234;
+    W.setAttribute('y',252-h); W.setAttribute('height',h);
+    WT.setAttribute('y',252-h-3);
+    var active=producing && p<shutoff;
+    if(p>=shutoff){S.className='simstatus off';S.textContent='■ OFF · TANK FULL';}
+    else if(active){S.className='simstatus on';S.textContent='● PRODUCING';}
+    else{S.className='simstatus on';S.textContent='○ IDLE · ready';}
+  }
+  function tick(){if(producing){var p=airGauge(f);if(p<shutoff){f+=0.006;if(f>fMax)f=fMax;}}render();}
+  PB.addEventListener('click',function(){producing=!producing;PB.textContent=producing?'⏸ Pause':'▶ Produce';render();});
+  document.getElementById('simFaucet').addEventListener('click',function(){f-=0.12;if(f<0)f=0;render();});
+  document.getElementById('simReset').addEventListener('click',function(){f=0;producing=false;PB.textContent='▶ Produce';render();});
+  render(); setInterval(tick,55);
+})();
+</script>
+</body></html>
