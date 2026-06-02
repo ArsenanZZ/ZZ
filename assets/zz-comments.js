@@ -1,4 +1,7 @@
 (function () {
+  var REPO = "ArsenanZZ/ZZ";
+  var ISSUE_LABEL = "comments";
+
   function ready(callback) {
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", callback);
@@ -7,125 +10,65 @@
     }
   }
 
-  function normalizePath() {
-    var path = window.location.pathname.replace(/\/+/g, "/");
-    if (path.endsWith("/")) path += "index.html";
-    return path;
-  }
-
-  function getInitials(name) {
-    var trimmed = name.trim();
-    if (!trimmed) return "ZZ";
-    return trimmed.slice(0, 2).toUpperCase();
-  }
-
-  function formatTime(value) {
-    try {
-      return new Intl.DateTimeFormat("zh-CN", {
-        dateStyle: "medium",
-        timeStyle: "short"
-      }).format(new Date(value));
-    } catch (error) {
-      return value;
-    }
-  }
-
-  function loadComments(key) {
-    try {
-      var parsed = JSON.parse(localStorage.getItem(key) || "[]");
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (error) {
-      return [];
-    }
-  }
-
-  function saveComments(key, comments) {
-    localStorage.setItem(key, JSON.stringify(comments));
-  }
-
-  function text(tag, className, value) {
+  function make(tag, className, text) {
     var node = document.createElement(tag);
     if (className) node.className = className;
-    node.textContent = value;
+    if (text) node.textContent = text;
     return node;
+  }
+
+  function createUtterancesScript() {
+    var script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    script.setAttribute("repo", REPO);
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("label", ISSUE_LABEL);
+    script.setAttribute("theme", "github-light");
+    return script;
   }
 
   ready(function () {
     var mount = document.querySelector("[data-zz-comments]");
     if (!mount) return;
 
-    var key = "zz-comments:v1:" + normalizePath();
-    var comments = loadComments(key);
-
     mount.className = "zz-comments";
-    mount.innerHTML = [
-      '<div class="zz-comments-head">',
-      "  <div>",
-      "    <h2>留言</h2>",
-      '    <div class="zz-comments-note">保存在当前浏览器</div>',
-      "  </div>",
-      '  <div class="zz-comments-count" data-zz-count></div>',
-      "</div>",
-      '<form class="zz-comments-form" data-zz-form>',
-      '  <div class="zz-comments-row">',
-      '    <input name="name" type="text" maxlength="28" placeholder="名字" autocomplete="name">',
-      '    <textarea name="message" maxlength="1200" placeholder="写下你的想法" required></textarea>',
-      "    <button type=\"submit\">发布</button>",
-      "  </div>",
-      "</form>",
-      '<div class="zz-comments-list" data-zz-list></div>'
-    ].join("");
+    mount.setAttribute("aria-labelledby", "zz-comments-title");
+    mount.innerHTML = "";
 
-    var countNode = mount.querySelector("[data-zz-count]");
-    var form = mount.querySelector("[data-zz-form]");
-    var list = mount.querySelector("[data-zz-list]");
+    var shell = make("div", "zz-comments-shell");
+    var intro = make("div", "zz-comments-intro");
+    var eyebrow = make("div", "zz-comments-eyebrow", "GitHub Issues");
+    var title = make("h2", null, "公开留言");
+    var note = make(
+      "p",
+      "zz-comments-note",
+      "留言会公开保存在这个仓库里，登录 GitHub 后即可发布。"
+    );
+    var status = make("p", "zz-comments-status", "正在载入留言...");
+    var panel = make("div", "zz-comments-panel");
 
-    function render() {
-      list.textContent = "";
-      countNode.textContent = comments.length + " 条留言";
+    title.id = "zz-comments-title";
+    panel.setAttribute("data-zz-comments-panel", "");
 
-      if (!comments.length) {
-        list.appendChild(text("p", "zz-comments-empty", "还没有留言。"));
-        return;
-      }
+    intro.appendChild(eyebrow);
+    intro.appendChild(title);
+    intro.appendChild(note);
+    panel.appendChild(status);
+    shell.appendChild(intro);
+    shell.appendChild(panel);
+    mount.appendChild(shell);
 
-      comments.slice().reverse().forEach(function (comment) {
-        var item = document.createElement("article");
-        item.className = "zz-comment";
-
-        var avatar = text("div", "zz-comment-avatar", getInitials(comment.name));
-        var body = document.createElement("div");
-        var name = text("p", "zz-comment-name", comment.name || "ZZ Visitor");
-        var time = text("div", "zz-comment-time", formatTime(comment.createdAt));
-        var message = text("p", "zz-comment-text", comment.message);
-
-        body.appendChild(name);
-        body.appendChild(time);
-        body.appendChild(message);
-        item.appendChild(avatar);
-        item.appendChild(body);
-        list.appendChild(item);
-      });
-    }
-
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      var data = new FormData(form);
-      var message = String(data.get("message") || "").trim();
-      if (!message) return;
-
-      comments.push({
-        id: String(Date.now()),
-        name: String(data.get("name") || "").trim() || "ZZ Visitor",
-        message: message,
-        createdAt: new Date().toISOString()
-      });
-
-      saveComments(key, comments);
-      form.reset();
-      render();
+    var script = createUtterancesScript();
+    script.addEventListener("load", function () {
+      status.remove();
+    });
+    script.addEventListener("error", function () {
+      status.textContent = "留言载入失败，请稍后刷新页面。";
+      status.className = "zz-comments-status is-error";
     });
 
-    render();
+    panel.appendChild(script);
   });
 }());
