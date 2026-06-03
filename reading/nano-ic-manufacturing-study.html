@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>纳米集成电路制造工艺 · Reading Study Notes</title>
+<style>
+  :root {
+    --bg: #f7f8f8;
+    --panel: #ffffff;
+    --ink: #151716;
+    --muted: #626a66;
+    --line: #dfe4e1;
+    --soft: #eef3f1;
+    --green: #087c62;
+    --blue: #246b8f;
+    --amber: #9a6600;
+    --red: #b43b3b;
+    --chip: #101817;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .app {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    min-height: 100vh;
+  }
+
+  .rail {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 18px 14px;
+    overflow: auto;
+    background: #ffffff;
+    border-right: 1px solid var(--line);
+  }
+
+  .brand {
+    display: grid;
+    gap: 6px;
+    padding: 8px 10px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .brand strong {
+    font-size: 18px;
+    letter-spacing: 0;
+  }
+
+  .brand span,
+  .note {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .nav {
+    display: grid;
+    gap: 4px;
+    padding: 14px 0;
+  }
+
+  .nav a {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 8px;
+    align-items: center;
+    min-height: 42px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+
+  .nav a:hover,
+  .nav a:focus-visible {
+    background: var(--soft);
+    outline: none;
+  }
+
+  .num {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--chip);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 11px;
+  }
+
+  .main {
+    min-width: 0;
+    padding: 28px clamp(18px, 4vw, 48px) 52px;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 310px;
+    gap: 28px;
+    align-items: stretch;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  h1 {
+    margin: 0 0 12px;
+    font-size: clamp(28px, 4vw, 46px);
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+
+  .lead {
+    max-width: 820px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .pillrow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #ffffff;
+    color: #2b3430;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .focusbox {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  .focusbox h2,
+  .section h2,
+  .chapter h2 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+
+  .metric {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .bar {
+    height: 8px;
+    border-radius: 999px;
+    background: var(--soft);
+    overflow: hidden;
+  }
+
+  .bar span {
+    display: block;
+    height: 100%;
+    background: var(--green);
+  }
+
+  .section {
+    margin-top: 26px;
+  }
+
+  .process {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .step {
+    min-height: 108px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  .step strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .step span {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 26px -2px 18px;
+    padding: 12px 0;
+    background: rgba(247, 248, 248, .95);
+    backdrop-filter: blur(10px);
+  }
+
+  .toolbar button {
+    min-height: 34px;
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--ink);
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .toolbar button.active {
+    border-color: var(--chip);
+    background: var(--chip);
+    color: #ffffff;
+  }
+
+  .chapters {
+    display: grid;
+    gap: 18px;
+  }
+
+  .chapter {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 18px;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+  }
+
+  .chapter h2 {
+    margin-bottom: 6px;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0 16px;
+  }
+
+  .tag {
+    display: inline-flex;
+    min-height: 26px;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--soft);
+    color: #2f3935;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .tag.hot { background: #e8f6f1; color: var(--green); }
+  .tag.tool { background: #eaf2f7; color: var(--blue); }
+  .tag.warn { background: #fff2d8; color: var(--amber); }
+
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 18px;
+    color: #27302c;
+  }
+
+  li {
+    margin: 6px 0;
+    line-height: 1.62;
+    font-size: 14px;
+  }
+
+  .plain {
+    margin: 10px 0 0;
+    color: #29332f;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .aside {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .card {
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fbfcfc;
+  }
+
+  .card strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+
+  .terms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .term {
+    padding: 5px 7px;
+    border-radius: 6px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    color: #1d2b28;
+    font-size: 12px;
+    font-family: Consolas, "Courier New", monospace;
+  }
+
+  .pdf {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 36px;
+    align-items: center;
+    border-radius: 6px;
+    background: var(--chip);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .small {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .callout {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-left: 4px solid var(--green);
+    background: #eef8f5;
+    color: #1b332d;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .visual-card {
+    margin: 0 0 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fbfcfc;
+    overflow: hidden;
+  }
+
+  .visual-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    background: #ffffff;
+  }
+
+  .visual-head h3 {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .visual-head span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .visual-svg {
+    padding: 12px;
+  }
+
+  .visual-svg svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .visual-caption {
+    margin: 0;
+    padding: 0 14px 14px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .principle-card {
+    display: grid;
+    grid-template-columns: minmax(260px, 1.05fr) minmax(220px, .95fr);
+    gap: 14px;
+    margin: 0 0 16px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: linear-gradient(180deg, #ffffff, #f9fbfa);
+  }
+
+  .principle-figure {
+    min-width: 0;
+    padding: 10px;
+    border-radius: 8px;
+    background: #eef3f1;
+    border: 1px solid #d8e0dc;
+  }
+
+  .principle-figure svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .principle-copy {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+  }
+
+  .principle-copy h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .principle-copy p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .photo-card {
+    display: grid;
+    grid-template-columns: minmax(260px, .92fr) minmax(240px, 1fr);
+    gap: 14px;
+    margin: 0 0 16px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  .photo-frame {
+    min-width: 0;
+    min-height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #d5ddd9;
+    background: #eef3f1;
+  }
+
+  .photo-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+    object-fit: cover;
+  }
+
+  .photo-copy {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+  }
+
+  .photo-copy h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .photo-copy p {
+    margin: 0;
+    color: #27302c;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .photo-credit {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .photo-credit a {
+    color: var(--blue);
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .mini-list {
+    display: grid;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .mini-list li {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: 8px;
+    margin: 0;
+    color: #26312d;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .mini-list li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    margin-top: 7px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+
+  .deep-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 14px 0 16px;
+  }
+
+  .deep-card {
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  .deep-card h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+  }
+
+  .deep-card ul {
+    padding-left: 17px;
+  }
+
+  .deep-card li {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .expansion {
+    margin: 14px 0 16px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fbfcfc;
+  }
+
+  .expansion h3 {
+    margin: 0 0 12px;
+    font-size: 15px;
+  }
+
+  .expansion-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .expansion-block {
+    padding: 12px;
+    border: 1px solid #dce4e0;
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  .expansion-block span {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .expansion-block p {
+    margin: 0;
+    color: #27302c;
+    font-size: 13px;
+    line-height: 1.72;
+  }
+
+  .source-pages {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .source-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .source-head h3 {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .page-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+    gap: 10px;
+    max-height: 520px;
+    padding: 10px;
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #f2f5f4;
+  }
+
+  .page-card {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+    padding: 7px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  .page-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 5px;
+    border: 1px solid #d8ddda;
+  }
+
+  .page-card span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .footer {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1080px) {
+    .app { grid-template-columns: 1fr; }
+    .rail { position: static; height: auto; }
+    .hero,
+    .chapter { grid-template-columns: 1fr; }
+    .process { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 720px) {
+    .main { padding: 20px 14px 36px; }
+    .cols,
+    .principle-card,
+    .photo-card,
+    .deep-grid,
+    .expansion-grid,
+    .process { grid-template-columns: 1fr; }
+    .chapter { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="rail">
+    <div class="brand">
+      <strong>Nano IC Manufacturing</strong>
+      <span>Reading public study version</span>
+      <span>For semiconductor equipment role prep</span>
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <p class="note">公开版只保留学习笔记、自制示意图和公开来源照片，不包含原书 PDF 或原书扫描页。</p>
+  </aside>
+
+  <main class="main">
+    <section class="hero">
+      <div>
+        <h1>纳米集成电路制造工艺 · Reading 学习版</h1>
+        <p class="lead">这版把全书按 19 章拆成学习框架，面向台积电/半导体设备岗位做准备：每章保留知识顺序、给通俗解释、列设备工程师该抓的工艺参数和英文关键词。公开版包含自制示意图、原理图和公开来源真实照片，不包含原书 PDF 或原书扫描页。</p>
+        <div class="pillrow">
+          <span class="pill">Reading study notes</span>
+          <span class="pill">Equipment engineer focus</span>
+          <span class="pill">English keywords</span>
+          <span class="pill">Chinese diagrams</span>
+          <span class="pill">No original book PDF</span>
+        </div>
+      </div>
+      <div class="focusbox">
+        <h2>优先学习路线</h2>
+        <div class="metric"><span>光刻 / Lithography</span><b>High</b></div>
+        <div class="bar"><span style="width:96%"></span></div>
+        <div class="metric"><span>干法刻蚀 / Etch</span><b>High</b></div>
+        <div class="bar"><span style="width:94%"></span></div>
+        <div class="metric"><span>CMP / Planarization</span><b>High</b></div>
+        <div class="bar"><span style="width:88%"></span></div>
+        <div class="metric"><span>金属化 / Metallization</span><b>Medium</b></div>
+        <div class="bar"><span style="width:78%"></span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>工艺全景图</h2>
+      <div class="process">
+        <div class="step"><strong>器件与微缩</strong><span>理解 MOSFET、FinFET、短沟道效应、High-k/Metal Gate，为后续工艺选择建立物理直觉。</span></div>
+        <div class="step"><strong>前段工艺 FEOL</strong><span>氧化、沉积、离子注入、应力工程、栅极与源漏形成，设备重点是均匀性、热预算与污染控制。</span></div>
+        <div class="step"><strong>图形化工艺</strong><span>光刻、套刻、CD、NILS、OPC、多重图形化，设备重点是稳定性、对焦、overlay 与 defect。</span></div>
+        <div class="step"><strong>刻蚀与清洗</strong><span>等离子刻蚀、选择比、各向异性、残留物清洗，设备重点是 chamber matching、endpoint 与 particle。</span></div>
+        <div class="step"><strong>后段与良率</strong><span>金属互连、CMP、可靠性、量测、良率、封装测试，设备重点是 defect density 与 process window。</span></div>
+      </div>
+    </section>
+
+    <div class="toolbar" id="toolbar">
+      <button class="active" data-filter="all">全部章节</button>
+      <button data-filter="equipment">设备重点</button>
+      <button data-filter="patterning">图形化</button>
+      <button data-filter="film">薄膜与金属</button>
+      <button data-filter="yield">良率/测试</button>
+    </div>
+
+    <section class="chapters" id="chapters"></section>
+
+    <div class="footer">
+      <b>Public note:</b> This Reading version is a study guide with self-made diagrams and public-source photos. It does not include the original book PDF or scanned book pages.
+    </div>
+  </main>
+</div>
+
+<script>
+const PDF_URL = "";
+
+const chapters = [
+  {
+    no: 1,
+    title: "半导体器件",
+    en: "Semiconductor Devices",
+    pages: "17-45",
+    pageStart: 17,
+    filter: "equipment",
+    priority: "Foundation",
+    tags: ["device physics", "MOSFET", "CMOS"],
+    terms: ["PN junction", "threshold voltage", "subthreshold current", "body effect", "HEMT", "junctionless FET"],
+    core: [
+      "先建立 N 型/P 型半导体、PN 结、BJT、MOSFET 的基本模型，再进入短沟道器件和新型场效应晶体管。",
+      "对设备岗来说，重点不是推公式，而是知道器件参数为什么会被工艺波动影响，例如阈值电压、漏电、迁移率和接触电阻。",
+      "读这一章时要把每个器件参数和制造变量对应起来：掺杂、氧化层厚度、沟道长度、界面缺陷、应力和热预算。"
+    ],
+    plain: "把芯片里的晶体管想成一个被电压控制的开关。制造工艺的任务就是把这个开关做得足够小、足够快、漏电足够低，而且每一颗都尽量一致。设备工程师每天看到的 CD、膜厚、离子剂量和缺陷，其实最后都会反映到这些器件参数上。",
+    equipment: [
+      "Watch: gate oxide thickness, channel CD, implant dose, interface trap density.",
+      "Interview angle: explain how process variation shifts Vt or leakage.",
+      "TSMC-style mindset: connect tool stability to device performance, not only recipe execution."
+    ]
+  },
+  {
+    no: 2,
+    title: "集成电路制造工艺发展趋势",
+    en: "Manufacturing Trends",
+    pages: "46-57",
+    pageStart: 46,
+    filter: "equipment",
+    priority: "High",
+    tags: ["scaling", "High-k", "mobility"],
+    terms: ["lateral scaling", "vertical scaling", "EOT", "RC delay", "High-k Metal Gate", "strain engineering"],
+    core: [
+      "章节围绕横向微缩、纵向微缩和等效扩充三条线展开。",
+      "横向微缩推动光刻、沟槽填充、互连 RC 降低；纵向微缩推动 EOT、源漏工程和硅化物工艺。",
+      "当几何微缩遇到极限，需要 High-k/Metal Gate、应力工程、迁移率增强等补偿技术。"
+    ],
+    plain: "芯片变小不是简单把图形缩小。线变窄以后，光刻更难；沟槽更窄以后，填膜更难；金属线更细以后，电阻和延迟更大。所以每一代节点都不是单点突破，而是一整套设备和材料协同升级。",
+    equipment: [
+      "Watch: process window shrinkage, film conformality, RC delay control.",
+      "Useful phrase: scaling increases sensitivity to tool variation.",
+      "Good question to answer: why do advanced nodes need new materials instead of only better lithography?"
+    ]
+  },
+  {
+    no: 3,
+    title: "CMOS逻辑电路及存储器制造流程",
+    en: "CMOS Logic and Memory Flow",
+    pages: "58-86",
+    pageStart: 58,
+    filter: "equipment",
+    priority: "High",
+    tags: ["process flow", "CMOS", "memory"],
+    terms: ["FEOL", "FinFET", "gate-last", "DRAM", "3D NAND", "image sensor"],
+    core: [
+      "这一章把器件结构放回制造流程：从 CMOS 逻辑流程，到 High-k/Metal Gate 的 gate-last，再到多类存储器。",
+      "设备岗要特别关注流程依赖关系：前一步的缺陷、形貌或残留，会在后续步骤被放大。",
+      "存储器部分适合建立产品差异意识：DRAM、Flash、3D NAND、MRAM 等对设备能力的要求不同。"
+    ],
+    plain: "这章像是一张工厂路线图。每一道工艺都不是孤立的，沉积之后要刻蚀，刻蚀之后要清洗，清洗之后可能还要量测。设备工程师需要知道自己的 tool 在整条 flow 里处于什么位置，才能判断异常会影响哪里。",
+    equipment: [
+      "Watch: module handoff, thermal budget, contamination carry-over.",
+      "Interview angle: explain FEOL/BEOL difference and why module integration matters.",
+      "English answer starter: A process flow is only as stable as its weakest module interface."
+    ]
+  },
+  {
+    no: 4,
+    title: "电介质薄膜沉积工艺",
+    en: "Dielectric Film Deposition",
+    pages: "87-113",
+    pageStart: 87,
+    filter: "film",
+    priority: "High",
+    tags: ["CVD", "dielectric", "gap fill"],
+    terms: ["thermal oxidation", "SiON", "High-k dielectric", "HDP-CVD", "SACVD", "low-k", "gap fill"],
+    core: [
+      "核心是氧化膜/氮化膜、栅介质、高 k、沟槽填充和低 k 介质。",
+      "设备岗要关注膜厚均匀性、介电常数、应力、缺陷、台阶覆盖和填充能力。",
+      "窄沟槽填充时，void/seam 是关键风险；低 k 薄膜则要在低介电常数和机械/热稳定性之间折中。"
+    ],
+    plain: "介电薄膜像芯片里的绝缘层和隔离墙。它既要绝缘，又要薄、均匀、能填进很窄的缝，还不能给后续工艺带来太多应力或缺陷。",
+    equipment: [
+      "Watch: thickness uniformity, refractive index, stress, wet etch rate, voids.",
+      "Tool focus: CVD chamber seasoning, precursor delivery, plasma damage.",
+      "English keywords: conformality, gap-fill capability, dielectric constant."
+    ]
+  },
+  {
+    no: 5,
+    title: "应力工程",
+    en: "Strain Engineering",
+    pages: "114-127",
+    pageStart: 114,
+    filter: "film",
+    priority: "Medium",
+    tags: ["mobility", "strain", "SiGe"],
+    terms: ["embedded SiGe", "embedded SiC", "stress memorization", "CESL", "carrier mobility"],
+    core: [
+      "应力工程通过改变沟道载流子迁移率来提升器件性能。",
+      "章节包括嵌入式锗硅/碳硅、应力记忆技术、双极应力刻蚀阻挡层等。",
+      "设备角度要注意应力大小、材料组成、选择性外延、缺陷和热处理对最终效果的影响。"
+    ],
+    plain: "应力工程不是把晶圆压弯，而是在晶体管局部制造有方向的晶格应变，让电子或空穴跑得更快。它是器件性能补偿技术的一部分。",
+    equipment: [
+      "Watch: epi selectivity, Ge/C composition, film stress, defect density.",
+      "Interview angle: why tensile and compressive stress help different transistor types.",
+      "Useful phrase: strain engineering converts material stress into mobility gain."
+    ]
+  },
+  {
+    no: 6,
+    title: "金属薄膜沉积工艺及金属化",
+    en: "Metal Deposition and Metallization",
+    pages: "128-159",
+    pageStart: 128,
+    filter: "film",
+    priority: "High",
+    tags: ["PVD", "barrier", "Cu interconnect"],
+    terms: ["metal gate", "salicide", "pre-clean", "PVD Ti", "TiN", "W plug", "barrier layer", "seed layer", "ECP"],
+    core: [
+      "章节覆盖金属栅、自对准硅化物、接触窗、钨塞、铜互连和电镀。",
+      "金属化的关键是低电阻、良好附着、阻挡扩散、覆盖能力和 void 控制。",
+      "设备岗要把 pre-clean、barrier、seed、ECP、anneal、edge bead removal 串成一条互连模块链路。"
+    ],
+    plain: "如果晶体管是开关，金属互连就是把所有开关接起来的电线。电线越细，电阻、扩散、空洞和可靠性问题越突出，所以金属化工艺特别依赖设备稳定性。",
+    equipment: [
+      "Watch: contact resistance, barrier integrity, seed continuity, Cu voids.",
+      "Tool focus: PVD coverage, ECP bath control, pre-clean endpoint.",
+      "English keywords: electromigration, barrier diffusion, via resistance."
+    ]
+  },
+  {
+    no: 7,
+    title: "光刻技术",
+    en: "Lithography",
+    pages: "160-244",
+    pageStart: 160,
+    sourcePages: [160, 244],
+    filter: "patterning",
+    priority: "Very High",
+    tags: ["scanner", "CD", "overlay"],
+    terms: ["NA", "DOF", "NILS", "MEEF", "CDU", "overlay", "OPC", "SRAF", "EUV", "immersion lithography"],
+    core: [
+      "这是设备岗最值得精读的章节之一，包含光刻系统参数、分辨率、工艺流程、工艺窗口、缺陷、成像模型和分辨率增强技术。",
+      "关键主线是：如何把掩膜版图形稳定、准确、可重复地转移到光刻胶上。",
+      "要把公式和工程指标联系起来：波长、NA、焦深、曝光剂量、CD、overlay、MEEF、NILS、OPC、多重图形化。"
+    ],
+    plain: "光刻像芯片制造里的照相，但它不是拍漂亮照片，而是要把几十纳米的图形批量、稳定、低缺陷地投到晶圆上。设备工程师最关心的是这张照片有没有对焦、有没有偏位、线宽是不是一致、缺陷是不是可控。",
+    equipment: [
+      "Watch: focus, dose, overlay, CD uniformity, reticle defect, resist profile.",
+      "Interview angle: explain why higher NA improves resolution but reduces depth of focus.",
+      "TSMC-style phrase: lithography is a process-window management problem."
+    ]
+  },
+  {
+    no: 8,
+    title: "干法刻蚀",
+    en: "Dry Etching",
+    pages: "245-285",
+    pageStart: 245,
+    sourcePages: [245, 285],
+    filter: "patterning",
+    priority: "Very High",
+    tags: ["plasma", "etch", "selectivity"],
+    terms: ["plasma etching", "anisotropy", "selectivity", "etch rate", "endpoint detection", "ICP", "RIE", "ashing"],
+    core: [
+      "这一章覆盖等离子刻蚀基础、刻蚀机发展、刻蚀度量、建模、先进反应器、典型应用和工艺控制。",
+      "干法刻蚀的核心矛盾是：既要方向性强，又要选择比高，还要少损伤、低残留、低缺陷。",
+      "设备岗必须熟悉 chamber condition、RF power、pressure、gas chemistry、endpoint、CD bias、microloading 等概念。"
+    ],
+    plain: "刻蚀就是把不需要的材料挖掉。湿法像泡药水，干法像用等离子体里的离子和自由基去精准雕刻。越先进的结构越像高深宽比的微型地形，刻蚀要又直又干净还不能伤到底层。",
+    equipment: [
+      "Watch: etch rate, selectivity, profile angle, CD bias, residue, plasma damage.",
+      "Tool focus: chamber matching, seasoning, RF stability, gas delivery, endpoint signal.",
+      "English keywords: aspect ratio dependent etching, microloading, sidewall passivation."
+    ]
+  },
+  {
+    no: 9,
+    title: "集成电路制造中的污染和清洗技术",
+    en: "Contamination and Cleaning",
+    pages: "286-313",
+    pageStart: 286,
+    filter: "equipment",
+    priority: "High",
+    tags: ["clean", "contamination", "wet process"],
+    terms: ["particle", "metal contamination", "RCA clean", "megasonic cleaning", "surface preparation", "cross-contamination"],
+    core: [
+      "章节从污染源、污染对器件影响、湿法处理要求和机理展开。",
+      "清洗不是简单洗干净，而是在去除颗粒/金属/有机残留的同时避免损伤、粗糙化和再污染。",
+      "设备岗要特别理解 contamination control，因为很多异常不是 recipe 错，而是环境、耗材、腔体、化学品和传送链路带来的。"
+    ],
+    plain: "先进制程里，一点颗粒、一点金属污染都可能让器件漏电或失效。清洗模块就是在每个关键步骤之间把表面状态重新拉回可控状态。",
+    equipment: [
+      "Watch: particle count, metal ions, watermark, surface roughness, chemical concentration.",
+      "Interview angle: explain why cleaning can both remove defects and create defects.",
+      "English phrase: cleaning is surface-state engineering."
+    ]
+  },
+  {
+    no: 10,
+    title: "超浅结技术",
+    en: "Ultra-Shallow Junction",
+    pages: "314-326",
+    pageStart: 314,
+    filter: "equipment",
+    priority: "Medium",
+    tags: ["implant", "anneal", "junction"],
+    terms: ["ion implantation", "dopant activation", "rapid thermal anneal", "junction depth", "transient enhanced diffusion"],
+    core: [
+      "超浅结围绕源漏掺杂、结深控制和激活展开。",
+      "关键矛盾是高掺杂、低电阻和浅结深之间的平衡。",
+      "设备岗要关注 implant dose/energy、退火温度时间、扩散控制和片内均匀性。"
+    ],
+    plain: "超浅结就是把掺杂区做得很浅，但还要足够导电。做浅靠低能注入和扩散控制，导电靠足够激活，二者经常互相拉扯。",
+    equipment: [
+      "Watch: sheet resistance, junction leakage, implant uniformity, thermal budget.",
+      "English keywords: dopant activation, diffusion, spike anneal.",
+      "Interview angle: why advanced nodes need tight thermal budget control."
+    ]
+  },
+  {
+    no: 11,
+    title: "化学机械平坦化",
+    en: "Chemical Mechanical Planarization",
+    pages: "327-344",
+    pageStart: 327,
+    sourcePages: [327, 344],
+    filter: "patterning",
+    priority: "Very High",
+    tags: ["CMP", "planarization", "slurry"],
+    terms: ["CMP", "slurry", "pad conditioning", "dishing", "erosion", "removal rate", "within-wafer non-uniformity"],
+    core: [
+      "CMP 是让晶圆表面重新平坦的关键模块，尤其对多层互连和浅沟槽隔离重要。",
+      "关键指标包括去除率、均匀性、选择比、表面缺陷、dishing、erosion 和 scratch。",
+      "设备岗要理解 pad、slurry、pressure、platen speed、conditioner、endpoint 之间的相互影响。"
+    ],
+    plain: "CMP 像给晶圆做超精密抛光，但不是越抛越好，而是要在正确位置停下来，并且整片晶圆都要抛得一致。它既是化学反应，也是机械摩擦。",
+    equipment: [
+      "Watch: removal rate, WIWNU, defects, scratches, slurry aging, pad life.",
+      "Interview angle: explain dishing vs erosion and why pattern density matters.",
+      "English phrase: CMP is a coupled chemical-mechanical control problem."
+    ]
+  },
+  {
+    no: 12,
+    title: "器件参数和工艺相关性",
+    en: "Device Parameters vs Process",
+    pages: "345-349",
+    pageStart: 345,
+    filter: "yield",
+    priority: "Medium",
+    tags: ["correlation", "parametric", "process control"],
+    terms: ["parametric test", "SPC", "process split", "correlation", "control chart"],
+    core: [
+      "这一章适合把前面的工艺模块和最终器件电性联系起来。",
+      "对设备岗来说，关键是从电性异常反推可能的工艺来源。",
+      "要建立参数链路：膜厚、CD、掺杂、缺陷、接触电阻如何影响 I-V、Vt、漏电和良率。"
+    ],
+    plain: "工艺工程不是只看机器有没有报警，还要看最后芯片电性有没有偏。设备数据、电性数据和良率数据能连起来，才是真正会分析问题。",
+    equipment: [
+      "Watch: tool data to electrical parameter correlation.",
+      "English keywords: parametric drift, root cause analysis, statistical process control.",
+      "Interview angle: how would you debug Vt shift after a process change?"
+    ]
+  },
+  {
+    no: 13,
+    title: "可制造性设计",
+    en: "Design for Manufacturability",
+    pages: "350-361",
+    pageStart: 350,
+    filter: "patterning",
+    priority: "Medium",
+    tags: ["DFM", "layout", "process window"],
+    terms: ["DFM", "layout dependency", "OPC", "process window", "pattern density", "dummy fill"],
+    core: [
+      "DFM 强调设计版图必须考虑制造限制。",
+      "工艺窗口、图形密度、邻近效应、CMP loading 和刻蚀 loading 都会影响可制造性。",
+      "设备岗要知道，有些问题不是设备单独能解决，而是设计、工艺和设备共同作用。"
+    ],
+    plain: "设计图不能只在电脑里好看，还要能被真实设备做出来。DFM 就是在设计阶段提前避开制造上的雷。",
+    equipment: [
+      "Watch: layout-dependent defects, pattern density effects, OPC limitations.",
+      "English phrase: manufacturability is designed before it is processed.",
+      "Interview angle: why dummy fill helps CMP uniformity."
+    ]
+  },
+  {
+    no: 14,
+    title: "半导体器件失效分析",
+    en: "Failure Analysis",
+    pages: "362-399",
+    pageStart: 362,
+    filter: "yield",
+    priority: "High",
+    tags: ["FA", "defect", "reliability"],
+    terms: ["failure analysis", "SEM", "TEM", "FIB", "hot spot", "leakage path", "root cause"],
+    core: [
+      "失效分析用于定位器件为什么失败，连接电性症状、物理缺陷和工艺根因。",
+      "设备岗不一定亲手做全部 FA，但要能读懂 FA 结果，并把它映射回设备/工艺异常。",
+      "常见路径是电性筛选、定位、截面、显微分析、材料分析和根因验证。"
+    ],
+    plain: "FA 像芯片的法医。它不是只证明哪里坏了，而是要找到坏的原因，并给制造端一个可以行动的改进方向。",
+    equipment: [
+      "Watch: defect signature, chamber history, lot history, tool matching.",
+      "English keywords: root cause, failure mechanism, physical localization.",
+      "Interview angle: how would you use FA feedback to improve tool performance?"
+    ]
+  },
+  {
+    no: 15,
+    title: "集成电路可靠性介绍",
+    en: "IC Reliability",
+    pages: "400-412",
+    pageStart: 400,
+    filter: "yield",
+    priority: "Medium",
+    tags: ["reliability", "stress test", "lifetime"],
+    terms: ["BTI", "HCI", "TDDB", "electromigration", "stress test", "lifetime projection"],
+    core: [
+      "可靠性关注芯片在长时间、高温、电压或电流应力下是否仍能工作。",
+      "制造工艺中的薄膜质量、界面缺陷、金属线质量和污染都会影响可靠性。",
+      "设备岗要把短期 inline 指标和长期可靠性风险联系起来。"
+    ],
+    plain: "芯片出厂时能工作还不够，还要几年后也能工作。可靠性就是提前用加速测试把未来可能发生的问题逼出来。",
+    equipment: [
+      "Watch: dielectric quality, metal line integrity, contamination, stress-induced failure.",
+      "English keywords: TDDB, electromigration, accelerated stress.",
+      "Interview angle: why low defect count does not always guarantee reliability."
+    ]
+  },
+  {
+    no: 16,
+    title: "集成电路测量",
+    en: "IC Metrology",
+    pages: "413-433",
+    pageStart: 413,
+    filter: "yield",
+    priority: "High",
+    tags: ["metrology", "inspection", "control"],
+    terms: ["CD-SEM", "overlay metrology", "ellipsometry", "defect inspection", "scatterometry", "wafer map"],
+    core: [
+      "量测是制造过程的眼睛，包括尺寸、膜厚、套刻、缺陷和电性相关测量。",
+      "设备岗要理解量测不是额外步骤，而是 process control 的核心反馈。",
+      "要注意量测本身也有误差、采样策略和 throughput 限制。"
+    ],
+    plain: "没有量测，工厂不知道自己做得对不对。量测结果告诉你机器是不是漂了、工艺窗口是不是缩了、缺陷是不是变多了。",
+    equipment: [
+      "Watch: measurement repeatability, sampling plan, metrology matching.",
+      "English keywords: inline metrology, feedback control, wafer map signature.",
+      "Interview angle: how would you choose metrology data for tool troubleshooting?"
+    ]
+  },
+  {
+    no: 17,
+    title: "良率改善",
+    en: "Yield Improvement",
+    pages: "434-455",
+    pageStart: 434,
+    filter: "yield",
+    priority: "High",
+    tags: ["yield", "defect", "SPC"],
+    terms: ["yield learning", "defect density", "Pareto analysis", "excursion", "SPC", "DOE"],
+    core: [
+      "良率改善把缺陷、参数漂移、工艺窗口和产品失效串成闭环。",
+      "设备岗常见工作就是减少 excursion、提高 tool uptime、降低 defect density、改善 matching。",
+      "要会用数据拆问题：批次、机台、腔体、时间、配方、耗材、维护记录。"
+    ],
+    plain: "良率不是靠祈祷变好的，是靠把失败模式一类类找出来，然后用数据定位根因。设备工程师是这个闭环里非常关键的一环。",
+    equipment: [
+      "Watch: excursion detection, chamber split, maintenance correlation, defect Pareto.",
+      "English keywords: yield ramp, root cause, tool excursion, corrective action.",
+      "Interview angle: describe a data-driven troubleshooting workflow."
+    ]
+  },
+  {
+    no: 18,
+    title: "测试工程",
+    en: "Test Engineering",
+    pages: "456-466",
+    pageStart: 456,
+    filter: "yield",
+    priority: "Medium",
+    tags: ["test", "probe", "screening"],
+    terms: ["wafer sort", "probe test", "binning", "parametric test", "ATE", "test coverage"],
+    core: [
+      "测试工程负责确认芯片是否满足规格，并为良率分析提供结果数据。",
+      "设备岗虽然不一定在测试部门，但要理解测试数据如何反向指示制造问题。",
+      "测试 bin map、参数分布和失效模式能帮助判断工艺异常是否系统性。"
+    ],
+    plain: "测试像芯片的期末考试。它告诉你哪些 die 合格、哪些失败，以及失败模式可能指向哪个制造环节。",
+    equipment: [
+      "Watch: wafer map pattern, parametric shift, bin correlation.",
+      "English keywords: wafer sort, ATE, bin map, test limit.",
+      "Interview angle: how can test data help identify process or tool issues?"
+    ]
+  },
+  {
+    no: 19,
+    title: "芯片封装",
+    en: "Chip Packaging",
+    pages: "467-487",
+    pageStart: 467,
+    filter: "yield",
+    priority: "Medium",
+    tags: ["packaging", "interconnect", "thermal"],
+    terms: ["wire bonding", "flip chip", "BGA", "underfill", "thermal management", "package reliability"],
+    core: [
+      "封装把晶圆上的 die 变成可使用、可连接、可散热、可保护的器件。",
+      "先进封装越来越重要，尤其与性能、功耗、热管理和系统集成相关。",
+      "设备岗可以从互连、应力、热、可靠性和良率角度理解封装。"
+    ],
+    plain: "封装不是简单给芯片套壳，而是把芯片接到外部世界。它决定电连接、机械保护、散热路径和长期可靠性。",
+    equipment: [
+      "Watch: bonding quality, voids, warpage, thermal path, package-level reliability.",
+      "English keywords: flip chip, underfill, warpage, thermal resistance.",
+      "Interview angle: why advanced packaging became important as scaling slowed."
+    ]
+  }
+];
+
+function pdfLink(page) {
+  return PDF_URL + "#page=" + page;
+}
+
+const visuals = {
+  1: {
+    title: "MOSFET 器件结构图",
+    caption: "先把器件看成源极、漏极、沟道、栅氧和栅极的组合。设备波动最终会落到 Vt、leakage、drive current 等电性指标上。",
+    accent: "#087c62",
+    steps: ["源/漏极", "栅氧层", "沟道控制", "电性测试"]
+  },
+  2: {
+    title: "微缩压力图",
+    caption: "节点缩小会同时压缩光刻窗口、薄膜填充窗口和互连 RC 预算，所以先进制程是多模块共同收紧。",
+    accent: "#246b8f",
+    steps: ["CD 变小", "深宽比提高", "降低 RC 延迟", "新材料导入"]
+  },
+  3: {
+    title: "CMOS 工艺流程",
+    caption: "把模块放回完整 flow：FEOL 形成器件，patterning 决定图形，BEOL 完成互连，测试和量测持续反馈。",
+    accent: "#444c9b",
+    steps: ["前段器件", "图形转移", "后段互连", "在线反馈"]
+  },
+  4: {
+    title: "介电薄膜叠层",
+    caption: "介电层承担隔离、栅介质、沟槽填充和低 k 互连绝缘功能；设备重点是膜厚、应力、缺陷和 conformality。",
+    accent: "#0f7d8c",
+    steps: ["氧化物/氮化物", "High-k 栅介质", "沟槽填充", "低 k 介电层"]
+  },
+  5: {
+    title: "应变提升迁移率",
+    caption: "应力工程通过局部晶格应变改变载流子迁移率，是几何微缩之外提升性能的一条路线。",
+    accent: "#8b3f46",
+    steps: ["SiGe / SiC", "应力衬层", "沟道应变", "迁移率提升"]
+  },
+  6: {
+    title: "金属化工艺链",
+    caption: "金属化要把低电阻、阻挡扩散、种子层连续性和填充完整性同时做好，任何一步出问题都会影响互连可靠性。",
+    accent: "#9a6600",
+    steps: ["预清洗", "阻挡层/种子层", "钨塞/Cu 电镀", "退火/检查"]
+  },
+  7: {
+    title: "光刻曝光闭环",
+    caption: "光刻是把 reticle 图形通过光学系统转移到光刻胶；设备关注 focus、dose、CD uniformity 和 overlay。",
+    accent: "#185fa5",
+    steps: ["掩模版", "扫描光学", "光刻胶图形", "CD / 套刻"]
+  },
+  8: {
+    title: "等离子刻蚀控制",
+    caption: "干法刻蚀用离子方向性和自由基化学反应共同塑形；核心是 profile、selectivity、endpoint 和 damage control。",
+    accent: "#b43b3b",
+    steps: ["气体化学", "等离子鞘层", "离子/自由基刻蚀", "终点/形貌"]
+  },
+  9: {
+    title: "表面清洗闭环",
+    caption: "清洗是表面状态工程：去除颗粒、金属、有机残留，同时避免 watermark、表面粗糙和再污染。",
+    accent: "#087c62",
+    steps: ["污染物", "化学清洗", "冲洗/干燥", "表面就绪"]
+  },
+  10: {
+    title: "超浅结形成",
+    caption: "超浅结需要低能注入、快速退火和扩散控制，在浅结深与低片阻之间找平衡。",
+    accent: "#6f5bb5",
+    steps: ["离子注入", "损伤修复", "掺杂激活", "浅结形成"]
+  },
+  11: {
+    title: "CMP 材料去除",
+    caption: "CMP 同时依赖化学反应和机械摩擦；设备重点是 removal rate、uniformity、dishing、erosion 和 scratch。",
+    accent: "#0f6e56",
+    steps: ["抛光液化学", "抛光垫压力", "表面平坦化", "缺陷检查"]
+  },
+  12: {
+    title: "工艺到器件相关性",
+    caption: "把工具数据、inline 量测和电性参数连起来，才能从 Vt shift、leakage、Rs 等异常反推工艺根因。",
+    accent: "#2d6680",
+    steps: ["机台数据", "在线量测", "电性参数", "相关性分析"]
+  },
+  13: {
+    title: "DFM 反馈路径",
+    caption: "可制造性设计把 layout、OPC、pattern density 和工艺窗口提前纳入设计，减少后端救火。",
+    accent: "#53606a",
+    steps: ["版图图形", "OPC / dummy fill", "工艺窗口", "可制造芯片"]
+  },
+  14: {
+    title: "失效分析流程",
+    caption: "失效分析把电性异常定位到物理缺陷，再回溯工艺和设备原因，是良率闭环的重要证据链。",
+    accent: "#a23a3a",
+    steps: ["失效特征", "位置定位", "SEM/TEM/FIB", "根因分析"]
+  },
+  15: {
+    title: "可靠性应力路径",
+    caption: "可靠性关注长期失效机制，如 TDDB、BTI、HCI、electromigration；短期 inline 指标要能预警长期风险。",
+    accent: "#7a5f20",
+    steps: ["应力测试", "失效机制", "寿命模型", "可靠性裕量"]
+  },
+  16: {
+    title: "量测反馈闭环",
+    caption: "量测是制程的眼睛：CD、overlay、膜厚、缺陷和 wafer map 都会反馈给工艺和设备控制。",
+    accent: "#1c6d90",
+    steps: ["量测", "晶圆图", "SPC 趋势", "机台修正"]
+  },
+  17: {
+    title: "良率学习循环",
+    caption: "良率改善依赖 defect pareto、tool split、lot history、DOE 和 corrective action，核心是闭环学习。",
+    accent: "#087c62",
+    steps: ["缺陷 Pareto", "机台/腔体拆分", "根因分析", "修正措施"]
+  },
+  18: {
+    title: "测试数据地图",
+    caption: "测试工程把 wafer sort、bin map 和参数测试反馈给制造端，帮助识别系统性工艺异常。",
+    accent: "#5b5f94",
+    steps: ["探针测试", "Bin 图", "参数漂移", "制造反馈"]
+  },
+  19: {
+    title: "封装集成路径",
+    caption: "封装把 die 接入外部系统，涉及互连、散热、warpage、underfill 和 package-level reliability。",
+    accent: "#9a6600",
+    steps: ["芯片贴装", "互连", "散热路径", "封装可靠性"]
+  }
+};
+
+const principles = {
+  1: {
+    kind: "device",
+    title: "MOSFET 横截面",
+    caption: "这张图用最基本的 NMOS 横截面帮助你把栅极、栅氧、沟道、源漏和衬底联系起来。设备工程师需要把膜厚、CD、掺杂和界面质量映射到最终电性。",
+    bullets: ["栅氧厚度影响 gate control 和 leakage", "源漏注入与退火影响 Rs 和 junction leakage", "沟道 CD 和缺陷会造成 Vt / Idsat 漂移"]
+  },
+  2: {
+    kind: "stack",
+    title: "微缩带来的模块压力",
+    caption: "制程节点变小后，光刻、沉积、刻蚀、互连和量测都会同时变得更敏感。不要把 scaling 理解成单纯尺寸缩小。",
+    layers: ["光刻窗口", "填充挑战", "RC 延迟", "材料创新"],
+    bullets: ["几何微缩压缩 process window", "高深宽比结构要求更好 conformality", "互连延迟迫使低 k 和铜互连优化"]
+  },
+  3: {
+    kind: "loop",
+    title: "从工艺流程到反馈闭环",
+    caption: "CMOS flow 要按模块理解：每个模块都通过量测、缺陷和电性数据反馈到设备和工艺调整。",
+    labels: ["前段器件", "图形转移", "后段互连", "测试反馈"],
+    bullets: ["模块交界处最容易出现 carry-over 问题", "流程顺序决定 thermal budget 和 contamination risk", "设备异常常常在后续模块才显现"]
+  },
+  4: {
+    kind: "stack",
+    title: "介电薄膜材料栈",
+    caption: "介电薄膜既可以是栅介质，也可以是隔离和互连绝缘层。看薄膜时要同时看电性、力学和填充能力。",
+    layers: ["低 k 介电层", "刻蚀停止层", "填充氧化层", "High-k 栅介质"],
+    bullets: ["膜厚和折射率用于快速判断沉积状态", "void / seam 是沟槽填充的典型风险", "低 k 薄膜需要兼顾介电常数和机械强度"]
+  },
+  5: {
+    kind: "device",
+    title: "应力调制沟道迁移率",
+    caption: "应力工程在晶体管局部改变晶格状态，使载流子迁移率提高。它是先进节点弥补几何缩小瓶颈的重要手段。",
+    bullets: ["PMOS 常用 compressive strain 提升空穴迁移率", "NMOS 常用 tensile strain 提升电子迁移率", "外延、应力膜和退火共同决定最终效果"]
+  },
+  6: {
+    kind: "stack",
+    title: "接触孔到铜互连结构",
+    caption: "金属化不是单层金属，而是 pre-clean、barrier、seed、fill、anneal、CMP 的组合结构。",
+    layers: ["铜填充", "种子层", "Ta/TaN 阻挡层", "介电层/通孔"],
+    bullets: ["barrier 防止铜扩散进入介质", "seed 连续性决定电镀填充质量", "接触电阻异常常要回查 pre-clean 和覆盖能力"]
+  },
+  7: {
+    kind: "optical",
+    title: "光刻曝光原理图",
+    caption: "掩模版图形经投影光学系统成像到光刻胶上。设备岗要把光学参数、焦距、剂量和 overlay 都看成同一个窗口管理问题。",
+    bullets: ["NA 提高分辨率，但 DOF 会下降", "dose / focus matrix 用于找工艺窗口", "overlay 需要 scanner、mark、wafer distortion 共同控制"]
+  },
+  8: {
+    kind: "plasma",
+    title: "等离子刻蚀腔体原理",
+    caption: "离子提供方向性，活性自由基提供化学反应，侧墙钝化帮助维持垂直轮廓。设备状态变化会直接改变 profile。",
+    bullets: ["RF power 影响 ion energy 和 plasma density", "gas chemistry 决定选择比和 polymer balance", "endpoint signal 用于避免 over-etch 或 under-etch"]
+  },
+  9: {
+    kind: "loop",
+    title: "清洗与表面状态闭环",
+    caption: "清洗的目标不是单纯洗掉东西，而是把表面状态带到下一道工艺可接受的窗口。",
+    labels: ["颗粒污染", "化学清洗", "冲洗/干燥", "表面状态"],
+    bullets: ["颗粒、金属、有机残留有不同去除机制", "过度清洗可能造成表面粗糙或图形损伤", "drying watermark 是湿法模块常见问题"]
+  },
+  10: {
+    kind: "device",
+    title: "超浅结形成示意",
+    caption: "浅结深要求低能注入和严格退火控制；激活不足会电阻高，扩散过多又会破坏短沟道控制。",
+    bullets: ["implant energy 控制注入深度", "anneal 决定激活和缺陷修复", "sheet resistance 与 leakage 需要一起看"]
+  },
+  11: {
+    kind: "cmp",
+    title: "CMP 抛光接触区",
+    caption: "CMP 是 pad、slurry、压力和相对运动的耦合过程。它能把表面变平，也可能制造 scratch、dishing 和 erosion。",
+    bullets: ["slurry chemistry 决定材料选择性", "pad condition 影响 removal rate 和均匀性", "pattern density 会改变局部去除行为"]
+  },
+  12: {
+    kind: "loop",
+    title: "工艺参数到电性参数",
+    caption: "工艺变量、inline 数据和电性参数之间不是一对一，而是多变量耦合。设备工程师要学会做 correlation。",
+    labels: ["配方/机台", "在线数据", "电性数据", "根因分析"],
+    bullets: ["Vt shift 可能来自栅氧、掺杂或功函数变化", "leakage 可能来自缺陷、污染或刻蚀损伤", "相关性需要结合时间、批次和机台维度"]
+  },
+  13: {
+    kind: "loop",
+    title: "DFM 与制造窗口",
+    caption: "DFM 让设计提前适配真实设备能力。layout pattern 影响光刻、刻蚀和 CMP 的局部行为。",
+    labels: ["版图", "OPC", "Dummy fill", "窗口"],
+    bullets: ["pattern density 影响 CMP loading", "OPC 补偿光学邻近效应", "设计规则本质上是制造能力边界"]
+  },
+  14: {
+    kind: "metrology",
+    title: "失效定位证据链",
+    caption: "FA 从电性失败开始，逐步定位到物理位置和材料/结构异常，最终给出可验证的制造根因。",
+    bullets: ["先看 fail signature，再决定定位方法", "FIB / SEM / TEM 提供结构证据", "根因必须能和 lot/tool/history 对上"]
+  },
+  15: {
+    kind: "loop",
+    title: "可靠性加速测试",
+    caption: "可靠性测试用高温、高电场或高电流把长期风险提前暴露。制造缺陷常常会在应力测试中放大。",
+    labels: ["应力", "退化", "模型", "裕量"],
+    bullets: ["TDDB 看介质击穿风险", "EM 看金属互连迁移风险", "BTI / HCI 与界面和沟道损伤相关"]
+  },
+  16: {
+    kind: "metrology",
+    title: "量测反馈系统",
+    caption: "量测把不可见的尺寸、膜厚、overlay 和缺陷变成可行动的数据。设备调参离不开稳定的 metrology。",
+    bullets: ["CD-SEM 看关键尺寸和形貌", "overlay metrology 看层间对准", "wafer map signature 常能指向机台或腔体问题"]
+  },
+  17: {
+    kind: "loop",
+    title: "良率爬坡闭环",
+    caption: "良率改善是一套数据闭环：发现模式、定位来源、验证根因、执行修正、监控回归。",
+    labels: ["发现", "Pareto", "根因分析", "行动"],
+    bullets: ["先用 Pareto 找最大损失来源", "tool/chamber split 是设备岗常用切法", "corrective action 后必须持续监控"]
+  },
+  18: {
+    kind: "metrology",
+    title: "测试数据与晶圆图",
+    caption: "测试数据能把制造问题映射成空间图案和参数分布。设备异常常在晶圆图上留下签名。",
+    bullets: ["center-edge pattern 可能指向均匀性问题", "random fail 更可能是颗粒/缺陷", "bin map 与 inline map 叠加更有诊断价值"]
+  },
+  19: {
+    kind: "package",
+    title: "封装互连与散热路径",
+    caption: "封装是 die 与系统之间的桥。先进封装越来越像后摩尔时代的系统级集成平台。",
+    bullets: ["互连路径影响电阻、电感和信号完整性", "warpage 和 underfill 影响可靠性", "散热路径决定高功耗芯片可用性"]
+  }
+};
+
+const chapterDeepening = {
+  1: {
+    concepts: ["把 Vt、Idsat、Ioff、gm 当成工艺结果，不要只当电路参数。", "短沟道效应会放大 CD、掺杂和栅介质波动。", "器件结构越先进，对界面缺陷和热预算越敏感。"],
+    talk: ["面试可以从“设备稳定性如何影响器件电性”切入。", "举例：栅氧厚度偏薄可能提升 drive current，但 leakage 和可靠性会恶化。"]
+  },
+  2: {
+    concepts: ["横向微缩主要挑战 patterning，纵向微缩主要挑战薄膜/掺杂/栅介质。", "RC delay 是 BEOL 的长期瓶颈。", "High-k/Metal Gate 是材料替代几何微缩的代表。"],
+    talk: ["可以解释 why scaling is no longer only lithography.", "把“节点推进”讲成材料、设备、量测和集成共同进步。"]
+  },
+  3: {
+    concepts: ["流程图比单个步骤重要，因为异常会跨模块传递。", "FEOL 决定器件，BEOL 决定互连，测试反馈良率。", "不同存储器的结构差异会改变关键设备能力。"],
+    talk: ["面试时用 flow mindset 回答问题：我会先定位模块，再看前后工序影响。", "强调 handoff、contamination carry-over 和 thermal budget。"]
+  },
+  4: {
+    concepts: ["薄膜要同时满足电学、形貌、力学和后续可加工性。", "conformality 和 gap fill 是先进结构中的核心词。", "低 k 材料不能只看 k 值，还要看强度和等离子损伤。"],
+    talk: ["可以讲 CVD/ALD 的差异：ALD 慢但 conformality 好。", "设备岗要关注 precursor delivery、chamber condition、film uniformity。"]
+  },
+  5: {
+    concepts: ["应力改变能带和迁移率，是 performance booster。", "不同晶体管类型需要不同方向的应力。", "局部应力工程必须和缺陷、外延质量、退火兼容。"],
+    talk: ["用“stress is useful only when it is controlled locally”来解释。", "把 stress film 和 mobility gain 连接到器件性能。"]
+  },
+  6: {
+    concepts: ["金属化的关键矛盾是低电阻、阻挡扩散和高可靠性。", "via/contact 的小缺陷会变成大电阻或 open/short。", "Cu ECP 依赖 seed 连续性和电镀液状态。"],
+    talk: ["设备角度讲 pre-clean, barrier, seed, fill, anneal 的链条。", "可以回答 contact resistance excursion 如何排查。"]
+  },
+  7: {
+    concepts: ["分辨率、DOF、dose/focus、overlay 是一组相互制约的指标。", "NILS 和 MEEF 帮助判断图像对工艺波动的敏感度。", "OPC、多重图形化和 EUV 都是扩大可制造窗口的方法。"],
+    talk: ["重点准备：NA 提高为什么 DOF 下降。", "用 process window 语言回答 scanner 或 photo 问题。"]
+  },
+  8: {
+    concepts: ["刻蚀结果来自物理轰击、化学反应和侧墙钝化的平衡。", "选择比、各向异性、CD bias、ARDE 是必会词。", "chamber seasoning 和 matching 会显著影响 profile。"],
+    talk: ["准备一个 etch troubleshooting flow：看 recipe、endpoint、profile、residue、chamber history。", "强调 plasma damage 和 over-etch 的风险。"]
+  },
+  9: {
+    concepts: ["污染类型不同，清洗机理也不同。", "清洗既可能降低 defect，也可能引入 damage。", "湿法模块要关注 chemical lifetime、rinse、dry 和 wafer handling。"],
+    talk: ["面试可以说 cleaning is surface-state engineering.", "解释 particle 与 metal contamination 对器件影响的区别。"]
+  },
+  10: {
+    concepts: ["超浅结是在 shallow junction、low resistance、low leakage 之间平衡。", "退火既要激活掺杂，也会推动扩散。", "implant damage repair 不充分会影响可靠性。"],
+    talk: ["从 thermal budget 讲 advanced node 的难点。", "把 sheet resistance 和 junction leakage 一起讨论。"]
+  },
+  11: {
+    concepts: ["CMP 是全局平坦化，但局部 pattern density 会影响结果。", "dishing 与 erosion 是两类不同形貌问题。", "pad、slurry 和 conditioner 是设备状态核心。"],
+    talk: ["准备解释 removal rate 和 WIWNU。", "用 CMP is chemical-mechanical coupling 概括原理。"]
+  },
+  12: {
+    concepts: ["工艺参数与电性参数之间常常是多因子耦合。", "相关性需要时间序列、lot split 和 tool split 支持。", "单点数据不足以做 root cause。"],
+    talk: ["面试可以讲如何排查 Vt shift 或 leakage excursion。", "强调 data correlation before conclusion。"]
+  },
+  13: {
+    concepts: ["版图会改变局部工艺行为，不是所有图形都同样容易制造。", "OPC 和 dummy fill 是典型 DFM 工具。", "DFM 是设计端和制造端的共同语言。"],
+    talk: ["可以用 pattern density 影响 CMP 的例子。", "说明为什么先进制程需要 design-rule discipline。"]
+  },
+  14: {
+    concepts: ["FA 要从现象到位置，再到物理证据和根因。", "电性定位和物理截面要互相印证。", "FA 结论必须能指导制造行动。"],
+    talk: ["面试回答：我会把 FA result 和 tool history、lot history 对齐。", "强调 evidence chain，而不是猜测。"]
+  },
+  15: {
+    concepts: ["可靠性看的是时间维度的失效。", "加速测试需要模型外推，不是简单高温烤一烤。", "薄膜质量、金属质量和界面缺陷都会影响寿命。"],
+    talk: ["准备 TDDB、EM、BTI、HCI 的基本含义。", "说明为什么 inline pass 不代表 reliability 一定 pass。"]
+  },
+  16: {
+    concepts: ["量测是反馈控制，不是报告生成。", "采样策略会影响你能否看到真实异常。", "wafer map signature 是设备诊断的好入口。"],
+    talk: ["可以讲 CD-SEM、overlay、膜厚、defect inspection 各看什么。", "强调 metrology matching 和 measurement repeatability。"]
+  },
+  17: {
+    concepts: ["良率改善靠闭环，不靠单次修正。", "Pareto 帮你把精力放在最大损失项上。", "excursion management 是设备工程师日常核心。"],
+    talk: ["回答时按 detect -> contain -> root cause -> corrective action -> monitor。", "强调 tool/chamber split 和 maintenance correlation。"]
+  },
+  18: {
+    concepts: ["测试结果能反向揭示制造问题。", "bin map 空间图案比单个 fail count 更有信息量。", "parametric shift 常指向系统性漂移。"],
+    talk: ["可以讲如何用 wafer sort map 辅助定位设备异常。", "把 test engineering 和 yield learning 连起来。"]
+  },
+  19: {
+    concepts: ["封装已经从保护外壳变成系统性能的一部分。", "互连、热、机械应力和可靠性是封装四条主线。", "先进封装与制程微缩是互补关系。"],
+    talk: ["准备解释 flip chip、underfill、warpage、thermal path。", "说明为什么 advanced packaging 对高性能计算越来越重要。"]
+  }
+};
+
+const realPhotoAssets = {
+  wafer: {
+    src: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Si_wafer_12in.jpg",
+    title: "12 inch silicon wafer",
+    label: "真实照片 · 硅晶圆",
+    source: "Wikimedia Commons, Si wafer 12in",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Si_wafer_12in.jpg"
+  },
+  lithography: {
+    src: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cleanroom_-_photolithography_lab_(9148324481).jpg",
+    title: "Photolithography lab",
+    label: "真实照片 · 光刻实验室",
+    source: "Wikimedia Commons, photolithography lab",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Cleanroom_-_photolithography_lab_(9148324481).jpg"
+  },
+  rie: {
+    src: "https://www.nist.gov/sites/default/files/images/cnst/nanofab/unaxis_rie2.jpg",
+    title: "Reactive ion etcher",
+    label: "真实照片 · RIE 刻蚀机",
+    source: "NIST, Unaxis reactive ion etcher",
+    sourceUrl: "https://www.nist.gov/laboratories/tools-instruments/nanofab-tool-unaxis-790-reactive-ion-etcher-2"
+  },
+  cmp: {
+    src: "https://www.nist.gov/sites/default/files/images/2019/04/10/cmp.jpg",
+    title: "Chemical mechanical polisher",
+    label: "真实照片 · CMP 机台",
+    source: "NIST, Chemical Mechanical Polisher",
+    sourceUrl: "https://www.nist.gov/image/cmpjpg-0"
+  },
+  cleanroomBay: {
+    src: "https://www.nist.gov/sites/default/files/images/2018/07/10/bmf.jpg",
+    title: "Cleanroom tool bay",
+    label: "真实照片 · 洁净室设备区",
+    source: "NIST, cleanroom tooling bay",
+    sourceUrl: "https://www.nist.gov/image/bmfjpg"
+  },
+  processChamber: {
+    src: "https://www.nist.gov/sites/default/files/images/2016/09/07/cleanroom-schmidt.jpg",
+    title: "Process chamber inspection",
+    label: "真实照片 · 工艺腔体检查",
+    source: "NIST, Boulder MicroFab",
+    sourceUrl: "https://www.nist.gov/image/cleanroom-schmidtjpg"
+  },
+  depositionTools: {
+    src: "https://www.nist.gov/sites/default/files/images/2018/03/23/bmf.png",
+    title: "Deposition tools and wet benches",
+    label: "真实照片 · 沉积设备与湿法台",
+    source: "NIST, cleanroom deposition tools",
+    sourceUrl: "https://www.nist.gov/image/bmfpng"
+  },
+  wireBonder: {
+    src: "https://www.nist.gov/sites/default/files/images/2018/07/10/wire_bonder.jpg",
+    title: "Wedge wire bonder",
+    label: "真实照片 · Wire bonder",
+    source: "NIST, wedge wire bonder",
+    sourceUrl: "https://www.nist.gov/image/wirebonderjpg"
+  },
+  waferDetectors: {
+    src: "https://www.nist.gov/sites/default/files/images/2018/07/10/wafer_1.jpg",
+    title: "Patterned wafer",
+    label: "真实照片 · 图形化晶圆",
+    source: "NIST, wafer with detectors",
+    sourceUrl: "https://www.nist.gov/image/wafer1jpg"
+  }
+};
+
+const chapterPhotoPlan = {
+  1: { key: "waferDetectors", caption: "器件章节最重要的是把抽象参数落到真实 wafer 上：每一个 die、每一条 pattern、每一次量测，最后都会变成 Vt、leakage、drive current 和良率数据。" },
+  2: { key: "wafer", caption: "制程微缩不是一个单点技术，而是整片晶圆上所有模块一起收紧窗口。真实晶圆能帮助你把 scaling pressure 和大规模制造联系起来。" },
+  3: { key: "cleanroomBay", caption: "CMOS flow 是许多机台连续接力：沉积、光刻、刻蚀、清洗、量测和测试都在洁净室内形成闭环。" },
+  4: { key: "depositionTools", caption: "介电薄膜章节可以对应到沉积设备、前驱体输送、腔体状态和 wet bench 后处理。膜厚、应力、缺陷和 gap fill 都离不开机台稳定性。" },
+  5: { key: "processChamber", caption: "应力工程依赖局部结构和热处理窗口。看真实腔体时，要想到 wafer 在真空、气氛、温度和机械夹持下如何保持一致性。" },
+  6: { key: "depositionTools", caption: "金属化不只是把金属沉上去，还包括 pre-clean、barrier、seed、fill、anneal 和 CMP 的集成链条。" },
+  7: { key: "lithography", caption: "光刻是把版图投影到 photoresist 上的核心模块。设备岗需要同时盯住 focus、dose、overlay、CD 和缺陷。" },
+  8: { key: "rie", caption: "干法刻蚀的真实设备核心是 plasma chamber。离子轰击、自由基化学和侧墙钝化共同决定 profile、selectivity 和 CD bias。" },
+  9: { key: "cleanroomBay", caption: "污染与清洗章节对应的是整条产线的洁净控制。颗粒、金属离子、有机残留和水痕都可能被 wafer handling 放大。" },
+  10: { key: "wafer", caption: "超浅结依赖 implant 和退火之间的平衡：既要激活 dopant，又要压住 diffusion 和 leakage。" },
+  11: { key: "cmp", caption: "CMP 是少数同时强依赖机械接触和化学反应的模块。真实机台能帮助你记住 pad、slurry、pressure、rotation 和 endpoint 的耦合。" },
+  12: { key: "waferDetectors", caption: "器件参数和工艺相关性需要从真实晶圆数据里找 pattern。单个点很少足够，wafer map 和 lot trend 更关键。" },
+  13: { key: "cleanroomBay", caption: "DFM 的价值是让设计图形更适合真实产线。设备窗口、pattern density 和 rule discipline 都会反过来影响 layout。" },
+  14: { key: "processChamber", caption: "失效分析要把电性异常追到物理证据。真实机台和腔体历史常常是定位 root cause 的重要线索。" },
+  15: { key: "waferDetectors", caption: "可靠性不是当下能不能工作，而是长时间应力下会不会失效。薄膜、界面、金属和封装都会进入寿命模型。" },
+  16: { key: "waferDetectors", caption: "量测章节要把照片里的 wafer 想成数据地图：CD、overlay、film thickness、defect inspection 都是在把不可见变化变成可操作信号。" },
+  17: { key: "cleanroomBay", caption: "良率改善的现场感很强：你要把 Pareto、tool split、chamber split、maintenance history 和 wafer map 串起来。" },
+  18: { key: "waferDetectors", caption: "测试工程把 die 级电性结果变成 bin map 和 parametric distribution。它常常是制造异常的最后一个放大镜。" },
+  19: { key: "wireBonder", caption: "封装章节可以从真实 wire bonder 入手：die 需要通过互连进入系统，bond quality、warpage、thermal path 都会影响最终可靠性。" }
+};
+
+const chapterExpansions = {
+  1: {
+    read: "读器件章节时，不要把 PN 结、MOSFET、BJT 当成孤立概念。更有用的读法是从载流子、势垒、沟道控制一路看到电性指标：阈值电压、漏电、驱动电流、跨导和接触电阻。",
+    process: "制造端最容易影响器件的变量包括栅介质厚度、沟道 CD、掺杂剂量、退火热预算和界面缺陷。设备波动不是只停留在膜厚或温度表格里，它会最终进入 I-V 曲线和 wafer sort。",
+    interview: "面试中可以这样讲：我会把 tool stability 和 device performance 连接起来，例如 gate oxide 偏薄可能提高 drive current，但也会推高 leakage 和 TDDB 风险。"
+  },
+  2: {
+    read: "这一章的主线是 scaling 变难以后，制造不再靠单纯缩小图形解决问题。横向微缩、纵向微缩、材料替代和结构创新一起推动节点前进。",
+    process: "先进节点的窗口会同时在 patterning、thin film、implant、etch、CMP 和 metrology 中收紧。任何一个模块漂移，都可能让后续模块为了补偿而付出更高缺陷或更小 process window。",
+    interview: "可以准备一句英文：Scaling increases sensitivity to tool variation. 然后展开解释 High-k/Metal Gate、strain engineering 和低 k 互连为什么是材料与设备共同升级。"
+  },
+  3: {
+    read: "CMOS 流程章节要按模块链条读：FEOL 先形成晶体管，middle-of-line 解决接触，BEOL 建立多层互连，最后由 inline metrology、wafer sort 和可靠性测试反馈。",
+    process: "实际产线里异常经常跨模块传递。前一道清洗留下的残留会影响沉积，沉积形貌会影响光刻，光刻 CD 会影响刻蚀 profile，CMP 形貌又会影响后续金属层。",
+    interview: "回答流程类问题时，用 flow mindset：先定位异常在哪个模块出现，再查前后工序、tool history、lot history 和 inline data，而不是只盯一个 recipe step。"
+  },
+  4: {
+    read: "介电薄膜的关键词不只是 oxide 和 nitride，还包括 electrical isolation、gate dielectric、spacer、etch stop、low-k、gap fill 和 passivation。每种膜的任务不同，评价指标也不同。",
+    process: "CVD、PECVD、ALD、PVD 的选择要看 conformality、throughput、温度预算和材料性质。高深宽比结构尤其依赖覆盖性和空洞控制，低 k 材料还要小心 plasma damage 和机械强度。",
+    interview: "设备岗可以重点讲 precursor delivery、chamber conditioning、film uniformity、particle control 和 post-deposition treatment。别只说膜厚，要把 stress、defect、wet etch rate 也带上。"
+  },
+  5: {
+    read: "应力工程的目标是用机械应变改变能带结构和载流子迁移率。它看起来像材料问题，其实背后是器件性能、局部结构和热历史的综合优化。",
+    process: "常见抓手包括 stressed liner、SiGe source/drain、应力记忆技术和退火条件。难点在于局部应力要足够强，同时不能引入位错、界面缺陷或不可控翘曲。",
+    interview: "可以用一句话开头：Stress engineering is a performance booster only when the stress is local and repeatable. 然后解释为什么设备均匀性和集成兼容性很重要。"
+  },
+  6: {
+    read: "金属化章节要抓住电阻、扩散阻挡、接触可靠性和多层互连。先进芯片不是一层金属线，而是大量 via、line、barrier 和 dielectric 组成的三维网络。",
+    process: "contact/via 的微小残留、barrier 不连续、seed 断裂、电镀空洞和退火异常都会造成 resistance excursion、open、short 或 electromigration 风险。",
+    interview: "面试可以按 pre-clean -> barrier -> seed -> fill -> anneal -> CMP 的顺序展开。这个顺序很适合回答金属化异常怎么查。"
+  },
+  7: {
+    read: "光刻章节建议围绕三个窗口读：resolution window、focus/dose window 和 overlay budget。分辨率公式只是入口，真正制造中要看图像对工艺扰动的敏感度。",
+    process: "NA 提高能改善分辨率，但 DOF 会下降；dose 改变会影响 CD；mask error 经过 MEEF 放大；NILS 低时 resist 图形更容易受扰动。OPC 和多重图形化本质上是在补可制造窗口。",
+    interview: "准备把 scanner 讲成光学、机械、材料和控制系统的组合。英文关键词可以带上 process window、CD control、overlay、focus budget、OPC、EUV stochastic defect。"
+  },
+  8: {
+    read: "干法刻蚀不是简单把材料去掉，而是把图形精确转移到目标层。好的刻蚀需要在 etch rate、selectivity、anisotropy、profile、CD bias 和 residue 之间平衡。",
+    process: "plasma 提供离子和自由基；离子带来方向性，化学反应带来选择性，侧墙钝化帮助保持垂直 profile。chamber seasoning、wall condition 和 endpoint 会明显改变结果。",
+    interview: "可以准备 troubleshooting flow：确认 recipe 和 gas flow，查看 endpoint，检查 profile 和 residue，对比 chamber history，再看上游 photo CD 和下游清洗结果。"
+  },
+  9: {
+    read: "污染和清洗章节要先分类：particle、metal contamination、organic residue、native oxide、水痕和前段交叉污染。不同污染对应完全不同的清洗机制。",
+    process: "湿法清洗不仅是 chemical recipe，还包括化学液寿命、温度、兆声、rinse、dry、wafer handling 和排液路径。清洗过强会损伤表面，过弱会留下 defect source。",
+    interview: "可以把 cleaning 讲成 surface-state engineering。设备岗回答时要关注 bath condition、filter、chemical concentration、dry mark、particle adders 和 queue time。"
+  },
+  10: {
+    read: "超浅结章节的核心矛盾是 junction 要浅、电阻要低、漏电要小。implant 把 dopant 放进去，anneal 决定激活和扩散，两者共同塑造源漏结。",
+    process: "低能注入容易带来剂量控制和损伤修复问题；退火温度越高激活越好，但扩散也更明显。先进制程常用 spike anneal、flash 或 laser anneal 来控制热预算。",
+    interview: "回答时把 sheet resistance、junction leakage、dopant activation、implant damage 和 thermal budget 放在一起讲，会比只背“离子注入加退火”更像产线思维。"
+  },
+  11: {
+    read: "CMP 是全局平坦化技术，但局部 pattern density 会让 removal 行为变得不均匀。它同时依赖机械压力、pad 状态、slurry 化学和 wafer 运动轨迹。",
+    process: "常见问题包括 dishing、erosion、scratch、particle、WIWNU 和 endpoint 漂移。pad conditioner、slurry 粒径、流量、温度和 carrier pressure 都是设备侧关键变量。",
+    interview: "可以用 CMP is chemical-mechanical coupling 开头，再解释为什么它既不像纯刻蚀，也不像纯研磨。重点准备 removal rate、selectivity、planarity 和 defect control。"
+  },
+  12: {
+    read: "器件参数和工艺相关性章节要按数据因果读。某个电性指标漂移，不一定对应单一工艺参数，常常是多因素叠加造成的系统性变化。",
+    process: "实际分析需要 lot split、tool split、chamber split、wafer map、时间序列和 inline metrology。只看单片数据容易误判，必须把空间图案和工艺历史一起看。",
+    interview: "可以准备 Vt shift 或 leakage excursion 的排查例子：先确认量测重复性，再查关键工艺参数，最后用 split data 或 DOE 支持结论。"
+  },
+  13: {
+    read: "DFM 的本质是承认制造有窗口，设计必须尊重这个窗口。版图图形会影响光刻成像、刻蚀负载、CMP pattern density 和金属互连可靠性。",
+    process: "OPC、dummy fill、design rule、restricted layout 和 hotspot detection 都是在把制造经验提前放进设计阶段。它减少的不是单个缺陷，而是整类系统性风险。",
+    interview: "面试中可以举 pattern density 影响 CMP 的例子：同样 recipe 在不同版图密度下 removal 不同，所以需要 dummy fill 或 density rule 来稳定形貌。"
+  },
+  14: {
+    read: "失效分析章节要建立证据链：先看到失效现象，再定位到 die、net 或结构位置，然后用物理分析找到缺陷形貌，最后回到工艺或设计根因。",
+    process: "常用路径包括电性分析、OBIRCH、EMMI、X-ray、FIB 截面、SEM/TEM 和材料分析。每一步都要减少不确定性，而不是用漂亮图片替代判断。",
+    interview: "设备岗可以强调：FA result 需要和 tool history、maintenance record、lot route、inline defect map 对齐。能指导 corrective action 的 FA 才有制造价值。"
+  },
+  15: {
+    read: "可靠性章节关注的是时间维度失效。芯片出厂时通过测试，不代表在电压、温度、电流和机械应力长期作用下仍然稳定。",
+    process: "TDDB 看介质击穿，EM 看金属迁移，BTI/HCI 看晶体管随时间退化，封装可靠性还会涉及湿气、热循环和机械应力。加速测试必须有模型外推。",
+    interview: "可以强调 inline pass does not guarantee reliability pass。设备岗要把膜质量、界面缺陷、金属空洞、残留污染和热预算都视为寿命风险来源。"
+  },
+  16: {
+    read: "量测章节要当成制造控制系统来读。CD-SEM、overlay metrology、膜厚量测、defect inspection 和 electrical test 都是在不同阶段观察同一条制造链。",
+    process: "采样策略非常重要。测太少会漏掉 edge signature 或 chamber pattern；测太多又会影响 throughput。好的量测要考虑 repeatability、reproducibility、matching 和 bias。",
+    interview: "面试中可以说 metrology converts invisible process variation into actionable data. 然后举例说明 wafer map signature 如何指向 center-edge、slit、chuck 或 chamber 问题。"
+  },
+  17: {
+    read: "良率改善章节不是单纯提高百分比，而是建立 detect、contain、root cause、corrective action 和 monitor 的闭环。没有闭环，良率提升很容易回落。",
+    process: "Pareto 帮你先抓最大损失项，wafer map 帮你看空间图案，tool split/chamber split 帮你定位设备来源，DOE 或 lot split 帮你验证根因。",
+    interview: "可以准备一个 excursion management 回答模板：先隔离风险 lot，再确认量测和失效模式，随后查设备历史和工艺漂移，最后验证修正动作并持续监控。"
+  },
+  18: {
+    read: "测试工程章节把制造结果翻译成电性数据。wafer sort、final test、parametric test 和 bin map 能告诉你哪些 die fail、怎么 fail、失效有没有空间规律。",
+    process: "测试数据要和 inline 数据结合。随机 fail 可能更像颗粒，center-edge pattern 可能是均匀性，特定 reticle field pattern 可能和光刻或版图有关。",
+    interview: "设备岗可以说：I would correlate test bin maps with inline wafer maps and tool history. 这句话能自然连接测试、良率和制程排查。"
+  },
+  19: {
+    read: "封装章节要从保护芯片扩展到系统集成。现代封装同时决定电连接、散热、机械强度、尺寸、成本和长期可靠性。",
+    process: "wire bonding、flip chip、underfill、molding、substrate、thermal interface 和 warpage control 都会影响良率与寿命。先进封装还涉及 chiplet、interposer 和 2.5D/3D integration。",
+    interview: "可以这样回答 advanced packaging：当前端 scaling 放慢，系统性能越来越依赖互连距离、带宽、功耗和散热，所以封装成为性能工程的一部分。"
+  }
+};
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#39;"
+  }[char]));
+}
+
+function renderVisual(ch) {
+  const visual = visuals[ch.no];
+  if (!visual) return "";
+  const accent = visual.accent;
+  const steps = visual.steps.map(escapeHTML);
+  const boxes = steps.map((step, index) => {
+    const x = 28 + index * 154;
+    const arrow = index < steps.length - 1 ? `<path d="M${x + 126} 106 H${x + 145}" stroke="${accent}" stroke-width="3" stroke-linecap="round"/><path d="M${x + 145} 106 l-7 -5 v10 z" fill="${accent}"/>` : "";
+    return `
+      <g>
+        <rect x="${x}" y="72" width="118" height="68" rx="10" fill="#ffffff" stroke="${accent}" stroke-width="2"/>
+        <text x="${x + 59}" y="99" text-anchor="middle" font-size="12" font-weight="700" fill="#17201d">${step}</text>
+        <text x="${x + 59}" y="120" text-anchor="middle" font-size="10" fill="#66706b">第 ${index + 1} 步</text>
+        ${arrow}
+      </g>
+    `;
+  }).join("");
+  return `
+    <section class="visual-card">
+      <div class="visual-head">
+        <h3>概念示意图 · ${escapeHTML(visual.title)}</h3>
+        <span>自制示意图</span>
+      </div>
+      <div class="visual-svg">
+        <svg viewBox="0 0 660 210" role="img" aria-label="${escapeHTML(visual.title)}">
+          <defs>
+            <linearGradient id="grad-${ch.no}" x1="0" x2="1">
+              <stop offset="0" stop-color="${accent}" stop-opacity=".18"/>
+              <stop offset="1" stop-color="#ffffff" stop-opacity="1"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="660" height="210" rx="14" fill="url(#grad-${ch.no})"/>
+          <rect x="24" y="154" width="608" height="22" rx="11" fill="#dfe6e3"/>
+          <rect x="64" y="160" width="528" height="10" rx="5" fill="${accent}" opacity=".55"/>
+          <circle cx="582" cy="48" r="28" fill="#ffffff" stroke="${accent}" stroke-width="3"/>
+          <path d="M562 48 h40 M582 28 v40" stroke="${accent}" stroke-width="2" opacity=".75"/>
+          <text x="28" y="36" font-size="16" font-weight="800" fill="#101817">${escapeHTML(ch.title)}</text>
+          <text x="28" y="56" font-size="12" fill="#52605b">第 ${ch.no} 章图形记忆卡</text>
+          ${boxes}
+        </svg>
+      </div>
+      <p class="visual-caption">${escapeHTML(visual.caption)}</p>
+    </section>
+  `;
+}
+
+function labelText(value, x, y, size = 12, weight = 700, fill = "#17201d") {
+  return `<text x="${x}" y="${y}" text-anchor="middle" font-size="${size}" font-weight="${weight}" fill="${fill}">${escapeHTML(value)}</text>`;
+}
+
+function renderPrincipleSvg(ch, principle) {
+  const accent = (visuals[ch.no] && visuals[ch.no].accent) || "#087c62";
+  const id = `principle-grad-${ch.no}`;
+  const header = `
+    <defs>
+      <linearGradient id="${id}" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0" stop-color="${accent}" stop-opacity=".18"/>
+        <stop offset="1" stop-color="#ffffff" stop-opacity="1"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="640" height="330" rx="18" fill="url(#${id})"/>
+    <text x="28" y="34" font-size="17" font-weight="800" fill="#101817">${escapeHTML(principle.title)}</text>
+  `;
+
+  if (principle.kind === "device") {
+    return `
+      <svg viewBox="0 0 640 330" role="img" aria-label="${escapeHTML(principle.title)}">
+        ${header}
+        <rect x="70" y="218" width="500" height="58" rx="10" fill="#d9e1df" stroke="#9aa7a2"/>
+        <rect x="120" y="175" width="110" height="44" rx="8" fill="#7fb7a4" stroke="${accent}" stroke-width="2"/>
+        <rect x="410" y="175" width="110" height="44" rx="8" fill="#7fb7a4" stroke="${accent}" stroke-width="2"/>
+        <rect x="250" y="170" width="140" height="12" rx="4" fill="#f3d27a" stroke="#b68a16"/>
+        <rect x="270" y="103" width="100" height="66" rx="8" fill="#26312d"/>
+        <path d="M145 175 v-36 h140 M475 175 v-36 H365" stroke="#33413c" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M320 103 v-36" stroke="${accent}" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="320" cy="61" r="18" fill="#fff" stroke="${accent}" stroke-width="3"/>
+        ${labelText("源极", 175, 205)}
+        ${labelText("漏极", 465, 205)}
+        ${labelText("栅极", 320, 143, 13, 800, "#ffffff")}
+        ${labelText("栅氧层", 320, 196, 11, 700, "#6e5513")}
+        ${labelText("沟道", 320, 252)}
+        ${labelText("衬底/阱区", 320, 298, 12, 700, "#4f5d58")}
+      </svg>
+    `;
+  }
+
+  if (principle.kind === "optical") {
+    return `
+      <svg viewBox="0 0 640 330" role="img" aria-label="${escapeHTML(principle.title)}">
+        ${header}
+        <rect x="70" y="74" width="116" height="70" rx="10" fill="#ffffff" stroke="${accent}" stroke-width="2"/>
+        <text x="128" y="112" text-anchor="middle" font-size="13" font-weight="800">掩模版</text>
+        <path d="M190 109 C250 80 284 80 340 109 C284 138 250 138 190 109Z" fill="#ffffff" stroke="${accent}" stroke-width="3"/>
+        <circle cx="270" cy="109" r="32" fill="none" stroke="${accent}" stroke-width="3"/>
+        <rect x="420" y="190" width="142" height="44" rx="8" fill="#26312d"/>
+        <rect x="426" y="182" width="130" height="11" rx="4" fill="#f3d27a"/>
+        <rect x="442" y="160" width="98" height="24" rx="6" fill="#ffffff" stroke="${accent}" stroke-width="2"/>
+        <path d="M186 109 L238 109 M302 109 L420 182" stroke="${accent}" stroke-width="4" stroke-linecap="round"/>
+        <path d="M186 88 L238 102 M186 130 L238 118 M312 98 L420 174 M312 120 L420 190" stroke="${accent}" stroke-width="2" opacity=".5"/>
+        ${labelText("投影光学", 270, 162)}
+        ${labelText("光刻胶", 491, 177, 11)}
+        ${labelText("晶圆", 491, 218, 12, 800, "#ffffff")}
+        ${labelText("对焦/剂量/套刻", 320, 286, 13, 800, accent)}
+      </svg>
+    `;
+  }
+
+  if (principle.kind === "plasma") {
+    return `
+      <svg viewBox="0 0 640 330" role="img" aria-label="${escapeHTML(principle.title)}">
+        ${header}
+        <rect x="100" y="70" width="440" height="210" rx="28" fill="#ffffff" stroke="${accent}" stroke-width="3"/>
+        <rect x="176" y="228" width="288" height="28" rx="9" fill="#26312d"/>
+        <rect x="206" y="210" width="228" height="16" rx="5" fill="#f3d27a"/>
+        <g fill="${accent}" opacity=".7">
+          <circle cx="190" cy="116" r="8"/><circle cx="266" cy="98" r="6"/><circle cx="340" cy="126" r="9"/><circle cx="430" cy="96" r="7"/><circle cx="468" cy="148" r="6"/>
+        </g>
+        <g stroke="${accent}" stroke-width="3" stroke-linecap="round">
+          <path d="M210 126 v78"/><path d="M276 118 v86"/><path d="M344 140 v64"/><path d="M416 118 v86"/>
+        </g>
+        <g fill="${accent}">
+          <path d="M210 207 l-6 -9 h12z"/><path d="M276 207 l-6 -9 h12z"/><path d="M344 207 l-6 -9 h12z"/><path d="M416 207 l-6 -9 h12z"/>
+        </g>
+        ${labelText("RF 等离子体", 320, 92, 13, 800, accent)}
+        ${labelText("离子 + 自由基", 320, 160)}
+        ${labelText("掩模层", 320, 222, 11, 700, "#6e5513")}
+        ${labelText("刻蚀后晶圆", 320, 248, 12, 800, "#ffffff")}
+      </svg>
+    `;
+  }
+
+  if (principle.kind === "cmp") {
+    return `
+      <svg viewBox="0 0 640 330" role="img" aria-label="${escapeHTML(principle.title)}">
+        ${header}
+        <ellipse cx="320" cy="226" rx="230" ry="38" fill="#26312d"/>
+        <ellipse cx="320" cy="213" rx="214" ry="32" fill="#40504b"/>
+        <rect x="164" y="126" width="312" height="40" rx="12" fill="#f3d27a" stroke="#a87a0d" stroke-width="2"/>
+        <rect x="194" y="103" width="252" height="24" rx="7" fill="#ffffff" stroke="${accent}" stroke-width="2"/>
+        <path d="M176 178 C245 160 296 196 374 174 C414 164 456 166 500 184" stroke="${accent}" stroke-width="4" fill="none"/>
+        <g fill="${accent}" opacity=".75"><circle cx="204" cy="188" r="5"/><circle cx="260" cy="178" r="4"/><circle cx="332" cy="188" r="6"/><circle cx="430" cy="178" r="4"/></g>
+        <path d="M220 82 h200" stroke="${accent}" stroke-width="5" stroke-linecap="round"/>
+        <path d="M420 82 l-12 -8 v16z" fill="${accent}"/>
+        ${labelText("晶圆薄膜", 320, 121)}
+        ${labelText("抛光液颗粒", 320, 194)}
+        ${labelText("抛光垫", 320, 240, 13, 800, "#ffffff")}
+        ${labelText("压力 + 旋转 + 化学", 320, 288, 13, 800, accent)}
+      </svg>
+    `;
+  }
+
+  if (principle.kind === "metrology") {
+    return `
+      <svg viewBox="0 0 640 330" role="img" aria-label="${escapeHTML(principle.title)}">
+        ${header}
+        <circle cx="170" cy="160" r="76" fill="#ffffff" stroke="${accent}" stroke-width="3"/>
+        <path d="M94 160 h152 M170 84 v152" stroke="#cbd6d2" stroke-width="2"/>
+        <g fill="${accent}" opacity=".75">
+          <circle cx="136" cy="124" r="6"/><circle cx="178" cy="140" r="5"/><circle cx="206" cy="182" r="7"/><circle cx="150" cy="198" r="4"/><circle cx="192" cy="108" r="5"/>
+        </g>
+        <rect x="318" y="92" width="160" height="54" rx="10" fill="#ffffff" stroke="${accent}" stroke-width="2"/>
+        <rect x="318" y="172" width="160" height="54" rx="10" fill="#ffffff" stroke="${accent}" stroke-width="2"/>
+        <path d="M246 160 H300 M398 146 v24 M398 226 C398 260 238 260 210 216" stroke="${accent}" stroke-width="3" fill="none"/>
+        <path d="M300 160 l-8 -6 v12z" fill="${accent}"/>
+        ${labelText("晶圆图", 170, 258)}
+        ${labelText("量测", 398, 124)}
+        ${labelText("SPC / 反馈", 398, 204)}
+        ${labelText("机台修正", 320, 294, 13, 800, accent)}
+      </svg>
+    `;
+  }
+
+  if (principle.kind === "package") {
+    return `
+      <svg viewBox="0 0 640 330" role="img" aria-label="${escapeHTML(principle.title)}">
+        ${header}
+        <rect x="110" y="204" width="420" height="62" rx="12" fill="#dfe6e3" stroke="#9aa7a2"/>
+        <rect x="216" y="130" width="208" height="76" rx="10" fill="#26312d"/>
+        <rect x="244" y="154" width="152" height="28" rx="5" fill="${accent}" opacity=".75"/>
+        <g stroke="#2f3a36" stroke-width="3">
+          <path d="M240 206 C220 232 184 222 170 250"/><path d="M290 206 C282 232 240 226 236 250"/><path d="M350 206 C358 232 400 226 404 250"/><path d="M400 206 C420 232 456 222 470 250"/>
+        </g>
+        <path d="M424 144 C490 112 514 80 520 46" stroke="${accent}" stroke-width="4" fill="none"/>
+        <path d="M520 46 l-3 13 l-9 -8z" fill="${accent}"/>
+        ${labelText("裸片", 320, 176, 13, 800, "#ffffff")}
+        ${labelText("封装基板", 320, 240)}
+        ${labelText("互连", 320, 286)}
+        ${labelText("散热路径", 490, 96, 12, 800, accent)}
+      </svg>
+    `;
+  }
+
+  if (principle.kind === "stack") {
+    const layers = (principle.layers || ["Layer 1", "Layer 2", "Layer 3", "Layer 4"]).slice(0, 4);
+    return `
+      <svg viewBox="0 0 640 330" role="img" aria-label="${escapeHTML(principle.title)}">
+        ${header}
+        <rect x="150" y="86" width="340" height="46" rx="9" fill="#ffffff" stroke="${accent}" stroke-width="2"/>
+        <rect x="150" y="132" width="340" height="46" rx="9" fill="${accent}" opacity=".18" stroke="${accent}" stroke-width="2"/>
+        <rect x="150" y="178" width="340" height="46" rx="9" fill="#ffffff" stroke="${accent}" stroke-width="2"/>
+        <rect x="150" y="224" width="340" height="46" rx="9" fill="#26312d" stroke="#26312d" stroke-width="2"/>
+        ${labelText(layers[0], 320, 115)}
+        ${labelText(layers[1], 320, 161)}
+        ${labelText(layers[2], 320, 207)}
+        ${labelText(layers[3], 320, 253, 12, 800, "#ffffff")}
+        <path d="M520 94 v244" stroke="${accent}" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 7"/>
+        ${labelText("薄膜性质栈", 320, 302, 13, 800, accent)}
+      </svg>
+    `;
+  }
+
+  const labels = (principle.labels || ["输入", "工艺", "量测", "改善"]).slice(0, 4);
+  return `
+    <svg viewBox="0 0 640 330" role="img" aria-label="${escapeHTML(principle.title)}">
+      ${header}
+      <circle cx="320" cy="170" r="94" fill="#ffffff" stroke="${accent}" stroke-width="3"/>
+      <path d="M320 76 A94 94 0 0 1 414 170" stroke="${accent}" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M414 170 A94 94 0 0 1 320 264" stroke="${accent}" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
+      <path d="M320 264 A94 94 0 0 1 226 170" stroke="${accent}" stroke-width="5" fill="none" stroke-linecap="round" opacity=".6"/>
+      <path d="M226 170 A94 94 0 0 1 320 76" stroke="${accent}" stroke-width="5" fill="none" stroke-linecap="round" opacity=".4"/>
+      <rect x="76" y="139" width="118" height="48" rx="10" fill="#ffffff" stroke="${accent}" stroke-width="2"/>
+      <rect x="261" y="46" width="118" height="48" rx="10" fill="#ffffff" stroke="${accent}" stroke-width="2"/>
+      <rect x="446" y="139" width="118" height="48" rx="10" fill="#ffffff" stroke="${accent}" stroke-width="2"/>
+      <rect x="261" y="246" width="118" height="48" rx="10" fill="#26312d" stroke="#26312d" stroke-width="2"/>
+      ${labelText(labels[0], 135, 169)}
+      ${labelText(labels[1], 320, 76)}
+      ${labelText(labels[2], 505, 169)}
+      ${labelText(labels[3], 320, 276, 12, 800, "#ffffff")}
+      ${labelText("闭环学习", 320, 174, 13, 800, accent)}
+    </svg>
+  `;
+}
+
+function renderPrinciple(ch) {
+  const principle = principles[ch.no];
+  if (!principle) return "";
+  return `
+    <section class="principle-card">
+      <div class="principle-figure">${renderPrincipleSvg(ch, principle)}</div>
+      <div class="principle-copy">
+        <h3>原理图 · ${escapeHTML(principle.title)}</h3>
+        <p>${escapeHTML(principle.caption)}</p>
+        <ul class="mini-list">${principle.bullets.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul>
+      </div>
+    </section>
+  `;
+}
+
+function renderRealPhoto(ch) {
+  const plan = chapterPhotoPlan[ch.no];
+  if (!plan) return "";
+  const photo = realPhotoAssets[plan.key];
+  if (!photo) return "";
+  return `
+    <section class="photo-card">
+      <div class="photo-frame">
+        <img src="${photo.src}" loading="lazy" alt="${escapeHTML(photo.title)}">
+      </div>
+      <div class="photo-copy">
+        <h3>${escapeHTML(photo.label)}</h3>
+        <p>${escapeHTML(plan.caption)}</p>
+        <div class="photo-credit">Source: <a href="${photo.sourceUrl}" target="_blank" rel="noreferrer">${escapeHTML(photo.source)}</a></div>
+      </div>
+    </section>
+  `;
+}
+
+function renderDeepening(ch) {
+  const extra = chapterDeepening[ch.no];
+  if (!extra) return "";
+  return `
+    <div class="deep-grid">
+      <div class="deep-card">
+        <h3>关键概念补充</h3>
+        <ul>${extra.concepts.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul>
+      </div>
+      <div class="deep-card">
+        <h3>设备岗怎么展开讲</h3>
+        <ul>${extra.talk.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul>
+      </div>
+    </div>
+  `;
+}
+
+function renderExpansion(ch) {
+  const extra = chapterExpansions[ch.no];
+  if (!extra) return "";
+  return `
+    <section class="expansion">
+      <h3>精读展开 · 把这一章讲细一点</h3>
+      <div class="expansion-grid">
+        <div class="expansion-block">
+          <span>怎么读</span>
+          <p>${escapeHTML(extra.read)}</p>
+        </div>
+        <div class="expansion-block">
+          <span>工艺和设备抓手</span>
+          <p>${escapeHTML(extra.process)}</p>
+        </div>
+        <div class="expansion-block">
+          <span>面试表达</span>
+          <p>${escapeHTML(extra.interview)}</p>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderSourcePages(ch) {
+  return "";
+}
+
+function renderNav() {
+  const nav = document.getElementById("nav");
+  nav.innerHTML = chapters.map(ch => `
+    <a href="#chapter-${ch.no}">
+      <span class="num">${ch.no}</span>
+      <span>${ch.en}</span>
+    </a>
+  `).join("");
+}
+
+function renderChapters(filter = "all") {
+  const list = document.getElementById("chapters");
+  const visible = chapters.filter(ch => filter === "all" || ch.filter === filter || (filter === "equipment" && ["Very High", "High"].includes(ch.priority)));
+  list.innerHTML = visible.map(ch => `
+    <article class="chapter" id="chapter-${ch.no}">
+      <div>
+        <h2>${ch.no}. ${ch.title}</h2>
+        <div class="small">${ch.en}</div>
+        <div class="meta">
+          <span class="tag hot">${ch.priority}</span>
+          <span class="tag">原书页码 ${ch.pages}</span>
+          ${ch.tags.map(tag => `<span class="tag tool">${tag}</span>`).join("")}
+        </div>
+        ${renderVisual(ch)}
+        ${renderPrinciple(ch)}
+        ${renderRealPhoto(ch)}
+        <div class="cols">
+          <div>
+            <h3>书中脉络 V1</h3>
+            <ul>${ch.core.map(item => `<li>${item}</li>`).join("")}</ul>
+          </div>
+          <div>
+            <h3>设备岗位抓手</h3>
+            <ul>${ch.equipment.map(item => `<li>${item}</li>`).join("")}</ul>
+          </div>
+        </div>
+        <p class="plain"><b>通俗版：</b>${ch.plain}</p>
+        ${renderDeepening(ch)}
+        ${renderExpansion(ch)}
+        <div class="callout"><b>下一版可加深：</b>逐页 OCR 后，把本章拆成小节笔记、流程图、术语卡和面试问答。</div>
+      </div>
+      <aside class="aside">
+        <div class="card">
+          <strong>English keywords</strong>
+          <div class="terms">${ch.terms.map(term => `<span class="term">${term}</span>`).join("")}</div>
+        </div>
+        <div class="card">
+          <strong>PDF</strong>
+          <p class="small">公开版未附原书 PDF。若确认拥有公开发布授权，可把 PDF 放入资源目录后再启用此入口。</p>
+        </div>
+      </aside>
+      ${renderSourcePages(ch)}
+    </article>
+  `).join("");
+}
+
+document.getElementById("toolbar").addEventListener("click", event => {
+  const button = event.target.closest("button[data-filter]");
+  if (!button) return;
+  document.querySelectorAll(".toolbar button").forEach(btn => btn.classList.remove("active"));
+  button.classList.add("active");
+  renderChapters(button.dataset.filter);
+});
+
+renderNav();
+renderChapters();
+</script>
+</body>
+</html>
