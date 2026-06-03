@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Run50 Facebook | Arsenan</title>
+  <meta name="description" content="Facebook-ready Run50 story editions with cleaner structure, strong previews, comments, and view counts.">
+  <meta property="og:title" content="Run50 Facebook Editions">
+  <meta property="og:description" content="Share-friendly Run50 stories designed for Facebook, starting with the Xiangyang Marathon.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arsenanzz.github.io/ZZ/run50/facebook/">
+  <meta property="og:image" content="https://arsenanzz.github.io/ZZ/assets/og-run50-xiangyang-icons.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      --red: #cc0000;
+      --ink: #111111;
+      --muted: #666666;
+      --line: #dddddd;
+      --soft: #f5f5f5;
+      --paper: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      letter-spacing: 0;
+    }
+    a { color: inherit; }
+    .top-strip {
+      background: #111111;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .top-strip-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .top-strip a { color: #ffffff; text-decoration: none; }
+    .masthead {
+      border-bottom: 1px solid var(--line);
+    }
+    .masthead-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 30px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--red);
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .brand::before {
+      content: "";
+      width: 38px;
+      height: 10px;
+      background: var(--red);
+    }
+    h1 {
+      margin: 16px 0 12px;
+      max-width: 850px;
+      font-size: clamp(2.35rem, 7vw, 5.2rem);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+    .intro {
+      max-width: 720px;
+      margin: 0;
+      color: #333333;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 70px;
+    }
+    .story-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 460px);
+      gap: 28px;
+      align-items: center;
+      padding-bottom: 34px;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+    }
+    .story-card img {
+      width: 100%;
+      aspect-ratio: 1200 / 630;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      display: block;
+    }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .story-card h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.8rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .story-card p {
+      margin: 0 0 16px;
+      color: #333333;
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .meta span {
+      padding: 5px 8px;
+      background: var(--soft);
+    }
+    @media (max-width: 760px) {
+      .story-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-strip">
+    <div class="top-strip-inner">
+      <a href="../index.html">Run50</a>
+      <a href="../../#run50">ZZ Home</a>
+    </div>
+  </div>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="brand">Run50 Facebook</div>
+      <h1>Share-ready race stories</h1>
+      <p class="intro">A more editorial version of Run50 stories for Facebook: clearer headlines, stronger previews, comments, view counts, and the race up front.</p>
+    </div>
+  </header>
+  <main class="shell">
+    <a class="story-card" href="./xiangyang-marathon.html">
+      <div>
+        <p class="eyebrow">World / China / Marathon</p>
+        <h2>Xiangyang gave me a marathon with a finish I did not see coming</h2>
+        <p>Race date: October 19, 2025. A Three Kingdoms city, the Han River, old city walls, Tang-style palaces and an unexpected 3:57 finish.</p>
+        <div class="meta">
+          <span>Xiangyang, Hubei</span>
+          <span>3:57 finish</span>
+          <span>Facebook edition</span>
+        </div>
+      </div>
+      <img src="../../assets/og-run50-xiangyang-icons.png" alt="Icon-style Xiangyang Marathon cover">
+    </a>
+  </main>
+</body>
+</html>
