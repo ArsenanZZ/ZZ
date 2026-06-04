@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">Hong Kong Streetathon icon cover</title>
+<desc id="desc">Icon style cover with Hong Kong skyline, harbor, bridge, tunnel, Ferris wheel, race bib and medal.</desc>
+<rect width="1200" height="750" fill="#f7f7f2"/>
+<rect x="0" y="520" width="1200" height="230" fill="#1f6f8b"/>
+<path d="M0 560 C150 515 300 590 450 545 C620 495 760 585 930 532 C1040 500 1120 522 1200 485 L1200 750 L0 750 Z" fill="#3fb5c4" opacity=".88"/>
+<circle cx="990" cy="140" r="76" fill="#f7b733"/>
+<rect x="90" y="300" width="80" height="225" fill="#22324d"/>
+<rect x="185" y="235" width="95" height="290" fill="#31496d"/>
+<rect x="300" y="270" width="72" height="255" fill="#22324d"/>
+<rect x="392" y="205" width="115" height="320" fill="#405a7e"/>
+<rect x="535" y="330" width="80" height="195" fill="#22324d"/>
+<rect x="640" y="255" width="95" height="270" fill="#31496d"/>
+<path d="M765 520 C835 378 970 378 1040 520" fill="none" stroke="#c33b2b" stroke-width="18"/>
+<line x1="765" y1="520" x2="1040" y2="520" stroke="#c33b2b" stroke-width="18" stroke-linecap="round"/>
+<path d="M120 545 C250 438 430 438 560 545" fill="none" stroke="#f7f7f2" stroke-width="24"/>
+<path d="M145 545 C265 472 415 472 535 545" fill="none" stroke="#22324d" stroke-width="10"/>
+<rect x="760" y="323" width="260" height="158" rx="18" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="790" y="376" font-family="Arial, Helvetica, sans-serif" font-size="35" font-weight="900" fill="#20242b">RunCN #3</text>
+<text x="790" y="427" font-family="Arial, Helvetica, sans-serif" font-size="51" font-weight="900" fill="#cc0000">HONG KONG</text>
+<circle cx="624" cy="230" r="72" fill="none" stroke="#cc0000" stroke-width="14"/>
+<line x1="624" y1="158" x2="624" y2="302" stroke="#cc0000" stroke-width="9"/>
+<line x1="552" y1="230" x2="696" y2="230" stroke="#cc0000" stroke-width="9"/>
+<text x="70" y="100" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#20242b">Hong Kong Streetathon</text>
+<text x="74" y="154" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#667085">Tunnels · Harbour · High bridges · 5 a.m. start</text>
+</svg>
