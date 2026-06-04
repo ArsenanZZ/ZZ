@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -611,6 +611,13 @@
       <button class="sub-chip" type="button" data-subfilter="wqa">WQA Research</button>
       <button class="sub-chip" type="button" data-subfilter="softener">Water Softener</button>
     </div>
+    
+    <div class="sub-chips" id="run50SubChips">
+      <button class="sub-chip active" type="button" data-run50subfilter="all">All Run50</button>
+      <button class="sub-chip" type="button" data-run50subfilter="run-training">Training Library</button>
+      <button class="sub-chip" type="button" data-run50subfilter="run-story">Race Stories</button>
+      <button class="sub-chip" type="button" data-run50subfilter="run-trip">Trip Guides</button>
+    </div>
 
     <section class="masthead" aria-labelledby="page-title">
       <div>
@@ -769,7 +776,7 @@
         </div>
       </article>
 
-      <article class="video-card" id="run50" data-category="run50" data-title="Run50 Personal Space">
+      <article class="video-card" id="run50" data-category="run50 run-home" data-title="Run50 Personal Space">
         <a class="thumb" href="run50/index.html">
           <img src="assets/thumb-run50-home.png" alt="Run50 Personal Space thumbnail">
           <span class="duration">HTML</span>
@@ -783,7 +790,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="run50" data-title="Run50 Training Page">
+      <article class="video-card" data-category="run50 run-training" data-title="Run50 Training Page">
         <a class="thumb" href="run50/run50.html">
           <img src="assets/thumb-run50-training.png" alt="Run50 Training Page thumbnail">
           <span class="duration">HTML</span>
@@ -797,7 +804,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="run50 trip marathon travel" data-title="Mainly Marathons New England 2026">
+      <article class="video-card" data-category="run50 trip marathon travel run-trip" data-title="Mainly Marathons New England 2026">
         <a class="thumb" href="run50/mainly-marathons-new-england-2026-guide.html">
           <img src="assets/thumb-trip-new-england.png" alt="Mainly Marathons New England 2026 thumbnail">
           <span class="duration">HTML</span>
@@ -811,7 +818,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="run50 story chinese marathon travel" data-title="Run50 Chinese Stories Xiangyang Guilin Marathon">
+      <article class="video-card" data-category="run50 story chinese marathon travel run-story" data-title="Run50 Chinese Stories Xiangyang Guilin Marathon">
         <a class="thumb" href="run50/stories/chinese/">
           <img src="assets/thumb-run50-xiangyang-icons.svg" alt="Run50 Chinese Stories city icon thumbnail">
           <span class="duration">Story</span>
@@ -825,7 +832,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="run50 story english marathon travel" data-title="Run50 English Stories Xiangyang Guilin Marathon">
+      <article class="video-card" data-category="run50 story english marathon travel run-story" data-title="Run50 English Stories Xiangyang Guilin Marathon">
         <a class="thumb" href="run50/stories/english/">
           <img src="assets/thumb-run50-xiangyang-icons.svg" alt="Run50 English Stories city icon thumbnail">
           <span class="duration">Story</span>
@@ -839,7 +846,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="run50 facebook story english marathon travel" data-title="Run50 Facebook Xiangyang Guilin Marathon">
+      <article class="video-card" data-category="run50 facebook story english marathon travel run-story" data-title="Run50 Facebook Xiangyang Guilin Marathon">
         <a class="thumb" href="run50/facebook/">
           <img src="assets/og-run50-xiangyang-icons.png" alt="Run50 Facebook city icon thumbnail">
           <span class="duration">Facebook</span>
@@ -895,6 +902,7 @@
   const emptyState = document.querySelector('#emptyState');
   let currentFilter = 'all';
   let currentSubFilter = 'all';
+  let currentRun50SubFilter = 'all';
 
   function setActiveFilter(filter) {
     currentFilter = filter;
@@ -902,20 +910,36 @@
     sideLinks.forEach(link => link.classList.toggle('active', link.dataset.filter === filter));
     
     const subChipsContainer = document.querySelector('#subChips');
+    const run50SubChipsContainer = document.querySelector('#run50SubChips');
+    
     if (filter === 'water') {
       subChipsContainer.style.display = 'flex';
+      run50SubChipsContainer.style.display = 'none';
       setSubFilter('all');
+    } else if (filter === 'run50') {
+      subChipsContainer.style.display = 'none';
+      run50SubChipsContainer.style.display = 'flex';
+      setRun50SubFilter('all');
     } else {
       subChipsContainer.style.display = 'none';
+      run50SubChipsContainer.style.display = 'none';
       currentSubFilter = 'all';
+      currentRun50SubFilter = 'all';
       applyFilters();
     }
   }
 
   function setSubFilter(subfilter) {
     currentSubFilter = subfilter;
-    const subChips = Array.from(document.querySelectorAll('.sub-chip'));
+    const subChips = Array.from(document.querySelectorAll('#subChips .sub-chip'));
     subChips.forEach(subChip => subChip.classList.toggle('active', subChip.dataset.subfilter === subfilter));
+    applyFilters();
+  }
+
+  function setRun50SubFilter(subfilter) {
+    currentRun50SubFilter = subfilter;
+    const subChips = Array.from(document.querySelectorAll('#run50SubChips .sub-chip'));
+    subChips.forEach(subChip => subChip.classList.toggle('active', subChip.dataset.run50subfilter === subfilter));
     applyFilters();
   }
 
@@ -932,7 +956,8 @@
       const categoryTokens = (card.dataset.category || '').split(/\s+/).filter(Boolean);
       const matchesFilter = currentFilter === 'all' || categoryTokens.includes(currentFilter);
       const matchesSubFilter = currentFilter !== 'water' || currentSubFilter === 'all' || categoryTokens.includes(currentSubFilter);
-      const show = matchesQuery && matchesFilter && matchesSubFilter;
+      const matchesRun50SubFilter = currentFilter !== 'run50' || currentRun50SubFilter === 'all' || categoryTokens.includes(currentRun50SubFilter);
+      const show = matchesQuery && matchesFilter && matchesSubFilter && matchesRun50SubFilter;
       card.hidden = !show;
       if (show) visible += 1;
     });
@@ -960,8 +985,12 @@
     });
   });
 
-  document.querySelectorAll('.sub-chip').forEach(subChip => {
+  document.querySelectorAll('#subChips .sub-chip').forEach(subChip => {
     subChip.addEventListener('click', () => setSubFilter(subChip.dataset.subfilter));
+  });
+
+  document.querySelectorAll('#run50SubChips .sub-chip').forEach(subChip => {
+    subChip.addEventListener('click', () => setRun50SubFilter(subChip.dataset.run50subfilter));
   });
 </script>
 <section data-zz-comments></section>
