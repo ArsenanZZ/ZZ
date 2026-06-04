@@ -189,7 +189,7 @@ const translations = {
     }
 };
 
-let currentLang = 'zh'; // Default language
+let currentLang = 'en'; // Default language
 
 function toggleLanguage() {
     currentLang = currentLang === 'zh' ? 'en' : 'zh';
