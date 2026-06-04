@@ -85,8 +85,127 @@
   color: #9b1c1c;
 }
 
-.zz-engagement .v[data-class="v"] {
-  font-family: inherit;
+.zz-comments-form {
+  display: grid;
+  gap: 13px;
+}
+
+.zz-comments-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink, #20242b);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.zz-comments-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.zz-comments-form input,
+.zz-comments-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--line, #dde5ec);
+  border-radius: 7px;
+  padding: 10px 11px;
+  background: #ffffff;
+  color: var(--ink, #20242b);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.zz-comments-form textarea {
+  min-height: 116px;
+  resize: vertical;
+}
+
+.zz-comments-form input:focus,
+.zz-comments-form textarea:focus {
+  outline: 2px solid rgba(29, 78, 216, .18);
+  border-color: #94a3b8;
+}
+
+.zz-comments-hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.zz-comments-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 11px;
+}
+
+.zz-comments-actions button {
+  min-height: 38px;
+  border: 0;
+  border-radius: 7px;
+  padding: 0 15px;
+  background: #111827;
+  color: #ffffff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.zz-comments-actions button:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
+.zz-comments-actions span {
+  color: var(--muted, #667085);
+  font-size: 13px;
+}
+
+.zz-comments-actions span.is-error {
+  color: #9b1c1c;
+}
+
+.zz-comments-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.zz-comment-item {
+  padding: 13px 0 0;
+  border-top: 1px solid var(--line, #dde5ec);
+}
+
+.zz-comment-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.zz-comment-meta strong {
+  color: var(--ink, #20242b);
+  font-size: 14px;
+}
+
+.zz-comment-meta span {
+  color: var(--muted, #667085);
+  font-size: 12px;
+}
+
+.zz-comment-item p,
+.zz-comments-empty {
+  margin: 0;
+  color: var(--ink, #20242b);
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 @media (max-width: 760px) {

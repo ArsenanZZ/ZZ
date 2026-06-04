@@ -1,7 +1,8 @@
 window.ZZ_ENGAGEMENT_CONFIG = {
-  cusdis: {
-    host: "https://cusdis.com",
-    appId: "bca9256b-6e94-41d3-b093-11955f07d869",
-    theme: "light"
+  supabase: {
+    url: "https://nrudlayzskugeyxsgocc.supabase.co",
+    anonKey: "sb_publishable_HER3yMJhLmybWw7KSZLFRA_7wK36l17",
+    table: "story_comments",
+    pageSize: 50
   }
 };
