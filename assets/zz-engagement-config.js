@@ -1,9 +1,7 @@
 window.ZZ_ENGAGEMENT_CONFIG = {
-  valine: {
+  cusdis: {
+    host: "https://cusdis.com",
     appId: "",
-    appKey: "",
-    serverURLs: "",
-    pageSize: 8,
-    avatar: "mp"
+    theme: "light"
   }
 };

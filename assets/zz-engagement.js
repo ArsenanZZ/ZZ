@@ -1,6 +1,6 @@
 (function () {
   var BUSUANZI_SRC = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
-  var VALINE_SRC = "https://unpkg.com/valine/dist/Valine.min.js";
+  var CUSDIS_SRC = "https://cusdis.com/js/cusdis.es.js";
 
   function ready(callback) {
     if (document.readyState === "loading") {
@@ -19,6 +19,7 @@
       var script = document.createElement("script");
       script.src = src;
       script.async = true;
+      script.defer = true;
       if (marker) script.dataset.zzScript = marker;
       script.onload = resolve;
       script.onerror = reject;
@@ -30,56 +31,48 @@
     return section.dataset.locale === "zh-CN" ? zh : en;
   }
 
-  function getValineConfig() {
+  function getCusdisConfig() {
     var config = window.ZZ_ENGAGEMENT_CONFIG || {};
-    return config.valine || {};
+    return config.cusdis || {};
   }
 
   function initComments(section) {
-    var mount = section.querySelector("[data-zz-valine]");
+    var mount = section.querySelector("[data-zz-cusdis]");
     var status = section.querySelector("[data-zz-engagement-status]");
     if (!mount || !status) return;
 
-    var config = getValineConfig();
-    if (!config.appId || !config.appKey) {
+    var config = getCusdisConfig();
+    if (!config.appId) {
       mount.hidden = true;
       status.textContent = localeText(
         section,
-        "留言区正在接入中。启用后访客不用登录，填个昵称就可以写。",
-        "Comments are being connected. Once enabled, visitors can leave a name and write without logging in."
+        "\u7559\u8a00\u5c06\u6539\u7528 Cusdis\u3002\u586b\u5165 Cusdis App ID \u540e\uff0c\u8bfb\u8005\u4e0d\u7528\u767b\u5f55\u5c31\u53ef\u4ee5\u63d0\u4ea4\u7559\u8a00\uff0c\u5ba1\u6838\u540e\u663e\u793a\u3002",
+        "Comments will use Cusdis. Add a Cusdis App ID and readers can submit without logging in; comments appear after approval."
       );
       return;
     }
 
-    status.textContent = localeText(section, "留言加载中...", "Loading comments...");
-    loadScript(VALINE_SRC, "valine")
+    var pageKey = section.dataset.pageKey || window.location.pathname;
+    mount.hidden = false;
+    mount.id = "cusdis_thread";
+    mount.dataset.host = config.host || "https://cusdis.com";
+    mount.dataset.appId = config.appId;
+    mount.dataset.pageId = pageKey;
+    mount.dataset.pageUrl = section.dataset.pageUrl || window.location.href;
+    mount.dataset.pageTitle = section.dataset.pageTitle || document.title;
+    mount.dataset.theme = config.theme || "light";
+
+    status.textContent = localeText(section, "\u7559\u8a00\u52a0\u8f7d\u4e2d...", "Loading comments...");
+    loadScript(CUSDIS_SRC, "cusdis")
       .then(function () {
-        if (!window.Valine) throw new Error("Valine did not load.");
-
-        var valineOptions = {
-          el: mount,
-          appId: config.appId,
-          appKey: config.appKey,
-          path: section.dataset.pageKey || window.location.pathname,
-          placeholder: localeText(section, "不用登录，留个名字就能聊。", "No login needed. Leave a name and say hi."),
-          avatar: config.avatar || "mp",
-          meta: ["nick", "mail", "link"],
-          pageSize: config.pageSize || 8,
-          recordIP: false,
-          lang: section.dataset.locale === "zh-CN" ? "zh-CN" : "en"
-        };
-
-        if (config.serverURLs) valineOptions.serverURLs = config.serverURLs;
-        new window.Valine(valineOptions);
         status.hidden = true;
-        mount.hidden = false;
       })
       .catch(function () {
         mount.hidden = true;
         status.classList.add("is-error");
         status.textContent = localeText(
           section,
-          "留言加载失败，稍后刷新页面再试。",
+          "\u7559\u8a00\u52a0\u8f7d\u5931\u8d25\uff0c\u7a0d\u540e\u5237\u65b0\u9875\u9762\u518d\u8bd5\u3002",
           "Comments failed to load. Please refresh and try again."
         );
       });
