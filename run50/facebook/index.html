@@ -95,15 +95,32 @@
       grid-template-columns: minmax(0, 1fr) minmax(280px, 460px);
       gap: 28px;
       align-items: center;
-      padding-bottom: 34px;
-      border-bottom: 1px solid var(--line);
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 24px;
       text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .story-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(14, 116, 144, .42);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    }
+    .story-card.run-cn {
+      background: #ffe3e0;
+      border-color: #dcaea8;
+    }
+    .story-card.run-50 {
+      background: #d8e6f0;
+      border-color: #9cb8cc;
     }
     .story-card img {
       width: 100%;
-      aspect-ratio: 1200 / 630;
+      aspect-ratio: 16 / 10;
       object-fit: cover;
-      border: 1px solid var(--line);
+      border-radius: 6px;
       display: block;
     }
     .eyebrow {
@@ -161,7 +178,7 @@
     </div>
   </header>
   <main class="shell">
-    <a class="story-card" href="./xiangyang-marathon.html">
+    <a class="story-card run-cn" href="./xiangyang-marathon.html">
       <div>
         <p class="eyebrow">World / China / Marathon</p>
         <h2>Xiangyang gave me a marathon with a finish I did not see coming</h2>
@@ -172,9 +189,9 @@
           <span>Run50 Facebook</span>
         </div>
       </div>
-      <img src="../../assets/og-run50-xiangyang-icons.png" alt="Icon-style Xiangyang Marathon cover">
+      <img src="../../assets/thumb-run50-xiangyang-icons.svg?v=20260604-8" alt="Icon-style Xiangyang Marathon cover">
     </a>
-    <a class="story-card" href="./guilin-marathon.html">
+    <a class="story-card run-cn" href="./guilin-marathon.html">
       <div>
         <p class="eyebrow">World / China / Marathon</p>
         <h2>Guilin turned a beautiful marathon into a full-sun test</h2>
@@ -185,9 +202,9 @@
           <span>Run50 Facebook</span>
         </div>
       </div>
-      <img src="../../assets/og-run50-guilin-icons.png" alt="Icon-style Guilin Marathon cover">
+      <img src="../../assets/thumb-run50-guilin-icons.svg?v=20260604-8" alt="Icon-style Guilin Marathon cover">
     </a>
-    <a class="story-card" href="./hong-kong-marathon.html">
+    <a class="story-card run-cn" href="./hong-kong-marathon.html">
       <div>
         <p class="eyebrow">World / China / Marathon</p>
         <h2>Hong Kong turned a marathon into a tunnel-and-bridge city tour</h2>
@@ -198,9 +215,9 @@
           <span>Run50 Facebook</span>
         </div>
       </div>
-      <img src="../../assets/og-run50-hong-kong-icons.png" alt="Icon-style Hong Kong Streetathon cover">
+      <img src="../../assets/thumb-run50-hong-kong-icons.svg?v=20260604-8" alt="Icon-style Hong Kong Streetathon cover">
     </a>
-    <a class="story-card" href="./miami-marathon.html">
+    <a class="story-card run-50" href="./miami-marathon.html">
       <div>
         <p class="eyebrow">World / USA / Marathon</p>
         <h2>Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi's backyard</h2>
@@ -211,7 +228,7 @@
           <span>Run50 Facebook</span>
         </div>
       </div>
-      <img src="../../assets/og-run50-miami-icons.png" alt="Icon-style Miami Marathon cover">
+      <img src="../../assets/thumb-run50-miami-icons.svg?v=20260604-8" alt="Icon-style Miami Marathon cover">
     </a>
   </main>
 </body>
