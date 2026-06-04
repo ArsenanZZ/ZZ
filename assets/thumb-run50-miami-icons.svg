@@ -9,7 +9,7 @@
   <text x="820" y="178" font-family="Arial, Helvetica, sans-serif" font-size="55" font-weight="900" fill="#cc0000">MIAMI</text>
   
   <!-- Sun -->
-  <circle cx="1080" cy="290" r="56" fill="#f2b441"/>
+  <circle cx="920" cy="340" r="68" fill="#f2b441"/>
 
   <!-- Wave 1 (background water) -->
   <path d="M0 600 C160 560 330 626 500 580 C672 532 826 612 990 572 C1080 552 1140 552 1200 520 L1200 750 L0 750 Z" fill="#0f766e"/>
