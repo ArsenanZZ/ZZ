@@ -18,12 +18,12 @@
   <rect width="1600" height="1000" fill="url(#sky)"/>
   <!-- Sun moved to center behind the gate -->
   <circle cx="640" cy="190" r="110" fill="#f2d7a0" opacity="0.62"/>
-  <circle cx="240" cy="190" r="78" fill="#dbe8df" opacity="0.92"/>
+  <circle cx="320" cy="253" r="104" fill="#dbe8df" opacity="0.92"/>
   <circle cx="145" cy="752" r="112" fill="#e4ecef" opacity="0.9"/>
 
   <g opacity="0.55" stroke="#cbd5dc" stroke-width="2" fill="none">
-    <path d="M120 178h270M1120 806h380M1098 250h210M250 850h420"/>
-    <path d="M132 238h168M1188 310h230M1038 746h166"/>
+    <path d="M160 237h360M1120 806h380M1098 250h210M250 850h420"/>
+    <path d="M176 317h224M1188 310h230M1038 746h166"/>
   </g>
 
   <g transform="translate(180 214)" filter="url(#softShadow)">
