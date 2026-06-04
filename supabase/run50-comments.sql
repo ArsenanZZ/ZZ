@@ -18,12 +18,30 @@ create table if not exists public.story_comments (
     page_id in (
       'run50-xiangyang-marathon-facebook-en',
       'run50-xiangyang-marathon-en',
-      'run50-xiangyang-marathon-zh'
+      'run50-xiangyang-marathon-zh',
+      'run50-guilin-marathon-facebook-en',
+      'run50-guilin-marathon-en',
+      'run50-guilin-marathon-zh'
     )
   )
 );
 
 alter table public.story_comments enable row level security;
+
+alter table public.story_comments
+drop constraint if exists story_comments_page_whitelist;
+
+alter table public.story_comments
+add constraint story_comments_page_whitelist check (
+  page_id in (
+    'run50-xiangyang-marathon-facebook-en',
+    'run50-xiangyang-marathon-en',
+    'run50-xiangyang-marathon-zh',
+    'run50-guilin-marathon-facebook-en',
+    'run50-guilin-marathon-en',
+    'run50-guilin-marathon-zh'
+  )
+);
 
 grant usage on schema public to anon;
 revoke update, delete on public.story_comments from anon;
@@ -46,7 +64,10 @@ with check (
   and page_id in (
     'run50-xiangyang-marathon-facebook-en',
     'run50-xiangyang-marathon-en',
-    'run50-xiangyang-marathon-zh'
+    'run50-xiangyang-marathon-zh',
+    'run50-guilin-marathon-facebook-en',
+    'run50-guilin-marathon-en',
+    'run50-guilin-marathon-zh'
   )
   and char_length(trim(name)) between 1 and 80
   and char_length(trim(body)) between 1 and 1200

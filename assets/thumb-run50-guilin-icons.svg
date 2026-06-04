@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">Guilin Marathon icon cover</title>
+<desc id="desc">Icon style cover with Guilin karst hills, Li River, bridge, sun, race bib and medal.</desc>
+<rect width="1200" height="750" fill="#f4f7f4"/>
+<circle cx="982" cy="135" r="76" fill="#f4b642"/>
+<path d="M0 570 C180 518 308 602 470 552 C620 506 736 544 890 520 C1015 500 1102 518 1200 486 L1200 750 L0 750 Z" fill="#0f766e" opacity=".88"/>
+<path d="M68 502 C140 270 250 270 322 502 Z" fill="#1f6f5b"/>
+<path d="M254 504 C350 214 490 212 584 504 Z" fill="#2f855a"/>
+<path d="M514 510 C610 252 744 252 838 510 Z" fill="#236b56"/>
+<path d="M768 506 C854 278 988 276 1078 506 Z" fill="#2f855a"/>
+<path d="M0 610 C150 560 260 640 420 594 C594 544 760 628 930 572 C1042 536 1130 560 1200 532 L1200 750 L0 750 Z" fill="#65b8b2" opacity=".78"/>
+<path d="M135 525 L420 525 M420 525 L520 435 M520 435 L620 525 M620 525 L1030 525" stroke="#7a4f2a" stroke-width="22" stroke-linecap="round" fill="none"/>
+<path d="M450 525 Q520 455 590 525" stroke="#f4f7f4" stroke-width="30" fill="none"/>
+<rect x="760" y="318" width="250" height="160" rx="18" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="785" y="374" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="900" fill="#20242b">RunCN #2</text>
+<text x="785" y="426" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="900" fill="#cc0000">GUILIN</text>
+<circle cx="260" cy="630" r="52" fill="#d9a441" stroke="#8b5e20" stroke-width="8"/>
+<circle cx="260" cy="630" r="24" fill="#f4f7f4"/>
+<path d="M230 604 L260 566 L290 604" stroke="#8b5e20" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="70" y="105" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#20242b">Guilin Marathon</text>
+<text x="74" y="158" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#667085">Li River · Karst hills · Heat wave · Family finish</text>
+</svg>
