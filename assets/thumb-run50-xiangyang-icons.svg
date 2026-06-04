@@ -72,7 +72,7 @@
     <path d="M76 118v78M154 118v78M232 118v78M310 118v78M388 118v78" stroke="#20242b" stroke-width="12"/>
   </g>
 
-  <g transform="translate(1086 264)" filter="url(#softShadow)">
+  <g transform="translate(1130 300)" filter="url(#softShadow)">
     <path d="M178 0c84 0 152 68 152 152 0 122-152 286-152 286S26 274 26 152C26 68 94 0 178 0z" fill="#ffffff"/>
     <path d="M178 40c62 0 112 50 112 112 0 89-112 210-112 210S66 241 66 152C66 90 116 40 178 40z" fill="#0e7490"/>
     <circle cx="178" cy="152" r="56" fill="#ffffff"/>
@@ -88,9 +88,9 @@
     <circle cx="272" cy="0" r="12" fill="#ffffff" stroke="none"/>
   </g>
 
-  <g transform="translate(110 108)">
-    <text x="0" y="0" font-family="Arial, sans-serif" font-size="54" font-weight="800" fill="#20242b">XIANGYANG</text>
-    <text x="0" y="46" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#a33a2b">CITY · RIVER · MARATHON</text>
+  <g transform="translate(93 139)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="72" font-weight="900" fill="#20242b">XIANGYANG</text>
+    <text x="0" y="61" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#a33a2b">CITY · RIVER · MARATHON</text>
   </g>
 
   <!-- RunCN Badge to unify style -->
