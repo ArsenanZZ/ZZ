@@ -248,6 +248,40 @@
     background: var(--ink);
   }
 
+  .sub-chips {
+    display: none;
+    gap: 8px;
+    margin-top: -6px;
+    margin-bottom: 12px;
+    overflow-x: auto;
+    padding: 4px 0;
+  }
+
+  .sub-chip {
+    flex: 0 0 auto;
+    min-height: 28px;
+    padding: 4px 12px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    color: var(--muted);
+    background: var(--panel);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sub-chip:hover {
+    background: var(--soft);
+    color: var(--ink);
+  }
+
+  .sub-chip.active {
+    color: #ffffff;
+    background: var(--water);
+    border-color: var(--water);
+  }
+
   .masthead {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -553,10 +587,8 @@
   <aside class="sidebar" aria-label="Channels">
     <a class="side-link active" href="#" data-filter="all"><span class="ico all">ZZ</span><span>Home</span></a>
     <a class="side-link" href="#water" data-filter="water"><span class="ico water">H₂O</span><span>Water</span></a>
-    <a class="side-link" href="#wqa" data-filter="wqa"><span class="ico wqa">W</span><span>WQA</span></a>
     <a class="side-link" href="#reading" data-filter="reading"><span class="ico reading">R</span><span>Reading</span></a>
     <a class="side-link" href="#run50" data-filter="run50"><span class="ico run50">50</span><span>Run50</span></a>
-    <a class="side-link" href="#ro" data-filter="ro"><span class="ico ro">RO</span><span>RO</span></a>
     <div class="side-rule"></div>
     <p class="side-note">ArsenanZZ learning hub</p>
   </aside>
@@ -565,15 +597,20 @@
     <nav class="chips" aria-label="Filters">
       <button class="chip active" type="button" data-filter="all">All</button>
       <button class="chip" type="button" data-filter="water">Water</button>
-      <button class="chip" type="button" data-filter="wqa">WQA</button>
       <button class="chip" type="button" data-filter="reading">Reading</button>
       <button class="chip" type="button" data-filter="run50">Run50</button>
-      <button class="chip" type="button" data-filter="ro">RO</button>
       <button class="chip" type="button" data-filter="trip">Trip</button>
       <button class="chip" type="button" data-filter="research">Research</button>
       <button class="chip" type="button" data-filter="atomic">Atomic Habits</button>
       <button class="chip" type="button" data-filter="semiconductor">Semiconductor</button>
     </nav>
+    
+    <div class="sub-chips" id="subChips">
+      <button class="sub-chip active" type="button" data-subfilter="all">All Water</button>
+      <button class="sub-chip" type="button" data-subfilter="ro">Reverse Osmosis (RO)</button>
+      <button class="sub-chip" type="button" data-subfilter="wqa">WQA Research</button>
+      <button class="sub-chip" type="button" data-subfilter="softener">Water Softener</button>
+    </div>
 
     <section class="masthead" aria-labelledby="page-title">
       <div>
@@ -581,7 +618,7 @@
         <p>WQA research, reading notes, Run50, and RO study pages in one clean feed.</p>
       </div>
       <div class="quick-stats" aria-label="Library stats">
-        <div class="stat"><b>5</b><span>channels</span></div>
+        <div class="stat"><b>3</b><span>channels</span></div>
         <div class="stat"><b>18</b><span>uploads</span></div>
         <div class="stat"><b>1</b><span>home page</span></div>
       </div>
@@ -857,11 +894,28 @@
   const resultCount = document.querySelector('#resultCount');
   const emptyState = document.querySelector('#emptyState');
   let currentFilter = 'all';
+  let currentSubFilter = 'all';
 
   function setActiveFilter(filter) {
     currentFilter = filter;
     chips.forEach(chip => chip.classList.toggle('active', chip.dataset.filter === filter));
     sideLinks.forEach(link => link.classList.toggle('active', link.dataset.filter === filter));
+    
+    const subChipsContainer = document.querySelector('#subChips');
+    if (filter === 'water') {
+      subChipsContainer.style.display = 'flex';
+      setSubFilter('all');
+    } else {
+      subChipsContainer.style.display = 'none';
+      currentSubFilter = 'all';
+      applyFilters();
+    }
+  }
+
+  function setSubFilter(subfilter) {
+    currentSubFilter = subfilter;
+    const subChips = Array.from(document.querySelectorAll('.sub-chip'));
+    subChips.forEach(subChip => subChip.classList.toggle('active', subChip.dataset.subfilter === subfilter));
     applyFilters();
   }
 
@@ -877,7 +931,8 @@
         : haystack.includes(query));
       const categoryTokens = (card.dataset.category || '').split(/\s+/).filter(Boolean);
       const matchesFilter = currentFilter === 'all' || categoryTokens.includes(currentFilter);
-      const show = matchesQuery && matchesFilter;
+      const matchesSubFilter = currentFilter !== 'water' || currentSubFilter === 'all' || categoryTokens.includes(currentSubFilter);
+      const show = matchesQuery && matchesFilter && matchesSubFilter;
       card.hidden = !show;
       if (show) visible += 1;
     });
@@ -903,6 +958,10 @@
       if (filter === 'all') event.preventDefault();
       setActiveFilter(filter);
     });
+  });
+
+  document.querySelectorAll('.sub-chip').forEach(subChip => {
+    subChip.addEventListener('click', () => setSubFilter(subChip.dataset.subfilter));
   });
 </script>
 <section data-zz-comments></section>
