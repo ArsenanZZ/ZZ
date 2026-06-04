@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">Mexico City Marathon icon cover</title>
+<desc id="desc">Icon style cover with Mexico City title, RunWorld badge, Aztec step pyramid, cactus and desert scenery.</desc>
+<rect width="1200" height="750" fill="#f2f6f3"/>
+<text x="70" y="102" font-family="Arial, Helvetica, sans-serif" font-size="61" font-weight="900" fill="#20242b">Mexico City Marathon</text>
+<text x="74" y="156" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#667085">Aztec plateau - Reforma Avenue - Zocalo - Pyramids</text>
+<rect x="750" y="62" width="370" height="146" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="780" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunWorld #5</text>
+<text x="780" y="178" font-family="Arial, Helvetica, sans-serif" font-size="49" font-weight="900" fill="#006847">MEXICO</text>
+<circle cx="1076" cy="292" r="56" fill="#f57c00"/>
+<path d="M0 600 Q300 480 600 600 T1200 600 L1200 750 L0 750 Z" fill="#b2c2b9"/>
+<path d="M0 648 C150 598 300 672 450 630 C610 584 760 660 930 614 C1040 584 1120 600 1200 562 L1200 750 L0 750 Z" fill="#9fb0a5"/>
+<path d="M0 680 C180 640 380 700 580 660 C780 620 980 690 1200 630 L1200 750 L0 750 Z" fill="#7d9184"/>
+<rect x="120" y="520" width="360" height="60" rx="2" fill="#4e544d"/>
+<rect x="160" y="460" width="280" height="60" rx="2" fill="#666d65"/>
+<rect x="200" y="400" width="200" height="60" rx="2" fill="#7f877e"/>
+<rect x="250" y="340" width="100" height="60" rx="2" fill="#4e544d"/>
+<polygon points="285 580, 292 340, 308 340, 315 580" fill="#a4aba3"/>
+<rect x="960" y="340" width="24" height="260" rx="12" fill="#2d5a27"/>
+<path d="M920 400 L920 440 A16 16 0 0 0 936 456 L960 456" stroke="#2d5a27" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M1016 370 L1016 410 A16 16 0 0 1 1000 426 L984 426" stroke="#2d5a27" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<rect x="870" y="440" width="16" height="160" rx="8" fill="#3b7a34"/>
+<path d="M840 490 L840 510 A10 10 0 0 0 850 520 L870 520" stroke="#3b7a34" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M910 470 L910 490 A10 10 0 0 1 900 500 L886 500" stroke="#3b7a34" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

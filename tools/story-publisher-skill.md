@@ -65,6 +65,18 @@ Apply the `.run-50` class to the `.story-card` element:
 }
 ```
 
+### Eucalyptus Theme (World RunWorld Stories)
+Apply the `.run-world` class to the `.story-card` element:
+```css
+.story-card.run-world {
+  background: #f1f6f2;      /* Soft sage-white */
+  border: 1px solid #d0dfd4; /* Matching cool green-gray border */
+}
+.story-card.run-world:hover {
+  border-color: #abc4b1;    /* Sage-green hover border */
+}
+```
+
 ### Transitions and Interactivity
 Ensure all listing indexes have interactive transitions and card lift:
 ```css
