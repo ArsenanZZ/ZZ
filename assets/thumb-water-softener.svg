@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f4f1e9"/>
+      <stop offset=".55" stop-color="#dff3ee"/>
+      <stop offset="1" stop-color="#f8d99a"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" x2="1">
+      <stop offset="0" stop-color="#0fa3a8"/>
+      <stop offset="1" stop-color="#245ee8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g opacity=".18" stroke="#0a1e2b" stroke-width="2">
+    <path d="M0 120h1280M0 240h1280M0 360h1280M0 480h1280M0 600h1280"/>
+    <path d="M160 0v720M320 0v720M480 0v720M640 0v720M800 0v720M960 0v720M1120 0v720"/>
+  </g>
+  <g transform="translate(118 92)">
+    <rect x="0" y="0" width="1044" height="536" rx="34" fill="#fffaf0" stroke="#0a1e2b" stroke-width="10"/>
+    <g transform="translate(74 74)">
+      <rect x="0" y="52" width="144" height="318" rx="72" fill="#ffffff" stroke="#0a1e2b" stroke-width="9"/>
+      <path d="M20 272c30-28 74-28 104 0v56H20z" fill="url(#water)" opacity=".9"/>
+      <circle cx="72" cy="124" r="23" fill="#5d7c9c"/>
+      <circle cx="72" cy="184" r="23" fill="#5d7c9c"/>
+      <circle cx="72" cy="244" r="23" fill="#e2922f"/>
+      <rect x="214" y="0" width="236" height="154" rx="18" fill="#f5cd8a" stroke="#0a1e2b" stroke-width="9"/>
+      <path d="M252 58h160M252 98h116" stroke="#245ee8" stroke-width="18" stroke-linecap="round"/>
+      <path d="M144 118h70M450 78h128M578 78v196H450" fill="none" stroke="#0a1e2b" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M450 218h196" stroke="#0fa3a8" stroke-width="18" stroke-linecap="round"/>
+      <path d="M450 284h144" stroke="#e2922f" stroke-width="18" stroke-linecap="round"/>
+      <circle cx="706" cy="218" r="28" fill="#0fa3a8"/>
+      <circle cx="706" cy="284" r="28" fill="#e2922f"/>
+    </g>
+    <text x="74" y="456" font-family="Arial, sans-serif" font-size="66" font-weight="800" fill="#0a1e2b">Water Softener</text>
+    <text x="76" y="507" font-family="Arial, sans-serif" font-size="30" fill="#526675">Principles · Valve Competitor Analysis</text>
+  </g>
+</svg>

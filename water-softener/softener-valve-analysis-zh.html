@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>软水原理与阀头竞品分析</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a1e2b;
+  --ink-2:#13384a;
+  --paper:#f4f1e9;
+  --paper-2:#eae5d8;
+  --line:#c9c0ad;
+  --water:#0fa3a8;
+  --water-deep:#0c7a86;
+  --na:#e2922f;        /* sodium / soft = amber */
+  --na-soft:#f5cd8a;
+  --hard:#5d7c9c;      /* Ca / Mg hardness = slate */
+  --hard-soft:#aebfd1;
+  --resin:#13584f;
+  --alarm:#c0492f;
+  --shadow:rgba(10,30,43,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans SC",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  overflow-x:hidden;
+  background-image:
+    linear-gradient(rgba(10,30,43,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(10,30,43,.035) 1px,transparent 1px);
+  background-size:34px 34px;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.mono{font-family:"JetBrains Mono",monospace}
+.disp{font-family:"Bricolage Grotesque",sans-serif}
+
+/* ---------- HERO ---------- */
+header{
+  position:relative;
+  padding:90px 0 70px;
+  overflow:hidden;
+  border-bottom:2px solid var(--ink);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 78% 18%,rgba(15,163,168,.18),transparent 46%),
+             radial-gradient(circle at 12% 88%,rgba(226,146,47,.12),transparent 42%);
+  pointer-events:none;
+}
+.kicker{
+  font-family:"JetBrains Mono",monospace;
+  font-size:12.5px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--water-deep);font-weight:500;
+  display:flex;align-items:center;gap:12px;
+}
+.kicker::before{content:"";width:42px;height:2px;background:var(--water-deep)}
+h1.title{
+  font-family:"Bricolage Grotesque",sans-serif;
+  font-weight:800;
+  font-size:clamp(40px,7.2vw,82px);
+  line-height:.98;
+  letter-spacing:-.02em;
+  margin:22px 0 8px;
+  color:var(--ink);
+}
+h1.title em{font-style:normal;color:var(--water-deep)}
+.subtitle{
+  font-size:17px;max-width:560px;color:var(--ink-2);font-weight:300;margin-top:14px;
+}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.tag{
+  font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.05em;
+  padding:7px 13px;border:1.5px solid var(--ink);border-radius:2px;
+  background:var(--paper);text-transform:uppercase;
+}
+
+/* ---------- SECTION ---------- */
+section{padding:74px 0;border-bottom:1px solid var(--line)}
+.sec-num{
+  font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--water-deep);
+  letter-spacing:.2em;font-weight:700;
+}
+h2{
+  font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+  font-size:clamp(28px,4.4vw,46px);line-height:1.04;letter-spacing:-.015em;
+  margin:8px 0 18px;color:var(--ink);
+}
+h3{
+  font-family:"Bricolage Grotesque",sans-serif;font-weight:600;
+  font-size:21px;margin:0 0 8px;letter-spacing:-.01em;
+}
+.lead{font-size:16.5px;max-width:680px;color:var(--ink-2);font-weight:300}
+p{font-size:15.5px;color:var(--ink-2)}
+
+/* ---------- HARDNESS SCALE ---------- */
+.hard-scale{display:flex;margin-top:34px;border:1.5px solid var(--ink);border-radius:3px;overflow:hidden}
+.hs-cell{flex:1;padding:16px 12px;text-align:center;border-right:1px solid rgba(10,30,43,.18);position:relative;transition:transform .25s}
+.hs-cell:last-child{border-right:none}
+.hs-cell:hover{transform:translateY(-4px)}
+.hs-cell .lvl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.hs-cell .val{font-family:"JetBrains Mono",monospace;font-size:13px;margin-top:6px;color:var(--ink-2)}
+.hs-cell .bar{height:6px;border-radius:3px;margin-top:12px}
+.formula{
+  font-family:"JetBrains Mono",monospace;font-size:15px;
+  background:var(--ink);color:var(--paper);padding:18px 22px;border-radius:4px;
+  margin-top:30px;letter-spacing:.02em;overflow-x:auto;
+}
+.formula .amber{color:var(--na-soft)}
+.formula .blue{color:var(--hard-soft)}
+.formula .tl{color:var(--water)}
+.note{font-size:13px;font-family:"JetBrains Mono",monospace;color:var(--ink-2);margin-top:10px}
+
+/* ---------- ION EXCHANGE ANIMATION ---------- */
+.ix-stage{
+  margin-top:38px;display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;
+}
+.ix-viz{
+  background:linear-gradient(180deg,#eef4f4,#e4ece9);
+  border:1.5px solid var(--ink);border-radius:6px;
+  position:relative;height:430px;overflow:hidden;
+}
+.col-tank{
+  position:absolute;left:50%;top:24px;transform:translateX(-50%);
+  width:150px;height:382px;border:2.5px solid var(--ink-2);border-radius:14px 14px 8px 8px;
+  background:rgba(15,163,168,.06);overflow:hidden;
+}
+.resin-bed{position:absolute;bottom:0;left:0;right:0;height:240px;
+  background:radial-gradient(circle at 30% 30%,rgba(19,88,79,.20),transparent 60%),var(--resin);
+  opacity:.13;
+}
+.bead{position:absolute;width:14px;height:14px;border-radius:50%;
+  background:radial-gradient(circle at 32% 30%,#2a8d7e,var(--resin));
+  box-shadow:0 1px 2px rgba(0,0,0,.25);
+}
+.ion{position:absolute;width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"JetBrains Mono",monospace;font-size:9px;font-weight:700;color:#fff;
+  box-shadow:0 2px 5px rgba(0,0,0,.28);
+}
+.ion.ca{background:radial-gradient(circle at 32% 30%,var(--hard-soft),var(--hard))}
+.ion.na{background:radial-gradient(circle at 32% 30%,var(--na-soft),var(--na))}
+@keyframes fallHard{
+  0%{top:-26px;opacity:0}
+  10%{opacity:1}
+  55%{top:250px;opacity:1}
+  62%{top:250px;transform:scale(.5);opacity:0}
+  100%{opacity:0}
+}
+@keyframes riseSoft{
+  0%{top:250px;opacity:0;transform:scale(.5)}
+  8%{opacity:1;transform:scale(1)}
+  60%{top:360px;opacity:1}
+  100%{top:392px;opacity:0}
+}
+.h-in{left:48px;animation:fallHard 4s linear infinite}
+.h-in.d2{left:78px;animation-delay:1.3s}
+.h-in.d3{left:62px;animation-delay:2.6s}
+.s-out{animation:riseSoft 4s linear infinite}
+.s-out.a{left:50px;animation-delay:.6s}
+.s-out.b{left:80px;animation-delay:1.9s}
+.s-out.c{left:64px;animation-delay:3.2s}
+.flow-label{position:absolute;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.fl-top{top:8px;left:50%;transform:translateX(-50%)}
+.fl-bot{bottom:6px;left:50%;transform:translateX(-50%)}
+.ix-legend{display:flex;flex-direction:column;gap:18px}
+.leg-item{display:flex;gap:14px;align-items:flex-start}
+.leg-dot{width:26px;height:26px;border-radius:50%;flex-shrink:0;margin-top:3px;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;
+  font-family:"JetBrains Mono",monospace}
+.leg-dot.ca{background:radial-gradient(circle at 32% 30%,var(--hard-soft),var(--hard))}
+.leg-dot.na{background:radial-gradient(circle at 32% 30%,var(--na-soft),var(--na))}
+.leg-dot.rs{background:radial-gradient(circle at 32% 30%,#2a8d7e,var(--resin))}
+.leg-item strong{font-family:"Bricolage Grotesque";font-size:15px;color:var(--ink)}
+.leg-item span{font-size:13.5px;color:var(--ink-2)}
+
+/* ---------- COMPONENTS GRID ---------- */
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.comp-card{
+  border:1.5px solid var(--ink);border-radius:5px;padding:22px;background:var(--paper);
+  position:relative;transition:transform .25s,box-shadow .25s;overflow:hidden;
+}
+.comp-card:hover{transform:translateY(-5px);box-shadow:8px 8px 0 var(--ink)}
+.comp-card .cnum{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--water-deep);font-weight:700}
+.comp-card svg{display:block;margin:6px 0 12px}
+.comp-card h3{font-size:18px}
+.comp-card p{font-size:13.5px;line-height:1.6}
+.comp-card.key{background:var(--ink);color:var(--paper)}
+.comp-card.key .cnum{color:var(--na-soft)}
+.comp-card.key h3{color:var(--paper)}
+.comp-card.key p{color:#cdd9dd}
+.comp-card.key:hover{box-shadow:8px 8px 0 var(--water-deep)}
+
+/* ---------- REGEN CYCLE ---------- */
+.regen{margin-top:38px;display:grid;grid-template-columns:300px 1fr;gap:34px}
+.regen-steps{display:flex;flex-direction:column;gap:8px}
+.rstep{
+  border:1.5px solid var(--line);border-radius:4px;padding:14px 16px;cursor:pointer;
+  background:var(--paper);transition:all .2s;display:flex;gap:14px;align-items:center;
+}
+.rstep:hover{border-color:var(--ink-2)}
+.rstep.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.rstep .rn{font-family:"JetBrains Mono",monospace;font-size:15px;font-weight:700;
+  width:28px;height:28px;border:1.5px solid currentColor;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rstep .rt{font-family:"Bricolage Grotesque";font-weight:600;font-size:15.5px;line-height:1.2}
+.rstep .re{font-size:11px;font-family:"JetBrains Mono",monospace;opacity:.7;letter-spacing:.04em}
+.regen-viz{border:1.5px solid var(--ink);border-radius:6px;background:linear-gradient(180deg,#eef4f4,#e7efec);padding:24px;position:relative}
+.regen-desc{margin-top:16px;min-height:84px}
+.regen-desc h4{font-family:"Bricolage Grotesque";font-size:18px;margin-bottom:6px}
+.regen-desc p{font-size:14.5px}
+.flow-dash{stroke-dasharray:6 7;animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-26}}
+
+/* ---------- VALVE ANATOMY ---------- */
+.valve-types{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.vt-card{border:1.5px solid var(--ink);border-radius:5px;padding:24px;background:var(--paper)}
+.vt-card h3{display:flex;align-items:center;gap:10px}
+.vt-card h3 .b{font-family:"JetBrains Mono";font-size:11px;background:var(--water-deep);color:#fff;
+  padding:3px 8px;border-radius:3px;letter-spacing:.05em}
+.vt-card ul{list-style:none;margin-top:12px}
+.vt-card li{font-size:14px;color:var(--ink-2);padding:6px 0 6px 22px;position:relative;border-bottom:1px dashed var(--line)}
+.vt-card li:last-child{border-bottom:none}
+.vt-card li::before{content:"▸";position:absolute;left:0;color:var(--water-deep);font-weight:700}
+
+/* ---------- COMPARISON TABLE ---------- */
+.tbl-scroll{overflow-x:auto;margin-top:34px;border:1.5px solid var(--ink);border-radius:6px}
+table{border-collapse:collapse;width:100%;min-width:820px;font-size:13.5px}
+th,td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--ink);color:var(--paper);font-family:"Bricolage Grotesque";font-weight:600;
+  font-size:13.5px;position:sticky;top:0;letter-spacing:.01em}
+tbody tr{transition:background .15s}
+tbody tr:hover{background:var(--paper-2)}
+td.brand{font-family:"Bricolage Grotesque";font-weight:700;font-size:15px;color:var(--ink)}
+td.brand small{display:block;font-family:"JetBrains Mono";font-weight:400;font-size:11px;color:var(--ink-2);letter-spacing:.03em}
+.pill{display:inline-block;font-family:"JetBrains Mono";font-size:10.5px;padding:3px 8px;border-radius:20px;letter-spacing:.03em}
+.pill.prem{background:#1c4a52;color:#cfeef0}
+.pill.main{background:#e6dcc4;color:#5a4a22}
+.pill.val{background:#f1e2cc;color:#8a5a1a}
+.flag{font-family:"JetBrains Mono";font-size:11px;color:var(--ink-2)}
+
+/* ---------- POSITIONING ---------- */
+.pos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.pos-card{border:1.5px solid var(--ink);border-radius:6px;padding:24px;background:var(--paper);position:relative}
+.pos-card .ptier{font-family:"JetBrains Mono";font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.pos-card.p1{border-top:5px solid #1c4a52}.pos-card.p1 .ptier{color:#1c4a52}
+.pos-card.p2{border-top:5px solid var(--na)}.pos-card.p2 .ptier{color:var(--na)}
+.pos-card.p3{border-top:5px solid var(--hard)}.pos-card.p3 .ptier{color:var(--hard)}
+.pos-card h3{font-size:18px}
+.pos-card p{font-size:13.5px;line-height:1.62}
+.pos-card .brands{font-family:"JetBrains Mono";font-size:12px;margin-top:12px;color:var(--ink);font-weight:500}
+
+.callout{
+  background:var(--ink);color:var(--paper);border-radius:8px;padding:34px 38px;margin-top:40px;position:relative;overflow:hidden;
+}
+.callout::after{content:"";position:absolute;right:-40px;bottom:-40px;width:200px;height:200px;
+  border-radius:50%;background:radial-gradient(circle,rgba(15,163,168,.35),transparent 70%)}
+.callout .sec-num{color:var(--na-soft)}
+.callout h2{color:var(--paper);font-size:30px}
+.callout p{color:#cdd9dd;max-width:660px;position:relative;z-index:2}
+
+footer{padding:48px 0 64px;text-align:center}
+footer .mono{font-size:12px;color:var(--ink-2);letter-spacing:.06em}
+.zz-site-tools{
+  position:fixed;
+  top:14px;
+  right:14px;
+  z-index:80;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  padding:6px;
+  border:1px solid rgba(10,30,43,.18);
+  border-radius:999px;
+  background:rgba(244,241,233,.92);
+  backdrop-filter:blur(10px);
+  box-shadow:0 12px 30px rgba(10,30,43,.12);
+}
+.zz-site-tools a{
+  min-height:30px;
+  padding:5px 11px;
+  border-radius:999px;
+  color:var(--ink);
+  font-family:"JetBrains Mono",monospace;
+  font-size:12px;
+  line-height:1.4;
+  text-decoration:none;
+}
+.zz-site-tools a.active{
+  color:#fff;
+  background:var(--ink);
+}
+
+@media(max-width:880px){
+  .ix-stage,.regen,.comp-grid,.valve-types,.pos-grid{grid-template-columns:1fr}
+  .comp-grid{grid-template-columns:1fr 1fr}
+  .regen-viz{order:-1}
+}
+@media(max-width:560px){
+  .comp-grid,.pos-grid{grid-template-columns:1fr}
+  .hard-scale{flex-wrap:wrap}.hs-cell{flex:1 1 33%}
+  .zz-site-tools{position:static;margin:12px auto 0;width:max-content;max-width:calc(100% - 24px)}
+}
+</style>
+</head>
+<body>
+<nav class="zz-site-tools" aria-label="Site and language navigation">
+  <a href="../">ZZ Home</a>
+  <a href="softener-valve-analysis-zh.html" class="active">中文</a>
+  <a href="softener-valve-analysis-en.html">EN</a>
+</nav>
+
+<header>
+  <div class="hero-grid"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="kicker">Water Softening · 技术原理与竞品研究</div>
+    <h1 class="title">软水的原理<br>与<em>阀头竞品</em>分析</h1>
+    <p class="subtitle">从硬水成因、离子交换化学，到再生循环与控制阀头——一份面向产品规划的可视化技术参考。</p>
+    <div class="hero-tags">
+      <span class="tag">离子交换</span>
+      <span class="tag">系统部件</span>
+      <span class="tag">再生循环</span>
+      <span class="tag">控制阀头</span>
+      <span class="tag">品牌对比</span>
+      <span class="tag">北美市场定位</span>
+    </div>
+  </div>
+</header>
+
+<!-- 01 硬水 -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">01 / 硬水的本质</div>
+    <h2>什么是硬水？</h2>
+    <p class="lead">硬水指含有较高浓度钙离子（Ca²⁺）和镁离子（Mg²⁺）的水。这些矿物质来自地下水流经石灰岩、白云岩等岩层时的溶解。它们本身无毒，但会在管道、加热器、龙头上结垢，降低洗涤剂效果，缩短家电寿命。</p>
+
+    <div class="hard-scale">
+      <div class="hs-cell"><div class="lvl">软水 Soft</div><div class="val">0–1 gpg<br>0–17 ppm</div><div class="bar" style="background:#9ccfd2"></div></div>
+      <div class="hs-cell"><div class="lvl">微硬 Slight</div><div class="val">1–3.5 gpg<br>17–60 ppm</div><div class="bar" style="background:#7fb5c4"></div></div>
+      <div class="hs-cell"><div class="lvl">中硬 Moderate</div><div class="val">3.5–7 gpg<br>60–120 ppm</div><div class="bar" style="background:#7d9bb5"></div></div>
+      <div class="hs-cell"><div class="lvl">硬 Hard</div><div class="val">7–10.5 gpg<br>120–180 ppm</div><div class="bar" style="background:#6a82a6"></div></div>
+      <div class="hs-cell"><div class="lvl">极硬 Very Hard</div><div class="val">&gt;10.5 gpg<br>&gt;180 ppm</div><div class="bar" style="background:#566f97"></div></div>
+    </div>
+    <p class="note">单位换算：1 gpg（grain per gallon）≈ 17.1 ppm（mg/L，以 CaCO₃ 计）。美国市场常用 gpg，中国/欧洲常用 mg/L。</p>
+  </div>
+</section>
+
+<!-- 02 离子交换 -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">02 / 核心原理</div>
+    <h2>离子交换：用钠换走钙镁</h2>
+    <p class="lead">软水机的核心是装满了离子交换树脂（小珠子）的罐体。每颗树脂珠表面带负电，预先吸附了钠离子（Na⁺）。当硬水流过时，树脂"更喜欢"钙镁，于是把 Na⁺ 释放出去、把 Ca²⁺/Mg²⁺ 牢牢抓住——流出来的就是软水。</p>
+
+    <div class="ix-stage">
+      <div class="ix-viz" id="ixViz">
+        <div class="col-tank">
+          <div class="resin-bed"></div>
+          <span class="flow-label fl-top">硬水进 ↓</span>
+          <!-- 钙镁离子下落 -->
+          <div class="ion ca h-in">Ca</div>
+          <div class="ion ca h-in d2">Mg</div>
+          <div class="ion ca h-in d3">Ca</div>
+          <!-- 钠离子被换出 -->
+          <div class="ion na s-out a">Na</div>
+          <div class="ion na s-out b">Na</div>
+          <div class="ion na s-out c">Na</div>
+          <span class="flow-label fl-bot">软水出 ↓</span>
+        </div>
+      </div>
+      <div class="ix-legend">
+        <div class="leg-item"><div class="leg-dot rs">R⁻</div><div><strong>离子交换树脂</strong><br><span>带负电的高分子小球，是反应的"交换站"。一罐通常装 1–3 立方英尺。</span></div></div>
+        <div class="leg-item"><div class="leg-dot ca">Ca</div><div><strong>钙 / 镁离子（硬度）</strong><br><span>被树脂吸附、留在罐内，逐渐让树脂"吃饱"而失效。</span></div></div>
+        <div class="leg-item"><div class="leg-dot na">Na</div><div><strong>钠离子（软）</strong><br><span>被置换释放进水里，随软水流出。这也是软水偏咸的原因。</span></div></div>
+      </div>
+    </div>
+
+    <div class="formula">
+软化反应：&nbsp; 2&nbsp;<span class="amber">Na</span>⁺·R⁻ &nbsp;+&nbsp; <span class="blue">Ca</span>²⁺ &nbsp;&rarr;&nbsp; <span class="blue">Ca</span>²⁺·(R⁻)₂ &nbsp;+&nbsp; 2&nbsp;<span class="amber">Na</span>⁺ &nbsp;&nbsp;<span class="tl">（树脂抓住钙，放出钠）</span>
+    </div>
+    <p class="note">树脂的容量是有限的。一旦钙镁占满交换位点，软化能力下降——就必须进入"再生"，把钙镁洗掉、重新装回钠。</p>
+  </div>
+</section>
+
+<!-- 03 部件 -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">03 / 系统部件</div>
+    <h2>一套软水机由什么组成？</h2>
+    <p class="lead">典型的住宅软水系统是"两罐一阀"结构：树脂罐负责软化，盐罐负责再生，控制阀头是整套系统的大脑。</p>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="cnum">PART 01</div>
+        <svg width="48" height="48" viewBox="0 0 48 48"><rect x="14" y="6" width="20" height="38" rx="6" fill="none" stroke="#0a1e2b" stroke-width="2"/><circle cx="20" cy="30" r="2.5" fill="#13584f"/><circle cx="27" cy="34" r="2.5" fill="#13584f"/><circle cx="24" cy="26" r="2.5" fill="#13584f"/><circle cx="29" cy="28" r="2.5" fill="#13584f"/><circle cx="18" cy="36" r="2.5" fill="#13584f"/></svg>
+        <h3>树脂罐 Resin Tank</h3>
+        <p>玻璃钢（FRP）压力罐，内装离子交换树脂。硬水在这里被软化。常见规格 1054、1252、1354。</p>
+      </div>
+      <div class="comp-card">
+        <div class="cnum">PART 02</div>
+        <svg width="48" height="48" viewBox="0 0 48 48"><path d="M12 16 h24 v24 a4 4 0 0 1-4 4 H16 a4 4 0 0 1-4-4 Z" fill="none" stroke="#0a1e2b" stroke-width="2"/><path d="M16 30 h16" stroke="#0fa3a8" stroke-width="2"/><circle cx="24" cy="36" r="3" fill="#e2922f"/><rect x="20" y="8" width="8" height="9" fill="none" stroke="#0a1e2b" stroke-width="2"/></svg>
+        <h3>盐罐 Brine Tank</h3>
+        <p>盛放食用级粒盐与盐水，再生时提供高浓度 NaCl 溶液。内有浮球阀控制补水量。</p>
+      </div>
+      <div class="comp-card key">
+        <div class="cnum">PART 03 · 核心</div>
+        <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="13" fill="none" stroke="#f5cd8a" stroke-width="2"/><circle cx="24" cy="24" r="4" fill="#f5cd8a"/><path d="M24 11 v-5 M24 37 v5 M11 24 h-5 M37 24 h5 M14.8 14.8 l-3.5-3.5 M33.2 33.2 l3.5 3.5 M33.2 14.8 l3.5-3.5 M14.8 33.2 l-3.5 3.5" stroke="#f5cd8a" stroke-width="2"/></svg>
+        <h3>控制阀头 Control Valve</h3>
+        <p>系统大脑。决定何时再生、如何切换水路。品牌差异、成本与竞品分析的核心都在这里。</p>
+      </div>
+      <div class="comp-card">
+        <div class="cnum">PART 04</div>
+        <svg width="48" height="48" viewBox="0 0 48 48"><line x1="24" y1="8" x2="24" y2="42" stroke="#0a1e2b" stroke-width="2.5"/><path d="M24 38 l-4-4 M24 38 l4-4" stroke="#0fa3a8" stroke-width="2"/><circle cx="24" cy="10" r="3" fill="none" stroke="#0a1e2b" stroke-width="2"/></svg>
+        <h3>布水器 / 中心管</h3>
+        <p>中心立管 + 上下布水器，确保水流均匀穿过整个树脂床，避免偏流、短路。</p>
+      </div>
+      <div class="comp-card">
+        <div class="cnum">PART 05</div>
+        <svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="20" r="9" fill="none" stroke="#0a1e2b" stroke-width="2"/><line x1="24" y1="29" x2="24" y2="42" stroke="#0a1e2b" stroke-width="2"/><line x1="18" y1="42" x2="30" y2="42" stroke="#0a1e2b" stroke-width="2"/></svg>
+        <h3>浮球 / 盐水阀</h3>
+        <p>盐罐内的安全浮阀，控制补水液位、防止盐罐溢流（俗称"盐桥""盐霜"问题相关）。</p>
+      </div>
+      <div class="comp-card">
+        <div class="cnum">PART 06</div>
+        <svg width="48" height="48" viewBox="0 0 48 48"><path d="M10 24 h12 l4-8 4 16 4-8 h6" fill="none" stroke="#e2922f" stroke-width="2.5" stroke-linejoin="round"/></svg>
+        <h3>计量 / 旁通阀</h3>
+        <p>水表计量出水量（按需再生），旁通阀在检修时让水绕过软水机直供。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 再生循环 -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">04 / 再生循环</div>
+    <h2>树脂"吃饱"后怎么办？再生五步</h2>
+    <p class="lead">当树脂被钙镁占满，阀头会启动再生程序：用盐罐里的高浓度盐水把钙镁冲走、给树脂重新"补钠"。点击下面每一步查看水路变化。</p>
+
+    <div class="regen">
+      <div class="regen-steps" id="regenSteps">
+        <div class="rstep active" data-step="0"><div class="rn">1</div><div><div class="rt">反洗 Backwash</div><div class="re">水流向上 · 松动树脂床</div></div></div>
+        <div class="rstep" data-step="1"><div class="rn">2</div><div><div class="rt">吸盐 / 慢洗</div><div class="re">Brine Draw · Slow Rinse</div></div></div>
+        <div class="rstep" data-step="2"><div class="rn">3</div><div><div class="rt">补水 Brine Refill</div><div class="re">向盐罐回灌制盐水</div></div></div>
+        <div class="rstep" data-step="3"><div class="rn">4</div><div><div class="rt">快洗 Fast Rinse</div><div class="re">快速下冲 · 冲净残盐</div></div></div>
+        <div class="rstep" data-step="4"><div class="rn">5</div><div><div class="rt">服务 Service</div><div class="re">恢复正常软化供水</div></div></div>
+      </div>
+
+      <div>
+        <div class="regen-viz">
+          <svg viewBox="0 0 360 230" width="100%" id="regenSvg">
+            <!-- 树脂罐 -->
+            <rect x="60" y="20" width="90" height="180" rx="14" fill="rgba(15,163,168,.06)" stroke="#13384a" stroke-width="2.5"/>
+            <rect x="62" y="120" width="86" height="78" rx="4" fill="rgba(19,88,79,.16)"/>
+            <text x="105" y="215" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#13384a">树脂罐</text>
+            <!-- 盐罐 -->
+            <rect x="250" y="90" width="70" height="110" rx="8" fill="rgba(226,146,47,.07)" stroke="#13384a" stroke-width="2.5"/>
+            <rect x="252" y="160" width="66" height="38" fill="rgba(226,146,47,.18)"/>
+            <text x="285" y="215" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#13384a">盐罐</text>
+            <!-- 阀头 -->
+            <rect x="78" y="6" width="54" height="20" rx="4" fill="#0a1e2b"/>
+            <text x="105" y="20" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#f4f1e9">阀头</text>
+            <!-- 排污口 -->
+            <text x="30" y="40" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#c0492f">排污</text>
+            <!-- 动态水路 -->
+            <g id="flowPaths"></g>
+          </svg>
+        </div>
+        <div class="regen-desc" id="regenDesc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 阀头详解 -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">05 / 阀头详解</div>
+    <h2>控制阀头：差异都藏在这里</h2>
+    <p class="lead">阀头是软水机里技术含量最高、品牌壁垒最强、也最影响成本的部件。两个最关键的分类维度如下。</p>
+
+    <div class="valve-types">
+      <div class="vt-card">
+        <h3>定时型 <span class="b">TIMER</span> vs 计量型 <span class="b">METERED</span></h3>
+        <ul>
+          <li><b>定时型</b>：按固定日程再生（如每 3 天一次），无论是否真的用完——简单便宜，但费盐费水。</li>
+          <li><b>计量型 / 按需</b>：内置水表统计实际用水量，树脂真正用尽才再生——省盐省水，现已成主流。</li>
+          <li>Fleck 5600<b>SXT</b>、Clack WS1 的高配版均为计量型；润新 F65/F69 同时提供定时与流量两种。</li>
+        </ul>
+      </div>
+      <div class="vt-card">
+        <h3>顺流 <span class="b">DOWNFLOW</span> vs 逆流 <span class="b">UPFLOW</span></h3>
+        <ul>
+          <li><b>顺流再生</b>：盐水从上往下走，工艺成熟、应用最广。</li>
+          <li><b>逆流再生</b>：盐水从下往上，使最干净的树脂集中在出水端，<b>更省盐（约省 20–30%）</b>。</li>
+          <li>密封方式是另一条暗线：Fleck/Clack 用<b>活塞 + 密封圈叠层</b>；润新用<b>陶瓷密封片</b>；Autotrol 用<b>导阀膜片</b>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 竞品对比 -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">06 / 品牌竞品对比</div>
+    <h2>主流阀头品牌横评</h2>
+    <p class="lead">下面是北美与中国市场最常见的几大阀头品牌。流量、可编程循环数、密封结构、原产地与配件可得性，是采购与产品规划时最该关注的指标。</p>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>品牌 / 型号</th><th>原产地</th><th>最大流量</th><th>再生 / 循环</th><th>密封结构</th><th>阀体材质</th><th>定位</th><th>配件可得性</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="brand">Clack<small>WS1</small></td>
+            <td class="flag">🇺🇸 美国</td>
+            <td class="mono">27 GPM</td>
+            <td>计量，最多 9 段可编程；顺/逆流</td>
+            <td>活塞 + 密封圈/隔片</td>
+            <td>Noryl 玻纤增强</td>
+            <td><span class="pill prem">高端</span></td>
+            <td>厂家限制网络直发，DIY 渠道偏少</td>
+          </tr>
+          <tr>
+            <td class="brand">Fleck (Pentair)<small>5600 SXT</small></td>
+            <td class="flag">🇺🇸 美国</td>
+            <td class="mono">20 GPM</td>
+            <td>计量，5 段循环；顺流为主</td>
+            <td>活塞 + 密封圈/隔片</td>
+            <td>Noryl 玻纤增强</td>
+            <td><span class="pill main">主流</span></td>
+            <td>极佳——70 年历史，配件随处可买</td>
+          </tr>
+          <tr>
+            <td class="brand">Autotrol (Pentair)<small>255 / 760</small></td>
+            <td class="flag">🇺🇸 美国</td>
+            <td class="mono">中等</td>
+            <td>计量/定时；导阀控制</td>
+            <td>导阀膜片（pilot disc）</td>
+            <td>工程塑料</td>
+            <td><span class="pill main">主流</span></td>
+            <td>良好，但结构较复杂、装配要求高</td>
+          </tr>
+          <tr>
+            <td class="brand">Hankscraft Runxin 润新<small>F65 / F69 系列</small></td>
+            <td class="flag">🇨🇳 中国</td>
+            <td class="mono">2–7 m³/h<br>(≈9–30 GPM)</td>
+            <td>定时 / 流量两种；顺流</td>
+            <td>陶瓷密封片（高强陶瓷）</td>
+            <td>合成工程材料</td>
+            <td><span class="pill val">高性价比 / OEM</span></td>
+            <td>中国 OEM 渠道强，单价低（~$77）</td>
+          </tr>
+          <tr>
+            <td class="brand">Aquatrol<small>通用经济型</small></td>
+            <td class="flag">混合 / 贴牌</td>
+            <td class="mono">较低</td>
+            <td>多为定时型</td>
+            <td>活塞式（简化）</td>
+            <td>工程塑料</td>
+            <td><span class="pill val">入门</span></td>
+            <td>有限，多见于低价整机套装</td>
+          </tr>
+          <tr>
+            <td class="brand">Hellenbrand<small>专有阀头</small></td>
+            <td class="flag">🇺🇸 美国</td>
+            <td class="mono">高</td>
+            <td>专有计量；高级控制</td>
+            <td>专有结构</td>
+            <td>专有</td>
+            <td><span class="pill prem">高端 / 专卖</span></td>
+            <td>经销商体系，配件相对封闭</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">注：流量值为约 0.1 MPa 压降下的厂商标称软化流量，实际随罐径、树脂量、水压变化。润新等中国阀头按 m³/h 标称，已折算 GPM 便于横向比较。</p>
+  </div>
+</section>
+
+<!-- 07 市场定位 -->
+<section>
+  <div class="wrap">
+    <div class="sec-num">07 / 北美市场定位</div>
+    <h2>三个梯队：竞品如何卡位</h2>
+    <p class="lead">把上面的品牌按"价格 × 配件生态 × 技术"摊开，北美阀头市场大致是三个梯队。这对产品切入点的判断很关键。</p>
+
+    <div class="pos-grid">
+      <div class="pos-card p1">
+        <div class="ptier">Tier 1 · 高端</div>
+        <h3>性能与品控壁垒</h3>
+        <p>高流量、多段可编程、长寿命。卖的是可靠性与专业渠道信任，价格不敏感。但渠道封闭、DIY 不友好是其软肋。</p>
+        <div class="brands">Clack WS1 · Hellenbrand</div>
+      </div>
+      <div class="pos-card p2">
+        <div class="ptier">Tier 2 · 主流标杆</div>
+        <h3>生态即护城河</h3>
+        <p>Fleck 是北美事实标准——任何水工都能修、配件随处可得。技术未必最强，但"装得上、修得起"让它极难被替代。</p>
+        <div class="brands">Fleck 5600SXT · Autotrol</div>
+      </div>
+      <div class="pos-card p3">
+        <div class="ptier">Tier 3 · 性价比 / OEM</div>
+        <h3>成本与供应链</h3>
+        <p>润新等中国阀头以陶瓷密封、低单价、强 OEM 能力切入。技术差距在缩小，主要短板是北美本地配件与品牌认知。</p>
+        <div class="brands">Hankscraft Runxin · Aquatrol</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="sec-num">关键洞察</div>
+      <h2>切入北美：阀头不只是技术问题，是生态问题</h2>
+      <p>Clack 输在渠道封闭，Fleck 赢在配件无处不在，润新赢在成本却卡在本地认知。对一个想进北美的玩家来说，真正的护城河往往不是"阀头做得多好"，而是"装得上、买得到配件、水工愿意推荐"。技术达标只是入场券，配件生态与渠道信任才是胜负手。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="mono">软水原理与阀头竞品分析 · 技术参考文档 · 部分阀头参数引用公开资料，实际以厂商最新规格书为准</div>
+  </div>
+</footer>
+
+<script>
+// ---------- 再生循环交互 ----------
+const steps = [
+  {
+    title:"第 1 步 · 反洗 Backwash",
+    desc:"水流从罐体底部反向往上冲，把压实的树脂床松动、托起，并带走积累的泥沙、铁锈和碎屑，从排污口排出。为后续吸盐做准备。",
+    paths:[
+      {d:"M105 195 L105 30 L78 16",color:"#0fa3a8",dir:"up"},
+      {d:"M78 16 L40 16 L40 40",color:"#c0492f",dir:"down"}
+    ]
+  },
+  {
+    title:"第 2 步 · 吸盐 / 慢洗 Brine Draw & Slow Rinse",
+    desc:"阀头通过文丘里喷射器从盐罐缓慢抽取高浓度盐水，让 Na⁺ 慢慢流过树脂床，把吸附的 Ca²⁺/Mg²⁺ 置换下来，含钙镁的废盐水排向排污口。这是再生的核心反应步。",
+    paths:[
+      {d:"M285 165 L285 110 L132 16",color:"#e2922f",dir:"down"},
+      {d:"M105 30 L105 195",color:"#5d7c9c",dir:"down"},
+      {d:"M105 195 L40 195 L40 40",color:"#c0492f",dir:"up"}
+    ]
+  },
+  {
+    title:"第 3 步 · 补水 Brine Refill",
+    desc:"阀头按设定盐量向盐罐回灌定量清水，溶解粒盐、为下一次再生预先制备好盐水。浮球阀控制液位，防止溢流。",
+    paths:[
+      {d:"M105 30 L132 16 L285 16 L285 160",color:"#0fa3a8",dir:"down"}
+    ]
+  },
+  {
+    title:"第 4 步 · 快洗 Fast Rinse",
+    desc:"清水以正常服务方向快速下冲树脂床，冲净残留盐水、压实树脂、稳定出水水质。冲洗水排向排污口。",
+    paths:[
+      {d:"M105 30 L105 195",color:"#0fa3a8",dir:"down"},
+      {d:"M105 195 L40 195 L40 40",color:"#c0492f",dir:"up"}
+    ]
+  },
+  {
+    title:"第 5 步 · 服务 Service",
+    desc:"再生完成，阀头切回正常软化水路：硬水从上进入、流过已恢复的树脂床、软水供向全屋。计量型阀头重新开始累计用水量，直到下一次触发再生。",
+    paths:[
+      {d:"M78 16 L105 30 L105 195",color:"#5d7c9c",dir:"down"},
+      {d:"M105 30 L132 16",color:"#0fa3a8",dir:"up"}
+    ]
+  }
+];
+
+const flowG = document.getElementById('flowPaths');
+const descBox = document.getElementById('regenDesc');
+const stepEls = document.querySelectorAll('.rstep');
+
+function render(i){
+  if(!flowG || !descBox) return;
+  const s = steps[i];
+  flowG.innerHTML = s.paths.map(p=>
+    `<path d="${p.d}" fill="none" stroke="${p.color}" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" class="flow-dash" />`
+  ).join('');
+  descBox.innerHTML = `<h4>${s.title}</h4><p>${s.desc}</p>`;
+  stepEls.forEach(e=>e.classList.toggle('active', +e.dataset.step===i));
+}
+if(stepEls.length){
+  stepEls.forEach(e=>e.addEventListener('click',()=>render(+e.dataset.step)));
+  render(0);
+}
+
+// 自动轮播（用户点击后停止）
+let auto = 0, autoTimer = setInterval(()=>{
+  auto = (auto+1)%steps.length; render(auto);
+},3800);
+stepEls.forEach(e=>e.addEventListener('click',()=>{clearInterval(autoTimer); auto=+e.dataset.step;}));
+
+// ---------- 树脂珠随机分布 ----------
+const viz = document.querySelector('.col-tank');
+if(viz){
+  for(let k=0;k<26;k++){
+    const b=document.createElement('div');
+    b.className='bead';
+    b.style.left=(12+Math.random()*120)+'px';
+    b.style.bottom=(Math.random()*220)+'px';
+    b.style.opacity=.65+Math.random()*.3;
+    viz.appendChild(b);
+  }
+}
+</script>
+<link rel="stylesheet" href="../assets/zz-comments.css">
+<section data-zz-comments></section>
+<script src="../assets/zz-comments.js"></script>
+</body>
+</html>
