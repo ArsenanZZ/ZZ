@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能软水系统原理解析与选购指南 | Bilingual H₂O Softener Tech Guide</title>
+    <meta name="description" content="一站式解决您对全屋软水机的全部疑问。交互式展示软水机工作原理、微观离子交换动画、五阶段再生水流演示，深度对比Fleck/Clack/润新阀头，提供北美市场水硬度及竞品分析与智能选型推荐。">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24">
+                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                </svg>
+                <span>H₂O Softener Tech</span>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="#principle">
+                        <span class="lang-zh">软水原理</span><span class="lang-en">Softening Principle</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#valve-components">
+                        <span class="lang-zh">阀头组件</span><span class="lang-en">Valve Anatomy</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#regeneration">
+                        <span class="lang-zh">再生阶段</span><span class="lang-en">Regeneration Cycles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#us-market">
+                        <span class="lang-zh">北美市场</span><span class="lang-en">US Market & Map</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#brands">
+                        <span class="lang-zh">品牌对比</span><span class="lang-en">Brand Comparison</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#calculator">
+                        <span class="lang-zh">选型计算器</span><span class="lang-en">Sizing Calculator</span>
+                    </a>
+                </li>
+            </ul>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <button id="langToggleBtn" class="btn btn-secondary" style="padding: 8px 16px; font-size: 13px; border-radius: 20px; font-weight: 700;">
+                    <span class="lang-zh">English / EN</span>
+                    <span class="lang-en">中文 / ZH</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span> 
+                    <span class="lang-zh">2026 全球水处理技术白皮书</span>
+                    <span class="lang-en">2026 Global Water Treatment Whitepaper</span>
+                </div>
+                <h1>
+                    <span class="lang-zh">全屋智能软水系统<br>工作原理与北美选购指南</span>
+                    <span class="lang-en">Whole-House Smart Water Softeners<br>Principles & Buyer's Guide</span>
+                </h1>
+                <p>
+                    <span class="lang-zh">硬水富含钙镁矿物质，会导致水垢积聚、皮肤发硬。软水机通过离子交换过程，彻底替换原水中的钙镁离子，延长涉水电器寿命，带来柔和亲肤的洗浴体验。</span>
+                    <span class="lang-en">Hard water is rich in calcium and magnesium minerals, causing scale build-up and dry skin. Water softeners use an ion exchange process to replace these minerals, protecting appliances and providing a luxurious, skin-friendly washing experience.</span>
+                </p>
+                <div class="hero-cta">
+                    <a href="#calculator" class="btn btn-primary">
+                        <span class="lang-zh">一键选型推荐</span><span class="lang-en">Start Sizing Calculator</span>
+                    </a>
+                    <a href="#principle" class="btn btn-secondary">
+                        <span class="lang-zh">探索交互原理</span><span class="lang-en">Explore Principles</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual-wrapper">
+                <div class="hero-circle"></div>
+                <div class="hero-softener-mockup">
+                    <div class="hero-softener-valve"></div>
+                    <div class="hero-softener-tank">
+                        <div class="hero-water-waves"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Softener Working Principle (Canvas Simulation) -->
+    <section id="principle" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Ion Exchange Principle</span>
+                <h2 class="section-title">
+                    <span class="lang-zh">离子交换：微观软化原理</span>
+                    <span class="lang-en">Ion Exchange: Microscopic Softening</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="lang-zh">软水机核心是食品级强酸性阳离子交换树脂，它是带负电荷的球状颗粒，表面吸附有钠离子（Na⁺）。当硬度离子（Ca²⁺, Mg²⁺）流经树脂时，它们与钠离子进行位置交换，完成水质软化。</span>
+                    <span class="lang-en">The core of a softener is food-grade strong acid cation exchange resin. These negative charged beads hold sodium (Na⁺) ions. As hard water (Ca²⁺/Mg²⁺) passes through the resin, it binds to the beads and releases sodium, softening the water.</span>
+                </p>
+            </div>
+
+            <div class="principle-grid">
+                <!-- Interactive Canvas Particle Simulation -->
+                <div class="canvas-container glass-card">
+                    <div style="position: absolute; top: 20px; left: 20px; z-index: 10;">
+                        <h4 id="simulationModeTitle" style="color: var(--accent-cyan); font-size: 16px; margin-bottom: 4px;"></h4>
+                        <p style="font-size: 11px; color: var(--text-muted);">
+                            <span class="lang-zh">模拟硬度离子接触黄色树脂珠置换出钠离子的物理过程</span>
+                            <span class="lang-en">Simulates hard ions exchanging with sodium on yellow resin beads</span>
+                        </p>
+                    </div>
+                    <canvas id="ionExchangeCanvas"></canvas>
+                    <div class="canvas-overlay">
+                        <div class="legend-item"><span class="legend-color legend-ca-mg"></span> <span class="lang-zh">钙/镁离子 (Ca²⁺/Mg²⁺)</span><span class="lang-en">Calcium/Magnesium</span></div>
+                        <div class="legend-item"><span class="legend-color legend-na"></span> <span class="lang-zh">钠离子 (Na⁺)</span><span class="lang-en">Sodium (Na⁺)</span></div>
+                        <div class="legend-item"><span class="legend-color legend-resin"></span> <span class="lang-zh">树脂球 (Resin)</span><span class="lang-en">Resin Bead</span></div>
+                    </div>
+                </div>
+
+                <!-- Simulation Control Panel -->
+                <div class="explanation-list">
+                    <div class="glass-card explanation-card">
+                        <div class="step-number">01</div>
+                        <div>
+                            <h3>
+                                <span class="lang-zh">硬水流入，发生置换</span>
+                                <span class="lang-en">Hard Water Inflow</span>
+                            </h3>
+                            <p>
+                                <span class="lang-zh">自来水从树脂罐顶部压入，其中的钙镁离子（硬度来源）与树脂表面的钠离子接触。由于树脂对带双电荷的 Ca²⁺、Mg²⁺ 吸附力更强，钠离子被“替换”下，进入水中，钙镁则被牢牢吸附。</span>
+                                <span class="lang-en">Hard water enters the resin tank. Because the resin beads have a stronger affinity for Ca²⁺ and Mg²⁺ than for single-charged Na⁺, the hard minerals kick the sodium off and stick to the beads.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card explanation-card">
+                        <div class="step-number">02</div>
+                        <div>
+                            <h3>
+                                <span class="lang-zh">树脂饱和，软化失效</span>
+                                <span class="lang-en">Resin Saturation</span>
+                            </h3>
+                            <p>
+                                <span class="lang-zh">随着通水量增加，树脂表面所有的交换位置逐渐被钙镁离子占满，此时树脂达到“饱和”状态（即上方模拟器中的饱和度达到 100%），机器无法继续软化水质，水龙头重新排出硬水。</span>
+                                <span class="lang-en">Over time, all exchange sites on the resin are occupied by calcium and magnesium. The resin is 'saturated' (100% saturation in the simulator above) and can no longer soften the water.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card explanation-card">
+                        <div class="step-number">03</div>
+                        <div>
+                            <h3>
+                                <span class="lang-zh">高浓度盐洗，置换还原</span>
+                                <span class="lang-en">Salt Brine Regeneration</span>
+                            </h3>
+                            <p>
+                                <span class="lang-zh">此时，控制阀会自动启动“再生”程序，将高浓度的食盐水（NaCl）注入罐体。海量的 Na⁺ 离子强行把树脂上的 Ca²⁺、Mg²⁺ 顶替下来，并将其排入下水道，树脂重新装满钠离子，恢复软化能力。</span>
+                                <span class="lang-en">To restore capacity, the valve injects highly concentrated sodium chloride brine (salt water). The massive surge of Na⁺ forces the calcium/magnesium off the beads and flushes them to the drain, resetting the resin.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Simulator Controls -->
+                    <div class="glass-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 14px; font-weight: 600; color: var(--text-secondary);">
+                                <span class="lang-zh">树脂饱和进度：</span><span class="lang-en">Resin Saturation Progress:</span>
+                            </span>
+                            <span id="saturationNum" style="font-size: 18px; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-heading);">0%</span>
+                        </div>
+                        <div style="height: 10px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden; border: 1px solid var(--border-color)">
+                            <div id="saturationFill" style="width: 0%; height: 100%; background: var(--accent-teal); transition: width 0.3s ease;"></div>
+                        </div>
+                        <div id="simulationStatusText" style="font-size: 14px; color: var(--text-primary); line-height: 1.5; min-height: 48px;">
+                            加载模拟数据中...
+                        </div>
+                        <div style="display: flex; gap: 12px; margin-top: 8px;">
+                            <button id="btnRegenTrigger" class="btn btn-secondary" style="flex: 1; padding: 10px 16px; font-size: 14px;">手动启动再生冲洗</button>
+                            <button id="btnResetCanvas" class="btn btn-secondary" style="padding: 10px 16px; font-size: 14px;">重置模拟器</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Flow Mechanism Comparison (Co-current vs Counter-current) -->
+    <section class="section" style="background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%); border-top: 1px solid var(--border-color)">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Regeneration Technology</span>
+                <h2 class="section-title">
+                    <span class="lang-zh">顺流再生 vs 逆流再生技术对比</span>
+                    <span class="lang-en">Co-current vs Counter-current Regeneration</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="lang-zh">软水机的再生技术直接决定了后期的用盐与用水成本。逆流（上流式）再生在节水省盐上相比顺流（下流式）具有绝对优势。</span>
+                    <span class="lang-en">The regeneration method determines salt and water efficiency. Upflow (Counter-current) regeneration saves significant resources compared to traditional Downflow (Co-current).</span>
+                </p>
+            </div>
+
+            <div class="principle-grid">
+                <div class="glass-card" style="padding: 30px;">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <span>↓</span> 
+                        <span class="lang-zh">顺流再生 (Co-Current / Downflow)</span>
+                        <span class="lang-en">Co-current / Downflow</span>
+                    </h3>
+                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">
+                        <span class="lang-zh">盐水流动方向与正常制水水流相同（自上而下）。再生时，最上层吸附硬度最高的树脂会先接触饱和盐水。被替换出来的钙镁离子会向下流动，被强行推过中下层较干净的树脂，极易在底部树脂形成二次污染（硬度迁移）。整个过程耗盐多、废水多。</span>
+                        <span class="lang-en">Brine flows in the same direction as service water (downward). The heavily saturated top resin layer meets fresh brine first. Displaced hardness ions are pushed down through cleaner bottom resin, causing secondary hardness migration. Requires more salt and rinse water.</span>
+                    </p>
+                    <ul class="anatomy-spec-list">
+                        <li><span class="lang-zh">耗盐量：高 (约 150g NaCl / 升树脂)</span><span class="lang-en">Salt usage: High (~150g salt per liter resin)</span></li>
+                        <li><span class="lang-zh">再生废水：高 (约 10-12 升 / 升树脂)</span><span class="lang-en">Wastewater: High (~10-12L water per liter resin)</span></li>
+                        <li><span class="lang-zh">应用品牌：中低端入门机型，机械老式阀体</span><span class="lang-en">Applications: Economy models, older mechanical valves</span></li>
+                    </ul>
+                </div>
+
+                <div class="glass-card" style="padding: 30px; border-color: rgba(6, 182, 212, 0.3); background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(30, 41, 59, 0.4));">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <span>↑</span> 
+                        <span class="lang-zh">逆流再生 (Counter-Current / Upflow)</span>
+                        <span class="lang-en">Counter-current / Upflow</span>
+                    </h3>
+                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">
+                        <span class="lang-zh">盐水流动方向与制水方向相反（从底部向上流动）。最干净的底端树脂先接触最纯净的饱和盐水，获得极高的还原精度。被置换下来的钙镁离子被直接从顶部排出罐体，不会二次污染较干净的滤料。这能节省高达 30% 盐量和 45% 的废水。</span>
+                        <span class="lang-en">Brine flows in the opposite direction of service water (upward from bottom). The cleanest bottom resin meets pure brine first, ensuring optimal restoration. Displaced ions are pushed straight out the top, saving up to 30% salt and 45% wastewater.</span>
+                    </p>
+                    <ul class="anatomy-spec-list">
+                        <li><span class="lang-zh">耗盐量：低 (约 90g NaCl / 升树脂)</span><span class="lang-en">Salt usage: Low (~90g salt per liter resin)</span></li>
+                        <li><span class="lang-zh">再生废水：低 (约 6-7 升 / 升树脂)</span><span class="lang-en">Wastewater: Low (~6-7L water per liter resin)</span></li>
+                        <li><span class="lang-zh">应用品牌：怡口高端、克莱克盘阀、润新高效逆流系列</span><span class="lang-en">Applications: EcoWater, Clack, Runxin advanced upflow series</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Softener Components Anatomy -->
+    <section id="anatomy" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">System Anatomy</span>
+                <h2 class="section-title">
+                    <span class="lang-zh">整机部件结构解构</span>
+                    <span class="lang-en">Water Softener Anatomy</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="lang-zh">点击左侧示意图的各个核心部件，右侧将呈现其功能特征与工作时的水路配合逻辑。</span>
+                    <span class="lang-en">Click on different parts of the interactive schematic on the left to show the component functions and their connections.</span>
+                </p>
+            </div>
+
+            <div class="anatomy-layout">
+                <!-- SVG Vector Interactive Schematic -->
+                <div class="anatomy-viewer glass-card">
+                    <div class="softener-schematic">
+                        <div class="schematic-valve" data-part="valve">
+                            <span class="lang-zh">控制阀</span><span class="lang-en">Valve</span>
+                        </div>
+                        <div class="schematic-bypass-valve" data-part="bypass">
+                            <span class="lang-zh">旁通阀</span><span class="lang-en">Bypass</span>
+                        </div>
+                        <div class="schematic-resin-tank" data-part="resinTank">
+                            <div class="schematic-riser-pipe"></div>
+                            <div class="schematic-resin-beads"></div>
+                            <div class="schematic-distributor"></div>
+                        </div>
+                        <div class="schematic-brine-tank" data-part="brineTank">
+                            <div class="schematic-salt-grid">
+                                <span class="lang-zh">盐</span><span class="lang-en">SALT</span>
+                            </div>
+                            <div class="schematic-brine-well"></div>
+                        </div>
+                        <div class="schematic-brine-line"></div>
+                    </div>
+                </div>
+
+                <!-- Info Display Panel -->
+                <div class="anatomy-details">
+                    <div id="anatomyInfoCard" class="glass-card anatomy-info-card">
+                        <h3>加载核心部件中...</h3>
+                        <p>请点击左侧部件图示获取详情。</p>
+                    </div>
+                    <div class="anatomy-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        <span>
+                            <span class="lang-zh">提示：旁通阀非常重要，机器断电、出差或加盐维护时可一键切换临时使用自来水。</span>
+                            <span class="lang-en">Tip: The bypass valve is crucial for maintenance, allowing untreated tap water access during salt refills.</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Detailed Control Valve Head Internal Components -->
+    <section id="valve-components" class="section" style="background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%); border-top: 1px solid var(--border-color)">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Internal Mechanics</span>
+                <h2 class="section-title">
+                    <span class="lang-zh">软水阀头内部结构剖析</span>
+                    <span class="lang-en">Control Valve Head Internal Anatomy</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="lang-zh">为什么一个阀头能决定整台机器的寿命？让我们拆开阀体，看一看隐藏在控制阀里面的精密零件及其运作原理。</span>
+                    <span class="lang-en">Why does the control valve head determine the entire machine's lifespan? Let's dissect the valve body and look at its internal precision parts.</span>
+                </p>
+            </div>
+
+            <div class="principle-grid" style="align-items: stretch;">
+                <!-- Exploded View list of parts -->
+                <div class="explanation-list" style="max-height: 520px; overflow-y: auto; padding-right: 8px;">
+                    <div class="glass-card explanation-card" style="padding: 14px; gap: 12px; margin-bottom: 0;">
+                        <div class="step-number" style="width: 28px; height: 28px; font-size: 12px;">A</div>
+                        <div>
+                            <h3 style="font-size: 15px; margin-bottom: 2px;">
+                                <span class="lang-zh">驱动电机与减速齿轮组</span>
+                                <span class="lang-en">Drive Motor & Gear Assembly</span>
+                            </h3>
+                            <p style="font-size: 12px; line-height: 1.4;">
+                                <span class="lang-zh">控制阀顶部的步进或直流电机，配合一组减速齿轮，精确控制内部活塞平移或瓷盘旋转的角度。定位偏差必须小于1毫米，否则会导致流道错位。</span>
+                                <span class="lang-en">A stepper or DC motor coupled with precision gears. It moves the piston or rotates the ceramic disc to precise alignments. Deviation must be under 1mm.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card explanation-card" style="padding: 14px; gap: 12px; margin-bottom: 0;">
+                        <div class="step-number" style="width: 28px; height: 28px; font-size: 12px;">B</div>
+                        <div>
+                            <h3 style="font-size: 15px; margin-bottom: 2px;">
+                                <span class="lang-zh">控制活塞与格栅套件 (Spacer Stack & Piston)</span>
+                                <span class="lang-en">Piston and Spacer Stack</span>
+                            </h3>
+                            <p style="font-size: 12px; line-height: 1.4;">
+                                <span class="lang-zh">活塞套有多组橡胶圈，阀体内则套有一组固定塑料格栅套。随着活塞在不同行程间抽插，格栅的进出口被选择性封堵或连通，完成流道转换。</span>
+                                <span class="lang-en">A Teflon-coated piston with seals moves through a stack of stationary plastic spacers. Piston strokes connect or seal specific ports to redirect water.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card explanation-card" style="padding: 14px; gap: 12px; margin-bottom: 0;">
+                        <div class="step-number" style="width: 28px; height: 28px; font-size: 12px;">C</div>
+                        <div>
+                            <h3 style="font-size: 15px; margin-bottom: 2px;">
+                                <span class="lang-zh">文丘里吸盐喷射器 (Venturi Injector)</span>
+                                <span class="lang-en">Venturi Injector</span>
+                            </h3>
+                            <p style="font-size: 12px; line-height: 1.4;">
+                                <span class="lang-zh">包含微细喷嘴和喉管。当高速冲洗水流经过时，在吸盐口产生强烈的真空负压（文丘里效应），将盐箱中的饱和盐水吸起。</span>
+                                <span class="lang-en">High-velocity water flows through a micro nozzle and throat, generating a vacuum to draw concentrated brine from the salt tank.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card explanation-card" style="padding: 14px; gap: 12px; margin-bottom: 0;">
+                        <div class="step-number" style="width: 28px; height: 28px; font-size: 12px;">D</div>
+                        <div>
+                            <h3 style="font-size: 15px; margin-bottom: 2px;">
+                                <span class="lang-zh">霍尔流量计 (Turbine Flow Meter)</span>
+                                <span class="lang-en">Hall-Effect Flow Turbine</span>
+                            </h3>
+                            <p style="font-size: 12px; line-height: 1.4;">
+                                <span class="lang-zh">出水侧安装有磁性叶轮与霍尔传感器。出水流过时叶轮旋转，产生脉冲信号发送给主板，精确累积用水量以计算下次再生剩余吨数。</span>
+                                <span class="lang-en">A magnetic turbine on the outlet spins when water flows. A Hall sensor counts pulses to track household water consumption and trigger regeneration.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card explanation-card" style="padding: 14px; gap: 12px; margin-bottom: 0;">
+                        <div class="step-number" style="width: 28px; height: 28px; font-size: 12px;">E</div>
+                        <div>
+                            <h3 style="font-size: 15px; margin-bottom: 2px;">
+                                <span class="lang-zh">定位 Cam 凸轮与光电定位板</span>
+                                <span class="lang-en">Optical Cam & Position Sensor</span>
+                            </h3>
+                            <p style="font-size: 12px; line-height: 1.4;">
+                                <span class="lang-zh">轴上装有开缺口定位轮。光电传感器监测凸轮缺口的位置，从而反馈给芯片，让电机在活塞或瓷盘精准到达特定再生位置时停止。</span>
+                                <span class="lang-en">A notched cam spins with the shaft. Optical sensors identify the notches to tell the circuit board exactly when the mechanism has reached the targeted cycle position.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Animation Card -->
+                <div class="glass-card valve-simulator-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px; justify-content: space-between;">
+                    <div style="display: flex; flex-direction: column; gap: 14px;">
+                        <!-- Mechanism Switcher tabs -->
+                        <div class="simulator-switcher" style="display: flex; gap: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+                            <button id="btnMechPiston" class="btn btn-secondary active" style="flex: 1; padding: 8px 12px; font-size: 12px; border-radius: 20px; font-weight:700;">
+                                <span class="lang-zh">活塞滑柱式 (美系经典)</span><span class="lang-en">Piston Type (Fleck Style)</span>
+                            </button>
+                            <button id="btnMechDisc" class="btn btn-secondary" style="flex: 1; padding: 8px 12px; font-size: 12px; border-radius: 20px; font-weight:700;">
+                                <span class="lang-zh">陶瓷盘旋转式 (润新/克莱克)</span><span class="lang-en">Rotary Ceramic Disc</span>
+                            </button>
+                        </div>
+
+                        <!-- Cycle Selector Buttons -->
+                        <div class="simulator-cycle-selector" style="display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;">
+                            <button class="btn btn-secondary sim-cycle-btn active" data-sim-stage="service" style="padding: 6px 12px; font-size: 11px; border-radius: 12px;">
+                                <span class="lang-zh">运行</span><span class="lang-en">Service</span>
+                            </button>
+                            <button class="btn btn-secondary sim-cycle-btn" data-sim-stage="backwash" style="padding: 6px 12px; font-size: 11px; border-radius: 12px;">
+                                <span class="lang-zh">反洗</span><span class="lang-en">Backwash</span>
+                            </button>
+                            <button class="btn btn-secondary sim-cycle-btn" data-sim-stage="brineDraw" style="padding: 6px 12px; font-size: 11px; border-radius: 12px;">
+                                <span class="lang-zh">吸盐</span><span class="lang-en">Brine Draw</span>
+                            </button>
+                            <button class="btn btn-secondary sim-cycle-btn" data-sim-stage="fastRinse" style="padding: 6px 12px; font-size: 11px; border-radius: 12px;">
+                                <span class="lang-zh">正洗</span><span class="lang-en">Fast Rinse</span>
+                            </button>
+                            <button class="btn btn-secondary sim-cycle-btn" data-sim-stage="refill" style="padding: 6px 12px; font-size: 11px; border-radius: 12px;">
+                                <span class="lang-zh">注水</span><span class="lang-en">Refill</span>
+                            </button>
+                        </div>
+
+                        <!-- Interactive Animation Viewport -->
+                        <div class="valve-anim-viewport" style="position: relative; height: 300px; background: rgba(0,0,0,0.3); border-radius: var(--radius-md); border: 1px solid var(--border-color); display: flex; justify-content: center; align-items: center; overflow: hidden;">
+                            
+                            <!-- Piston Valve SVG -->
+                            <svg id="svgPistonSim" class="sim-svg active" viewBox="0 0 400 300" style="width:100%; height:100%; display:block;">
+                                <!-- Cylinder Background -->
+                                <rect x="150" y="30" width="100" height="240" rx="10" fill="#131d35" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+                                
+                                <!-- Ports representation -->
+                                <!-- Left ports -->
+                                <line x1="70" y1="70" x2="150" y2="70" stroke="rgba(255,255,255,0.12)" stroke-width="8" stroke-linecap="round"/>
+                                <text x="65" y="73" fill="var(--text-secondary)" font-size="8" text-anchor="end" class="lang-zh">自来水进水 (Inlet)</text>
+                                <text x="65" y="73" fill="var(--text-secondary)" font-size="8" text-anchor="end" class="lang-en">Water Inlet</text>
+
+                                <line x1="70" y1="130" x2="150" y2="130" stroke="rgba(255,255,255,0.12)" stroke-width="8" stroke-linecap="round"/>
+                                <text x="65" y="133" fill="var(--text-secondary)" font-size="8" text-anchor="end" class="lang-zh">去树脂罐顶 (Top)</text>
+                                <text x="65" y="133" fill="var(--text-secondary)" font-size="8" text-anchor="end" class="lang-en">To Tank Top</text>
+
+                                <line x1="70" y1="210" x2="150" y2="210" stroke="rgba(255,255,255,0.12)" stroke-width="8" stroke-linecap="round"/>
+                                <text x="65" y="213" fill="var(--text-secondary)" font-size="8" text-anchor="end" class="lang-zh">吸盐箱接口 (Brine)</text>
+                                <text x="65" y="213" fill="var(--text-secondary)" font-size="8" text-anchor="end" class="lang-en">Brine Well</text>
+
+                                <!-- Right ports -->
+                                <line x1="250" y1="70" x2="330" y2="70" stroke="rgba(255,255,255,0.12)" stroke-width="8" stroke-linecap="round"/>
+                                <text x="335" y="73" fill="var(--text-secondary)" font-size="8" text-anchor="start" class="lang-zh">软水出水 (Outlet)</text>
+                                <text x="335" y="73" fill="var(--text-secondary)" font-size="8" text-anchor="start" class="lang-en">Water Outlet</text>
+
+                                <line x1="250" y1="130" x2="330" y2="130" stroke="rgba(255,255,255,0.12)" stroke-width="8" stroke-linecap="round"/>
+                                <text x="335" y="133" fill="var(--text-secondary)" font-size="8" text-anchor="start" class="lang-zh">连罐底中心管 (Riser)</text>
+                                <text x="335" y="133" fill="var(--text-secondary)" font-size="8" text-anchor="start" class="lang-en">To Riser Pipe</text>
+
+                                <line x1="250" y1="210" x2="330" y2="210" stroke="rgba(255,255,255,0.12)" stroke-width="8" stroke-linecap="round"/>
+                                <text x="335" y="213" fill="var(--text-secondary)" font-size="8" text-anchor="start" class="lang-zh">排污口 (Drain)</text>
+                                <text x="335" y="213" fill="var(--text-secondary)" font-size="8" text-anchor="start" class="lang-en">To Drain</text>
+
+                                <!-- Chamber internal slot -->
+                                <rect x="152" y="32" width="96" height="236" fill="#0c1122"/>
+
+                                <!-- Moving Piston (controlled via translate Y) -->
+                                <g id="gSimPiston" transform="translate(0, 0)" style="transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);">
+                                    <rect x="195" y="-10" width="10" height="290" fill="#94a3b8" rx="2"/>
+                                    <!-- Seals spacers -->
+                                    <g transform="translate(0, 30)"><rect x="154" y="0" width="92" height="12" rx="2" fill="#3b82f6" opacity="0.85"/><circle cx="160" cy="6" r="3" fill="#ffffff"/><circle cx="240" cy="6" r="3" fill="#ffffff"/></g>
+                                    <g transform="translate(0, 90)"><rect x="154" y="0" width="92" height="12" rx="2" fill="#3b82f6" opacity="0.85"/><circle cx="160" cy="6" r="3" fill="#ffffff"/><circle cx="240" cy="6" r="3" fill="#ffffff"/></g>
+                                    <g transform="translate(0, 150)"><rect x="154" y="0" width="92" height="12" rx="2" fill="#3b82f6" opacity="0.85"/><circle cx="160" cy="6" r="3" fill="#ffffff"/><circle cx="240" cy="6" r="3" fill="#ffffff"/></g>
+                                    <g transform="translate(0, 210)"><rect x="154" y="0" width="92" height="12" rx="2" fill="#3b82f6" opacity="0.85"/><circle cx="160" cy="6" r="3" fill="#ffffff"/><circle cx="240" cy="6" r="3" fill="#ffffff"/></g>
+                                </g>
+
+                                <!-- Flow paths overlays -->
+                                <path id="p-path-service" d="M 70, 70 L 180, 70 L 180, 130 L 70, 130 M 330, 130 L 220, 130 L 220, 70 L 330, 70" class="sim-flow-path-internal" stroke="var(--accent-cyan)"/>
+                                <path id="p-path-backwash" d="M 70, 70 L 220, 70 L 220, 130 L 330, 130 M 330, 210 L 180, 210 L 180, 130 L 70, 130" class="sim-flow-path-internal" stroke="#ff9d00"/>
+                                <path id="p-path-brineDraw" d="M 70, 210 L 170, 210 L 170, 130 L 70, 130 M 330, 130 L 220, 130 L 220, 210 L 330, 210" class="sim-flow-path-internal" stroke="#10b981"/>
+                                <path id="p-path-fastRinse" d="M 70, 70 L 180, 70 L 180, 130 L 70, 130 M 330, 130 L 220, 130 L 220, 210 L 330, 210" class="sim-flow-path-internal" stroke="#ff9d00"/>
+                                <path id="p-path-refill" d="M 70, 70 L 220, 70 L 220, 210 L 70, 210" class="sim-flow-path-internal" stroke="var(--accent-cyan)"/>
+                            </svg>
+
+                            <!-- Ceramic Disc Valve SVG -->
+                            <svg id="svgDiscSim" class="sim-svg" viewBox="0 0 400 300" style="width:100%; height:100%; display:none;">
+                                <!-- Outer boundary -->
+                                <circle cx="200" cy="140" r="95" fill="#131d35" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+                                <circle cx="200" cy="140" r="85" fill="#0c1122"/>
+
+                                <!-- Stationary ports -->
+                                <!-- IN (9 o'clock) -->
+                                <circle cx="140" cy="140" r="12" fill="#1e293b" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                                <text x="140" y="143" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">IN</text>
+                                <text x="120" y="143" fill="var(--text-secondary)" font-size="7" text-anchor="end" class="lang-zh">自来水</text>
+                                <text x="120" y="143" fill="var(--text-secondary)" font-size="7" text-anchor="end" class="lang-en">Inlet</text>
+
+                                <!-- OUT (3 o'clock) -->
+                                <circle cx="260" cy="140" r="12" fill="#1e293b" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                                <text x="260" y="143" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">OUT</text>
+                                <text x="280" y="143" fill="var(--text-secondary)" font-size="7" text-anchor="start" class="lang-zh">软水出</text>
+                                <text x="280" y="143" fill="var(--text-secondary)" font-size="7" text-anchor="start" class="lang-en">Outlet</text>
+
+                                <!-- TOP (11 o'clock) -->
+                                <circle cx="165" cy="90" r="12" fill="#1e293b" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                                <text x="165" y="93" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">TOP</text>
+                                <text x="165" y="70" fill="var(--text-secondary)" font-size="7" text-anchor="middle" class="lang-zh">去罐顶</text>
+                                <text x="165" y="70" fill="var(--text-secondary)" font-size="7" text-anchor="middle" class="lang-en">To Top</text>
+
+                                <!-- Bottom / Riser (1 o'clock) -->
+                                <circle cx="235" cy="90" r="12" fill="#1e293b" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                                <text x="235" y="93" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">RISR</text>
+                                <text x="235" y="70" fill="var(--text-secondary)" font-size="7" text-anchor="middle" class="lang-zh">去罐底</text>
+                                <text x="235" y="70" fill="var(--text-secondary)" font-size="7" text-anchor="middle" class="lang-en">To Riser</text>
+
+                                <!-- Brine (5 o'clock) -->
+                                <circle cx="235" cy="190" r="12" fill="#1e293b" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                                <text x="235" y="193" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">SALT</text>
+                                <text x="235" y="213" fill="var(--text-secondary)" font-size="7" text-anchor="middle" class="lang-zh">吸盐箱</text>
+                                <text x="235" y="213" fill="var(--text-secondary)" font-size="7" text-anchor="middle" class="lang-en">Brine</text>
+
+                                <!-- Drain (7 o'clock) -->
+                                <circle cx="165" cy="190" r="12" fill="#1e293b" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                                <text x="165" y="193" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">DRN</text>
+                                <text x="165" y="213" fill="var(--text-secondary)" font-size="7" text-anchor="middle" class="lang-zh">排污口</text>
+                                <text x="165" y="213" fill="var(--text-secondary)" font-size="7" text-anchor="middle" class="lang-en">Drain</text>
+
+                                <!-- Center Pin -->
+                                <circle cx="200" cy="140" r="6" fill="#475569"/>
+
+                                <!-- Upper Ceramic Disc (controlled via style transform: rotate()) -->
+                                <g id="gSimDisc" transform="rotate(0, 200, 140)" style="transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);">
+                                    <circle cx="200" cy="140" r="70" fill="rgba(6, 182, 212, 0.08)" stroke="var(--accent-cyan)" stroke-width="1.5" stroke-dasharray="6 3"/>
+                                    <!-- Rotating disc connecting grooves (drawn semitransparent) -->
+                                    <path id="disc-groove-left" d="M 152, 140 A 48,48 0 0,1 172, 102" fill="none" stroke="rgba(251,191,36,0.5)" stroke-width="8" stroke-linecap="round"/>
+                                    <path id="disc-groove-right" d="M 228, 102 A 48,48 0 0,1 248, 140" fill="none" stroke="rgba(6,182,212,0.5)" stroke-width="8" stroke-linecap="round"/>
+                                    <circle cx="140" cy="140" r="8" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2 2"/>
+                                    <circle cx="260" cy="140" r="8" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2 2"/>
+                                    <circle cx="165" cy="90" r="8" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2 2"/>
+                                    <circle cx="235" cy="90" r="8" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2 2"/>
+                                    <circle cx="235" cy="190" r="8" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2 2"/>
+                                    <circle cx="165" cy="190" r="8" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2 2"/>
+                                </g>
+
+                                <!-- Active flow paths (toggled in JS) -->
+                                <path id="d-path-service-in" d="M 140, 140 A 48,48 0 0,1 165, 90" class="sim-flow-path-internal" stroke="var(--accent-cyan)"/>
+                                <path id="d-path-service-out" d="M 235, 90 A 48,48 0 0,1 260, 140" class="sim-flow-path-internal" stroke="var(--accent-cyan)"/>
+
+                                <path id="d-path-backwash-in" d="M 140, 140 A 48,48 0 0,0 235, 90" class="sim-flow-path-internal" stroke="#ff9d00"/>
+                                <path id="d-path-backwash-out" d="M 165, 90 A 48,48 0 0,0 165, 190" class="sim-flow-path-internal" stroke="#ff9d00"/>
+
+                                <path id="d-path-brineDraw-brine" d="M 235, 190 A 48,48 0 0,0 165, 90" class="sim-flow-path-internal" stroke="#10b981"/>
+                                <path id="d-path-brineDraw-drain" d="M 235, 90 A 48,48 0 0,0 165, 190" class="sim-flow-path-internal" stroke="#10b981"/>
+
+                                <path id="d-path-fastRinse-in" d="M 140, 140 A 48,48 0 0,1 165, 90" class="sim-flow-path-internal" stroke="#ff9d00"/>
+                                <path id="d-path-fastRinse-out" d="M 235, 90 A 48,48 0 0,0 165, 190" class="sim-flow-path-internal" stroke="#ff9d00"/>
+
+                                <path id="d-path-refill" d="M 140, 140 A 48,48 0 0,0 235, 190" class="sim-flow-path-internal" stroke="var(--accent-cyan)"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Slider control -->
+                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary);">
+                                <span id="lblSimCtrlSlider" class="lang-zh">手动微调：活塞行程位置</span><span id="lblSimCtrlSliderEn" class="lang-en">Manual Control: Piston Stroke</span>
+                            </span>
+                            <span id="simSliderValText" style="font-size: 14px; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-heading);">0%</span>
+                        </div>
+                        <input type="range" id="simValveSlider" min="0" max="100" value="0" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted);">
+                            <span><span class="lang-zh">运行位置</span><span class="lang-en">Service</span> (0%)</span>
+                            <span><span class="lang-zh">满行程位置</span><span class="lang-en">Max Stroke</span> (100%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Regeneration Flow Stages -->
+    <section id="regeneration" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Regeneration Cycle</span>
+                <h2 class="section-title">
+                    <span class="lang-zh">自动再生阶段：水流如何流转？</span>
+                    <span class="lang-en">Regeneration: Interactive Flow Chart</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="lang-zh">软水阀头在不同的再生周期内，通过转换内部活塞或瓷盘的角度来控制水流的路径。切换下方标签，观察五个不同步骤下的管路动态流动轨迹。</span>
+                    <span class="lang-en">The valve diverts paths during different stages. Toggle the tabs below to trace the dynamic water flow through the internal conduits of the machine.</span>
+                </p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="regen-tabs">
+                <div class="regen-tab-btn active" data-stage="service">
+                    <h4><span class="lang-zh">阶段 1: 运行</span><span class="lang-en">Stage 1: Service</span></h4>
+                    <span>Service</span>
+                </div>
+                <div class="regen-tab-btn" data-stage="backwash">
+                    <h4><span class="lang-zh">阶段 2: 反洗</span><span class="lang-en">Stage 2: Backwash</span></h4>
+                    <span>Backwash</span>
+                </div>
+                <div class="regen-tab-btn" data-stage="brineDraw">
+                    <h4><span class="lang-zh">阶段 3: 吸盐慢洗</span><span class="lang-en">Stage 3: Brine Draw</span></h4>
+                    <span>Brine Draw</span>
+                </div>
+                <div class="regen-tab-btn" data-stage="fastRinse">
+                    <h4><span class="lang-zh">阶段 4: 正洗</span><span class="lang-en">Stage 4: Fast Rinse</span></h4>
+                    <span>Fast Rinse</span>
+                </div>
+                <div class="regen-tab-btn" data-stage="refill">
+                    <h4><span class="lang-zh">阶段 5: 注水</span><span class="lang-en">Stage 5: Refill</span></h4>
+                    <span>Brine Refill</span>
+                </div>
+            </div>
+
+            <!-- Dynamic SVG Pipelines Viewer -->
+            <div class="regen-display-grid">
+                <div class="regen-animation-box glass-card">
+                    <!-- Complete Water Flow System SVG -->
+                    <svg class="flow-svg" viewBox="0 0 500 380">
+                        <rect x="30" y="140" width="70" height="200" rx="10" fill="#131d35" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+                        <rect x="40" y="240" width="50" height="90" fill="#2d3748" opacity="0.6"/>
+                        <text x="65" y="280" fill="rgba(255,255,255,0.3)" font-size="10" text-anchor="middle" class="lang-zh">饱和盐水</text>
+                        <text x="65" y="280" fill="rgba(255,255,255,0.3)" font-size="10" text-anchor="middle" class="lang-en">Brine</text>
+
+                        <rect x="200" y="100" width="100" height="240" rx="20" fill="#131d35" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+                        <rect x="205" y="160" width="90" height="150" fill="#fbbf24" fill-opacity="0.1" rx="5"/>
+                        <text x="250" y="240" fill="rgba(251, 191, 36, 0.25)" font-size="12" text-anchor="middle" class="lang-zh">树脂层</text>
+                        <text x="250" y="240" fill="rgba(251, 191, 36, 0.25)" font-size="12" text-anchor="middle" class="lang-en">Resin Bed</text>
+
+                        <rect x="246" y="100" width="8" height="215" fill="#4a5568"/>
+                        <rect x="238" y="315" width="24" height="15" rx="2" fill="#718096"/>
+
+                        <rect x="180" y="35" width="140" height="65" rx="12" fill="#1e293b" stroke="#4a5568" stroke-width="2"/>
+                        <text x="250" y="72" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle" class="lang-zh">控制阀腔体</text>
+                        <text x="250" y="72" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle" class="lang-en">Valve Conduits</text>
+
+                        <path d="M 460, 45 L 320, 45" class="flow-pipe-path"/>
+                        <text x="440" y="38" fill="var(--text-muted)" font-size="10" class="lang-zh">自来水进</text>
+                        <text x="440" y="38" fill="var(--text-muted)" font-size="10" class="lang-en">Inlet Water</text>
+                        
+                        <path d="M 320, 65 L 460, 65" class="flow-pipe-path"/>
+                        <text x="440" y="80" fill="var(--text-muted)" font-size="10" class="lang-zh">软水输出</text>
+                        <text x="440" y="80" fill="var(--text-muted)" font-size="10" class="lang-en">Outlet Soft</text>
+                        
+                        <path d="M 320, 85 L 460, 85" class="flow-pipe-path"/>
+                        <text x="440" y="100" fill="#ef4444" font-size="10" opacity="0.8" class="lang-zh">排污口</text>
+                        <text x="440" y="100" fill="#ef4444" font-size="10" opacity="0.8" class="lang-en">To Drain</text>
+                        
+                        <path d="M 65, 140 L 65, 55 L 180, 55" class="flow-pipe-path"/>
+
+                        <!-- ANIMATED WATER FLOW FLOW-PATHS -->
+                        <!-- SERVICE PATHS -->
+                        <path id="path-service" d="M 460, 45 L 250, 45 L 250, 100 L 220, 120" class="flow-active-path hard-water"/>
+                        <path id="path-service-out" d="M 220, 140 L 220, 310 L 250, 315 L 250, 100 L 250, 65 L 460, 65" class="flow-active-path soft-water"/>
+
+                        <!-- BACKWASH PATHS -->
+                        <path id="path-backwash" d="M 460, 45 L 250, 45 L 250, 315" class="flow-active-path hard-water"/>
+                        <path id="path-backwash-out" d="M 220, 310 L 220, 120 L 250, 100 L 250, 85 L 460, 85" class="flow-active-path drain-water"/>
+
+                        <!-- BRINE DRAW PATHS -->
+                        <path id="path-brineDraw-brine" d="M 65, 140 L 65, 55 L 250, 55" class="flow-active-path brine-water"/>
+                        <path id="path-brineDraw" d="M 250, 55 L 250, 100 L 220, 120 M 220, 140 L 220, 310 L 250, 315 L 250, 100 L 250, 85 L 460, 85" class="flow-active-path drain-water"/>
+
+                        <!-- FAST RINSE PATHS -->
+                        <path id="path-fastRinse" d="M 460, 45 L 250, 45 L 250, 100 L 220, 120" class="flow-active-path hard-water"/>
+                        <path id="path-fastRinse-out" d="M 220, 140 L 220, 310 L 250, 315 L 250, 100 L 250, 85 L 460, 85" class="flow-active-path drain-water"/>
+
+                        <!-- BRINE REFILL PATHS -->
+                        <path id="path-refill" d="M 460, 45 L 250, 45 L 250, 55 L 65, 55 L 65, 140" class="flow-active-path soft-water"/>
+                    </svg>
+                </div>
+
+                <div class="regen-info-panel">
+                    <span id="regenBadge" class="regen-badge">阶段 1/5 - 正常运行 (Service)</span>
+                    <h3 id="regenTitle">硬水软化过滤中</h3>
+                    <p id="regenDesc">水流向下通过树脂层置换离子，软水从中心管向上流出。</p>
+
+                    <div class="regen-meta-stats">
+                        <div class="regen-stat-card">
+                            <span class="regen-stat-label">
+                                <span class="lang-zh">此阶段持续时长</span><span class="lang-en">Phase Duration</span>
+                            </span>
+                            <span id="regenTimeVal" class="regen-stat-value">连续工作模式</span>
+                        </div>
+                        <div class="regen-stat-card">
+                            <span class="regen-stat-label">
+                                <span class="lang-zh">管路水流速度</span><span class="lang-en">Flow Rate Speed</span>
+                            </span>
+                            <span id="regenFlowVal" class="regen-stat-value">1.5 - 3.5 吨/时</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: US Water Hardness & North American Market Analysis -->
+    <section id="us-market" class="section" style="background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%); border-top: 1px solid var(--border-color)">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">North American Water Profile</span>
+                <h2 class="section-title">
+                    <span class="lang-zh">美国水质硬度分布与市场潜力</span>
+                    <span class="lang-en">US Water Hardness Maps & Market Potential</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="lang-zh">美国约有 85% 的家庭使用硬水。不同州的水硬度悬殊极大。了解硬度地理分布可以帮您更精准地选择软水机，并看清北美净水市场的庞大潜力。</span>
+                    <span class="lang-en">About 85% of US households deal with hard water. The geographical variance is immense. Sizing a system correctly requires looking at localized USGS water hardness profiles.</span>
+                </p>
+            </div>
+
+            <div class="principle-grid" style="align-items: flex-start;">
+                <!-- Real US Hardness Map (Generated Image) -->
+                <div class="glass-card" style="padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <img src="assets/us_hardness_map.png" alt="US Water Hardness Distribution Map" style="width: 100%; border-radius: var(--radius-md); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--border-color); margin-bottom: 16px;">
+                    <div style="text-align: center;">
+                        <h4 style="font-size: 14px; color: var(--accent-cyan);">
+                            <span class="lang-zh">美国水硬度分布图 (基于USGS监测数据)</span>
+                            <span class="lang-en">USGS Water Hardness Map (PPM / GPG Scales)</span>
+                        </h4>
+                        <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">
+                            <span class="lang-zh">红色代表极硬水区 (例如中西部印第安纳、德州、新墨西哥等)，蓝色代表软水区。</span>
+                            <span class="lang-en">Red/orange shades represent extremely hard water states (Midwest, TX, FL, AZ) while blue shades denote soft water.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Market Potential & Converter -->
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                    <div class="glass-card" style="padding: 28px;">
+                        <h3 style="color: #ffffff; font-size: 20px; margin-bottom: 16px;">
+                            <span class="lang-zh">北美住宅软水机市场潜力</span>
+                            <span class="lang-en">North American Residential Market Growth</span>
+                        </h3>
+                        <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                            <span class="lang-zh">北美住宅水处理设备市场在 2025 年估值约为 42 亿美元，预计 2026-2030 年复合增长率（CAGR）将达到 5.8%。推动增长的核心驱动力是消费者对洗浴健康、软水护肤以及延长供暖和高档家电寿命的强烈需求。在中西部各州，软水机的渗透率已高达 80% 以上，是住宅交房时的“刚需标配”。</span>
+                            <span class="lang-en">The US residential water treatment market is valued at approx $4.2 Billion USD in 2025, growing at a CAGR of 5.8%. Major drivers include skin health awareness, high-efficiency appliances protection, and increasing household sanitization focus. In the hard-water Midwest, penetration exceeds 80%, serving as a mandatory appliance for new builds.</span>
+                        </p>
+                        <!-- Quick presets -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                            <h4 style="font-size: 13px; color: var(--accent-cyan); margin-bottom: 10px;">
+                                <span class="lang-zh">美国热门州硬度预设（点击代入选型计算器）：</span>
+                                <span class="lang-en">US Hardness Presets (Click to Load Calculator):</span>
+                            </h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <a href="#calculator" class="btn btn-secondary preset-hardness-btn" data-ppm="410" style="padding: 6px 12px; font-size: 11px;">
+                                    <span class="lang-zh">内华达拉斯维加斯 (24.0 GPG)</span><span class="lang-en">Las Vegas, NV (24.0 GPG)</span>
+                                </a>
+                                <a href="#calculator" class="btn btn-secondary preset-hardness-btn" data-ppm="420" style="padding: 6px 12px; font-size: 11px;">
+                                    <span class="lang-zh">德克萨斯州 (24.5 GPG)</span><span class="lang-en">Texas (24.5 GPG)</span>
+                                </a>
+                                <a href="#calculator" class="btn btn-secondary preset-hardness-btn" data-ppm="320" style="padding: 6px 12px; font-size: 11px;">
+                                    <span class="lang-zh">印第安纳州 (18.7 GPG)</span><span class="lang-en">Indiana (18.7 GPG)</span>
+                                </a>
+                                <a href="#calculator" class="btn btn-secondary preset-hardness-btn" data-ppm="260" style="padding: 6px 12px; font-size: 11px;">
+                                    <span class="lang-zh">佛罗里达州 (15.2 GPG)</span><span class="lang-en">Florida (15.2 GPG)</span>
+                                </a>
+                                <a href="#calculator" class="btn btn-secondary preset-hardness-btn" data-ppm="480" style="padding: 6px 12px; font-size: 11px;">
+                                    <span class="lang-zh">亚利桑那州 (28.0 GPG)</span><span class="lang-en">Arizona (28.0 GPG)</span>
+                                </a>
+                                <a href="#calculator" class="btn btn-secondary preset-hardness-btn" data-ppm="45" style="padding: 6px 12px; font-size: 11px;">
+                                    <span class="lang-zh">纽约州 (2.6 GPG)</span><span class="lang-en">New York (2.6 GPG)</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PPM to GPG converter -->
+                    <div class="glass-card" style="padding: 24px;">
+                        <h3 style="color: #ffffff; font-size: 18px; margin-bottom: 12px;">
+                            <span class="lang-zh">水硬度单位快捷换算器 (GPG ↔ PPM)</span>
+                            <span class="lang-en">GPG ↔ PPM Unit Converter</span>
+                        </h3>
+                        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+                            <span class="lang-zh">美国常用 GPG（Grains per Gallon，格令/加仑）作为硬度单位。而中国常用 PPM（mg/L）。换算关系：**1 GPG = 17.1 PPM**。</span>
+                            <span class="lang-en">US specs list capacity in Grains and hardness in GPG (Grains Per Gallon). Rest of the world uses PPM (mg/L). Calculation: **1 GPG = 17.12 PPM (mg/L)**.</span>
+                        </p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">PPM (mg/L)</label>
+                                <input type="number" id="convPpm" class="glass-card" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--border-color); border-radius:6px; color:#ffffff; font-weight:700;">
+                            </div>
+                            <div>
+                                <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">GPG (Grains/Gal)</label>
+                                <input type="number" id="convGpg" class="glass-card" style="width:100%; padding:10px; background:rgba(0,0,0,0.3); border:1px solid var(--border-color); border-radius:6px; color:#ffffff; font-weight:700;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Whole-house water system installation conduits diagram -->
+    <section id="installation-piping" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">System Plumbing</span>
+                <h2 class="section-title">
+                    <span class="lang-zh">全屋水处理设备管路布设示意图</span>
+                    <span class="lang-en">Whole-House Water System Piping & Integration</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="lang-zh">软水机不是孤立工作的。下图展示了主流的一户式别墅或平层全屋水处理管路的规范串联逻辑。</span>
+                    <span class="lang-en">The water softener integrates into a broader plumbing layout. Trace the water connections through filters, bypass loops, and appliances below.</span>
+                </p>
+            </div>
+
+            <div class="glass-card" style="padding: 40px; display: flex; flex-direction: column; align-items: center;">
+                <svg viewBox="0 0 800 240" style="width: 100%; max-width: 720px;">
+                    <!-- Static Piping line -->
+                    <path d="M 20, 120 L 780, 120" stroke="rgba(255,255,255,0.1)" stroke-width="8" fill="none"/>
+                    
+                    <!-- Water flow indicators -->
+                    <path d="M 20, 120 L 70, 120" stroke="var(--accent-blue)" stroke-width="8" fill="none"/>
+                    <path d="M 70, 120 L 200, 120" stroke="#fca5a5" stroke-width="8" fill="none"/>
+                    <path d="M 200, 120 L 380, 120" stroke="#fca5a5" stroke-width="8" fill="none"/>
+                    <!-- Softener loop -->
+                    <path d="M 380, 120 L 380, 180 L 410, 180 M 490, 180 L 520, 180 L 520, 120" stroke="var(--accent-cyan)" stroke-width="8" fill="none"/>
+                    <path d="M 520, 120 L 780, 120" stroke="var(--accent-cyan)" stroke-width="8" fill="none"/>
+                    <!-- Direct Hard water path going up -->
+                    <path d="M 340, 120 L 340, 40 L 780, 40" stroke="#fca5a5" stroke-width="8" fill="none"/>
+
+                    <!-- 1. Entry Mains -->
+                    <rect x="25" y="90" width="30" height="60" rx="3" fill="#3b82f6"/>
+                    <text x="40" y="152" fill="var(--text-secondary)" font-size="9" text-anchor="middle" class="lang-zh">市政原水</text>
+                    <text x="40" y="152" fill="var(--text-secondary)" font-size="9" text-anchor="middle" class="lang-en">Mains</text>
+
+                    <!-- 2. Pre-filter -->
+                    <circle cx="120" cy="120" r="22" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+                    <rect x="114" y="105" width="12" height="30" rx="2" fill="#06b6d4"/>
+                    <text x="120" y="157" fill="var(--text-secondary)" font-size="9" text-anchor="middle" class="lang-zh">前置过滤器</text>
+                    <text x="120" y="157" fill="var(--text-secondary)" font-size="9" text-anchor="middle" class="lang-en">Pre-Filter</text>
+
+                    <!-- 3. Central Carbon Filter -->
+                    <rect x="230" y="75" width="50" height="90" rx="5" fill="#1e293b" stroke="#4a5568" stroke-width="2"/>
+                    <rect x="240" y="95" width="30" height="50" rx="2" fill="#334155"/>
+                    <text x="255" y="180" fill="var(--text-secondary)" font-size="9" text-anchor="middle" class="lang-zh">中央净水机</text>
+                    <text x="255" y="180" fill="var(--text-secondary)" font-size="9" text-anchor="middle" class="lang-en">Carbon Filter</text>
+
+                    <!-- 4. Water Softener -->
+                    <rect x="410" y="130" width="80" height="90" rx="8" fill="#131d35" stroke="var(--accent-cyan)" stroke-width="2"/>
+                    <!-- small valve mockup on top of it -->
+                    <rect x="430" y="112" width="40" height="18" rx="2" fill="#475569"/>
+                    <text x="450" y="235" fill="var(--text-secondary)" font-size="9" text-anchor="middle" class="lang-zh">中央软水机</text>
+                    <text x="450" y="235" fill="var(--text-secondary)" font-size="9" text-anchor="middle" class="lang-en">Softener</text>
+
+                    <!-- Bypass valve loop tags -->
+                    <circle cx="380" cy="120" r="6" fill="#ef4444"/>
+                    <circle cx="520" cy="120" r="6" fill="#ef4444"/>
+                    <text x="450" y="98" fill="var(--text-muted)" font-size="8" text-anchor="middle" class="lang-zh">旁通回路</text>
+                    <text x="450" y="98" fill="var(--text-muted)" font-size="8" text-anchor="middle" class="lang-en">Bypass Loop</text>
+
+                    <!-- Outlets -->
+                    <!-- Hot water tank / Bathrooms (Softened) -->
+                    <rect x="680" y="95" width="70" height="50" rx="5" fill="#1e293b" stroke="var(--accent-cyan)" stroke-width="2"/>
+                    <text x="715" y="125" fill="#ffffff" font-size="9" text-anchor="middle" class="lang-zh">热水器/卫浴</text>
+                    <text x="715" y="125" fill="#ffffff" font-size="9" text-anchor="middle" class="lang-en">Bath / Boiler</text>
+                    <text x="715" y="160" fill="var(--accent-cyan)" font-size="9" text-anchor="middle" class="lang-zh">【软水】</text>
+                    <text x="715" y="160" fill="var(--accent-cyan)" font-size="9" text-anchor="middle" class="lang-en">Soft Water</text>
+
+                    <!-- Kitchen drinking tap (Hard water bypass for low sodium) -->
+                    <rect x="680" y="15" width="70" height="50" rx="5" fill="#1e293b" stroke="#fca5a5" stroke-width="2"/>
+                    <text x="715" y="42" fill="#ffffff" font-size="9" text-anchor="middle" class="lang-zh">厨房纯水/浇花</text>
+                    <text x="715" y="42" fill="#ffffff" font-size="9" text-anchor="middle" class="lang-en">Kitchen RO / Lawn</text>
+                    <text x="715" y="78" fill="#f59e0b" font-size="9" text-anchor="middle" class="lang-zh">【保留硬度】</text>
+                    <text x="715" y="78" fill="#f59e0b" font-size="9" text-anchor="middle" class="lang-en">Hard Water</text>
+                </svg>
+
+                <div style="margin-top: 30px; font-size: 13px; color: var(--text-secondary); max-width: 600px; text-align: center; line-height: 1.6;">
+                    <span class="lang-zh"><strong>安装规范设计：</strong>原水进水后首先通过前置过滤器拦截泥沙阻挡颗粒，然后由中央净水机吸附异色异味余氯，最后接入中央软水机。软水输出至卫浴、花洒及电热水器（防结垢）；而直饮纯水机和室外园艺浇花通常在软水机之前分流旁通，避免白白耗盐或引用软水中极微量的钠。</span>
+                    <span class="lang-en"><strong>Integration Standard:</strong> Main entry flows to sediment Pre-Filter first, then to Carbon Filter to remove chlorine, and finally enters the Softener. Softened water goes to boilers, bathrooms, and laundry; whereas kitchen drinking filters (RO) and garden sprinklers bypass the softener to avoid sodium ingestion and salt waste.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Control Valves Highlight (Fleck vs Clack vs Runxin) -->
+    <section id="valves" class="section" style="background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%); border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Water Softener Brains</span>
+                <h2 class="section-title">
+                    <span class="lang-zh">控制阀头对比：真实外观与参数</span>
+                    <span class="lang-en">Control Valves: Realistic Views & Parameters</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="lang-zh">阀头是整机的核心屏障。以下展示这三款工业级控制阀头的产品图、工作结构及详细产品系列分析。</span>
+                    <span class="lang-en">The control valve is the primary barrier of the machine. Examine the product views, mechanical types, and series specifications below.</span>
+                </p>
+            </div>
+
+            <div class="valve-grid">
+                <!-- Clack Valve -->
+                <div class="glass-card valve-card">
+                    <div class="valve-header">
+                        <h3 class="valve-brand">
+                            <span class="lang-zh">美国克莱克 (Clack)</span><span class="lang-en">Clack WS1 (US)</span>
+                        </h3>
+                        <span class="valve-origin">
+                            <span class="lang-zh">美国原产</span><span class="lang-en">US Made</span>
+                        </span>
+                    </div>
+                    <div class="valve-diagram" style="height: 200px;">
+                        <img src="assets/clack_valve.png" alt="Clack control valve head" style="height: 100%; width: 100%; object-fit: contain;">
+                    </div>
+                    <ul class="valve-features">
+                        <li><strong>
+                            <span class="lang-zh">代表系列机型：</span><span class="lang-en">Top Model Series:</span>
+                        </strong> Clack WS1 / WS1.25 EE / EI </li>
+                        <li><strong>
+                            <span class="lang-zh">转盘分水叠片：</span><span class="lang-en">Disc Valve Flow:</span>
+                        </strong> <span class="lang-zh">内部利用大口径橡胶叠片盘对合旋转实现切换，阻力极小，基本不用金属螺栓螺母，密封耐水压125psi以上。</span><span class="lang-en">Uses rotating discs to shift pathways; non-metallic components; handles pressures up to 125 psi with minimal resistance.</span></li>
+                        <li><strong>
+                            <span class="lang-zh">无螺丝极简拆洗：</span><span class="lang-en">Tool-free Disassembly:</span>
+                        </strong> <span class="lang-zh">可用单把塑料工具在 3 分钟内将整个内部阀芯拆开清洗，是美国当地水处理工程首选。</span><span class="lang-en">Can be fully disassembled by hand using a single plastic wrench in 3 minutes. The absolute standard for pro builders.</span></li>
+                    </ul>
+                    <div class="valve-score-row">
+                        <div class="valve-score-label"><span><span class="lang-zh">可靠度与通量评分：</span><span class="lang-en">Reliability / Flow Score:</span></span><strong>9.8 / 10</strong></div>
+                        <div class="valve-score-bar"><div class="valve-score-fill" style="width: 98%;"></div></div>
+                    </div>
+                </div>
+
+                <!-- Fleck Valve -->
+                <div class="glass-card valve-card">
+                    <div class="valve-header">
+                        <h3 class="valve-brand">
+                            <span class="lang-zh">美国富莱克 (Fleck)</span><span class="lang-en">Fleck 5600SXT (US)</span>
+                        </h3>
+                        <span class="valve-origin">
+                            <span class="lang-zh">滨特尔旗下</span><span class="lang-en">Pentair Brand</span>
+                        </span>
+                    </div>
+                    <div class="valve-diagram" style="height: 200px;">
+                        <img src="assets/fleck_valve.png" alt="Fleck control valve head" style="height: 100%; width: 100%; object-fit: contain;">
+                    </div>
+                    <ul class="valve-features">
+                        <li><strong>
+                            <span class="lang-zh">代表系列机型：</span><span class="lang-en">Top Model Series:</span>
+                        </strong> Fleck 5600SXT / 2510 / 5800</li>
+                        <li><strong>
+                            <span class="lang-zh">活塞特氟龙滑阀：</span><span class="lang-en">Piston Design:</span>
+                        </strong> <span class="lang-zh">特氟龙涂层活塞在硅胶圈套筒里进行上下伸缩行程。对极硬水质、极端高温承压抗磨性能良好，耐用性已受几十年考验。</span><span class="lang-en">Teflon-coated piston glides through heavy-duty silicone seal gaskets. Time-tested structure; durable under high pressure.</span></li>
+                        <li><strong>
+                            <span class="lang-zh">SXT 电子数显升级：</span><span class="lang-en">SXT Digital Board:</span>
+                        </strong> <span class="lang-zh">在经典活塞阀体上搭载 SXT 数字化面板，通过流量计精确感应出水量以按需智能再生，极大提升了水盐使用效率。</span><span class="lang-en">Upgrades classic piston body with SXT digital board. Uses meter-delayed logic to calculate capacity and regenerate on-demand, saving salt/water.</span></li>
+                    </ul>
+                    <div class="valve-score-row">
+                        <div class="valve-score-label"><span><span class="lang-zh">可靠度与通量评分：</span><span class="lang-en">Reliability / Flow Score:</span></span><strong>9.5 / 10</strong></div>
+                        <div class="valve-score-bar"><div class="valve-score-fill" style="width: 95%;"></div></div>
+                    </div>
+                </div>
+
+                <!-- Runxin Valve -->
+                <div class="glass-card valve-card">
+                    <div class="valve-header">
+                        <h3 class="valve-brand">
+                            <span class="lang-zh">中国润新 (Runxin)</span><span class="lang-en">Runxin Valve (CN)</span>
+                        </h3>
+                        <span class="valve-origin">
+                            <span class="lang-zh">中国专利</span><span class="lang-en">CN Patent</span>
+                        </span>
+                    </div>
+                    <div class="valve-diagram" style="height: 200px;">
+                        <img src="assets/runxin_valve.png" alt="Runxin control valve head" style="height: 100%; width: 100%; object-fit: contain;">
+                    </div>
+                    <ul class="valve-features">
+                        <li><strong>
+                            <span class="lang-zh">代表系列机型：</span><span class="lang-en">Top Model Series:</span>
+                        </strong> F63 / F65 / F69 Series</li>
+                        <li><strong>
+                            <span class="lang-zh">陶瓷端面平面密封：</span><span class="lang-en">Ceramic Flat Seal:</span>
+                        </strong> <span class="lang-zh">两片超平高强度氧化铝陶瓷摩擦副压合，旋转开孔。相比美国塑料胶圈，陶瓷不惧微小沙石磨损，杜绝阀体内部漏水。</span><span class="lang-en">Features two mirror-polished alumina ceramic disks. Unlike seals, ceramics ignore grit damage, preventing bypass leakages.</span></li>
+                        <li><strong>
+                            <span class="lang-zh">国货骄傲性价比：</span><span class="lang-en">Unrivaled Cost-Value:</span>
+                        </strong> <span class="lang-zh">极高的制造成熟度，相比同规格进口阀头，价格仅为 1/4，支持多国控制系统出口。</span><span class="lang-en">Extremely cost-effective. Price tag is roughly 25% of US imports for identical residential capacities.</span></li>
+                    </ul>
+                    <div class="valve-score-row">
+                        <div class="valve-score-label"><span><span class="lang-zh">可靠度与通量评分：</span><span class="lang-en">Reliability / Flow Score:</span></span><strong>9.0 / 10</strong></div>
+                        <div class="valve-score-bar"><div class="valve-score-fill" style="width: 90%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Competitive Analysis & Radar Chart -->
+    <section id="brands" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Market Analysis</span>
+                <h2 class="section-title">
+                    <span class="lang-zh">全屋软水整机品牌竞品分析</span>
+                    <span class="lang-en">Competitor & Brand Matrix</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="lang-zh">整机品牌通常将控制阀、树脂与漂亮外箱结合。下面详细剖析各品牌各系列型号的真实竞争力与优缺点。</span>
+                    <span class="lang-en">Whole-house brands bundle valves, resins, and cabinets. Read below for detailed analysis of active series models.</span>
+                </p>
+            </div>
+
+            <div class="competitors-grid">
+                <!-- SVG Radar Chart Left -->
+                <div class="brand-radar-container glass-card">
+                    <svg id="brandRadarChart"></svg>
+                </div>
+
+                <!-- Interactive Brand Selector & Details Right -->
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                    <!-- Brand Buttons Grid -->
+                    <div class="brand-selector">
+                        <div class="brand-card-small glass-card active brand-eco" data-brand="ecowater">
+                            <h3><span class="brand-dot"></span> <span class="lang-zh">怡口 EcoWater</span><span class="lang-en">EcoWater</span></h3>
+                            <p class="lang-zh">美系高端整机鼻祖</p><p class="lang-en">Premium US Pioneer</p>
+                        </div>
+                        <div class="brand-card-small glass-card brand-bwt" data-brand="bwt">
+                            <h3><span class="brand-dot"></span> <span class="lang-zh">德国倍世 BWT</span><span class="lang-en">BWT Premium</span></h3>
+                            <p class="lang-zh">欧系设计与高规格除菌</p><p class="lang-en">Hygienic Bio-Silver Resin</p>
+                        </div>
+                        <div class="brand-card-small glass-card brand-runxin" data-brand="runxin">
+                            <h3><span class="brand-dot"></span> <span class="lang-zh">开能/润新</span><span class="lang-en">Canature/Runxin</span></h3>
+                            <p class="lang-zh">国货标杆与极限性价比</p><p class="lang-en">China OEM Powerhouses</p>
+                        </div>
+                        <div class="brand-card-small glass-card brand-others" data-brand="honeywell">
+                            <h3><span class="brand-dot"></span> <span class="lang-zh">3M / 霍尼韦尔</span><span class="lang-en">3M / Honeywell</span></h3>
+                            <p class="lang-zh">大牌定制与成熟服务网</p><p class="lang-en">Broad Retail Distribution</p>
+                        </div>
+                    </div>
+
+                    <!-- Selected Brand Detailed Attributes Panel -->
+                    <div id="brandDetailsBox" class="glass-card" style="padding: 28px; border-left: 4px solid var(--accent-blue);">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
+                            <h3 id="brandName" style="font-size: 22px; color: #ffffff;">美国怡口 (EcoWater)</h3>
+                            <span id="brandLabel" style="font-size: 13px; font-weight: 600; color: var(--accent-cyan);">旗舰高端代表</span>
+                        </div>
+
+                        <p id="brandDesc" style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
+                            这里是品牌描述的详细内容，显示该品牌的主要技术特色与市场定位。
+                        </p>
+
+                        <div class="brand-detal-pane">
+                            <div class="brand-detail-row">
+                                <span class="brand-detail-label">
+                                    <span class="lang-zh">估算购入价格：</span><span class="lang-en">Price Range:</span>
+                                </span>
+                                <span id="brandPrice" class="brand-detail-value">15,000 - 35,000 元</span>
+                            </div>
+                            <div class="brand-detail-row">
+                                <span class="brand-detail-label">
+                                    <span class="lang-zh">核心阀头技术：</span><span class="lang-en">Valve Tech:</span>
+                                </span>
+                                <span id="brandTech" class="brand-detail-value">逆流盘阀</span>
+                            </div>
+                            <div class="brand-detail-row">
+                                <span class="brand-detail-label">
+                                    <span class="lang-zh">选购考量劣势：</span><span class="lang-en">Downsides:</span>
+                                </span>
+                                <span id="brandCons" class="brand-detail-value" style="color: #f87171;">配件及更换昂贵</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Buying Recommendation Calculator -->
+    <section id="calculator" class="section" style="background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%); border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Smart Recommendation</span>
+                <h2 class="section-title">
+                    <span class="lang-zh">中英文智能选型推荐计算器</span>
+                    <span class="lang-en">Bilingual Smart Sizing Calculator</span>
+                </h2>
+                <p class="section-desc">
+                    <span class="lang-zh">通过输入水质硬度、家庭人口和预算级别，计算器将依据 3.5 天最佳再生周期为您自动适配推荐的流量、容量并导出中美双重标准下的硬件建议。</span>
+                    <span class="lang-en">Input your hardness, household size, and budget class. Our system dynamically sizes flow rates and grain capacities under both US and Metric metrics.</span>
+                </p>
+            </div>
+
+            <div class="calc-grid">
+                <!-- Inputs Form -->
+                <div class="glass-card calc-form">
+                    <div class="form-group">
+                        <label for="calcHardness">
+                            <span class="lang-zh">自来水硬度：</span><span class="lang-en">Water Hardness: </span>
+                            <span id="hardnessVal" class="range-val">250</span> ppm 
+                            <span style="color: var(--text-muted); font-size:12px;"> / <span id="calcHardnessGpgVal">14.6</span> GPG</span>
+                            <span id="hardnessDesc" style="font-size: 12px; font-weight: normal; margin-left: 8px; color: var(--accent-blue);">(中度硬水)</span>
+                        </label>
+                        <div class="input-range-container">
+                            <input type="range" id="calcHardness" min="50" max="700" step="10" value="250">
+                        </div>
+                        <span style="font-size: 11px; color: var(--text-muted); margin-top: 4px; display: block;">
+                            <span class="lang-zh">中国：华东约150-250ppm，北方及西北约300-500ppm。美国：东海岸常低于100ppm，中西部印第安纳、五大湖及德州常达250-450ppm以上。</span>
+                            <span class="lang-en">PPM scale ranges from 50 to 700. US: East Coast is soft (&lt;100ppm); Texas, Arizona, and the Great Lakes are extremely hard (250-500+ ppm).</span>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calcFamily">
+                            <span class="lang-zh">家庭常住人口：</span><span class="lang-en">Household Size: </span>
+                            <span id="familyVal" class="range-val">3</span> <span class="lang-zh">人</span><span class="lang-en">people</span>
+                        </label>
+                        <div class="input-range-container">
+                            <input type="range" id="calcFamily" min="1" max="10" step="1" value="3">
+                        </div>
+                        <span style="font-size: 11px; color: var(--text-muted); margin-top: 4px; display: block;">
+                            <span class="lang-zh">决定了家庭的峰值瞬间水量及树脂总消耗速度。</span>
+                            <span class="lang-en">Determines daily flow rate sizing and regeneration salt depletion frequency.</span>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <span class="lang-zh">选购预算倾向：</span><span class="lang-en">Budget Preference:</span>
+                        </label>
+                        <div class="radio-cards">
+                            <div class="radio-card" data-budget="economy">
+                                <input type="radio" name="budget" value="economy">
+                                <h4><span class="lang-zh">经济入门</span><span class="lang-en">Economy</span></h4>
+                                <span><span class="lang-zh">注重实用与国货性价比</span><span class="lang-en">Best value/OEM builds</span></span>
+                            </div>
+                            <div class="radio-card active" data-budget="quality">
+                                <input type="radio" name="budget" value="quality" checked>
+                                <h4><span class="lang-zh">中端品质</span><span class="lang-en">Quality</span></h4>
+                                <span><span class="lang-zh">经典美系进口阀整机</span><span class="lang-en">Classic Fleck/Pentair</span></span>
+                            </div>
+                            <div class="radio-card" data-budget="premium">
+                                <input type="radio" name="budget" value="premium">
+                                <h4><span class="lang-zh">旗舰高端</span><span class="lang-en">Premium</span></h4>
+                                <span><span class="lang-zh">全进口大牌逆流节水</span><span class="lang-en">Clack / EcoWater Upflow</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculated Results Card -->
+                <div class="glass-card calc-results" style="border-color: rgba(6, 182, 212, 0.25);">
+                    <div>
+                        <div class="results-header">
+                            <h3 class="results-title">
+                                <span class="lang-zh">您的专属选型方案</span><span class="lang-en">Your Customized Softener Sizing</span>
+                            </h3>
+                            <p style="font-size: 12px; color: var(--text-muted);">
+                                <span class="lang-zh">按 150L / 人 / 日用水模型运算</span><span class="lang-en">Based on 150L/person/day softener usage model</span>
+                            </p>
+                        </div>
+
+                        <div class="results-metric-grid">
+                            <div class="result-card-stat">
+                                <span class="result-stat-label"><span class="lang-zh">推荐额定流量</span><span class="lang-en">Recommended Flow Rate</span></span>
+                                <span id="resFlowRate" class="result-stat-num">1.5 <span>m³/h</span></span>
+                                <span id="resFlowRateUS" style="font-size:12px; color:var(--accent-cyan); font-weight:700;">(6.6 GPM)</span>
+                            </div>
+                            <div class="result-card-stat">
+                                <span class="result-stat-label"><span class="lang-zh">推荐树脂容量</span><span class="lang-en">Recommended Resin Volume</span></span>
+                                <span id="resResinVol" class="result-stat-num">15 <span>L</span></span>
+                                <span id="resResinVolUS" style="font-size:12px; color:var(--accent-cyan); font-weight:700;">(32k Grains)</span>
+                            </div>
+                            <div class="result-card-stat">
+                                <span class="result-stat-label"><span class="lang-zh">估算年均耗盐</span><span class="lang-en">Est. Annual Salt Usage</span></span>
+                                <span id="resAnnualSalt" class="result-stat-num">180 <span>kg</span></span>
+                                <span id="resAnnualSaltUS" style="font-size:12px; color:var(--accent-cyan); font-weight:700;">(396 lbs)</span>
+                            </div>
+                            <div class="result-card-stat">
+                                <span class="result-stat-label"><span class="lang-zh">估算年均再生废水</span><span class="lang-en">Est. Annual Wastewater</span></span>
+                                <span id="resAnnualWater" class="result-stat-num">12.5 <span>吨</span></span>
+                                <span id="resAnnualWaterUS" style="font-size:12px; color:var(--accent-cyan); font-weight:700;">(3300 Gal)</span>
+                            </div>
+                        </div>
+
+                        <div class="recommendations-box">
+                            <h4><span class="lang-zh">推荐适配硬件清单</span><span class="lang-en">Recommended Hardware Checklist</span></h4>
+                            <div class="rec-item">
+                                <span class="rec-label"><span class="lang-zh">阀头机构：</span><span class="lang-en">Valve Mechanism:</span></span>
+                                <span id="recValve" class="rec-value">富莱克 (Fleck) 活塞阀</span>
+                            </div>
+                            <div class="rec-item">
+                                <span class="rec-label"><span class="lang-zh">推荐品牌：</span><span class="lang-en">Recommended Brands:</span></span>
+                                <span id="recBrand" class="rec-value">3M / 霍尼韦尔</span>
+                            </div>
+                            <div class="rec-item">
+                                <span class="rec-label"><span class="lang-zh">合理价格参考：</span><span class="lang-en">Est. Price Range:</span></span>
+                                <span id="recPrice" class="rec-value">8,000 元</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>H₂O</span> Softener Tech
+                </div>
+                <div class="footer-links">
+                    <a href="#principle"><span class="lang-zh">原理</span><span class="lang-en">Principle</span></a>
+                    <a href="#valve-components"><span class="lang-zh">组件</span><span class="lang-en">Valve Components</span></a>
+                    <a href="#regeneration"><span class="lang-zh">再生</span><span class="lang-en">Regeneration</span></a>
+                    <a href="#us-market"><span class="lang-zh">北美</span><span class="lang-en">US Market</span></a>
+                    <a href="#brands"><span class="lang-zh">竞品</span><span class="lang-en">Brands</span></a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>
+                    <span class="lang-zh">&copy; 2026 全屋智能软水系统科普与选型指南. 保留所有权利。</span>
+                    <span class="lang-en">&copy; 2026 Whole-house Smart Water Softener Guide. All rights reserved.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
