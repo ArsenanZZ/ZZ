@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
   <title id="title">Miami Marathon icon cover</title>
   <desc id="desc">Icon style cover with Miami title, Run50 badge, skyscrapers, palm trees, MacArthur Causeway bridge, cruise ship, sun and medal.</desc>
-  <rect width="1200" height="750" fill="#f6f8f3"/>
+  <rect width="1200" height="750" fill="#ebf4f6"/>
   <g transform="translate(70 104)">
     <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="900" fill="#20242b">MIAMI</text>
     <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#0f766e">PALMS · OCEAN · SHIPS</text>
