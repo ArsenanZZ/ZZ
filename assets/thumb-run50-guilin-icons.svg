@@ -7,8 +7,8 @@
   <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#a45625">RIVER · HILLS · HEAT WAVE</text>
 </g>
 <rect x="790" y="62" width="320" height="146" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
-<text x="820" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunCN #2</text>
-<text x="820" y="178" font-family="Arial, Helvetica, sans-serif" font-size="55" font-weight="900" fill="#cc0000">GUILIN</text>
+<text x="820" y="114" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#20242b">RunCN #2</text>
+<text x="820" y="168" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="900" fill="#cc0000">GUILIN</text>
 <circle cx="980" cy="380" r="96" fill="#f97316" opacity="0.9"/>
 <path d="M48 580 C138 330 248 330 338 580 Z" fill="#1f6f5b"/>
 <path d="M236 586 C382 274 558 274 704 586 Z" fill="#2f855a"/>

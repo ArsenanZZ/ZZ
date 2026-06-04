@@ -7,8 +7,8 @@
     <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#0f766e">PALMS · OCEAN · SHIPS</text>
   </g>
   <rect x="790" y="62" width="320" height="146" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
-  <text x="820" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #15</text>
-  <text x="820" y="178" font-family="Arial, Helvetica, sans-serif" font-size="55" font-weight="900" fill="#cc0000">MIAMI</text>
+  <text x="820" y="114" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#20242b">Run50 #15</text>
+  <text x="820" y="168" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="900" fill="#cc0000">MIAMI</text>
   
   <!-- Sun -->
   <circle cx="920" cy="340" r="68" fill="#f2b441"/>

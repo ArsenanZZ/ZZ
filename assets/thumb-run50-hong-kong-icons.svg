@@ -13,8 +13,8 @@
   <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#cc0000">TUNNELS · HARBOUR · BRIDGES</text>
 </g>
 <rect x="758" y="62" width="364" height="146" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
-<text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunCN #3</text>
-<text x="790" y="178" font-family="Arial, Helvetica, sans-serif" font-size="49" font-weight="900" fill="#cc0000">HONG KONG</text>
+<text x="788" y="114" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#20242b">RunCN #3</text>
+<text x="788" y="168" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900" fill="#cc0000">HONG KONG</text>
 <circle cx="1076" cy="292" r="56" fill="#fef08a" mask="url(#moon-mask)"/>
 <rect x="72" y="344" width="84" height="234" fill="#22324d"/>
 <rect x="186" y="260" width="98" height="318" fill="#31496d"/>
