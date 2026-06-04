@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -19,6 +19,7 @@
     --reading: #8b3f46;
     --run: #b36a00;
     --ro: #087c93;
+    --water: #0ea5e9;
   }
 
   * {
@@ -198,6 +199,7 @@
   .ico.reading { background: var(--reading); }
   .ico.run50 { background: var(--run); }
   .ico.ro { background: var(--ro); }
+  .ico.water { background: var(--water); }
 
   .side-rule {
     height: 1px;
@@ -544,12 +546,13 @@
     <input id="searchInput" type="search" placeholder="Search ZZ" autocomplete="off" aria-label="Search ZZ">
     <button type="submit" aria-label="Search"></button>
   </form>
-  <div class="status">17 uploads</div>
+  <div class="status">18 uploads</div>
 </header>
 
 <div class="shell">
   <aside class="sidebar" aria-label="Channels">
     <a class="side-link active" href="#" data-filter="all"><span class="ico all">ZZ</span><span>Home</span></a>
+    <a class="side-link" href="#water" data-filter="water"><span class="ico water">H₂O</span><span>Water</span></a>
     <a class="side-link" href="#wqa" data-filter="wqa"><span class="ico wqa">W</span><span>WQA</span></a>
     <a class="side-link" href="#reading" data-filter="reading"><span class="ico reading">R</span><span>Reading</span></a>
     <a class="side-link" href="#run50" data-filter="run50"><span class="ico run50">50</span><span>Run50</span></a>
@@ -561,6 +564,7 @@
   <main>
     <nav class="chips" aria-label="Filters">
       <button class="chip active" type="button" data-filter="all">All</button>
+      <button class="chip" type="button" data-filter="water">Water</button>
       <button class="chip" type="button" data-filter="wqa">WQA</button>
       <button class="chip" type="button" data-filter="reading">Reading</button>
       <button class="chip" type="button" data-filter="run50">Run50</button>
@@ -577,19 +581,19 @@
         <p>WQA research, reading notes, Run50, and RO study pages in one clean feed.</p>
       </div>
       <div class="quick-stats" aria-label="Library stats">
-        <div class="stat"><b>4</b><span>channels</span></div>
-        <div class="stat"><b>17</b><span>uploads</span></div>
+        <div class="stat"><b>5</b><span>channels</span></div>
+        <div class="stat"><b>18</b><span>uploads</span></div>
         <div class="stat"><b>1</b><span>home page</span></div>
       </div>
     </section>
 
     <section class="section-title" aria-label="Uploads heading">
       <h2>Latest uploads</h2>
-      <span class="results" id="resultCount">17 videos</span>
+      <span class="results" id="resultCount">18 videos</span>
     </section>
 
         <section class="video-grid" id="videoGrid" aria-label="ZZ uploads">
-      <article class="video-card" id="Softener-Water" data-category="wqa research" data-title="Whole-House Water Softener Principles, Components & Sizing Calculator">
+      <article class="video-card" id="Softener-Water" data-category="wqa research water" data-title="Whole-House Water Softener Principles, Components & Sizing Calculator">
         <a class="thumb" href="Softener-Water/index.html">
           <img src="Softener-Water/assets/us_hardness_map.png" alt="Water Softener Guide thumbnail">
           <span class="duration">HTML</span>
@@ -602,7 +606,7 @@
           </div>
         </div>
       </article>
-      <article class="video-card" id="wqa" data-category="wqa research" data-title="WQA 2026 Presentation Summaries">
+      <article class="video-card" id="wqa" data-category="wqa research water" data-title="WQA 2026 Presentation Summaries">
         <a class="thumb" href="wqa/WQA_2026_Presentations_Summary-V2.html">
           <img src="assets/thumb-wqa-presentations.png" alt="WQA 2026 Presentation Summaries thumbnail">
           <span class="duration">HTML</span>
@@ -616,7 +620,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="wqa research" data-title="WQA 2026 Expo Observation Report">
+      <article class="video-card" data-category="wqa research water" data-title="WQA 2026 Expo Observation Report">
         <a class="thumb" href="wqa/WQA_2026_Expo_Observation_Report_EN.html">
           <img src="assets/thumb-wqa-expo.png" alt="WQA 2026 Expo Observation Report thumbnail">
           <span class="duration">HTML</span>
@@ -630,7 +634,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="wqa research" data-title="EZsalt Research Report">
+      <article class="video-card" data-category="wqa research water" data-title="EZsalt Research Report">
         <a class="thumb" href="wqa/EZsalt_Research_Report_2_EN.html">
           <img src="assets/thumb-ezsalt.png" alt="EZsalt Research Report thumbnail">
           <span class="duration">HTML</span>
@@ -644,7 +648,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="wqa research" data-title="DROP Research Report">
+      <article class="video-card" data-category="wqa research water" data-title="DROP Research Report">
         <a class="thumb" href="wqa/DROP_Research_Report_EN.html">
           <img src="assets/thumb-drop.png" alt="DROP Research Report thumbnail">
           <span class="duration">HTML</span>
@@ -812,7 +816,7 @@
         </div>
       </article>
 
-      <article class="video-card" id="ro" data-category="ro" data-title="How a Reverse Osmosis System Works">
+      <article class="video-card" id="ro" data-category="ro water" data-title="How a Reverse Osmosis System Works">
         <a class="thumb" href="ro/ro-system-explained.html">
           <img src="assets/thumb-ro-system.png" alt="How a Reverse Osmosis System Works thumbnail">
           <span class="duration">HTML</span>
@@ -826,7 +830,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="ro" data-title="RO Complete Guide EN">
+      <article class="video-card" data-category="ro water" data-title="RO Complete Guide EN">
         <a class="thumb" href="ro/RO-Complete-Guide-EN.html">
           <img src="assets/thumb-ro-guide.png" alt="RO Complete Guide EN thumbnail">
           <span class="duration">HTML</span>
