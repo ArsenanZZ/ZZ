@@ -525,6 +525,8 @@ def main():
     (REPO / "run50" / "stories" / "english" / "guilin-marathon.html").write_text(normal_page("en", en_article, normal_css), encoding="utf-8", newline="\n")
     (REPO / "run50" / "facebook" / "guilin-marathon.html").write_text(facebook_page(fb_article, fb_css), encoding="utf-8", newline="\n")
     write_cover_assets()
+    from redesign_run50_covers import main as redesign_run50_covers
+    redesign_run50_covers()
     print(f"story_events={len(story)} images={image_count}")
 
 
