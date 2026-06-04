@@ -94,7 +94,7 @@
   </g>
 
   <!-- RunCN Badge to unify style -->
-  <rect x="1053" y="83" width="440" height="195" rx="29" fill="#ffffff" stroke="#20242b" stroke-width="11"/>
-  <text x="1093" y="152" font-family="Arial, sans-serif" font-size="45" font-weight="900" fill="#20242b">RunCN #1</text>
-  <text x="1093" y="224" font-family="Arial, sans-serif" font-size="59" font-weight="900" fill="#cc0000">XIANGYANG</text>
+  <rect x="993" y="83" width="500" height="195" rx="29" fill="#ffffff" stroke="#20242b" stroke-width="11"/>
+  <text x="1033" y="152" font-family="Arial, sans-serif" font-size="45" font-weight="900" fill="#20242b">RunCN #1</text>
+  <text x="1033" y="224" font-family="Arial, sans-serif" font-size="59" font-weight="900" fill="#cc0000">XIANGYANG</text>
 </svg>
