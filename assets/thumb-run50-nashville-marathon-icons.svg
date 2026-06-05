@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">Tennessee Nashville Marathon icon cover</title>
+<desc id="desc">Icon style cover with Tennessee title, Run50 badge, John Seigenthaler Pedestrian Bridge, Cumberland River, and a country music acoustic guitar.</desc>
+<rect width="1200" height="750" fill="#faf5ff"/>
+<circle cx="580" cy="300" r="70" fill="#fcd34d" opacity="0.9"/>
+<circle cx="580" cy="300" r="90" fill="none" stroke="#fef08a" stroke-width="4" stroke-dasharray="15 10" opacity="0.6"/>
+<path d="M0 500 L80 500 L80 430 L120 430 L120 460 L180 460 L180 400 L210 400 L210 500 L300 500 L300 420 L350 420 L350 500 L500 500 L500 450 L560 450 L560 500 L1200 500 L1200 750 L0 750 Z" fill="#eddffa" opacity="0.5"/>
+<g stroke="#7c3aed" stroke-width="5" fill="none" opacity="0.7">
+  <line x1="0" y1="520" x2="1200" y2="520" stroke-width="8"/>
+  <line x1="150" y1="520" x2="150" y2="580" stroke-width="10"/>
+  <line x1="450" y1="520" x2="450" y2="580" stroke-width="10"/>
+  <line x1="750" y1="520" x2="750" y2="580" stroke-width="10"/>
+  <line x1="1050" y1="520" x2="1050" y2="580" stroke-width="10"/>
+  <path d="M 0 520 A 150 150 0 0 1 300 520"/>
+  <path d="M 10 520 A 140 140 0 0 1 290 520" stroke-dasharray="10 5"/>
+  <path d="M 300 520 A 150 150 0 0 1 600 520"/>
+  <path d="M 310 520 A 140 140 0 0 1 590 520" stroke-dasharray="10 5"/>
+  <path d="M 600 520 A 150 150 0 0 1 900 520"/>
+  <path d="M 610 520 A 140 140 0 0 1 890 520" stroke-dasharray="10 5"/>
+  <path d="M 900 520 A 150 150 0 0 1 1200 520"/>
+  <path d="M 910 520 A 140 140 0 0 1 1190 520" stroke-dasharray="10 5"/>
+  <line x1="75" y1="460" x2="75" y2="520" stroke-width="3"/>
+  <line x1="150" y1="440" x2="150" y2="520" stroke-width="3"/>
+  <line x1="225" y1="460" x2="225" y2="520" stroke-width="3"/>
+  <line x1="375" y1="460" x2="375" y2="520" stroke-width="3"/>
+  <line x1="450" y1="440" x2="450" y2="520" stroke-width="3"/>
+  <line x1="525" y1="460" x2="525" y2="520" stroke-width="3"/>
+  <line x1="675" y1="460" x2="675" y2="520" stroke-width="3"/>
+  <line x1="750" y1="440" x2="750" y2="520" stroke-width="3"/>
+  <line x1="825" y1="460" x2="825" y2="520" stroke-width="3"/>
+  <line x1="975" y1="460" x2="975" y2="520" stroke-width="3"/>
+  <line x1="1050" y1="440" x2="1050" y2="520" stroke-width="3"/>
+  <line x1="1125" y1="460" x2="1125" y2="520" stroke-width="3"/>
+</g>
+<path d="M0 580 Q300 530 600 580 T1200 580 L1200 750 L0 750 Z" fill="#2dd4bf" opacity="0.8"/>
+<path d="M0 620 Q400 580 800 630 T1200 610 L1200 750 L0 750 Z" fill="#0d9488" opacity="0.9"/>
+<path d="M0 660 Q300 630 600 680 T1200 660 L1200 750 L0 750 Z" fill="#115e59"/>
+<path d="M0 630 Q250 640 400 750 L0 750 Z" fill="#a78bfa" stroke="#20242b" stroke-width="4"/>
+<g transform="translate(260, 620) rotate(-25)">
+  <ellipse cx="50" cy="50" rx="90" ry="75" fill="#d97706" stroke="#20242b" stroke-width="6"/>
+  <ellipse cx="-20" cy="50" rx="70" ry="55" fill="#d97706" stroke="#20242b" stroke-width="6"/>
+  <path d="M -60 8 Q -20 25 30 10 L 30 90 Q -20 75 -60 90 Z" fill="#d97706"/>
+  <path d="M -60 8 Q -20 25 30 10 M 30 90 Q -20 75 -60 90" fill="none" stroke="#20242b" stroke-width="6"/>
+  <circle cx="5" cy="50" r="28" fill="#1e1b4b" stroke="#f59e0b" stroke-width="4"/>
+  <rect x="-220" y="40" width="160" height="20" fill="#78350f" stroke="#20242b" stroke-width="4"/>
+  <line x1="-200" y1="40" x2="-200" y2="60" stroke="#d1d5db" stroke-width="2"/>
+  <line x1="-180" y1="40" x2="-180" y2="60" stroke="#d1d5db" stroke-width="2"/>
+  <line x1="-160" y1="40" x2="-160" y2="60" stroke="#d1d5db" stroke-width="2"/>
+  <line x1="-140" y1="40" x2="-140" y2="60" stroke="#d1d5db" stroke-width="2"/>
+  <line x1="-120" y1="40" x2="-120" y2="60" stroke="#d1d5db" stroke-width="2"/>
+  <line x1="-100" y1="40" x2="-100" y2="60" stroke="#d1d5db" stroke-width="2"/>
+  <line x1="-80" y1="40" x2="-80" y2="60" stroke="#d1d5db" stroke-width="2"/>
+  <path d="M -260 35 L -220 40 L -220 60 L -260 65 Z" fill="#78350f" stroke="#20242b" stroke-width="4"/>
+  <circle cx="-250" cy="30" r="6" fill="#9ca3af" stroke="#20242b" stroke-width="2"/>
+  <circle cx="-235" cy="30" r="6" fill="#9ca3af" stroke="#20242b" stroke-width="2"/>
+  <circle cx="-250" cy="70" r="6" fill="#9ca3af" stroke="#20242b" stroke-width="2"/>
+  <circle cx="-235" cy="70" r="6" fill="#9ca3af" stroke="#20242b" stroke-width="2"/>
+  <rect x="70" y="38" width="12" height="24" rx="3" fill="#1e1b4b" stroke="#20242b" stroke-width="2"/>
+  <line x1="-220" y1="44" x2="70" y2="44" stroke="#e5e7eb" stroke-width="1.5"/>
+  <line x1="-220" y1="47" x2="70" y2="47" stroke="#e5e7eb" stroke-width="1.5"/>
+  <line x1="-220" y1="50" x2="70" y2="50" stroke="#e5e7eb" stroke-width="1.5"/>
+  <line x1="-220" y1="53" x2="70" y2="53" stroke="#e5e7eb" stroke-width="1.5"/>
+  <line x1="-220" y1="56" x2="70" y2="56" stroke="#e5e7eb" stroke-width="1.5"/>
+</g>
+<g transform="translate(70 104)">
+  <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">TENNESSEE</text>
+  <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#0b67c2">MUSIC CITY · CUMBERLAND RIVER · GUITAR</text>
+</g>
+<rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #12</text>
+<text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">TENNESSEE</text>
+</svg>

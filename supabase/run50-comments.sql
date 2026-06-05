@@ -45,7 +45,10 @@ create table if not exists public.story_comments (
       'run50-san-antonio-marathon-zh',
       'run50-west-virginia-marathon-facebook-en',
       'run50-west-virginia-marathon-en',
-      'run50-west-virginia-marathon-zh'
+      'run50-west-virginia-marathon-zh',
+      'run50-nashville-marathon-facebook-en',
+      'run50-nashville-marathon-en',
+      'run50-nashville-marathon-zh'
     )
   )
 );
@@ -87,7 +90,10 @@ add constraint story_comments_page_whitelist check (
       'run50-san-antonio-marathon-zh',
     'run50-west-virginia-marathon-facebook-en',
     'run50-west-virginia-marathon-en',
-    'run50-west-virginia-marathon-zh'
+    'run50-west-virginia-marathon-zh',
+    'run50-nashville-marathon-facebook-en',
+    'run50-nashville-marathon-en',
+    'run50-nashville-marathon-zh'
   )
 );
 
@@ -139,7 +145,10 @@ with check (
       'run50-san-antonio-marathon-zh',
     'run50-west-virginia-marathon-facebook-en',
     'run50-west-virginia-marathon-en',
-    'run50-west-virginia-marathon-zh'
+    'run50-west-virginia-marathon-zh',
+    'run50-nashville-marathon-facebook-en',
+    'run50-nashville-marathon-en',
+    'run50-nashville-marathon-zh'
   )
   and char_length(trim(name)) between 1 and 80
   and char_length(trim(body)) between 1 and 1200
