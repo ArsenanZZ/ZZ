@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="San Antonio Texas icon cover">
   <rect width="1200" height="750" fill="#edf3f7"/>
   <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">SAN ANTONIO</text>
-  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">ALAMO, RIVER WALK, ROCK'N'ROLL</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">ALAMO, RIVER WALK, ROCK 'N' ROLL</text>
   <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
   <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #14</text>
   <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">TEXAS</text>
@@ -9,6 +9,12 @@
   <path d="M0 650 C170 620 355 645 590 610 C790 645 1000 590 1200 575 L1200 750 L0 750 Z" fill="#7aa782"/>
   <path d="M0 710 C230 670 470 705 710 668 C895 640 1045 675 1200 695 L1200 750 L0 750 Z" fill="#2f8fa3"/>
   <path d="M20 698 C230 658 470 693 710 656 C895 628 1045 663 1180 683" fill="none" stroke="#ffffff" stroke-width="6"/>
+  <path d="M370 662 A105 86 0 0 1 558 640" fill="none" stroke="#f7efe1" stroke-width="12" stroke-linecap="round"/>
+  <path d="M386 658 L542 638" stroke="#f7efe1" stroke-width="6" stroke-linecap="round"/>
+  <rect x="720" y="618" width="116" height="34" rx="10" fill="#f7efe1" stroke="#20242b" stroke-width="4"/>
+  <rect x="744" y="592" width="68" height="30" fill="#0b67c2"/>
+  <line x1="754" y1="604" x2="802" y2="604" stroke="#ffffff" stroke-width="4"/>
+  <circle cx="712" cy="642" r="12" fill="#f5b32f" stroke="#20242b" stroke-width="3"/>
   <rect x="95" y="470" width="265" height="168" fill="#ba4a2b"/>
   <rect x="72" y="432" width="312" height="46" fill="#8d2f26"/>
   <rect x="115" y="372" width="75" height="60" fill="#ba4a2b"/>
@@ -16,10 +22,14 @@
   <rect x="132" y="512" width="43" height="126" fill="#f7efe1"/>
   <rect x="282" y="512" width="40" height="126" fill="#f7efe1"/>
   <path d="M206 638 V552 A34 70 0 0 1 258 552 V638" fill="#f7efe1"/>
+  <path d="M103 470 A132 70 0 0 1 357 470" fill="none" stroke="#f7efe1" stroke-width="7"/>
+  <line x1="96" y1="470" x2="360" y2="470" stroke="#f7efe1" stroke-width="5"/>
   <rect x="612" y="400" width="20" height="238" fill="#a05a25"/>
   <circle cx="622" cy="350" r="47" fill="#f5b32f" stroke="#a05a25" stroke-width="6"/>
   <line x1="622" y1="305" x2="622" y2="245" stroke="#a05a25" stroke-width="8"/>
   <line x1="580" y1="350" x2="668" y2="350" stroke="#a05a25" stroke-width="6"/>
+  <line x1="602" y1="398" x2="602" y2="638" stroke="#7c3f18" stroke-width="5"/>
+  <line x1="642" y1="398" x2="642" y2="638" stroke="#7c3f18" stroke-width="5"/>
   <ellipse cx="915" cy="548" rx="70" ry="66" fill="#f6c86a" stroke="#20242b" stroke-width="8"/>
   <circle cx="915" cy="548" r="26" fill="#ffffff" stroke="#20242b" stroke-width="4"/>
   <path d="M958 505 L1075 410 L1100 438 L988 540 Z" fill="#8d2f26" stroke="#20242b" stroke-width="5"/>

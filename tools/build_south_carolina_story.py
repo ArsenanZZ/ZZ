@@ -10,7 +10,7 @@ SOURCE_HTML = next(p for p in SOURCE_BASE.iterdir() if p.suffix.lower() == ".htm
 SOURCE_FILES = next(p for p in SOURCE_BASE.iterdir() if p.is_dir() and p.name.endswith("_files"))
 SITE = "https://arsenanzz.github.io/ZZ"
 SLUG = "south-carolina-marathon"
-VERSION = "20260605-1"
+VERSION = "20260605-2"
 OUT_IMG_DIR = REPO / "run50" / "stories" / "chinese" / "Run50-South-Carolina-Marathon-clean_files"
 
 EN_BY_INDEX = {
@@ -968,12 +968,12 @@ def facebook_page(content: str) -> str:
 '''
 
 SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
-<title id="title">South Carolina Marathon icon cover</title>
-<desc id="desc">Icon style cover with South Carolina title, Run50 badge, caravan RV trailer, pine trees, and stubborn mule.</desc>
+<title id="title">Greer 2Slow4Boston icon cover</title>
+<desc id="desc">Icon style cover with Greer title, Run50 South Carolina badge, caravan RV trailer, pine trees, and stubborn mule.</desc>
 <rect width="1200" height="750" fill="#bae6fd"/>
 <g transform="translate(70 104)">
-  <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">S. CAROLINA</text>
-  <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#0b67c2">2SLOW4BOSTON · TRAILER RV · MULE</text>
+  <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">GREER</text>
+  <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#0b67c2">2SLOW4BOSTON · RV LOOP</text>
 </g>
 <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
 <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #18</text>
@@ -1041,7 +1041,8 @@ def write_png():
     blue = "#0b67c2"
     
     # Title
-    draw.text((64, 64), "S. CAROLINA", font=font(66, True), fill=text_color)
+    draw.text((64, 64), "GREER", font=font(66, True), fill=text_color)
+    draw.text((66, 142), "2SLOW4BOSTON, RV LOOP", font=font(25, True), fill=blue)
     
     # Badge Box
     draw.rounded_rectangle((760, 64, 1122, 228), radius=22, fill="#ffffff", outline=text_color, width=7)
