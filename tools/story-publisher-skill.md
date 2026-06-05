@@ -87,7 +87,7 @@ Target:
 
 Requirements:
 
-- Use an editorial/news-like layout inspired by CNN World: strong masthead, red/black accents, article rail, brief box, large readable story column.
+- Use an editorial/news-like layout inspired by CNN World: strong masthead, channel-specific color accents (RunCN red `#cc0000`, Run50 blue `#0b67c2`, or RunWorld green `#2f855a` based on the race category), article rail, brief box, large readable story column.
 - Do not include public copy that reveals the editing process, such as "Facebook edition", "same full text", or "re-ordered for a stronger share opening".
 - Use the marathon hook early, but add a short context paragraph first: date, race, city, and why this story matters.
 - Move race-day report before slower backstory when useful for sharing.
