@@ -1,84 +1,169 @@
-# Story Publishing Skill & Workflow Guide
+# Run50 Story Workflow Reference
 
-This skill guide documents the complete step-by-step workflow for importing, styling, translating, and deploying new running story articles (RunCN / Run50) on the ZZ portal.
+## Repository Map
 
----
+- Default repo: `C:\Users\ZZ\Documents\Github\ZZ`
+- Public site: `https://arsenanzz.github.io/ZZ/`
+- Chinese stories: `run50/stories/chinese/`
+- English stories: `run50/stories/english/`
+- Facebook stories: `run50/facebook/`
+- Shared assets: `assets/`
+- Story builders and cover tools: `tools/`
+- Supabase SQL: `supabase/run50-comments.sql`
 
-## 1. Content Extraction & HTML Sanitation
+## Source Import
 
-When importing a new story (e.g., from WeChat, Word, or Markdown):
-1. **Clean Markup**: Remove proprietary CSS styles and empty blocks. Standardize on clean HTML5 semantic tags (`<article>`, `<section>`, `<figure>`, `<figcaption>`, `<p>`, `<h2>`).
-2. **Media Optimization**:
-   - Save image assets inside a dedicated directory: `RunCN-[City]-Marathon-clean_files/`.
-   - Use clean, sequential filenames (`img-001.webp`, `img-002.webp`, etc.).
-   - All `<img>` tags must include:
-     ```html
-     <img src="RunCN-City-Marathon-clean_files/img-001.webp" alt="Description" loading="lazy" decoding="async">
-     ```
-3. **Typography**: Ensure proper chapter breaks using `<h2>` headers paired with a styling separator (`<hr>`).
+For a new RunCN export, expect one of these forms:
 
----
+- `RunCN ... .html` plus a sibling `RunCN ... _files/` directory.
+- `RunCN ... .html` plus a zipped `_files.zip`.
 
-## 2. Generating the 3 Page Portals
+Use a structured HTML parser when practical. Extract only meaningful story content: headings, paragraphs, figures, captions, and race metadata. Remove platform-specific wrappers, duplicated intro cards, empty blocks, reactions, share prompts, and unrelated script/style debris.
 
-Every race story requires three separate HTML page integrations:
+Convert images to `.webp` if needed and store them once under:
 
-### A. Chinese Original (`run50/stories/chinese/[slug].html`)
-- **Metadata**: Set appropriate `<title>`, `<meta name="description">`, and Open Graph tags (pointing to the respective `og-run50-*.png` cover in assets).
-- **Core Elements**: Set navigation bar (`← 中文故事`, `English`, `Run50`), title section, byline meta block, and full Chinese text.
+`run50/stories/chinese/RunCN-{City}-Marathon-clean_files/`
 
-### B. English Translation (`run50/stories/english/[slug].html`)
-- **Tone**: Keep a conversational voice, maintaining travel detours and finish-line notes.
-- **Paths**: Keep paths consistent. Images should reference `../chinese/RunCN-[City]-Marathon-clean_files/...` directly to avoid duplicating file storage.
+Name images sequentially:
 
-### C. Facebook Edition (`run50/facebook/[slug].html`)
-- **Structure**: Uses a special grid layout featuring a `<span class="label">` category, a `<figure class="lead-media">` with the SVG cover, a sidebar `<aside class="rail">` with a "Brief box" key statistics table, and the English text.
-- **Engagement**: Ensure the Supabase comments section container `<section data-zz-comments></section>` is correctly configured.
+`img-001.webp`, `img-002.webp`, ...
 
----
+Use image markup like:
 
-## 3. Card Visual Styling & Branding Colors
+```html
+<figure>
+  <img src="RunCN-City-Marathon-clean_files/img-001.webp" alt="City Marathon photo 1" loading="lazy" decoding="async">
+  <figcaption>Caption @Credit</figcaption>
+</figure>
+```
 
-Maintain editorial, premium desaturated backgrounds and interactive hover styles for story listing cards:
+For English and Facebook pages, reference the Chinese image folder instead of duplicating images:
 
-### Warm Theme (Chinese RunCN Stories)
-Apply the `.run-cn` class to the `.story-card` element:
+```html
+<img src="../chinese/RunCN-City-Marathon-clean_files/img-001.webp" alt="City Marathon photo 1" loading="lazy" decoding="async">
+```
+
+For Facebook pages under `run50/facebook/`, use the correct relative depth:
+
+```html
+<img src="../stories/chinese/RunCN-City-Marathon-clean_files/img-001.webp" alt="City Marathon photo 1" loading="lazy" decoding="async">
+```
+
+## Three Page Outputs
+
+### Chinese Original
+
+Target:
+
+`run50/stories/chinese/{slug}.html`
+
+Requirements:
+
+- Clean Chinese title, metadata, date, location, race name, and navigation.
+- Preserve the original story voice.
+- Start from the real foreword/content if the source has a messy exported cover or reaction section.
+- Include Open Graph tags pointing to `assets/og-run50-{slug}-icons.png`.
+- Include engagement section with `data-locale="zh-CN"` and `data-page-key="run50-{slug}-zh"`.
+
+### English Story
+
+Target:
+
+`run50/stories/english/{slug}.html`
+
+Requirements:
+
+- Translate idiomatically and conversationally.
+- Keep travel detours, family moments, jokes, and race details.
+- Avoid literal Chinglish and avoid sounding like a summary.
+- Preserve all meaningful photos and captions.
+- Include engagement section with `data-locale="en"` and `data-page-key="run50-{slug}-en"`.
+
+### Facebook Edition
+
+Target:
+
+`run50/facebook/{slug}.html`
+
+Requirements:
+
+- Use an editorial/news-like layout inspired by CNN World: strong masthead, red/black accents, article rail, brief box, large readable story column.
+- Do not include public copy that reveals the editing process, such as "Facebook edition", "same full text", or "re-ordered for a stronger share opening".
+- Use the marathon hook early, but add a short context paragraph first: date, race, city, and why this story matters.
+- Move race-day report before slower backstory when useful for sharing.
+- Add transitions when moving to wedding, Wuhan/travel, packet pickup, old city, family, or postscript sections.
+- Keep the full English text and all photos unless the user asks for a shorter share version.
+- Include engagement section with `data-locale="en"` and `data-page-key="run50-{slug}-facebook-en"`.
+
+## Visual Channel Themes
+
+Apply the same visual language across story indexes and cards so readers can recognize each channel quickly.
+
+### RunCN Area
+
+Use for China race stories such as Xiangyang, Guilin, and Hong Kong.
+
+- Series label: `RunCN #N`
+- Card class: `run-cn`
+- Cover badge city color: red `#cc0000`
+- Background family: warm peach/ivory
+- Cover title: top-left city name only, no subtitle
+- Cover badge: fixed top-right benchmark box and fixed text positions
+
 ```css
 .story-card.run-cn {
-  background: #faf2ee;      /* Soft warm peach-ivory */
-  border: 1px solid #ebdcd6; /* Matching warm border */
+  background: #faf2ee;
+  border-color: #ebdcd6;
 }
 .story-card.run-cn:hover {
-  border-color: #dfbeaf;    /* Darker warm hover border */
+  border-color: #dfbeaf;
 }
 ```
 
-### Cool Theme (US Run50 Stories)
-Apply the `.run-50` class to the `.story-card` element:
+### Run50 Area
+
+Use for U.S. state marathon stories.
+
+- Series label: `Run50 #N`
+- Card class: `run-50`
+- Cover badge city color: blue `#0b67c2`
+- Background family: cool glacier blue
+- Cover title: top-left city/state/race name only, no subtitle
+- Cover badge: same fixed benchmark geometry as RunCN; shrink long second-line text to fit
+
 ```css
 .story-card.run-50 {
-  background: #edf3f7;      /* Soft cool slate-blue */
-  border: 1px solid #d0dfe8; /* Matching cool border */
+  background: #edf3f7;
+  border-color: #d0dfe8;
 }
 .story-card.run-50:hover {
-  border-color: #acc4d3;    /* Darker cool hover border */
+  border-color: #acc4d3;
 }
 ```
 
-### Eucalyptus Theme (World RunWorld Stories)
-Apply the `.run-world` class to the `.story-card` element:
+### RunWorld Area
+
+Use for international stories outside the U.S. and China, such as Pisa and Mexico.
+
+- Series label: `RunWorld #N`
+- Card class: `run-world`
+- Cover badge city color: green `#2f855a`
+- Background family: soft sage
+- Cover title: top-left city/country race name only, no subtitle
+- Cover badge: same fixed benchmark geometry as RunCN; icon art stays below the title/badge zone
+
 ```css
 .story-card.run-world {
-  background: #f1f6f2;      /* Soft sage-white */
-  border: 1px solid #d0dfd4; /* Matching cool green-gray border */
+  background: #f1f6f2;
+  border-color: #d0dfd4;
 }
 .story-card.run-world:hover {
-  border-color: #abc4b1;    /* Sage-green hover border */
+  border-color: #abc4b1;
 }
 ```
 
-### Transitions and Interactivity
-Ensure all listing indexes have interactive transitions and card lift:
+Cards should keep a subtle lift interaction:
+
 ```css
 .story-card {
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
@@ -89,56 +174,188 @@ Ensure all listing indexes have interactive transitions and card lift:
 }
 ```
 
----
+## Engagement Block
 
-## 4. SVG Cover Badge Alignment & Dimensions
-
-When generating or updating city icon cover SVGs, the top-right badge box (`RunCN #` or `Run50 #` and city name) must be mathematically sized and shifted to prevent text-border interference.
-
-### A. 1200x750 Canvas (Guilin, Hong Kong, Miami)
-```xml
-<rect x="750" y="62" width="370" height="146" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
-<text x="780" y="114" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#20242b">RunCN #[Num]</text>
-<text x="780" y="168" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="900" fill="#cc0000">[CITY_NAME]</text>
-```
-
-### B. 1600x1000 Canvas (Xiangyang)
-Scaled up by 1.33x proportionally to match display sizing:
-```xml
-<rect x="993" y="83" width="500" height="195" rx="29" fill="#ffffff" stroke="#20242b" stroke-width="11"/>
-<text x="1033" y="152" font-family="Arial, sans-serif" font-size="45" font-weight="900" fill="#20242b">RunCN #[Num]</text>
-<text x="1033" y="224" font-family="Arial, sans-serif" font-size="59" font-weight="900" fill="#cc0000">[CITY_NAME]</text>
-```
-
----
-
-## 5. Supabase Engagement System Configuration
-
-Every individual story page must load page views and comments. Inject the following scripts before `</body>`:
+Pages should load:
 
 ```html
-<!-- Engagement Configuration & Library -->
-<script src="[relative_path_to_assets]/zz-engagement-config.js" defer></script>
-<script src="[relative_path_to_assets]/zz-engagement.js" defer></script>
-<link rel="stylesheet" href="[relative_path_to_assets]/zz-engagement.css">
-
-<!-- Container for comments -->
-<section data-zz-comments></section>
+<link rel="stylesheet" href="../../../assets/zz-engagement.css?v=YYYYMMDD">
 ```
 
----
+Use the correct relative path for the page depth.
 
-## 6. Homepage & Listing Index Updates (Deploying)
+Near the bottom of each page:
 
-To make the new story visible and guarantee the display is updated immediately without browser caching issues:
+```html
+<section class="zz-engagement" data-zz-engagement data-locale="en" data-page-key="run50-city-marathon-en">
+  <div class="zz-engagement-shell">
+    <div>
+      <p class="zz-engagement-kicker">Comments / Views</p>
+      <h2>Say something after the run</h2>
+      <p class="zz-engagement-note">No account is needed to submit a comment. New comments appear right away.</p>
+      <div class="zz-engagement-stats">
+        <span class="zz-engagement-stat" id="busuanzi_container_page_pv">
+          <span>Views</span>
+          <strong id="busuanzi_value_page_pv" data-zz-view-count>--</strong>
+        </span>
+      </div>
+    </div>
+    <div class="zz-engagement-card">
+      <div id="supabase-comments-city-en" data-zz-supabase-comments></div>
+      <p class="zz-engagement-status" data-zz-engagement-status>Loading comments...</p>
+    </div>
+  </div>
+</section>
+<script src="../../../assets/zz-engagement-config.js?v=YYYYMMDD"></script>
+<script src="../../../assets/zz-engagement.js?v=YYYYMMDD"></script>
+```
 
-1. **Root index.html**:
-   - Link the channel entries in the `.video-grid` to their listing subfolders.
-   - Use distinctive, unique thumbnails representing each channel to ensure visual recognition (e.g. Guilin cover for Chinese stories, Hong Kong for English, Miami for Facebook).
-2. **Cache Invalidation (Cache Busting)**:
-   - Always append a version parameter query string `?v=YYYYMMDD-X` (where X is a sequence number) to all SVG cover image tags:
-     ```html
-     <img src="assets/thumb-run50-guilin-icons.svg?v=20260604-9" alt="Guilin cover">
-     ```
-3. **Commit & Push**:
-   - Run `git add .`, commit with description, and push to main. GitHub Pages Actions will build and deploy the changes within 2 minutes.
+For Chinese pages, use Chinese labels and `data-locale="zh-CN"`.
+
+When adding a new story, update `supabase/run50-comments.sql` with the three new page keys in both the whitelist constraint and insert policy. The current model is public anonymous `select` and `insert`, no approval workflow; `is_hidden` is only for hiding abusive comments later.
+
+## Cover Assets
+
+Generate both:
+
+- `assets/og-run50-{slug}-icons.png`: `1200x630`, RGB PNG, for Open Graph/Facebook previews.
+- `assets/thumb-run50-{slug}-icons.svg`: `viewBox="0 0 1200 750"`, for list cards.
+
+Design rules:
+
+- City icon style, not a photo.
+- Xiangyang, Guilin, and Hong Kong are the baseline cover family: top-left city/race name, top-right series badge, city icons below the text zone.
+- The top-left has only the city or race name. Do not add a subtitle under it.
+- RunCN/Run50/RunWorld badge stays in the fixed top-right zone.
+- Main city icons stay in the lower half, normally starting below `y=245` on `1200x630` PNGs and below `y=280` on `1200x750` SVG thumbnails.
+- Keep enough clear space between title, badge, skyline/mountains/bridges/medals.
+- Use a real visual check with `view_image` for PNGs. For SVGs, open a local preview page or inspect in browser if needed.
+- If text may be long, fit the city name into the badge instead of letting it collide with the border. Do not let the badge box press against, cover, or visually trap the text.
+
+Fixed Open Graph PNG benchmark for `1200x630`:
+
+- Canvas: `1200x630`, RGB.
+- Top-left title text top-left: `x=64`, `y=64`, font `66px`, bold, fill `#20242b`.
+- Badge box: `x=760`, `y=64`, `width=362`, `height=164`, radius `22`, fill `#ffffff`, stroke `#20242b`, stroke width `7`.
+- Badge first line: `x=790`, `y=112`, font `40px`, bold, fill `#20242b`, text `RunCN #N`, `Run50 #N`, or `RunWorld #N`.
+- Badge second line: `x=790`, `y=166`, font up to `50px`, bold, fit to max width `302px`.
+- Badge city color: RunCN red `#cc0000`, Run50 blue `#0b67c2`, RunWorld green `#2f855a`.
+
+Fixed thumbnail SVG benchmark for `1200x750`:
+
+```xml
+<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">CITY NAME</text>
+<rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunCN #N</text>
+<text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#cc0000">CITY NAME</text>
+```
+
+Use the same SVG badge geometry for every channel. Change only the series label and second-line city color:
+
+- RunCN city text: `#cc0000`.
+- Run50 city text: `#0b67c2`.
+- RunWorld city text: `#2f855a`.
+
+For longer city names, keep `x`, `y`, box size, and safe zone fixed, then reduce the second-line font size until the text fits inside the badge. Keep the badge in the top-right visual zone and city icons in the lower half.
+
+For larger `1600x1000` icon art, scale this system proportionally, roughly `1.33x`, while preserving safe margins:
+
+```xml
+<text x="93" y="138" font-family="Arial, Helvetica, sans-serif" font-size="88" font-weight="900" fill="#20242b">CITY NAME</text>
+<rect x="1008" y="83" width="484" height="221" rx="29" fill="#ffffff" stroke="#20242b" stroke-width="11"/>
+<text x="1051" y="162" font-family="Arial, Helvetica, sans-serif" font-size="55" font-weight="900" fill="#20242b">RunCN #N</text>
+<text x="1051" y="242" font-family="Arial, Helvetica, sans-serif" font-size="69" font-weight="900" fill="#cc0000">CITY NAME</text>
+```
+
+## Index Updates
+
+Update the relevant index pages:
+
+- root `index.html` or root Run50 card entry when the public homepage should surface the channel/story.
+- `run50/stories/chinese/index.html`
+- `run50/stories/english/index.html`
+- `run50/facebook/index.html`
+- `run50/index.html` if the top-level Run50 navigation/card set should expose the new story or channel.
+
+Use class themes consistently:
+
+- `run-cn` for China RunCN stories.
+- `run-50` for U.S. Run50 stories.
+- `run-world` for international RunWorld stories.
+
+Add cache-busting to thumbnail URLs:
+
+```html
+<img src="../../../assets/thumb-run50-city-icons.svg?v=YYYYMMDD-X" alt="City Marathon icon cover">
+```
+
+Use a fresh suffix whenever covers or thumbnails change. If only copy changes, cache-bust affected HTML-linked assets when previews or cards may otherwise stay stale.
+
+## Local Verification
+
+Recommended checks:
+
+```powershell
+$env:Path="C:\Program Files\Git\cmd;C:\Program Files\Git\bin;$env:Path"
+git status --short
+```
+
+Run the relevant builder:
+
+```powershell
+& 'C:\Users\ZZ\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' tools/build_city_story.py
+```
+
+Check generated images:
+
+```powershell
+@'
+from PIL import Image
+from pathlib import Path
+for path in Path("assets").glob("og-run50-*-icons.png"):
+    im = Image.open(path)
+    print(path, im.size, im.mode)
+'@ | python -
+```
+
+Serve locally if needed:
+
+```powershell
+python -m http.server 43210 --bind 127.0.0.1
+```
+
+Open local URLs in the in-app browser:
+
+- `http://127.0.0.1:43210/run50/stories/chinese/{slug}.html`
+- `http://127.0.0.1:43210/run50/stories/english/{slug}.html`
+- `http://127.0.0.1:43210/run50/facebook/{slug}.html`
+
+Verify:
+
+- no text overlap
+- images load
+- comments UI appears
+- view placeholder appears
+- mobile width does not break
+- OG tags point to absolute live URLs where appropriate
+
+## Deploy Verification
+
+Commit only relevant files. Do not include temporary server pid files, local preview files, or Python `__pycache__`.
+
+Push to `main`, then check Pages:
+
+```powershell
+$headers = @{ 'User-Agent' = 'Codex' }
+Invoke-RestMethod -Uri 'https://api.github.io/repos/ArsenanZZ/ZZ/actions/runs?per_page=5' -Headers $headers
+```
+
+After the matching `head_sha` completes with `success`, verify live URLs with cache busting:
+
+- `https://arsenanzz.github.io/ZZ/run50/stories/chinese/{slug}.html?v=TIMESTAMP`
+- `https://arsenanzz.github.io/ZZ/run50/stories/english/{slug}.html?v=TIMESTAMP`
+- `https://arsenanzz.github.io/ZZ/facebook/{slug}.html?v=TIMESTAMP`
+- `https://arsenanzz.github.io/ZZ/assets/og-run50-{slug}-icons.png?v=TIMESTAMP`
+- `https://arsenanzz.github.io/ZZ/assets/thumb-run50-{slug}-icons.svg?v=TIMESTAMP`
+
+Final response should be concise and include published URLs, verification status, and commit hash.
