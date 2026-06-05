@@ -263,11 +263,11 @@
       <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:rgba(33, 26, 22, .68); border-top:1px solid #d0dfe8; padding-top:10px; flex-wrap:wrap;">
         <div style="display:flex; align-items:center; gap:6px;">
           <span style="display:inline-block; width:12px; height:12px; background:#0e7490; border-radius:3px;"></span>
-          <span>Completed Story / Oral Script (9 States)</span>
+          <span>Completed Story / Oral Script (13 States)</span>
         </div>
         <div style="display:flex; align-items:center; gap:6px;">
           <span style="display:inline-block; width:12px; height:12px; background:#b7832f; border-radius:3px;"></span>
-          <span>Planned / Historical (26 States)</span>
+          <span>Planned / Historical (22 States)</span>
         </div>
         <div style="display:flex; align-items:center; gap:6px;">
           <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
@@ -427,8 +427,8 @@
       "GA": ["Georgia"],
       "CO": ["Texas_1_"],
       "MO": ["Iowa_1_"],
-      "HI": ["Hawaii_1_"],
-      "AK": ["Alaska_1_"],
+      "HI": ["Alaska_1_", "hawaii_1_"],
+      "AK": ["Hawaii_1_"],
       "ID": ["Idaho"],
       "IA": ["Minessota"],
       "MS": ["Mossouri"],
@@ -442,7 +442,8 @@
       "SD": ["South_Dakota"],
       "UT": ["Utah_1_"],
       "WY": ["Montana_1_"],
-      "MD": ["Pensilvania_1_"]
+      "MD": ["Pensilvania_1_"],
+      "WA": ["Oklahoma_1_"]
     };
     // Display names keyed by abbreviation — used for tooltips so we never derive
     // the label from the (scrambled) SVG path id.
@@ -457,11 +458,11 @@
       "GA": "Georgia", "CO": "Colorado", "MO": "Missouri", "HI": "Hawaii", "AK": "Alaska",
       "ID": "Idaho", "IA": "Iowa", "MS": "Mississippi", "MT": "Montana", "NE": "Nebraska",
       "NV": "Nevada", "NJ": "New Jersey", "NM": "New Mexico", "OK": "Oklahoma",
-      "OR": "Oregon", "SD": "South Dakota", "UT": "Utah", "WY": "Wyoming", "MD": "Maryland"
+      "OR": "Oregon", "SD": "South Dakota", "UT": "Utah", "WY": "Wyoming", "MD": "Maryland", "WA": "Washington"
     };
     // One real-geometry path id per state (the values of _HM), used to mute every
     // state to the base colour and to bind hover/click handlers.
-    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Vermont", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Hawaii_1_", "Alaska_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_"];
+    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Vermont", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Hawaii_1_", "Alaska_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "hawaii_1_", "Oklahoma_1_"];
     const _MUTED = '#dedad3';
 
     const _CITY_LAT_LON = {
@@ -841,7 +842,7 @@
       _muteAll();
       _bindMapEventsOnce();
       
-      const completed = ['KY', 'FL', 'NC', 'AR', 'SC', 'PA', 'WI', 'MI', 'NH'];
+      const completed = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
       completed.forEach(abbr => {
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
@@ -852,7 +853,7 @@
         });
       });
       
-      const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'IL', 'TN', 'WV', 'TX'];
+      const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'WA'];
       placeholders.forEach(abbr => {
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
@@ -877,9 +878,9 @@
           if (cityCoords) {
             let x, y;
             if (abbr === 'HI') {
-              x = 368.4; y = 929.4;
-            } else if (abbr === 'AK') {
               x = 580.3; y = 959.2;
+            } else if (abbr === 'AK') {
+              x = 368.4; y = 929.4;
             } else {
               const coords = _projectAlbers(cityCoords.lat, cityCoords.lon);
               x = coords.x;

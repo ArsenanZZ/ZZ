@@ -501,15 +501,15 @@
                 </div>
                 
                 <!-- 地图图例 -->
-                <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:#555; border-top:1px solid #f0f0f0; padding-top:10px; flex-wrap:wrap;">
-                    <div style="display:flex; align-items:center; gap:6px;">
-                        <span style="display:inline-block; width:12px; height:12px; background:#1a2a3a; border-radius:3px;"></span>
-                        <span>已完赛并有口播剧本 (9州)</span>
-                    </div>
-                    <div style="display:flex; align-items:center; gap:6px;">
-                        <span style="display:inline-block; width:12px; height:12px; background:#c8860a; border-radius:3px;"></span>
-                        <span>历史赛记 / 计划中 (26州)</span>
-                    </div>
+                    <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:#555; border-top:1px solid #f0f0f0; padding-top:10px; flex-wrap:wrap;">
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            <span style="display:inline-block; width:12px; height:12px; background:#1a2a3a; border-radius:3px;"></span>
+                            <span>已完赛并有口播剧本 (13州)</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            <span style="display:inline-block; width:12px; height:12px; background:#c8860a; border-radius:3px;"></span>
+                            <span>历史赛记 / 计划中 (22州)</span>
+                        </div>
                     <div style="display:flex; align-items:center; gap:6px;">
                         <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
                         <span>跑马城市 (红点点亮)</span>
@@ -2571,58 +2571,71 @@
 </div>
 <script>
 const _HM={
-  "KY": ["Kentucky", "Kentucky_1_"],
-  "FL": ["Florida_1_"],
-  "NC": ["North_Carolina_1_"],
-  "AR": ["Arkansas", "Arkansas_1_"],
-  "SC": ["South_Carolina", "South_Carolina_1_"],
-  "PA": ["Pensilvania", "Pensilvania_1_"],
-  "WI": ["Wisconsin", "Wisconsin_1_"],
-  "MI": ["Michigan", "Michigan_1_"],
-  "NH": ["New_Hampshire", "New_Hampshire_1_"],
-  "OH": ["Ohio", "Ohio_1_"],
-  "IN": ["Indiana", "Indiana_1_"],
-  "NY": ["New_York", "New_York_2_"],
-  "CA": ["California"],
-  "HI": ["hawaii_1_"],
-  "AK": ["Alaska_1_"],
-  "GA": ["Georgia", "Georgia_1_"],
-  "CO": ["Colorado", "Colorado_1_"],
-  "TX": ["Texas_1_"],
-  "LA": ["Louisiana_1_"],
-  "VA": ["Virginia", "Virginia_1_"],
-  "ND": ["North_Dakota", "North_Dakota_1_"],
-  "KS": ["Kansas", "Kansas_1_"],
-  "VT": ["Vermont", "Vermont_1_"],
-  "AL": ["Alabama", "alabama"],
-  "AZ": ["Arizona", "Arizona_1_"],
-  "DE": ["Delaware"],
-  "MN": ["Minnesotta", "Minessota"],
-  "CT": ["Connecticut", "Connecticut_1_"],
-  "RI": ["Rhode_Island", "Rhode_Island_1_"],
-  "MA": ["Massachusets", "Massachusets_1_"],
-  "ME": ["Maine", "Maine_1_"],
-  "IL": ["Illinois", "Illinois_1_"],
-  "MO": ["Missouri", "Mossouri"],
-  "TN": ["Tennessee"],
-  "WV": ["West_Virginia", "West_Virginia_1_"],
-  "WY": ["Wyoming", "Wyoming_1_"],
-  "IA": ["Iowa", "Iowa_1_"],
-  "NE": ["Nebraska", "Nebraska_1_"],
-  "SD": ["South_Dakota", "South_Dakota_1_"],
-  "MT": ["Montana", "Montana_1_"],
-  "NM": ["New_Mexico", "New_Mexico_1_"],
-  "UT": ["Utah", "Utah_1_"],
-  "ID": ["Idaho", "Idaho_1_"],
-  "WA": ["Washington_1_"],
-  "OR": ["Oregon_1_", "Oregon_41_"],
-  "NV": ["Nevada_1_", "Nevada_41_"],
-  "OK": ["Oklahoma", "Oklahoma_1_"],
-  "MS": ["Missisppi", "Missispi"],
-  "NJ": ["New_Jersey", "New_Jersey_1_"],
-  "MD": ["Maryland"]
+  "IL": ["Illinois"],
+  "TN": ["Alabama"],
+  "WV": ["West_Virginia"],
+  "TX": ["Kansas_1_"],
+  "FL": ["South_Carolina_1_"],
+  "NC": ["Maryland"],
+  "AR": ["Tennessee"],
+  "SC": ["South_Carolina"],
+  "KY": ["Georgia_1_"],
+  "PA": ["Pensilvania"],
+  "WI": ["Wisconsin"],
+  "MI": ["Michigan"],
+  "NH": ["Vermont"],
+  "LA": ["Arkansas_1_"],
+  "VA": ["North_Carolina_1_"],
+  "ND": ["South_Dakota_1_"],
+  "KS": ["Kansas"],
+  "VT": ["New_Hampshire_1_"],
+  "AL": ["alabama"],
+  "AZ": ["Arizona_1_"],
+  "DE": ["Massachusets_1_"],
+  "MN": ["Minnesotta"],
+  "CT": ["New_York_2_"],
+  "RI": ["Connecticut"],
+  "MA": ["Vermont_1_"],
+  "ME": ["Michigan_1_"],
+  "OH": ["Ohio"],
+  "NY": ["New_York"],
+  "CA": ["Arizona"],
+  "IN": ["Indiana"],
+  "GA": ["Georgia"],
+  "CO": ["Texas_1_"],
+  "MO": ["Iowa_1_"],
+  "HI": ["Alaska_1_", "hawaii_1_"],
+  "AK": ["Hawaii_1_"],
+  "ID": ["Idaho"],
+  "IA": ["Minessota"],
+  "MS": ["Mossouri"],
+  "MT": ["Washington_1_"],
+  "NE": ["Nebraska"],
+  "NV": ["Nevada_41_"],
+  "NJ": ["New_Jersey"],
+  "NM": ["Idaho_1_"],
+  "OK": ["Oklahoma"],
+  "OR": ["Nevada_1_"],
+  "SD": ["South_Dakota"],
+  "UT": ["Utah_1_"],
+  "WY": ["Montana_1_"],
+  "MD": ["Pensilvania_1_"],
+  "WA": ["Oklahoma_1_"]
 };
-const _SF=["Michigan", "Michigan_1_", "Maine", "Maine_1_", "New_Hampshire", "New_Hampshire_1_", "Vermont", "Vermont_1_", "Massachusets", "Massachusets_1_", "Delaware", "Rhode_Island", "Rhode_Island_1_", "New_York", "New_York_2_", "Connecticut", "Connecticut_1_", "New_Jersey", "New_Jersey_1_", "Pensilvania", "Pensilvania_1_", "Maryland", "North_Carolina_1_", "Virginia", "Virginia_1_", "West_Virginia", "West_Virginia_1_", "Ohio", "Ohio_1_", "Indiana", "Indiana_1_", "South_Carolina", "South_Carolina_1_", "Florida_1_", "Georgia", "Georgia_1_", "Kentucky", "Kentucky_1_", "Illinois", "Illinois_1_", "Wisconsin", "Wisconsin_1_", "Minnesotta", "Minessota", "Iowa", "Iowa_1_", "Missouri", "Mossouri", "Missisppi", "Missispi", "alabama", "Alabama", "Tennessee", "Arkansas", "Arkansas_1_", "Louisiana_1_", "Nebraska", "Nebraska_1_", "South_Dakota", "South_Dakota_1_", "North_Dakota", "North_Dakota_1_", "Kansas", "Kansas_1_", "Texas_1_", "Colorado", "Colorado_1_", "Oklahoma", "Oklahoma_1_", "Washington_1_", "Montana", "Montana_1_", "Wyoming_1_", "Wyoming", "Idaho", "Idaho_1_", "New_Mexico_1_", "New_Mexico", "Utah_1_", "Utah", "Arizona_1_", "Arizona", "California", "Nevada_41_", "Nevada_1_", "Oregon_41_", "Oregon_1_"];
+const _STATE_NAMES = {
+  "IL": "伊利诺伊", "TN": "田纳西", "WV": "西弗吉尼亚", "TX": "德克萨斯",
+  "FL": "佛罗里达", "NC": "北卡罗莱纳", "AR": "阿肯色", "SC": "南卡罗莱纳",
+  "KY": "肯塔基", "PA": "宾夕法尼亚", "WI": "威斯康辛", "MI": "密歇根",
+  "NH": "新罕布什尔", "LA": "路易斯安那", "VA": "弗吉尼亚", "ND": "北达科他",
+  "KS": "堪萨斯", "VT": "佛蒙特", "AL": "阿拉巴马", "AZ": "亚利桑那", "DE": "特拉华",
+  "MN": "明尼苏达", "CT": "康涅狄格", "RI": "罗德岛", "MA": "马萨诸塞",
+  "ME": "缅因", "OH": "俄亥俄", "NY": "纽约", "CA": "加利福尼亚", "IN": "印第安纳",
+  "GA": "佐治亚", "CO": "科罗拉多", "MO": "密苏里", "HI": "夏威夷", "AK": "阿拉斯加",
+  "ID": "爱达荷", "IA": "艾奥瓦", "MS": "密西西比", "MT": "蒙大拿", "NE": "内布拉斯加",
+  "NV": "内华达", "NJ": "新泽西", "NM": "新墨西哥", "OK": "俄克拉荷马",
+  "OR": "俄勒冈", "SD": "南达科他", "UT": "犹他", "WY": "怀俄明", "MD": "马里兰", "WA": "华盛顿"
+};
+const _SF=["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Vermont", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Hawaii_1_", "Alaska_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "hawaii_1_", "Oklahoma_1_"];
 const _MUTED='#dedad3';
 const _SC_STATE={
   'script-ky':{s:'KY',c:'#1a2a3a'},
@@ -2794,8 +2807,7 @@ function _showStateTooltip(e, abbr) {
     tooltip.innerHTML = `<h4>${abbr}</h4><div style="color:#aaa;">没有在此州的跑马记录</div>`;
     if (hoverStatus) hoverStatus.textContent = `${abbr}: 无跑马记录`;
   } else {
-    const stateName = document.getElementById('map_' + _HM[abbr][0])?.getAttribute('id') || abbr;
-    const cleanStateName = stateName.replace('map_', '').replace('_1_', '').replace('_', ' ');
+    const cleanStateName = _STATE_NAMES[abbr] || abbr;
     
     let html = `<h4>📍 ${cleanStateName} (${races.length} 场完赛)</h4>`;
     races.forEach(r => {
@@ -2980,7 +2992,7 @@ function _injectWelcomeMap() {
   _bindMapEventsOnce();
   
   // Highlight completed states (navy)
-  const completed = ['KY', 'FL', 'NC', 'AR', 'SC', 'PA', 'WI', 'MI', 'NH'];
+  const completed = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
   completed.forEach(abbr => {
     (_HM[abbr] || []).forEach(id => {
       const el = document.getElementById('map_' + id);
@@ -2992,7 +3004,7 @@ function _injectWelcomeMap() {
   });
   
   // Highlight planned/historical states (accent gold)
-  const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'IL', 'TN', 'WV', 'TX'];
+  const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'WA'];
   placeholders.forEach(abbr => {
     (_HM[abbr] || []).forEach(id => {
       const el = document.getElementById('map_' + id);
@@ -3019,9 +3031,9 @@ function _injectWelcomeMap() {
       if (cityCoords) {
         let x, y;
         if (abbr === 'HI') {
-          x = 368.4; y = 929.4; // Hawaii shape center
+          x = 580.3; y = 959.2; // Hawaii shape center
         } else if (abbr === 'AK') {
-          x = 580.3; y = 959.2; // Alaska shape center
+          x = 368.4; y = 929.4; // Alaska shape center
         } else {
           const coords = _projectAlbers(cityCoords.lat, cityCoords.lon);
           x = coords.x;
