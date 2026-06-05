@@ -786,7 +786,7 @@ def facebook_page(article: str) -> str:
       <h1>{escape(title)}</h1>
       <p class="dek">{escape(desc)}</p>
       <div class="byline"><span>By Arsenan</span><span>Pisa, Italy</span><span>December 21, 2025</span></div>
-      <figure class="lead-media"><img src="../../assets/og-run50-pisa-icons.png" alt="Icon-style Pisa Marathon cover"><figcaption>Pisa icon cover with the Leaning Tower, Arno River, Tuscan hills, sea and medal.</figcaption></figure>
+      <figure class="lead-media"><img src="../../assets/og-run50-pisa-icons.png" alt="Icon-style Pisa Marathon cover"><figcaption>Pisa icon cover with the Leaning Tower, Galileo's telescope, Tuscan hills and medal.</figcaption></figure>
     </section>
     <section class="story-grid">
       <aside class="rail">
@@ -832,56 +832,94 @@ def fit_font(draw, text, max_width, start_size, bold=False, min_size=24):
 def write_pisa_png():
     image = Image.new("RGB", (1200, 630), "#eef5ec")
     draw = ImageDraw.Draw(image)
-    draw.text((64, 58), "Pisa Marathon", font=font(66, True), fill="#20242b")
-    draw.text((68, 132), "Leaning Tower - Tuscan roads - Ligurian Sea", font=font(28), fill="#667085")
-    draw.rounded_rectangle((774, 64, 1122, 224), radius=22, fill="#ffffff", outline="#20242b", width=7)
-    draw.text((804, 112), "RunWorld #6", font=font(38, True), fill="#20242b")
-    draw.text((804, 166), "PISA", font=font(50, True), fill="#b24a33")
+    draw.text((64, 64), "PISA", font=font(66, True), fill="#20242b")
+    draw.rounded_rectangle((760, 64, 1122, 228), radius=22, fill="#ffffff", outline="#20242b", width=7)
+    draw.text((790, 112), "RunWorld #6", font=font(40, True), fill="#20242b")
+    draw.text((790, 166), "PISA", font=font(50, True), fill="#2f855a")
 
-    draw.ellipse((1015, 250, 1118, 353), fill="#f2b441")
-    draw.rectangle((0, 472, 1200, 630), fill="#5c8d94")
-    draw.polygon([(0, 500), (170, 450), (330, 522), (510, 474), (680, 428), (850, 508), (1030, 464), (1200, 430), (1200, 630), (0, 630)], fill="#89b58a")
-    draw.polygon([(0, 555), (230, 500), (430, 566), (640, 520), (850, 570), (1040, 518), (1200, 492), (1200, 630), (0, 630)], fill="#d8c78f")
-    draw.rectangle((0, 540, 1200, 630), fill="#3f8fa0")
-    draw.arc((702, 370, 1084, 618), 192, 350, fill="#ffffff", width=22)
-    draw.arc((726, 400, 1060, 610), 200, 340, fill="#b24a33", width=12)
+    draw.ellipse((992, 265, 1088, 361), fill="#f2b441")
+    draw.ellipse((866, 274, 878, 286), fill="#f2b441")
+    draw.line((872, 250, 872, 310), fill="#f2b441", width=4)
+    draw.line((842, 280, 902, 280), fill="#f2b441", width=4)
+    draw.ellipse((910, 330, 924, 344), fill="#d9a441", outline="#8b5e20", width=2)
 
-    tower = [(226, 230), (356, 212), (412, 520), (270, 540)]
+    draw.rectangle((0, 500, 1200, 630), fill="#d6c987")
+    draw.polygon([(0, 508), (160, 450), (350, 520), (540, 468), (720, 420), (900, 504), (1080, 458), (1200, 435), (1200, 630), (0, 630)], fill="#8ab48a")
+    draw.polygon([(0, 574), (180, 532), (360, 590), (560, 545), (760, 592), (980, 538), (1200, 512), (1200, 630), (0, 630)], fill="#eef5ec")
+    draw.polygon([(0, 584), (190, 548), (400, 592), (640, 555), (850, 598), (1050, 558), (1200, 540), (1200, 630), (0, 630)], fill="#2f855a")
+    draw.rectangle((0, 594, 1200, 630), fill="#3f8fa0")
+
+    tower = [(250, 238), (406, 216), (470, 565), (292, 588)]
     draw.polygon(tower, fill="#f7f2df", outline="#20242b")
-    for y in [270, 322, 374, 426, 478]:
-        draw.line((245, y, 386, y - 18), fill="#b24a33", width=6)
-    for x in [265, 300, 335]:
-        draw.line((x, 238, x + 52, 528), fill="#20242b", width=3)
-    draw.polygon([(206, 530), (436, 502), (454, 536), (224, 564)], fill="#b24a33")
-    draw.ellipse((214, 510, 314, 610), fill="#d9a441", outline="#8b5e20", width=8)
-    draw.ellipse((244, 540, 284, 580), fill="#eef5ec")
-    draw.line((238, 510, 264, 470, 292, 510), fill="#8b5e20", width=7)
+    for line in [(262, 282, 420, 260), (272, 336, 432, 314), (282, 390, 444, 368), (292, 444, 456, 422), (304, 500, 466, 478)]:
+        draw.line(line, fill="#b24a33", width=7)
+    for line in [(285, 252, 342, 578), (326, 246, 388, 572), (366, 240, 436, 566)]:
+        draw.line(line, fill="#20242b", width=4)
+    for x, y in [(292, 300), (338, 292), (384, 284), (302, 356), (350, 348), (396, 340), (314, 414), (362, 406), (410, 398)]:
+        draw.rounded_rectangle((x, y, x + 18, y + 30), radius=8, fill="#20242b")
+    draw.polygon([(225, 565), (496, 530), (518, 574), (244, 608)], fill="#b24a33")
+    draw.line((250, 610, 520, 576), fill="#20242b", width=5)
+
+    draw.polygon([(686, 410), (742, 410), (766, 562), (630, 562)], fill="#6b4f3b", outline="#20242b")
+    draw.polygon([(652, 440), (720, 410), (705, 562), (610, 562)], fill="#2f855a", outline="#20242b")
+    draw.ellipse((668, 350, 718, 400), fill="#d6a36a", outline="#20242b", width=4)
+    draw.pieslice((656, 332, 725, 382), 190, 20, fill="#7a4f2a", outline="#20242b")
+    draw.line((660, 344, 725, 344), fill="#20242b", width=5)
+    draw.line((708, 380, 750, 424), fill="#d6a36a", width=10)
+    draw.line((650, 424, 704, 390), fill="#d6a36a", width=10)
+    draw.line((708, 365, 882, 298), fill="#8b5e20", width=18)
+    draw.line((708, 365, 882, 298), fill="#20242b", width=5)
+    draw.ellipse((872, 288, 896, 312), fill="#f2b441", outline="#20242b", width=3)
+    draw.ellipse((702, 360, 714, 372), fill="#20242b")
+    draw.line((670, 562, 648, 604), fill="#20242b", width=8)
+    draw.line((720, 562, 748, 604), fill="#20242b", width=8)
+
+    draw.ellipse((160, 560, 220, 620), fill="#d9a441", outline="#8b5e20", width=6)
+    draw.ellipse((178, 578, 202, 602), fill="#eef5ec")
     image.save(REPO / "assets" / "og-run50-pisa-icons.png", "PNG")
 
 
 def write_pisa_svg():
     svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
-<title id="title">Pisa Marathon icon cover</title>
-<desc id="desc">Icon style cover with Pisa title, RunWorld badge, Leaning Tower, Tuscan hills, sea, bridge, sun and medal.</desc>
+<title id="title">Pisa icon cover</title>
+<desc id="desc">Icon style cover with Pisa title, fixed RunWorld badge, Leaning Tower, Galileo looking through a telescope, Tuscan hills and medal.</desc>
 <rect width="1200" height="750" fill="#eef5ec"/>
-<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">Pisa Marathon</text>
-<text x="74" y="160" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#667085">Leaning Tower - Tuscan roads - Ligurian Sea</text>
-<rect x="774" y="62" width="348" height="162" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
-<text x="804" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunWorld #6</text>
-<text x="804" y="176" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#b24a33">PISA</text>
-<circle cx="1072" cy="292" r="58" fill="#f2b441"/>
-<path d="M0 580 C170 530 340 620 510 560 C690 500 850 610 1030 548 C1115 520 1160 520 1200 498 L1200 750 L0 750 Z" fill="#89b58a"/>
-<path d="M0 650 C230 590 430 675 640 620 C850 575 1040 640 1200 590 L1200 750 L0 750 Z" fill="#d8c78f"/>
-<path d="M0 650 L1200 596 L1200 750 L0 750 Z" fill="#3f8fa0"/>
-<path d="M700 648 Q892 500 1084 648" stroke="#ffffff" stroke-width="26" fill="none"/>
-<path d="M728 648 Q894 535 1060 648" stroke="#b24a33" stroke-width="13" fill="none"/>
-<path d="M230 278 L360 258 L420 638 L270 656 Z" fill="#f7f2df" stroke="#20242b" stroke-width="6"/>
-<path d="M246 326 L386 306 M256 386 L396 366 M266 446 L406 426 M276 506 L416 486 M286 566 L426 546" stroke="#b24a33" stroke-width="7"/>
-<path d="M268 292 L324 648 M306 286 L366 642 M344 280 L408 638" stroke="#20242b" stroke-width="4"/>
-<path d="M206 636 L438 608 L458 646 L224 678 Z" fill="#b24a33"/>
-<circle cx="286" cy="654" r="55" fill="#d9a441" stroke="#8b5e20" stroke-width="8"/>
-<circle cx="286" cy="654" r="24" fill="#eef5ec"/>
-<path d="M254 628 L286 588 L318 628" stroke="#8b5e20" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">PISA</text>
+<rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunWorld #6</text>
+<text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#2f855a">PISA</text>
+<circle cx="1036" cy="358" r="58" fill="#f2b441"/>
+<circle cx="908" cy="330" r="8" fill="#d9a441" stroke="#8b5e20" stroke-width="2"/>
+<circle cx="872" cy="292" r="7" fill="#f2b441"/>
+<path d="M872 258 L872 326 M838 292 L906 292" stroke="#f2b441" stroke-width="4" stroke-linecap="round"/>
+<rect x="0" y="610" width="1200" height="140" fill="#d6c987"/>
+<path d="M0 610 L160 535 L350 622 L540 558 L720 502 L900 610 L1080 550 L1200 525 L1200 750 L0 750 Z" fill="#8ab48a"/>
+<path d="M0 682 L180 632 L360 700 L560 646 L760 704 L980 638 L1200 612 L1200 750 L0 750 Z" fill="#eef5ec"/>
+<path d="M0 694 L190 650 L400 704 L640 660 L850 710 L1050 666 L1200 648 L1200 750 L0 750 Z" fill="#2f855a"/>
+<rect x="0" y="708" width="1200" height="42" fill="#3f8fa0"/>
+<path d="M270 270 L428 248 L504 670 L318 696 Z" fill="#f7f2df" stroke="#20242b" stroke-width="7"/>
+<path d="M284 322 L444 300 M296 386 L456 364 M308 450 L470 428 M320 514 L482 492 M334 580 L494 558" stroke="#b24a33" stroke-width="8"/>
+<path d="M306 286 L366 684 M350 280 L414 678 M394 274 L466 672" stroke="#20242b" stroke-width="5"/>
+<g fill="#20242b">
+  <rect x="315" y="344" width="20" height="34" rx="8"/><rect x="365" y="336" width="20" height="34" rx="8"/><rect x="414" y="328" width="20" height="34" rx="8"/>
+  <rect x="328" y="410" width="20" height="34" rx="8"/><rect x="380" y="402" width="20" height="34" rx="8"/><rect x="430" y="394" width="20" height="34" rx="8"/>
+  <rect x="342" y="478" width="20" height="34" rx="8"/><rect x="394" y="470" width="20" height="34" rx="8"/><rect x="446" y="462" width="20" height="34" rx="8"/>
+</g>
+<path d="M242 676 L530 635 L554 688 L260 726 Z" fill="#b24a33"/>
+<path d="M260 728 L554 690" stroke="#20242b" stroke-width="6" stroke-linecap="round"/>
+<path d="M686 474 L746 474 L772 666 L624 666 Z" fill="#6b4f3b" stroke="#20242b" stroke-width="6"/>
+<path d="M650 510 L724 474 L706 666 L598 666 Z" fill="#2f855a" stroke="#20242b" stroke-width="6"/>
+<circle cx="696" cy="422" r="29" fill="#d6a36a" stroke="#20242b" stroke-width="5"/>
+<path d="M660 400 Q690 366 730 402 L720 416 L666 416 Z" fill="#7a4f2a" stroke="#20242b" stroke-width="5"/>
+<path d="M666 386 L734 386" stroke="#20242b" stroke-width="6" stroke-linecap="round"/>
+<path d="M708 456 L758 510 M652 512 L704 466" stroke="#d6a36a" stroke-width="12" stroke-linecap="round"/>
+<path d="M708 438 L902 356" stroke="#8b5e20" stroke-width="20" stroke-linecap="round"/>
+<path d="M708 438 L902 356" stroke="#20242b" stroke-width="6" stroke-linecap="round"/>
+<circle cx="896" cy="352" r="15" fill="#f2b441" stroke="#20242b" stroke-width="4"/>
+<circle cx="704" cy="432" r="7" fill="#20242b"/>
+<path d="M668 666 L642 724 M722 666 L754 724" stroke="#20242b" stroke-width="9" stroke-linecap="round"/>
+<circle cx="170" cy="692" r="34" fill="#d9a441" stroke="#8b5e20" stroke-width="7"/>
+<circle cx="170" cy="692" r="14" fill="#eef5ec"/>
 </svg>'''
     (REPO / "assets" / "thumb-run50-pisa-icons.svg").write_text(svg, encoding="utf-8", newline="\n")
 
