@@ -465,6 +465,7 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="im
 <desc id="desc">Icon style cover with Mexico City title, fixed RunWorld badge, Aztec pyramid, Angel of Independence, cactus, sun and highland scenery.</desc>
 <rect width="1200" height="750" fill="#edf5ec"/>
 <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">MEXICO CITY</text>
+<text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">ALTITUDE, ZOCALO, PYRAMIDS</text>
 <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
 <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunWorld #5</text>
 <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#2f855a">MEXICO</text>
@@ -738,6 +739,7 @@ def write_png():
     text = "#20242b"
     green = "#2f855a"
     draw.text((64, 64), "MEXICO CITY", font=font(66, True), fill=text)
+    draw.text((66, 136), "ALTITUDE, ZOCALO, PYRAMIDS", font=font(26, True), fill="#667085")
     draw.rounded_rectangle((760, 64, 1122, 228), radius=22, fill="#ffffff", outline=text, width=7)
     draw.text((790, 112), "RunWorld #5", font=font(40, True), fill=text)
     draw.text((790, 166), "MEXICO", font=font(50, True), fill=green)

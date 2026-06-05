@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
 
 TEXT = "#20242b"
+SUBTITLE = "#667085"
 RUN50_BLUE = "#0b67c2"
 WATER_DARK = "#0f766e"
 WATER_LIGHT = "#65b8b2"
@@ -129,6 +130,7 @@ def write_png():
     draw = ImageDraw.Draw(img)
 
     draw_text(draw, (64, 64), "MIAMI", font(66, bold=True), TEXT)
+    draw_text(draw, (66, 136), "OCEAN DRIVE TO DOWNTOWN", font(26, bold=True), SUBTITLE)
     draw_badge(draw)
 
     draw.ellipse((970, 250, 1086, 366), fill=SUN)
@@ -152,6 +154,7 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="im
   <desc id="desc">Icon style cover with Miami title, fixed Run50 badge, skyline, palms, bridge, cruise ship, sun and medal.</desc>
   <rect width="1200" height="750" fill="#e8f4f8"/>
   <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">MIAMI</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">OCEAN DRIVE TO DOWNTOWN</text>
   <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
   <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #15</text>
   <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">MIAMI</text>

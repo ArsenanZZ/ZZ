@@ -968,6 +968,7 @@ def write_pisa_png():
     image = Image.new("RGB", (1200, 630), "#eef5ec")
     draw = ImageDraw.Draw(image)
     draw.text((64, 64), "PISA", font=font(66, True), fill="#20242b")
+    draw.text((66, 136), "TOWER, GALILEO, TUSCANY", font=font(26, True), fill="#667085")
     draw.rounded_rectangle((760, 64, 1122, 228), radius=22, fill="#ffffff", outline="#20242b", width=7)
     draw.text((790, 112), "RunWorld #6", font=font(40, True), fill="#20242b")
     draw.text((790, 166), "PISA", font=font(50, True), fill="#2f855a")
@@ -1020,6 +1021,7 @@ def write_pisa_svg():
 <desc id="desc">Icon style cover with Pisa title, fixed RunWorld badge, Leaning Tower, Galileo looking through a telescope, Tuscan hills and medal.</desc>
 <rect width="1200" height="750" fill="#eef5ec"/>
 <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">PISA</text>
+<text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">TOWER, GALILEO, TUSCANY</text>
 <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
 <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunWorld #6</text>
 <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#2f855a">PISA</text>
