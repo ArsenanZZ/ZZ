@@ -124,6 +124,112 @@
       color: rgba(33, 26, 22, .68);
       line-height: 1.7;
     }
+    
+    /* ── INTERACTIVE MAP STYLES ── */
+    #us-map-master {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    #us-map-master path {
+        transition: fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease;
+    }
+    #us-map-master path.run-state {
+        cursor: pointer;
+    }
+    #us-map-master path.run-state:hover {
+        opacity: 0.85;
+        stroke: #fff;
+        stroke-width: 2px;
+    }
+    
+    /* City Dot styling */
+    .city-dot {
+        transition: r 0.2s ease, fill 0.2s ease;
+    }
+    .city-dot:hover {
+        r: 7px;
+        fill: #ffcc00;
+    }
+    .city-dot-glow {
+        animation: pulse-glow 2s infinite alternate;
+    }
+    @keyframes pulse-glow {
+        0% { r: 9px; opacity: 0.25; }
+        100% { r: 16px; opacity: 0.65; }
+    }
+    
+    /* Flashing card highlight style */
+    @keyframes card-flash {
+        0% { transform: scale(1); box-shadow: 0 20px 50px rgba(82, 53, 16, .1); }
+        50% { transform: scale(1.03); box-shadow: 0 0 15px rgba(183,131,47,0.7); border-color: #b7832f; }
+        100% { transform: scale(1); box-shadow: 0 20px 50px rgba(82, 53, 16, .1); }
+    }
+    .card-highlight-flash {
+        animation: card-flash 1.5s ease 2;
+    }
+
+    /* Floating Tooltip */
+    .map-tooltip {
+        position: absolute;
+        z-index: 1000;
+        background: rgba(26, 37, 47, 0.95);
+        color: #fff;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        line-height: 1.5;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+        pointer-events: auto; /* Enable hover/clicking inside tooltip */
+        display: none;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(8px);
+        min-width: 260px;
+        max-width: 320px;
+        transition: opacity 0.15s ease;
+    }
+    .map-tooltip h4 {
+        margin: 0 0 8px 0;
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffb612;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        padding-bottom: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .map-tooltip-race {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+    .map-tooltip-race:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+    .map-tooltip-meta {
+        font-size: 11px;
+        color: #b0c4de;
+        margin-top: 2px;
+    }
+    .map-tooltip-link {
+        display: inline-block;
+        font-size: 11px;
+        color: #1a252f;
+        background: #ffb612;
+        text-decoration: none;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-top: 6px;
+        font-weight: bold;
+        transition: background 0.2s;
+    }
+    .map-tooltip-link:hover {
+        background: #ffffff;
+        color: #1a252f;
+    }
   </style>
 </head>
 <body>
@@ -154,6 +260,38 @@
         </div>
       </a>
     </section>
+
+    <!-- 跑马足迹互动地图 (Interactive Map) -->
+    <div id="stories-map-container" style="max-width:1080px; margin: 0 auto 34px; background:#fff; border-radius:12px; border:1px solid #d0dfe8; padding:24px; box-shadow: 0 20px 50px rgba(82, 53, 16, .1);">
+      <div style="font-size:16px; font-weight:700; color:#211a16; margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span>🗺️ U.S. Footprints Map (Interactive)</span>
+          <span style="font-size:12px; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px; font-weight:bold;">Completed / Planned: 35 States</span>
+        </div>
+        <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:#a36e23; transition:color 0.2s;">Hover over states or dots to view race details, click to jump</span>
+      </div>
+      
+      <div class="welcome-map-slot" id="welcome-map-slot" style="position:relative; width:100%; min-height:300px; background:#f7f4ee; border-radius:8px; overflow:hidden; border:1px solid #d0dfe8;">
+        <!-- SVG Map will be dynamically appended here from US_MAP_SVG -->
+      </div>
+      
+      <!-- 地图图例 -->
+      <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:rgba(33, 26, 22, .68); border-top:1px solid #d0dfe8; padding-top:10px; flex-wrap:wrap;">
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span style="display:inline-block; width:12px; height:12px; background:#0e7490; border-radius:3px;"></span>
+          <span>Completed Story / Oral Script (9 States)</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span style="display:inline-block; width:12px; height:12px; background:#b7832f; border-radius:3px;"></span>
+          <span>Planned / Historical (26 States)</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
+          <span>Race Cities</span>
+        </div>
+      </div>
+    </div>
+
     <section class="story-grid" aria-label="English story list">
       <a class="story-card run-50" href="./chicago-marathon.html">
         <img src="../../../assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1" alt="Icon cover for Chicago Marathon" />
@@ -260,5 +398,521 @@
       </a>
     </section>
   </main>
+    </section>
+  </main>
+
+  <!-- 引入 US SVG 地图数据 -->
+  <script src="../us-map-svg.js"></script>
+  <script>
+    const _HM = {
+      "KY": ["Kentucky", "Kentucky_1_"],
+      "FL": ["Florida_1_"],
+      "NC": ["North_Carolina_1_"],
+      "AR": ["Arkansas", "Arkansas_1_"],
+      "SC": ["South_Carolina", "South_Carolina_1_"],
+      "PA": ["Pensilvania", "Pensilvania_1_"],
+      "WI": ["Wisconsin", "Wisconsin_1_"],
+      "MI": ["Michigan", "Michigan_1_"],
+      "NH": ["New_Hampshire", "New_Hampshire_1_"],
+      "OH": ["Ohio", "Ohio_1_"],
+      "IN": ["Indiana", "Indiana_1_"],
+      "NY": ["New_York", "New_York_2_"],
+      "CA": ["California"],
+      "HI": ["hawaii_1_"],
+      "AK": ["Alaska_1_"],
+      "GA": ["Georgia", "Georgia_1_"],
+      "CO": ["Colorado", "Colorado_1_"],
+      "TX": ["Texas_1_"],
+      "LA": ["Louisiana_1_"],
+      "VA": ["Virginia", "Virginia_1_"],
+      "ND": ["North_Dakota", "North_Dakota_1_"],
+      "KS": ["Kansas", "Kansas_1_"],
+      "VT": ["Vermont", "Vermont_1_"],
+      "AL": ["Alabama", "alabama"],
+      "AZ": ["Arizona", "Arizona_1_"],
+      "DE": ["Delaware"],
+      "MN": ["Minnesotta", "Minessota"],
+      "CT": ["Connecticut", "Connecticut_1_"],
+      "RI": ["Rhode_Island", "Rhode_Island_1_"],
+      "MA": ["Massachusets", "Massachusets_1_"],
+      "ME": ["Maine", "Maine_1_"],
+      "IL": ["Illinois", "Illinois_1_"],
+      "MO": ["Missouri", "Mossouri"],
+      "TN": ["Tennessee"],
+      "WV": ["West_Virginia", "West_Virginia_1_"],
+      "WY": ["Wyoming", "Wyoming_1_"],
+      "IA": ["Iowa", "Iowa_1_"],
+      "NE": ["Nebraska", "Nebraska_1_"],
+      "SD": ["South_Dakota", "South_Dakota_1_"],
+      "MT": ["Montana", "Montana_1_"],
+      "NM": ["New_Mexico", "New_Mexico_1_"],
+      "UT": ["Utah", "Utah_1_"],
+      "ID": ["Idaho", "Idaho_1_"],
+      "WA": ["Washington_1_"],
+      "OR": ["Oregon_1_", "Oregon_41_"],
+      "NV": ["Nevada_1_", "Nevada_41_"],
+      "OK": ["Oklahoma", "Oklahoma_1_"],
+      "MS": ["Missisppi", "Missispi"],
+      "NJ": ["New_Jersey", "New_Jersey_1_"],
+      "MD": ["Maryland"]
+    };
+    const _SF = ["Michigan", "Michigan_1_", "Maine", "Maine_1_", "New_Hampshire", "New_Hampshire_1_", "Vermont", "Vermont_1_", "Massachusets", "Massachusets_1_", "Delaware", "Rhode_Island", "Rhode_Island_1_", "New_York", "New_York_2_", "Connecticut", "Connecticut_1_", "New_Jersey", "New_Jersey_1_", "Pensilvania", "Pensilvania_1_", "Maryland", "North_Carolina_1_", "Virginia", "Virginia_1_", "West_Virginia", "West_Virginia_1_", "Ohio", "Ohio_1_", "Indiana", "Indiana_1_", "South_Carolina", "South_Carolina_1_", "Florida_1_", "Georgia", "Georgia_1_", "Kentucky", "Kentucky_1_", "Illinois", "Illinois_1_", "Wisconsin", "Wisconsin_1_", "Minnesotta", "Minessota", "Iowa", "Iowa_1_", "Missouri", "Mossouri", "Missisppi", "Missispi", "alabama", "Alabama", "Tennessee", "Arkansas", "Arkansas_1_", "Louisiana_1_", "Nebraska", "Nebraska_1_", "South_Dakota", "South_Dakota_1_", "North_Dakota", "North_Dakota_1_", "Kansas", "Kansas_1_", "Texas_1_", "Colorado", "Colorado_1_", "Oklahoma", "Oklahoma_1_", "Washington_1_", "Montana", "Montana_1_", "Wyoming_1_", "Wyoming", "Idaho", "Idaho_1_", "New_Mexico_1_", "New_Mexico", "Utah_1_", "Utah", "Arizona_1_", "Arizona", "California", "Nevada_41_", "Nevada_1_", "Oregon_41_", "Oregon_1_"];
+    const _MUTED = '#dedad3';
+
+    const _CITY_LAT_LON = {
+      'Miami': {lat: 25.7617, lon: -80.1918},
+      'Orlando': {lat: 28.5383, lon: -81.3792},
+      'Oak Island': {lat: 33.9174, lon: -78.1575},
+      'Little Rock': {lat: 34.7465, lon: -92.2896},
+      'Greer': {lat: 34.9387, lon: -82.2271},
+      'Louisville': {lat: 38.2527, lon: -85.7585},
+      'Williamson': {lat: 37.6740, lon: -82.2776},
+      'Pittsburgh': {lat: 40.4406, lon: -79.9959},
+      'Green Bay': {lat: 44.5133, lon: -88.0133},
+      'Grand Rapids': {lat: 42.9634, lon: -85.6681},
+      'Keene': {lat: 42.9337, lon: -72.2781},
+      'Claremont': {lat: 43.3767, lon: -72.3473},
+      'Baton Rouge': {lat: 30.4515, lon: -91.1871},
+      'Roanoke': {lat: 37.2710, lon: -79.9414},
+      'Fargo': {lat: 46.8772, lon: -96.7898},
+      'Gravel': {lat: 39.0473, lon: -95.6752},
+      'Warren': {lat: 44.1112, lon: -72.8573},
+      'Springfield': {lat: 43.2995, lon: -72.4876},
+      'Huntsville': {lat: 34.7304, lon: -86.5861},
+      'Buckeye': {lat: 33.3703, lon: -112.5838},
+      'Wilmington': {lat: 39.7458, lon: -75.5466},
+      'Rochester': {lat: 44.0234, lon: -92.4629},
+      'Simsbury': {lat: 41.8759, lon: -72.8018},
+      'Woonsocket': {lat: 42.0084, lon: -71.5148},
+      'Holyoke': {lat: 42.2043, lon: -72.6162},
+      'Sanford': {lat: 43.4393, lon: -70.7742},
+      'Cleveland': {lat: 41.4993, lon: -81.6944},
+      'Cincinnati': {lat: 39.1031, lon: -84.5120},
+      'New York City': {lat: 40.7128, lon: -74.0060},
+      'San Francisco': {lat: 37.7749, lon: -122.4194},
+      'Indianapolis': {lat: 39.7684, lon: -86.1581},
+      'Honolulu': {lat: 21.3069, lon: -157.8583},
+      'Atlanta': {lat: 33.7490, lon: -84.3880},
+      'Denver': {lat: 39.7392, lon: -104.9903},
+      'Anchorage': {lat: 61.2181, lon: -149.9003},
+      'St. Joseph': {lat: 39.7675, lon: -94.8466},
+      'Chicago': {lat: 41.8781, lon: -87.6298},
+      'Nashville': {lat: 36.1627, lon: -86.7816},
+      'Huntington': {lat: 38.4192, lon: -82.4453},
+      'San Antonio': {lat: 29.4241, lon: -98.4936}
+    };
+
+    const _STORY_MAPPING = {
+      'IL-Chicago': 'chicago-marathon.html',
+      'AR-Little Rock': 'little-rock-marathon.html',
+      'FL-Miami': 'miami-marathon.html',
+      'TN-Nashville': 'nashville-marathon.html',
+      'TX-San Antonio': 'san-antonio-marathon.html',
+      'SC-Greer': 'south-carolina-marathon.html',
+      'WV-Huntington': 'west-virginia-marathon.html'
+    };
+
+    const _STATE_RACES = {};
+    let _MAP_BOUND_EVENTS = false;
+
+    function _projectAlbers(lat, lon) {
+      const lat0 = 37.5 * Math.PI / 180;
+      const lon0 = -96 * Math.PI / 180;
+      const lat1 = 29.5 * Math.PI / 180;
+      const lat2 = 45.5 * Math.PI / 180;
+      
+      const n = 0.5 * (Math.sin(lat1) + Math.sin(lat2));
+      const C = Math.cos(lat1) * Math.cos(lat1) + 2 * n * Math.sin(lat1);
+      const rho0 = Math.sqrt(C - 2 * n * Math.sin(lat0)) / n;
+      
+      const latRad = lat * Math.PI / 180;
+      const lonRad = lon * Math.PI / 180;
+      
+      const theta = n * (lonRad - lon0);
+      const rho = Math.sqrt(C - 2 * n * Math.sin(latRad)) / n;
+      
+      const xProj = rho * Math.sin(theta);
+      const yProj = rho0 - rho * Math.cos(theta);
+      
+      const xSvg = 1395.88 * xProj + 932.15;
+      const ySvg = -927.71 * yProj + 536.84;
+      
+      return { x: xSvg, y: ySvg };
+    }
+
+    function _parseGridRaces() {
+      if (Object.keys(_STATE_RACES).length > 0) return;
+      
+      const stateNameMap = {
+        'Kentucky': 'KY', 'Florida': 'FL', 'North Carolina': 'NC', 'Arkansas': 'AR', 'South Carolina': 'SC',
+        'Pennsylvania': 'PA', 'Wisconsin': 'WI', 'Michigan': 'MI', 'New Hampshire': 'NH',
+        'Louisiana': 'LA', 'Virginia': 'VA', 'North Dakota': 'ND', 'Kansas': 'KS',
+        'Vermont': 'VT', 'Alabama': 'AL', 'Arizona': 'AZ', 'Delaware': 'DE',
+        'Minnesota': 'MN', 'Connecticut': 'CT', 'Rh Island': 'RI', 'Rhode Island': 'RI', 'Massachusetts': 'MA',
+        'Maine': 'ME', 'Ohio': 'OH', 'New York': 'NY', 'California': 'CA',
+        'Indiana': 'IN', 'Hawaii': 'HI', 'Georgia': 'GA', 'Colorado': 'CO',
+        'Alaska': 'AK', 'Missouri': 'MO', 'Illinois': 'IL', 'Tennessee': 'TN',
+        'West Virginia': 'WV', 'Texas': 'TX'
+      };
+
+      document.querySelectorAll('.story-grid .story-card, .story-list-hero .story-card').forEach((card, idx) => {
+        const metaText = card.querySelector('.meta')?.textContent || '';
+        const parts = metaText.split('·').map(p => p.trim());
+        let stateName = '';
+        let city = '';
+        let date = '';
+        
+        if (parts.length === 3) {
+          stateName = parts[0];
+          city = parts[1];
+          date = parts[2];
+        } else if (parts.length === 2) {
+          stateName = parts[0];
+          date = parts[1];
+          city = parts[0];
+        }
+        
+        const title = card.querySelector('h2')?.textContent || '';
+        const href = card.getAttribute('href') || '';
+        
+        if (!card.id) card.id = `story-card-idx-${idx}`;
+        
+        const abbr = stateNameMap[stateName];
+        if (abbr) {
+          if (!_STATE_RACES[abbr]) _STATE_RACES[abbr] = [];
+          
+          const exists = _STATE_RACES[abbr].some(r => r.city === city && r.date === date);
+          if (!exists) {
+            _STATE_RACES[abbr].push({
+              city,
+              raceName: title,
+              date,
+              emoji: '🏃',
+              num: '',
+              isPlaceholder: false,
+              cardId: card.id,
+              storyFile: href.replace('./', '')
+            });
+          }
+        }
+      });
+
+      const masterRaces = {
+        'FL': [{city: 'Miami', raceName: 'Miami Marathon', date: '2024.01.28', emoji: '☀️', num: '#15', isPlaceholder: false}, {city: 'Orlando', raceName: 'Run Disney Marathon', date: '2024.01.04', emoji: '🏰', num: '#15', isPlaceholder: true}],
+        'NC': [{city: 'Oak Island', raceName: 'Oak Island Marathon', date: '2024.02.18', emoji: '🌊', num: '#16', isPlaceholder: false}],
+        'AR': [{city: 'Little Rock', raceName: 'Little Rock Marathon', date: '2024.03.03', emoji: '🦕', num: '#17', isPlaceholder: false}],
+        'SC': [{city: 'Greer', raceName: '2Slow4Boston', date: '2024.04.14', emoji: '🐢', num: '#18', isPlaceholder: false}],
+        'KY': [{city: 'Louisville', raceName: 'Derby Marathon', date: '2024.04.27', emoji: '🏇', num: '#01+', isPlaceholder: false}, {city: 'Williamson', raceName: 'Hatfield-McCoy', date: '2024.06.08', emoji: '⛰️', num: '#01', isPlaceholder: false}, {city: 'Louisville', raceName: 'Louisville Marathon (Ph.D. Finale)', date: '2024.11.03', emoji: '🎓', num: '#01++', isPlaceholder: false}],
+        'PA': [{city: 'Pittsburgh', raceName: 'Pittsburgh Marathon', date: '2024.05.04', emoji: '🌉', num: '#19', isPlaceholder: false}],
+        'WI': [{city: 'Green Bay', raceName: 'Green Bay Marathon', date: '2024.05.20', emoji: '🧀', num: '#20', isPlaceholder: false}],
+        'MI': [{city: 'Grand Rapids', raceName: 'Grand Rapids Marathon', date: '2024.08.25', emoji: '🏃', num: '#21', isPlaceholder: false}],
+        'NH': [{city: 'Keene', raceName: 'Clarence DeMar', date: '2024.09.28', emoji: '🍂', num: '#22', isPlaceholder: false}],
+        'LA': [{city: 'Baton Rouge', raceName: 'Louisiana Marathon', date: '2025.01.19', emoji: '🎷', num: '#23', isPlaceholder: true}],
+        'VA': [{city: 'Roanoke', raceName: 'Blue Ridge Marathon', date: '2025.04.12', emoji: '🏔️', num: '#24', isPlaceholder: true}],
+        'ND': [{city: 'Fargo', raceName: 'Fargo Marathon', date: '2025.05.29', emoji: '🌾', num: '#25', isPlaceholder: true}],
+        'KS': [{city: 'Gravel', raceName: 'Gravel on the Hell', date: '2025.06.28', emoji: '🪨', num: '#26', isPlaceholder: true}],
+        'VT': [{city: 'Warren', raceName: 'Mad Marathon', date: '2025.07.17', emoji: '🍁', num: '#27', isPlaceholder: true}, {city: 'Springfield', raceName: 'Mainly Marathons NE', date: '2026.06.11', emoji: '🍁', num: '#27+', isPlaceholder: true}],
+        'AL': [{city: 'Huntsville', raceName: 'Rocket City Marathon', date: '2025.12.12', emoji: '🚀', num: '#28', isPlaceholder: true}],
+        'AZ': [{city: 'Buckeye', raceName: 'Buckeye Marathon', date: '2026.01.10', emoji: '🌵', num: '#29', isPlaceholder: true}],
+        'DE': [{city: 'Wilmington', raceName: 'Delaware Marathon Festival', date: '2026.04.20', emoji: '🦅', num: '#30', isPlaceholder: true}],
+        'MN': [{city: 'Rochester', raceName: 'Med City Marathon', date: '2026.05.16', emoji: '🌊', num: '#31', isPlaceholder: true}],
+        'CT': [{city: 'Simsbury', raceName: 'Mainly Marathons NE', date: '2026.06.08', emoji: '🏛️', num: '#32', isPlaceholder: true}],
+        'RI': [{city: 'Woonsocket', raceName: 'Mainly Marathons NE', date: '2026.06.09', emoji: '⚓', num: '#33', isPlaceholder: true}],
+        'MA': [{city: 'Holyoke', raceName: 'Mainly Marathons NE', date: '2026.06.10', emoji: '🦞', num: '#34', isPlaceholder: true}],
+        'IL': [{city: 'Chicago', raceName: 'Chicago Marathon', date: '2023.10.08', emoji: '🏙️', num: '#12', isPlaceholder: false}],
+        'TN': [{city: 'Nashville', raceName: 'Nashville Marathon', date: '2023.10.28', emoji: '🎸', num: '#12', isPlaceholder: false}],
+        'WV': [{city: 'Huntington', raceName: 'West Virginia Marathon', date: '2023.11.05', emoji: '🏈', num: '#13', isPlaceholder: false}],
+        'TX': [{city: 'San Antonio', raceName: 'San Antonio Rock \'n\' Roll', date: '2023.12.03', emoji: '🎸', num: '#14', isPlaceholder: false}]
+      };
+
+      for (const abbr in masterRaces) {
+        if (!_STATE_RACES[abbr]) _STATE_RACES[abbr] = [];
+        masterRaces[abbr].forEach(mr => {
+          const exists = _STATE_RACES[abbr].some(r => r.city === mr.city && r.date === mr.date);
+          if (!exists) {
+            let cardId = null;
+            let storyFile = _STORY_MAPPING[`${abbr}-${mr.city}`] || null;
+            
+            const parsedList = _STATE_RACES[abbr];
+            if (parsedList && parsedList.length > 0) {
+              const match = parsedList.find(p => p.city === mr.city);
+              if (match) {
+                cardId = match.cardId;
+                storyFile = match.storyFile;
+              }
+            }
+
+            _STATE_RACES[abbr].push({
+              city: mr.city,
+              raceName: mr.raceName,
+              date: mr.date,
+              emoji: mr.emoji,
+              num: mr.num,
+              isPlaceholder: mr.isPlaceholder,
+              cardId: cardId,
+              storyFile: storyFile
+            });
+          }
+        });
+      }
+    }
+
+    function _muteAll(){
+      _SF.forEach(id=>{const el=document.getElementById('map_'+id);if(el)el.style.fill=_MUTED;});
+    }
+
+    function _getTooltip() {
+      let tooltip = document.getElementById('map-floating-tooltip');
+      if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.id = 'map-floating-tooltip';
+        tooltip.className = 'map-tooltip';
+        document.body.appendChild(tooltip);
+      }
+      return tooltip;
+    }
+
+    function _showStateTooltip(e, abbr) {
+      const races = _STATE_RACES[abbr];
+      const tooltip = _getTooltip();
+      const hoverStatus = document.getElementById('map-hover-status');
+      
+      if (!races || races.length === 0) {
+        tooltip.innerHTML = `<h4>${abbr}</h4><div style="color:#aaa;">No marathon records in this state</div>`;
+        if (hoverStatus) hoverStatus.textContent = `${abbr}: No records`;
+      } else {
+        const stateName = document.getElementById('map_' + _HM[abbr][0])?.getAttribute('id') || abbr;
+        const cleanStateName = stateName.replace('map_', '').replace('_1_', '').replace('_', ' ');
+        
+        let html = `<h4>📍 ${cleanStateName} (${races.length} Race${races.length > 1 ? 's' : ''})</h4>`;
+        races.forEach(r => {
+          html += `<div class="map-tooltip-race">
+            <strong>${r.emoji} ${r.city}</strong><br>
+            <span style="font-size:12px;color:#eee;">${r.raceName}</span>
+            <div class="map-tooltip-meta">${r.date} &nbsp; ${r.isPlaceholder ? '<span style="color:#c8860a">(Planned)</span>' : '<span style="color:#ffb612;font-weight:bold;">(Completed)</span>'}</div>`;
+            
+          if (r.storyFile) {
+            html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
+              <a href="${r.storyFile}" class="map-tooltip-link" style="background:#1f6f5b; color:#fff; font-size: 11px;">Read Story ↗</a>
+              <a href="../../facebook/${r.storyFile}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size: 11px;">Facebook ↗</a>
+            </div>`;
+          } else if (!r.isPlaceholder) {
+            const completedScripts = {
+              'KY': 'script-ky', 'WI': 'script-wi', 'MI': 'script-mi', 'FL': 'script-fl',
+              'NC': 'script-nc', 'AR': 'script-ar', 'SC': 'script-sc', 'PA': 'script-pa', 'NH': 'script-nh'
+            };
+            if (completedScripts[abbr]) {
+              html += `<a href="../../run50.html?script=${completedScripts[abbr]}" target="_blank" class="map-tooltip-link">View Oral Script ↗</a>`;
+            }
+          }
+          html += `</div>`;
+        });
+        
+        tooltip.innerHTML = html;
+        if (hoverStatus) hoverStatus.textContent = `${cleanStateName}: ${races.length} record${races.length > 1 ? 's' : ''}`;
+      }
+      
+      tooltip.style.display = 'block';
+      _moveCityTooltip(e);
+    }
+
+    function _showCityTooltip(e, r, abbr) {
+      const tooltip = _getTooltip();
+      const hoverStatus = document.getElementById('map-hover-status');
+      
+      let html = `<h4>📍 ${r.emoji} ${r.city}</h4>`;
+      html += `<div class="map-tooltip-race">
+        <strong>${r.raceName}</strong><br>
+        <div class="map-tooltip-meta">Date: ${r.date} &nbsp; ${r.isPlaceholder ? '<span style="color:#c8860a">(Planned)</span>' : '<span style="color:#ffb612;font-weight:bold;">(Completed)</span>'}</div>`;
+        
+      if (r.storyFile) {
+        html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
+          <a href="${r.storyFile}" class="map-tooltip-link" style="background:#1f6f5b; color:#fff; font-size: 11px;">Read Story ↗</a>
+          <a href="../../facebook/${r.storyFile}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size: 11px;">Facebook ↗</a>
+        </div>`;
+      } else if (!r.isPlaceholder) {
+        const completedScripts = {
+          'KY': 'script-ky', 'WI': 'script-wi', 'MI': 'script-mi', 'FL': 'script-fl',
+          'NC': 'script-nc', 'AR': 'script-ar', 'SC': 'script-sc', 'PA': 'script-pa', 'NH': 'script-nh'
+        };
+        if (completedScripts[abbr]) {
+          html += `<a href="../../run50.html?script=${completedScripts[abbr]}" target="_blank" class="map-tooltip-link">View Oral Script ↗</a>`;
+        }
+      }
+      html += `</div>`;
+      
+      tooltip.innerHTML = html;
+      if (hoverStatus) hoverStatus.textContent = `${r.city}: ${r.raceName}`;
+      tooltip.style.display = 'block';
+      _moveCityTooltip(e);
+    }
+
+    function _moveCityTooltip(e) {
+      const tooltip = _getTooltip();
+      if (tooltip.style.display === 'block') {
+        tooltip.style.left = (e.pageX + 15) + 'px';
+        tooltip.style.top = (e.pageY + 15) + 'px';
+      }
+    }
+
+    function _hideCityTooltip() {
+      const tooltip = _getTooltip();
+      tooltip.style.display = 'none';
+      const hoverStatus = document.getElementById('map-hover-status');
+      if (hoverStatus) hoverStatus.textContent = 'Hover over states or dots to view race details, click to jump';
+    }
+
+    function _handleStateClick(abbr) {
+      _hideCityTooltip();
+      const races = _STATE_RACES[abbr];
+      if (races && races.length > 0) {
+        const storyRace = races.find(r => r.cardId);
+        if (storyRace) {
+          const card = document.getElementById(storyRace.cardId);
+          if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            card.classList.add('card-highlight-flash');
+            setTimeout(() => card.classList.remove('card-highlight-flash'), 3000);
+            return;
+          }
+        }
+        
+        const fileRace = races.find(r => r.storyFile);
+        if (fileRace) {
+          window.location.href = fileRace.storyFile;
+        }
+      }
+    }
+
+    function _handleCityClick(r, abbr) {
+      _hideCityTooltip();
+      if (r.cardId) {
+        const card = document.getElementById(r.cardId);
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.classList.add('card-highlight-flash');
+          setTimeout(() => card.classList.remove('card-highlight-flash'), 3000);
+        }
+      } else if (r.storyFile) {
+        window.location.href = r.storyFile;
+      }
+    }
+
+    function _bindMapEventsOnce() {
+      if (_MAP_BOUND_EVENTS) return;
+      _MAP_BOUND_EVENTS = true;
+      
+      _SF.forEach(id => {
+        const el = document.getElementById('map_' + id);
+        if (el) {
+          el.style.transition = 'fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease';
+          
+          let stateAbbr = null;
+          for (const key in _HM) {
+            if (_HM[key].includes(id)) {
+              stateAbbr = key;
+              break;
+            }
+          }
+          
+          if (stateAbbr) {
+            el.addEventListener('mouseenter', (e) => _showStateTooltip(e, stateAbbr));
+            el.addEventListener('mousemove', _moveCityTooltip);
+            el.addEventListener('mouseleave', _hideCityTooltip);
+            el.addEventListener('click', () => _handleStateClick(stateAbbr));
+          }
+        }
+      });
+    }
+
+    function _injectMap() {
+      const slot = document.getElementById('welcome-map-slot');
+      if (!slot) return;
+      
+      slot.innerHTML = US_MAP_SVG;
+      const master = document.getElementById('us-map-master');
+      if (!master) return;
+      
+      _parseGridRaces();
+      _muteAll();
+      _bindMapEventsOnce();
+      
+      const completed = ['KY', 'FL', 'NC', 'AR', 'SC', 'PA', 'WI', 'MI', 'NH'];
+      completed.forEach(abbr => {
+        (_HM[abbr] || []).forEach(id => {
+          const el = document.getElementById('map_' + id);
+          if (el) {
+            el.style.fill = '#0e7490';
+            el.classList.add('run-state');
+          }
+        });
+      });
+      
+      const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'IL', 'TN', 'WV', 'TX'];
+      placeholders.forEach(abbr => {
+        (_HM[abbr] || []).forEach(id => {
+          const el = document.getElementById('map_' + id);
+          if (el) {
+            el.style.fill = '#b7832f';
+            el.classList.add('run-state');
+          }
+        });
+      });
+      
+      let dotGroup = master.querySelector('#city-dots-group');
+      if (!dotGroup) {
+        dotGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        dotGroup.id = 'city-dots-group';
+        master.appendChild(dotGroup);
+      }
+      dotGroup.innerHTML = '';
+      
+      for (const abbr in _STATE_RACES) {
+        _STATE_RACES[abbr].forEach(r => {
+          const cityCoords = _CITY_LAT_LON[r.city];
+          if (cityCoords) {
+            let x, y;
+            if (abbr === 'HI') {
+              x = 368.4; y = 929.4;
+            } else if (abbr === 'AK') {
+              x = 580.3; y = 959.2;
+            } else {
+              const coords = _projectAlbers(cityCoords.lat, cityCoords.lon);
+              x = coords.x;
+              y = coords.y;
+            }
+            
+            const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            glow.setAttribute('cx', x);
+            glow.setAttribute('cy', y);
+            glow.setAttribute('r', 11);
+            glow.setAttribute('fill', 'rgba(255, 59, 48, 0.35)');
+            glow.setAttribute('class', 'city-dot-glow');
+            glow.style.pointerEvents = 'none';
+            dotGroup.appendChild(glow);
+            
+            const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            dot.setAttribute('cx', x);
+            dot.setAttribute('cy', y);
+            dot.setAttribute('r', 4.5);
+            dot.setAttribute('fill', '#ff3b30');
+            dot.setAttribute('stroke', '#ffffff');
+            dot.setAttribute('stroke-width', '1.5');
+            dot.setAttribute('class', 'city-dot');
+            dot.style.cursor = 'pointer';
+            
+            dot.addEventListener('mouseenter', (e) => _showCityTooltip(e, r, abbr));
+            dot.addEventListener('mousemove', _moveCityTooltip);
+            dot.addEventListener('mouseleave', _hideCityTooltip);
+            dot.addEventListener('click', () => _handleCityClick(r, abbr));
+            
+            dotGroup.appendChild(dot);
+          }
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', _injectMap);
+  </script>
 </body>
 </html>
