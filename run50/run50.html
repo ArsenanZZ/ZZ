@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -341,6 +341,115 @@
             color: #2c3e50;
             margin-bottom: 10px;
         }
+
+        /* ── INTERACTIVE MAP STYLES ── */
+        .welcome-map-container {
+            animation: fadeIn 0.4s ease;
+        }
+        #us-map-master {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        #us-map-master path {
+            transition: fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease;
+        }
+        #us-map-master path.run-state {
+            cursor: pointer;
+        }
+        #us-map-master path.run-state:hover {
+            opacity: 0.8;
+            stroke: #fff;
+            stroke-width: 2px;
+        }
+        
+        /* City Dot styling */
+        .city-dot {
+            transition: r 0.2s ease, fill 0.2s ease;
+        }
+        .city-dot:hover {
+            r: 7px;
+            fill: #ffcc00;
+        }
+        .city-dot-glow {
+            animation: pulse-glow 2s infinite alternate;
+        }
+        @keyframes pulse-glow {
+            0% { r: 9px; opacity: 0.25; }
+            100% { r: 16px; opacity: 0.65; }
+        }
+        
+        /* Bouncing/Flashing card highlight style */
+        @keyframes card-flash {
+            0% { transform: scale(1); box-shadow: 0 0 0 rgba(255,182,18,0); }
+            50% { transform: scale(1.04); box-shadow: 0 0 15px rgba(255,182,18,0.7); border-color: #ffb612; }
+            100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,182,18,0); }
+        }
+        .card-highlight-flash {
+            animation: card-flash 1.5s ease 2;
+        }
+
+        /* Floating Tooltip */
+        .map-tooltip {
+            position: absolute;
+            z-index: 1000;
+            background: rgba(26, 37, 47, 0.95);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.5;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            pointer-events: auto; /* Enable hover/clicking inside tooltip */
+            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            min-width: 260px;
+            max-width: 320px;
+            transition: opacity 0.15s ease;
+        }
+        .map-tooltip h4 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffb612;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .map-tooltip-race {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+        .map-tooltip-race:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .map-tooltip-meta {
+            font-size: 11px;
+            color: #b0c4de;
+            margin-top: 2px;
+        }
+        .map-tooltip-link {
+            display: inline-block;
+            font-size: 11px;
+            color: #1a252f;
+            background: #ffb612;
+            text-decoration: none;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 6px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .map-tooltip-link:hover {
+            background: #ffffff;
+            color: #1a252f;
+        }
     </style>
 </head>
 <body>
@@ -376,6 +485,38 @@
                 <div class="welcome-title">🏃 Run50 · 2024 口播脚本库</div>
                 <div class="welcome-sub">选择一个州，开始录制</div>
             </div>
+
+            <!-- 跑马足迹互动地图 -->
+            <div class="welcome-map-container" style="max-width:850px; margin: 0 auto 24px; background:#fff; border-radius:12px; border:1px solid #e2e8f0; padding:20px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); position:relative;">
+                <div style="font-size:16px; font-weight:700; color:#1a2a3a; margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <span>🗺️ Run50 马拉松跑旅足迹 (Interactive Map)</span>
+                        <span style="font-size:12px; font-weight:normal; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px; font-weight:bold;">已完赛/计划中 35 州</span>
+                    </div>
+                    <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:#888; transition:color 0.2s;">鼠标悬停在州或红点上查看比赛记录，点击跳转</span>
+                </div>
+                
+                <div class="welcome-map-slot" id="welcome-map-slot" style="position:relative; width:100%; min-height:300px; background:#f4f6f4; border-radius:8px; overflow:hidden; border:1px solid #eef2f5;">
+                    <!-- SVG Map will be dynamically appended here -->
+                </div>
+                
+                <!-- 地图图例 -->
+                <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:#555; border-top:1px solid #f0f0f0; padding-top:10px; flex-wrap:wrap;">
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="display:inline-block; width:12px; height:12px; background:#1a2a3a; border-radius:3px;"></span>
+                        <span>已完赛并有口播剧本 (9州)</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="display:inline-block; width:12px; height:12px; background:#c8860a; border-radius:3px;"></span>
+                        <span>历史赛记 / 计划中 (26州)</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
+                        <span>跑马城市 (红点点亮)</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="race-grid">
             <div class="year-divider">2024</div>
             <div class="race-card placeholder" onclick="switchScript('script-fl-d-run')" style="border-top:3px solid #1B4B8A;cursor:pointer">
@@ -2429,7 +2570,58 @@
 </svg>
 </div>
 <script>
-const _HM={"KY": ["Kentucky"], "FL": ["Florida_1_"], "NC": ["North_Carolina_1_"], "AR": ["Arkansas"], "SC": ["South_Carolina"], "PA": ["Pensilvania"], "WI": ["Wisconsin"], "MI": ["Michigan"], "NH": ["New_Hampshire"]};
+const _HM={
+  "KY": ["Kentucky", "Kentucky_1_"],
+  "FL": ["Florida_1_"],
+  "NC": ["North_Carolina_1_"],
+  "AR": ["Arkansas", "Arkansas_1_"],
+  "SC": ["South_Carolina", "South_Carolina_1_"],
+  "PA": ["Pensilvania", "Pensilvania_1_"],
+  "WI": ["Wisconsin", "Wisconsin_1_"],
+  "MI": ["Michigan", "Michigan_1_"],
+  "NH": ["New_Hampshire", "New_Hampshire_1_"],
+  "OH": ["Ohio", "Ohio_1_"],
+  "IN": ["Indiana", "Indiana_1_"],
+  "NY": ["New_York", "New_York_2_"],
+  "CA": ["California"],
+  "HI": ["hawaii_1_"],
+  "AK": ["Alaska_1_"],
+  "GA": ["Georgia", "Georgia_1_"],
+  "CO": ["Colorado", "Colorado_1_"],
+  "TX": ["Texas_1_"],
+  "LA": ["Louisiana_1_"],
+  "VA": ["Virginia", "Virginia_1_"],
+  "ND": ["North_Dakota", "North_Dakota_1_"],
+  "KS": ["Kansas", "Kansas_1_"],
+  "VT": ["Vermont", "Vermont_1_"],
+  "AL": ["Alabama", "alabama"],
+  "AZ": ["Arizona", "Arizona_1_"],
+  "DE": ["Delaware"],
+  "MN": ["Minnesotta", "Minessota"],
+  "CT": ["Connecticut", "Connecticut_1_"],
+  "RI": ["Rhode_Island", "Rhode_Island_1_"],
+  "MA": ["Massachusets", "Massachusets_1_"],
+  "ME": ["Maine", "Maine_1_"],
+  "IL": ["Illinois", "Illinois_1_"],
+  "MO": ["Missouri", "Mossouri"],
+  "TN": ["Tennessee"],
+  "WV": ["West_Virginia", "West_Virginia_1_"],
+  "WY": ["Wyoming", "Wyoming_1_"],
+  "IA": ["Iowa", "Iowa_1_"],
+  "NE": ["Nebraska", "Nebraska_1_"],
+  "SD": ["South_Dakota", "South_Dakota_1_"],
+  "MT": ["Montana", "Montana_1_"],
+  "NM": ["New_Mexico", "New_Mexico_1_"],
+  "UT": ["Utah", "Utah_1_"],
+  "ID": ["Idaho", "Idaho_1_"],
+  "WA": ["Washington_1_"],
+  "OR": ["Oregon_1_", "Oregon_41_"],
+  "NV": ["Nevada_1_", "Nevada_41_"],
+  "OK": ["Oklahoma", "Oklahoma_1_"],
+  "MS": ["Missisppi", "Missispi"],
+  "NJ": ["New_Jersey", "New_Jersey_1_"],
+  "MD": ["Maryland"]
+};
 const _SF=["Michigan", "Michigan_1_", "Maine", "Maine_1_", "New_Hampshire", "New_Hampshire_1_", "Vermont", "Vermont_1_", "Massachusets", "Massachusets_1_", "Delaware", "Rhode_Island", "Rhode_Island_1_", "New_York", "New_York_2_", "Connecticut", "Connecticut_1_", "New_Jersey", "New_Jersey_1_", "Pensilvania", "Pensilvania_1_", "Maryland", "North_Carolina_1_", "Virginia", "Virginia_1_", "West_Virginia", "West_Virginia_1_", "Ohio", "Ohio_1_", "Indiana", "Indiana_1_", "South_Carolina", "South_Carolina_1_", "Florida_1_", "Georgia", "Georgia_1_", "Kentucky", "Kentucky_1_", "Illinois", "Illinois_1_", "Wisconsin", "Wisconsin_1_", "Minnesotta", "Minessota", "Iowa", "Iowa_1_", "Missouri", "Mossouri", "Missisppi", "Missispi", "alabama", "Alabama", "Tennessee", "Arkansas", "Arkansas_1_", "Louisiana_1_", "Nebraska", "Nebraska_1_", "South_Dakota", "South_Dakota_1_", "North_Dakota", "North_Dakota_1_", "Kansas", "Kansas_1_", "Texas_1_", "Colorado", "Colorado_1_", "Oklahoma", "Oklahoma_1_", "Washington_1_", "Montana", "Montana_1_", "Wyoming_1_", "Wyoming", "Idaho", "Idaho_1_", "New_Mexico_1_", "New_Mexico", "Utah_1_", "Utah", "Arizona_1_", "Arizona", "California", "Nevada_41_", "Nevada_1_", "Oregon_41_", "Oregon_1_"];
 const _MUTED='#dedad3';
 const _SC_STATE={
@@ -2445,13 +2637,429 @@ const _SC_STATE={
   'script-mi':{s:'MI',c:'#00274C'},
   'script-nh':{s:'NH',c:'#1B3A2D'}
 };
+
+// Cities coordinates lookup for rendering red dots on continental US map
+const _CITY_LAT_LON = {
+  '迈阿密': {lat: 25.7617, lon: -80.1918},
+  '奥兰多': {lat: 28.5383, lon: -81.3792},
+  '橡树岛': {lat: 33.9174, lon: -78.1575},
+  '小石城': {lat: 34.7465, lon: -92.2896},
+  'Greer': {lat: 34.9387, lon: -82.2271},
+  '路易斯维尔': {lat: 38.2527, lon: -85.7585},
+  '威廉姆森': {lat: 37.6740, lon: -82.2776},
+  '匹兹堡': {lat: 40.4406, lon: -79.9959},
+  '绿湾': {lat: 44.5133, lon: -88.0133},
+  '大急流城': {lat: 42.9634, lon: -85.6681},
+  '基恩': {lat: 42.9337, lon: -72.2781},
+  '克拉蒙特': {lat: 43.3767, lon: -72.3473},
+  '巴吞鲁日': {lat: 30.4515, lon: -91.1871},
+  '罗阿诺克': {lat: 37.2710, lon: -79.9414},
+  '法戈': {lat: 46.8772, lon: -96.7898},
+  'Gravel': {lat: 39.0473, lon: -95.6752},
+  '沃伦': {lat: 44.1112, lon: -72.8573},
+  '斯普林菲尔德': {lat: 43.2995, lon: -72.4876},
+  '阻击性市': {lat: 34.7304, lon: -86.5861}, // Alabama Huntsville
+  '力学城': {lat: 34.7304, lon: -86.5861}, // Alabama Huntsville variation
+  '亨茨维尔': {lat: 34.7304, lon: -86.5861},
+  '巴基': {lat: 33.3703, lon: -112.5838},
+  '威明顿': {lat: 39.7458, lon: -75.5466},
+  '罗彻斯特': {lat: 44.0234, lon: -92.4629},
+  '辛斯伯里': {lat: 41.8759, lon: -72.8018},
+  '伍恩索克特': {lat: 42.0084, lon: -71.5148},
+  '霍利奥克': {lat: 42.2043, lon: -72.6162},
+  '桑福德': {lat: 43.4393, lon: -70.7742},
+  '克利夫兰': {lat: 41.4993, lon: -81.6944},
+  '辛辛那提': {lat: 39.1031, lon: -84.5120},
+  '纽约市': {lat: 40.7128, lon: -74.0060},
+  '旧金山': {lat: 37.7749, lon: -122.4194},
+  '印第安纳波利斯': {lat: 39.7684, lon: -86.1581},
+  '火奴鲁鲁': {lat: 21.3069, lon: -157.8583},
+  '亚特兰大': {lat: 33.7490, lon: -84.3880},
+  '丹佛': {lat: 39.7392, lon: -104.9903},
+  '安克雷奇': {lat: 61.2181, lon: -149.9003},
+  '圣约瑟夫': {lat: 39.7675, lon: -94.8466},
+  '芝加哥': {lat: 41.8781, lon: -87.6298},
+  '纳什维尔': {lat: 36.1627, lon: -86.7816},
+  '西弗吉尼亚': {lat: 38.4192, lon: -82.4453},
+  '亨廷顿': {lat: 38.4192, lon: -82.4453},
+  '圣安东尼奥': {lat: 29.4241, lon: -98.4936}
+};
+
+// Story versions mapping (Chinese, English, Facebook)
+const _STORY_MAPPING = {
+  'IL-芝加哥': 'chicago-marathon.html',
+  'AR-小石城': 'little-rock-marathon.html',
+  'FL-迈阿密': 'miami-marathon.html',
+  'TN-纳什维尔': 'nashville-marathon.html',
+  'TX-圣安东尼奥': 'san-antonio-marathon.html',
+  'SC-Greer': 'south-carolina-marathon.html',
+  'WV-亨廷顿': 'west-virginia-marathon.html'
+};
+
+const _STATE_RACES = {};
+let _MAP_BOUND_EVENTS = false;
+
+// Albers Equal-Area Conic projection for US Map
+function _projectAlbers(lat, lon) {
+  const lat0 = 37.5 * Math.PI / 180;
+  const lon0 = -96 * Math.PI / 180;
+  const lat1 = 29.5 * Math.PI / 180;
+  const lat2 = 45.5 * Math.PI / 180;
+  
+  const n = 0.5 * (Math.sin(lat1) + Math.sin(lat2));
+  const C = Math.cos(lat1) * Math.cos(lat1) + 2 * n * Math.sin(lat1);
+  const rho0 = Math.sqrt(C - 2 * n * Math.sin(lat0)) / n;
+  
+  const latRad = lat * Math.PI / 180;
+  const lonRad = lon * Math.PI / 180;
+  
+  const theta = n * (lonRad - lon0);
+  const rho = Math.sqrt(C - 2 * n * Math.sin(latRad)) / n;
+  
+  const xProj = rho * Math.sin(theta);
+  const yProj = rho0 - rho * Math.cos(theta);
+  
+  const xSvg = 1395.88 * xProj + 932.15;
+  const ySvg = -927.71 * yProj + 536.84;
+  
+  return { x: xSvg, y: ySvg };
+}
+
+// Parse race cards dynamically to build the state races index
+function _parseGridRaces() {
+  if (Object.keys(_STATE_RACES).length > 0) return; // already parsed
+  
+  const stateNameMap = {
+    '肯塔基': 'KY', '佛罗里达': 'FL', '北卡': 'NC', '阿肯色': 'AR', '南卡': 'SC',
+    '宾夕法尼亚': 'PA', '威斯康辛': 'WI', '密歇根': 'MI', '新罕布什尔': 'NH',
+    '路易斯安那': 'LA', '弗吉尼亚': 'VA', '北达科他': 'ND', '堪萨斯': 'KS',
+    '佛蒙特': 'VT', '阿拉巴马': 'AL', '亚利桑那': 'AZ', '特拉华': 'DE',
+    '明尼苏达': 'MN', '康涅狄格': 'CT', '罗德岛': 'RI', '马萨诸塞': 'MA',
+    '缅因': 'ME', '俄亥俄': 'OH', '纽约': 'NY', '加利福尼亚': 'CA',
+    '印第安纳': 'IN', '夏威夷': 'HI', '佐治亚': 'GA', '科罗拉多': 'CO',
+    '阿拉斯加': 'AK', '密苏里': 'MO', '伊利诺伊': 'IL', '田纳西': 'TN',
+    '西弗吉尼亚': 'WV', '德克萨斯': 'TX'
+  };
+  
+  document.querySelectorAll('.race-grid .race-card').forEach((card, idx) => {
+    const isPlaceholder = card.classList.contains('placeholder');
+    const num = card.querySelector('.rc-num')?.textContent || '';
+    const emoji = card.querySelector('.rc-emoji')?.textContent || '';
+    const stateName = card.querySelector('.rc-state')?.textContent || '';
+    const city = card.querySelector('.rc-city')?.textContent || '';
+    const raceName = card.querySelector('.rc-race')?.textContent || '';
+    const date = card.querySelector('.rc-date')?.textContent || '';
+    
+    // Give each card a unique ID for smooth scrolling
+    if (!card.id) card.id = `race-card-idx-${idx}`;
+    
+    const abbr = stateNameMap[stateName];
+    if (abbr) {
+      if (!_STATE_RACES[abbr]) _STATE_RACES[abbr] = [];
+      _STATE_RACES[abbr].push({
+        city, raceName, date, emoji, num, isPlaceholder, cardId: card.id
+      });
+    }
+  });
+}
+
 function _muteAll(){
   _SF.forEach(id=>{const el=document.getElementById('map_'+id);if(el)el.style.fill=_MUTED;});
 }
+
 function _highlightState(abbr,color){
   _muteAll();
   (_HM[abbr]||[]).forEach(id=>{const el=document.getElementById('map_'+id);if(el)el.style.fill=color;});
 }
+
+// Get or create floating tooltip
+function _getTooltip() {
+  let tooltip = document.getElementById('map-floating-tooltip');
+  if (!tooltip) {
+    tooltip = document.createElement('div');
+    tooltip.id = 'map-floating-tooltip';
+    tooltip.className = 'map-tooltip';
+    document.body.appendChild(tooltip);
+  }
+  return tooltip;
+}
+
+// Show Tooltip for State Shape
+function _showStateTooltip(e, abbr) {
+  const races = _STATE_RACES[abbr];
+  const tooltip = _getTooltip();
+  const hoverStatus = document.getElementById('map-hover-status');
+  
+  if (!races || races.length === 0) {
+    tooltip.innerHTML = `<h4>${abbr}</h4><div style="color:#aaa;">没有在此州的跑马记录</div>`;
+    if (hoverStatus) hoverStatus.textContent = `${abbr}: 无跑马记录`;
+  } else {
+    const stateName = document.getElementById('map_' + _HM[abbr][0])?.getAttribute('id') || abbr;
+    const cleanStateName = stateName.replace('map_', '').replace('_1_', '').replace('_', ' ');
+    
+    let html = `<h4>📍 ${cleanStateName} (${races.length} 场完赛)</h4>`;
+    races.forEach(r => {
+      html += `<div class="map-tooltip-race">
+        <strong>${r.emoji} ${r.city}</strong> · ${r.num}<br>
+        <span style="font-size:12px;color:#eee;">${r.raceName}</span>
+        <div class="map-tooltip-meta">${r.date} &nbsp; ${r.isPlaceholder ? '<span style="color:#c8860a">(待更新)</span>' : '<span style="color:#ffb612;font-weight:bold;">(已完赛)</span>'}</div>`;
+        
+      // Append translation links if story mapping matches
+      const storyKey = `${abbr}-${r.city}`;
+      const storyFile = _STORY_MAPPING[storyKey];
+      if (storyFile) {
+        html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
+          <a href="facebook/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size: 11px;">Facebook ↗</a>
+          <a href="stories/chinese/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#8d3f3f; color:#fff; font-size: 11px;">中文故事 ↗</a>
+          <a href="stories/english/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#1f6f5b; color:#fff; font-size: 11px;">English ↗</a>
+        </div>`;
+      } else if (!r.isPlaceholder) {
+        // If has oral script but no written files
+        const completedMap = {
+          'KY': 'script-ky', 'WI': 'script-wi', 'MI': 'script-mi', 'FL': 'script-fl',
+          'NC': 'script-nc', 'AR': 'script-ar', 'SC': 'script-sc', 'PA': 'script-pa', 'NH': 'script-nh'
+        };
+        if (completedMap[abbr]) {
+          html += `<a href="javascript:switchScript('${completedMap[abbr]}')" class="map-tooltip-link">查看口播剧本</a>`;
+        }
+      }
+      html += `</div>`;
+    });
+    
+    tooltip.innerHTML = html;
+    if (hoverStatus) hoverStatus.textContent = `${cleanStateName}: 共有 ${races.length} 场记录`;
+  }
+  
+  tooltip.style.display = 'block';
+  _moveCityTooltip(e);
+}
+
+// Show Tooltip for City Dot
+function _showCityTooltip(e, r, abbr) {
+  const tooltip = _getTooltip();
+  const hoverStatus = document.getElementById('map-hover-status');
+  
+  let html = `<h4>📍 ${r.emoji} ${r.city}</h4>`;
+  html += `<div class="map-tooltip-race">
+    <strong>${r.raceName}</strong> (${r.num})<br>
+    <div class="map-tooltip-meta">日期: ${r.date} &nbsp; ${r.isPlaceholder ? '<span style="color:#c8860a">(待更新)</span>' : '<span style="color:#ffb612;font-weight:bold;">(已完赛)</span>'}</div>`;
+    
+  const storyKey = `${abbr}-${r.city}`;
+  const storyFile = _STORY_MAPPING[storyKey];
+  if (storyFile) {
+    html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
+      <a href="facebook/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size: 11px;">Facebook ↗</a>
+      <a href="stories/chinese/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#8d3f3f; color:#fff; font-size: 11px;">中文故事 ↗</a>
+      <a href="stories/english/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#1f6f5b; color:#fff; font-size: 11px;">English ↗</a>
+    </div>`;
+  } else if (!r.isPlaceholder) {
+    const completedMap = {
+      'KY': 'script-ky', 'WI': 'script-wi', 'MI': 'script-mi', 'FL': 'script-fl',
+      'NC': 'script-nc', 'AR': 'script-ar', 'SC': 'script-sc', 'PA': 'script-pa', 'NH': 'script-nh'
+    };
+    if (completedMap[abbr]) {
+      html += `<a href="javascript:switchScript('${completedMap[abbr]}')" class="map-tooltip-link">查看口播剧本</a>`;
+    }
+  }
+  html += `</div>`;
+  
+  tooltip.innerHTML = html;
+  if (hoverStatus) hoverStatus.textContent = `${r.city}: ${r.raceName}`;
+  tooltip.style.display = 'block';
+  _moveCityTooltip(e);
+}
+
+function _moveCityTooltip(e) {
+  const tooltip = _getTooltip();
+  if (tooltip.style.display === 'block') {
+    tooltip.style.left = (e.pageX + 15) + 'px';
+    tooltip.style.top = (e.pageY + 15) + 'px';
+  }
+}
+
+function _hideCityTooltip() {
+  const tooltip = _getTooltip();
+  tooltip.style.display = 'none';
+  const hoverStatus = document.getElementById('map-hover-status');
+  if (hoverStatus) hoverStatus.textContent = '鼠标悬停在州或红点上查看比赛记录，点击跳转';
+}
+
+// Click shapes or city dots
+function _handleStateClick(abbr) {
+  _hideCityTooltip();
+  const completedMap = {
+    'KY': 'script-ky', 'WI': 'script-wi', 'MI': 'script-mi', 'FL': 'script-fl',
+    'NC': 'script-nc', 'AR': 'script-ar', 'SC': 'script-sc', 'PA': 'script-pa', 'NH': 'script-nh'
+  };
+  
+  if (completedMap[abbr]) {
+    switchScript(completedMap[abbr]);
+  } else {
+    // Scroll to the first race card of this state
+    const races = _STATE_RACES[abbr];
+    if (races && races.length > 0) {
+      const card = document.getElementById(races[0].cardId);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('card-highlight-flash');
+        setTimeout(() => card.classList.remove('card-highlight-flash'), 3500);
+      }
+    }
+  }
+}
+
+function _handleCityClick(r, abbr) {
+  _hideCityTooltip();
+  const storyKey = `${abbr}-${r.city}`;
+  const storyFile = _STORY_MAPPING[storyKey];
+  
+  if (storyFile) {
+    // If has Facebook article, open in new tab directly
+    window.open(`facebook/${storyFile}`, '_blank');
+  } else {
+    // Scroll to this specific race card
+    const card = document.getElementById(r.cardId);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      card.classList.add('card-highlight-flash');
+      setTimeout(() => card.classList.remove('card-highlight-flash'), 3500);
+    }
+  }
+}
+
+function _bindMapEventsOnce() {
+  if (_MAP_BOUND_EVENTS) return;
+  _MAP_BOUND_EVENTS = true;
+  
+  _SF.forEach(id => {
+    const el = document.getElementById('map_' + id);
+    if (el) {
+      el.style.transition = 'fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease';
+      
+      // Determine state abbreviation
+      let stateAbbr = null;
+      for (const key in _HM) {
+        if (_HM[key].includes(id)) {
+          stateAbbr = key;
+          break;
+        }
+      }
+      
+      if (stateAbbr) {
+        el.addEventListener('mouseenter', (e) => {
+          if (document.getElementById('welcome').classList.contains('active')) {
+            _showStateTooltip(e, stateAbbr);
+          }
+        });
+        el.addEventListener('mousemove', _moveCityTooltip);
+        el.addEventListener('mouseleave', _hideCityTooltip);
+        el.addEventListener('click', () => {
+          if (document.getElementById('welcome').classList.contains('active')) {
+            _handleStateClick(stateAbbr);
+          }
+        });
+      }
+    }
+  });
+}
+
+function _injectWelcomeMap() {
+  const master = document.getElementById('us-map-master');
+  if (!master) return;
+  const slot = document.getElementById('welcome-map-slot');
+  if (!slot) return;
+  
+  _parseGridRaces();
+  
+  // Append SVG map to the welcome slot
+  slot.innerHTML = '';
+  slot.appendChild(master);
+  master.style.display = 'block';
+  
+  _muteAll();
+  _bindMapEventsOnce();
+  
+  // Highlight completed states (navy)
+  const completed = ['KY', 'FL', 'NC', 'AR', 'SC', 'PA', 'WI', 'MI', 'NH'];
+  completed.forEach(abbr => {
+    (_HM[abbr] || []).forEach(id => {
+      const el = document.getElementById('map_' + id);
+      if (el) {
+        el.style.fill = '#1a2a3a'; // Run50 primary navy
+        el.classList.add('run-state');
+      }
+    });
+  });
+  
+  // Highlight planned/historical states (accent gold)
+  const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'IL', 'TN', 'WV', 'TX'];
+  placeholders.forEach(abbr => {
+    (_HM[abbr] || []).forEach(id => {
+      const el = document.getElementById('map_' + id);
+      if (el) {
+        el.style.fill = '#c8860a'; // Run50 accent gold
+        el.classList.add('run-state');
+      }
+    });
+  });
+  
+  // Create or retrieve dots group
+  let dotGroup = master.querySelector('#city-dots-group');
+  if (!dotGroup) {
+    dotGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    dotGroup.id = 'city-dots-group';
+    master.appendChild(dotGroup);
+  }
+  dotGroup.innerHTML = ''; // reset dots
+  
+  // Draw red dot markers
+  for (const abbr in _STATE_RACES) {
+    _STATE_RACES[abbr].forEach(r => {
+      const cityCoords = _CITY_LAT_LON[r.city];
+      if (cityCoords) {
+        let x, y;
+        if (abbr === 'HI') {
+          x = 368.4; y = 929.4; // Hawaii shape center
+        } else if (abbr === 'AK') {
+          x = 580.3; y = 959.2; // Alaska shape center
+        } else {
+          const coords = _projectAlbers(cityCoords.lat, cityCoords.lon);
+          x = coords.x;
+          y = coords.y;
+        }
+        
+        // Draw glow circle
+        const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        glow.setAttribute('cx', x);
+        glow.setAttribute('cy', y);
+        glow.setAttribute('r', 11);
+        glow.setAttribute('fill', 'rgba(255, 59, 48, 0.35)');
+        glow.setAttribute('class', 'city-dot-glow');
+        glow.style.pointerEvents = 'none';
+        dotGroup.appendChild(glow);
+        
+        // Draw solid red dot
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', x);
+        dot.setAttribute('cy', y);
+        dot.setAttribute('r', 4.5);
+        dot.setAttribute('fill', '#ff3b30');
+        dot.setAttribute('stroke', '#ffffff');
+        dot.setAttribute('stroke-width', '1.5');
+        dot.setAttribute('class', 'city-dot');
+        dot.style.cursor = 'pointer';
+        
+        dot.addEventListener('mouseenter', (e) => _showCityTooltip(e, r, abbr));
+        dot.addEventListener('mousemove', _moveCityTooltip);
+        dot.addEventListener('mouseleave', _hideCityTooltip);
+        dot.addEventListener('click', () => _handleCityClick(r, abbr));
+        
+        dotGroup.appendChild(dot);
+      }
+    });
+  }
+}
+
 function _injectMap(scriptId){
   const master=document.getElementById('us-map-master');
   if(!master)return;
@@ -2459,8 +3067,15 @@ function _injectMap(scriptId){
   if(!card)return;
   const slot=card.querySelector('[data-map-slot]');
   if(!slot)return;
+  
+  // Hide city dots inside script card map slot
+  const dotGroup = master.querySelector('#city-dots-group');
+  if(dotGroup) dotGroup.innerHTML = '';
+  
   slot.innerHTML='';
   slot.appendChild(master);
+  master.style.display = 'block';
+  
   const info=_SC_STATE[scriptId];
   if(info)_highlightState(info.s,info.c);
   let lbl=slot.querySelector('.map-label');
@@ -2471,14 +3086,22 @@ function _injectMap(scriptId){
 function showWelcome(){
   document.querySelectorAll('.main-content .container').forEach(s=>s.classList.remove('active'));
   const w=document.getElementById('welcome');
-  if(w){w.classList.add('active');}
+  if(w){
+    w.classList.add('active');
+    _injectWelcomeMap();
+  }
   const sel=document.getElementById('scriptSelect');
   if(sel) sel.value='welcome';
 }
+
 document.addEventListener('DOMContentLoaded',()=>{
   _muteAll();
   const first=document.querySelector('.container.active');
-  if(first&&first.id)_injectMap(first.id);
+  if(first&&first.id) {
+    _injectMap(first.id);
+  } else {
+    _injectWelcomeMap();
+  }
 });
 </script>
 
