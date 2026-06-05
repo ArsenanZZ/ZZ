@@ -40,6 +40,9 @@ create table if not exists public.story_comments (
       'run50-south-carolina-marathon-facebook-en',
       'run50-south-carolina-marathon-en',
       'run50-south-carolina-marathon-zh',
+      'run50-san-antonio-marathon-facebook-en',
+      'run50-san-antonio-marathon-en',
+      'run50-san-antonio-marathon-zh',
       'run50-west-virginia-marathon-facebook-en',
       'run50-west-virginia-marathon-en',
       'run50-west-virginia-marathon-zh'
@@ -79,6 +82,9 @@ add constraint story_comments_page_whitelist check (
     'run50-south-carolina-marathon-facebook-en',
     'run50-south-carolina-marathon-en',
     'run50-south-carolina-marathon-zh',
+      'run50-san-antonio-marathon-facebook-en',
+      'run50-san-antonio-marathon-en',
+      'run50-san-antonio-marathon-zh',
     'run50-west-virginia-marathon-facebook-en',
     'run50-west-virginia-marathon-en',
     'run50-west-virginia-marathon-zh'
@@ -128,6 +134,9 @@ with check (
     'run50-south-carolina-marathon-facebook-en',
     'run50-south-carolina-marathon-en',
     'run50-south-carolina-marathon-zh',
+      'run50-san-antonio-marathon-facebook-en',
+      'run50-san-antonio-marathon-en',
+      'run50-san-antonio-marathon-zh',
     'run50-west-virginia-marathon-facebook-en',
     'run50-west-virginia-marathon-en',
     'run50-west-virginia-marathon-zh'
