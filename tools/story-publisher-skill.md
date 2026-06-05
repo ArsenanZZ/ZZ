@@ -359,3 +359,15 @@ After the matching `head_sha` completes with `success`, verify live URLs with ca
 - `https://arsenanzz.github.io/ZZ/assets/thumb-run50-{slug}-icons.svg?v=TIMESTAMP`
 
 Final response should be concise and include published URLs, verification status, and commit hash.
+
+## Common Pitfalls & Troubleshooting
+
+### Index Shifts in Story Builders
+- When parsing raw WeChat/exported HTML, the indices of extracted paragraphs/elements in the builder script (`extract_story()` enumerator) may shift relative to manual dumps or block lists.
+- **How to debug**: Write a quick Python script to output the actual indices and text blocks into a UTF-8 text file (do not print directly to Windows console to avoid CP1252 `UnicodeEncodeError` on Chinese characters). Check this file to align the index keys in `EN_BY_INDEX`.
+- **End Mark**: Always include the end mark index (e.g., `"- End -"` for `"- 本文完 -"`) in the translation mapping dictionary, as the script formats it with `class="end-mark"`.
+
+### Supabase Comments Whitelist
+- Modifying the `supabase/run50-comments.sql` file in Git is required for documentation, but **does not deploy the database changes**.
+- You must manually execute the SQL statements in the **SQL Editor** of the Supabase dashboard to apply the check constraints and insert policies.
+
