@@ -282,120 +282,145 @@ def page_css() -> str:
       --ink: #20242b;
       --muted: #667085;
       --line: #d5dfd0;
-      --sage: #6f8f71;
-      --terracotta: #b24a33;
+      --river: #2f855a;
+      --brick: #2f855a;
       --gold: #b7892f;
+      --leaf: #2f855a;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: linear-gradient(180deg, #eaf2e8 0, var(--paper) 360px);
+      background: linear-gradient(180deg, #edf5ec 0, var(--paper) 300px);
       color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
-      line-height: 1.75;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.78;
       letter-spacing: 0;
     }
-    a { color: inherit; }
+    a { color: var(--river); text-decoration-thickness: 1px; text-underline-offset: 4px; }
     .story-nav {
-      max-width: 980px;
+      max-width: 860px;
       margin: 0 auto;
-      padding: 22px 22px 0;
+      padding: 18px 22px 0;
       display: flex;
-      justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
       color: var(--muted);
       font-size: 14px;
+      justify-content: space-between;
     }
-    .story-nav a { text-decoration: none; border-bottom: 1px solid transparent; }
+    .story-nav a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
     .story-nav a:hover { border-color: currentColor; }
     .page-header {
-      max-width: 980px;
+      max-width: 860px;
       margin: 0 auto;
-      padding: 58px 22px 30px;
+      padding: 42px 22px 24px;
     }
-    .kicker {
-      margin: 0 0 14px;
-      color: var(--terracotta);
-      font-weight: 850;
-      font-size: 13px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
+    .kicker { margin: 0 0 14px; color: var(--brick); font-size: 14px; font-weight: 800; }
     h1 {
       margin: 0;
-      max-width: 850px;
-      font-size: clamp(34px, 7vw, 66px);
-      line-height: 1;
+      max-width: 780px;
+      color: #111827;
+      font-size: 34px;
+      line-height: 1.22;
+      font-weight: 850;
       letter-spacing: 0;
     }
     .meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin: 20px 0 0;
+      gap: 10px;
+      align-items: center;
+      margin-top: 18px;
       color: var(--muted);
-      font-size: 13px;
-      font-weight: 750;
-      text-transform: uppercase;
+      font-size: 14px;
     }
-    .meta span {
-      padding: 5px 8px;
-      background: rgba(255,255,255,.72);
+    .meta span,
+    .meta a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 3px 10px;
       border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .72);
+      color: var(--muted);
+      text-decoration: none;
     }
     .dek {
-      max-width: 720px;
       margin: 22px 0 0;
+      padding-left: 16px;
+      border-left: 4px solid var(--river);
       color: #344054;
-      font-size: 18px;
+      font-size: 15px;
     }
     .article-shell {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 4px 22px 44px;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, .06);
     }
     .article-body {
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
-      font-size: 18px;
+      padding: 44px 22px 56px;
+      overflow-wrap: anywhere;
     }
     .article-body h2 {
-      margin: 42px 0 16px;
-      color: #18212b;
-      font-size: clamp(25px, 5vw, 38px);
-      line-height: 1.18;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 26px;
+      color: #111827;
+      font-size: 28px;
+      line-height: 1.25;
+      font-weight: 850;
       letter-spacing: 0;
     }
+    .article-body h2:not(:first-child) { margin-top: 54px; }
+    .article-body h2::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--gold);
+      flex: 0 0 auto;
+    }
     .article-body .section-label {
-      color: var(--terracotta);
-      font-size: 15px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      border-top: 1px solid var(--line);
-      padding-top: 24px;
+      color: #111827;
+      font-size: 28px;
+      letter-spacing: 0;
+      text-transform: none;
+      border-top: 0;
+      padding-top: 0;
     }
-    .article-body p { margin: 0 0 18px; }
+    .article-body p { margin: 0 0 17px; font-size: 17px; line-height: 1.86; }
     .place {
-      color: var(--sage);
-      font-weight: 850;
+      margin: -8px 0 24px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 700;
     }
-    .article-body figure {
-      margin: 28px 0;
-    }
+    .article-body figure { margin: 28px 0 30px; }
     .article-body img {
       display: block;
       width: 100%;
+      max-width: 100%;
       height: auto;
       border-radius: 8px;
       background: #e1e8dc;
-      box-shadow: 0 18px 42px rgba(35, 49, 39, .12);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, .12);
     }
     figcaption {
-      margin-top: 8px;
-      color: var(--muted);
+      margin-top: 9px;
+      color: #7a828c;
       font-size: 13px;
+      line-height: 1.55;
       text-align: center;
     }
+    .article-body hr { width: 72px; height: 1px; margin: 34px auto; border: 0; background: var(--line); }
     .end-mark,
     .credit-line {
       text-align: center;
@@ -411,8 +436,13 @@ def page_css() -> str:
     }
     @media (max-width: 640px) {
       .story-nav { flex-wrap: wrap; }
-      .page-header { padding-top: 40px; }
-      .article-body { font-size: 17px; }
+      .page-header { padding: 30px 18px 20px; }
+      h1 { font-size: 26px; }
+      .article-body { padding: 34px 18px 44px; }
+      .article-body h2,
+      .article-body .section-label { font-size: 24px; }
+      .article-body p { font-size: 16px; }
+      .article-body figure { margin-left: -2px; margin-right: -2px; }
     }
     """
 
@@ -435,19 +465,23 @@ def facebook_css() -> str:
       background: var(--paper);
       color: var(--ink);
       font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
       letter-spacing: 0;
     }
-    a { color: inherit; }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    img { max-width: 100%; height: auto; }
     .breaking {
-      background: #111111;
+      background: var(--red);
       color: #ffffff;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
     .breaking-inner,
     .site-head-inner,
     .article {
-      width: min(1120px, calc(100% - 32px));
+      width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
     }
     .breaking-inner,
@@ -462,6 +496,7 @@ def facebook_css() -> str:
     .section-nav a { color: inherit; text-decoration: none; }
     .site-head {
       border-bottom: 1px solid var(--line);
+      background: #ffffff;
     }
     .site-head-inner {
       min-height: 72px;
@@ -471,14 +506,17 @@ def facebook_css() -> str:
       font-size: 28px;
       font-weight: 900;
       letter-spacing: 0;
+      text-decoration: none;
     }
     .section-nav {
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-end;
       gap: 14px;
-      color: var(--muted);
+      color: #333333;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
+      text-transform: uppercase;
     }
     .hero {
       padding: 34px 0 22px;
@@ -487,18 +525,18 @@ def facebook_css() -> str:
     .label {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      color: var(--red);
-      font-size: 13px;
+      min-height: 28px;
+      padding: 4px 9px;
+      background: var(--red);
+      color: #ffffff;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: .08em;
       text-transform: uppercase;
     }
     .label::before {
       content: "";
-      width: 38px;
-      height: 9px;
-      background: var(--red);
+      display: none;
     }
     h1 {
       margin: 18px 0 14px;
@@ -508,29 +546,40 @@ def facebook_css() -> str:
       letter-spacing: 0;
     }
     .dek {
-      max-width: 760px;
+      max-width: 820px;
       margin: 0;
       color: #333333;
-      font-size: 1.15rem;
-      line-height: 1.65;
+      font-size: clamp(1.08rem, 2vw, 1.32rem);
+      line-height: 1.55;
     }
     .byline {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       margin-top: 18px;
       color: var(--muted);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
     }
+    .byline span,
+    .byline a {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 9px;
+      background: var(--soft);
+      text-decoration: none;
+    }
     .lead-media {
-      margin: 28px 0 0;
+      margin: 26px 0 0;
+      border-top: 6px solid var(--red);
     }
     .lead-media img {
       display: block;
       width: 100%;
-      border-radius: 6px;
+      aspect-ratio: 1200 / 630;
+      object-fit: cover;
       background: var(--soft);
     }
     figcaption {
@@ -540,10 +589,10 @@ def facebook_css() -> str:
     }
     .story-grid {
       display: grid;
-      grid-template-columns: 300px minmax(0, 1fr);
-      gap: 36px;
+      grid-template-columns: minmax(220px, 300px) minmax(0, 720px);
+      gap: 34px;
       align-items: start;
-      padding: 30px 0 50px;
+      padding: 34px 0 12px;
     }
     .rail {
       position: sticky;
@@ -556,16 +605,21 @@ def facebook_css() -> str:
     .context-note,
     .section-bridge {
       border: 1px solid var(--line);
-      background: #f7f8f4;
       padding: 18px;
-      border-radius: 8px;
+    }
+    .brief-box {
+      border: 0;
+      border-top: 5px solid var(--red);
+      background: var(--soft);
+      padding: 16px;
     }
     .brief-box h2,
     .section-bridge h2 {
       margin: 0 0 12px;
-      font-size: 20px;
+      font-size: 19px;
+      line-height: 1.1;
     }
-    dl { margin: 0; display: grid; gap: 16px; }
+    dl { margin: 0; display: grid; gap: 12px; }
     dt {
       color: var(--red);
       font-size: 12px;
@@ -574,10 +628,10 @@ def facebook_css() -> str:
       letter-spacing: .08em;
     }
     dd {
-      margin: 4px 0 0;
-      color: #333333;
+      margin: 2px 0 0;
+      color: #222222;
       font-size: 14px;
-      line-height: 1.55;
+      line-height: 1.45;
     }
     .share-note {
       color: #333333;
@@ -586,61 +640,123 @@ def facebook_css() -> str:
     }
     .share-note strong {
       display: block;
-      color: var(--red);
+      color: var(--ink);
       text-transform: uppercase;
       font-size: 12px;
       letter-spacing: .08em;
       margin-bottom: 6px;
     }
     .copy {
-      max-width: 760px;
-      font-size: 18px;
-      line-height: 1.75;
+      min-width: 0;
     }
-    .copy p { margin: 0 0 18px; }
+    .copy p {
+      margin: 0 0 19px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      line-height: 1.72;
+    }
     .copy h2 {
-      margin: 42px 0 16px;
-      font-size: clamp(26px, 4vw, 42px);
-      line-height: 1.08;
+      margin: 36px 0 16px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-size: 30px;
+      line-height: 1.1;
       letter-spacing: 0;
     }
     .copy .section-label {
       color: var(--red);
       font-size: 13px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: .12em;
+      letter-spacing: .08em;
       border-top: 1px solid var(--line);
       padding-top: 24px;
     }
     .copy .place {
-      color: var(--sage);
-      font-weight: 850;
+      margin: 0 0 18px;
+      color: var(--red);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
     .copy figure {
-      margin: 28px 0;
+      margin: 25px 0 30px;
     }
     .copy figure img {
-      width: 100%;
       display: block;
-      border-radius: 6px;
+      width: 100%;
+      border: 1px solid var(--line);
       background: var(--soft);
     }
     .context-note,
     .section-bridge {
       margin: 0 0 28px;
     }
+    .context-note {
+      padding: 18px 0 18px 18px;
+      border: 0;
+      border-left: 7px solid var(--red);
+      background: #fafafa;
+    }
+    .context-note p,
+    .section-bridge p {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    .section-bridge {
+      margin: 40px 0 26px;
+      border: 0;
+      border-top: 5px solid var(--red);
+      background: #f7f7f7;
+    }
+    .section-bridge h2 {
+      margin: 0 0 10px;
+      padding: 0;
+      border: 0;
+      font-size: 24px;
+    }
     .context-note p:last-child,
     .section-bridge p:last-child {
       margin-bottom: 0;
+    }
+    .copy hr {
+      width: 74px;
+      height: 5px;
+      margin: 34px 0;
+      border: 0;
+      background: var(--red);
     }
     .end-mark,
     .credit-line {
       text-align: center;
       color: var(--muted);
     }
+    .zz-engagement {
+      max-width: 1180px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .zz-engagement-kicker,
+    .zz-engagement h2 {
+      color: var(--red);
+    }
     @media (max-width: 820px) {
       .story-grid { grid-template-columns: 1fr; }
       .rail { position: static; }
+    }
+    @media (max-width: 860px) {
+      .site-head-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+      .section-nav {
+        justify-content: flex-start;
+      }
     }
     """
 
@@ -778,14 +894,33 @@ def facebook_page(article: str) -> str:
   <style>{facebook_css()}</style>
 </head>
 <body>
-  <div class="breaking"><div class="breaking-inner"><a href="./index.html">Run50 Facebook</a><span>Italy / Pisa / Marathon</span></div></div>
-  <header class="site-head"><div class="site-head-inner"><div class="wordmark">Run50</div><nav class="section-nav" aria-label="Story links"><a href="../stories/english/{SLUG}.html">Full English</a><a href="../stories/chinese/{SLUG}.html">中文原文</a><a href="../index.html">Run50</a></nav></div></header>
+  <div class="breaking">
+    <div class="breaking-inner">
+      <a href="./index.html">Run50 Facebook</a>
+      <span>Race date: December 21, 2025</span>
+    </div>
+  </div>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <a class="wordmark" href="./index.html" aria-label="Run50 Facebook home">RUN50 WORLD</a>
+      <nav class="section-nav" aria-label="Story navigation">
+        <a href="../index.html">Run50</a>
+        <a href="../stories/english/{SLUG}.html">Full English Story</a>
+        <a href="../stories/chinese/{SLUG}.html">Chinese Original</a>
+      </nav>
+    </div>
+  </header>
   <article class="article">
     <section class="hero">
       <span class="label">World / Italy / Marathon</span>
       <h1>{escape(title)}</h1>
       <p class="dek">{escape(desc)}</p>
-      <div class="byline"><span>By Arsenan</span><span>Pisa, Italy</span><span>December 21, 2025</span></div>
+      <div class="byline">
+        <span>By Arsenan</span>
+        <span>Race: December 21, 2025</span>
+        <span>Pisa, Italy</span>
+        <span>RunWorld #6</span>
+      </div>
       <figure class="lead-media"><img src="../../assets/og-run50-pisa-icons.png" alt="Icon-style Pisa Marathon cover"><figcaption>Pisa icon cover with the Leaning Tower, Galileo's telescope, Tuscan hills and medal.</figcaption></figure>
     </section>
     <section class="story-grid">
