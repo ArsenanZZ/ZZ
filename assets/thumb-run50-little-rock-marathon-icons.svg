@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">Little Rock Marathon icon cover</title>
+<desc id="desc">Icon style cover with Little Rock title, Run50 badge, Arkansas State Capitol dome, Junction Bridge, and dinosaur.</desc>
+<rect width="1200" height="750" fill="#edf3f7"/>
+<g transform="translate(70 104)">
+  <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">LITTLE ROCK</text>
+  <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#0b67c2">CAPITOL · CLINTON · DINOSAUR</text>
+</g>
+<rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #17</text>
+<text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">ARKANSAS</text>
+<circle cx="1052" cy="352" r="62" fill="#fbbf24"/>
+<path d="M0 612 C190 540 330 590 500 538 C690 480 830 590 1000 545 C1100 518 1168 515 1200 498 L1200 750 L0 750 Z" fill="#b0cddb"/>
+<path d="M0 682 C180 620 370 705 560 650 C760 592 930 690 1200 620 L1200 750 L0 750 Z" fill="#84acc3"/>
+<rect x="50" y="580" width="1100" height="16" fill="#334155"/>
+<path d="M100 580 Q250 500 400 580" stroke="#334155" stroke-width="12" fill="none"/>
+<path d="M400 580 Q550 500 700 580" stroke="#334155" stroke-width="12" fill="none"/>
+<path d="M700 580 Q850 500 1000 580" stroke="#334155" stroke-width="12" fill="none"/>
+<rect x="385" y="580" width="30" height="120" fill="#475569"/>
+<rect x="685" y="580" width="30" height="120" fill="#475569"/>
+<g>
+  <rect x="150" y="440" width="180" height="140" fill="#cbd5e1" stroke="#334155" stroke-width="5"/>
+  <line x1="180" y1="440" x2="180" y2="580" stroke="#475569" stroke-width="4"/>
+  <line x1="210" y1="440" x2="210" y2="580" stroke="#475569" stroke-width="4"/>
+  <line x1="240" y1="440" x2="240" y2="580" stroke="#475569" stroke-width="4"/>
+  <line x1="270" y1="440" x2="270" y2="580" stroke="#475569" stroke-width="4"/>
+  <line x1="300" y1="440" x2="300" y2="580" stroke="#475569" stroke-width="4"/>
+  <rect x="180" y="380" width="120" height="60" fill="#cbd5e1" stroke="#334155" stroke-width="5"/>
+  <line x1="200" y1="380" x2="200" y2="440" stroke="#475569" stroke-width="3"/>
+  <line x1="220" y1="380" x2="220" y2="440" stroke="#475569" stroke-width="3"/>
+  <line x1="240" y1="380" x2="240" y2="440" stroke="#475569" stroke-width="3"/>
+  <line x1="260" y1="380" x2="260" y2="440" stroke="#475569" stroke-width="3"/>
+  <line x1="280" y1="380" x2="280" y2="440" stroke="#475569" stroke-width="3"/>
+  <path d="M195 380 C195 310 305 310 305 380 Z" fill="#94a3b8" stroke="#334155" stroke-width="5"/>
+  <rect x="245" y="290" width="10" height="20" fill="#64748b"/>
+  <line x1="250" y1="290" x2="250" y2="250" stroke="#334155" stroke-width="4"/>
+</g>
+<g>
+  <path d="M880 580 L900 520 Q910 490 890 470 Q870 450 850 460 L830 470 L830 450 L860 430 Q880 410 910 420 L930 440 Q950 420 970 390 L980 400 Q970 420 950 450 L940 480 Q950 490 970 500 L990 495 Q1010 490 1030 510 L1060 540 Q1080 550 1110 560 L1120 580 L1080 580 Q1040 570 1010 550 L980 540 L960 580 Z" fill="#166534"/>
+</g>
+<path d="M0 702 C180 675 340 720 520 695 C720 668 900 720 1200 678 L1200 750 L0 750 Z" fill="#0f766e"/>
+</svg>
