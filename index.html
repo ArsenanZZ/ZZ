@@ -4,262 +4,315 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZZ</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 :root {
-  --bg:        #f2efe9;
-  --surface:   #ffffff;
-  --ink:       #1a1714;
-  --muted:     #8a8480;
-  --faint:     #ddd9d0;
-  --accent:    #c8860a;
-  --water-bg:  #e4f0f4;
-  --water-ink: #0a5a72;
-  --run-bg:    #e8f2ea;
-  --run-ink:   #1a4030;
-  --read-bg:   #f0e8e4;
-  --read-ink:  #6a3028;
+  --amz-header: #131921;
+  --amz-nav:    #232f3e;
+  --amz-orange: #FF9900;
+  --amz-yellow: #FFD814;
+  --amz-teal:   #007185;
+  --amz-bg:     #EAEDED;
+  --amz-card:   #FFFFFF;
+  --amz-border: #D5D9D9;
+  --amz-text:   #0F1111;
+  --amz-muted:  #565959;
+  --amz-red:    #B12704;
+  --water-c:    #007185;
+  --run-c:      #2d6a4f;
+  --read-c:     #7b3f00;
 }
 
 body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: var(--amz-bg);
+  color: var(--amz-text);
+  font-family: Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   min-height: 100vh;
 }
 a { text-decoration: none; color: inherit; }
 
-/* ── TOP NAV ── */
-.topnav {
-  background: var(--ink);
-  height: 50px;
+/* ── HEADER ── */
+.topbar {
+  background: var(--amz-header);
+  height: 60px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  gap: 14px;
+  padding: 0 16px;
+  gap: 12px;
   position: sticky;
   top: 0;
   z-index: 50;
+  border-bottom: 1px solid #1a2330;
 }
-.logo {
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.5px;
+.brand {
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  white-space: nowrap;
   flex-shrink: 0;
+  border: 1px solid transparent;
+  padding: 4px 6px;
+  border-radius: 2px;
 }
-.logo em { color: var(--accent); font-style: italic; }
+.brand:hover { border-color: white; }
+.brand em { color: var(--amz-orange); font-style: italic; }
+
 .search {
   flex: 1;
-  max-width: 380px;
+  max-width: 760px;
   display: flex;
+}
+.search select {
+  background: #f3f3f3;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  padding: 0 8px;
+  font-size: 12px;
+  height: 40px;
+  cursor: pointer;
+  border-right: 1px solid #cdcdcd;
+  color: #333;
 }
 #searchInput {
   flex: 1;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-right: none;
-  color: white;
-  padding: 6px 10px;
-  font-size: 13px;
-  border-radius: 4px 0 0 4px;
+  border: none;
+  padding: 0 12px;
+  height: 40px;
+  font-size: 14px;
   outline: none;
   font-family: inherit;
 }
-#searchInput::placeholder { color: rgba(255,255,255,0.35); }
-#searchInput:focus { background: rgba(255,255,255,0.15); }
 .search button {
-  background: var(--accent);
+  background: var(--amz-orange);
   border: none;
-  width: 34px;
+  width: 46px;
+  height: 40px;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
-  color: white;
-  font-size: 14px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.nav-right {
-  margin-left: auto;
+.search button:hover { background: #e88a00; }
+
+.header-links {
   display: flex;
   gap: 14px;
-  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
 }
-.nav-right a {
-  color: rgba(255,255,255,0.65);
-  font-size: 12px;
-  font-weight: 400;
+.hlink {
+  color: white;
+  font-size: 13px;
+  border: 1px solid transparent;
+  padding: 4px 6px;
+  border-radius: 2px;
   white-space: nowrap;
+  line-height: 1.3;
 }
-.nav-right a:hover { color: white; }
+.hlink:hover { border-color: white; }
+.hlink small { display: block; font-size: 11px; color: #ccc; font-weight: 400; }
+.hlink strong { display: block; font-size: 13px; }
 
-/* ── HIDDEN SIDEBAR LINKS (JS compat) ── */
+/* ── NAV BAR ── */
+.navbar {
+  background: var(--amz-nav);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  overflow-x: auto;
+  gap: 0;
+}
+.navbar a {
+  color: white;
+  font-size: 13px;
+  padding: 8px 12px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  display: block;
+}
+.navbar a:hover, .navbar a.active { border-color: white; border-radius: 2px; }
+
+/* ── HIDDEN SIDEBAR (JS compat) ── */
 .sidebar { display: none; }
 
-/* ── DASHBOARD ── */
-.dashboard {
-  max-width: 860px;
-  margin: 52px auto 0;
-  padding: 0 20px;
-}
-.dash-top {
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #1a2a3a 0%, #131921 100%);
+  padding: 28px 20px;
   text-align: center;
-  margin-bottom: 44px;
+  color: white;
+  border-bottom: 3px solid var(--amz-orange);
 }
-.dash-top h1 {
-  font-size: 30px;
-  font-weight: 600;
-  letter-spacing: -0.5px;
-  color: var(--ink);
-}
-.dash-top h1 em { color: var(--accent); font-style: italic; }
-.dash-top p {
-  margin-top: 6px;
-  font-size: 13px;
-  color: var(--muted);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
+.hero h1 { font-size: 28px; font-weight: 800; }
+.hero h1 em { color: var(--amz-orange); font-style: italic; }
+.hero p { font-size: 12px; color: #aaa; letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
 
-.section-cards {
+/* ── DASHBOARD (Amazon dept cards) ── */
+.dashboard {
+  max-width: 1200px;
+  margin: 16px auto;
+  padding: 0 16px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-bottom: 20px;
 }
 
-.sec-card {
-  background: var(--surface);
-  border: 1.5px solid var(--faint);
-  border-radius: 16px;
-  padding: 28px 20px 22px;
-  text-align: center;
+.dept-card {
+  background: var(--amz-card);
+  border: 1px solid var(--amz-border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.dept-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--amz-orange);
+}
+.dept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.dept-item {
   cursor: pointer;
+  text-align: center;
+  border-radius: 4px;
+  padding: 6px 4px;
+  transition: background 0.15s;
+}
+.dept-item:hover { background: #f7f7f7; }
+.dept-thumb {
+  width: 100%;
+  height: 70px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 5px;
+  background: #f0f0f0;
+}
+.dept-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.dept-label { font-size: 11px; color: var(--amz-text); font-weight: 500; line-height: 1.3; }
+.dept-more {
   display: block;
-  color: inherit;
-  transition: box-shadow 0.2s, transform 0.2s;
-  -webkit-user-select: none;
-  user-select: none;
+  font-size: 13px;
+  color: var(--amz-teal);
+  margin-top: 4px;
 }
-.sec-card:hover {
-  box-shadow: 0 8px 28px rgba(0,0,0,0.09);
-  transform: translateY(-3px);
-}
-.sec-card svg { display: block; margin: 0 auto 16px; }
-.sec-name { font-size: 15px; font-weight: 600; }
-.sec-sub  { font-size: 11px; color: var(--muted); margin-top: 4px; letter-spacing: 0.3px; }
+.dept-more:hover { color: #c7511f; text-decoration: underline; }
 
-/* ── CHIPS (filter bar) ── */
+/* ── FILTER CHIPS ── */
 .chips-wrap {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 20px;
+  max-width: 1200px;
+  margin: 12px auto 0;
+  padding: 0 16px;
 }
 nav.chips {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .chip {
-  background: var(--surface);
-  border: 1px solid var(--faint);
+  background: var(--amz-card);
+  border: 1px solid var(--amz-border);
   border-radius: 20px;
   padding: 5px 14px;
-  font-size: 12px;
+  font-size: 13px;
   font-family: inherit;
   cursor: pointer;
-  color: var(--muted);
+  color: var(--amz-muted);
   transition: all 0.15s;
 }
-.chip:hover { border-color: var(--ink); color: var(--ink); }
-.chip.active { background: var(--ink); color: white; border-color: var(--ink); }
+.chip:hover { border-color: var(--amz-orange); color: var(--amz-text); }
+.chip.active { background: var(--amz-orange); color: #111; border-color: var(--amz-orange); font-weight: 700; }
 
 #subChips, #run50SubChips {
   display: none;
   gap: 6px;
   flex-wrap: wrap;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .sub-chip {
   background: transparent;
-  border: 1px dashed var(--faint);
+  border: 1px solid var(--amz-border);
   border-radius: 20px;
   padding: 3px 12px;
-  font-size: 11px;
+  font-size: 12px;
   font-family: inherit;
   cursor: pointer;
-  color: var(--muted);
+  color: var(--amz-muted);
 }
-.sub-chip.active { border-style: solid; border-color: var(--muted); color: var(--ink); }
+.sub-chip.active { border-color: var(--amz-orange); color: var(--amz-text); background: #fff8ee; }
 
 /* ── RESULTS BAR ── */
 .results-bar {
-  max-width: 860px;
-  margin: 6px auto 14px;
-  padding: 0 20px;
+  max-width: 1200px;
+  margin: 8px auto 10px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.results-bar h2 { font-size: 14px; font-weight: 500; color: var(--muted); }
-#resultCount { font-size: 12px; color: var(--muted); }
+.results-bar h2 { font-size: 15px; font-weight: 700; }
+#resultCount { font-size: 13px; color: var(--amz-muted); }
 
 /* ── VIDEO GRID ── */
 #videoGrid {
-  max-width: 860px;
-  margin: 0 auto 60px;
-  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 16px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 14px;
 }
 
 .video-card {
-  background: var(--surface);
-  border: 1px solid var(--faint);
-  border-radius: 12px;
+  background: var(--amz-card);
+  border: 1px solid var(--amz-border);
+  border-radius: 8px;
   overflow: hidden;
-  transition: box-shadow 0.2s, transform 0.18s;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
 }
-.video-card:hover {
-  box-shadow: 0 6px 22px rgba(0,0,0,0.09);
-  transform: translateY(-2px);
-}
+.video-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
 
 .thumb {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 120px;
-  position: relative;
+  display: block;
+  height: 130px;
   overflow: hidden;
+  background: #f7f7f7;
+  position: relative;
 }
-.thumb img { display: none; }
-.thumb svg.thumb-art { width: 100%; height: 100%; display: block; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
 .duration {
   position: absolute;
   bottom: 6px;
-  right: 8px;
-  background: rgba(0,0,0,0.5);
+  right: 7px;
+  background: rgba(0,0,0,0.6);
   color: white;
-  font-size: 9px;
-  padding: 1px 5px;
+  font-size: 10px;
+  padding: 1px 6px;
   border-radius: 3px;
   letter-spacing: 0.5px;
-  font-weight: 500;
 }
 
 .meta {
   padding: 10px 12px 14px;
+  flex: 1;
   display: flex;
-  gap: 9px;
+  gap: 8px;
   align-items: flex-start;
 }
 .avatar {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   flex-shrink: 0;
   display: flex;
@@ -268,175 +321,212 @@ nav.chips {
   font-size: 9px;
   font-weight: 700;
   color: white;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.5px;
 }
-.avatar.wqa   { background: var(--water-ink); }
-.avatar.water { background: var(--water-ink); }
+.avatar.wqa   { background: var(--water-c); }
+.avatar.water { background: var(--water-c); }
 .avatar.ro    { background: #087a90; }
-.avatar.run50 { background: var(--run-ink); }
-.avatar.reading { background: var(--read-ink); }
+.avatar.run50 { background: var(--run-c); }
+.avatar.reading { background: var(--read-c); }
 
 .video-title {
   display: block;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.4;
-  color: var(--ink);
+  color: var(--amz-text);
   margin-bottom: 3px;
 }
-.video-title:hover { color: var(--accent); }
-.video-sub { font-size: 11px; color: var(--muted); }
+.video-title:hover { color: #c7511f; }
+.video-sub { font-size: 11px; color: var(--amz-muted); }
 
 /* ── EMPTY ── */
-.empty {
-  display: none;
-  max-width: 860px;
-  margin: 50px auto;
-  text-align: center;
-  color: var(--muted);
-  font-size: 14px;
-  padding: 0 20px;
-}
+.empty { display: none; max-width: 1200px; margin: 50px auto; text-align: center; color: var(--amz-muted); padding: 0 16px; }
 .empty.show { display: block; }
 
 /* ── FOOTER ── */
-footer {
-  background: var(--ink);
-  color: rgba(255,255,255,0.4);
+footer { background: #232f3e; color: #ddd; margin-top: 20px; }
+.footer-top {
+  background: #37475a;
   text-align: center;
-  padding: 22px;
-  font-size: 12px;
+  padding: 14px;
+  font-size: 13px;
+  color: white;
+  cursor: pointer;
 }
-footer a { color: rgba(255,255,255,0.6); }
-footer a:hover { color: white; }
+.footer-top:hover { background: #485769; }
+.footer-cols {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 24px;
+}
+.footer-col h4 { color: white; font-size: 14px; margin-bottom: 10px; }
+.footer-col a { display: block; color: #ddd; font-size: 13px; margin-bottom: 6px; }
+.footer-col a:hover { color: white; text-decoration: underline; }
+.footer-bottom {
+  background: #131921;
+  text-align: center;
+  padding: 16px;
+  font-size: 12px;
+  color: #888;
+}
+.footer-bottom em { color: var(--amz-orange); font-style: italic; }
 
 /* ── SHOW-RESULTS STATE ── */
+body.show-results  .hero       { display: none; }
 body.show-results  .dashboard  { display: none; }
 body.show-results  #videoGrid  { display: grid; }
 body.show-results  .chips-wrap { display: block; }
 body.show-results  .results-bar{ display: flex; }
-body:not(.show-results) .dashboard  { display: block; }
-body:not(.show-results) #videoGrid  { display: none; }
-body:not(.show-results) .chips-wrap { display: none; }
-body:not(.show-results) .results-bar{ display: none; }
+body:not(.show-results) #videoGrid   { display: none; }
+body:not(.show-results) .chips-wrap  { display: none; }
+body:not(.show-results) .results-bar { display: none; }
 
-/* Legacy elements - keep hidden */
 .masthead, .section-title, #heroBanner, #amazonDashboard { display: none !important; }
 
-@media (max-width: 600px) {
-  .section-cards { grid-template-columns: 1fr; gap: 12px; }
-  .nav-right { display: none; }
-  .search { max-width: 200px; }
-  .dash-top { margin-bottom: 28px; }
-  .dashboard { margin-top: 28px; }
+@media (max-width: 768px) {
+  .dashboard { grid-template-columns: 1fr; }
+  .header-links { display: none; }
+  .search select { display: none; }
+  #videoGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 460px) {
+  #videoGrid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- TOP NAV -->
-<nav class="topnav">
-  <a href="/" class="logo">Arsenan<em>ZZ</em></a>
+<!-- HEADER -->
+<header class="topbar">
+  <a class="brand" href="/">Arsenan<em>ZZ</em></a>
   <form class="search" onsubmit="event.preventDefault(); applyFilters();">
-    <input id="searchInput" type="search" placeholder="Search..." autocomplete="off" aria-label="Search">
+    <select>
+      <option>All</option>
+      <option>Water</option>
+      <option>Run50</option>
+      <option>Reading</option>
+    </select>
+    <input id="searchInput" type="search" placeholder="Search ZZ" autocomplete="off" aria-label="Search ZZ">
     <button type="submit">&#128269;</button>
   </form>
-  <div class="nav-right">
-    <a href="run50/index.html">Run50</a>
-    <a href="https://zhennanzhang.bio" target="_blank">zhennanzhang.bio &#8599;</a>
+  <div class="header-links">
+    <a class="hlink" href="run50/index.html">
+      <small>22 / 50 States</small>
+      <strong>Run50</strong>
+    </a>
+    <a class="hlink" href="https://zhennanzhang.bio" target="_blank">
+      <small>Visit</small>
+      <strong>zhennanzhang.bio &#8599;</strong>
+    </a>
   </div>
+</header>
+
+<!-- NAV BAR -->
+<nav class="navbar">
+  <a href="#" class="active" onclick="setActiveFilter('all'); return false;">&#9776; All</a>
+  <a href="#water"   onclick="setActiveFilter('water');   return false;">&#128167; Water</a>
+  <a href="#run50"   onclick="setActiveFilter('run50');   return false;">&#127939; Run50</a>
+  <a href="#reading" onclick="setActiveFilter('reading'); return false;">&#128218; Reading</a>
+  <a href="#research" onclick="setActiveFilter('research'); return false;">&#128300; Research</a>
 </nav>
 
-<!-- HIDDEN SIDEBAR (JS compatibility) -->
+<!-- HIDDEN SIDEBAR (JS compat) -->
 <aside class="sidebar" aria-hidden="true">
   <a class="side-link active" href="#" data-filter="all"></a>
-  <a class="side-link" href="#water" data-filter="water"></a>
+  <a class="side-link" href="#water"   data-filter="water"></a>
   <a class="side-link" href="#reading" data-filter="reading"></a>
-  <a class="side-link" href="#run50" data-filter="run50"></a>
+  <a class="side-link" href="#run50"   data-filter="run50"></a>
 </aside>
 
-<!-- LEGACY ELEMENTS (JS refs) -->
-<div id="heroBanner" hidden></div>
+<!-- LEGACY REFS -->
+<div id="heroBanner"    hidden></div>
 <div id="amazonDashboard" hidden></div>
 
-<!-- DASHBOARD: HOME VIEW -->
-<div class="dashboard" id="myDashboard">
-  <div class="dash-top">
-    <h1>Arsenan<em>ZZ</em></h1>
-    <p>Running &middot; Reading &middot; Building</p>
+<!-- HERO -->
+<div class="hero">
+  <h1>Arsenan<em>ZZ</em></h1>
+  <p>Running &middot; Reading &middot; Building</p>
+</div>
+
+<!-- DASHBOARD: 3 DEPT CARDS -->
+<div class="dashboard">
+
+  <!-- Water -->
+  <div class="dept-card">
+    <h3>&#128167; Water &amp; Research</h3>
+    <div class="dept-grid">
+      <div class="dept-item" onclick="window.location.href='Softener-Water/index.html'">
+        <div class="dept-thumb"><img src="assets/thumb-softener.svg" alt="Softener"></div>
+        <div class="dept-label">Water Softener</div>
+      </div>
+      <div class="dept-item" onclick="window.location.href='ro/ro-system-explained.html'">
+        <div class="dept-thumb"><img src="assets/thumb-ro-system.svg" alt="RO"></div>
+        <div class="dept-label">RO System</div>
+      </div>
+      <div class="dept-item" onclick="window.location.href='wqa/WQA_2026_Presentations_Summary-V2.html'">
+        <div class="dept-thumb"><img src="assets/thumb-wqa-presentations.svg" alt="WQA"></div>
+        <div class="dept-label">WQA 2026</div>
+      </div>
+      <div class="dept-item" onclick="window.location.href='nsf/nsf-water-guide-claude.html'">
+        <div class="dept-thumb"><img src="assets/thumb-wqa-presentations.svg" alt="NSF"></div>
+        <div class="dept-label">NSF Guide</div>
+      </div>
+    </div>
+    <a href="#water" class="dept-more" onclick="setActiveFilter('water'); return false;">See all Water &rsaquo;</a>
   </div>
 
-  <div class="section-cards">
-
-    <!-- Water -->
-    <a class="sec-card" href="#water" onclick="setActiveFilter('water'); return false;">
-      <svg width="76" height="76" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- water drop -->
-        <path d="M38 9 C34 16 14 38 14 50 C14 63 25 70 38 70 C51 70 62 63 62 50 C62 38 42 16 38 9 Z"
-              stroke="#0a5a72" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- inner shine -->
-        <path d="M24 45 C24 39 28 35 32 33"
-              stroke="#0a5a72" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.35"/>
-        <!-- ripple below -->
-        <ellipse cx="38" cy="73" rx="16" ry="4"
-                 stroke="#0a5a72" stroke-width="1.5" fill="none" opacity="0.28"/>
-        <ellipse cx="38" cy="75" rx="24" ry="5.5"
-                 stroke="#0a5a72" stroke-width="1" fill="none" opacity="0.16"/>
-      </svg>
-      <div class="sec-name">Water</div>
-      <div class="sec-sub">RO &middot; WQA &middot; NSF &middot; Softener</div>
-    </a>
-
-    <!-- Run50 -->
-    <a class="sec-card" href="#run50" onclick="setActiveFilter('run50'); return false;">
-      <svg width="76" height="76" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- head -->
-        <circle cx="52" cy="12" r="7" stroke="#1a4030" stroke-width="2.8" fill="none"/>
-        <!-- body -->
-        <line x1="52" y1="19" x2="45" y2="42" stroke="#1a4030" stroke-width="2.8" stroke-linecap="round"/>
-        <!-- front arm (raised) -->
-        <line x1="48" y1="28" x2="62" y2="20" stroke="#1a4030" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- back arm (down) -->
-        <line x1="48" y1="30" x2="36" y2="38" stroke="#1a4030" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- front leg -->
-        <line x1="45" y1="42" x2="58" y2="58" stroke="#1a4030" stroke-width="2.8" stroke-linecap="round"/>
-        <!-- back leg (bent) -->
-        <line x1="45" y1="42" x2="36" y2="56" stroke="#1a4030" stroke-width="2.8" stroke-linecap="round"/>
-        <line x1="36" y1="56" x2="44" y2="65" stroke="#1a4030" stroke-width="2.2" stroke-linecap="round"/>
-        <!-- motion lines -->
-        <line x1="10" y1="30" x2="26" y2="30" stroke="#1a4030" stroke-width="2.2" stroke-linecap="round" opacity="0.42"/>
-        <line x1="7"  y1="39" x2="21" y2="39" stroke="#1a4030" stroke-width="1.6" stroke-linecap="round" opacity="0.28"/>
-        <line x1="12" y1="48" x2="24" y2="48" stroke="#1a4030" stroke-width="1.1" stroke-linecap="round" opacity="0.18"/>
-      </svg>
-      <div class="sec-name">Run50</div>
-      <div class="sec-sub">22 / 50 States &middot; 2024&#8211;2026</div>
-    </a>
-
-    <!-- Reading -->
-    <a class="sec-card" href="#reading" onclick="setActiveFilter('reading'); return false;">
-      <svg width="76" height="76" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- left page -->
-        <path d="M38 18 L8 27 L8 62 L38 53 Z"
-              stroke="#6a3028" stroke-width="2.8" stroke-linejoin="round" fill="none"/>
-        <!-- right page -->
-        <path d="M38 18 L68 27 L68 62 L38 53 Z"
-              stroke="#6a3028" stroke-width="2.8" stroke-linejoin="round" fill="none"/>
-        <!-- spine -->
-        <line x1="38" y1="18" x2="38" y2="53" stroke="#6a3028" stroke-width="2.2" stroke-linecap="round"/>
-        <!-- text lines left -->
-        <line x1="15" y1="36" x2="32" y2="32" stroke="#6a3028" stroke-width="1.6" stroke-linecap="round" opacity="0.4"/>
-        <line x1="15" y1="43" x2="32" y2="39" stroke="#6a3028" stroke-width="1.6" stroke-linecap="round" opacity="0.4"/>
-        <line x1="15" y1="50" x2="29" y2="46" stroke="#6a3028" stroke-width="1.4" stroke-linecap="round" opacity="0.3"/>
-        <!-- text lines right -->
-        <line x1="44" y1="32" x2="61" y2="36" stroke="#6a3028" stroke-width="1.6" stroke-linecap="round" opacity="0.4"/>
-        <line x1="44" y1="39" x2="61" y2="43" stroke="#6a3028" stroke-width="1.6" stroke-linecap="round" opacity="0.4"/>
-        <line x1="47" y1="46" x2="61" y2="50" stroke="#6a3028" stroke-width="1.4" stroke-linecap="round" opacity="0.3"/>
-      </svg>
-      <div class="sec-name">Reading</div>
-      <div class="sec-sub">Books &middot; Study Notes</div>
-    </a>
-
+  <!-- Run50 -->
+  <div class="dept-card">
+    <h3>&#127939; Run50</h3>
+    <div class="dept-grid">
+      <div class="dept-item" onclick="window.location.href='run50/index.html'">
+        <div class="dept-thumb"><img src="assets/thumb-run50-home.svg" alt="Run50"></div>
+        <div class="dept-label">Run50 Home</div>
+      </div>
+      <div class="dept-item" onclick="window.location.href='run50/stories/chinese/'">
+        <div class="dept-thumb"><img src="assets/thumb-run50-chicago-marathon-icons.svg" alt="Stories"></div>
+        <div class="dept-label">Stories</div>
+      </div>
+      <div class="dept-item" onclick="window.location.href='run50/run50.html'">
+        <div class="dept-thumb"><img src="assets/thumb-run50-training.svg" alt="Training"></div>
+        <div class="dept-label">Training</div>
+      </div>
+      <div class="dept-item" onclick="window.location.href='run50/mainly-marathons-new-england-2026-guide.html'">
+        <div class="dept-thumb"><img src="assets/thumb-trip-new-england.svg" alt="New England"></div>
+        <div class="dept-label">New England 2026</div>
+      </div>
+    </div>
+    <a href="#run50" class="dept-more" onclick="setActiveFilter('run50'); return false;">See all Run50 &rsaquo;</a>
   </div>
+
+  <!-- Reading -->
+  <div class="dept-card">
+    <h3>&#128218; Reading</h3>
+    <div class="dept-grid">
+      <div class="dept-item" onclick="window.location.href='reading/atomic-habits-full-english.html'">
+        <div class="dept-thumb"><img src="assets/thumb-atomic-full.svg" alt="Atomic Habits"></div>
+        <div class="dept-label">Atomic Habits</div>
+      </div>
+      <div class="dept-item" onclick="window.location.href='reading/atomic-habits-bloom-cards.html'">
+        <div class="dept-thumb"><img src="assets/thumb-atomic-cards.svg" alt="Study Cards"></div>
+        <div class="dept-label">Study Cards</div>
+      </div>
+      <div class="dept-item" onclick="window.location.href='reading/nano-ic-manufacturing-study.html'">
+        <div class="dept-thumb"><img src="assets/thumb-nano-ic-prep.svg" alt="Nano IC"></div>
+        <div class="dept-label">Nano IC Study</div>
+      </div>
+      <div class="dept-item" onclick="window.location.href='reading/nano-ic-manufacturing-handbook-detailed.html'">
+        <div class="dept-thumb"><img src="assets/thumb-nano-ic-handbook.svg" alt="IC Handbook"></div>
+        <div class="dept-label">IC Handbook</div>
+      </div>
+    </div>
+    <a href="#reading" class="dept-more" onclick="setActiveFilter('reading'); return false;">See all Reading &rsaquo;</a>
+  </div>
+
 </div>
 
 <!-- FILTER CHIPS -->
@@ -471,676 +561,183 @@ body:not(.show-results) .results-bar{ display: none; }
   <span id="resultCount"></span>
 </div>
 
-<!-- ── ARTICLE GRID ── -->
+<!-- ARTICLE GRID -->
 <section id="videoGrid" aria-label="Content">
 
-  <!-- WATER SOFTENER GUIDE -->
   <article class="video-card" id="Softener-Water" data-category="research water softener" data-title="Whole-House Water Softener Principles Components Sizing Calculator">
-    <a class="thumb" href="Softener-Water/index.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e4f0f4"/>
-        <!-- tank -->
-        <rect x="95" y="28" width="50" height="65" rx="8" stroke="#0a5a72" stroke-width="2.5" fill="none"/>
-        <ellipse cx="120" cy="28" rx="25" ry="8" stroke="#0a5a72" stroke-width="2.5" fill="none"/>
-        <!-- pipe in -->
-        <line x1="60" y1="42" x2="95" y2="42" stroke="#0a5a72" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- pipe out -->
-        <line x1="145" y1="55" x2="180" y2="55" stroke="#0a5a72" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- water level -->
-        <rect x="97" y="70" width="46" height="20" rx="3" fill="#0a5a72" opacity="0.15"/>
-        <!-- salt grains -->
-        <circle cx="108" cy="52" r="3.5" stroke="#0a5a72" stroke-width="1.8" fill="none"/>
-        <circle cx="120" cy="47" r="3.5" stroke="#0a5a72" stroke-width="1.8" fill="none"/>
-        <circle cx="132" cy="52" r="3.5" stroke="#0a5a72" stroke-width="1.8" fill="none"/>
-        <!-- valve -->
-        <circle cx="60" cy="42" r="6" stroke="#0a5a72" stroke-width="2" fill="none"/>
-        <line x1="60" y1="34" x2="60" y2="42" stroke="#0a5a72" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar wqa">W</span>
-      <div>
-        <a class="video-title" href="Softener-Water/index.html">Water Softener Guide</a>
-        <p class="video-sub">Water &middot; Softener</p>
-      </div>
-    </div>
+    <a class="thumb" href="Softener-Water/index.html"><img src="assets/thumb-softener.svg" alt="Water Softener"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar wqa">W</span><div>
+      <a class="video-title" href="Softener-Water/index.html">Water Softener Guide</a>
+      <p class="video-sub">Water &middot; Softener</p>
+    </div></div>
   </article>
 
-  <!-- SOFTENER VALVE ZH -->
   <article class="video-card" id="Softener-Valve-Analysis-ZH" data-category="research water softener" data-title="软水原理与阀头竞品分析">
-    <a class="thumb" href="water-softener/softener-valve-analysis-zh.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e4f0f4"/>
-        <!-- valve body -->
-        <rect x="80" y="35" width="80" height="50" rx="6" stroke="#0a5a72" stroke-width="2.5" fill="none"/>
-        <!-- valve stem -->
-        <line x1="120" y1="20" x2="120" y2="35" stroke="#0a5a72" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- handle wheel -->
-        <circle cx="120" cy="16" r="10" stroke="#0a5a72" stroke-width="2.2" fill="none"/>
-        <line x1="110" y1="16" x2="130" y2="16" stroke="#0a5a72" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="120" y1="6" x2="120" y2="26" stroke="#0a5a72" stroke-width="1.8" stroke-linecap="round"/>
-        <!-- flow arrows -->
-        <line x1="40" y1="60" x2="78" y2="60" stroke="#0a5a72" stroke-width="2" stroke-linecap="round"/>
-        <polyline points="72,54 80,60 72,66" stroke="#0a5a72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <line x1="162" y1="60" x2="200" y2="60" stroke="#0a5a72" stroke-width="2" stroke-linecap="round"/>
-        <polyline points="193,54 201,60 193,66" stroke="#0a5a72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- ZH label -->
-        <text x="120" y="68" text-anchor="middle" fill="#0a5a72" font-family="serif" font-size="18" font-weight="600" opacity="0.5">中</text>
-      </svg>
-      <span class="duration">&#20013;&#25991;</span>
-    </a>
-    <div class="meta">
-      <span class="avatar water">H&#8322;O</span>
-      <div>
-        <a class="video-title" href="water-softener/softener-valve-analysis-zh.html">&#36719;&#27700;&#21407;&#29702;&#19982;&#38349;&#22836;&#31454;&#21697;&#20998;&#26512;</a>
-        <p class="video-sub">Water &middot; Softener &#20013;&#25991;</p>
-      </div>
-    </div>
+    <a class="thumb" href="water-softener/softener-valve-analysis-zh.html"><img src="assets/thumb-softener-valve-zh.svg" alt="软水阀头"><span class="duration">&#20013;&#25991;</span></a>
+    <div class="meta"><span class="avatar water">H&#8322;O</span><div>
+      <a class="video-title" href="water-softener/softener-valve-analysis-zh.html">&#36719;&#27700;&#21407;&#29702;&#19982;&#38349;&#22836;&#31454;&#21697;&#20998;&#26512;</a>
+      <p class="video-sub">Water &middot; Softener &#20013;&#25991;</p>
+    </div></div>
   </article>
 
-  <!-- SOFTENER VALVE EN -->
   <article class="video-card" id="Softener-Valve-Analysis-EN" data-category="research water softener" data-title="Water Softening Principles and Valve Analysis">
-    <a class="thumb" href="water-softener/softener-valve-analysis-en.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e4f0f4"/>
-        <!-- same valve but EN label -->
-        <rect x="80" y="35" width="80" height="50" rx="6" stroke="#0a5a72" stroke-width="2.5" fill="none"/>
-        <line x1="120" y1="20" x2="120" y2="35" stroke="#0a5a72" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="120" cy="16" r="10" stroke="#0a5a72" stroke-width="2.2" fill="none"/>
-        <line x1="110" y1="16" x2="130" y2="16" stroke="#0a5a72" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="120" y1="6" x2="120" y2="26" stroke="#0a5a72" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="40" y1="60" x2="78" y2="60" stroke="#0a5a72" stroke-width="2" stroke-linecap="round"/>
-        <polyline points="72,54 80,60 72,66" stroke="#0a5a72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <line x1="162" y1="60" x2="200" y2="60" stroke="#0a5a72" stroke-width="2" stroke-linecap="round"/>
-        <polyline points="193,54 201,60 193,66" stroke="#0a5a72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <text x="120" y="70" text-anchor="middle" fill="#0a5a72" font-family="sans-serif" font-size="14" font-weight="700" opacity="0.45">EN</text>
-      </svg>
-      <span class="duration">EN</span>
-    </a>
-    <div class="meta">
-      <span class="avatar water">H&#8322;O</span>
-      <div>
-        <a class="video-title" href="water-softener/softener-valve-analysis-en.html">Water Softening &amp; Valve Analysis</a>
-        <p class="video-sub">Water &middot; Softener EN</p>
-      </div>
-    </div>
+    <a class="thumb" href="water-softener/softener-valve-analysis-en.html"><img src="assets/thumb-softener-valve-en.svg" alt="Softener Valve EN"><span class="duration">EN</span></a>
+    <div class="meta"><span class="avatar water">H&#8322;O</span><div>
+      <a class="video-title" href="water-softener/softener-valve-analysis-en.html">Water Softening &amp; Valve Analysis</a>
+      <p class="video-sub">Water &middot; Softener EN</p>
+    </div></div>
   </article>
 
-  <!-- WQA PRESENTATIONS -->
   <article class="video-card" id="wqa" data-category="wqa research water" data-title="WQA 2026 Presentation Summaries">
-    <a class="thumb" href="wqa/WQA_2026_Presentations_Summary-V2.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e4f0f4"/>
-        <!-- presentation board -->
-        <rect x="70" y="20" width="100" height="65" rx="4" stroke="#0a5a72" stroke-width="2.5" fill="none"/>
-        <!-- screen content lines -->
-        <line x1="82" y1="36" x2="158" y2="36" stroke="#0a5a72" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
-        <line x1="82" y1="46" x2="140" y2="46" stroke="#0a5a72" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-        <line x1="82" y1="56" x2="148" y2="56" stroke="#0a5a72" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-        <!-- chart bars -->
-        <rect x="86" y="64" width="10" height="14" rx="1" fill="#0a5a72" opacity="0.3"/>
-        <rect x="100" y="56" width="10" height="22" rx="1" fill="#0a5a72" opacity="0.4"/>
-        <rect x="114" y="60" width="10" height="18" rx="1" fill="#0a5a72" opacity="0.35"/>
-        <rect x="128" y="52" width="10" height="26" rx="1" fill="#0a5a72" opacity="0.5"/>
-        <!-- stand -->
-        <line x1="120" y1="85" x2="120" y2="100" stroke="#0a5a72" stroke-width="2.2" stroke-linecap="round"/>
-        <line x1="105" y1="100" x2="135" y2="100" stroke="#0a5a72" stroke-width="2.2" stroke-linecap="round"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar wqa">W</span>
-      <div>
-        <a class="video-title" href="wqa/WQA_2026_Presentations_Summary-V2.html">WQA 2026 Presentation Summaries</a>
-        <p class="video-sub">Water &middot; WQA</p>
-      </div>
-    </div>
+    <a class="thumb" href="wqa/WQA_2026_Presentations_Summary-V2.html"><img src="assets/thumb-wqa-presentations.svg" alt="WQA Presentations"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar wqa">W</span><div>
+      <a class="video-title" href="wqa/WQA_2026_Presentations_Summary-V2.html">WQA 2026 Presentation Summaries</a>
+      <p class="video-sub">Water &middot; WQA</p>
+    </div></div>
   </article>
 
-  <!-- WQA EXPO -->
   <article class="video-card" data-category="wqa research water" data-title="WQA 2026 Expo Observation Report">
-    <a class="thumb" href="wqa/WQA_2026_Expo_Observation_Report_EN.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e4f0f4"/>
-        <!-- expo hall outline -->
-        <path d="M40 90 L40 45 L120 25 L200 45 L200 90 Z" stroke="#0a5a72" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
-        <!-- booths -->
-        <rect x="60" y="65" width="28" height="25" rx="2" stroke="#0a5a72" stroke-width="1.8" fill="none"/>
-        <rect x="106" y="60" width="28" height="30" rx="2" stroke="#0a5a72" stroke-width="1.8" fill="none"/>
-        <rect x="152" y="65" width="28" height="25" rx="2" stroke="#0a5a72" stroke-width="1.8" fill="none"/>
-        <!-- banner flags -->
-        <line x1="74" y1="65" x2="74" y2="53" stroke="#0a5a72" stroke-width="1.5" stroke-linecap="round"/>
-        <polyline points="74,53 84,57 74,61" fill="#0a5a72" opacity="0.4" stroke="none"/>
-        <line x1="120" y1="60" x2="120" y2="46" stroke="#0a5a72" stroke-width="1.5" stroke-linecap="round"/>
-        <polyline points="120,46 130,50 120,54" fill="#0a5a72" opacity="0.4" stroke="none"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar wqa">W</span>
-      <div>
-        <a class="video-title" href="wqa/WQA_2026_Expo_Observation_Report_EN.html">WQA 2026 Expo Report</a>
-        <p class="video-sub">Water &middot; WQA</p>
-      </div>
-    </div>
+    <a class="thumb" href="wqa/WQA_2026_Expo_Observation_Report_EN.html"><img src="assets/thumb-wqa-expo.svg" alt="WQA Expo"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar wqa">W</span><div>
+      <a class="video-title" href="wqa/WQA_2026_Expo_Observation_Report_EN.html">WQA 2026 Expo Report</a>
+      <p class="video-sub">Water &middot; WQA</p>
+    </div></div>
   </article>
 
-  <!-- EZSALT -->
   <article class="video-card" data-category="wqa research water" data-title="EZsalt Research Report">
-    <a class="thumb" href="wqa/EZsalt_Research_Report_2_EN.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e4f0f4"/>
-        <!-- salt bag outline -->
-        <path d="M80 30 L80 88 Q80 94 86 94 L154 94 Q160 94 160 88 L160 30 Q160 24 154 24 L86 24 Q80 24 80 30 Z" stroke="#0a5a72" stroke-width="2.5" fill="none"/>
-        <!-- top seal -->
-        <line x1="80" y1="40" x2="160" y2="40" stroke="#0a5a72" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-        <!-- EZ label -->
-        <text x="120" y="72" text-anchor="middle" fill="#0a5a72" font-family="sans-serif" font-size="22" font-weight="700" opacity="0.35">EZ</text>
-        <!-- salt crystals -->
-        <rect x="100" y="48" width="7" height="7" rx="1.5" stroke="#0a5a72" stroke-width="1.5" fill="none" transform="rotate(20 103.5 51.5)"/>
-        <rect x="115" y="44" width="6" height="6" rx="1.5" stroke="#0a5a72" stroke-width="1.5" fill="none" transform="rotate(-15 118 47)"/>
-        <rect x="130" y="50" width="7" height="7" rx="1.5" stroke="#0a5a72" stroke-width="1.5" fill="none" transform="rotate(10 133.5 53.5)"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar wqa">W</span>
-      <div>
-        <a class="video-title" href="wqa/EZsalt_Research_Report_2_EN.html">EZsalt Research Report</a>
-        <p class="video-sub">Water &middot; Softener product</p>
-      </div>
-    </div>
+    <a class="thumb" href="wqa/EZsalt_Research_Report_2_EN.html"><img src="assets/thumb-ezsalt.svg" alt="EZsalt"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar wqa">W</span><div>
+      <a class="video-title" href="wqa/EZsalt_Research_Report_2_EN.html">EZsalt Research Report</a>
+      <p class="video-sub">Water &middot; Softener product</p>
+    </div></div>
   </article>
 
-  <!-- DROP -->
   <article class="video-card" data-category="wqa research water" data-title="DROP Research Report">
-    <a class="thumb" href="wqa/DROP_Research_Report_EN.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e4f0f4"/>
-        <!-- device outline -->
-        <rect x="90" y="22" width="60" height="78" rx="10" stroke="#0a5a72" stroke-width="2.5" fill="none"/>
-        <!-- screen -->
-        <rect x="98" y="32" width="44" height="36" rx="3" stroke="#0a5a72" stroke-width="1.8" fill="none"/>
-        <!-- screen value -->
-        <text x="120" y="55" text-anchor="middle" fill="#0a5a72" font-family="sans-serif" font-size="14" font-weight="700" opacity="0.4">ppm</text>
-        <!-- button -->
-        <circle cx="120" cy="85" r="7" stroke="#0a5a72" stroke-width="2" fill="none"/>
-        <!-- water drops beside -->
-        <path d="M55 40 C55 40 48 52 48 57 C48 62 51 65 55 65 C59 65 62 62 62 57 C62 52 55 40 55 40Z" stroke="#0a5a72" stroke-width="2" fill="none" opacity="0.5"/>
-        <path d="M185 38 C185 38 178 50 178 55 C178 60 181 63 185 63 C189 63 192 60 192 55 C192 50 185 38 185 38Z" stroke="#0a5a72" stroke-width="2" fill="none" opacity="0.5"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar wqa">W</span>
-      <div>
-        <a class="video-title" href="wqa/DROP_Research_Report_EN.html">DROP Research Report</a>
-        <p class="video-sub">Water &middot; WQA product</p>
-      </div>
-    </div>
+    <a class="thumb" href="wqa/DROP_Research_Report_EN.html"><img src="assets/thumb-drop.svg" alt="DROP"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar wqa">W</span><div>
+      <a class="video-title" href="wqa/DROP_Research_Report_EN.html">DROP Research Report</a>
+      <p class="video-sub">Water &middot; WQA product</p>
+    </div></div>
   </article>
 
-  <!-- NSF CLAUDE -->
   <article class="video-card" data-category="nsf research water" data-title="NSF Drinking Water Study Guide Claude">
-    <a class="thumb" href="nsf/nsf-water-guide-claude.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e4f0f4"/>
-        <!-- flask body -->
-        <path d="M105 28 L105 60 L76 92 Q74 96 78 97 L162 97 Q166 96 164 92 L135 60 L135 28 Z"
-              stroke="#0a5a72" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
-        <!-- flask neck top -->
-        <line x1="100" y1="28" x2="140" y2="28" stroke="#0a5a72" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- liquid level -->
-        <path d="M83 82 C95 76 125 80 157 82" stroke="#0a5a72" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.45"/>
-        <!-- NSF label -->
-        <text x="120" y="72" text-anchor="middle" fill="#0a5a72" font-family="sans-serif" font-size="13" font-weight="700" opacity="0.4">NSF</text>
-        <!-- bubbles -->
-        <circle cx="108" cy="68" r="3.5" stroke="#0a5a72" stroke-width="1.5" fill="none" opacity="0.5"/>
-        <circle cx="122" cy="62" r="2.5" stroke="#0a5a72" stroke-width="1.5" fill="none" opacity="0.4"/>
-        <circle cx="133" cy="66" r="3" stroke="#0a5a72" stroke-width="1.5" fill="none" opacity="0.45"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar wqa">N</span>
-      <div>
-        <a class="video-title" href="nsf/nsf-water-guide-claude.html">NSF Drinking Water Study Guide</a>
-        <p class="video-sub">Water &middot; NSF &#20139;&#39996;&#27700;&#23398;&#20064;&#25163;&#518C;</p>
-      </div>
-    </div>
+    <a class="thumb" href="nsf/nsf-water-guide-claude.html"><img src="assets/thumb-wqa-presentations.svg" alt="NSF Guide"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar wqa">N</span><div>
+      <a class="video-title" href="nsf/nsf-water-guide-claude.html">NSF Drinking Water Study Guide</a>
+      <p class="video-sub">Water &middot; NSF</p>
+    </div></div>
   </article>
 
-  <!-- NSF CODEX -->
   <article class="video-card" data-category="nsf research water" data-title="NSF Drinking Water Learning Guide Codex">
-    <a class="thumb" href="nsf/nsf-water-guide-codex.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e4f0f4"/>
-        <!-- certification circle -->
-        <circle cx="120" cy="60" r="38" stroke="#0a5a72" stroke-width="2.5" fill="none"/>
-        <circle cx="120" cy="60" r="30" stroke="#0a5a72" stroke-width="1.5" fill="none" opacity="0.3"/>
-        <!-- NSF text -->
-        <text x="120" y="52" text-anchor="middle" fill="#0a5a72" font-family="sans-serif" font-size="18" font-weight="800" opacity="0.55">NSF</text>
-        <!-- water drop inside -->
-        <path d="M120 57 C120 57 112 67 112 72 C112 77 115.5 80 120 80 C124.5 80 128 77 128 72 C128 67 120 57 120 57 Z"
-              stroke="#0a5a72" stroke-width="1.8" fill="none" opacity="0.6"/>
-        <!-- tick marks around circle -->
-        <line x1="120" y1="18" x2="120" y2="24" stroke="#0a5a72" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-        <line x1="153" y1="27" x2="150" y2="32" stroke="#0a5a72" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-        <line x1="158" y1="60" x2="152" y2="60" stroke="#0a5a72" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-        <line x1="87" y1="27" x2="90" y2="32" stroke="#0a5a72" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-        <line x1="82" y1="60" x2="88" y2="60" stroke="#0a5a72" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar wqa">N</span>
-      <div>
-        <a class="video-title" href="nsf/nsf-water-guide-codex.html">NSF Water Learning Guide</a>
-        <p class="video-sub">Water &middot; NSF &#20139;&#39996;&#27700;&#23398;&#20064;&#25163;&#518C;</p>
-      </div>
-    </div>
+    <a class="thumb" href="nsf/nsf-water-guide-codex.html"><img src="assets/thumb-wqa-presentations.svg" alt="NSF Codex"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar wqa">N</span><div>
+      <a class="video-title" href="nsf/nsf-water-guide-codex.html">NSF Water Learning Guide</a>
+      <p class="video-sub">Water &middot; NSF</p>
+    </div></div>
   </article>
 
-  <!-- RO SYSTEM -->
   <article class="video-card" id="ro" data-category="ro water" data-title="How a Reverse Osmosis System Works">
-    <a class="thumb" href="ro/ro-system-explained.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e4f0f4"/>
-        <!-- membrane (vertical lines) -->
-        <rect x="106" y="20" width="28" height="80" rx="4" stroke="#0a5a72" stroke-width="2.5" fill="none"/>
-        <line x1="112" y1="28" x2="112" y2="92" stroke="#0a5a72" stroke-width="1" opacity="0.3"/>
-        <line x1="118" y1="28" x2="118" y2="92" stroke="#0a5a72" stroke-width="1" opacity="0.3"/>
-        <line x1="124" y1="28" x2="124" y2="92" stroke="#0a5a72" stroke-width="1" opacity="0.3"/>
-        <line x1="130" y1="28" x2="130" y2="92" stroke="#0a5a72" stroke-width="1" opacity="0.3"/>
-        <!-- input (dirty water dots) -->
-        <line x1="40" y1="60" x2="104" y2="60" stroke="#0a5a72" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="55" cy="53" r="4" fill="#0a5a72" opacity="0.25"/>
-        <circle cx="70" cy="65" r="3" fill="#0a5a72" opacity="0.2"/>
-        <circle cx="85" cy="52" r="3.5" fill="#0a5a72" opacity="0.22"/>
-        <circle cx="92" cy="68" r="2.5" fill="#0a5a72" opacity="0.18"/>
-        <!-- clean output -->
-        <line x1="134" y1="55" x2="190" y2="55" stroke="#0a5a72" stroke-width="2" stroke-linecap="round"/>
-        <!-- waste output -->
-        <line x1="134" y1="72" x2="190" y2="72" stroke="#0a5a72" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 4"/>
-        <text x="162" y="82" text-anchor="middle" fill="#0a5a72" font-family="sans-serif" font-size="9" opacity="0.45">waste</text>
-        <text x="162" y="50" text-anchor="middle" fill="#0a5a72" font-family="sans-serif" font-size="9" opacity="0.55">clean</text>
-        <!-- arrow left -->
-        <polyline points="47,54 40,60 47,66" stroke="#0a5a72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar ro">RO</span>
-      <div>
-        <a class="video-title" href="ro/ro-system-explained.html">How a Reverse Osmosis System Works</a>
-        <p class="video-sub">Water &middot; RO</p>
-      </div>
-    </div>
+    <a class="thumb" href="ro/ro-system-explained.html"><img src="assets/thumb-ro-system.svg" alt="RO System"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar ro">RO</span><div>
+      <a class="video-title" href="ro/ro-system-explained.html">How a Reverse Osmosis System Works</a>
+      <p class="video-sub">Water &middot; RO</p>
+    </div></div>
   </article>
 
-  <!-- RO COMPLETE GUIDE -->
   <article class="video-card" data-category="ro water" data-title="RO Complete Guide EN">
-    <a class="thumb" href="ro/RO-Complete-Guide-EN.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e4f0f4"/>
-        <!-- open book style guide -->
-        <path d="M120 24 L60 34 L60 90 L120 80 Z" stroke="#0a5a72" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
-        <path d="M120 24 L180 34 L180 90 L120 80 Z" stroke="#0a5a72" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
-        <line x1="120" y1="24" x2="120" y2="80" stroke="#0a5a72" stroke-width="2" stroke-linecap="round"/>
-        <!-- RO on cover -->
-        <text x="90" y="62" text-anchor="middle" fill="#0a5a72" font-family="sans-serif" font-size="18" font-weight="800" opacity="0.35">RO</text>
-        <!-- lines right page -->
-        <line x1="128" y1="44" x2="170" y2="48" stroke="#0a5a72" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-        <line x1="128" y1="54" x2="170" y2="58" stroke="#0a5a72" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-        <line x1="128" y1="64" x2="162" y2="68" stroke="#0a5a72" stroke-width="1.4" stroke-linecap="round" opacity="0.3"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar ro">RO</span>
-      <div>
-        <a class="video-title" href="ro/RO-Complete-Guide-EN.html">RO Complete Guide EN</a>
-        <p class="video-sub">Water &middot; RO complete</p>
-      </div>
-    </div>
+    <a class="thumb" href="ro/RO-Complete-Guide-EN.html"><img src="assets/thumb-ro-guide.svg" alt="RO Guide"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar ro">RO</span><div>
+      <a class="video-title" href="ro/RO-Complete-Guide-EN.html">RO Complete Guide EN</a>
+      <p class="video-sub">Water &middot; RO complete</p>
+    </div></div>
   </article>
 
-  <!-- ATOMIC HABITS FULL -->
   <article class="video-card" id="reading" data-category="reading atomic" data-title="Atomic Habits Full English">
-    <a class="thumb" href="reading/atomic-habits-full-english.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#f0e8e4"/>
-        <!-- book cover -->
-        <rect x="80" y="18" width="80" height="88" rx="4" stroke="#6a3028" stroke-width="2.5" fill="none"/>
-        <rect x="88" y="26" width="64" height="72" rx="2" stroke="#6a3028" stroke-width="1.2" fill="none" opacity="0.3"/>
-        <!-- habit loop -->
-        <circle cx="120" cy="62" r="22" stroke="#6a3028" stroke-width="2" fill="none" opacity="0.4"/>
-        <!-- arrow on loop -->
-        <polyline points="140,52 143,62 133,66" stroke="#6a3028" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
-        <text x="120" y="66" text-anchor="middle" fill="#6a3028" font-family="sans-serif" font-size="10" font-weight="600" opacity="0.5">HABIT</text>
-        <!-- spine shadow -->
-        <line x1="80" y1="18" x2="80" y2="106" stroke="#6a3028" stroke-width="3.5" stroke-linecap="round" opacity="0.2"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar reading">R</span>
-      <div>
-        <a class="video-title" href="reading/atomic-habits-full-english.html">Atomic Habits Full English</a>
-        <p class="video-sub">Reading &middot; Book</p>
-      </div>
-    </div>
+    <a class="thumb" href="reading/atomic-habits-full-english.html"><img src="assets/thumb-atomic-full.svg" alt="Atomic Habits"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar reading">R</span><div>
+      <a class="video-title" href="reading/atomic-habits-full-english.html">Atomic Habits Full English</a>
+      <p class="video-sub">Reading &middot; Book</p>
+    </div></div>
   </article>
 
-  <!-- ATOMIC HABITS CARDS -->
   <article class="video-card" data-category="reading atomic" data-title="Atomic Habits Study Cards">
-    <a class="thumb" href="reading/atomic-habits-bloom-cards.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#f0e8e4"/>
-        <!-- stacked cards -->
-        <rect x="72" y="40" width="96" height="62" rx="5" stroke="#6a3028" stroke-width="2" fill="none" opacity="0.25" transform="rotate(-5 120 71)"/>
-        <rect x="72" y="38" width="96" height="62" rx="5" stroke="#6a3028" stroke-width="2" fill="none" opacity="0.45" transform="rotate(-2 120 69)"/>
-        <rect x="72" y="34" width="96" height="62" rx="5" stroke="#6a3028" stroke-width="2.5" fill="none"/>
-        <!-- card content -->
-        <line x1="86" y1="54" x2="154" y2="54" stroke="#6a3028" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-        <line x1="86" y1="64" x2="134" y2="64" stroke="#6a3028" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
-        <line x1="86" y1="72" x2="140" y2="72" stroke="#6a3028" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
-        <!-- bloom dot -->
-        <circle cx="120" cy="88" r="5" stroke="#6a3028" stroke-width="2" fill="none" opacity="0.4"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar reading">R</span>
-      <div>
-        <a class="video-title" href="reading/atomic-habits-bloom-cards.html">Atomic Habits Study Cards</a>
-        <p class="video-sub">Reading &middot; Cards</p>
-      </div>
-    </div>
+    <a class="thumb" href="reading/atomic-habits-bloom-cards.html"><img src="assets/thumb-atomic-cards.svg" alt="Study Cards"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar reading">R</span><div>
+      <a class="video-title" href="reading/atomic-habits-bloom-cards.html">Atomic Habits Study Cards</a>
+      <p class="video-sub">Reading &middot; Cards</p>
+    </div></div>
   </article>
 
-  <!-- NANO IC IMAGE -->
   <article class="video-card" data-category="reading semiconductor equipment image notes" data-title="Nano IC Image Reader">
-    <a class="thumb" href="reading/nano-ic.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#f0e8e4"/>
-        <!-- IC chip -->
-        <rect x="86" y="28" width="68" height="64" rx="4" stroke="#6a3028" stroke-width="2.5" fill="none"/>
-        <!-- chip pins left -->
-        <line x1="70" y1="42" x2="86" y2="42" stroke="#6a3028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="70" y1="52" x2="86" y2="52" stroke="#6a3028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="70" y1="62" x2="86" y2="62" stroke="#6a3028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="70" y1="72" x2="86" y2="72" stroke="#6a3028" stroke-width="2" stroke-linecap="round"/>
-        <!-- right pins -->
-        <line x1="154" y1="42" x2="170" y2="42" stroke="#6a3028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="154" y1="52" x2="170" y2="52" stroke="#6a3028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="154" y1="62" x2="170" y2="62" stroke="#6a3028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="154" y1="72" x2="170" y2="72" stroke="#6a3028" stroke-width="2" stroke-linecap="round"/>
-        <!-- top pins -->
-        <line x1="102" y1="18" x2="102" y2="28" stroke="#6a3028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="120" y1="18" x2="120" y2="28" stroke="#6a3028" stroke-width="2" stroke-linecap="round"/>
-        <line x1="138" y1="18" x2="138" y2="28" stroke="#6a3028" stroke-width="2" stroke-linecap="round"/>
-        <!-- circuit inside -->
-        <rect x="100" y="42" width="40" height="36" rx="3" stroke="#6a3028" stroke-width="1.5" fill="none" opacity="0.4"/>
-        <text x="120" y="64" text-anchor="middle" fill="#6a3028" font-family="sans-serif" font-size="10" font-weight="600" opacity="0.35">488P</text>
-      </svg>
-      <span class="duration">488P</span>
-    </a>
-    <div class="meta">
-      <span class="avatar reading">R</span>
-      <div>
-        <a class="video-title" href="reading/nano-ic.html">Nano IC Image Reader</a>
-        <p class="video-sub">Reading &middot; 488-page edition</p>
-      </div>
-    </div>
+    <a class="thumb" href="reading/nano-ic.html"><img src="assets/thumb-nano-ic-reader.svg" alt="Nano IC"><span class="duration">488P</span></a>
+    <div class="meta"><span class="avatar reading">R</span><div>
+      <a class="video-title" href="reading/nano-ic.html">Nano IC Image Reader</a>
+      <p class="video-sub">Reading &middot; 488-page</p>
+    </div></div>
   </article>
 
-  <!-- NANO IC STUDY -->
   <article class="video-card" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Study Notes">
-    <a class="thumb" href="reading/nano-ic-manufacturing-study.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#f0e8e4"/>
-        <!-- notebook page with circuit sketch -->
-        <rect x="60" y="16" width="120" height="90" rx="4" stroke="#6a3028" stroke-width="2.5" fill="none"/>
-        <!-- spiral left -->
-        <line x1="60" y1="16" x2="60" y2="106" stroke="#6a3028" stroke-width="1.5" opacity="0.3"/>
-        <!-- note lines -->
-        <line x1="74" y1="32" x2="168" y2="32" stroke="#6a3028" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
-        <!-- circuit diagram -->
-        <polyline points="74,52 90,52 90,62 110,62 110,52 130,52 130,62 150,62 150,52 168,52"
-                  stroke="#6a3028" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.55"/>
-        <!-- components on circuit -->
-        <rect x="104" y="56" width="12" height="12" rx="1" stroke="#6a3028" stroke-width="1.5" fill="none" opacity="0.5"/>
-        <rect x="144" y="56" width="12" height="12" rx="1" stroke="#6a3028" stroke-width="1.5" fill="none" opacity="0.5"/>
-        <!-- note lines below -->
-        <line x1="74" y1="78" x2="168" y2="78" stroke="#6a3028" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
-        <line x1="74" y1="88" x2="140" y2="88" stroke="#6a3028" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar reading">R</span>
-      <div>
-        <a class="video-title" href="reading/nano-ic-manufacturing-study.html">Nano IC Manufacturing Study Notes</a>
-        <p class="video-sub">Reading &middot; Semiconductor</p>
-      </div>
-    </div>
+    <a class="thumb" href="reading/nano-ic-manufacturing-study.html"><img src="assets/thumb-nano-ic-prep.svg" alt="Nano IC Study"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar reading">R</span><div>
+      <a class="video-title" href="reading/nano-ic-manufacturing-study.html">Nano IC Manufacturing Study</a>
+      <p class="video-sub">Reading &middot; Semiconductor</p>
+    </div></div>
   </article>
 
-  <!-- NANO IC HANDBOOK -->
   <article class="video-card" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Detailed Handbook">
-    <a class="thumb" href="reading/nano-ic-manufacturing-handbook-detailed.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#f0e8e4"/>
-        <!-- thick handbook -->
-        <rect x="70" y="18" width="100" height="88" rx="4" stroke="#6a3028" stroke-width="3" fill="none"/>
-        <!-- pages edge right -->
-        <rect x="172" y="22" width="6" height="80" rx="2" fill="#6a3028" opacity="0.15"/>
-        <rect x="170" y="24" width="4" height="76" rx="1" stroke="#6a3028" stroke-width="1" fill="none" opacity="0.3"/>
-        <!-- spine -->
-        <line x1="70" y1="18" x2="70" y2="106" stroke="#6a3028" stroke-width="4" stroke-linecap="round" opacity="0.25"/>
-        <!-- atom icon on cover -->
-        <circle cx="120" cy="58" r="12" stroke="#6a3028" stroke-width="2" fill="none" opacity="0.45"/>
-        <ellipse cx="120" cy="58" rx="22" ry="8" stroke="#6a3028" stroke-width="1.5" fill="none" opacity="0.35" transform="rotate(30 120 58)"/>
-        <ellipse cx="120" cy="58" rx="22" ry="8" stroke="#6a3028" stroke-width="1.5" fill="none" opacity="0.35" transform="rotate(-30 120 58)"/>
-        <circle cx="120" cy="58" r="3.5" fill="#6a3028" opacity="0.45"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar reading">R</span>
-      <div>
-        <a class="video-title" href="reading/nano-ic-manufacturing-handbook-detailed.html">Nano IC Manufacturing Handbook</a>
-        <p class="video-sub">Reading &middot; Detailed handbook</p>
-      </div>
-    </div>
+    <a class="thumb" href="reading/nano-ic-manufacturing-handbook-detailed.html"><img src="assets/thumb-nano-ic-handbook.svg" alt="IC Handbook"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar reading">R</span><div>
+      <a class="video-title" href="reading/nano-ic-manufacturing-handbook-detailed.html">Nano IC Manufacturing Handbook</a>
+      <p class="video-sub">Reading &middot; Detailed</p>
+    </div></div>
   </article>
 
-  <!-- RUN50 HOME -->
   <article class="video-card" id="run50" data-category="run50 run-home" data-title="Run50 Personal Space">
-    <a class="thumb" href="run50/index.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e8f2ea"/>
-        <!-- USA outline (simplified) -->
-        <path d="M55 40 L70 32 L100 28 L130 26 L165 30 L185 36 L190 50 L178 58 L165 55 L155 62 L140 58 L125 65 L110 60 L90 65 L75 62 L60 68 L50 58 L52 48 Z"
-              stroke="#1a4030" stroke-width="2.2" stroke-linejoin="round" fill="none" opacity="0.5"/>
-        <!-- 50 text -->
-        <text x="120" y="58" text-anchor="middle" fill="#1a4030" font-family="sans-serif" font-size="22" font-weight="800" opacity="0.35">50</text>
-        <!-- map pins (states done) -->
-        <circle cx="80" cy="52" r="4" fill="#1a4030" opacity="0.5"/>
-        <circle cx="110" cy="44" r="4" fill="#1a4030" opacity="0.5"/>
-        <circle cx="140" cy="48" r="4" fill="#1a4030" opacity="0.5"/>
-        <circle cx="165" cy="46" r="4" fill="#1a4030" opacity="0.5"/>
-        <!-- runner small -->
-        <circle cx="120" cy="88" r="5" stroke="#1a4030" stroke-width="2" fill="none"/>
-        <line x1="120" y1="93" x2="118" y2="104" stroke="#1a4030" stroke-width="2" stroke-linecap="round"/>
-        <line x1="118" y1="98" x2="113" y2="96" stroke="#1a4030" stroke-width="2" stroke-linecap="round"/>
-        <line x1="118" y1="98" x2="123" y2="96" stroke="#1a4030" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar run50">50</span>
-      <div>
-        <a class="video-title" href="run50/index.html">Run50 Personal Space</a>
-        <p class="video-sub">Run50 &middot; Home</p>
-      </div>
-    </div>
+    <a class="thumb" href="run50/index.html"><img src="assets/thumb-run50-home.svg" alt="Run50 Home"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar run50">50</span><div>
+      <a class="video-title" href="run50/index.html">Run50 Personal Space</a>
+      <p class="video-sub">Run50 &middot; Home</p>
+    </div></div>
   </article>
 
-  <!-- RUN50 TRAINING -->
   <article class="video-card" data-category="run50 run-training" data-title="Run50 Training Page">
-    <a class="thumb" href="run50/run50.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e8f2ea"/>
-        <!-- runner (larger, more dynamic) -->
-        <circle cx="150" cy="28" r="10" stroke="#1a4030" stroke-width="2.5" fill="none"/>
-        <line x1="150" y1="38" x2="142" y2="62" stroke="#1a4030" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="146" y1="48" x2="162" y2="40" stroke="#1a4030" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="146" y1="50" x2="132" y2="58" stroke="#1a4030" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="142" y1="62" x2="156" y2="82" stroke="#1a4030" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="142" y1="62" x2="130" y2="78" stroke="#1a4030" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="130" y1="78" x2="140" y2="90" stroke="#1a4030" stroke-width="2" stroke-linecap="round"/>
-        <!-- motion lines -->
-        <line x1="58" y1="48" x2="82" y2="48" stroke="#1a4030" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
-        <line x1="50" y1="60" x2="76" y2="60" stroke="#1a4030" stroke-width="2" stroke-linecap="round" opacity="0.32"/>
-        <line x1="56" y1="72" x2="74" y2="72" stroke="#1a4030" stroke-width="1.5" stroke-linecap="round" opacity="0.2"/>
-        <!-- track line ground -->
-        <line x1="40" y1="96" x2="200" y2="96" stroke="#1a4030" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
-        <line x1="40" y1="100" x2="200" y2="100" stroke="#1a4030" stroke-width="1" stroke-linecap="round" opacity="0.18"/>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar run50">50</span>
-      <div>
-        <a class="video-title" href="run50/run50.html">Run50 Training Page</a>
-        <p class="video-sub">Run50 &middot; Training</p>
-      </div>
-    </div>
+    <a class="thumb" href="run50/run50.html"><img src="assets/thumb-run50-training.svg" alt="Training"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar run50">50</span><div>
+      <a class="video-title" href="run50/run50.html">Run50 Training Page</a>
+      <p class="video-sub">Run50 &middot; Training</p>
+    </div></div>
   </article>
 
-  <!-- NEW ENGLAND TRIP -->
   <article class="video-card" data-category="run50 trip marathon travel run-trip" data-title="Mainly Marathons New England 2026">
-    <a class="thumb" href="run50/mainly-marathons-new-england-2026-guide.html">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e8f2ea"/>
-        <!-- map fold -->
-        <path d="M44 28 L100 20 L156 28 L196 20 L196 96 L140 88 L84 96 L44 88 Z"
-              stroke="#1a4030" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
-        <line x1="100" y1="20" x2="100" y2="96" stroke="#1a4030" stroke-width="1.5" opacity="0.35"/>
-        <line x1="156" y1="28" x2="140" y2="88" stroke="#1a4030" stroke-width="1.5" opacity="0.35"/>
-        <!-- 6 state dots connected by route -->
-        <circle cx="72"  cy="46" r="5" fill="#1a4030" opacity="0.6"/>
-        <circle cx="88"  cy="58" r="5" fill="#1a4030" opacity="0.6"/>
-        <circle cx="108" cy="52" r="5" fill="#1a4030" opacity="0.6"/>
-        <circle cx="126" cy="62" r="5" fill="#1a4030" opacity="0.6"/>
-        <circle cx="148" cy="54" r="5" fill="#1a4030" opacity="0.6"/>
-        <circle cx="168" cy="46" r="5" fill="#1a4030" opacity="0.6"/>
-        <polyline points="72,46 88,58 108,52 126,62 148,54 168,46"
-                  stroke="#1a4030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.55" stroke-dasharray="5 3"/>
-        <!-- 2026 label -->
-        <text x="120" y="88" text-anchor="middle" fill="#1a4030" font-family="sans-serif" font-size="12" font-weight="700" opacity="0.4">2026</text>
-      </svg>
-      <span class="duration">HTML</span>
-    </a>
-    <div class="meta">
-      <span class="avatar run50">50</span>
-      <div>
-        <a class="video-title" href="run50/mainly-marathons-new-england-2026-guide.html">Mainly Marathons New England 2026</a>
-        <p class="video-sub">Run50 &middot; Trip guide</p>
-      </div>
-    </div>
+    <a class="thumb" href="run50/mainly-marathons-new-england-2026-guide.html"><img src="assets/thumb-trip-new-england.svg" alt="New England"><span class="duration">HTML</span></a>
+    <div class="meta"><span class="avatar run50">50</span><div>
+      <a class="video-title" href="run50/mainly-marathons-new-england-2026-guide.html">Mainly Marathons New England 2026</a>
+      <p class="video-sub">Run50 &middot; Trip guide</p>
+    </div></div>
   </article>
 
-  <!-- CHINESE STORIES -->
   <article class="video-card" data-category="run50 story chinese marathon travel run-story" data-title="Run50 Chinese Stories Chicago Illinois Xiangyang Guilin Hong Kong Pisa Texas San Antonio Marathon">
-    <a class="thumb" href="run50/stories/chinese/">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e8f2ea"/>
-        <!-- scroll paper -->
-        <rect x="55" y="22" width="130" height="78" rx="3" stroke="#1a4030" stroke-width="2.5" fill="none"/>
-        <!-- scroll rolls -->
-        <ellipse cx="55" cy="22" rx="8" ry="14" stroke="#1a4030" stroke-width="2" fill="none" opacity="0.6"/>
-        <ellipse cx="185" cy="22" rx="8" ry="14" stroke="#1a4030" stroke-width="2" fill="none" opacity="0.6"/>
-        <ellipse cx="55" cy="100" rx="8" ry="14" stroke="#1a4030" stroke-width="2" fill="none" opacity="0.6"/>
-        <ellipse cx="185" cy="100" rx="8" ry="14" stroke="#1a4030" stroke-width="2" fill="none" opacity="0.6"/>
-        <!-- Chinese character (文) -->
-        <text x="120" y="72" text-anchor="middle" fill="#1a4030" font-family="serif" font-size="36" font-weight="600" opacity="0.3">&#25991;</text>
-        <!-- small runner icon top -->
-        <circle cx="175" cy="34" r="5" stroke="#1a4030" stroke-width="1.8" fill="none"/>
-        <line x1="175" y1="39" x2="173" y2="48" stroke="#1a4030" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="173" y1="43" x2="169" y2="41" stroke="#1a4030" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="173" y1="43" x2="178" y2="41" stroke="#1a4030" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-      <span class="duration">Story</span>
-    </a>
-    <div class="meta">
-      <span class="avatar run50">50</span>
-      <div>
-        <a class="video-title" href="run50/stories/chinese/">Run50 Chinese Stories</a>
-        <p class="video-sub">Run50 &middot; Chicago · Texas · more</p>
-      </div>
-    </div>
+    <a class="thumb" href="run50/stories/chinese/"><img src="assets/thumb-run50-chicago-marathon-icons.svg" alt="Chinese Stories"><span class="duration">Story</span></a>
+    <div class="meta"><span class="avatar run50">50</span><div>
+      <a class="video-title" href="run50/stories/chinese/">Run50 Chinese Stories</a>
+      <p class="video-sub">Run50 &middot; Stories</p>
+    </div></div>
   </article>
 
-  <!-- ENGLISH STORIES -->
   <article class="video-card" data-category="run50 story english marathon travel run-story" data-title="Run50 English Stories Chicago Illinois Xiangyang Guilin Hong Kong Pisa Texas San Antonio Marathon">
-    <a class="thumb" href="run50/stories/english/">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e8f2ea"/>
-        <!-- same scroll but EN label -->
-        <rect x="55" y="22" width="130" height="78" rx="3" stroke="#1a4030" stroke-width="2.5" fill="none"/>
-        <ellipse cx="55"  cy="22"  rx="8" ry="14" stroke="#1a4030" stroke-width="2" fill="none" opacity="0.6"/>
-        <ellipse cx="185" cy="22"  rx="8" ry="14" stroke="#1a4030" stroke-width="2" fill="none" opacity="0.6"/>
-        <ellipse cx="55"  cy="100" rx="8" ry="14" stroke="#1a4030" stroke-width="2" fill="none" opacity="0.6"/>
-        <ellipse cx="185" cy="100" rx="8" ry="14" stroke="#1a4030" stroke-width="2" fill="none" opacity="0.6"/>
-        <text x="120" y="75" text-anchor="middle" fill="#1a4030" font-family="sans-serif" font-size="30" font-weight="800" letter-spacing="-1" opacity="0.28">EN</text>
-        <!-- horizontal story lines -->
-        <line x1="72" y1="44" x2="168" y2="44" stroke="#1a4030" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
-        <line x1="72" y1="52" x2="152" y2="52" stroke="#1a4030" stroke-width="1.2" stroke-linecap="round" opacity="0.22"/>
-      </svg>
-      <span class="duration">Story</span>
-    </a>
-    <div class="meta">
-      <span class="avatar run50">50</span>
-      <div>
-        <a class="video-title" href="run50/stories/english/">Run50 English Stories</a>
-        <p class="video-sub">Run50 &middot; Chicago · Texas · more</p>
-      </div>
-    </div>
+    <a class="thumb" href="run50/stories/english/"><img src="assets/thumb-run50-chicago-marathon-icons.svg" alt="English Stories"><span class="duration">Story</span></a>
+    <div class="meta"><span class="avatar run50">50</span><div>
+      <a class="video-title" href="run50/stories/english/">Run50 English Stories</a>
+      <p class="video-sub">Run50 &middot; Stories</p>
+    </div></div>
   </article>
 
-  <!-- FACEBOOK -->
   <article class="video-card" data-category="run50 facebook story english marathon travel run-story" data-title="Run50 Facebook Chicago Illinois Xiangyang Guilin Hong Kong Pisa Texas San Antonio Marathon">
-    <a class="thumb" href="run50/facebook/">
-      <svg class="thumb-art" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="240" height="120" fill="#e8f2ea"/>
-        <!-- phone frame -->
-        <rect x="84" y="14" width="72" height="94" rx="10" stroke="#1a4030" stroke-width="2.5" fill="none"/>
-        <!-- screen area -->
-        <rect x="90" y="24" width="60" height="70" rx="3" stroke="#1a4030" stroke-width="1.5" fill="none" opacity="0.4"/>
-        <!-- header bar -->
-        <rect x="90" y="24" width="60" height="14" rx="3" fill="#1a4030" opacity="0.12"/>
-        <!-- post preview lines -->
-        <rect x="94" y="44" width="52" height="24" rx="2" stroke="#1a4030" stroke-width="1.2" fill="none" opacity="0.3"/>
-        <line x1="94" y1="74" x2="140" y2="74" stroke="#1a4030" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
-        <line x1="94" y1="80" x2="130" y2="80" stroke="#1a4030" stroke-width="1.2" stroke-linecap="round" opacity="0.25"/>
-        <!-- FB text on screen -->
-        <text x="120" y="60" text-anchor="middle" fill="#1a4030" font-family="sans-serif" font-size="14" font-weight="800" opacity="0.3">f</text>
-        <!-- home bar -->
-        <line x1="108" y1="100" x2="132" y2="100" stroke="#1a4030" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
-      </svg>
-      <span class="duration">Facebook</span>
-    </a>
-    <div class="meta">
-      <span class="avatar run50">50</span>
-      <div>
-        <a class="video-title" href="run50/facebook/">Run50 Facebook</a>
-        <p class="video-sub">Run50 &middot; Race stories</p>
-      </div>
-    </div>
+    <a class="thumb" href="run50/facebook/"><img src="assets/thumb-run50-chicago-marathon-icons.svg" alt="Facebook Stories"><span class="duration">Facebook</span></a>
+    <div class="meta"><span class="avatar run50">50</span><div>
+      <a class="video-title" href="run50/facebook/">Run50 Facebook</a>
+      <p class="video-sub">Run50 &middot; Race stories</p>
+    </div></div>
   </article>
 
 </section>
@@ -1149,10 +746,36 @@ body:not(.show-results) .results-bar{ display: none; }
 
 <!-- FOOTER -->
 <footer>
-  ArsenanZZ &nbsp;&middot;&nbsp; <a href="https://zhennanzhang.bio" target="_blank">zhennanzhang.bio &#8599;</a>
+  <div class="footer-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#9650; Back to top</div>
+  <div class="footer-cols">
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="https://zhennanzhang.bio" target="_blank">zhennanzhang.bio</a>
+      <a href="run50/index.html">Run50 Space</a>
+    </div>
+    <div class="footer-col">
+      <h4>Water</h4>
+      <a href="Softener-Water/index.html">Water Softener</a>
+      <a href="ro/ro-system-explained.html">RO System</a>
+      <a href="wqa/WQA_2026_Presentations_Summary-V2.html">WQA 2026</a>
+      <a href="nsf/nsf-water-guide-claude.html">NSF Guide</a>
+    </div>
+    <div class="footer-col">
+      <h4>Run50</h4>
+      <a href="run50/index.html">Home</a>
+      <a href="run50/stories/chinese/">Chinese Stories</a>
+      <a href="run50/stories/english/">English Stories</a>
+      <a href="run50/mainly-marathons-new-england-2026-guide.html">New England 2026</a>
+    </div>
+    <div class="footer-col">
+      <h4>Reading</h4>
+      <a href="reading/atomic-habits-full-english.html">Atomic Habits</a>
+      <a href="reading/nano-ic-manufacturing-study.html">Nano IC Study</a>
+    </div>
+  </div>
+  <div class="footer-bottom">Arsenan<em>ZZ</em> &nbsp;&middot;&nbsp; Running &middot; Reading &middot; Building</div>
 </footer>
 
-<!-- ORIGINAL JS (preserved exactly) -->
 <script>
   const searchInput = document.querySelector('#searchInput');
   const cards = Array.from(document.querySelectorAll('.video-card'));
@@ -1168,6 +791,9 @@ body:not(.show-results) .results-bar{ display: none; }
     currentFilter = filter;
     chips.forEach(chip => chip.classList.toggle('active', chip.dataset.filter === filter));
     sideLinks.forEach(link => link.classList.toggle('active', link.dataset.filter === filter));
+    document.querySelectorAll('.navbar a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('onclick') && a.getAttribute('onclick').includes(`'${filter}'`));
+    });
 
     const subChipsContainer = document.querySelector('#subChips');
     const run50SubChipsContainer = document.querySelector('#run50SubChips');
@@ -1191,42 +817,33 @@ body:not(.show-results) .results-bar{ display: none; }
 
   function setSubFilter(subfilter) {
     currentSubFilter = subfilter;
-    const subChips = Array.from(document.querySelectorAll('#subChips .sub-chip'));
-    subChips.forEach(subChip => subChip.classList.toggle('active', subChip.dataset.subfilter === subfilter));
+    Array.from(document.querySelectorAll('#subChips .sub-chip')).forEach(c => c.classList.toggle('active', c.dataset.subfilter === subfilter));
     applyFilters();
   }
 
   function setRun50SubFilter(subfilter) {
     currentRun50SubFilter = subfilter;
-    const subChips = Array.from(document.querySelectorAll('#run50SubChips .sub-chip'));
-    subChips.forEach(subChip => subChip.classList.toggle('active', subChip.dataset.run50subfilter === subfilter));
+    Array.from(document.querySelectorAll('#run50SubChips .sub-chip')).forEach(c => c.classList.toggle('active', c.dataset.run50subfilter === subfilter));
     applyFilters();
   }
 
   function applyFilters() {
     const query = searchInput.value.trim().toLowerCase();
     let visible = 0;
-
     const shouldShowResults = currentFilter !== 'all' || query.length > 0;
-    if (shouldShowResults) {
-      document.body.classList.add('show-results');
-    } else {
-      document.body.classList.remove('show-results');
-    }
+    document.body.classList.toggle('show-results', shouldShowResults);
 
     cards.forEach(card => {
       const haystack = `${card.dataset.title} ${card.dataset.category}`.toLowerCase();
       const tokens = haystack.split(/[^a-z0-9]+/).filter(Boolean);
-      const matchesQuery = !query || (query.length <= 2
-        ? tokens.some(token => token === query)
-        : haystack.includes(query));
-      const categoryTokens = (card.dataset.category || '').split(/\s+/).filter(Boolean);
-      const matchesFilter = currentFilter === 'all' || categoryTokens.includes(currentFilter);
-      const matchesSubFilter = currentFilter !== 'water' || currentSubFilter === 'all' || categoryTokens.includes(currentSubFilter);
-      const matchesRun50SubFilter = currentFilter !== 'run50' || currentRun50SubFilter === 'all' || categoryTokens.includes(currentRun50SubFilter);
-      const show = matchesQuery && matchesFilter && matchesSubFilter && matchesRun50SubFilter;
+      const matchesQuery = !query || (query.length <= 2 ? tokens.some(t => t === query) : haystack.includes(query));
+      const cats = (card.dataset.category || '').split(/\s+/).filter(Boolean);
+      const matchesFilter = currentFilter === 'all' || cats.includes(currentFilter);
+      const matchesSub = currentFilter !== 'water' || currentSubFilter === 'all' || cats.includes(currentSubFilter);
+      const matchesRun50Sub = currentFilter !== 'run50' || currentRun50SubFilter === 'all' || cats.includes(currentRun50SubFilter);
+      const show = matchesQuery && matchesFilter && matchesSub && matchesRun50Sub;
       card.hidden = !show;
-      if (show) visible += 1;
+      if (show) visible++;
     });
 
     resultCount.textContent = `${visible} item${visible === 1 ? '' : 's'}`;
@@ -1234,27 +851,10 @@ body:not(.show-results) .results-bar{ display: none; }
   }
 
   searchInput.addEventListener('input', applyFilters);
-
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => setActiveFilter(chip.dataset.filter));
-  });
-
-  sideLinks.forEach(link => {
-    link.addEventListener('click', event => {
-      const filter = link.dataset.filter;
-      if (filter === 'all') event.preventDefault();
-      setActiveFilter(filter);
-    });
-  });
-
-  document.querySelectorAll('#subChips .sub-chip').forEach(subChip => {
-    subChip.addEventListener('click', () => setSubFilter(subChip.dataset.subfilter));
-  });
-
-  document.querySelectorAll('#run50SubChips .sub-chip').forEach(subChip => {
-    subChip.addEventListener('click', () => setRun50SubFilter(subChip.dataset.run50subfilter));
-  });
-
+  chips.forEach(c => c.addEventListener('click', () => setActiveFilter(c.dataset.filter)));
+  sideLinks.forEach(l => l.addEventListener('click', e => { if (l.dataset.filter === 'all') e.preventDefault(); setActiveFilter(l.dataset.filter); }));
+  document.querySelectorAll('#subChips .sub-chip').forEach(c => c.addEventListener('click', () => setSubFilter(c.dataset.subfilter)));
+  document.querySelectorAll('#run50SubChips .sub-chip').forEach(c => c.addEventListener('click', () => setRun50SubFilter(c.dataset.run50subfilter)));
   applyFilters();
 </script>
 <section data-zz-comments></section>
