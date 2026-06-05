@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">West Virginia Marathon icon cover</title>
+<desc id="desc">Icon style cover with West Virginia title, Run50 badge, Appalachian mountains, winding country road, and football.</desc>
+<rect width="1200" height="750" fill="#edf3f7"/>
+<g transform="translate(70 104)">
+  <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">W. VIRGINIA</text>
+  <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#0b67c2">MOUNTAINS · COUNTRY ROADS · FOOTBALL</text>
+</g>
+<rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #13</text>
+<text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">W. VIRGINIA</text>
+
+<!-- Sky Sunset Warmth -->
+<rect x="50" y="260" width="1100" height="320" rx="10" fill="#fffbeb" stroke="#20242b" stroke-width="5"/>
+
+<!-- Sun -->
+<circle cx="250" cy="350" r="45" fill="#f97316"/>
+
+<!-- Layered Appalachian Mountains -->
+<path d="M50 540 Q200 440 450 510 T900 480 T1150 500 L1150 580 L50 580 Z" fill="#a7f3d0"/>
+<path d="M50 560 Q300 470 650 550 T1150 520 L1150 580 L50 580 Z" fill="#34d399"/>
+<path d="M50 580 L1150 580 L1150 720 L50 720 Z" fill="#047857"/>
+<path d="M50 570 Q450 490 850 570 T1150 550 L1150 580 L50 580 Z" fill="#10b981"/>
+
+<!-- Winding Country Road -->
+<polygon points="500 720, 700 720, 610 570, 590 570" fill="#374151" stroke="#20242b" stroke-width="4"/>
+<path d="M600 720 L600 570" stroke="#fbbf24" stroke-dasharray="15 10" stroke-width="4"/>
+
+<g transform="translate(860, 540) rotate(15)">
+  <ellipse cx="50" cy="50" rx="90" ry="60" fill="#78350f" stroke="#20242b" stroke-width="7"/>
+  <!-- Laces -->
+  <line x1="-15" y1="50" x2="115" y2="50" stroke="#ffffff" stroke-width="8"/>
+  <line x1="10" y1="35" x2="10" y2="65" stroke="#ffffff" stroke-width="6"/>
+  <line x1="30" y1="35" x2="30" y2="65" stroke="#ffffff" stroke-width="6"/>
+  <line x1="50" y1="35" x2="50" y2="65" stroke="#ffffff" stroke-width="6"/>
+  <line x1="70" y1="35" x2="70" y2="65" stroke="#ffffff" stroke-width="6"/>
+  <line x1="90" y1="35" x2="90" y2="65" stroke="#ffffff" stroke-width="6"/>
+  <!-- End stripes -->
+  <path d="M-10 20 Q-25 50 -10 80" fill="none" stroke="#ffffff" stroke-width="8"/>
+  <path d="M110 20 Q125 50 110 80" fill="none" stroke="#ffffff" stroke-width="8"/>
+</g>
+</svg>
