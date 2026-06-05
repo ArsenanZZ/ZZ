@@ -388,59 +388,80 @@
   <!-- 引入 US SVG 地图数据 -->
   <script src="../../us-map-svg.js?v=20260605-2"></script>
   <script>
+    // _HM maps each state abbreviation to the SVG path id(s) that actually draw
+    // that state. NOTE: the source SVG has scrambled id labels (e.g. the path
+    // labelled "Kansas_1_" is geometrically Texas), so these ids were rebuilt by
+    // matching each path's true position against an Albers projection of the
+    // real state centroids. Do not "fix" the ids to match their names.
     const _HM = {
-      "KY": ["Kentucky", "Kentucky_1_"],
-      "FL": ["Florida_1_"],
-      "NC": ["North_Carolina_1_"],
-      "AR": ["Arkansas", "Arkansas_1_"],
-      "SC": ["South_Carolina", "South_Carolina_1_"],
-      "PA": ["Pensilvania", "Pensilvania_1_"],
-      "WI": ["Wisconsin", "Wisconsin_1_"],
-      "MI": ["Michigan", "Michigan_1_"],
-      "NH": ["New_Hampshire", "New_Hampshire_1_"],
-      "OH": ["Ohio", "Ohio_1_"],
-      "IN": ["Indiana", "Indiana_1_"],
-      "NY": ["New_York", "New_York_2_"],
-      "CA": ["California"],
-      "HI": ["hawaii_1_"],
+      "IL": ["Illinois"],
+      "TN": ["Alabama"],
+      "WV": ["West_Virginia"],
+      "TX": ["Kansas_1_"],
+      "FL": ["South_Carolina_1_"],
+      "NC": ["Maryland"],
+      "AR": ["Tennessee"],
+      "SC": ["South_Carolina"],
+      "KY": ["Georgia_1_"],
+      "PA": ["Pensilvania"],
+      "WI": ["Wisconsin"],
+      "MI": ["Michigan"],
+      "NH": ["Vermont"],
+      "LA": ["Arkansas_1_"],
+      "VA": ["North_Carolina_1_"],
+      "ND": ["South_Dakota_1_"],
+      "KS": ["Kansas"],
+      "VT": ["New_Hampshire_1_"],
+      "AL": ["alabama"],
+      "AZ": ["Arizona_1_"],
+      "DE": ["Massachusets_1_"],
+      "MN": ["Minnesotta"],
+      "CT": ["New_York_2_"],
+      "RI": ["Connecticut"],
+      "MA": ["Vermont_1_"],
+      "ME": ["Michigan_1_"],
+      "OH": ["Ohio"],
+      "NY": ["New_York"],
+      "CA": ["Arizona"],
+      "IN": ["Indiana"],
+      "GA": ["Georgia"],
+      "CO": ["Texas_1_"],
+      "MO": ["Iowa_1_"],
+      "HI": ["Hawaii_1_"],
       "AK": ["Alaska_1_"],
-      "GA": ["Georgia", "Georgia_1_"],
-      "CO": ["Colorado", "Colorado_1_"],
-      "TX": ["Texas_1_"],
-      "LA": ["Louisiana_1_"],
-      "VA": ["Virginia", "Virginia_1_"],
-      "ND": ["North_Dakota", "North_Dakota_1_"],
-      "KS": ["Kansas", "Kansas_1_"],
-      "VT": ["Vermont", "Vermont_1_"],
-      "AL": ["Alabama", "alabama"],
-      "AZ": ["Arizona", "Arizona_1_"],
-      "DE": ["Delaware"],
-      "MN": ["Minnesotta", "Minessota"],
-      "CT": ["Connecticut", "Connecticut_1_"],
-      "RI": ["Rhode_Island", "Rhode_Island_1_"],
-      "MA": ["Massachusets", "Massachusets_1_"],
-      "ME": ["Maine", "Maine_1_"],
-      "IL": ["Illinois", "Illinois_1_"],
-      "MO": ["Missouri", "Mossouri"],
-      "TN": ["Tennessee"],
-      "WV": ["West_Virginia", "West_Virginia_1_"],
-      "WY": ["Wyoming", "Wyoming_1_"],
-      "IA": ["Iowa", "Iowa_1_"],
-      "NE": ["Nebraska", "Nebraska_1_"],
-      "SD": ["South_Dakota", "South_Dakota_1_"],
-      "MT": ["Montana", "Montana_1_"],
-      "NM": ["New_Mexico", "New_Mexico_1_"],
-      "UT": ["Utah", "Utah_1_"],
-      "ID": ["Idaho", "Idaho_1_"],
-      "WA": ["Washington_1_"],
-      "OR": ["Oregon_1_", "Oregon_41_"],
-      "NV": ["Nevada_1_", "Nevada_41_"],
-      "OK": ["Oklahoma", "Oklahoma_1_"],
-      "MS": ["Missisppi", "Missispi"],
-      "NJ": ["New_Jersey", "New_Jersey_1_"],
-      "MD": ["Maryland"]
+      "ID": ["Idaho"],
+      "IA": ["Minessota"],
+      "MS": ["Mossouri"],
+      "MT": ["Washington_1_"],
+      "NE": ["Nebraska"],
+      "NV": ["Nevada_41_"],
+      "NJ": ["New_Jersey"],
+      "NM": ["Idaho_1_"],
+      "OK": ["Oklahoma"],
+      "OR": ["Nevada_1_"],
+      "SD": ["South_Dakota"],
+      "UT": ["Utah_1_"],
+      "WY": ["Montana_1_"],
+      "MD": ["Pensilvania_1_"]
     };
-    const _SF = ["Michigan", "Michigan_1_", "Maine", "Maine_1_", "New_Hampshire", "New_Hampshire_1_", "Vermont", "Vermont_1_", "Massachusets", "Massachusets_1_", "Delaware", "Rhode_Island", "Rhode_Island_1_", "New_York", "New_York_2_", "Connecticut", "Connecticut_1_", "New_Jersey", "New_Jersey_1_", "Pensilvania", "Pensilvania_1_", "Maryland", "North_Carolina_1_", "Virginia", "Virginia_1_", "West_Virginia", "West_Virginia_1_", "Ohio", "Ohio_1_", "Indiana", "Indiana_1_", "South_Carolina", "South_Carolina_1_", "Florida_1_", "Georgia", "Georgia_1_", "Kentucky", "Kentucky_1_", "Illinois", "Illinois_1_", "Wisconsin", "Wisconsin_1_", "Minnesotta", "Minessota", "Iowa", "Iowa_1_", "Missouri", "Mossouri", "Missisppi", "Missispi", "alabama", "Alabama", "Tennessee", "Arkansas", "Arkansas_1_", "Louisiana_1_", "Nebraska", "Nebraska_1_", "South_Dakota", "South_Dakota_1_", "North_Dakota", "North_Dakota_1_", "Kansas", "Kansas_1_", "Texas_1_", "Colorado", "Colorado_1_", "Oklahoma", "Oklahoma_1_", "Washington_1_", "Montana", "Montana_1_", "Wyoming_1_", "Wyoming", "Idaho", "Idaho_1_", "New_Mexico_1_", "New_Mexico", "Utah_1_", "Utah", "Arizona_1_", "Arizona", "California", "Nevada_41_", "Nevada_1_", "Oregon_41_", "Oregon_1_"];
+    // Display names keyed by abbreviation — used for tooltips so we never derive
+    // the label from the (scrambled) SVG path id.
+    const _STATE_NAMES = {
+      "IL": "Illinois", "TN": "Tennessee", "WV": "West Virginia", "TX": "Texas",
+      "FL": "Florida", "NC": "North Carolina", "AR": "Arkansas", "SC": "South Carolina",
+      "KY": "Kentucky", "PA": "Pennsylvania", "WI": "Wisconsin", "MI": "Michigan",
+      "NH": "New Hampshire", "LA": "Louisiana", "VA": "Virginia", "ND": "North Dakota",
+      "KS": "Kansas", "VT": "Vermont", "AL": "Alabama", "AZ": "Arizona", "DE": "Delaware",
+      "MN": "Minnesota", "CT": "Connecticut", "RI": "Rhode Island", "MA": "Massachusetts",
+      "ME": "Maine", "OH": "Ohio", "NY": "New York", "CA": "California", "IN": "Indiana",
+      "GA": "Georgia", "CO": "Colorado", "MO": "Missouri", "HI": "Hawaii", "AK": "Alaska",
+      "ID": "Idaho", "IA": "Iowa", "MS": "Mississippi", "MT": "Montana", "NE": "Nebraska",
+      "NV": "Nevada", "NJ": "New Jersey", "NM": "New Mexico", "OK": "Oklahoma",
+      "OR": "Oregon", "SD": "South Dakota", "UT": "Utah", "WY": "Wyoming", "MD": "Maryland"
+    };
+    // One real-geometry path id per state (the values of _HM), used to mute every
+    // state to the base colour and to bind hover/click handlers.
+    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Vermont", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Hawaii_1_", "Alaska_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_"];
     const _MUTED = '#dedad3';
 
     const _CITY_LAT_LON = {
@@ -518,8 +539,8 @@
       const xProj = rho * Math.sin(theta);
       const yProj = rho0 - rho * Math.cos(theta);
       
-      const xSvg = 1395.88 * xProj + 932.15;
-      const ySvg = -927.71 * yProj + 536.84;
+      const xSvg = 1798.50 * xProj + 935.11;
+      const ySvg = -1851.29 * yProj + 579.07;
       
       return { x: xSvg, y: ySvg };
     }
@@ -665,8 +686,7 @@
         tooltip.innerHTML = `<h4>${abbr}</h4><div style="color:#aaa;">No marathon records in this state</div>`;
         if (hoverStatus) hoverStatus.textContent = `${abbr}: No records`;
       } else {
-        const stateName = document.getElementById('map_' + _HM[abbr][0])?.getAttribute('id') || abbr;
-        const cleanStateName = stateName.replace('map_', '').replace('_1_', '').replace('_', ' ');
+        const cleanStateName = _STATE_NAMES[abbr] || abbr;
         
         let html = `<h4>📍 ${cleanStateName} (${races.length} Race${races.length > 1 ? 's' : ''})</h4>`;
         races.forEach(r => {
