@@ -427,7 +427,7 @@
       "GA": ["Georgia"],
       "CO": ["Texas_1_"],
       "MO": ["Iowa_1_"],
-      "HI": ["Alaska_1_", "hawaii_1_"],
+      "HI": ["ocean_2_"],
       "AK": ["ocean_3_"],
       "ID": ["Idaho"],
       "IA": ["Minessota"],
@@ -462,7 +462,7 @@
     };
     // One real-geometry path id per state (the values of _HM), used to mute every
     // state to the base colour and to bind hover/click handlers.
-    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Vermont", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Alaska_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "hawaii_1_", "Oklahoma_1_", "ocean_3_"];
+    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Vermont", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "ocean_2_", "Oklahoma_1_", "ocean_3_"];
     const _MUTED = '#dedad3';
 
     const _CITY_LAT_LON = {
@@ -625,6 +625,7 @@
         'CT': [{city: 'Simsbury', raceName: 'Mainly Marathons NE', date: '2026.06.08', emoji: '🏛️', num: '#32', isPlaceholder: true}],
         'RI': [{city: 'Woonsocket', raceName: 'Mainly Marathons NE', date: '2026.06.09', emoji: '⚓', num: '#33', isPlaceholder: true}],
         'MA': [{city: 'Holyoke', raceName: 'Mainly Marathons NE', date: '2026.06.10', emoji: '🦞', num: '#34', isPlaceholder: true}],
+        'HI': [{city: 'Honolulu', raceName: '50th Honolulu Marathon', date: '2022.12.11', emoji: '🌺', num: '#06', isPlaceholder: true}],
         'AK': [{city: 'Anchorage', raceName: '4th Anchorage Marathon', date: '2023.08.20', emoji: '🐻', num: '#09', isPlaceholder: true}],
         'IL': [{city: 'Chicago', raceName: 'Chicago Marathon', date: '2023.10.08', emoji: '🏙️', num: '#12', isPlaceholder: false}],
         'TN': [{city: 'Nashville', raceName: 'Nashville Marathon', date: '2023.10.28', emoji: '🎸', num: '#12', isPlaceholder: false}],
@@ -853,6 +854,16 @@
           path.style.pointerEvents = 'none';
         }
       });
+      const hawaiiInsetPanel = document.getElementById('map_Alaska_1_');
+      if (hawaiiInsetPanel) {
+        hawaiiInsetPanel.style.fill = '#ffffff';
+        hawaiiInsetPanel.style.pointerEvents = 'none';
+      }
+      const hawaiiInsetOutline = document.getElementById('map_hawaii_1_');
+      if (hawaiiInsetOutline) {
+        hawaiiInsetOutline.style.fill = '#ffffff';
+        hawaiiInsetOutline.style.pointerEvents = 'none';
+      }
       
       _parseGridRaces();
       _muteAll();
