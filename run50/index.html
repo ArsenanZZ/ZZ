@@ -1,310 +1,638 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ArsenanZZ - Personal Space</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --ink: #1a1714;
-    --paper: #f7f4ef;
-    --cream: #ede9e1;
-    --run-primary: #1a2a3a;
-    --run-accent: #c8860a;
-    --trip-primary: #0d6f88;
-    --book-primary: #8d3f3f;
-    --book-accent: #1f6f5b;
-    --muted: #7a7570;
-    --line: #d8d2c8;
+    --amz-header: #131921;
+    --amz-nav: #232f3e;
+    --amz-orange: #FF9900;
+    --amz-yellow: #FFD814;
+    --amz-teal: #007185;
+    --amz-bg: #EAEDED;
+    --amz-card: #FFFFFF;
+    --amz-border: #D5D9D9;
+    --amz-text: #0F1111;
+    --amz-muted: #565959;
+    --amz-red: #CC0C39;
+    --amz-blue: #1877F2;
   }
-
-  html { scroll-behavior: smooth; }
 
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
+    background: var(--amz-bg);
+    color: var(--amz-text);
+    font-family: Arial, 'Noto Serif SC', sans-serif;
     min-height: 100vh;
-    overflow-x: hidden;
   }
 
-  /* ── HEADER ── */
+  /* HEADER */
   header {
-    padding: 60px 40px 40px;
-    max-width: 900px;
-    margin: 0 auto;
+    background: var(--amz-header);
+    padding: 8px 16px;
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
+    align-items: center;
+    gap: 12px;
   }
 
-  .site-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(36px, 6vw, 64px);
-    line-height: 1;
-    letter-spacing: -1px;
-    color: var(--ink);
-  }
-
-  .site-name em {
-    font-style: italic;
-    color: var(--run-accent);
-  }
-
-  .site-tagline {
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding-bottom: 6px;
+  .header-logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
     white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+    border: 1px solid transparent;
+    padding: 4px 6px;
+    border-radius: 2px;
   }
+  .header-logo:hover { border-color: white; }
+  .header-logo span { color: var(--amz-orange); }
 
-  /* ── DIVIDER ── */
-  .rule {
-    max-width: 900px;
-    margin: 0 auto 48px;
-    padding: 0 40px;
+  .header-search {
+    flex: 1;
+    display: flex;
+    max-width: 860px;
   }
-  .rule hr {
+  .header-search select {
+    background: #f3f3f3;
     border: none;
-    border-top: 1.5px solid var(--line);
+    border-radius: 4px 0 0 4px;
+    padding: 0 8px;
+    font-size: 12px;
+    color: #333;
+    cursor: pointer;
+    border-right: 1px solid #cdcdcd;
+    height: 40px;
+  }
+  .header-search input {
+    flex: 1;
+    border: none;
+    padding: 0 12px;
+    height: 40px;
+    font-size: 14px;
+    outline: none;
+  }
+  .header-search button {
+    background: var(--amz-orange);
+    border: none;
+    width: 46px;
+    height: 40px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-search button:hover { background: #e88a00; }
+
+  .header-links {
+    display: flex;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .header-link {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 1.3;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    padding: 4px 6px;
+    border-radius: 2px;
+  }
+  .header-link:hover { border-color: white; }
+  .header-link .hl-small { font-size: 11px; color: #ccc; }
+  .header-link .hl-main { font-weight: bold; font-size: 14px; color: white; }
+
+  /* NAV BAR */
+  .nav-bar {
+    background: var(--amz-nav);
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .nav-bar a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 8px 12px;
+    white-space: nowrap;
+    display: block;
+    border: 1px solid transparent;
+  }
+  .nav-bar a:hover, .nav-bar a.active {
+    border-color: white;
+    border-radius: 2px;
   }
 
-  /* ── GRID ── */
-  .cards {
-    max-width: 900px;
+  /* HERO BANNER */
+  .hero {
+    background: linear-gradient(135deg, #1a2a3a 0%, #131921 60%, #0d1b2a 100%);
+    padding: 36px 20px;
+    text-align: center;
+    color: white;
+    border-bottom: 3px solid var(--amz-orange);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '🏃';
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.05;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .hero-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    position: relative;
+  }
+  .hero-title span { color: var(--amz-orange); }
+  .hero-sub {
+    font-size: 13px;
+    color: #aaa;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .hero-badges {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--amz-orange);
+    color: #131921;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 5px 16px;
+    border-radius: 20px;
+  }
+  .hero-badge-outline {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    color: white;
+    font-size: 13px;
+    padding: 5px 16px;
+    border-radius: 20px;
+  }
+
+  /* MAIN CONTENT */
+  .content {
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px 80px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
+    padding: 20px 16px 40px;
   }
 
-  /* ── CARD ── */
-  .card {
-    background: #fff;
-    border-radius: 12px;
-    border: 1px solid var(--line);
-    padding: 28px 26px 24px;
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--amz-orange);
+    padding-bottom: 8px;
+  }
+  .section-title {
+    font-size: 21px;
+    font-weight: bold;
+    color: var(--amz-text);
+  }
+  .section-see-all {
+    font-size: 13px;
+    color: var(--amz-teal);
+    text-decoration: none;
+  }
+  .section-see-all:hover { text-decoration: underline; color: #c7511f; }
+
+  /* PRODUCT GRID */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  /* PRODUCT CARD */
+  .product {
+    background: var(--amz-card);
+    border: 1px solid var(--amz-border);
+    border-radius: 8px;
+    overflow: hidden;
     text-decoration: none;
     color: inherit;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: box-shadow 0.2s;
+  }
+  .product:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+
+  .product-thumb {
+    background: #f7f8f8;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    border-bottom: 1px solid var(--amz-border);
     position: relative;
-    overflow: hidden;
   }
 
-  .card::before {
-    content: '';
+  .badge-status {
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--card-color, var(--ink));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.25s ease;
+    top: 8px;
+    left: 8px;
+    background: var(--amz-red);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  .badge-prime {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #00A8E0;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-style: italic;
+    letter-spacing: 0.5px;
+  }
+  .badge-year {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #067D62;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 3px;
   }
 
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.09);
-    border-color: transparent;
+  .product-body {
+    padding: 12px 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
-  .card:hover::before { transform: scaleX(1); }
 
-  .card-tag {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 2.5px;
+  .product-category {
+    font-size: 11px;
+    color: var(--amz-teal);
+    font-weight: bold;
     text-transform: uppercase;
-    color: var(--card-color, var(--muted));
-    opacity: 0.8;
+    letter-spacing: 1px;
   }
 
-  .card-emoji {
-    font-size: 32px;
-    line-height: 1;
-    margin: 2px 0;
+  .product-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--amz-text);
+    line-height: 1.3;
   }
+  .product:hover .product-title { color: #c7511f; }
 
-  .card-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 22px;
-    line-height: 1.2;
-    color: var(--ink);
-  }
-
-  .card-title-zh {
+  .product-subtitle {
+    font-size: 12px;
+    color: var(--amz-muted);
     font-family: 'Noto Serif SC', serif;
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 400;
-    line-height: 1.4;
   }
 
-  .card-desc {
+  .stars {
+    color: var(--amz-orange);
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .stars-count {
+    color: var(--amz-teal);
+    font-size: 12px;
+    text-decoration: none;
+  }
+  .stars-count:hover { text-decoration: underline; }
+
+  .product-desc {
     font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
+    color: var(--amz-muted);
+    line-height: 1.5;
     flex: 1;
   }
 
-  .card-meta {
-    margin-top: 4px;
+  .product-stat {
     font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.5px;
-    border-top: 1px solid var(--cream);
-    padding-top: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    color: var(--amz-muted);
+    border-top: 1px solid #f0f0f0;
+    padding-top: 8px;
+    margin-top: 4px;
   }
+  .product-stat strong { color: var(--amz-red); font-size: 15px; }
 
-  .card-arrow {
-    font-size: 16px;
-    color: var(--card-color, var(--muted));
-    transition: transform 0.2s;
-  }
-  .card:hover .card-arrow { transform: translateX(4px); }
-
-  /* Card themes */
-  .card-run     { --card-color: var(--run-primary); }
-  .card-trip    { --card-color: var(--trip-primary); }
-  .card-en      { --card-color: var(--book-primary); }
-  .card-zh      { --card-color: var(--book-accent); }
-  .card-story   { --card-color: var(--book-accent); }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--line);
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  footer a {
-    font-size: 12px;
-    color: var(--muted);
+  .btn-view {
+    display: block;
+    background: linear-gradient(to bottom, #FFE082, #FFD814);
+    border: 1px solid #FFA41C;
+    border-bottom-color: #E4902A;
+    border-radius: 20px;
+    text-align: center;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #0F1111;
     text-decoration: none;
-    letter-spacing: 1px;
+    margin: 10px 14px 14px;
+    cursor: pointer;
   }
-  footer a:hover { color: var(--ink); }
+  .btn-view:hover { background: linear-gradient(to bottom, #f5d576, #f0c400); }
 
-  .footer-brand {
-    font-family: 'DM Serif Display', serif;
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--amz-border);
+    margin: 8px 0 24px;
+  }
+
+  /* FOOTER */
+  footer { background: #232f3e; color: #DDD; margin-top: 20px; }
+
+  .footer-top {
+    background: #37475A;
+    text-align: center;
+    padding: 14px;
+    font-size: 13px;
+    color: white;
+    cursor: pointer;
+  }
+  .footer-top:hover { background: #485769; }
+
+  .footer-cols {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 24px;
+  }
+  .footer-col h4 {
+    color: white;
     font-size: 14px;
-    color: var(--muted);
-    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  .footer-col a {
+    display: block;
+    color: #DDD;
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .footer-col a:hover { color: white; text-decoration: underline; }
+
+  .footer-divider {
+    border: none;
+    border-top: 1px solid #3a4553;
+    margin: 0;
   }
 
-  @media (max-width: 600px) {
-    header { flex-direction: column; align-items: flex-start; padding: 40px 24px 24px; }
-    .rule, .cards, footer { padding-left: 24px; padding-right: 24px; }
-    .cards { grid-template-columns: 1fr; }
+  .footer-bottom {
+    background: #131921;
+    text-align: center;
+    padding: 16px;
+    font-size: 12px;
+    color: #888;
+  }
+  .footer-logo-bottom {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 6px;
+  }
+  .footer-logo-bottom span { color: var(--amz-orange); }
+
+  @media (max-width: 640px) {
+    .header-search select { display: none; }
+    .header-links { display: none; }
+    .products { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .hero-title { font-size: 26px; }
+    .hero { padding: 24px 16px; }
+  }
+  @media (max-width: 400px) {
+    .products { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
-  <h1 class="site-name">Arsenan<em>ZZ</em></h1>
-  <p class="site-tagline">Running · Reading · Building</p>
+  <a href="#" class="header-logo">Arsenan<span>ZZ</span></a>
+
+  <div class="header-search">
+    <select>
+      <option>All</option>
+      <option>Running</option>
+      <option>Stories</option>
+      <option>Trips</option>
+    </select>
+    <input type="text" placeholder="Search stories, races, places...">
+    <button>🔍</button>
+  </div>
+
+  <div class="header-links">
+    <a href="https://zhennanzhang.bio" target="_blank" class="header-link">
+      <div class="hl-small">Hello, Runner</div>
+      <div class="hl-main">My Profile</div>
+    </a>
+    <a href="./run50.html" class="header-link">
+      <div class="hl-small">22 / 50 States</div>
+      <div class="hl-main">Run50</div>
+    </a>
+  </div>
 </header>
 
-<div class="rule"><hr></div>
+<!-- NAV BAR -->
+<nav class="nav-bar">
+  <a href="#" class="active">&#9776; All</a>
+  <a href="./run50.html">&#127939; Run50</a>
+  <a href="./stories/chinese/">文 Chinese Stories</a>
+  <a href="./stories/english/">EN English Stories</a>
+  <a href="./facebook/">FB Facebook</a>
+  <a href="./mainly-marathons-new-england-2026-guide.html">&#128506; New England 2026</a>
+</nav>
 
-<div class="cards">
-
-  <!-- Run50 -->
-  <a href="./run50.html" class="card card-run">
-    <div class="card-tag">Project · 进行中</div>
-    <div class="card-emoji">🏃</div>
-    <div class="card-title">Run50</div>
-    <div class="card-title-zh">美国50州马拉松挑战</div>
-    <div class="card-desc">跑遍美国50个州，用双脚丈量这片土地。每一个州，都有一段故事。</div>
-    <div class="card-meta">
-      <span>22 / 50 州完成 · 2024–2026</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </a>
-
-  <!-- Chinese Stories -->
-  <a href="./stories/chinese/" class="card card-story">
-    <div class="card-tag">Stories · Chinese</div>
-    <div class="card-emoji">文</div>
-    <div class="card-title">Chinese Stories</div>
-    <div class="card-title-zh">中文跑步故事</div>
-    <div class="card-desc">Run50 之外的中文长文和图记。比赛、城市、旅途和训练，后面新的故事都放在这里。</div>
-    <div class="card-meta">
-      <span>8 stories · growing</span>
-      <span class="card-arrow">&rarr;</span>
-    </div>
-  </a>
-
-  <!-- English Stories -->
-  <a href="./stories/english/" class="card card-story">
-    <div class="card-tag">Stories &middot; English</div>
-    <div class="card-emoji">EN</div>
-    <div class="card-title">English Stories</div>
-    <div class="card-title-zh">Run50 story translations</div>
-    <div class="card-desc">Natural English versions of the race stories, from Chicago and Miami to Mexico City, China, and Pisa's Tuscan winter sun.</div>
-    <div class="card-meta">
-      <span>8 stories &middot; growing</span>
-      <span class="card-arrow">&rarr;</span>
-    </div>
-  </a>
-
-  <!-- Facebook -->
-  <a href="./facebook/" class="card card-story">
-    <div class="card-tag">Stories &middot; Facebook</div>
-    <div class="card-emoji">FB</div>
-    <div class="card-title">Run50 Facebook</div>
-    <div class="card-title-zh">Stories for the feed</div>
-    <div class="card-desc">Cleaner story pages for Facebook: city, race, photos, comments, views, and proper preview images.</div>
-    <div class="card-meta">
-      <span>8 stories &middot; live</span>
-      <span class="card-arrow">&rarr;</span>
-    </div>
-  </a>
-
-  <!-- Trip -->
-  <a href="./mainly-marathons-new-england-2026-guide.html" class="card card-trip">
-    <div class="card-tag">Trip · 2026</div>
-    <div class="card-emoji">🗺️</div>
-    <div class="card-title">New England Series</div>
-    <div class="card-title-zh">Mainly Marathons 六日赛攻略</div>
-    <div class="card-desc">2026 年新英格兰六州连续赛旅行作战手册，整合赛程、住宿、转场和恢复策略。</div>
-    <div class="card-meta">
-      <span>6 days · 6 states · race trip</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </a>
-
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-title">Arsenan<span>ZZ</span></div>
+  <div class="hero-sub">Running &middot; Reading &middot; Building</div>
+  <div class="hero-badges">
+    <span class="hero-badge">&#127939; 22 / 50 States Completed</span>
+    <span class="hero-badge-outline">2024 &ndash; 2026</span>
+  </div>
 </div>
 
-<footer>
-  <span class="footer-brand">ArsenanZZ</span>
-  <a href="https://zhennanzhang.bio" target="_blank">zhennanzhang.bio ↗</a>
-</footer>
+<!-- MAIN -->
+<div class="content">
 
+  <div class="section-header">
+    <div class="section-title">My Projects &amp; Stories</div>
+    <a href="https://zhennanzhang.bio" target="_blank" class="section-see-all">See all &rsaquo;</a>
+  </div>
+
+  <div class="products">
+
+    <!-- Run50 -->
+    <a href="./run50.html" class="product">
+      <div class="product-thumb">
+        &#127939;
+        <span class="badge-status">In Progress</span>
+        <span class="badge-prime">prime</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Project &middot; &#36827;&#34892;&#20013;</div>
+        <div class="product-title">Run50</div>
+        <div class="product-subtitle">&#32654;&#22269;50&#24030;&#39532;&#25289;&#26494;&#25313;&#25112;</div>
+        <div>
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="stars-count"> 22 ratings</span>
+        </div>
+        <div class="product-desc">&#36305;&#36941;&#32654;&#22269;50&#20491;&#24030;&#65292;&#29992;&#21452;&#33073;&#20026;&#37327;&#36825;&#29255;&#22303;&#22320;&#12290;&#27599;&#19968;&#20491;&#24030;&#65292;&#37117;&#26377;&#19968;&#27573;&#25925;&#20107;&#12290;</div>
+        <div class="product-stat"><strong>22</strong> / 50 &#24030;&#23436;&#25104; &middot; 2024&ndash;2026</div>
+      </div>
+      <span class="btn-view">View Project &rarr;</span>
+    </a>
+
+    <!-- Chinese Stories -->
+    <a href="./stories/chinese/" class="product">
+      <div class="product-thumb" style="font-size:56px;font-family:'Noto Serif SC',serif;font-weight:600;color:#333;">
+        &#25991;
+        <span class="badge-prime">prime</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Stories &middot; Chinese</div>
+        <div class="product-title">Chinese Stories</div>
+        <div class="product-subtitle">&#20013;&#25991;&#36305;&#27bu;&#25925;&#20107;</div>
+        <div>
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="stars-count"> 8 stories</span>
+        </div>
+        <div class="product-desc">Run50 &#20043;&#22806;&#30340;&#20013;&#25991;&#38271;&#25991;&#21644;&#22270;&#35760;&#12290;&#27604;&#36187;&#12289;&#22478;&#24066;&#12289;&#26097;&#36884;&#21644;&#35757;&#32451;&#65292;&#21518;&#38754;&#26032;&#30340;&#25925;&#20107;&#37117;&#25918;&#22312;&#36825;&#37324;&#12290;</div>
+        <div class="product-stat"><strong>8</strong> stories &middot; growing</div>
+      </div>
+      <span class="btn-view">Read Stories &rarr;</span>
+    </a>
+
+    <!-- English Stories -->
+    <a href="./stories/english/" class="product">
+      <div class="product-thumb" style="font-size:42px;font-weight:bold;font-family:Georgia,serif;color:#333;letter-spacing:-2px;">
+        EN
+      </div>
+      <div class="product-body">
+        <div class="product-category">Stories &middot; English</div>
+        <div class="product-title">English Stories</div>
+        <div class="product-subtitle">Run50 story translations</div>
+        <div>
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="stars-count"> 8 stories</span>
+        </div>
+        <div class="product-desc">Natural English versions of the race stories, from Chicago and Miami to Mexico City, China, and Pisa's Tuscan winter sun.</div>
+        <div class="product-stat"><strong>8</strong> stories &middot; growing</div>
+      </div>
+      <span class="btn-view">Read Stories &rarr;</span>
+    </a>
+
+    <!-- Facebook -->
+    <a href="./facebook/" class="product">
+      <div class="product-thumb" style="font-size:42px;font-weight:bold;font-family:Arial,sans-serif;color:#1877F2;letter-spacing:-2px;">
+        FB
+      </div>
+      <div class="product-body">
+        <div class="product-category">Stories &middot; Facebook</div>
+        <div class="product-title">Run50 Facebook</div>
+        <div class="product-subtitle">Stories for the feed</div>
+        <div>
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span class="stars-count"> 8 stories</span>
+        </div>
+        <div class="product-desc">Cleaner story pages for Facebook: city, race, photos, comments, views, and proper preview images.</div>
+        <div class="product-stat"><strong>8</strong> stories &middot; live</div>
+      </div>
+      <span class="btn-view">View Stories &rarr;</span>
+    </a>
+
+    <!-- New England -->
+    <a href="./mainly-marathons-new-england-2026-guide.html" class="product">
+      <div class="product-thumb">
+        &#128506;
+        <span class="badge-year">2026</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Trip &middot; 2026</div>
+        <div class="product-title">New England Series</div>
+        <div class="product-subtitle">Mainly Marathons &#20845;&#26085;&#36187;&#25915;&#30053;</div>
+        <div>
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="stars-count"> 6 races</span>
+        </div>
+        <div class="product-desc">2026 &#24180;&#26032;&#33521;&#26684;&#20848;&#20845;&#24030;&#36830;&#32493;&#36187;&#26097;&#34892;&#20316;&#25112;&#25163;&#20876;&#65292;&#25972;&#21512;&#36187;&#31243;&#12289;&#20住;&#23663;&#12289;&#36716;&#22580;&#21644;&#24674;&#22797;&#31574;&#30053;&#12290;</div>
+        <div class="product-stat"><strong>6</strong> days &middot; 6 states &middot; race trip</div>
+      </div>
+      <span class="btn-view">View Guide &rarr;</span>
+    </a>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#9650; Back to top</div>
+  <div class="footer-cols">
+    <div class="footer-col">
+      <h4>Get to Know Me</h4>
+      <a href="https://zhennanzhang.bio" target="_blank">About Me</a>
+      <a href="./run50.html">Run50 Project</a>
+    </div>
+    <div class="footer-col">
+      <h4>Stories</h4>
+      <a href="./stories/chinese/">Chinese Stories</a>
+      <a href="./stories/english/">English Stories</a>
+      <a href="./facebook/">Facebook Stories</a>
+    </div>
+    <div class="footer-col">
+      <h4>Trips</h4>
+      <a href="./mainly-marathons-new-england-2026-guide.html">New England 2026</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://zhennanzhang.bio" target="_blank">zhennanzhang.bio &#8599;</a>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <div class="footer-logo-bottom">Arsenan<span>ZZ</span></div>
+    &copy; ArsenanZZ &middot; Running &middot; Reading &middot; Building
+  </div>
+</footer>
 
 <link rel="stylesheet" href="../assets/zz-comments.css">
 <section data-zz-comments></section>
 <script src="../assets/zz-comments.js"></script>
 </body>
 </html>
-
-
