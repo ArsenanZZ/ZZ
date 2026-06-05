@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>净饮水学习手册 · NSF/ANSI 标准与水质测量 | Drinking Water Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Spline+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a3940;
+  --ink-2:#0d4a52;
+  --paper:#f4f1ea;
+  --paper-2:#ece7db;
+  --card:#fbfaf6;
+  --aqua:#13a3b3;
+  --aqua-deep:#0c7d8a;
+  --aqua-soft:#d6eef0;
+  --amber:#d98a2b;
+  --amber-soft:#f5e3c9;
+  --coral:#c8553d;
+  --line:#d8d2c4;
+  --muted:#5d6f6f;
+  --good:#2f8f6b;
+  --serif:'Fraunces','Noto Serif SC',Georgia,serif;
+  --sans:'Spline Sans','Noto Sans SC',system-ui,sans-serif;
+  --mono:'Space Mono','Noto Sans SC',monospace;
+  --shadow:0 1px 2px rgba(10,57,64,.06),0 8px 28px -12px rgba(10,57,64,.22);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  background-image:
+    radial-gradient(1200px 600px at 85% -5%, rgba(19,163,179,.10), transparent 60%),
+    radial-gradient(900px 500px at 5% 5%, rgba(217,138,43,.07), transparent 55%);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+/* ---- language toggle ---- */
+body.lang-zh .en{display:none}
+body.lang-en .zh{display:none}
+body.lang-zh [data-zh]::before{content:attr(data-zh)}
+body.lang-en [data-en]::before{content:attr(data-en)}
+
+/* ---- top bar ---- */
+header.bar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(16px,4vw,52px);
+  background:rgba(244,241,234,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:600}
+.brand .dot{
+  width:30px;height:30px;border-radius:9px;flex:none;
+  background:conic-gradient(from 200deg,var(--aqua),var(--aqua-deep),var(--ink),var(--aqua));
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.4);
+  position:relative;overflow:hidden;
+}
+.brand .dot::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 30% 30%,rgba(255,255,255,.6),transparent 40%)}
+.brand b{font-size:1.05rem;letter-spacing:.2px}
+.brand .sub{font-family:var(--mono);font-size:.66rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.toggle{
+  display:flex;align-items:center;gap:0;border:1.5px solid var(--ink);
+  border-radius:999px;overflow:hidden;cursor:pointer;background:var(--card);
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+}
+.toggle span{padding:7px 14px;transition:.25s;color:var(--ink)}
+body.lang-zh .toggle .t-zh,body.lang-en .toggle .t-en{background:var(--ink);color:var(--paper)}
+
+/* ---- nav chips ---- */
+nav.chips{
+  position:sticky;top:60px;z-index:40;
+  display:flex;gap:8px;flex-wrap:wrap;
+  padding:10px clamp(16px,4vw,52px);
+  background:rgba(244,241,234,.7);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+nav.chips a{
+  font-size:.78rem;text-decoration:none;color:var(--ink-2);
+  padding:5px 12px;border:1px solid var(--line);border-radius:999px;
+  background:var(--card);transition:.2s;white-space:nowrap;
+}
+nav.chips a:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ---- layout ---- */
+main{max-width:1080px;margin:0 auto;padding:0 clamp(16px,4vw,52px) 80px}
+.hero{padding:54px 0 26px;border-bottom:1px dashed var(--line);margin-bottom:38px}
+.hero .kicker{font-family:var(--mono);font-size:.74rem;letter-spacing:2px;text-transform:uppercase;color:var(--aqua-deep)}
+.hero h1{font-family:var(--serif);font-weight:600;line-height:1.08;font-size:clamp(2rem,5.2vw,3.4rem);margin:.3em 0 .25em;letter-spacing:-.5px}
+.hero p{max-width:62ch;color:var(--muted);font-size:1.02rem}
+.hero .meta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:.7rem;padding:4px 10px;border-radius:6px;background:var(--aqua-soft);color:var(--aqua-deep);border:1px solid #b8e0e4}
+.tag.am{background:var(--amber-soft);color:#9a5e16;border-color:#ecd3a6}
+
+section{margin:48px 0;scroll-margin-top:90px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-head .num{font-family:var(--mono);font-size:.9rem;color:var(--aqua);font-weight:700}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3.4vw,2.2rem);letter-spacing:-.3px;line-height:1.15}
+h3{font-family:var(--serif);font-weight:600;font-size:1.28rem;margin:28px 0 6px;color:var(--ink-2)}
+.lead{color:var(--muted);max-width:70ch;margin-bottom:6px}
+p{margin:.5em 0}
+ul,ol{margin:.5em 0 .5em 1.2em}
+li{margin:.28em 0}
+b,strong{color:var(--ink);font-weight:600}
+.mono{font-family:var(--mono)}
+code{font-family:var(--mono);background:var(--paper-2);padding:1px 6px;border-radius:5px;font-size:.86em;color:var(--ink-2)}
+
+/* ---- cards ---- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow);margin:18px 0}
+.grid{display:grid;gap:18px}
+@media(min-width:760px){.grid.two{grid-template-columns:1fr 1fr}}
+.callout{border-left:4px solid var(--aqua);background:var(--aqua-soft);padding:12px 16px;border-radius:0 12px 12px 0;margin:14px 0;font-size:.95rem}
+.callout.am{border-color:var(--amber);background:var(--amber-soft)}
+.callout .lbl{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--aqua-deep);display:block;margin-bottom:2px}
+.callout.am .lbl{color:#9a5e16}
+
+/* ---- figure / animation frame ---- */
+figure{margin:20px 0;background:linear-gradient(180deg,#fff,#fafaf6);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+figure svg{width:100%;height:auto;display:block;border-radius:10px}
+figcaption{font-size:.84rem;color:var(--muted);margin-top:10px;text-align:center;font-family:var(--sans)}
+figcaption .fnum{font-family:var(--mono);color:var(--aqua-deep);font-weight:700;margin-right:6px}
+
+/* ---- tables ---- */
+.tbl-wrap{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:.9rem;background:var(--card);min-width:560px}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--ink);color:var(--paper);font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.3px}
+tbody tr:nth-child(even){background:rgba(214,238,240,.28)}
+tbody tr:hover{background:rgba(19,163,179,.10)}
+td .u{font-family:var(--mono);font-size:.82rem;color:var(--aqua-deep)}
+
+/* ---- standard header block ---- */
+.std{position:relative;overflow:hidden}
+.std .badge{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:700;
+  font-size:.78rem;padding:5px 12px;border-radius:8px;color:#fff;margin-bottom:6px;
+}
+.std-42 .badge{background:#0c7d8a}.std-53 .badge{background:#c8553d}
+.std-58 .badge{background:#2f6f8f}.std-401 .badge{background:#7a5aa6}
+.std-372 .badge{background:#9a5e16}
+.std .endpoint{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:.84rem;margin:8px 0;
+  background:var(--paper-2);padding:8px 12px;border-radius:10px}
+.std .endpoint .arrow{color:var(--aqua);font-weight:700}
+.pill{font-family:var(--mono);font-size:.72rem;padding:3px 9px;border-radius:999px;background:var(--aqua-soft);color:var(--aqua-deep);border:1px solid #b8e0e4;display:inline-block;margin:2px 3px 2px 0}
+
+footer{border-top:1px dashed var(--line);padding:30px 0 10px;color:var(--muted);font-size:.85rem;text-align:center}
+footer .mono{color:var(--aqua-deep)}
+
+/* animation keyframes */
+@keyframes flowR{from{transform:translateX(-30px)}to{transform:translateX(360px)}}
+@keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(6px,-5px)}100%{transform:translate(0,0)}}
+@keyframes fillUp{0%,15%{height:0}55%,100%{height:var(--h,70px)}}
+@keyframes colorShift{0%,20%{fill:#f2efe6}60%,100%{fill:var(--c2,#e0489a)}}
+@keyframes drip{0%{transform:translateY(0);opacity:0}10%{opacity:1}80%{opacity:1}100%{transform:translateY(70px);opacity:0}}
+@keyframes bounce{0%{transform:translateX(0)}45%{transform:translateX(150px)}50%{transform:translateX(150px)}100%{transform:translateX(0)}}
+@keyframes scatter{0%,100%{opacity:.25;r:2}50%{opacity:.9;r:3.4}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body class="lang-en">
+
+<header class="bar">
+  <div class="brand">
+    <div class="dot"></div>
+    <div>
+      <b><span class="zh">净饮水学习手册</span><span class="en">Drinking Water Study Guide</span></b><br>
+      <span class="sub">NSF/ANSI · Water Quality Metrics</span>
+    </div>
+  </div>
+  <div class="toggle" onclick="toggleLang()" title="中 / EN">
+    <span class="t-zh">中文</span><span class="t-en">EN</span>
+  </div>
+</header>
+
+<nav class="chips">
+  <a href="#measure"><span class="zh">水质测量</span><span class="en">Metrics</span></a>
+  <a href="#gear"><span class="zh">设备/试剂</span><span class="en">Instruments</span></a>
+  <a href="#cl-vs-nh2cl"><span class="zh">氯vs氯胺</span><span class="en">Cl vs Chloramine</span></a>
+  <a href="#microplastic"><span class="zh">微塑料</span><span class="en">Microplastics</span></a>
+  <a href="#pfas">PFAS</a>
+  <a href="#qa"><span class="zh">饮水常识</span><span class="en">Q&amp;A</span></a>
+  <a href="#std42">NSF 42</a>
+  <a href="#std53">NSF 53</a>
+  <a href="#std58">NSF 58</a>
+  <a href="#std401">NSF 401</a>
+  <a href="#std372">NSF 372</a>
+  <a href="#compare"><span class="zh">对比表</span><span class="en">Compare</span></a>
+</nav>
+
+<main>
+  <div class="hero">
+    <div class="kicker">Midea · Water Filtration R&amp;D — Study Notes</div>
+    <h1>
+      <span class="zh">水质测量 &amp; NSF/ANSI 标准精解</span>
+      <span class="en">Water Metrics &amp; the NSF/ANSI Standards</span>
+    </h1>
+    <p>
+      <span class="zh">从"怎么测一杯水"到"NSF 认证测什么、怎么判定通过"。本手册按你的学习目标拆解:硬度、余氯等指标的测量方法与单位,以及 42 / 53 / 58 / 401 / 372 五个标准各自的范围、关键污染物、测试方法和通过判据。配交互动图辅助理解。</span>
+      <span class="en">From "how to measure a glass of water" to "what NSF certification actually tests and how a unit passes." This guide breaks down the measurement methods and units for hardness, chlorine and more, then dissects standards 42 / 53 / 58 / 401 / 372 — scope, key contaminants, test method, and pass criteria — with animated diagrams.</span>
+    </p>
+    <div class="meta">
+      <span class="tag">中文 / English · 点右上角切换</span>
+      <span class="tag am"><span class="zh">含 13 个交互动图</span><span class="en">13 animated figures</span></span>
+      <span class="tag">2023 editions</span>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 1: MEASUREMENT ============ -->
+  <section id="measure">
+    <div class="sec-head"><span class="num">01</span>
+      <h2><span class="zh">水质测量:指标、方法、单位</span><span class="en">Water Metrics: Parameters, Methods, Units</span></h2>
+    </div>
+    <p class="lead">
+      <span class="zh">认证之前先得会测。每个指标都有"现场快测"(测纸/便携表)和"实验室基准方法"(滴定/仪器)两条路线 —— NSF 测试用的是后者。</span>
+      <span class="en">Before certification comes measurement. Each parameter has a field route (strips / handheld meters) and a lab reference route (titration / instruments) — NSF testing uses the latter.</span>
+    </p>
+
+    <!-- HARDNESS -->
+    <h3 id="hardness"><span class="zh">① 硬度 Hardness</span><span class="en">① Hardness</span></h3>
+    <p>
+      <span class="zh"><b>是什么:</b>水中钙离子(Ca²⁺)和镁离子(Mg²⁺)的总量,统一折算成"碳酸钙当量"。它决定结垢、肥皂泡沫、软水机的设计 —— 也是你做软水器控制阀绕不开的核心指标。</span>
+      <span class="en"><b>What:</b> Total calcium (Ca²⁺) and magnesium (Mg²⁺), expressed as calcium-carbonate equivalent. It drives scaling, soap lather, and softener sizing — the core metric behind your softener control-valve work.</span>
+    </p>
+    <div class="callout">
+      <span class="lbl">Units / 单位</span>
+      <span class="zh"><b>mg/L as CaCO₃</b>(即 ppm) 与 <b>gpg</b>(grains per gallon,美国常用)。换算:<code>1 gpg = 17.1 mg/L as CaCO₃</code>。分级:软 0–60 · 中等 61–120 · 硬 121–180 · 极硬 &gt;180 mg/L。</span>
+      <span class="en"><b>mg/L as CaCO₃</b> (ppm) and <b>gpg</b> (grains per gallon, common in the US). Conversion: <code>1 gpg = 17.1 mg/L as CaCO₃</code>. Classes: Soft 0–60 · Moderate 61–120 · Hard 121–180 · Very hard &gt;180 mg/L.</span>
+    </div>
+    <p><span class="zh"><b>测量方法:</b></span><span class="en"><b>Methods:</b></span></p>
+    <ul>
+      <li><span class="zh"><b>EDTA 络合滴定(实验室基准):</b>加氨缓冲液把 pH 调到 ~10,滴入铬黑 T 指示剂,水样变酒红色;用 EDTA 标准液滴定,EDTA 抢走 Ca/Mg,终点由<b>酒红 → 纯蓝</b>。耗液量 × 浓度 = 硬度。</span>
+        <span class="en"><b>EDTA complexometric titration (lab reference):</b> buffer to pH ~10, add Eriochrome Black T indicator (sample turns wine-red); titrate with EDTA, which strips Ca/Mg off the dye. Endpoint = <b>wine-red → pure blue</b>. Volume × molarity = hardness.</span></li>
+      <li><span class="zh"><b>测试纸 / 便携硬度计:</b>现场速测,显色或电极读数,精度低但快。</span>
+        <span class="en"><b>Test strips / handheld meters:</b> fast field reads via color or electrode; lower precision.</span></li>
+      <li><span class="zh"><b>仪器法:</b>用 AAS / ICP 分别测 Ca、Mg 再换算,最准但贵。</span>
+        <span class="en"><b>Instrumental:</b> measure Ca and Mg separately by AAS / ICP, then convert — most accurate, most costly.</span></li>
+    </ul>
+
+    <!-- FIG: EDTA titration -->
+    <figure>
+      <svg viewBox="0 0 640 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EDTA titration animation">
+        <defs>
+          <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset="1" stop-color="#0a3940" stop-opacity=".05"/>
+          </linearGradient>
+        </defs>
+        <!-- buret -->
+        <rect x="300" y="10" width="16" height="90" rx="4" fill="#eef2f1" stroke="#9bb0b0"/>
+        <rect x="303" y="14" width="10" height="70" rx="3" fill="#7a5aa6" opacity=".55"/>
+        <text x="270" y="55" font-family="Space Mono,monospace" font-size="11" fill="#5d6f6f">EDTA</text>
+        <polygon points="305,100 311,100 308,118" fill="#7a5aa6"/>
+        <!-- drip -->
+        <circle cx="308" cy="118" r="3.4" fill="#7a5aa6"><animate attributeName="cy" values="118;185;185" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite"/></circle>
+        <!-- flask -->
+        <path d="M275 130 L341 130 L368 205 a18 18 0 0 1 -16 14 L292 219 a18 18 0 0 1 -16 -14 Z" fill="#fff" stroke="#9bb0b0" stroke-width="2"/>
+        <clipPath id="fk"><path d="M275 130 L341 130 L368 205 a18 18 0 0 1 -16 14 L292 219 a18 18 0 0 1 -16 -14 Z"/></clipPath>
+        <g clip-path="url(#fk)">
+          <rect x="270" y="160" width="105" height="70" fill="#b03a6e">
+            <animate attributeName="fill" values="#b03a6e;#b03a6e;#2f7fb0;#2f7fb0;#b03a6e" keyTimes="0;0.55;0.7;0.95;1" dur="6s" repeatCount="indefinite"/>
+          </rect>
+        </g>
+        <rect x="275" y="130" width="66" height="89" fill="url(#glass)" clip-path="url(#fk)"/>
+        <!-- labels -->
+        <text x="40" y="150" font-family="Fraunces,serif" font-size="15" fill="#0a3940" font-weight="600"><tspan class="zh">滴定前·酒红</tspan><tspan class="en">Before · red</tspan></text>
+        <rect x="40" y="160" width="120" height="26" rx="6" fill="#b03a6e"/>
+        <text x="475" y="150" font-family="Fraunces,serif" font-size="15" fill="#0a3940" font-weight="600">→ <tspan class="zh">终点·纯蓝</tspan><tspan class="en">End · blue</tspan></text>
+        <rect x="478" y="160" width="120" height="26" rx="6" fill="#2f7fb0"/>
+        <text x="40" y="206" font-family="Space Mono,monospace" font-size="11" fill="#5d6f6f">Ca²⁺/Mg²⁺ + Indicator (red) → EDTA captures ions → free Indicator (blue)</text>
+      </svg>
+      <figcaption><span class="fnum">FIG.1</span><span class="zh">EDTA 络合滴定:终点颜色由酒红翻成纯蓝,即所有 Ca²⁺/Mg²⁺ 被 EDTA 络合完毕。</span><span class="en">EDTA titration: the endpoint flips from wine-red to pure blue once all Ca²⁺/Mg²⁺ ions are bound by EDTA.</span></figcaption>
+    </figure>
+
+    <!-- FIG: Ion exchange softening -->
+    <figure>
+      <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ion exchange softening">
+        <rect x="30" y="40" width="580" height="110" rx="16" fill="#eef6f6" stroke="#bcd9db"/>
+        <text x="40" y="30" font-family="Space Mono,monospace" font-size="11" fill="#0c7d8a"><tspan class="zh">硬水进 →</tspan><tspan class="en">hard in →</tspan></text>
+        <text x="520" y="30" font-family="Space Mono,monospace" font-size="11" fill="#2f8f6b">→ <tspan class="zh">软水出</tspan><tspan class="en">soft out</tspan></text>
+        <!-- resin beads -->
+        <g>
+          <circle cx="180" cy="95" r="20" fill="#cfae6b" stroke="#a8863f"/><circle cx="300" cy="75" r="20" fill="#cfae6b" stroke="#a8863f"/>
+          <circle cx="300" cy="120" r="20" fill="#cfae6b" stroke="#a8863f"/><circle cx="420" cy="95" r="20" fill="#cfae6b" stroke="#a8863f"/>
+          <text x="180" y="99" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#5a4413">Na⁺</text>
+          <text x="300" y="79" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#5a4413">Na⁺</text>
+          <text x="300" y="124" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#5a4413">Na⁺</text>
+          <text x="420" y="99" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#5a4413">Na⁺</text>
+        </g>
+        <!-- incoming Ca2+ -->
+        <g><circle r="13" fill="#13a3b3"><animate attributeName="cx" values="40;560" dur="4s" repeatCount="indefinite"/><animate attributeName="cy" values="95;95" dur="4s" repeatCount="indefinite"/></circle>
+          <text font-family="Space Mono,monospace" font-size="9" fill="#fff" text-anchor="middle"><animate attributeName="x" values="40;560" dur="4s" repeatCount="indefinite"/><animate attributeName="y" values="99;99" dur="4s" repeatCount="indefinite"/>Ca²⁺</text></g>
+        <g><circle r="11" fill="#0c7d8a"><animate attributeName="cx" values="60;560" dur="4s" begin="1.3s" repeatCount="indefinite"/><animate attributeName="cy" values="120;120" dur="4s" begin="1.3s" repeatCount="indefinite"/></circle></g>
+        <!-- released Na+ going up -->
+        <g><circle r="8" fill="#d98a2b" opacity="0"><animate attributeName="cx" values="300;310" dur="4s" repeatCount="indefinite"/><animate attributeName="cy" values="75;25" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.4;.6;1" dur="4s" repeatCount="indefinite"/></circle></g>
+        <text x="40" y="180" font-family="Space Mono,monospace" font-size="11" fill="#5d6f6f">R–Na + Ca²⁺  →  R–Ca + 2 Na⁺   <tspan fill="#0c7d8a">(软化 = 用钠离子换掉钙镁)</tspan></text>
+      </svg>
+      <figcaption><span class="fnum">FIG.2</span><span class="zh">离子交换软化:树脂上的 Na⁺ 与硬水里的 Ca²⁺/Mg²⁺ 交换,这是软水机的核心原理(也是 NSF/ANSI 44 软水器标准的对象)。</span><span class="en">Ion-exchange softening: resin-bound Na⁺ swaps with Ca²⁺/Mg²⁺ — the core of a water softener (and the subject of NSF/ANSI 44).</span></figcaption>
+    </figure>
+
+    <!-- CHLORINE -->
+    <h3 id="chlorine"><span class="zh">② 余氯 &amp; 氯胺 Chlorine &amp; Chloramine</span><span class="en">② Chlorine &amp; Chloramine</span></h3>
+    <p>
+      <span class="zh"><b>是什么:</b>自来水的消毒剂残留。<b>游离氯(free chlorine)</b>= 次氯酸 HOCl + 次氯酸根 OCl⁻;<b>总氯(total)</b>= 游离氯 + <b>化合氯(氯胺)</b>。<b>氯胺 = 总氯 − 游离氯</b>。这正是 NSF 42 余氯/氯胺去除测试的核心。</span>
+      <span class="en"><b>What:</b> residual disinfectant. <b>Free chlorine</b> = HOCl + OCl⁻; <b>total</b> = free + <b>combined (chloramine)</b>. So <b>chloramine = total − free</b>. This is exactly what NSF 42 chlorine/chloramine reduction tests target.</span>
+    </p>
+    <div class="callout am">
+      <span class="lbl">Method · DPD</span>
+      <span class="zh"><b>DPD 比色法(基准):</b>加入 DPD 试剂(N,N-二乙基对苯二胺),<b>游离氯瞬间</b>把无色试剂氧化成<b>粉红/品红</b>;再加碘化钾,氯胺也参与显色得到<b>总氯</b>。颜色深浅 ∝ 浓度,用分光光度计在 ~515 nm 读数。单位 <b>mg/L (ppm)</b>。其它:电流滴定法、ORP、测试纸。</span>
+      <span class="en"><b>DPD colorimetric (reference):</b> add DPD reagent (N,N-diethyl-p-phenylenediamine); <b>free chlorine instantly</b> turns the colorless reagent <b>pink/magenta</b>. Add potassium iodide and chloramine reacts too, giving <b>total chlorine</b>. Color depth ∝ concentration, read at ~515 nm. Units <b>mg/L (ppm)</b>. Others: amperometric titration, ORP, strips.</span>
+    </div>
+
+    <!-- FIG: DPD color test -->
+    <figure>
+      <svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DPD chlorine color test">
+        <!-- three vials representing low/med/high -->
+        <g font-family="Space Mono,monospace" font-size="11" fill="#5d6f6f">
+        <!-- vial template -->
+        <g transform="translate(120,30)">
+          <rect x="-22" y="0" width="44" height="120" rx="14" fill="#fff" stroke="#9bb0b0" stroke-width="2"/>
+          <clipPath id="v1"><rect x="-20" y="2" width="40" height="116" rx="12"/></clipPath>
+          <rect x="-22" y="50" width="44" height="70" clip-path="url(#v1)" fill="#f2efe6">
+            <animate attributeName="fill" values="#f6f2ea;#f6f2ea;#f5c9dd" keyTimes="0;.3;1" dur="3s" repeatCount="indefinite"/>
+          </rect>
+          <text x="0" y="145" text-anchor="middle">0.2 mg/L</text>
+        </g>
+        <g transform="translate(300,30)">
+          <rect x="-22" y="0" width="44" height="120" rx="14" fill="#fff" stroke="#9bb0b0" stroke-width="2"/>
+          <clipPath id="v2"><rect x="-20" y="2" width="40" height="116" rx="12"/></clipPath>
+          <rect x="-22" y="50" width="44" height="70" clip-path="url(#v2)" fill="#f2efe6">
+            <animate attributeName="fill" values="#f6f2ea;#f6f2ea;#e879b0" keyTimes="0;.3;1" dur="3s" begin=".3s" repeatCount="indefinite"/>
+          </rect>
+          <text x="0" y="145" text-anchor="middle">1.0 mg/L</text>
+        </g>
+        <g transform="translate(480,30)">
+          <rect x="-22" y="0" width="44" height="120" rx="14" fill="#fff" stroke="#9bb0b0" stroke-width="2"/>
+          <clipPath id="v3"><rect x="-20" y="2" width="40" height="116" rx="12"/></clipPath>
+          <rect x="-22" y="50" width="44" height="70" clip-path="url(#v3)" fill="#f2efe6">
+            <animate attributeName="fill" values="#f6f2ea;#f6f2ea;#c8417f" keyTimes="0;.3;1" dur="3s" begin=".6s" repeatCount="indefinite"/>
+          </rect>
+          <text x="0" y="145" text-anchor="middle">2.0 mg/L</text>
+        </g>
+        </g>
+        <text x="40" y="190" font-family="Fraunces,serif" font-size="14" fill="#0a3940">+ DPD <tspan fill="#c8417f">→</tspan> <tspan font-family="Space Mono,monospace" font-size="11" fill="#5d6f6f">color deepens with chlorine concentration · 颜色越深余氯越高</tspan></text>
+      </svg>
+      <figcaption><span class="fnum">FIG.3</span><span class="zh">DPD 比色:无色试剂遇游离氯变粉红,浓度越高颜色越深 —— 比色计据此定量。</span><span class="en">DPD colorimetry: the colorless reagent turns pink with free chlorine; deeper color = higher concentration, quantified by a colorimeter.</span></figcaption>
+    </figure>
+
+    <!-- TDS -->
+    <h3 id="tds"><span class="zh">③ TDS &amp; 电导率 TDS &amp; Conductivity</span><span class="en">③ TDS &amp; Conductivity</span></h3>
+    <p>
+      <span class="zh"><b>是什么:</b>TDS = 总溶解固体(钙、镁、钠、氯、硫酸根…全部溶解离子)。<b>是判断 RO 性能最直接的指标</b> —— NSF 58 的核心就是 TDS 去除率。</span>
+      <span class="en"><b>What:</b> TDS = total dissolved solids (all dissolved ions: Ca, Mg, Na, Cl, sulfate…). <b>The most direct gauge of RO performance</b> — NSF 58 centers on TDS reduction.</span>
+    </p>
+    <ul>
+      <li><span class="zh"><b>电导率法(现场):</b>离子越多导电越好。便携 TDS 笔测电导率(µS/cm),乘换算系数(0.5–0.7)得 TDS(mg/L)。最常用、最快。</span>
+        <span class="en"><b>Conductivity (field):</b> more ions = better conduction. A TDS pen reads conductivity (µS/cm) × a factor (0.5–0.7) → TDS (mg/L). Fastest and most common.</span></li>
+      <li><span class="zh"><b>重量法(基准):</b>蒸干一定体积水,称残留固体质量,直接得 mg/L。最准。</span>
+        <span class="en"><b>Gravimetric (reference):</b> evaporate a known volume, weigh the residue → mg/L directly. Most accurate.</span></li>
+    </ul>
+    <div class="callout">
+      <span class="lbl">RO key number</span>
+      <span class="zh">RO 去除率 = (进水TDS − 产水TDS) / 进水TDS × 100%。例:进水 750 → 产水 50,去除率 ≈ 93%。NSF 58 要求 <b>≥ 75%</b>。</span>
+      <span class="en">RO rejection = (feed TDS − permeate TDS) / feed TDS × 100%. E.g. 750 → 50 ≈ 93%. NSF 58 requires <b>≥ 75%</b>.</span>
+    </div>
+
+    <!-- OTHERS -->
+    <h3 id="others"><span class="zh">④ pH · 浊度 · 重金属</span><span class="en">④ pH · Turbidity · Heavy Metals</span></h3>
+    <div class="grid two">
+      <div class="card">
+        <b>pH</b>
+        <p style="font-size:.92rem">
+          <span class="zh">酸碱度,0–14。<b>玻璃电极 pH 计</b>(基准)或显色试纸。影响铅溶出与结垢 —— NSF 53 铅测试要在 <code>pH 6.5</code> 和 <code>pH 8.5</code> 两种水里都达标。</span>
+          <span class="en">Acidity, 0–14. <b>Glass-electrode pH meter</b> (reference) or indicator strips. Drives lead leaching and scaling — NSF 53 lead tests must pass at both <code>pH 6.5</code> and <code>pH 8.5</code>.</span>
+        </p>
+      </div>
+      <div class="card">
+        <b><span class="zh">浊度 Turbidity</span><span class="en">Turbidity</span></b>
+        <p style="font-size:.92rem">
+          <span class="zh">水的浑浊程度,反映悬浮颗粒。<b>散射浊度法(nephelometry)</b>:测 90° 散射光,单位 <b>NTU</b>。EPA 180.1。NSF 53 浊度:进水 11 NTU → 产水 ≤ 0.5 NTU。</span>
+          <span class="en">Cloudiness from suspended particles. <b>Nephelometry</b>: measure light scattered at 90°, units <b>NTU</b> (EPA 180.1). NSF 53 turbidity: 11 NTU influent → ≤ 0.5 NTU effluent.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- FIG: turbidity scattering -->
+    <figure>
+      <svg viewBox="0 0 640 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Turbidity nephelometry">
+        <rect x="250" y="55" width="140" height="70" rx="8" fill="#eef6f6" stroke="#bcd9db"/>
+        <!-- light source -->
+        <circle cx="120" cy="90" r="16" fill="#d98a2b"/><text x="120" y="125" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#5d6f6f">LED</text>
+        <!-- incident beam -->
+        <rect x="136" y="86" width="114" height="8" fill="#f3c97a"><animate attributeName="opacity" values=".5;1;.5" dur="1.6s" repeatCount="indefinite"/></rect>
+        <!-- particles scattering -->
+        <g fill="#0c7d8a">
+          <circle cx="300" cy="80"><animate attributeName="r" values="2;3.6;2" dur="1.4s" repeatCount="indefinite"/></circle>
+          <circle cx="330" cy="100"><animate attributeName="r" values="2;3.6;2" dur="1.4s" begin=".3s" repeatCount="indefinite"/></circle>
+          <circle cx="350" cy="75"><animate attributeName="r" values="2;3.6;2" dur="1.4s" begin=".6s" repeatCount="indefinite"/></circle>
+          <circle cx="315" cy="110"><animate attributeName="r" values="2;3.6;2" dur="1.4s" begin=".9s" repeatCount="indefinite"/></circle>
+        </g>
+        <!-- 90 degree scattered beam to detector -->
+        <rect x="316" y="125" width="8" height="40" fill="#7fc0c8"><animate attributeName="opacity" values=".3;.9;.3" dur="1.6s" repeatCount="indefinite"/></rect>
+        <rect x="296" y="160" width="48" height="14" rx="3" fill="#0a3940"/><text x="320" y="171" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#fff">detector</text>
+        <text x="430" y="80" font-family="Fraunces,serif" font-size="14" fill="#0a3940"><tspan class="zh">90° 散射光 ∝ 浊度</tspan><tspan class="en">90° scatter ∝ NTU</tspan></text>
+        <text x="430" y="100" font-family="Space Mono,monospace" font-size="11" fill="#5d6f6f">scattered light ∝ NTU</text>
+      </svg>
+      <figcaption><span class="fnum">FIG.4</span><span class="zh">散射浊度法:颗粒越多,90° 方向散射的光越强,探测器读数(NTU)越高。</span><span class="en">Nephelometry: more particles scatter more light at 90°; the detector reading (NTU) rises accordingly.</span></figcaption>
+    </figure>
+
+    <div class="card">
+      <b><span class="zh">铅 &amp; 重金属 Lead &amp; Heavy Metals</span><span class="en">Lead &amp; Heavy Metals</span></b>
+      <p style="font-size:.92rem">
+        <span class="zh"><b>仪器法是唯一靠谱路线:</b>原子吸收光谱 <b>AAS</b>、电感耦合等离子体质谱 <b>ICP-MS</b>(痕量金属首选,可测 ppt 级)、<b>ICP-OES</b>。单位 <b>µg/L (ppb)</b>。美国铅"行动水平"15 ppb;NSF 53 铅测试进水 150 ppb → 产水 ≤ 5 ppb。现场可用比色试剂盒粗筛。</span>
+        <span class="en"><b>Instruments are the only reliable route:</b> atomic absorption <b>AAS</b>, <b>ICP-MS</b> (best for trace metals, ppt-level), <b>ICP-OES</b>. Units <b>µg/L (ppb)</b>. US lead action level is 15 ppb; NSF 53 lead test: 150 ppb influent → ≤ 5 ppb effluent. Field colorimetric kits exist for rough screening.</span>
+      </p>
+    </div>
+
+    <!-- SUMMARY TABLE -->
+    <h3><span class="zh">⑤ 速查表:指标 × 方法 × 单位</span><span class="en">⑤ Quick Reference: Parameter × Method × Unit</span></h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th><span class="zh">指标</span><span class="en">Parameter</span></th>
+          <th><span class="zh">基准方法</span><span class="en">Reference Method</span></th>
+          <th><span class="zh">现场快测</span><span class="en">Field Method</span></th>
+          <th><span class="zh">单位</span><span class="en">Unit</span></th>
+        </tr></thead>
+        <tbody>
+          <tr><td><span class="zh">硬度</span><span class="en">Hardness</span></td><td>EDTA <span class="zh">滴定</span><span class="en">titration</span></td><td><span class="zh">试纸/硬度计</span><span class="en">strip / meter</span></td><td class="u">mg/L CaCO₃ · gpg</td></tr>
+          <tr><td><span class="zh">游离/总氯</span><span class="en">Free/Total Cl</span></td><td>DPD <span class="zh">比色</span><span class="en">colorimetry</span></td><td><span class="zh">DPD 试纸</span><span class="en">DPD strip</span></td><td class="u">mg/L (ppm)</td></tr>
+          <tr><td><span class="zh">氯胺</span><span class="en">Chloramine</span></td><td><span class="zh">总氯−游离氯</span><span class="en">total − free</span></td><td><span class="zh">同上</span><span class="en">same</span></td><td class="u">mg/L</td></tr>
+          <tr><td>TDS</td><td><span class="zh">重量法</span><span class="en">gravimetric</span></td><td><span class="zh">电导/TDS 笔</span><span class="en">TDS pen</span></td><td class="u">mg/L · µS/cm</td></tr>
+          <tr><td>pH</td><td><span class="zh">玻璃电极</span><span class="en">glass electrode</span></td><td><span class="zh">试纸</span><span class="en">strip</span></td><td class="u">0–14</td></tr>
+          <tr><td><span class="zh">浊度</span><span class="en">Turbidity</span></td><td><span class="zh">散射法 (180.1)</span><span class="en">nephelometry</span></td><td><span class="zh">便携浊度计</span><span class="en">portable meter</span></td><td class="u">NTU</td></tr>
+          <tr><td><span class="zh">铅/重金属</span><span class="en">Lead/Metals</span></td><td>ICP-MS · AAS</td><td><span class="zh">比色试剂盒</span><span class="en">color kit</span></td><td class="u">µg/L (ppb)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ============ SECTION 02: INSTRUMENTS & REAGENTS ============ -->
+  <section id="gear">
+    <div class="sec-head"><span class="num">02</span>
+      <h2><span class="zh">真实测量设备 &amp; 化学品</span><span class="en">Real Instruments &amp; Reagents</span></h2>
+    </div>
+    <p class="lead">
+      <span class="zh">从口袋里的笔到上百万的质谱,水质测量分三档:<b>现场手持 → 台式实验室 → 科研级</b>。下面是各指标对应的真实设备类型和代表型号,以及配套化学试剂。</span>
+      <span class="en">From a pocket pen to a million-dollar mass spec, water testing comes in three tiers: <b>field handheld → benchtop lab → research-grade</b>. Below: the real device types and representative models per parameter, plus the reagents that go with them.</span>
+    </p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th><span class="zh">测什么</span><span class="en">Measures</span></th>
+          <th><span class="zh">设备类型</span><span class="en">Instrument type</span></th>
+          <th><span class="zh">代表型号(举例)</span><span class="en">Representative models</span></th>
+          <th><span class="zh">档次</span><span class="en">Tier</span></th>
+        </tr></thead>
+        <tbody>
+          <tr><td><span class="zh">余氯/氯胺</span><span class="en">Chlorine</span></td><td><span class="zh">DPD 比色计/光度计</span><span class="en">DPD colorimeter</span></td><td>Hach DR300 / DR900 · HANNA Checker HI701</td><td><span class="zh">现场</span><span class="en">Field</span></td></tr>
+          <tr><td><span class="zh">硬度</span><span class="en">Hardness</span></td><td><span class="zh">滴定套件 / 光度计</span><span class="en">titration kit / photometer</span></td><td>Hach <span class="zh">硬度滴定盒</span><span class="en">drop-count kit</span> · HANNA HI96735</td><td><span class="zh">现场</span><span class="en">Field</span></td></tr>
+          <tr><td>pH</td><td><span class="zh">玻璃电极 pH 计</span><span class="en">pH meter</span></td><td>HANNA HI98100 · Mettler Toledo · Oakton</td><td><span class="zh">现场/台式</span><span class="en">Field/bench</span></td></tr>
+          <tr><td>TDS<span class="zh">/电导</span></td><td><span class="zh">电导/TDS 笔</span><span class="en">TDS/EC pen</span></td><td>HM Digital TDS-3 · Apera · Oakton</td><td><span class="zh">现场</span><span class="en">Field</span></td></tr>
+          <tr><td><span class="zh">浊度</span><span class="en">Turbidity</span></td><td><span class="zh">浊度计</span><span class="en">turbidimeter</span></td><td>Hach 2100Q · HANNA HI98703</td><td><span class="zh">现场/台式</span><span class="en">Field/bench</span></td></tr>
+          <tr><td><span class="zh">铅/重金属</span><span class="en">Lead / metals</span></td><td>AAS · ICP-OES · <b>ICP-MS</b></td><td>Agilent · PerkinElmer · Thermo iCAP</td><td><span class="zh">实验室</span><span class="en">Lab</span></td></tr>
+          <tr><td>VOC</td><td>GC-MS · <span class="zh">吹扫捕集</span><span class="en">purge &amp; trap</span></td><td>Agilent 7890/5977 · Thermo</td><td><span class="zh">实验室</span><span class="en">Lab</span></td></tr>
+          <tr><td><span class="zh">PFAS / 药物</span><span class="en">PFAS / pharma</span></td><td><b>LC-MS/MS</b></td><td>Sciex · Waters Xevo · Agilent 6470</td><td><span class="zh">实验室</span><span class="en">Lab</span></td></tr>
+          <tr><td><span class="zh">微塑料</span><span class="en">Microplastics</span></td><td><span class="zh">显微红外/拉曼</span><span class="en">µ-FTIR / µ-Raman</span></td><td>Thermo Nicolet · Bruker · Horiba · Renishaw</td><td><span class="zh">实验室</span><span class="en">Lab</span></td></tr>
+          <tr><td><span class="zh">纳塑料</span><span class="en">Nanoplastics</span></td><td><span class="zh">受激拉曼 SRS / Py-GC-MS</span><span class="en">SRS / Py-GC-MS</span></td><td><span class="zh">科研定制平台</span><span class="en">research platforms</span></td><td><span class="zh">科研级</span><span class="en">Research</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <b><span class="zh">配套化学试剂</span><span class="en">Key reagents</span></b>
+        <ul style="font-size:.92rem;margin-top:6px">
+          <li><b>DPD</b> — <span class="zh">余氯显色(粉红)</span><span class="en">chlorine color (pink)</span></li>
+          <li><b>EDTA</b> + <span class="zh">铬黑T指示剂 + 氨缓冲</span><span class="en">Eriochrome Black T + ammonia buffer</span> — <span class="zh">硬度滴定</span><span class="en">hardness titration</span></li>
+          <li><b><span class="zh">尼罗红 Nile Red</span><span class="en">Nile Red</span></b> — <span class="zh">微塑料荧光染色</span><span class="en">microplastic fluorescent staining</span></li>
+          <li><b>HNO₃ <span class="zh">硝酸</span></b> — <span class="zh">金属样品消解/保存</span><span class="en">metals digestion/preservation</span></li>
+          <li><b><span class="zh">同位素标记 PFAS 内标</span><span class="en">isotope-labeled PFAS standards</span></b> — <span class="zh">质谱定量</span><span class="en">MS quantification</span></li>
+          <li><b><span class="zh">pH 缓冲液</span><span class="en">pH buffers</span></b> 4 / 7 / 10 — <span class="zh">电极校准</span><span class="en">electrode calibration</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <b><span class="zh">三档怎么选</span><span class="en">Which tier?</span></b>
+        <p style="font-size:.92rem"><span class="zh"><b>现场手持</b>:快、便宜、给方向(氯、TDS、pH、硬度、浊度)。<b>台式实验室</b>:做认证级定量(金属、VOC)。<b>科研级</b>:痕量到 ppt/ng、识别颗粒成分(PFAS、微/纳塑料)。NSF 认证测试用的是后两档。</span>
+        <span class="en"><b>Field handheld:</b> fast, cheap, directional (Cl, TDS, pH, hardness, turbidity). <b>Benchtop lab:</b> certification-grade quantification (metals, VOC). <b>Research-grade:</b> trace ppt/ng + particle ID (PFAS, micro/nanoplastics). NSF testing uses the latter two.</span></p>
+      </div>
+    </div>
+
+    <!-- FIG.7 ICP-MS schematic -->
+    <figure>
+      <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ICP-MS schematic">
+        <text x="20" y="20" font-family="Space Mono,monospace" font-size="11" fill="#0c7d8a">ICP-MS — <tspan class="zh">测痕量金属(铅 ppb/ppt)</tspan><tspan class="en">trace metals (Pb ppb/ppt)</tspan></text>
+        <!-- sample -->
+        <rect x="20" y="70" width="60" height="50" rx="8" fill="#d6eef0" stroke="#bcd9db"/><text x="50" y="100" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#0a3940"><tspan class="zh">水样</tspan><tspan class="en">sample</tspan></text>
+        <!-- droplets to torch -->
+        <g fill="#7fc0c8"><circle r="4"><animate attributeName="cx" values="85;180" dur="1.6s" repeatCount="indefinite"/><animate attributeName="cy" values="95;95" dur="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0" dur="1.6s" repeatCount="indefinite"/></circle></g>
+        <!-- plasma torch -->
+        <ellipse cx="220" cy="95" rx="34" ry="26" fill="#d98a2b"><animate attributeName="rx" values="30;36;30" dur="1s" repeatCount="indefinite"/></ellipse>
+        <ellipse cx="220" cy="95" rx="18" ry="14" fill="#f3c97a"><animate attributeName="opacity" values=".6;1;.6" dur="1s" repeatCount="indefinite"/></ellipse>
+        <text x="220" y="140" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#9a5e16"><tspan class="zh">等离子体 ~7000°C</tspan><tspan class="en">plasma ~7000°C</tspan></text>
+        <!-- ions to MS -->
+        <g fill="#c8553d"><circle r="4"><animate attributeName="cx" values="255;400" dur="1.3s" repeatCount="indefinite"/><animate attributeName="cy" values="95;95" dur="1.3s" repeatCount="indefinite"/></circle></g>
+        <!-- mass analyzer -->
+        <rect x="400" y="70" width="90" height="50" rx="8" fill="#0a3940"/><text x="445" y="92" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#fff"><tspan class="zh">质量分析</tspan><tspan class="en">mass filter</tspan></text><text x="445" y="108" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#7fc0c8">m/z</text>
+        <!-- detector signal -->
+        <polyline points="520,115 535,115 545,80 555,115 575,115 585,95 600,115 620,115" fill="none" stroke="#13a3b3" stroke-width="2"/>
+        <text x="560" y="140" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#0c7d8a"><tspan class="zh">信号→浓度</tspan><tspan class="en">signal→conc.</tspan></text>
+        <text x="20" y="175" font-family="Space Mono,monospace" font-size="10" fill="#5d6f6f"><tspan class="zh">水样雾化 → 等离子体电离 → 按质荷比分离 → 探测器计数 → 算出每种金属浓度</tspan><tspan class="en">nebulize → ionize in plasma → separate by m/z → count → concentration per metal</tspan></text>
+      </svg>
+      <figcaption><span class="fnum">FIG.5</span><span class="zh">ICP-MS 工作原理:水样被高温等离子体电离,再按质荷比分离计数 —— 这是测铅等痕量金属(可到 ppt 级)的实验室标配,也是 NSF 铅认证的定量手段。</span><span class="en">How ICP-MS works: the sample is ionized in a hot plasma, then ions are separated by mass-to-charge and counted — the lab standard for trace metals like lead (down to ppt), and the quantification behind NSF lead claims.</span></figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ SECTION 03: DEEP TOPICS ============ -->
+  <section id="topics">
+    <div class="sec-head"><span class="num">03</span>
+      <h2><span class="zh">深度专题:氯胺 · 微塑料 · PFAS</span><span class="en">Deep Dives: Chloramine · Microplastics · PFAS</span></h2>
+    </div>
+    <p class="lead">
+      <span class="zh">三个当下最值得搞懂的话题 —— 一个是老问题的新麻烦(氯胺),两个是这几年才"出圈"的新威胁(微塑料、PFAS)。</span>
+      <span class="en">Three topics worth truly understanding — one old problem with a new twist (chloramine), two threats that only recently went mainstream (microplastics, PFAS).</span>
+    </p>
+
+    <!-- CHLORINE vs CHLORAMINE -->
+    <h3 id="cl-vs-nh2cl"><span class="zh">氯 vs 氯胺:区别、为什么换、为什么重要</span><span class="en">Chlorine vs Chloramine: difference, why the switch, why it matters</span></h3>
+    <p><span class="zh">两者都是自来水消毒剂,但性格完全不同:</span><span class="en">Both disinfect tap water, but they behave very differently:</span></p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th></th>
+          <th><span class="zh">游离氯 Free Chlorine</span><span class="en">Free Chlorine</span></th>
+          <th><span class="zh">氯胺 Chloramine</span><span class="en">Chloramine</span></th>
+        </tr></thead>
+        <tbody>
+          <tr><td><span class="zh">成分</span><span class="en">What</span></td><td>HOCl / OCl⁻</td><td>NH₂Cl <span class="zh">(氯+氨)</span><span class="en">(chlorine+ammonia)</span></td></tr>
+          <tr><td><span class="zh">劲头</span><span class="en">Strength</span></td><td><span class="zh">强、快</span><span class="en">strong, fast</span></td><td><span class="zh">弱、慢</span><span class="en">weaker, slower</span></td></tr>
+          <tr><td><span class="zh">持久性</span><span class="en">Persistence</span></td><td><span class="zh">短,易挥发</span><span class="en">short, off-gasses</span></td><td><span class="zh"><b>长,管网末端仍有余量</b></span><span class="en"><b>long, lasts to far taps</b></span></td></tr>
+          <tr><td><span class="zh">消毒副产物</span><span class="en">DBPs</span></td><td><span class="zh"><b>多</b>(三卤甲烷 THM、卤乙酸)</b></span><span class="en"><b>more</b> (THMs, HAAs)</span></td><td><span class="zh">少很多</span><span class="en">far fewer</span></td></tr>
+          <tr><td><span class="zh">异味</span><span class="en">Odor</span></td><td><span class="zh">"游泳池味"明显</span><span class="en">strong "pool" smell</span></td><td><span class="zh">较淡</span><span class="en">milder</span></td></tr>
+          <tr><td><span class="zh">好不好除</span><span class="en">Removal</span></td><td><span class="zh">普通活性炭easy</span><span class="en">easy w/ standard carbon</span></td><td><span class="zh"><b>难,需催化活性炭+更长接触时间</b></span><span class="en"><b>hard — needs catalytic carbon + longer contact</b></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><span class="zh"><b>为什么很多市政从氯换成氯胺?</b>核心是<b>消毒副产物(DBP)合规</b>。游离氯和水里的有机物反应生成三卤甲烷等致癌副产物,法规越收越紧;氯胺更稳定、副产物少得多,还能在长管网里"撑到"最远的水龙头。所以美国不少大城市改用氯胺。</span>
+      <span class="en"><b>Why did many utilities switch from chlorine to chloramine?</b> Mainly <b>DBP compliance.</b> Free chlorine reacts with organics to form carcinogenic by-products like THMs, and limits keep tightening; chloramine is more stable, makes far fewer DBPs, and survives long distribution lines to the farthest tap. So many large US cities switched.</span></p>
+    <div class="callout am"><span class="lbl">Why it matters · 为什么重要</span><span class="zh">① <b>净水设计:</b>认证"除氯"的滤芯<b>不一定能除氯胺</b> —— 氯胺要催化炭 + 更长接触,这直接决定滤芯配方和流速(回看 NSF 42:两者分开声明)。② <b>特殊人群:</b>氯胺对<b>鱼缸、爬宠、透析病人</b>有害,必须专门去除。③ <b>测量:</b>用 DPD 一步测游离氯,加碘化钾测总氯,<b>氯胺 = 总氯 − 游离氯</b>。</span>
+      <span class="en">① <b>Filter design:</b> a "chlorine"-certified cartridge <b>may not remove chloramine</b> — chloramine needs catalytic carbon + longer contact, which drives media formula and flow rate (recall NSF 42: claimed separately). ② <b>Sensitive uses:</b> chloramine harms <b>aquariums, reptiles, dialysis patients</b> and must be removed deliberately. ③ <b>Measurement:</b> DPD reads free chlorine in one step; add KI for total; <b>chloramine = total − free.</b></span></div>
+
+    <!-- FIG.8 chlorine vs chloramine persistence -->
+    <figure>
+      <svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chlorine vs chloramine persistence">
+        <!-- pipe -->
+        <rect x="30" y="60" width="580" height="36" rx="18" fill="#eef6f6" stroke="#bcd9db"/>
+        <text x="40" y="48" font-family="Space Mono,monospace" font-size="10" fill="#5d6f6f"><tspan class="zh">水厂 →——— 管网 ———→ 最远水龙头</tspan><tspan class="en">plant →——— distribution ———→ farthest tap</tspan></text>
+        <!-- free chlorine: fades -->
+        <g><circle r="8" fill="#13a3b3"><animate attributeName="cx" values="60;560" dur="4s" repeatCount="indefinite"/><animate attributeName="cy" values="78;78" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0.1;0" keyTimes="0;.3;.6;1" dur="4s" repeatCount="indefinite"/></circle></g>
+        <text x="40" y="120" font-family="Space Mono,monospace" font-size="10" fill="#0c7d8a"><tspan class="zh">游离氯:劲大但很快消失 ↑</tspan><tspan class="en">free Cl: strong but fades fast ↑</tspan></text>
+        <!-- chloramine: persists -->
+        <rect x="30" y="150" width="580" height="36" rx="18" fill="#f5e3c9" stroke="#ecd3a6"/>
+        <g><circle r="8" fill="#d98a2b"><animate attributeName="cx" values="60;560" dur="4s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="cy" values="168;168" dur="4s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;.85;.7" keyTimes="0;.3;.6;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></circle></g>
+        <text x="40" y="205" font-family="Space Mono,monospace" font-size="10" fill="#9a5e16"><tspan class="zh">氯胺:劲小但一路撑到底 ↑(副产物也少)</tspan><tspan class="en">chloramine: weak but lasts the whole way ↑ (fewer DBPs)</tspan></text>
+      </svg>
+      <figcaption><span class="fnum">FIG.6</span><span class="zh">游离氯像短跑(强但很快耗尽),氯胺像马拉松(弱但持久)—— 这正是市政改用氯胺的原因,也是为什么氯胺更难被滤芯除掉。</span><span class="en">Free chlorine is a sprinter (strong, quickly spent); chloramine is a marathoner (weak, persistent) — exactly why utilities switched, and why it's harder to filter out.</span></figcaption>
+    </figure>
+
+    <!-- MICROPLASTICS -->
+    <h3 id="microplastic" style="margin-top:34px"><span class="zh">微塑料 &amp; 纳塑料:多小、多坏、怎么测</span><span class="en">Micro- &amp; Nanoplastics: how small, how bad, how measured</span></h3>
+    <p><span class="zh"><b>定义:</b><b>微塑料</b> = 小于 5 mm 的塑料碎片(下限到 1 µm);<b>纳塑料</b> = 小于 1 µm(纳米级)。它们来自塑料制品老化破碎、洗衣掉的合成纤维、轮胎磨损、包装等,如今从北极冰、土壤到人血、胎盘、脑组织里<b>到处都是</b>。</span>
+      <span class="en"><b>Definition:</b> <b>microplastics</b> = plastic fragments &lt;5 mm (down to 1 µm); <b>nanoplastics</b> = &lt;1 µm. They come from degrading plastics, synthetic-fiber laundry shedding, tire wear, packaging — and are now <b>everywhere</b>, from Arctic ice and soil to human blood, placenta and brain tissue.</span></p>
+
+    <!-- FIG.9 size scale -->
+    <figure>
+      <svg viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Microplastic size scale">
+        <line x1="40" y1="90" x2="600" y2="90" stroke="#bcd9db" stroke-width="2"/>
+        <!-- markers -->
+        <g font-family="Space Mono,monospace" font-size="10" fill="#0a3940" text-anchor="middle">
+          <circle cx="120" cy="90" r="22" fill="#c8553d" opacity=".85"/><text x="120" y="40">5 mm</text><text x="120" y="135" fill="#5d6f6f"><tspan class="zh">肉眼可见</tspan><tspan class="en">visible</tspan></text>
+          <circle cx="300" cy="90" r="11" fill="#d98a2b" opacity=".85"/><text x="300" y="55">70 µm</text><text x="300" y="135" fill="#5d6f6f"><tspan class="zh">头发丝</tspan><tspan class="en">a hair</tspan></text>
+          <circle cx="440" cy="90" r="6" fill="#13a3b3"><animate attributeName="opacity" values=".4;1;.4" dur="1.5s" repeatCount="indefinite"/></circle><text x="440" y="62">1 µm</text><text x="440" y="135" fill="#5d6f6f"><tspan class="zh">微塑料下限</tspan><tspan class="en">micro limit</tspan></text>
+          <circle cx="560" cy="90" r="3" fill="#7a5aa6"><animate attributeName="opacity" values=".3;1;.3" dur="1s" repeatCount="indefinite"/></circle><text x="560" y="66">100 nm</text><text x="560" y="135" fill="#7a5aa6"><tspan class="zh">纳塑料</tspan><tspan class="en">nano</tspan></text>
+        </g>
+        <text x="40" y="160" font-family="Space Mono,monospace" font-size="10" fill="#5d6f6f"><tspan class="zh">← 大 ································ 越小越危险:能穿过肠壁/肺进血液 ································ 小 →</tspan><tspan class="en">← bigger ······· smaller = more dangerous: can cross gut/lung into blood ······· smaller →</tspan></text>
+      </svg>
+      <figcaption><span class="fnum">FIG.7</span><span class="zh">尺寸刻度:头发丝约 70 µm;微塑料最小到 1 µm,纳塑料更小到纳米级。<b>越小越能进入身体</b>。</span><span class="en">Size scale: a hair is ~70 µm; microplastics go down to 1 µm, nanoplastics into the nanometer range. <b>Smaller = more able to enter the body.</b></span></figcaption>
+    </figure>
+
+    <div class="callout"><span class="lbl">瓶装水 · Bottled water</span><span class="zh">2024 年哥伦比亚大学用<b>受激拉曼(SRS)显微</b>新技术发现:<b>1 升瓶装水平均约 24 万个塑料颗粒</b>(范围 11 万–37 万),其中 <b>90% 是纳塑料</b>;主要来自<b>瓶身 PET 和灌装用的 RO 膜</b>。这比 2018 年的旧估计(约 325 个/升)高 10–100 倍。<b>这就是"少喝瓶装水"的硬核理由。</b></span>
+      <span class="en">In 2024, Columbia University used a new <b>stimulated Raman (SRS) microscopy</b> method and found: <b>~240,000 plastic particles per liter of bottled water</b> (range 110k–370k), <b>~90% nanoplastics</b>; mostly from the <b>PET bottle and the RO membrane</b> used in bottling. That's 10–100× higher than the old 2018 estimate (~325/L). <b>This is the hard reason to cut back on bottled water.</b></span></div>
+
+    <p><span class="zh"><b>怎么测?</b></span><span class="en"><b>How are they measured?</b></span></p>
+    <ul>
+      <li><span class="zh"><b>显微红外 µ-FTIR / 显微拉曼 µ-Raman:</b>过滤收集颗粒,逐颗打光谱,既数数又<b>识别是哪种塑料</b>(PET/PE/PP…),主力方法,适用 &gt;1–20 µm。</span>
+        <span class="en"><b>µ-FTIR / µ-Raman:</b> filter-collect particles, take a spectrum of each — count <b>and identify the polymer</b> (PET/PE/PP…). The workhorse, good for &gt;1–20 µm.</span></li>
+      <li><span class="zh"><b>尼罗红荧光染色:</b>染料让塑料发荧光,快速计数/初筛。</span>
+        <span class="en"><b>Nile Red staining:</b> the dye makes plastics fluoresce for fast counting/screening.</span></li>
+      <li><span class="zh"><b>裂解-气质 Py-GC-MS:</b>高温裂解后测,给出<b>塑料总质量</b>(不数颗粒)。</span>
+        <span class="en"><b>Pyrolysis-GC-MS:</b> pyrolyze then analyze — gives <b>total plastic mass</b> (not particle count).</span></li>
+      <li><span class="zh"><b>受激拉曼 SRS(科研级):</b>能下探到 100 nm 的纳塑料,就是上面瓶装水研究用的技术。</span>
+        <span class="en"><b>SRS microscopy (research):</b> reaches down to 100 nm nanoplastics — the technique behind the bottled-water study.</span></li>
+    </ul>
+
+    <!-- FIG.10 nanoplastic into bloodstream -->
+    <figure>
+      <svg viewBox="0 0 640 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nanoplastic crossing into bloodstream">
+        <text x="20" y="22" font-family="Space Mono,monospace" font-size="10" fill="#5d6f6f"><tspan class="zh">肠腔</tspan><tspan class="en">gut</tspan></text>
+        <text x="20" y="160" font-family="Space Mono,monospace" font-size="10" fill="#c8553d"><tspan class="zh">血液 → 心/脑/肝等器官</tspan><tspan class="en">blood → heart/brain/liver</tspan></text>
+        <!-- gut wall -->
+        <rect x="0" y="70" width="640" height="14" fill="#cdb89a"/><text x="600" y="66" text-anchor="end" font-family="Space Mono,monospace" font-size="9" fill="#9a5e16"><tspan class="zh">肠壁</tspan><tspan class="en">gut wall</tspan></text>
+        <!-- big micro particle blocked -->
+        <circle cx="160" cy="45" r="16" fill="#c8553d"/><text x="160" y="30" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#c8553d"><tspan class="zh">大颗粒被挡</tspan><tspan class="en">large: blocked</tspan></text>
+        <!-- small nano passes through -->
+        <g><circle r="4" fill="#7a5aa6"><animate attributeName="cx" values="380;380" dur="3s" repeatCount="indefinite"/><animate attributeName="cy" values="40;150" dur="3s" repeatCount="indefinite"/></circle></g>
+        <g><circle r="3.5" fill="#7a5aa6"><animate attributeName="cx" values="440;460" dur="3s" begin="1s" repeatCount="indefinite"/><animate attributeName="cy" values="35;150" dur="3s" begin="1s" repeatCount="indefinite"/></circle></g>
+        <g><circle r="3" fill="#7a5aa6"><animate attributeName="cx" values="320;300" dur="3s" begin="2s" repeatCount="indefinite"/><animate attributeName="cy" values="45;150" dur="3s" begin="2s" repeatCount="indefinite"/></circle></g>
+        <text x="470" y="40" font-family="Space Mono,monospace" font-size="8" fill="#7a5aa6"><tspan class="zh">纳塑料穿过 ↓</tspan><tspan class="en">nano passes ↓</tspan></text>
+      </svg>
+      <figcaption><span class="fnum">FIG.8</span><span class="zh">危害关键:大颗粒大多被肠道挡住排出,但<b>纳塑料小到能穿过肠壁进入血液</b>,被发现可到达心、脑、肝等器官,潜在引发炎症、氧化应激、内分泌干扰(研究仍在进行)。</span><span class="en">The crux of the harm: large particles are mostly blocked and excreted, but <b>nanoplastics are small enough to cross the gut wall into the blood</b> and have been found reaching organs like heart, brain and liver — with potential inflammation, oxidative stress and endocrine disruption (research ongoing).</span></figcaption>
+    </figure>
+
+    <!-- PFAS -->
+    <h3 id="pfas" style="margin-top:34px"><span class="zh">PFAS"永久化学品":是什么、为什么火、怎么测怎么除</span><span class="en">PFAS "Forever Chemicals": what, why the buzz, measuring &amp; removing</span></h3>
+    <p><span class="zh"><b>是什么:</b>PFAS = 全氟/多氟烷基物质,一大类(超过 1 万种)人造化学品。靠超强的 <b>碳–氟(C–F)键</b>实现不沾、防水、防油,所以被用在不粘锅、防水衣、外卖盒涂层、化妆品、消防泡沫里。但<b>正因为 C–F 键太结实,自然界几乎无法降解 → "永久化学品"</b>,会在环境和人体里累积。</span>
+      <span class="en"><b>What:</b> PFAS = per-/polyfluoroalkyl substances, a huge class (10,000+) of man-made chemicals. Their ultra-strong <b>carbon–fluorine (C–F) bonds</b> make things nonstick, waterproof and oil-repellent — used in nonstick pans, rain gear, food-packaging coatings, cosmetics, firefighting foam. But <b>because the C–F bond is so strong, nature can barely break them down → "forever chemicals"</b> that accumulate in the environment and in our bodies.</span></p>
+
+    <!-- FIG.11 C-F forever bond -->
+    <figure>
+      <svg viewBox="0 0 640 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PFAS strong C-F bond">
+        <!-- carbon chain -->
+        <g>
+          <line x1="120" y1="90" x2="420" y2="90" stroke="#0a3940" stroke-width="4"/>
+          <circle cx="120" cy="90" r="16" fill="#2b2b2b"/><text x="120" y="95" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" fill="#fff">C</text>
+          <circle cx="220" cy="90" r="16" fill="#2b2b2b"/><text x="220" y="95" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" fill="#fff">C</text>
+          <circle cx="320" cy="90" r="16" fill="#2b2b2b"/><text x="320" y="95" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" fill="#fff">C</text>
+          <circle cx="420" cy="90" r="16" fill="#2b2b2b"/><text x="420" y="95" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" fill="#fff">C</text>
+        </g>
+        <!-- fluorines tightly bonded -->
+        <g fill="#13a3b3">
+          <circle cx="120" cy="45" r="11"/><circle cx="220" cy="45" r="11"/><circle cx="320" cy="45" r="11"/><circle cx="420" cy="45" r="11"/>
+          <circle cx="120" cy="135" r="11"/><circle cx="220" cy="135" r="11"/><circle cx="320" cy="135" r="11"/>
+        </g>
+        <g stroke="#0c7d8a" stroke-width="3">
+          <line x1="120" y1="56" x2="120" y2="79"><animate attributeName="stroke-width" values="3;4;3" dur="1.2s" repeatCount="indefinite"/></line>
+          <line x1="220" y1="56" x2="220" y2="79"/><line x1="320" y1="56" x2="320" y2="79"/><line x1="420" y1="56" x2="420" y2="79"/>
+          <line x1="120" y1="101" x2="120" y2="124"/><line x1="220" y1="101" x2="220" y2="124"/><line x1="320" y1="101" x2="320" y2="124"/>
+        </g>
+        <text x="470" y="50" font-family="Space Mono,monospace" font-size="10" fill="#0c7d8a">F</text>
+        <!-- hammer that bounces off -->
+        <text x="500" y="95" font-family="Fraunces,serif" font-size="22"><animate attributeName="x" values="540;470;540" dur="1.5s" repeatCount="indefinite"/>🔨</text>
+        <text x="120" y="170" font-family="Space Mono,monospace" font-size="11" fill="#5d6f6f"><tspan class="zh">C–F 是有机化学里最强的键之一 → 砸不开 → 不降解</tspan><tspan class="en">C–F is one of the strongest bonds in organic chemistry → won't break → won't degrade</tspan></text>
+      </svg>
+      <figcaption><span class="fnum">FIG.9</span><span class="zh">PFAS 的"永久"来自碳被氟紧紧包裹的 C–F 键 —— 自然界几乎打不断,所以一旦进入水和人体就长期赖着不走。</span><span class="en">PFAS's "forever" nature comes from carbon armored in fluorine via C–F bonds — nature can barely break them, so once in water and in us, they stay for a long time.</span></figcaption>
+    </figure>
+
+    <p><span class="zh"><b>为什么成了大话题?</b>三件事叠加:① <b>无处不在</b> —— 据估计超 2 亿美国人的自来水里有 PFAS;② <b>健康证据变硬</b> —— 与癌症、肝损伤、免疫抑制、孕期/婴儿发育影响相关,且<b>在极低浓度就有风险</b>;③ <b>监管落地</b> —— 2024 年 4 月 EPA 首次为 6 种 PFAS 定了强制限值,PFOA/PFOS 低到 <b>4 ppt(万亿分之四)</b>,GenX/PFNA/PFHxS 为 10 ppt,致癌目标值(MCLG)直接定为 <b>0</b>。(注:具体合规时限在 2025–2026 年仍有调整,以 EPA 最新公告为准。)</span>
+      <span class="en"><b>Why did it blow up?</b> Three things converged: ① <b>ubiquity</b> — an estimated 200M+ Americans have PFAS in tap water; ② <b>hardening health evidence</b> — links to cancer, liver damage, immune suppression, and fetal/infant developmental effects, with risk at <b>very low levels</b>; ③ <b>regulation landed</b> — in April 2024 the EPA set its first enforceable limits for 6 PFAS, with PFOA/PFOS as low as <b>4 ppt (parts per trillion)</b>, GenX/PFNA/PFHxS at 10 ppt, and cancer-based goals (MCLGs) of <b>zero</b>. (Note: compliance timelines are still being adjusted through 2025–2026 — check EPA's latest.)</span></p>
+
+    <div class="callout am"><span class="lbl">怎么测 · Measurement</span><span class="zh">用 <b>LC-MS/MS</b>(液相色谱-串联质谱)+ <b>同位素标记内标</b>,按 EPA <b>537.1 / 533</b> 方法,可靠定到 <b>4 ppt</b>。<code>4 ppt ≈ 整个德州里 7 平方英尺</code> —— 灵敏度要求极高,所以测 PFAS 是实验室科研活,不存在靠谱的"现场快测"。</span>
+      <span class="en">Via <b>LC-MS/MS</b> (liquid chromatography–tandem mass spec) + <b>isotope-labeled internal standards</b>, per EPA Methods <b>537.1 / 533</b>, reliably down to <b>4 ppt</b>. <code>4 ppt ≈ 7 sq ft in all of Texas</code> — the sensitivity bar is so high that PFAS is a lab job; there's no reliable field quick-test.</span></div>
+
+    <!-- FIG.12 PFAS removal -->
+    <figure>
+      <svg viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PFAS removal technologies">
+        <text x="20" y="22" font-family="Space Mono,monospace" font-size="11" fill="#0c7d8a"><tspan class="zh">三种能有效除 PFAS 的技术</tspan><tspan class="en">three technologies that remove PFAS</tspan></text>
+        <g font-family="Space Mono,monospace" font-size="9" fill="#0a3940" text-anchor="middle">
+          <rect x="40" y="55" width="150" height="70" rx="10" fill="#2b2b2b"/><text x="115" y="40" fill="#0a3940"><tspan class="zh">活性炭 GAC</tspan><tspan class="en">GAC carbon</tspan></text>
+          <circle cx="80" cy="90" r="5" fill="#13a3b3"/><circle cx="150" cy="100" r="5" fill="#13a3b3"/><text x="115" y="145" fill="#5d6f6f"><tspan class="zh">吸附</tspan><tspan class="en">adsorb</tspan></text>
+          <rect x="245" y="55" width="150" height="70" rx="10" fill="#7a5aa6"/><text x="320" y="40" fill="#0a3940"><tspan class="zh">离子交换树脂</tspan><tspan class="en">ion exchange</tspan></text>
+          <text x="320" y="95" fill="#fff">+ / −</text><text x="320" y="145" fill="#5d6f6f"><tspan class="zh">抓离子</tspan><tspan class="en">grab ions</tspan></text>
+          <rect x="450" y="55" width="150" height="70" rx="10" fill="#2f6f8f"/><text x="525" y="40" fill="#0a3940">RO</text>
+          <line x1="525" y1="58" x2="525" y2="122" stroke="#fff" stroke-dasharray="3 4"/><text x="525" y="145" fill="#5d6f6f"><tspan class="zh">膜挡回</tspan><tspan class="en">membrane</tspan></text>
+        </g>
+        <g fill="#c8553d"><circle r="5"><animate attributeName="cx" values="10;115" dur="2s" repeatCount="indefinite"/><animate attributeName="cy" values="90;90" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0" dur="2s" repeatCount="indefinite"/></circle></g>
+      </svg>
+      <figcaption><span class="fnum">FIG.10</span><span class="zh">能有效除 PFAS 的三条路线:<b>活性炭(GAC)吸附</b>、<b>离子交换树脂</b>、<b>反渗透(RO)</b>。普通沉淀/烧水<b>没用</b>。这也是 NSF 53/58 PFOA/PFOS 声明背后的技术。</span><span class="en">Three effective PFAS routes: <b>granular activated carbon</b>, <b>ion-exchange resin</b>, and <b>reverse osmosis</b>. Ordinary settling or boiling does <b>not</b> work. These also underpin the NSF 53/58 PFOA/PFOS claims.</span></figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ SECTION 04: COMMON SENSE Q&A ============ -->
+  <section id="qa">
+    <div class="sec-head"><span class="num">04</span>
+      <h2><span class="zh">饮水常识 Q&amp;A</span><span class="en">Drinking-Water Common Sense</span></h2>
+    </div>
+
+    <!-- Q1 boiling -->
+    <div class="card">
+      <h3 style="margin-top:0"><span class="zh">Q1 · 自来水烧开直接喝,到底好不好?</span><span class="en">Q1 · Is boiling tap water and drinking it actually fine?</span></h3>
+      <p><span class="zh"><b>结论:能解决一部分问题,但不是万能,有些情况还更糟。</b></span><span class="en"><b>Verdict: solves some problems, but it's no cure-all — and in some cases makes things worse.</b></span></p>
+      <p><b><span class="zh">✅ 烧开能搞定的:</span><span class="en">✅ Boiling handles:</span></b>
+        <span class="zh">杀灭细菌、病毒、寄生虫(微生物安全);赶走一部分挥发性的余氯味道。<b>2024 年一项研究还发现:烧硬水时析出的碳酸钙水垢会"裹住"微塑料,煮 5 分钟再过滤,硬水里可去掉约 80–90% 的微/纳塑料</b>(但软水只去约 25%,效果取决于水有多硬)。</span>
+        <span class="en">kills bacteria, viruses, parasites (microbial safety); drives off some volatile chlorine taste. <b>A 2024 study also found that limescale (calcium carbonate) forming when you boil hard water encapsulates microplastics — boil 5 min then filter, and hard water sheds ~80–90% of micro/nanoplastics</b> (but soft water only ~25%; it depends on how hard your water is).</span></p>
+      <p><b><span class="zh">❌ 烧开搞不定的(关键!):</span><span class="en">❌ Boiling does NOT fix (key!):</span></b>
+        <span class="zh"><b>铅、砷等重金属、硝酸盐、PFAS、农药/工业有机物</b> —— 这些<b>不会被烧掉</b>。更糟的是:水蒸发后这些污染物<b>浓度反而升高</b>(被"煮浓了")。所以含铅、含 PFAS 的水,越煮越危险。</span>
+        <span class="en"><b>lead and other heavy metals, arsenic, nitrate, PFAS, pesticides/industrial organics</b> — these <b>are not destroyed</b>. Worse: as water evaporates, these contaminants get <b>more concentrated</b>. So for lead- or PFAS-laden water, boiling makes it more dangerous, not less.</span></p>
+      <div class="callout"><span class="lbl">Bottom line</span><span class="zh">烧开 = 防微生物的好办法,但对化学污染(铅/PFAS/硝酸盐)无效甚至有害。<b>正确组合:先用合适的滤芯/RO 去化学污染,需要时再烧开杀菌。</b></span><span class="en">Boiling = great against microbes, useless or harmful against chemical contaminants (lead/PFAS/nitrate). <b>Right combo: filter/RO for chemicals first, then boil for microbes if needed.</b></span></div>
+    </div>
+
+    <!-- FIG.13 boiling traps microplastics -->
+    <figure>
+      <svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Boiling hard water traps microplastics in limescale">
+        <!-- pot -->
+        <path d="M180 70 L460 70 L440 160 a20 20 0 0 1 -20 16 L220 176 a20 20 0 0 1 -20 -16 Z" fill="#e8eef0" stroke="#9bb0b0" stroke-width="2"/>
+        <clipPath id="pot"><path d="M180 72 L460 72 L440 160 a20 20 0 0 1 -20 16 L220 176 a20 20 0 0 1 -20 -16 Z"/></clipPath>
+        <rect x="180" y="80" width="280" height="100" clip-path="url(#pot)" fill="#d6eef0"/>
+        <!-- heat -->
+        <g stroke="#d98a2b" stroke-width="3" stroke-linecap="round"><line x1="250" y1="184" x2="250" y2="190"><animate attributeName="opacity" values="1;.3;1" dur=".6s" repeatCount="indefinite"/></line><line x1="320" y1="184" x2="320" y2="190"><animate attributeName="opacity" values=".3;1;.3" dur=".6s" repeatCount="indefinite"/></line><line x1="390" y1="184" x2="390" y2="190"><animate attributeName="opacity" values="1;.3;1" dur=".6s" repeatCount="indefinite"/></line></g>
+        <!-- bubbles -->
+        <g clip-path="url(#pot)" fill="#fff" opacity=".7"><circle r="4"><animate attributeName="cx" values="280;280" dur="1.4s" repeatCount="indefinite"/><animate attributeName="cy" values="170;90" dur="1.4s" repeatCount="indefinite"/></circle><circle r="5"><animate attributeName="cx" values="360;360" dur="1.6s" begin=".5s" repeatCount="indefinite"/><animate attributeName="cy" values="170;90" dur="1.6s" begin=".5s" repeatCount="indefinite"/></circle></g>
+        <!-- plastic getting encrusted then sinking -->
+        <g clip-path="url(#pot)">
+          <circle cx="320" cy="110" r="4" fill="#7a5aa6"><animate attributeName="cy" values="100;165" dur="3s" repeatCount="indefinite"/></circle>
+          <circle cx="320" cy="110" r="9" fill="none" stroke="#cdb89a" stroke-width="4"><animate attributeName="cy" values="100;165" dur="3s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="0;6" dur="3s" repeatCount="indefinite"/></circle>
+        </g>
+        <text x="475" y="100" font-family="Space Mono,monospace" font-size="10" fill="#9a5e16"><tspan class="zh">碳酸钙水垢</tspan><tspan class="en">limescale</tspan></text>
+        <text x="475" y="116" font-family="Space Mono,monospace" font-size="10" fill="#7a5aa6"><tspan class="zh">裹住塑料↓</tspan><tspan class="en">traps plastic↓</tspan></text>
+        <text x="180" y="40" font-family="Fraunces,serif" font-size="15" fill="#0a3940"><tspan class="zh">烧硬水 → 水垢裹住微塑料 → 沉底 → 过滤掉</tspan><tspan class="en">boil hard water → scale encases plastic → settles → filter out</tspan></text>
+      </svg>
+      <figcaption><span class="fnum">FIG.11</span><span class="zh">烧硬水时,碳酸钙结成水垢顺便把微/纳塑料"包"进去沉底,再用咖啡滤纸一类过滤即可除掉大部分(硬水约 80–90%)。只对微塑料有效,对铅/PFAS 无效。</span><span class="en">When hard water boils, calcium carbonate scale forms and encapsulates micro/nanoplastics, which settle and can be filtered out (≈80–90% in hard water). Works only on microplastics — not on lead/PFAS.</span></figcaption>
+    </figure>
+
+    <!-- Q2 bottled water -->
+    <div class="card">
+      <h3 style="margin-top:0"><span class="zh">Q2 · 为什么尽量别长期喝瓶装水?</span><span class="en">Q2 · Why avoid relying on bottled water?</span></h3>
+      <p><span class="zh"><b>① 微塑料/纳塑料超标:</b>2024 年研究显示 1 升瓶装水平均约 <b>24 万个</b>塑料颗粒,90% 是纳塑料,主要来自瓶身 PET 和灌装 RO 膜;纳塑料能进血液到器官(见上文)。<b>② 反复使用更糟:</b>挤压、晒热、重复开合会让瓶子释放更多微塑料和增塑剂(如 BPA、邻苯二甲酸盐)。<b>③ 不一定更干净:</b>瓶装水未必比合格自来水更安全,价格却高几百倍。</span>
+        <span class="en"><b>① High micro/nanoplastics:</b> 2024 research found ~<b>240,000</b> plastic particles per liter of bottled water, 90% nanoplastics, mostly from the PET bottle and bottling RO membrane; nanoplastics can reach the blood and organs (above). <b>② Reuse is worse:</b> squeezing, heat and repeated opening shed more microplastics and plasticizers (BPA, phthalates). <b>③ Not necessarily cleaner:</b> bottled water isn't reliably safer than good tap water, at hundreds of times the price.</span></p>
+      <div class="callout am"><span class="lbl">More sensible · 更靠谱的做法</span><span class="zh"><b>家里装合适的滤芯/RO 处理自来水 + 用玻璃或不锈钢杯壶</b>,比长期买瓶装水更便宜、更环保、塑料暴露也更低。出门带自己的水壶。</span><span class="en"><b>Filter/RO your tap water at home + use glass or stainless bottles.</b> Cheaper, greener and lower plastic exposure than relying on bottled water. Carry your own bottle out.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 2: NSF STANDARDS ============ -->
+  <section>
+    <div class="sec-head"><span class="num">05</span>
+      <h2><span class="zh">NSF/ANSI 标准逐条精解</span><span class="en">The NSF/ANSI Standards, In Depth</span></h2>
+    </div>
+    <p class="lead">
+      <span class="zh">每个标准统一按六块拆:<b>范围 · 关键污染物 · 测试方法 · 通过判据(终点) · 认证机制 · 与你工作的关联</b>。先看下面所有标准共用的"测试逻辑",后面就不再重复。</span>
+      <span class="en">Each standard is broken into six blocks: <b>Scope · Key contaminants · Test method · Pass criteria · Certification mechanics · Relevance to your work</b>. First, the testing logic shared by all of them.</span>
+    </p>
+
+    <!-- COMMON FRAMEWORK -->
+    <div class="card" style="border-left:4px solid var(--aqua)">
+      <h3 style="margin-top:0"><span class="zh">先理解:NSF 性能测试是怎么跑的</span><span class="en">First: how an NSF performance test actually runs</span></h3>
+      <ul>
+        <li><span class="zh"><b>挑战水 / 测试水(challenge water):</b>不是随便用自来水,而是按标准配方配出的"标准脏水",成分、浓度、pH、温度都卡死,保证全球实验室结果可复现。</span>
+          <span class="en"><b>Challenge / test water:</b> not tap water — a standardized "dirty water" recipe with fixed composition, concentration, pH and temperature, so any lab worldwide reproduces the result.</span></li>
+        <li><span class="zh"><b>额定容量的 200% 取样:</b>滤芯标称能处理 X 加仑,测试会一直跑到 <b>2X</b>(200% 容量),沿途取样约 <b>6 次</b>。意思是:<b>哪怕滤芯快用废了、超期一倍,出水仍要达标。</b></span>
+          <span class="en"><b>Sampling to 200% of rated capacity:</b> if a cartridge is rated for X gallons, the test runs to <b>2X</b>, taking ~<b>6 samples</b> along the way. Meaning: <b>even at double its rated life, the effluent must still pass.</b></span></li>
+        <li><span class="zh"><b>开关循环 + 动态压力:</b>水流按"开/关"占空比循环(如 50%/50%、共 20 分钟一轮),模拟真实家庭用水的间歇性;金属类测试常用 <code>60 psig</code> 动态进水压。</span>
+          <span class="en"><b>On/off cycling + dynamic pressure:</b> flow cycles on/off (e.g. 50/50 over a 20-min cycle) to mimic intermittent household use; metals tests often run at <code>60 psig</code> dynamic inlet pressure.</span></li>
+        <li><span class="zh"><b>三道关一起过:</b>① 污染物去除性能 ② <b>材料安全</b>(浸泡萃取,接触水的材料不能溶出有害物;含 372 铅含量)③ <b>结构完整性</b>(打压不漏不爆)。</span>
+          <span class="en"><b>Three gates at once:</b> ① contaminant reduction ② <b>material safety</b> (extraction test — wetted materials must not leach; includes 372 lead content) ③ <b>structural integrity</b> (pressure test, no leak/burst).</span></li>
+        <li><span class="zh"><b>认证不是一次性的:</b>通过后型号登记进 NSF 公开数据库,之后<b>每年工厂审核 + 定期复测</b>;不合规会被<b>撤销认证</b>。所以买替换滤芯前应查当前在线列表。</span>
+          <span class="en"><b>Certification isn't one-and-done:</b> the model is listed in NSF's public database, then subject to <b>annual factory audits + periodic retesting</b>; non-compliance leads to <b>decertification</b>. Always check the live listing before sourcing replacement cartridges.</span></li>
+      </ul>
+      <div class="callout"><span class="lbl">Key idea</span><span class="zh"><b>"认证 X 标准"永远是按单个污染物声明的</b> —— 认证除氯 ≠ 认证除氯胺,认证除铅 ≠ 认证除汞。看认证一定要核对具体污染物清单和型号。</span><span class="en"><b>Claims are always per-contaminant.</b> Certified for chlorine ≠ certified for chloramine; certified for lead ≠ certified for mercury. Always verify the exact contaminant list and model number.</span></div>
+    </div>
+
+    <!-- NSF 42 -->
+    <div class="card std std-42" id="std42">
+      <span class="badge">NSF/ANSI 42 — 2023</span>
+      <h3 style="margin-top:4px"><span class="zh">感官效果 Aesthetic Effects</span><span class="en">Aesthetic Effects</span></h3>
+      <p><span class="zh"><b>范围:</b>POU(末端:龙头/壶式/冰箱)与 POE(全屋)系统,处理<b>不涉及健康</b>的"口感/观感"问题。两大技术路线:<b>吸附/化学还原</b>(活性炭除氯、除味)和<b>机械过滤</b>(滤除颗粒物)。还可声明阻垢、抑菌(bacteriostatic)。</span>
+        <span class="en"><b>Scope:</b> POU (faucet/pitcher/fridge) and POE (whole-house) systems for <b>non-health</b>, taste/appearance issues. Two tech routes: <b>adsorption / chemical reduction</b> (carbon for chlorine & odor) and <b>mechanical filtration</b> (particulate). May also claim scale control and bacteriostasis.</span></p>
+      <p><span class="zh"><b>关键污染物 / 认证项 + 通过判据:</b></span><span class="en"><b>Key contaminants / claims + pass criteria:</b></span></p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th><span class="zh">项目</span><span class="en">Claim</span></th>
+            <th><span class="zh">进水(挑战)</span><span class="en">Influent</span></th>
+            <th><span class="zh">出水/判据</span><span class="en">Effluent / criterion</span></th>
+            <th><span class="zh">备注</span><span class="en">Note</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="zh">游离氯</span><span class="en">Free chlorine</span></td><td class="u">2.0 mg/L</td><td class="u">≥ 50% <span class="zh">去除</span><span class="en">red.</span></td><td><span class="zh">实测常 &lt;0.1 mg/L</span><span class="en">often &lt;0.1 actual</span></td></tr>
+            <tr><td><span class="zh">氯胺</span><span class="en">Chloramine</span></td><td class="u">3.0 mg/L</td><td><span class="zh">达标去除</span><span class="en">meets red.</span></td><td><span class="zh">需单独声明</span><span class="en">separate claim</span></td></tr>
+            <tr><td><span class="zh">颗粒物 I 级</span><span class="en">Particulate I</span></td><td class="u">0.5–&lt;1 µm</td><td class="u">≥ 85%</td><td><span class="zh">分 I–VI 级(粒径)</span><span class="en">Classes I–VI by size</span></td></tr>
+            <tr><td><span class="zh">口感 &amp; 气味</span><span class="en">Taste &amp; Odor</span></td><td><span class="zh">规定配方</span><span class="en">defined recipe</span></td><td><span class="zh">达标</span><span class="en">meets</span></td><td><span class="zh">感官/仪器</span><span class="en">sensory/instrument</span></td></tr>
+            <tr><td>TDS <span class="zh">(感官)</span><span class="en">(aesthetic)</span></td><td class="u">1500 mg/L</td><td class="u">≤ 500 mg/L</td><td><span class="zh">≈67%;比 58 宽松</span><span class="en">≈67%; looser than 58</span></td></tr>
+            <tr><td><span class="zh">铁/锰/锌/硫化氢</span><span class="en">Fe/Mn/Zn/H₂S</span></td><td><span class="zh">各自配方</span><span class="en">each defined</span></td><td><span class="zh">达标</span><span class="en">meets</span></td><td><span class="zh">观感/异味类</span><span class="en">appearance/odor</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><span class="zh"><b>测试方法:</b>用上面的挑战水跑到 200% 额定容量、沿途 6 点取样;同时做材料安全萃取(GC/MS 查溶出 + 372 铅含量)与结构打压。颗粒物按"能滤掉多大的颗粒"分 I–VI 级,级别越高(I 级)能滤越细。</span>
+        <span class="en"><b>Test method:</b> run the challenge water to 200% of rated capacity with 6 sampling points; plus material-safety extraction (GC/MS for leachables + 372 lead) and structural pressure test. Particulate is graded I–VI by the smallest particle size captured (Class I = finest).</span></p>
+      <div class="callout am"><span class="lbl">For you · Midea</span><span class="zh">Midea 末端机/前置碳滤最常打的标签。要点:① 除氯 ≠ 除氯胺,北美很多市政用氯胺,若目标市场用氯胺必须专门测;② 42 里的 TDS 判据(≤500)很宽,别和 RO 的 58(≥75%)混为一谈。</span><span class="en">The label most Midea POU / carbon pre-filters carry. Notes: ① chlorine ≠ chloramine — many US utilities use chloramine, so test for it if that's the target market; ② the 42 TDS criterion (≤500) is loose — don't confuse it with RO's 58 (≥75%).</span></div>
+    </div>
+
+    <!-- FIG: activated carbon adsorption -->
+    <figure>
+      <svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Activated carbon adsorption of chlorine">
+        <rect x="220" y="20" width="200" height="150" rx="10" fill="#2b2b2b"/>
+        <text x="320" y="14" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#5d6f6f">Activated Carbon · 活性炭</text>
+        <g fill="#3f3f3f" stroke="#555">
+          <circle cx="270" cy="60" r="14"/><circle cx="330" cy="95" r="16"/><circle cx="380" cy="55" r="12"/><circle cx="300" cy="135" r="14"/><circle cx="375" cy="125" r="13"/>
+        </g>
+        <g><circle r="9" fill="#13a3b3"><animate attributeName="cx" values="40;330" dur="3.4s" repeatCount="indefinite"/><animate attributeName="cy" values="95;95" dur="3.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0" keyTimes="0;.85;1" dur="3.4s" repeatCount="indefinite"/></circle></g>
+        <g><circle r="9" fill="#13a3b3"><animate attributeName="cx" values="40;270" dur="3.4s" begin="1s" repeatCount="indefinite"/><animate attributeName="cy" values="60;60" dur="3.4s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0" keyTimes="0;.85;1" dur="3.4s" begin="1s" repeatCount="indefinite"/></circle></g>
+        <g><circle r="9" fill="#13a3b3"><animate attributeName="cx" values="40;375" dur="3.4s" begin="2s" repeatCount="indefinite"/><animate attributeName="cy" values="125;125" dur="3.4s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0" keyTimes="0;.85;1" dur="3.4s" begin="2s" repeatCount="indefinite"/></circle></g>
+        <circle cx="330" cy="95" r="6" fill="#13a3b3" opacity=".85"/><circle cx="270" cy="60" r="6" fill="#13a3b3" opacity=".85"/>
+        <text x="40" y="60" font-family="Space Mono,monospace" font-size="11" fill="#0c7d8a"><tspan class="zh">Cl 进 →</tspan><tspan class="en">Cl in →</tspan></text>
+        <text x="445" y="95" font-family="Space Mono,monospace" font-size="11" fill="#2f8f6b">→ <tspan class="zh">无氯水</tspan><tspan class="en">Cl-free</tspan></text>
+      </svg>
+      <figcaption><span class="fnum">FIG.12</span><span class="zh">活性炭吸附:多孔炭的巨大内表面积"抓住"氯和异味分子 —— NSF 42 除氯/除味的物理基础。</span><span class="en">Activated-carbon adsorption: the porous carbon's huge internal surface area traps chlorine and odor molecules — the basis of NSF 42 taste/odor claims.</span></figcaption>
+    </figure>
+
+    <!-- NSF 53 -->
+    <div class="card std std-53" id="std53">
+      <span class="badge">NSF/ANSI 53 — 2023</span>
+      <h3 style="margin-top:4px"><span class="zh">健康效果 Health Effects</span><span class="en">Health Effects</span></h3>
+      <p><span class="zh"><b>范围:</b>POU/POE,针对<b>有明确/疑似健康风险</b>、且受 EPA 或加拿大卫生部关注的污染物。<b>50+ 项</b>去除声明,认证含金量最高。两类机理:<b>化学还原</b>(氯/VOC/农药/金属,VOC 统一用氯仿做替代物)与<b>机械过滤</b>(孢囊/浊度/石棉)。</span>
+        <span class="en"><b>Scope:</b> POU/POE, targeting contaminants with known/suspected <b>health effects</b> regulated by EPA or Health Canada. <b>50+ claims</b> — the highest-value cert. Two mechanisms: <b>chemical reduction</b> (chlorine/VOC/pesticides/metals; chloroform is the universal VOC surrogate) and <b>mechanical filtration</b> (cysts/turbidity/asbestos).</span></p>
+      <p><span class="zh"><b>关键污染物 + 进出水判据(节选):</b></span><span class="en"><b>Key contaminants + influent/effluent criteria (selection):</b></span></p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th><span class="zh">污染物</span><span class="en">Contaminant</span></th>
+            <th><span class="zh">进水(挑战)</span><span class="en">Influent</span></th>
+            <th><span class="zh">出水 ≤</span><span class="en">Effluent ≤</span></th>
+            <th><span class="zh">条件/说明</span><span class="en">Condition</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="zh">铅 Lead</span><span class="en">Lead</span></td><td class="u">150 µg/L</td><td class="u">5 µg/L</td><td><span class="zh"><b>pH 6.5 &amp; 8.5 都要测</b>(胶体态/溶解态)</span><span class="en"><b>both pH 6.5 &amp; 8.5</b> (colloidal/soluble)</span></td></tr>
+            <tr><td>VOC</td><td class="u"><span class="zh">氯仿 300 µg/L</span><span class="en">chloroform 300</span></td><td class="u">15 µg/L</td><td><span class="zh">氯仿做替身,≥95%;一张表覆盖苯、TCE、TTHM 等数十种</span><span class="en">chloroform surrogate ≥95%; one table covers benzene, TCE, TTHM, dozens more</span></td></tr>
+            <tr><td><span class="zh">孢囊</span><span class="en">Cyst</span></td><td><span class="zh">最小 50000/L</span><span class="en">min 50,000/L</span></td><td class="u">≥ 99.95%</td><td><span class="zh">隐孢子虫/贾第虫,3–4µm 测试微球</span><span class="en">Crypto/Giardia, 3–4µm microspheres</span></td></tr>
+            <tr><td><span class="zh">浊度</span><span class="en">Turbidity</span></td><td class="u">11 NTU</td><td class="u">0.5 NTU</td><td><span class="zh">机械过滤</span><span class="en">mechanical</span></td></tr>
+            <tr><td><span class="zh">石棉</span><span class="en">Asbestos</span></td><td><span class="zh">10⁷–10⁸ 纤维/L</span><span class="en">10⁷–10⁸ fibers/L</span></td><td class="u">≥ 99%</td><td><span class="zh">机械过滤</span><span class="en">mechanical</span></td></tr>
+            <tr><td><span class="zh">五价砷 As(V)</span><span class="en">Arsenic (V)</span></td><td class="u">0.30 mg/L</td><td class="u">0.010 mg/L</td><td><span class="zh">pH 6.5 &amp; 8.5;不可声明三价砷</span><span class="en">pH 6.5 &amp; 8.5; no As(III) claim</span></td></tr>
+            <tr><td><span class="zh">汞 Mercury</span><span class="en">Mercury</span></td><td class="u">0.006 mg/L</td><td class="u">0.002 mg/L</td><td><span class="zh">pH 6.5 &amp; 8.5</span><span class="en">pH 6.5 &amp; 8.5</span></td></tr>
+            <tr><td>Cr⁶⁺ / Cr³⁺</td><td class="u">0.30 mg/L</td><td class="u">0.10 mg/L</td><td><span class="zh">六价/三价分别声明</span><span class="en">claimed separately</span></td></tr>
+            <tr><td>PFOA + PFOS</td><td class="u">1.5 µg/L</td><td class="u">0.07 µg/L</td><td><span class="zh">合并计;= 70 ng/L</span><span class="en">combined; = 70 ng/L</span></td></tr>
+            <tr><td>MTBE</td><td class="u">15 µg/L</td><td class="u">5 µg/L</td><td><span class="zh">汽油添加剂</span><span class="en">gasoline additive</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><span class="zh"><b>测试方法要点:</b>① <b>金属类(铅/砷/汞)用"双 pH"</b> 6.5 与 8.5,因为 pH 决定金属是溶解态还是胶体颗粒态,两种最难工况都要过;② VOC 不可能逐个测,用<b>氯仿做替代物</b>:只要对氯仿去除 ≥95%,就能按标准表声明一整列 VOC;③ 全程 200% 容量、6 点取样、60 psig。</span>
+        <span class="en"><b>Test-method highlights:</b> ① <b>metals (lead/As/Hg) use dual pH</b> 6.5 and 8.5, since pH sets whether the metal is soluble or colloidal — both worst cases must pass; ② VOCs aren't tested one by one — <b>chloroform is the surrogate</b>: ≥95% chloroform reduction lets you claim a whole table of VOCs; ③ throughout: 200% capacity, 6 samples, 60 psig.</span></p>
+      <div class="callout"><span class="lbl">For you · Midea</span><span class="zh">除铅 + 除孢囊是高端家用净水的黄金组合卖点。注意"双 pH 铅测试"模拟最难工况,选介质(如改性活性炭、KDF、铅吸附树脂)时要按这个去设计。PFAS 是当下监管和市场最热的方向,值得提前布局 53 的 PFOA/PFOS 声明。</span><span class="en">Lead + cyst removal is the premium selling combo. The dual-pH lead protocol is the worst case to design media around (modified carbon, KDF, lead-sorbent resin). PFAS is the hottest regulatory/market vector right now — worth setting up the 53 PFOA/PFOS claim early.</span></div>
+    </div>
+
+    <!-- NSF 58 -->
+    <div class="card std std-58" id="std58">
+      <span class="badge">NSF/ANSI 58 — 2023</span>
+      <h3 style="margin-top:4px"><span class="zh">反渗透 Reverse Osmosis</span><span class="en">Reverse Osmosis</span></h3>
+      <p><span class="zh"><b>范围:</b>唯一为<b>住宅 POU 反渗透</b>量身写的标准。RO 用半透膜在压力下把溶解离子挡回。一台 RO 机常同时挂 58(膜)+ 42/53/401(前后置碳滤),但 58 里有<b>只有 RO 才有</b>的几项指标。</span>
+        <span class="en"><b>Scope:</b> the only standard written specifically for <b>residential POU reverse osmosis</b>. RO uses a semipermeable membrane under pressure to reject dissolved ions. An RO unit often carries 58 (membrane) + 42/53/401 (carbon stages), but 58 has metrics <b>unique to RO</b>.</span></p>
+      <p><span class="zh"><b>① RO 专属三指标(58 的灵魂):</b></span><span class="en"><b>① The three RO-only metrics (the heart of 58):</b></span></p>
+      <ul>
+        <li><span class="zh"><b>日产水量 Daily Production Rate:</b>规定条件下每天产纯水多少加仑(gpd)。</span><span class="en"><b>Daily production rate:</b> gallons of permeate per day under defined conditions (gpd).</span></li>
+        <li><span class="zh"><b>回收率 Recovery Rating:</b><u>不接储罐(或旁通储罐)</u>时,进水变成纯水的百分比 = 产水 ÷ 进水。衡量"废水比"。</span><span class="en"><b>Recovery rating:</b> with <u>no storage tank (or tank bypassed)</u>, % of inlet water turned into permeate = product ÷ inlet. Gauges the waste ratio.</span></li>
+        <li><span class="zh"><b>效率比 Efficiency Rating:</b>带自动关闭阀(ASOV)+ 储罐、模拟<u>真实日常用水</u>时,消费者可用水占进水比例。这是"节水"卖点 + 法规重点。</span><span class="en"><b>Efficiency rating:</b> for systems with an auto-shutoff valve + tank, under <u>typical daily use</u>, % of inlet water available to the consumer. This is the water-saving claim + regulatory focus.</span></li>
+      </ul>
+      <p><span class="zh"><b>② 性能判据 + 污染物:</b></span><span class="en"><b>② Performance criteria + contaminants:</b></span></p>
+      <div class="endpoint">TDS <span class="mono">750 mg/L NaCl</span> <span class="arrow">→</span> <span class="mono">≥ 75%</span> <span class="zh">去除</span><span class="en">reduction</span></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th><span class="zh">污染物</span><span class="en">Contaminant</span></th><th><span class="zh">进水</span><span class="en">Influent</span></th><th><span class="zh">出水 ≤</span><span class="en">Effluent ≤</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="zh">五价砷 As(V)</span><span class="en">Arsenic (V)</span></td><td class="u">0.30 mg/L</td><td class="u">0.010 mg/L</td></tr>
+            <tr><td><span class="zh">氟 Fluoride</span><span class="en">Fluoride</span></td><td class="u">8.0 mg/L</td><td class="u">1.5 mg/L</td></tr>
+            <tr><td><span class="zh">硝酸盐(以N计)</span><span class="en">Nitrate (as N)</span></td><td class="u">30 mg/L</td><td class="u">10 mg/L</td></tr>
+            <tr><td>Cr⁶⁺</td><td class="u">0.30 mg/L</td><td class="u">0.10 mg/L</td></tr>
+            <tr><td><span class="zh">镉 Cadmium</span><span class="en">Cadmium</span></td><td class="u">0.03 mg/L</td><td class="u">0.005 mg/L</td></tr>
+            <tr><td><span class="zh">铅 Lead</span><span class="en">Lead</span></td><td class="u">0.15 mg/L</td><td class="u">0.010 mg/L</td></tr>
+            <tr><td><span class="zh">镭 226/228</span><span class="en">Radium 226/228</span></td><td><span class="zh">规定值</span><span class="en">defined</span></td><td><span class="zh">达标</span><span class="en">meets</span></td></tr>
+            <tr><td><span class="zh">孢囊 Cyst</span><span class="en">Cyst</span></td><td>—</td><td class="u">≥ 99.95%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><span class="zh"><b>③ 测试方法关键点:</b>TDS 挑战水特意用 <b>750 mg/L 氯化钠(NaCl)</b> —— 因为单价的 Na⁺/Cl⁻ 比双价的钙镁<b>更难被膜挡住</b>,用它测是"从严";净驱动压越低 TDS 截留越差,所以低压测更保守。回收率在<b>第 1 天和第 7 天</b>各测一次。结构上做<b>静压 + 循环压力(疲劳)测试</b>,模拟成千上万次家用水压波动不爆裂。</span>
+        <span class="en"><b>③ Test-method essentials:</b> the TDS challenge deliberately uses <b>750 mg/L NaCl</b> — monovalent Na⁺/Cl⁻ are <b>harder to reject</b> than divalent Ca/Mg, so it's a conservative test; lower net driving pressure worsens rejection, making low-pressure tests stricter. Recovery is measured on <b>Day 1 and Day 7</b>. Structurally, a <b>hydrostatic + cyclic (fatigue) pressure test</b> simulates thousands of household pressure swings without burst.</span></p>
+      <div class="callout am"><span class="lbl">For you · Midea</span><span class="zh"><b>效率比/回收率正是当下监管和"节水"卖点的焦点</b>,做 RO 产品定义时这块要算清(美国部分州对 RO 废水比有要求)。<b>循环压力疲劳测试对 Modular Manifold 这类一体化集成水路尤其要命</b> —— 集成度越高,接口和流道越要扛住反复压力冲击。膜本体过 58,前后置碳滤再分别挂 42/53/401。</span><span class="en"><b>Efficiency/recovery is exactly today's regulatory + "water-saving" battleground</b> — nail it in RO product definition (some US states regulate RO waste ratios). <b>The cyclic fatigue test is especially critical for integrated waterways like the Modular Manifold</b> — higher integration means joints and channels must survive repeated pressure shocks. The membrane meets 58; carbon stages carry 42/53/401 separately.</span></div>
+    </div>
+
+    <!-- FIG: RO membrane -->
+    <figure>
+      <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reverse osmosis membrane">
+        <rect x="40" y="30" width="560" height="140" rx="12" fill="#eef6f6" stroke="#bcd9db"/>
+        <rect x="312" y="30" width="14" height="140" fill="#0a3940"/>
+        <text x="319" y="22" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#0a3940"><tspan class="zh">半透膜</tspan><tspan class="en">membrane</tspan></text>
+        <text x="120" y="22" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#0c7d8a"><tspan class="zh">进水(高压)</tspan><tspan class="en">feed (high P)</tspan></text>
+        <text x="500" y="22" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#2f8f6b"><tspan class="zh">纯水</tspan><tspan class="en">permeate</tspan></text>
+        <g fill="#7fc0c8">
+          <circle r="5"><animate attributeName="cx" values="70;560" dur="3s" repeatCount="indefinite"/><animate attributeName="cy" values="70;70" dur="3s" repeatCount="indefinite"/></circle>
+          <circle r="5"><animate attributeName="cx" values="70;560" dur="3s" begin="1s" repeatCount="indefinite"/><animate attributeName="cy" values="110;110" dur="3s" begin="1s" repeatCount="indefinite"/></circle>
+          <circle r="5"><animate attributeName="cx" values="70;560" dur="3s" begin="2s" repeatCount="indefinite"/><animate attributeName="cy" values="140;140" dur="3s" begin="2s" repeatCount="indefinite"/></circle>
+        </g>
+        <g><circle r="10" fill="#c8553d"><animate attributeName="cx" values="120;300;120" dur="3s" repeatCount="indefinite"/><animate attributeName="cy" values="90;90;90" dur="3s" repeatCount="indefinite"/></circle>
+          <text font-family="Space Mono,monospace" font-size="8" fill="#fff" text-anchor="middle"><animate attributeName="x" values="120;300;120" dur="3s" repeatCount="indefinite"/><animate attributeName="y" values="93;93;93" dur="3s" repeatCount="indefinite"/>Na⁺</text></g>
+        <g><circle r="10" fill="#d98a2b"><animate attributeName="cx" values="150;295;150" dur="3s" begin="1.4s" repeatCount="indefinite"/><animate attributeName="cy" values="130;130;130" dur="3s" begin="1.4s" repeatCount="indefinite"/></circle>
+          <text font-family="Space Mono,monospace" font-size="8" fill="#fff" text-anchor="middle"><animate attributeName="x" values="150;295;150" dur="3s" begin="1.4s" repeatCount="indefinite"/><animate attributeName="y" values="133;133;133" dur="3s" begin="1.4s" repeatCount="indefinite"/>Cl⁻</text></g>
+        <text x="150" y="190" font-family="Space Mono,monospace" font-size="11" fill="#5d6f6f">H₂O <tspan fill="#0c7d8a">passes →</tspan>　　ions <tspan fill="#c8553d">rejected ↩</tspan>　→ TDS↓</text>
+      </svg>
+      <figcaption><span class="fnum">FIG.13</span><span class="zh">反渗透:高压把水分子"挤"过半透膜,溶解盐离子被挡回 —— 单价的 Na⁺/Cl⁻ 最难挡,所以 58 用 NaCl 做最严测试。</span><span class="en">Reverse osmosis: pressure forces water through the membrane while dissolved ions are rejected — monovalent Na⁺/Cl⁻ are the hardest to reject, which is why 58 tests with NaCl.</span></figcaption>
+    </figure>
+
+    <!-- NSF 401 -->
+    <div class="card std std-401" id="std401">
+      <span class="badge">NSF/ANSI 401 — 2023</span>
+      <h3 style="margin-top:4px"><span class="zh">新兴化合物 / 微量污染物 Emerging Compounds</span><span class="en">Emerging Compounds / Incidental Contaminants</span></h3>
+      <p><span class="zh"><b>范围:</b>2008–2014 年因"自来水里检出药物/激素"的舆论而生。针对在饮用水里<b>痕量(ng/L 级)</b>检出、尚<b>未被 EPA 法规强制</b>、但影响公众信心的"新兴"污染物。指定 <b>15 种</b>化合物,每种要求<b>≥95% 去除</b>。<span class="mono">1 ng/L ≈ 75 亿加仑水里 1 盎司</span>。</span>
+        <span class="en"><b>Scope:</b> born 2008–2014 from headlines about pharmaceuticals/hormones in tap water. Targets <b>trace (ng/L) "emerging"</b> contaminants detected in drinking water, <b>not yet EPA-regulated</b>, that affect public confidence. <b>15</b> named compounds, each requiring <b>≥95% reduction</b>. <span class="mono">1 ng/L ≈ 1 oz in 7.5 billion gallons</span>.</span></p>
+      <p><span class="zh"><b>15 种化合物(按类别):</b></span><span class="en"><b>The 15 compounds (by category):</b></span></p>
+      <p style="margin:6px 0"><b><span class="zh">处方/非处方药(8)</span><span class="en">Pharmaceuticals (8)</span></b></p>
+      <div>
+        <span class="pill"><span class="zh">阿替洛尔(降压)</span><span class="en">Atenolol</span></span>
+        <span class="pill"><span class="zh">卡马西平(抗癫痫)</span><span class="en">Carbamazepine</span></span>
+        <span class="pill"><span class="zh">雌酮(激素)</span><span class="en">Estrone</span></span>
+        <span class="pill"><span class="zh">布洛芬</span><span class="en">Ibuprofen</span></span>
+        <span class="pill"><span class="zh">甲丙氨酯(抗焦虑)</span><span class="en">Meprobamate</span></span>
+        <span class="pill"><span class="zh">萘普生</span><span class="en">Naproxen</span></span>
+        <span class="pill"><span class="zh">苯妥英</span><span class="en">Phenytoin</span></span>
+        <span class="pill"><span class="zh">甲氧苄啶(抗生素)</span><span class="en">Trimethoprim</span></span>
+      </div>
+      <p style="margin:10px 0 6px"><b><span class="zh">农药/工业/其他(7)</span><span class="en">Pesticides / industrial / other (7)</span></b></p>
+      <div>
+        <span class="pill"><span class="zh">利谷隆(除草剂)</span><span class="en">Linuron</span></span>
+        <span class="pill"><span class="zh">甲草胺(除草剂)</span><span class="en">Metolachlor</span></span>
+        <span class="pill"><span class="zh">双酚A BPA</span><span class="en">BPA</span></span>
+        <span class="pill"><span class="zh">壬基酚</span><span class="en">Nonylphenol</span></span>
+        <span class="pill">DEET <span class="zh">(驱蚊剂)</span></span>
+        <span class="pill">TCEP <span class="zh">(阻燃剂)</span></span>
+        <span class="pill">TCPP <span class="zh">(阻燃剂)</span></span>
+      </div>
+      <p style="margin-top:12px"><span class="zh"><b>测试方法:</b>用统一配方的通用挑战水,把全部 15 种痕量加进去;进出水用 <b>LC-MS / GC-MS</b> 高灵敏定量,逐一算去除率,全部 ≥95% 才过。技术上几乎只能靠<b>高品质活性炭</b>或 <b>RO</b> 实现。</span>
+        <span class="en"><b>Test method:</b> a standardized general challenge water spiked with all 15 at trace levels; influent/effluent quantified by <b>LC-MS / GC-MS</b>; each must hit ≥95%. In practice only <b>premium carbon</b> or <b>RO</b> achieves this.</span></p>
+      <div class="callout"><span class="lbl">For you · Midea</span><span class="zh">401 是叠在 42/53 之上的<b>高端差异化标签</b>("连药物残留都能去"),不是基础健康标准。注意它只覆盖这 <b>15 种</b>指定物,<b>不等于"去除所有药物/所有 PFAS"</b>;PFOA/PFOS 属于 53 而非 401。营销话术要严谨,避免越界声明。</span><span class="en">401 is a <b>premium differentiator</b> stacked on 42/53 ("removes even pharmaceutical traces"), not a baseline. It covers only these <b>15</b> compounds — <b>not "all drugs / all PFAS"</b>; PFOA/PFOS live under 53, not 401. Keep marketing claims precise to avoid overreach.</span></div>
+    </div>
+
+    <!-- NSF 372 -->
+    <div class="card std std-372" id="std372">
+      <span class="badge">NSF/ANSI/CAN 372 — 2023</span>
+      <h3 style="margin-top:4px"><span class="zh">部件铅含量(无铅)Lead Content</span><span class="en">Lead Content (Lead-Free)</span></h3>
+      <p><span class="zh"><b>范围:</b>不测过滤效果,只管<b>材料本身含多少铅</b>。落地美国《安全饮用水法》(SDWA)<b>1417 条</b>"无铅"要求(2014-01-04 生效),并与加拿大协调(标题里的 <b>CAN</b>)。约束<b>所有接触饮用水的湿润部件</b>:阀体、接头、管路、龙头、O 圈座等。</span>
+        <span class="en"><b>Scope:</b> not a filtration test — it governs <b>how much lead the materials contain</b>. Implements <b>§1417</b> of the US Safe Drinking Water Act ("lead-free," effective 2014-01-04), harmonized with Canada (the <b>CAN</b> in the title). Covers <b>every wetted component</b>: valve bodies, fittings, tubing, faucets, seats, etc.</span></p>
+      <p><span class="zh"><b>核心判据(终点):</b></span><span class="en"><b>Core criteria (endpoints):</b></span></p>
+      <div class="endpoint"><span class="zh">湿润表面加权平均铅</span><span class="en">wetted-surface weighted-avg Pb</span> <span class="arrow">≤</span> <span class="mono">0.25%</span></div>
+      <div class="endpoint"><span class="zh">焊料 / 焊剂铅</span><span class="en">solder / flux Pb</span> <span class="arrow">≤</span> <span class="mono">0.2%</span></div>
+      <div class="callout"><span class="lbl">Formula · 加权算法</span><span class="zh"><b>不是简单平均,而是按"湿润表面积"加权:</b></span><span class="en"><b>Not a flat average — weighted by wetted surface area:</b></span>
+        <p class="mono" style="margin-top:6px;font-size:.85rem">Pb% = Σ( Pb%ᵢ × Areaᵢ ) ÷ Σ( Areaᵢ ) ≤ 0.25%</p>
+        <span class="zh" style="font-size:.88rem">含铅量高但接触面小的部件,被接触面大的"稀释",但整机加权值必须 ≤0.25%。</span><span class="en" style="font-size:.88rem">A high-lead part with tiny wetted area is "diluted" by larger low-lead surfaces, but the weighted total must stay ≤0.25%.</span></div>
+      <p><span class="zh"><b>测试方法:</b>属于<b>成分/计算类</b>认证 —— 核查每个湿润部件的合金/材料铅含量,按上式加权计算,<b>不做(也不需要)浸泡溶出测试</b>(那是 NSF/ANSI 61 的活)。通过后可标 <code>[Pb]</code> / <code>372</code>,声明符合加州、佛蒙特、马里兰、路易斯安那等州及联邦"无铅"定义。</span>
+        <span class="en"><b>Test method:</b> a <b>composition / calculation</b> certification — verify each wetted part's alloy/material lead content, apply the weighted formula; <b>no leaching/extraction test</b> (that's NSF/ANSI 61's job). Passing earns the <code>[Pb]</code> / <code>372</code> mark per California, Vermont, Maryland, Louisiana and federal "lead-free" definitions.</span></p>
+      <div class="callout am"><span class="lbl">For you · Midea</span><span class="zh"><b>直接卡你的软水器控制阀!</b>传统阀体黄铜含铅(改善切削),要进美国市场必须换<b>低铅/无铅合金</b>(如铋黄铜、硅黄铜)或做内表面镀层/塑料化,把湿润面加权铅压到 ≤0.25%。<b>372 已被内嵌进 42/53/58 的材料安全环节</b>一起测;它和管溶出的 <b>NSF/ANSI 61</b> 常配套出现:372 看"含多少铅",61 看"溶出多少"。</span><span class="en"><b>This is the gate on your softener control valves.</b> Traditional brass bodies contain lead (for machinability); to enter the US you must switch to <b>low-/no-lead alloys</b> (bismuth or silicon brass) or coat/plasticize wetted surfaces to keep the weighted lead ≤0.25%. <b>372 is embedded in the material-safety step of 42/53/58.</b> It pairs with <b>NSF/ANSI 61</b> (leaching): 372 = "how much lead is in it," 61 = "how much leaches out."</span></div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 3: COMPARE ============ -->
+  <section id="compare">
+    <div class="sec-head"><span class="num">06</span>
+      <h2><span class="zh">五标准一图对比</span><span class="en">Five Standards at a Glance</span></h2>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th><span class="zh">标准</span><span class="en">Standard</span></th>
+          <th><span class="zh">管什么</span><span class="en">Governs</span></th>
+          <th><span class="zh">代表项</span><span class="en">Examples</span></th>
+          <th><span class="zh">技术</span><span class="en">Tech</span></th>
+          <th><span class="zh">类型</span><span class="en">Type</span></th>
+        </tr></thead>
+        <tbody>
+          <tr><td><b>42</b></td><td><span class="zh">感官(非健康)</span><span class="en">Aesthetic (non-health)</span></td><td><span class="zh">氯·味·颗粒</span><span class="en">chlorine·taste·particulate</span></td><td><span class="zh">活性炭</span><span class="en">carbon</span></td><td><span class="zh">性能</span><span class="en">Performance</span></td></tr>
+          <tr><td><b>53</b></td><td><span class="zh">健康</span><span class="en">Health</span></td><td><span class="zh">铅·孢囊·VOC·PFAS</span><span class="en">lead·cysts·VOC·PFAS</span></td><td><span class="zh">炭/特殊介质</span><span class="en">carbon/media</span></td><td><span class="zh">性能</span><span class="en">Performance</span></td></tr>
+          <tr><td><b>58</b></td><td><span class="zh">反渗透</span><span class="en">Reverse osmosis</span></td><td>TDS·As·F·NO₃</td><td><span class="zh">RO 膜</span><span class="en">RO membrane</span></td><td><span class="zh">性能</span><span class="en">Performance</span></td></tr>
+          <tr><td><b>401</b></td><td><span class="zh">新兴微量物</span><span class="en">Emerging trace</span></td><td><span class="zh">药物·农药·BPA</span><span class="en">drugs·pesticides·BPA</span></td><td><span class="zh">高品质炭/RO</span><span class="en">premium carbon/RO</span></td><td><span class="zh">性能</span><span class="en">Performance</span></td></tr>
+          <tr><td><b>372</b></td><td><span class="zh">材料铅含量</span><span class="en">Material lead content</span></td><td>≤0.25% Pb</td><td><span class="zh">选材/合金</span><span class="en">alloy/material</span></td><td><span class="zh">材料安全</span><span class="en">Material safety</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <span class="lbl">Mental model</span>
+      <span class="zh"><b>42 / 53 / 58 / 401</b> 测"过滤效果"(进水→产水降了多少);<b>372</b> 测"机器本身干不干净"(材料含不含铅)。前四个是<b>性能标准</b>,372 是<b>材料标准</b>,且被嵌进前四个里一起测。一台高端机常同时挂 42 + 53 + 58 + 401 + 372。</span>
+      <span class="en"><b>42 / 53 / 58 / 401</b> test filtration performance (how much influent→effluent drops); <b>372</b> tests whether the device itself is clean (lead in materials). The first four are <b>performance</b> standards; 372 is a <b>material</b> standard embedded within them. A premium unit often carries 42 + 53 + 58 + 401 + 372 together.</span>
+    </div>
+  </section>
+
+  <footer>
+    <p class="mono">NSF/ANSI 42 · 53 · 58 · 401 · 372 (2023) — Study Guide</p>
+    <p><span class="zh">判据数值依据 NSF 公开资料整理,精确门限与最新修订请以官方 2023 版 PDF 为准。</span><span class="en">Thresholds compiled from public NSF material; confirm exact limits and latest revisions against the official 2023 PDFs.</span></p>
+  </footer>
+</main>
+
+<script>
+function toggleLang(){
+  var en = document.body.classList.toggle('lang-en');
+  document.body.classList.toggle('lang-zh', !en);
+  document.documentElement.lang = en ? 'en' : 'zh';
+}
+</script>
+</body>
+</html>
