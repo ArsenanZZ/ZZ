@@ -3,29 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ZZ · Poster Library</title>
-<meta name="description" content="ArsenanZZ personal library for Run50 marathon stories, water treatment notes, WQA research, RO guides, and reading projects.">
+<title>ZZ · Home</title>
+<meta name="description" content="ArsenanZZ personal homepage for Run50 marathon stories, water treatment notes, WQA research, RO guides, and reading projects.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ZZ · Poster Library">
-<meta property="og:description" content="Run50 marathon stories, water treatment notes, research and reading projects in a poster-style library.">
+<meta property="og:title" content="ZZ · Home">
+<meta property="og:description" content="Run50 marathon stories, water treatment notes, research and reading projects in a YouTube-style home feed.">
 <meta property="og:url" content="https://arsenanzz.github.io/ZZ/">
 <meta property="og:image" content="https://arsenanzz.github.io/ZZ/assets/og-run50-chicago-marathon-icons.png">
 <meta name="twitter:card" content="summary_large_image">
 <style>
   :root {
-    color-scheme: dark;
-    --bg: #0b0b0f;
-    --panel: #17171f;
-    --panel-2: #20212a;
-    --ink: #f7f7fa;
-    --muted: #a8adba;
-    --line: rgba(255,255,255,.12);
-    --red: #e50914;
-    --gold: #f2b84b;
-    --blue: #2476d6;
-    --cyan: #43b9ca;
-    --green: #65b86f;
-    --violet: #8d7cf4;
+    color-scheme: light;
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-soft: #f6f6f6;
+    --chip: #f2f2f2;
+    --chip-active: #0f0f0f;
+    --ink: #0f0f0f;
+    --muted: #606060;
+    --line: #e5e5e5;
+    --red: #ff0033;
+    --blue: #1f6feb;
+    --green: #2f9e44;
+    --gold: #c97817;
+    --shadow: 0 14px 32px rgba(15, 15, 15, .08);
   }
 
   * { box-sizing: border-box; }
@@ -34,540 +35,682 @@
     margin: 0;
     min-height: 100vh;
     overflow-x: hidden;
-    background:
-      radial-gradient(circle at 18% -10%, rgba(229,9,20,.24), transparent 28%),
-      radial-gradient(circle at 88% 2%, rgba(67,185,202,.16), transparent 30%),
-      linear-gradient(180deg, #121217 0, var(--bg) 420px, #07070a 100%);
+    background: var(--bg);
     color: var(--ink);
-    font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-family: Roboto, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
     letter-spacing: 0;
   }
 
   a { color: inherit; text-decoration: none; }
   button, input { font: inherit; }
+  button { cursor: pointer; }
 
   .topbar {
     position: sticky;
     top: 0;
-    z-index: 20;
-    border-bottom: 1px solid var(--line);
-    background: rgba(9,9,13,.86);
-    backdrop-filter: blur(22px);
-  }
-
-  .topbar-inner,
-  .shell {
-    width: min(1320px, calc(100% - 36px));
-    margin: 0 auto;
+    z-index: 30;
+    height: 64px;
+    border-bottom: 1px solid rgba(229, 229, 229, .74);
+    background: rgba(255, 255, 255, .94);
+    backdrop-filter: blur(18px);
   }
 
   .topbar-inner {
-    min-height: 68px;
+    height: 100%;
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) minmax(220px, 360px);
+    grid-template-columns: 240px minmax(260px, 640px) minmax(120px, 1fr);
     align-items: center;
     gap: 22px;
+    padding: 0 24px;
   }
 
-  .brand {
-    display: inline-grid;
-    grid-template-columns: 42px auto;
-    align-items: center;
-    gap: 11px;
+  .brand-group,
+  .brand,
+  .top-actions,
+  .search {
     min-width: 0;
   }
 
-  .brand-mark {
+  .brand-group {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .menu-button {
+    width: 40px;
+    height: 40px;
     display: grid;
     place-items: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    color: #111116;
-    background: linear-gradient(135deg, #ffffff, var(--gold));
-    font-weight: 950;
-    font-size: 19px;
-  }
-
-  .brand strong {
-    display: block;
-    color: #ffffff;
-    font-size: 20px;
-    line-height: 1;
-    font-weight: 950;
-  }
-
-  .brand span span {
-    display: block;
-    margin-top: 4px;
-    color: var(--muted);
-    font-size: 12px;
-  }
-
-  .nav {
-    display: flex;
-    gap: 8px;
-    min-width: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .nav::-webkit-scrollbar { display: none; }
-
-  .nav button {
-    flex: 0 0 auto;
-    min-height: 36px;
-    padding: 8px 13px;
-    border: 1px solid transparent;
-    border-radius: 999px;
-    color: #dcdfea;
+    border: 0;
+    border-radius: 50%;
     background: transparent;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 850;
   }
 
-  .nav button:hover,
-  .nav button.active {
-    color: #ffffff;
-    background: rgba(255,255,255,.1);
-    border-color: var(--line);
+  .menu-button:hover { background: var(--surface-soft); }
+
+  .menu-lines,
+  .menu-lines::before,
+  .menu-lines::after {
+    display: block;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: #0f0f0f;
+  }
+
+  .menu-lines {
+    position: relative;
+  }
+
+  .menu-lines::before,
+  .menu-lines::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+
+  .menu-lines::before { top: -6px; }
+  .menu-lines::after { top: 6px; }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 900;
+    letter-spacing: -.01em;
+    white-space: nowrap;
+  }
+
+  .brand-play {
+    width: 42px;
+    height: 29px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: var(--red);
+    box-shadow: 0 8px 18px rgba(255, 0, 51, .18);
+  }
+
+  .brand-play::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 12px solid #fff;
+    margin-left: 3px;
+  }
+
+  .brand-text {
+    font-size: 21px;
+    line-height: 1;
   }
 
   .search {
-    position: relative;
-    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 64px;
+    align-items: center;
   }
 
   .search input {
     width: 100%;
     height: 40px;
-    padding: 0 40px 0 15px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
+    padding: 0 16px;
+    border: 1px solid #c6c6c6;
+    border-right: 0;
+    border-radius: 999px 0 0 999px;
     outline: none;
-    color: #ffffff;
-    background: rgba(255,255,255,.08);
+    background: #fff;
+    color: var(--ink);
+    font-size: 15px;
   }
 
   .search input:focus {
-    border-color: rgba(229,9,20,.72);
-    box-shadow: 0 0 0 3px rgba(229,9,20,.17);
+    border-color: #1c62b9;
+    box-shadow: inset 0 0 0 1px #1c62b9;
   }
 
-  .search::after {
+  .search-button {
+    height: 40px;
+    border: 1px solid #c6c6c6;
+    border-radius: 0 999px 999px 0;
+    background: #f8f8f8;
+    position: relative;
+  }
+
+  .search-button:hover { background: #f0f0f0; }
+
+  .search-button::before {
     content: "";
     position: absolute;
-    right: 16px;
-    top: 12px;
-    width: 11px;
-    height: 11px;
-    border: 2px solid #d9dce5;
+    left: 22px;
+    top: 11px;
+    width: 13px;
+    height: 13px;
+    border: 2px solid #111;
     border-radius: 50%;
   }
 
-  .search::before {
+  .search-button::after {
     content: "";
     position: absolute;
-    right: 12px;
-    top: 25px;
+    left: 35px;
+    top: 26px;
     width: 9px;
     height: 2px;
-    background: #d9dce5;
+    border-radius: 999px;
+    background: #111;
     transform: rotate(45deg);
     transform-origin: left center;
   }
 
-  .shell {
-    padding: 26px 0 72px;
-  }
-
-  .hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 470px);
-    gap: 26px;
-    min-height: 420px;
-    padding: 34px;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    background:
-      linear-gradient(90deg, rgba(8,8,12,.97) 0, rgba(12,12,17,.88) 52%, rgba(12,12,17,.36) 100%),
-      url("assets/og-run50-chicago-marathon-icons.png?v=20260605-1") center / cover;
-    box-shadow: 0 28px 82px rgba(0,0,0,.38);
-  }
-
-  .hero-copy,
-  .hero-posters {
-    min-width: 0;
-    align-self: center;
-  }
-
-  .kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    margin: 0 0 14px;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 950;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-  }
-
-  .kicker::before {
-    content: "";
-    width: 36px;
-    height: 8px;
-    border-radius: 99px;
-    background: var(--red);
-  }
-
-  h1 {
-    margin: 0;
-    max-width: 680px;
-    color: #ffffff;
-    font-size: clamp(2.3rem, 5.1vw, 4.55rem);
-    line-height: .96;
-    font-weight: 950;
-    overflow-wrap: anywhere;
-  }
-
-  .hero-text {
-    max-width: 650px;
-    margin: 18px 0 0;
-    color: #dcdfeb;
-    font-size: 17px;
-    line-height: 1.72;
-    overflow-wrap: anywhere;
-  }
-
-  .mobile-title { display: none; }
-
-  .hero-actions {
+  .top-actions {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
     gap: 10px;
-    margin-top: 24px;
   }
 
-  .action {
+  .action-pill {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 42px;
-    padding: 10px 16px;
-    border: 1px solid var(--line);
+    min-height: 36px;
+    padding: 0 14px;
     border-radius: 999px;
-    color: #ffffff;
-    background: rgba(255,255,255,.1);
+    background: #f2f2f2;
+    color: #0f0f0f;
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 800;
+    white-space: nowrap;
   }
 
-  .action.primary {
-    border-color: var(--red);
-    background: var(--red);
-  }
+  .action-pill:hover { background: #e9e9e9; }
 
-  .hero-posters {
+  .layout {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 216px minmax(0, 1fr);
+    min-height: calc(100vh - 64px);
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    padding: 12px 12px 20px;
+    background: #fff;
+  }
+
+  .side-section {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .side-section:last-child { border-bottom: 0; }
+
+  .side-link {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: center;
     gap: 12px;
-    align-items: end;
-  }
-
-  .hero-mini,
-  .poster-media {
-    position: relative;
-    display: block;
-    min-width: 0;
-    overflow: hidden;
-    aspect-ratio: 2 / 3;
-    border: 1px solid rgba(255,255,255,.18);
+    min-height: 40px;
+    padding: 0 12px;
     border-radius: 10px;
-    background: var(--panel);
-    box-shadow: 0 20px 48px rgba(0,0,0,.42);
+    color: #0f0f0f;
+    font-size: 14px;
+    font-weight: 600;
   }
 
-  .hero-mini:nth-child(2) { transform: translateY(-10px); }
-
-  .hero-mini img,
-  .poster-media img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: saturate(1.06) contrast(1.04);
+  .side-link:hover,
+  .side-link.active {
+    background: #f2f2f2;
   }
 
-  .hero-mini::after,
-  .poster-media::after {
-    content: "";
-    position: absolute;
-    inset: 38% 0 0;
-    background: linear-gradient(180deg, transparent, rgba(0,0,0,.84));
-    pointer-events: none;
-  }
-
-  .hero-mini span {
-    position: absolute;
-    z-index: 1;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 950;
-    line-height: 1.16;
-    text-shadow: 0 2px 10px rgba(0,0,0,.8);
-  }
-
-  .quick-row {
+  .side-icon {
+    width: 22px;
+    height: 22px;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 14px;
-    margin: 18px 0 30px;
+    place-items: center;
+    border-radius: 7px;
+    background: #eeeeee;
+    color: #111;
+    font-size: 11px;
+    font-weight: 950;
   }
 
-  .quick-card {
-    display: block;
+  .side-icon.red { background: #ffe5ea; color: var(--red); }
+  .side-icon.blue { background: #e7f0ff; color: var(--blue); }
+  .side-icon.green { background: #e7f7ec; color: var(--green); }
+  .side-icon.gold { background: #fff1da; color: var(--gold); }
+
+  .content {
     min-width: 0;
-    padding: 16px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    background: rgba(255,255,255,.06);
+    padding: 14px 28px 64px 10px;
   }
 
-  .quick-card b {
-    display: block;
-    color: #ffffff;
-    font-size: 22px;
-    line-height: 1.1;
+  .chips {
+    position: sticky;
+    top: 64px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 12px 0 14px;
+    background: rgba(255, 255, 255, .96);
+    scrollbar-width: none;
   }
 
-  .quick-card span {
-    display: block;
-    margin-top: 7px;
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.35;
+  .chips::-webkit-scrollbar { display: none; }
+
+  .chip {
+    flex: 0 0 auto;
+    min-height: 34px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--chip);
+    color: #0f0f0f;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .chip:hover { background: #e5e5e5; }
+
+  .chip.active {
+    background: var(--chip-active);
+    color: #fff;
+  }
+
+  .channel-strip {
+    margin: 4px 0 20px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 18px;
+    border-radius: 18px;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,.94), rgba(255,255,255,.82)),
+      url("assets/thumb-run50-south-carolina-marathon-icons.svg?v=20260605-2") center / cover;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.06);
+  }
+
+  .channel-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .channel-avatar {
+    width: 62px;
+    height: 62px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: #0f0f0f;
+    color: #fff;
+    font-size: 19px;
+    font-weight: 950;
+    box-shadow: var(--shadow);
+  }
+
+  .channel-title h1 {
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.35rem);
+    line-height: 1;
+    letter-spacing: -.02em;
+  }
+
+  .channel-title p {
+    margin: 7px 0 0;
+    max-width: 680px;
+    color: #4a4a4a;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .channel-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .subscribe {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #0f0f0f;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 850;
+    white-space: nowrap;
+  }
+
+  .ghost-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: #f2f2f2;
+    color: #0f0f0f;
+    font-size: 14px;
+    font-weight: 850;
+    white-space: nowrap;
   }
 
   .section {
-    margin-top: 34px;
+    margin-top: 28px;
   }
+
+  .section:first-of-type { margin-top: 12px; }
 
   .section-head {
     display: flex;
-    align-items: end;
+    align-items: baseline;
     justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 16px;
+    gap: 14px;
+    margin: 0 0 14px;
   }
 
   .section-title {
     margin: 0;
-    color: #ffffff;
-    font-size: 24px;
-    line-height: 1.18;
-    font-weight: 950;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -.01em;
   }
 
   .section-note {
     color: var(--muted);
     font-size: 13px;
-    font-weight: 850;
+    font-weight: 700;
   }
 
-  .poster-row {
+  .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
+    gap: 30px 18px;
   }
 
-  .poster-card {
-    display: block;
+  .video-card {
     min-width: 0;
-    transition: transform .2s ease;
+    display: block;
+    border-radius: 14px;
   }
 
-  .poster-card:hover {
-    transform: translateY(-6px);
+  .video-card:hover .thumb-img {
+    transform: scale(1.025);
   }
 
-  .poster-card:hover .poster-media {
-    border-color: rgba(255,255,255,.44);
-    box-shadow: 0 22px 58px rgba(0,0,0,.52);
+  .video-card:hover h3 {
+    color: #065fd4;
   }
 
-  .poster-badge,
-  .poster-format {
+  .thumb {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+    background: #eeeeee;
+    box-shadow: 0 1px 2px rgba(0,0,0,.08);
+  }
+
+  .thumb-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform .18s ease;
+  }
+
+  .thumb-label,
+  .thumb-time {
     position: absolute;
-    z-index: 2;
-    top: 9px;
+    bottom: 8px;
+    min-height: 22px;
     display: inline-flex;
     align-items: center;
-    min-height: 24px;
-    padding: 4px 7px;
-    border-radius: 999px;
-    color: #ffffff;
-    font-size: 11px;
-    line-height: 1;
-    font-weight: 950;
-    text-transform: uppercase;
-  }
-
-  .poster-badge {
-    left: 9px;
-    background: var(--red);
-  }
-
-  .poster-format {
-    right: 9px;
-    background: rgba(0,0,0,.64);
-    border: 1px solid rgba(255,255,255,.2);
-  }
-
-  .poster-rank {
-    position: absolute;
-    z-index: 2;
-    left: 9px;
-    bottom: 9px;
-    color: rgba(255,255,255,.92);
-    font-size: 39px;
-    line-height: .86;
-    font-weight: 950;
-    text-shadow: 0 8px 18px rgba(0,0,0,.72);
-  }
-
-  .poster-copy {
-    padding: 10px 2px 0;
-  }
-
-  .poster-copy h3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    min-height: 38px;
-    margin: 0;
-    color: #f7f7fa;
-    font-size: 15px;
-    line-height: 1.28;
-    font-weight: 900;
-  }
-
-  .poster-copy p {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    min-height: 34px;
-    margin: 6px 0 0;
-    color: var(--muted);
+    border-radius: 5px;
+    color: #fff;
     font-size: 12px;
-    line-height: 1.42;
+    font-weight: 900;
+    line-height: 1;
   }
 
-  .channel-run50 .poster-badge { background: var(--blue); }
-  .channel-water .poster-badge { background: var(--cyan); }
-  .channel-wqa .poster-badge { background: var(--green); }
-  .channel-reading .poster-badge { background: var(--violet); }
-  .channel-ro .poster-badge { background: #1d9cb1; }
+  .thumb-label {
+    left: 8px;
+    padding: 0 8px;
+    background: rgba(15, 15, 15, .82);
+  }
+
+  .thumb-time {
+    right: 8px;
+    padding: 0 7px;
+    background: rgba(15, 15, 15, .88);
+  }
+
+  .video-row {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px 2px 0;
+  }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #0f0f0f;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 950;
+  }
+
+  .avatar.run50 { background: #0f0f0f; }
+  .avatar.water { background: #1665d8; }
+  .avatar.wqa { background: #1f8f4d; }
+  .avatar.ro { background: #167a8b; }
+  .avatar.reading { background: #a15c12; }
+
+  .video-copy {
+    min-width: 0;
+  }
+
+  .video-copy h3 {
+    margin: 0;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: #0f0f0f;
+    font-size: 17px;
+    line-height: 1.28;
+    font-weight: 850;
+    transition: color .15s ease;
+  }
+
+  .meta {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.38;
+  }
+
+  .summary {
+    margin-top: 5px;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: #555;
+    font-size: 13px;
+    line-height: 1.45;
+  }
 
   .results-bar {
     display: none;
+    align-items: center;
     justify-content: space-between;
-    gap: 14px;
-    margin: 24px 0 14px;
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 850;
+    margin: 12px 0 18px;
+    padding: 11px 14px;
+    border-radius: 12px;
+    background: #f6f6f6;
+    color: #333;
+    font-size: 14px;
+    font-weight: 800;
   }
 
-  body.show-results .curated { display: none; }
-  body.show-results .results-bar { display: flex; }
+  .results-grid {
+    display: none;
+  }
 
   .empty-state {
     display: none;
-    margin: 34px 0 0;
-    padding: 26px;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    color: var(--muted);
-    background: rgba(255,255,255,.06);
+    margin-top: 16px;
+    padding: 34px 18px;
+    border-radius: 16px;
+    background: #f6f6f6;
+    color: #606060;
     text-align: center;
+    font-weight: 800;
   }
 
-  .poster-card[hidden] { display: none; }
+  body.show-results .curated,
+  body.show-results .channel-strip {
+    display: none;
+  }
 
-  @media (max-width: 980px) {
+  body.show-results .results-bar,
+  body.show-results .results-grid {
+    display: block;
+  }
+
+  @media (max-width: 1180px) {
+    .layout {
+      grid-template-columns: 86px minmax(0, 1fr);
+    }
+    .sidebar {
+      padding: 10px 8px;
+    }
+    .side-link {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 4px;
+      min-height: 62px;
+      padding: 7px 4px;
+      font-size: 11px;
+      text-align: center;
+    }
+    .side-icon {
+      width: 25px;
+      height: 25px;
+    }
+    .content {
+      padding-right: 22px;
+    }
+  }
+
+  @media (max-width: 900px) {
     .topbar-inner {
-      grid-template-columns: 1fr;
-      gap: 12px;
-      padding: 12px 0;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 14px;
+      padding: 0 16px;
     }
-    .topbar { position: static; }
-    .hero {
-      grid-template-columns: 1fr;
-      min-height: 0;
-      padding: 26px;
+    .top-actions {
+      display: none;
     }
-    .quick-row {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .brand-group {
+      gap: 10px;
+    }
+    .brand-text {
+      display: none;
+    }
+    .layout {
+      grid-template-columns: 1fr;
+    }
+    .sidebar {
+      display: none;
+    }
+    .content {
+      padding: 10px 16px 54px;
+    }
+    .chips {
+      top: 64px;
+    }
+    .channel-strip {
+      grid-template-columns: 1fr;
+      padding: 16px;
+    }
+    .channel-actions {
+      justify-content: flex-start;
+      flex-wrap: wrap;
     }
   }
 
   @media (max-width: 640px) {
-    .topbar-inner,
-    .shell {
-      width: calc(100% - 28px);
+    .topbar {
+      height: auto;
+      min-height: 108px;
     }
-    .shell {
-      padding-top: 18px;
-    }
-    .hero {
-      padding: 22px;
-      border-radius: 14px;
-    }
-    h1 {
-      width: 100%;
-      max-width: calc(100vw - 72px);
-      font-size: 1.72rem;
-      line-height: 1;
-    }
-    .desktop-title { display: none; }
-    .mobile-title { display: inline; }
-    .hero-copy,
-    .hero-text,
-    .hero-actions,
-    .hero-posters {
-      width: 100%;
-      max-width: calc(100vw - 72px);
-      min-width: 0;
-    }
-    .hero-text {
-      font-size: 14px;
-    }
-    .hero-posters {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 9px;
-      max-width: min(220px, calc(100vw - 72px));
-      overflow: hidden;
-    }
-    .hero-mini:nth-child(n+2) { display: none; }
-    .quick-row {
+    .topbar-inner {
       grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 10px 14px;
     }
-    .poster-row {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px 13px;
+    .brand-group {
+      justify-content: space-between;
+    }
+    .brand-text {
+      display: inline;
+      font-size: 19px;
+    }
+    .search {
+      grid-template-columns: minmax(0, 1fr) 54px;
+    }
+    .layout {
+      min-height: calc(100vh - 108px);
+    }
+    .chips {
+      top: 108px;
+      padding-top: 10px;
+    }
+    .content {
+      padding: 8px 12px 48px;
+    }
+    .channel-title {
+      align-items: flex-start;
+    }
+    .channel-avatar {
+      width: 52px;
+      height: 52px;
+      font-size: 16px;
+    }
+    .channel-title h1 {
+      font-size: 1.55rem;
+      line-height: 1.05;
+    }
+    .video-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
     }
     .section-head {
-      align-items: start;
+      align-items: flex-start;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
+    }
+    .summary {
+      -webkit-line-clamp: 3;
     }
   }
 </style>
@@ -575,199 +718,606 @@
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="./" aria-label="ZZ home">
-        <span class="brand-mark">ZZ</span>
-        <span><strong>ArsenanZZ</strong><span>Poster Library</span></span>
-      </a>
-      <nav class="nav" aria-label="Library filters">
-        <button class="active" type="button" data-filter="all">全部</button>
-        <button type="button" data-filter="run50">Run50</button>
-        <button type="button" data-filter="water">Water</button>
-        <button type="button" data-filter="wqa">WQA</button>
-        <button type="button" data-filter="reading">Reading</button>
-        <button type="button" data-filter="ro">RO</button>
-      </nav>
-      <label class="search">
-        <input id="searchInput" type="search" autocomplete="off" placeholder="Search title, topic, city...">
+      <div class="brand-group">
+        <button class="menu-button" type="button" aria-label="Menu"><span class="menu-lines"></span></button>
+        <a class="brand" href="./" aria-label="ZZ home">
+          <span class="brand-play" aria-hidden="true"></span>
+          <span class="brand-text">ZZ</span>
+        </a>
+      </div>
+      <label class="search" aria-label="Search">
+        <input id="searchInput" type="search" autocomplete="off" placeholder="搜索故事、城市、主题">
+        <button class="search-button" type="button" aria-label="Search"></button>
       </label>
+      <div class="top-actions">
+        <a class="action-pill" href="run50/index.html">Run50 频道</a>
+        <a class="action-pill" href="run50/stories/english/">Stories</a>
+      </div>
     </div>
   </header>
 
-  <main class="shell">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="kicker">Now Showing</p>
-        <h1 id="hero-title"><span class="desktop-title">Run50, research notes, and stories on deck.</span><span class="mobile-title">ZZ Poster Library</span></h1>
-        <p class="hero-text"><span class="desktop-title">最新入口先放在片头：Chicago Marathon、Run50 故事、WQA/Water/RO 技术资料和阅读项目都可以从这里直达。</span><span class="mobile-title">Run50、Water、WQA、Reading 入口都在这里。</span></p>
-        <div class="hero-actions">
-          <a class="action primary" href="run50/stories/english/chicago-marathon.html">打开 Chicago 英文版</a>
-          <a class="action" href="run50/facebook/chicago-marathon.html">Facebook 版</a>
-          <a class="action" href="run50/stories/chinese/">中文故事库</a>
-        </div>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Site navigation">
+      <div class="side-section">
+        <a class="side-link active" href="./"><span class="side-icon red">H</span><span>首页</span></a>
+        <a class="side-link" href="run50/index.html"><span class="side-icon">R</span><span>Run50</span></a>
+        <a class="side-link" href="run50/stories/english/"><span class="side-icon blue">EN</span><span>英文故事</span></a>
+        <a class="side-link" href="run50/stories/chinese/"><span class="side-icon gold">中</span><span>中文故事</span></a>
+        <a class="side-link" href="run50/facebook/"><span class="side-icon red">FB</span><span>Facebook</span></a>
       </div>
-      <div class="hero-posters" aria-label="Featured posters">
-        <a class="hero-mini" href="run50/stories/english/chicago-marathon.html">
-          <img src="assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1" alt="Chicago Marathon poster">
-          <span>Chicago Marathon</span>
-        </a>
-        <a class="hero-mini" href="wqa/WQA_2026_Presentations_Summary-V2.html">
-          <img src="assets/thumb-wqa-v2.png" alt="WQA 2026 poster">
-          <span>WQA 2026 Notes</span>
-        </a>
-        <a class="hero-mini" href="reading/atomic-habits-full-english.html">
-          <img src="assets/thumb-atomic-v2.png" alt="Atomic Habits poster">
-          <span>Atomic Habits</span>
-        </a>
+      <div class="side-section">
+        <a class="side-link" href="Softener-Water/index.html"><span class="side-icon blue">W</span><span>Water</span></a>
+        <a class="side-link" href="wqa/WQA_2026_Presentations_Summary-V2.html"><span class="side-icon green">Q</span><span>WQA</span></a>
+        <a class="side-link" href="ro/ro-system-explained.html"><span class="side-icon blue">RO</span><span>RO</span></a>
+        <a class="side-link" href="reading/atomic-habits-full-english.html"><span class="side-icon gold">B</span><span>Reading</span></a>
       </div>
-    </section>
+    </aside>
 
-    <section class="quick-row" aria-label="Quick entries">
-      <a class="quick-card" href="run50/index.html"><b>Run50</b><span>Marathon space, story indexes, trips and training.</span></a>
-      <a class="quick-card" href="Softener-Water/index.html"><b>Water</b><span>Softener principles, valves, sizing and product notes.</span></a>
-      <a class="quick-card" href="wqa/WQA_2026_Presentations_Summary-V2.html"><b>WQA</b><span>Presentation summaries, expo notes and product research.</span></a>
-      <a class="quick-card" href="reading/atomic-habits-full-english.html"><b>Reading</b><span>Book pages, semiconductor prep and study handbooks.</span></a>
-    </section>
+    <main class="content">
+      <nav class="chips" aria-label="Filters">
+        <button class="chip active" type="button" data-filter="all">全部</button>
+        <button class="chip" type="button" data-filter="run50">Run50</button>
+        <button class="chip" type="button" data-filter="runcn">RunCN</button>
+        <button class="chip" type="button" data-filter="runworld">RunWorld</button>
+        <button class="chip" type="button" data-filter="water">Water</button>
+        <button class="chip" type="button" data-filter="wqa">WQA</button>
+        <button class="chip" type="button" data-filter="ro">RO</button>
+        <button class="chip" type="button" data-filter="reading">Reading</button>
+      </nav>
 
-    <div class="results-bar" aria-live="polite">
-      <span id="resultCount">0 results</span>
-      <span>Poster search</span>
-    </div>
+      <section class="channel-strip" aria-labelledby="channel-title">
+        <div class="channel-title">
+          <div class="channel-avatar">ZZ</div>
+          <div>
+            <h1 id="channel-title">ArsenanZZ</h1>
+            <p>一个像 YouTube 首页一样的入口：马拉松故事、Run50 频道、Water/WQA/RO 技术笔记和阅读项目，都用横向封面卡片直接打开。</p>
+          </div>
+        </div>
+        <div class="channel-actions">
+          <a class="subscribe" href="run50/stories/english/chicago-marathon.html">最新故事</a>
+          <a class="ghost-button" href="run50/facebook/">Facebook 版</a>
+        </div>
+      </section>
 
-    <div class="curated">
-      <section class="section">
-        <div class="section-head">
-          <h2 class="section-title">正在热映</h2>
-          <span class="section-note">Featured posters</span>
-        </div>
-        <div class="poster-row" data-section="featured"></div>
-      </section>
-      <section class="section">
-        <div class="section-head">
-          <h2 class="section-title">Run50 马拉松宇宙</h2>
-          <span class="section-note">Stories · maps · training</span>
-        </div>
-        <div class="poster-row" data-section="run50"></div>
-      </section>
-      <section class="section">
-        <div class="section-head">
-          <h2 class="section-title">Water / WQA / RO</h2>
-          <span class="section-note">Research and engineering notes</span>
-        </div>
-        <div class="poster-row" data-section="waterlab"></div>
-      </section>
-      <section class="section">
-        <div class="section-head">
-          <h2 class="section-title">Reading / Prep</h2>
-          <span class="section-note">Books and study projects</span>
-        </div>
-        <div class="poster-row" data-section="reading"></div>
-      </section>
-    </div>
-
-    <section class="section library-all">
-      <div class="section-head">
-        <h2 class="section-title">全部片库</h2>
-        <span class="section-note">All entries</span>
+      <div class="results-bar" aria-live="polite">
+        <span id="resultCount">0 results</span>
+        <span>搜索结果</span>
       </div>
-      <div class="poster-row" id="libraryGrid"></div>
-      <div class="empty-state" id="emptyState">No matching posters.</div>
-    </section>
-  </main>
+      <section class="results-grid" aria-label="Search results">
+        <div class="video-grid" id="resultsGrid"></div>
+        <div class="empty-state" id="emptyState">没有找到匹配内容。</div>
+      </section>
+
+      <div class="curated">
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">Run50 马拉松故事</h2>
+            <span class="section-note">横向插画封面 · 英文故事入口</span>
+          </div>
+          <div class="video-grid" data-section="stories"></div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">播放列表</h2>
+            <span class="section-note">中文、英文、Facebook、训练和旅行</span>
+          </div>
+          <div class="video-grid" data-section="playlists"></div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">Water / WQA / RO</h2>
+            <span class="section-note">水处理、展会、产品和反渗透笔记</span>
+          </div>
+          <div class="video-grid" data-section="waterlab"></div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">Reading / Prep</h2>
+            <span class="section-note">阅读、学习卡片和半导体制造笔记</span>
+          </div>
+          <div class="video-grid" data-section="reading"></div>
+        </section>
+      </div>
+    </main>
+  </div>
 
 <script>
-  const posters = [
-    ["Chicago Marathon: State 12 and a second World Major", "Run50 · Illinois · 2023.10.08", "run50/stories/english/chicago-marathon.html", "assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1", "Run50", "Story", "run50 story english marathon travel chicago illinois", "run50", "01", true],
-    ["Chicago Marathon Facebook Edition", "Facebook-ready race-day-first story", "run50/facebook/chicago-marathon.html", "assets/og-run50-chicago-marathon-icons.png?v=20260605-1", "Run50", "FB", "run50 facebook story english marathon chicago", "run50", "02", true],
-    ["Run50 Chinese Stories", "Chicago · Texas · Xiangyang · Guilin · more", "run50/stories/chinese/", "assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1", "Run50", "中文", "run50 story chinese marathon travel", "run50", "03", true],
-    ["Run50 English Stories", "Natural English race story translations", "run50/stories/english/", "assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1", "Run50", "EN", "run50 story english marathon travel", "run50", "04"],
-    ["Run50 Personal Space", "Home, maps, stories and challenge dashboard", "run50/index.html", "assets/thumb-run50-home.png", "Run50", "Home", "run50 run-home marathon", "run50", "05"],
-    ["Run50 Training Page", "Training library and marathon notes", "run50/run50.html", "assets/thumb-run50-training.png", "Run50", "Train", "run50 run-training marathon", "run50", "06"],
-    ["Mainly Marathons New England 2026", "Trip guide for the 2026 New England series", "run50/mainly-marathons-new-england-2026-guide.html", "assets/thumb-trip-new-england.png", "Run50", "Trip", "run50 trip marathon travel", "run50", "07"],
-    ["Run50 Facebook", "Race stories formatted for social sharing", "run50/facebook/", "assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1", "Run50", "FB", "run50 facebook story english marathon travel", "run50", "08"],
-    ["Water Softener Guide: Principles, Valves & Calculator", "WQA · tech guide", "Softener-Water/index.html", "assets/thumb-water-softener-v2.png", "Water", "HTML", "research water softener wqa", "water", "09", true],
-    ["软水原理与阀头竞品分析", "Water Softener · 中文版本", "water-softener/softener-valve-analysis-zh.html", "assets/thumb-water-softener-v2.png", "Water", "中文", "research water softener chinese", "water", "10"],
-    ["Water Softening Principles and Valve Analysis", "Water Softener · English version", "water-softener/softener-valve-analysis-en.html", "assets/thumb-water-softener-v2.png", "Water", "EN", "research water softener english", "water", "11"],
-    ["WQA 2026 Presentation Summaries", "WQA · presentation notes", "wqa/WQA_2026_Presentations_Summary-V2.html", "assets/thumb-wqa-v2.png", "WQA", "HTML", "wqa research water presentation", "wqa", "12", true],
-    ["WQA 2026 Expo Observation Report", "WQA · expo field report", "wqa/WQA_2026_Expo_Observation_Report_EN.html", "assets/thumb-wqa-v2.png", "WQA", "HTML", "wqa research water expo", "wqa", "13"],
-    ["EZsalt Research Report", "Research · product report", "wqa/EZsalt_Research_Report_2_EN.html", "assets/thumb-ezsalt-v2.png", "WQA", "Report", "wqa research water ezsalt product", "wqa", "14"],
-    ["DROP Research Report", "Research · product report", "wqa/DROP_Research_Report_EN.html", "assets/thumb-drop-v2.png", "WQA", "Report", "wqa research water drop product", "wqa", "15"],
-    ["How a Reverse Osmosis System Works", "RO · system explanation", "ro/ro-system-explained.html", "assets/thumb-ro-v2.png", "RO", "HTML", "ro water reverse osmosis", "ro", "16", true],
-    ["RO Complete Guide EN", "RO · complete guide", "ro/RO-Complete-Guide-EN.html", "assets/thumb-ro-v2.png", "RO", "Guide", "ro water reverse osmosis guide", "ro", "17"],
-    ["Atomic Habits Full English", "Reading · book edition", "reading/atomic-habits-full-english.html", "assets/thumb-atomic-v2.png", "Reading", "Book", "reading atomic habits book", "reading", "18", true],
-    ["Atomic Habits Study Cards", "Reading · study cards", "reading/atomic-habits-bloom-cards.html", "assets/thumb-atomic-v2.png", "Reading", "Cards", "reading atomic habits cards", "reading", "19"],
-    ["Nano IC Image Reader", "Reading · 488-page image edition", "reading/nano-ic.html", "assets/thumb-nano-ic-v2.png", "Reading", "488P", "reading semiconductor equipment image notes nano ic", "reading", "20"],
-    ["Nano IC Manufacturing Study Notes", "Reading · semiconductor equipment prep", "reading/nano-ic-manufacturing-study.html", "assets/thumb-nano-ic-v2.png", "Reading", "Study", "reading semiconductor equipment research nano ic", "reading", "21"],
-    ["Nano IC Manufacturing Detailed Handbook", "Reading · original detailed handbook", "reading/nano-ic-manufacturing-handbook-detailed.html", "assets/thumb-nano-ic-v2.png", "Reading", "Guide", "reading semiconductor equipment research handbook nano ic", "reading", "22"]
-  ].map(([title, sub, href, img, tag, format, category, channel, rank, featured]) => ({title, sub, href, img, tag, format, category, channel, rank, featured}));
+  const videos = [
+    {
+      title: "Too Slow for Boston Marathon: loops, RV camping, and the stubborn mule",
+      channel: "Run50",
+      meta: "South Carolina · Greer · 2024.04.14",
+      summary: "State 18: neighborhood loops, heat, RV camping and a race name with attitude.",
+      href: "run50/stories/english/south-carolina-marathon.html",
+      thumb: "assets/thumb-run50-south-carolina-marathon-icons.svg?v=20260605-2",
+      label: "Run50 #18",
+      time: "SC",
+      tags: "run50 story english south carolina greer marathon",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "Miami Marathon: wearing CR7 in Messi's backyard",
+      channel: "Run50",
+      meta: "Florida · Miami · 2024.01.28",
+      summary: "A wrong-date plane ticket, Ocean Drive heat and 26.2 miles in a Ronaldo jersey.",
+      href: "run50/stories/english/miami-marathon.html",
+      thumb: "assets/thumb-run50-miami-icons.svg?v=20260605-2",
+      label: "Run50 #15",
+      time: "FL",
+      tags: "run50 story english florida miami marathon",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "Marshall University Marathon: scoring a football touchdown in West Virginia",
+      channel: "Run50",
+      meta: "West Virginia · Huntington · 2023.11.05",
+      summary: "State 13: autumn roads, campus memorials and a finish inside the football stadium.",
+      href: "run50/stories/english/west-virginia-marathon.html",
+      thumb: "assets/thumb-run50-west-virginia-marathon-icons.svg?v=20260605-2",
+      label: "Run50 #13",
+      time: "WV",
+      tags: "run50 story english west virginia huntington marathon",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "Chicago Marathon: State 12 and a second World Major",
+      channel: "Run50",
+      meta: "Illinois · Chicago · 2023.10.08",
+      summary: "A classic big-city marathon story from the Run50 archive.",
+      href: "run50/stories/english/chicago-marathon.html",
+      thumb: "assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-2",
+      label: "Run50 #12",
+      time: "IL",
+      tags: "run50 story english illinois chicago marathon",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "San Antonio Marathon: Texas state story",
+      channel: "Run50",
+      meta: "Texas · San Antonio · 2023",
+      summary: "A Run50 Texas chapter rebuilt into the shared story format.",
+      href: "run50/stories/english/san-antonio-marathon.html",
+      thumb: "assets/thumb-run50-san-antonio-marathon-icons.svg?v=20260605-2",
+      label: "Run50 #14",
+      time: "TX",
+      tags: "run50 story english texas san antonio marathon",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "Little Rock Marathon: Arkansas state story",
+      channel: "Run50",
+      meta: "Arkansas · Little Rock",
+      summary: "State story with the same cover system and readable layout.",
+      href: "run50/stories/english/little-rock-marathon.html",
+      thumb: "assets/thumb-run50-little-rock-marathon-icons.svg?v=20260605-2",
+      label: "Run50",
+      time: "AR",
+      tags: "run50 story english arkansas little rock marathon",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "Nashville Marathon: Tennessee state story",
+      channel: "Run50",
+      meta: "Tennessee · Nashville",
+      summary: "Music City, race-day notes and the Tennessee Run50 stop.",
+      href: "run50/stories/english/nashville-marathon.html",
+      thumb: "assets/thumb-run50-nashville-marathon-icons.svg?v=20260605-2",
+      label: "Run50",
+      time: "TN",
+      tags: "run50 story english tennessee nashville marathon",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "Xiangyang Marathon: first race back in China",
+      channel: "RunCN",
+      meta: "Hubei · Xiangyang · 2025.10.19",
+      summary: "RunCN #1: from Luojia Mountain to the Han River, with a sub-4 surprise.",
+      href: "run50/stories/english/xiangyang-marathon.html",
+      thumb: "assets/thumb-run50-xiangyang-icons.svg?v=20260605-2",
+      label: "RunCN #1",
+      time: "CN",
+      tags: "run50 runcn story english chinese xiangyang marathon hubei",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "Guilin Marathon: heat waves and parents on the course",
+      channel: "RunCN",
+      meta: "Guangxi · Guilin · 2025.11.16",
+      summary: "RunCN #2: a hot race day, family support and Guilin scenery.",
+      href: "run50/stories/english/guilin-marathon.html",
+      thumb: "assets/thumb-run50-guilin-icons.svg?v=20260605-2",
+      label: "RunCN #2",
+      time: "CN",
+      tags: "run50 runcn story english guilin marathon guangxi",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "Hong Kong Marathon: tunnels and bridges of the Pearl of the Orient",
+      channel: "RunCN",
+      meta: "Hong Kong · 2025.11.23",
+      summary: "RunCN #3: city roads, tunnels, bridges and a very Hong Kong race.",
+      href: "run50/stories/english/hong-kong-marathon.html",
+      thumb: "assets/thumb-run50-hong-kong-icons.svg?v=20260605-2",
+      label: "RunCN #3",
+      time: "HK",
+      tags: "run50 runcn story english hong kong marathon",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "Pisa Marathon: leaning tower, Galileo and a RunWorld chapter",
+      channel: "RunWorld",
+      meta: "Italy · Pisa · 2025.12.21",
+      summary: "RunWorld: Italy, the Leaning Tower and a city cover built around Galileo energy.",
+      href: "run50/stories/english/pisa-marathon.html",
+      thumb: "assets/thumb-run50-pisa-icons.svg?v=20260605-2",
+      label: "RunWorld",
+      time: "IT",
+      tags: "run50 runworld story english italy pisa marathon",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "Mexico Marathon: a RunWorld story",
+      channel: "RunWorld",
+      meta: "Mexico",
+      summary: "RunWorld entry with the same cover language as the newer marathon pages.",
+      href: "run50/stories/english/mexico-marathon.html",
+      thumb: "assets/thumb-run50-mexico-icons.svg?v=20260605-2",
+      label: "RunWorld",
+      time: "MX",
+      tags: "run50 runworld story english mexico marathon",
+      section: "stories",
+      avatar: "run50"
+    },
+    {
+      title: "Run50 English Stories",
+      channel: "Run50",
+      meta: "Playlist · full English archive",
+      summary: "All English marathon story pages in one place.",
+      href: "run50/stories/english/",
+      thumb: "assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-2",
+      label: "Playlist",
+      time: "EN",
+      tags: "run50 story english marathon playlist",
+      section: "playlists",
+      avatar: "run50"
+    },
+    {
+      title: "Run50 Chinese Stories",
+      channel: "Run50",
+      meta: "Playlist · 中文原文故事库",
+      summary: "中文长文、微信原文清理版和 RunCN 故事入口。",
+      href: "run50/stories/chinese/",
+      thumb: "assets/og-run50-xiangyang-icons.png?v=20260605-2",
+      label: "Playlist",
+      time: "中",
+      tags: "run50 story chinese marathon playlist runcn",
+      section: "playlists",
+      avatar: "run50"
+    },
+    {
+      title: "Run50 Facebook Editions",
+      channel: "Run50",
+      meta: "Playlist · share-ready versions",
+      summary: "Race-day-first story versions prepared for Facebook sharing.",
+      href: "run50/facebook/",
+      thumb: "assets/og-run50-chicago-marathon-icons.png?v=20260605-2",
+      label: "Playlist",
+      time: "FB",
+      tags: "run50 facebook story marathon social sharing",
+      section: "playlists",
+      avatar: "run50"
+    },
+    {
+      title: "Run50 Personal Space",
+      channel: "Run50",
+      meta: "Home · maps and challenge dashboard",
+      summary: "Run50 main page with maps, progress, story indexes and training links.",
+      href: "run50/index.html",
+      thumb: "assets/thumb-run50-home.png",
+      label: "Channel",
+      time: "Run",
+      tags: "run50 home maps dashboard marathon",
+      section: "playlists",
+      avatar: "run50"
+    },
+    {
+      title: "Run50 Training Page",
+      channel: "Run50",
+      meta: "Training · marathon notes",
+      summary: "Training pages and running notes for the Run50 project.",
+      href: "run50/run50.html",
+      thumb: "assets/thumb-run50-training.png",
+      label: "Training",
+      time: "Run",
+      tags: "run50 training marathon",
+      section: "playlists",
+      avatar: "run50"
+    },
+    {
+      title: "Mainly Marathons New England 2026",
+      channel: "Run50",
+      meta: "Trip guide · 2026",
+      summary: "A planning guide for the 2026 New England series.",
+      href: "run50/mainly-marathons-new-england-2026-guide.html",
+      thumb: "assets/thumb-trip-new-england.png",
+      label: "Trip",
+      time: "2026",
+      tags: "run50 trip guide marathon new england",
+      section: "playlists",
+      avatar: "run50"
+    },
+    {
+      title: "Water Softener Guide: Principles, Valves and Calculator",
+      channel: "Water",
+      meta: "Guide · water treatment",
+      summary: "Softener principles, valves, sizing and practical calculator notes.",
+      href: "Softener-Water/index.html",
+      thumb: "assets/thumb-water-softener-v2.png",
+      label: "Water",
+      time: "Guide",
+      tags: "water softener guide valve calculator research",
+      section: "waterlab",
+      avatar: "water"
+    },
+    {
+      title: "软水原理与阀头竞品分析",
+      channel: "Water",
+      meta: "中文 · product analysis",
+      summary: "软水系统原理、阀头结构和竞品分析。",
+      href: "water-softener/softener-valve-analysis-zh.html",
+      thumb: "assets/thumb-water-softener-v2.png",
+      label: "Water",
+      time: "中文",
+      tags: "water softener chinese valve analysis",
+      section: "waterlab",
+      avatar: "water"
+    },
+    {
+      title: "Water Softening Principles and Valve Analysis",
+      channel: "Water",
+      meta: "English · product analysis",
+      summary: "English version of the water softener and valve comparison report.",
+      href: "water-softener/softener-valve-analysis-en.html",
+      thumb: "assets/thumb-water-softener-v2.png",
+      label: "Water",
+      time: "EN",
+      tags: "water softener english valve analysis",
+      section: "waterlab",
+      avatar: "water"
+    },
+    {
+      title: "WQA 2026 Presentation Summaries",
+      channel: "WQA",
+      meta: "Conference notes",
+      summary: "Presentation summaries and technical notes from WQA 2026.",
+      href: "wqa/WQA_2026_Presentations_Summary-V2.html",
+      thumb: "assets/thumb-wqa-v2.png",
+      label: "WQA",
+      time: "2026",
+      tags: "wqa presentation water research",
+      section: "waterlab",
+      avatar: "wqa"
+    },
+    {
+      title: "WQA 2026 Expo Observation Report",
+      channel: "WQA",
+      meta: "Expo report",
+      summary: "Field observations from the WQA expo floor and product ecosystem.",
+      href: "wqa/WQA_2026_Expo_Observation_Report_EN.html",
+      thumb: "assets/thumb-wqa-v2.png",
+      label: "WQA",
+      time: "Expo",
+      tags: "wqa expo water observation report",
+      section: "waterlab",
+      avatar: "wqa"
+    },
+    {
+      title: "EZsalt Research Report",
+      channel: "WQA",
+      meta: "Product report",
+      summary: "Product research notes for EZsalt.",
+      href: "wqa/EZsalt_Research_Report_2_EN.html",
+      thumb: "assets/thumb-ezsalt-v2.png",
+      label: "WQA",
+      time: "Report",
+      tags: "wqa ezsalt product research",
+      section: "waterlab",
+      avatar: "wqa"
+    },
+    {
+      title: "DROP Research Report",
+      channel: "WQA",
+      meta: "Product report",
+      summary: "Product research notes for DROP.",
+      href: "wqa/DROP_Research_Report_EN.html",
+      thumb: "assets/thumb-drop-v2.png",
+      label: "WQA",
+      time: "Report",
+      tags: "wqa drop product research",
+      section: "waterlab",
+      avatar: "wqa"
+    },
+    {
+      title: "How a Reverse Osmosis System Works",
+      channel: "RO",
+      meta: "Explainer · reverse osmosis",
+      summary: "A clear walkthrough of an RO system and how the main components work.",
+      href: "ro/ro-system-explained.html",
+      thumb: "assets/thumb-ro-v2.png",
+      label: "RO",
+      time: "Guide",
+      tags: "ro reverse osmosis water guide",
+      section: "waterlab",
+      avatar: "ro"
+    },
+    {
+      title: "RO Complete Guide EN",
+      channel: "RO",
+      meta: "Complete guide",
+      summary: "A longer English guide to reverse osmosis systems.",
+      href: "ro/RO-Complete-Guide-EN.html",
+      thumb: "assets/thumb-ro-v2.png",
+      label: "RO",
+      time: "EN",
+      tags: "ro reverse osmosis water english guide",
+      section: "waterlab",
+      avatar: "ro"
+    },
+    {
+      title: "Atomic Habits Full English",
+      channel: "Reading",
+      meta: "Book notes",
+      summary: "A reading page built from Atomic Habits notes.",
+      href: "reading/atomic-habits-full-english.html",
+      thumb: "assets/thumb-atomic-v2.png",
+      label: "Reading",
+      time: "Book",
+      tags: "reading atomic habits book notes",
+      section: "reading",
+      avatar: "reading"
+    },
+    {
+      title: "Atomic Habits Study Cards",
+      channel: "Reading",
+      meta: "Study cards",
+      summary: "Card-style review and study material for Atomic Habits.",
+      href: "reading/atomic-habits-bloom-cards.html",
+      thumb: "assets/thumb-atomic-v2.png",
+      label: "Reading",
+      time: "Cards",
+      tags: "reading atomic habits cards",
+      section: "reading",
+      avatar: "reading"
+    },
+    {
+      title: "Nano IC Image Reader",
+      channel: "Reading",
+      meta: "488-page image edition",
+      summary: "Image-based semiconductor manufacturing reading page.",
+      href: "reading/nano-ic.html",
+      thumb: "assets/thumb-nano-ic-v2.png",
+      label: "Reading",
+      time: "488P",
+      tags: "reading nano ic semiconductor image reader",
+      section: "reading",
+      avatar: "reading"
+    },
+    {
+      title: "Nano IC Manufacturing Study Notes",
+      channel: "Reading",
+      meta: "Semiconductor prep",
+      summary: "Study notes for semiconductor manufacturing and equipment.",
+      href: "reading/nano-ic-manufacturing-study.html",
+      thumb: "assets/thumb-nano-ic-v2.png",
+      label: "Reading",
+      time: "Study",
+      tags: "reading nano ic semiconductor manufacturing study",
+      section: "reading",
+      avatar: "reading"
+    },
+    {
+      title: "Nano IC Manufacturing Detailed Handbook",
+      channel: "Reading",
+      meta: "Detailed handbook",
+      summary: "The longer handbook-style version of the Nano IC reading project.",
+      href: "reading/nano-ic-manufacturing-handbook-detailed.html",
+      thumb: "assets/thumb-nano-ic-v2.png",
+      label: "Reading",
+      time: "Guide",
+      tags: "reading nano ic semiconductor manufacturing handbook",
+      section: "reading",
+      avatar: "reading"
+    }
+  ];
 
-  const sectionData = {
-    featured: posters.filter(item => item.featured).slice(0, 8),
-    run50: posters.filter(item => item.channel === "run50"),
-    waterlab: posters.filter(item => ["water", "wqa", "ro"].includes(item.channel)),
-    reading: posters.filter(item => item.channel === "reading")
+  const sectionMap = {
+    stories: videos.filter(item => item.section === "stories"),
+    playlists: videos.filter(item => item.section === "playlists"),
+    waterlab: videos.filter(item => item.section === "waterlab"),
+    reading: videos.filter(item => item.section === "reading")
   };
 
-  function posterTemplate(item) {
+  function videoTemplate(item) {
+    const avatarText = item.channel === "RunWorld" ? "RW" : item.channel === "RunCN" ? "CN" : item.channel.slice(0, 2);
     return `
-      <a class="poster-card channel-${item.channel}" href="${item.href}" data-category="${item.category}" data-title="${item.title} ${item.sub}">
-        <div class="poster-media">
-          <img src="${item.img}" alt="${item.title} poster" loading="lazy" decoding="async">
-          <span class="poster-badge">${item.tag}</span>
-          <span class="poster-format">${item.format}</span>
-          <span class="poster-rank">${item.rank}</span>
+      <a class="video-card" href="${item.href}" data-tags="${item.tags}" data-title="${item.title} ${item.channel} ${item.meta} ${item.summary}">
+        <div class="thumb">
+          <img class="thumb-img" src="${item.thumb}" alt="${item.title} cover" loading="lazy" decoding="async">
+          <span class="thumb-label">${item.label}</span>
+          <span class="thumb-time">${item.time}</span>
         </div>
-        <div class="poster-copy">
-          <h3>${item.title}</h3>
-          <p>${item.sub}</p>
+        <div class="video-row">
+          <div class="avatar ${item.avatar}">${avatarText}</div>
+          <div class="video-copy">
+            <h3>${item.title}</h3>
+            <div class="meta">${item.channel} · ${item.meta}</div>
+            <div class="summary">${item.summary}</div>
+          </div>
         </div>
       </a>
     `;
   }
 
-  Object.entries(sectionData).forEach(([name, items]) => {
-    const target = document.querySelector(`[data-section="${name}"]`);
-    if (target) target.innerHTML = items.map(posterTemplate).join("");
+  Object.entries(sectionMap).forEach(([section, items]) => {
+    const target = document.querySelector(`[data-section="${section}"]`);
+    if (target) target.innerHTML = items.map(videoTemplate).join("");
   });
 
-  const libraryGrid = document.querySelector("#libraryGrid");
-  libraryGrid.innerHTML = posters.map(posterTemplate).join("");
+  const resultsGrid = document.querySelector("#resultsGrid");
+  resultsGrid.innerHTML = videos.map(videoTemplate).join("");
 
-  const cards = Array.from(libraryGrid.querySelectorAll(".poster-card"));
-  const navButtons = Array.from(document.querySelectorAll(".nav button"));
+  const resultCards = Array.from(resultsGrid.querySelectorAll(".video-card"));
   const searchInput = document.querySelector("#searchInput");
   const resultCount = document.querySelector("#resultCount");
   const emptyState = document.querySelector("#emptyState");
+  const chipButtons = Array.from(document.querySelectorAll(".chip"));
   let currentFilter = "all";
 
   function applyFilters() {
     const query = searchInput.value.trim().toLowerCase();
     const filtering = currentFilter !== "all" || query.length > 0;
     let visible = 0;
+
     document.body.classList.toggle("show-results", filtering);
 
-    cards.forEach(card => {
-      const category = card.dataset.category || "";
+    resultCards.forEach(card => {
+      const tags = (card.dataset.tags || "").toLowerCase();
       const title = (card.dataset.title || "").toLowerCase();
-      const matchesFilter = currentFilter === "all" || category.split(/\s+/).includes(currentFilter);
-      const matchesQuery = !query || title.includes(query) || category.includes(query);
-      const show = matchesFilter && matchesQuery;
+      const filterMatch = currentFilter === "all" || tags.split(/\s+/).includes(currentFilter);
+      const queryMatch = !query || title.includes(query) || tags.includes(query);
+      const show = filterMatch && queryMatch;
       card.hidden = !show;
       if (show) visible += 1;
     });
 
-    resultCount.textContent = `${visible} poster${visible === 1 ? "" : "s"}`;
+    resultCount.textContent = `${visible} 个内容`;
     emptyState.style.display = visible === 0 ? "block" : "none";
   }
 
-  navButtons.forEach(button => {
+  chipButtons.forEach(button => {
     button.addEventListener("click", () => {
       currentFilter = button.dataset.filter;
-      navButtons.forEach(item => item.classList.toggle("active", item === button));
+      chipButtons.forEach(item => item.classList.toggle("active", item === button));
       applyFilters();
     });
   });
 
   searchInput.addEventListener("input", applyFilters);
+  document.querySelector(".search-button").addEventListener("click", applyFilters);
   applyFilters();
 </script>
 </body>

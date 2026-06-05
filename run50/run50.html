@@ -2981,6 +2981,14 @@ function _injectWelcomeMap() {
   const slot = document.getElementById('welcome-map-slot');
   if (!slot) return;
   
+  // Set pointer-events: none on all decorative paths to prevent blocking state click/hover events
+  master.querySelectorAll('path').forEach(path => {
+    const id = path.id.replace('map_', '');
+    if (!_SF.includes(id)) {
+      path.style.pointerEvents = 'none';
+    }
+  });
+  
   _parseGridRaces();
   
   // Append SVG map to the welcome slot
