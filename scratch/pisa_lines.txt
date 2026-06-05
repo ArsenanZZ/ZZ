@@ -1,0 +1,58 @@
+79:     180: "To be honest, I have always felt that the Leaning Tower of Pisa represents Italy even better than the Colosseum. The Colosseum is power, conquest and cruelty. Pisa is where Galileo dropped iron balls, where human reason began pushing back against authority.",
+81:     182: "The medal this time was gold. On the front, Galileo holds a telescope, with the Leaning Tower and a starry sky behind him. It is not flashy, but it rewards a second look.",
+116: def norm(value: str) -> str:
+120: def is_styleish(value: str) -> bool:
+124: def has_desc_leaf_container(el) -> bool:
+133: def is_caption(text: str) -> bool:
+137: def should_skip_text(text: str) -> bool:
+141: def extract_story():
+147:     def walk(el):
+183: def local_source_path(src: str) -> Path:
+188: def copy_story_images(indexed):
+208: def translate_caption(text: str) -> str:
+220: def text_for(idx: int, text: str, lang: str) -> str:
+233: def render_text(idx: int, text: str, lang: str) -> str:
+250: def render_article(indexed, lang: str, img_prefix: str) -> str:
+277: def page_css() -> str:
+450: def facebook_css() -> str:
+764: def engagement(locale: str, page_key: str, mount_id: str) -> str:
+785: def normal_page(lang: str, article: str) -> str:
+864: def facebook_page(article: str) -> str:
+924:       <figure class="lead-media"><img src="../../assets/og-run50-pisa-icons.png" alt="Icon-style Pisa Marathon cover"><figcaption>Pisa icon cover with the Leaning Tower, Galileo's telescope, Tuscan hills and medal.</figcaption></figure>
+944: def font(size, bold=False):
+957: def fit_font(draw, text, max_width, start_size, bold=False, min_size=24):
+967: def write_pisa_png():
+976:     draw.ellipse((992, 265, 1088, 361), fill="#f2b441")
+977:     draw.ellipse((866, 274, 878, 286), fill="#f2b441")
+978:     draw.line((872, 250, 872, 310), fill="#f2b441", width=4)
+979:     draw.line((842, 280, 902, 280), fill="#f2b441", width=4)
+980:     draw.ellipse((910, 330, 924, 344), fill="#d9a441", outline="#8b5e20", width=2)
+982:     draw.rectangle((0, 500, 1200, 630), fill="#d6c987")
+983:     draw.polygon([(0, 508), (160, 450), (350, 520), (540, 468), (720, 420), (900, 504), (1080, 458), (1200, 435), (1200, 630), (0, 630)], fill="#8ab48a")
+984:     draw.polygon([(0, 574), (180, 532), (360, 590), (560, 545), (760, 592), (980, 538), (1200, 512), (1200, 630), (0, 630)], fill="#eef5ec")
+985:     draw.polygon([(0, 584), (190, 548), (400, 592), (640, 555), (850, 598), (1050, 558), (1200, 540), (1200, 630), (0, 630)], fill="#2f855a")
+986:     draw.rectangle((0, 594, 1200, 630), fill="#3f8fa0")
+989:     draw.polygon(tower, fill="#f7f2df", outline="#20242b")
+991:         draw.line(line, fill="#b24a33", width=7)
+993:         draw.line(line, fill="#20242b", width=4)
+996:     draw.polygon([(225, 565), (496, 530), (518, 574), (244, 608)], fill="#b24a33")
+997:     draw.line((250, 610, 520, 576), fill="#20242b", width=5)
+999:     draw.polygon([(686, 410), (742, 410), (766, 562), (630, 562)], fill="#6b4f3b", outline="#20242b")
+1000:     draw.polygon([(652, 440), (720, 410), (705, 562), (610, 562)], fill="#2f855a", outline="#20242b")
+1001:     draw.ellipse((668, 350, 718, 400), fill="#d6a36a", outline="#20242b", width=4)
+1003:     draw.line((660, 344, 725, 344), fill="#20242b", width=5)
+1004:     draw.line((708, 380, 750, 424), fill="#d6a36a", width=10)
+1005:     draw.line((650, 424, 704, 390), fill="#d6a36a", width=10)
+1006:     draw.line((708, 365, 882, 298), fill="#8b5e20", width=18)
+1007:     draw.line((708, 365, 882, 298), fill="#20242b", width=5)
+1008:     draw.ellipse((872, 288, 896, 312), fill="#f2b441", outline="#20242b", width=3)
+1009:     draw.ellipse((702, 360, 714, 372), fill="#20242b")
+1010:     draw.line((670, 562, 648, 604), fill="#20242b", width=8)
+1011:     draw.line((720, 562, 748, 604), fill="#20242b", width=8)
+1013:     draw.ellipse((160, 560, 220, 620), fill="#d9a441", outline="#8b5e20", width=6)
+1014:     draw.ellipse((178, 578, 202, 602), fill="#eef5ec")
+1018: def write_pisa_svg():
+1019:     svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+1021: <desc id="desc">Icon style cover with Pisa title, fixed RunWorld badge, Leaning Tower, Galileo looking through a telescope, Tuscan hills and medal.</desc>
+1064: def write_cover_assets():
+1069: def main():

@@ -1,0 +1,72 @@
+25:     9: "I chose Little Rock entirely for the massive medal. This year's design featured a menacing dinosaur with a heavy metallic feel — I have absolutely no resistance when it comes to cool stuff like this.",
+46:     46: "We originally planned to go straight downtown for packet pickup. But driving past a white-domed building, we were captivated by a pink magnolia tree in full bloom, with sunlight filtering through the branches as if spotlighting the structure.",
+47:     49: "We got out of the car immediately. This was the Arkansas State Capitol, one of Little Rock's most iconic landmarks. Built to resemble a miniature U.S. Capitol, the white marble structure with its grand dome looks exactly like a state capital should.",
+50:     58: "# Packet Pickup | A dinosaur playground on Main Street",
+53:     65: "Stepping inside felt like walking into a cartoon theme park, complete with balloon arches, dinosaur figures, colorful flags, and cartoon backdrops.",
+54:     66: "The Little Rock Marathon is famous for its massive, quirky medals. This year's theme was \"Runosaurs,\" and the medals, shirts, and mascots were entirely dinosaur-themed.",
+110:     197: "At Mile 9, the aid station style shifted completely into a dinosaur theme.",
+112:     205: "Leaving the dinosaur station behind, the course entered a very residential, lived-in part of town.",
+113:     206: "This stretch wound through a humbler neighborhood, with weathered brick houses, chipped pickup trucks, and a faded \"57\" painted on a wall.",
+114:     211: "The houses were simple, some windows boarded up, and rusted trucks parked in front yards.",
+117:     216: "Approaching Mile 14, the white dome of the Arkansas State Capitol finally came back into view.",
+119:     226: "The Mile 15 station kept the dinosaur theme going, featuring a massive inflatable T-Rex waving by the road while kids screamed \"Gatorade! Water!\"",
+126:     253: "Exiting the park, the course wound past small bridges, warehouses, and industrial blocks. The trees receded, and the city took back the stage.",
+134:     281: "After crossing, I headed inside the Little Rock Convention Center to claim the legendary, massive dinosaur medal. It was incredibly heavy!",
+135:     282: "This year's medal was a giant green T-Rex, beautifully crafted with a heavy metallic weight. The dinosaur's gaping jaws and fierce eyes looked like they were roaring in celebration of my finish.",
+152:     321: "The Arkansas State Capitol, with its movie-like white marble dome;",
+155:     324: "And most of all, the dinosaurs, the sculptures, the kids, and the flag-waving grandfathers that made this simple Southern race so memorable.",
+164: def norm(value: str) -> str:
+168: def is_styleish(value: str) -> bool:
+172: def has_desc_leaf_container(el) -> bool:
+181: def is_caption(text: str) -> bool:
+185: def should_skip_text(text: str) -> bool:
+189: def extract_story():
+195:     def walk(el):
+231: def local_source_path(src: str) -> Path:
+236: def copy_story_images(indexed):
+256: def translate_caption(text: str) -> str:
+331: def text_for(idx: int, text: str, lang: str) -> str:
+350: def render_text(idx: int, text: str, lang: str) -> str:
+369: def render_article(indexed, lang: str, img_prefix: str) -> str:
+396: def page_css() -> str:
+576: def facebook_css() -> str:
+891: def engagement(locale: str, page_key: str, mount_id: str) -> str:
+912: def normal_page(lang: str, article: str) -> str:
+954:   <meta property="og:image:alt" content="Little Rock Marathon cover with State Capitol, Junction Bridge and T-Rex dinosaur.">
+992: def facebook_page(content: str) -> str:
+993:     title = "I ran Little Rock's marathon for the massive dinosaur medal, and the old South surprised me"
+1019:   <meta property="og:image:alt" content="Little Rock Marathon cover with State Capitol, Junction Bridge and T-Rex dinosaur.">
+1057:       <figure class="lead-media"><img src="../../assets/og-run50-{SLUG}-icons.png?v={VERSION}" alt="Icon-style Little Rock Marathon cover"><figcaption>Little Rock icon cover with the Arkansas State Capitol dome, Junction Bridge, and a T-Rex dinosaur silhouette.</figcaption></figure>
+1061:         <section class="brief-box"><h2>At a glance</h2><dl><div><dt>Race</dt><dd>Little Rock Marathon, Run50 State 17.</dd></div><div><dt>Course</dt><dd>Downtown Little Rock, Clinton Presidential Park Bridge, North Little Rock, Dassault Jet facility, and Allsopp Park forest trails.</dd></div><div><dt>What stayed with me</dt><dd>Giant green dinosaur medal, misty dawn over the Arkansas River, Mamba runner tribute, and rolling hills of Allsopp Park.</dd></div></dl></section>
+1076: SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+1078: <desc id="desc">Icon style cover with Little Rock title, Run50 badge, Arkansas State Capitol dome, Junction Bridge, and dinosaur.</desc>
+1121: def font(size, bold=False):
+1132: def write_clean(path: Path, text: str):
+1136: def write_svg():
+1140: def write_png():
+1155:     draw.ellipse((980, 260, 1078, 358), fill="#fbbf24")
+1158:     draw.polygon([(0, 515), (160, 455), (330, 520), (515, 465), (710, 420), (900, 510), (1080, 460), (1200, 438), (1200, 630), (0, 630)], fill="#b0cddb")
+1159:     draw.polygon([(0, 584), (190, 535), (380, 596), (560, 545), (770, 598), (980, 548), (1200, 516), (1200, 630), (0, 630)], fill="#84acc3")
+1160:     draw.rectangle((0, 592, 1200, 630), fill="#0f766e")
+1163:     draw.rectangle((50, 480, 1150, 493), fill="#334155")
+1164:     draw.rectangle((385, 490, 415, 592), fill="#475569")
+1165:     draw.rectangle((685, 490, 715, 592), fill="#475569")
+1168:     draw.rectangle((150, 370, 330, 490), fill="#cbd5e1", outline="#334155", width=4)
+1170:         draw.line((cx, 370, cx, 490), fill="#475569", width=3)
+1171:     draw.rectangle((180, 320, 300, 370), fill="#cbd5e1", outline="#334155", width=4)
+1173:         draw.line((cx, 320, cx, 370), fill="#475569", width=2)
+1174:     draw.ellipse((195, 260, 305, 370), fill="#94a3b8", outline="#334155", width=4)
+1175:     draw.rectangle((245, 240, 255, 260), fill="#64748b")
+1176:     draw.line((250, 240, 250, 210), fill="#334155", width=3)
+1179:     # Use simple shapes for dinosaur: head oval, body oval, tail polygon, legs lines
+1180:     draw.ellipse((830, 360, 890, 410), fill="#166534") # head
+1181:     draw.polygon([(830, 385), (800, 395), (840, 405)], fill="#166534") # mouth
+1182:     draw.ellipse((860, 390, 950, 500), fill="#166534") # body
+1183:     draw.polygon([(930, 460), (1080, 510), (940, 490)], fill="#166534") # tail
+1184:     draw.line((910, 480, 930, 540), fill="#166534", width=16) # leg 1
+1185:     draw.line((940, 480, 960, 540), fill="#166534", width=16) # leg 2
+1186:     draw.line((870, 420, 855, 435), fill="#166534", width=6) # arm
+1191: def update_indexes():
+1219:         <h2>Little Rock gave me a 26.2-mile run with the massive dinosaur medal</h2>
+1220:         <p>Race date: March 3, 2024. A Southern weekend road trip down to Arkansas for the legendary dinosaur medal, looping the aviation giants and wooded forest parks.</p>
+1253: def main():

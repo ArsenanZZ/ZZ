@@ -463,15 +463,15 @@ FACEBOOK_CSS = """
 SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
 <title id="title">Mexico City icon cover</title>
 <desc id="desc">Icon style cover with Mexico City title, fixed RunWorld badge, Aztec pyramid, Angel of Independence, cactus, sun and highland scenery.</desc>
-<rect width="1200" height="750" fill="#edf5ec"/>
+<rect width="1200" height="750" fill="#fef3c7"/>
 <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">MEXICO CITY</text>
 <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">ALTITUDE, ZOCALO, PYRAMIDS</text>
 <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
 <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunWorld #5</text>
 <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#2f855a">MEXICO</text>
-<circle cx="1052" cy="352" r="62" fill="#f59e0b"/>
-<path d="M0 612 C190 540 330 590 500 538 C690 480 830 590 1000 545 C1100 518 1168 515 1200 498 L1200 750 L0 750 Z" fill="#a3c4ad"/>
-<path d="M0 682 C180 620 370 705 560 650 C760 592 930 690 1200 620 L1200 750 L0 750 Z" fill="#749b7f"/>
+<circle cx="1052" cy="352" r="62" fill="#f97316"/>
+<path d="M0 612 C190 540 330 590 500 538 C690 480 830 590 1000 545 C1100 518 1168 515 1200 498 L1200 750 L0 750 Z" fill="#fcd34d"/>
+<path d="M0 682 C180 620 370 705 560 650 C760 592 930 690 1200 620 L1200 750 L0 750 Z" fill="#f59e0b"/>
 <g>
   <rect x="118" y="560" width="372" height="60" rx="2" fill="#d97706"/>
   <rect x="158" y="500" width="292" height="60" rx="2" fill="#b45309"/>
@@ -495,7 +495,7 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="im
   <path d="M840 555 L840 575 A10 10 0 0 0 850 585 L870 585" stroke="#166534" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
   <path d="M910 540 L910 560 A10 10 0 0 1 900 570 L886 570" stroke="#166534" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </g>
-<path d="M0 702 C180 675 340 720 520 695 C720 668 900 720 1200 678 L1200 750 L0 750 Z" fill="#4f8f68"/>
+<path d="M0 702 C180 675 340 720 520 695 C720 668 900 720 1200 678 L1200 750 L0 750 Z" fill="#d97706"/>
 </svg>
 """
 
@@ -734,7 +734,7 @@ def write_svg():
 
 
 def write_png():
-    image = Image.new("RGB", (1200, 630), "#edf5ec")
+    image = Image.new("RGB", (1200, 630), "#fef3c7")
     draw = ImageDraw.Draw(image)
     text = "#20242b"
     green = "#2f855a"
@@ -743,10 +743,10 @@ def write_png():
     draw.rounded_rectangle((760, 64, 1122, 228), radius=22, fill="#ffffff", outline=text, width=7)
     draw.text((790, 112), "RunWorld #5", font=font(40, True), fill=text)
     draw.text((790, 166), "MEXICO", font=font(50, True), fill=green)
-    draw.ellipse((1000, 260, 1098, 358), fill="#f59e0b")
-    draw.polygon([(0, 515), (160, 455), (330, 520), (515, 465), (710, 420), (900, 510), (1080, 460), (1200, 438), (1200, 630), (0, 630)], fill="#a3c4ad")
-    draw.polygon([(0, 584), (190, 535), (380, 596), (560, 545), (770, 598), (980, 548), (1200, 516), (1200, 630), (0, 630)], fill="#749b7f")
-    draw.rectangle((0, 592, 1200, 630), fill="#4f8f68")
+    draw.ellipse((1000, 260, 1098, 358), fill="#f97316")
+    draw.polygon([(0, 515), (160, 455), (330, 520), (515, 465), (710, 420), (900, 510), (1080, 460), (1200, 438), (1200, 630), (0, 630)], fill="#fcd34d")
+    draw.polygon([(0, 584), (190, 535), (380, 596), (560, 545), (770, 598), (980, 548), (1200, 516), (1200, 630), (0, 630)], fill="#f59e0b")
+    draw.rectangle((0, 592, 1200, 630), fill="#d97706")
 
     for rect, color in [
         ((112, 500, 488, 558), "#d97706"),

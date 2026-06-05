@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
 <title id="title">Little Rock Marathon icon cover</title>
 <desc id="desc">Icon style cover with Little Rock title, Run50 badge, Arkansas State Capitol dome, Junction Bridge, and dinosaur.</desc>
-<rect width="1200" height="750" fill="#edf3f7"/>
+<rect width="1200" height="750" fill="#fff7ed"/>
 <g transform="translate(70 104)">
   <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">LITTLE ROCK</text>
   <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#0b67c2">CAPITOL · CLINTON · DINOSAUR</text>
@@ -9,9 +9,9 @@
 <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
 <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #17</text>
 <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">ARKANSAS</text>
-<circle cx="1052" cy="352" r="62" fill="#fbbf24"/>
-<path d="M0 612 C190 540 330 590 500 538 C690 480 830 590 1000 545 C1100 518 1168 515 1200 498 L1200 750 L0 750 Z" fill="#b0cddb"/>
-<path d="M0 682 C180 620 370 705 560 650 C760 592 930 690 1200 620 L1200 750 L0 750 Z" fill="#84acc3"/>
+<circle cx="1052" cy="372" r="62" fill="#f97316"/>
+<path d="M0 612 C190 540 330 590 500 538 C690 480 830 590 1000 545 C1100 518 1168 515 1200 498 L1200 750 L0 750 Z" fill="#cbd5e1"/>
+<path d="M0 682 C180 620 370 705 560 650 C760 592 930 690 1200 620 L1200 750 L0 750 Z" fill="#94a3b8"/>
 <rect x="50" y="580" width="1100" height="16" fill="#334155"/>
 <path d="M100 580 Q250 500 400 580" stroke="#334155" stroke-width="12" fill="none"/>
 <path d="M400 580 Q550 500 700 580" stroke="#334155" stroke-width="12" fill="none"/>
@@ -31,12 +31,20 @@
   <line x1="240" y1="380" x2="240" y2="440" stroke="#475569" stroke-width="3"/>
   <line x1="260" y1="380" x2="260" y2="440" stroke="#475569" stroke-width="3"/>
   <line x1="280" y1="380" x2="280" y2="440" stroke="#475569" stroke-width="3"/>
-  <path d="M195 380 C195 310 305 310 305 380 Z" fill="#94a3b8" stroke="#334155" stroke-width="5"/>
+  <!-- Capitol dome aligned at center 240 (x=185 to 295) -->
+  <path d="M185 380 C185 310 295 310 295 380 Z" fill="#94a3b8" stroke="#334155" stroke-width="5"/>
   <rect x="245" y="290" width="10" height="20" fill="#64748b"/>
   <line x1="250" y1="290" x2="250" y2="250" stroke="#334155" stroke-width="4"/>
 </g>
 <g>
-  <path d="M880 580 L900 520 Q910 490 890 470 Q870 450 850 460 L830 470 L830 450 L860 430 Q880 410 910 420 L930 440 Q950 420 970 390 L980 400 Q970 420 950 450 L940 480 Q950 490 970 500 L990 495 Q1010 490 1030 510 L1060 540 Q1080 550 1110 560 L1120 580 L1080 580 Q1040 570 1010 550 L980 540 L960 580 Z" fill="#166534"/>
+  <!-- Dinosaur T-Rex aligned to bridge deck at y=580 -->
+  <ellipse cx="860" cy="462" rx="30" ry="25" fill="#166534"/>
+  <polygon points="830 467, 800 477, 840 487" fill="#166534"/>
+  <ellipse cx="905" cy="512" rx="45" ry="55" fill="#166534"/>
+  <polygon points="930 522, 1080 572, 940 552" fill="#166534"/>
+  <line x1="910" y1="542" x2="930" y2="580" stroke="#166534" stroke-width="16" stroke-linecap="round"/>
+  <line x1="940" y1="542" x2="960" y2="580" stroke="#166534" stroke-width="16" stroke-linecap="round"/>
+  <line x1="870" y1="482" x2="855" y2="497" stroke="#166534" stroke-width="6" stroke-linecap="round"/>
 </g>
-<path d="M0 702 C180 675 340 720 520 695 C720 668 900 720 1200 678 L1200 750 L0 750 Z" fill="#0f766e"/>
+<path d="M0 702 C180 675 340 720 520 695 C720 668 900 720 1200 678 L1200 750 L0 750 Z" fill="#1e3a8a"/>
 </svg>

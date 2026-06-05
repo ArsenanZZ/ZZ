@@ -965,25 +965,27 @@ def fit_font(draw, text, max_width, start_size, bold=False, min_size=24):
 
 
 def write_pisa_png():
-    image = Image.new("RGB", (1200, 630), "#eef5ec")
+    image = Image.new("RGB", (1200, 630), "#0f172a")
     draw = ImageDraw.Draw(image)
-    draw.text((64, 64), "PISA", font=font(66, True), fill="#20242b")
-    draw.text((66, 136), "TOWER, GALILEO, TUSCANY", font=font(26, True), fill="#667085")
-    draw.rounded_rectangle((760, 64, 1122, 228), radius=22, fill="#ffffff", outline="#20242b", width=7)
+    draw.text((64, 64), "PISA", font=font(66, True), fill="#ffffff")
+    draw.text((66, 136), "TOWER, GALILEO, TUSCANY", font=font(26, True), fill="#94a3b8")
+    draw.rounded_rectangle((760, 64, 1122, 228), radius=22, fill="#ffffff", outline="#ffffff", width=7)
     draw.text((790, 112), "RunWorld #6", font=font(40, True), fill="#20242b")
     draw.text((790, 166), "PISA", font=font(50, True), fill="#2f855a")
 
-    draw.ellipse((992, 265, 1088, 361), fill="#f2b441")
-    draw.ellipse((866, 274, 878, 286), fill="#f2b441")
-    draw.line((872, 250, 872, 310), fill="#f2b441", width=4)
-    draw.line((842, 280, 902, 280), fill="#f2b441", width=4)
-    draw.ellipse((910, 330, 924, 344), fill="#d9a441", outline="#8b5e20", width=2)
+    # Crescent Moon
+    draw.ellipse((120, 200, 180, 260), fill="#fef08a")
+    draw.ellipse((140, 200, 200, 260), fill="#0f172a")
 
-    draw.rectangle((0, 500, 1200, 630), fill="#d6c987")
-    draw.polygon([(0, 508), (160, 450), (350, 520), (540, 468), (720, 420), (900, 504), (1080, 458), (1200, 435), (1200, 630), (0, 630)], fill="#8ab48a")
-    draw.polygon([(0, 574), (180, 532), (360, 590), (560, 545), (760, 592), (980, 538), (1200, 512), (1200, 630), (0, 630)], fill="#eef5ec")
-    draw.polygon([(0, 584), (190, 548), (400, 592), (640, 555), (850, 598), (1050, 558), (1200, 540), (1200, 630), (0, 630)], fill="#2f855a")
-    draw.rectangle((0, 594, 1200, 630), fill="#3f8fa0")
+    # Stars
+    for sx, sy in [(220, 100), (340, 150), (480, 80), (700, 120), (750, 240), (950, 110), (1100, 250), (90, 320)]:
+        draw.ellipse((sx, sy, sx+5, sy+5), fill="#fef08a")
+
+    draw.rectangle((0, 500, 1200, 630), fill="#0f291e")
+    draw.polygon([(0, 508), (160, 450), (350, 520), (540, 468), (720, 420), (900, 504), (1080, 458), (1200, 435), (1200, 630), (0, 630)], fill="#0f291e")
+    draw.polygon([(0, 574), (180, 532), (360, 590), (560, 545), (760, 592), (980, 538), (1200, 512), (1200, 630), (0, 630)], fill="#14532d")
+    draw.polygon([(0, 584), (190, 548), (400, 592), (640, 555), (850, 598), (1050, 558), (1200, 540), (1200, 630), (0, 630)], fill="#064e3b")
+    draw.rectangle((0, 594, 1200, 630), fill="#022c22")
 
     tower = [(250, 238), (406, 216), (470, 565), (292, 588)]
     draw.polygon(tower, fill="#f7f2df", outline="#20242b")
@@ -996,17 +998,19 @@ def write_pisa_png():
     draw.polygon([(225, 565), (496, 530), (518, 574), (244, 608)], fill="#b24a33")
     draw.line((250, 610, 520, 576), fill="#20242b", width=5)
 
+    # Galileo - aligned head and connected body
     draw.polygon([(686, 410), (742, 410), (766, 562), (630, 562)], fill="#6b4f3b", outline="#20242b")
     draw.polygon([(652, 440), (720, 410), (705, 562), (610, 562)], fill="#2f855a", outline="#20242b")
-    draw.ellipse((668, 350, 718, 400), fill="#d6a36a", outline="#20242b", width=4)
-    draw.pieslice((656, 332, 725, 382), 190, 20, fill="#7a4f2a", outline="#20242b")
-    draw.line((660, 344, 725, 344), fill="#20242b", width=5)
-    draw.line((708, 380, 750, 424), fill="#d6a36a", width=10)
-    draw.line((650, 424, 704, 390), fill="#d6a36a", width=10)
-    draw.line((708, 365, 882, 298), fill="#8b5e20", width=18)
-    draw.line((708, 365, 882, 298), fill="#20242b", width=5)
-    draw.ellipse((872, 288, 896, 312), fill="#f2b441", outline="#20242b", width=3)
-    draw.ellipse((702, 360, 714, 372), fill="#20242b")
+    draw.ellipse((668, 380, 718, 430), fill="#d6a36a", outline="#20242b", width=4)
+    draw.pieslice((656, 362, 725, 412), 190, 20, fill="#7a4f2a", outline="#20242b")
+    draw.line((660, 374, 725, 374), fill="#20242b", width=5)
+    draw.line((708, 410, 750, 454), fill="#d6a36a", width=10)
+    draw.line((650, 454, 704, 420), fill="#d6a36a", width=10)
+    # Telescope outline first, then body
+    draw.line((708, 395, 882, 328), fill="#20242b", width=22)
+    draw.line((708, 395, 882, 328), fill="#8b5e20", width=14)
+    draw.ellipse((872, 318, 896, 342), fill="#fef08a", outline="#20242b", width=3)
+    draw.ellipse((702, 390, 714, 402), fill="#20242b")
     draw.line((670, 562, 648, 604), fill="#20242b", width=8)
     draw.line((720, 562, 748, 604), fill="#20242b", width=8)
 
@@ -1018,22 +1022,34 @@ def write_pisa_png():
 def write_pisa_svg():
     svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
 <title id="title">Pisa icon cover</title>
-<desc id="desc">Icon style cover with Pisa title, fixed RunWorld badge, Leaning Tower, Galileo looking through a telescope, Tuscan hills and medal.</desc>
-<rect width="1200" height="750" fill="#eef5ec"/>
-<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">PISA</text>
-<text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">TOWER, GALILEO, TUSCANY</text>
+<desc id="desc">Icon style cover with Pisa title, starry night sky, crescent moon, Leaning Tower, Galileo looking through a telescope, Tuscan hills and medal.</desc>
+<rect width="1200" height="750" fill="#0f172a"/>
+<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#ffffff">PISA</text>
+<text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#94a3b8">TOWER, GALILEO, TUSCANY</text>
 <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
 <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunWorld #6</text>
 <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#2f855a">PISA</text>
-<circle cx="1036" cy="358" r="58" fill="#f2b441"/>
-<circle cx="908" cy="330" r="8" fill="#d9a441" stroke="#8b5e20" stroke-width="2"/>
-<circle cx="872" cy="292" r="7" fill="#f2b441"/>
-<path d="M872 258 L872 326 M838 292 L906 292" stroke="#f2b441" stroke-width="4" stroke-linecap="round"/>
-<rect x="0" y="610" width="1200" height="140" fill="#d6c987"/>
-<path d="M0 610 L160 535 L350 622 L540 558 L720 502 L900 610 L1080 550 L1200 525 L1200 750 L0 750 Z" fill="#8ab48a"/>
-<path d="M0 682 L180 632 L360 700 L560 646 L760 704 L980 638 L1200 612 L1200 750 L0 750 Z" fill="#eef5ec"/>
-<path d="M0 694 L190 650 L400 704 L640 660 L850 710 L1050 666 L1200 648 L1200 750 L0 750 Z" fill="#2f855a"/>
-<rect x="0" y="708" width="1200" height="42" fill="#3f8fa0"/>
+
+<!-- Crescent Moon -->
+<circle cx="150" cy="220" r="45" fill="#fef08a"/>
+<circle cx="170" cy="220" r="45" fill="#0f172a"/>
+
+<!-- Stars -->
+<circle cx="220" cy="100" r="3" fill="#fef08a"/>
+<circle cx="340" cy="150" r="3" fill="#fef08a"/>
+<circle cx="480" cy="80" r="3" fill="#fef08a"/>
+<circle cx="700" cy="120" r="3" fill="#fef08a"/>
+<circle cx="750" cy="240" r="3" fill="#fef08a"/>
+<circle cx="950" cy="110" r="3" fill="#fef08a"/>
+<circle cx="1100" cy="250" r="3" fill="#fef08a"/>
+<circle cx="90" cy="320" r="3" fill="#fef08a"/>
+
+<rect x="0" y="610" width="1200" height="140" fill="#0f291e"/>
+<path d="M0 610 L160 535 L350 622 L540 558 L720 502 L900 610 L1080 550 L1200 525 L1200 750 L0 750 Z" fill="#0f291e"/>
+<path d="M0 682 L180 632 L360 700 L560 646 L760 704 L980 638 L1200 612 L1200 750 L0 750 Z" fill="#14532d"/>
+<path d="M0 694 L190 650 L400 704 L640 660 L850 710 L1050 666 L1200 648 L1200 750 L0 750 Z" fill="#064e3b"/>
+<rect x="0" y="708" width="1200" height="42" fill="#022c22"/>
+
 <path d="M270 270 L428 248 L504 670 L318 696 Z" fill="#f7f2df" stroke="#20242b" stroke-width="7"/>
 <path d="M284 322 L444 300 M296 386 L456 364 M308 450 L470 428 M320 514 L482 492 M334 580 L494 558" stroke="#b24a33" stroke-width="8"/>
 <path d="M306 286 L366 684 M350 280 L414 678 M394 274 L466 672" stroke="#20242b" stroke-width="5"/>
@@ -1044,16 +1060,18 @@ def write_pisa_svg():
 </g>
 <path d="M242 676 L530 635 L554 688 L260 726 Z" fill="#b24a33"/>
 <path d="M260 728 L554 690" stroke="#20242b" stroke-width="6" stroke-linecap="round"/>
+
+<!-- Galileo - aligned head and body -->
 <path d="M686 474 L746 474 L772 666 L624 666 Z" fill="#6b4f3b" stroke="#20242b" stroke-width="6"/>
 <path d="M650 510 L724 474 L706 666 L598 666 Z" fill="#2f855a" stroke="#20242b" stroke-width="6"/>
-<circle cx="696" cy="422" r="29" fill="#d6a36a" stroke="#20242b" stroke-width="5"/>
-<path d="M660 400 Q690 366 730 402 L720 416 L666 416 Z" fill="#7a4f2a" stroke="#20242b" stroke-width="5"/>
-<path d="M666 386 L734 386" stroke="#20242b" stroke-width="6" stroke-linecap="round"/>
-<path d="M708 456 L758 510 M652 512 L704 466" stroke="#d6a36a" stroke-width="12" stroke-linecap="round"/>
-<path d="M708 438 L902 356" stroke="#8b5e20" stroke-width="20" stroke-linecap="round"/>
-<path d="M708 438 L902 356" stroke="#20242b" stroke-width="6" stroke-linecap="round"/>
-<circle cx="896" cy="352" r="15" fill="#f2b441" stroke="#20242b" stroke-width="4"/>
-<circle cx="704" cy="432" r="7" fill="#20242b"/>
+<circle cx="696" cy="445" r="29" fill="#d6a36a" stroke="#20242b" stroke-width="5"/>
+<path d="M660 423 Q690 389 730 425 L720 439 L666 439 Z" fill="#7a4f2a" stroke="#20242b" stroke-width="5"/>
+<path d="M666 409 L734 409" stroke="#20242b" stroke-width="6" stroke-linecap="round"/>
+<path d="M708 479 L758 533 M652 535 L704 489" stroke="#d6a36a" stroke-width="12" stroke-linecap="round"/>
+<path d="M708 461 L902 379" stroke="#20242b" stroke-width="24" stroke-linecap="round"/>
+<path d="M708 461 L902 379" stroke="#8b5e20" stroke-width="14" stroke-linecap="round"/>
+<circle cx="896" cy="375" r="15" fill="#fef08a" stroke="#20242b" stroke-width="4"/>
+<circle cx="704" cy="455" r="7" fill="#20242b"/>
 <path d="M668 666 L642 724 M722 666 L754 724" stroke="#20242b" stroke-width="9" stroke-linecap="round"/>
 <circle cx="170" cy="692" r="34" fill="#d9a441" stroke="#8b5e20" stroke-width="7"/>
 <circle cx="170" cy="692" r="14" fill="#eef5ec"/>

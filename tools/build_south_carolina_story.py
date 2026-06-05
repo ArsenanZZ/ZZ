@@ -953,8 +953,7 @@ def facebook_page(content: str) -> str:
     </section>
     <section class="story-grid">
       <aside class="rail">
-        <section class="brief-box"><h2>At a glance</h2><dl><div><dt>Race</dt><dd>Too Slow for Boston Marathon (2Slow4Boston), Run50 State 18.</dd></div><div><dt>Course</dt><dd>A 20-lap neighborhood road loop (1.31 miles per loop) in Greer, South Carolina.</dd></div><div><dt>What stayed with me</dt><dd>A travel trailer RV Airbnb, a stubborn mule finisher medal, counting loops under a brutal sun, and the friendliest family neighborhood volunteers.</dd></div></dl></section>
-        <section class="share-note"><strong>Notes</strong>Comments and page views are tracked below the story.</section>
+        <section class="brief-box"><h2>At a glance</h2><dl><div><dt>Race</dt><dd>Too Slow for Boston Marathon (2Slow4Boston), Run50 State 18.</dd></div><div><dt>Course</dt><dd>A 20-lap neighborhood road loop (1.31 miles per loop) in Greer, South Carolina.</dd></div><div><dt>What stayed with me</dt><dd>Living in a trailer RV, the friendly neighborhood vibes, clicker lap-counting system, and the humor of "Too Slow for Boston".</dd></div></dl></section>
       </aside>
       <div class="copy full-story">
         {content}
@@ -971,7 +970,7 @@ def facebook_page(content: str) -> str:
 SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
 <title id="title">South Carolina Marathon icon cover</title>
 <desc id="desc">Icon style cover with South Carolina title, Run50 badge, caravan RV trailer, pine trees, and stubborn mule.</desc>
-<rect width="1200" height="750" fill="#edf3f7"/>
+<rect width="1200" height="750" fill="#bae6fd"/>
 <g transform="translate(70 104)">
   <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">S. CAROLINA</text>
   <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#0b67c2">2SLOW4BOSTON · TRAILER RV · MULE</text>
@@ -980,8 +979,8 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="im
 <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #18</text>
 <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="900" fill="#0b67c2">S. CAROLINA</text>
 <circle cx="1052" cy="352" r="62" fill="#fbbf24"/>
-<path d="M0 612 C190 540 330 590 500 538 C690 480 830 590 1000 545 C1100 518 1168 515 1200 498 L1200 750 L0 750 Z" fill="#b0cddb"/>
-<path d="M0 682 C180 620 370 705 560 650 C760 592 930 690 1200 620 L1200 750 L0 750 Z" fill="#84acc3"/>
+<path d="M0 612 C190 540 330 590 500 538 C690 480 830 590 1000 545 C1100 518 1168 515 1200 498 L1200 750 L0 750 Z" fill="#86efac"/>
+<path d="M0 682 C180 620 370 705 560 650 C760 592 930 690 1200 620 L1200 750 L0 750 Z" fill="#4ade80"/>
 
 <!-- Pine Trees -->
 <g>
@@ -1015,7 +1014,7 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="im
   <line x1="955" y1="420" x2="985" y2="480" stroke="#27272a" stroke-width="8"/>
 </g>
 
-<path d="M0 702 C180 675 340 720 520 695 C720 668 900 720 1200 678 L1200 750 L0 750 Z" fill="#0f766e"/>
+<path d="M0 702 C180 675 340 720 520 695 C720 668 900 720 1200 678 L1200 750 L0 750 Z" fill="#16a34a"/>
 </svg>
 """
 
@@ -1036,7 +1035,7 @@ def write_svg():
     write_clean(REPO / "assets" / f"thumb-run50-{SLUG}-icons.svg", SVG)
 
 def write_png():
-    image = Image.new("RGB", (1200, 630), "#edf3f7")
+    image = Image.new("RGB", (1200, 630), "#bae6fd")
     draw = ImageDraw.Draw(image)
     text_color = "#20242b"
     blue = "#0b67c2"
@@ -1053,9 +1052,9 @@ def write_png():
     draw.ellipse((980, 260, 1078, 358), fill="#fbbf24")
     
     # Hills
-    draw.polygon([(0, 515), (160, 455), (330, 520), (515, 465), (710, 420), (900, 510), (1080, 460), (1200, 438), (1200, 630), (0, 630)], fill="#b0cddb")
-    draw.polygon([(0, 584), (190, 535), (380, 596), (560, 545), (770, 598), (980, 548), (1200, 516), (1200, 630), (0, 630)], fill="#84acc3")
-    draw.rectangle((0, 592, 1200, 630), fill="#0f766e")
+    draw.polygon([(0, 515), (160, 455), (330, 520), (515, 465), (710, 420), (900, 510), (1080, 460), (1200, 438), (1200, 630), (0, 630)], fill="#86efac")
+    draw.polygon([(0, 584), (190, 535), (380, 596), (560, 545), (770, 598), (980, 548), (1200, 516), (1200, 630), (0, 630)], fill="#4ade80")
+    draw.rectangle((0, 592, 1200, 630), fill="#16a34a")
     
     # Pine Tree Background
     draw.rectangle((540, 280, 560, 480), fill="#78350f")
@@ -1070,7 +1069,7 @@ def write_png():
     draw.rectangle((370, 390, 420, 510), fill="#94a3b8", outline="#334155", width=4)
     draw.ellipse((300, 480, 360, 540), fill="#334155", outline="#1e293b", width=4)
     draw.line((180, 490, 130, 510), fill="#334155", width=8)
-
+ 
     # Stubborn Mule Mascot
     draw.polygon([(830, 380), (860, 350), (880, 410), (850, 430)], fill="#27272a") # neck
     draw.ellipse((800, 320, 860, 370), fill="#27272a") # head
@@ -1083,7 +1082,7 @@ def write_png():
     draw.line((940, 440, 940, 530), fill="#27272a", width=12) # leg 3
     draw.line((960, 440, 960, 530), fill="#27272a", width=12) # leg 4
     draw.line((950, 410, 980, 470), fill="#27272a", width=8) # tail
-
+ 
     image.save(REPO / "assets" / f"og-run50-{SLUG}-icons.png", "PNG")
 
 def update_indexes():

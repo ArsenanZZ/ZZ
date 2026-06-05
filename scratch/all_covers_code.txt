@@ -1,0 +1,194 @@
+=== build_guilin_story.py ===
+    svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+    draw.ellipse((920, 58, 1070, 208), fill="#f4b642")
+        draw.polygon(points, fill=color)
+    draw.polygon([(0, 486), (150, 452), (310, 506), (465, 468), (620, 442), (760, 500), (930, 464), (1100, 440), (1200, 420), (1200, 630), (0, 630)], fill="#0f766e")
+    draw.polygon([(0, 535), (160, 500), (330, 548), (520, 514), (710, 548), (920, 500), (1100, 516), (1200, 490), (1200, 630), (0, 630)], fill="#65b8b2")
+    draw.line([(120, 450), (410, 450), (510, 370), (610, 450), (1040, 450)], fill="#7a4f2a", width=20)
+    draw.ellipse((230, 500, 334, 604), fill="#d9a441", outline="#8b5e20", width=8)
+    draw.ellipse((258, 528, 306, 576), fill="#f4f7f4")
+    draw.line([(250, 500), (282, 462), (314, 500)], fill="#8b5e20", width=7)
+=== build_hong_kong_story.py ===
+    svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+    draw.rectangle((0, 450, 1200, 630), fill="#1f6f8b")
+    draw.polygon([(0, 496), (150, 454), (300, 510), (450, 476), (610, 440), (760, 510), (930, 462), (1090, 474), (1200, 430), (1200, 630), (0, 630)], fill="#3fb5c4")
+    draw.ellipse((920, 52, 1070, 202), fill="#f7b733")
+        draw.rectangle((x, y, x + w, y + h), fill=color)
+                draw.rectangle((wx, wy, wx + 8, wy + 14), fill="#f7d06a")
+    draw.line((620, 140, 620, 300), fill="#cc0000", width=8)
+    draw.line((540, 220, 700, 220), fill="#cc0000", width=8)
+    draw.line((750, 480, 1050, 480), fill="#c33b2b", width=18)
+=== build_little_rock_story.py ===
+SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+def write_svg():
+def write_png():
+    draw.ellipse((980, 260, 1078, 358), fill="#fbbf24")
+    draw.polygon([(0, 515), (160, 455), (330, 520), (515, 465), (710, 420), (900, 510), (1080, 460), (1200, 438), (1200, 630), (0, 630)], fill="#b0cddb")
+    draw.polygon([(0, 584), (190, 535), (380, 596), (560, 545), (770, 598), (980, 548), (1200, 516), (1200, 630), (0, 630)], fill="#84acc3")
+    draw.rectangle((0, 592, 1200, 630), fill="#0f766e")
+    draw.rectangle((50, 480, 1150, 493), fill="#334155")
+    draw.rectangle((385, 490, 415, 592), fill="#475569")
+    draw.rectangle((685, 490, 715, 592), fill="#475569")
+    draw.rectangle((150, 370, 330, 490), fill="#cbd5e1", outline="#334155", width=4)
+        draw.line((cx, 370, cx, 490), fill="#475569", width=3)
+    draw.rectangle((180, 320, 300, 370), fill="#cbd5e1", outline="#334155", width=4)
+        draw.line((cx, 320, cx, 370), fill="#475569", width=2)
+    draw.ellipse((195, 260, 305, 370), fill="#94a3b8", outline="#334155", width=4)
+    draw.rectangle((245, 240, 255, 260), fill="#64748b")
+    draw.line((250, 240, 250, 210), fill="#334155", width=3)
+    draw.ellipse((830, 360, 890, 410), fill="#166534") # head
+    draw.polygon([(830, 385), (800, 395), (840, 405)], fill="#166534") # mouth
+    draw.ellipse((860, 390, 950, 500), fill="#166534") # body
+    draw.polygon([(930, 460), (1080, 510), (940, 490)], fill="#166534") # tail
+    draw.line((910, 480, 930, 540), fill="#166534", width=16) # leg 1
+    draw.line((940, 480, 960, 540), fill="#166534", width=16) # leg 2
+    draw.line((870, 420, 855, 435), fill="#166534", width=6) # arm
+=== build_pisa_story.py ===
+    draw.ellipse((992, 265, 1088, 361), fill="#f2b441")
+    draw.ellipse((866, 274, 878, 286), fill="#f2b441")
+    draw.line((872, 250, 872, 310), fill="#f2b441", width=4)
+    draw.line((842, 280, 902, 280), fill="#f2b441", width=4)
+    draw.ellipse((910, 330, 924, 344), fill="#d9a441", outline="#8b5e20", width=2)
+    draw.rectangle((0, 500, 1200, 630), fill="#d6c987")
+    draw.polygon([(0, 508), (160, 450), (350, 520), (540, 468), (720, 420), (900, 504), (1080, 458), (1200, 435), (1200, 630), (0, 630)], fill="#8ab48a")
+    draw.polygon([(0, 574), (180, 532), (360, 590), (560, 545), (760, 592), (980, 538), (1200, 512), (1200, 630), (0, 630)], fill="#eef5ec")
+    draw.polygon([(0, 584), (190, 548), (400, 592), (640, 555), (850, 598), (1050, 558), (1200, 540), (1200, 630), (0, 630)], fill="#2f855a")
+    draw.rectangle((0, 594, 1200, 630), fill="#3f8fa0")
+    draw.polygon(tower, fill="#f7f2df", outline="#20242b")
+        draw.line(line, fill="#b24a33", width=7)
+        draw.line(line, fill="#20242b", width=4)
+    draw.polygon([(225, 565), (496, 530), (518, 574), (244, 608)], fill="#b24a33")
+    draw.line((250, 610, 520, 576), fill="#20242b", width=5)
+    draw.polygon([(686, 410), (742, 410), (766, 562), (630, 562)], fill="#6b4f3b", outline="#20242b")
+    draw.polygon([(652, 440), (720, 410), (705, 562), (610, 562)], fill="#2f855a", outline="#20242b")
+    draw.ellipse((668, 350, 718, 400), fill="#d6a36a", outline="#20242b", width=4)
+    draw.line((660, 344, 725, 344), fill="#20242b", width=5)
+    draw.line((708, 380, 750, 424), fill="#d6a36a", width=10)
+    draw.line((650, 424, 704, 390), fill="#d6a36a", width=10)
+    draw.line((708, 365, 882, 298), fill="#8b5e20", width=18)
+    draw.line((708, 365, 882, 298), fill="#20242b", width=5)
+    draw.ellipse((872, 288, 896, 312), fill="#f2b441", outline="#20242b", width=3)
+    draw.ellipse((702, 360, 714, 372), fill="#20242b")
+    draw.line((670, 562, 648, 604), fill="#20242b", width=8)
+    draw.line((720, 562, 748, 604), fill="#20242b", width=8)
+    draw.ellipse((160, 560, 220, 620), fill="#d9a441", outline="#8b5e20", width=6)
+    draw.ellipse((178, 578, 202, 602), fill="#eef5ec")
+    svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+=== build_south_carolina_story.py ===
+SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+def write_svg():
+def write_png():
+    draw.ellipse((980, 260, 1078, 358), fill="#fbbf24")
+    draw.polygon([(0, 515), (160, 455), (330, 520), (515, 465), (710, 420), (900, 510), (1080, 460), (1200, 438), (1200, 630), (0, 630)], fill="#b0cddb")
+    draw.polygon([(0, 584), (190, 535), (380, 596), (560, 545), (770, 598), (980, 548), (1200, 516), (1200, 630), (0, 630)], fill="#84acc3")
+    draw.rectangle((0, 592, 1200, 630), fill="#0f766e")
+    draw.rectangle((540, 280, 560, 480), fill="#78350f")
+    draw.polygon([(470, 340), (630, 340), (550, 220)], fill="#15803d")
+    draw.polygon([(490, 260), (610, 260), (550, 160)], fill="#15803d")
+    draw.polygon([(510, 180), (590, 180), (550, 100)], fill="#15803d")
+    draw.rectangle((370, 390, 420, 510), fill="#94a3b8", outline="#334155", width=4)
+    draw.ellipse((300, 480, 360, 540), fill="#334155", outline="#1e293b", width=4)
+    draw.line((180, 490, 130, 510), fill="#334155", width=8)
+    draw.polygon([(830, 380), (860, 350), (880, 410), (850, 430)], fill="#27272a") # neck
+    draw.ellipse((800, 320, 860, 370), fill="#27272a") # head
+    draw.ellipse((770, 327, 820, 361), fill="#27272a") # snout
+    draw.polygon([(830, 325), (825, 280), (845, 300)], fill="#27272a") # ear 1
+    draw.polygon([(840, 325), (845, 280), (855, 305)], fill="#27272a") # ear 2
+    draw.ellipse((870, 390, 970, 470), fill="#27272a") # body
+    draw.line((890, 440, 890, 530), fill="#27272a", width=12) # leg 1
+    draw.line((910, 440, 910, 530), fill="#27272a", width=12) # leg 2
+    draw.line((940, 440, 940, 530), fill="#27272a", width=12) # leg 3
+    draw.line((960, 440, 960, 530), fill="#27272a", width=12) # leg 4
+    draw.line((950, 410, 980, 470), fill="#27272a", width=8) # tail
+=== dump_little_rock.py ===
+
+=== extract_mexico_images.py ===
+
+=== rebuild_mexico_from_source.py ===
+    svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+    draw.ellipse((1000, 260, 1098, 358), fill="#f59e0b")
+    draw.polygon([(0, 515), (160, 455), (330, 520), (515, 465), (710, 420), (900, 510), (1080, 460), (1200, 438), (1200, 630), (0, 630)], fill="#a3c4ad")
+    draw.polygon([(0, 584), (190, 535), (380, 596), (560, 545), (770, 598), (980, 548), (1200, 516), (1200, 630), (0, 630)], fill="#749b7f")
+    draw.rectangle((0, 592, 1200, 630), fill="#4f8f68")
+        draw.rectangle(rect, fill=color)
+    draw.polygon([(292, 558), (300, 326), (316, 326), (324, 558)], fill="#fbbf24")
+    draw.line((112, 500, 488, 500), fill="#20242b", width=4)
+    draw.line((154, 442, 446, 442), fill="#20242b", width=4)
+    draw.line((204, 384, 396, 384), fill="#20242b", width=4)
+    draw.rectangle((666, 380, 692, 562), fill="#8b5e20")
+    draw.rectangle((628, 562, 732, 588), fill="#8b5e20")
+    draw.ellipse((653, 346, 705, 398), fill="#d9a441", outline="#8b5e20", width=5)
+    draw.polygon([(679, 280), (693, 374), (679, 360), (665, 374)], fill="#d9a441", outline="#8b5e20")
+    draw.line((930, 420, 930, 462, 968, 462), fill="#15803d", width=22)
+    draw.line((1028, 392, 1028, 434, 992, 434), fill="#15803d", width=22)
+    draw.line((840, 500, 840, 520, 870, 520), fill="#166534", width=15)
+    draw.line((910, 488, 910, 508, 886, 508), fill="#166534", width=15)
+=== redesign_mexico_runworld.py ===
+SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+def write_svg():
+def write_png():
+    draw.ellipse((1000, 260, 1098, 358), fill="#f59e0b")
+    draw.polygon([(0, 515), (160, 455), (330, 520), (515, 465), (710, 420), (900, 510), (1080, 460), (1200, 438), (1200, 630), (0, 630)], fill="#a3c4ad")
+    draw.polygon([(0, 584), (190, 535), (380, 596), (560, 545), (770, 598), (980, 548), (1200, 516), (1200, 630), (0, 630)], fill="#749b7f")
+    draw.rectangle((0, 592, 1200, 630), fill="#4f8f68")
+        draw.rectangle(rect, fill=color)
+    draw.polygon([(292, 558), (300, 326), (316, 326), (324, 558)], fill="#fbbf24")
+    draw.line((112, 500, 488, 500), fill="#20242b", width=4)
+    draw.line((154, 442, 446, 442), fill="#20242b", width=4)
+    draw.line((204, 384, 396, 384), fill="#20242b", width=4)
+    draw.rectangle((666, 380, 692, 562), fill="#8b5e20")
+    draw.rectangle((628, 562, 732, 588), fill="#8b5e20")
+    draw.ellipse((653, 346, 705, 398), fill="#d9a441", outline="#8b5e20", width=5)
+    draw.polygon([(679, 280), (693, 374), (679, 360), (665, 374)], fill="#d9a441", outline="#8b5e20")
+    draw.line((930, 420, 930, 462, 968, 462), fill="#15803d", width=22)
+    draw.line((1028, 392, 1028, 434, 992, 434), fill="#15803d", width=22)
+    draw.line((840, 500, 840, 520, 870, 520), fill="#166534", width=15)
+    draw.line((910, 488, 910, 508, 886, 508), fill="#166534", width=15)
+=== redesign_miami_cover.py ===
+        draw.rectangle((x, y, x + w, y + h), fill=color)
+            draw.polygon([(x, y), (x + w, y - 38), (x + w, y)], fill=color)
+                draw.rectangle((wx, wy, wx + 11, wy + 16), fill="#f8fafc" if x == 396 else SUN)
+    draw.polygon([(775, 456), (956, 456), (925, 500), (794, 500)], fill=TEXT)
+    draw.rectangle((798, 414, 920, 456), fill="white")
+    draw.rectangle((832, 382, 894, 414), fill="white")
+    draw.rectangle((852, 358, 875, 382), fill="white")
+    draw.rectangle((862, 326, 878, 358), fill=RUN50_BLUE)
+    draw.rectangle((862, 326, 878, 334), fill=TEXT)
+        draw.ellipse((x, 432, x + 8, 440), fill=SUN)
+    draw.line((rx, ry, tx, ty), fill=TRUNK, width=max(6, int(12 * scale)))
+        draw.line((tx, ty, ctrl[0], ctrl[1], end[0], end[1]), fill=PALM, width=max(5, int(9 * scale)))
+    draw.polygon(star1, fill="#d9a441", outline="#8b5e20")
+    draw.line(star1 + [star1[0]], fill="#8b5e20", width=5)
+    draw.polygon(star2, fill="#d9a441", outline="#8b5e20")
+    draw.line(star2 + [star2[0]], fill="#8b5e20", width=5)
+    draw.ellipse((cx - 27, cy - 27, cx + 27, cy + 27), fill="#f6f8f3", outline="#8b5e20", width=4)
+    draw.line((cx, cy + 15, cx, cy - 2), fill=TRUNK, width=3)
+        draw.line((cx, cy - 2, end[0], end[1]), fill=PALM, width=3)
+def write_png():
+    draw.ellipse((970, 250, 1086, 366), fill=SUN)
+    draw.rectangle((0, 510, width, height), fill=SAND)
+    draw.line((215, 478, 1048, 478), fill=TRUNK, width=21)
+        draw.line((x, 478, x, 540), fill=TRUNK, width=10)
+    draw.polygon(wave_points(width, height, 526, 18, 360, 0.2), fill=WATER_DARK)
+    draw.polygon(wave_points(width, height, 578, 16, 330, 1.1), fill=WATER_LIGHT)
+SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+def write_svg():
+=== redesign_run50_covers.py ===
+    draw.ellipse((1034, 244, 1126, 336), fill="#f2b441")
+        draw.polygon(points, fill=color)
+    draw.polygon(
+    draw.polygon(
+    draw.line([(108, 452), (420, 452), (512, 378), (606, 452), (1042, 452)], fill="#7a4f2a", width=20)
+    draw.ellipse((238, 505, 342, 609), fill="#d9a441", outline="#8b5e20", width=8)
+    draw.ellipse((266, 533, 314, 581), fill="#f6f8f3")
+    draw.line([(258, 504), (290, 464), (322, 504)], fill="#8b5e20", width=7)
+    draw.ellipse((1018, 244, 1110, 336), fill="#f7b733")
+        draw.rectangle((x1, y1, x2, y2), fill=color)
+                draw.rectangle((wx, wy, wx + 8, wy + 14), fill="#f7d06a")
+    draw.ellipse((560, 214, 704, 358), outline="#cc0000", width=12)
+    draw.line((632, 214, 632, 358), fill="#cc0000", width=8)
+    draw.line((560, 286, 704, 286), fill="#cc0000", width=8)
+    draw.line((780, 486, 1080, 486), fill="#c33b2b", width=18)
+    draw.polygon([(0, 452), (1200, 452), (1200, 630), (0, 630)], fill="#1f6f8b")
+    draw.polygon(
+def write_svg_assets():

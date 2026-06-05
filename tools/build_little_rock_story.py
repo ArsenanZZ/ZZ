@@ -1058,8 +1058,7 @@ def facebook_page(content: str) -> str:
     </section>
     <section class="story-grid">
       <aside class="rail">
-        <section class="brief-box"><h2>At a glance</h2><dl><div><dt>Race</dt><dd>Little Rock Marathon, Run50 State 17.</dd></div><div><dt>Course</dt><dd>Downtown Little Rock, Clinton Presidential Park Bridge, North Little Rock, Dassault Jet facility, and Allsopp Park forest trails.</dd></div><div><dt>What stayed with me</dt><dd>Giant green dinosaur medal, misty dawn over the Arkansas River, Mamba runner tribute, and rolling hills of Allsopp Park.</dd></div></dl></section>
-        <section class="share-note"><strong>Notes</strong>Comments and page views are tracked below the story.</section>
+        <section class="brief-box"><h2>At a glance</h2><dl><div><dt>Race</dt><dd>Little Rock Marathon, Run50 State 17.</dd></div><div><dt>Course</dt><dd>Downtown Little Rock, Clinton Presidential Park Bridge, North Little Rock, Dassault Jet facility, and Allsopp Park forest trails.</dd></div><div><dt>What stayed with me</dt><dd>The giant dinosaur medal, the friendliness of the local volunteers, the scenic bridge views, and the Clinton library.</dd></div></dl></section>
       </aside>
       <div class="copy full-story">
         {content}
@@ -1076,7 +1075,7 @@ def facebook_page(content: str) -> str:
 SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
 <title id="title">Little Rock Marathon icon cover</title>
 <desc id="desc">Icon style cover with Little Rock title, Run50 badge, Arkansas State Capitol dome, Junction Bridge, and dinosaur.</desc>
-<rect width="1200" height="750" fill="#edf3f7"/>
+<rect width="1200" height="750" fill="#fff7ed"/>
 <g transform="translate(70 104)">
   <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">LITTLE ROCK</text>
   <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#0b67c2">CAPITOL · CLINTON · DINOSAUR</text>
@@ -1084,9 +1083,9 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="im
 <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
 <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #17</text>
 <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">ARKANSAS</text>
-<circle cx="1052" cy="352" r="62" fill="#fbbf24"/>
-<path d="M0 612 C190 540 330 590 500 538 C690 480 830 590 1000 545 C1100 518 1168 515 1200 498 L1200 750 L0 750 Z" fill="#b0cddb"/>
-<path d="M0 682 C180 620 370 705 560 650 C760 592 930 690 1200 620 L1200 750 L0 750 Z" fill="#84acc3"/>
+<circle cx="1052" cy="372" r="62" fill="#f97316"/>
+<path d="M0 612 C190 540 330 590 500 538 C690 480 830 590 1000 545 C1100 518 1168 515 1200 498 L1200 750 L0 750 Z" fill="#cbd5e1"/>
+<path d="M0 682 C180 620 370 705 560 650 C760 592 930 690 1200 620 L1200 750 L0 750 Z" fill="#94a3b8"/>
 <rect x="50" y="580" width="1100" height="16" fill="#334155"/>
 <path d="M100 580 Q250 500 400 580" stroke="#334155" stroke-width="12" fill="none"/>
 <path d="M400 580 Q550 500 700 580" stroke="#334155" stroke-width="12" fill="none"/>
@@ -1106,14 +1105,22 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="im
   <line x1="240" y1="380" x2="240" y2="440" stroke="#475569" stroke-width="3"/>
   <line x1="260" y1="380" x2="260" y2="440" stroke="#475569" stroke-width="3"/>
   <line x1="280" y1="380" x2="280" y2="440" stroke="#475569" stroke-width="3"/>
-  <path d="M195 380 C195 310 305 310 305 380 Z" fill="#94a3b8" stroke="#334155" stroke-width="5"/>
+  <!-- Capitol dome aligned at center 240 (x=185 to 295) -->
+  <path d="M185 380 C185 310 295 310 295 380 Z" fill="#94a3b8" stroke="#334155" stroke-width="5"/>
   <rect x="245" y="290" width="10" height="20" fill="#64748b"/>
   <line x1="250" y1="290" x2="250" y2="250" stroke="#334155" stroke-width="4"/>
 </g>
 <g>
-  <path d="M880 580 L900 520 Q910 490 890 470 Q870 450 850 460 L830 470 L830 450 L860 430 Q880 410 910 420 L930 440 Q950 420 970 390 L980 400 Q970 420 950 450 L940 480 Q950 490 970 500 L990 495 Q1010 490 1030 510 L1060 540 Q1080 550 1110 560 L1120 580 L1080 580 Q1040 570 1010 550 L980 540 L960 580 Z" fill="#166534"/>
+  <!-- Dinosaur T-Rex aligned to bridge deck at y=580 -->
+  <ellipse cx="860" cy="462" rx="30" ry="25" fill="#166534"/>
+  <polygon points="830 467, 800 477, 840 487" fill="#166534"/>
+  <ellipse cx="905" cy="512" rx="45" ry="55" fill="#166534"/>
+  <polygon points="930 522, 1080 572, 940 552" fill="#166534"/>
+  <line x1="910" y1="542" x2="930" y2="580" stroke="#166534" stroke-width="16" stroke-linecap="round"/>
+  <line x1="940" y1="542" x2="960" y2="580" stroke="#166534" stroke-width="16" stroke-linecap="round"/>
+  <line x1="870" y1="482" x2="855" y2="497" stroke="#166534" stroke-width="6" stroke-linecap="round"/>
 </g>
-<path d="M0 702 C180 675 340 720 520 695 C720 668 900 720 1200 678 L1200 750 L0 750 Z" fill="#0f766e"/>
+<path d="M0 702 C180 675 340 720 520 695 C720 668 900 720 1200 678 L1200 750 L0 750 Z" fill="#1e3a8a"/>
 </svg>
 """
 
@@ -1138,7 +1145,7 @@ def write_svg():
 
 
 def write_png():
-    image = Image.new("RGB", (1200, 630), "#edf3f7")
+    image = Image.new("RGB", (1200, 630), "#fff7ed")
     draw = ImageDraw.Draw(image)
     text_color = "#20242b"
     blue = "#0b67c2"
@@ -1152,38 +1159,37 @@ def write_png():
     draw.text((790, 166), "ARKANSAS", font=font(50, True), fill=blue)
     
     # Sun
-    draw.ellipse((980, 260, 1078, 358), fill="#fbbf24")
+    draw.ellipse((980, 280, 1078, 378), fill="#f97316")
     
     # Hills
-    draw.polygon([(0, 515), (160, 455), (330, 520), (515, 465), (710, 420), (900, 510), (1080, 460), (1200, 438), (1200, 630), (0, 630)], fill="#b0cddb")
-    draw.polygon([(0, 584), (190, 535), (380, 596), (560, 545), (770, 598), (980, 548), (1200, 516), (1200, 630), (0, 630)], fill="#84acc3")
-    draw.rectangle((0, 592, 1200, 630), fill="#0f766e")
+    draw.polygon([(0, 515), (160, 455), (330, 520), (515, 465), (710, 420), (900, 510), (1080, 460), (1200, 438), (1200, 630), (0, 630)], fill="#cbd5e1")
+    draw.polygon([(0, 584), (190, 535), (380, 596), (560, 545), (770, 598), (980, 548), (1200, 516), (1200, 630), (0, 630)], fill="#94a3b8")
+    draw.rectangle((0, 592, 1200, 630), fill="#1e3a8a")
     
     # Bridge Truss & Piers
     draw.rectangle((50, 480, 1150, 493), fill="#334155")
     draw.rectangle((385, 490, 415, 592), fill="#475569")
     draw.rectangle((685, 490, 715, 592), fill="#475569")
     
-    # Capitol Dome Left
+    # Capitol Dome - aligned at center 240 (x=185 to 295)
     draw.rectangle((150, 370, 330, 490), fill="#cbd5e1", outline="#334155", width=4)
     for cx in range(180, 310, 30):
         draw.line((cx, 370, cx, 490), fill="#475569", width=3)
     draw.rectangle((180, 320, 300, 370), fill="#cbd5e1", outline="#334155", width=4)
     for cx in range(200, 290, 20):
         draw.line((cx, 320, cx, 370), fill="#475569", width=2)
-    draw.ellipse((195, 260, 305, 370), fill="#94a3b8", outline="#334155", width=4)
+    draw.ellipse((185, 260, 295, 370), fill="#94a3b8", outline="#334155", width=4)
     draw.rectangle((245, 240, 255, 260), fill="#64748b")
     draw.line((250, 240, 250, 210), fill="#334155", width=3)
     
-    # Dinosaur T-Rex Right
-    # Use simple shapes for dinosaur: head oval, body oval, tail polygon, legs lines
-    draw.ellipse((830, 360, 890, 410), fill="#166534") # head
-    draw.polygon([(830, 385), (800, 395), (840, 405)], fill="#166534") # mouth
-    draw.ellipse((860, 390, 950, 500), fill="#166534") # body
-    draw.polygon([(930, 460), (1080, 510), (940, 490)], fill="#166534") # tail
-    draw.line((910, 480, 930, 540), fill="#166534", width=16) # leg 1
-    draw.line((940, 480, 960, 540), fill="#166534", width=16) # leg 2
-    draw.line((870, 420, 855, 435), fill="#166534", width=6) # arm
+    # Dinosaur T-Rex - aligned to bridge deck at y=480
+    draw.ellipse((830, 300, 890, 350), fill="#166534") # head
+    draw.polygon([(830, 325), (800, 335), (840, 345)], fill="#166534") # mouth
+    draw.ellipse((860, 330, 950, 440), fill="#166534") # body
+    draw.polygon([(930, 400), (1080, 450), (940, 430)], fill="#166534") # tail
+    draw.line((910, 420, 930, 480), fill="#166534", width=16) # leg 1
+    draw.line((940, 420, 960, 480), fill="#166534", width=16) # leg 2
+    draw.line((870, 360, 855, 375), fill="#166534", width=6) # arm
     
     image.save(REPO / "assets" / f"og-run50-{SLUG}-icons.png", "PNG")
 

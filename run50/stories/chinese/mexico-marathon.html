@@ -13,8 +13,8 @@
   <meta property="og:site_name" content="ArsenanZZ">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:locale:alternate" content="en_US">
-  <meta property="og:image" content="https://arsenanzz.github.io/ZZ/assets/og-run50-mexico-icons.png?v=20260605-1">
-  <meta property="og:image:secure_url" content="https://arsenanzz.github.io/ZZ/assets/og-run50-mexico-icons.png?v=20260605-1">
+  <meta property="og:image" content="https://arsenanzz.github.io/ZZ/assets/og-run50-mexico-icons.png">
+  <meta property="og:image:secure_url" content="https://arsenanzz.github.io/ZZ/assets/og-run50-mexico-icons.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -24,7 +24,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="RunWorld #第5国｜墨西哥城马拉松">
   <meta name="twitter:description" content="这是我跑世界的第五站，墨西哥城马拉松。趁 Labor Day 三天小长假，从美国飞墨城，在 2,240 米高原跑过城市主轴、改革大道、终点冲进宪法广场；赛后还有金字塔、洞穴餐厅，和漆黑郊外一车陌生人带我们回城的奇遇。">
-  <meta name="twitter:image" content="https://arsenanzz.github.io/ZZ/assets/og-run50-mexico-icons.png?v=20260605-1">
+  <meta name="twitter:image" content="https://arsenanzz.github.io/ZZ/assets/og-run50-mexico-icons.png">
   <link rel="stylesheet" href="../../../assets/zz-engagement.css?v=20260604">
   <style>
     :root {
@@ -36,6 +36,7 @@
       --river: #2f855a;
       --brick: #2f855a;
       --gold: #b7892f;
+      --leaf: #2f855a;
     }
     * { box-sizing: border-box; }
     body {
@@ -53,13 +54,21 @@
       padding: 18px 22px 0;
       display: flex;
       gap: 14px;
+      justify-content: space-between;
       color: var(--muted);
       font-size: 14px;
-      justify-content: space-between;
     }
-    .story-nav a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+    .story-nav a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
     .story-nav a:hover { border-color: currentColor; }
-    .page-header { max-width: 860px; margin: 0 auto; padding: 42px 22px 24px; }
+    .page-header {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 42px 22px 24px;
+    }
     .kicker { margin: 0 0 14px; color: var(--brick); font-size: 14px; font-weight: 800; }
     h1 {
       margin: 0;
@@ -110,7 +119,11 @@
       padding: 44px 22px 56px;
       overflow-wrap: anywhere;
     }
-    .article-body .chapter { margin: 0; padding: 0; border: 0; }
+    .article-body .chapter {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
     .article-body h2 {
       display: flex;
       align-items: center;
@@ -132,11 +145,22 @@
       background: var(--gold);
       flex: 0 0 auto;
     }
-    .article-body .section-label { color: #111827; font-size: 28px; letter-spacing: 0; text-transform: none; }
+    .article-body .kicker {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .article-body .loc { color: var(--river); }
     .article-body p { margin: 0 0 17px; font-size: 17px; line-height: 1.86; }
-    .article-body .kicker { margin: 0 0 14px; color: var(--muted); font-size: 14px; font-weight: 800; }
-    .place { margin: -8px 0 24px; color: var(--muted); font-size: 15px; font-weight: 700; }
-    .article-body figure { margin: 28px 0 30px; }
+    .single, .gallery { margin: 28px 0 30px; }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    figure.shot,
+    .article-body figure { margin: 0; }
     .article-body img {
       display: block;
       width: 100%;
@@ -146,24 +170,41 @@
       background: #e1e8dc;
       box-shadow: 0 16px 40px rgba(15, 23, 42, .12);
     }
-    figcaption { margin-top: 9px; color: #7a828c; font-size: 13px; line-height: 1.55; text-align: center; }
-    .article-body hr { width: 72px; height: 1px; margin: 34px auto; border: 0; background: var(--line); }
-    .end-mark,
+    .gallery img {
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+    figcaption {
+      margin-top: 9px;
+      color: #7a828c;
+      font-size: 13px;
+      line-height: 1.55;
+      text-align: center;
+    }
     .end,
     .credits,
-    .credit-line { text-align: center; color: var(--muted); }
+    .credit-line {
+      text-align: center;
+      color: var(--muted);
+    }
+    .credits {
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      font-size: 15px;
+      line-height: 2;
+    }
+    .article-body hr { width: 72px; height: 1px; margin: 34px auto; border: 0; background: var(--line); }
     .page-footer { max-width: 860px; margin: 0 auto; padding: 22px 22px 48px; color: var(--muted); font-size: 13px; }
     @media (max-width: 640px) {
       .story-nav { flex-wrap: wrap; }
       .page-header { padding: 30px 18px 20px; }
       h1 { font-size: 26px; }
       .article-body { padding: 34px 18px 44px; }
-      .article-body h2,
-      .article-body .section-label { font-size: 24px; }
+      .article-body h2 { font-size: 24px; }
       .article-body p { font-size: 16px; }
-      .article-body figure { margin-left: -2px; margin-right: -2px; }
+      .single, .gallery { margin-left: -2px; margin-right: -2px; }
     }
-    </style>
+</style>
 </head>
 <body>
   <nav class="story-nav" aria-label="Page navigation"><a href="./index.html">← 中文故事</a><a href="../english/mexico-marathon.html">English</a><a href="../../facebook/mexico-marathon.html">Facebook</a><a href="../../index.html">Run50</a></nav>
@@ -174,234 +215,463 @@
     <p class="dek">这是我跑世界的第五站，墨西哥城马拉松。趁 Labor Day 三天小长假，从美国飞墨城，在 2,240 米高原跑过城市主轴、改革大道、终点冲进宪法广场；赛后还有金字塔、洞穴餐厅，和漆黑郊外一车陌生人带我们回城的奇遇。</p>
   </header>
   <main class="article-shell">
-    <article class="article-body"><h2 class="section-label">前言</h2>
-      <h2>三天假期 · 跑去墨西哥</h2>
-      <p class="place">🌶️墨西哥城, 墨西哥</p>
-      <p>九月份要启程回国，在真正落地之前，心里总想着先来一次“小彩排”，体验一下出美国、再回来的流程。</p>
-      <p>第一次跨境，多少还是有点忐忑。那就先选个近一点的地方吧：加拿大或者墨西哥。</p>
-      <p>我喜欢跑马，去一个新国家，当然要在这座城市最牛的大街上跑一跑，才算不虚此行。</p>
-      <p>一通搜索，正好八月底就是墨西哥城马拉松：拉美“国马”，美洲第二大马拉松，堪比中国的北马；而且又和美国 Labor Day 三天小长假无缝衔接。</p>
-      <p>那还犹豫啥？走！墨西哥城马拉松！</p>
-      <figure><img src="mexico-marathon_files/img-001.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
-      <h2>墨西哥速写 · 足球、文明与外星人</h2>
-      <p>如果要用几个词来描绘墨西哥：玛雅与阿兹特克文明、拉美热情、足球狂热、玉米与辣椒，还有外星人传说。</p>
-      <p>我对它最早的了解，确实是足球：世界杯看多了，绿衣军团技术很好，但成绩一般。历史书里，玛雅金字塔像是印在课本边角的图章；工作里，我的实习经理就是墨西哥人。而在各种猎奇新闻里，“墨西哥又发现外星人” 的标题屡见不鲜，这种传说已经成了文化的一部分。</p>
-      <p>墨西哥城（CDMX）：常被称为世界最大的城市之一，主要地标包括 大都会教堂、国家宫，以及世界最大的广场之一，宪法广场（Zócalo）。</p>
-      <figure><img src="mexico-marathon_files/img-002.webp" alt="Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Zócalo @Arsenan</figcaption></figure>
-      <p>查普尔特佩克：意为“蝗虫山”，常被称为“墨西哥版中央公园”。改革大道：贯穿市区东西，路中矗立着著名的 独立天使纪念碑。科约阿坎：富有艺术气息的老城区，最有名的地标是弗里达·卡洛的蓝房子。</p>
-      <p>白天是现代大都会的喧嚣，夜晚则常被传言为UFO 的最佳观测点。</p>
-      <p>墨西哥城不仅是文明与现代交织的拼图，也是一座在现实与传说间游走的都市：粗粝却鲜活，神秘又热烈。</p>
-      <figure><img src="mexico-marathon_files/img-003.webp" alt="Angel of Independence @Photographer" loading="lazy" decoding="async"><figcaption>▲Angel of Independence @Photographer</figcaption></figure>
-      <h2>周六抵达：从拥堵到烟火气</h2>
-      <p>周六从路易斯维尔飞墨西哥城，周一回，“三天两夜一场马”。</p>
-      <p>机场早餐不便宜，跟美国旗鼓相当。打车有 Uber 也有 DiDi。司机只讲西语，第一段在墨城城区穿梭，这边司机技术都极好：两车道能拓展出五条“潜在车道”，车与车之间的空隙从不浪费。</p>
-      <figure><img src="mexico-marathon_files/img-004.webp" alt="CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX @Arsenan</figcaption></figure>
-      <p>空气质量一般，车里一颠一晃，但新鲜感抵过不适。堵车间隙，有小孩上来擦玻璃，不问愿不愿意，很多司机摊开双手表示无奈，也有人象征性给点零钱。</p>
-      <figure><img src="mexico-marathon_files/img-005.webp" alt="CDMX Graffiti @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Graffiti @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-006.webp" alt="CDMX Graffiti @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Graffiti @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-007.webp" alt="CDMX Graffiti @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Graffiti @Arsenan</figcaption></figure>
-      <p>我们的住处是 Meztli Casa Boutique &amp; Spa（Coyoacán）：</p>
-      <p>艺术风、像 Airbnb，离蓝房子不远。到店才 11 点多，墨城比美东晚两小时，还不能入住，先寄存行李，出发去 World Trade Center CDMX · 领物博览会。</p>
-      <figure><img src="mexico-marathon_files/img-008.webp" alt="Coyoacán @Siqi" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Siqi</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-009.webp" alt="World Trade Center CDMX @Siqi" loading="lazy" decoding="async"><figcaption>▲World Trade Center CDMX @Siqi</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-010.webp" alt="World Trade Center CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲World Trade Center CDMX @Arsenan</figcaption></figure>
-      <p>人山人海啊，真名副其实的“国马”。入场口大家都举着张纸挥舞，原来是免责协议，我跟着大妈一个字母一个字母用西语签完，然后才进到里面，拿到号簿。</p>
-      <p>我是2 万多号，参赛包里水、面条、米、补剂、维生素一应俱全，比美国马实在。</p>
-      <figure><img src="mexico-marathon_files/img-011.webp" alt="World Trade Center CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲World Trade Center CDMX @Arsenan</figcaption></figure>
-      <p>等车间隙，Siqi 买了芒果杯，上面撒辣椒粉和盐，五十比索，三美元左右；</p>
-      <p>然后我们去了 宪法广场 Zócalo，路上更堵。靠近时，人潮像海，一层层涌来。</p>
-      <figure><img src="mexico-marathon_files/img-012.webp" alt="CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-013.webp" alt="CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX @Arsenan</figcaption></figure>
-      <p>历史的体积感在这里具象：大都会教堂、国家宫俯视着市井，路中央搭着马拉松终点的蓝色帐篷。</p>
-      <figure><img src="mexico-marathon_files/img-014.webp" alt="CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-015.webp" alt="Taco#Burrito @Arsenan" loading="lazy" decoding="async"><figcaption>▲Taco#Burrito @Arsenan</figcaption></figure>
-      <p>我们还在广场边的小街吃了 taco 和 burrito，不贵、好吃，顺便借用厕所，这边公厕大都收费，和美国很不一样。</p>
-      <figure><img src="mexico-marathon_files/img-016.webp" alt="Zócalo @Siqi" loading="lazy" decoding="async"><figcaption>▲Zócalo @Siqi</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-017.webp" alt="Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Zócalo @Arsenan</figcaption></figure>
-      <p>宪法广场前，我们还碰到了两位穿着传统服饰的“萨满巫师”。他们头戴羽毛头饰，手里摇着草药，怀里抱着一团烧得正旺的 Copal 树脂，烟雾缭绕，给人身上绕来绕去，嘴里念念有词。</p>
-      <figure><img src="mexico-marathon_files/img-018.webp" alt="Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Zócalo @Arsenan</figcaption></figure>
-      <p>这就是墨西哥特有的 Limpia 净化仪式：把坏运气和负能量都用烟“赶跑”，顺带祈个好运、保个平安。</p>
-      <p>灵性与民俗，就这么大大方方地出现在世界最大的广场上。和中国庙会烧香求平安有点类似，但这里更随性、更热闹，完全就是墨西哥式的日常奇观。</p>
-      <p>我站在旁边看了半天，心想：要不我也净化一下？但想了想就还是算了，最近一直做好事，运气应该不会差。</p>
-      <figure><img src="mexico-marathon_files/img-019.webp" alt="Casa AzulX @Siqi" loading="lazy" decoding="async"><figcaption>▲Casa AzulX @Siqi</figcaption></figure>
-      <p>傍晚回 Coyoacán，蓝房子已关门，在绿门前拍照打卡；小吃街烟火气炸裂：</p>
-      <p>我点了个锡纸烤肠+芝士+土豆的本地小吃，味道不错，就是稍腻；</p>
-      <p>Siqi 点了个“挺精致的饮料”还有一个“泡面拉面”，看着就是热水一冲那种，不过有一个鸡蛋，Siqi说：“没啥味儿”。</p>
-      <figure><img src="mexico-marathon_files/img-020.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-021.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-022.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
-      <p>回到酒店，晚间有小型派对，很多艺术家，摄影师咔嚓咔嚓，老板戴着羽毛耳坠邀请我们喝一杯。我们婉拒了，得早点睡觉，明天还要跑步。音乐声在墙里跳，我塞上耳机，高原反而让我睡得踏实。</p>
-      <h2>开跑！在高原跑进城市主轴</h2>
-      <p>起点：奥林匹克大学体育场（1968 奥运主场）</p>
-      <p>清晨我和 Siqi 打车到起点。司机师傅只能把我们放在离赛场最近的下客点，因为周边大半条街都已经封路了。我们下车后，和成千上万的跑者一起往奥林匹克体育场走去。</p>
-      <figure><img src="mexico-marathon_files/img-023.webp" alt="UNAM @Arsenan" loading="lazy" decoding="async"><figcaption>▲UNAM @Arsenan</figcaption></figure>
-      <p>这里其实就在墨西哥国立自治大学（UNAM）校区里：这所大学号称“拉美的哈佛”，世界排名很靠前，校园面积巨大。</p>
-      <p>奥林匹克体育场原本是学校的主场馆，后来成了1968 年奥运会开幕式和田径比赛的主场，现在则是 UNAM 美洲狮足球俱乐部的主场。</p>
-      <figure><img src="mexico-marathon_files/img-024.webp" alt="UNAM @Arsenan" loading="lazy" decoding="async"><figcaption>▲UNAM @Arsenan</figcaption></figure>
-      <p>Siqi 就在起点附近找了个位置等我，而我则随着人潮走向起跑区。</p>
-      <p>分区设置有点复杂：我一开始钻进了蓝区，门口的志愿者用西班牙语手舞足蹈地指挥我去另一个区域，我一句没听懂。眼看人越来越多，我就趁他不注意，顺势一溜，混进去了。心里还暗自窃喜：不愧是中国跑者的智慧。</p>
-      <p>不过没过多久，我才发现，蓝区其实在红区后面。最后还是和蓝区人民慢慢挪了好久，才终于到了红区，红区选手早就跑光了，不能白来啊，我就顺便在那儿刷了个厕所。</p>
-      <p>信号也不太好，只能靠微信断断续续跟 Siqi 联系。</p>
-      <figure><img src="mexico-marathon_files/img-025.webp" alt="UNAM @Arsenan" loading="lazy" decoding="async"><figcaption>▲UNAM @Arsenan</figcaption></figure>
-      <p>起跑。天已大亮，2,240 m 的海拔第一次扑面而来。我试着深呼吸，感觉还行，并没有想象中那么压抑。</p>
-      <p>跑出没多久，远处天桥上出现了一个熟悉的身影，Siqi。她举着 DJI Pocket 3 正对着赛道拍摄，我朝她挥了挥手，还喊了一嗓子，录进了今天的第一段片子。</p>
-      <figure><img src="mexico-marathon_files/img-026.webp" alt="Arsenan @Siqi" loading="lazy" decoding="async"><figcaption>▲Arsenan @Siqi</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-027.webp" alt="Siqi @Arsenan" loading="lazy" decoding="async"><figcaption>▲Siqi @Arsenan</figcaption></figure>
-      <p>赛道上人山人海，就算我在后面几个波次，人潮依旧不散。</p>
-      <p>路边观众热情似火，喊着我大多听不懂的西班牙语口号，但声音就是能量：¡Ánimo! ¡Vamos! 夹在鼓声和哨响中，瞬间让人血脉偾张。</p>
-      <figure><img src="mexico-marathon_files/img-028.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-029.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-030.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
-      <p>不久后赛道拐进了一段校园和绿地，城市的喧嚣退去，绿荫笼罩，呼吸和脚步进入了同一个节拍。</p>
-      <p>再穿出校园，就进入了墨西哥城的城市主轴：</p>
-      <p>Chapultepec 森林公园 → Paseo de la Reforma（改革大道） → 独立天使纪念碑。</p>
-      <p>大道宽阔，纪念碑金光闪闪，拉美式的张扬与首都的庄严在此同框出现。</p>
-      <figure><img src="mexico-marathon_files/img-031.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-032.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-033.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-034.webp" alt="Fuente de Diana Cazadora @Arsenan" loading="lazy" decoding="async"><figcaption>▲Fuente de Diana Cazadora @Arsenan</figcaption></figure>
-      <h2>厕所马拉松 · 红墙既视感</h2>
-      <p>十几公里进了 Chapultepec 公园。</p>
-      <p>这是墨西哥城最有名的公园，被称作“墨西哥版中央公园”：里面有湖泊、动物园、博物馆、城堡。马拉松赛道从中间穿过，绿树成荫，观众也特别多。</p>
-      <figure><img src="mexico-marathon_files/img-035.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-036.webp" alt="Chapultepec @Arsenan" loading="lazy" decoding="async"><figcaption>▲Chapultepec @Arsenan</figcaption></figure>
-      <p>可惜这时候，我忽然想上厕所。</p>
-      <p>这场马拉松的移动厕所不算多，凡是能看见的地方，队伍都长得离谱。我心想“再坚持一下，下一个点可能人少”，结果下一个点还是长龙。</p>
-      <p>有人干脆直接在树丛边“背身一靠”，让我瞬间想起多年前的梗：“北京马拉松的红墙”。</p>
-      <p>那是当年北马经过天安门附近红墙的时候，有人憋不住，直接就地解决，被媒体拍了个正着，一度成了跑圈黑色幽默。</p>
-      <p>我忍住了，毕竟素质好，继续跑。</p>
-      <figure><img src="mexico-marathon_files/img-037.webp" alt="Chapultepec @Photographer" loading="lazy" decoding="async"><figcaption>▲Chapultepec @Photographer</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-038.webp" alt="Siqi @Arsenan" loading="lazy" decoding="async"><figcaption>▲Siqi @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-039.webp" alt="Siqi#Arsenan @Arsenan" loading="lazy" decoding="async"><figcaption>▲Siqi#Arsenan @Arsenan</figcaption></figure>
-      <p>出了公园，又遇见了 Siqi。我们拍了个照，她继续加油，我继续找厕所。</p>
-      <p>再跑进繁华的 Roma / Condesa 一带，这片区域是墨西哥城最潮的社区之一：咖啡馆、酒吧、餐馆林立，欧美游客和本地年轻人特别多，街道也很热闹。</p>
-      <figure><img src="mexico-marathon_files/img-040.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-041.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-042.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-043.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <p>我实在憋不住，寻思干脆进一家酒吧点杯最便宜的饮料顺便借厕所。结果一问，人家直接摇头，说不提供，大概是怕马拉松跑者蜂拥而至吧。没带现金，也没法意思意思买个饮料，只好灰头土脸地再度上路。</p>
-      <figure><img src="mexico-marathon_files/img-044.webp" alt="Toilet @Arsenan" loading="lazy" decoding="async"><figcaption>▲Toilet @Arsenan</figcaption></figure>
-      <p>终于在 25 公里，看见一排蓝粉分色的移动厕所，男女分开。我果断排队，把它当成一次强行休息 。差不多 20 分钟，终于轮到我，可算舒服了。</p>
-      <figure><img src="mexico-marathon_files/img-045.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-046.webp" alt="Monumento a la Revolución @Photographer" loading="lazy" decoding="async"><figcaption>▲Monumento a la Revolución @Photographer</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-047.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-048.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
-      <h2>二进改革大道 · 石板路冲向 Zócalo</h2>
-      <p>出厕所继续跑，身体一度找不回节奏，疲劳感猛地压上来。</p>
-      <p>路边观众持续在供能：水、香蕉、盐、欢呼声。我也跟着学了点西语，喊着“agua（水）”、“cola（可乐）”，没想到居然都听懂了，志愿者立马递过来。</p>
-      <figure><img src="mexico-marathon_files/img-049.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-050.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-051.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-052.webp" alt="32.5KM @Arsenan" loading="lazy" decoding="async"><figcaption>▲32.5KM @Arsenan</figcaption></figure>
-      <p>我边跑边拍，今天上阵了 Ace Pro 2，Meta Glasses 还有 从 Siqi 那搞过来的 GO Ultra，素材应该会很丰富。</p>
-      <p>32.5 公里的补给点，我端起一杯水边走边喝，一个声音忽然从背后冒出来：Siqi！她问要不要上厕所，这个公园，她熟，我说我刚上过，我们就约了终点再见，也不知道谁先到。</p>
-      <figure><img src="mexico-marathon_files/img-053.webp" alt="Chapultepec Park @Photographer" loading="lazy" decoding="async"><figcaption>▲Chapultepec Park @Photographer</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-054.webp" alt="Chapultepec Park @Photographer" loading="lazy" decoding="async"><figcaption>▲Chapultepec Park @Photographer</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-055.webp" alt="Siqi @Arsenan" loading="lazy" decoding="async"><figcaption>▲Siqi @Arsenan</figcaption></figure>
-      <p>随后赛道第二次回到改革大道</p>
-      <figure><img src="mexico-marathon_files/img-056.webp" alt="Fuente de Diana Cazadora @Arsenan" loading="lazy" decoding="async"><figcaption>▲Fuente de Diana Cazadora @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-057.webp" alt="Fuente de Diana Cazadora @Photographer" loading="lazy" decoding="async"><figcaption>▲Fuente de Diana Cazadora @Photographer</figcaption></figure>
-      <p>如今大道两边是高楼、银行、雕塑和广场，它成了墨西哥城的象征性舞台，阅兵、庆典都曾在这里展开，中央的独立天使更是见证历史与今天的地标。</p>
-      <p>跑在这里，你会觉得自己和无数历史瞬间叠加在一起。</p>
-      <figure><img src="mexico-marathon_files/img-058.webp" alt="El Ángel de la Independencia @Arsenan" loading="lazy" decoding="async"><figcaption>▲El Ángel de la Independencia @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-059.webp" alt="Angel of Independence @Arsenan" loading="lazy" decoding="async"><figcaption>▲Angel of Independence @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-060.webp" alt="Angel of Independence @Spectator" loading="lazy" decoding="async"><figcaption>▲Angel of Independence @Spectator</figcaption></figure>
-      <p>进入历史中心，石板路段开始，要留意脚下，旁边是殖民时期的建筑外立面，光影在檐角之间挪动。最后一段是Madero 步行街 (Calle Madero)，一条从改革大道直通宪法广场的狭窄街道。</p>
-      <figure><img src="mexico-marathon_files/img-061.webp" alt="Angel of Independence @Photographer" loading="lazy" decoding="async"><figcaption>▲Angel of Independence @Photographer</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-062.webp" alt="Arsenan @Photographer" loading="lazy" decoding="async"><figcaption>▲Arsenan @Photographer</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-063.webp" alt="Arsenan @Photographer" loading="lazy" decoding="async"><figcaption>▲Arsenan @Photographer</figcaption></figure>
-      <p>两边的观众离得特别近，欢呼声在石墙和建筑之间反弹，像“回声墙”一样，推着跑者向前。</p>
-      <p>这条街在殖民时期叫 San Francisco 街，后来以独立英雄 Francisco I. Madero 命名，如今是最热闹的商业街之一。</p>
-      <figure><img src="mexico-marathon_files/img-064.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-065.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-066.webp" alt="Antigua Basílica @Arsenan" loading="lazy" decoding="async"><figcaption>▲Antigua Basílica @Arsenan</figcaption></figure>
-      <p>最后几公里，我跑过一面墙。墙上贴满了照片，每一张下面都写着同一个词：Desaparecido，失踪者。城市在欢呼，马拉松在继续，但这面墙提醒你。有些人，离开得悄无声息。</p>
-      <figure><img src="mexico-marathon_files/img-067.webp" alt="Desaparecido Wall @Arsenan" loading="lazy" decoding="async"><figcaption>▲Desaparecido Wall @Arsenan</figcaption></figure>
-      <p>就在这段路上，我还遇到了一位穿阿森纳球衣的女士。最后几公里，摄影师还捕捉到了我做的一个不太标准的 哲凯莱什 的庆祝动作。</p>
-      <figure><img src="mexico-marathon_files/img-068.webp" alt="Arsenal @Arsenan" loading="lazy" decoding="async"><figcaption>▲Arsenal @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-069.webp" alt="Gyökeres @Photographer" loading="lazy" decoding="async"><figcaption>▲Gyökeres @Photographer</figcaption></figure>
-      <p>接近终点，穿过拱门，前方豁然开朗：Zócalo 宪法广场。它曾是阿兹特克帝国首都特诺奇提特兰的核心，后来西班牙人修建了大教堂和国家宫，如今则是墨西哥的心脏，重大庆典、总统就职都在这里举行。它就像墨西哥的天安门广场，既是国家象征，也是历史坐标。</p>
-      <figure><img src="mexico-marathon_files/img-070.webp" alt="Close to Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Close to Zócalo @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-071.webp" alt="Close to Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Close to Zócalo @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-072.webp" alt="Close to Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Close to Zócalo @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-073.webp" alt="42KM @Arsenan" loading="lazy" decoding="async"><figcaption>▲42KM @Arsenan</figcaption></figure>
-      <p>我举手、穿门、按表。Finish。</p>
-      <p>奖牌第一眼看着普通，再看图案，有种 “做旧” 的质感，像这座城市：太年轻，也太古老。</p>
-      <figure><img src="mexico-marathon_files/img-074.webp" alt="CDMX Marathon Finish @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon Finish @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-075.webp" alt="CDMX Marathon Finish @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon Finish @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-076.webp" alt="CDMX Marathon Finish @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon Finish @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-077.webp" alt="Medal @Arsenan" loading="lazy" decoding="async"><figcaption>▲Medal @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-078.webp" alt="Medal @Arsenan" loading="lazy" decoding="async"><figcaption>▲Medal @Arsenan</figcaption></figure>
-      <p>我在广场边坐下拉伸，人潮在脚边涌动：完赛者、游客、小贩，还有一个抱着彩色吉他的破布老爷爷。这种强烈的反差感，把墨西哥城的多面性摁在面前：摩天楼与手工艺、秩序与粗粝、喧闹与苍凉。</p>
-      <figure><img src="mexico-marathon_files/img-079.webp" alt="Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Zócalo @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-080.webp" alt="Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Zócalo @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-081.webp" alt="Siqi @Arsenan" loading="lazy" decoding="async"><figcaption>▲Siqi @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-082.webp" alt="Gyökeres @Siqi" loading="lazy" decoding="async"><figcaption>▲Gyökeres @Siqi</figcaption></figure>
-      <p>傍晚番外</p>
-      <h2>金字塔与洞穴餐厅：一场温暖的奇遇</h2>
-      <p>回酒店简单洗漱，我们打车去特奥蒂瓦坎去看 太阳、月亮金字塔。</p>
-      <p>地图显示要一个多小时，最后进园 16:30，注定来不及。那就直奔对面的网红洞穴餐厅吧。</p>
-      <p>城外的高速宽阔，玉米地成片，远山上白色房子密密匝匝。</p>
-      <figure><img src="mexico-marathon_files/img-083.webp" alt="Periferia de CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲Periferia de CDMX @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-084.webp" alt="Periferia de CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲Periferia de CDMX @Arsenan</figcaption></figure>
-      <p>进园道路都是大块石头路，在车里就能远远看见金字塔轮廓，足够震撼。</p>
-      <p>并不是只有埃及有金字塔。这里是中美洲古文明遗址，特奥蒂瓦坎在公元前1世纪就开始兴建，比阿兹特克还要早上千年。当时这里可能有十几万居民，是世界上最大的古代城市之一。</p>
-      <p>后来文明更替、城池兴衰，被阿兹特克人重新发现，他们称之为“众神创造的地方”。</p>
-      <p>如今我们看到的“太阳金字塔”“月亮金字塔”，其实是后人的命名，背后埋着无数未解之谜。它曾是宗教祭祀的舞台，也是权力的象征；学者们至今还在考证它的用途，而坊间传说里，它甚至可能是外星人的着陆点。</p>
-      <figure><img src="mexico-marathon_files/img-085.webp" alt="Pyramid of the Sun @Arsenan" loading="lazy" decoding="async"><figcaption>▲Pyramid of the Sun @Arsenan</figcaption></figure>
-      <p>洞穴餐厅（La Gruta）就在金字塔脚下，开业于1906年，已有一个多世纪的历史。传说当年墨西哥总统、艺术家甚至国际政要都来这里用餐。</p>
-      <p>洞穴是天然熔岩岩洞，点上彩灯之后，石壁泛着红蓝色的光，气氛神秘又热烈。走进去就像穿越到了地心，吃的已经不是菜，而是“仪式感”。也难怪这里成了 Instagram、旅行博主的热门打卡地。</p>
-      <figure><img src="mexico-marathon_files/img-086.webp" alt="La Gruta @Arsenan" loading="lazy" decoding="async"><figcaption>▲La Gruta @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-087.webp" alt="La Gruta @Arsenan" loading="lazy" decoding="async"><figcaption>▲La Gruta @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-088.webp" alt="La Gruta @Siqi" loading="lazy" decoding="async"><figcaption>▲La Gruta @Siqi</figcaption></figure>
-      <p>Siqi 本来要预约，但是没预约上，Walk-in 居然也可以，前台小妹妹一句 “No problem!” 就把我们领进去了。洞穴里摆着色彩斑斓的餐桌椅，有点像节日嘉年华。</p>
-      <p>服务生推荐了时令菜：青椒包肉配甜白酱（Chiles en Nogada 的亲戚版本），我觉得特别但不对我的胃口。不过这顿饭，本来就是**环境费大于食物费，**拍了很多照片，留住了氛围。值的不是味道，而是那个“只此一处”。</p>
-      <figure><img src="mexico-marathon_files/img-089.webp" alt="Chiles en Nogada @Arsenan" loading="lazy" decoding="async"><figcaption>▲Chiles en Nogada @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-090.webp" alt="La Gruta @Waiter" loading="lazy" decoding="async"><figcaption>▲La Gruta @Waiter</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-091.webp" alt="La Gruta @Arsenan" loading="lazy" decoding="async"><figcaption>▲La Gruta @Arsenan</figcaption></figure>
-      <p>吃过饭，我们隔着栅栏远看了一眼金字塔，趁着大门的缝隙，又瞥见了太阳金字塔的全貌。</p>
-      <figure><img src="mexico-marathon_files/img-092.webp" alt="Pyramid of the Sun @Arsenan" loading="lazy" decoding="async"><figcaption>▲Pyramid of the Sun @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-093.webp" alt="Pyramid of the Sun @Arsenan" loading="lazy" decoding="async"><figcaption>▲Pyramid of the Sun @Arsenan</figcaption></figure>
-      <p>天边的云彩翻涌，气势还挺足。路边的仙人掌提醒我们这是热带的傍晚。游客散尽，金字塔周边显得荒凉，只有偶尔一两家小贩卖烤玉米，野狗在暗处此起彼伏地乱叫。</p>
-      <p>天色渐渐暗下来，我们还没意识到问题的严重性。</p>
-      <p>在荒郊外镇，离墨西哥城60公里，手机信号差，叫不到车，电量也告急。偏偏第二天一早7点还有飞机。</p>
-      <figure><img src="mexico-marathon_files/img-094.webp" alt="Teotihuacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Teotihuacán @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-095.webp" alt="Teotihuacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Teotihuacán @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-096.webp" alt="Teotihuacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Teotihuacán @Arsenan</figcaption></figure>
-      <p>夜风有点凉，我怕 Siqi 冻着，提议先找个开门的餐馆。幸好不远处有一盏灯亮着。老板很热情，借给了我们 Wi-Fi，我们点了蛋糕和薯条。</p>
-      <p>但不打车不知道，一试才发现根本没人接单。</p>
-      <p>我掏出 ChatGPT，用西语向旁桌的墨西哥阿姨求助。她很热情，立刻推荐了能说点英语的侄子 Fernando。他说有 bus 可以回城，但要辗转几次。门口一辆 taxi 刚去送人，或许回来能顺道带我们去公交站。</p>
-      <p>眼看店里要打烊，我的电量更红了。店主却笑着说：“没关系，可以等你们车来了再关门。” 还把充电器借我，虽然是慢充，但还是很感谢。</p>
-      <p>这时，Fernando 一家人准备离开。Siqi 在门口等那辆迟迟未归的出租车。就在我们还在犹豫时，他们忽然转过头来，对我们说：“我们可以直接送你们回城。”</p>
-      <p>听上去像童话，又让我想起博主们常说的“陌生车不要上”。可这短短半个小时的交流，让我们选择相信。</p>
-      <p>一家六口挤进一辆五座 SUV。叔叔甚至从后备箱里爬出来，把位置让给了我们，自己缩在第二排，用奇怪的姿势半歪着。</p>
-      <figure><img src="mexico-marathon_files/img-097.webp" alt="Fernando @Arsenan" loading="lazy" decoding="async"><figcaption>▲Fernando @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-098.webp" alt="Heading Back to CDMX @Siqi" loading="lazy" decoding="async"><figcaption>▲Heading Back to CDMX @Siqi</figcaption></figure>
-      <p>车里放着欢快的墨西哥音乐，我们聊 墨西哥与中国，聊 舞蹈与城市。Fernando 说他常在城里表演舞蹈和歌剧，而这一天其实是他嫂子的生日聚会，她只想来看看金字塔。原来在本地人眼里，周末来金字塔就像一次轻松的郊游，而且免费。</p>
-      <p>屁股被挤得生疼，但那种拥挤却比在冷风中等待一辆不知会不会来的公交车要安心得多。一个多小时后，我们终于抵达墨西哥城。很巧，他们家和我们酒店居然在同一条街区。</p>
-      <p>一家人把我们送到门口，还集体下车，帮我们打开后备箱，挥手告别。</p>
-      <figure><img src="mexico-marathon_files/img-099.webp" alt="Heading Back to CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲Heading Back to CDMX @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-100.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-101.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-102.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
-      <h2 class="section-label">后记</h2>
-      <h2>高原的一枚徽章</h2>
-      <p>夜里只睡了两个小时，起身赶清晨航班。从墨城到蒙特雷，再到亚特兰大入境，回路易斯维尔。</p>
-      <p>入境比想象顺利，回到美国的瞬间，氛围一下子 chill 下来，两个国家，两种底色。</p>
-      <figure><img src="mexico-marathon_files/img-103.webp" alt="Return to the U.S. @Arsenan" loading="lazy" decoding="async"><figcaption>▲Return to the U.S. @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-104.webp" alt="Return to the U.S. @Arsenan" loading="lazy" decoding="async"><figcaption>▲Return to the U.S. @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-105.webp" alt="Return to the U.S. @Arsenan" loading="lazy" decoding="async"><figcaption>▲Return to the U.S. @Arsenan</figcaption></figure>
-      <figure><img src="mexico-marathon_files/img-106.webp" alt="Return to the U.S. @Arsenan" loading="lazy" decoding="async"><figcaption>▲Return to the U.S. @Arsenan</figcaption></figure>
-      <p>这趟“墨西哥之行”，过程紧凑、疲惫却充实。</p>
-      <p>高原的 42.195 公里，把我对这座城市的第一印象写进腿里；</p>
-      <p>宪法广场的终点把历史与情绪盖了个章；特奥蒂瓦坎的石影与洞穴餐厅的光，给旅程点了盏灯；Fernando 一家在回城的路上，让 “旅行安全指南” 与 “人与人互信” 达成了短暂和平。</p>
-      <p>墨西哥城马拉松不是“大满贯”，却在拉美有举足轻重的地位；它不承诺 PB，却把心肺和意志洗了一遍。</p>
-      <p>2,240 m 的稀薄空气、改革大道的观众、石板路的脚步声、Zócalo 的终点拱门，这些碎片拼起来，像墨城常见的拼图奖牌：粗粝、热烈、真诚，有点乱，但很完整。</p>
-      <p>给这趟旅程，别上一枚高原徽章。也送那晚漆黑郊外的一车陌生人，一朵热情的 “圣夜之花”（Nochebuena）。</p>
-      <p class="end-mark">- 本文完 -</p>
-      <p class="credit-line">文字丨Arsenan</p>
-      <p class="credit-line">摄影丨Arsenan</p>
-      <p class="credit-line">设计丨Arsenan</p></article>
+    <article class="article-body">
+      <h2 class="section-label">前言</h2>
+
+<h2>三天假期 · 跑去墨西哥</h2>
+
+<p class="place">🌶️墨西哥城, 墨西哥</p>
+
+<p>九月份要启程回国，在真正落地之前，心里总想着先来一次“小彩排”，体验一下出美国、再回来的流程。</p>
+
+<p>第一次跨境，多少还是有点忐忑。那就先选个近一点的地方吧：加拿大或者墨西哥。</p>
+
+<p>我喜欢跑马，去一个新国家，当然要在这座城市最牛的大街上跑一跑，才算不虚此行。</p>
+
+<p>一通搜索，正好八月底就是墨西哥城马拉松：拉美“国马”，美洲第二大马拉松，堪比中国的北马；而且又和美国 Labor Day 三天小长假无缝衔接。</p>
+
+<p>那还犹豫啥？走！墨西哥城马拉松！</p>
+
+<figure><img src="mexico-marathon_files/img-001.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
+
+<h2>墨西哥速写 · 足球、文明与外星人</h2>
+
+<p>如果要用几个词来描绘墨西哥：玛雅与阿兹特克文明、拉美热情、足球狂热、玉米与辣椒，还有外星人传说。</p>
+
+<p>我对它最早的了解，确实是足球：世界杯看多了，绿衣军团技术很好，但成绩一般。历史书里，玛雅金字塔像是印在课本边角的图章；工作里，我的实习经理就是墨西哥人。而在各种猎奇新闻里，“墨西哥又发现外星人” 的标题屡见不鲜，这种传说已经成了文化的一部分。</p>
+
+<p>墨西哥城（CDMX）：常被称为世界最大的城市之一，主要地标包括 大都会教堂、国家宫，以及世界最大的广场之一，宪法广场（Zócalo）。</p>
+
+<figure><img src="mexico-marathon_files/img-002.webp" alt="Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Zócalo @Arsenan</figcaption></figure>
+
+<p>查普尔特佩克：意为“蝗虫山”，常被称为“墨西哥版中央公园”。改革大道：贯穿市区东西，路中矗立着著名的 独立天使纪念碑。科约阿坎：富有艺术气息的老城区，最有名的地标是弗里达·卡洛的蓝房子。</p>
+
+<p>白天是现代大都会的喧嚣，夜晚则常被传言为UFO 的最佳观测点。</p>
+
+<p>墨西哥城不仅是文明与现代交织的拼图，也是一座在现实与传说间游走的都市：粗粝却鲜活，神秘又热烈。</p>
+
+<figure><img src="mexico-marathon_files/img-003.webp" alt="Angel of Independence @Photographer" loading="lazy" decoding="async"><figcaption>▲Angel of Independence @Photographer</figcaption></figure>
+
+<h2>周六抵达：从拥堵到烟火气</h2>
+
+<p>周六从路易斯维尔飞墨西哥城，周一回，“三天两夜一场马”。</p>
+
+<p>机场早餐不便宜，跟美国旗鼓相当。打车有 Uber 也有 DiDi。司机只讲西语，第一段在墨城城区穿梭，这边司机技术都极好：两车道能拓展出五条“潜在车道”，车与车之间的空隙从不浪费。</p>
+
+<figure><img src="mexico-marathon_files/img-004.webp" alt="CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX @Arsenan</figcaption></figure>
+
+<p>空气质量一般，车里一颠一晃，但新鲜感抵过不适。堵车间隙，有小孩上来擦玻璃，不问愿不愿意，很多司机摊开双手表示无奈，也有人象征性给点零钱。</p>
+
+<figure><img src="mexico-marathon_files/img-005.webp" alt="CDMX Graffiti @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Graffiti @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-006.webp" alt="CDMX Graffiti @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Graffiti @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-007.webp" alt="CDMX Graffiti @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Graffiti @Arsenan</figcaption></figure>
+
+<p>我们的住处是 Meztli Casa Boutique &amp; Spa（Coyoacán）：</p>
+
+<p>艺术风、像 Airbnb，离蓝房子不远。到店才 11 点多，墨城比美东晚两小时，还不能入住，先寄存行李，出发去 World Trade Center CDMX · 领物博览会。</p>
+
+<figure><img src="mexico-marathon_files/img-008.webp" alt="Coyoacán @Siqi" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Siqi</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-009.webp" alt="World Trade Center CDMX @Siqi" loading="lazy" decoding="async"><figcaption>▲World Trade Center CDMX @Siqi</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-010.webp" alt="World Trade Center CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲World Trade Center CDMX @Arsenan</figcaption></figure>
+
+<p>人山人海啊，真名副其实的“国马”。入场口大家都举着张纸挥舞，原来是免责协议，我跟着大妈一个字母一个字母用西语签完，然后才进到里面，拿到号簿。</p>
+
+<p>我是2 万多号，参赛包里水、面条、米、补剂、维生素一应俱全，比美国马实在。</p>
+
+<figure><img src="mexico-marathon_files/img-011.webp" alt="World Trade Center CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲World Trade Center CDMX @Arsenan</figcaption></figure>
+
+<p>等车间隙，Siqi 买了芒果杯，上面撒辣椒粉和盐，五十比索，三美元左右；</p>
+
+<p>然后我们去了 宪法广场 Zócalo，路上更堵。靠近时，人潮像海，一层层涌来。</p>
+
+<figure><img src="mexico-marathon_files/img-012.webp" alt="CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-013.webp" alt="CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX @Arsenan</figcaption></figure>
+
+<p>历史的体积感在这里具象：大都会教堂、国家宫俯视着市井，路中央搭着马拉松终点的蓝色帐篷。</p>
+
+<figure><img src="mexico-marathon_files/img-014.webp" alt="CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-015.webp" alt="Taco#Burrito @Arsenan" loading="lazy" decoding="async"><figcaption>▲Taco#Burrito @Arsenan</figcaption></figure>
+
+<p>我们还在广场边的小街吃了 taco 和 burrito，不贵、好吃，顺便借用厕所，这边公厕大都收费，和美国很不一样。</p>
+
+<figure><img src="mexico-marathon_files/img-016.webp" alt="Zócalo @Siqi" loading="lazy" decoding="async"><figcaption>▲Zócalo @Siqi</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-017.webp" alt="Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Zócalo @Arsenan</figcaption></figure>
+
+<p>宪法广场前，我们还碰到了两位穿着传统服饰的“萨满巫师”。他们头戴羽毛头饰，手里摇着草药，怀里抱着一团烧得正旺的 Copal 树脂，烟雾缭绕，给人身上绕来绕去，嘴里念念有词。</p>
+
+<figure><img src="mexico-marathon_files/img-018.webp" alt="Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Zócalo @Arsenan</figcaption></figure>
+
+<p>这就是墨西哥特有的 Limpia 净化仪式：把坏运气和负能量都用烟“赶跑”，顺带祈个好运、保个平安。</p>
+
+<p>灵性与民俗，就这么大大方方地出现在世界最大的广场上。和中国庙会烧香求平安有点类似，但这里更随性、更热闹，完全就是墨西哥式的日常奇观。</p>
+
+<p>我站在旁边看了半天，心想：要不我也净化一下？但想了想就还是算了，最近一直做好事，运气应该不会差。</p>
+
+<figure><img src="mexico-marathon_files/img-019.webp" alt="Casa AzulX @Siqi" loading="lazy" decoding="async"><figcaption>▲Casa AzulX @Siqi</figcaption></figure>
+
+<p>傍晚回 Coyoacán，蓝房子已关门，在绿门前拍照打卡；小吃街烟火气炸裂：</p>
+
+<p>我点了个锡纸烤肠+芝士+土豆的本地小吃，味道不错，就是稍腻；</p>
+
+<p>Siqi 点了个“挺精致的饮料”还有一个“泡面拉面”，看着就是热水一冲那种，不过有一个鸡蛋，Siqi说：“没啥味儿”。</p>
+
+<figure><img src="mexico-marathon_files/img-020.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-021.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-022.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
+
+<p>回到酒店，晚间有小型派对，很多艺术家，摄影师咔嚓咔嚓，老板戴着羽毛耳坠邀请我们喝一杯。我们婉拒了，得早点睡觉，明天还要跑步。音乐声在墙里跳，我塞上耳机，高原反而让我睡得踏实。</p>
+
+<h2>开跑！在高原跑进城市主轴</h2>
+
+<p>起点：奥林匹克大学体育场（1968 奥运主场）</p>
+
+<p>清晨我和 Siqi 打车到起点。司机师傅只能把我们放在离赛场最近的下客点，因为周边大半条街都已经封路了。我们下车后，和成千上万的跑者一起往奥林匹克体育场走去。</p>
+
+<figure><img src="mexico-marathon_files/img-023.webp" alt="UNAM @Arsenan" loading="lazy" decoding="async"><figcaption>▲UNAM @Arsenan</figcaption></figure>
+
+<p>这里其实就在墨西哥国立自治大学（UNAM）校区里：这所大学号称“拉美的哈佛”，世界排名很靠前，校园面积巨大。</p>
+
+<p>奥林匹克体育场原本是学校的主场馆，后来成了1968 年奥运会开幕式和田径比赛的主场，现在则是 UNAM 美洲狮足球俱乐部的主场。</p>
+
+<figure><img src="mexico-marathon_files/img-024.webp" alt="UNAM @Arsenan" loading="lazy" decoding="async"><figcaption>▲UNAM @Arsenan</figcaption></figure>
+
+<p>Siqi 就在起点附近找了个位置等我，而我则随着人潮走向起跑区。</p>
+
+<p>分区设置有点复杂：我一开始钻进了蓝区，门口的志愿者用西班牙语手舞足蹈地指挥我去另一个区域，我一句没听懂。眼看人越来越多，我就趁他不注意，顺势一溜，混进去了。心里还暗自窃喜：不愧是中国跑者的智慧。</p>
+
+<p>不过没过多久，我才发现，蓝区其实在红区后面。最后还是和蓝区人民慢慢挪了好久，才终于到了红区，红区选手早就跑光了，不能白来啊，我就顺便在那儿刷了个厕所。</p>
+
+<p>信号也不太好，只能靠微信断断续续跟 Siqi 联系。</p>
+
+<figure><img src="mexico-marathon_files/img-025.webp" alt="UNAM @Arsenan" loading="lazy" decoding="async"><figcaption>▲UNAM @Arsenan</figcaption></figure>
+
+<p>起跑。天已大亮，2,240 m 的海拔第一次扑面而来。我试着深呼吸，感觉还行，并没有想象中那么压抑。</p>
+
+<p>跑出没多久，远处天桥上出现了一个熟悉的身影，Siqi。她举着 DJI Pocket 3 正对着赛道拍摄，我朝她挥了挥手，还喊了一嗓子，录进了今天的第一段片子。</p>
+
+<figure><img src="mexico-marathon_files/img-026.webp" alt="Arsenan @Siqi" loading="lazy" decoding="async"><figcaption>▲Arsenan @Siqi</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-027.webp" alt="Siqi @Arsenan" loading="lazy" decoding="async"><figcaption>▲Siqi @Arsenan</figcaption></figure>
+
+<p>赛道上人山人海，就算我在后面几个波次，人潮依旧不散。</p>
+
+<p>路边观众热情似火，喊着我大多听不懂的西班牙语口号，但声音就是能量：¡Ánimo! ¡Vamos! 夹在鼓声和哨响中，瞬间让人血脉偾张。</p>
+
+<figure><img src="mexico-marathon_files/img-028.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-029.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-030.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
+
+<p>不久后赛道拐进了一段校园和绿地，城市的喧嚣退去，绿荫笼罩，呼吸和脚步进入了同一个节拍。</p>
+
+<p>再穿出校园，就进入了墨西哥城的城市主轴：</p>
+
+<p>Chapultepec 森林公园 → Paseo de la Reforma（改革大道） → 独立天使纪念碑。</p>
+
+<p>大道宽阔，纪念碑金光闪闪，拉美式的张扬与首都的庄严在此同框出现。</p>
+
+<figure><img src="mexico-marathon_files/img-031.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-032.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-033.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-034.webp" alt="Fuente de Diana Cazadora @Arsenan" loading="lazy" decoding="async"><figcaption>▲Fuente de Diana Cazadora @Arsenan</figcaption></figure>
+
+<h2>厕所马拉松 · 红墙既视感</h2>
+
+<p>十几公里进了 Chapultepec 公园。</p>
+
+<p>这是墨西哥城最有名的公园，被称作“墨西哥版中央公园”：里面有湖泊、动物园、博物馆、城堡。马拉松赛道从中间穿过，绿树成荫，观众也特别多。</p>
+
+<figure><img src="mexico-marathon_files/img-035.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-036.webp" alt="Chapultepec @Arsenan" loading="lazy" decoding="async"><figcaption>▲Chapultepec @Arsenan</figcaption></figure>
+
+<p>可惜这时候，我忽然想上厕所。</p>
+
+<p>这场马拉松的移动厕所不算多，凡是能看见的地方，队伍都长得离谱。我心想“再坚持一下，下一个点可能人少”，结果下一个点还是长龙。</p>
+
+<p>有人干脆直接在树丛边“背身一靠”，让我瞬间想起多年前的梗：“北京马拉松的红墙”。</p>
+
+<p>那是当年北马经过天安门附近红墙的时候，有人憋不住，直接就地解决，被媒体拍了个正着，一度成了跑圈黑色幽默。</p>
+
+<p>我忍住了，毕竟素质好，继续跑。</p>
+
+<figure><img src="mexico-marathon_files/img-037.webp" alt="Chapultepec @Photographer" loading="lazy" decoding="async"><figcaption>▲Chapultepec @Photographer</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-038.webp" alt="Siqi @Arsenan" loading="lazy" decoding="async"><figcaption>▲Siqi @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-039.webp" alt="Siqi#Arsenan @Arsenan" loading="lazy" decoding="async"><figcaption>▲Siqi#Arsenan @Arsenan</figcaption></figure>
+
+<p>出了公园，又遇见了 Siqi。我们拍了个照，她继续加油，我继续找厕所。</p>
+
+<p>再跑进繁华的 Roma / Condesa 一带，这片区域是墨西哥城最潮的社区之一：咖啡馆、酒吧、餐馆林立，欧美游客和本地年轻人特别多，街道也很热闹。</p>
+
+<figure><img src="mexico-marathon_files/img-040.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-041.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-042.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-043.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<p>我实在憋不住，寻思干脆进一家酒吧点杯最便宜的饮料顺便借厕所。结果一问，人家直接摇头，说不提供，大概是怕马拉松跑者蜂拥而至吧。没带现金，也没法意思意思买个饮料，只好灰头土脸地再度上路。</p>
+
+<figure><img src="mexico-marathon_files/img-044.webp" alt="Toilet @Arsenan" loading="lazy" decoding="async"><figcaption>▲Toilet @Arsenan</figcaption></figure>
+
+<p>终于在 25 公里，看见一排蓝粉分色的移动厕所，男女分开。我果断排队，把它当成一次强行休息 。差不多 20 分钟，终于轮到我，可算舒服了。</p>
+
+<figure><img src="mexico-marathon_files/img-045.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-046.webp" alt="Monumento a la Revolución @Photographer" loading="lazy" decoding="async"><figcaption>▲Monumento a la Revolución @Photographer</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-047.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-048.webp" alt="CDMX Marathon @Photographer" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Photographer</figcaption></figure>
+
+<h2>二进改革大道 · 石板路冲向 Zócalo</h2>
+
+<p>出厕所继续跑，身体一度找不回节奏，疲劳感猛地压上来。</p>
+
+<p>路边观众持续在供能：水、香蕉、盐、欢呼声。我也跟着学了点西语，喊着“agua（水）”、“cola（可乐）”，没想到居然都听懂了，志愿者立马递过来。</p>
+
+<figure><img src="mexico-marathon_files/img-049.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-050.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-051.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-052.webp" alt="32.5KM @Arsenan" loading="lazy" decoding="async"><figcaption>▲32.5KM @Arsenan</figcaption></figure>
+
+<p>我边跑边拍，今天上阵了 Ace Pro 2，Meta Glasses 还有 从 Siqi 那搞过来的 GO Ultra，素材应该会很丰富。</p>
+
+<p>32.5 公里的补给点，我端起一杯水边走边喝，一个声音忽然从背后冒出来：Siqi！她问要不要上厕所，这个公园，她熟，我说我刚上过，我们就约了终点再见，也不知道谁先到。</p>
+
+<figure><img src="mexico-marathon_files/img-053.webp" alt="Chapultepec Park @Photographer" loading="lazy" decoding="async"><figcaption>▲Chapultepec Park @Photographer</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-054.webp" alt="Chapultepec Park @Photographer" loading="lazy" decoding="async"><figcaption>▲Chapultepec Park @Photographer</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-055.webp" alt="Siqi @Arsenan" loading="lazy" decoding="async"><figcaption>▲Siqi @Arsenan</figcaption></figure>
+
+<p>随后赛道第二次回到改革大道</p>
+
+<figure><img src="mexico-marathon_files/img-056.webp" alt="Fuente de Diana Cazadora @Arsenan" loading="lazy" decoding="async"><figcaption>▲Fuente de Diana Cazadora @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-057.webp" alt="Fuente de Diana Cazadora @Photographer" loading="lazy" decoding="async"><figcaption>▲Fuente de Diana Cazadora @Photographer</figcaption></figure>
+
+<p>如今大道两边是高楼、银行、雕塑和广场，它成了墨西哥城的象征性舞台，阅兵、庆典都曾在这里展开，中央的独立天使更是见证历史与今天的地标。</p>
+
+<p>跑在这里，你会觉得自己和无数历史瞬间叠加在一起。</p>
+
+<figure><img src="mexico-marathon_files/img-058.webp" alt="El Ángel de la Independencia @Arsenan" loading="lazy" decoding="async"><figcaption>▲El Ángel de la Independencia @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-059.webp" alt="Angel of Independence @Arsenan" loading="lazy" decoding="async"><figcaption>▲Angel of Independence @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-060.webp" alt="Angel of Independence @Spectator" loading="lazy" decoding="async"><figcaption>▲Angel of Independence @Spectator</figcaption></figure>
+
+<p>进入历史中心，石板路段开始，要留意脚下，旁边是殖民时期的建筑外立面，光影在檐角之间挪动。最后一段是Madero 步行街 (Calle Madero)，一条从改革大道直通宪法广场的狭窄街道。</p>
+
+<figure><img src="mexico-marathon_files/img-061.webp" alt="Angel of Independence @Photographer" loading="lazy" decoding="async"><figcaption>▲Angel of Independence @Photographer</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-062.webp" alt="Arsenan @Photographer" loading="lazy" decoding="async"><figcaption>▲Arsenan @Photographer</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-063.webp" alt="Arsenan @Photographer" loading="lazy" decoding="async"><figcaption>▲Arsenan @Photographer</figcaption></figure>
+
+<p>两边的观众离得特别近，欢呼声在石墙和建筑之间反弹，像“回声墙”一样，推着跑者向前。</p>
+
+<p>这条街在殖民时期叫 San Francisco 街，后来以独立英雄 Francisco I. Madero 命名，如今是最热闹的商业街之一。</p>
+
+<figure><img src="mexico-marathon_files/img-064.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-065.webp" alt="CDMX Marathon @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-066.webp" alt="Antigua Basílica @Arsenan" loading="lazy" decoding="async"><figcaption>▲Antigua Basílica @Arsenan</figcaption></figure>
+
+<p>最后几公里，我跑过一面墙。墙上贴满了照片，每一张下面都写着同一个词：Desaparecido，失踪者。城市在欢呼，马拉松在继续，但这面墙提醒你。有些人，离开得悄无声息。</p>
+
+<figure><img src="mexico-marathon_files/img-067.webp" alt="Desaparecido Wall @Arsenan" loading="lazy" decoding="async"><figcaption>▲Desaparecido Wall @Arsenan</figcaption></figure>
+
+<p>就在这段路上，我还遇到了一位穿阿森纳球衣的女士。最后几公里，摄影师还捕捉到了我做的一个不太标准的 哲凯莱什 的庆祝动作。</p>
+
+<figure><img src="mexico-marathon_files/img-068.webp" alt="Arsenal @Arsenan" loading="lazy" decoding="async"><figcaption>▲Arsenal @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-069.webp" alt="Gyökeres @Photographer" loading="lazy" decoding="async"><figcaption>▲Gyökeres @Photographer</figcaption></figure>
+
+<p>接近终点，穿过拱门，前方豁然开朗：Zócalo 宪法广场。它曾是阿兹特克帝国首都特诺奇提特兰的核心，后来西班牙人修建了大教堂和国家宫，如今则是墨西哥的心脏，重大庆典、总统就职都在这里举行。它就像墨西哥的天安门广场，既是国家象征，也是历史坐标。</p>
+
+<figure><img src="mexico-marathon_files/img-070.webp" alt="Close to Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Close to Zócalo @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-071.webp" alt="Close to Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Close to Zócalo @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-072.webp" alt="Close to Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Close to Zócalo @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-073.webp" alt="42KM @Arsenan" loading="lazy" decoding="async"><figcaption>▲42KM @Arsenan</figcaption></figure>
+
+<p>我举手、穿门、按表。Finish。</p>
+
+<p>奖牌第一眼看着普通，再看图案，有种 “做旧” 的质感，像这座城市：太年轻，也太古老。</p>
+
+<figure><img src="mexico-marathon_files/img-074.webp" alt="CDMX Marathon Finish @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon Finish @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-075.webp" alt="CDMX Marathon Finish @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon Finish @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-076.webp" alt="CDMX Marathon Finish @Arsenan" loading="lazy" decoding="async"><figcaption>▲CDMX Marathon Finish @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-077.webp" alt="Medal @Arsenan" loading="lazy" decoding="async"><figcaption>▲Medal @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-078.webp" alt="Medal @Arsenan" loading="lazy" decoding="async"><figcaption>▲Medal @Arsenan</figcaption></figure>
+
+<p>我在广场边坐下拉伸，人潮在脚边涌动：完赛者、游客、小贩，还有一个抱着彩色吉他的破布老爷爷。这种强烈的反差感，把墨西哥城的多面性摁在面前：摩天楼与手工艺、秩序与粗粝、喧闹与苍凉。</p>
+
+<figure><img src="mexico-marathon_files/img-079.webp" alt="Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Zócalo @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-080.webp" alt="Zócalo @Arsenan" loading="lazy" decoding="async"><figcaption>▲Zócalo @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-081.webp" alt="Siqi @Arsenan" loading="lazy" decoding="async"><figcaption>▲Siqi @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-082.webp" alt="Gyökeres @Siqi" loading="lazy" decoding="async"><figcaption>▲Gyökeres @Siqi</figcaption></figure>
+
+<p>傍晚番外</p>
+
+<h2>金字塔与洞穴餐厅：一场温暖的奇遇</h2>
+
+<p>回酒店简单洗漱，我们打车去特奥蒂瓦坎去看 太阳、月亮金字塔。</p>
+
+<p>地图显示要一个多小时，最后进园 16:30，注定来不及。那就直奔对面的网红洞穴餐厅吧。</p>
+
+<p>城外的高速宽阔，玉米地成片，远山上白色房子密密匝匝。</p>
+
+<figure><img src="mexico-marathon_files/img-083.webp" alt="Periferia de CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲Periferia de CDMX @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-084.webp" alt="Periferia de CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲Periferia de CDMX @Arsenan</figcaption></figure>
+
+<p>进园道路都是大块石头路，在车里就能远远看见金字塔轮廓，足够震撼。</p>
+
+<p>并不是只有埃及有金字塔。这里是中美洲古文明遗址，特奥蒂瓦坎在公元前1世纪就开始兴建，比阿兹特克还要早上千年。当时这里可能有十几万居民，是世界上最大的古代城市之一。</p>
+
+<p>后来文明更替、城池兴衰，被阿兹特克人重新发现，他们称之为“众神创造的地方”。</p>
+
+<p>如今我们看到的“太阳金字塔”“月亮金字塔”，其实是后人的命名，背后埋着无数未解之谜。它曾是宗教祭祀的舞台，也是权力的象征；学者们至今还在考证它的用途，而坊间传说里，它甚至可能是外星人的着陆点。</p>
+
+<figure><img src="mexico-marathon_files/img-085.webp" alt="Pyramid of the Sun @Arsenan" loading="lazy" decoding="async"><figcaption>▲Pyramid of the Sun @Arsenan</figcaption></figure>
+
+<p>洞穴餐厅（La Gruta）就在金字塔脚下，开业于1906年，已有一个多世纪的历史。传说当年墨西哥总统、艺术家甚至国际政要都来这里用餐。</p>
+
+<p>洞穴是天然熔岩岩洞，点上彩灯之后，石壁泛着红蓝色的光，气氛神秘又热烈。走进去就像穿越到了地心，吃的已经不是菜，而是“仪式感”。也难怪这里成了 Instagram、旅行博主的热门打卡地。</p>
+
+<figure><img src="mexico-marathon_files/img-086.webp" alt="La Gruta @Arsenan" loading="lazy" decoding="async"><figcaption>▲La Gruta @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-087.webp" alt="La Gruta @Arsenan" loading="lazy" decoding="async"><figcaption>▲La Gruta @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-088.webp" alt="La Gruta @Siqi" loading="lazy" decoding="async"><figcaption>▲La Gruta @Siqi</figcaption></figure>
+
+<p>Siqi 本来要预约，但是没预约上，Walk-in 居然也可以，前台小妹妹一句 “No problem!” 就把我们领进去了。洞穴里摆着色彩斑斓的餐桌椅，有点像节日嘉年华。</p>
+
+<p>服务生推荐了时令菜：青椒包肉配甜白酱（Chiles en Nogada 的亲戚版本），我觉得特别但不对我的胃口。不过这顿饭，本来就是**环境费大于食物费，**拍了很多照片，留住了氛围。值的不是味道，而是那个“只此一处”。</p>
+
+<figure><img src="mexico-marathon_files/img-089.webp" alt="Chiles en Nogada @Arsenan" loading="lazy" decoding="async"><figcaption>▲Chiles en Nogada @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-090.webp" alt="La Gruta @Waiter" loading="lazy" decoding="async"><figcaption>▲La Gruta @Waiter</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-091.webp" alt="La Gruta @Arsenan" loading="lazy" decoding="async"><figcaption>▲La Gruta @Arsenan</figcaption></figure>
+
+<p>吃过饭，我们隔着栅栏远看了一眼金字塔，趁着大门的缝隙，又瞥见了太阳金字塔的全貌。</p>
+
+<figure><img src="mexico-marathon_files/img-092.webp" alt="Pyramid of the Sun @Arsenan" loading="lazy" decoding="async"><figcaption>▲Pyramid of the Sun @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-093.webp" alt="Pyramid of the Sun @Arsenan" loading="lazy" decoding="async"><figcaption>▲Pyramid of the Sun @Arsenan</figcaption></figure>
+
+<p>天边的云彩翻涌，气势还挺足。路边的仙人掌提醒我们这是热带的傍晚。游客散尽，金字塔周边显得荒凉，只有偶尔一两家小贩卖烤玉米，野狗在暗处此起彼伏地乱叫。</p>
+
+<p>天色渐渐暗下来，我们还没意识到问题的严重性。</p>
+
+<p>在荒郊外镇，离墨西哥城60公里，手机信号差，叫不到车，电量也告急。偏偏第二天一早7点还有飞机。</p>
+
+<figure><img src="mexico-marathon_files/img-094.webp" alt="Teotihuacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Teotihuacán @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-095.webp" alt="Teotihuacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Teotihuacán @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-096.webp" alt="Teotihuacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Teotihuacán @Arsenan</figcaption></figure>
+
+<p>夜风有点凉，我怕 Siqi 冻着，提议先找个开门的餐馆。幸好不远处有一盏灯亮着。老板很热情，借给了我们 Wi-Fi，我们点了蛋糕和薯条。</p>
+
+<p>但不打车不知道，一试才发现根本没人接单。</p>
+
+<p>我掏出 ChatGPT，用西语向旁桌的墨西哥阿姨求助。她很热情，立刻推荐了能说点英语的侄子 Fernando。他说有 bus 可以回城，但要辗转几次。门口一辆 taxi 刚去送人，或许回来能顺道带我们去公交站。</p>
+
+<p>眼看店里要打烊，我的电量更红了。店主却笑着说：“没关系，可以等你们车来了再关门。” 还把充电器借我，虽然是慢充，但还是很感谢。</p>
+
+<p>这时，Fernando 一家人准备离开。Siqi 在门口等那辆迟迟未归的出租车。就在我们还在犹豫时，他们忽然转过头来，对我们说：“我们可以直接送你们回城。”</p>
+
+<p>听上去像童话，又让我想起博主们常说的“陌生车不要上”。可这短短半个小时的交流，让我们选择相信。</p>
+
+<p>一家六口挤进一辆五座 SUV。叔叔甚至从后备箱里爬出来，把位置让给了我们，自己缩在第二排，用奇怪的姿势半歪着。</p>
+
+<figure><img src="mexico-marathon_files/img-097.webp" alt="Fernando @Arsenan" loading="lazy" decoding="async"><figcaption>▲Fernando @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-098.webp" alt="Heading Back to CDMX @Siqi" loading="lazy" decoding="async"><figcaption>▲Heading Back to CDMX @Siqi</figcaption></figure>
+
+<p>车里放着欢快的墨西哥音乐，我们聊 墨西哥与中国，聊 舞蹈与城市。Fernando 说他常在城里表演舞蹈和歌剧，而这一天其实是他嫂子的生日聚会，她只想来看看金字塔。原来在本地人眼里，周末来金字塔就像一次轻松的郊游，而且免费。</p>
+
+<p>屁股被挤得生疼，但那种拥挤却比在冷风中等待一辆不知会不会来的公交车要安心得多。一个多小时后，我们终于抵达墨西哥城。很巧，他们家和我们酒店居然在同一条街区。</p>
+
+<p>一家人把我们送到门口，还集体下车，帮我们打开后备箱，挥手告别。</p>
+
+<figure><img src="mexico-marathon_files/img-099.webp" alt="Heading Back to CDMX @Arsenan" loading="lazy" decoding="async"><figcaption>▲Heading Back to CDMX @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-100.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-101.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-102.webp" alt="Coyoacán @Arsenan" loading="lazy" decoding="async"><figcaption>▲Coyoacán @Arsenan</figcaption></figure>
+
+<h2 class="section-label">后记</h2>
+
+<h2>高原的一枚徽章</h2>
+
+<p>夜里只睡了两个小时，起身赶清晨航班。从墨城到蒙特雷，再到亚特兰大入境，回路易斯维尔。</p>
+
+<p>入境比想象顺利，回到美国的瞬间，氛围一下子 chill 下来，两个国家，两种底色。</p>
+
+<figure><img src="mexico-marathon_files/img-103.webp" alt="Return to the U.S. @Arsenan" loading="lazy" decoding="async"><figcaption>▲Return to the U.S. @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-104.webp" alt="Return to the U.S. @Arsenan" loading="lazy" decoding="async"><figcaption>▲Return to the U.S. @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-105.webp" alt="Return to the U.S. @Arsenan" loading="lazy" decoding="async"><figcaption>▲Return to the U.S. @Arsenan</figcaption></figure>
+
+<figure><img src="mexico-marathon_files/img-106.webp" alt="Return to the U.S. @Arsenan" loading="lazy" decoding="async"><figcaption>▲Return to the U.S. @Arsenan</figcaption></figure>
+
+<p>这趟“墨西哥之行”，过程紧凑、疲惫却充实。</p>
+
+<p>高原的 42.195 公里，把我对这座城市的第一印象写进腿里；</p>
+
+<p>宪法广场的终点把历史与情绪盖了个章；特奥蒂瓦坎的石影与洞穴餐厅的光，给旅程点了盏灯；Fernando 一家在回城的路上，让 “旅行安全指南” 与 “人与人互信” 达成了短暂和平。</p>
+
+<p>墨西哥城马拉松不是“大满贯”，却在拉美有举足轻重的地位；它不承诺 PB，却把心肺和意志洗了一遍。</p>
+
+<p>2,240 m 的稀薄空气、改革大道的观众、石板路的脚步声、Zócalo 的终点拱门，这些碎片拼起来，像墨城常见的拼图奖牌：粗粝、热烈、真诚，有点乱，但很完整。</p>
+
+<p>给这趟旅程，别上一枚高原徽章。也送那晚漆黑郊外的一车陌生人，一朵热情的 “圣夜之花”（Nochebuena）。</p>
+
+<p class="end-mark">- 本文完 -</p>
+
+<p class="credit-line">文字丨Arsenan</p>
+
+<p class="credit-line">摄影丨Arsenan</p>
+
+<p class="credit-line">设计丨Arsenan</p>
+    </article>
   </main>
 
   <section class="zz-engagement" data-zz-engagement data-locale="zh-CN" data-page-key="run50-mexico-marathon-zh">
