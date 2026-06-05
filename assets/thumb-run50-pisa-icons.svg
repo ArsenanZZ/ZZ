@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">Pisa Marathon icon cover</title>
+<desc id="desc">Icon style cover with Pisa title, RunWorld badge, Leaning Tower, Tuscan hills, sea, bridge, sun and medal.</desc>
+<rect width="1200" height="750" fill="#eef5ec"/>
+<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">Pisa Marathon</text>
+<text x="74" y="160" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="#667085">Leaning Tower - Tuscan roads - Ligurian Sea</text>
+<rect x="774" y="62" width="348" height="162" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="804" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunWorld #6</text>
+<text x="804" y="176" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#b24a33">PISA</text>
+<circle cx="1072" cy="292" r="58" fill="#f2b441"/>
+<path d="M0 580 C170 530 340 620 510 560 C690 500 850 610 1030 548 C1115 520 1160 520 1200 498 L1200 750 L0 750 Z" fill="#89b58a"/>
+<path d="M0 650 C230 590 430 675 640 620 C850 575 1040 640 1200 590 L1200 750 L0 750 Z" fill="#d8c78f"/>
+<path d="M0 650 L1200 596 L1200 750 L0 750 Z" fill="#3f8fa0"/>
+<path d="M700 648 Q892 500 1084 648" stroke="#ffffff" stroke-width="26" fill="none"/>
+<path d="M728 648 Q894 535 1060 648" stroke="#b24a33" stroke-width="13" fill="none"/>
+<path d="M230 278 L360 258 L420 638 L270 656 Z" fill="#f7f2df" stroke="#20242b" stroke-width="6"/>
+<path d="M246 326 L386 306 M256 386 L396 366 M266 446 L406 426 M276 506 L416 486 M286 566 L426 546" stroke="#b24a33" stroke-width="7"/>
+<path d="M268 292 L324 648 M306 286 L366 642 M344 280 L408 638" stroke="#20242b" stroke-width="4"/>
+<path d="M206 636 L438 608 L458 646 L224 678 Z" fill="#b24a33"/>
+<circle cx="286" cy="654" r="55" fill="#d9a441" stroke="#8b5e20" stroke-width="8"/>
+<circle cx="286" cy="654" r="24" fill="#eef5ec"/>
+<path d="M254 628 L286 588 L318 628" stroke="#8b5e20" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
