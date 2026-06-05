@@ -842,12 +842,12 @@
       if (hoverStatus) hoverStatus.textContent = '鼠标悬停在州或红点上查看长文，点击卡片跳转';
     }
 
-    function _handleStateClick(abbr) {
-      _hideCityTooltip();
+    function _handleStateClick(e, abbr) {
       const races = _STATE_RACES[abbr];
       if (races && races.length > 0) {
         const storyRace = races.find(r => r.cardId);
         if (storyRace) {
+          _hideCityTooltip();
           const card = document.getElementById(storyRace.cardId);
           if (card) {
             card.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -859,14 +859,17 @@
         
         const fileRace = races.find(r => r.storyFile);
         if (fileRace) {
+          _hideCityTooltip();
           window.location.href = fileRace.storyFile;
+          return;
         }
       }
+      _showStateTooltip(e, abbr);
     }
 
-    function _handleCityClick(r, abbr) {
-      _hideCityTooltip();
+    function _handleCityClick(e, r, abbr) {
       if (r.cardId) {
+        _hideCityTooltip();
         const card = document.getElementById(r.cardId);
         if (card) {
           card.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -874,7 +877,11 @@
           setTimeout(() => card.classList.remove('card-highlight-flash'), 3000);
         }
       } else if (r.storyFile) {
+        _hideCityTooltip();
         window.location.href = r.storyFile;
+        return;
+      } else {
+        _showCityTooltip(e, r, abbr);
       }
     }
 
@@ -899,7 +906,7 @@
             el.addEventListener('mouseenter', (e) => _showStateTooltip(e, stateAbbr));
             el.addEventListener('mousemove', _moveCityTooltip);
             el.addEventListener('mouseleave', _hideCityTooltip);
-            el.addEventListener('click', () => _handleStateClick(stateAbbr));
+            el.addEventListener('click', (e) => _handleStateClick(e, stateAbbr));
           }
         }
       });
@@ -992,7 +999,7 @@
             dot.addEventListener('mouseenter', (e) => _showCityTooltip(e, r, abbr));
             dot.addEventListener('mousemove', _moveCityTooltip);
             dot.addEventListener('mouseleave', _hideCityTooltip);
-            dot.addEventListener('click', () => _handleCityClick(r, abbr));
+            dot.addEventListener('click', (e) => _handleCityClick(e, r, abbr));
             
             dotGroup.appendChild(dot);
           }
