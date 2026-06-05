@@ -1,863 +1,774 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZZ</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZZ · Poster Library</title>
+<meta name="description" content="ArsenanZZ personal library for Run50 marathon stories, water treatment notes, WQA research, RO guides, and reading projects.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ZZ · Poster Library">
+<meta property="og:description" content="Run50 marathon stories, water treatment notes, research and reading projects in a poster-style library.">
+<meta property="og:url" content="https://arsenanzz.github.io/ZZ/">
+<meta property="og:image" content="https://arsenanzz.github.io/ZZ/assets/og-run50-chicago-marathon-icons.png">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-:root {
-  --amz-header: #131921;
-  --amz-nav:    #232f3e;
-  --amz-orange: #FF9900;
-  --amz-yellow: #FFD814;
-  --amz-teal:   #007185;
-  --amz-bg:     #EAEDED;
-  --amz-card:   #FFFFFF;
-  --amz-border: #D5D9D9;
-  --amz-text:   #0F1111;
-  --amz-muted:  #565959;
-  --amz-red:    #B12704;
-  --water-c:    #007185;
-  --run-c:      #2d6a4f;
-  --read-c:     #7b3f00;
-}
-
-body {
-  background: var(--amz-bg);
-  color: var(--amz-text);
-  font-family: Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  min-height: 100vh;
-}
-a { text-decoration: none; color: inherit; }
-
-/* ── HEADER ── */
-.topbar {
-  background: var(--amz-header);
-  height: 60px;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  gap: 12px;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  border-bottom: 1px solid #1a2330;
-}
-.brand {
-  color: white;
-  font-size: 20px;
-  font-weight: 800;
-  white-space: nowrap;
-  flex-shrink: 0;
-  border: 1px solid transparent;
-  padding: 4px 6px;
-  border-radius: 2px;
-}
-.brand:hover { border-color: white; }
-.brand em { color: var(--amz-orange); font-style: italic; }
-
-.search {
-  flex: 1;
-  max-width: 760px;
-  display: flex;
-}
-.search select {
-  background: #f3f3f3;
-  border: none;
-  border-radius: 4px 0 0 4px;
-  padding: 0 8px;
-  font-size: 12px;
-  height: 40px;
-  cursor: pointer;
-  border-right: 1px solid #cdcdcd;
-  color: #333;
-}
-#searchInput {
-  flex: 1;
-  border: none;
-  padding: 0 12px;
-  height: 40px;
-  font-size: 14px;
-  outline: none;
-  font-family: inherit;
-}
-.search button {
-  background: var(--amz-orange);
-  border: none;
-  width: 46px;
-  height: 40px;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.search button:hover { background: #e88a00; }
-
-.header-links {
-  display: flex;
-  gap: 14px;
-  flex-shrink: 0;
-  margin-left: auto;
-}
-.hlink {
-  color: white;
-  font-size: 13px;
-  border: 1px solid transparent;
-  padding: 4px 6px;
-  border-radius: 2px;
-  white-space: nowrap;
-  line-height: 1.3;
-}
-.hlink:hover { border-color: white; }
-.hlink small { display: block; font-size: 11px; color: #ccc; font-weight: 400; }
-.hlink strong { display: block; font-size: 13px; }
-
-/* ── NAV BAR ── */
-.navbar {
-  background: var(--amz-nav);
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  overflow-x: auto;
-  gap: 0;
-}
-.navbar a {
-  color: white;
-  font-size: 13px;
-  padding: 8px 12px;
-  white-space: nowrap;
-  border: 1px solid transparent;
-  display: block;
-}
-.navbar a:hover, .navbar a.active { border-color: white; border-radius: 2px; }
-
-/* ── HIDDEN SIDEBAR (JS compat) ── */
-.sidebar { display: none; }
-
-/* ── HERO ── */
-.hero {
-  background: linear-gradient(135deg, #1a2a3a 0%, #131921 100%);
-  padding: 28px 20px;
-  text-align: center;
-  color: white;
-  border-bottom: 3px solid var(--amz-orange);
-}
-.hero h1 { font-size: 28px; font-weight: 800; }
-.hero h1 em { color: var(--amz-orange); font-style: italic; }
-.hero p { font-size: 12px; color: #aaa; letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
-
-/* ── DASHBOARD (Amazon dept cards) ── */
-.dashboard {
-  max-width: 1200px;
-  margin: 16px auto;
-  padding: 0 16px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.dept-card {
-  background: var(--amz-card);
-  border: 1px solid var(--amz-border);
-  border-radius: 8px;
-  padding: 16px;
-}
-.dept-card h3 {
-  font-size: 17px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--amz-orange);
-}
-.dept-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-.dept-item {
-  cursor: pointer;
-  text-align: center;
-  border-radius: 4px;
-  padding: 6px 4px;
-  transition: background 0.15s;
-}
-.dept-item:hover { background: #f7f7f7; }
-.dept-thumb {
-  width: 100%;
-  height: 70px;
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 5px;
-  background: #f0f0f0;
-}
-.dept-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.dept-label { font-size: 11px; color: var(--amz-text); font-weight: 500; line-height: 1.3; }
-.dept-more {
-  display: block;
-  font-size: 13px;
-  color: var(--amz-teal);
-  margin-top: 4px;
-}
-.dept-more:hover { color: #c7511f; text-decoration: underline; }
-
-/* ── FILTER CHIPS ── */
-.chips-wrap {
-  max-width: 1200px;
-  margin: 12px auto 0;
-  padding: 0 16px;
-}
-nav.chips {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 6px;
-}
-.chip {
-  background: var(--amz-card);
-  border: 1px solid var(--amz-border);
-  border-radius: 20px;
-  padding: 5px 14px;
-  font-size: 13px;
-  font-family: inherit;
-  cursor: pointer;
-  color: var(--amz-muted);
-  transition: all 0.15s;
-}
-.chip:hover { border-color: var(--amz-orange); color: var(--amz-text); }
-.chip.active { background: var(--amz-orange); color: #111; border-color: var(--amz-orange); font-weight: 700; }
-
-#subChips, #run50SubChips {
-  display: none;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 6px;
-}
-.sub-chip {
-  background: transparent;
-  border: 1px solid var(--amz-border);
-  border-radius: 20px;
-  padding: 3px 12px;
-  font-size: 12px;
-  font-family: inherit;
-  cursor: pointer;
-  color: var(--amz-muted);
-}
-.sub-chip.active { border-color: var(--amz-orange); color: var(--amz-text); background: #fff8ee; }
-
-/* ── RESULTS BAR ── */
-.results-bar {
-  max-width: 1200px;
-  margin: 8px auto 10px;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.results-bar h2 { font-size: 15px; font-weight: 700; }
-#resultCount { font-size: 13px; color: var(--amz-muted); }
-
-/* ── VIDEO GRID ── */
-#videoGrid {
-  max-width: 1200px;
-  margin: 0 auto 40px;
-  padding: 0 16px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 14px;
-}
-
-.video-card {
-  background: var(--amz-card);
-  border: 1px solid var(--amz-border);
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.2s;
-}
-.video-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
-
-.thumb {
-  display: block;
-  height: 130px;
-  overflow: hidden;
-  background: #f7f7f7;
-  position: relative;
-}
-.thumb img { width: 100%; height: 100%; object-fit: cover; }
-.duration {
-  position: absolute;
-  bottom: 6px;
-  right: 7px;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  font-size: 10px;
-  padding: 1px 6px;
-  border-radius: 3px;
-  letter-spacing: 0.5px;
-}
-
-.meta {
-  padding: 10px 12px 14px;
-  flex: 1;
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-}
-.avatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 9px;
-  font-weight: 700;
-  color: white;
-  letter-spacing: -0.5px;
-}
-.avatar.wqa   { background: var(--water-c); }
-.avatar.water { background: var(--water-c); }
-.avatar.ro    { background: #087a90; }
-.avatar.run50 { background: var(--run-c); }
-.avatar.reading { background: var(--read-c); }
-
-.video-title {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--amz-text);
-  margin-bottom: 3px;
-}
-.video-title:hover { color: #c7511f; }
-.video-sub { font-size: 11px; color: var(--amz-muted); }
-
-/* ── EMPTY ── */
-.empty { display: none; max-width: 1200px; margin: 50px auto; text-align: center; color: var(--amz-muted); padding: 0 16px; }
-.empty.show { display: block; }
-
-/* ── FOOTER ── */
-footer { background: #232f3e; color: #ddd; margin-top: 20px; }
-.footer-top {
-  background: #37475a;
-  text-align: center;
-  padding: 14px;
-  font-size: 13px;
-  color: white;
-  cursor: pointer;
-}
-.footer-top:hover { background: #485769; }
-.footer-cols {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 28px 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 24px;
-}
-.footer-col h4 { color: white; font-size: 14px; margin-bottom: 10px; }
-.footer-col a { display: block; color: #ddd; font-size: 13px; margin-bottom: 6px; }
-.footer-col a:hover { color: white; text-decoration: underline; }
-.footer-bottom {
-  background: #131921;
-  text-align: center;
-  padding: 16px;
-  font-size: 12px;
-  color: #888;
-}
-.footer-bottom em { color: var(--amz-orange); font-style: italic; }
-
-/* ── SHOW-RESULTS STATE ── */
-body.show-results  .hero       { display: none; }
-body.show-results  .dashboard  { display: none; }
-body.show-results  #videoGrid  { display: grid; }
-body.show-results  .chips-wrap { display: block; }
-body.show-results  .results-bar{ display: flex; }
-body:not(.show-results) #videoGrid   { display: none; }
-body:not(.show-results) .chips-wrap  { display: none; }
-body:not(.show-results) .results-bar { display: none; }
-
-.masthead, .section-title, #heroBanner, #amazonDashboard { display: none !important; }
-
-@media (max-width: 768px) {
-  .dashboard { grid-template-columns: 1fr; }
-  .header-links { display: none; }
-  .search select { display: none; }
-  #videoGrid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 460px) {
-  #videoGrid { grid-template-columns: 1fr; }
-}
-</style>
-</head>
-<body>
-
-<!-- HEADER -->
-<header class="topbar">
-  <a class="brand" href="/">Arsenan<em>ZZ</em></a>
-  <form class="search" onsubmit="event.preventDefault(); applyFilters();">
-    <select>
-      <option>All</option>
-      <option>Water</option>
-      <option>Run50</option>
-      <option>Reading</option>
-    </select>
-    <input id="searchInput" type="search" placeholder="Search ZZ" autocomplete="off" aria-label="Search ZZ">
-    <button type="submit">&#128269;</button>
-  </form>
-  <div class="header-links">
-    <a class="hlink" href="run50/index.html">
-      <small>22 / 50 States</small>
-      <strong>Run50</strong>
-    </a>
-    <a class="hlink" href="https://zhennanzhang.bio" target="_blank">
-      <small>Visit</small>
-      <strong>zhennanzhang.bio &#8599;</strong>
-    </a>
-  </div>
-</header>
-
-<!-- NAV BAR -->
-<nav class="navbar">
-  <a href="#" class="active" onclick="setActiveFilter('all'); return false;">&#9776; All</a>
-  <a href="#water"   onclick="setActiveFilter('water');   return false;">&#128167; Water</a>
-  <a href="#run50"   onclick="setActiveFilter('run50');   return false;">&#127939; Run50</a>
-  <a href="#reading" onclick="setActiveFilter('reading'); return false;">&#128218; Reading</a>
-  <a href="#research" onclick="setActiveFilter('research'); return false;">&#128300; Research</a>
-</nav>
-
-<!-- HIDDEN SIDEBAR (JS compat) -->
-<aside class="sidebar" aria-hidden="true">
-  <a class="side-link active" href="#" data-filter="all"></a>
-  <a class="side-link" href="#water"   data-filter="water"></a>
-  <a class="side-link" href="#reading" data-filter="reading"></a>
-  <a class="side-link" href="#run50"   data-filter="run50"></a>
-</aside>
-
-<!-- LEGACY REFS -->
-<div id="heroBanner"    hidden></div>
-<div id="amazonDashboard" hidden></div>
-
-<!-- HERO -->
-<div class="hero">
-  <h1>Arsenan<em>ZZ</em></h1>
-  <p>Running &middot; Reading &middot; Building</p>
-</div>
-
-<!-- DASHBOARD: 3 DEPT CARDS -->
-<div class="dashboard">
-
-  <!-- Water -->
-  <div class="dept-card">
-    <h3>&#128167; Water &amp; Research</h3>
-    <div class="dept-grid">
-      <div class="dept-item" onclick="window.location.href='Softener-Water/index.html'">
-        <div class="dept-thumb"><img src="assets/thumb-softener.svg" alt="Softener"></div>
-        <div class="dept-label">Water Softener</div>
-      </div>
-      <div class="dept-item" onclick="window.location.href='ro/ro-system-explained.html'">
-        <div class="dept-thumb"><img src="assets/thumb-ro-system.svg" alt="RO"></div>
-        <div class="dept-label">RO System</div>
-      </div>
-      <div class="dept-item" onclick="window.location.href='wqa/WQA_2026_Presentations_Summary-V2.html'">
-        <div class="dept-thumb"><img src="assets/thumb-wqa-presentations.svg" alt="WQA"></div>
-        <div class="dept-label">WQA 2026</div>
-      </div>
-      <div class="dept-item" onclick="window.location.href='nsf/nsf-water-guide-claude.html'">
-        <div class="dept-thumb"><img src="assets/thumb-wqa-presentations.svg" alt="NSF"></div>
-        <div class="dept-label">NSF Guide</div>
-      </div>
-    </div>
-    <a href="#water" class="dept-more" onclick="setActiveFilter('water'); return false;">See all Water &rsaquo;</a>
-  </div>
-
-  <!-- Run50 -->
-  <div class="dept-card">
-    <h3>&#127939; Run50</h3>
-    <div class="dept-grid">
-      <div class="dept-item" onclick="window.location.href='run50/index.html'">
-        <div class="dept-thumb"><img src="assets/thumb-run50-home.svg" alt="Run50"></div>
-        <div class="dept-label">Run50 Home</div>
-      </div>
-      <div class="dept-item" onclick="window.location.href='run50/stories/chinese/'">
-        <div class="dept-thumb"><img src="assets/thumb-run50-chicago-marathon-icons.svg" alt="Stories"></div>
-        <div class="dept-label">Stories</div>
-      </div>
-      <div class="dept-item" onclick="window.location.href='run50/run50.html'">
-        <div class="dept-thumb"><img src="assets/thumb-run50-training.svg" alt="Training"></div>
-        <div class="dept-label">Training</div>
-      </div>
-      <div class="dept-item" onclick="window.location.href='run50/mainly-marathons-new-england-2026-guide.html'">
-        <div class="dept-thumb"><img src="assets/thumb-trip-new-england.svg" alt="New England"></div>
-        <div class="dept-label">New England 2026</div>
-      </div>
-    </div>
-    <a href="#run50" class="dept-more" onclick="setActiveFilter('run50'); return false;">See all Run50 &rsaquo;</a>
-  </div>
-
-  <!-- Reading -->
-  <div class="dept-card">
-    <h3>&#128218; Reading</h3>
-    <div class="dept-grid">
-      <div class="dept-item" onclick="window.location.href='reading/atomic-habits-full-english.html'">
-        <div class="dept-thumb"><img src="assets/thumb-atomic-full.svg" alt="Atomic Habits"></div>
-        <div class="dept-label">Atomic Habits</div>
-      </div>
-      <div class="dept-item" onclick="window.location.href='reading/atomic-habits-bloom-cards.html'">
-        <div class="dept-thumb"><img src="assets/thumb-atomic-cards.svg" alt="Study Cards"></div>
-        <div class="dept-label">Study Cards</div>
-      </div>
-      <div class="dept-item" onclick="window.location.href='reading/nano-ic-manufacturing-study.html'">
-        <div class="dept-thumb"><img src="assets/thumb-nano-ic-prep.svg" alt="Nano IC"></div>
-        <div class="dept-label">Nano IC Study</div>
-      </div>
-      <div class="dept-item" onclick="window.location.href='reading/nano-ic-manufacturing-handbook-detailed.html'">
-        <div class="dept-thumb"><img src="assets/thumb-nano-ic-handbook.svg" alt="IC Handbook"></div>
-        <div class="dept-label">IC Handbook</div>
-      </div>
-    </div>
-    <a href="#reading" class="dept-more" onclick="setActiveFilter('reading'); return false;">See all Reading &rsaquo;</a>
-  </div>
-
-</div>
-
-<!-- FILTER CHIPS -->
-<div class="chips-wrap">
-  <nav class="chips" aria-label="Filters">
-    <button class="chip active" type="button" data-filter="all">All</button>
-    <button class="chip" type="button" data-filter="water">Water</button>
-    <button class="chip" type="button" data-filter="reading">Reading</button>
-    <button class="chip" type="button" data-filter="run50">Run50</button>
-    <button class="chip" type="button" data-filter="trip">Trip</button>
-    <button class="chip" type="button" data-filter="research">Research</button>
-    <button class="chip" type="button" data-filter="atomic">Atomic Habits</button>
-    <button class="chip" type="button" data-filter="semiconductor">Semiconductor</button>
-  </nav>
-  <div id="subChips">
-    <button class="sub-chip active" type="button" data-subfilter="all">All Water</button>
-    <button class="sub-chip" type="button" data-subfilter="ro">RO</button>
-    <button class="sub-chip" type="button" data-subfilter="wqa">WQA</button>
-    <button class="sub-chip" type="button" data-subfilter="softener">Softener</button>
-    <button class="sub-chip" type="button" data-subfilter="nsf">NSF</button>
-  </div>
-  <div id="run50SubChips">
-    <button class="sub-chip active" type="button" data-run50subfilter="all">All Run50</button>
-    <button class="sub-chip" type="button" data-run50subfilter="run-training">Training</button>
-    <button class="sub-chip" type="button" data-run50subfilter="run-story">Stories</button>
-    <button class="sub-chip" type="button" data-run50subfilter="run-trip">Trips</button>
-  </div>
-</div>
-
-<div class="results-bar">
-  <h2>Results</h2>
-  <span id="resultCount"></span>
-</div>
-
-<!-- ARTICLE GRID -->
-<section id="videoGrid" aria-label="Content">
-
-  <article class="video-card" id="Softener-Water" data-category="research water softener" data-title="Whole-House Water Softener Principles Components Sizing Calculator">
-    <a class="thumb" href="Softener-Water/index.html"><img src="assets/thumb-softener.svg" alt="Water Softener"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar wqa">W</span><div>
-      <a class="video-title" href="Softener-Water/index.html">Water Softener Guide</a>
-      <p class="video-sub">Water &middot; Softener</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" id="Softener-Valve-Analysis-ZH" data-category="research water softener" data-title="软水原理与阀头竞品分析">
-    <a class="thumb" href="water-softener/softener-valve-analysis-zh.html"><img src="assets/thumb-softener-valve-zh.svg" alt="软水阀头"><span class="duration">&#20013;&#25991;</span></a>
-    <div class="meta"><span class="avatar water">H&#8322;O</span><div>
-      <a class="video-title" href="water-softener/softener-valve-analysis-zh.html">&#36719;&#27700;&#21407;&#29702;&#19982;&#38349;&#22836;&#31454;&#21697;&#20998;&#26512;</a>
-      <p class="video-sub">Water &middot; Softener &#20013;&#25991;</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" id="Softener-Valve-Analysis-EN" data-category="research water softener" data-title="Water Softening Principles and Valve Analysis">
-    <a class="thumb" href="water-softener/softener-valve-analysis-en.html"><img src="assets/thumb-softener-valve-en.svg" alt="Softener Valve EN"><span class="duration">EN</span></a>
-    <div class="meta"><span class="avatar water">H&#8322;O</span><div>
-      <a class="video-title" href="water-softener/softener-valve-analysis-en.html">Water Softening &amp; Valve Analysis</a>
-      <p class="video-sub">Water &middot; Softener EN</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" id="wqa" data-category="wqa research water" data-title="WQA 2026 Presentation Summaries">
-    <a class="thumb" href="wqa/WQA_2026_Presentations_Summary-V2.html"><img src="assets/thumb-wqa-presentations.svg" alt="WQA Presentations"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar wqa">W</span><div>
-      <a class="video-title" href="wqa/WQA_2026_Presentations_Summary-V2.html">WQA 2026 Presentation Summaries</a>
-      <p class="video-sub">Water &middot; WQA</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="wqa research water" data-title="WQA 2026 Expo Observation Report">
-    <a class="thumb" href="wqa/WQA_2026_Expo_Observation_Report_EN.html"><img src="assets/thumb-wqa-expo.svg" alt="WQA Expo"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar wqa">W</span><div>
-      <a class="video-title" href="wqa/WQA_2026_Expo_Observation_Report_EN.html">WQA 2026 Expo Report</a>
-      <p class="video-sub">Water &middot; WQA</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="wqa research water" data-title="EZsalt Research Report">
-    <a class="thumb" href="wqa/EZsalt_Research_Report_2_EN.html"><img src="assets/thumb-ezsalt.svg" alt="EZsalt"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar wqa">W</span><div>
-      <a class="video-title" href="wqa/EZsalt_Research_Report_2_EN.html">EZsalt Research Report</a>
-      <p class="video-sub">Water &middot; Softener product</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="wqa research water" data-title="DROP Research Report">
-    <a class="thumb" href="wqa/DROP_Research_Report_EN.html"><img src="assets/thumb-drop.svg" alt="DROP"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar wqa">W</span><div>
-      <a class="video-title" href="wqa/DROP_Research_Report_EN.html">DROP Research Report</a>
-      <p class="video-sub">Water &middot; WQA product</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="nsf research water" data-title="NSF Drinking Water Study Guide Claude">
-    <a class="thumb" href="nsf/nsf-water-guide-claude.html"><img src="assets/thumb-wqa-presentations.svg" alt="NSF Guide"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar wqa">N</span><div>
-      <a class="video-title" href="nsf/nsf-water-guide-claude.html">NSF Drinking Water Study Guide</a>
-      <p class="video-sub">Water &middot; NSF</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="nsf research water" data-title="NSF Drinking Water Learning Guide Codex">
-    <a class="thumb" href="nsf/nsf-water-guide-codex.html"><img src="assets/thumb-wqa-presentations.svg" alt="NSF Codex"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar wqa">N</span><div>
-      <a class="video-title" href="nsf/nsf-water-guide-codex.html">NSF Water Learning Guide</a>
-      <p class="video-sub">Water &middot; NSF</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" id="ro" data-category="ro water" data-title="How a Reverse Osmosis System Works">
-    <a class="thumb" href="ro/ro-system-explained.html"><img src="assets/thumb-ro-system.svg" alt="RO System"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar ro">RO</span><div>
-      <a class="video-title" href="ro/ro-system-explained.html">How a Reverse Osmosis System Works</a>
-      <p class="video-sub">Water &middot; RO</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="ro water" data-title="RO Complete Guide EN">
-    <a class="thumb" href="ro/RO-Complete-Guide-EN.html"><img src="assets/thumb-ro-guide.svg" alt="RO Guide"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar ro">RO</span><div>
-      <a class="video-title" href="ro/RO-Complete-Guide-EN.html">RO Complete Guide EN</a>
-      <p class="video-sub">Water &middot; RO complete</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" id="reading" data-category="reading atomic" data-title="Atomic Habits Full English">
-    <a class="thumb" href="reading/atomic-habits-full-english.html"><img src="assets/thumb-atomic-full.svg" alt="Atomic Habits"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar reading">R</span><div>
-      <a class="video-title" href="reading/atomic-habits-full-english.html">Atomic Habits Full English</a>
-      <p class="video-sub">Reading &middot; Book</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="reading atomic" data-title="Atomic Habits Study Cards">
-    <a class="thumb" href="reading/atomic-habits-bloom-cards.html"><img src="assets/thumb-atomic-cards.svg" alt="Study Cards"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar reading">R</span><div>
-      <a class="video-title" href="reading/atomic-habits-bloom-cards.html">Atomic Habits Study Cards</a>
-      <p class="video-sub">Reading &middot; Cards</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="reading semiconductor equipment image notes" data-title="Nano IC Image Reader">
-    <a class="thumb" href="reading/nano-ic.html"><img src="assets/thumb-nano-ic-reader.svg" alt="Nano IC"><span class="duration">488P</span></a>
-    <div class="meta"><span class="avatar reading">R</span><div>
-      <a class="video-title" href="reading/nano-ic.html">Nano IC Image Reader</a>
-      <p class="video-sub">Reading &middot; 488-page</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Study Notes">
-    <a class="thumb" href="reading/nano-ic-manufacturing-study.html"><img src="assets/thumb-nano-ic-prep.svg" alt="Nano IC Study"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar reading">R</span><div>
-      <a class="video-title" href="reading/nano-ic-manufacturing-study.html">Nano IC Manufacturing Study</a>
-      <p class="video-sub">Reading &middot; Semiconductor</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Detailed Handbook">
-    <a class="thumb" href="reading/nano-ic-manufacturing-handbook-detailed.html"><img src="assets/thumb-nano-ic-handbook.svg" alt="IC Handbook"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar reading">R</span><div>
-      <a class="video-title" href="reading/nano-ic-manufacturing-handbook-detailed.html">Nano IC Manufacturing Handbook</a>
-      <p class="video-sub">Reading &middot; Detailed</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" id="run50" data-category="run50 run-home" data-title="Run50 Personal Space">
-    <a class="thumb" href="run50/index.html"><img src="assets/thumb-run50-home.svg" alt="Run50 Home"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar run50">50</span><div>
-      <a class="video-title" href="run50/index.html">Run50 Personal Space</a>
-      <p class="video-sub">Run50 &middot; Home</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="run50 run-training" data-title="Run50 Training Page">
-    <a class="thumb" href="run50/run50.html"><img src="assets/thumb-run50-training.svg" alt="Training"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar run50">50</span><div>
-      <a class="video-title" href="run50/run50.html">Run50 Training Page</a>
-      <p class="video-sub">Run50 &middot; Training</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="run50 trip marathon travel run-trip" data-title="Mainly Marathons New England 2026">
-    <a class="thumb" href="run50/mainly-marathons-new-england-2026-guide.html"><img src="assets/thumb-trip-new-england.svg" alt="New England"><span class="duration">HTML</span></a>
-    <div class="meta"><span class="avatar run50">50</span><div>
-      <a class="video-title" href="run50/mainly-marathons-new-england-2026-guide.html">Mainly Marathons New England 2026</a>
-      <p class="video-sub">Run50 &middot; Trip guide</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="run50 story chinese marathon travel run-story" data-title="Run50 Chinese Stories Chicago Illinois Xiangyang Guilin Hong Kong Pisa Texas San Antonio Marathon">
-    <a class="thumb" href="run50/stories/chinese/"><img src="assets/thumb-run50-chicago-marathon-icons.svg" alt="Chinese Stories"><span class="duration">Story</span></a>
-    <div class="meta"><span class="avatar run50">50</span><div>
-      <a class="video-title" href="run50/stories/chinese/">Run50 Chinese Stories</a>
-      <p class="video-sub">Run50 &middot; Stories</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="run50 story english marathon travel run-story" data-title="Run50 English Stories Chicago Illinois Xiangyang Guilin Hong Kong Pisa Texas San Antonio Marathon">
-    <a class="thumb" href="run50/stories/english/"><img src="assets/thumb-run50-chicago-marathon-icons.svg" alt="English Stories"><span class="duration">Story</span></a>
-    <div class="meta"><span class="avatar run50">50</span><div>
-      <a class="video-title" href="run50/stories/english/">Run50 English Stories</a>
-      <p class="video-sub">Run50 &middot; Stories</p>
-    </div></div>
-  </article>
-
-  <article class="video-card" data-category="run50 facebook story english marathon travel run-story" data-title="Run50 Facebook Chicago Illinois Xiangyang Guilin Hong Kong Pisa Texas San Antonio Marathon">
-    <a class="thumb" href="run50/facebook/"><img src="assets/thumb-run50-chicago-marathon-icons.svg" alt="Facebook Stories"><span class="duration">Facebook</span></a>
-    <div class="meta"><span class="avatar run50">50</span><div>
-      <a class="video-title" href="run50/facebook/">Run50 Facebook</a>
-      <p class="video-sub">Run50 &middot; Race stories</p>
-    </div></div>
-  </article>
-
-</section>
-
-<div class="empty" id="emptyState">No results found</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#9650; Back to top</div>
-  <div class="footer-cols">
-    <div class="footer-col">
-      <h4>About</h4>
-      <a href="https://zhennanzhang.bio" target="_blank">zhennanzhang.bio</a>
-      <a href="run50/index.html">Run50 Space</a>
-    </div>
-    <div class="footer-col">
-      <h4>Water</h4>
-      <a href="Softener-Water/index.html">Water Softener</a>
-      <a href="ro/ro-system-explained.html">RO System</a>
-      <a href="wqa/WQA_2026_Presentations_Summary-V2.html">WQA 2026</a>
-      <a href="nsf/nsf-water-guide-claude.html">NSF Guide</a>
-    </div>
-    <div class="footer-col">
-      <h4>Run50</h4>
-      <a href="run50/index.html">Home</a>
-      <a href="run50/stories/chinese/">Chinese Stories</a>
-      <a href="run50/stories/english/">English Stories</a>
-      <a href="run50/mainly-marathons-new-england-2026-guide.html">New England 2026</a>
-    </div>
-    <div class="footer-col">
-      <h4>Reading</h4>
-      <a href="reading/atomic-habits-full-english.html">Atomic Habits</a>
-      <a href="reading/nano-ic-manufacturing-study.html">Nano IC Study</a>
-    </div>
-  </div>
-  <div class="footer-bottom">Arsenan<em>ZZ</em> &nbsp;&middot;&nbsp; Running &middot; Reading &middot; Building</div>
-</footer>
-
-<script>
-  const searchInput = document.querySelector('#searchInput');
-  const cards = Array.from(document.querySelectorAll('.video-card'));
-  const chips = Array.from(document.querySelectorAll('.chip'));
-  const sideLinks = Array.from(document.querySelectorAll('.side-link'));
-  const resultCount = document.querySelector('#resultCount');
-  const emptyState = document.querySelector('#emptyState');
-  let currentFilter = 'all';
-  let currentSubFilter = 'all';
-  let currentRun50SubFilter = 'all';
-
-  function setActiveFilter(filter) {
-    currentFilter = filter;
-    chips.forEach(chip => chip.classList.toggle('active', chip.dataset.filter === filter));
-    sideLinks.forEach(link => link.classList.toggle('active', link.dataset.filter === filter));
-    document.querySelectorAll('.navbar a').forEach(a => {
-      a.classList.toggle('active', a.getAttribute('onclick') && a.getAttribute('onclick').includes(`'${filter}'`));
-    });
-
-    const subChipsContainer = document.querySelector('#subChips');
-    const run50SubChipsContainer = document.querySelector('#run50SubChips');
-
-    if (filter === 'water') {
-      subChipsContainer.style.display = 'flex';
-      run50SubChipsContainer.style.display = 'none';
-      setSubFilter('all');
-    } else if (filter === 'run50') {
-      subChipsContainer.style.display = 'none';
-      run50SubChipsContainer.style.display = 'flex';
-      setRun50SubFilter('all');
-    } else {
-      subChipsContainer.style.display = 'none';
-      run50SubChipsContainer.style.display = 'none';
-      currentSubFilter = 'all';
-      currentRun50SubFilter = 'all';
-      applyFilters();
+  :root {
+    color-scheme: dark;
+    --bg: #0b0b0f;
+    --panel: #17171f;
+    --panel-2: #20212a;
+    --ink: #f7f7fa;
+    --muted: #a8adba;
+    --line: rgba(255,255,255,.12);
+    --red: #e50914;
+    --gold: #f2b84b;
+    --blue: #2476d6;
+    --cyan: #43b9ca;
+    --green: #65b86f;
+    --violet: #8d7cf4;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background:
+      radial-gradient(circle at 18% -10%, rgba(229,9,20,.24), transparent 28%),
+      radial-gradient(circle at 88% 2%, rgba(67,185,202,.16), transparent 30%),
+      linear-gradient(180deg, #121217 0, var(--bg) 420px, #07070a 100%);
+    color: var(--ink);
+    font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    letter-spacing: 0;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button, input { font: inherit; }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--line);
+    background: rgba(9,9,13,.86);
+    backdrop-filter: blur(22px);
+  }
+
+  .topbar-inner,
+  .shell {
+    width: min(1320px, calc(100% - 36px));
+    margin: 0 auto;
+  }
+
+  .topbar-inner {
+    min-height: 68px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) minmax(220px, 360px);
+    align-items: center;
+    gap: 22px;
+  }
+
+  .brand {
+    display: inline-grid;
+    grid-template-columns: 42px auto;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
+  }
+
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    color: #111116;
+    background: linear-gradient(135deg, #ffffff, var(--gold));
+    font-weight: 950;
+    font-size: 19px;
+  }
+
+  .brand strong {
+    display: block;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 950;
+  }
+
+  .brand span span {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .nav {
+    display: flex;
+    gap: 8px;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav button {
+    flex: 0 0 auto;
+    min-height: 36px;
+    padding: 8px 13px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: #dcdfea;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 850;
+  }
+
+  .nav button:hover,
+  .nav button.active {
+    color: #ffffff;
+    background: rgba(255,255,255,.1);
+    border-color: var(--line);
+  }
+
+  .search {
+    position: relative;
+    min-width: 0;
+  }
+
+  .search input {
+    width: 100%;
+    height: 40px;
+    padding: 0 40px 0 15px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    outline: none;
+    color: #ffffff;
+    background: rgba(255,255,255,.08);
+  }
+
+  .search input:focus {
+    border-color: rgba(229,9,20,.72);
+    box-shadow: 0 0 0 3px rgba(229,9,20,.17);
+  }
+
+  .search::after {
+    content: "";
+    position: absolute;
+    right: 16px;
+    top: 12px;
+    width: 11px;
+    height: 11px;
+    border: 2px solid #d9dce5;
+    border-radius: 50%;
+  }
+
+  .search::before {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: 25px;
+    width: 9px;
+    height: 2px;
+    background: #d9dce5;
+    transform: rotate(45deg);
+    transform-origin: left center;
+  }
+
+  .shell {
+    padding: 26px 0 72px;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 470px);
+    gap: 26px;
+    min-height: 420px;
+    padding: 34px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background:
+      linear-gradient(90deg, rgba(8,8,12,.97) 0, rgba(12,12,17,.88) 52%, rgba(12,12,17,.36) 100%),
+      url("assets/og-run50-chicago-marathon-icons.png?v=20260605-1") center / cover;
+    box-shadow: 0 28px 82px rgba(0,0,0,.38);
+  }
+
+  .hero-copy,
+  .hero-posters {
+    min-width: 0;
+    align-self: center;
+  }
+
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 14px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 950;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .kicker::before {
+    content: "";
+    width: 36px;
+    height: 8px;
+    border-radius: 99px;
+    background: var(--red);
+  }
+
+  h1 {
+    margin: 0;
+    max-width: 680px;
+    color: #ffffff;
+    font-size: clamp(2.3rem, 5.1vw, 4.55rem);
+    line-height: .96;
+    font-weight: 950;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-text {
+    max-width: 650px;
+    margin: 18px 0 0;
+    color: #dcdfeb;
+    font-size: 17px;
+    line-height: 1.72;
+    overflow-wrap: anywhere;
+  }
+
+  .mobile-title { display: none; }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: #ffffff;
+    background: rgba(255,255,255,.1);
+    font-size: 14px;
+    font-weight: 900;
+  }
+
+  .action.primary {
+    border-color: var(--red);
+    background: var(--red);
+  }
+
+  .hero-posters {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    align-items: end;
+  }
+
+  .hero-mini,
+  .poster-media {
+    position: relative;
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    aspect-ratio: 2 / 3;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 10px;
+    background: var(--panel);
+    box-shadow: 0 20px 48px rgba(0,0,0,.42);
+  }
+
+  .hero-mini:nth-child(2) { transform: translateY(-10px); }
+
+  .hero-mini img,
+  .poster-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(1.06) contrast(1.04);
+  }
+
+  .hero-mini::after,
+  .poster-media::after {
+    content: "";
+    position: absolute;
+    inset: 38% 0 0;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,.84));
+    pointer-events: none;
+  }
+
+  .hero-mini span {
+    position: absolute;
+    z-index: 1;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 950;
+    line-height: 1.16;
+    text-shadow: 0 2px 10px rgba(0,0,0,.8);
+  }
+
+  .quick-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 18px 0 30px;
+  }
+
+  .quick-card {
+    display: block;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255,255,255,.06);
+  }
+
+  .quick-card b {
+    display: block;
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 1.1;
+  }
+
+  .quick-card span {
+    display: block;
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .section {
+    margin-top: 34px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    margin: 0;
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 1.18;
+    font-weight: 950;
+  }
+
+  .section-note {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 850;
+  }
+
+  .poster-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 18px;
+  }
+
+  .poster-card {
+    display: block;
+    min-width: 0;
+    transition: transform .2s ease;
+  }
+
+  .poster-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .poster-card:hover .poster-media {
+    border-color: rgba(255,255,255,.44);
+    box-shadow: 0 22px 58px rgba(0,0,0,.52);
+  }
+
+  .poster-badge,
+  .poster-format {
+    position: absolute;
+    z-index: 2;
+    top: 9px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 4px 7px;
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 11px;
+    line-height: 1;
+    font-weight: 950;
+    text-transform: uppercase;
+  }
+
+  .poster-badge {
+    left: 9px;
+    background: var(--red);
+  }
+
+  .poster-format {
+    right: 9px;
+    background: rgba(0,0,0,.64);
+    border: 1px solid rgba(255,255,255,.2);
+  }
+
+  .poster-rank {
+    position: absolute;
+    z-index: 2;
+    left: 9px;
+    bottom: 9px;
+    color: rgba(255,255,255,.92);
+    font-size: 39px;
+    line-height: .86;
+    font-weight: 950;
+    text-shadow: 0 8px 18px rgba(0,0,0,.72);
+  }
+
+  .poster-copy {
+    padding: 10px 2px 0;
+  }
+
+  .poster-copy h3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 38px;
+    margin: 0;
+    color: #f7f7fa;
+    font-size: 15px;
+    line-height: 1.28;
+    font-weight: 900;
+  }
+
+  .poster-copy p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 34px;
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.42;
+  }
+
+  .channel-run50 .poster-badge { background: var(--blue); }
+  .channel-water .poster-badge { background: var(--cyan); }
+  .channel-wqa .poster-badge { background: var(--green); }
+  .channel-reading .poster-badge { background: var(--violet); }
+  .channel-ro .poster-badge { background: #1d9cb1; }
+
+  .results-bar {
+    display: none;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 24px 0 14px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 850;
+  }
+
+  body.show-results .curated { display: none; }
+  body.show-results .results-bar { display: flex; }
+
+  .empty-state {
+    display: none;
+    margin: 34px 0 0;
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    color: var(--muted);
+    background: rgba(255,255,255,.06);
+    text-align: center;
+  }
+
+  .poster-card[hidden] { display: none; }
+
+  @media (max-width: 980px) {
+    .topbar-inner {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 12px 0;
+    }
+    .topbar { position: static; }
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: 0;
+      padding: 26px;
+    }
+    .quick-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
-  function setSubFilter(subfilter) {
-    currentSubFilter = subfilter;
-    Array.from(document.querySelectorAll('#subChips .sub-chip')).forEach(c => c.classList.toggle('active', c.dataset.subfilter === subfilter));
-    applyFilters();
+  @media (max-width: 640px) {
+    .topbar-inner,
+    .shell {
+      width: calc(100% - 28px);
+    }
+    .shell {
+      padding-top: 18px;
+    }
+    .hero {
+      padding: 22px;
+      border-radius: 14px;
+    }
+    h1 {
+      width: 100%;
+      max-width: calc(100vw - 72px);
+      font-size: 1.72rem;
+      line-height: 1;
+    }
+    .desktop-title { display: none; }
+    .mobile-title { display: inline; }
+    .hero-copy,
+    .hero-text,
+    .hero-actions,
+    .hero-posters {
+      width: 100%;
+      max-width: calc(100vw - 72px);
+      min-width: 0;
+    }
+    .hero-text {
+      font-size: 14px;
+    }
+    .hero-posters {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 9px;
+      max-width: min(220px, calc(100vw - 72px));
+      overflow: hidden;
+    }
+    .hero-mini:nth-child(n+2) { display: none; }
+    .quick-row {
+      grid-template-columns: 1fr;
+    }
+    .poster-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 13px;
+    }
+    .section-head {
+      align-items: start;
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="./" aria-label="ZZ home">
+        <span class="brand-mark">ZZ</span>
+        <span><strong>ArsenanZZ</strong><span>Poster Library</span></span>
+      </a>
+      <nav class="nav" aria-label="Library filters">
+        <button class="active" type="button" data-filter="all">全部</button>
+        <button type="button" data-filter="run50">Run50</button>
+        <button type="button" data-filter="water">Water</button>
+        <button type="button" data-filter="wqa">WQA</button>
+        <button type="button" data-filter="reading">Reading</button>
+        <button type="button" data-filter="ro">RO</button>
+      </nav>
+      <label class="search">
+        <input id="searchInput" type="search" autocomplete="off" placeholder="Search title, topic, city...">
+      </label>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="kicker">Now Showing</p>
+        <h1 id="hero-title"><span class="desktop-title">Run50, research notes, and stories on deck.</span><span class="mobile-title">ZZ Poster Library</span></h1>
+        <p class="hero-text"><span class="desktop-title">最新入口先放在片头：Chicago Marathon、Run50 故事、WQA/Water/RO 技术资料和阅读项目都可以从这里直达。</span><span class="mobile-title">Run50、Water、WQA、Reading 入口都在这里。</span></p>
+        <div class="hero-actions">
+          <a class="action primary" href="run50/stories/english/chicago-marathon.html">打开 Chicago 英文版</a>
+          <a class="action" href="run50/facebook/chicago-marathon.html">Facebook 版</a>
+          <a class="action" href="run50/stories/chinese/">中文故事库</a>
+        </div>
+      </div>
+      <div class="hero-posters" aria-label="Featured posters">
+        <a class="hero-mini" href="run50/stories/english/chicago-marathon.html">
+          <img src="assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1" alt="Chicago Marathon poster">
+          <span>Chicago Marathon</span>
+        </a>
+        <a class="hero-mini" href="wqa/WQA_2026_Presentations_Summary-V2.html">
+          <img src="assets/thumb-wqa-v2.png" alt="WQA 2026 poster">
+          <span>WQA 2026 Notes</span>
+        </a>
+        <a class="hero-mini" href="reading/atomic-habits-full-english.html">
+          <img src="assets/thumb-atomic-v2.png" alt="Atomic Habits poster">
+          <span>Atomic Habits</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="quick-row" aria-label="Quick entries">
+      <a class="quick-card" href="run50/index.html"><b>Run50</b><span>Marathon space, story indexes, trips and training.</span></a>
+      <a class="quick-card" href="Softener-Water/index.html"><b>Water</b><span>Softener principles, valves, sizing and product notes.</span></a>
+      <a class="quick-card" href="wqa/WQA_2026_Presentations_Summary-V2.html"><b>WQA</b><span>Presentation summaries, expo notes and product research.</span></a>
+      <a class="quick-card" href="reading/atomic-habits-full-english.html"><b>Reading</b><span>Book pages, semiconductor prep and study handbooks.</span></a>
+    </section>
+
+    <div class="results-bar" aria-live="polite">
+      <span id="resultCount">0 results</span>
+      <span>Poster search</span>
+    </div>
+
+    <div class="curated">
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">正在热映</h2>
+          <span class="section-note">Featured posters</span>
+        </div>
+        <div class="poster-row" data-section="featured"></div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">Run50 马拉松宇宙</h2>
+          <span class="section-note">Stories · maps · training</span>
+        </div>
+        <div class="poster-row" data-section="run50"></div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">Water / WQA / RO</h2>
+          <span class="section-note">Research and engineering notes</span>
+        </div>
+        <div class="poster-row" data-section="waterlab"></div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">Reading / Prep</h2>
+          <span class="section-note">Books and study projects</span>
+        </div>
+        <div class="poster-row" data-section="reading"></div>
+      </section>
+    </div>
+
+    <section class="section library-all">
+      <div class="section-head">
+        <h2 class="section-title">全部片库</h2>
+        <span class="section-note">All entries</span>
+      </div>
+      <div class="poster-row" id="libraryGrid"></div>
+      <div class="empty-state" id="emptyState">No matching posters.</div>
+    </section>
+  </main>
+
+<script>
+  const posters = [
+    ["Chicago Marathon: State 12 and a second World Major", "Run50 · Illinois · 2023.10.08", "run50/stories/english/chicago-marathon.html", "assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1", "Run50", "Story", "run50 story english marathon travel chicago illinois", "run50", "01", true],
+    ["Chicago Marathon Facebook Edition", "Facebook-ready race-day-first story", "run50/facebook/chicago-marathon.html", "assets/og-run50-chicago-marathon-icons.png?v=20260605-1", "Run50", "FB", "run50 facebook story english marathon chicago", "run50", "02", true],
+    ["Run50 Chinese Stories", "Chicago · Texas · Xiangyang · Guilin · more", "run50/stories/chinese/", "assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1", "Run50", "中文", "run50 story chinese marathon travel", "run50", "03", true],
+    ["Run50 English Stories", "Natural English race story translations", "run50/stories/english/", "assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1", "Run50", "EN", "run50 story english marathon travel", "run50", "04"],
+    ["Run50 Personal Space", "Home, maps, stories and challenge dashboard", "run50/index.html", "assets/thumb-run50-home.png", "Run50", "Home", "run50 run-home marathon", "run50", "05"],
+    ["Run50 Training Page", "Training library and marathon notes", "run50/run50.html", "assets/thumb-run50-training.png", "Run50", "Train", "run50 run-training marathon", "run50", "06"],
+    ["Mainly Marathons New England 2026", "Trip guide for the 2026 New England series", "run50/mainly-marathons-new-england-2026-guide.html", "assets/thumb-trip-new-england.png", "Run50", "Trip", "run50 trip marathon travel", "run50", "07"],
+    ["Run50 Facebook", "Race stories formatted for social sharing", "run50/facebook/", "assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1", "Run50", "FB", "run50 facebook story english marathon travel", "run50", "08"],
+    ["Water Softener Guide: Principles, Valves & Calculator", "WQA · tech guide", "Softener-Water/index.html", "assets/thumb-water-softener-v2.png", "Water", "HTML", "research water softener wqa", "water", "09", true],
+    ["软水原理与阀头竞品分析", "Water Softener · 中文版本", "water-softener/softener-valve-analysis-zh.html", "assets/thumb-water-softener-v2.png", "Water", "中文", "research water softener chinese", "water", "10"],
+    ["Water Softening Principles and Valve Analysis", "Water Softener · English version", "water-softener/softener-valve-analysis-en.html", "assets/thumb-water-softener-v2.png", "Water", "EN", "research water softener english", "water", "11"],
+    ["WQA 2026 Presentation Summaries", "WQA · presentation notes", "wqa/WQA_2026_Presentations_Summary-V2.html", "assets/thumb-wqa-v2.png", "WQA", "HTML", "wqa research water presentation", "wqa", "12", true],
+    ["WQA 2026 Expo Observation Report", "WQA · expo field report", "wqa/WQA_2026_Expo_Observation_Report_EN.html", "assets/thumb-wqa-v2.png", "WQA", "HTML", "wqa research water expo", "wqa", "13"],
+    ["EZsalt Research Report", "Research · product report", "wqa/EZsalt_Research_Report_2_EN.html", "assets/thumb-ezsalt-v2.png", "WQA", "Report", "wqa research water ezsalt product", "wqa", "14"],
+    ["DROP Research Report", "Research · product report", "wqa/DROP_Research_Report_EN.html", "assets/thumb-drop-v2.png", "WQA", "Report", "wqa research water drop product", "wqa", "15"],
+    ["How a Reverse Osmosis System Works", "RO · system explanation", "ro/ro-system-explained.html", "assets/thumb-ro-v2.png", "RO", "HTML", "ro water reverse osmosis", "ro", "16", true],
+    ["RO Complete Guide EN", "RO · complete guide", "ro/RO-Complete-Guide-EN.html", "assets/thumb-ro-v2.png", "RO", "Guide", "ro water reverse osmosis guide", "ro", "17"],
+    ["Atomic Habits Full English", "Reading · book edition", "reading/atomic-habits-full-english.html", "assets/thumb-atomic-v2.png", "Reading", "Book", "reading atomic habits book", "reading", "18", true],
+    ["Atomic Habits Study Cards", "Reading · study cards", "reading/atomic-habits-bloom-cards.html", "assets/thumb-atomic-v2.png", "Reading", "Cards", "reading atomic habits cards", "reading", "19"],
+    ["Nano IC Image Reader", "Reading · 488-page image edition", "reading/nano-ic.html", "assets/thumb-nano-ic-v2.png", "Reading", "488P", "reading semiconductor equipment image notes nano ic", "reading", "20"],
+    ["Nano IC Manufacturing Study Notes", "Reading · semiconductor equipment prep", "reading/nano-ic-manufacturing-study.html", "assets/thumb-nano-ic-v2.png", "Reading", "Study", "reading semiconductor equipment research nano ic", "reading", "21"],
+    ["Nano IC Manufacturing Detailed Handbook", "Reading · original detailed handbook", "reading/nano-ic-manufacturing-handbook-detailed.html", "assets/thumb-nano-ic-v2.png", "Reading", "Guide", "reading semiconductor equipment research handbook nano ic", "reading", "22"]
+  ].map(([title, sub, href, img, tag, format, category, channel, rank, featured]) => ({title, sub, href, img, tag, format, category, channel, rank, featured}));
+
+  const sectionData = {
+    featured: posters.filter(item => item.featured).slice(0, 8),
+    run50: posters.filter(item => item.channel === "run50"),
+    waterlab: posters.filter(item => ["water", "wqa", "ro"].includes(item.channel)),
+    reading: posters.filter(item => item.channel === "reading")
+  };
+
+  function posterTemplate(item) {
+    return `
+      <a class="poster-card channel-${item.channel}" href="${item.href}" data-category="${item.category}" data-title="${item.title} ${item.sub}">
+        <div class="poster-media">
+          <img src="${item.img}" alt="${item.title} poster" loading="lazy" decoding="async">
+          <span class="poster-badge">${item.tag}</span>
+          <span class="poster-format">${item.format}</span>
+          <span class="poster-rank">${item.rank}</span>
+        </div>
+        <div class="poster-copy">
+          <h3>${item.title}</h3>
+          <p>${item.sub}</p>
+        </div>
+      </a>
+    `;
   }
 
-  function setRun50SubFilter(subfilter) {
-    currentRun50SubFilter = subfilter;
-    Array.from(document.querySelectorAll('#run50SubChips .sub-chip')).forEach(c => c.classList.toggle('active', c.dataset.run50subfilter === subfilter));
-    applyFilters();
-  }
+  Object.entries(sectionData).forEach(([name, items]) => {
+    const target = document.querySelector(`[data-section="${name}"]`);
+    if (target) target.innerHTML = items.map(posterTemplate).join("");
+  });
+
+  const libraryGrid = document.querySelector("#libraryGrid");
+  libraryGrid.innerHTML = posters.map(posterTemplate).join("");
+
+  const cards = Array.from(libraryGrid.querySelectorAll(".poster-card"));
+  const navButtons = Array.from(document.querySelectorAll(".nav button"));
+  const searchInput = document.querySelector("#searchInput");
+  const resultCount = document.querySelector("#resultCount");
+  const emptyState = document.querySelector("#emptyState");
+  let currentFilter = "all";
 
   function applyFilters() {
     const query = searchInput.value.trim().toLowerCase();
+    const filtering = currentFilter !== "all" || query.length > 0;
     let visible = 0;
-    const shouldShowResults = currentFilter !== 'all' || query.length > 0;
-    document.body.classList.toggle('show-results', shouldShowResults);
+    document.body.classList.toggle("show-results", filtering);
 
     cards.forEach(card => {
-      const haystack = `${card.dataset.title} ${card.dataset.category}`.toLowerCase();
-      const tokens = haystack.split(/[^a-z0-9]+/).filter(Boolean);
-      const matchesQuery = !query || (query.length <= 2 ? tokens.some(t => t === query) : haystack.includes(query));
-      const cats = (card.dataset.category || '').split(/\s+/).filter(Boolean);
-      const matchesFilter = currentFilter === 'all' || cats.includes(currentFilter);
-      const matchesSub = currentFilter !== 'water' || currentSubFilter === 'all' || cats.includes(currentSubFilter);
-      const matchesRun50Sub = currentFilter !== 'run50' || currentRun50SubFilter === 'all' || cats.includes(currentRun50SubFilter);
-      const show = matchesQuery && matchesFilter && matchesSub && matchesRun50Sub;
+      const category = card.dataset.category || "";
+      const title = (card.dataset.title || "").toLowerCase();
+      const matchesFilter = currentFilter === "all" || category.split(/\s+/).includes(currentFilter);
+      const matchesQuery = !query || title.includes(query) || category.includes(query);
+      const show = matchesFilter && matchesQuery;
       card.hidden = !show;
-      if (show) visible++;
+      if (show) visible += 1;
     });
 
-    resultCount.textContent = `${visible} item${visible === 1 ? '' : 's'}`;
-    emptyState.classList.toggle('show', visible === 0);
+    resultCount.textContent = `${visible} poster${visible === 1 ? "" : "s"}`;
+    emptyState.style.display = visible === 0 ? "block" : "none";
   }
 
-  searchInput.addEventListener('input', applyFilters);
-  chips.forEach(c => c.addEventListener('click', () => setActiveFilter(c.dataset.filter)));
-  sideLinks.forEach(l => l.addEventListener('click', e => { if (l.dataset.filter === 'all') e.preventDefault(); setActiveFilter(l.dataset.filter); }));
-  document.querySelectorAll('#subChips .sub-chip').forEach(c => c.addEventListener('click', () => setSubFilter(c.dataset.subfilter)));
-  document.querySelectorAll('#run50SubChips .sub-chip').forEach(c => c.addEventListener('click', () => setRun50SubFilter(c.dataset.run50subfilter)));
+  navButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      currentFilter = button.dataset.filter;
+      navButtons.forEach(item => item.classList.toggle("active", item === button));
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener("input", applyFilters);
   applyFilters();
 </script>
-<section data-zz-comments></section>
-<script src="assets/zz-comments.js?v=20260601-no-comments"></script>
 </body>
 </html>
