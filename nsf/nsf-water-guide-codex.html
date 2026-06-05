@@ -1,0 +1,1965 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NSF净饮水学习手册 | NSF Drinking Water Learning Guide</title>
+  <style>
+    :root {
+      --ink: #18202a;
+      --muted: #596575;
+      --panel: #ffffff;
+      --line: #d9e2ea;
+      --soft: #f5f8fb;
+      --water: #1976a3;
+      --teal: #16837a;
+      --mint: #dff4ee;
+      --amber: #b87914;
+      --amber-soft: #fff0cf;
+      --red: #b94b50;
+      --red-soft: #ffe6e5;
+      --green: #3c7d45;
+      --green-soft: #e5f4dc;
+      --blue-soft: #e7f3f8;
+      --shadow: 0 14px 34px rgba(24, 32, 42, 0.09);
+      --radius: 8px;
+      font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--soft);
+      letter-spacing: 0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, #f7fbfd 0%, #f1f5f8 42%, #fbfbf7 100%);
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px min(5vw, 48px);
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-weight: 760;
+      font-size: 1rem;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--blue-soft);
+      border: 1px solid #b8d7e3;
+      flex: 0 0 auto;
+    }
+
+    .mark svg { width: 22px; height: 22px; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a,
+    .lang-toggle {
+      min-height: 36px;
+      padding: 8px 12px;
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .nav a:hover,
+    .lang-toggle:hover,
+    .chip:hover,
+    .tab:hover {
+      border-color: #98bdcc;
+      background: #f8fcfd;
+    }
+
+    main { overflow: hidden; }
+
+    section {
+      padding: 54px min(5vw, 48px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+      gap: 34px;
+      align-items: center;
+      min-height: calc(100vh - 64px);
+      padding-top: 38px;
+      padding-bottom: 38px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 9px;
+      border-radius: 8px;
+      color: #204d5f;
+      background: var(--blue-soft);
+      border: 1px solid #c3dfe8;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      margin-top: 18px;
+      max-width: 920px;
+      font-size: clamp(2.25rem, 5vw, 4.9rem);
+    }
+
+    h2 {
+      font-size: clamp(1.65rem, 2.6vw, 2.7rem);
+    }
+
+    h3 {
+      font-size: 1.05rem;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.72;
+      margin: 12px 0 0;
+    }
+
+    .lead {
+      max-width: 820px;
+      font-size: 1.06rem;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .primary-link,
+    .secondary-link {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 8px;
+      padding: 10px 14px;
+      text-decoration: none;
+      font-weight: 760;
+      border: 1px solid transparent;
+    }
+
+    .primary-link {
+      background: var(--water);
+      color: #fff;
+    }
+
+    .secondary-link {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    .hero-visual {
+      min-height: 460px;
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #ffffff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-visual svg {
+      width: 100%;
+      height: 100%;
+      min-height: 460px;
+      display: block;
+    }
+
+    .water-path {
+      stroke-dasharray: 16 12;
+      animation: dash 1.4s linear infinite;
+    }
+
+    .bubble {
+      animation: floatUp 4.2s ease-in-out infinite;
+      opacity: 0.85;
+    }
+
+    .bubble:nth-child(2) { animation-delay: 0.6s; }
+    .bubble:nth-child(3) { animation-delay: 1.1s; }
+    .bubble:nth-child(4) { animation-delay: 1.7s; }
+
+    .particle {
+      animation: particleFlow 5.4s linear infinite;
+    }
+
+    .particle.p2 { animation-delay: 1s; }
+    .particle.p3 { animation-delay: 2s; }
+    .particle.p4 { animation-delay: 3s; }
+
+    .ion {
+      animation: ionBounce 2.6s ease-in-out infinite;
+    }
+
+    .ion:nth-of-type(2n) { animation-delay: 0.9s; }
+
+    .section-head {
+      max-width: 960px;
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .standards-grid {
+      grid-template-columns: repeat(5, minmax(180px, 1fr));
+    }
+
+    .measurement-grid {
+      grid-template-columns: repeat(3, minmax(240px, 1fr));
+    }
+
+    .visual-grid {
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(24, 32, 42, 0.05);
+      min-width: 0;
+    }
+
+    .standard-card {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .standard-num {
+      display: inline-flex;
+      width: max-content;
+      padding: 5px 8px;
+      border-radius: 8px;
+      background: var(--amber-soft);
+      color: #5f410d;
+      font-weight: 800;
+      border: 1px solid #edca83;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 25px;
+      padding: 4px 7px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      background: #f1f5f8;
+      color: #43515f;
+      border: 1px solid #dde6ec;
+      white-space: nowrap;
+    }
+
+    .band-white { background: #fff; }
+    .band-soft { background: #f5f8fb; }
+    .band-mint { background: #f2faf6; }
+    .band-warm { background: #fffaf0; }
+
+    .learn-box {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1.15fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .key-list {
+      display: grid;
+      gap: 10px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .key-list li {
+      padding: 12px;
+      border-left: 4px solid var(--teal);
+      background: #fff;
+      border-radius: 0 8px 8px 0;
+      color: #3d4854;
+      line-height: 1.55;
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .measurement-card h3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 8px;
+      background: var(--green-soft);
+      color: #315a32;
+      font-size: 0.78rem;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+
+    .method-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: #3d4854;
+      line-height: 1.62;
+    }
+
+    .method-list li { margin: 6px 0; }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0;
+    }
+
+    .tab,
+    .chip {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .tab.active,
+    .chip.active {
+      background: var(--water);
+      color: #fff;
+      border-color: var(--water);
+    }
+
+    .standard-detail {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.7fr) minmax(380px, 1.3fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .facts {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .fact {
+      display: grid;
+      grid-template-columns: 118px minmax(0, 1fr);
+      gap: 10px;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .fact b { color: #33414e; }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.45;
+    }
+
+    th {
+      background: #f0f6f9;
+      color: #2f4350;
+      font-size: 0.88rem;
+    }
+
+    td {
+      color: #344350;
+      font-size: 0.93rem;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .endpoint-note {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 8px;
+      background: var(--amber-soft);
+      color: #5b4317;
+      line-height: 1.55;
+      border: 1px solid #eed08d;
+    }
+
+    .visual-card {
+      min-height: 360px;
+      display: grid;
+      grid-template-rows: auto minmax(220px, 1fr) auto;
+      gap: 12px;
+    }
+
+    .viz {
+      position: relative;
+      min-height: 230px;
+      border: 1px solid #dbe6ec;
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .viz svg {
+      width: 100%;
+      height: 100%;
+      min-height: 230px;
+      display: block;
+    }
+
+    .drop {
+      animation: drip 2.8s ease-in infinite;
+    }
+
+    .indicator {
+      animation: titrationColor 5s ease-in-out infinite;
+    }
+
+    .swirl {
+      transform-origin: 50% 62%;
+      animation: spin 4.8s linear infinite;
+    }
+
+    .dpd-fill {
+      animation: dpdColor 4.8s ease-in-out infinite;
+    }
+
+    .meter-needle {
+      transform-origin: 310px 140px;
+      animation: needle 4.8s ease-in-out infinite;
+    }
+
+    .flow-dot {
+      animation: sampleFlow 5.5s linear infinite;
+    }
+
+    .membrane-ion {
+      animation: membraneReject 4s ease-in-out infinite;
+    }
+
+    .membrane-ion.i2 { animation-delay: 0.8s; }
+    .membrane-ion.i3 { animation-delay: 1.4s; }
+
+    .calculator {
+      display: grid;
+      gap: 12px;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(100px, 1fr));
+      gap: 10px;
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      font-size: 0.84rem;
+      color: #425262;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .result {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #b9dcc4;
+      background: var(--green-soft);
+      color: #2e5a32;
+      font-weight: 800;
+    }
+
+    .formula {
+      padding: 12px;
+      border-radius: 8px;
+      background: #f1f5f8;
+      border: 1px solid #dce5eb;
+      overflow-x: auto;
+      font-family: Consolas, "Courier New", monospace;
+      color: #2f3d48;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    .mini {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .mini strong { display: block; margin-bottom: 6px; }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .check {
+      display: grid;
+      grid-template-columns: 30px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      padding: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .check-num {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--mint);
+      color: #17635d;
+      font-weight: 800;
+      border: 1px solid #bfe5dc;
+    }
+
+    .source-note {
+      margin-top: 22px;
+      padding: 14px;
+      background: var(--red-soft);
+      border: 1px solid #f1b8b8;
+      color: #71333a;
+      border-radius: var(--radius);
+      line-height: 1.6;
+    }
+
+    .footer {
+      padding: 28px min(5vw, 48px);
+      background: #18202a;
+      color: #e9eff3;
+    }
+
+    .footer p { color: #c7d1d9; margin: 0; }
+
+    @keyframes dash {
+      to { stroke-dashoffset: -28; }
+    }
+
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(12px); opacity: 0.35; }
+      45% { transform: translateY(-12px); opacity: 0.95; }
+    }
+
+    @keyframes particleFlow {
+      0% { transform: translateX(-18px); opacity: 0; }
+      12% { opacity: 1; }
+      55% { transform: translateX(160px); opacity: 1; }
+      70%, 100% { transform: translateX(168px); opacity: 0.15; }
+    }
+
+    @keyframes ionBounce {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-18px, -8px); }
+    }
+
+    @keyframes drip {
+      0% { transform: translateY(-65px); opacity: 0; }
+      28% { opacity: 1; }
+      58% { transform: translateY(74px); opacity: 1; }
+      76%, 100% { transform: translateY(96px); opacity: 0; }
+    }
+
+    @keyframes titrationColor {
+      0%, 34% { fill: #b04b5a; }
+      45%, 78% { fill: #4b77bd; }
+      100% { fill: #b04b5a; }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes dpdColor {
+      0%, 18% { fill: #e8fbff; }
+      36%, 72% { fill: #f37aa0; }
+      100% { fill: #e8fbff; }
+    }
+
+    @keyframes needle {
+      0%, 18% { transform: rotate(-24deg); }
+      38%, 72% { transform: rotate(34deg); }
+      100% { transform: rotate(-24deg); }
+    }
+
+    @keyframes sampleFlow {
+      0% { transform: translateX(0); opacity: 0; }
+      10%, 82% { opacity: 1; }
+      100% { transform: translateX(430px); opacity: 0; }
+    }
+
+    @keyframes membraneReject {
+      0%, 100% { transform: translate(0, 0); opacity: 1; }
+      50% { transform: translate(-42px, 18px); opacity: 0.65; }
+    }
+
+    @media (max-width: 1180px) {
+      .standards-grid,
+      .measurement-grid,
+      .matrix,
+      .checklist {
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
+      }
+
+      .hero,
+      .learn-box,
+      .standard-detail {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-visual,
+      .hero-visual svg {
+        min-height: 390px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      section {
+        padding: 38px 18px;
+      }
+
+      .visual-grid,
+      .standards-grid,
+      .measurement-grid,
+      .matrix,
+      .checklist,
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fact {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual,
+      .hero-visual svg {
+        min-height: 330px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M16 3C11 9 7 14 7 20a9 9 0 0 0 18 0C25 14 21 9 16 3Z" fill="#1976a3"/>
+          <path d="M11 20c2.4 2.8 6.1 3.6 10 1.8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span data-i18n="brand">NSF净饮水学习手册</span>
+    </div>
+    <nav class="nav" aria-label="Page sections">
+      <a href="#map" data-i18n="navMap">标准地图</a>
+      <a href="#measure" data-i18n="navMeasure">水质测量</a>
+      <a href="#endpoints" data-i18n="navEndpoints">终点矩阵</a>
+      <a href="#visuals" data-i18n="navVisuals">动图</a>
+      <button class="lang-toggle" id="langToggle" type="button" aria-label="Toggle language">EN</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div>
+        <span class="eyebrow" data-i18n="eyebrow">基于你提供的 NSF/ANSI 42, 53, 58, 401, 372</span>
+        <h1 data-i18n="heroTitle">净饮水水质测量与 NSF 终点学习</h1>
+        <p class="lead" data-i18n="heroLead">用工程视角把“测什么、怎么测、标准终点是什么、结果怎么判读”串起来。页面里所有图都是自绘示意，适合培训、预研和新人入门。</p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#measure" data-i18n="startLearning">开始学习</a>
+          <a class="secondary-link" href="#endpoints" data-i18n="jumpEndpoints">查看终点表</a>
+        </div>
+        <p class="small-note" data-i18n="heroCaution">提示：本页是学习型摘要，不替代正式认证、测试计划或标准原文。</p>
+      </div>
+      <figure class="hero-visual" aria-label="Animated drinking water test bench">
+        <svg viewBox="0 0 760 520" role="img">
+          <defs>
+            <linearGradient id="tankFill" x1="0" x2="1">
+              <stop offset="0" stop-color="#d9f4fb"/>
+              <stop offset="1" stop-color="#bde7f1"/>
+            </linearGradient>
+            <linearGradient id="carbon" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#3e4852"/>
+              <stop offset="1" stop-color="#1c2228"/>
+            </linearGradient>
+            <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#18202a" flood-opacity="0.14"/>
+            </filter>
+          </defs>
+          <rect width="760" height="520" fill="#fbfdfe"/>
+          <path d="M65 108 C185 108 190 184 278 184 C380 184 372 102 480 102 C600 102 626 182 700 182" fill="none" stroke="#b9dbe8" stroke-width="22" stroke-linecap="round"/>
+          <path class="water-path" d="M65 108 C185 108 190 184 278 184 C380 184 372 102 480 102 C600 102 626 182 700 182" fill="none" stroke="#1976a3" stroke-width="5" stroke-linecap="round"/>
+
+          <g filter="url(#softShadow)">
+            <rect x="72" y="158" width="142" height="224" rx="8" fill="#fff" stroke="#d6e2e9"/>
+            <rect x="88" y="226" width="110" height="134" rx="7" fill="url(#tankFill)"/>
+            <path d="M88 242c24-16 54 12 110-4v-18H88z" fill="#eaf9fd"/>
+            <text x="143" y="406" text-anchor="middle" fill="#3d4b57" font-size="18" font-weight="700" data-key="rawWater">Raw water</text>
+          </g>
+
+          <g class="bubble">
+            <circle cx="116" cy="312" r="6" fill="#70bed0"/>
+            <circle cx="156" cy="286" r="4" fill="#70bed0"/>
+          </g>
+          <g class="bubble">
+            <circle cx="176" cy="325" r="5" fill="#70bed0"/>
+            <circle cx="132" cy="260" r="3" fill="#70bed0"/>
+          </g>
+
+          <g filter="url(#softShadow)">
+            <rect x="286" y="142" width="146" height="268" rx="8" fill="#fff" stroke="#d6e2e9"/>
+            <rect x="306" y="174" width="106" height="50" rx="6" fill="#e8f5e9" stroke="#c5dfc8"/>
+            <rect x="306" y="238" width="106" height="72" rx="6" fill="url(#carbon)"/>
+            <rect x="306" y="324" width="106" height="54" rx="6" fill="#e9eef2" stroke="#cfd9df"/>
+            <text x="359" y="438" text-anchor="middle" fill="#3d4b57" font-size="18" font-weight="700" data-key="filterMedia">Filter media</text>
+          </g>
+
+          <circle class="particle p1" cx="248" cy="252" r="6" fill="#b94b50"/>
+          <circle class="particle p2" cx="238" cy="283" r="4" fill="#b87914"/>
+          <circle class="particle p3" cx="246" cy="318" r="5" fill="#6d8796"/>
+          <circle class="particle p4" cx="232" cy="221" r="4" fill="#b94b50"/>
+
+          <g filter="url(#softShadow)">
+            <rect x="516" y="162" width="112" height="220" rx="8" fill="#fff" stroke="#d6e2e9"/>
+            <path d="M572 186v172" stroke="#16837a" stroke-width="10" stroke-linecap="round"/>
+            <path d="M528 228h88M528 270h88M528 312h88" stroke="#d9e2ea" stroke-width="4"/>
+            <circle class="ion" cx="602" cy="222" r="8" fill="#b87914"/>
+            <circle class="ion" cx="604" cy="294" r="6" fill="#b94b50"/>
+            <circle class="ion" cx="545" cy="250" r="5" fill="#1976a3"/>
+            <text x="572" y="406" text-anchor="middle" fill="#3d4b57" font-size="18" font-weight="700" data-key="roBarrier">RO / barrier</text>
+          </g>
+
+          <g filter="url(#softShadow)">
+            <rect x="650" y="252" width="52" height="92" rx="8" fill="#fff" stroke="#d6e2e9"/>
+            <rect x="660" y="300" width="32" height="32" rx="4" fill="#dff4ee"/>
+            <path d="M660 300c8-8 18 5 32-3v-14h-32z" fill="#bfe8dc"/>
+            <text x="676" y="377" text-anchor="middle" fill="#3d4b57" font-size="16" font-weight="700" data-key="sample">Sample</text>
+          </g>
+
+          <g class="bubble">
+            <circle cx="670" cy="284" r="4" fill="#16837a"/>
+            <circle cx="686" cy="273" r="3" fill="#16837a"/>
+          </g>
+
+          <g transform="translate(72 44)">
+            <rect width="190" height="52" rx="8" fill="#fff6dc" stroke="#e5c374"/>
+            <text x="18" y="31" fill="#5a4215" font-size="16" font-weight="760" data-key="endpoint">Challenge → Effluent endpoint</text>
+          </g>
+        </svg>
+      </figure>
+    </section>
+
+    <section class="band-white" id="map">
+      <div class="section-head">
+        <h2 data-i18n="mapTitle">NSF 标准学习地图</h2>
+        <p data-i18n="mapLead">先把标准分工看清楚，再看测量方法和终点。42 偏美观，53 偏健康，58 偏反渗透，401 偏新兴/偶发污染物，372 偏材料无铅。</p>
+      </div>
+      <div class="grid standards-grid" id="standardsGrid"></div>
+    </section>
+
+    <section class="band-mint" id="read">
+      <div class="learn-box">
+        <div>
+          <h2 data-i18n="readTitle">如何读 NSF “终点”</h2>
+          <p data-i18n="readLead">终点不是一个单独数值，而是一组测试条件：挑战水浓度、采样点、容量/寿命、产品水限值或最低降低率、分析方法和标签声明。</p>
+          <ul class="key-list" id="readList"></ul>
+        </div>
+        <div class="card">
+          <div class="panel-title">
+            <h3 data-i18n="workflowTitle">判读流程</h3>
+            <span class="pill" data-i18n="workflowPill">实验室逻辑</span>
+          </div>
+          <div class="viz" aria-label="Animated endpoint workflow">
+            <svg viewBox="0 0 620 250">
+              <rect width="620" height="250" fill="#fff"/>
+              <path d="M70 126h455" stroke="#b9dbe8" stroke-width="18" stroke-linecap="round"/>
+              <path class="water-path" d="M70 126h455" stroke="#1976a3" stroke-width="4" stroke-linecap="round"/>
+              <circle class="flow-dot" cx="78" cy="126" r="9" fill="#16837a"/>
+              <g>
+                <rect x="36" y="78" width="100" height="86" rx="8" fill="#e7f3f8" stroke="#b8d7e3"/>
+                <text x="86" y="114" text-anchor="middle" font-size="14" fill="#294757" data-key="challenge">Challenge</text>
+                <text x="86" y="136" text-anchor="middle" font-size="13" fill="#596575" data-key="influent">influent</text>
+              </g>
+              <g>
+                <rect x="190" y="74" width="112" height="94" rx="8" fill="#f1f5f8" stroke="#d9e2ea"/>
+                <rect x="212" y="94" width="68" height="18" rx="4" fill="#3e4852"/>
+                <rect x="212" y="120" width="68" height="18" rx="4" fill="#dff4ee"/>
+                <text x="246" y="158" text-anchor="middle" font-size="14" fill="#294757" data-key="testUnit">Test unit</text>
+              </g>
+              <g>
+                <rect x="356" y="78" width="100" height="86" rx="8" fill="#fff0cf" stroke="#e5c374"/>
+                <text x="406" y="114" text-anchor="middle" font-size="14" fill="#5a4215" data-key="samplePoint">Sample</text>
+                <text x="406" y="136" text-anchor="middle" font-size="13" fill="#7c5d1d" data-key="capacity">capacity %</text>
+              </g>
+              <g>
+                <rect x="502" y="78" width="100" height="86" rx="8" fill="#e5f4dc" stroke="#b9dcc4"/>
+                <text x="552" y="114" text-anchor="middle" font-size="14" fill="#315a32" data-key="endpointBox">Endpoint</text>
+                <text x="552" y="136" text-anchor="middle" font-size="13" fill="#496a4b" data-key="passFail">pass / fail</text>
+              </g>
+              <g fill="#596575" font-size="12">
+                <text x="86" y="202" text-anchor="middle" data-key="avgText">avg + tolerance</text>
+                <text x="246" y="202" text-anchor="middle" data-key="flowText">rated flow</text>
+                <text x="406" y="202" text-anchor="middle" data-key="lifeText">20/40/60/80/100%</text>
+                <text x="552" y="202" text-anchor="middle" data-key="limitText">≤ limit or ≥ reduction</text>
+              </g>
+            </svg>
+          </div>
+          <p class="small-note" data-i18n="workflowNote">同一个污染物在不同标准下可能有不同挑战水、终点和适用技术。例如 TDS 是 NSF/ANSI 58 的核心 RO 指标，但不是 NSF/ANSI 42 的普通氯味项目。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band-white" id="measure">
+      <div class="section-head">
+        <h2 data-i18n="measureTitle">水质测量学习点</h2>
+        <p data-i18n="measureLead">下面按研发和实验室常用参数整理：单位、现场快检、实验室方法、和 NSF 测试中的典型用途。</p>
+      </div>
+      <div class="grid measurement-grid" id="measurementGrid"></div>
+    </section>
+
+    <section class="band-soft" id="endpoints">
+      <div class="section-head">
+        <h2 data-i18n="endpointsTitle">NSF 终点矩阵</h2>
+        <p data-i18n="endpointsLead">这里列的是学习用重点终点，不是标准全文复刻。选择一个标准查看常见 claims、挑战浓度和通过条件。</p>
+      </div>
+      <div class="tabs" id="standardTabs"></div>
+      <div class="standard-detail">
+        <article class="card" id="standardSummary"></article>
+        <div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th data-i18n="thClaim">项目 / Claim</th>
+                  <th data-i18n="thChallenge">挑战浓度 / 条件</th>
+                  <th data-i18n="thEndpoint">终点 / Pass criteria</th>
+                  <th data-i18n="thMethod">测量方法</th>
+                  <th data-i18n="thNote">学习提示</th>
+                </tr>
+              </thead>
+              <tbody id="endpointBody"></tbody>
+            </table>
+          </div>
+          <div class="endpoint-note" id="endpointNote"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band-warm" id="visuals">
+      <div class="section-head">
+        <h2 data-i18n="visualTitle">动图和图片辅助理解</h2>
+        <p data-i18n="visualLead">这些是可离线查看的自绘动画，用来把滴定、显色、过滤和 RO 拦截讲清楚。</p>
+      </div>
+      <div class="grid visual-grid">
+        <article class="card visual-card">
+          <h3 data-i18n="vizHardnessTitle">硬度滴定：红到蓝</h3>
+          <div class="viz">
+            <svg viewBox="0 0 620 280">
+              <rect width="620" height="280" fill="#fff"/>
+              <path d="M276 42h68l-10 52h-48z" fill="#dff4ee" stroke="#9ecfc4"/>
+              <path d="M310 92v40" stroke="#16837a" stroke-width="5" stroke-linecap="round"/>
+              <circle class="drop" cx="310" cy="112" r="9" fill="#16837a"/>
+              <path d="M208 122h204l-30 118H238z" fill="#f8fbfc" stroke="#ccd9e1" stroke-width="3"/>
+              <path class="indicator" d="M232 162c38 18 82-14 150 6l-18 58H250z"/>
+              <g class="swirl" fill="none" stroke="#fff" stroke-width="4" opacity="0.8">
+                <path d="M268 198c42-32 88-27 114 0"/>
+                <path d="M280 216c30 18 62 18 88 0"/>
+              </g>
+              <circle cx="202" cy="74" r="15" fill="#fff0cf" stroke="#e5c374"/>
+              <text x="202" y="79" text-anchor="middle" font-size="13" fill="#5a4215">Ca</text>
+              <circle cx="426" cy="70" r="15" fill="#ffe6e5" stroke="#efaaaa"/>
+              <text x="426" y="75" text-anchor="middle" font-size="13" fill="#71333a">Mg</text>
+              <path d="M202 92c24 32 52 44 82 58M426 90c-28 34-54 48-88 62" stroke="#d9e2ea" stroke-width="3" stroke-dasharray="6 8"/>
+              <text x="310" y="264" text-anchor="middle" fill="#3d4854" font-size="15" font-weight="700" data-key="edtaCaption">EDTA complexes Ca/Mg; endpoint turns blue</text>
+            </svg>
+          </div>
+          <p class="small-note" data-i18n="vizHardnessNote">EDTA 滴定常用 mg/L as CaCO3 表示总硬度；1 gpg 约等于 17.1 mg/L as CaCO3。</p>
+        </article>
+
+        <article class="card visual-card">
+          <h3 data-i18n="vizChlorineTitle">氯测量：DPD 显色</h3>
+          <div class="viz">
+            <svg viewBox="0 0 620 280">
+              <rect width="620" height="280" fill="#fff"/>
+              <rect x="118" y="60" width="114" height="176" rx="12" fill="#f9fcfd" stroke="#ccd9e1" stroke-width="3"/>
+              <rect class="dpd-fill" x="132" y="124" width="86" height="92" rx="7"/>
+              <path d="M132 136c24-18 50 10 86-6v-20h-86z" fill="#eef9fc" opacity="0.75"/>
+              <rect x="256" y="80" width="94" height="34" rx="8" fill="#fff0cf" stroke="#e5c374"/>
+              <text x="303" y="102" text-anchor="middle" font-size="15" fill="#5a4215" font-weight="700">DPD</text>
+              <path d="M350 97h82" stroke="#1976a3" stroke-width="5" stroke-linecap="round"/>
+              <path d="M432 97l-18-10v20z" fill="#1976a3"/>
+              <g transform="translate(438 58)">
+                <rect width="118" height="126" rx="8" fill="#f1f5f8" stroke="#d9e2ea"/>
+                <path d="M22 84a38 38 0 0 1 74 0" fill="none" stroke="#b9dbe8" stroke-width="9"/>
+                <path class="meter-needle" d="M59 82l36-42" stroke="#b94b50" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="59" cy="82" r="6" fill="#3d4854"/>
+                <text x="59" y="112" text-anchor="middle" fill="#3d4854" font-size="13" font-weight="700" data-key="colorimeter">Colorimeter</text>
+              </g>
+              <text x="310" y="256" text-anchor="middle" fill="#3d4854" font-size="15" font-weight="700" data-key="dpdCaption">More residual chlorine → stronger pink → higher reading</text>
+            </svg>
+          </div>
+          <p class="small-note" data-i18n="vizChlorineNote">DPD 可测 free chlorine；总氯减去游离氯可估算 combined chlorine。氯胺测试要特别确认方法适用性。</p>
+        </article>
+
+        <article class="card visual-card">
+          <h3 data-i18n="vizFilterTitle">颗粒过滤：挑战水到产品水</h3>
+          <div class="viz">
+            <svg viewBox="0 0 620 280">
+              <rect width="620" height="280" fill="#fff"/>
+              <path d="M48 140h520" stroke="#d9edf5" stroke-width="30" stroke-linecap="round"/>
+              <path class="water-path" d="M48 140h520" stroke="#1976a3" stroke-width="5" stroke-linecap="round"/>
+              <rect x="260" y="62" width="96" height="158" rx="8" fill="#f1f5f8" stroke="#d9e2ea"/>
+              <g fill="#313941">
+                <circle cx="284" cy="84" r="5"/><circle cx="318" cy="92" r="6"/><circle cx="337" cy="122" r="4"/>
+                <circle cx="292" cy="136" r="7"/><circle cx="324" cy="160" r="5"/><circle cx="298" cy="190" r="4"/>
+              </g>
+              <circle class="particle p1" cx="72" cy="128" r="7" fill="#b94b50"/>
+              <circle class="particle p2" cx="92" cy="154" r="5" fill="#b87914"/>
+              <circle class="particle p3" cx="118" cy="136" r="4" fill="#6d8796"/>
+              <circle class="particle p4" cx="136" cy="158" r="6" fill="#b94b50"/>
+              <g fill="#16837a" opacity="0.75">
+                <circle cx="430" cy="132" r="3"/><circle cx="474" cy="152" r="3"/><circle cx="516" cy="136" r="2"/>
+              </g>
+              <text x="158" y="235" text-anchor="middle" fill="#3d4854" font-size="14" font-weight="700" data-key="challengeParticles">≥10,000 particles/mL challenge</text>
+              <text x="456" y="235" text-anchor="middle" fill="#3d4854" font-size="14" font-weight="700" data-key="reducedParticles">effluent count reduced</text>
+            </svg>
+          </div>
+          <p class="small-note" data-i18n="vizFilterNote">NSF/ANSI 42 颗粒 Class I 到 VI 按粒径分级；401 的 microplastics 使用 Class I 颗粒范围作为学习重点。</p>
+        </article>
+
+        <article class="card visual-card">
+          <h3 data-i18n="vizRoTitle">RO：TDS 与离子截留</h3>
+          <div class="viz">
+            <svg viewBox="0 0 620 280">
+              <rect width="620" height="280" fill="#fff"/>
+              <rect x="252" y="42" width="34" height="196" rx="10" fill="#dff4ee" stroke="#9ed4c9"/>
+              <path d="M70 136h182" stroke="#b9dbe8" stroke-width="22" stroke-linecap="round"/>
+              <path d="M286 136h194" stroke="#d9edf5" stroke-width="18" stroke-linecap="round"/>
+              <path class="water-path" d="M70 136h410" stroke="#1976a3" stroke-width="4" stroke-linecap="round"/>
+              <path d="M286 180c88 0 112 44 188 44" stroke="#f1c879" stroke-width="14" stroke-linecap="round" fill="none"/>
+              <circle class="membrane-ion i1" cx="192" cy="110" r="10" fill="#b87914"/>
+              <text x="192" y="115" text-anchor="middle" font-size="12" fill="#fff">Na</text>
+              <circle class="membrane-ion i2" cx="214" cy="160" r="10" fill="#b94b50"/>
+              <text x="214" y="165" text-anchor="middle" font-size="12" fill="#fff">Cl</text>
+              <circle class="membrane-ion i3" cx="174" cy="146" r="8" fill="#6d8796"/>
+              <text x="174" y="151" text-anchor="middle" font-size="11" fill="#fff">Ca</text>
+              <g fill="#16837a">
+                <circle cx="332" cy="132" r="3"/><circle cx="374" cy="142" r="3"/><circle cx="418" cy="130" r="3"/>
+              </g>
+              <text x="153" y="248" text-anchor="middle" fill="#3d4854" font-size="14" font-weight="700" data-key="tdsIn">750 mg/L TDS challenge</text>
+              <text x="392" y="248" text-anchor="middle" fill="#3d4854" font-size="14" font-weight="700" data-key="tdsOut">≥75% reduction</text>
+              <text x="504" y="222" text-anchor="middle" fill="#7c5d1d" font-size="14" font-weight="700" data-key="reject">reject stream</text>
+            </svg>
+          </div>
+          <p class="small-note" data-i18n="vizRoNote">NSF/ANSI 58 要求 RO 系统做 TDS 测试；回收率关注产品水与浓缩水之间的水量关系。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="band-white" id="calc">
+      <div class="section-head">
+        <h2 data-i18n="calcTitle">两个小计算器</h2>
+        <p data-i18n="calcLead">把实验室常见换算放在页面里：硬度单位换算，以及 372 的加权平均铅含量。</p>
+      </div>
+      <div class="grid visual-grid">
+        <article class="card calculator">
+          <h3 data-i18n="hardCalcTitle">硬度：mg/L as CaCO3 ↔ gpg</h3>
+          <div class="calc-grid">
+            <label>
+              <span data-i18n="mgLabel">mg/L as CaCO3</span>
+              <input id="hardnessMg" type="number" min="0" step="1" value="170">
+            </label>
+            <label>
+              <span data-i18n="gpgLabel">grains per gallon</span>
+              <input id="hardnessGpg" type="number" min="0" step="0.1" value="9.9">
+            </label>
+            <div class="result" id="hardnessResult"></div>
+          </div>
+          <div class="formula">gpg = (mg/L as CaCO3) ÷ 17.1</div>
+        </article>
+
+        <article class="card calculator">
+          <h3 data-i18n="leadCalcTitle">372：加权平均铅含量</h3>
+          <p class="small-note" data-i18n="leadCalcNote">示例用三个涉水部件：输入每个部件的铅含量百分比和涉水面积。正式认证需按完整 BOM 和标准要求确认。</p>
+          <div class="calc-grid">
+            <label>
+              <span data-i18n="leadPct1">部件 A Pb%</span>
+              <input class="lead-pct" type="number" min="0" step="0.01" value="0.10">
+            </label>
+            <label>
+              <span data-i18n="area1">部件 A 面积</span>
+              <input class="lead-area" type="number" min="0" step="1" value="120">
+            </label>
+            <label>
+              <span data-i18n="leadPct2">部件 B Pb%</span>
+              <input class="lead-pct" type="number" min="0" step="0.01" value="1.50">
+            </label>
+            <label>
+              <span data-i18n="area2">部件 B 面积</span>
+              <input class="lead-area" type="number" min="0" step="1" value="8">
+            </label>
+            <label>
+              <span data-i18n="leadPct3">部件 C Pb%</span>
+              <input class="lead-pct" type="number" min="0" step="0.01" value="0.00">
+            </label>
+            <label>
+              <span data-i18n="area3">部件 C 面积</span>
+              <input class="lead-area" type="number" min="0" step="1" value="210">
+            </label>
+          </div>
+          <div class="result" id="leadResult"></div>
+          <div class="formula">WLC = Σ(LCc × WSAc) ÷ WSAt</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="band-soft" id="study">
+      <div class="section-head">
+        <h2 data-i18n="studyTitle">学习检查表</h2>
+        <p data-i18n="studyLead">建议按这个顺序复习，从水质概念到标准终点，再到测试计划。</p>
+      </div>
+      <div class="checklist" id="checklist"></div>
+      <div class="source-note" data-i18n="sourceNote">资料来源：你提供的 NSF/ANSI 42-2023、53-2023、58-2023、401-2023、NSF/ANSI/CAN 372-2022 PDF。本页为培训摘要，具体认证、标签声明、测试水制备、采样频率、容量判定和合规结论请以正式标准和认证机构要求为准。</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p data-i18n="footerText">Made as a bilingual learning HTML for drinking water treatment study.</p>
+  </footer>
+
+  <script>
+    const i18n = {
+      zh: {
+        brand: "NSF净饮水学习手册",
+        navMap: "标准地图",
+        navMeasure: "水质测量",
+        navEndpoints: "终点矩阵",
+        navVisuals: "动图",
+        eyebrow: "基于你提供的 NSF/ANSI 42, 53, 58, 401, 372",
+        heroTitle: "净饮水水质测量与 NSF 终点学习",
+        heroLead: "用工程视角把“测什么、怎么测、标准终点是什么、结果怎么判读”串起来。页面里所有图都是自绘示意，适合培训、预研和新人入门。",
+        startLearning: "开始学习",
+        jumpEndpoints: "查看终点表",
+        heroCaution: "提示：本页是学习型摘要，不替代正式认证、测试计划或标准原文。",
+        mapTitle: "NSF 标准学习地图",
+        mapLead: "先把标准分工看清楚，再看测量方法和终点。42 偏美观，53 偏健康，58 偏反渗透，401 偏新兴/偶发污染物，372 偏材料无铅。",
+        readTitle: "如何读 NSF “终点”",
+        readLead: "终点不是一个单独数值，而是一组测试条件：挑战水浓度、采样点、容量/寿命、产品水限值或最低降低率、分析方法和标签声明。",
+        workflowTitle: "判读流程",
+        workflowPill: "实验室逻辑",
+        workflowNote: "同一个污染物在不同标准下可能有不同挑战水、终点和适用技术。例如 TDS 是 NSF/ANSI 58 的核心 RO 指标，但不是 NSF/ANSI 42 的普通氯味项目。",
+        measureTitle: "水质测量学习点",
+        measureLead: "下面按研发和实验室常用参数整理：单位、现场快检、实验室方法、和 NSF 测试中的典型用途。",
+        endpointsTitle: "NSF 终点矩阵",
+        endpointsLead: "这里列的是学习用重点终点，不是标准全文复刻。选择一个标准查看常见 claims、挑战浓度和通过条件。",
+        thClaim: "项目 / Claim",
+        thChallenge: "挑战浓度 / 条件",
+        thEndpoint: "终点 / Pass criteria",
+        thMethod: "测量方法",
+        thNote: "学习提示",
+        visualTitle: "动图和图片辅助理解",
+        visualLead: "这些是可离线查看的自绘动画，用来把滴定、显色、过滤和 RO 拦截讲清楚。",
+        vizHardnessTitle: "硬度滴定：红到蓝",
+        vizHardnessNote: "EDTA 滴定常用 mg/L as CaCO3 表示总硬度；1 gpg 约等于 17.1 mg/L as CaCO3。",
+        vizChlorineTitle: "氯测量：DPD 显色",
+        vizChlorineNote: "DPD 可测 free chlorine；总氯减去游离氯可估算 combined chlorine。氯胺测试要特别确认方法适用性。",
+        vizFilterTitle: "颗粒过滤：挑战水到产品水",
+        vizFilterNote: "NSF/ANSI 42 颗粒 Class I 到 VI 按粒径分级；401 的 microplastics 使用 Class I 颗粒范围作为学习重点。",
+        vizRoTitle: "RO：TDS 与离子截留",
+        vizRoNote: "NSF/ANSI 58 要求 RO 系统做 TDS 测试；回收率关注产品水与浓缩水之间的水量关系。",
+        calcTitle: "两个小计算器",
+        calcLead: "把实验室常见换算放在页面里：硬度单位换算，以及 372 的加权平均铅含量。",
+        hardCalcTitle: "硬度：mg/L as CaCO3 ↔ gpg",
+        mgLabel: "mg/L as CaCO3",
+        gpgLabel: "grains per gallon",
+        leadCalcTitle: "372：加权平均铅含量",
+        leadCalcNote: "示例用三个涉水部件：输入每个部件的铅含量百分比和涉水面积。正式认证需按完整 BOM 和标准要求确认。",
+        leadPct1: "部件 A Pb%",
+        area1: "部件 A 面积",
+        leadPct2: "部件 B Pb%",
+        area2: "部件 B 面积",
+        leadPct3: "部件 C Pb%",
+        area3: "部件 C 面积",
+        studyTitle: "学习检查表",
+        studyLead: "建议按这个顺序复习，从水质概念到标准终点，再到测试计划。",
+        sourceNote: "资料来源：你提供的 NSF/ANSI 42-2023、53-2023、58-2023、401-2023、NSF/ANSI/CAN 372-2022 PDF。本页为培训摘要，具体认证、标签声明、测试水制备、采样频率、容量判定和合规结论请以正式标准和认证机构要求为准。",
+        footerText: "为净饮水学习制作的中英文 HTML 手册。",
+        hardnessResult: value => `约 ${value} gpg`,
+        leadResult: (value, pass) => `WLC = ${value}%；${pass ? "≤ 0.25%，示例通过" : "> 0.25%，示例不通过"}`,
+        na: "不适用",
+        labels: {
+          rawWater: "原水",
+          filterMedia: "滤材",
+          roBarrier: "RO / 屏障",
+          sample: "样品",
+          endpoint: "挑战水 → 产品水终点",
+          challenge: "挑战水",
+          influent: "进水",
+          testUnit: "测试单元",
+          samplePoint: "采样",
+          capacity: "容量百分比",
+          endpointBox: "终点",
+          passFail: "通过/失败",
+          avgText: "平均值 + 容差",
+          flowText: "额定流量",
+          lifeText: "20/40/60/80/100%",
+          limitText: "≤ 限值或 ≥ 降低率",
+          edtaCaption: "EDTA 络合 Ca/Mg；终点变蓝",
+          colorimeter: "比色计",
+          dpdCaption: "余氯越高 → 粉色越深 → 读数越高",
+          challengeParticles: "至少 10,000 粒/mL 挑战",
+          reducedParticles: "产品水颗粒数下降",
+          tdsIn: "750 mg/L TDS 挑战",
+          tdsOut: "至少降低 75%",
+          reject: "浓缩水"
+        }
+      },
+      en: {
+        brand: "NSF Drinking Water Learning Guide",
+        navMap: "Standards",
+        navMeasure: "Measurements",
+        navEndpoints: "Endpoints",
+        navVisuals: "Animations",
+        eyebrow: "Based on your NSF/ANSI 42, 53, 58, 401, and 372 files",
+        heroTitle: "Water Quality Measurement and NSF Endpoint Learning",
+        heroLead: "A practical map of what to measure, how to measure it, what the NSF endpoint means, and how to read the result. All visuals are original diagrams for training and onboarding.",
+        startLearning: "Start learning",
+        jumpEndpoints: "Open endpoint table",
+        heroCaution: "Note: this is a learning summary, not a substitute for certification work, a formal test plan, or the official standards.",
+        mapTitle: "NSF Standard Map",
+        mapLead: "Start with scope. 42 focuses on aesthetic effects, 53 on health effects, 58 on RO systems, 401 on emerging/incidental contaminants, and 372 on lead content in wetted materials.",
+        readTitle: "How to Read an NSF Endpoint",
+        readLead: "An endpoint is not just one number. It combines challenge concentration, sample points, capacity or service life, product-water limit or minimum reduction, analytical method, and label language.",
+        workflowTitle: "Evaluation Flow",
+        workflowPill: "Lab logic",
+        workflowNote: "The same contaminant can have different challenge waters, endpoints, and applicable technologies under different standards. TDS, for example, is a core NSF/ANSI 58 RO metric, not a normal NSF/ANSI 42 chlorine taste claim.",
+        measureTitle: "Water Quality Measurement Points",
+        measureLead: "The items below group common R&D and lab parameters by unit, field screening, laboratory method, and typical use in NSF testing.",
+        endpointsTitle: "NSF Endpoint Matrix",
+        endpointsLead: "This table lists key learning endpoints rather than reproducing the full standards. Choose a standard to review common claims, challenge levels, and pass criteria.",
+        thClaim: "Item / Claim",
+        thChallenge: "Challenge / condition",
+        thEndpoint: "Endpoint / pass criteria",
+        thMethod: "Measurement method",
+        thNote: "Learning note",
+        visualTitle: "Animations and Diagrams",
+        visualLead: "Offline original animations to explain titration, color development, filtration, and RO rejection.",
+        vizHardnessTitle: "Hardness Titration: Red to Blue",
+        vizHardnessNote: "EDTA titration reports total hardness as mg/L as CaCO3; 1 gpg is about 17.1 mg/L as CaCO3.",
+        vizChlorineTitle: "Chlorine Measurement: DPD Color",
+        vizChlorineNote: "DPD measures free chlorine; total chlorine minus free chlorine estimates combined chlorine. Chloramine methods need suitability checks.",
+        vizFilterTitle: "Particle Filtration: Challenge to Product Water",
+        vizFilterNote: "NSF/ANSI 42 particle Classes I through VI are size based; 401 microplastics use the Class I particle range as the learning anchor.",
+        vizRoTitle: "RO: TDS and Ion Rejection",
+        vizRoNote: "NSF/ANSI 58 requires TDS testing for RO systems; recovery rating relates product water volume to reject flow.",
+        calcTitle: "Two Mini Calculators",
+        calcLead: "Quick lab conversions: hardness units and the 372 weighted average lead content calculation.",
+        hardCalcTitle: "Hardness: mg/L as CaCO3 ↔ gpg",
+        mgLabel: "mg/L as CaCO3",
+        gpgLabel: "grains per gallon",
+        leadCalcTitle: "372: Weighted Average Lead Content",
+        leadCalcNote: "Example with three wetted components. Enter lead percentage and wetted surface area for each. Formal certification requires the complete BOM and standard-specific review.",
+        leadPct1: "Part A Pb%",
+        area1: "Part A area",
+        leadPct2: "Part B Pb%",
+        area2: "Part B area",
+        leadPct3: "Part C Pb%",
+        area3: "Part C area",
+        studyTitle: "Study Checklist",
+        studyLead: "A suggested review order from water chemistry to standard endpoints and test planning.",
+        sourceNote: "Sources: the supplied NSF/ANSI 42-2023, 53-2023, 58-2023, 401-2023, and NSF/ANSI/CAN 372-2022 PDFs. This page is a training summary. Use the official standards and certification-body requirements for certification, labeling, test water preparation, sampling frequency, capacity decisions, and compliance conclusions.",
+        footerText: "Bilingual HTML guide for drinking water treatment learning.",
+        hardnessResult: value => `About ${value} gpg`,
+        leadResult: (value, pass) => `WLC = ${value}%; ${pass ? "≤ 0.25%, example passes" : "> 0.25%, example fails"}`,
+        na: "N/A",
+        labels: {
+          rawWater: "Raw water",
+          filterMedia: "Filter media",
+          roBarrier: "RO / barrier",
+          sample: "Sample",
+          endpoint: "Challenge → effluent endpoint",
+          challenge: "Challenge",
+          influent: "influent",
+          testUnit: "Test unit",
+          samplePoint: "Sample",
+          capacity: "capacity %",
+          endpointBox: "Endpoint",
+          passFail: "pass / fail",
+          avgText: "avg + tolerance",
+          flowText: "rated flow",
+          lifeText: "20/40/60/80/100%",
+          limitText: "≤ limit or ≥ reduction",
+          edtaCaption: "EDTA complexes Ca/Mg; endpoint turns blue",
+          colorimeter: "Colorimeter",
+          dpdCaption: "More residual chlorine → stronger pink → higher reading",
+          challengeParticles: "≥10,000 particles/mL challenge",
+          reducedParticles: "effluent count reduced",
+          tdsIn: "750 mg/L TDS challenge",
+          tdsOut: "≥75% reduction",
+          reject: "reject stream"
+        }
+      }
+    };
+
+    const standards = [
+      {
+        id: "42",
+        name: "NSF/ANSI 42-2023",
+        tags: {
+          zh: ["美观效果", "氯味", "颗粒", "水垢控制"],
+          en: ["Aesthetic effects", "Chlorine taste", "Particles", "Scale control"]
+        },
+        scope: {
+          zh: "适用于降低影响口感、气味、颜色或外观的物质，也包含材料安全、结构完整性、流量/压降和性能声明。",
+          en: "Covers reduction of substances affecting taste, odor, color, or appearance, plus material safety, structural integrity, flow/pressure drop, and performance claims."
+        },
+        main: {
+          zh: "重点看 chlorine/chloramine、颗粒 Class I-VI、铁/锰、硫化氢、酚、pH 调节、scale-control 添加剂。",
+          en: "Focus on chlorine/chloramine, particle Classes I-VI, iron/manganese, hydrogen sulfide, phenol, pH adjustment, and scale-control additives."
+        },
+        not: {
+          zh: "硬度降低不是这几份文件中的主要 claim；家用软水器通常看 NSF/ANSI 44。",
+          en: "Hardness reduction is not a primary claim in these supplied files; residential softeners usually reference NSF/ANSI 44."
+        },
+        note: {
+          zh: "42 的很多项目是“降低率”或“产品水最大浓度”，而不是健康 MCL。",
+          en: "Many 42 endpoints are minimum reduction or maximum product-water concentration, not health-based MCLs."
+        },
+        endpoints: [
+          ["氯 / Chlorine", "2.0 mg/L FAC，平均 ±10%；单点 ±20%", "≥50% 降低；容量终点样品也要满足", "DPD/比色、余氯分析；标准表列 sodium hypochlorite 挑战", "典型用于活性炭除氯味。FAC = free available chlorine。"],
+          ["氯胺 / Chloramine", "3.0 mg/L as Cl2/L monochloramine，平均 ±10%", "≥80% 降低；最终容量点必须满足", "单氯胺分析；可用 HPLC Annex 方法或经验证方法", "取得氯胺容量后，可按同容量声明 chlorine reduction。"],
+          ["颗粒 Class I", "0.5 to <1 µm；至少 10,000 particles/mL", "≥85% 降低", "标准粒子计数技术；ISO fine test dust A2", "Class I 是最小粒径等级，常用于高等级颗粒声明。"],
+          ["颗粒 Class II-IV", "II: 1 to <5 µm；III: 5 to <15 µm；IV: 15 to <30 µm；至少 10,000 particles/mL", "≥85% 降低", "粒子计数；Class III/IV 可用 ISO coarse test dust A4", "声明等级要与能稳定去除的最小粒径相一致。"],
+          ["颗粒 Class V-VI", "V: 30 to <50 µm；VI: 50 to <80 µm；至少 1,000 particles/mL", "≥85% 降低", "粒子计数；30-80 µm 中间分级粉尘", "大颗粒等级通常更容易达成，但不代表可去除小颗粒。"],
+          ["硫化氢 / Hydrogen sulfide", "1.0 mg/L ±10%", "产品水 ≤0.05 mg/L", "按适用水分析方法", "气味问题，测试水要避免暴露空气。"],
+          ["酚 / Phenol", "5.0 mg/L ±10%", "产品水 ≤0.25 mg/L", "按适用水分析方法", "属于气味/味道相关的美观项目。"],
+          ["铁 / Iron", "3-5 mg/L 或 9-11 mg/L", "产品水 ≤0.3 mg/L", "金属分析方法", "关注二价铁、pH、氧化状态和沉淀。"],
+          ["锰 / Manganese", "1-2 mg/L", "产品水 ≤0.05 mg/L", "金属分析方法", "低浓度也会造成颜色/沉积问题。"],
+          ["pH 调节", "高 pH 约 11；低 pH 约 4", "产品水 pH 6.5-8.5", "pH meter 校准后测量", "不是“污染物去除”，而是把水调回可接受范围。"],
+          ["水垢控制添加剂", "系统添加 phosphate 或 silicate", "PO4: 0.5-10.0 mg/L；SiO2: 0.5-16.0 mg/L", "磷酸盐/硅酸盐分析", "42 关注添加剂浓度范围，不等同于硬度软化 claim。"]
+        ]
+      },
+      {
+        id: "53",
+        name: "NSF/ANSI 53-2023",
+        tags: {
+          zh: ["健康影响", "铅", "PFAS", "砷", "囊孢"],
+          en: ["Health effects", "Lead", "PFAS", "Arsenic", "Cysts"]
+        },
+        scope: {
+          zh: "适用于饮用水处理单元对健康相关污染物的降低声明，包括化学、金属、VOC、PFAS、囊孢、石棉、微囊藻毒素等。",
+          en: "Covers health-related contaminant reduction claims for drinking water treatment units, including chemicals, metals, VOCs, PFAS, cysts, asbestos, and microcystins."
+        },
+        main: {
+          zh: "重点读最大出水浓度、单点容差、pH 6.5/8.5 铅测试、砷价态、PFAS 两种声明路径和容量判定。",
+          en: "Focus on maximum effluent limits, sample-point tolerances, lead testing at pH 6.5/8.5, arsenic speciation, two PFAS claim paths, and capacity decisions."
+        },
+        not: {
+          zh: "53 不代表所有健康污染物都能声明；只能按标准列出的或额外评价的 claims。",
+          en: "53 does not imply every health contaminant can be claimed; claims must match listed or separately evaluated requirements."
+        },
+        note: {
+          zh: "健康类终点常是产品水最大浓度，例如铅从 0.15 mg/L 到 ≤0.005 mg/L。",
+          en: "Health-effect endpoints often use maximum product-water limits, such as lead from 0.15 mg/L to ≤0.005 mg/L."
+        },
+        endpoints: [
+          ["铅 / Lead", "0.15 mg/L ±10% total lead；pH 6.5 与 pH 8.5 测试", "产品水 ≤0.005 mg/L", "EPA 200.8/200.9；pH 8.5 还控制颗粒铅比例", "2019 后铅 pass/fail 限值降到 5 µg/L。"],
+          ["囊孢 / Cyst", "至少 50,000 C. parvum oocysts/L", "≥99.95% 降低", "规范 Annex 的计数/显微方法", "声明通常限于可过滤囊孢，不等同微生物净化。"],
+          ["石棉 / Asbestos", "10^7 to 10^8 fibers/L，纤维 >10 µm", "≥99% 降低", "TEM 或 XRD 等方法", "属于机械过滤健康 claim。"],
+          ["五价砷 / Arsenic V", "0.050 mg/L 或 0.30 mg/L", "产品水 ≤0.010 mg/L", "EPA 200.7/200.8/200.9", "三价砷更难去除；氯可帮助氧化，氯胺不足以保证完全转化。"],
+          ["氟化物 / Fluoride", "8.0 mg/L ±10%", "产品水 ≤1.0 mg/L", "EPA 340.2", "2023 文件中氟化物终点更新为 1.0 mg/L。"],
+          ["硝酸盐+亚硝酸盐", "30 mg/L as N，通常 27 mg/L nitrate-N + 3 mg/L nitrite-N", "产品水 ≤10 mg/L as N；其中 nitrite-N ≤1 mg/L", "EPA 300", "关注私井和农业区水源。"],
+          ["PFAS total", "0.00216 mg/L；含 PFOA/PFOS/PFHxS/PFNA/PFHpA/PFBS/PFDA 混合", "产品水 ≤0.00002 mg/L", "EPA 533, 537.1, 8327", "也可做单项 PFAS 声明路径。"],
+          ["PFOA + PFOS", "0.0015 mg/L；约 PFOS 1.0 µg/L + PFOA 0.5 µg/L", "产品水 ≤0.00002 mg/L", "EPA 533, 537.1, 8327 或标准 Annex", "注意单位：0.00002 mg/L = 20 ng/L。"],
+          ["高关注金属", "Barium 10；Cadmium 0.03；Chromium 0.3；Copper 3.0；Mercury 0.006 mg/L", "分别 ≤2.0、0.005、0.1、1.3、0.002 mg/L", "EPA 200.8 等金属方法", "不同价态金属可能有不同样品制备和测量要求。"],
+          ["微囊藻毒素 / Microcystins", "0.004 mg/L ±10%", "产品水 ≤0.0003 mg/L", "EPA 544", "用于蓝藻毒素事件相关学习，不等于所有 cyanotoxins 的一般声明。"],
+          ["VOCs / 有机化学品", "按 Table 7.1：如 benzene 0.015 mg/L、TTHM 0.45 mg/L 等", "按各物质最大出水浓度，例如 benzene ≤0.005 mg/L", "EPA 502.2, 524.2/524.3, 505/508/525 等", "VOC claim 可用 surrogate 逻辑，但标签要按标准限制表达。"]
+        ]
+      },
+      {
+        id: "58",
+        name: "NSF/ANSI 58-2023",
+        tags: {
+          zh: ["反渗透", "TDS", "回收率", "硝酸盐", "NDMA"],
+          en: ["RO", "TDS", "Recovery", "Nitrate", "NDMA"]
+        },
+        scope: {
+          zh: "适用于反渗透饮用水处理系统；TDS 降低是核心要求，其他污染物可作为选择性性能声明。",
+          en: "Applies to reverse osmosis drinking water systems. TDS reduction is core; other contaminants are elective performance claims."
+        },
+        main: {
+          zh: "重点看 TDS 750 mg/L 挑战、至少 75% 降低、产品水监测、日产水量、回收率/效率，以及 RO 对离子污染物的选择性声明。",
+          en: "Focus on the 750 mg/L TDS challenge, minimum 75% reduction, product-water monitoring, daily production rate, recovery/efficiency ratings, and elective RO contaminant claims."
+        },
+        not: {
+          zh: "RO 对三价砷不如五价砷；只有在可确认氧化/五价形态时才适合做五价砷逻辑。",
+          en: "RO is less effective for trivalent arsenic; pentavalent arsenic logic depends on confirmed oxidation or demonstrated pentavalent form."
+        },
+        note: {
+          zh: "58 的 TDS endpoint 可理解为 750 mg/L 进水至少去除 75%，PDS 常见产品水限值为 187 mg/L。",
+          en: "The 58 TDS endpoint can be read as at least 75% removal from a 750 mg/L challenge; the PDS product-water value is commonly 187 mg/L."
+        },
+        endpoints: [
+          ["TDS", "750 ±40 mg/L TDS；NaCl 配制", "≥75.0% 降低；PDS 表示产品水约 ≤187 mg/L", "EPA 160.1 或等效 TDS 方法", "RO 必测核心项目。也和 DPR、recovery、efficiency 一起评估。"],
+          ["五价砷 / Arsenic V", "0.050 或 0.30 mg/L", "产品水 ≤0.010 mg/L", "EPA 200.7/200.8", "需要确认 RO 入口有 free chlorine residual 或水中只有五价砷。"],
+          ["氟化物 / Fluoride", "8.0 mg/L ±10%", "产品水 ≤1.0 mg/L", "EPA 340.2", "与 53 一样，2023 文件终点为 1.0 mg/L。"],
+          ["铅 / Lead", "0.15 mg/L ±10%", "产品水 ≤0.005 mg/L", "EPA 200.8/200.9", "RO 金属声明要结合实际前处理和膜状态。"],
+          ["硝酸盐+亚硝酸盐", "30 mg/L as N 或 70 mg/L as N 两种挑战", "产品水 ≤10 mg/L as N；nitrite endpoint ≤1 mg/L 或按表", "EPA 300", "高硝酸盐水源可能需要额外设计或限制。"],
+          ["NDMA", "40 ng/L ±10%", "产品水 ≤6 ng/L", "EPA 521 或同等灵敏度验证方法", "单位是 ng/L；采样和背景控制很关键。"],
+          ["Perchlorate", "0.10 mg/L ±10%", "产品水 ≤0.006 mg/L", "EPA 314.0", "RO 对阴离子污染物通常有效，但终点仍要实测。"],
+          ["PFAS total", "0.00216 mg/L ±20%", "产品水 ≤0.00002 mg/L", "EPA 533, 537.1, 8327", "58 中 PFAS 可作为 RO 选择性 claim。"],
+          ["Turbidity", "11 ±1 NTU", "产品水 ≤0.5 NTU", "浊度计 / nephelometer", "RO 系统也可能声明 turbidity reduction。"],
+          ["Uranium", "0.10 或 0.40 mg/L", "产品水 ≤0.02 mg/L", "金属/放射性适用方法", "关注地下水源。"]
+        ]
+      },
+      {
+        id: "401",
+        name: "NSF/ANSI 401-2023",
+        tags: {
+          zh: ["新兴污染物", "药物", "个人护理品", "微塑料"],
+          en: ["Emerging compounds", "Pharmaceuticals", "PPCPs", "Microplastics"]
+        },
+        scope: {
+          zh: "适用于降低特定 emerging compounds / incidental contaminants 的饮用水处理系统，例如药物、激素、阻燃剂、除草剂和微塑料。",
+          en: "Covers reduction of specific emerging compounds/incidental contaminants such as pharmaceuticals, hormones, flame retardants, herbicides, and microplastics."
+        },
+        main: {
+          zh: "重点看 ng/L 级挑战浓度、LC/MS 或 HPLC/MS/MS 分析、以及 microplastics 的 Class I 颗粒声明。",
+          en: "Focus on ng/L challenge levels, LC/MS or HPLC/MS/MS analysis, and the microplastics Class I particle claim."
+        },
+        not: {
+          zh: "401 不是泛化的“所有药物/所有微污染物”声明；只能对列出的目标物或经评价目标物声明。",
+          en: "401 is not a generic claim for all pharmaceuticals or all micropollutants; it applies to listed or evaluated target compounds."
+        },
+        note: {
+          zh: "401 表中浓度通常是 ng/L，和 53/58 常见 mg/L 表格相差 10^6 倍。",
+          en: "401 concentrations are usually in ng/L, a million-fold smaller than mg/L tables common in 53/58."
+        },
+        endpoints: [
+          ["Atenolol", "200 ng/L ±20%", "≤30 ng/L", "HPLC/MS/MS, LC/MS", "心血管药物代表物。"],
+          ["Bisphenol A", "2,000 ng/L ±20%", "≤300 ng/L", "SPE/HPLC, LC/MS", "塑化/工业化学品学习代表。"],
+          ["Carbamazepine", "1,400 ng/L ±20%", "≤200 ng/L", "HPLC/MS/MS, LC/MS", "常被用作污水影响示踪物。"],
+          ["DEET", "1,400 ng/L ±20%", "≤200 ng/L", "GC/MS/MS, LC/MS", "个人护理/驱蚊剂代表。"],
+          ["Estrone", "140 ng/L ±20%", "≤20 ng/L", "HPLC/MS/MS, LC/MS", "激素类目标物。"],
+          ["Ibuprofen", "400 ng/L ±20%", "≤60 ng/L", "HPLC, LC/MS", "常见非处方药代表。"],
+          ["Linuron", "140 ng/L ±20%", "≤20 ng/L", "HPLC, LC/MS", "除草剂代表。"],
+          ["Meprobamate", "400 ng/L ±20%", "≤60 ng/L", "RP/HPLC, LC/MS", "药物类代表。"],
+          ["Metolachlor", "1,400 ng/L ±20%", "≤200 ng/L", "Gas LC, LC/MS", "农业除草剂代表。"],
+          ["Naproxen", "140 ng/L ±20%", "≤20 ng/L", "ELC, LC/MS", "非甾体抗炎药代表。"],
+          ["Nonylphenol", "1,400 ng/L ±20%", "≤200 ng/L", "LC/ESI/MS, LC/MS", "表面活性剂降解物代表。"],
+          ["Phenytoin", "200 ng/L ±20%", "≤30 ng/L", "HPLC, LC/MS", "药物类代表。"],
+          ["TCEP / TCPP", "5,000 ng/L ±20%", "≤700 ng/L", "LC/MS 或 GC/MS", "阻燃剂代表。"],
+          ["Trimethoprim", "140 ng/L ±20%", "≤20 ng/L", "HPLC/MS/MS, LC/MS", "抗菌药物代表。"],
+          ["Microplastics", "0.5 to <1 µm；至少 10,000 particles/mL", "≥85% 降低", "粒子计数；ISO fine test dust A2", "2023 revision 增加 RO 系统 microplastics 测试程序。"]
+        ]
+      },
+      {
+        id: "372",
+        name: "NSF/ANSI/CAN 372-2022",
+        tags: {
+          zh: ["无铅", "涉水表面", "材料", "加权平均"],
+          en: ["Lead-free", "Wetted surface", "Materials", "Weighted average"]
+        },
+        scope: {
+          zh: "规定饮用水接触产品中涉水材料的铅含量评估方法。它看材料含铅量，不看过滤器对水中铅的去除效果。",
+          en: "Defines how to evaluate lead content in wetted materials of drinking-water-contact products. It addresses material lead content, not lead reduction from water."
+        },
+        main: {
+          zh: "重点看焊料/助焊剂 ≤0.2%，其他产品涉水表面加权平均铅含量 ≤0.25%。",
+          en: "Focus on solder/flux ≤0.2% and weighted average lead content of wetted surfaces ≤0.25% for other products."
+        },
+        not: {
+          zh: "372 通过不等于 NSF/ANSI 53 lead reduction 通过；一个是材料限铅，一个是出水降铅性能。",
+          en: "Passing 372 is not the same as passing NSF/ANSI 53 lead reduction; one limits material lead content, the other proves water lead reduction."
+        },
+        note: {
+          zh: "如果每个涉水部件都 ≤0.25% Pb，可认为满足；若有部件 >0.25%，需要按涉水面积加权计算。",
+          en: "If every wetted component is ≤0.25% Pb, the product is considered compliant; if any wetted component is >0.25%, calculate the weighted average."
+        },
+        endpoints: [
+          ["焊料和助焊剂 / Solder and flux", "材料铅含量", "≤0.2% Pb", "材料规格、供应商数据、XRF 筛查或化学分析", "这不是出水铅浓度。"],
+          ["所有涉水部件均 ≤0.25%", "每个涉水表面材料铅含量 ≤0.25%", "无需进一步加权计算即可视为合规", "材料规格与验证", "适用于部件级低铅材料。"],
+          ["存在部件 >0.25%", "收集每个涉水部件的 Pb% 和 wetted surface area", "WLC = Σ(LCc × WSAc) / WSAt；最终 ≤0.25%", "表面积计算 + 材料铅含量分析", "大面积低铅材料可降低加权平均，小面积高铅件仍需谨慎。"],
+          ["涂层/内衬", "看涂层、基材、永久屏障等结构", "按标准确定用于计算的铅含量", "结构确认 + 材料分析", "不能只看外观涂层；要看实际涉水接触和屏障可靠性。"],
+          ["记录要求", "BOM、涉水面积、材料规格、最大铅含量、计算过程", "结果四舍五入到两位小数后判定", "文件审核 + 分析程序", "认证前准备完整材料清单会节省大量返工。"]
+        ]
+      }
+    ];
+
+    const endpointEn = {
+      "42": [
+        ["Chlorine", "2.0 mg/L FAC; average ±10%; individual ±20%", "≥50% reduction; final capacity sample must also pass", "DPD/colorimetric residual chlorine analysis; sodium hypochlorite challenge", "Typical activated-carbon taste-and-odor claim. FAC means free available chlorine."],
+        ["Chloramine", "3.0 mg/L as Cl2/L monochloramine; average ±10%", "≥80% reduction; final capacity sample must pass", "Monochloramine analysis; HPLC annex method or validated method", "After chloramine capacity is established, chlorine reduction may be claimed at the same capacity."],
+        ["Particulate Class I", "0.5 to <1 µm; at least 10,000 particles/mL", "≥85% reduction", "Particle counting; ISO fine test dust A2", "Class I is the smallest 42 nominal particulate class."],
+        ["Particulate Classes II-IV", "II: 1 to <5 µm; III: 5 to <15 µm; IV: 15 to <30 µm; at least 10,000 particles/mL", "≥85% reduction", "Particle counting; Class III/IV may use ISO coarse test dust A4", "The claimed class must match the smallest particle size range reliably reduced."],
+        ["Particulate Classes V-VI", "V: 30 to <50 µm; VI: 50 to <80 µm; at least 1,000 particles/mL", "≥85% reduction", "Particle counting; 30-80 µm intermediate fraction", "A larger-particle class does not imply small-particle performance."],
+        ["Hydrogen sulfide", "1.0 mg/L ±10%", "Product water ≤0.05 mg/L", "Applicable water analysis method", "Odor-related aesthetic issue; the test water is protected from air exposure."],
+        ["Phenol", "5.0 mg/L ±10%", "Product water ≤0.25 mg/L", "Applicable water analysis method", "Taste/odor-related aesthetic substance."],
+        ["Iron", "3-5 mg/L or 9-11 mg/L", "Product water ≤0.3 mg/L", "Metals analysis method", "Ferrous state, pH, oxidation, and precipitation matter."],
+        ["Manganese", "1-2 mg/L", "Product water ≤0.05 mg/L", "Metals analysis method", "Even low levels can cause color and deposit issues."],
+        ["pH adjustment", "High pH about 11; low pH about 4", "Product water pH 6.5-8.5", "Calibrated pH meter", "This is adjustment back into range, not contaminant removal."],
+        ["Scale-control additives", "System adds phosphate or silicate", "PO4: 0.5-10.0 mg/L; SiO2: 0.5-16.0 mg/L", "Phosphate/silicate analysis", "42 checks additive concentration range; this is not a hardness-softening claim."]
+      ],
+      "53": [
+        ["Lead", "0.15 mg/L ±10% total lead; tested at pH 6.5 and pH 8.5", "Product water ≤0.005 mg/L", "EPA 200.8/200.9; pH 8.5 test controls particulate lead fractions", "The lead pass/fail level was reduced to 5 µg/L after the 2019 revision."],
+        ["Cyst", "At least 50,000 C. parvum oocysts/L", "≥99.95% reduction", "Annex oocyst counting/microscopy method", "Usually limited to filterable cysts; it is not a broad microbiological purifier claim."],
+        ["Asbestos", "10^7 to 10^8 fibers/L; fibers >10 µm", "≥99% reduction", "TEM or XRD-type methods", "A mechanical-filtration health-effect claim."],
+        ["Pentavalent arsenic", "0.050 mg/L or 0.30 mg/L", "Product water ≤0.010 mg/L", "EPA 200.7/200.8/200.9", "Trivalent arsenic is harder to reduce; free chlorine can oxidize it, while chloramine is not enough to guarantee conversion."],
+        ["Fluoride", "8.0 mg/L ±10%", "Product water ≤1.0 mg/L", "EPA 340.2", "The 2023 file updates the fluoride endpoint to 1.0 mg/L."],
+        ["Nitrate plus nitrite", "30 mg/L as N, typically 27 mg/L nitrate-N + 3 mg/L nitrite-N", "Product water ≤10 mg/L as N; nitrite-N ≤1 mg/L", "EPA 300", "Important for wells and agricultural source waters."],
+        ["Total PFAS", "0.00216 mg/L mixture including PFOA, PFOS, PFHxS, PFNA, PFHpA, PFBS, PFDA", "Product water ≤0.00002 mg/L", "EPA 533, 537.1, 8327", "Individual PFAS claims are another path."],
+        ["PFOA + PFOS", "0.0015 mg/L; about 1.0 µg/L PFOS + 0.5 µg/L PFOA", "Product water ≤0.00002 mg/L", "EPA 533, 537.1, 8327 or standard annex", "Watch units: 0.00002 mg/L equals 20 ng/L."],
+        ["High-interest metals", "Barium 10; cadmium 0.03; chromium 0.3; copper 3.0; mercury 0.006 mg/L", "Respectively ≤2.0, 0.005, 0.1, 1.3, 0.002 mg/L", "EPA 200.8 and related metals methods", "Different valence states can require different preparation and analysis."],
+        ["Microcystins", "0.004 mg/L ±10%", "Product water ≤0.0003 mg/L", "EPA 544", "Useful for cyanotoxin-event learning; not a generic all-cyanotoxin claim."],
+        ["VOCs / organic chemicals", "Table 7.1 examples: benzene 0.015 mg/L, TTHM 0.45 mg/L, etc.", "Substance-specific maximum effluent, e.g., benzene ≤0.005 mg/L", "EPA 502.2, 524.2/524.3, 505/508/525, etc.", "VOC claims can use surrogate logic, but labeling language is constrained."]
+      ],
+      "58": [
+        ["TDS", "750 ±40 mg/L TDS; prepared with NaCl", "≥75.0% reduction; PDS product-water value about ≤187 mg/L", "EPA 160.1 or equivalent TDS method", "Mandatory core RO test, evaluated with DPR, recovery, and efficiency where applicable."],
+        ["Pentavalent arsenic", "0.050 or 0.30 mg/L", "Product water ≤0.010 mg/L", "EPA 200.7/200.8", "Confirm free chlorine residual at the RO inlet or demonstrate only pentavalent arsenic is present."],
+        ["Fluoride", "8.0 mg/L ±10%", "Product water ≤1.0 mg/L", "EPA 340.2", "Same 2023 fluoride endpoint concept as 53."],
+        ["Lead", "0.15 mg/L ±10%", "Product water ≤0.005 mg/L", "EPA 200.8/200.9", "RO metal claims should be read with pretreatment and membrane condition in mind."],
+        ["Nitrate plus nitrite", "Two challenge options: 30 mg/L as N or 70 mg/L as N", "Product water ≤10 mg/L as N; nitrite endpoint follows the table", "EPA 300", "High-nitrate waters may need design limits or additional treatment."],
+        ["NDMA", "40 ng/L ±10%", "Product water ≤6 ng/L", "EPA 521 or validated equivalent sensitivity", "ng/L-level work depends on background control and sampling discipline."],
+        ["Perchlorate", "0.10 mg/L ±10%", "Product water ≤0.006 mg/L", "EPA 314.0", "RO is often effective for ions, but the claim is still proven by test."],
+        ["Total PFAS", "0.00216 mg/L ±20%", "Product water ≤0.00002 mg/L", "EPA 533, 537.1, 8327", "Can be an elective RO contaminant claim."],
+        ["Turbidity", "11 ±1 NTU", "Product water ≤0.5 NTU", "Nephelometer/turbidity meter", "RO systems may also claim turbidity reduction."],
+        ["Uranium", "0.10 or 0.40 mg/L", "Product water ≤0.02 mg/L", "Applicable metals/radiological method", "Important for some groundwater sources."]
+      ],
+      "401": [
+        ["Atenolol", "200 ng/L ±20%", "≤30 ng/L", "HPLC/MS/MS, LC/MS", "Representative cardiovascular drug."],
+        ["Bisphenol A", "2,000 ng/L ±20%", "≤300 ng/L", "SPE/HPLC, LC/MS", "Representative industrial/plastic-related compound."],
+        ["Carbamazepine", "1,400 ng/L ±20%", "≤200 ng/L", "HPLC/MS/MS, LC/MS", "Often used as a wastewater-impact tracer."],
+        ["DEET", "1,400 ng/L ±20%", "≤200 ng/L", "GC/MS/MS, LC/MS", "Representative personal-care insect repellent."],
+        ["Estrone", "140 ng/L ±20%", "≤20 ng/L", "HPLC/MS/MS, LC/MS", "Hormone target compound."],
+        ["Ibuprofen", "400 ng/L ±20%", "≤60 ng/L", "HPLC, LC/MS", "Common nonprescription drug representative."],
+        ["Linuron", "140 ng/L ±20%", "≤20 ng/L", "HPLC, LC/MS", "Herbicide representative."],
+        ["Meprobamate", "400 ng/L ±20%", "≤60 ng/L", "RP/HPLC, LC/MS", "Pharmaceutical representative."],
+        ["Metolachlor", "1,400 ng/L ±20%", "≤200 ng/L", "Gas LC, LC/MS", "Agricultural herbicide representative."],
+        ["Naproxen", "140 ng/L ±20%", "≤20 ng/L", "ELC, LC/MS", "NSAID representative."],
+        ["Nonylphenol", "1,400 ng/L ±20%", "≤200 ng/L", "LC/ESI/MS, LC/MS", "Surfactant-breakdown product representative."],
+        ["Phenytoin", "200 ng/L ±20%", "≤30 ng/L", "HPLC, LC/MS", "Pharmaceutical representative."],
+        ["TCEP / TCPP", "5,000 ng/L ±20%", "≤700 ng/L", "LC/MS or GC/MS", "Flame-retardant representatives."],
+        ["Trimethoprim", "140 ng/L ±20%", "≤20 ng/L", "HPLC/MS/MS, LC/MS", "Antimicrobial drug representative."],
+        ["Microplastics", "0.5 to <1 µm; at least 10,000 particles/mL", "≥85% reduction", "Particle counting; ISO fine test dust A2", "The 2023 revision adds an RO microplastics test procedure."]
+      ],
+      "372": [
+        ["Solder and flux", "Material lead content", "≤0.2% Pb", "Material specification, supplier data, XRF screening, or chemical analysis", "This is not a product-water lead concentration."],
+        ["All wetted components ≤0.25%", "Every wetted-surface material is ≤0.25% Pb", "Considered compliant without further weighted calculation", "Material specification and verification", "Applies when all wetted components are low-lead materials."],
+        ["Any component >0.25%", "Collect Pb% and wetted surface area for every wetted component", "WLC = Σ(LCc × WSAc) / WSAt; final result ≤0.25%", "Surface-area calculation plus material lead-content analysis", "Large low-lead surfaces can reduce the average, but small high-lead parts still need careful review."],
+        ["Coatings / liners", "Evaluate coatings, substrates, liners, and permanent barriers", "Use the lead content required by the standard's calculation logic", "Construction review plus material analysis", "Do not rely on appearance only; actual wetted contact and barrier reliability matter."],
+        ["Records", "BOM, wetted area, material spec, maximum lead content, calculation trail", "Round final weighted result to two decimals before judging", "Document review plus analytical procedure", "A complete wetted BOM saves a lot of certification rework."]
+      ]
+    };
+
+    const measurements = [
+      {
+        title: { zh: "总硬度", en: "Total Hardness" },
+        unit: "mg/L as CaCO3, gpg",
+        methods: {
+          zh: [
+            "EDTA 滴定：缓冲到约 pH 10，铬黑 T 指示剂由酒红到蓝色为终点。",
+            "现场快检：试纸或滴定盒适合趋势判断，不适合认证级数据。",
+            "实验室拆分：ICP/OES 或 ICP/MS 可测 Ca、Mg，再换算为 CaCO3 硬度。"
+          ],
+          en: [
+            "EDTA titration: buffer near pH 10; Eriochrome Black T changes wine-red to blue at endpoint.",
+            "Field screening: strips or drop-count kits are useful for trends, not certification-grade data.",
+            "Lab split: ICP/OES or ICP/MS can measure Ca and Mg, then convert to CaCO3 hardness."
+          ]
+        },
+        nsf: {
+          zh: "在这些 PDF 中，硬度多作为测试水条件，例如 42 颗粒测试水 hardness ≤170 mg/L as CaCO3；软化 claim 通常看 NSF/ANSI 44。",
+          en: "In the supplied PDFs, hardness is mostly a test-water condition, e.g., 42 particle test water hardness ≤170 mg/L as CaCO3; softening claims usually reference NSF/ANSI 44."
+        }
+      },
+      {
+        title: { zh: "游离氯 / 总氯", en: "Free and Total Chlorine" },
+        unit: "mg/L as Cl2",
+        methods: {
+          zh: [
+            "DPD 比色：游离氯显粉红；加入总氯试剂后可读总氯。",
+            "总氯 - 游离氯 ≈ 结合氯；氯胺体系要确认方法无干扰。",
+            "样品要尽快测，避免光照、挥发、还原性物质消耗余氯。"
+          ],
+          en: [
+            "DPD colorimetry: free chlorine develops pink; total chlorine is read after total-chlorine reagent.",
+            "Total chlorine minus free chlorine approximates combined chlorine; chloramine systems need interference checks.",
+            "Measure quickly; light, volatilization, and reducing agents can consume residual chlorine."
+          ]
+        },
+        nsf: {
+          zh: "42 chlorine claim：2.0 mg/L FAC 挑战，至少 50% 降低。氯胺 claim：3.0 mg/L monochloramine，至少 80% 降低。",
+          en: "42 chlorine claim: 2.0 mg/L FAC challenge with at least 50% reduction. Chloramine claim: 3.0 mg/L monochloramine with at least 80% reduction."
+        }
+      },
+      {
+        title: { zh: "TDS / 电导率", en: "TDS / Conductivity" },
+        unit: "mg/L TDS, µS/cm",
+        methods: {
+          zh: [
+            "电导率仪可快速估算 TDS，但换算系数随离子组成变化。",
+            "重量法 TDS：过滤、蒸发、干燥、称重，是更基础的定义方法。",
+            "RO 研发中应同时记录进水、产品水、浓缩水、温度和压力。"
+          ],
+          en: [
+            "Conductivity meters estimate TDS quickly, but the conversion factor depends on ion composition.",
+            "Gravimetric TDS uses filtration, evaporation, drying, and weighing.",
+            "RO development should record feed, product, reject, temperature, and pressure together."
+          ]
+        },
+        nsf: {
+          zh: "58 TDS：750 ±40 mg/L 挑战，至少降低 75%。42/53 的测试水也常控制 TDS 范围。",
+          en: "58 TDS: 750 ±40 mg/L challenge with at least 75% reduction. 42/53 test waters also often control TDS range."
+        }
+      },
+      {
+        title: { zh: "pH", en: "pH" },
+        unit: "pH units",
+        methods: {
+          zh: [
+            "pH meter 用 pH 4/7/10 缓冲液校准，低离子水测量要稳定读数。",
+            "pH 影响金属形态、氯/氯胺平衡、砷价态和吸附性能。",
+            "测试水制备常用 HCl 或 NaOH 调节，并记录温度。"
+          ],
+          en: [
+            "Calibrate the pH meter with pH 4/7/10 buffers; low-ionic-strength water needs stable readings.",
+            "pH affects metal speciation, chlorine/chloramine balance, arsenic form, and adsorption performance.",
+            "Test waters are commonly adjusted with HCl or NaOH, with temperature recorded."
+          ]
+        },
+        nsf: {
+          zh: "42 有 pH adjustment claim：高 pH/低 pH 挑战后产品水需落在 6.5-8.5。",
+          en: "42 includes pH adjustment claims: high- or low-pH challenge water must be brought to product water pH 6.5-8.5."
+        }
+      },
+      {
+        title: { zh: "浊度 / 颗粒", en: "Turbidity / Particles" },
+        unit: "NTU, particles/mL, µm",
+        methods: {
+          zh: [
+            "浊度计以散射光读 NTU；不能直接等同于颗粒粒径分布。",
+            "颗粒计数器按粒径窗口统计 particles/mL，用于 Class I-VI。",
+            "样品瓶、管路冲洗、气泡和沉降都会影响结果。"
+          ],
+          en: [
+            "A turbidimeter reads scattered light as NTU; it is not the same as particle size distribution.",
+            "Particle counters report particles/mL by size window for Classes I-VI.",
+            "Sample bottles, line flushing, bubbles, and settling can all affect results."
+          ]
+        },
+        nsf: {
+          zh: "42 nominal particulate：各 Class 至少 85% 降低；401 microplastics：0.5 to <1 µm，至少 10,000/mL，≥85%。",
+          en: "42 nominal particulate: at least 85% reduction by class. 401 microplastics: 0.5 to <1 µm, at least 10,000/mL, ≥85%."
+        }
+      },
+      {
+        title: { zh: "TOC / 有机物背景", en: "TOC / Organic Background" },
+        unit: "mg/L as C",
+        methods: {
+          zh: [
+            "TOC 常用高温燃烧或 UV/过硫酸盐氧化法。",
+            "TOC 会竞争活性炭吸附位点，影响 VOC、氯味、微污染物容量。",
+            "测试水中 TOC 可能用天然水或标准允许的方式调整。"
+          ],
+          en: [
+            "TOC is commonly measured by high-temperature combustion or UV/persulfate oxidation.",
+            "TOC competes for activated-carbon sites and affects VOC, taste/odor, and micropollutant capacity.",
+            "Test-water TOC may come from natural water or be adjusted as allowed by the standard."
+          ]
+        },
+        nsf: {
+          zh: "42/53 多个化学 reduction 测试水要求 TOC 背景，以模拟真实竞争吸附。",
+          en: "Many 42/53 chemical reduction waters require a TOC background to simulate real adsorption competition."
+        }
+      },
+      {
+        title: { zh: "金属", en: "Metals" },
+        unit: "mg/L, µg/L",
+        methods: {
+          zh: [
+            "ICP-MS/ICP-OES 常用于 Pb、As、Cd、Cr、Ba、Se、U 等。",
+            "样品通常需要酸化保存；颗粒态/溶解态可能要过滤拆分。",
+            "铅 pH 8.5 测试需关注细颗粒铅比例。"
+          ],
+          en: [
+            "ICP-MS/ICP-OES is common for Pb, As, Cd, Cr, Ba, Se, U, and similar metals.",
+            "Samples are often acid-preserved; particulate and dissolved fractions may need filtration.",
+            "Lead testing at pH 8.5 requires attention to fine particulate lead."
+          ]
+        },
+        nsf: {
+          zh: "53/58 中 lead endpoint 常为 0.15 mg/L 挑战到 ≤0.005 mg/L 产品水；372 则评估材料 Pb%。",
+          en: "In 53/58, lead endpoint is commonly 0.15 mg/L challenge to ≤0.005 mg/L product water; 372 evaluates material Pb%."
+        }
+      },
+      {
+        title: { zh: "有机物 / 新兴化合物", en: "Organics / Emerging Compounds" },
+        unit: "mg/L, ng/L",
+        methods: {
+          zh: [
+            "VOC 常用 GC/MS；药物和 PFAS 多用 LC/MS 或 LC/MS/MS。",
+            "ng/L 级测试特别依赖空白、内标、回收率和方法报告限。",
+            "容器材料和前处理会造成吸附或污染。"
+          ],
+          en: [
+            "VOCs commonly use GC/MS; pharmaceuticals and PFAS often use LC/MS or LC/MS/MS.",
+            "ng/L testing depends heavily on blanks, internal standards, recovery, and reporting limits.",
+            "Container material and sample prep can cause adsorption or contamination."
+          ]
+        },
+        nsf: {
+          zh: "401 的多数目标物是 ng/L 级；53/58 的 PFAS 也需要专门 EPA 方法。",
+          en: "Most 401 targets are at ng/L levels; PFAS in 53/58 also requires specialized EPA methods."
+        }
+      },
+      {
+        title: { zh: "微生物 / 囊孢", en: "Microbes / Cysts" },
+        unit: "count/L, log reduction",
+        methods: {
+          zh: [
+            "囊孢测试关注 Cryptosporidium parvum oocysts 计数。",
+            "显微镜、免疫荧光、回收率和方法检出限决定数据可信度。",
+            "微生物健康声明非常严格，不能用普通颗粒去除直接替代。"
+          ],
+          en: [
+            "Cyst testing focuses on Cryptosporidium parvum oocyst counts.",
+            "Microscopy, immunofluorescence, recovery, and method detection limit determine confidence.",
+            "Microbiological health claims are strict and cannot be replaced by ordinary particle removal."
+          ]
+        },
+        nsf: {
+          zh: "53 cyst endpoint：至少 50,000/L 挑战，≥99.95% 降低。",
+          en: "53 cyst endpoint: at least 50,000/L challenge and ≥99.95% reduction."
+        }
+      }
+    ];
+
+    const readList = {
+      zh: [
+        "先看 scope：这个标准允许你声明什么，不允许你暗示什么。",
+        "再看 challenge：进水浓度、pH、TDS、TOC、硬度、温度和压力会直接改变结果。",
+        "然后看 endpoint：有的是最大产品水浓度，有的是最低降低率，有的是材料加权平均。",
+        "最后看 capacity：终点样品、额定寿命和性能数据表必须一致。"
+      ],
+      en: [
+        "Start with scope: what the standard allows you to claim, and what it does not allow you to imply.",
+        "Then read the challenge: influent concentration, pH, TDS, TOC, hardness, temperature, and pressure can change the result.",
+        "Next read the endpoint: maximum product-water concentration, minimum reduction, or weighted material average.",
+        "Finally connect capacity: endpoint samples, rated service life, and the performance data sheet must agree."
+      ]
+    };
+
+    const checklist = {
+      zh: [
+        "能解释硬度、TDS、pH、浊度、TOC、游离氯、总氯和氯胺的区别。",
+        "能说出 EDTA 滴定、DPD 比色、TDS 重量法/电导法、ICP、LC/MS 的适用场景。",
+        "能区分 NSF/ANSI 42 的美观 claim 和 53 的健康 claim。",
+        "能读懂 challenge concentration、individual sample point、average challenge、maximum effluent。",
+        "能解释 58 RO 为什么必须做 TDS，以及 recovery rating 的水量意义。",
+        "能说明 401 的 ng/L 新兴化合物和 microplastics endpoint。",
+        "能区分 372 材料无铅和 53/58 出水降铅。",
+        "能把目标 claim 转化为测试水、采样点、分析方法和通过标准。",
+        "能识别标签声明风险：不能把测试过的项目扩大成未测试项目。"
+      ],
+      en: [
+        "Explain the difference among hardness, TDS, pH, turbidity, TOC, free chlorine, total chlorine, and chloramine.",
+        "Know where EDTA titration, DPD colorimetry, TDS gravimetric/conductivity methods, ICP, and LC/MS fit.",
+        "Separate NSF/ANSI 42 aesthetic claims from 53 health-effect claims.",
+        "Read challenge concentration, individual sample point, average challenge, and maximum effluent.",
+        "Explain why 58 RO systems require TDS testing and what recovery rating means physically.",
+        "Describe 401 ng/L emerging-compound endpoints and the microplastics endpoint.",
+        "Distinguish 372 material lead content from 53/58 lead reduction performance.",
+        "Translate a target claim into test water, sample points, analysis method, and pass criteria.",
+        "Spot labeling risk: do not expand tested claims into untested claims."
+      ]
+    };
+
+    let lang = "zh";
+    let selectedStandard = "42";
+
+    function t(key) {
+      return i18n[lang][key];
+    }
+
+    function text(obj) {
+      return typeof obj === "string" ? obj : obj[lang];
+    }
+
+    function localizeStaticText() {
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (i18n[lang][key]) el.textContent = i18n[lang][key];
+      });
+      document.querySelectorAll("[data-key]").forEach(el => {
+        const key = el.getAttribute("data-key");
+        if (i18n[lang].labels[key]) el.textContent = i18n[lang].labels[key];
+      });
+      document.getElementById("langToggle").textContent = lang === "zh" ? "EN" : "中文";
+    }
+
+    function renderStandardsGrid() {
+      const root = document.getElementById("standardsGrid");
+      root.innerHTML = standards.map(item => `
+        <article class="card standard-card">
+          <span class="standard-num">${item.name}</span>
+          <h3>${text(item.scope).split("；")[0]}</h3>
+          <p>${text(item.scope)}</p>
+          <div class="tag-row">
+            ${item.tags[lang].map(tag => `<span class="tag">${tag}</span>`).join("")}
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderReadList() {
+      const root = document.getElementById("readList");
+      root.innerHTML = readList[lang].map(item => `<li>${item}</li>`).join("");
+    }
+
+    function renderMeasurements() {
+      const root = document.getElementById("measurementGrid");
+      root.innerHTML = measurements.map(item => `
+        <article class="card measurement-card">
+          <h3>
+            <span>${text(item.title)}</span>
+            <span class="pill">${item.unit}</span>
+          </h3>
+          <ul class="method-list">
+            ${item.methods[lang].map(method => `<li>${method}</li>`).join("")}
+          </ul>
+          <p><strong>${lang === "zh" ? "NSF 关联：" : "NSF link:"}</strong> ${item.nsf[lang]}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderTabs() {
+      const root = document.getElementById("standardTabs");
+      root.innerHTML = standards.map(item => `
+        <button class="tab ${item.id === selectedStandard ? "active" : ""}" type="button" data-standard="${item.id}">
+          ${item.id === "372" ? "372-2022" : `${item.id}-2023`}
+        </button>
+      `).join("");
+      root.querySelectorAll(".tab").forEach(button => {
+        button.addEventListener("click", () => {
+          selectedStandard = button.dataset.standard;
+          renderEndpoints();
+        });
+      });
+    }
+
+    function renderEndpoints() {
+      renderTabs();
+      const item = standards.find(std => std.id === selectedStandard);
+      const summary = document.getElementById("standardSummary");
+      summary.innerHTML = `
+        <span class="standard-num">${item.name}</span>
+        <h3 style="margin-top:12px">${lang === "zh" ? "学习重点" : "Learning focus"}</h3>
+        <p>${text(item.main)}</p>
+        <div class="facts">
+          <div class="fact"><b>${lang === "zh" ? "范围" : "Scope"}</b><span>${text(item.scope)}</span></div>
+          <div class="fact"><b>${lang === "zh" ? "不要混淆" : "Do not confuse"}</b><span>${text(item.not)}</span></div>
+          <div class="fact"><b>${lang === "zh" ? "速记" : "Memory hook"}</b><span>${text(item.note)}</span></div>
+        </div>
+        <div class="tag-row">
+          ${item.tags[lang].map(tag => `<span class="tag">${tag}</span>`).join("")}
+        </div>
+      `;
+      const rows = lang === "en" ? endpointEn[item.id] : item.endpoints;
+      const body = document.getElementById("endpointBody");
+      body.innerHTML = rows.map(row => `
+        <tr>
+          <td><strong>${row[0]}</strong></td>
+          <td>${row[1]}</td>
+          <td>${row[2]}</td>
+          <td>${row[3]}</td>
+          <td>${row[4]}</td>
+        </tr>
+      `).join("");
+      document.getElementById("endpointNote").textContent = item.note[lang];
+    }
+
+    function renderChecklist() {
+      const root = document.getElementById("checklist");
+      root.innerHTML = checklist[lang].map((item, index) => `
+        <div class="check">
+          <span class="check-num">${index + 1}</span>
+          <span>${item}</span>
+        </div>
+      `).join("");
+    }
+
+    function updateHardness(source) {
+      const mg = document.getElementById("hardnessMg");
+      const gpg = document.getElementById("hardnessGpg");
+      if (source === "mg") {
+        gpg.value = (Number(mg.value || 0) / 17.1).toFixed(1);
+      } else {
+        mg.value = (Number(gpg.value || 0) * 17.1).toFixed(0);
+      }
+      document.getElementById("hardnessResult").textContent = i18n[lang].hardnessResult(Number(gpg.value || 0).toFixed(1));
+    }
+
+    function updateLead() {
+      const pcts = [...document.querySelectorAll(".lead-pct")].map(input => Number(input.value || 0));
+      const areas = [...document.querySelectorAll(".lead-area")].map(input => Number(input.value || 0));
+      const totalArea = areas.reduce((sum, value) => sum + value, 0);
+      const weighted = totalArea === 0 ? 0 : pcts.reduce((sum, pct, index) => sum + pct * areas[index], 0) / totalArea;
+      const rounded = weighted.toFixed(2);
+      document.getElementById("leadResult").textContent = i18n[lang].leadResult(rounded, Number(rounded) <= 0.25);
+    }
+
+    function renderAll() {
+      localizeStaticText();
+      renderStandardsGrid();
+      renderReadList();
+      renderMeasurements();
+      renderEndpoints();
+      renderChecklist();
+      updateHardness("mg");
+      updateLead();
+    }
+
+    document.getElementById("langToggle").addEventListener("click", () => {
+      lang = lang === "zh" ? "en" : "zh";
+      renderAll();
+    });
+
+    document.getElementById("hardnessMg").addEventListener("input", () => updateHardness("mg"));
+    document.getElementById("hardnessGpg").addEventListener("input", () => updateHardness("gpg"));
+    document.querySelectorAll(".lead-pct, .lead-area").forEach(input => input.addEventListener("input", updateLead));
+
+    renderAll();
+  </script>
+</body>
+</html>
