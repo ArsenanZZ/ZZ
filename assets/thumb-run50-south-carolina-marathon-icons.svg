@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">South Carolina Marathon icon cover</title>
+<desc id="desc">Icon style cover with South Carolina title, Run50 badge, caravan RV trailer, pine trees, and stubborn mule.</desc>
+<rect width="1200" height="750" fill="#edf3f7"/>
+<g transform="translate(70 104)">
+  <text x="0" y="0" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">S. CAROLINA</text>
+  <text x="0" y="46" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#0b67c2">2SLOW4BOSTON · TRAILER RV · MULE</text>
+</g>
+<rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #18</text>
+<text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="900" fill="#0b67c2">S. CAROLINA</text>
+<circle cx="1052" cy="352" r="62" fill="#fbbf24"/>
+<path d="M0 612 C190 540 330 590 500 538 C690 480 830 590 1000 545 C1100 518 1168 515 1200 498 L1200 750 L0 750 Z" fill="#b0cddb"/>
+<path d="M0 682 C180 620 370 705 560 650 C760 592 930 690 1200 620 L1200 750 L0 750 Z" fill="#84acc3"/>
+
+<!-- Pine Trees -->
+<g>
+  <rect x="540" y="300" width="20" height="200" fill="#78350f"/>
+  <polygon points="470,360 630,360 550,240" fill="#15803d"/>
+  <polygon points="490,280 610,280 550,180" fill="#15803d"/>
+  <polygon points="510,200 590,200 550,120" fill="#15803d"/>
+</g>
+
+<!-- Caravan RV Trailer -->
+<g transform="translate(30, 20)">
+  <rect x="150" y="340" width="300" height="150" rx="20" fill="#cbd5e1" stroke="#334155" stroke-width="6"/>
+  <rect x="200" y="370" width="80" height="50" rx="5" fill="#e2e8f0" stroke="#334155" stroke-width="4"/>
+  <rect x="340" y="370" width="50" height="120" fill="#94a3b8" stroke="#334155" stroke-width="4"/>
+  <circle cx="300" cy="490" r="30" fill="#334155" stroke="#1e293b" stroke-width="4"/>
+  <line x1="150" y1="470" x2="100" y2="490" stroke="#334155" stroke-width="8"/>
+</g>
+
+<!-- Stubborn Mule Mascot -->
+<g transform="translate(-10, 0)">
+  <polygon points="840,380 870,350 890,410 860,430" fill="#27272a"/>
+  <ellipse cx="840" cy="345" rx="30" ry="25" fill="#27272a"/>
+  <ellipse cx="805" cy="352" rx="25" ry="17" fill="#27272a"/>
+  <polygon points="840,325 835,280 855,300" fill="#27272a"/>
+  <polygon points="850,325 855,280 865,305" fill="#27272a"/>
+  <ellipse cx="910" cy="440" rx="50" ry="40" fill="#27272a"/>
+  <line x1="880" y1="450" x2="880" y2="540" stroke="#27272a" stroke-width="12"/>
+  <line x1="900" y1="450" x2="900" y2="540" stroke="#27272a" stroke-width="12"/>
+  <line x1="930" y1="450" x2="930" y2="540" stroke="#27272a" stroke-width="12"/>
+  <line x1="950" y1="450" x2="950" y2="540" stroke="#27272a" stroke-width="12"/>
+  <line x1="955" y1="420" x2="985" y2="480" stroke="#27272a" stroke-width="8"/>
+</g>
+
+<path d="M0 702 C180 675 340 720 520 695 C720 668 900 720 1200 678 L1200 750 L0 750 Z" fill="#0f766e"/>
+</svg>
