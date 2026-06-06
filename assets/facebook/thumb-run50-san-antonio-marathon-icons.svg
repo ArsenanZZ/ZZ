@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">SAN ANTONIO icon cover</title>
+  <desc id="desc">ALAMO · RIVER WALK · ROCK 'N' ROLL</desc>
+  <g transform="scale(4,4.16667)">
+
+    <rect width="300" height="180" fill="#F4B985"/>
+    <rect x="0" y="0" width="300" height="72" fill="#B7A0C8" opacity=".6"/>
+    <rect x="0" y="64" width="300" height="34" fill="#EE9E72" opacity=".45"/>
+    <circle cx="220" cy="32" r="11" fill="#F3ECD6"/><circle cx="216" cy="30" r="9" fill="#C3AED2"/>
+    <g fill="#F3ECD6" opacity=".9"><circle cx="58" cy="26" r="1.2"/><circle cx="96" cy="20" r="1"/><circle cx="150" cy="28" r="1.1"/><circle cx="182" cy="22" r="1"/></g>
+    <path d="M70,42 l2,5 5,0 -4,4 2,5 -5,-3 -5,3 2,-5 -4,-4 5,0 Z" fill="#F6D365"/>
+    <!-- music notes -->
+    <g fill="#7a5a3a"><circle cx="186" cy="58" r="3.4"/><rect x="188.6" y="44" width="1.6" height="14"/><circle cx="212" cy="50" r="3.4"/><rect x="214.6" y="36" width="1.6" height="14"/><path d="M189.6,44 L215.6,36" stroke="#7a5a3a" stroke-width="1.6"/></g>
+    <!-- Alamo facade -->
+    <g>
+      <rect x="92" y="96" width="80" height="50" fill="#D9C098" stroke="#C4A878" stroke-width="1"/>
+      <path d="M118,96 L118,84 Q118,72 132,72 Q146,72 146,84 L146,96 Z" fill="#D9C098" stroke="#C4A878" stroke-width="1"/>
+      <rect x="114" y="92" width="36" height="5" fill="#C9AE82"/>
+      <path d="M126,146 L126,122 Q132,114 138,122 L138,146 Z" fill="#6B533A"/>
+      <rect x="100" y="106" width="11" height="14" rx="1" fill="#6B533A"/>
+      <rect x="153" y="106" width="11" height="14" rx="1" fill="#6B533A"/>
+      <g stroke="#C4A878" stroke-width="1"><line x1="100" y1="100" x2="100" y2="146"/><line x1="118" y1="100" x2="118" y2="146"/><line x1="146" y1="100" x2="146" y2="146"/><line x1="164" y1="100" x2="164" y2="146"/></g>
+    </g>
+    <!-- river walk -->
+    <rect x="0" y="150" width="300" height="30" fill="#3FA9A0"/>
+    <path d="M196,150 Q214,132 232,150 Z" fill="none" stroke="#cdb88f" stroke-width="3"/>
+    <g fill="#2f8a72"><ellipse cx="24" cy="150" rx="10" ry="6"/><ellipse cx="270" cy="151" rx="12" ry="6"/></g>
+    <g fill="#F6D365"><circle cx="200" cy="142" r="1.3"/><circle cx="214" cy="135" r="1.3"/><circle cx="228" cy="142" r="1.3"/></g>
+    <line x1="196" y1="143" x2="232" y2="143" stroke="#caa86f" stroke-width=".6" opacity=".8"/>
+    <!-- spurs basketball -->
+    <circle cx="276" cy="168" r="7" fill="#E27D3A"/><path d="M269,168 h14 M276,161 v14 M271,163 q5,5 0,10 M281,163 q-5,5 0,10" stroke="#7a3f18" stroke-width=".8" fill="none"/>
+    </g>
+  <text x="70" y="100" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#20242b">SAN ANTONIO</text>
+  <text x="72" y="146" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#0b67c2">ALAMO · RIVER WALK · ROCK 'N' ROLL</text>
+  <rect x="870" y="56" width="280" height="122" rx="26" fill="#ffffff" stroke="#a9bfd0" stroke-width="3"/>
+  <text x="1010" y="104" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#20242b">Run50 #14</text>
+  <text x="1010" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="900" fill="#0b67c2">TEXAS</text>
+</svg>

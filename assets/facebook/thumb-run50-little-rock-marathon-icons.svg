@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">LITTLE ROCK icon cover</title>
+  <desc id="desc">CAPITOL · CLINTON · DINOSAUR</desc>
+  <g transform="scale(4,4.16667)">
+
+    <rect width="300" height="180" fill="#F8CBA6"/>
+    <rect x="0" y="0" width="300" height="70" fill="#F6B189" opacity=".55"/>
+    <circle cx="150" cy="46" r="13" fill="#FFB24D"/>
+    <!-- State Capitol -->
+    <g fill="#ECE9E0" stroke="#D7D2C4" stroke-width="1">
+      <rect x="122" y="104" width="56" height="26"/>
+      <path d="M138,104 A12 14 0 0 1 162,104 Z"/>
+      <rect x="146" y="78" width="8" height="8"/><polygon points="146,78 150,72 154,78"/>
+    </g>
+    <g stroke="#D7D2C4" stroke-width="1"><line x1="128" y1="110" x2="128" y2="130"/><line x1="138" y1="110" x2="138" y2="130"/><line x1="162" y1="110" x2="162" y2="130"/><line x1="172" y1="110" x2="172" y2="130"/></g>
+    <rect x="0" y="150" width="300" height="30" fill="#5E86A8"/>
+    <!-- Clinton truss bridge -->
+    <g>
+      <rect x="0" y="147" width="300" height="3" fill="#6E7B86"/>
+      <g stroke="#6E7B86" stroke-width="1.6" fill="none">
+        <path d="M14,147 L40,128 L92,128 L118,147"/><path d="M14,147 L40,147 L66,128 M40,128 L66,147 L92,128 M66,147 L92,147"/>
+        <path d="M182,147 L208,128 L260,128 L286,147"/><path d="M208,128 L234,147 L260,128 M208,147 L234,128 M234,147 L260,147"/>
+      </g>
+      <rect x="128" y="120" width="6" height="30" fill="#5b6770"/><rect x="166" y="120" width="6" height="30" fill="#5b6770"/>
+      <rect x="128" y="120" width="44" height="4" fill="#5b6770"/>
+      <g fill="#FFD98A"><circle cx="131" cy="118" r="1.6"/><circle cx="169" cy="118" r="1.6"/><circle cx="40" cy="126" r="1.4"/><circle cx="92" cy="126" r="1.4"/><circle cx="208" cy="126" r="1.4"/><circle cx="260" cy="126" r="1.4"/></g>
+    </g>
+    <!-- cute dinosaur (smaller, tucked in corner) -->
+    <g>
+      <ellipse cx="40" cy="152" rx="17" ry="9" fill="#5FAE5B"/>
+      <path d="M28,150 Q12,150 9,134 Q8,127 14,126 Q19,126 20,133 Q21,144 31,143 Z" fill="#5FAE5B"/>
+      <circle cx="13" cy="128" r="5" fill="#5FAE5B"/>
+      <circle cx="11" cy="126" r="1.3" fill="#23351f"/>
+      <path d="M53,151 Q68,150 73,158" fill="none" stroke="#5FAE5B" stroke-width="5" stroke-linecap="round"/>
+      <rect x="32" y="159" width="4" height="8" rx="2" fill="#4d9249"/><rect x="42" y="159" width="4" height="8" rx="2" fill="#4d9249"/><rect x="50" y="159" width="4" height="7" rx="2" fill="#4d9249"/>
+      <g fill="#4d9249"><circle cx="38" cy="146" r="1.8"/><circle cx="46" cy="148" r="1.8"/></g>
+      <path d="M30,144 l2,-4 2,4 Z M37,143 l2,-4 2,4 Z M44,144 l2,-4 2,4 Z" fill="#4d9249"/>
+    </g>
+    </g>
+  <text x="70" y="100" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#20242b">LITTLE ROCK</text>
+  <text x="72" y="146" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#0b67c2">CAPITOL · CLINTON · DINOSAUR</text>
+  <rect x="860" y="56" width="290" height="122" rx="26" fill="#ffffff" stroke="#a9bfd0" stroke-width="3"/>
+  <text x="1005" y="104" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#20242b">Run50 #17</text>
+  <text x="1005" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="900" fill="#0b67c2">ARKANSAS</text>
+</svg>

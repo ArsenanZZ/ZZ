@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">MIAMI icon cover</title>
+  <desc id="desc">OCEAN DRIVE TO DOWNTOWN</desc>
+  <g transform="scale(4,4.16667)">
+
+    <rect width="300" height="180" fill="#FFE2C2"/>
+    <circle cx="260" cy="60" r="14" fill="#FF8A4C"/>
+    <g>
+      <rect x="10" y="118" width="30" height="34" rx="3" fill="#9FE3C8"/>
+      <rect x="44" y="106" width="26" height="46" rx="3" fill="#FCE08A"/>
+      <rect x="118" y="90" width="64" height="62" rx="4" fill="#F4A6C2"/>
+      <rect x="130" y="82" width="40" height="10" fill="#EC93B2"/>
+      <rect x="142" y="76" width="16" height="8" fill="#EC93B2"/>
+      <rect x="226" y="110" width="26" height="42" rx="3" fill="#C9B6E8"/>
+      <rect x="256" y="120" width="32" height="32" rx="3" fill="#FCE08A"/>
+      <g fill="#ffffff" opacity=".55">
+        <rect x="16" y="124" width="5" height="5"/><rect x="26" y="124" width="5" height="5"/><rect x="16" y="134" width="5" height="5"/><rect x="26" y="134" width="5" height="5"/>
+        <rect x="50" y="112" width="5" height="5"/><rect x="60" y="112" width="5" height="5"/><rect x="50" y="124" width="5" height="5"/><rect x="60" y="136" width="5" height="5"/>
+        <rect x="126" y="98" width="6" height="6"/><rect x="138" y="98" width="6" height="6"/><rect x="168" y="98" width="6" height="6"/><rect x="126" y="112" width="6" height="6"/><rect x="168" y="112" width="6" height="6"/>
+        <rect x="232" y="116" width="5" height="5"/><rect x="242" y="116" width="5" height="5"/><rect x="232" y="128" width="5" height="5"/>
+        <rect x="262" y="126" width="5" height="5"/><rect x="272" y="126" width="5" height="5"/>
+      </g>
+    </g>
+    <rect x="0" y="150" width="300" height="30" fill="#F3DEA6"/>
+    <rect x="0" y="172" width="300" height="8" fill="#46C8DA"/>
+    <g>
+      <path d="M93,150 Q96,128 99,110 L103,111 Q100,129 99,150 Z" fill="#B07A47"/>
+      <g fill="#3FA05A"><path d="M101,109 C113,104 123,107 129,114 C121,111 111,111 101,111 Z" transform="rotate(-72 101 109)"/><path d="M101,109 C113,104 123,107 129,114 C121,111 111,111 101,111 Z" transform="rotate(-36 101 109)"/><path d="M101,109 C113,104 123,107 129,114 C121,111 111,111 101,111 Z"/><path d="M101,109 C113,104 123,107 129,114 C121,111 111,111 101,111 Z" transform="rotate(36 101 109)"/><path d="M101,109 C113,104 123,107 129,114 C121,111 111,111 101,111 Z" transform="rotate(72 101 109)"/></g>
+    </g>
+    <g>
+      <path d="M201,150 Q204,128 207,110 L211,111 Q208,129 207,150 Z" fill="#B07A47"/>
+      <g fill="#3FA05A"><path d="M209,109 C221,104 231,107 237,114 C229,111 219,111 209,111 Z" transform="rotate(-72 209 109)"/><path d="M209,109 C221,104 231,107 237,114 C229,111 219,111 209,111 Z" transform="rotate(-36 209 109)"/><path d="M209,109 C221,104 231,107 237,114 C229,111 219,111 209,111 Z"/><path d="M209,109 C221,104 231,107 237,114 C229,111 219,111 209,111 Z" transform="rotate(36 209 109)"/><path d="M209,109 C221,104 231,107 237,114 C229,111 219,111 209,111 Z" transform="rotate(72 209 109)"/></g>
+    </g>
+    <g>
+      <polygon points="134,112 124,116 120,126 131,124" fill="#FBFBFB" stroke="#E2E2E2"/>
+      <polygon points="166,112 176,116 180,126 169,124" fill="#FBFBFB" stroke="#E2E2E2"/>
+      <path d="M134,112 L166,112 L170,146 L130,146 Z" fill="#FBFBFB" stroke="#E2E2E2"/>
+      <path d="M145,112 L150,120 L155,112" stroke="#C0392B" stroke-width="2" fill="none"/>
+      <line x1="131" y1="144" x2="169" y2="144" stroke="#C0392B" stroke-width="2"/>
+      <text x="150" y="140" font-family="Arial,sans-serif" font-size="23" font-weight="800" fill="#C0392B" text-anchor="middle">7</text>
+      <text x="150" y="122" font-family="Arial,sans-serif" font-size="8" font-weight="800" fill="#1f2d3a" text-anchor="middle" letter-spacing="1">CR7</text>
+    </g>
+    <g>
+      <circle cx="186" cy="153" r="8.5" fill="#fff" stroke="#333"/>
+      <polygon points="186,148 190,151 188,156 184,156 182,151" fill="#222"/>
+    </g>
+    </g>
+  <text x="70" y="100" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="900" fill="#20242b">MIAMI</text>
+  <text x="72" y="146" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#0b67c2">OCEAN DRIVE TO DOWNTOWN</text>
+  <rect x="870" y="56" width="280" height="122" rx="26" fill="#ffffff" stroke="#a9bfd0" stroke-width="3"/>
+  <text x="1010" y="104" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#20242b">Run50 #15</text>
+  <text x="1010" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="900" fill="#0b67c2">MIAMI</text>
+</svg>

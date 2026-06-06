@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">GUILIN icon cover</title>
+  <desc id="desc">RIVER · HILLS · HEAT WAVE</desc>
+  <g transform="scale(4,4.16667)">
+
+    <rect width="300" height="180" fill="#D8EFE7"/>
+    <circle cx="66" cy="66" r="18" fill="#FF9A4D"/>
+    <g stroke="#FFB877" stroke-width="2" opacity=".6" stroke-linecap="round"><line x1="34" y1="66" x2="42" y2="66"/><line x1="90" y1="66" x2="98" y2="66"/><line x1="66" y1="40" x2="66" y2="46"/></g>
+    <g fill="#7FB58C">
+      <path d="M10,146 C10,104 22,86 34,86 C46,86 58,104 58,146 Z"/>
+      <path d="M70,146 C70,96 84,74 98,74 C112,74 126,96 126,146 Z"/>
+      <path d="M188,146 C188,98 202,78 216,78 C230,78 244,98 244,146 Z"/>
+      <path d="M250,146 C250,108 262,92 274,92 C286,92 296,108 296,146 Z"/>
+    </g>
+    <g fill="#4E977E">
+      <path d="M40,146 C40,112 52,96 64,96 C76,96 88,112 88,146 Z"/>
+      <path d="M120,146 C120,100 134,82 148,82 C162,82 176,100 176,146 Z"/>
+      <path d="M168,146 C168,116 180,100 192,100 C204,100 216,116 216,146 Z"/>
+    </g>
+    <rect x="0" y="146" width="300" height="34" fill="#86CFC6"/>
+    <g fill="#A8DED7" opacity=".7">
+      <path d="M120,146 C120,166 134,176 148,176 C162,176 176,166 176,146 Z"/>
+      <path d="M40,146 C40,160 52,168 64,168 C76,168 88,160 88,146 Z"/>
+    </g>
+    <!-- bamboo raft + fisherman + cormorant -->
+    <g>
+      <rect x="98" y="160" width="34" height="2.4" rx="1.2" fill="#C9A86A"/>
+      <rect x="100" y="163" width="34" height="2.2" rx="1.1" fill="#B8985C"/>
+      <line x1="116" y1="160" x2="116" y2="148" stroke="#7a6a3f" stroke-width="1.4"/>
+      <circle cx="116" cy="146" r="2.2" fill="#3a3a3a"/><rect x="113" y="148" width="6" height="10" rx="2" fill="#5a6b7a"/>
+      <path d="M126,158 q4,-4 8,0 q-4,1 -8,0 Z" fill="#2b2b2b"/>
+    </g>
+    </g>
+  <text x="70" y="100" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="900" fill="#20242b">GUILIN</text>
+  <text x="72" y="146" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#cc0000">RIVER · HILLS · HEAT WAVE</text>
+  <rect x="870" y="56" width="280" height="122" rx="26" fill="#ffffff" stroke="#a9bfd0" stroke-width="3"/>
+  <text x="1010" y="104" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#20242b">RunCN #2</text>
+  <text x="1010" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="900" fill="#cc0000">GUILIN</text>
+</svg>
