@@ -856,11 +856,16 @@
       const master = document.getElementById('us-map-master');
       if (!master) return;
       
-      // Set pointer-events: none on all decorative paths to prevent blocking state click/hover events
+      // Set pointer-events: none on all decorative paths; also mute any built-in fill colors
+      // on duplicate/decorative state paths (e.g. map_Montana) so only run-states show color.
       master.querySelectorAll('path').forEach(path => {
         const id = path.id.replace('map_', '');
         if (!_SF.includes(id)) {
           path.style.pointerEvents = 'none';
+          // Keep ocean/background fills; mute all other decorative state paths
+          if (id !== 'USA' && id !== 'Ocean') {
+            path.style.fill = _MUTED;
+          }
         }
       });
 
