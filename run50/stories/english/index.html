@@ -862,8 +862,8 @@
         if (el) el.setAttribute('fill-rule', 'evenodd');
       });
 
-      // FL (South_Carolina_1_) has nested concentric sub-paths (outer boundary + inner duplicate)
-      // creating a donut hole. Drop sub-paths that are 50-99% the size of the largest.
+      // FL (South_Carolina_1_) has multiple nested inner boundary sub-paths creating donut holes.
+      // Remove any large sub-path whose bbox is fully contained within the outer boundary bbox.
       (function() {
         const el = document.getElementById('map_South_Carolina_1_');
         if (!el) return;
@@ -874,14 +874,21 @@
           if (d[i] === 'M' && /\s/.test(d[i - 1])) { parts.push(d.slice(last, i).trim()); last = i; }
         }
         parts.push(d.slice(last).trim());
-        const areas = parts.map(sp => {
+        const bboxes = parts.map(sp => {
           const cs = sp.match(/([\d.]+),([\d.]+)/g) || [];
-          if (!cs.length) return 0;
+          if (!cs.length) return {xMin:0,xMax:0,yMin:0,yMax:0,area:0};
           const xs = cs.map(c => parseFloat(c)), ys = cs.map(c => parseFloat(c.split(',')[1]));
-          return (Math.max(...xs) - Math.min(...xs)) * (Math.max(...ys) - Math.min(...ys));
+          const xMin=Math.min(...xs),xMax=Math.max(...xs),yMin=Math.min(...ys),yMax=Math.max(...ys);
+          return {xMin,xMax,yMin,yMax,area:(xMax-xMin)*(yMax-yMin)};
         });
-        const mx = Math.max(...areas);
-        el.setAttribute('d', parts.filter((_, i) => areas[i] > mx * 0.99 || areas[i] < mx * 0.5).join(' '));
+        const maxArea = Math.max(...bboxes.map(b => b.area));
+        const outerIdx = bboxes.findIndex(b => b.area === maxArea);
+        const o = bboxes[outerIdx];
+        el.setAttribute('d', parts.filter((_, i) => {
+          const b = bboxes[i];
+          const nested = b.xMin>=o.xMin && b.xMax<=o.xMax && b.yMin>=o.yMin && b.yMax<=o.yMax;
+          return i === outerIdx || !nested || b.area < maxArea * 0.05;
+        }).join(' '));
       })();
 
       const hawaiiInsetPanel = document.getElementById('map_Alaska_1_');
