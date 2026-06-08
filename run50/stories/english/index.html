@@ -1004,7 +1004,10 @@
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
           if (el) {
-            el.style.fill = 'url(#rg-'+abbr+')';
+            // Clear inline fill so the SVG attribute takes precedence
+            el.style.fill = '';
+            // Use SVG attribute: gradient primary, flat colour fallback
+            el.setAttribute('fill', 'url(#rg-'+abbr+') '+_STATE_COLORS[abbr]);
             el.classList.add('run-state');
           }
         });
