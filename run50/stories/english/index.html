@@ -975,6 +975,16 @@
               x = 570.0; y = 933.0; // Honolulu (Oahu)
             } else if (abbr === 'AK') {
               x = 275.0; y = 917.0; // Anchorage (south-central Alaska)
+            } else if (abbr === 'VT' && r.city === 'Warren') {
+              x = 1466.0; y = 270.0; // Warren VT: visible VT area at top (map_New_Hampshire_1_)
+            } else if (abbr === 'VT' && r.city === 'Springfield') {
+              x = 1477.0; y = 270.0; // Springfield VT: beside Warren in visible VT area
+            } else if (abbr === 'NH' && r.city === 'Keene') {
+              x = 1468.0; y = 305.0; // Keene NH: inside NH-colored blob (map_Vermont)
+            } else if (abbr === 'CT' && r.city === 'Simsbury') {
+              x = 1503.0; y = 362.0; // Simsbury CT: inside CT shape (map_New_York_2_)
+            } else if (abbr === 'RI' && r.city === 'Woonsocket') {
+              x = 1488.0; y = 376.0; // Woonsocket RI: inside RI shape (map_Connecticut)
             } else {
               const coords = _projectAlbers(cityCoords.lat, cityCoords.lon);
               x = coords.x;
