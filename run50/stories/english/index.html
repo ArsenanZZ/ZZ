@@ -948,41 +948,22 @@
       _muteAll();
       _bindMapEventsOnce();
       
-      // Per-state colors: only completed runs get color; unvisited/planned = white (#f5f5f5)
-      const _STATE_COLORS = {
-        'KY': '#d4bb54',  // golden honey
-        'OH': '#db9c5c',  // warm orange
-        'NY': '#d4ac52',  // amber
-        'CA': '#d48c96',  // rose
-        'IN': '#e0a870',  // peach
-        'HI': '#5fbc9e',  // teal
-        'GA': '#55a8a5',  // dark teal
-        'CO': '#92c27a',  // sage green
-        'AK': '#c8907a',  // terracotta
-        'MO': '#c87268',  // brick red
-        'IL': '#9882c5',  // dusty purple
-        'TN': '#cdb848',  // warm yellow
-        'WV': '#4fa882',  // forest green
-        'TX': '#b8d465',  // lime green
-        'FL': '#7898c8',  // periwinkle
-        'NC': '#e099a8',  // soft pink
-        'AR': '#c87058',  // terracotta red
-        'SC': '#c87890',  // rose pink
-        'PA': '#db9c4e',  // golden orange
-        'WI': '#d4c248',  // muted yellow
-        'MN': '#8ab8d0',  // steel blue (Med City 2026.05)
-        'NH': '#a888c8',  // lavender
-      };
-
-      for (const abbr in _STATE_COLORS) {
+      // Completed runs → teal; planned/upcoming → golden (matches Chinese map style)
+      const completed = ['KY','OH','NY','CA','IN','HI','GA','CO','AK','MO','IL','TN','WV','TX','FL','NC','AR','SC','PA','WI','MN','NH'];
+      completed.forEach(abbr => {
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
-          if (el) {
-            el.style.fill = _STATE_COLORS[abbr];
-            el.classList.add('run-state');
-          }
+          if (el) { el.style.fill = '#0e7490'; el.classList.add('run-state'); }
         });
-      }
+      });
+
+      const placeholders = ['LA','VA','ND','KS','VT','AL','AZ','DE','CT','RI','MA'];
+      placeholders.forEach(abbr => {
+        (_HM[abbr] || []).forEach(id => {
+          const el = document.getElementById('map_' + id);
+          if (el) { el.style.fill = '#b7892f'; el.classList.add('run-state'); }
+        });
+      });
 
       let dotGroup = master.querySelector('#city-dots-group');
       if (!dotGroup) {
