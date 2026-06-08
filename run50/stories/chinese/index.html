@@ -921,11 +921,15 @@
       const master = document.getElementById('us-map-master');
       if (!master) return;
       
-      // Set pointer-events: none on all decorative paths to prevent blocking state click/hover events
+      // Set pointer-events: none on all decorative paths; also make them transparent
+      // so they don't cover the coloured interactive paths beneath them.
       master.querySelectorAll('path').forEach(path => {
         const id = path.id.replace('map_', '');
         if (!_SF.includes(id)) {
           path.style.pointerEvents = 'none';
+          if (id !== 'USA' && id !== 'Ocean') {
+            path.style.fill = 'none';
+          }
         }
       });
       const hawaiiInsetPanel = document.getElementById('map_Alaska_1_');
