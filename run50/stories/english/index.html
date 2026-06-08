@@ -857,7 +857,7 @@
 
       // Fix hollow states: multi-subpath paths (islands, peninsulas) need evenodd fill rule
       // so every sub-path is rendered filled regardless of winding direction
-      ['Arizona', 'ocean_3_', 'Oklahoma_1_', 'Michigan', 'Alabama', 'Maryland'].forEach(id => {
+      ['Arizona', 'ocean_3_', 'Oklahoma_1_', 'Alabama', 'Maryland'].forEach(id => {
         const el = document.getElementById('map_' + id);
         if (el) el.setAttribute('fill-rule', 'evenodd');
       });
@@ -888,6 +888,34 @@
           const b = bboxes[i];
           const nested = b.xMin>=o.xMin && b.xMax<=o.xMax && b.yMin>=o.yMin && b.yMax<=o.yMax;
           return i === outerIdx || !nested || b.area < maxArea * 0.05;
+        }).join(' '));
+      })();
+
+      // MI (Michigan) has inner boundary sub-paths nested inside the LP outer boundary, creating donut holes.
+      // Remove large sub-paths that are bbox-contained in ANY other sub-path. Keep nonzero fill-rule
+      // (evenodd fails for MI because the LP path self-intersects near the Straits of Mackinac).
+      (function() {
+        const el = document.getElementById('map_Michigan');
+        if (!el) return;
+        const d = el.getAttribute('d');
+        const parts = [];
+        let last = 0;
+        for (let i = 1; i < d.length; i++) {
+          if (d[i] === 'M' && /\s/.test(d[i - 1])) { parts.push(d.slice(last, i).trim()); last = i; }
+        }
+        parts.push(d.slice(last).trim());
+        const bboxes = parts.map(sp => {
+          const cs = sp.match(/([\d.]+),([\d.]+)/g) || [];
+          if (!cs.length) return {xMin:0,xMax:0,yMin:0,yMax:0,area:0};
+          const xs = cs.map(c => parseFloat(c)), ys = cs.map(c => parseFloat(c.split(',')[1]));
+          const xMin=Math.min(...xs),xMax=Math.max(...xs),yMin=Math.min(...ys),yMax=Math.max(...ys);
+          return {xMin,xMax,yMin,yMax,area:(xMax-xMin)*(yMax-yMin)};
+        });
+        const maxArea = Math.max(...bboxes.map(b => b.area));
+        el.setAttribute('d', parts.filter((_, i) => {
+          const b = bboxes[i];
+          if (b.area < maxArea * 0.05) return true;
+          return !bboxes.some((o, j) => j !== i && b.xMin>=o.xMin && b.xMax<=o.xMax && b.yMin>=o.yMin && b.yMax<=o.yMax);
         }).join(' '));
       })();
 
