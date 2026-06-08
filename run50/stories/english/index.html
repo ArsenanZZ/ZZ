@@ -855,12 +855,7 @@
         }
       });
 
-      // Fix hollow states: multi-subpath paths (islands, peninsulas) need evenodd fill rule
-      // so every sub-path is rendered filled regardless of winding direction
-      ['ocean_3_', 'Oklahoma_1_', 'Alabama', 'Maryland'].forEach(id => {
-        const el = document.getElementById('map_' + id);
-        if (el) el.setAttribute('fill-rule', 'evenodd');
-      });
+      // All hollow states have triple-nested concentric sub-paths; handled below by nested-in-any fix.
 
       // FL (South_Carolina_1_) has multiple nested inner boundary sub-paths creating donut holes.
       // Remove any large sub-path whose bbox is fully contained within the outer boundary bbox.
@@ -891,11 +886,9 @@
         }).join(' '));
       })();
 
-      // CA (Arizona), MI (Michigan), FL (South_Carolina_1_): triple/double nested inner boundaries.
-      // For each: remove large sub-paths bbox-contained in ANY other sub-path. Keep nonzero fill-rule.
-      // CA has 3 concentric sub-paths (100%/91%/74%) — evenodd creates alternating hollow rings.
-      // MI's LP path self-intersects near the Straits of Mackinac — evenodd cancels fill everywhere.
-      ['Arizona', 'Michigan'].forEach(stateId => { (function() {
+      // All hollow states share triple-nested concentric sub-paths (100%/~90%/~74%).
+      // Remove large sub-paths bbox-contained in ANY other sub-path; keep nonzero fill-rule.
+      ['Arizona', 'Michigan', 'Oklahoma_1_', 'Alabama', 'Maryland', 'ocean_3_', 'Kansas_1_'].forEach(stateId => { (function() {
         const el = document.getElementById('map_' + stateId);
         if (!el) return;
         const d = el.getAttribute('d');
