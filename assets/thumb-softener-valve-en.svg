@@ -1,19 +1,75 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="100%" height="100%">
-  <defs>
-    <radialGradient id="win10" cx="70%" cy="40%" r="65%">
-      <stop offset="0%" stop-color="#0063b1" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#1e1e1e" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#111111" stop-opacity="1"/>
-    </radialGradient>
-  </defs>
-  <!-- Windows 10 Acrylic Background -->
-  <rect width="320" height="180" fill="url(#win10)"/>
-  <!-- Folder Container Panel -->
-  <rect x="50" y="15" width="220" height="150" rx="8" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
-  <rect x="128" y="33" width="64" height="64" rx="5" fill="#0d9488"/>
-  <circle cx="160" cy="65" r="14" stroke="#ffffff" stroke-width="3.5" fill="none"/>
-  <circle cx="160" cy="65" r="4.5" fill="#ffffff"/>
-  <line x1="160" y1="46" x2="160" y2="84" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
-  <line x1="141" y1="65" x2="179" y2="65" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
-  <text x="160" y="146" font-family="'Segoe UI', sans-serif" font-weight="600" font-size="11" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">Valve Analysis (EN)</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">Water Softening Cover</title>
+<desc id="desc">Icon style cover with Softening title, resin tank, control valve gears, and sodium calcium ions.</desc>
+<rect width="1200" height="750" fill="#0f2924"/>
+
+<!-- Top-left Titles -->
+<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#ffffff">SOFTENING</text>
+<text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#a3b8b5">VALVES &amp; ION EXCHANGE PRINCIPLES</text>
+
+<!-- Top-right Badge Box -->
+<rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Softening</text>
+<text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#e2922f">VALVES</text>
+
+<!-- Bottom green landscape / resin bed block -->
+<rect x="0" y="580" width="1200" height="170" fill="#0c4a40"/>
+<path d="M0 580 Q300 550 600 580 T1200 580 L1200 750 L0 750 Z" fill="#0c4a40"/>
+
+<!-- Resin Bed Bead Pattern -->
+<g fill="#115e52" stroke="#0f2924" stroke-width="2">
+  <circle cx="150" cy="640" r="18"/>
+  <circle cx="210" cy="630" r="18"/>
+  <circle cx="270" cy="650" r="18"/>
+  <circle cx="330" cy="620" r="18"/>
+  <circle cx="390" cy="640" r="18"/>
+  <circle cx="450" cy="630" r="18"/>
+  <circle cx="510" cy="650" r="18"/>
+  <circle cx="570" cy="620" r="18"/>
+  <circle cx="630" cy="640" r="18"/>
+  <circle cx="690" cy="630" r="18"/>
+  <circle cx="750" cy="650" r="18"/>
+  <circle cx="810" cy="620" r="18"/>
+  <circle cx="870" cy="640" r="18"/>
+  <circle cx="930" cy="630" r="18"/>
+  <circle cx="990" cy="650" r="18"/>
+  <circle cx="1050" cy="620" r="18"/>
+  <circle cx="1110" cy="640" r="18"/>
+</g>
+
+<!-- Stylized Softener Piston Valve Gear -->
+<g transform="translate(600, 390)" stroke="#20242b" stroke-width="6" fill="#f59e0b">
+  <!-- Gear teeth -->
+  <path d="M-20 -80 L20 -80 L30 -60 L-30 -60 Z"/>
+  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(45)"/>
+  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(90)"/>
+  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(135)"/>
+  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(180)"/>
+  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(225)"/>
+  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(270)"/>
+  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(315)"/>
+  <!-- Central disc -->
+  <circle cx="0" cy="0" r="65" fill="#f59e0b"/>
+  <circle cx="0" cy="0" r="30" fill="#0f2924"/>
+  <circle cx="0" cy="0" r="10" fill="#ffffff"/>
+</g>
+
+<!-- Resin Tank Silhouette on Left -->
+<rect x="180" y="220" width="160" height="400" rx="40" fill="none" stroke="#20242b" stroke-width="10"/>
+<rect x="200" y="240" width="120" height="360" rx="30" fill="#14b8a6" opacity="0.3"/>
+<line x1="260" y1="200" x2="260" y2="600" stroke="#20242b" stroke-width="8"/>
+
+<!-- Swapping Ions -->
+<!-- Sodium (Na+) -->
+<circle cx="850" cy="380" r="34" fill="#fb923c" stroke="#20242b" stroke-width="6"/>
+<text x="850" y="392" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="34" fill="#ffffff">Na</text>
+
+<!-- Calcium (Ca2+) -->
+<circle cx="340" cy="460" r="42" fill="#60a5fa" stroke="#20242b" stroke-width="6"/>
+<text x="340" y="472" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="36" fill="#ffffff">Ca</text>
+
+<!-- Magnesium (Mg2+) -->
+<circle cx="1020" cy="480" r="38" fill="#3b82f6" stroke="#20242b" stroke-width="6"/>
+<text x="1020" y="492" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="32" fill="#ffffff">Mg</text>
+
 </svg>

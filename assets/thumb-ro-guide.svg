@@ -1,18 +1,50 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="100%" height="100%">
-  <defs>
-    <radialGradient id="win10" cx="70%" cy="40%" r="65%">
-      <stop offset="0%" stop-color="#0063b1" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#1e1e1e" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#111111" stop-opacity="1"/>
-    </radialGradient>
-  </defs>
-  <!-- Windows 10 Acrylic Background -->
-  <rect width="320" height="180" fill="url(#win10)"/>
-  <!-- Folder Container Panel -->
-  <rect x="50" y="15" width="220" height="150" rx="8" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
-  <rect x="128" y="33" width="64" height="64" rx="5" fill="#0284c7"/>
-  <path d="M136,87 L155,52 L168,70 L175,62 L186,87 Z" fill="#ffffff" opacity="0.6"/>
-  <line x1="155" y1="56" x2="155" y2="87" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
-  <circle cx="178" cy="49" r="6" fill="#ffffff"/>
-  <text x="160" y="146" font-family="'Segoe UI', sans-serif" font-weight="600" font-size="11" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">RO Complete Guide</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">Reverse Osmosis Cover</title>
+<desc id="desc">Icon style cover with RO Guide title, spiral membrane filter, and purified water drops.</desc>
+<rect width="1200" height="750" fill="#081e30"/>
+
+<!-- Top-left Titles -->
+<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#ffffff">RO GUIDE</text>
+<text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#8ba1b4">REVERSE OSMOSIS MEMBRANES &amp; SYSTEM</text>
+
+<!-- Top-right Badge Box -->
+<rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RO Guide</text>
+<text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0ea5e9">SYSTEM</text>
+
+<!-- Bottom deep blue landscape block -->
+<rect x="0" y="580" width="1200" height="170" fill="#041220"/>
+<path d="M0 580 Q300 550 600 580 T1200 580 L1200 750 L0 750 Z" fill="#041220"/>
+
+<!-- Stylized RO Membrane Cylinder -->
+<g transform="translate(480, 480)" stroke="#20242b" stroke-width="8" fill="none">
+  <!-- Outer shell -->
+  <rect x="-240" y="-120" width="480" height="240" rx="30" fill="#0284c7" stroke="#20242b" stroke-width="10"/>
+  <!-- Spiral layers inside -->
+  <path d="M-200 0 C-200 -80 -100 -80 0 -80 C100 -80 200 -80 200 0 C200 80 100 80 0 80 C-100 80 -150 40 -150 0" stroke="#bae6fd" stroke-width="6"/>
+  <path d="M-150 0 C-150 -50 -80 -50 0 -50 C80 -50 150 -50 150 0 C150 50 80 50 0 50 C-80 50 -100 20 -100 0" stroke="#bae6fd" stroke-width="4"/>
+  <!-- Central product tube -->
+  <line x1="-270" y1="0" x2="270" y2="0" stroke="#20242b" stroke-width="18" stroke-linecap="round"/>
+  <line x1="-270" y1="0" x2="270" y2="0" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+</g>
+
+<!-- Water droplets passing through -->
+<!-- Raw water (feed) on left -->
+<g fill="#3b82f6" opacity="0.6">
+  <circle cx="150" cy="400" r="14"/>
+  <circle cx="110" cy="460" r="10"/>
+  <circle cx="180" cy="480" r="16"/>
+  <circle cx="90" cy="360" r="12"/>
+</g>
+
+<!-- Purified water on right -->
+<g fill="#0ea5e9">
+  <!-- Droplet 1 -->
+  <path d="M850 420 C850 450 820 470 795 470 C770 470 740 450 740 420 C740 390 795 320 795 320 C795 320 850 390 850 420 Z" stroke="#20242b" stroke-width="6" stroke-linejoin="round"/>
+  <circle cx="780" cy="410" r="6" fill="#ffffff" opacity="0.6"/>
+  <!-- Droplet 2 -->
+  <path d="M1020 480 C1020 500 1000 515 982 515 C965 515 945 500 945 480 C945 460 982 410 982 410 C982 410 1020 460 1020 480 Z" stroke="#20242b" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="972" cy="472" r="4" fill="#ffffff" opacity="0.6"/>
+</g>
+
 </svg>
