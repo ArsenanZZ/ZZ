@@ -862,9 +862,12 @@
         const id = path.id.replace('map_', '');
         if (!_SF.includes(id)) {
           path.style.pointerEvents = 'none';
-          // Keep ocean/background fills; mute all other decorative state paths
+          // Make decorative duplicate paths fully transparent (fill + stroke)
+          // so they don't cover the coloured interactive paths beneath them.
+          // Exception: keep USA (ocean background) and Ocean paths as-is.
           if (id !== 'USA' && id !== 'Ocean') {
-            path.style.fill = _MUTED;
+            path.style.fill = 'none';
+            path.style.stroke = 'none';
           }
         }
       });
