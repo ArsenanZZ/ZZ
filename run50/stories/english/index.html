@@ -854,6 +854,36 @@
           path.style.pointerEvents = 'none';
         }
       });
+
+      // Fix hollow states: multi-subpath paths (islands, peninsulas) need evenodd fill rule
+      // so every sub-path is rendered filled regardless of winding direction
+      ['Arizona', 'ocean_3_', 'Oklahoma_1_', 'Michigan', 'Alabama', 'Maryland'].forEach(id => {
+        const el = document.getElementById('map_' + id);
+        if (el) el.setAttribute('fill-rule', 'evenodd');
+      });
+
+      // FL (South_Carolina_1_) has nested concentric sub-paths (outer boundary + inner duplicate)
+      // creating a donut hole. Drop sub-paths that are 50-99% the size of the largest.
+      (function() {
+        const el = document.getElementById('map_South_Carolina_1_');
+        if (!el) return;
+        const d = el.getAttribute('d');
+        const parts = [];
+        let last = 0;
+        for (let i = 1; i < d.length; i++) {
+          if (d[i] === 'M' && /\s/.test(d[i - 1])) { parts.push(d.slice(last, i).trim()); last = i; }
+        }
+        parts.push(d.slice(last).trim());
+        const areas = parts.map(sp => {
+          const cs = sp.match(/([\d.]+),([\d.]+)/g) || [];
+          if (!cs.length) return 0;
+          const xs = cs.map(c => parseFloat(c)), ys = cs.map(c => parseFloat(c.split(',')[1]));
+          return (Math.max(...xs) - Math.min(...xs)) * (Math.max(...ys) - Math.min(...ys));
+        });
+        const mx = Math.max(...areas);
+        el.setAttribute('d', parts.filter((_, i) => areas[i] > mx * 0.99 || areas[i] < mx * 0.5).join(' '));
+      })();
+
       const hawaiiInsetPanel = document.getElementById('map_Alaska_1_');
       if (hawaiiInsetPanel) {
         hawaiiInsetPanel.style.fill = '#ffffff';
@@ -861,7 +891,9 @@
       }
       const hawaiiInsetOutline = document.getElementById('map_hawaii_1_');
       if (hawaiiInsetOutline) {
-        hawaiiInsetOutline.style.fill = '#ffffff';
+        hawaiiInsetOutline.style.fill = 'none';
+        hawaiiInsetOutline.style.stroke = '#eaaea7';
+        hawaiiInsetOutline.style.strokeWidth = '3';
         hawaiiInsetOutline.style.pointerEvents = 'none';
       }
       
@@ -905,9 +937,9 @@
           if (cityCoords) {
             let x, y;
             if (abbr === 'HI') {
-              x = 580.3; y = 959.2;
+              x = 570.0; y = 933.0; // Honolulu (Oahu)
             } else if (abbr === 'AK') {
-              x = 368.4; y = 929.4;
+              x = 275.0; y = 917.0; // Anchorage (south-central Alaska)
             } else {
               const coords = _projectAlbers(cityCoords.lat, cityCoords.lon);
               x = coords.x;
