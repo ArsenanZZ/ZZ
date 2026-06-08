@@ -934,19 +934,11 @@
       _muteAll();
       _bindMapEventsOnce();
       
-      // Per-state colors: completed runs = vivid, planned = pastel, unvisited = white (#f5f5f5)
+      // Per-state colors: only completed runs get color; unvisited/planned = white (#f5f5f5)
       const _STATE_COLORS = {
-        // Completed runs (bold/saturated)
-        'IL':'#e53e3e', 'TX':'#dd6b20', 'FL':'#0987a0', 'AR':'#38a169',
-        'SC':'#d53f8c', 'WV':'#6b46c1', 'TN':'#3182ce', 'KY':'#276749',
-        'WI':'#b7791f', 'MI':'#2b6cb0', 'NC':'#2c7a7b', 'PA':'#9b2c2c', 'NH':'#553c9a',
-        // Planned races (soft/pastel)
-        'LA':'#b794f4', 'VA':'#9ae6b4', 'ND':'#fed7aa', 'KS':'#81e6d9',
-        'VT':'#90cdf4', 'AL':'#feb2b2', 'AZ':'#fbd38d', 'DE':'#bee3f8',
-        'MN':'#e9d8fd', 'CT':'#c3dafe', 'RI':'#fed7e8', 'MA':'#c6f6d5',
-        'ME':'#e9d8fd', 'OH':'#fefcbf', 'NY':'#d6bcfa', 'CA':'#fc8181',
-        'IN':'#fb923c', 'HI':'#fef08a', 'GA':'#86efac', 'CO':'#7dd3fc',
-        'AK':'#a0aec0', 'MO':'#f97316', 'WA':'#34d399'
+        'IL':'#e8a8a8', 'TX':'#e8c898', 'FL':'#98c8e8', 'AR':'#98d8b0',
+        'SC':'#e898c8', 'WV':'#b898d8', 'TN':'#98b8e8', 'KY':'#98d8c8',
+        'WI':'#e8d498', 'MI':'#98a8e8', 'NC':'#98d8d8', 'PA':'#d8a0a0', 'NH':'#c098d8'
       };
       for (const abbr in _STATE_COLORS) {
         (_HM[abbr] || []).forEach(id => {
