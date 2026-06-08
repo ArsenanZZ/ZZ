@@ -407,8 +407,23 @@
 
   .video-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px 18px;
+  }
+
+  .grid-header {
+    grid-column: 1 / -1;
+    margin-top: 14px;
+    margin-bottom: 6px;
+  }
+
+  .grid-header h2 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
   }
 
   .video-card {
@@ -520,11 +535,6 @@
     display: grid;
   }
 
-  @media (max-width: 1280px) {
-    .video-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
 
   @media (max-width: 980px) {
     .topbar {
@@ -704,29 +714,152 @@
       </div>
     </section>
 
-    <section class="section-title" aria-label="Uploads heading">
-      <h2>Library</h2>
-      <span class="results" id="resultCount">14 items</span>
+    <!-- Search / Filter Results Title (hidden by default, shown only when filtered) -->
+    <section class="section-title" id="mainSectionTitle" style="display: none; margin-bottom: 20px;">
+      <h2>Search Results</h2>
+      <span class="results" id="resultCount">0 items</span>
     </section>
 
     <section class="video-grid" id="videoGrid" aria-label="ZZ uploads">
-      <article class="video-card" id="wqa" data-category="wqa research" data-title="WQA 2026 Presentation Summaries">
-        <a class="thumb" href="wqa/WQA_2026_Presentations_Summary-V2.html">
-          <img src="assets/thumb-wqa-presentations.png" alt="WQA 2026 Presentation Summaries thumbnail">
-          <span class="duration">HTML</span>
+      <!-- Run50 Header -->
+      <div class="grid-header" id="run50Header" data-section="run50">
+        <h2>Run50 Latest Stories</h2>
+      </div>
+
+      <article class="video-card" data-section="run50" data-category="run50 runworld facebook" data-title="Pisa turned a marathon into a Tuscan art-school road trip">
+        <a class="thumb" href="run50/facebook/pisa-marathon.html">
+          <img src="assets/facebook/thumb-run50-pisa-icons.svg?v=20260605-2" alt="Icon-style Pisa Marathon cover">
+          <span class="duration">Story</span>
         </a>
         <div class="meta">
-          <span class="avatar wqa">W</span>
+          <span class="avatar run50">50</span>
           <div>
-            <a class="video-title" href="wqa/WQA_2026_Presentations_Summary-V2.html">WQA 2026 Presentation Summaries</a>
-            <p class="video-sub">WQA &middot; Presentation notes</p>
+            <a class="video-title" href="run50/facebook/pisa-marathon.html">Pisa turned a marathon into a Tuscan art-school road trip</a>
+            <p class="video-sub">Pisa, Italy &middot; Dec 21, 2025</p>
           </div>
         </div>
       </article>
 
-      <article class="video-card" data-category="wqa research" data-title="WQA 2026 Expo Observation Report">
+      <article class="video-card" data-section="run50" data-category="run50 runcn facebook" data-title="Hong Kong turned a marathon into a tunnel-and-bridge city tour">
+        <a class="thumb" href="run50/facebook/hong-kong-marathon.html">
+          <img src="assets/facebook/thumb-run50-hong-kong-icons.svg?v=20260605-2" alt="Icon-style Hong Kong Streetathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/facebook/hong-kong-marathon.html">Hong Kong turned a marathon into a tunnel-and-bridge city tour</a>
+            <p class="video-sub">Hong Kong, China &middot; Nov 23, 2025</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 runcn facebook" data-title="Guilin turned a beautiful marathon into a full-sun test">
+        <a class="thumb" href="run50/facebook/guilin-marathon.html">
+          <img src="assets/facebook/thumb-run50-guilin-icons.svg?v=20260605-2" alt="Icon-style Guilin Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/facebook/guilin-marathon.html">Guilin turned a beautiful marathon into a full-sun test</a>
+            <p class="video-sub">Guilin, Guangxi &middot; Nov 16, 2025</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 runcn facebook" data-title="Xiangyang gave me a marathon with a finish I did not see coming">
+        <a class="thumb" href="run50/facebook/xiangyang-marathon.html">
+          <img src="assets/facebook/thumb-run50-xiangyang-icons.svg?v=20260605-2" alt="Icon-style Xiangyang Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/facebook/xiangyang-marathon.html">Xiangyang gave me a marathon with a finish I did not see coming</a>
+            <p class="video-sub">Xiangyang, Hubei &middot; Oct 19, 2025</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 runworld facebook" data-title="Mexico City gave me a 26.2-mile high-altitude plateau challenge">
+        <a class="thumb" href="run50/facebook/mexico-marathon.html">
+          <img src="assets/facebook/thumb-run50-mexico-icons.svg?v=20260605-2" alt="Icon-style Mexico City Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/facebook/mexico-marathon.html">Mexico City gave me a 26.2-mile high-altitude plateau challenge</a>
+            <p class="video-sub">Mexico City, Mexico &middot; Aug 31, 2025</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Too Slow for Boston gave me a 26.2-mile run with the stubborn mule medal">
+        <a class="thumb" href="run50/facebook/south-carolina-marathon.html">
+          <img src="assets/facebook/thumb-run50-south-carolina-marathon-icons.svg?v=20260605-2" alt="Icon-style South Carolina Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/facebook/south-carolina-marathon.html">Too Slow for Boston gave me a 26.2-mile run with the stubborn mule medal</a>
+            <p class="video-sub">Greer, SC &middot; Apr 14, 2024</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Little Rock gave me a 26.2-mile run with the massive dinosaur medal">
+        <a class="thumb" href="run50/facebook/little-rock-marathon.html">
+          <img src="assets/facebook/thumb-run50-little-rock-marathon-icons.svg?v=20260605-2" alt="Icon-style Little Rock Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/facebook/little-rock-marathon.html">Little Rock gave me a 26.2-mile run with the massive dinosaur medal</a>
+            <p class="video-sub">Little Rock, AR &middot; Mar 3, 2024</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi's backyard">
+        <a class="thumb" href="run50/facebook/miami-marathon.html">
+          <img src="assets/facebook/thumb-run50-miami-icons.svg?v=20260605-2" alt="Icon-style Miami Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/facebook/miami-marathon.html">Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi's backyard</a>
+            <p class="video-sub">Miami, Florida &middot; Jan 28, 2024</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="San Antonio turned a Spurs trip into my Texas marathon story">
+        <a class="thumb" href="run50/facebook/san-antonio-marathon.html">
+          <img src="assets/facebook/thumb-run50-san-antonio-marathon-icons.svg?v=20260605-2" alt="Icon-style San Antonio Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/facebook/san-antonio-marathon.html">San Antonio turned a Spurs trip into my Texas marathon story</a>
+            <p class="video-sub">San Antonio, Texas &middot; Dec 3, 2023</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Water Header -->
+      <div class="grid-header" id="waterHeader" data-section="water">
+        <h2>Water Research &amp; Tech</h2>
+      </div>
+
+      <article class="video-card" data-section="water" data-category="wqa research" data-title="WQA 2026 Expo Observation Report">
         <a class="thumb" href="wqa/WQA_2026_Expo_Observation_Report_EN.html">
-          <img src="assets/thumb-wqa-expo.png" alt="WQA 2026 Expo Observation Report thumbnail">
+          <img src="assets/thumb-wqa-expo.svg?v=20260601" alt="WQA 2026 Expo Observation Report cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -738,37 +871,42 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="wqa research" data-title="EZsalt Research Report">
-        <a class="thumb" href="wqa/EZsalt_Research_Report_2_EN.html">
-          <img src="assets/thumb-ezsalt.png" alt="EZsalt Research Report thumbnail">
+      <article class="video-card" data-section="water" data-category="wqa research" data-title="Water Softening: Principles &amp; Competitor Study">
+        <a class="thumb" href="water-softener/softener-valve-analysis-en.html">
+          <img src="assets/thumb-softener-valve-en.svg?v=20260601" alt="Water Softening cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
           <span class="avatar wqa">W</span>
           <div>
-            <a class="video-title" href="wqa/EZsalt_Research_Report_2_EN.html">EZsalt Research Report</a>
-            <p class="video-sub">Research &middot; Product report</p>
+            <a class="video-title" href="water-softener/softener-valve-analysis-en.html">Water Softening: Principles &amp; Competitor Study</a>
+            <p class="video-sub">Water Softening &middot; Technical reference</p>
           </div>
         </div>
       </article>
 
-      <article class="video-card" data-category="wqa research" data-title="DROP Research Report">
-        <a class="thumb" href="wqa/DROP_Research_Report_EN.html">
-          <img src="assets/thumb-drop.png" alt="DROP Research Report thumbnail">
+      <article class="video-card" data-section="water" data-category="ro" data-title="Reverse Osmosis Complete Guide">
+        <a class="thumb" href="ro/RO-Complete-Guide-EN.html">
+          <img src="assets/thumb-ro-guide.svg?v=20260601" alt="Reverse Osmosis Complete Guide cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
-          <span class="avatar wqa">W</span>
+          <span class="avatar ro">RO</span>
           <div>
-            <a class="video-title" href="wqa/DROP_Research_Report_EN.html">DROP Research Report</a>
-            <p class="video-sub">Research &middot; Product report</p>
+            <a class="video-title" href="ro/RO-Complete-Guide-EN.html">Reverse Osmosis Complete Guide</a>
+            <p class="video-sub">RO &middot; Complete guide</p>
           </div>
         </div>
       </article>
 
-      <article class="video-card" id="reading" data-category="reading atomic" data-title="Atomic Habits Full English">
+      <!-- Reading Header -->
+      <div class="grid-header" id="readingHeader" data-section="reading">
+        <h2>Reading &amp; Study</h2>
+      </div>
+
+      <article class="video-card" data-section="reading" data-category="reading atomic" data-title="Atomic Habits Full English">
         <a class="thumb" href="reading/atomic-habits-full-english.html">
-          <img src="assets/thumb-atomic-full.png" alt="Atomic Habits Full English thumbnail">
+          <img src="assets/thumb-atomic-full.svg?v=20260601" alt="Atomic Habits Full English cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -780,9 +918,9 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="reading atomic" data-title="Atomic Habits Study Cards">
+      <article class="video-card" data-section="reading" data-category="reading atomic" data-title="Atomic Habits Study Cards">
         <a class="thumb" href="reading/atomic-habits-bloom-cards.html">
-          <img src="assets/thumb-atomic-cards.png" alt="Atomic Habits Study Cards thumbnail">
+          <img src="assets/thumb-atomic-cards.svg?v=20260601" alt="Atomic Habits Study Cards cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -794,93 +932,80 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Study Notes">
+      <article class="video-card" data-section="reading" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Study Notes">
         <a class="thumb" href="reading/nano-ic-manufacturing-study.html">
-          <img src="assets/reading.png" alt="Nano IC Manufacturing Study Notes thumbnail">
+          <img src="assets/thumb-nano-ic-prep.svg?v=20260601" alt="Nano IC Manufacturing Study Notes cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
           <span class="avatar reading">R</span>
           <div>
             <a class="video-title" href="reading/nano-ic-manufacturing-study.html">Nano IC Manufacturing Study Notes</a>
-            <p class="video-sub">Reading &middot; Semiconductor equipment prep</p>
+            <p class="video-sub">Reading &middot; Semiconductor prep</p>
           </div>
         </div>
       </article>
 
-      <article class="video-card" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Detailed Handbook">
+      <article class="video-card" data-section="reading" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Detailed Handbook">
         <a class="thumb" href="reading/nano-ic-manufacturing-handbook-detailed.html">
-          <img src="assets/reading.png" alt="Nano IC Manufacturing Detailed Handbook thumbnail">
+          <img src="assets/thumb-nano-ic-reader.svg?v=20260601" alt="Nano IC Manufacturing Detailed Handbook cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
           <span class="avatar reading">R</span>
           <div>
             <a class="video-title" href="reading/nano-ic-manufacturing-handbook-detailed.html">Nano IC Manufacturing Detailed Handbook</a>
-            <p class="video-sub">Reading &middot; Original detailed handbook</p>
+            <p class="video-sub">Reading &middot; Detailed handbook</p>
           </div>
         </div>
       </article>
 
-      <article class="video-card" id="run50" data-category="run50" data-title="Run50 Personal Space">
-        <a class="thumb" href="run50/index.html">
-          <img src="assets/thumb-run50-home.png" alt="Run50 Personal Space thumbnail">
+      <!-- Secondary / Hidden Cards (Filter Only) -->
+      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="wqa research" data-title="WQA 2026 Presentation Summaries">
+        <a class="thumb" href="wqa/WQA_2026_Presentations_Summary-V2.html">
+          <img src="assets/thumb-wqa-presentations.svg?v=20260601" alt="WQA 2026 Presentation Summaries cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
-          <span class="avatar run50">50</span>
+          <span class="avatar wqa">W</span>
           <div>
-            <a class="video-title" href="run50/index.html">Run50 Personal Space</a>
-            <p class="video-sub">Run50 &middot; Home</p>
+            <a class="video-title" href="wqa/WQA_2026_Presentations_Summary-V2.html">WQA 2026 Presentation Summaries</a>
+            <p class="video-sub">WQA &middot; Presentation notes</p>
           </div>
         </div>
       </article>
 
-      <article class="video-card" data-category="run50" data-title="Run50 Training Page">
-        <a class="thumb" href="run50/run50.html">
-          <img src="assets/thumb-run50-training.png" alt="Run50 Training Page thumbnail">
+      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="wqa research" data-title="EZsalt Research Report">
+        <a class="thumb" href="wqa/EZsalt_Research_Report_2_EN.html">
+          <img src="assets/thumb-ezsalt.svg?v=20260601" alt="EZsalt Research Report cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
-          <span class="avatar run50">50</span>
+          <span class="avatar wqa">W</span>
           <div>
-            <a class="video-title" href="run50/run50.html">Run50 Training Page</a>
-            <p class="video-sub">Run50 &middot; Training library</p>
+            <a class="video-title" href="wqa/EZsalt_Research_Report_2_EN.html">EZsalt Research Report</a>
+            <p class="video-sub">Research &middot; Product report</p>
           </div>
         </div>
       </article>
 
-      <article class="video-card" data-category="run50 trip marathon travel" data-title="Mainly Marathons New England 2026">
-        <a class="thumb" href="run50/mainly-marathons-new-england-2026-guide.html">
-          <img src="assets/thumb-trip-new-england.png" alt="Mainly Marathons New England 2026 thumbnail">
+      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="wqa research" data-title="DROP Research Report">
+        <a class="thumb" href="wqa/DROP_Research_Report_EN.html">
+          <img src="assets/thumb-drop.svg?v=20260601" alt="DROP Research Report cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
-          <span class="avatar run50">50</span>
+          <span class="avatar wqa">W</span>
           <div>
-            <a class="video-title" href="run50/mainly-marathons-new-england-2026-guide.html">Mainly Marathons New England 2026</a>
-            <p class="video-sub">Run50 &middot; Trip guide</p>
+            <a class="video-title" href="wqa/DROP_Research_Report_EN.html">DROP Research Report</a>
+            <p class="video-sub">Research &middot; Product report</p>
           </div>
         </div>
       </article>
 
-      <article class="video-card" data-category="run50 story chinese marathon travel" data-title="Run50 Chinese Stories Xiangyang Marathon">
-        <a class="thumb" href="run50/stories/chinese/">
-          <img src="assets/thumb-run50-xiangyang-story.webp" alt="Run50 Chinese Stories thumbnail">
-          <span class="duration">Story</span>
-        </a>
-        <div class="meta">
-          <span class="avatar run50">50</span>
-          <div>
-            <a class="video-title" href="run50/stories/chinese/">Run50 Chinese Stories</a>
-            <p class="video-sub">Run50 &middot; Xiangyang Marathon</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="video-card" id="ro" data-category="ro" data-title="How a Reverse Osmosis System Works">
+      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="ro" data-title="How a Reverse Osmosis System Works">
         <a class="thumb" href="ro/ro-system-explained.html">
-          <img src="assets/thumb-ro-system.png" alt="How a Reverse Osmosis System Works thumbnail">
+          <img src="assets/thumb-ro-system.svg?v=20260601" alt="How a Reverse Osmosis System Works cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
@@ -892,16 +1017,100 @@
         </div>
       </article>
 
-      <article class="video-card" data-category="ro" data-title="RO Complete Guide EN">
-        <a class="thumb" href="ro/RO-Complete-Guide-EN.html">
-          <img src="assets/thumb-ro-guide.png" alt="RO Complete Guide EN thumbnail">
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50" data-title="Run50 Personal Space">
+        <a class="thumb" href="run50/index.html">
+          <img src="assets/thumb-run50-home.svg?v=20260601" alt="Run50 Personal Space cover">
           <span class="duration">HTML</span>
         </a>
         <div class="meta">
-          <span class="avatar ro">RO</span>
+          <span class="avatar run50">50</span>
           <div>
-            <a class="video-title" href="ro/RO-Complete-Guide-EN.html">RO Complete Guide EN</a>
-            <p class="video-sub">RO &middot; Complete guide</p>
+            <a class="video-title" href="run50/index.html">Run50 Personal Space</a>
+            <p class="video-sub">Run50 &middot; Home</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50" data-title="Run50 Training Page">
+        <a class="thumb" href="run50/run50.html">
+          <img src="assets/thumb-run50-training.svg?v=20260601" alt="Run50 Training Page cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/run50.html">Run50 Training Page</a>
+            <p class="video-sub">Run50 &middot; Training library</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 trip marathon travel" data-title="Mainly Marathons New England 2026">
+        <a class="thumb" href="run50/mainly-marathons-new-england-2026-guide.html">
+          <img src="assets/thumb-trip-new-england.svg?v=20260601" alt="Mainly Marathons New England 2026 cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/mainly-marathons-new-england-2026-guide.html">Mainly Marathons New England 2026</a>
+            <p class="video-sub">Run50 &middot; Trip guide</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 story chinese marathon travel" data-title="Run50 Chinese Stories">
+        <a class="thumb" href="run50/stories/chinese/">
+          <img src="assets/thumb-run50-xiangyang-icons.svg?v=20260601" alt="Run50 Chinese Stories cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/stories/chinese/">Run50 Chinese Stories</a>
+            <p class="video-sub">Run50 &middot; Chinese index</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 facebook" data-title="Chicago gave me my second World Marathon Major and State 12 of Run50">
+        <a class="thumb" href="run50/facebook/chicago-marathon.html">
+          <img src="assets/facebook/thumb-run50-chicago-marathon-icons.svg?v=20260605-2" alt="Icon-style Chicago Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/facebook/chicago-marathon.html">Chicago gave me my second World Marathon Major and State 12 of Run50</a>
+            <p class="video-sub">Chicago, IL &middot; Oct 8, 2023</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 facebook" data-title="West Virginia gave me a touchdown stadium finish to break 4 hours">
+        <a class="thumb" href="run50/facebook/west-virginia-marathon.html">
+          <img src="assets/facebook/thumb-run50-west-virginia-marathon-icons.svg?v=20260605-2" alt="Icon-style West Virginia Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/facebook/west-virginia-marathon.html">West Virginia gave me a touchdown stadium finish to break 4 hours</a>
+            <p class="video-sub">Huntington, WV &middot; Nov 5, 2023</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 facebook" data-title="Scorching October sun gave me my slowest marathon of the year in Music City">
+        <a class="thumb" href="run50/facebook/nashville-marathon.html">
+          <img src="assets/facebook/thumb-run50-nashville-marathon-icons.svg?v=20260605-2" alt="Icon-style Nashville Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="run50/facebook/nashville-marathon.html">Scorching October sun gave me my slowest marathon of the year in Music City</a>
+            <p class="video-sub">Nashville, TN &middot; Oct 28, 2023</p>
           </div>
         </div>
       </article>
@@ -951,6 +1160,7 @@
   function applyFilters() {
     const query = searchInput.value.trim().toLowerCase();
     let visible = 0;
+    const isFiltered = currentFilter !== 'all' || query !== '';
 
     cards.forEach(card => {
       const haystack = `${card.dataset.title} ${card.dataset.category}`.toLowerCase();
@@ -960,10 +1170,29 @@
         : haystack.includes(query));
       const categoryTokens = (card.dataset.category || '').split(/\s+/).filter(Boolean);
       const matchesFilter = currentFilter === 'all' || categoryTokens.includes(currentFilter);
-      const show = matchesQuery && matchesFilter;
+      const hideOnAll = card.dataset.hideOnAll === 'true';
+
+      const show = matchesQuery && matchesFilter && !(currentFilter === 'all' && hideOnAll && !query);
       card.hidden = !show;
       if (show) visible += 1;
     });
+
+    // Toggle grid-headers and flat results heading
+    const mainTitle = document.querySelector('#mainSectionTitle');
+    const headers = Array.from(document.querySelectorAll('.grid-header'));
+
+    if (isFiltered) {
+      if (mainTitle) mainTitle.style.display = 'flex';
+      headers.forEach(h => h.style.display = 'none');
+    } else {
+      if (mainTitle) mainTitle.style.display = 'none';
+      headers.forEach(h => {
+        const section = h.dataset.section;
+        const sectionCards = cards.filter(c => c.dataset.section === section);
+        const hasVisible = sectionCards.some(c => !c.hidden);
+        h.style.display = hasVisible ? 'block' : 'none';
+      });
+    }
 
     resultCount.textContent = `${visible} item${visible === 1 ? '' : 's'}`;
     emptyState.classList.toggle('show', visible === 0);
