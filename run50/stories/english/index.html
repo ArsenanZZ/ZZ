@@ -627,8 +627,15 @@
         'CT': [{city: 'Simsbury', raceName: 'Mainly Marathons NE', date: '2026.06.08', emoji: '🏛️', num: '#32', isPlaceholder: true}],
         'RI': [{city: 'Woonsocket', raceName: 'Mainly Marathons NE', date: '2026.06.09', emoji: '⚓', num: '#33', isPlaceholder: true}],
         'MA': [{city: 'Holyoke', raceName: 'Mainly Marathons NE', date: '2026.06.10', emoji: '🦞', num: '#34', isPlaceholder: true}],
-        'HI': [{city: 'Honolulu', raceName: '50th Honolulu Marathon', date: '2022.12.11', emoji: '🌺', num: '#06', isPlaceholder: true}],
-        'AK': [{city: 'Anchorage', raceName: '4th Anchorage Marathon', date: '2023.08.20', emoji: '🐻', num: '#09', isPlaceholder: true}],
+        'HI': [{city: 'Honolulu', raceName: '50th Honolulu Marathon', date: '2022.12.11', emoji: '🌺', num: '#06', isPlaceholder: false}],
+        'AK': [{city: 'Anchorage', raceName: '4th Anchorage Marathon', date: '2023.08.20', emoji: '🐻', num: '#09', isPlaceholder: false}],
+        'OH': [{city: 'Cleveland', raceName: '44th Cleveland Marathon', date: '2021.10.24', emoji: '🌊', num: '#02', isPlaceholder: false}],
+        'NY': [{city: 'New York City', raceName: '50th NYC Marathon', date: '2021.11.04', emoji: '🗽', num: '#03', isPlaceholder: false}],
+        'CA': [{city: 'San Francisco', raceName: '45th SF Marathon', date: '2022.07.24', emoji: '🌁', num: '#04', isPlaceholder: false}],
+        'IN': [{city: 'Indianapolis', raceName: '15th Indy Monumental', date: '2022.11.08', emoji: '🏎️', num: '#05', isPlaceholder: false}],
+        'GA': [{city: 'Atlanta', raceName: '17th Atlanta Marathon', date: '2023.02.26', emoji: '🍑', num: '#07', isPlaceholder: false}],
+        'CO': [{city: 'Denver', raceName: '18th Denver Marathon', date: '2023.05.21', emoji: '🏔️', num: '#08', isPlaceholder: false}],
+        'MO': [{city: 'St. Joseph', raceName: 'St Joseph Marathon', date: '2023.09.23', emoji: '🌾', num: '#10', isPlaceholder: false}],
         'IL': [{city: 'Chicago', raceName: 'Chicago Marathon', date: '2023.10.08', emoji: '🏙️', num: '#12', isPlaceholder: false}],
         'TN': [{city: 'Nashville', raceName: 'Nashville Marathon', date: '2023.10.28', emoji: '🎸', num: '#12', isPlaceholder: false}],
         'WV': [{city: 'Huntington', raceName: 'West Virginia Marathon', date: '2023.11.05', emoji: '🏈', num: '#13', isPlaceholder: false}],
@@ -936,9 +943,28 @@
       
       // Per-state colors: only completed runs get color; unvisited/planned = white (#f5f5f5)
       const _STATE_COLORS = {
-        'IL':'#e8a8a8', 'TX':'#e8c898', 'FL':'#98c8e8', 'AR':'#98d8b0',
-        'SC':'#e898c8', 'WV':'#b898d8', 'TN':'#98b8e8', 'KY':'#98d8c8',
-        'WI':'#e8d498', 'MI':'#98a8e8', 'NC':'#98d8d8', 'PA':'#d8a0a0', 'NH':'#c098d8'
+        'KY': '#d4bb54',  // golden honey
+        'OH': '#db9c5c',  // warm orange
+        'NY': '#d4ac52',  // amber
+        'CA': '#d48c96',  // rose
+        'IN': '#e0a870',  // peach
+        'HI': '#5fbc9e',  // teal
+        'GA': '#55a8a5',  // dark teal
+        'CO': '#92c27a',  // sage green
+        'AK': '#c8907a',  // terracotta
+        'MO': '#c87268',  // brick red
+        'IL': '#9882c5',  // dusty purple
+        'TN': '#cdb848',  // warm yellow
+        'WV': '#4fa882',  // forest green
+        'TX': '#b8d465',  // lime green
+        'FL': '#7898c8',  // periwinkle
+        'NC': '#e099a8',  // soft pink
+        'AR': '#c87058',  // terracotta red
+        'SC': '#c87890',  // rose pink
+        'PA': '#db9c4e',  // golden orange
+        'WI': '#d4c248',  // muted yellow
+        'MI': '#6db4d8',  // sky blue
+        'NH': '#a888c8',  // lavender
       };
       for (const abbr in _STATE_COLORS) {
         (_HM[abbr] || []).forEach(id => {
