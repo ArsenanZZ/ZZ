@@ -857,7 +857,7 @@
 
       // Fix hollow states: multi-subpath paths (islands, peninsulas) need evenodd fill rule
       // so every sub-path is rendered filled regardless of winding direction
-      ['Arizona', 'ocean_3_', 'Oklahoma_1_', 'Alabama', 'Maryland'].forEach(id => {
+      ['ocean_3_', 'Oklahoma_1_', 'Alabama', 'Maryland'].forEach(id => {
         const el = document.getElementById('map_' + id);
         if (el) el.setAttribute('fill-rule', 'evenodd');
       });
@@ -891,11 +891,12 @@
         }).join(' '));
       })();
 
-      // MI (Michigan) has inner boundary sub-paths nested inside the LP outer boundary, creating donut holes.
-      // Remove large sub-paths that are bbox-contained in ANY other sub-path. Keep nonzero fill-rule
-      // (evenodd fails for MI because the LP path self-intersects near the Straits of Mackinac).
-      (function() {
-        const el = document.getElementById('map_Michigan');
+      // CA (Arizona), MI (Michigan), FL (South_Carolina_1_): triple/double nested inner boundaries.
+      // For each: remove large sub-paths bbox-contained in ANY other sub-path. Keep nonzero fill-rule.
+      // CA has 3 concentric sub-paths (100%/91%/74%) — evenodd creates alternating hollow rings.
+      // MI's LP path self-intersects near the Straits of Mackinac — evenodd cancels fill everywhere.
+      ['Arizona', 'Michigan'].forEach(stateId => { (function() {
+        const el = document.getElementById('map_' + stateId);
         if (!el) return;
         const d = el.getAttribute('d');
         const parts = [];
@@ -912,12 +913,14 @@
           return {xMin,xMax,yMin,yMax,area:(xMax-xMin)*(yMax-yMin)};
         });
         const maxArea = Math.max(...bboxes.map(b => b.area));
+        el.removeAttribute('fill-rule');
         el.setAttribute('d', parts.filter((_, i) => {
           const b = bboxes[i];
           if (b.area < maxArea * 0.05) return true;
           return !bboxes.some((o, j) => j !== i && b.xMin>=o.xMin && b.xMax<=o.xMax && b.yMin>=o.yMin && b.yMax<=o.yMax);
         }).join(' '));
-      })();
+      })(); });
+
 
       const hawaiiInsetPanel = document.getElementById('map_Alaska_1_');
       if (hawaiiInsetPanel) {
