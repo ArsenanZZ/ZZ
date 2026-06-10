@@ -129,6 +129,7 @@
     #us-map-master {
         width: 100%;
         height: auto;
+        aspect-ratio: 1722 / 989; /* match viewBox so Safari sizes it correctly */
         display: block;
     }
     #us-map-master path {
@@ -257,7 +258,7 @@
         <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:#a36e23; transition:color 0.2s;">Hover over states or dots to view race details, click to jump</span>
       </div>
       
-      <div class="welcome-map-slot" id="welcome-map-slot" style="position:relative; width:100%; min-height:300px; background:#f7f4ee; border-radius:8px; overflow:hidden; border:1px solid #d0dfe8;">
+      <div class="welcome-map-slot" id="welcome-map-slot" style="position:relative; width:100%; aspect-ratio: 1722 / 989; background:#f7f4ee; border-radius:8px; overflow:hidden; border:1px solid #d0dfe8;">
         <!-- SVG Map will be dynamically appended here from US_MAP_SVG -->
       </div>
       
@@ -408,12 +409,12 @@
       "PA": ["Pensilvania"],
       "WI": ["Wisconsin"],
       "MI": ["Michigan"],
-      "NH": ["Vermont"],
+      "NH": ["New_Hampshire"],
       "LA": ["Arkansas_1_"],
       "VA": ["North_Carolina_1_"],
       "ND": ["South_Dakota_1_"],
       "KS": ["Kansas"],
-      "VT": ["New_Hampshire_1_"],
+      "VT": ["New_Hampshire_1_", "Vermont"],
       "AL": ["alabama"],
       "AZ": ["Arizona_1_"],
       "DE": ["Massachusets_1_"],
@@ -464,7 +465,7 @@
     };
     // One real-geometry path id per state (the values of _HM), used to mute every
     // state to the base colour and to bind hover/click handlers.
-    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Vermont", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Alaska_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "hawaii_1_", "Oklahoma_1_", "ocean_3_"];
+    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Vermont", "New_Hampshire", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Alaska_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "hawaii_1_", "Oklahoma_1_", "ocean_3_"];
     const _MUTED = '#f5f5f5';
 
     const _CITY_LAT_LON = {
@@ -975,7 +976,7 @@
             } else if (abbr === 'VT' && r.city === 'Springfield') {
               x = 1477.0; y = 270.0; // Springfield VT: beside Warren in visible VT area
             } else if (abbr === 'NH' && r.city === 'Keene') {
-              x = 1468.0; y = 305.0; // Keene NH: inside NH-colored blob (map_Vermont)
+              x = 1502.0; y = 310.0; // Keene NH: inside the real NH sliver (map_New_Hampshire)
             } else if (abbr === 'CT' && r.city === 'Simsbury') {
               x = 1503.0; y = 362.0; // Simsbury CT: inside CT shape (map_New_York_2_)
             } else if (abbr === 'RI' && r.city === 'Woonsocket') {
