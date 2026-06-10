@@ -906,7 +906,11 @@
 
       // All hollow states share triple-nested concentric sub-paths (100%/~90%/~74%).
       // Remove large sub-paths bbox-contained in ANY other sub-path; keep nonzero fill-rule.
-      ['Arizona', 'Michigan', 'Oklahoma_1_', 'Alabama', 'Maryland', 'ocean_3_', 'Kansas_1_', 'Arkansas_1_'].forEach(stateId => { (function() {
+      ['Arizona', 'Michigan', 'Oklahoma_1_', 'Alabama', 'Maryland', 'ocean_3_', 'Kansas_1_', 'Arkansas_1_',
+       'Illinois', 'West_Virginia', 'South_Carolina', 'Pensilvania', 'Wisconsin', 'Vermont', 'New_Hampshire',
+       'Kansas', 'alabama', 'Arizona_1_', 'Minnesotta', 'Ohio', 'New_York', 'Indiana', 'Georgia',
+       'Alaska_1_', 'hawaii_1_', 'Idaho', 'Nebraska', 'Nevada_41_', 'Oklahoma', 'South_Dakota',
+       'Utah_1_', 'Pensilvania_1_'].forEach(stateId => { (function() {
         const el = document.getElementById('map_' + stateId);
         if (!el) return;
         const d = el.getAttribute('d');
