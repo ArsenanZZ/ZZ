@@ -2981,14 +2981,11 @@ function _injectWelcomeMap() {
   const slot = document.getElementById('welcome-map-slot');
   if (!slot) return;
   
-  // Hide all non-state paths (state abbreviation borders, ocean labels, etc.)
+  // Set pointer-events: none on all decorative paths to prevent blocking state click/hover events
   master.querySelectorAll('path').forEach(path => {
     const id = path.id.replace('map_', '');
     if (!_SF.includes(id)) {
       path.style.pointerEvents = 'none';
-      if (id !== 'USA' && id !== 'Ocean') {
-        path.style.fill = 'none';
-      }
     }
   });
 
