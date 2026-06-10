@@ -159,6 +159,7 @@
     #us-map-master {
         width: 100%;
         height: auto;
+        aspect-ratio: 1722 / 989; /* match viewBox so Safari sizes it correctly */
         display: block;
     }
     #us-map-master path {
@@ -286,7 +287,7 @@
         <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:var(--muted); transition:color 0.2s;">鼠标悬停在州或红点上查看长文，点击卡片跳转</span>
       </div>
       
-      <div class="welcome-map-slot" id="welcome-map-slot" style="position:relative; width:100%; min-height:300px; background:#f4f6f7; border-radius:8px; overflow:hidden; border:1px solid var(--line);">
+      <div class="welcome-map-slot" id="welcome-map-slot" style="position:relative; width:100%; aspect-ratio: 1722 / 989; background:#f4f6f7; border-radius:8px; overflow:hidden; border:1px solid var(--line);">
         <!-- SVG Map will be dynamically appended here from US_MAP_SVG -->
       </div>
       
@@ -479,12 +480,12 @@
       "PA": ["Pensilvania"],
       "WI": ["Wisconsin"],
       "MI": ["Michigan"],
-      "NH": ["Vermont"],
+      "NH": ["New_Hampshire"],
       "LA": ["Arkansas_1_"],
       "VA": ["North_Carolina_1_"],
       "ND": ["South_Dakota_1_"],
       "KS": ["Kansas"],
-      "VT": ["New_Hampshire_1_"],
+      "VT": ["New_Hampshire_1_", "Vermont"],
       "AL": ["alabama"],
       "AZ": ["Arizona_1_"],
       "DE": ["Massachusets_1_"],
@@ -500,7 +501,7 @@
       "GA": ["Georgia"],
       "CO": ["Texas_1_"],
       "MO": ["Iowa_1_"],
-      "HI": ["ocean_2_"],
+      "HI": ["Alaska_1_", "hawaii_1_"],
       "AK": ["ocean_3_"],
       "ID": ["Idaho"],
       "IA": ["Minessota"],
@@ -531,7 +532,7 @@
       "NV": "内华达", "NJ": "新泽西", "NM": "新墨西哥", "OK": "俄克拉荷马",
       "OR": "俄勒冈", "SD": "南达科他", "UT": "犹他", "WY": "怀俄明", "MD": "马里兰", "WA": "华盛顿"
     };
-    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Vermont", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "ocean_2_", "Oklahoma_1_", "ocean_3_"];
+    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Vermont", "New_Hampshire", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Alaska_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "hawaii_1_", "Oklahoma_1_", "ocean_3_"];
     const _MUTED = '#dedad3';
 
     const _CITY_LAT_LON = {
@@ -936,17 +937,6 @@
           }
         }
       });
-      const hawaiiInsetPanel = document.getElementById('map_Alaska_1_');
-      if (hawaiiInsetPanel) {
-        hawaiiInsetPanel.style.fill = '#ffffff';
-        hawaiiInsetPanel.style.pointerEvents = 'none';
-      }
-      const hawaiiInsetOutline = document.getElementById('map_hawaii_1_');
-      if (hawaiiInsetOutline) {
-        hawaiiInsetOutline.style.fill = '#ffffff';
-        hawaiiInsetOutline.style.pointerEvents = 'none';
-      }
-      
       _parseGridRaces();
       _muteAll();
       _bindMapEventsOnce();
@@ -990,6 +980,8 @@
               x = 580.3; y = 959.2;
             } else if (abbr === 'AK') {
               x = 368.4; y = 929.4;
+            } else if (abbr === 'NH') {
+              x = 1502.0; y = 310.0; // 基恩：投影坐标会落进VT形状，固定到真正的NH窄条内 (map_New_Hampshire)
             } else {
               const coords = _projectAlbers(cityCoords.lat, cityCoords.lon);
               x = coords.x;
