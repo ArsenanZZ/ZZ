@@ -1115,10 +1115,7 @@
       slot.innerHTML = CHINA_MAP_SVG;
       const svg = document.getElementById('cn-map-master');
       if (!svg) return;
-      svg.style.width = '100%';
-      svg.style.height = 'auto';
-      svg.style.display = 'block';
-
+      svg.style.width = '100%'; svg.style.height = 'auto'; svg.style.display = 'block';
       const pColors = {
         cn_xinjiang:'#d4614a', cn_tibet:'#e89838', cn_qinghai:'#98c038',
         cn_innermongolia:'#5ca860', cn_heilongjiang:'#d4614a', cn_jilin:'#e89838',
@@ -1134,11 +1131,10 @@
       };
       for (const id in pColors) {
         const el = document.getElementById(id);
-        if (el) { el.setAttribute('fill', pColors[id]); el.setAttribute('stroke', '#fff'); el.setAttribute('stroke-width', '1.2'); }
+        if (el) { el.setAttribute('fill', pColors[id]); el.setAttribute('stroke', '#fff'); el.setAttribute('stroke-width', '1'); }
       }
-
       const cities = [
-        { name:'襄阳', x:497, y:311, url:'./xiangyang-marathon.html' },
+        { name:'襄阳', x:497, y:310, url:'./xiangyang-marathon.html' },
         { name:'桂林', x:475, y:401, url:'./guilin-marathon.html' },
         { name:'香港', x:521, y:441, url:'./hong-kong-marathon.html' }
       ];
@@ -1150,7 +1146,7 @@
         const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
         dot.setAttribute('cx',c.x); dot.setAttribute('cy',c.y); dot.setAttribute('r',5);
         dot.setAttribute('fill','#ff3b30'); dot.setAttribute('stroke','#fff'); dot.setAttribute('stroke-width','1.5');
-        dot.style.cursor = 'pointer';
+        dot.style.cursor='pointer';
         if (c.url) dot.addEventListener('click', () => window.location.href = c.url);
         svg.appendChild(dot);
         const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
