@@ -953,7 +953,7 @@
         'SD':'#5baad0','TN':'#5baad0','TX':'#c490d0','UT':'#a8cc5a','VA':'#5bb87c',
         'VT':'#a8cc5a','WA':'#a8cc5a','WI':'#5bb87c','WV':'#f5b840','WY':'#f5b840'
       };
-      const completed = ['KY','OH','NY','CA','IN','HI','GA','CO','AK','MO','IL','TN','WV','TX','FL','NC','AR','SC','PA','WI','MN','NH'];
+      const completed = ['IL','TX','FL','AR','SC','WV','TN','KY','WI','MI','NC','PA','NH'];
       completed.forEach(abbr => {
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
@@ -961,12 +961,23 @@
         });
       });
 
-      const placeholders = ['LA','VA','ND','KS','VT','AL','AZ','DE','CT','RI','MA'];
+      const placeholders = ['LA','VA','ND','KS','VT','AL','AZ','DE','MN','CT','RI','MA','ME','OH','NY','CA','IN','HI','GA','CO','AK','MO','WA'];
       placeholders.forEach(abbr => {
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
           if (el) { el.style.fill = _CM[abbr]; el.classList.add('run-state'); }
         });
+      });
+
+      // State abbreviation labels (map_NV, map_CA, etc.) → white bold on colored states
+      [...completed, ...placeholders].forEach(abbr => {
+        const el = document.getElementById('map_' + abbr);
+        if (el) {
+          el.style.fill = '#ffffff';
+          el.style.stroke = 'rgba(0,0,0,0.25)';
+          el.style.strokeWidth = '2px';
+          el.style.paintOrder = 'stroke fill';
+        }
       });
 
       let dotGroup = master.querySelector('#city-dots-group');
