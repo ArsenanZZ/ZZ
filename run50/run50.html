@@ -3071,7 +3071,7 @@ function _injectWelcomeMap() {
   const _CM = {
     'AK':'#f4a09a','AL':'#a8cc5a','AR':'#5bb87c','AZ':'#f5b840','CA':'#f4a09a',
     'CO':'#c490d0','CT':'#5bb87c','DE':'#f5b840','FL':'#f4a09a','GA':'#f5b840',
-    'HI':'#3db5c4','IA':'#a8cc5a','ID':'#f4a09a','IL':'#c490d0','IN':'#f5b840',
+    'HI':'#f4a09a','IA':'#a8cc5a','ID':'#f4a09a','IL':'#c490d0','IN':'#f5b840',
     'KS':'#5baad0','KY':'#a8cc5a','LA':'#a8cc5a','MA':'#5baad0','MD':'#a8cc5a',
     'ME':'#f4a09a','MI':'#5baad0','MN':'#f5b840','MO':'#f5b840','MS':'#f5b840',
     'MT':'#a8cc5a','NC':'#a8cc5a','ND':'#5bb87c','NE':'#5bb87c','NH':'#f5b840',
@@ -3091,7 +3091,7 @@ function _injectWelcomeMap() {
     });
   });
 
-  const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO'];
+  const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'WA'];
   placeholders.forEach(abbr => {
     (_HM[abbr] || []).forEach(id => {
       const el = document.getElementById('map_' + id);
@@ -3207,115 +3207,13 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 function _injectChinaMap() {
-  const slot = document.getElementById('cn-map-slot');
-  if (!slot || typeof CHINA_MAP_SVG === 'undefined') return;
-  slot.innerHTML = CHINA_MAP_SVG;
-  const svg = document.getElementById('cn-map-master');
-  if (!svg) return;
-  svg.style.width = '100%'; svg.style.height = 'auto'; svg.style.display = 'block';
-
-  // Only visited provinces get color; all others neutral (matching US map style)
-  const visitedColors = { cn_hubei:'#d4614a', cn_guangxi:'#5ca860', cn_hongkong:'#e89838' };
-  const allP = ['cn_xinjiang','cn_tibet','cn_innermongolia','cn_qinghai','cn_sichuan',
-    'cn_heilongjiang','cn_gansu','cn_yunnan','cn_guangxi','cn_hunan','cn_shaanxi',
-    'cn_guangdong','cn_jilin','cn_hebei','cn_hubei','cn_guizhou','cn_shandong',
-    'cn_jiangxi','cn_henan','cn_liaoning','cn_shanxi','cn_anhui','cn_fujian',
-    'cn_zhejiang','cn_jiangsu','cn_chongqing','cn_ningxia','cn_hainan','cn_taiwan',
-    'cn_beijing','cn_tianjin','cn_shanghai','cn_hongkong','cn_macao'];
-  for (const id of allP) {
-    const el = document.getElementById(id);
-    if (!el) continue;
-    if (visitedColors[id]) {
-      el.setAttribute('fill', visitedColors[id]);
-    }
-    // unvisited: pale fill from SVG shows through
-  }
-
-  // Surrounding country labels
-  const countryNames = {
-    russia:'俄罗斯', mongolia:'蒙古', kazakhstan:'哈萨克',
-    india:'印度', myanmar:'缅甸', vietnam:'越南',
-    korea:'朝鲜半岛', japan:'日本',
-  };
-  if (typeof _COUNTRY_LABELS !== 'undefined') {
-    for (const [id, [lx, ly, fs]] of Object.entries(_COUNTRY_LABELS)) {
-      if (!countryNames[id]) continue;
-      const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
-      txt.setAttribute('x',lx); txt.setAttribute('y',ly);
-      txt.setAttribute('text-anchor','middle'); txt.setAttribute('font-size',fs);
-      txt.setAttribute('fill','#5a4a30');
-      txt.setAttribute('font-family','-apple-system,"PingFang SC","Microsoft YaHei",sans-serif');
-      txt.setAttribute('font-weight','500'); txt.setAttribute('pointer-events','none');
-      txt.setAttribute('opacity','0.8');
-      txt.textContent = countryNames[id];
-      svg.appendChild(txt);
-    }
-  }
-
-  // Chinese province labels
-  const names = {
-    cn_xinjiang:'新疆', cn_tibet:'西藏', cn_innermongolia:'内蒙古',
-    cn_qinghai:'青海', cn_sichuan:'四川', cn_heilongjiang:'黑龙江',
-    cn_gansu:'甘肃', cn_yunnan:'云南', cn_guangxi:'广西', cn_hunan:'湖南',
-    cn_shaanxi:'陕西', cn_guangdong:'广东', cn_jilin:'吉林',
-    cn_hebei:'河北', cn_hubei:'湖北', cn_guizhou:'贵州',
-    cn_shandong:'山东', cn_jiangxi:'江西', cn_henan:'河南',
-    cn_liaoning:'辽宁', cn_shanxi:'山西', cn_anhui:'安徽',
-    cn_fujian:'福建', cn_zhejiang:'浙江', cn_jiangsu:'江苏',
-    cn_chongqing:'渝', cn_ningxia:'宁夏', cn_hainan:'海南',
-    cn_taiwan:'台湾', cn_beijing:'京',
-  };
-  if (typeof _CN_LABELS !== 'undefined') {
-    for (const [id, [lx, ly, fs]] of Object.entries(_CN_LABELS)) {
-      if (!names[id] || fs === 0) continue;
-      const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
-      txt.setAttribute('x',lx); txt.setAttribute('y',ly);
-      txt.setAttribute('text-anchor','middle'); txt.setAttribute('font-size',fs);
-      txt.setAttribute('fill','#2a3a45');
-      txt.setAttribute('font-family','-apple-system,"PingFang SC","Microsoft YaHei",sans-serif');
-      txt.setAttribute('font-weight','600'); txt.setAttribute('pointer-events','none');
-      txt.textContent = names[id];
-      svg.appendChild(txt);
-    }
-  }
-
-  // City dots
-  const cities = [
-    { name:'襄阳', x:497, y:344, url:null },
-    { name:'桂林', x:475, y:446, url:null },
-    { name:'香港', x:521, y:490, url:null }
-  ];
-  cities.forEach(c => {
-    const glow = document.createElementNS('http://www.w3.org/2000/svg','circle');
-    glow.setAttribute('cx',c.x); glow.setAttribute('cy',c.y); glow.setAttribute('r',10);
-    glow.setAttribute('fill','rgba(255,59,48,0.3)'); glow.style.animation='pulse-glow 2s infinite alternate'; glow.style.pointerEvents='none';
-    svg.appendChild(glow);
-    const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
-    dot.setAttribute('cx',c.x); dot.setAttribute('cy',c.y); dot.setAttribute('r',5);
-    dot.setAttribute('fill','#ff3b30'); dot.setAttribute('stroke','#fff'); dot.setAttribute('stroke-width','1.5');
-    svg.appendChild(dot);
-    const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
-    lbl.setAttribute('x',c.x+8); lbl.setAttribute('y',c.y-4);
-    lbl.setAttribute('font-size','11'); lbl.setAttribute('fill','#cc2200');
-    lbl.setAttribute('font-family','-apple-system,sans-serif'); lbl.setAttribute('font-weight','700');
-    lbl.setAttribute('pointer-events','none');
-    lbl.textContent = c.name;
-    svg.appendChild(lbl);
-  });
-
-  // 海洋标注
-  const oceans = [
-    { name:'黄海', x:700, y:278, size:9 },
-    { name:'东海', x:698, y:415, size:9 },
-  ];
-  oceans.forEach(o => {
-    const t = document.createElementNS('http://www.w3.org/2000/svg','text');
-    t.setAttribute('x',o.x); t.setAttribute('y',o.y);
-    t.setAttribute('text-anchor','middle'); t.setAttribute('font-size',o.size);
-    t.setAttribute('fill','#4a7a9b'); t.setAttribute('font-family','-apple-system,sans-serif');
-    t.setAttribute('font-style','italic'); t.setAttribute('pointer-events','none');
-    t.textContent = o.name;
-    svg.appendChild(t);
+  renderChinaMap('cn-map-slot', {
+    colors: ['#d4614a','#e89838','#98c038','#5ca860','#3898a8','#9068c0'],
+    cities: [
+      { name:'襄阳', lon:112.12, lat:32.04, url:null },
+      { name:'桂林', lon:110.29, lat:25.27, url:null },
+      { name:'香港', lon:114.15, lat:22.31, url:null }
+    ]
   });
 }
 </script>
