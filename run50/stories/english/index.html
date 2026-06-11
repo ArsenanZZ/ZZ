@@ -429,7 +429,7 @@
       "GA": ["Georgia", "Florida_1_"],
       "CO": ["Texas_1_", "Colorado"],
       "MO": ["Iowa_1_", "Missouri"],
-      "HI": ["hawaii_1_", "ocean_2_"],
+      "HI": ["ocean_2_"],
       "AK": ["ocean_3_"],
       "ID": ["Idaho", "Wyoming"],
       "IA": ["Minessota", "Iowa"],
@@ -464,7 +464,7 @@
     };
     // One real-geometry path id per state (the values of _HM), used to mute every
     // state to the base colour and to bind hover/click handlers.
-    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Ocean", "Vermont", "New_Hampshire", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "hawaii_1_", "ocean_2_", "Oklahoma_1_", "ocean_3_", "Kentucky", "Arkansas", "North_Dakota", "North_Dakota_1_", "Colorado", "Montana", "Wyoming_1_", "New_Mexico_1_", "New_Mexico", "Oregon_41_", "West_Virginia_1_", "Ohio_1_", "Indiana_1_", "Florida_1_", "Kentucky_1_", "Colorado_1_", "Maine", "Maine_1_", "New_Jersey_1_", "Iowa", "Missouri", "Missisppi", "Missispi", "Louisiana_1_", "Utah", "California", "Connecticut_1_", "Nebraska_1_", "Illinois_1_", "Massachusets", "Wisconsin_1_", "Wyoming", "Oregon_1_", "Virginia", "Virginia_1_", "Rhode_Island_1_", "Rhode_Island", "Delaware"];
+    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Ocean", "Vermont", "New_Hampshire", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "ocean_2_", "Oklahoma_1_", "ocean_3_", "Kentucky", "Arkansas", "North_Dakota", "North_Dakota_1_", "Colorado", "Montana", "Wyoming_1_", "New_Mexico_1_", "New_Mexico", "Oregon_41_", "West_Virginia_1_", "Ohio_1_", "Indiana_1_", "Florida_1_", "Kentucky_1_", "Colorado_1_", "Maine", "Maine_1_", "New_Jersey_1_", "Iowa", "Missouri", "Missisppi", "Missispi", "Louisiana_1_", "Utah", "California", "Connecticut_1_", "Nebraska_1_", "Illinois_1_", "Massachusets", "Wisconsin_1_", "Wyoming", "Oregon_1_", "Virginia", "Virginia_1_", "Rhode_Island_1_", "Rhode_Island", "Delaware"];
     const _MUTED = '#f5f5f5';
 
     const _CITY_LAT_LON = {
@@ -908,7 +908,7 @@
       ['Arizona', 'Michigan', 'Oklahoma_1_', 'Alabama', 'Maryland', 'ocean_3_', 'Kansas_1_', 'Arkansas_1_',
        'Illinois', 'West_Virginia', 'South_Carolina', 'Pensilvania', 'Wisconsin', 'Vermont', 'New_Hampshire',
        'Kansas', 'alabama', 'Arizona_1_', 'Minnesotta', 'Ohio', 'New_York', 'Indiana', 'Georgia',
-       'Alaska_1_', 'hawaii_1_', 'Idaho', 'Nebraska', 'Nevada_41_', 'Oklahoma', 'South_Dakota',
+       'Alaska_1_','Idaho', 'Nebraska', 'Nevada_41_', 'Oklahoma', 'South_Dakota',
        'Utah_1_', 'Pensilvania_1_'].forEach(stateId => { (function() {
         const el = document.getElementById('map_' + stateId);
         if (!el) return;
