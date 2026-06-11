@@ -613,8 +613,8 @@
       const xProj = rho * Math.sin(theta);
       const yProj = rho0 - rho * Math.cos(theta);
       
-      const xSvg = 1395.88 * xProj + 932.15;
-      const ySvg = -927.71 * yProj + 536.84;
+      const xSvg = 1798.50 * xProj + 935.11;
+      const ySvg = -1851.29 * yProj + 579.07;
       
       return { x: xSvg, y: ySvg };
     }
@@ -1060,11 +1060,19 @@
           if (cityCoords) {
             let x, y;
             if (abbr === 'HI') {
-              x = 580.3; y = 959.2;
+              x = 570.0; y = 933.0;
             } else if (abbr === 'AK') {
-              x = 368.4; y = 929.4;
-            } else if (abbr === 'NH') {
-              x = 1502.0; y = 310.0; // 基恩：投影坐标会落进VT形状，固定到真正的NH窄条内 (map_New_Hampshire)
+              x = 275.0; y = 917.0;
+            } else if (abbr === 'VT' && r.city === '沃伦') {
+              x = 1466.0; y = 270.0;
+            } else if (abbr === 'VT' && r.city === '斯普林菲尔德') {
+              x = 1477.0; y = 270.0;
+            } else if (abbr === 'NH' && r.city === '基恩') {
+              x = 1502.0; y = 310.0;
+            } else if (abbr === 'CT' && r.city === '辛斯伯里') {
+              x = 1503.0; y = 362.0;
+            } else if (abbr === 'RI' && r.city === '伍恩索克特') {
+              x = 1488.0; y = 376.0;
             } else {
               const coords = _projectAlbers(cityCoords.lat, cityCoords.lon);
               x = coords.x;
