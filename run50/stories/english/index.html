@@ -264,7 +264,7 @@
       <!-- 地图图例 -->
       <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:rgba(33, 26, 22, .68); border-top:1px solid #d0dfe8; padding-top:10px; flex-wrap:wrap;">
         <div style="display:flex; align-items:center; gap:6px;">
-          <span style="display:inline-block; width:12px; height:12px; background:#0e7490; border-radius:3px;"></span>
+          <span style="display:inline-block; width:12px; height:12px; background:#4a6c36; border-radius:3px;"></span>
           <span>Completed Story / Oral Script (13 States)</span>
         </div>
         <div style="display:flex; align-items:center; gap:6px;">
@@ -940,20 +940,24 @@
       _muteAll();
       _bindMapEventsOnce();
       
-      // Completed runs → teal; planned/upcoming → golden (matches Chinese map style)
+      // Completed runs → cool greens (cycling 4 shades); planned → warm earths (cycling 4 shades)
+      const completedPalette = ['#4a6c36','#2a7f44','#2c5839','#008b8c'];
       const completed = ['KY','OH','NY','CA','IN','HI','GA','CO','AK','MO','IL','TN','WV','TX','FL','NC','AR','SC','PA','WI','MN','NH'];
-      completed.forEach(abbr => {
+      completed.forEach((abbr, i) => {
+        const color = completedPalette[i % completedPalette.length];
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
-          if (el) { el.style.fill = '#0e7490'; el.classList.add('run-state'); }
+          if (el) { el.style.fill = color; el.classList.add('run-state'); }
         });
       });
 
+      const plannedPalette = ['#7c4125','#44362d','#e95d21','#c6c09b'];
       const placeholders = ['LA','VA','ND','KS','VT','AL','AZ','DE','CT','RI','MA'];
-      placeholders.forEach(abbr => {
+      placeholders.forEach((abbr, i) => {
+        const color = plannedPalette[i % plannedPalette.length];
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
-          if (el) { el.style.fill = '#b7892f'; el.classList.add('run-state'); }
+          if (el) { el.style.fill = color; el.classList.add('run-state'); }
         });
       });
 
