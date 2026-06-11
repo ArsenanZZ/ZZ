@@ -308,6 +308,15 @@
       </div>
     </div>
 
+    <!-- 中国足迹互动地图 -->
+    <div id="china-map-container" style="max-width:980px; margin: 0 auto 34px; background:#fff; border-radius:12px; border:1px solid var(--line); padding:24px; box-shadow: 0 18px 44px rgba(15, 23, 42, .08);">
+      <div style="font-size:16px; font-weight:700; color:var(--ink); margin-bottom:15px; display:flex; align-items:center; gap:8px;">
+        <span>🗺️ 中国足迹地图</span>
+      </div>
+      <div id="cn-map-slot" style="position:relative; width:100%; background:#f4f6f7; border-radius:8px; overflow:visible; border:1px solid var(--line);">
+      </div>
+    </div>
+
     <section class="story-grid" aria-label="中文故事列表">
       <a class="story-card run-50" href="./chicago-marathon.html">
         <img src="../../../assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1" alt="芝加哥马拉松城市图标封面" loading="lazy" decoding="async">
@@ -1099,6 +1108,61 @@
     }
 
     document.addEventListener('DOMContentLoaded', _injectMap);
+
+    function _injectChinaMap() {
+      const slot = document.getElementById('cn-map-slot');
+      if (!slot || typeof CHINA_MAP_SVG === 'undefined') return;
+      slot.innerHTML = CHINA_MAP_SVG;
+      const svg = document.getElementById('cn-map-master');
+      if (!svg) return;
+      svg.style.width = '100%';
+      svg.style.height = 'auto';
+      svg.style.display = 'block';
+
+      const pColors = {
+        cn_xinjiang:'#d4614a', cn_tibet:'#e89838', cn_qinghai:'#98c038',
+        cn_innermongolia:'#5ca860', cn_heilongjiang:'#d4614a', cn_jilin:'#e89838',
+        cn_liaoning:'#98c038', cn_gansu:'#3898a8', cn_ningxia:'#9068c0',
+        cn_shaanxi:'#e89838', cn_shanxi:'#d4614a', cn_hebei:'#9068c0',
+        cn_beijing:'#98c038', cn_tianjin:'#e89838', cn_shandong:'#5ca860',
+        cn_henan:'#3898a8', cn_hubei:'#d4614a', cn_anhui:'#98c038',
+        cn_jiangsu:'#3898a8', cn_zhejiang:'#5ca860', cn_shanghai:'#9068c0',
+        cn_chongqing:'#9068c0', cn_sichuan:'#5ca860', cn_guizhou:'#e89838',
+        cn_yunnan:'#3898a8', cn_hunan:'#98c038', cn_jiangxi:'#e89838',
+        cn_fujian:'#3898a8', cn_guangdong:'#d4614a', cn_guangxi:'#5ca860',
+        cn_hongkong:'#e89838', cn_hainan:'#98c038', cn_taiwan:'#3898a8'
+      };
+      for (const id in pColors) {
+        const el = document.getElementById(id);
+        if (el) { el.setAttribute('fill', pColors[id]); el.setAttribute('stroke', '#fff'); el.setAttribute('stroke-width', '1.2'); }
+      }
+
+      const cities = [
+        { name:'襄阳', x:497, y:311, url:'./xiangyang-marathon.html' },
+        { name:'桂林', x:475, y:401, url:'./guilin-marathon.html' },
+        { name:'香港', x:521, y:441, url:'./hong-kong-marathon.html' }
+      ];
+      cities.forEach(c => {
+        const glow = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        glow.setAttribute('cx',c.x); glow.setAttribute('cy',c.y); glow.setAttribute('r',10);
+        glow.setAttribute('fill','rgba(255,59,48,0.3)'); glow.style.animation='pulse-glow 2s infinite alternate'; glow.style.pointerEvents='none';
+        svg.appendChild(glow);
+        const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        dot.setAttribute('cx',c.x); dot.setAttribute('cy',c.y); dot.setAttribute('r',5);
+        dot.setAttribute('fill','#ff3b30'); dot.setAttribute('stroke','#fff'); dot.setAttribute('stroke-width','1.5');
+        dot.style.cursor = 'pointer';
+        if (c.url) dot.addEventListener('click', () => window.location.href = c.url);
+        svg.appendChild(dot);
+        const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
+        lbl.setAttribute('x', c.x+8); lbl.setAttribute('y', c.y-4);
+        lbl.setAttribute('font-size','11'); lbl.setAttribute('fill','#333');
+        lbl.setAttribute('font-family','-apple-system,sans-serif'); lbl.setAttribute('font-weight','600');
+        lbl.textContent = c.name;
+        svg.appendChild(lbl);
+      });
+    }
+    document.addEventListener('DOMContentLoaded', _injectChinaMap);
   </script>
+  <script src="../../china-map-svg.js"></script>
 </body>
 </html>
