@@ -1002,16 +1002,16 @@
       _bindMapEventsOnce();
       
       const _CM = {
-        'AK':'#f4a09a','AL':'#a8cc5a','AR':'#5bb87c','AZ':'#f5b840','CA':'#f4a09a',
-        'CO':'#c490d0','CT':'#5bb87c','DE':'#f5b840','FL':'#f4a09a','GA':'#f5b840',
-        'HI':'#f4a09a','IA':'#a8cc5a','ID':'#f4a09a','IL':'#c490d0','IN':'#f5b840',
-        'KS':'#5baad0','KY':'#a8cc5a','LA':'#a8cc5a','MA':'#5baad0','MD':'#a8cc5a',
-        'ME':'#f4a09a','MI':'#5baad0','MN':'#f5b840','MO':'#f5b840','MS':'#f5b840',
-        'MT':'#a8cc5a','NC':'#a8cc5a','ND':'#5bb87c','NE':'#5bb87c','NH':'#f5b840',
-        'NJ':'#a8cc5a','NM':'#5bb87c','NV':'#5bb87c','NY':'#f5b840','OH':'#5bb87c',
-        'OK':'#a8cc5a','OR':'#f5b840','PA':'#f4a09a','RI':'#f5b840','SC':'#c490d0',
-        'SD':'#5baad0','TN':'#5baad0','TX':'#c490d0','UT':'#a8cc5a','VA':'#5bb87c',
-        'VT':'#a8cc5a','WA':'#a8cc5a','WI':'#5bb87c','WV':'#f5b840','WY':'#f5b840'
+        'AK':'#d4614a','AL':'#98c038','AR':'#5ca860','AZ':'#e89838','CA':'#d4614a',
+        'CO':'#9068c0','CT':'#5ca860','DE':'#e89838','FL':'#d4614a','GA':'#e89838',
+        'HI':'#d4614a','IA':'#98c038','ID':'#d4614a','IL':'#9068c0','IN':'#e89838',
+        'KS':'#3898a8','KY':'#98c038','LA':'#98c038','MA':'#3898a8','MD':'#98c038',
+        'ME':'#d4614a','MI':'#3898a8','MN':'#e89838','MO':'#e89838','MS':'#e89838',
+        'MT':'#98c038','NC':'#98c038','ND':'#5ca860','NE':'#5ca860','NH':'#e89838',
+        'NJ':'#98c038','NM':'#5ca860','NV':'#5ca860','NY':'#e89838','OH':'#5ca860',
+        'OK':'#98c038','OR':'#e89838','PA':'#d4614a','RI':'#e89838','SC':'#9068c0',
+        'SD':'#3898a8','TN':'#3898a8','TX':'#9068c0','UT':'#98c038','VA':'#5ca860',
+        'VT':'#98c038','WA':'#98c038','WI':'#5ca860','WV':'#e89838','WY':'#e89838'
       };
       const completed = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
       completed.forEach(abbr => {
@@ -1033,17 +1033,6 @@
             el.classList.add('run-state');
           }
         });
-      });
-
-      // State abbreviation labels (map_NV, map_CA, etc.) → white bold on colored states
-      [...completed, ...placeholders].forEach(abbr => {
-        const el = document.getElementById('map_' + abbr);
-        if (el) {
-          el.style.fill = '#ffffff';
-          el.style.stroke = 'rgba(0,0,0,0.25)';
-          el.style.strokeWidth = '2px';
-          el.style.paintOrder = 'stroke fill';
-        }
       });
 
       let dotGroup = master.querySelector('#city-dots-group');
