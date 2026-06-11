@@ -3058,28 +3058,36 @@ function _injectWelcomeMap() {
   _muteAll();
   _bindMapEventsOnce();
   
-  // Completed → cool greens (4 shades cycling); planned → warm earths (4 shades cycling)
-  const completedPalette = ['#4a6c36','#2a7f44','#2c5839','#008b8c'];
+  // Vibrant palette (Chinese illustrated map style); adjacent states always differ (graph-colored)
+  const _CM = {
+    'AK':'#f4a09a','AL':'#a8cc5a','AR':'#5bb87c','AZ':'#f5b840','CA':'#f4a09a',
+    'CO':'#c490d0','CT':'#5bb87c','DE':'#f5b840','FL':'#f4a09a','GA':'#f5b840',
+    'HI':'#f4a09a','IA':'#a8cc5a','ID':'#f4a09a','IL':'#c490d0','IN':'#f5b840',
+    'KS':'#5baad0','KY':'#a8cc5a','LA':'#a8cc5a','MA':'#5baad0','MD':'#a8cc5a',
+    'ME':'#f4a09a','MI':'#5baad0','MN':'#f5b840','MO':'#f5b840','MS':'#f5b840',
+    'MT':'#a8cc5a','NC':'#a8cc5a','ND':'#5bb87c','NE':'#5bb87c','NH':'#f5b840',
+    'NJ':'#a8cc5a','NM':'#5bb87c','NV':'#5bb87c','NY':'#f5b840','OH':'#5bb87c',
+    'OK':'#a8cc5a','OR':'#f5b840','PA':'#f4a09a','RI':'#f5b840','SC':'#c490d0',
+    'SD':'#5baad0','TN':'#5baad0','TX':'#c490d0','UT':'#a8cc5a','VA':'#5bb87c',
+    'VT':'#a8cc5a','WA':'#a8cc5a','WI':'#5bb87c','WV':'#f5b840','WY':'#f5b840'
+  };
   const completed = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
-  completed.forEach((abbr, i) => {
-    const color = completedPalette[i % completedPalette.length];
+  completed.forEach(abbr => {
     (_HM[abbr] || []).forEach(id => {
       const el = document.getElementById('map_' + id);
       if (el) {
-        el.style.fill = color;
+        el.style.fill = _CM[abbr];
         el.classList.add('run-state');
       }
     });
   });
 
-  const plannedPalette = ['#7c4125','#44362d','#e95d21','#c6c09b'];
   const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'WA'];
-  placeholders.forEach((abbr, i) => {
-    const color = plannedPalette[i % plannedPalette.length];
+  placeholders.forEach(abbr => {
     (_HM[abbr] || []).forEach(id => {
       const el = document.getElementById('map_' + id);
       if (el) {
-        el.style.fill = color;
+        el.style.fill = _CM[abbr];
         el.classList.add('run-state');
       }
     });
