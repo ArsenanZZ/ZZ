@@ -940,20 +940,24 @@
       _muteAll();
       _bindMapEventsOnce();
       
-      // Completed runs → teal; planned/upcoming → golden (matches Chinese map style)
+      // Completed runs → cool greens (cycling 4 shades); planned → warm earths (cycling 4 shades)
+      const completedPalette = ['#4a6c36','#2a7f44','#2c5839','#008b8c'];
       const completed = ['KY','OH','NY','CA','IN','HI','GA','CO','AK','MO','IL','TN','WV','TX','FL','NC','AR','SC','PA','WI','MN','NH'];
-      completed.forEach(abbr => {
+      completed.forEach((abbr, i) => {
+        const color = completedPalette[i % completedPalette.length];
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
-          if (el) { el.style.fill = '#4a6c36'; el.classList.add('run-state'); }
+          if (el) { el.style.fill = color; el.classList.add('run-state'); }
         });
       });
 
+      const plannedPalette = ['#7c4125','#44362d','#e95d21','#c6c09b'];
       const placeholders = ['LA','VA','ND','KS','VT','AL','AZ','DE','CT','RI','MA'];
-      placeholders.forEach(abbr => {
+      placeholders.forEach((abbr, i) => {
+        const color = plannedPalette[i % plannedPalette.length];
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
-          if (el) { el.style.fill = '#7c4125'; el.classList.add('run-state'); }
+          if (el) { el.style.fill = color; el.classList.add('run-state'); }
         });
       });
 

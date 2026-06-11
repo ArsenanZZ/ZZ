@@ -3058,25 +3058,28 @@ function _injectWelcomeMap() {
   _muteAll();
   _bindMapEventsOnce();
   
-  // Highlight completed states (navy)
+  // Completed → cool greens (4 shades cycling); planned → warm earths (4 shades cycling)
+  const completedPalette = ['#4a6c36','#2a7f44','#2c5839','#008b8c'];
   const completed = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
-  completed.forEach(abbr => {
+  completed.forEach((abbr, i) => {
+    const color = completedPalette[i % completedPalette.length];
     (_HM[abbr] || []).forEach(id => {
       const el = document.getElementById('map_' + id);
       if (el) {
-        el.style.fill = '#4a6c36'; // Run50 primary navy
+        el.style.fill = color;
         el.classList.add('run-state');
       }
     });
   });
-  
-  // Highlight planned/historical states (accent gold)
+
+  const plannedPalette = ['#7c4125','#44362d','#e95d21','#c6c09b'];
   const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'WA'];
-  placeholders.forEach(abbr => {
+  placeholders.forEach((abbr, i) => {
+    const color = plannedPalette[i % plannedPalette.length];
     (_HM[abbr] || []).forEach(id => {
       const el = document.getElementById('map_' + id);
       if (el) {
-        el.style.fill = '#c8860a'; // Run50 accent gold
+        el.style.fill = color;
         el.classList.add('run-state');
       }
     });
