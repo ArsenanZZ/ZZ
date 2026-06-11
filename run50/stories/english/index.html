@@ -1044,119 +1044,13 @@
     document.addEventListener('DOMContentLoaded', _injectMap);
 
     function _injectChinaMap() {
-      const slot = document.getElementById('cn-map-slot');
-      if (!slot || typeof CHINA_MAP_SVG === 'undefined') return;
-      slot.innerHTML = CHINA_MAP_SVG;
-      const svg = document.getElementById('cn-map-master');
-      if (!svg) return;
-      svg.style.width = '100%'; svg.style.height = 'auto'; svg.style.display = 'block';
-
-      // Only visited provinces get color; all others neutral (matching US map style)
-      const visitedColors = { cn_hubei:'#d4614a', cn_guangxi:'#5ca860', cn_hongkong:'#e89838' };
-      const allP = ['cn_xinjiang','cn_tibet','cn_innermongolia','cn_qinghai','cn_sichuan',
-        'cn_heilongjiang','cn_gansu','cn_yunnan','cn_guangxi','cn_hunan','cn_shaanxi',
-        'cn_guangdong','cn_jilin','cn_hebei','cn_hubei','cn_guizhou','cn_shandong',
-        'cn_jiangxi','cn_henan','cn_liaoning','cn_shanxi','cn_anhui','cn_fujian',
-        'cn_zhejiang','cn_jiangsu','cn_chongqing','cn_ningxia','cn_hainan','cn_taiwan',
-        'cn_beijing','cn_tianjin','cn_shanghai','cn_hongkong','cn_macao'];
-      for (const id of allP) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-        if (visitedColors[id]) {
-          el.setAttribute('fill', visitedColors[id]);
-          el.setAttribute('stroke', '#fff');
-          el.setAttribute('stroke-width', '1.5');
-        }
-        // unvisited: terrain fill from SVG shows through
-      }
-
-      // Surrounding country labels
-      const countryNames = {
-        russia:'Russia', mongolia:'Mongolia', kazakhstan:'Kazakhstan',
-        india:'India', myanmar:'Myanmar', vietnam:'Vietnam',
-        korea:'Korea', japan:'Japan',
-      };
-      if (typeof _COUNTRY_LABELS !== 'undefined') {
-        for (const [id, [lx, ly, fs]] of Object.entries(_COUNTRY_LABELS)) {
-          if (!countryNames[id]) continue;
-          const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
-          txt.setAttribute('x',lx); txt.setAttribute('y',ly);
-          txt.setAttribute('text-anchor','middle'); txt.setAttribute('font-size',fs);
-          txt.setAttribute('fill','#5a4a30');
-          txt.setAttribute('font-family','-apple-system,"Helvetica Neue",Arial,sans-serif');
-          txt.setAttribute('font-weight','500'); txt.setAttribute('pointer-events','none');
-          txt.setAttribute('opacity','0.8');
-          txt.textContent = countryNames[id];
-          svg.appendChild(txt);
-        }
-      }
-
-      // English province labels
-      const names = {
-        cn_xinjiang:'Xinjiang', cn_tibet:'Tibet', cn_innermongolia:'Inner Mongolia',
-        cn_qinghai:'Qinghai', cn_sichuan:'Sichuan', cn_heilongjiang:'Heilongjiang',
-        cn_gansu:'Gansu', cn_yunnan:'Yunnan', cn_guangxi:'Guangxi', cn_hunan:'Hunan',
-        cn_shaanxi:'Shaanxi', cn_guangdong:'Guangdong', cn_jilin:'Jilin',
-        cn_hebei:'Hebei', cn_hubei:'Hubei', cn_guizhou:'Guizhou',
-        cn_shandong:'Shandong', cn_jiangxi:'Jiangxi', cn_henan:'Henan',
-        cn_liaoning:'Liaoning', cn_shanxi:'Shanxi', cn_anhui:'Anhui',
-        cn_fujian:'Fujian', cn_zhejiang:'Zhejiang', cn_jiangsu:'Jiangsu',
-        cn_chongqing:'CQ', cn_ningxia:'NX', cn_hainan:'Hainan',
-        cn_taiwan:'Taiwan', cn_beijing:'BJ',
-      };
-      if (typeof _CN_LABELS !== 'undefined') {
-        for (const [id, [lx, ly, fs]] of Object.entries(_CN_LABELS)) {
-          if (!names[id] || fs === 0) continue;
-          const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
-          txt.setAttribute('x',lx); txt.setAttribute('y',ly);
-          txt.setAttribute('text-anchor','middle'); txt.setAttribute('font-size',fs);
-          txt.setAttribute('fill','#2a3a45');
-          txt.setAttribute('font-family','-apple-system,"Helvetica Neue",Arial,sans-serif');
-          txt.setAttribute('font-weight','600'); txt.setAttribute('pointer-events','none');
-          txt.textContent = names[id];
-          svg.appendChild(txt);
-        }
-      }
-
-      // City dots
-      const cities = [
-        { name:'Xiangyang', x:497, y:344, url:'./xiangyang-marathon.html' },
-        { name:'Guilin',    x:475, y:446, url:'./guilin-marathon.html' },
-        { name:'Hong Kong', x:521, y:490, url:'./hong-kong-marathon.html' }
-      ];
-      cities.forEach(c => {
-        const glow = document.createElementNS('http://www.w3.org/2000/svg','circle');
-        glow.setAttribute('cx',c.x); glow.setAttribute('cy',c.y); glow.setAttribute('r',10);
-        glow.setAttribute('fill','rgba(255,59,48,0.3)'); glow.style.animation='pulse-glow 2s infinite alternate'; glow.style.pointerEvents='none';
-        svg.appendChild(glow);
-        const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
-        dot.setAttribute('cx',c.x); dot.setAttribute('cy',c.y); dot.setAttribute('r',5);
-        dot.setAttribute('fill','#ff3b30'); dot.setAttribute('stroke','#fff'); dot.setAttribute('stroke-width','1.5');
-        dot.style.cursor='pointer';
-        if (c.url) dot.addEventListener('click', () => window.location.href = c.url);
-        svg.appendChild(dot);
-        const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
-        lbl.setAttribute('x',c.x+8); lbl.setAttribute('y',c.y-4);
-        lbl.setAttribute('font-size','11'); lbl.setAttribute('fill','#cc2200');
-        lbl.setAttribute('font-family','-apple-system,sans-serif'); lbl.setAttribute('font-weight','700');
-        lbl.setAttribute('pointer-events','none');
-        lbl.textContent = c.name;
-        svg.appendChild(lbl);
-      });
-
-      // Ocean labels
-      const oceans = [
-        { name:'Yellow Sea',     x:700, y:278, size:8 },
-        { name:'East China Sea', x:698, y:415, size:8 },
-      ];
-      oceans.forEach(o => {
-        const t = document.createElementNS('http://www.w3.org/2000/svg','text');
-        t.setAttribute('x',o.x); t.setAttribute('y',o.y);
-        t.setAttribute('text-anchor','middle'); t.setAttribute('font-size',o.size);
-        t.setAttribute('fill','#4a7a9b'); t.setAttribute('font-family','-apple-system,sans-serif');
-        t.setAttribute('font-style','italic'); t.setAttribute('pointer-events','none');
-        t.textContent = o.name;
-        svg.appendChild(t);
+      renderChinaMap('cn-map-slot', {
+        colors: ['#d4614a','#e89838','#98c038','#5ca860','#3898a8','#9068c0'],
+        cities: [
+          { name:'Xiangyang', lon:112.12, lat:32.04, url:'./xiangyang-marathon.html' },
+          { name:'Guilin',    lon:110.29, lat:25.27, url:'./guilin-marathon.html' },
+          { name:'Hong Kong', lon:114.15, lat:22.31, url:'./hong-kong-marathon.html' }
+        ]
       });
 
       // Province click & hover for visited provinces
