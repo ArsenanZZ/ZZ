@@ -3092,7 +3092,18 @@ function _injectWelcomeMap() {
       }
     });
   });
-  
+
+  // State abbreviation labels (map_NV, map_CA, etc.) → white bold on colored states
+  [...completed, ...placeholders].forEach(abbr => {
+    const el = document.getElementById('map_' + abbr);
+    if (el) {
+      el.style.fill = '#ffffff';
+      el.style.stroke = 'rgba(0,0,0,0.25)';
+      el.style.strokeWidth = '2px';
+      el.style.paintOrder = 'stroke fill';
+    }
+  });
+
   // Create or retrieve dots group
   let dotGroup = master.querySelector('#city-dots-group');
   if (!dotGroup) {
