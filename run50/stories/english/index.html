@@ -969,17 +969,6 @@
         });
       });
 
-      // State abbreviation labels (map_NV, map_CA, etc.) → white bold on colored states
-      [...completed, ...placeholders].forEach(abbr => {
-        const el = document.getElementById('map_' + abbr);
-        if (el) {
-          el.style.fill = '#ffffff';
-          el.style.stroke = 'rgba(0,0,0,0.25)';
-          el.style.strokeWidth = '2px';
-          el.style.paintOrder = 'stroke fill';
-        }
-      });
-
       let dotGroup = master.querySelector('#city-dots-group');
       if (!dotGroup) {
         dotGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
