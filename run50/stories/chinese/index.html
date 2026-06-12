@@ -1134,9 +1134,9 @@
         if (el) { el.setAttribute('fill', pColors[id]); el.setAttribute('stroke', '#fff'); el.setAttribute('stroke-width', '1'); }
       }
       const cities = [
-        { name:'襄阳', x:497, y:310, url:'./xiangyang-marathon.html' },
-        { name:'桂林', x:475, y:401, url:'./guilin-marathon.html' },
-        { name:'香港', x:521, y:441, url:'./hong-kong-marathon.html' }
+        { name:'襄阳', x:497, y:344, url:'./xiangyang-marathon.html' },
+        { name:'桂林', x:475, y:446, url:'./guilin-marathon.html' },
+        { name:'香港', x:521, y:490, url:'./hong-kong-marathon.html' }
       ];
       cities.forEach(c => {
         const glow = document.createElementNS('http://www.w3.org/2000/svg','circle');
@@ -1155,6 +1155,22 @@
         lbl.setAttribute('font-family','-apple-system,sans-serif'); lbl.setAttribute('font-weight','600');
         lbl.textContent = c.name;
         svg.appendChild(lbl);
+      });
+
+      // 海洋标注
+      const oceans = [
+        { name:'黄海', x:700, y:278, size:8 },
+        { name:'东海', x:698, y:415, size:8 },
+        { name:'南海', x:600, y:555, size:8 },
+      ];
+      oceans.forEach(o => {
+        const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+        t.setAttribute('x',o.x); t.setAttribute('y',o.y);
+        t.setAttribute('text-anchor','middle'); t.setAttribute('font-size',o.size);
+        t.setAttribute('fill','#4a7a9b'); t.setAttribute('font-family','-apple-system,sans-serif');
+        t.setAttribute('font-style','italic'); t.setAttribute('pointer-events','none');
+        t.textContent = o.name;
+        svg.appendChild(t);
       });
     }
     document.addEventListener('DOMContentLoaded', _injectChinaMap);
