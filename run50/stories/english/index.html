@@ -1064,8 +1064,10 @@
         if (!el) continue;
         if (visitedColors[id]) {
           el.setAttribute('fill', visitedColors[id]);
+          el.setAttribute('stroke', '#fff');
+          el.setAttribute('stroke-width', '1.5');
         }
-        // unvisited: pale fill from SVG shows through
+        // unvisited: terrain fill from SVG shows through
       }
 
       // Surrounding country labels
