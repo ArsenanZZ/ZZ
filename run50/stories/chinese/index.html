@@ -1224,21 +1224,6 @@
         t.textContent = o.name;
         svg.appendChild(t);
       });
-
-      // Province click & hover for visited provinces
-      const provinceLinks = {
-        cn_hubei:   './xiangyang-marathon.html',
-        cn_guangxi: './guilin-marathon.html',
-        cn_hongkong:'./hong-kong-marathon.html',
-      };
-      for (const [id, url] of Object.entries(provinceLinks)) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-        el.style.cursor = 'pointer';
-        el.addEventListener('mouseenter', function() { this.style.filter = 'brightness(1.25) saturate(1.2)'; });
-        el.addEventListener('mouseleave', function() { this.style.filter = ''; });
-        el.addEventListener('click', function() { window.location.href = url; });
-      }
     }
     document.addEventListener('DOMContentLoaded', _injectChinaMap);
   </script>
