@@ -1128,9 +1128,33 @@
       for (const id of allP) {
         const el = document.getElementById(id);
         if (!el) continue;
-        el.setAttribute('fill', visitedColors[id] || '#dedad3');
-        el.setAttribute('stroke', visitedColors[id] ? '#fff' : '#b8b3ac');
-        el.setAttribute('stroke-width', '1');
+        if (visitedColors[id]) {
+          el.setAttribute('fill', visitedColors[id]);
+          el.setAttribute('stroke', '#fff');
+          el.setAttribute('stroke-width', '1.5');
+        }
+        // unvisited: terrain fill from SVG shows through
+      }
+
+      // Surrounding country labels
+      const countryNames = {
+        russia:'俄罗斯', mongolia:'蒙古', kazakhstan:'哈萨克',
+        india:'印度', myanmar:'缅甸', vietnam:'越南',
+        korea:'朝鲜半岛', japan:'日本',
+      };
+      if (typeof _COUNTRY_LABELS !== 'undefined') {
+        for (const [id, [lx, ly, fs]] of Object.entries(_COUNTRY_LABELS)) {
+          if (!countryNames[id]) continue;
+          const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
+          txt.setAttribute('x',lx); txt.setAttribute('y',ly);
+          txt.setAttribute('text-anchor','middle'); txt.setAttribute('font-size',fs);
+          txt.setAttribute('fill','#5a4a30');
+          txt.setAttribute('font-family','-apple-system,"PingFang SC","Microsoft YaHei",sans-serif');
+          txt.setAttribute('font-weight','500'); txt.setAttribute('pointer-events','none');
+          txt.setAttribute('opacity','0.8');
+          txt.textContent = countryNames[id];
+          svg.appendChild(txt);
+        }
       }
 
       // Chinese province labels
@@ -1190,7 +1214,6 @@
       const oceans = [
         { name:'黄海', x:700, y:278, size:9 },
         { name:'东海', x:698, y:415, size:9 },
-        { name:'南海', x:600, y:555, size:9 },
       ];
       oceans.forEach(o => {
         const t = document.createElementNS('http://www.w3.org/2000/svg','text');
