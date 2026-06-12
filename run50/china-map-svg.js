@@ -36,3 +36,17 @@ const CHINA_MAP_SVG = `<svg xmlns="http://www.w3.org/2000/svg" id="cn-map-master
   <path id="cn_hongkong" d="M526.4,439.9L525.4,443.5L523.3,443.5L518.1,443.5L517.1,442.9L518.1,439.9L521.2,438.2L523.3,438.2L524.3,438.2L524.3,439.9L526.4,439.9Z"/>
   <path id="cn_macao" d="M514.5,443.3L514.6,443.8L513.9,444.0L513.8,442.8L514.2,442.8L514.5,443.3Z"/>
 </svg>`;
+
+// Province label positions [svgX, svgY, fontSize] — computed from GeoJSON bounding box centroids
+const _CN_LABELS = {
+  cn_xinjiang:[176,184,9], cn_tibet:[221,318,9], cn_innermongolia:[491,140,8],
+  cn_qinghai:[309,265,8], cn_sichuan:[389,338,8], cn_heilongjiang:[686,95,8],
+  cn_gansu:[342,238,7], cn_yunnan:[376,405,8], cn_guangxi:[452,427,7],
+  cn_hunan:[490,376,7], cn_shaanxi:[452,264,7], cn_guangdong:[513,437,7],
+  cn_jilin:[667,158,7], cn_hebei:[565,220,7], cn_hubei:[499,325,7],
+  cn_guizhou:[431,382,7], cn_shandong:[575,254,7], cn_jiangxi:[544,377,7],
+  cn_henan:[513,288,7], cn_liaoning:[617,191,7], cn_shanxi:[500,240,7],
+  cn_anhui:[558,313,7], cn_fujian:[570,395,7], cn_zhejiang:[596,353,7],
+  cn_jiangsu:[580,301,7], cn_chongqing:[445,338,6], cn_ningxia:[420,242,6],
+  cn_hainan:[471,487,6], cn_taiwan:[602,427,6], cn_beijing:[548,202,6],
+};
