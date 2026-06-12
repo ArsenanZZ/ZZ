@@ -41,14 +41,14 @@ const CHINA_MAP_SVG = `<svg xmlns="http://www.w3.org/2000/svg" id="cn-map-master
 // Province label positions [svgX, svgY, fontSize] — computed from GeoJSON bounding box centroids
 // New projection: y=(55-lat)*15.0
 const _CN_LABELS = {
-  cn_xinjiang:[176,204,9], cn_tibet:[221,353,9], cn_innermongolia:[491,156,8],
-  cn_qinghai:[309,294,8], cn_sichuan:[389,376,8], cn_heilongjiang:[686,106,8],
-  cn_gansu:[342,264,7], cn_yunnan:[376,450,8], cn_guangxi:[452,474,7],
-  cn_hunan:[490,418,7], cn_shaanxi:[452,293,7], cn_guangdong:[513,486,7],
-  cn_jilin:[667,176,7], cn_hebei:[565,244,7], cn_hubei:[499,361,7],
-  cn_guizhou:[431,424,7], cn_shandong:[575,282,7], cn_jiangxi:[544,419,7],
-  cn_henan:[513,320,7], cn_liaoning:[617,212,7], cn_shanxi:[500,267,7],
-  cn_anhui:[558,348,7], cn_fujian:[570,439,7], cn_zhejiang:[596,392,7],
-  cn_jiangsu:[580,334,7], cn_chongqing:[445,376,6], cn_ningxia:[420,269,6],
-  cn_hainan:[471,541,6], cn_taiwan:[602,474,6], cn_beijing:[548,224,0],
+  cn_xinjiang:[176,204,11], cn_tibet:[221,353,11], cn_innermongolia:[491,156,10],
+  cn_qinghai:[309,294,10], cn_sichuan:[389,376,10], cn_heilongjiang:[686,106,10],
+  cn_gansu:[342,264,9], cn_yunnan:[376,450,10], cn_guangxi:[452,474,9],
+  cn_hunan:[490,418,9], cn_shaanxi:[452,293,9], cn_guangdong:[513,486,9],
+  cn_jilin:[667,176,9], cn_hebei:[565,244,9], cn_hubei:[499,361,9],
+  cn_guizhou:[431,424,9], cn_shandong:[575,282,9], cn_jiangxi:[544,419,9],
+  cn_henan:[513,320,9], cn_liaoning:[617,212,9], cn_shanxi:[500,267,9],
+  cn_anhui:[558,348,9], cn_fujian:[570,439,9], cn_zhejiang:[596,392,8],
+  cn_jiangsu:[580,334,9], cn_chongqing:[445,376,8], cn_ningxia:[420,269,8],
+  cn_hainan:[471,541,8], cn_taiwan:[602,474,8], cn_beijing:[548,224,0],
 };
