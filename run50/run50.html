@@ -3122,7 +3122,17 @@ function _injectWelcomeMap() {
         } else if (abbr === 'AK') {
           x = 368.4; y = 929.4; // Alaska shape center
         } else if (abbr === 'NH') {
-          x = 1502.0; y = 310.0; // Keene: Albers projection lands in VT shape; pin inside the real NH sliver (map_New_Hampshire)
+          x = 1502.0; y = 310.0; // Albers projects near VT shape; pin inside map_New_Hampshire sliver
+        } else if (abbr === 'VT') {
+          x = 1470.0; y = 305.0; // pin inside artistic map_Vermont region
+        } else if (abbr === 'ME') {
+          x = 1549.0; y = 247.0; // pin inside artistic map_Maine region
+        } else if (abbr === 'MA') {
+          x = 1503.0; y = 352.0; // pin inside artistic map_Massachusets region
+        } else if (abbr === 'CT') {
+          x = 1482.0; y = 390.0; // pin inside artistic map_New_York_2_ (CT shape)
+        } else if (abbr === 'RI') {
+          x = 1500.0; y = 372.0; // pin inside artistic map_Connecticut (RI shape)
         } else {
           const coords = _projectAlbers(cityCoords.lat, cityCoords.lon);
           x = coords.x;
