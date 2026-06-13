@@ -2598,9 +2598,9 @@ const _HM={
   "AZ": ["Arizona_1_", "Utah"],
   "DE": ["Massachusets_1_"],
   "MN": ["Minnesotta", "Wisconsin_1_"],
-  "CT": ["New_York_2_"],
-  "RI": ["Connecticut"],
-  "MA": ["Vermont_1_", "Massachusets", "Rhode_Island", "Delaware"],
+  "CT": ["New_York_2_", "Connecticut"],
+  "RI": ["Rhode_Island"],
+  "MA": ["Vermont_1_", "Massachusets", "Delaware"],
   "ME": ["Michigan_1_", "Maine"],
   "OH": ["Ohio", "West_Virginia_1_"],
   "NY": ["New_York", "Rhode_Island_1_"],
@@ -3129,7 +3129,7 @@ function _injectWelcomeMap() {
         } else if (abbr === 'CT') {
           x = 1482.0; y = 390.0; // pin inside artistic map_New_York_2_ (CT shape)
         } else if (abbr === 'RI') {
-          x = 1500.0; y = 372.0; // pin inside artistic map_Connecticut (RI shape)
+          x = 1517.0; y = 368.0; // pin inside artistic map_Rhode_Island (RI geographic position)
         } else {
           const coords = _projectAlbers(cityCoords.lat, cityCoords.lon);
           x = coords.x;
