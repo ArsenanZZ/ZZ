@@ -3114,6 +3114,7 @@ function _injectWelcomeMap() {
   // Draw red dot markers
   for (const abbr in _STATE_RACES) {
     _STATE_RACES[abbr].forEach(r => {
+      if (/5\s*[kK]/i.test(r.raceName)) return; // skip 5k races
       const cityCoords = _CITY_LAT_LON[r.city];
       if (cityCoords) {
         let x, y;
