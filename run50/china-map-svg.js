@@ -110,12 +110,12 @@ const _CN_LABELS = {
 };
 
 const _COUNTRY_LABELS = {
-  russia: [430,42,10],
-  mongolia: [330,115,10],
-  kazakhstan: [115,135,9],
-  india: [222,362,9],
-  myanmar: [370,368,8],
-  vietnam: [452,382,8],
-  korea: [570,168,8],
-  japan: [640,182,8],
+  russia: [430,48,10],
+  mongolia: [400,120,10],
+  kazakhstan: [62,128,9],
+  india: [165,450,9],
+  myanmar: [320,528,8],
+  vietnam: [428,568,8],
+  korea: [682,255,8],
+  japan: [758,270,8],
 };
