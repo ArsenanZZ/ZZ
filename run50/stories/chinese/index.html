@@ -1004,11 +1004,17 @@
       _parseGridRaces();
       _muteAll();
       _bindMapEventsOnce();
+
+      const alaskaFrame = document.getElementById('map_exterior_2_');
+      const hawaiiFrame = document.getElementById('map_hawaii_1_');
+      if (alaskaFrame && hawaiiFrame) {
+        alaskaFrame.style.fill = getComputedStyle(hawaiiFrame).fill;
+      }
       
       const _CM = {
         'AK':'#d4614a','AL':'#98c038','AR':'#5ca860','AZ':'#e89838','CA':'#d4614a',
         'CO':'#9068c0','CT':'#9068c0','DE':'#e89838','FL':'#d4614a','GA':'#e89838',
-        'HI':'#3898a8','IA':'#98c038','ID':'#d4614a','IL':'#9068c0','IN':'#e89838',
+        'HI':'#9068c0','IA':'#98c038','ID':'#d4614a','IL':'#9068c0','IN':'#e89838',
         'KS':'#3898a8','KY':'#98c038','LA':'#98c038','MA':'#3898a8','MD':'#98c038',
         'ME':'#d4614a','MI':'#3898a8','MN':'#e89838','MO':'#e89838','MS':'#e89838',
         'MT':'#98c038','NC':'#98c038','ND':'#5ca860','NE':'#5ca860','NH':'#e89838',

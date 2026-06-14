@@ -943,12 +943,18 @@
       _parseGridRaces();
       _muteAll();
       _bindMapEventsOnce();
+
+      const alaskaFrame = document.getElementById('map_exterior_2_');
+      const hawaiiFrame = document.getElementById('map_hawaii_1_');
+      if (alaskaFrame && hawaiiFrame) {
+        alaskaFrame.style.fill = getComputedStyle(hawaiiFrame).fill;
+      }
       
       // Vibrant palette (Chinese illustrated map style); adjacent states always differ (graph-colored)
       const _CM = {
         'AK':'#f4a09a','AL':'#a8cc5a','AR':'#5bb87c','AZ':'#f5b840','CA':'#f4a09a',
         'CO':'#c490d0','CT':'#c490d0','DE':'#f5b840','FL':'#f4a09a','GA':'#f5b840',
-        'HI':'#3db5c4','IA':'#a8cc5a','ID':'#f4a09a','IL':'#c490d0','IN':'#f5b840',
+        'HI':'#9068c0','IA':'#a8cc5a','ID':'#f4a09a','IL':'#c490d0','IN':'#f5b840',
         'KS':'#5baad0','KY':'#a8cc5a','LA':'#a8cc5a','MA':'#5baad0','MD':'#a8cc5a',
         'ME':'#f4a09a','MI':'#5baad0','MN':'#f5b840','MO':'#f5b840','MS':'#f5b840',
         'MT':'#a8cc5a','NC':'#a8cc5a','ND':'#5bb87c','NE':'#5bb87c','NH':'#f5b840',
