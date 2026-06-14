@@ -1048,6 +1048,12 @@
           }
         });
       });
+      const newYork = document.getElementById('map_New_York');
+      if (newYork) {
+        newYork.style.stroke = _CM.NY;
+        newYork.style.strokeWidth = '36';
+        newYork.style.strokeLinejoin = 'round';
+      }
 
       let dotGroup = master.querySelector('#city-dots-group');
       if (!dotGroup) {
