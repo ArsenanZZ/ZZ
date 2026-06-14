@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="sky-pi" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a90c8"/>
+      <stop offset="50%" stop-color="#7ab8e0"/>
+      <stop offset="100%" stop-color="#a8d4f0"/>
+    </linearGradient>
+    <linearGradient id="gold-pi" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9922a"/>
+      <stop offset="45%" stop-color="#f5d07a"/>
+      <stop offset="100%" stop-color="#b07820"/>
+    </linearGradient>
+    <linearGradient id="marble" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8f4ec"/>
+      <stop offset="100%" stop-color="#e8e0d0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Mediterranean blue sky -->
+  <rect width="800" height="500" fill="url(#sky-pi)"/>
+
+  <!-- Sun glow -->
+  <circle cx="120" cy="85" r="50" fill="#fff5d0" opacity="0.7"/>
+  <circle cx="120" cy="85" r="38" fill="#ffee80" opacity="0.8"/>
+
+  <!-- Clouds -->
+  <ellipse cx="560" cy="80" rx="75" ry="28" fill="white" opacity="0.85"/>
+  <ellipse cx="598" cy="72" rx="50" ry="24" fill="white" opacity="0.9"/>
+  <ellipse cx="650" cy="88" rx="40" ry="20" fill="white" opacity="0.8"/>
+  <ellipse cx="240" cy="120" rx="55" ry="22" fill="white" opacity="0.75"/>
+  <ellipse cx="278" cy="112" rx="40" ry="20" fill="white" opacity="0.8"/>
+
+  <!-- Tuscan hills (background) -->
+  <path d="M0,320 Q80,280 160,300 Q240,320 320,285 Q400,250 480,278 Q560,305 640,278 Q720,250 800,268 L800,500 L0,500Z" fill="#6a9a30" opacity="0.5"/>
+  <path d="M0,345 Q100,310 200,328 Q300,345 400,312 Q500,278 600,305 Q700,330 800,310 L800,500 L0,500Z" fill="#4a7a20" opacity="0.7"/>
+
+  <!-- Cypress trees (left) -->
+  <ellipse cx="130" cy="330" rx="12" ry="55" fill="#2a4a18"/>
+  <ellipse cx="155" cy="320" rx="10" ry="60" fill="#1e3a12"/>
+  <ellipse cx="178" cy="335" rx="11" ry="50" fill="#2a4a18"/>
+
+  <!-- Cypress trees (right) -->
+  <ellipse cx="620" cy="330" rx="12" ry="55" fill="#2a4a18"/>
+  <ellipse cx="645" cy="318" rx="10" ry="62" fill="#1e3a12"/>
+  <ellipse cx="668" cy="332" rx="11" ry="52" fill="#2a4a18"/>
+
+  <!-- Ground (campo dei miracoli) -->
+  <rect x="0" y="390" width="800" height="110" fill="#8ab840"/>
+  <rect x="0" y="385" width="800" height="10" fill="#6a9828"/>
+
+  <!-- Baptistery (left, round) -->
+  <ellipse cx="195" cy="388" rx="55" ry="12" fill="#d8c8a0"/>
+  <rect x="148" y="248" width="94" height="145" fill="#e8dcc0"/>
+  <ellipse cx="195" cy="248" rx="47" ry="14" fill="#e0d0b0"/>
+  <!-- Baptistery dome -->
+  <path d="M150,248 Q195,195 240,248 Z" fill="#d8c8a8"/>
+  <path d="M158,248 Q195,202 232,248" fill="none" stroke="#c0b090" stroke-width="2"/>
+  <!-- Baptistery arcades -->
+  <path d="M155,300 Q170,285 185,300" fill="none" stroke="#c0b090" stroke-width="3"/>
+  <path d="M185,300 Q200,285 215,300" fill="none" stroke="#c0b090" stroke-width="3"/>
+  <path d="M215,300 Q230,285 245,300" fill="none" stroke="#c0b090" stroke-width="3"/>
+  <path d="M155,335 Q170,320 185,335" fill="none" stroke="#c0b090" stroke-width="3"/>
+  <path d="M185,335 Q200,320 215,335" fill="none" stroke="#c0b090" stroke-width="3"/>
+  <path d="M215,335 Q230,320 245,335" fill="none" stroke="#c0b090" stroke-width="3"/>
+  <!-- Baptistery top lantern -->
+  <circle cx="195" cy="195" r="12" fill="#e8d8b0"/>
+  <rect x="191" y="182" width="8" height="16" fill="#d8c8a0"/>
+
+  <!-- Leaning Tower of Pisa (main, tilted right) -->
+  <g transform="rotate(5.5, 440, 390)">
+    <!-- Base -->
+    <rect x="390" y="375" width="100" height="18" rx="3" fill="#f0e8d8"/>
+    <!-- Tower body levels (cylindrical, simplified as rounded rects) -->
+    <rect x="396" y="195" width="88" height="185" rx="6" fill="url(#marble)"/>
+    <!-- Galleries (6 levels of arched colonnades) -->
+    <rect x="390" y="355" width="100" height="24" rx="3" fill="#f0e8d8"/>
+    <rect x="392" y="318" width="96" height="22" rx="3" fill="#f0e8d8"/>
+    <rect x="392" y="282" width="96" height="22" rx="3" fill="#f0e8d8"/>
+    <rect x="392" y="246" width="96" height="22" rx="3" fill="#f0e8d8"/>
+    <rect x="392" y="212" width="96" height="22" rx="3" fill="#f0e8d8"/>
+    <!-- Arched arcade openings (simplified) -->
+    <path d="M400,370 Q407,360 414,370" fill="#d4c8a0" opacity="0.8"/>
+    <path d="M416,370 Q423,360 430,370" fill="#d4c8a0" opacity="0.8"/>
+    <path d="M432,370 Q439,360 446,370" fill="#d4c8a0" opacity="0.8"/>
+    <path d="M448,370 Q455,360 462,370" fill="#d4c8a0" opacity="0.8"/>
+    <path d="M464,370 Q471,360 478,370" fill="#d4c8a0" opacity="0.8"/>
+    <path d="M400,335 Q407,325 414,335" fill="#d4c8a0" opacity="0.7"/>
+    <path d="M420,335 Q427,325 434,335" fill="#d4c8a0" opacity="0.7"/>
+    <path d="M440,335 Q447,325 454,335" fill="#d4c8a0" opacity="0.7"/>
+    <path d="M460,335 Q467,325 474,335" fill="#d4c8a0" opacity="0.7"/>
+    <!-- Gallery shadows -->
+    <rect x="390" y="352" width="100" height="6" fill="#c0b090" opacity="0.3"/>
+    <rect x="390" y="316" width="100" height="6" fill="#c0b090" opacity="0.3"/>
+    <rect x="390" y="280" width="100" height="6" fill="#c0b090" opacity="0.3"/>
+    <rect x="390" y="244" width="100" height="6" fill="#c0b090" opacity="0.3"/>
+    <rect x="390" y="210" width="100" height="6" fill="#c0b090" opacity="0.3"/>
+    <!-- Tower top (bell chamber) -->
+    <rect x="400" y="162" width="80" height="38" rx="5" fill="#e8dcc8"/>
+    <ellipse cx="440" cy="162" rx="40" ry="10" fill="#d8ccb8"/>
+    <rect x="416" y="145" width="48" height="22" rx="3" fill="#e0d4bc"/>
+    <ellipse cx="440" cy="145" rx="24" ry="7" fill="#d0c4a8"/>
+    <!-- Tiny bell -->
+    <ellipse cx="440" cy="150" rx="8" ry="6" fill="#b0a070"/>
+    <!-- Column detail on main body -->
+    <line x1="410" y1="217" x2="410" y2="350" stroke="#d0c4a8" stroke-width="2" opacity="0.5"/>
+    <line x1="430" y1="217" x2="430" y2="350" stroke="#d0c4a8" stroke-width="2" opacity="0.5"/>
+    <line x1="450" y1="217" x2="450" y2="350" stroke="#d0c4a8" stroke-width="2" opacity="0.5"/>
+    <line x1="470" y1="217" x2="470" y2="350" stroke="#d0c4a8" stroke-width="2" opacity="0.5"/>
+  </g>
+
+  <!-- Cathedral (right, partial) -->
+  <rect x="550" y="250" width="200" height="145" fill="#e8dcca"/>
+  <path d="M550,250 L650,195 L750,250 Z" fill="#f0e4d0"/>
+  <ellipse cx="650" cy="250" rx="40" ry="12" fill="#e0d4c0"/>
+  <path d="M610,250 Q650,210 690,250 Z" fill="#e8dcc8"/>
+  <rect x="622" y="220" width="56" height="35" fill="#d0c4b0" opacity="0.6"/>
+  <!-- Cathedral door -->
+  <path d="M633,395 L633,330 Q650,312 667,330 L667,395 Z" fill="#8B7040" opacity="0.6"/>
+  <rect x="628" y="330" width="44" height="70" fill="#7a6030" opacity="0.5"/>
+  <!-- Cathedral windows -->
+  <circle cx="650" cy="285" r="16" fill="#6090c0" opacity="0.5"/>
+  <rect x="620" y="295" width="18" height="28" rx="9" fill="#6090c0" opacity="0.3"/>
+  <rect x="662" y="295" width="18" height="28" rx="9" fill="#6090c0" opacity="0.3"/>
+
+  <!-- Gold medal border -->
+  <rect x="7" y="7" width="786" height="486" rx="13" ry="13" fill="none" stroke="url(#gold-pi)" stroke-width="6"/>
+  <rect x="16" y="16" width="768" height="468" rx="10" ry="10" fill="none" stroke="rgba(200,150,40,0.3)" stroke-width="1.5"/>
+  <circle cx="28" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+  <circle cx="772" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+  <circle cx="28" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+  <circle cx="772" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+
+  <!-- Ribbon (terracotta) -->
+  <path d="M376,0 L424,0 L424,38 L400,50 L376,38 Z" fill="#7a3010"/>
+  <path d="M382,0 L418,0 L418,34 L400,44 L382,34 Z" fill="#a04020"/>
+  <circle cx="400" cy="7" r="5" fill="#c9922a" opacity="0.9"/>
+  <rect x="396" y="0" width="8" height="14" fill="#681808"/>
+
+  <!-- PISA text -->
+  <text x="48" y="180" font-family="'Arial Black','Franklin Gothic Heavy',sans-serif" font-size="120" font-weight="900" fill="white" fill-opacity="0.92" letter-spacing="-2">PISA</text>
+  <text x="50" y="208" font-family="Arial,sans-serif" font-size="20" font-weight="600" fill="white" fill-opacity="0.65" letter-spacing="5">ITALIA</text>
+
+  <!-- Bottom strip -->
+  <rect x="0" y="438" width="800" height="62" fill="rgba(20,10,5,0.82)"/>
+  <line x1="0" y1="438" x2="800" y2="438" stroke="rgba(200,150,40,0.4)" stroke-width="1"/>
+  <text x="400" y="463" font-family="'Arial Black',sans-serif" font-size="16" font-weight="900" fill="#f5d07a" text-anchor="middle" letter-spacing="2">比萨马拉松</text>
+  <text x="400" y="486" font-family="Arial,sans-serif" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle" letter-spacing="1.5">PISA MARATHON · TUSCANY · ITALY</text>
+</svg>

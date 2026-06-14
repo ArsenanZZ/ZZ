@@ -503,8 +503,8 @@
                 <!-- 地图图例 -->
                     <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:#555; border-top:1px solid #f0f0f0; padding-top:10px; flex-wrap:wrap;">
                         <div style="display:flex; align-items:center; gap:6px;">
-                            <span style="display:inline-block; width:12px; height:12px; background:linear-gradient(135deg,#f4a09a 0 25%,#f5b840 25% 50%,#5bb87c 50% 75%,#5baad0 75%); border-radius:3px;"></span>
-                            <span>所有彩色州都是我跑过的州（35州）</span>
+                            <span style="display:inline-block; width:12px; height:12px; background:#5bb87c; border-radius:3px;"></span>
+                            <span>有颜色 = 跑过的州 (35州)</span>
                         </div>
                     <div style="display:flex; align-items:center; gap:6px;">
                         <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
@@ -2599,11 +2599,11 @@ const _HM={
   "DE": ["Massachusets_1_"],
   "MN": ["Minnesotta", "Wisconsin_1_"],
   "CT": ["New_York_2_", "Connecticut"],
-  "RI": ["Delaware", "Rhode_Island"],
-  "MA": ["Vermont_1_", "Massachusets"],
+  "RI": ["Rhode_Island"],
+  "MA": ["Vermont_1_", "Massachusets", "Delaware"],
   "ME": ["Michigan_1_", "Maine"],
   "OH": ["Ohio", "West_Virginia_1_"],
-  "NY": ["Rhode_Island_1_", "New_York"],
+  "NY": ["New_York", "Rhode_Island_1_"],
   "CA": ["Arizona"],
   "IN": ["Indiana", "Ohio_1_"],
   "GA": ["Georgia", "Florida_1_"],
@@ -2819,7 +2819,7 @@ function _showStateTooltip(e, abbr) {
       html += `<div class="map-tooltip-race">
         <strong>${r.emoji} ${r.city}</strong> · ${r.num}<br>
         <span style="font-size:12px;color:#eee;">${r.raceName}</span>
-        <div class="map-tooltip-meta">${r.date}</div>`;
+        <div class="map-tooltip-meta">${r.date} &nbsp; ${r.isPlaceholder ? '<span style="color:#c8860a">(待更新)</span>' : '<span style="color:#ffb612;font-weight:bold;">(已完赛)</span>'}</div>`;
         
       // Append translation links if story mapping matches
       const storyKey = `${abbr}-${r.city}`;
@@ -2859,7 +2859,7 @@ function _showCityTooltip(e, r, abbr) {
   let html = `<h4>📍 ${r.emoji} ${r.city}</h4>`;
   html += `<div class="map-tooltip-race">
     <strong>${r.raceName}</strong> (${r.num})<br>
-    <div class="map-tooltip-meta">日期: ${r.date}</div>`;
+    <div class="map-tooltip-meta">日期: ${r.date} &nbsp; ${r.isPlaceholder ? '<span style="color:#c8860a">(待更新)</span>' : '<span style="color:#ffb612;font-weight:bold;">(已完赛)</span>'}</div>`;
     
   const storyKey = `${abbr}-${r.city}`;
   const storyFile = _STORY_MAPPING[storyKey];
@@ -2993,6 +2993,7 @@ function _injectWelcomeMap() {
       path.style.pointerEvents = 'none';
     }
   });
+
   // FL (South_Carolina_1_) has multiple nested inner boundary sub-paths creating donut holes.
   (function() {
     const el = document.getElementById('map_South_Carolina_1_');
@@ -3061,28 +3062,22 @@ function _injectWelcomeMap() {
   
   _muteAll();
   _bindMapEventsOnce();
-
-  const alaskaFrame = document.getElementById('map_exterior_2_');
-  const hawaiiFrame = document.getElementById('map_hawaii_1_');
-  if (alaskaFrame && hawaiiFrame) {
-    alaskaFrame.style.fill = getComputedStyle(hawaiiFrame).fill;
-  }
   
   // Vibrant palette (Chinese illustrated map style); adjacent states always differ (graph-colored)
   const _CM = {
     'AK':'#f4a09a','AL':'#a8cc5a','AR':'#5bb87c','AZ':'#f5b840','CA':'#f4a09a',
-    'CO':'#c490d0','CT':'#c490d0','DE':'#f5b840','FL':'#f4a09a','GA':'#f5b840',
-    'HI':'#9068c0','IA':'#a8cc5a','ID':'#f4a09a','IL':'#c490d0','IN':'#f5b840',
+    'CO':'#c490d0','CT':'#5bb87c','DE':'#f5b840','FL':'#f4a09a','GA':'#f5b840',
+    'HI':'#3db5c4','IA':'#a8cc5a','ID':'#f4a09a','IL':'#c490d0','IN':'#f5b840',
     'KS':'#5baad0','KY':'#a8cc5a','LA':'#a8cc5a','MA':'#5baad0','MD':'#a8cc5a',
     'ME':'#f4a09a','MI':'#5baad0','MN':'#f5b840','MO':'#f5b840','MS':'#f5b840',
     'MT':'#a8cc5a','NC':'#a8cc5a','ND':'#5bb87c','NE':'#5bb87c','NH':'#f5b840',
     'NJ':'#a8cc5a','NM':'#5bb87c','NV':'#5bb87c','NY':'#f5b840','OH':'#5bb87c',
-    'OK':'#a8cc5a','OR':'#f5b840','PA':'#f4a09a','RI':'#f4a09a','SC':'#c490d0',
+    'OK':'#a8cc5a','OR':'#f5b840','PA':'#f4a09a','RI':'#c490d0','SC':'#c490d0',
     'SD':'#5baad0','TN':'#5baad0','TX':'#c490d0','UT':'#a8cc5a','VA':'#5bb87c',
     'VT':'#a8cc5a','WA':'#a8cc5a','WI':'#5bb87c','WV':'#f5b840','WY':'#f5b840'
   };
-  const storyStates = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
-  storyStates.forEach(abbr => {
+  const completed = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
+  completed.forEach(abbr => {
     (_HM[abbr] || []).forEach(id => {
       const el = document.getElementById('map_' + id);
       if (el) {
@@ -3092,8 +3087,8 @@ function _injectWelcomeMap() {
     });
   });
 
-  const otherRunStates = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO'];
-  otherRunStates.forEach(abbr => {
+  const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO'];
+  placeholders.forEach(abbr => {
     (_HM[abbr] || []).forEach(id => {
       const el = document.getElementById('map_' + id);
       if (el) {
@@ -3102,6 +3097,7 @@ function _injectWelcomeMap() {
       }
     });
   });
+
   // Create or retrieve dots group
   let dotGroup = master.querySelector('#city-dots-group');
   if (!dotGroup) {
