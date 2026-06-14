@@ -491,7 +491,7 @@
                 <div style="font-size:16px; font-weight:700; color:#1a2a3a; margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
                     <div style="display:flex; align-items:center; gap:8px;">
                         <span>🗺️ Run50 马拉松跑旅足迹 (Interactive Map)</span>
-                        <span style="font-size:12px; font-weight:normal; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px; font-weight:bold;">已完赛/计划中 35 州</span>
+                        <span style="font-size:12px; font-weight:normal; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px; font-weight:bold;">已跑过 35 州</span>
                     </div>
                     <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:#888; transition:color 0.2s;">鼠标悬停在州或红点上查看比赛记录，点击跳转</span>
                 </div>
@@ -503,12 +503,8 @@
                 <!-- 地图图例 -->
                     <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:#555; border-top:1px solid #f0f0f0; padding-top:10px; flex-wrap:wrap;">
                         <div style="display:flex; align-items:center; gap:6px;">
-                            <span style="display:inline-block; width:12px; height:12px; background:#1a2a3a; border-radius:3px;"></span>
-                            <span>已完赛长文 / 完赛剧本 (13州)</span>
-                        </div>
-                        <div style="display:flex; align-items:center; gap:6px;">
-                            <span style="display:inline-block; width:12px; height:12px; background:#c8860a; border-radius:3px;"></span>
-                            <span>计划中 / 历史赛记 (22州)</span>
+                            <span style="display:inline-block; width:12px; height:12px; background:linear-gradient(135deg,#f4a09a 0 25%,#f5b840 25% 50%,#5bb87c 50% 75%,#5baad0 75%); border-radius:3px;"></span>
+                            <span>所有彩色州都是我跑过的州（35州）</span>
                         </div>
                     <div style="display:flex; align-items:center; gap:6px;">
                         <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
@@ -2823,7 +2819,7 @@ function _showStateTooltip(e, abbr) {
       html += `<div class="map-tooltip-race">
         <strong>${r.emoji} ${r.city}</strong> · ${r.num}<br>
         <span style="font-size:12px;color:#eee;">${r.raceName}</span>
-        <div class="map-tooltip-meta">${r.date} &nbsp; ${r.isPlaceholder ? '<span style="color:#c8860a">(待更新)</span>' : '<span style="color:#ffb612;font-weight:bold;">(已完赛)</span>'}</div>`;
+        <div class="map-tooltip-meta">${r.date}</div>`;
         
       // Append translation links if story mapping matches
       const storyKey = `${abbr}-${r.city}`;
@@ -2863,7 +2859,7 @@ function _showCityTooltip(e, r, abbr) {
   let html = `<h4>📍 ${r.emoji} ${r.city}</h4>`;
   html += `<div class="map-tooltip-race">
     <strong>${r.raceName}</strong> (${r.num})<br>
-    <div class="map-tooltip-meta">日期: ${r.date} &nbsp; ${r.isPlaceholder ? '<span style="color:#c8860a">(待更新)</span>' : '<span style="color:#ffb612;font-weight:bold;">(已完赛)</span>'}</div>`;
+    <div class="map-tooltip-meta">日期: ${r.date}</div>`;
     
   const storyKey = `${abbr}-${r.city}`;
   const storyFile = _STORY_MAPPING[storyKey];
@@ -3079,8 +3075,8 @@ function _injectWelcomeMap() {
     'SD':'#5baad0','TN':'#5baad0','TX':'#c490d0','UT':'#a8cc5a','VA':'#5bb87c',
     'VT':'#a8cc5a','WA':'#a8cc5a','WI':'#5bb87c','WV':'#f5b840','WY':'#f5b840'
   };
-  const completed = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
-  completed.forEach(abbr => {
+  const storyStates = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
+  storyStates.forEach(abbr => {
     (_HM[abbr] || []).forEach(id => {
       const el = document.getElementById('map_' + id);
       if (el) {
@@ -3090,8 +3086,8 @@ function _injectWelcomeMap() {
     });
   });
 
-  const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO'];
-  placeholders.forEach(abbr => {
+  const otherRunStates = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO'];
+  otherRunStates.forEach(abbr => {
     (_HM[abbr] || []).forEach(id => {
       const el = document.getElementById('map_' + id);
       if (el) {

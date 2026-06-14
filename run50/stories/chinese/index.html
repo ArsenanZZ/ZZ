@@ -282,7 +282,7 @@
       <div style="font-size:16px; font-weight:700; color:var(--ink); margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
         <div style="display:flex; align-items:center; gap:8px;">
           <span>🗺️ Run50 马拉松跑旅足迹 (Interactive Map)</span>
-          <span style="font-size:12px; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px; font-weight:bold;">已完赛/计划中 35 州</span>
+          <span style="font-size:12px; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px; font-weight:bold;">已跑过 35 州</span>
         </div>
         <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:var(--muted); transition:color 0.2s;">鼠标悬停在州或红点上查看长文，点击卡片跳转</span>
       </div>
@@ -294,12 +294,8 @@
       <!-- 地图图例 -->
       <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:10px; flex-wrap:wrap;">
         <div style="display:flex; align-items:center; gap:6px;">
-          <span style="display:inline-block; width:12px; height:12px; background:var(--river); border-radius:3px;"></span>
-          <span>已完赛长文 / 完赛剧本 (13州)</span>
-        </div>
-        <div style="display:flex; align-items:center; gap:6px;">
-          <span style="display:inline-block; width:12px; height:12px; background:var(--gold); border-radius:3px;"></span>
-          <span>计划中 / 历史赛记 (22州)</span>
+          <span style="display:inline-block; width:12px; height:12px; background:linear-gradient(135deg,#d4614a 0 25%,#e89838 25% 50%,#5ca860 50% 75%,#3898a8 75%); border-radius:3px;"></span>
+          <span>所有彩色州都是我跑过的州（35州）</span>
         </div>
         <div style="display:flex; align-items:center; gap:6px;">
           <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
@@ -780,7 +776,7 @@
           html += `<div class="map-tooltip-race">
             <strong>${r.emoji} ${r.city}</strong><br>
             <span style="font-size:12px;color:#eee;">${r.raceName}</span>
-            <div class="map-tooltip-meta">${r.date} &nbsp; ${r.isPlaceholder ? '<span style="color:#c8860a">(计划中)</span>' : '<span style="color:#ffb612;font-weight:bold;">(已完赛)</span>'}</div>`;
+            <div class="map-tooltip-meta">${r.date}</div>`;
             
           if (r.storyFile) {
             html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
@@ -814,7 +810,7 @@
       let html = `<h4>📍 ${r.emoji} ${r.city}</h4>`;
       html += `<div class="map-tooltip-race">
         <strong>${r.raceName}</strong><br>
-        <div class="map-tooltip-meta">日期: ${r.date} &nbsp; ${r.isPlaceholder ? '<span style="color:#c8860a">(计划中)</span>' : '<span style="color:#ffb612;font-weight:bold;">(已完赛)</span>'}</div>`;
+        <div class="map-tooltip-meta">日期: ${r.date}</div>`;
         
       if (r.storyFile) {
         html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
@@ -1012,7 +1008,7 @@
       const _CM = {
         'AK':'#d4614a','AL':'#98c038','AR':'#5ca860','AZ':'#e89838','CA':'#d4614a',
         'CO':'#9068c0','CT':'#9068c0','DE':'#e89838','FL':'#d4614a','GA':'#e89838',
-        'HI':'#d4614a','IA':'#98c038','ID':'#d4614a','IL':'#9068c0','IN':'#e89838',
+        'HI':'#3898a8','IA':'#98c038','ID':'#d4614a','IL':'#9068c0','IN':'#e89838',
         'KS':'#3898a8','KY':'#98c038','LA':'#98c038','MA':'#3898a8','MD':'#98c038',
         'ME':'#d4614a','MI':'#3898a8','MN':'#e89838','MO':'#e89838','MS':'#e89838',
         'MT':'#98c038','NC':'#98c038','ND':'#5ca860','NE':'#5ca860','NH':'#e89838',
@@ -1021,8 +1017,8 @@
         'SD':'#3898a8','TN':'#3898a8','TX':'#9068c0','UT':'#98c038','VA':'#5ca860',
         'VT':'#98c038','WA':'#98c038','WI':'#5ca860','WV':'#e89838','WY':'#e89838'
       };
-      const completed = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
-      completed.forEach(abbr => {
+      const storyStates = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
+      storyStates.forEach(abbr => {
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
           if (el) {
@@ -1032,8 +1028,8 @@
         });
       });
 
-      const placeholders = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO'];
-      placeholders.forEach(abbr => {
+      const otherRunStates = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO'];
+      otherRunStates.forEach(abbr => {
         (_HM[abbr] || []).forEach(id => {
           const el = document.getElementById('map_' + id);
           if (el) {
