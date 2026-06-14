@@ -428,11 +428,11 @@
       "DE": ["Massachusets_1_"],
       "MN": ["Minnesotta", "Wisconsin_1_"],
       "CT": ["New_York_2_", "Connecticut"],
-      "RI": ["Rhode_Island"],
-      "MA": ["Vermont_1_", "Massachusets", "Delaware"],
+      "RI": ["Delaware", "Rhode_Island"],
+      "MA": ["Vermont_1_", "Massachusets"],
       "ME": ["Michigan_1_", "Maine"],
       "OH": ["Ohio", "West_Virginia_1_"],
-      "NY": ["New_York"],
+      "NY": ["Rhode_Island_1_", "New_York"],
       "CA": ["Arizona"],
       "IN": ["Indiana", "Ohio_1_"],
       "GA": ["Georgia", "Florida_1_"],
@@ -473,7 +473,7 @@
     };
     // One real-geometry path id per state (the values of _HM), used to mute every
     // state to the base colour and to bind hover/click handlers.
-    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Ocean", "Vermont", "New_Hampshire", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "ocean_2_", "Oklahoma_1_", "ocean_3_", "Kentucky", "Arkansas", "North_Dakota", "North_Dakota_1_", "Colorado", "Montana", "Wyoming_1_", "New_Mexico_1_", "New_Mexico", "Oregon_41_", "West_Virginia_1_", "Ohio_1_", "Indiana_1_", "Florida_1_", "Kentucky_1_", "Colorado_1_", "Maine", "Maine_1_", "New_Jersey_1_", "Iowa", "Missouri", "Missisppi", "Missispi", "Louisiana_1_", "Utah", "California", "Connecticut_1_", "Nebraska_1_", "Illinois_1_", "Massachusets", "Wisconsin_1_", "Wyoming", "Oregon_1_", "Virginia", "Virginia_1_", "Rhode_Island", "Delaware"];
+    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Ocean", "Vermont", "New_Hampshire", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "ocean_2_", "Oklahoma_1_", "ocean_3_", "Kentucky", "Arkansas", "North_Dakota", "North_Dakota_1_", "Colorado", "Montana", "Wyoming_1_", "New_Mexico_1_", "New_Mexico", "Oregon_41_", "West_Virginia_1_", "Ohio_1_", "Indiana_1_", "Florida_1_", "Kentucky_1_", "Colorado_1_", "Maine", "Maine_1_", "New_Jersey_1_", "Iowa", "Missouri", "Missisppi", "Missispi", "Louisiana_1_", "Utah", "California", "Connecticut_1_", "Nebraska_1_", "Illinois_1_", "Massachusets", "Wisconsin_1_", "Wyoming", "Oregon_1_", "Virginia", "Virginia_1_", "Rhode_Island_1_", "Rhode_Island", "Delaware"];
     const _MUTED = '#f5f5f5';
 
     const _CITY_LAT_LON = {
@@ -880,12 +880,6 @@
           }
         }
       });
-      const duplicateNyOverlay = document.getElementById('map_Rhode_Island_1_');
-      if (duplicateNyOverlay) {
-        duplicateNyOverlay.style.fill = 'none';
-        duplicateNyOverlay.style.pointerEvents = 'none';
-      }
-
       // All hollow states have triple-nested concentric sub-paths; handled below by nested-in-any fix.
 
       // FL (South_Carolina_1_) has multiple nested inner boundary sub-paths creating donut holes.
@@ -982,13 +976,6 @@
           if (el) { el.style.fill = _CM[abbr]; el.classList.add('run-state'); }
         });
       });
-      const newYork = document.getElementById('map_New_York');
-      if (newYork) {
-        newYork.style.stroke = _CM.NY;
-        newYork.style.strokeWidth = '20';
-        newYork.style.strokeLinejoin = 'round';
-      }
-
       let dotGroup = master.querySelector('#city-dots-group');
       if (!dotGroup) {
         dotGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
