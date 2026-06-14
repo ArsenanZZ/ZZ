@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="sky-il" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#08173a"/>
+      <stop offset="60%" stop-color="#102a6e"/>
+      <stop offset="100%" stop-color="#1a4a9e"/>
+    </linearGradient>
+    <linearGradient id="gold-il" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9922a"/>
+      <stop offset="45%" stop-color="#f5d07a"/>
+      <stop offset="100%" stop-color="#b07820"/>
+    </linearGradient>
+    <linearGradient id="lake-il" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e2d6e"/>
+      <stop offset="100%" stop-color="#071840"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="500" fill="url(#sky-il)"/>
+
+  <!-- Stars -->
+  <circle cx="100" cy="60" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="200" cy="40" r="1" fill="white" opacity="0.5"/>
+  <circle cx="320" cy="80" r="1.5" fill="white" opacity="0.4"/>
+  <circle cx="680" cy="55" r="1" fill="white" opacity="0.6"/>
+  <circle cx="730" cy="35" r="1.5" fill="white" opacity="0.5"/>
+
+  <!-- Lake Michigan -->
+  <rect x="0" y="390" width="800" height="110" fill="url(#lake-il)"/>
+  <path d="M0,395 Q200,382 400,390 Q600,398 800,385 L800,500 L0,500Z" fill="#071840" opacity="0.8"/>
+
+  <!-- Water reflection shimmer -->
+  <rect x="430" y="415" width="3" height="50" fill="white" opacity="0.08"/>
+  <rect x="500" y="420" width="2" height="45" fill="#ffd040" opacity="0.06"/>
+
+  <!-- Right side background buildings -->
+  <rect x="650" y="300" width="22" height="100" fill="#071428"/>
+  <rect x="685" y="320" width="18" height="80" fill="#071428"/>
+  <rect x="715" y="290" width="28" height="110" fill="#071428"/>
+  <rect x="755" y="310" width="45" height="90" fill="#071428"/>
+
+  <!-- Left side buildings -->
+  <rect x="0" y="310" width="35" height="90" fill="#071428"/>
+  <rect x="48" y="295" width="22" height="105" fill="#071428"/>
+  <rect x="85" y="320" width="18" height="80" fill="#071428"/>
+
+  <!-- Mid background buildings -->
+  <rect x="160" y="280" width="25" height="120" fill="#0a1e40"/>
+  <rect x="200" y="300" width="20" height="100" fill="#0a1e40"/>
+  <rect x="240" y="270" width="28" height="130" fill="#0a1e40"/>
+  <rect x="285" y="290" width="22" height="110" fill="#0a1e40"/>
+  <rect x="330" y="295" width="20" height="105" fill="#0a1e40"/>
+
+  <!-- Willis Tower (main, stepped) -->
+  <rect x="450" y="150" width="38" height="250" fill="#060f25"/>
+  <rect x="438" y="195" width="62" height="205" fill="#060f25"/>
+  <rect x="428" y="230" width="82" height="170" fill="#060f25"/>
+  <!-- Willis antennas -->
+  <rect x="462" y="115" width="5" height="40" fill="#0d2244"/>
+  <rect x="474" y="125" width="4" height="30" fill="#0d2244"/>
+  <!-- Willis windows glow -->
+  <rect x="456" y="160" width="8" height="5" fill="#ffd040" opacity="0.35"/>
+  <rect x="468" y="172" width="8" height="5" fill="#ffd040" opacity="0.3"/>
+  <rect x="456" y="186" width="8" height="5" fill="#ffd040" opacity="0.25"/>
+  <rect x="444" y="200" width="8" height="5" fill="#ffd040" opacity="0.3"/>
+  <rect x="468" y="212" width="8" height="5" fill="#ffd040" opacity="0.25"/>
+
+  <!-- John Hancock (X brace) -->
+  <rect x="555" y="200" width="32" height="200" fill="#06111e"/>
+  <line x1="555" y1="205" x2="587" y2="270" stroke="#0d2244" stroke-width="3"/>
+  <line x1="555" y1="260" x2="587" y2="205" stroke="#0d2244" stroke-width="3"/>
+  <rect x="560" y="183" width="5" height="22" fill="#0d2244"/>
+  <rect x="574" y="183" width="5" height="22" fill="#0d2244"/>
+
+  <!-- One Trump Tower (right of Hancock) -->
+  <rect x="608" y="235" width="24" height="165" fill="#071220"/>
+  <rect x="610" y="220" width="20" height="40" fill="#071220"/>
+  <rect x="613" y="207" width="14" height="22" fill="#071220"/>
+  <rect x="618" y="196" width="5" height="16" fill="#0d2244"/>
+
+  <!-- The Bean (Cloud Gate) -->
+  <ellipse cx="380" cy="395" rx="52" ry="18" fill="#b8bfc4" opacity="0.9"/>
+  <ellipse cx="380" cy="393" rx="45" ry="13" fill="#cacfd4" opacity="0.75"/>
+  <path d="M335,394 Q365,380 380,383 Q395,380 425,394" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+
+  <!-- Chicago 4 red stars -->
+  <text x="640" y="68" font-family="serif" font-size="14" fill="#c8102e" opacity="0.55" text-anchor="middle" letter-spacing="10">✦ ✦ ✦ ✦</text>
+
+  <!-- Gold medal border -->
+  <rect x="7" y="7" width="786" height="486" rx="13" ry="13" fill="none" stroke="url(#gold-il)" stroke-width="6"/>
+  <rect x="16" y="16" width="768" height="468" rx="10" ry="10" fill="none" stroke="rgba(200,150,40,0.3)" stroke-width="1.5"/>
+  <!-- Corner dots -->
+  <circle cx="28" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+  <circle cx="772" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+  <circle cx="28" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+  <circle cx="772" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+
+  <!-- Ribbon at top -->
+  <path d="M376,0 L424,0 L424,38 L400,50 L376,38 Z" fill="#10266a"/>
+  <path d="M382,0 L418,0 L418,34 L400,44 L382,34 Z" fill="#1a3a8a"/>
+  <circle cx="400" cy="7" r="5" fill="#c9922a" opacity="0.9"/>
+  <rect x="396" y="0" width="8" height="14" fill="#0d1e50"/>
+
+  <!-- IL abbreviation -->
+  <text x="62" y="185" font-family="'Arial Black','Franklin Gothic Heavy',sans-serif" font-size="135" font-weight="900" fill="white" fill-opacity="0.93" letter-spacing="-3">IL</text>
+  <!-- State name -->
+  <text x="64" y="212" font-family="Arial,sans-serif" font-size="20" font-weight="600" fill="white" fill-opacity="0.7" letter-spacing="5">ILLINOIS</text>
+
+  <!-- Bottom strip -->
+  <rect x="0" y="438" width="800" height="62" rx="0" fill="rgba(4,10,28,0.82)"/>
+  <line x1="0" y1="438" x2="800" y2="438" stroke="rgba(200,150,40,0.4)" stroke-width="1"/>
+  <text x="400" y="463" font-family="'Arial Black',sans-serif" font-size="16" font-weight="900" fill="#f5d07a" text-anchor="middle" letter-spacing="2">芝加哥马拉松</text>
+  <text x="400" y="486" font-family="Arial,sans-serif" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle" letter-spacing="1.5">CHICAGO MARATHON · ILLINOIS</text>
+</svg>

@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="sky-hk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#04081e"/>
+      <stop offset="45%" stop-color="#080f2e"/>
+      <stop offset="100%" stop-color="#0e1840"/>
+    </linearGradient>
+    <linearGradient id="red-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8B1010"/>
+      <stop offset="45%" stop-color="#e03020"/>
+      <stop offset="100%" stop-color="#7a0c08"/>
+    </linearGradient>
+    <linearGradient id="harbour" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1e3a"/>
+      <stop offset="100%" stop-color="#040e20"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Night sky -->
+  <rect width="800" height="500" fill="url(#sky-hk)"/>
+
+  <!-- Stars -->
+  <circle cx="60" cy="38" r="1.5" fill="white" opacity="0.7"/>
+  <circle cx="135" cy="62" r="1" fill="white" opacity="0.55"/>
+  <circle cx="215" cy="28" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="600" cy="42" r="1" fill="white" opacity="0.65"/>
+  <circle cx="680" cy="25" r="1.5" fill="white" opacity="0.7"/>
+  <circle cx="745" cy="58" r="1" fill="white" opacity="0.5"/>
+
+  <!-- Victoria Harbour (water) -->
+  <rect x="0" y="390" width="800" height="110" fill="url(#harbour)"/>
+  <path d="M0,398 Q200,385 400,393 Q600,401 800,388 L800,500 L0,500Z" fill="#040e20" opacity="0.8"/>
+
+  <!-- Harbour reflections (building lights in water) -->
+  <rect x="295" y="420" width="4" height="45" fill="#ff3020" opacity="0.12"/>
+  <rect x="380" y="415" width="3" height="50" fill="#ffd040" opacity="0.1"/>
+  <rect x="440" y="425" width="4" height="40" fill="#80e0ff" opacity="0.08"/>
+  <rect x="510" y="418" width="3" height="48" fill="#ffd040" opacity="0.1"/>
+  <rect x="580" y="422" width="4" height="43" fill="#ff3020" opacity="0.1"/>
+
+  <!-- Wave lines -->
+  <path d="M0,412 Q200,404 400,410 Q600,416 800,408" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+
+  <!-- Kowloon / background skyline (left, shorter) -->
+  <rect x="0" y="300" width="30" height="100" fill="#060c20"/>
+  <rect x="35" y="290" width="25" height="110" fill="#060c20"/>
+  <rect x="68" y="275" width="28" height="125" fill="#08101e"/>
+  <rect x="103" y="310" width="22" height="90" fill="#060c20"/>
+  <rect x="132" y="285" width="26" height="115" fill="#060c20"/>
+  <rect x="168" y="295" width="24" height="105" fill="#08101e"/>
+
+  <!-- Kowloon right side -->
+  <rect x="600" y="305" width="25" height="95" fill="#060c20"/>
+  <rect x="633" y="290" width="22" height="110" fill="#060c20"/>
+  <rect x="663" y="280" width="28" height="120" fill="#08101e"/>
+  <rect x="700" y="295" width="24" height="105" fill="#060c20"/>
+  <rect x="732" y="310" width="22" height="90" fill="#060c20"/>
+  <rect x="762" y="285" width="38" height="115" fill="#060c20"/>
+
+  <!-- Hong Kong Island skyline (taller, main) -->
+  <!-- ICC Tower (tallest) -->
+  <rect x="270" y="100" width="38" height="300" fill="#0a1428"/>
+  <rect x="264" y="150" width="50" height="250" fill="#0a1428"/>
+  <!-- ICC top -->
+  <rect x="278" y="90" width="22" height="22" fill="#0c1830"/>
+  <rect x="284" y="68" width="10" height="28" fill="#0c1830"/>
+  <!-- ICC lights -->
+  <rect x="276" y="105" width="10" height="6" fill="#ffd040" opacity="0.3"/>
+  <rect x="295" y="120" width="10" height="6" fill="#80e0ff" opacity="0.25"/>
+  <rect x="276" y="140" width="10" height="6" fill="#ffd040" opacity="0.25"/>
+  <rect x="295" y="160" width="10" height="6" fill="#80e0ff" opacity="0.2"/>
+
+  <!-- IFC Tower -->
+  <rect x="338" y="140" width="35" height="260" fill="#08121e"/>
+  <rect x="332" y="180" width="47" height="220" fill="#08121e"/>
+  <rect x="343" y="128" width="25" height="22" fill="#0a1628"/>
+  <rect x="350" y="108" width="11" height="26" fill="#0a1628"/>
+  <!-- IFC lights -->
+  <rect x="340" y="150" width="8" height="5" fill="#80e0ff" opacity="0.25"/>
+  <rect x="356" y="168" width="8" height="5" fill="#ffd040" opacity="0.2"/>
+
+  <!-- Bank of China -->
+  <polygon points="415,390 415,185 450,140 485,185 485,390" fill="#06101a"/>
+  <polygon points="432,390 432,200 450,162 468,200 468,390" fill="#081420"/>
+  <!-- BoC diagonal lines -->
+  <line x1="415" y1="185" x2="450" y2="390" stroke="#0a1828" stroke-width="2"/>
+  <line x1="485" y1="185" x2="450" y2="390" stroke="#0a1828" stroke-width="2"/>
+  <line x1="415" y1="290" x2="485" y2="290" stroke="#0a1828" stroke-width="2"/>
+
+  <!-- Convention Center dome -->
+  <path d="M508,390 Q508,330 580,310 Q652,330 652,390 Z" fill="#080e1e"/>
+  <path d="M516,388 Q516,335 580,318 Q644,335 644,388" fill="none" stroke="#101c30" stroke-width="2"/>
+
+  <!-- Jardine House (round windows) -->
+  <rect x="560" y="210" width="40" height="185" fill="#070d1c"/>
+  <circle cx="574" cy="235" r="5" fill="#ffd040" opacity="0.2"/>
+  <circle cx="586" cy="235" r="5" fill="#ffd040" opacity="0.2"/>
+  <circle cx="574" cy="255" r="5" fill="#ffd040" opacity="0.15"/>
+  <circle cx="586" cy="255" r="5" fill="#ffd040" opacity="0.15"/>
+
+  <!-- Junk boat (traditional) -->
+  <!-- Hull -->
+  <path d="M150,385 Q200,375 240,378 L235,395 L145,395 Z" fill="#2a1508"/>
+  <!-- Sails -->
+  <path d="M180,385 L178,330 L205,340 Z" fill="#8B2010" opacity="0.9"/>
+  <path d="M210,382 L215,325 L238,338 Z" fill="#8B2010" opacity="0.85"/>
+  <!-- Sail battens -->
+  <line x1="178" y1="345" x2="202" y2="352" stroke="#5a1008" stroke-width="1.5"/>
+  <line x1="178" y1="358" x2="203" y2="362" stroke="#5a1008" stroke-width="1.5"/>
+  <line x1="178" y1="370" x2="203" y2="372" stroke="#5a1008" stroke-width="1.5"/>
+
+  <!-- HK red banner stripe (top) -->
+  <rect x="0" y="0" width="800" height="22" fill="#c8102e" opacity="0.75"/>
+  <rect x="0" y="18" width="800" height="4" fill="#8B0c08" opacity="0.5"/>
+
+  <!-- Red/gold medal border -->
+  <rect x="7" y="7" width="786" height="486" rx="13" ry="13" fill="none" stroke="url(#red-gold)" stroke-width="6"/>
+  <rect x="16" y="16" width="768" height="468" rx="10" ry="10" fill="none" stroke="rgba(200,30,20,0.3)" stroke-width="1.5"/>
+  <circle cx="28" cy="28" r="5" fill="none" stroke="rgba(200,30,20,0.55)" stroke-width="2"/>
+  <circle cx="772" cy="28" r="5" fill="none" stroke="rgba(200,30,20,0.55)" stroke-width="2"/>
+  <circle cx="28" cy="472" r="5" fill="none" stroke="rgba(200,30,20,0.55)" stroke-width="2"/>
+  <circle cx="772" cy="472" r="5" fill="none" stroke="rgba(200,30,20,0.55)" stroke-width="2"/>
+
+  <!-- Ribbon (red) -->
+  <path d="M376,0 L424,0 L424,38 L400,50 L376,38 Z" fill="#8B0808"/>
+  <path d="M382,0 L418,0 L418,34 L400,44 L382,34 Z" fill="#c81018"/>
+  <circle cx="400" cy="7" r="5" fill="#d4922a" opacity="0.9"/>
+  <rect x="396" y="0" width="8" height="14" fill="#720606"/>
+
+  <!-- HK text -->
+  <text x="52" y="185" font-family="'Arial Black','Franklin Gothic Heavy',sans-serif" font-size="135" font-weight="900" fill="white" fill-opacity="0.93" letter-spacing="-3">HK</text>
+  <text x="54" y="212" font-family="'PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="22" font-weight="700" fill="white" fill-opacity="0.7" letter-spacing="4">香港</text>
+
+  <!-- Bottom strip -->
+  <rect x="0" y="438" width="800" height="62" fill="rgba(2,4,12,0.9)"/>
+  <line x1="0" y1="438" x2="800" y2="438" stroke="rgba(180,20,15,0.5)" stroke-width="1"/>
+  <text x="400" y="463" font-family="'Arial Black',sans-serif" font-size="16" font-weight="900" fill="#ff8070" text-anchor="middle" letter-spacing="2">香港嘉里马拉松</text>
+  <text x="400" y="486" font-family="Arial,sans-serif" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle" letter-spacing="1.5">HONG KONG MARATHON</text>
+</svg>

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="sky-wv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1808"/>
+      <stop offset="40%" stop-color="#c05010"/>
+      <stop offset="70%" stop-color="#e07020"/>
+      <stop offset="100%" stop-color="#f0a030"/>
+    </linearGradient>
+    <linearGradient id="gold-wv" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9922a"/>
+      <stop offset="45%" stop-color="#f5d07a"/>
+      <stop offset="100%" stop-color="#b07820"/>
+    </linearGradient>
+    <linearGradient id="mtn-wv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a4a18"/>
+      <stop offset="100%" stop-color="#0a2a08"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Autumn sunset sky -->
+  <rect width="800" height="500" fill="url(#sky-wv)"/>
+
+  <!-- Far mountain silhouettes (lightest) -->
+  <path d="M0,320 Q80,250 160,290 Q240,330 320,255 Q400,180 480,260 Q560,340 640,265 Q720,190 800,240 L800,500 L0,500 Z" fill="#1a4a18" opacity="0.5"/>
+
+  <!-- Mid mountains -->
+  <path d="M0,360 Q100,290 200,330 Q280,365 360,285 Q440,205 520,295 Q600,385 700,300 Q750,255 800,285 L800,500 L0,500 Z" fill="#1a4a18" opacity="0.75"/>
+
+  <!-- Front mountains -->
+  <path d="M0,400 Q80,340 160,375 Q240,410 310,340 Q380,270 460,345 Q530,415 620,345 Q700,275 800,320 L800,500 L0,500 Z" fill="#0d3010"/>
+
+  <!-- River (New River) at bottom -->
+  <path d="M0,430 Q120,415 240,425 Q360,435 480,420 Q600,405 720,415 Q760,418 800,412 L800,500 L0,500 Z" fill="#0a3050" opacity="0.9"/>
+
+  <!-- New River Gorge Bridge (iconic arch) -->
+  <!-- Road deck -->
+  <rect x="130" y="315" width="540" height="14" fill="#3a3028"/>
+  <!-- Main arch -->
+  <path d="M150,329 Q400,175 650,329" fill="none" stroke="#2a2018" stroke-width="16"/>
+  <path d="M150,329 Q400,188 650,329" fill="none" stroke="#4a3828" stroke-width="8"/>
+  <!-- Arch highlight -->
+  <path d="M175,320 Q400,195 625,320" fill="none" stroke="rgba(220,150,60,0.2)" stroke-width="3"/>
+  <!-- Vertical hangers from arch to deck -->
+  <line x1="220" y1="278" x2="210" y2="315" stroke="#2a2018" stroke-width="4"/>
+  <line x1="275" y1="243" x2="262" y2="315" stroke="#2a2018" stroke-width="4"/>
+  <line x1="330" y1="218" x2="315" y2="315" stroke="#2a2018" stroke-width="4"/>
+  <line x1="400" y1="205" x2="400" y2="315" stroke="#2a2018" stroke-width="4"/>
+  <line x1="470" y1="218" x2="485" y2="315" stroke="#2a2018" stroke-width="4"/>
+  <line x1="525" y1="243" x2="538" y2="315" stroke="#2a2018" stroke-width="4"/>
+  <line x1="580" y1="278" x2="590" y2="315" stroke="#2a2018" stroke-width="4"/>
+  <!-- Bridge towers -->
+  <rect x="143" y="280" width="16" height="50" fill="#2a2018"/>
+  <rect x="641" y="280" width="16" height="50" fill="#2a2018"/>
+
+  <!-- Autumn trees left -->
+  <circle cx="65" cy="360" r="32" fill="#c84010" opacity="0.85"/>
+  <circle cx="55" cy="375" r="22" fill="#8B2008" opacity="0.7"/>
+  <rect x="61" y="385" width="10" height="25" fill="#5a3010"/>
+  <circle cx="118" cy="350" r="28" fill="#e06010" opacity="0.85"/>
+  <rect x="114" y="375" width="10" height="30" fill="#5a3010"/>
+
+  <!-- Autumn trees right -->
+  <circle cx="720" cy="358" r="30" fill="#c84010" opacity="0.85"/>
+  <circle cx="735" cy="370" r="22" fill="#d85818" opacity="0.75"/>
+  <rect x="716" y="382" width="10" height="28" fill="#5a3010"/>
+  <circle cx="768" cy="348" r="26" fill="#8B4010" opacity="0.8"/>
+  <rect x="764" y="370" width="10" height="30" fill="#5a3010"/>
+
+  <!-- Gold medal border -->
+  <rect x="7" y="7" width="786" height="486" rx="13" ry="13" fill="none" stroke="url(#gold-wv)" stroke-width="6"/>
+  <rect x="16" y="16" width="768" height="468" rx="10" ry="10" fill="none" stroke="rgba(200,150,40,0.3)" stroke-width="1.5"/>
+  <circle cx="28" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+  <circle cx="772" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+  <circle cx="28" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+  <circle cx="772" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
+
+  <!-- Ribbon -->
+  <path d="M376,0 L424,0 L424,38 L400,50 L376,38 Z" fill="#0a1808"/>
+  <path d="M382,0 L418,0 L418,34 L400,44 L382,34 Z" fill="#1a3010"/>
+  <circle cx="400" cy="7" r="5" fill="#c9922a" opacity="0.9"/>
+  <rect x="396" y="0" width="8" height="14" fill="#081006"/>
+
+  <!-- WV abbreviation -->
+  <text x="48" y="185" font-family="'Arial Black','Franklin Gothic Heavy',sans-serif" font-size="130" font-weight="900" fill="white" fill-opacity="0.93" letter-spacing="-4">WV</text>
+  <text x="52" y="212" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="white" fill-opacity="0.7" letter-spacing="3">WEST VIRGINIA</text>
+
+  <!-- Bottom strip -->
+  <rect x="0" y="438" width="800" height="62" fill="rgba(5,10,4,0.88)"/>
+  <line x1="0" y1="438" x2="800" y2="438" stroke="rgba(200,150,40,0.4)" stroke-width="1"/>
+  <text x="400" y="463" font-family="'Arial Black',sans-serif" font-size="16" font-weight="900" fill="#f5d07a" text-anchor="middle" letter-spacing="2">西弗吉尼亚马拉松</text>
+  <text x="400" y="486" font-family="Arial,sans-serif" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle" letter-spacing="1.5">WEST VIRGINIA MARATHON</text>
+</svg>

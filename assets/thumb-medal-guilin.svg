@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="sky-gl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a8d8e8"/>
+      <stop offset="40%" stop-color="#c8eaf5"/>
+      <stop offset="100%" stop-color="#d8f0f8"/>
+    </linearGradient>
+    <linearGradient id="jade-gl" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a7a5a"/>
+      <stop offset="45%" stop-color="#5aaa7a"/>
+      <stop offset="100%" stop-color="#208a50"/>
+    </linearGradient>
+    <linearGradient id="river-gl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#88c8e0"/>
+      <stop offset="100%" stop-color="#5aaccaCC"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Misty sky -->
+  <rect width="800" height="500" fill="url(#sky-gl)"/>
+
+  <!-- Mist layers -->
+  <ellipse cx="200" cy="320" rx="250" ry="40" fill="white" opacity="0.3"/>
+  <ellipse cx="600" cy="300" rx="220" ry="35" fill="white" opacity="0.25"/>
+  <ellipse cx="400" cy="360" rx="350" ry="30" fill="white" opacity="0.2"/>
+
+  <!-- Far karst peaks (lightest, most distant) -->
+  <path d="M0,360 Q60,240 90,300 Q110,340 140,260 Q165,185 195,285 Q220,370 255,260 Q280,170 310,270 Q335,350 370,240 Q395,145 425,250 Q450,340 490,220 Q515,130 545,240 Q575,340 610,220 Q640,130 670,240 Q700,340 730,250 Q760,170 800,260 L800,500 L0,500Z" fill="#90c8a0" opacity="0.4"/>
+
+  <!-- Mid karst peaks -->
+  <path d="M0,390 Q40,280 75,340 Q100,385 128,295 Q150,220 178,310 Q202,385 238,278 Q262,195 295,290 Q322,370 358,258 Q382,170 415,268 Q442,355 478,235 Q504,145 535,255 Q562,355 600,238 Q628,148 658,258 Q685,358 720,262 Q748,185 800,290 L800,500 L0,500Z" fill="#5a9a70" opacity="0.65"/>
+
+  <!-- Front karst peaks (darkest) -->
+  <path d="M0,420 Q30,330 62,385 Q80,418 108,338 Q128,275 155,348 Q178,415 215,318 Q238,242 268,330 Q292,408 328,302 Q352,220 385,315 Q410,400 448,290 Q472,208 505,305 Q530,395 568,282 Q592,198 625,298 Q652,390 688,290 Q715,210 750,308 Q772,375 800,330 L800,500 L0,500Z" fill="#2a6a40"/>
+
+  <!-- Li River reflection -->
+  <path d="M0,435 Q120,420 240,428 Q360,436 480,422 Q600,408 720,418 Q760,421 800,415 L800,500 L0,500Z" fill="url(#river-gl)" opacity="0.85"/>
+  <!-- River ripples -->
+  <path d="M60,448 Q200,440 340,445 Q460,450 580,442 Q680,436 760,440" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+  <path d="M40,460 Q150,453 280,458 Q420,463 560,455 Q680,448 780,453" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+
+  <!-- Mountain reflections in river -->
+  <path d="M120,435 Q150,455 180,435" fill="#3a7a50" opacity="0.2"/>
+  <path d="M350,435 Q400,465 450,435" fill="#3a7a50" opacity="0.2"/>
+  <path d="M580,430 Q620,455 660,430" fill="#3a7a50" opacity="0.15"/>
+
+  <!-- Fisherman boat (tiny silhouette) -->
+  <path d="M490,425 Q520,420 550,425 L545,432 L495,432 Z" fill="#2a1a08"/>
+  <rect x="517" y="405" width="3" height="22" fill="#2a1a08"/>
+  <path d="M520,406 L540,415 L520,418 Z" fill="#4a2a10" opacity="0.8"/>
+  <!-- Fisherman figure -->
+  <circle cx="510" cy="421" r="4" fill="#2a1a08"/>
+  <rect x="508" y="424" width="4" height="8" fill="#2a1a08"/>
+
+  <!-- Bamboo left -->
+  <line x1="72" y1="500" x2="68" y2="340" stroke="#2a5a20" stroke-width="7" stroke-linecap="round"/>
+  <line x1="85" y1="500" x2="90" y2="350" stroke="#2a5a20" stroke-width="6" stroke-linecap="round"/>
+  <line x1="95" y1="500" x2="98" y2="360" stroke="#3a6a28" stroke-width="5" stroke-linecap="round"/>
+  <!-- Bamboo nodes -->
+  <line x1="64" y1="400" x2="72" y2="398" stroke="#1a4a18" stroke-width="3"/>
+  <line x1="64" y1="375" x2="72" y2="373" stroke="#1a4a18" stroke-width="3"/>
+  <line x1="64" y1="350" x2="72" y2="348" stroke="#1a4a18" stroke-width="3"/>
+  <!-- Bamboo leaves -->
+  <path d="M68,342 Q42,318 35,305" stroke="#2a5a20" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M68,342 Q58,312 65,295" stroke="#2a5a20" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M68,342 Q80,315 90,300" stroke="#3a6a28" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  <!-- Bamboo right -->
+  <line x1="720" y1="500" x2="716" y2="345" stroke="#2a5a20" stroke-width="7" stroke-linecap="round"/>
+  <line x1="733" y1="500" x2="738" y2="358" stroke="#2a5a20" stroke-width="6" stroke-linecap="round"/>
+  <line x1="716,500" x1="716" y1="500" x2="712" y2="362" stroke="#3a6a28" stroke-width="5" stroke-linecap="round"/>
+  <path d="M716,347 Q692,320 685,308" stroke="#2a5a20" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M716,347 Q708,316 715,298" stroke="#2a5a20" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M716,347 Q730,318 740,305" stroke="#3a6a28" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  <!-- Jade medal border -->
+  <rect x="7" y="7" width="786" height="486" rx="13" ry="13" fill="none" stroke="url(#jade-gl)" stroke-width="6"/>
+  <rect x="16" y="16" width="768" height="468" rx="10" ry="10" fill="none" stroke="rgba(42,122,90,0.35)" stroke-width="1.5"/>
+  <circle cx="28" cy="28" r="5" fill="none" stroke="rgba(42,122,90,0.6)" stroke-width="2"/>
+  <circle cx="772" cy="28" r="5" fill="none" stroke="rgba(42,122,90,0.6)" stroke-width="2"/>
+  <circle cx="28" cy="472" r="5" fill="none" stroke="rgba(42,122,90,0.6)" stroke-width="2"/>
+  <circle cx="772" cy="472" r="5" fill="none" stroke="rgba(42,122,90,0.6)" stroke-width="2"/>
+
+  <!-- Ribbon (jade green) -->
+  <path d="M376,0 L424,0 L424,38 L400,50 L376,38 Z" fill="#1a5a38"/>
+  <path d="M382,0 L418,0 L418,34 L400,44 L382,34 Z" fill="#2a7a52"/>
+  <circle cx="400" cy="7" r="5" fill="#3a9a6a" opacity="0.9"/>
+  <rect x="396" y="0" width="8" height="14" fill="#184a30"/>
+
+  <!-- 桂林 Chinese characters -->
+  <text x="50" y="180" font-family="'PingFang SC','Microsoft YaHei','SimHei',serif" font-size="120" font-weight="900" fill="white" fill-opacity="0.9">桂林</text>
+  <text x="52" y="210" font-family="Arial,sans-serif" font-size="20" font-weight="600" fill="white" fill-opacity="0.65" letter-spacing="5">GUILIN</text>
+
+  <!-- Bottom strip (jade) -->
+  <rect x="0" y="438" width="800" height="62" fill="rgba(8,30,20,0.85)"/>
+  <line x1="0" y1="438" x2="800" y2="438" stroke="rgba(42,122,90,0.5)" stroke-width="1"/>
+  <text x="400" y="463" font-family="'Arial Black',sans-serif" font-size="16" font-weight="900" fill="#8addb8" text-anchor="middle" letter-spacing="2">桂林马拉松</text>
+  <text x="400" y="486" font-family="Arial,sans-serif" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle" letter-spacing="1.5">GUILIN MARATHON · GUANGXI · CHINA</text>
+</svg>
