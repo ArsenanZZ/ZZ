@@ -1,115 +1,79 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
   <defs>
-    <linearGradient id="sky-xy" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0c1828"/>
-      <stop offset="40%" stop-color="#8a3808"/>
-      <stop offset="70%" stop-color="#c86018"/>
-      <stop offset="100%" stop-color="#e89030"/>
-    </linearGradient>
-    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#8B5a1a"/>
-      <stop offset="45%" stop-color="#d4922a"/>
-      <stop offset="100%" stop-color="#7a4810"/>
-    </linearGradient>
-    <linearGradient id="river-xy" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1a5a8a"/>
-      <stop offset="100%" stop-color="#0a2a4a"/>
-    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c8c8c8"/><stop offset="100%" stop-color="#b8b8b8"/></linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f4f4f4"/><stop offset="18%" stop-color="#d8d8d8"/><stop offset="40%" stop-color="#f0f0f0"/><stop offset="62%" stop-color="#b0b0b0"/><stop offset="80%" stop-color="#e0e0e0"/><stop offset="100%" stop-color="#c8c8c8"/></linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0c1828"/><stop offset="40%" stop-color="#8a3808"/><stop offset="70%" stop-color="#c86018"/><stop offset="100%" stop-color="#e89030"/></linearGradient>
+    <linearGradient id="hanriver" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a5a8a"/><stop offset="100%" stop-color="#0a2a4a"/></linearGradient>
+    <clipPath id="clip"><rect x="236" y="58" width="328" height="328" rx="18"/></clipPath>
   </defs>
-
-  <!-- Dusk sky -->
-  <rect width="800" height="500" fill="url(#sky-xy)"/>
-
-  <!-- Han River -->
-  <path d="M0,405 Q120,392 240,400 Q360,408 480,395 Q600,382 720,390 Q760,393 800,388 L800,500 L0,500Z" fill="url(#river-xy)" opacity="0.9"/>
-  <!-- River shimmer -->
-  <path d="M0,420 Q200,410 400,415 Q600,420 800,412" fill="none" stroke="rgba(200,160,60,0.3)" stroke-width="2"/>
-  <path d="M0,435 Q200,426 400,430 Q600,434 800,427" fill="none" stroke="rgba(200,160,60,0.2)" stroke-width="1.5"/>
-
-  <!-- Ancient city walls (base) -->
-  <rect x="80" y="355" width="640" height="60" fill="#5a3810"/>
-  <rect x="70" y="345" width="660" height="18" fill="#6a4818"/>
-  <!-- Wall battlements (merlons) -->
-  <rect x="80" y="322" width="38" height="28" fill="#6a4818"/>
-  <rect x="135" y="322" width="38" height="28" fill="#6a4818"/>
-  <rect x="190" y="322" width="38" height="28" fill="#6a4818"/>
-  <rect x="245" y="322" width="38" height="28" fill="#6a4818"/>
-  <rect x="300" y="322" width="38" height="28" fill="#6a4818"/>
-  <rect x="355" y="322" width="38" height="28" fill="#6a4818"/>
-  <rect x="410" y="322" width="38" height="28" fill="#6a4818"/>
-  <rect x="465" y="322" width="38" height="28" fill="#6a4818"/>
-  <rect x="520" y="322" width="38" height="28" fill="#6a4818"/>
-  <rect x="575" y="322" width="38" height="28" fill="#6a4818"/>
-  <rect x="630" y="322" width="38" height="28" fill="#6a4818"/>
-  <rect x="685" y="322" width="38" height="28" fill="#6a4818"/>
-
-  <!-- City gate tower (main, center) -->
-  <!-- Gate arch -->
-  <path d="M330,345 L330,270 Q400,235 470,270 L470,345 Z" fill="#3a2008"/>
-  <rect x="325" y="270" width="150" height="80" fill="#3a2008"/>
-  <!-- Tower body -->
-  <rect x="290" y="145" width="220" height="200" fill="#7a5028"/>
-  <!-- Tower eaves (upturned) -->
-  <path d="M272,200 L290,145 L510,145 L528,200 Q400,170 272,200 Z" fill="#8B2010"/>
-  <path d="M260,198 Q400,165 540,198" fill="none" stroke="#c04020" stroke-width="3"/>
-  <!-- Upturned roof corners -->
-  <path d="M260,198 Q248,188 242,175" stroke="#8B2010" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <path d="M540,198 Q552,188 558,175" stroke="#8B2010" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <!-- Second eave -->
-  <path d="M280,145 L295,95 L505,95 L520,145 Q400,118 280,145 Z" fill="#a03015"/>
-  <path d="M268,143 Q400,112 532,143" fill="none" stroke="#c04020" stroke-width="2.5"/>
-  <path d="M268,143 Q256,133 250,118" stroke="#a03015" stroke-width="7" fill="none" stroke-linecap="round"/>
-  <path d="M532,143 Q544,133 550,118" stroke="#a03015" stroke-width="7" fill="none" stroke-linecap="round"/>
-  <!-- Top roof -->
-  <path d="M295,95 L330,55 L400,38 L470,55 L505,95 Q400,70 295,95 Z" fill="#8B2010"/>
-  <path d="M284,93 Q400,62 516,93" fill="none" stroke="#c04020" stroke-width="2"/>
-  <!-- Ridge ornament -->
-  <polygon points="400,38 408,55 400,58 392,55" fill="#e8a030"/>
-  <!-- Tower windows -->
-  <rect x="360" y="165" width="30" height="40" rx="15" fill="#2a1008" opacity="0.8"/>
-  <rect x="410" y="165" width="30" height="40" rx="15" fill="#2a1008" opacity="0.8"/>
-  <rect x="340" y="110" width="25" height="30" rx="12" fill="#2a1008" opacity="0.7"/>
-  <rect x="435" y="110" width="25" height="30" rx="12" fill="#2a1008" opacity="0.7"/>
-  <!-- Lantern lights -->
-  <circle cx="375" cy="183" r="5" fill="#ffd040" opacity="0.6"/>
-  <circle cx="425" cy="183" r="5" fill="#ffd040" opacity="0.6"/>
-  <!-- Gate passage detail -->
-  <path d="M346,345 Q400,295 454,345" fill="#2a1008"/>
-  <rect x="350" y="295" width="100" height="55" fill="#2a1008"/>
-
-  <!-- Side wall towers -->
-  <rect x="90" y="240" width="90" height="110" fill="#6a4018"/>
-  <path d="M82,240 Q135,215 198,240 Q135,222 82,240 Z" fill="#8B2010"/>
-  <rect x="620" y="240" width="90" height="110" fill="#6a4018"/>
-  <path d="M612,240 Q665,215 718,240 Q665,222 612,240 Z" fill="#8B2010"/>
-
-  <!-- Hanging red lanterns -->
-  <line x1="320" y1="145" x2="320" y2="155" stroke="#8B1a08" stroke-width="2"/>
-  <ellipse cx="320" cy="162" rx="8" ry="12" fill="#c8102e"/>
-  <line x1="480" y1="145" x2="480" y2="155" stroke="#8B1a08" stroke-width="2"/>
-  <ellipse cx="480" cy="162" rx="8" ry="12" fill="#c8102e"/>
-
-  <!-- Bronze medal border -->
-  <rect x="7" y="7" width="786" height="486" rx="13" ry="13" fill="none" stroke="url(#bronze)" stroke-width="6"/>
-  <rect x="16" y="16" width="768" height="468" rx="10" ry="10" fill="none" stroke="rgba(139,90,26,0.35)" stroke-width="1.5"/>
-  <circle cx="28" cy="28" r="5" fill="none" stroke="rgba(180,120,40,0.6)" stroke-width="2"/>
-  <circle cx="772" cy="28" r="5" fill="none" stroke="rgba(180,120,40,0.6)" stroke-width="2"/>
-  <circle cx="28" cy="472" r="5" fill="none" stroke="rgba(180,120,40,0.6)" stroke-width="2"/>
-  <circle cx="772" cy="472" r="5" fill="none" stroke="rgba(180,120,40,0.6)" stroke-width="2"/>
-
-  <!-- Ribbon -->
-  <path d="M376,0 L424,0 L424,38 L400,50 L376,38 Z" fill="#6a1808"/>
-  <path d="M382,0 L418,0 L418,34 L400,44 L382,34 Z" fill="#8B2010"/>
-  <circle cx="400" cy="7" r="5" fill="#d4922a" opacity="0.9"/>
-  <rect x="396" y="0" width="8" height="14" fill="#581006"/>
-
-  <!-- 襄阳 characters -->
-  <text x="50" y="180" font-family="'PingFang SC','Microsoft YaHei','SimHei',serif" font-size="120" font-weight="900" fill="white" fill-opacity="0.9">襄阳</text>
-  <text x="52" y="210" font-family="Arial,sans-serif" font-size="20" font-weight="600" fill="white" fill-opacity="0.65" letter-spacing="4">XIANGYANG</text>
-
-  <!-- Bottom strip -->
-  <rect x="0" y="438" width="800" height="62" fill="rgba(12,8,4,0.88)"/>
-  <line x1="0" y1="438" x2="800" y2="438" stroke="rgba(180,120,40,0.45)" stroke-width="1"/>
-  <text x="400" y="463" font-family="'Arial Black',sans-serif" font-size="16" font-weight="900" fill="#d4922a" text-anchor="middle" letter-spacing="2">襄阳马拉松</text>
-  <text x="400" y="486" font-family="Arial,sans-serif" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle" letter-spacing="1.5">XIANGYANG MARATHON · HUBEI · CHINA</text>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect x="218" y="44" width="368" height="368" rx="28" fill="rgba(0,0,0,0.28)" transform="translate(5,8)"/>
+  <rect x="218" y="44" width="368" height="368" rx="28" fill="url(#silver)"/>
+  <rect x="230" y="56" width="344" height="344" rx="22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="3"/>
+  <rect x="232" y="58" width="340" height="340" rx="20" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+  <g clip-path="url(#clip)">
+    <rect x="236" y="58" width="328" height="328" fill="url(#sky)"/>
+    <!-- Han River -->
+    <path d="M236,340 Q310,330 400,336 Q480,342 564,332 L564,386 L236,386Z" fill="url(#hanriver)" opacity="0.9"/>
+    <path d="M236,352 Q320,345 400,348 Q480,351 564,346" fill="none" stroke="rgba(200,160,60,0.25)" stroke-width="2"/>
+    <!-- City wall base -->
+    <rect x="236" y="295" width="328" height="50" fill="#5a3810"/>
+    <rect x="236" y="284" width="328" height="16" fill="#6a4818"/>
+    <!-- Wall merlons (battlements) -->
+    <rect x="238" y="262" width="28" height="26" fill="#6a4818"/>
+    <rect x="278" y="262" width="28" height="26" fill="#6a4818"/>
+    <rect x="318" y="262" width="28" height="26" fill="#6a4818"/>
+    <rect x="358" y="262" width="28" height="26" fill="#6a4818"/>
+    <rect x="418" y="262" width="28" height="26" fill="#6a4818"/>
+    <rect x="458" y="262" width="28" height="26" fill="#6a4818"/>
+    <rect x="498" y="262" width="28" height="26" fill="#6a4818"/>
+    <rect x="538" y="262" width="28" height="26" fill="#6a4818"/>
+    <!-- Gate arch (center opening) -->
+    <path d="M356,295 L356,232 Q400,210 444,232 L444,295Z" fill="#3a2008"/>
+    <rect x="350" y="232" width="100" height="68" fill="#3a2008"/>
+    <!-- Main gate tower body -->
+    <rect x="310" y="150" width="180" height="148" fill="#7a5028"/>
+    <!-- Lower eave (upturned) -->
+    <path d="M294,195 L310,150 L490,150 L506,195 Q400,170 294,195Z" fill="#8B2010"/>
+    <path d="M282,193 Q400,162 518,193" fill="none" stroke="#c04020" stroke-width="2.5"/>
+    <path d="M282,193 Q272,183 266,170" stroke="#8B2010" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M518,193 Q528,183 534,170" stroke="#8B2010" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <!-- Upper eave -->
+    <path d="M320,150 L336,108 L464,108 L480,150 Q400,128 320,150Z" fill="#a03015"/>
+    <path d="M308,148 Q400,118 492,148" fill="none" stroke="#c04020" stroke-width="2"/>
+    <path d="M308,148 Q298,138 292,124" stroke="#a03015" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M492,148 Q502,138 508,124" stroke="#a03015" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Top roof -->
+    <path d="M336,108 L368,74 L400,62 L432,74 L464,108 Q400,85 336,108Z" fill="#8B2010"/>
+    <path d="M326,107 Q400,76 474,107" fill="none" stroke="#c04020" stroke-width="1.8"/>
+    <!-- Ridge ornament -->
+    <polygon points="400,62 407,76 400,79 393,76" fill="#e8a030"/>
+    <!-- Tower windows -->
+    <rect x="368" y="168" width="24" height="32" rx="12" fill="#2a1008" opacity="0.8"/>
+    <rect x="408" y="168" width="24" height="32" rx="12" fill="#2a1008" opacity="0.8"/>
+    <rect x="350" y="118" width="20" height="24" rx="10" fill="#2a1008" opacity="0.7"/>
+    <rect x="430" y="118" width="20" height="24" rx="10" fill="#2a1008" opacity="0.7"/>
+    <!-- Lanterns -->
+    <line x1="370" y1="150" x2="370" y2="160" stroke="#8B1a08" stroke-width="1.5"/>
+    <ellipse cx="370" cy="167" rx="6" ry="9" fill="#c8102e"/>
+    <line x1="430" y1="150" x2="430" y2="160" stroke="#8B1a08" stroke-width="1.5"/>
+    <ellipse cx="430" cy="167" rx="6" ry="9" fill="#c8102e"/>
+    <!-- Side wall towers -->
+    <rect x="248" y="200" width="62" height="95" fill="#6a4018"/>
+    <path d="M240,200 Q279,180 310,200 Q279,186 240,200Z" fill="#8B2010"/>
+    <rect x="490" y="200" width="62" height="95" fill="#6a4018"/>
+    <path d="M490,200 Q521,180 560,200 Q521,186 490,200Z" fill="#8B2010"/>
+    <!-- Bottom label -->
+    <rect x="236" y="345" width="328" height="41" fill="rgba(12,8,4,0.88)"/>
+    <text x="254" y="148" font-family="'PingFang SC','Microsoft YaHei','SimHei',Impact,sans-serif" font-size="88" font-weight="900" fill="white" fill-opacity="0.93" stroke="#2a1008" stroke-width="3" paint-order="stroke">襄阳</text>
+    <text x="256" y="168" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white" fill-opacity="0.8" stroke="#2a1008" stroke-width="1" paint-order="stroke" letter-spacing="3">XIANGYANG · CHINA</text>
+    <text x="400" y="372" font-family="'Arial Black',sans-serif" font-size="15" font-weight="900" fill="#d4922a" text-anchor="middle" letter-spacing="1.5">襄阳马拉松</text>
+  </g>
+  <rect x="236" y="58" width="328" height="328" rx="18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <rect x="383" y="12" width="34" height="38" rx="6" fill="url(#silver)"/>
+  <rect x="386" y="15" width="28" height="32" rx="4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+  <rect x="383" y="40" width="34" height="12" fill="url(#silver)"/>
+  <ellipse cx="400" cy="26" rx="7" ry="6" fill="#888" opacity="0.35"/>
+  <text x="400" y="445" font-family="'Arial Black',sans-serif" font-size="14" font-weight="900" fill="#3a3a3a" text-anchor="middle" letter-spacing="1">XIANGYANG MARATHON · HUBEI · CHINA</text>
+  <text x="400" y="468" font-family="Arial,sans-serif" font-size="12" fill="#666" text-anchor="middle">湖北襄阳 · 2025.10.19</text>
 </svg>
