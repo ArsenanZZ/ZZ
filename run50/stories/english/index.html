@@ -284,6 +284,22 @@
     </div>
 
     <section class="story-grid" aria-label="English story list">
+      <a class="story-card run-50" href="./louisville-marathon.html">
+        <img src="../../../assets/thumb-run50-louisville-marathon-icons.svg?v=20260615-2" alt="Icon cover for Louisville Marathon" loading="lazy" decoding="async">
+        <div class="story-card-content">
+          <div class="meta">Kentucky · Louisville · 2020.11.08</div>
+          <h2>Louisville Marathon: my first marathon in North America</h2>
+          <p>A pandemic-era out-and-back through Beckley Creek Park, with masks, staggered starts, six-foot gaps, a hot final stretch, and State 1 of Run50.</p>
+        </div>
+      </a>
+
+
+
+
+
+
+
+
       <a class="story-card run-50" href="./chicago-marathon.html">
         <img src="../../../assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1" alt="Icon cover for Chicago Marathon" />
         <div class="story-card-content">
@@ -657,7 +673,7 @@
             
             const parsedList = _STATE_RACES[abbr];
             if (parsedList && parsedList.length > 0) {
-              const match = parsedList.find(p => p.city === mr.city);
+              const match = parsedList.find(p => p.city === mr.city && p.date === mr.date);
               if (match) {
                 cardId = match.cardId;
                 storyFile = match.storyFile;

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Louisville Marathon Run50 icon cover</title>
+  <desc id="desc">Louisville icon cover with a running horse, twin spires, park hills, river bridge and a Kentucky Run50 badge.</desc>
+  <rect width="1200" height="750" fill="#edf3f7"/>
+  <rect y="420" width="1200" height="330" fill="#8fc8dc"/>
+  <path d="M0 500 L170 414 L340 482 L530 390 L740 488 L930 404 L1200 492 V750 H0Z" fill="#82b85a"/>
+  <rect y="626" width="1200" height="124" fill="#4c9ab5"/>
+  <rect y="696" width="1200" height="54" fill="#367b96"/>
+  <text x="64" y="112" fill="#20303d" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="900">LOUISVILLE</text>
+  <text x="68" y="160" fill="#536a79" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800">DERBY CITY · FIRST NORTH AMERICAN MARATHON</text>
+  <rect x="844" y="58" width="278" height="118" rx="26" fill="#fff" stroke="#8fb2cc" stroke-width="3"/>
+  <text x="983" y="101" text-anchor="middle" fill="#1f2937" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">Run50 #01</text>
+  <text x="983" y="150" text-anchor="middle" fill="#0b67c2" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="900">KENTUCKY</text>
+  <g stroke="#304454" stroke-linecap="round">
+    <line x1="75" y1="540" x2="1115" y2="498" stroke-width="10"/>
+    <line x1="75" y1="567" x2="1115" y2="525" stroke-width="6"/>
+    <g stroke-width="4">
+      <line x1="110" y1="530" x2="128" y2="570"/><line x1="210" y1="526" x2="228" y2="566"/>
+      <line x1="310" y1="522" x2="328" y2="562"/><line x1="410" y1="518" x2="428" y2="558"/>
+      <line x1="510" y1="514" x2="528" y2="554"/><line x1="610" y1="510" x2="628" y2="550"/>
+      <line x1="710" y1="506" x2="728" y2="546"/><line x1="810" y1="502" x2="828" y2="542"/>
+      <line x1="910" y1="498" x2="928" y2="538"/><line x1="1010" y1="494" x2="1028" y2="534"/>
+    </g>
+  </g>
+  <g stroke="#6f7f89" stroke-width="3">
+    <rect x="710" y="356" width="230" height="196" fill="#f2eee6"/>
+    <rect x="738" y="296" width="44" height="256" fill="#f7f3ea"/>
+    <rect x="868" y="296" width="44" height="256" fill="#f7f3ea"/>
+  </g>
+  <path d="M734 296 L760 240 L786 296Z" fill="#c74d3d" stroke="#6f3430" stroke-width="3"/>
+  <path d="M864 296 L890 240 L916 296Z" fill="#c74d3d" stroke="#6f3430" stroke-width="3"/>
+  <circle cx="760" cy="258" r="7" fill="#e9c75e"/><circle cx="890" cy="258" r="7" fill="#e9c75e"/>
+  <g fill="#8fb8c8"><rect x="735" y="405" width="22" height="35"/><rect x="790" y="405" width="22" height="35"/><rect x="845" y="405" width="22" height="35"/><rect x="900" y="405" width="22" height="35"/></g>
+  <g fill="#70452f" stroke="#5a3425" stroke-linecap="round">
+    <ellipse cx="335" cy="504" rx="105" ry="45" stroke="none"/>
+    <path d="M382 455 L430 420 L462 505 L395 532Z" stroke="none"/>
+    <ellipse cx="450" cy="448" rx="36" ry="28" stroke="none"/>
+    <ellipse cx="487" cy="468" rx="24" ry="15" fill="#80523a" stroke="none"/>
+    <path d="M432 424 L440 394 L452 430Z" stroke="none"/><path d="M451 422 L462 397 L469 434Z" stroke="none"/>
+    <line x1="260" y1="532" x2="210" y2="620" stroke-width="13"/>
+    <line x1="320" y1="534" x2="365" y2="625" stroke-width="13"/>
+    <line x1="390" y1="524" x2="478" y2="592" stroke-width="13"/>
+    <line x1="275" y1="524" x2="180" y2="558" stroke-width="11"/>
+    <path d="M242 476 Q185 438 190 520" fill="none" stroke="#4b2d20" stroke-width="10"/>
+  </g>
+  <circle cx="458" cy="444" r="4" fill="#111827"/>
+  <rect x="302" y="451" width="84" height="30" fill="#0b67c2"/>
+  <path d="M330 456 L350 382 L384 390 L382 462Z" fill="#205d8f"/>
+  <circle cx="360" cy="365" r="18" fill="#d9a27d"/>
+  <path d="M337 360 Q360 330 383 360Z" fill="#1f2937"/>
+  <line x1="365" y1="402" x2="420" y2="446" stroke="#d9a27d" stroke-width="8" stroke-linecap="round"/>
+</svg>

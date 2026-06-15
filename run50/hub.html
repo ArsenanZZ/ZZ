@@ -536,7 +536,7 @@ const _CM = {
 };
 
 const _CITY_LL = {
-  'Chicago':{lat:41.8781,lon:-87.6298},'Little Rock':{lat:34.7465,lon:-92.2896},
+  'Chicago':{lat:41.8781,lon:-87.6298},'Louisville':{lat:38.2527,lon:-85.7585},'Little Rock':{lat:34.7465,lon:-92.2896},
   'Miami':{lat:25.7617,lon:-80.1918},'Nashville':{lat:36.1627,lon:-86.7816},
   'San Antonio':{lat:29.4241,lon:-98.4936},'Greer':{lat:34.9387,lon:-82.2271},
   'Huntington':{lat:38.4192,lon:-82.4453},'Pittsburgh':{lat:40.4406,lon:-79.9959},
@@ -548,6 +548,7 @@ const _CITY_LL = {
 };
 
 const _RACES = {
+  'KY':[{city:'Louisville',date:'Nov 8, 2020',story:'stories/english/louisville-marathon.html',fb:'facebook/louisville-marathon.html'}],
   'IL':[{city:'Chicago',date:'Oct 2024',story:'stories/english/chicago-marathon.html',fb:'facebook/chicago-marathon.html'}],
   'AR':[{city:'Little Rock',date:'Mar 2025',story:'stories/english/little-rock-marathon.html',fb:'facebook/little-rock-marathon.html'}],
   'FL':[{city:'Miami',date:'Jan 2025',story:'stories/english/miami-marathon.html',fb:'facebook/miami-marathon.html'}],
@@ -842,6 +843,12 @@ function _injectWorldMap() {
     <circle cx="231" cy="121" r="11" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
     <circle cx="231" cy="121" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
       data-city="Chicago, IL" data-date="Oct 2024" data-story="stories/english/chicago-marathon.html"/>
+
+    <!-- Kentucky Louisville story dot -->
+    <circle cx="234" cy="128" r="10" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
+    <circle cx="234" cy="128" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Louisville, KY" data-date="Nov 8, 2020" data-story="stories/english/louisville-marathon.html"/>
+    <!-- /Kentucky Louisville story dot -->
 
     <circle cx="204" cy="152" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
       data-city="San Antonio, TX" data-date="Dec 2024" data-story="stories/english/san-antonio-marathon.html"/>

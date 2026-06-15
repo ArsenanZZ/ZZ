@@ -314,6 +314,23 @@
     </div>
 
     <section class="story-grid" aria-label="中文故事列表">
+      <a class="story-card run-50" href="./louisville-marathon.html">
+        <img src="../../../assets/cover-medal-ky.jpg?v=20260615-2" alt="路易斯维尔马拉松奖牌封面" loading="lazy" decoding="async">
+        <div class="story-copy">
+          <p class="story-meta">肯塔基路易斯维尔 · 2020.11.08</p>
+          <h2 class="story-title">Run50 #第1州｜路易斯维尔马拉松</h2>
+          <p class="story-desc">疫情中的间隔起跑、六英尺社交距离、Beckley Creek Park的秋日折返，以及我在北美完成的第一个全马。</p>
+          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+        </div>
+      </a>
+
+
+
+
+
+
+
+
       <a class="story-card run-50" href="./chicago-marathon.html">
         <img src="../../../assets/cover-medal-il.jpg" alt="芝加哥马拉松奖牌封面" loading="lazy" decoding="async">
         <div class="story-copy">
@@ -723,7 +740,7 @@
             
             const parsedList = _STATE_RACES[abbr];
             if (parsedList && parsedList.length > 0) {
-              const match = parsedList.find(p => p.city === mr.city);
+              const match = parsedList.find(p => p.city === mr.city && p.date === mr.date);
               if (match) {
                 cardId = match.cardId;
                 storyFile = match.storyFile;
