@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Run50 Hub | ZZ</title>
+<script>
+  (() => {
+    const t = localStorage.getItem('zz-theme') || 'dark';
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f4f6f3;
+    --panel: #ffffff;
+    --panel-strong: #ffffff;
+    --header: rgba(250,251,249,.94);
+    --ink: #17201c;
+    --muted: #617068;
+    --line: #d8dfda;
+    --soft: #e7ece8;
+    --soft-2: #dde5df;
+    --focus: #2675bb;
+    --run: #a96208;
+    --run-dim: rgba(169,98,8,.12);
+    --shadow: 0 14px 36px rgba(23,42,32,.08);
+    --map-ocean: #a8d4e8;
+    --map-land: #d4c9a8;
+    --map-us: #d4823a;
+    --map-china: #5ca860;
+    --map-mexico: #e8b040;
+    --map-italy: #e05050;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #121512;
+    --panel: #1b201c;
+    --panel-strong: #202720;
+    --header: rgba(18,21,18,.94);
+    --ink: #f2f5f1;
+    --muted: #a9b5ad;
+    --line: #343b35;
+    --soft: #252b26;
+    --soft-2: #303730;
+    --focus: #65a9e3;
+    --run: #d18b30;
+    --run-dim: rgba(209,139,48,.14);
+    --shadow: 0 16px 42px rgba(0,0,0,.22);
+    --map-ocean: #1e3a4a;
+    --map-land: #2a2e22;
+    --map-us: #c46a20;
+    --map-china: #3a8a44;
+    --map-mexico: #b88028;
+    --map-italy: #c03838;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--bg);
+    font-family: Inter, 'Segoe UI', Arial, sans-serif;
+    transition: color .18s ease, background-color .18s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button, input { font: inherit; }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  /* ── HEADER ── */
+  .hub-header {
+    position: relative;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 54px;
+    padding: 0 20px;
+    background: var(--header);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(12px);
+    flex-shrink: 0;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: var(--muted);
+    font-size: 12.5px;
+    font-weight: 600;
+    transition: background .15s, color .15s;
+  }
+  .back-btn:hover { background: var(--soft); color: var(--ink); }
+
+  .hub-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--run);
+    letter-spacing: -.01em;
+    flex: 1;
+  }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+  }
+  .theme-btn:hover { background: var(--soft); }
+
+  /* ── MAIN TAB NAV ── */
+  .hub-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 16px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+    overflow-x: auto;
+  }
+
+  .hub-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 650;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .15s, border-color .15s;
+  }
+  .hub-tab:hover { color: var(--ink); }
+  .hub-tab.active { color: var(--run); border-bottom-color: var(--run); }
+
+  /* ── CONTENT AREA ── */
+  .hub-content {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .tab-pane {
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
+  .tab-pane.active { display: flex; }
+
+  .embed-frame {
+    width: 100%;
+    flex: 1;
+    border: none;
+    background: var(--bg);
+    display: block;
+  }
+
+  /* ── MAP PANE ── */
+  .map-shell {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .map-subtabs {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+
+  .mtab {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .mtab:hover { color: var(--ink); background: var(--soft-2); }
+  .mtab.active { background: var(--run); border-color: var(--run); color: #fff; }
+
+  .map-views {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+  .map-view { display: none; }
+  .map-view.active { display: block; }
+
+  .map-card {
+    background: var(--panel);
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .map-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .map-card-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .map-slot {
+    position: relative;
+    border-radius: 8px;
+    overflow: visible;
+  }
+
+  #us-map-slot { aspect-ratio: 1722 / 989; }
+
+  /* ── MAP TOOLTIP ── */
+  .map-tooltip {
+    position: fixed;
+    z-index: 9999;
+    background: rgba(10,14,10,.93);
+    color: #e8f0e8;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.55;
+    box-shadow: 0 6px 24px rgba(0,0,0,.35);
+    pointer-events: none;
+    display: none;
+    border: 1px solid rgba(255,255,255,.1);
+    backdrop-filter: blur(8px);
+    min-width: 170px;
+    max-width: 240px;
+  }
+  .map-tooltip strong { color: #fff; font-size: 13px; }
+  .map-tooltip a { color: #65a9e3; pointer-events: auto; }
+
+  /* ── WORLD MAP ── */
+  #world-map-master {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  #world-map-master .wm-country {
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  #world-map-master .wm-country:hover { opacity: .82; }
+  .wm-dot {
+    cursor: pointer;
+    transition: r .15s;
+  }
+  .wm-dot:hover { r: 7; }
+
+  /* ── US MAP colors ── */
+  #us-map-master path { transition: fill .2s, opacity .2s; }
+  #us-map-master path.run-state { cursor: pointer; }
+  #us-map-master path.run-state:hover { opacity: .82; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hub-header { padding: 0 14px; }
+    .hub-tab { padding: 8px 10px; font-size: 12px; gap: 4px; }
+    .map-card { padding: 14px; }
+    .map-views { padding: 12px; }
+    .mtab { padding: 5px 12px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="hub-header">
+  <a href="../" class="back-btn">
+    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    ZZ Hub
+  </a>
+  <div class="hub-title">🏃 Run50 Hub</div>
+  <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.2 3.2l1 1M11.8 11.8l1 1M12.8 3.2l-1 1M4.2 11.8l-1 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+    <span id="themeLabel">Light</span>
+  </button>
+</header>
+
+<!-- ── MAIN TAB NAV ── -->
+<nav class="hub-tabs" role="tablist" aria-label="Run50 sections">
+  <button class="hub-tab active" role="tab" aria-selected="true" data-tab="home">🏠 Run50 Home</button>
+  <button class="hub-tab" role="tab" aria-selected="false" data-tab="chinese">📖 中文故事</button>
+  <button class="hub-tab" role="tab" aria-selected="false" data-tab="facebook">📘 Facebook Stories</button>
+  <button class="hub-tab" role="tab" aria-selected="false" data-tab="map">🗺 Running Map</button>
+</nav>
+
+<!-- ── CONTENT ── -->
+<main class="hub-content">
+
+  <!-- Home -->
+  <div class="tab-pane active" id="pane-home">
+    <iframe class="embed-frame" src="index.html" title="Run50 Home" loading="lazy"></iframe>
+  </div>
+
+  <!-- Chinese Stories -->
+  <div class="tab-pane" id="pane-chinese">
+    <iframe class="embed-frame" src="stories/chinese/" title="Run50 中文故事" loading="lazy"></iframe>
+  </div>
+
+  <!-- Facebook Stories -->
+  <div class="tab-pane" id="pane-facebook">
+    <iframe class="embed-frame" src="facebook/" title="Run50 Facebook Stories" loading="lazy"></iframe>
+  </div>
+
+  <!-- Running Map -->
+  <div class="tab-pane" id="pane-map">
+    <div class="map-shell">
+      <div class="map-subtabs">
+        <button class="mtab active" data-map="us">🇺🇸 US</button>
+        <button class="mtab" data-map="china">🇨🇳 China</button>
+        <button class="mtab" data-map="world">🌍 World</button>
+      </div>
+      <div class="map-views">
+
+        <!-- US Map -->
+        <div class="map-view active" id="mv-us">
+          <div class="map-card">
+            <div class="map-card-title">United States Marathon Map</div>
+            <div class="map-card-sub">Hover over states or city dots to explore race stories</div>
+            <div class="map-slot" id="us-map-slot"></div>
+          </div>
+        </div>
+
+        <!-- China Map -->
+        <div class="map-view" id="mv-china">
+          <div class="map-card">
+            <div class="map-card-title">China Marathon Map</div>
+            <div class="map-card-sub">Provinces and marathon cities across China</div>
+            <div class="map-slot" id="cn-map-slot"></div>
+          </div>
+        </div>
+
+        <!-- World Map -->
+        <div class="map-view" id="mv-world">
+          <div class="map-card">
+            <div class="map-card-title">World Marathon Map</div>
+            <div class="map-card-sub">Every country where a marathon has been run — click dots to open stories</div>
+            <div class="map-slot" id="world-map-slot"></div>
+          </div>
+        </div>
+
+      </div><!-- /map-views -->
+    </div><!-- /map-shell -->
+  </div><!-- /pane-map -->
+
+</main>
+
+<!-- Tooltip -->
+<div class="map-tooltip" id="mapTooltip" role="tooltip"></div>
+
+<!-- Map data -->
+<script src="us-map-svg.js"></script>
+<script src="china-map-svg.js"></script>
+
+<script>
+/* ====================================================
+   THEME
+   ==================================================== */
+const themeToggle = document.getElementById('themeToggle');
+const themeLabel  = document.getElementById('themeLabel');
+
+function syncThemeLabel() {
+  const dark = document.documentElement.dataset.theme === 'dark';
+  themeLabel.textContent = dark ? 'Light' : 'Dark';
+  themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+}
+themeToggle.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('zz-theme', next);
+  syncThemeLabel();
+  // Rebuild world map SVG colors on theme change
+  if (mapsInited) { _injectWorldMap(); }
+});
+syncThemeLabel();
+
+/* ====================================================
+   MAIN TABS
+   ==================================================== */
+const hubTabs  = [...document.querySelectorAll('.hub-tab')];
+const tabPanes = [...document.querySelectorAll('.tab-pane')];
+
+function switchTab(name) {
+  hubTabs.forEach(t => {
+    const on = t.dataset.tab === name;
+    t.classList.toggle('active', on);
+    t.setAttribute('aria-selected', String(on));
+  });
+  tabPanes.forEach(p => p.classList.toggle('active', p.id === 'pane-' + name));
+  history.replaceState(null, '', '#' + name);
+  if (name === 'map') initMaps();
+}
+
+hubTabs.forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
+
+/* ====================================================
+   MAP SUB-TABS
+   ==================================================== */
+const mapTabs  = [...document.querySelectorAll('.mtab')];
+const mapViews = [...document.querySelectorAll('.map-view')];
+
+mapTabs.forEach(t => t.addEventListener('click', () => {
+  const tgt = t.dataset.map;
+  mapTabs.forEach(x => x.classList.toggle('active', x.dataset.map === tgt));
+  mapViews.forEach(v => v.classList.toggle('active', v.id === 'mv-' + tgt));
+}));
+
+/* ====================================================
+   TOOLTIP HELPERS
+   ==================================================== */
+const tooltip = document.getElementById('mapTooltip');
+
+function showTT(e, html) {
+  tooltip.innerHTML = html;
+  tooltip.style.display = 'block';
+  moveTT(e);
+}
+function hideTT() { tooltip.style.display = 'none'; }
+function moveTT(e) {
+  const x = e.clientX + 14, y = e.clientY - 10;
+  const w = window.innerWidth, h = window.innerHeight;
+  tooltip.style.left = (x + 240 > w ? x - 254 : x) + 'px';
+  tooltip.style.top  = (y + 100 > h ? y - 90  : y) + 'px';
+}
+document.addEventListener('mousemove', e => { if (tooltip.style.display === 'block') moveTT(e); });
+
+/* ====================================================
+   MAP INIT (lazy)
+   ==================================================== */
+let mapsInited = false;
+function initMaps() {
+  if (mapsInited) return;
+  mapsInited = true;
+  _injectUSMap();
+  _injectChinaMap();
+  _injectWorldMap();
+}
+
+/* ====================================================
+   US MAP
+   ==================================================== */
+const _HM = {
+  "IL":["Illinois","Kentucky_1_"],"TN":["Alabama"],"WV":["West_Virginia","Virginia_1_"],
+  "TX":["Kansas_1_"],"FL":["South_Carolina_1_"],"NC":["Maryland"],"AR":["Tennessee","Arkansas"],
+  "SC":["South_Carolina","Indiana_1_"],"KY":["Georgia_1_","Kentucky"],"PA":["Pensilvania","New_Jersey_1_"],
+  "WI":["Wisconsin","Illinois_1_"],"MI":["Michigan","Ocean"],"NH":["New_Hampshire","Maine_1_"],
+  "LA":["Arkansas_1_"],"VA":["North_Carolina_1_","Virginia"],"ND":["South_Dakota_1_","North_Dakota"],
+  "KS":["Kansas","North_Dakota_1_"],"VT":["New_Hampshire_1_","Vermont"],"AL":["alabama","Missispi"],
+  "AZ":["Arizona_1_","Utah"],"DE":["Massachusets_1_"],"MN":["Minnesotta","Wisconsin_1_"],
+  "CT":["New_York_2_","Connecticut"],"RI":["Delaware","Rhode_Island"],"MA":["Vermont_1_","Massachusets"],
+  "ME":["Michigan_1_","Maine"],"OH":["Ohio","West_Virginia_1_"],"NY":["Rhode_Island_1_","New_York"],
+  "CA":["Arizona"],"IN":["Indiana","Ohio_1_"],"GA":["Georgia","Florida_1_"],
+  "CO":["Texas_1_","Colorado"],"MO":["Iowa_1_","Missouri"],"HI":["ocean_2_"],"AK":["ocean_3_"],
+  "ID":["Idaho","Wyoming"],"IA":["Minessota","Iowa"],"MS":["Mossouri","Missisppi"],
+  "MT":["Washington_1_","Montana"],"NE":["Nebraska","Louisiana_1_"],"NV":["Nevada_41_","California"],
+  "NJ":["New_Jersey","Connecticut_1_"],"NM":["Idaho_1_","New_Mexico_1_"],"OK":["Oklahoma","Colorado_1_"],
+  "OR":["Nevada_1_","Oregon_41_"],"SD":["South_Dakota","Nebraska_1_"],"UT":["Utah_1_","New_Mexico"],
+  "WY":["Montana_1_","Wyoming_1_"],"MD":["Pensilvania_1_","Oregon_1_"],"WA":["Oklahoma_1_"]
+};
+
+const _SF = ["Illinois","Alabama","West_Virginia","Kansas_1_","South_Carolina_1_","Maryland","Tennessee",
+  "South_Carolina","Georgia_1_","Pensilvania","Wisconsin","Michigan","Ocean","Vermont","New_Hampshire",
+  "Arkansas_1_","North_Carolina_1_","South_Dakota_1_","Kansas","New_Hampshire_1_","alabama","Arizona_1_",
+  "Massachusets_1_","Minnesotta","New_York_2_","Connecticut","Vermont_1_","Michigan_1_","Ohio","New_York",
+  "Arizona","Indiana","Georgia","Texas_1_","Iowa_1_","Idaho","Minessota","Mossouri","Washington_1_",
+  "Nebraska","Nevada_41_","New_Jersey","Idaho_1_","Oklahoma","Nevada_1_","South_Dakota","Utah_1_",
+  "Montana_1_","Pensilvania_1_","ocean_2_","Oklahoma_1_","ocean_3_","Kentucky","Arkansas","North_Dakota",
+  "North_Dakota_1_","Colorado","Montana","Wyoming_1_","New_Mexico_1_","New_Mexico","Oregon_41_",
+  "West_Virginia_1_","Ohio_1_","Indiana_1_","Florida_1_","Kentucky_1_","Colorado_1_","Maine","Maine_1_",
+  "New_Jersey_1_","Iowa","Missouri","Missisppi","Missispi","Louisiana_1_","Utah","California",
+  "Connecticut_1_","Nebraska_1_","Illinois_1_","Massachusets","Wisconsin_1_","Wyoming","Oregon_1_",
+  "Virginia","Virginia_1_","Rhode_Island_1_","Rhode_Island","Delaware"];
+
+const _CM = {
+  'AK':'#f4a09a','AL':'#a8cc5a','AR':'#5bb87c','AZ':'#f5b840','CA':'#f4a09a',
+  'CO':'#c490d0','CT':'#c490d0','DE':'#f5b840','FL':'#f4a09a','GA':'#f5b840',
+  'HI':'#9068c0','IA':'#a8cc5a','ID':'#f4a09a','IL':'#c490d0','IN':'#f5b840',
+  'KS':'#5baad0','KY':'#a8cc5a','LA':'#a8cc5a','MA':'#5baad0','MD':'#a8cc5a',
+  'ME':'#f4a09a','MI':'#5baad0','MN':'#f5b840','MO':'#f5b840','MS':'#f5b840',
+  'MT':'#a8cc5a','NC':'#a8cc5a','ND':'#5bb87c','NE':'#5bb87c','NH':'#f5b840',
+  'NJ':'#a8cc5a','NM':'#5bb87c','NV':'#5bb87c','NY':'#f5b840','OH':'#5bb87c',
+  'OK':'#a8cc5a','OR':'#f5b840','PA':'#f4a09a','RI':'#f4a09a','SC':'#c490d0',
+  'SD':'#5baad0','TN':'#5baad0','TX':'#c490d0','UT':'#a8cc5a','VA':'#5bb87c',
+  'VT':'#a8cc5a','WA':'#a8cc5a','WI':'#5bb87c','WV':'#f5b840','WY':'#f5b840'
+};
+
+const _CITY_LL = {
+  'Chicago':{lat:41.8781,lon:-87.6298},'Little Rock':{lat:34.7465,lon:-92.2896},
+  'Miami':{lat:25.7617,lon:-80.1918},'Nashville':{lat:36.1627,lon:-86.7816},
+  'San Antonio':{lat:29.4241,lon:-98.4936},'Greer':{lat:34.9387,lon:-82.2271},
+  'Huntington':{lat:38.4192,lon:-82.4453},'Pittsburgh':{lat:40.4406,lon:-79.9959},
+  'Green Bay':{lat:44.5133,lon:-88.0133},'Grand Rapids':{lat:42.9634,lon:-85.6681},
+  'Baton Rouge':{lat:30.4515,lon:-91.1871},'Roanoke':{lat:37.271,lon:-79.9414},
+  'Fargo':{lat:46.8772,lon:-96.7898},'Huntsville':{lat:34.7304,lon:-86.5861},
+  'Cleveland':{lat:41.4993,lon:-81.6944},'Cincinnati':{lat:39.1031,lon:-84.512},
+  'Atlanta':{lat:33.749,lon:-84.388},'Denver':{lat:39.7392,lon:-104.9903}
+};
+
+const _RACES = {
+  'IL':[{city:'Chicago',date:'Oct 2024',story:'stories/english/chicago-marathon.html',fb:'facebook/chicago-marathon.html'}],
+  'AR':[{city:'Little Rock',date:'Mar 2025',story:'stories/english/little-rock-marathon.html',fb:'facebook/little-rock-marathon.html'}],
+  'FL':[{city:'Miami',date:'Jan 2025',story:'stories/english/miami-marathon.html',fb:'facebook/miami-marathon.html'}],
+  'TN':[{city:'Nashville',date:'Apr 2025',story:'stories/english/nashville-marathon.html',fb:'facebook/nashville-marathon.html'}],
+  'TX':[{city:'San Antonio',date:'Dec 2024',story:'stories/english/san-antonio-marathon.html',fb:'facebook/san-antonio-marathon.html'}],
+  'SC':[{city:'Greer',date:'Feb 2025',story:'stories/english/south-carolina-marathon.html',fb:'facebook/south-carolina-marathon.html'}],
+  'WV':[{city:'Huntington',date:'May 2025',story:'stories/english/west-virginia-marathon.html',fb:'facebook/west-virginia-marathon.html'}]
+};
+
+const _storyStates = Object.keys(_RACES);
+const _colorStates = ['LA','VA','ND','KS','VT','AL','AZ','DE','MN','CT','RI','MA','ME','OH','NY',
+  'CA','IN','HI','GA','CO','AK','MO','KY','PA','WI','MI','NH','NC'];
+
+function _albers(lat, lon) {
+  const lat0=37.5*Math.PI/180, lon0=-96*Math.PI/180;
+  const lat1=29.5*Math.PI/180, lat2=45.5*Math.PI/180;
+  const n=0.5*(Math.sin(lat1)+Math.sin(lat2));
+  const C=Math.cos(lat1)**2+2*n*Math.sin(lat1);
+  const rho0=Math.sqrt(C-2*n*Math.sin(lat0))/n;
+  const lr=lat*Math.PI/180, lnr=lon*Math.PI/180;
+  const th=n*(lnr-lon0), rho=Math.sqrt(C-2*n*Math.sin(lr))/n;
+  return {x:1798.50*rho*Math.sin(th)+935.11, y:-1851.29*(rho0-rho*Math.cos(th))+579.07};
+}
+
+function _injectUSMap() {
+  const slot = document.getElementById('us-map-slot');
+  if (!slot || typeof US_MAP_SVG === 'undefined') return;
+  slot.innerHTML = US_MAP_SVG;
+  const master = document.getElementById('us-map-master');
+  if (!master) return;
+  master.style.cssText = 'width:100%;height:auto;display:block';
+
+  // Mute all paths
+  master.querySelectorAll('path').forEach(p => {
+    const id = p.id.replace('map_','');
+    if (!_SF.includes(id)) {
+      p.style.pointerEvents = 'none';
+      const f = p.getAttribute('fill')||'';
+      if (/^#[0-9a-fA-F]{6}$/.test(f)) {
+        const r=parseInt(f.slice(1,3),16),g=parseInt(f.slice(3,5),16),b=parseInt(f.slice(5,7),16);
+        if (r*.299+g*.587+b*.114>=60) p.style.fill='none';
+      }
+    } else {
+      p.style.fill='#d8e0d4';
+      p.style.stroke='#fff';
+      p.style.strokeWidth='0.8';
+    }
+  });
+
+  // Color story states
+  _storyStates.forEach(abbr => (_HM[abbr]||[]).forEach(id => {
+    const el=document.getElementById('map_'+id);
+    if(el){el.style.fill=_CM[abbr];el.classList.add('run-state');}
+  }));
+  // Color other run states
+  _colorStates.forEach(abbr => (_HM[abbr]||[]).forEach(id => {
+    const el=document.getElementById('map_'+id);
+    if(el){el.style.fill=_CM[abbr];el.classList.add('run-state');}
+  }));
+
+  // City dots for story races
+  let dg = master.querySelector('#hub-dots');
+  if(!dg){ dg=document.createElementNS('http://www.w3.org/2000/svg','g'); dg.id='hub-dots'; master.appendChild(dg); }
+  dg.innerHTML='';
+
+  _storyStates.forEach(abbr => {
+    (_RACES[abbr]||[]).forEach(r => {
+      const cc=_CITY_LL[r.city]; if(!cc) return;
+      const {x,y}=_albers(cc.lat,cc.lon);
+      const glow=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      Object.entries({cx:x,cy:y,r:13,fill:'rgba(255,59,48,0.28)'}).forEach(([k,v])=>glow.setAttribute(k,v));
+      glow.style.pointerEvents='none'; dg.appendChild(glow);
+
+      const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      Object.entries({cx:x,cy:y,r:6,fill:'#ff3b30',stroke:'#fff','stroke-width':'1.8'}).forEach(([k,v])=>dot.setAttribute(k,v));
+      dot.style.cursor='pointer';
+      dot.addEventListener('mouseenter', e => showTT(e,
+        `<strong>${r.city}, ${abbr}</strong><br><span style="color:#9ab;">${r.date}</span>` +
+        `<br><a href="${r.story}" target="_blank">Read Story →</a>` +
+        (r.fb?`<br><a href="${r.fb}" target="_blank" style="color:#8ab4f8">Facebook →</a>`:'')));
+      dot.addEventListener('mouseleave', hideTT);
+      dot.addEventListener('click', e => { e.stopPropagation(); window.open(r.story,'_blank'); });
+      dg.appendChild(dot);
+    });
+  });
+}
+
+/* ====================================================
+   CHINA MAP
+   ==================================================== */
+function _injectChinaMap() {
+  const slot = document.getElementById('cn-map-slot');
+  if (!slot || typeof CHINA_MAP_SVG === 'undefined') return;
+  slot.innerHTML = CHINA_MAP_SVG;
+  const svg = document.getElementById('cn-map-master');
+  if (!svg) return;
+  svg.style.cssText = 'width:100%;height:auto;display:block';
+
+  const visited = {cn_hubei:'#d4614a', cn_guangxi:'#5ca860', cn_hongkong:'#e89838'};
+  const all = ['cn_xinjiang','cn_tibet','cn_innermongolia','cn_qinghai','cn_sichuan',
+    'cn_heilongjiang','cn_gansu','cn_yunnan','cn_guangxi','cn_hunan','cn_shaanxi',
+    'cn_guangdong','cn_jilin','cn_hebei','cn_hubei','cn_guizhou','cn_shandong',
+    'cn_jiangxi','cn_henan','cn_liaoning','cn_shanxi','cn_anhui','cn_fujian',
+    'cn_zhejiang','cn_jiangsu','cn_chongqing','cn_ningxia','cn_hainan','cn_taiwan',
+    'cn_beijing','cn_tianjin','cn_shanghai','cn_hongkong','cn_macao'];
+
+  all.forEach(id => {
+    const el = document.getElementById(id); if(!el) return;
+    if (visited[id]) {
+      el.setAttribute('fill', visited[id]);
+      el.setAttribute('stroke','#fff');
+      el.setAttribute('stroke-width','1.5');
+      el.style.cursor='pointer';
+      const names={cn_hubei:'Hubei (Xiangyang)',cn_guangxi:'Guangxi (Guilin)',cn_hongkong:'Hong Kong'};
+      const dates={cn_hubei:'2024',cn_guangxi:'2024',cn_hongkong:'2025'};
+      el.addEventListener('mouseenter', e => showTT(e,
+        `<strong>${names[id]}</strong><br><span style="color:#9ab;">${dates[id]}</span>` +
+        `<br><a href="stories/chinese/" target="_blank">中文故事 →</a>`));
+      el.addEventListener('mouseleave', hideTT);
+    }
+  });
+}
+
+/* ====================================================
+   WORLD MAP
+   ==================================================== */
+function _injectWorldMap() {
+  const slot = document.getElementById('world-map-slot');
+  if (!slot) return;
+
+  const dark = document.documentElement.dataset.theme === 'dark';
+  const ocean  = dark ? '#1a3040' : '#a8d4e8';
+  const landBg = dark ? '#28302a' : '#d4c9a8';
+  const canada = dark ? '#2a3428' : '#c8d4b8';
+  const africa = dark ? '#352e20' : '#d4c49c';
+  const europe = dark ? '#2a2a38' : '#c8c8d8';
+  const russia = dark ? '#2e2e26' : '#d0c8a8';
+  const neutral= dark ? '#2a3028' : '#c4c8b4';
+  const antart = dark ? '#1e2c32' : '#e5f0f5';
+  const greenl = dark ? '#1e2e28' : '#c8d8cc';
+
+  const usCol    = dark ? '#b05c10' : '#d4823a';
+  const chinaCol = dark ? '#2e7832' : '#5ca860';
+  const mexCol   = dark ? '#a07018' : '#e8b040';
+  const italyCol = dark ? '#a02828' : '#e05050';
+
+  const textFill = dark ? '#c8d8c8' : '#5a5040';
+  const lblFill  = dark ? '#e0e8e0' : '#ffffff';
+
+  slot.innerHTML = `<svg id="world-map-master" viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg"
+    style="width:100%;height:auto;display:block;border-radius:8px">
+
+    <!-- Ocean -->
+    <rect width="900" height="450" fill="${ocean}"/>
+
+    <!-- Latitude reference lines -->
+    <line x1="0" y1="225" x2="900" y2="225" stroke="${ocean === '#a8d4e8' ? '#78a8c0' : '#2a4a5a'}" stroke-width="0.6" stroke-dasharray="4,6" opacity="0.7"/>
+    <line x1="0" y1="166" x2="900" y2="166" stroke="${ocean === '#a8d4e8' ? '#78a8c0' : '#2a4a5a'}" stroke-width="0.4" stroke-dasharray="2,8" opacity="0.4"/>
+    <line x1="0" y1="284" x2="900" y2="284" stroke="${ocean === '#a8d4e8' ? '#78a8c0' : '#2a4a5a'}" stroke-width="0.4" stroke-dasharray="2,8" opacity="0.4"/>
+
+    <!-- Antarctica -->
+    <path d="M 0,415 Q 225,407 450,412 Q 675,407 900,415 L 900,450 L 0,450 Z" fill="${antart}"/>
+
+    <!-- Greenland -->
+    <path d="M 294,17 L 330,14 L 368,16 L 394,37 L 380,72 L 348,77 L 314,73 L 298,48 Z" fill="${greenl}"/>
+
+    <!-- Iceland -->
+    <path d="M 353,40 L 376,36 L 386,48 L 372,54 L 354,50 Z" fill="${greenl}"/>
+
+    <!-- Canada -->
+    <path d="M 36,88 L 48,50 L 130,38 L 200,40 L 238,68 L 296,83 L 314,96 L 318,110 L 285,114 L 268,110 L 240,108 L 208,103 L 140,103 L 128,97 L 108,83 L 38,90 Z" fill="${canada}"/>
+
+    <!-- Alaska (US) -->
+    <path d="M 38,88 L 50,56 L 68,48 L 88,52 L 100,66 L 108,83 L 38,90 Z" fill="${usCol}" opacity="0.75"/>
+
+    <!-- Contiguous United States -->
+    <path id="wm-us" class="wm-country" data-country="USA"
+      d="M 140,103 L 208,103 L 240,108 L 268,110 L 280,114 L 280,121 L 264,128 L 250,163 L 228,158 L 208,160 L 200,153 L 183,146 L 165,145 L 155,143 L 140,108 Z"
+      fill="${usCol}"/>
+
+    <!-- Hawaii (US) -->
+    <ellipse cx="168" cy="188" rx="7" ry="4" fill="${usCol}" opacity="0.75"/>
+
+    <!-- Mexico -->
+    <path id="wm-mexico" class="wm-country" data-country="Mexico"
+      d="M 165,145 L 200,153 L 208,160 L 205,178 L 196,192 L 183,192 L 170,175 Z"
+      fill="${mexCol}"/>
+
+    <!-- Central America -->
+    <path d="M 183,192 L 196,192 L 218,200 L 240,208 L 232,215 L 220,212 L 204,200 Z" fill="${neutral}"/>
+
+    <!-- Caribbean -->
+    <ellipse cx="288" cy="185" rx="9" ry="5" fill="${neutral}"/>
+    <ellipse cx="295" cy="192" rx="5" ry="3" fill="${neutral}"/>
+
+    <!-- South America -->
+    <path d="M 244,208 L 272,200 L 298,200 L 322,204 L 342,205 L 363,237 L 350,266 L 328,298 L 306,352 L 284,362 L 268,346 L 256,290 L 245,248 Z" fill="${neutral}"/>
+    <path d="M 342,205 L 363,237 L 356,250 L 340,240 L 330,218 Z" fill="${neutral}" opacity="0.7"/>
+
+    <!-- UK + Ireland -->
+    <path d="M 408,80 L 420,74 L 432,74 L 441,81 L 442,95 L 430,103 L 418,96 L 408,90 Z" fill="${europe}"/>
+    <path d="M 403,82 L 413,78 L 414,88 L 404,92 Z" fill="${europe}"/>
+
+    <!-- Scandinavia -->
+    <path d="M 440,50 L 460,44 L 496,52 L 508,63 L 498,75 L 478,83 L 460,82 L 444,70 Z" fill="${europe}"/>
+
+    <!-- Western Europe (France, Germany, Benelux, etc.) -->
+    <path d="M 428,80 L 441,81 L 444,70 L 460,82 L 478,83 L 498,75 L 508,63 L 520,68 L 522,84 L 510,96 L 494,103 L 475,108 L 453,128 L 444,108 L 435,118 L 424,112 L 428,100 Z" fill="${europe}"/>
+
+    <!-- Iberian Peninsula -->
+    <path d="M 424,110 L 444,108 L 453,128 L 440,133 L 420,130 L 414,118 Z" fill="${europe}"/>
+
+    <!-- Italy (marathon country — highlighted) -->
+    <path id="wm-italy" class="wm-country" data-country="Italy"
+      d="M 460,110 L 478,108 L 492,122 L 487,144 L 477,150 L 469,150 L 464,133 L 454,120 Z"
+      fill="${italyCol}"/>
+
+    <!-- Eastern Europe / Balkans / Greece -->
+    <path d="M 494,103 L 520,95 L 532,108 L 524,126 L 508,132 L 492,122 L 478,108 L 475,108 Z" fill="${europe}"/>
+    <path d="M 508,132 L 524,126 L 522,142 L 510,148 Z" fill="${europe}"/>
+
+    <!-- Africa -->
+    <path d="M 410,140 L 540,128 L 558,153 L 558,208 L 548,252 L 530,284 L 500,316 L 480,346 L 462,362 L 447,346 L 430,308 L 428,270 L 412,238 L 408,195 L 410,165 Z" fill="${africa}"/>
+
+    <!-- Madagascar -->
+    <path d="M 570,268 L 576,258 L 585,270 L 582,294 L 570,290 Z" fill="${africa}" opacity="0.8"/>
+
+    <!-- Middle East / Arabian Peninsula -->
+    <path d="M 530,126 L 572,124 L 594,138 L 594,166 L 576,196 L 556,206 L 542,190 L 540,166 L 558,153 L 540,128 Z" fill="${africa}" opacity="0.85"/>
+
+    <!-- Turkey -->
+    <path d="M 508,108 L 542,105 L 546,116 L 534,126 L 520,126 L 508,118 Z" fill="${europe}" opacity="0.85"/>
+
+    <!-- Russia (vast — draws under China) -->
+    <path d="M 508,60 L 860,55 L 874,80 L 864,122 L 848,130 L 864,150 L 856,176 L 830,192 L 810,202 L 780,194 L 760,184 L 742,194 L 730,202 L 726,188 L 720,170 L 700,168 L 674,184 L 648,208 L 632,210 L 610,200 L 582,214 L 570,206 L 558,175 L 546,166 L 540,140 L 530,126 L 526,110 L 520,95 L 510,85 L 508,72 Z" fill="${russia}"/>
+
+    <!-- China (marathon country — drawn on top) -->
+    <path id="wm-china" class="wm-country" data-country="China"
+      d="M 638,98 L 728,92 L 780,104 L 810,118 L 827,138 L 822,162 L 808,172 L 790,184 L 762,188 L 742,194 L 730,202 L 726,188 L 720,170 L 700,168 L 676,183 L 658,208 L 637,208 L 619,196 L 615,175 L 620,150 L 636,123 Z"
+      fill="${chinaCol}"/>
+
+    <!-- Korea -->
+    <path d="M 810,118 L 822,116 L 830,112 L 840,120 L 836,132 L 827,138 L 814,128 Z" fill="${neutral}"/>
+
+    <!-- Japan -->
+    <path d="M 843,118 L 858,112 L 866,125 L 860,136 L 847,130 Z" fill="${neutral}"/>
+    <path d="M 840,142 L 850,136 L 855,148 L 845,152 Z" fill="${neutral}"/>
+
+    <!-- India -->
+    <path d="M 612,148 L 658,144 L 682,156 L 686,194 L 670,222 L 648,238 L 628,228 L 618,200 L 618,176 Z" fill="${neutral}"/>
+
+    <!-- Southeast Asia / Indochina -->
+    <path d="M 720,170 L 752,168 L 769,183 L 763,208 L 750,240 L 732,248 L 720,240 L 718,218 L 730,202 L 720,180 Z" fill="${neutral}"/>
+
+    <!-- Indonesia -->
+    <ellipse cx="763" cy="250" rx="19" ry="7" fill="${neutral}"/>
+    <ellipse cx="798" cy="256" rx="16" ry="6" fill="${neutral}"/>
+    <ellipse cx="832" cy="256" rx="10" ry="5" fill="${neutral}"/>
+
+    <!-- Philippines -->
+    <ellipse cx="782" cy="196" rx="6" ry="11" fill="${neutral}"/>
+
+    <!-- Sri Lanka -->
+    <ellipse cx="668" cy="234" rx="4" ry="5" fill="${neutral}"/>
+
+    <!-- Australia -->
+    <path d="M 694,270 L 763,255 L 833,266 L 856,298 L 846,332 L 814,350 L 764,352 L 720,332 L 700,303 Z" fill="${africa}" opacity="0.85"/>
+
+    <!-- New Zealand -->
+    <path d="M 860,332 L 870,320 L 878,337 L 864,348 Z" fill="${neutral}"/>
+    <path d="M 862,354 L 872,348 L 876,360 L 864,364 Z" fill="${neutral}"/>
+
+    <!-- Country/region labels -->
+    <text x="208" y="130" text-anchor="middle" font-size="9.5" font-weight="800" fill="${lblFill}" pointer-events="none" opacity="0.92">USA</text>
+    <text x="188" y="174" text-anchor="middle" font-size="7.5" font-weight="600" fill="${textFill}" pointer-events="none">Mexico</text>
+    <text x="302" y="278" text-anchor="middle" font-size="8" fill="${textFill}" pointer-events="none">Brazil</text>
+    <text x="305" y="330" text-anchor="middle" font-size="7" fill="${textFill}" pointer-events="none">Argentina</text>
+    <text x="450" y="88" text-anchor="middle" font-size="8" fill="${textFill}" pointer-events="none">Europe</text>
+    <text x="471" y="127" text-anchor="middle" font-size="8.5" font-weight="700" fill="${lblFill}" pointer-events="none" opacity="0.9">Italy</text>
+    <text x="475" y="140" text-anchor="middle" font-size="6.5" fill="${dark ? '#f08080' : '#c03030'}" pointer-events="none">Pisa ★</text>
+    <text x="474" y="255" text-anchor="middle" font-size="8.5" fill="${textFill}" pointer-events="none">Africa</text>
+    <text x="685" y="90" text-anchor="middle" font-size="7" fill="${textFill}" pointer-events="none">Russia</text>
+    <text x="700" y="153" text-anchor="middle" font-size="9.5" font-weight="800" fill="${lblFill}" pointer-events="none" opacity="0.92">China</text>
+    <text x="649" y="195" text-anchor="middle" font-size="7" fill="${textFill}" pointer-events="none">India</text>
+    <text x="774" y="305" text-anchor="middle" font-size="8" fill="${textFill}" pointer-events="none">Australia</text>
+    <text x="320" y="85" text-anchor="middle" font-size="7" fill="${textFill}" pointer-events="none">Greenland</text>
+    <text x="186" y="40" text-anchor="middle" font-size="7" fill="${textFill}" pointer-events="none">Canada</text>
+    <text x="280" y="320" text-anchor="middle" font-size="7" fill="${textFill}" pointer-events="none">S. America</text>
+
+    <!-- Marathon city dots with pulse rings -->
+    <!-- US cities -->
+    <circle cx="231" cy="121" r="11" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
+    <circle cx="231" cy="121" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Chicago, IL" data-date="Oct 2024" data-story="stories/english/chicago-marathon.html"/>
+
+    <circle cx="204" cy="152" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="San Antonio, TX" data-date="Dec 2024" data-story="stories/english/san-antonio-marathon.html"/>
+
+    <circle cx="250" cy="161" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Miami, FL" data-date="Jan 2025" data-story="stories/english/miami-marathon.html"/>
+
+    <circle cx="233" cy="135" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Nashville, TN" data-date="Apr 2025" data-story="stories/english/nashville-marathon.html"/>
+
+    <circle cx="219" cy="138" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Little Rock, AR" data-date="Mar 2025" data-story="stories/english/little-rock-marathon.html"/>
+
+    <circle cx="244" cy="138" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="South Carolina" data-date="Feb 2025" data-story="stories/english/south-carolina-marathon.html"/>
+
+    <circle cx="244" cy="130" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="West Virginia" data-date="May 2025" data-story="stories/english/west-virginia-marathon.html"/>
+
+    <!-- Mexico -->
+    <circle cx="202" cy="177" r="5" fill="${mexCol}" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Mexico City" data-date="2024" data-story="facebook/mexico-marathon.html"/>
+
+    <!-- Italy -->
+    <circle cx="476" cy="132" r="11" fill="rgba(220,60,60,0.18)" pointer-events="none"/>
+    <circle cx="476" cy="132" r="5" fill="${italyCol}" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Pisa, Italy" data-date="2025" data-story="facebook/pisa-marathon.html"/>
+
+    <!-- China -->
+    <circle cx="714" cy="148" r="11" fill="rgba(80,180,80,0.18)" pointer-events="none"/>
+    <circle cx="714" cy="148" r="5" fill="${chinaCol}" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Xiangyang, China" data-date="2024" data-story="stories/chinese/"/>
+
+    <circle cx="726" cy="163" r="5" fill="${chinaCol}" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Guilin, China" data-date="2024" data-story="stories/chinese/"/>
+
+    <!-- Hong Kong -->
+    <circle cx="737" cy="170" r="5" fill="#e89838" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Hong Kong" data-date="2025" data-story="facebook/hong-kong-marathon.html"/>
+
+    <!-- Legend -->
+    <g>
+      <rect x="16" y="374" width="155" height="65" rx="7" fill="${dark ? 'rgba(15,20,15,0.82)' : 'rgba(240,248,240,0.88)'}" stroke="${dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)'}" stroke-width="1"/>
+      <circle cx="30" cy="391" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.2"/>
+      <text x="42" y="395" font-size="9" fill="${dark ? '#ccc' : '#333'}" font-family="sans-serif">US Marathons</text>
+      <circle cx="30" cy="408" r="5" fill="${chinaCol}" stroke="#fff" stroke-width="1.2"/>
+      <text x="42" y="412" font-size="9" fill="${dark ? '#ccc' : '#333'}" font-family="sans-serif">China Marathons</text>
+      <circle cx="30" cy="425" r="5" fill="${italyCol}" stroke="#fff" stroke-width="1.2"/>
+      <text x="42" y="429" font-size="9" fill="${dark ? '#ccc' : '#333'}" font-family="sans-serif">International</text>
+    </g>
+
+    <!-- Marathon count badge -->
+    <g>
+      <rect x="814" y="10" width="76" height="38" rx="8" fill="${dark ? '#8a4a08' : '#d4823a'}"/>
+      <text x="852" y="30" text-anchor="middle" font-size="18" font-weight="800" fill="#fff" font-family="sans-serif">12+</text>
+      <text x="852" y="42" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.8)" font-family="sans-serif">Marathons</text>
+    </g>
+  </svg>`;
+
+  // Bind world map dot tooltips
+  slot.querySelectorAll('.wm-dot').forEach(dot => {
+    dot.addEventListener('mouseenter', e => {
+      const {city,date,story} = dot.dataset;
+      showTT(e, `<strong>${city}</strong><br><span style="color:#9ab;">${date}</span>` +
+        (story ? `<br><a href="${story}" target="_blank">Read Story →</a>` : ''));
+    });
+    dot.addEventListener('mouseleave', hideTT);
+    dot.addEventListener('click', e => { e.stopPropagation(); if (dot.dataset.story) window.open(dot.dataset.story,'_blank'); });
+  });
+
+  // Bind country hover
+  slot.querySelectorAll('.wm-country').forEach(el => {
+    const labels = {
+      'USA':['United States','7+ marathons across US states'],
+      'China':['China','Xiangyang · Guilin · Hong Kong'],
+      'Mexico':['Mexico','Mexico City Marathon · 2024'],
+      'Italy':['Italy','Pisa Marathon · 2025']
+    };
+    el.addEventListener('mouseenter', e => {
+      const [name,sub] = labels[el.dataset.country]||[el.dataset.country,''];
+      showTT(e, `<strong>${name}</strong>${sub?`<br><span style="color:#9ab;">${sub}</span>`:''}`);
+    });
+    el.addEventListener('mouseleave', hideTT);
+  });
+}
+
+/* ====================================================
+   HASH ROUTING
+   ==================================================== */
+function initFromHash() {
+  const h = location.hash.slice(1);
+  const valid = ['home','chinese','facebook','map'];
+  if (valid.includes(h)) switchTab(h);
+}
+initFromHash();
+window.addEventListener('hashchange', initFromHash);
+</script>
+</body>
+</html>
