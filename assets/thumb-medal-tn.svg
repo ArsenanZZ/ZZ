@@ -1,11 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c8c8c8"/><stop offset="100%" stop-color="#b8b8b8"/></linearGradient>
+    <radialGradient id="bg" cx="50%" cy="46%" r="68%"><stop offset="0%" stop-color="#e2e0e0"/><stop offset="50%" stop-color="#c8c8c8"/><stop offset="100%" stop-color="#9e9e9e"/></radialGradient>
     <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f4f4f4"/><stop offset="18%" stop-color="#d8d8d8"/><stop offset="40%" stop-color="#f0f0f0"/><stop offset="62%" stop-color="#b0b0b0"/><stop offset="80%" stop-color="#e0e0e0"/><stop offset="100%" stop-color="#c8c8c8"/></linearGradient>
     <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#08041a"/><stop offset="45%" stop-color="#1e0c48"/><stop offset="100%" stop-color="#3a1870"/></linearGradient>
     <clipPath id="clip"><rect x="236" y="58" width="328" height="328" rx="18"/></clipPath>
   </defs>
   <rect width="800" height="500" fill="url(#bg)"/>
+  <!-- Soft halo behind medal -->
+  <ellipse cx="403" cy="228" rx="222" ry="224" fill="rgba(255,255,255,0.16)"/>
+  <!-- Decorative rings -->
+  <circle cx="400" cy="228" r="248" fill="none" stroke="rgba(255,255,255,0.11)" stroke-width="2"/>
+  <circle cx="400" cy="228" r="282" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2"/>
+  <circle cx="400" cy="228" r="318" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2"/>
   <rect x="218" y="44" width="368" height="368" rx="28" fill="rgba(0,0,0,0.28)" transform="translate(5,8)"/>
   <rect x="218" y="44" width="368" height="368" rx="28" fill="url(#silver)"/>
   <rect x="230" y="56" width="344" height="344" rx="22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="3"/>
@@ -78,6 +84,10 @@
     <text x="400" y="372" font-family="'Arial Black',sans-serif" font-size="15" font-weight="900" fill="#f0d070" text-anchor="middle" letter-spacing="1.5">纳什维尔马拉松</text>
   </g>
   <rect x="236" y="58" width="328" height="328" rx="18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <!-- Ribbon from top to bail -->
+  <rect x="382" y="0" width="36" height="54" fill="#08041a"/>
+  <rect x="391" y="0" width="5" height="54" fill="rgba(255,255,255,0.13)"/>
+  <rect x="404" y="0" width="5" height="54" fill="rgba(0,0,0,0.08)"/>
   <rect x="383" y="12" width="34" height="38" rx="6" fill="url(#silver)"/>
   <rect x="386" y="15" width="28" height="32" rx="4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
   <rect x="383" y="40" width="34" height="12" fill="url(#silver)"/>

@@ -1,116 +1,77 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
   <defs>
-    <linearGradient id="sky-ar" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0a1e10"/>
-      <stop offset="45%" stop-color="#1a4a20"/>
-      <stop offset="80%" stop-color="#2a6a30"/>
-      <stop offset="100%" stop-color="#3a7a3a"/>
-    </linearGradient>
-    <linearGradient id="gold-ar" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#c9922a"/>
-      <stop offset="45%" stop-color="#f5d07a"/>
-      <stop offset="100%" stop-color="#b07820"/>
-    </linearGradient>
-    <linearGradient id="sunset-ar" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#c87020"/>
-      <stop offset="50%" stop-color="#e8a030"/>
-      <stop offset="100%" stop-color="#c87020"/>
-    </linearGradient>
+    <radialGradient id="bg" cx="50%" cy="46%" r="68%"><stop offset="0%" stop-color="#e2e0e0"/><stop offset="50%" stop-color="#c8c8c8"/><stop offset="100%" stop-color="#9e9e9e"/></radialGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f4f4f4"/><stop offset="18%" stop-color="#d8d8d8"/><stop offset="40%" stop-color="#f0f0f0"/><stop offset="62%" stop-color="#b0b0b0"/><stop offset="80%" stop-color="#e0e0e0"/><stop offset="100%" stop-color="#c8c8c8"/></linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a1e10"/><stop offset="45%" stop-color="#1a4a20"/><stop offset="80%" stop-color="#2a6a30"/><stop offset="100%" stop-color="#3a7a3a"/></linearGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a2a3a"/><stop offset="100%" stop-color="#071e2a"/></linearGradient>
+    <clipPath id="clip"><rect x="236" y="58" width="328" height="328" rx="18"/></clipPath>
   </defs>
-
-  <!-- Deep forest sky -->
-  <rect width="800" height="500" fill="url(#sky-ar)"/>
-
-  <!-- Warm golden horizon glow -->
-  <ellipse cx="400" cy="400" rx="400" ry="80" fill="#c87020" opacity="0.35"/>
-  <ellipse cx="400" cy="420" rx="300" ry="50" fill="#e8a030" opacity="0.25"/>
-
-  <!-- Arkansas River (bottom) -->
-  <rect x="0" y="400" width="800" height="100" fill="#0a2a3a"/>
-  <path d="M0,408 Q200,395 400,403 Q600,411 800,398 L800,500 L0,500Z" fill="#071e2a" opacity="0.8"/>
-  <!-- River shimmer -->
-  <rect x="220" y="420" width="3" height="40" fill="#e8a030" opacity="0.1"/>
-  <rect x="420" y="415" width="2" height="45" fill="#e8a030" opacity="0.08"/>
-  <rect x="600" y="422" width="3" height="38" fill="#e8a030" opacity="0.1"/>
-
-  <!-- Bridge over river (Little Rock bridge) -->
-  <!-- Bridge deck -->
-  <rect x="180" y="395" width="440" height="12" fill="#4a3818"/>
-  <!-- Bridge truss/arches above deck -->
-  <path d="M200,395 Q310,330 400,320 Q490,330 600,395" fill="none" stroke="#3a2a10" stroke-width="8"/>
-  <path d="M200,395 Q310,345 400,335 Q490,345 600,395" fill="none" stroke="#5a4020" stroke-width="4"/>
-  <!-- Bridge supports -->
-  <rect x="195" y="395" width="12" height="50" fill="#3a2a10"/>
-  <rect x="393" y="320" width="14" height="80" fill="#3a2a10"/>
-  <rect x="595" y="395" width="12" height="50" fill="#3a2a10"/>
-  <!-- Bridge vertical hangers -->
-  <line x1="250" y1="395" x2="245" y2="356" stroke="#3a2a10" stroke-width="3"/>
-  <line x1="300" y1="395" x2="292" y2="338" stroke="#3a2a10" stroke-width="3"/>
-  <line x1="350" y1="395" x2="346" y2="325" stroke="#3a2a10" stroke-width="3"/>
-  <line x1="450" y1="395" x2="454" y2="325" stroke="#3a2a10" stroke-width="3"/>
-  <line x1="500" y1="395" x2="508" y2="338" stroke="#3a2a10" stroke-width="3"/>
-  <line x1="550" y1="395" x2="555" y2="356" stroke="#3a2a10" stroke-width="3"/>
-
-  <!-- State Capitol dome (center) -->
-  <!-- Main building -->
-  <rect x="305" y="260" width="190" height="140" fill="#c8b870"/>
-  <!-- Dome -->
-  <path d="M345,260 Q400,180 455,260 Z" fill="#d4c078"/>
-  <!-- Dome lantern -->
-  <rect x="390" y="185" width="20" height="30" fill="#c8b060"/>
-  <rect x="395" y="172" width="10" height="18" fill="#b8a050"/>
-  <!-- Dome windows -->
-  <rect x="370" y="240" width="14" height="20" rx="7" fill="#8a7a30" opacity="0.6"/>
-  <rect x="416" y="240" width="14" height="20" rx="7" fill="#8a7a30" opacity="0.6"/>
-  <!-- Capitol columns -->
-  <rect x="325" y="280" width="10" height="120" fill="#b8a860"/>
-  <rect x="345" y="280" width="10" height="120" fill="#b8a860"/>
-  <rect x="445" y="280" width="10" height="120" fill="#b8a860"/>
-  <rect x="465" y="280" width="10" height="120" fill="#b8a860"/>
-  <!-- Capitol steps -->
-  <rect x="290" y="395" width="220" height="10" fill="#a89840"/>
-  <rect x="280" y="402" width="240" height="8" fill="#988830"/>
-
-  <!-- Pine trees left -->
-  <polygon points="80,390 110,290 140,390" fill="#0d3a18"/>
-  <polygon points="60,380 95,295 130,380" fill="#1a5a28"/>
-  <polygon points="100,390 125,310 150,390" fill="#0d3a18"/>
-  <rect x="107" y="385" width="12" height="15" fill="#4a2a0a"/>
-  <rect x="122" y="387" width="12" height="13" fill="#4a2a0a"/>
-
-  <!-- Pine trees right -->
-  <polygon points="640,390 670,290 700,390" fill="#0d3a18"/>
-  <polygon points="660,382 690,300 720,382" fill="#1a5a28"/>
-  <polygon points="690,390 715,310 740,390" fill="#0d3a18"/>
-  <rect x="667" y="385" width="12" height="15" fill="#4a2a0a"/>
-  <rect x="709" y="387" width="12" height="13" fill="#4a2a0a"/>
-
-  <!-- Arkansas diamond (state gemstone) -->
-  <polygon points="400,60 415,80 400,100 385,80" fill="#e8d0f0" opacity="0.75"/>
-  <polygon points="400,65 412,80 400,95 388,80" fill="white" opacity="0.85"/>
-  <line x1="388" y1="80" x2="412" y2="80" stroke="#c0a0e0" stroke-width="1" opacity="0.6"/>
-
-  <!-- Gold medal border -->
-  <rect x="7" y="7" width="786" height="486" rx="13" ry="13" fill="none" stroke="url(#gold-ar)" stroke-width="6"/>
-  <rect x="16" y="16" width="768" height="468" rx="10" ry="10" fill="none" stroke="rgba(200,150,40,0.3)" stroke-width="1.5"/>
-  <circle cx="28" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-  <circle cx="772" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-  <circle cx="28" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-  <circle cx="772" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-
-  <!-- Ribbon -->
-  <path d="M376,0 L424,0 L424,38 L400,50 L376,38 Z" fill="#0a2a10"/>
-  <path d="M382,0 L418,0 L418,34 L400,44 L382,34 Z" fill="#1a4a20"/>
-  <circle cx="400" cy="7" r="5" fill="#c9922a" opacity="0.9"/>
-  <rect x="396" y="0" width="8" height="14" fill="#081e0c"/>
-
-  <!-- AR abbreviation -->
-  <text x="55" y="185" font-family="'Arial Black','Franklin Gothic Heavy',sans-serif" font-size="135" font-weight="900" fill="white" fill-opacity="0.93" letter-spacing="-3">AR</text>
-  <text x="57" y="212" font-family="Arial,sans-serif" font-size="20" font-weight="600" fill="white" fill-opacity="0.7" letter-spacing="4">ARKANSAS</text>
-
-  <!-- Bottom strip -->
-  <rect x="0" y="438" width="800" height="62" fill="rgba(5,15,8,0.85)"/>
-  <line x1="0" y1="438" x2="800" y2="438" stroke="rgba(200,150,40,0.4)" stroke-width="1"/>
-  <text x="400" y="463" font-family="'Arial Black',sans-serif" font-size="16" font-weight="900" fill="#f5d07a" text-anchor="middle" letter-spacing="2">小石城马拉松</text>
-  <text x="400" y="486" font-family="Arial,sans-serif" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle" letter-spacing="1.5">LITTLE ROCK MARATHON · ARKANSAS</text>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <ellipse cx="403" cy="228" rx="222" ry="224" fill="rgba(255,255,255,0.16)"/>
+  <circle cx="400" cy="228" r="248" fill="none" stroke="rgba(255,255,255,0.11)" stroke-width="2"/>
+  <circle cx="400" cy="228" r="282" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2"/>
+  <circle cx="400" cy="228" r="318" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2"/>
+  <rect x="218" y="44" width="368" height="368" rx="28" fill="rgba(0,0,0,0.28)" transform="translate(5,8)"/>
+  <rect x="218" y="44" width="368" height="368" rx="28" fill="url(#silver)"/>
+  <rect x="230" y="56" width="344" height="344" rx="22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="3"/>
+  <rect x="232" y="58" width="340" height="340" rx="20" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+  <g clip-path="url(#clip)">
+    <rect x="236" y="58" width="328" height="328" fill="url(#sky)"/>
+    <!-- Golden horizon glow -->
+    <ellipse cx="400" cy="360" rx="200" ry="60" fill="#c87020" opacity="0.3"/>
+    <ellipse cx="400" cy="375" rx="140" ry="35" fill="#e8a030" opacity="0.2"/>
+    <!-- Arkansas diamond (state gemstone, upper area) -->
+    <polygon points="400,72 414,92 400,112 386,92" fill="#e8d0f0" opacity="0.75"/>
+    <polygon points="400,76 411,92 400,108 389,92" fill="white" opacity="0.85"/>
+    <line x1="389" y1="92" x2="411" y2="92" stroke="#c0a0e0" stroke-width="1" opacity="0.6"/>
+    <!-- Pine trees left -->
+    <polygon points="248,342 270,272 292,342" fill="#0d3a18"/>
+    <polygon points="240,336 264,260 288,336" fill="#1a5a28"/>
+    <polygon points="256,342 275,280 294,342" fill="#0d3a18"/>
+    <rect x="267" y="338" width="10" height="12" fill="#4a2a0a"/>
+    <!-- Pine trees right -->
+    <polygon points="508,342 530,272 552,342" fill="#0d3a18"/>
+    <polygon points="516,336 538,260 560,336" fill="#1a5a28"/>
+    <polygon points="526,342 545,280 564,342" fill="#0d3a18"/>
+    <rect x="537" y="338" width="10" height="12" fill="#4a2a0a"/>
+    <!-- State Capitol dome -->
+    <rect x="328" y="254" width="144" height="90" fill="#c8b870"/>
+    <path d="M356,254 Q400,188 444,254 Z" fill="#d4c078"/>
+    <rect x="392" y="194" width="16" height="26" fill="#c8b060"/>
+    <rect x="396" y="180" width="8" height="16" fill="#b8a050"/>
+    <rect x="374" y="234" width="12" height="18" rx="6" fill="#8a7a30" opacity="0.6"/>
+    <rect x="414" y="234" width="12" height="18" rx="6" fill="#8a7a30" opacity="0.6"/>
+    <rect x="346" y="270" width="8" height="74" fill="#b8a860"/>
+    <rect x="362" y="270" width="8" height="74" fill="#b8a860"/>
+    <rect x="430" y="270" width="8" height="74" fill="#b8a860"/>
+    <rect x="446" y="270" width="8" height="74" fill="#b8a860"/>
+    <!-- Arkansas River -->
+    <rect x="236" y="330" width="328" height="56" fill="url(#river)"/>
+    <path d="M236,338 Q320,326 400,333 Q480,340 564,328 L564,386 L236,386Z" fill="#071e2a" opacity="0.8"/>
+    <!-- Bridge over river -->
+    <rect x="280" y="325" width="240" height="10" fill="#4a3818"/>
+    <path d="M296,325 Q400,258 504,325" fill="none" stroke="#3a2a10" stroke-width="6"/>
+    <path d="M296,325 Q400,270 504,325" fill="none" stroke="#5a4020" stroke-width="3"/>
+    <line x1="330" y1="325" x2="326" y2="296" stroke="#3a2a10" stroke-width="2.5"/>
+    <line x1="360" y1="325" x2="353" y2="274" stroke="#3a2a10" stroke-width="2.5"/>
+    <line x1="400" y1="325" x2="400" y2="260" stroke="#3a2a10" stroke-width="2.5"/>
+    <line x1="440" y1="325" x2="447" y2="274" stroke="#3a2a10" stroke-width="2.5"/>
+    <line x1="470" y1="325" x2="474" y2="296" stroke="#3a2a10" stroke-width="2.5"/>
+    <!-- Bottom label -->
+    <rect x="236" y="345" width="328" height="41" fill="rgba(5,10,5,0.88)"/>
+    <text x="254" y="148" font-family="'Arial Black',Impact,sans-serif" font-size="90" font-weight="900" fill="white" fill-opacity="0.95" stroke="#0a2018" stroke-width="3" paint-order="stroke">AR</text>
+    <text x="256" y="168" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white" fill-opacity="0.8" stroke="#0a2018" stroke-width="1" paint-order="stroke" letter-spacing="3">ARKANSAS</text>
+    <text x="400" y="372" font-family="'Arial Black',sans-serif" font-size="15" font-weight="900" fill="#f5d07a" text-anchor="middle" letter-spacing="1.5">小石城马拉松</text>
+  </g>
+  <rect x="236" y="58" width="328" height="328" rx="18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <!-- Ribbon from top to bail -->
+  <rect x="382" y="0" width="36" height="54" fill="#0a2018"/>
+  <rect x="391" y="0" width="5" height="54" fill="rgba(255,255,255,0.13)"/>
+  <rect x="404" y="0" width="5" height="54" fill="rgba(0,0,0,0.08)"/>
+  <rect x="383" y="12" width="34" height="38" rx="6" fill="url(#silver)"/>
+  <rect x="386" y="15" width="28" height="32" rx="4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+  <rect x="383" y="40" width="34" height="12" fill="url(#silver)"/>
+  <ellipse cx="400" cy="26" rx="7" ry="6" fill="#888" opacity="0.35"/>
+  <text x="400" y="445" font-family="'Arial Black',sans-serif" font-size="14" font-weight="900" fill="#3a3a3a" text-anchor="middle" letter-spacing="1">LITTLE ROCK MARATHON · ARKANSAS</text>
+  <text x="400" y="468" font-family="Arial,sans-serif" font-size="12" fill="#666" text-anchor="middle">Run50 #17州 · 2024.03.03</text>
 </svg>

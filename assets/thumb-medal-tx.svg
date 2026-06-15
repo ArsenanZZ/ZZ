@@ -1,91 +1,74 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
   <defs>
-    <linearGradient id="sky-tx" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1a0a04"/>
-      <stop offset="40%" stop-color="#7a1e08"/>
-      <stop offset="75%" stop-color="#c84010"/>
-      <stop offset="100%" stop-color="#e8701a"/>
-    </linearGradient>
-    <linearGradient id="gold-tx" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#c9922a"/>
-      <stop offset="45%" stop-color="#f5d07a"/>
-      <stop offset="100%" stop-color="#b07820"/>
-    </linearGradient>
-    <linearGradient id="river-tx" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1a4a6a"/>
-      <stop offset="100%" stop-color="#0d2a40"/>
-    </linearGradient>
+    <radialGradient id="bg" cx="50%" cy="46%" r="68%"><stop offset="0%" stop-color="#e2e0e0"/><stop offset="50%" stop-color="#c8c8c8"/><stop offset="100%" stop-color="#9e9e9e"/></radialGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f4f4f4"/><stop offset="18%" stop-color="#d8d8d8"/><stop offset="40%" stop-color="#f0f0f0"/><stop offset="62%" stop-color="#b0b0b0"/><stop offset="80%" stop-color="#e0e0e0"/><stop offset="100%" stop-color="#c8c8c8"/></linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a0a04"/><stop offset="40%" stop-color="#7a1e08"/><stop offset="75%" stop-color="#c84010"/><stop offset="100%" stop-color="#e8701a"/></linearGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a4a6a"/><stop offset="100%" stop-color="#0d2a40"/></linearGradient>
+    <clipPath id="clip"><rect x="236" y="58" width="328" height="328" rx="18"/></clipPath>
   </defs>
-
-  <!-- Sunset sky -->
-  <rect width="800" height="500" fill="url(#sky-tx)"/>
-
-  <!-- Ground -->
-  <rect x="0" y="370" width="800" height="130" fill="#1a0f04"/>
-  <path d="M0,375 Q200,362 400,370 Q600,378 800,365 L800,500 L0,500Z" fill="#120a02"/>
-
-  <!-- San Antonio River (winding blue strip) -->
-  <path d="M0,400 Q150,390 250,395 Q350,400 450,388 Q550,378 650,385 Q720,390 800,382" fill="none" stroke="url(#river-tx)" stroke-width="22"/>
-
-  <!-- River walk arches -->
-  <path d="M180,400 Q200,382 220,400" fill="none" stroke="#1a3a5c" stroke-width="8"/>
-  <path d="M320,395 Q340,377 360,395" fill="none" stroke="#1a3a5c" stroke-width="8"/>
-  <path d="M460,390 Q480,372 500,390" fill="none" stroke="#1a3a5c" stroke-width="8"/>
-
-  <!-- Alamo facade -->
-  <rect x="270" y="230" width="260" height="160" fill="#8B7040"/>
-  <!-- Alamo parapet (curved top) -->
-  <path d="M270,230 L300,185 L330,190 L330,205 L360,205 L360,190 L400,175 L440,190 L440,205 L470,205 L470,190 L500,185 L530,230 Z" fill="#9a7e4a"/>
-  <!-- Alamo doorway arch -->
-  <path d="M370,390 L370,295 Q400,270 430,295 L430,390 Z" fill="#2d1a08"/>
-  <rect x="365" y="295" width="70" height="95" fill="#2d1a08"/>
-  <!-- Alamo side windows -->
-  <rect x="290" y="255" width="30" height="40" rx="15" fill="#2d1a08"/>
-  <rect x="480" y="255" width="30" height="40" rx="15" fill="#2d1a08"/>
-  <rect x="290" y="310" width="30" height="30" fill="#2d1a08"/>
-  <rect x="480" y="310" width="30" height="30" fill="#2d1a08"/>
-  <!-- Alamo wall texture lines -->
-  <line x1="270" y1="250" x2="530" y2="250" stroke="#7a6030" stroke-width="1" opacity="0.5"/>
-  <line x1="270" y1="270" x2="530" y2="270" stroke="#7a6030" stroke-width="1" opacity="0.5"/>
-
-  <!-- Texas Lone Star -->
-  <polygon points="400,55 410,85 442,85 417,103 427,133 400,115 373,133 383,103 358,85 390,85" fill="#c8102e" opacity="0.85"/>
-  <polygon points="400,63 408,87 434,87 413,101 421,126 400,111 379,126 387,101 366,87 392,87" fill="white" opacity="0.9"/>
-
-  <!-- Cactus left -->
-  <rect x="130" y="310" width="18" height="80" rx="9" fill="#2a5a20"/>
-  <rect x="100" y="335" width="50" height="14" rx="7" fill="#2a5a20"/>
-  <rect x="82" y="320" width="18" height="45" rx="9" fill="#2a5a20"/>
-  <rect x="138" y="325" width="45" height="14" rx="7" fill="#2a5a20"/>
-  <rect x="165" y="310" width="18" height="55" rx="9" fill="#2a5a20"/>
-
-  <!-- Cactus right -->
-  <rect x="640" y="305" width="18" height="85" rx="9" fill="#2a5a20"/>
-  <rect x="610" y="328" width="48" height="14" rx="7" fill="#2a5a20"/>
-  <rect x="594" y="314" width="18" height="46" rx="9" fill="#2a5a20"/>
-  <rect x="658" y="322" width="14" height="42" rx="7" fill="#2a5a20"/>
-
-  <!-- Gold medal border -->
-  <rect x="7" y="7" width="786" height="486" rx="13" ry="13" fill="none" stroke="url(#gold-tx)" stroke-width="6"/>
-  <rect x="16" y="16" width="768" height="468" rx="10" ry="10" fill="none" stroke="rgba(200,150,40,0.3)" stroke-width="1.5"/>
-  <circle cx="28" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-  <circle cx="772" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-  <circle cx="28" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-  <circle cx="772" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-
-  <!-- Ribbon -->
-  <path d="M376,0 L424,0 L424,38 L400,50 L376,38 Z" fill="#5a1004"/>
-  <path d="M382,0 L418,0 L418,34 L400,44 L382,34 Z" fill="#8B1a0a"/>
-  <circle cx="400" cy="7" r="5" fill="#c9922a" opacity="0.9"/>
-  <rect x="396" y="0" width="8" height="14" fill="#4a0c02"/>
-
-  <!-- TX abbreviation -->
-  <text x="55" y="185" font-family="'Arial Black','Franklin Gothic Heavy',sans-serif" font-size="135" font-weight="900" fill="white" fill-opacity="0.93" letter-spacing="-3">TX</text>
-  <text x="57" y="212" font-family="Arial,sans-serif" font-size="20" font-weight="600" fill="white" fill-opacity="0.7" letter-spacing="5">TEXAS</text>
-
-  <!-- Bottom strip -->
-  <rect x="0" y="438" width="800" height="62" fill="rgba(15,5,0,0.85)"/>
-  <line x1="0" y1="438" x2="800" y2="438" stroke="rgba(200,150,40,0.4)" stroke-width="1"/>
-  <text x="400" y="463" font-family="'Arial Black',sans-serif" font-size="16" font-weight="900" fill="#f5d07a" text-anchor="middle" letter-spacing="2">圣安东尼奥马拉松</text>
-  <text x="400" y="486" font-family="Arial,sans-serif" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle" letter-spacing="1.5">SAN ANTONIO MARATHON · TEXAS</text>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <ellipse cx="403" cy="228" rx="222" ry="224" fill="rgba(255,255,255,0.16)"/>
+  <circle cx="400" cy="228" r="248" fill="none" stroke="rgba(255,255,255,0.11)" stroke-width="2"/>
+  <circle cx="400" cy="228" r="282" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2"/>
+  <circle cx="400" cy="228" r="318" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2"/>
+  <rect x="218" y="44" width="368" height="368" rx="28" fill="rgba(0,0,0,0.28)" transform="translate(5,8)"/>
+  <rect x="218" y="44" width="368" height="368" rx="28" fill="url(#silver)"/>
+  <rect x="230" y="56" width="344" height="344" rx="22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="3"/>
+  <rect x="232" y="58" width="340" height="340" rx="20" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+  <g clip-path="url(#clip)">
+    <rect x="236" y="58" width="328" height="328" fill="url(#sky)"/>
+    <!-- Stars -->
+    <circle cx="260" cy="80" r="1.2" fill="white" opacity="0.6"/>
+    <circle cx="294" cy="70" r="1" fill="white" opacity="0.5"/>
+    <circle cx="540" cy="82" r="1.2" fill="white" opacity="0.55"/>
+    <!-- Texas Lone Star (upper right) -->
+    <polygon points="510,72 516,91 536,91 520,103 526,122 510,110 494,122 500,103 484,91 504,91" fill="#c8102e" opacity="0.88"/>
+    <polygon points="510,76 515,92 532,92 518,102 523,119 510,109 497,119 502,102 488,92 505,92" fill="white" opacity="0.95"/>
+    <!-- River Walk -->
+    <rect x="236" y="300" width="328" height="30" fill="url(#river)"/>
+    <path d="M236,307 Q340,296 400,303 Q460,310 564,300 L564,330 L236,330Z" fill="#0d2a40" opacity="0.7"/>
+    <!-- River walk arches -->
+    <path d="M272,300 Q288,284 304,300" fill="none" stroke="#1a3a5c" stroke-width="5"/>
+    <path d="M334,300 Q350,284 366,300" fill="none" stroke="#1a3a5c" stroke-width="5"/>
+    <path d="M416,300 Q432,284 448,300" fill="none" stroke="#1a3a5c" stroke-width="5"/>
+    <!-- Ground -->
+    <rect x="236" y="328" width="328" height="58" fill="#2a1608"/>
+    <!-- Alamo main body -->
+    <rect x="352" y="210" width="96" height="92" fill="#8B7040"/>
+    <!-- Alamo iconic curved parapet -->
+    <path d="M352,210 L366,178 L375,183 L375,195 L390,195 L390,183 L400,170 L410,183 L410,195 L425,195 L425,183 L434,178 L448,210 Z" fill="#9a7e4a"/>
+    <!-- Alamo doorway arch -->
+    <path d="M386,302 L386,256 Q400,244 414,256 L414,302 Z" fill="#2d1a08"/>
+    <rect x="382" y="255" width="36" height="48" fill="#2d1a08"/>
+    <!-- Alamo windows -->
+    <rect x="360" y="222" width="18" height="24" rx="9" fill="#2d1a08"/>
+    <rect x="422" y="222" width="18" height="24" rx="9" fill="#2d1a08"/>
+    <!-- Alamo wall texture -->
+    <line x1="352" y1="228" x2="448" y2="228" stroke="#7a6030" stroke-width="1" opacity="0.4"/>
+    <line x1="352" y1="244" x2="448" y2="244" stroke="#7a6030" stroke-width="1" opacity="0.4"/>
+    <!-- Cactus left -->
+    <rect x="248" y="252" width="12" height="52" rx="6" fill="#2a5a20"/>
+    <rect x="236" y="268" width="32" height="10" rx="5" fill="#2a5a20"/>
+    <rect x="236" y="256" width="12" height="28" rx="6" fill="#2a5a20"/>
+    <!-- Cactus right -->
+    <rect x="540" y="250" width="12" height="54" rx="6" fill="#2a5a20"/>
+    <rect x="530" y="264" width="32" height="10" rx="5" fill="#2a5a20"/>
+    <rect x="552" y="254" width="12" height="30" rx="6" fill="#2a5a20"/>
+    <!-- Bottom label -->
+    <rect x="236" y="345" width="328" height="41" fill="rgba(10,4,2,0.88)"/>
+    <text x="254" y="148" font-family="'Arial Black',Impact,sans-serif" font-size="90" font-weight="900" fill="white" fill-opacity="0.95" stroke="#2a0e04" stroke-width="3" paint-order="stroke">TX</text>
+    <text x="256" y="168" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white" fill-opacity="0.8" stroke="#2a0e04" stroke-width="1" paint-order="stroke" letter-spacing="3">TEXAS</text>
+    <text x="400" y="372" font-family="'Arial Black',sans-serif" font-size="15" font-weight="900" fill="#f5d07a" text-anchor="middle" letter-spacing="1.5">圣安东尼奥马拉松</text>
+  </g>
+  <rect x="236" y="58" width="328" height="328" rx="18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <!-- Ribbon from top to bail -->
+  <rect x="382" y="0" width="36" height="54" fill="#3a1004"/>
+  <rect x="391" y="0" width="5" height="54" fill="rgba(255,255,255,0.13)"/>
+  <rect x="404" y="0" width="5" height="54" fill="rgba(0,0,0,0.08)"/>
+  <rect x="383" y="12" width="34" height="38" rx="6" fill="url(#silver)"/>
+  <rect x="386" y="15" width="28" height="32" rx="4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+  <rect x="383" y="40" width="34" height="12" fill="url(#silver)"/>
+  <ellipse cx="400" cy="26" rx="7" ry="6" fill="#888" opacity="0.35"/>
+  <text x="400" y="445" font-family="'Arial Black',sans-serif" font-size="14" font-weight="900" fill="#3a3a3a" text-anchor="middle" letter-spacing="1">SAN ANTONIO MARATHON · TEXAS</text>
+  <text x="400" y="468" font-family="Arial,sans-serif" font-size="12" fill="#666" text-anchor="middle">Run50 #14州 · 2023.12.03</text>
 </svg>
