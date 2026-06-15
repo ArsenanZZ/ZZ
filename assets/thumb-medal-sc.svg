@@ -1,112 +1,66 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
   <defs>
-    <linearGradient id="sky-sc" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#04102a"/>
-      <stop offset="50%" stop-color="#0a2060"/>
-      <stop offset="100%" stop-color="#0e3080"/>
-    </linearGradient>
-    <linearGradient id="ocean-sc" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0a4060"/>
-      <stop offset="100%" stop-color="#062030"/>
-    </linearGradient>
-    <linearGradient id="gold-sc" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#c9922a"/>
-      <stop offset="45%" stop-color="#f5d07a"/>
-      <stop offset="100%" stop-color="#b07820"/>
-    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c8c8c8"/><stop offset="100%" stop-color="#b8b8b8"/></linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f4f4f4"/><stop offset="18%" stop-color="#d8d8d8"/><stop offset="40%" stop-color="#f0f0f0"/><stop offset="62%" stop-color="#b0b0b0"/><stop offset="80%" stop-color="#e0e0e0"/><stop offset="100%" stop-color="#c8c8c8"/></linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#04102a"/><stop offset="50%" stop-color="#0a2060"/><stop offset="100%" stop-color="#0e308a"/></linearGradient>
+    <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a4060"/><stop offset="100%" stop-color="#062030"/></linearGradient>
+    <clipPath id="clip"><rect x="236" y="58" width="328" height="328" rx="18"/></clipPath>
   </defs>
-
-  <!-- Night sky -->
-  <rect width="800" height="500" fill="url(#sky-sc)"/>
-
-  <!-- Stars scattered -->
-  <circle cx="100" cy="50" r="1.5" fill="white" opacity="0.7"/>
-  <circle cx="180" cy="80" r="1" fill="white" opacity="0.6"/>
-  <circle cx="260" cy="40" r="1.5" fill="white" opacity="0.5"/>
-  <circle cx="500" cy="60" r="1" fill="white" opacity="0.6"/>
-  <circle cx="580" cy="35" r="1.5" fill="white" opacity="0.7"/>
-  <circle cx="650" cy="70" r="1" fill="white" opacity="0.5"/>
-  <circle cx="720" cy="45" r="1.5" fill="white" opacity="0.6"/>
-  <circle cx="770" cy="90" r="1" fill="white" opacity="0.5"/>
-  <circle cx="80" cy="120" r="1" fill="white" opacity="0.4"/>
-  <circle cx="340" cy="100" r="1.5" fill="white" opacity="0.5"/>
-  <circle cx="460" cy="110" r="1" fill="white" opacity="0.4"/>
-  <circle cx="630" cy="105" r="1.5" fill="white" opacity="0.45"/>
-
-  <!-- Moon (crescent) -->
-  <circle cx="640" cy="90" r="42" fill="#d4c870"/>
-  <circle cx="658" cy="82" r="36" fill="#0a2060"/>
-
-  <!-- Ocean -->
-  <rect x="0" y="390" width="800" height="110" fill="url(#ocean-sc)"/>
-  <path d="M0,398 Q200,385 400,393 Q600,401 800,388 L800,500 L0,500Z" fill="#062030" opacity="0.75"/>
-  <!-- Ocean waves -->
-  <path d="M0,410 Q100,402 200,407 Q300,412 400,405 Q500,398 600,403 Q700,408 800,401" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
-
-  <!-- Sandy beach -->
-  <rect x="0" y="383" width="800" height="14" fill="#c8a860" opacity="0.5"/>
-
-  <!-- Palmetto tree (center-left) -->
-  <path d="M260,400 C258,355 264,310 260,272" stroke="#4a2a08" stroke-width="20" fill="none" stroke-linecap="round"/>
-  <!-- Fronds -->
-  <path d="M260,272 Q200,225 145,242" stroke="#1a5a18" stroke-width="14" fill="none" stroke-linecap="round"/>
-  <path d="M260,272 Q220,210 240,168" stroke="#1a5a18" stroke-width="14" fill="none" stroke-linecap="round"/>
-  <path d="M260,272 Q275,208 320,195" stroke="#1a5a18" stroke-width="14" fill="none" stroke-linecap="round"/>
-  <path d="M260,272 Q298,228 340,240" stroke="#1a5a18" stroke-width="13" fill="none" stroke-linecap="round"/>
-  <path d="M260,272 Q225,240 185,250" stroke="#1a5a18" stroke-width="12" fill="none" stroke-linecap="round"/>
-  <path d="M260,272 Q270,235 310,250" stroke="#2a7a28" stroke-width="11" fill="none" stroke-linecap="round"/>
-  <!-- Frond tips -->
-  <path d="M145,242 Q120,238 105,248" stroke="#1a5a18" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <path d="M240,168 Q232,148 238,132" stroke="#1a5a18" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <path d="M320,195 Q345,185 358,175" stroke="#1a5a18" stroke-width="8" fill="none" stroke-linecap="round"/>
-
-  <!-- Second palmetto (right side) -->
-  <path d="M580,400 C582,350 576,298 580,258" stroke="#4a2a08" stroke-width="16" fill="none" stroke-linecap="round"/>
-  <path d="M580,258 Q520,212 465,228" stroke="#1a5a18" stroke-width="12" fill="none" stroke-linecap="round"/>
-  <path d="M580,258 Q555,198 572,158" stroke="#1a5a18" stroke-width="12" fill="none" stroke-linecap="round"/>
-  <path d="M580,258 Q610,200 660,190" stroke="#1a5a18" stroke-width="12" fill="none" stroke-linecap="round"/>
-  <path d="M580,258 Q620,225 658,238" stroke="#1a5a18" stroke-width="11" fill="none" stroke-linecap="round"/>
-
-  <!-- SC state flag emblem (palmetto + crescent) reference elements -->
-  <!-- Small crescent on left -->
-  <circle cx="155" cy="155" r="22" fill="#d4c870" opacity="0.75"/>
-  <circle cx="164" cy="150" r="18" fill="#0a2060" opacity="0.95"/>
-
-  <!-- Lighthouse (right) -->
-  <rect x="690" y="250" width="28" height="140" fill="#f0ece0"/>
-  <!-- Lighthouse stripes -->
-  <rect x="690" y="268" width="28" height="16" fill="#c8102e" opacity="0.7"/>
-  <rect x="690" y="304" width="28" height="16" fill="#c8102e" opacity="0.7"/>
-  <rect x="690" y="340" width="28" height="16" fill="#c8102e" opacity="0.7"/>
-  <!-- Light room -->
-  <rect x="685" y="238" width="38" height="20" fill="#f0ece0"/>
-  <circle cx="704" cy="242" r="10" fill="#ffd040" opacity="0.8"/>
-  <!-- Light beam -->
-  <path d="M704,242 L600,180 L630,240 Z" fill="#ffd040" opacity="0.06"/>
-  <!-- Lighthouse base -->
-  <rect x="682" y="385" width="44" height="15" fill="#d0ccc0"/>
-
-  <!-- Gold medal border -->
-  <rect x="7" y="7" width="786" height="486" rx="13" ry="13" fill="none" stroke="url(#gold-sc)" stroke-width="6"/>
-  <rect x="16" y="16" width="768" height="468" rx="10" ry="10" fill="none" stroke="rgba(200,150,40,0.3)" stroke-width="1.5"/>
-  <circle cx="28" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-  <circle cx="772" cy="28" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-  <circle cx="28" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-  <circle cx="772" cy="472" r="5" fill="none" stroke="rgba(200,150,40,0.55)" stroke-width="2"/>
-
-  <!-- Ribbon -->
-  <path d="M376,0 L424,0 L424,38 L400,50 L376,38 Z" fill="#04102a"/>
-  <path d="M382,0 L418,0 L418,34 L400,44 L382,34 Z" fill="#0a2060"/>
-  <circle cx="400" cy="7" r="5" fill="#c9922a" opacity="0.9"/>
-  <rect x="396" y="0" width="8" height="14" fill="#04102a"/>
-
-  <!-- SC abbreviation -->
-  <text x="55" y="185" font-family="'Arial Black','Franklin Gothic Heavy',sans-serif" font-size="135" font-weight="900" fill="white" fill-opacity="0.93" letter-spacing="-3">SC</text>
-  <text x="57" y="212" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="white" fill-opacity="0.7" letter-spacing="3">SOUTH CAROLINA</text>
-
-  <!-- Bottom strip -->
-  <rect x="0" y="438" width="800" height="62" fill="rgba(2,8,20,0.88)"/>
-  <line x1="0" y1="438" x2="800" y2="438" stroke="rgba(200,150,40,0.4)" stroke-width="1"/>
-  <text x="400" y="463" font-family="'Arial Black',sans-serif" font-size="16" font-weight="900" fill="#f5d07a" text-anchor="middle" letter-spacing="2">南卡罗莱纳马拉松</text>
-  <text x="400" y="486" font-family="Arial,sans-serif" font-size="12" fill="rgba(255,255,255,0.55)" text-anchor="middle" letter-spacing="1.5">SOUTH CAROLINA MARATHON</text>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect x="218" y="44" width="368" height="368" rx="28" fill="rgba(0,0,0,0.28)" transform="translate(5,8)"/>
+  <rect x="218" y="44" width="368" height="368" rx="28" fill="url(#silver)"/>
+  <rect x="230" y="56" width="344" height="344" rx="22" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="3"/>
+  <rect x="232" y="58" width="340" height="340" rx="20" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+  <g clip-path="url(#clip)">
+    <rect x="236" y="58" width="328" height="328" fill="url(#sky)"/>
+    <!-- Stars -->
+    <circle cx="270" cy="80" r="1.5" fill="white" opacity="0.7"/>
+    <circle cx="312" cy="72" r="1" fill="white" opacity="0.6"/>
+    <circle cx="480" cy="90" r="1" fill="white" opacity="0.5"/>
+    <circle cx="542" cy="76" r="1.5" fill="white" opacity="0.65"/>
+    <circle cx="556" cy="94" r="1" fill="white" opacity="0.55"/>
+    <circle cx="440" cy="83" r="1" fill="white" opacity="0.45"/>
+    <!-- Crescent moon (upper right) -->
+    <circle cx="512" cy="102" r="26" fill="#d4c870"/>
+    <circle cx="524" cy="95" r="21" fill="#0a2060"/>
+    <!-- Ocean -->
+    <rect x="236" y="316" width="328" height="70" fill="url(#ocean)"/>
+    <path d="M236,323 Q320,311 400,318 Q480,325 564,313 L564,386 L236,386Z" fill="#062030" opacity="0.75"/>
+    <path d="M236,336 Q310,329 400,333 Q490,337 564,330" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+    <!-- Sandy beach -->
+    <rect x="236" y="310" width="328" height="12" fill="#c8a860" opacity="0.55"/>
+    <!-- Palmetto trunk (center-left) -->
+    <path d="M314,342 C312,310 317,278 313,248" stroke="#4a2a08" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <!-- Main fronds -->
+    <path d="M313,248 Q278,218 252,228" stroke="#1a5a18" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M313,248 Q301,205 312,178" stroke="#1a5a18" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M313,248 Q337,202 368,194" stroke="#1a5a18" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M313,248 Q344,222 370,230" stroke="#1a5a18" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M313,248 Q282,225 260,232" stroke="#2a7a28" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <!-- Small palmetto right -->
+    <path d="M458,342 C460,314 456,286 459,264" stroke="#4a2a08" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M459,264 Q436,243 418,251" stroke="#1a5a18" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M459,264 Q450,237 458,218" stroke="#1a5a18" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M459,264 Q478,240 500,236" stroke="#1a5a18" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Lighthouse -->
+    <rect x="505" y="238" width="22" height="72" fill="#f0ece0"/>
+    <rect x="505" y="252" width="22" height="10" fill="#c8102e" opacity="0.7"/>
+    <rect x="505" y="272" width="22" height="10" fill="#c8102e" opacity="0.7"/>
+    <rect x="505" y="292" width="22" height="10" fill="#c8102e" opacity="0.7"/>
+    <rect x="501" y="226" width="30" height="16" fill="#f0ece0"/>
+    <circle cx="516" cy="234" r="7" fill="#ffd040" opacity="0.85"/>
+    <rect x="500" y="308" width="32" height="7" fill="#d0ccc0"/>
+    <!-- Bottom label -->
+    <rect x="236" y="345" width="328" height="41" fill="rgba(2,8,22,0.85)"/>
+    <text x="254" y="148" font-family="'Arial Black',Impact,sans-serif" font-size="90" font-weight="900" fill="white" fill-opacity="0.95" stroke="#0a1a50" stroke-width="3" paint-order="stroke">SC</text>
+    <text x="256" y="168" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white" fill-opacity="0.8" stroke="#0a1a50" stroke-width="1" paint-order="stroke" letter-spacing="3">SOUTH CAROLINA</text>
+    <text x="400" y="372" font-family="'Arial Black',sans-serif" font-size="15" font-weight="900" fill="#f0d070" text-anchor="middle" letter-spacing="1.5">南卡罗莱纳马拉松</text>
+  </g>
+  <rect x="236" y="58" width="328" height="328" rx="18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <rect x="383" y="12" width="34" height="38" rx="6" fill="url(#silver)"/>
+  <rect x="386" y="15" width="28" height="32" rx="4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+  <rect x="383" y="40" width="34" height="12" fill="url(#silver)"/>
+  <ellipse cx="400" cy="26" rx="7" ry="6" fill="#888" opacity="0.35"/>
+  <text x="400" y="445" font-family="'Arial Black',sans-serif" font-size="14" font-weight="900" fill="#3a3a3a" text-anchor="middle" letter-spacing="1">SOUTH CAROLINA MARATHON · GREER</text>
+  <text x="400" y="468" font-family="Arial,sans-serif" font-size="12" fill="#666" text-anchor="middle">Run50 #18州 · 2024.04.14</text>
 </svg>
