@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <rect width="1200" height="750" fill="#cfe9f4"/>
+  <circle cx="930" cy="132" r="58" fill="#f7bc3b"/>
+  <path d="M0 522 L1200 438 L1200 750 L0 750Z" fill="#6ec7d8"/>
+  <path d="M0 555 L1200 500 L1200 750 L0 750Z" fill="#8ac7b7"/>
+  <rect x="0" y="610" width="1200" height="140" fill="#9fd46e"/>
+  <rect x="0" y="680" width="1200" height="70" fill="#6caf47"/>
+  <g>
+    <rect x="470" y="330" width="50" height="170" fill="#8bb0c7"/>
+    <rect x="530" y="290" width="66" height="210" fill="#6f93b0"/>
+    <rect x="606" y="360" width="48" height="140" fill="#89b6c6"/>
+    <rect x="665" y="265" width="60" height="235" fill="#587794"/>
+    <polygon points="683,265 695,195 707,265" fill="#415f7d"/>
+    <rect x="742" y="315" width="78" height="185" fill="#7fa4ba"/>
+    <rect x="835" y="292" width="66" height="208" fill="#6689a8"/>
+    <rect x="918" y="350" width="48" height="150" fill="#83a9c0"/>
+  </g>
+  <g fill="#f7f3c4">
+    <rect x="545" y="318" width="10" height="15"/><rect x="575" y="348" width="10" height="15"/>
+    <rect x="681" y="318" width="10" height="15"/><rect x="693" y="370" width="10" height="15"/>
+    <rect x="760" y="360" width="10" height="15"/><rect x="790" y="410" width="10" height="15"/>
+    <rect x="850" y="322" width="10" height="15"/><rect x="878" y="380" width="10" height="15"/>
+  </g>
+  <g>
+    <rect x="150" y="490" width="40" height="120" fill="#2f9f72"/>
+    <polygon points="134,490 206,490 190,405 150,405" fill="#38b983"/>
+    <circle cx="170" cy="383" r="15" fill="#2f9f72"/>
+    <line x1="170" y1="380" x2="145" y2="348" stroke="#2f9f72" stroke-width="5"/>
+    <line x1="170" y1="380" x2="166" y2="342" stroke="#2f9f72" stroke-width="5"/>
+    <line x1="170" y1="380" x2="191" y2="348" stroke="#2f9f72" stroke-width="5"/>
+    <line x1="188" y1="427" x2="232" y2="377" stroke="#2f9f72" stroke-width="10"/>
+    <polygon points="228,360 243,380 218,383" fill="#ffc83d"/>
+  </g>
+  <path d="M230 618 Q390 478 570 615" fill="none" stroke="#1f2a44" stroke-width="10"/>
+  <line x1="292" y1="475" x2="292" y2="625" stroke="#1f2a44" stroke-width="8"/>
+  <line x1="505" y1="430" x2="505" y2="600" stroke="#1f2a44" stroke-width="8"/>
+  <rect x="230" y="618" width="345" height="20" fill="#27384a"/>
+  <g>
+    <rect x="832" y="610" width="178" height="75" rx="15" fill="#ffc83d" stroke="#1f2a44" stroke-width="5"/>
+    <rect x="875" y="565" width="78" height="55" fill="#ffc83d" stroke="#1f2a44" stroke-width="5"/>
+    <rect x="893" y="578" width="38" height="30" fill="#bde6f3"/>
+    <circle cx="880" cy="690" r="22" fill="#1f2a44"/><circle cx="955" cy="690" r="22" fill="#1f2a44"/>
+    <rect x="890" y="545" width="50" height="20" fill="#fff" stroke="#1f2a44" stroke-width="3"/>
+    <text x="900" y="561" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="900" fill="#1f2a44">NYC</text>
+  </g>
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">NEW YORK</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">FIVE BOROUGHS · 50TH RUNNING</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #03</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="900" fill="#0b67c2">NEW YORK</text>
+</svg>

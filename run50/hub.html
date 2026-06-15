@@ -543,13 +543,14 @@ const _CITY_LL = {
   'Green Bay':{lat:44.5133,lon:-88.0133},'Grand Rapids':{lat:42.9634,lon:-85.6681},
   'Baton Rouge':{lat:30.4515,lon:-91.1871},'Roanoke':{lat:37.271,lon:-79.9414},
   'Fargo':{lat:46.8772,lon:-96.7898},'Huntsville':{lat:34.7304,lon:-86.5861},
-  'Cleveland':{lat:41.4993,lon:-81.6944},'Cincinnati':{lat:39.1031,lon:-84.512},
+  'Cleveland':{lat:41.4993,lon:-81.6944},'New York City':{lat:40.7128,lon:-74.0060},'Cincinnati':{lat:39.1031,lon:-84.512},
   'Atlanta':{lat:33.749,lon:-84.388},'Denver':{lat:39.7392,lon:-104.9903}
 };
 
 const _RACES = {
   'KY':[{city:'Louisville',date:'Nov 8, 2020',story:'stories/english/louisville-marathon.html',fb:'facebook/louisville-marathon.html'}],
   'OH':[{city:'Cleveland',date:'Oct 24, 2021',story:'stories/english/cleveland-marathon.html',fb:'facebook/cleveland-marathon.html'}],
+  'NY':[{city:'New York City',date:'Nov 7, 2021',story:'stories/english/new-york-city-marathon.html',fb:'facebook/new-york-city-marathon.html'}],
   'IL':[{city:'Chicago',date:'Oct 2024',story:'stories/english/chicago-marathon.html',fb:'facebook/chicago-marathon.html'}],
   'AR':[{city:'Little Rock',date:'Mar 2025',story:'stories/english/little-rock-marathon.html',fb:'facebook/little-rock-marathon.html'}],
   'FL':[{city:'Miami',date:'Jan 2025',story:'stories/english/miami-marathon.html',fb:'facebook/miami-marathon.html'}],
@@ -856,6 +857,12 @@ function _injectWorldMap() {
     <circle cx="241" cy="123" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
       data-city="Cleveland, OH" data-date="Oct 24, 2021" data-story="stories/english/cleveland-marathon.html"/>
     <!-- /Ohio Cleveland story dot -->
+
+    <!-- New York City story dot -->
+    <circle cx="249" cy="125" r="10" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
+    <circle cx="249" cy="125" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="New York City, NY" data-date="Nov 7, 2021" data-story="stories/english/new-york-city-marathon.html"/>
+    <!-- /New York City story dot -->
 
     <circle cx="204" cy="152" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
       data-city="San Antonio, TX" data-date="Dec 2024" data-story="stories/english/san-antonio-marathon.html"/>
