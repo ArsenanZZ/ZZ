@@ -173,7 +173,7 @@
         stroke: #fff;
         stroke-width: 2px;
     }
-    
+
     /* City Dot styling */
     .city-dot {
         transition: r 0.2s ease, fill 0.2s ease;
@@ -189,7 +189,7 @@
         0% { r: 9px; opacity: 0.25; }
         100% { r: 16px; opacity: 0.65; }
     }
-    
+
     /* Flashing card highlight style */
     @keyframes card-flash {
         0% { transform: scale(1); box-shadow: 0 18px 44px rgba(15, 23, 42, .08); }
@@ -286,11 +286,11 @@
         </div>
         <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:var(--muted); transition:color 0.2s;">鼠标悬停在州或红点上查看长文，点击卡片跳转</span>
       </div>
-      
+
       <div class="welcome-map-slot" id="welcome-map-slot" style="position:relative; width:100%; aspect-ratio: 1722 / 989; background:#f4f6f7; border-radius:8px; overflow:hidden; border:1px solid var(--line);">
         <!-- SVG Map will be dynamically appended here from US_MAP_SVG -->
       </div>
-      
+
       <!-- 地图图例 -->
       <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:10px; flex-wrap:wrap;">
         <div style="display:flex; align-items:center; gap:6px;">
@@ -324,14 +324,16 @@
         </div>
       </a>
 
-
-
-
-
-
-
-
-      <a class="story-card run-50" href="./chicago-marathon.html">
+      <a class="story-card run-50" href="./cleveland-marathon.html">
+        <img src="../../../assets/cover-medal-oh.jpg?v=20260615-1" alt="克利夫兰马拉松奖牌封面" loading="lazy" decoding="async">
+        <div class="story-copy">
+          <p class="story-meta">俄亥俄克利夫兰 · 2021.10.24</p>
+          <h2 class="story-title">Run50 #第2州｜克利夫兰马拉松</h2>
+          <p class="story-desc">城市篇与比赛篇合并：摇滚名人堂、骑士主场、伊利湖晨光、工业风高架和从黑夜跑到白昼的42.195公里。</p>
+          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+        </div>
+      </a>
+<a class="story-card run-50" href="./chicago-marathon.html">
         <img src="../../../assets/cover-medal-il.jpg" alt="芝加哥马拉松奖牌封面" loading="lazy" decoding="async">
         <div class="story-copy">
           <p class="story-meta">伊利诺伊芝加哥 · 2023.10.08</p>
@@ -610,7 +612,9 @@
       'TN-纳什维尔': 'nashville-marathon.html',
       'TX-圣安东尼奥': 'san-antonio-marathon.html',
       'SC-Greer': 'south-carolina-marathon.html',
-      'WV-亨廷顿': 'west-virginia-marathon.html'
+      'WV-亨廷顿': 'west-virginia-marathon.html',
+      'OH-克利夫兰': 'cleveland-marathon.html',
+      'OH-克利夫兰': 'cleveland-marathon.html'
     };
 
     const _STATE_RACES = {};
@@ -621,29 +625,29 @@
       const lon0 = -96 * Math.PI / 180;
       const lat1 = 29.5 * Math.PI / 180;
       const lat2 = 45.5 * Math.PI / 180;
-      
+
       const n = 0.5 * (Math.sin(lat1) + Math.sin(lat2));
       const C = Math.cos(lat1) * Math.cos(lat1) + 2 * n * Math.sin(lat1);
       const rho0 = Math.sqrt(C - 2 * n * Math.sin(lat0)) / n;
-      
+
       const latRad = lat * Math.PI / 180;
       const lonRad = lon * Math.PI / 180;
-      
+
       const theta = n * (lonRad - lon0);
       const rho = Math.sqrt(C - 2 * n * Math.sin(latRad)) / n;
-      
+
       const xProj = rho * Math.sin(theta);
       const yProj = rho0 - rho * Math.cos(theta);
-      
+
       const xSvg = 1798.50 * xProj + 935.11;
       const ySvg = -1851.29 * yProj + 579.07;
-      
+
       return { x: xSvg, y: ySvg };
     }
 
     function _parseGridRaces() {
       if (Object.keys(_STATE_RACES).length > 0) return;
-      
+
       const stateNameMap = {
         '肯塔基': 'KY', '佛罗里达': 'FL', '北卡': 'NC', '阿肯色': 'AR', '南卡': 'SC',
         '宾夕法尼亚': 'PA', '威斯康辛': 'WI', '密歇根': 'MI', '新罕布什尔': 'NH',
@@ -665,7 +669,7 @@
         if (dotIndex > 0) {
           const loc = metaText.substring(0, dotIndex).trim();
           date = metaText.substring(dotIndex + 1).trim();
-          
+
           for (const key in stateNameMap) {
             if (loc.startsWith(key)) {
               stateName = key;
@@ -674,16 +678,16 @@
             }
           }
         }
-        
+
         const title = card.querySelector('.story-title')?.textContent || '';
         const href = card.getAttribute('href') || '';
-        
+
         if (!card.id) card.id = `story-card-idx-${idx}`;
-        
+
         const abbr = stateNameMap[stateName];
         if (abbr) {
           if (!_STATE_RACES[abbr]) _STATE_RACES[abbr] = [];
-          
+
           const exists = _STATE_RACES[abbr].some(r => r.city === city && r.date === date);
           if (!exists) {
             _STATE_RACES[abbr].push({
@@ -737,7 +741,7 @@
           if (!exists) {
             let cardId = null;
             let storyFile = _STORY_MAPPING[`${abbr}-${mr.city}`] || null;
-            
+
             const parsedList = _STATE_RACES[abbr];
             if (parsedList && parsedList.length > 0) {
               const match = parsedList.find(p => p.city === mr.city && p.date === mr.date);
@@ -781,20 +785,20 @@
       const races = _STATE_RACES[abbr];
       const tooltip = _getTooltip();
       const hoverStatus = document.getElementById('map-hover-status');
-      
+
       if (!races || races.length === 0) {
         tooltip.innerHTML = `<h4>${abbr}</h4><div style="color:#aaa;">没有在此州的跑马记录</div>`;
         if (hoverStatus) hoverStatus.textContent = `${abbr}: 无跑马记录`;
       } else {
         const cleanStateName = _STATE_NAMES[abbr] || abbr;
-        
+
         let html = `<h4>📍 ${cleanStateName} (${races.length} 场完赛)</h4>`;
         races.forEach(r => {
           html += `<div class="map-tooltip-race">
             <strong>${r.emoji} ${r.city}</strong><br>
             <span style="font-size:12px;color:#eee;">${r.raceName}</span>
             <div class="map-tooltip-meta">${r.date}</div>`;
-            
+
           if (r.storyFile) {
             html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
               <a href="${r.storyFile}" class="map-tooltip-link" style="background:#8d3f3f; color:#fff; font-size: 11px;">阅读中文故事 ↗</a>
@@ -811,11 +815,11 @@
           }
           html += `</div>`;
         });
-        
+
         tooltip.innerHTML = html;
         if (hoverStatus) hoverStatus.textContent = `${cleanStateName}: 共有 ${races.length} 场记录`;
       }
-      
+
       tooltip.style.display = 'block';
       _moveCityTooltip(e);
     }
@@ -823,12 +827,12 @@
     function _showCityTooltip(e, r, abbr) {
       const tooltip = _getTooltip();
       const hoverStatus = document.getElementById('map-hover-status');
-      
+
       let html = `<h4>📍 ${r.emoji} ${r.city}</h4>`;
       html += `<div class="map-tooltip-race">
         <strong>${r.raceName}</strong><br>
         <div class="map-tooltip-meta">日期: ${r.date}</div>`;
-        
+
       if (r.storyFile) {
         html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
           <a href="${r.storyFile}" class="map-tooltip-link" style="background:#8d3f3f; color:#fff; font-size: 11px;">阅读中文故事 ↗</a>
@@ -844,7 +848,7 @@
         }
       }
       html += `</div>`;
-      
+
       tooltip.innerHTML = html;
       if (hoverStatus) hoverStatus.textContent = `${r.city}: ${r.raceName}`;
       tooltip.style.display = 'block';
@@ -880,7 +884,7 @@
             return;
           }
         }
-        
+
         const fileRace = races.find(r => r.storyFile);
         if (fileRace) {
           _hideCityTooltip();
@@ -912,12 +916,12 @@
     function _bindMapEventsOnce() {
       if (_MAP_BOUND_EVENTS) return;
       _MAP_BOUND_EVENTS = true;
-      
+
       _SF.forEach(id => {
         const el = document.getElementById('map_' + id);
         if (el) {
           el.style.transition = 'fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease';
-          
+
           let stateAbbr = null;
           for (const key in _HM) {
             if (_HM[key].includes(id)) {
@@ -925,7 +929,7 @@
               break;
             }
           }
-          
+
           if (stateAbbr) {
             el.addEventListener('mouseenter', (e) => _showStateTooltip(e, stateAbbr));
             el.addEventListener('mousemove', _moveCityTooltip);
@@ -939,11 +943,11 @@
     function _injectMap() {
       const slot = document.getElementById('welcome-map-slot');
       if (!slot) return;
-      
+
       slot.innerHTML = US_MAP_SVG;
       const master = document.getElementById('us-map-master');
       if (!master) return;
-      
+
       // Set pointer-events: none on all decorative paths; also make LIGHT/MEDIUM-coloured
       // state-overlay paths transparent. Dark fills (lum < 60) are state labels and borders — keep them.
       master.querySelectorAll('path').forEach(path => {
@@ -1027,7 +1031,7 @@
       if (alaskaFrame && hawaiiFrame) {
         alaskaFrame.style.fill = getComputedStyle(hawaiiFrame).fill;
       }
-      
+
       const _CM = {
         'AK':'#d4614a','AL':'#98c038','AR':'#5ca860','AZ':'#e89838','CA':'#d4614a',
         'CO':'#9068c0','CT':'#9068c0','DE':'#e89838','FL':'#d4614a','GA':'#e89838',
@@ -1068,7 +1072,7 @@
         master.appendChild(dotGroup);
       }
       dotGroup.innerHTML = '';
-      
+
       for (const abbr in _STATE_RACES) {
         _STATE_RACES[abbr].forEach(r => {
           const cityCoords = _CITY_LAT_LON[r.city];
@@ -1093,7 +1097,7 @@
               x = coords.x;
               y = coords.y;
             }
-            
+
             const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             glow.setAttribute('cx', x);
             glow.setAttribute('cy', y);
@@ -1102,7 +1106,7 @@
             glow.setAttribute('class', 'city-dot-glow');
             glow.style.pointerEvents = 'none';
             dotGroup.appendChild(glow);
-            
+
             const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             dot.setAttribute('cx', x);
             dot.setAttribute('cy', y);
@@ -1112,12 +1116,12 @@
             dot.setAttribute('stroke-width', '1.5');
             dot.setAttribute('class', 'city-dot');
             dot.style.cursor = 'pointer';
-            
+
             dot.addEventListener('mouseenter', (e) => _showCityTooltip(e, r, abbr));
             dot.addEventListener('mousemove', _moveCityTooltip);
             dot.addEventListener('mouseleave', _hideCityTooltip);
             dot.addEventListener('click', (e) => _handleCityClick(e, r, abbr));
-            
+
             dotGroup.appendChild(dot);
           }
         });

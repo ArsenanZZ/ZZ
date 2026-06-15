@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Cleveland Marathon Run50 icon cover</title>
+  <desc id="desc">Cleveland icon cover with Lake Erie, Rock Hall pyramid, skyline, guitar, basketball, and Ohio Run50 badge.</desc>
+  <rect width="1200" height="750" fill="#edf3f7"/>
+  <rect y="300" width="1200" height="450" fill="#b7dce8"/>
+  <rect y="560" width="1200" height="190" fill="#4d8ca4"/>
+  <rect y="665" width="1200" height="85" fill="#2f6f88"/>
+  <path d="M0 560 L160 510 L340 540 L520 496 L720 548 L920 504 L1200 540 V665 H0Z" fill="#7fb069"/>
+  <text x="64" y="112" fill="#20242b" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="900">CLEVELAND</text>
+  <text x="68" y="160" fill="#536a79" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800">LAKE ERIE · ROCK HALL · DAWN MARATHON</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #02</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#0b67c2">OHIO</text>
+  <path d="M135 665 L335 374 L535 665 Z" fill="#d7eef4" stroke="#20242b" stroke-width="7"/>
+  <path d="M335 374 L420 665 L535 665 Z" fill="#b2d6e2" stroke="#20242b" stroke-width="5"/>
+  <g stroke="#6f93a0" stroke-width="4">
+    <path d="M335 374 L190 665 M335 374 L245 665 M335 374 L300 665 M335 374 L355 665 M335 374 L410 665 M335 374 L465 665"/>
+    <path d="M175 465 H495 M175 535 H495 M175 605 H495"/>
+  </g>
+  <g fill="#26313d">
+    <rect x="610" y="452" width="52" height="190"/><rect x="672" y="404" width="54" height="238"/>
+    <rect x="744" y="356" width="58" height="286"/><path d="M744 356 L773 296 L802 356Z"/><rect x="770" y="266" width="8" height="34"/>
+    <rect x="820" y="464" width="74" height="178"/><rect x="915" y="428" width="70" height="214"/><rect x="1015" y="500" width="62" height="142"/>
+  </g>
+  <g stroke="#8fb2c5" stroke-width="3" opacity=".75">
+    <path d="M620 478 H652 M682 430 H716 M754 386 H792 M832 492 H884 M925 456 H975 M1025 528 H1067"/>
+  </g>
+  <path d="M160 724 L305 558" stroke="#20242b" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="140" cy="692" r="52" fill="#f5b840" stroke="#20242b" stroke-width="7"/>
+  <circle cx="140" cy="692" r="30" fill="none" stroke="#20242b" stroke-width="4"/>
+  <circle cx="1040" cy="632" r="55" fill="#d97706" stroke="#20242b" stroke-width="7"/>
+  <path d="M1040 577 V687 M985 632 H1095" stroke="#20242b" stroke-width="5"/>
+  <path d="M1000 590 Q1040 632 1000 674 M1080 590 Q1040 632 1080 674" fill="none" stroke="#20242b" stroke-width="5"/>
+</svg>
