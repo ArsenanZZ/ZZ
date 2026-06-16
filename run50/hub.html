@@ -346,17 +346,17 @@
 
   <!-- Chinese Stories -->
   <div class="tab-pane" id="pane-chinese">
-    <iframe class="embed-frame" src="stories/chinese/" title="Chinese Stories" loading="lazy"></iframe>
+    <iframe class="embed-frame" src="stories/chinese/?v=20260616-medal-final" title="Chinese Stories" loading="lazy"></iframe>
   </div>
 
   <!-- English Stories -->
   <div class="tab-pane" id="pane-english">
-    <iframe class="embed-frame" src="stories/english/" title="English Stories" loading="lazy"></iframe>
+    <iframe class="embed-frame" src="stories/english/?v=20260616-medal-final" title="English Stories" loading="lazy"></iframe>
   </div>
 
   <!-- Facebook Stories -->
   <div class="tab-pane" id="pane-facebook">
-    <iframe class="embed-frame" src="facebook/" title="Run50 Facebook Stories" loading="lazy"></iframe>
+    <iframe class="embed-frame" src="facebook/?v=20260616-medal-final" title="Run50 Facebook Stories" loading="lazy"></iframe>
   </div>
 
   <!-- Running Map -->
@@ -674,7 +674,7 @@ function _injectChinaMap() {
       const dates={cn_hubei:'2024',cn_guangxi:'2024',cn_hongkong:'2025'};
       el.addEventListener('mouseenter', e => showTT(e,
         `<strong>${names[id]}</strong><br><span style="color:#9ab;">${dates[id]}</span>` +
-        `<br><a href="stories/chinese/" target="_blank">中文故事 →</a>`));
+        `<br><a href="stories/chinese/?v=20260616-medal-final" target="_blank">中文故事 →</a>`));
       el.addEventListener('mouseleave', hideTT);
     }
   });
@@ -762,8 +762,8 @@ function _injectWorldMap() {
    [471, 259, '#ff4040', false, 'Louisville, KY',  '2025',     'stories/english/louisville-marathon.html'],
    [404, 353, mxCol,     false, 'Mexico City',     '2024',     'facebook/mexico-marathon.html'],
    [952, 231, itCol,     true,  'Pisa, Italy',     '2025',     'facebook/pisa-marathon.html'],
-   [1461, 290, cnCol,   true,  'Xiangyang, China', '2024',    'stories/chinese/'],
-   [1451, 324, cnCol,   false, 'Guilin, China',    '2024',    'stories/chinese/'],
+   [1461, 290, cnCol,   true,  'Xiangyang, China', '2024',    'stories/chinese/?v=20260616-medal-final'],
+   [1451, 324, cnCol,   false, 'Guilin, China',    '2024',    'stories/chinese/?v=20260616-medal-final'],
    [1471, 338, '#e89838',false,'Hong Kong',        '2025',    'facebook/hong-kong-marathon.html'],
   ].forEach(([cx, cy, fill, pulse, city, date, story]) => {
     if (pulse) dg.appendChild(mkEl('circle',
