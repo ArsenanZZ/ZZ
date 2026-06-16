@@ -538,7 +538,7 @@ const _CM = {
 const _CITY_LL = {
   'Chicago':{lat:41.8781,lon:-87.6298},'Louisville':{lat:38.2527,lon:-85.7585},'Little Rock':{lat:34.7465,lon:-92.2896},
   'Miami':{lat:25.7617,lon:-80.1918},'Nashville':{lat:36.1627,lon:-86.7816},
-  'San Antonio':{lat:29.4241,lon:-98.4936},'Greer':{lat:34.9387,lon:-82.2271},
+  'San Antonio':{lat:29.4241,lon:-98.4936},'Honolulu':{lat:21.3069,lon:-157.8583},'Greer':{lat:34.9387,lon:-82.2271},
   'Huntington':{lat:38.4192,lon:-82.4453},'Pittsburgh':{lat:40.4406,lon:-79.9959},
   'Green Bay':{lat:44.5133,lon:-88.0133},'Grand Rapids':{lat:42.9634,lon:-85.6681},
   'Baton Rouge':{lat:30.4515,lon:-91.1871},'Roanoke':{lat:37.271,lon:-79.9414},
@@ -553,6 +553,7 @@ const _RACES = {
   'NY':[{city:'New York City',date:'Nov 7, 2021',story:'stories/english/new-york-city-marathon.html',fb:'facebook/new-york-city-marathon.html'}],
   'CA':[{city:'San Francisco',date:'Jul 24, 2022',story:'stories/english/san-francisco-marathon.html',fb:'facebook/san-francisco-marathon.html'}],
   'IN':[{city:'Indianapolis',date:'Nov 5, 2022',story:'stories/english/indianapolis-monumental-marathon.html',fb:'facebook/indianapolis-monumental-marathon.html'}],
+  'HI':[{city:'Honolulu',date:'Dec 11, 2022',story:'stories/english/honolulu-marathon.html',fb:'facebook/honolulu-marathon.html'}],
   'IL':[{city:'Chicago',date:'Oct 2024',story:'stories/english/chicago-marathon.html',fb:'facebook/chicago-marathon.html'}],
   'AR':[{city:'Little Rock',date:'Mar 2025',story:'stories/english/little-rock-marathon.html',fb:'facebook/little-rock-marathon.html'}],
   'FL':[{city:'Miami',date:'Jan 2025',story:'stories/english/miami-marathon.html',fb:'facebook/miami-marathon.html'}],
@@ -877,6 +878,12 @@ function _injectWorldMap() {
     <circle cx="224" cy="145" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
       data-city="Indianapolis, IN" data-date="Nov 5, 2022" data-story="stories/english/indianapolis-monumental-marathon.html"/>
     <!-- /Indiana Indianapolis story dot -->
+
+    <!-- Hawaii Honolulu story dot -->
+    <circle cx="168" cy="188" r="10" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
+    <circle cx="168" cy="188" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Honolulu, HI" data-date="Dec 11, 2022" data-story="stories/english/honolulu-marathon.html"/>
+    <!-- /Hawaii Honolulu story dot -->
 
     <circle cx="204" cy="152" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
       data-city="San Antonio, TX" data-date="Dec 2024" data-story="stories/english/san-antonio-marathon.html"/>
