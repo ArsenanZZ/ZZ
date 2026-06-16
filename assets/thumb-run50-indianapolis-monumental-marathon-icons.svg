@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-labelledby="title desc">
+  <title id="title">Indianapolis Monumental Marathon Run50 icon cover</title>
+  <desc id="desc">Icon cover with Indianapolis monument, statehouse dome, autumn rain, downtown blocks and a Run50 Indiana badge.</desc>
+  <rect width="1200" height="750" fill="#cfe9f4"/>
+  <circle cx="945" cy="132" r="58" fill="#f7bc3b"/>
+  <path d="M0 515 L320 435 L680 485 L1200 420 L1200 750 L0 750Z" fill="#9ad06d"/>
+  <path d="M0 570 L520 500 L1200 555 L1200 750 L0 750Z" fill="#78bb61"/>
+  <g stroke="#7aa9bd" stroke-width="3" opacity=".85">
+    <line x1="80" y1="305" x2="55" y2="392"/><line x1="180" y1="305" x2="155" y2="392"/><line x1="280" y1="305" x2="255" y2="392"/>
+    <line x1="840" y1="305" x2="815" y2="392"/><line x1="940" y1="305" x2="915" y2="392"/><line x1="1040" y1="305" x2="1015" y2="392"/>
+  </g>
+  <g stroke="#20242b" stroke-width="4">
+    <rect x="118" y="460" width="214" height="180" fill="#d7c5ad"/>
+    <rect x="96" y="640" width="258" height="36" fill="#b99068"/>
+    <path d="M142 460 Q225 315 308 460Z" fill="#d8b46e"/>
+    <rect x="215" y="315" width="20" height="70" fill="#b99068"/>
+    <path d="M214 315 L225 285 L236 315Z" fill="#f7bc3b"/>
+    <rect x="140" y="500" width="24" height="128" fill="#efe6d7" stroke="#84674b" stroke-width="2"/>
+    <rect x="178" y="500" width="24" height="128" fill="#efe6d7" stroke="#84674b" stroke-width="2"/>
+    <rect x="255" y="500" width="24" height="128" fill="#efe6d7" stroke="#84674b" stroke-width="2"/>
+    <rect x="293" y="500" width="24" height="128" fill="#efe6d7" stroke="#84674b" stroke-width="2"/>
+  </g>
+  <g stroke="#20242b" stroke-width="5">
+    <rect x="568" y="358" width="84" height="286" fill="#e8dcc9"/>
+    <path d="M556 358 L610 250 L664 358Z" fill="#d7c5ad"/>
+    <rect x="532" y="640" width="156" height="48" fill="#b99068"/>
+    <ellipse cx="610" cy="606" rx="66" ry="46" fill="#efdfc7"/>
+    <text x="610" y="615" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900" fill="#20242b" stroke="none">INDY</text>
+  </g>
+  <g stroke="#6b7280" stroke-width="2">
+    <rect x="760" y="420" width="62" height="190" fill="#b7d7e5"/><rect x="835" y="380" width="74" height="230" fill="#f5d66c"/>
+    <rect x="925" y="455" width="54" height="155" fill="#a7dccd"/><rect x="995" y="408" width="72" height="202" fill="#d2c2ee"/>
+  </g>
+  <path d="M310 750 L535 565 L710 565 L970 750Z" fill="#46505c"/>
+  <line x1="621" y1="585" x2="621" y2="750" stroke="#f7d35b" stroke-width="5"/>
+  <g stroke="#20242b" stroke-width="6" fill="none">
+    <circle cx="718" cy="560" r="14" fill="#0b67c2" stroke="none"/>
+    <line x1="718" y1="574" x2="713" y2="630"/>
+    <line x1="715" y1="594" x2="684" y2="614"/>
+    <line x1="713" y1="630" x2="690" y2="675"/>
+    <line x1="713" y1="630" x2="750" y2="666"/>
+  </g>
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">INDIANAPOLIS</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">MONUMENT CIRCLE · FAST &amp; FLAT</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #05</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">INDIANA</text>
+</svg>
