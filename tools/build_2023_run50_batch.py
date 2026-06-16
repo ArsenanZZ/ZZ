@@ -18,7 +18,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 REPO = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = Path(r"Z:\ZhennanZ Folder\000-Marathon-Story-2024-2025\20230000-Marathons")
 SITE = "https://arsenanzz.github.io/ZZ"
-VERSION = "20260616-1"
+VERSION = "20260616-2"
 ENGAGEMENT_VERSION = "20260616"
 TRANSLATION_CACHE = Path(tempfile.gettempdir()) / "zz_run50_2023_batch_translation_cache.json"
 FONT_DIR = Path(r"C:\Windows\Fonts")
@@ -1111,21 +1111,61 @@ def choose_medal_source(config: StoryConfig, events: list[dict]) -> Path:
     return events[image_indices[-1]]["source"]
 
 
+def draw_checkered_strip(draw: ImageDraw.ImageDraw, x: int, y: int, size: int = 16, cols: int = 8, rows: int = 3) -> None:
+    for row in range(rows):
+        for col in range(cols):
+            fill = "#20242b" if (row + col) % 2 == 0 else "#ffffff"
+            draw.rectangle((x + col * size, y + row * size, x + (col + 1) * size, y + (row + 1) * size), fill=fill)
+    draw.rectangle((x, y, x + cols * size, y + rows * size), outline="#20242b", width=3)
+
+
 def generate_medal_cover(config: StoryConfig, events: list[dict]) -> None:
     out = REPO / "assets" / config.medal_name
-    source = choose_medal_source(config, events)
-    with Image.open(source) as image:
-        image = ImageOps.exif_transpose(image).convert("RGB")
-        bg = ImageOps.fit(image, (1200, 750), method=Image.LANCZOS, centering=(0.5, 0.5))
-        bg = bg.filter(ImageFilter.GaussianBlur(18))
-        overlay = Image.new("RGB", (1200, 750), "#edf3f7")
-        bg = Image.blend(bg, overlay, 0.18)
-        fg = image.copy()
-        fg.thumbnail((1120, 720), Image.LANCZOS)
-        x = (1200 - fg.width) // 2
-        y = (750 - fg.height) // 2
-        bg.paste(fg, (x, y))
-        bg.save(out, quality=92)
+    canvas = Image.new("RGBA", (1200, 750), "#edf3f7")
+    draw = ImageDraw.Draw(canvas)
+
+    # A medal-art plaque instead of a cropped medal photo, matching the Chicago/Guilin card rhythm.
+    for y in range(0, 750, 18):
+        shade = 239 + ((y // 18) % 2) * 5
+        draw.line((0, y, 1200, y), fill=(shade, shade + 3, shade + 5, 80), width=2)
+    draw.rounded_rectangle((26, 24, 1174, 724), radius=38, fill="#c7b184", outline="#20242b", width=9)
+    draw.rounded_rectangle((42, 40, 1158, 708), radius=28, outline="#f9edc5", width=8)
+    draw.rounded_rectangle((56, 54, 1144, 694), radius=20, outline="#6e5932", width=5)
+
+    scene = Image.new("RGB", (1200, 630), "#cfe9f4")
+    scene_draw = ImageDraw.Draw(scene)
+    draw_scene(scene_draw, config, 1200, 630)
+    scene = ImageOps.fit(scene, (1076, 560), method=Image.LANCZOS, centering=(0.5, 0.55)).convert("RGBA")
+    mask = Image.new("L", (1076, 560), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, 1075, 559), radius=16, fill=255)
+    canvas.paste(scene, (62, 62), mask)
+
+    overlay = Image.new("RGBA", (1200, 750), (0, 0, 0, 0))
+    od = ImageDraw.Draw(overlay)
+    od.rounded_rectangle((82, 86, 515, 265), radius=20, fill=(255, 255, 255, 190), outline=(32, 36, 43, 210), width=4)
+    od.rounded_rectangle((820, 88, 1104, 220), radius=18, fill=(255, 255, 255, 210), outline=(32, 36, 43, 220), width=5)
+    od.rounded_rectangle((82, 542, 1118, 662), radius=18, fill=(32, 36, 43, 230), outline=(249, 237, 197, 230), width=4)
+    od.rectangle((82, 622, 1118, 662), fill=(11, 103, 194, 230))
+    canvas = Image.alpha_composite(canvas, overlay)
+    draw = ImageDraw.Draw(canvas)
+
+    state_font = fit_font(draw, config.state_abbr, 380, 112, 82, True)
+    draw.text((108, 101), config.state_abbr, fill="#20242b", font=state_font, stroke_width=2, stroke_fill="#f9edc5")
+    draw.text((112, 214), config.state_en.upper(), fill="#5b6774", font=fit_font(draw, config.state_en.upper(), 360, 28, 20, True))
+
+    draw.text((848, 116), f"Run50 #{config.run_no}", fill="#20242b", font=fit_font(draw, f"Run50 #{config.run_no}", 220, 38, 28, True))
+    draw.text((848, 166), config.date_iso, fill="#0b67c2", font=fit_font(draw, config.date_iso, 220, 34, 24, True))
+    draw_checkered_strip(draw, 940, 232, size=14, cols=7, rows=3)
+
+    title_font = fit_font(draw, config.cover_title, 840, 76, 48, True)
+    draw.text((106, 558), config.cover_title, fill="#ffffff", font=title_font)
+    draw.text((108, 626), config.race_en.upper(), fill="#ffffff", font=fit_font(draw, config.race_en.upper(), 840, 25, 17, True))
+
+    for x, y in ((62, 62), (1138, 62), (62, 622), (1138, 622)):
+        draw.ellipse((x - 14, y - 14, x + 14, y + 14), fill="#f8e7b3", outline="#20242b", width=4)
+        draw.ellipse((x - 5, y - 5, x + 5, y + 5), fill="#6e5932")
+
+    canvas.convert("RGB").save(out, quality=94)
 
 
 def write_clean(path: Path, text: str) -> None:
