@@ -330,7 +330,8 @@
 <!-- ── MAIN TAB NAV ── -->
 <nav class="hub-tabs" role="tablist" aria-label="Run50 sections">
   <button class="hub-tab active" role="tab" aria-selected="true" data-tab="home">🏠 Run50 Home</button>
-  <button class="hub-tab" role="tab" aria-selected="false" data-tab="chinese">📖 中文故事</button>
+  <button class="hub-tab" role="tab" aria-selected="false" data-tab="chinese">📖 Chinese Stories</button>
+    <button class="hub-tab" role="tab" aria-selected="false" data-tab="english">📗 English Stories</button>
   <button class="hub-tab" role="tab" aria-selected="false" data-tab="facebook">📘 Facebook Stories</button>
   <button class="hub-tab" role="tab" aria-selected="false" data-tab="map">🗺 Running Map</button>
 </nav>
@@ -345,7 +346,12 @@
 
   <!-- Chinese Stories -->
   <div class="tab-pane" id="pane-chinese">
-    <iframe class="embed-frame" src="stories/chinese/" title="Run50 中文故事" loading="lazy"></iframe>
+    <iframe class="embed-frame" src="stories/chinese/" title="Chinese Stories" loading="lazy"></iframe>
+  </div>
+
+  <!-- English Stories -->
+  <div class="tab-pane" id="pane-english">
+    <iframe class="embed-frame" src="stories/english/" title="English Stories" loading="lazy"></iframe>
   </div>
 
   <!-- Facebook Stories -->
@@ -537,7 +543,7 @@ const _CM = {
 };
 
 const _CITY_LL = {
-  'Chicago':{lat:41.8781,lon:-87.6298},'Little Rock':{lat:34.7465,lon:-92.2896},
+  'Chicago':{lat:41.8781,lon:-87.6298},'Louisville':{lat:38.2527,lon:-85.7585},'Little Rock':{lat:34.7465,lon:-92.2896},
   'Miami':{lat:25.7617,lon:-80.1918},'Nashville':{lat:36.1627,lon:-86.7816},
   'San Antonio':{lat:29.4241,lon:-98.4936},'Greer':{lat:34.9387,lon:-82.2271},
   'Huntington':{lat:38.4192,lon:-82.4453},'Pittsburgh':{lat:40.4406,lon:-79.9959},
@@ -549,6 +555,8 @@ const _CITY_LL = {
 };
 
 const _RACES = {
+  'KY':[{city:'Louisville',date:'Nov 8, 2020',story:'stories/english/louisville-marathon.html',fb:'facebook/louisville-marathon.html'}],
+  'OH':[{city:'Cleveland',date:'Oct 24, 2021',story:'stories/english/cleveland-marathon.html',fb:'facebook/cleveland-marathon.html'}],
   'IL':[{city:'Chicago',date:'Oct 2024',story:'stories/english/chicago-marathon.html',fb:'facebook/chicago-marathon.html'}],
   'AR':[{city:'Little Rock',date:'Mar 2025',story:'stories/english/little-rock-marathon.html',fb:'facebook/little-rock-marathon.html'}],
   'FL':[{city:'Miami',date:'Jan 2025',story:'stories/english/miami-marathon.html',fb:'facebook/miami-marathon.html'}],
@@ -673,7 +681,7 @@ function _injectChinaMap() {
 }
 
 /* ====================================================
-   WORLD MAP  (real Natural Earth 50m geographic data)
+   WORLD MAP
    ==================================================== */
 function _injectWorldMap() {
   const slot = document.getElementById('world-map-slot');
@@ -689,7 +697,6 @@ function _injectWorldMap() {
   const itCol  = dark ? '#a02828' : '#e05050';
   const mxCol  = dark ? '#a07018' : '#e8b040';
 
-  // Apply theme colors by replacing placeholder tokens in the SVG string
   let svg = WORLD_MAP_SVG
     .replace(/FILL_us/g,     usCol)
     .replace(/FILL_china/g,  cnCol)
@@ -723,7 +730,7 @@ function _injectWorldMap() {
     return el;
   }
 
-  // Country labels  (x=(lon+180)*5, y=(90-lat)*5 projection)
+  // Country labels (x=(lon+180)*5, y=(90-lat)*5 equirectangular projection)
   const lg = mkEl('g', {id:'wm_labels', 'pointer-events':'none'});
   [['USA',        400, 262, 12, 800, lblFill  ],
    ['Mexico',     388, 348,  8, 500, textFill ],
@@ -742,9 +749,8 @@ function _injectWorldMap() {
       fill, 'text-anchor':'middle', 'font-family':'sans-serif'}, t)));
   svgEl.appendChild(lg);
 
-  // Marathon dots  (coordinates from real lon/lat via same projection)
+  // Marathon dots (cx/cy from real lon/lat)
   const dg = mkEl('g', {id:'wm_dots'});
-  // [cx, cy, fill, pulseRing, city, date, story]
   [[462, 241, '#ff4040', true,  'Chicago, IL',     'Oct 2024', 'stories/english/chicago-marathon.html'],
    [408, 303, '#ff4040', false, 'San Antonio, TX', 'Dec 2024', 'stories/english/san-antonio-marathon.html'],
    [499, 321, '#ff4040', false, 'Miami, FL',       'Jan 2025', 'stories/english/miami-marathon.html'],
@@ -765,8 +771,8 @@ function _injectWorldMap() {
     const dot = mkEl('circle', {cx, cy, r:5, fill, stroke:'#fff', 'stroke-width':1.8});
     dot.style.cursor = 'pointer';
     dot.addEventListener('mouseenter', e => showTT(e,
-      `<strong>${city}</strong><br><span style="color:#9ab;">${date}</span>` +
-      (story ? `<br><a href="${story}" target="_blank">Read Story →</a>` : '')));
+      '<strong>' + city + '</strong><br><span style="color:#9ab;">' + date + '</span>' +
+      (story ? '<br><a href="' + story + '" target="_blank">Read Story →</a>' : '')));
     dot.addEventListener('mouseleave', hideTT);
     dot.addEventListener('click', ev => { ev.stopPropagation(); if (story) window.open(story,'_blank'); });
     dg.appendChild(dot);
@@ -809,10 +815,11 @@ function _injectWorldMap() {
     if (!el) return;
     el.style.cursor = 'pointer';
     el.addEventListener('mouseenter', e =>
-      showTT(e, `<strong>${name}</strong><br><span style="color:#9ab;">${sub}</span>`));
+      showTT(e, '<strong>' + name + '</strong><br><span style="color:#9ab;">' + sub + '</span>'));
     el.addEventListener('mouseleave', hideTT);
   });
 }
+
 
 /* ====================================================
    HASH ROUTING
