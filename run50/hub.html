@@ -330,8 +330,7 @@
 <!-- ── MAIN TAB NAV ── -->
 <nav class="hub-tabs" role="tablist" aria-label="Run50 sections">
   <button class="hub-tab active" role="tab" aria-selected="true" data-tab="home">🏠 Run50 Home</button>
-  <button class="hub-tab" role="tab" aria-selected="false" data-tab="chinese">📖 Chinese Stories</button>
-    <button class="hub-tab" role="tab" aria-selected="false" data-tab="english">📗 English Stories</button>
+  <button class="hub-tab" role="tab" aria-selected="false" data-tab="chinese">📖 中文故事</button>
   <button class="hub-tab" role="tab" aria-selected="false" data-tab="facebook">📘 Facebook Stories</button>
   <button class="hub-tab" role="tab" aria-selected="false" data-tab="map">🗺 Running Map</button>
 </nav>
@@ -346,12 +345,7 @@
 
   <!-- Chinese Stories -->
   <div class="tab-pane" id="pane-chinese">
-    <iframe class="embed-frame" src="stories/chinese/" title="Chinese Stories" loading="lazy"></iframe>
-  </div>
-
-  <!-- English Stories -->
-  <div class="tab-pane" id="pane-english">
-    <iframe class="embed-frame" src="stories/english/" title="English Stories" loading="lazy"></iframe>
+    <iframe class="embed-frame" src="stories/chinese/" title="Run50 中文故事" loading="lazy"></iframe>
   </div>
 
   <!-- Facebook Stories -->
@@ -408,6 +402,7 @@
 <!-- Map data -->
 <script src="us-map-svg.js"></script>
 <script src="china-map-svg.js"></script>
+<script src="world-map-svg.js"></script>
 
 <script>
 /* ====================================================
@@ -542,7 +537,7 @@ const _CM = {
 };
 
 const _CITY_LL = {
-  'Chicago':{lat:41.8781,lon:-87.6298},'Louisville':{lat:38.2527,lon:-85.7585},'Little Rock':{lat:34.7465,lon:-92.2896},
+  'Chicago':{lat:41.8781,lon:-87.6298},'Little Rock':{lat:34.7465,lon:-92.2896},
   'Miami':{lat:25.7617,lon:-80.1918},'Nashville':{lat:36.1627,lon:-86.7816},
   'San Antonio':{lat:29.4241,lon:-98.4936},'Greer':{lat:34.9387,lon:-82.2271},
   'Huntington':{lat:38.4192,lon:-82.4453},'Pittsburgh':{lat:40.4406,lon:-79.9959},
@@ -554,8 +549,6 @@ const _CITY_LL = {
 };
 
 const _RACES = {
-  'KY':[{city:'Louisville',date:'Nov 8, 2020',story:'stories/english/louisville-marathon.html',fb:'facebook/louisville-marathon.html'}],
-  'OH':[{city:'Cleveland',date:'Oct 24, 2021',story:'stories/english/cleveland-marathon.html',fb:'facebook/cleveland-marathon.html'}],
   'IL':[{city:'Chicago',date:'Oct 2024',story:'stories/english/chicago-marathon.html',fb:'facebook/chicago-marathon.html'}],
   'AR':[{city:'Little Rock',date:'Mar 2025',story:'stories/english/little-rock-marathon.html',fb:'facebook/little-rock-marathon.html'}],
   'FL':[{city:'Miami',date:'Jan 2025',story:'stories/english/miami-marathon.html',fb:'facebook/miami-marathon.html'}],
@@ -680,315 +673,143 @@ function _injectChinaMap() {
 }
 
 /* ====================================================
-   WORLD MAP
+   WORLD MAP  (real Natural Earth 50m geographic data)
    ==================================================== */
 function _injectWorldMap() {
   const slot = document.getElementById('world-map-slot');
-  if (!slot) return;
+  if (!slot || typeof WORLD_MAP_SVG === 'undefined') return;
 
-  const dark = document.documentElement.dataset.theme === 'dark';
+  const dark   = document.documentElement.dataset.theme === 'dark';
   const ocean  = dark ? '#1a3040' : '#a8d4e8';
-  const landBg = dark ? '#28302a' : '#d4c9a8';
-  const canada = dark ? '#2a3428' : '#c8d4b8';
-  const africa = dark ? '#352e20' : '#d4c49c';
-  const europe = dark ? '#2a2a38' : '#c8c8d8';
-  const russia = dark ? '#2e2e26' : '#d0c8a8';
-  const neutral= dark ? '#2a3028' : '#c4c8b4';
-  const antart = dark ? '#1e2c32' : '#e5f0f5';
-  const greenl = dark ? '#1e2e28' : '#c8d8cc';
+  const land   = dark ? '#28302a' : '#d4c9a8';
+  const border = dark ? '#3a4a3a' : '#ffffff';
+  const grid   = dark ? '#2a4a5a' : '#78a8c0';
+  const usCol  = dark ? '#b05c10' : '#d4823a';
+  const cnCol  = dark ? '#2e7832' : '#5ca860';
+  const itCol  = dark ? '#a02828' : '#e05050';
+  const mxCol  = dark ? '#a07018' : '#e8b040';
 
-  const usCol    = dark ? '#b05c10' : '#d4823a';
-  const chinaCol = dark ? '#2e7832' : '#5ca860';
-  const mexCol   = dark ? '#a07018' : '#e8b040';
-  const italyCol = dark ? '#a02828' : '#e05050';
+  // Apply theme colors by replacing placeholder tokens in the SVG string
+  let svg = WORLD_MAP_SVG
+    .replace(/FILL_us/g,     usCol)
+    .replace(/FILL_china/g,  cnCol)
+    .replace(/FILL_italy/g,  itCol)
+    .replace(/FILL_mexico/g, mxCol)
+    .replace(/FILL_hk/g,     dark ? '#a07018' : '#e8b040')
+    .replace(/FILL_uk/g,     dark ? '#3a5a88' : '#7090c0')
+    .replace(/FILL_fr/g,     dark ? '#3a5888' : '#7090b8')
+    .replace(/FILL_de/g,     dark ? '#385070' : '#6888a8')
+    .replace(/FILL_jp/g,     dark ? '#1e3a50' : '#a0c0d8')
+    .replace(/FILL_kr/g,     dark ? '#1e3a50' : '#a0c0d8')
+    .replace(/FILL_au/g,     dark ? '#3a3020' : '#c8b090')
+    .replace(/OCEAN/g,       ocean)
+    .replace(/LAND/g,        land)
+    .replace(/BORDER/g,      border)
+    .replace(/GRID/g,        grid);
 
+  slot.innerHTML = svg;
+  const svgEl = document.getElementById('world-map-master');
+  if (!svgEl) return;
+  svgEl.style.borderRadius = '8px';
+
+  const NS = 'http://www.w3.org/2000/svg';
   const textFill = dark ? '#c8d8c8' : '#5a5040';
   const lblFill  = dark ? '#e0e8e0' : '#ffffff';
-  const gridLine   = dark ? '#2a4a5a' : '#78a8c0';
-  const legendBg   = dark ? 'rgba(15,20,15,0.82)' : 'rgba(240,248,240,0.88)';
-  const legendBord = dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)';
-  const legendText = dark ? '#ccc' : '#333';
-  const pisaLabel  = dark ? '#f08080' : '#c03030';
-  const badgeBg    = dark ? '#8a4a08' : '#d4823a';
 
-  slot.innerHTML = `<svg id="world-map-master" viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg"
-    style="width:100%;height:auto;display:block;border-radius:8px">
+  function mkEl(tag, attrs, text) {
+    const el = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, String(v));
+    if (text !== undefined) el.textContent = text;
+    return el;
+  }
 
-    <!-- Ocean -->
-    <rect width="900" height="450" fill="${ocean}"/>
+  // Country labels  (x=(lon+180)*5, y=(90-lat)*5 projection)
+  const lg = mkEl('g', {id:'wm_labels', 'pointer-events':'none'});
+  [['USA',        400, 262, 12, 800, lblFill  ],
+   ['Mexico',     388, 348,  8, 500, textFill ],
+   ['Canada',     375, 145,  8, 400, textFill ],
+   ['Greenland',  665,  75,  7, 400, textFill ],
+   ['S. America', 580, 510,  9, 400, textFill ],
+   ['Europe',     925, 165,  8, 400, textFill ],
+   ['Italy',      955, 240,  9, 700, lblFill  ],
+   ['Africa',     985, 455, 10, 400, textFill ],
+   ['Russia',    1340, 115,  9, 400, textFill ],
+   ['China',     1420, 288, 12, 800, lblFill  ],
+   ['India',     1295, 368,  8, 400, textFill ],
+   ['Australia', 1560, 592,  9, 400, textFill ],
+  ].forEach(([t, x, y, sz, wt, fill]) =>
+    lg.appendChild(mkEl('text', {x, y, 'font-size':sz, 'font-weight':wt,
+      fill, 'text-anchor':'middle', 'font-family':'sans-serif'}, t)));
+  svgEl.appendChild(lg);
 
-    <!-- Grid lines: equator y=225, tropics y=166/284, prime meridian x=450 -->
-    <line x1="0" y1="225" x2="900" y2="225" stroke="${gridLine}" stroke-width="0.6" stroke-dasharray="4,6" opacity="0.7"/>
-    <line x1="0" y1="166" x2="900" y2="166" stroke="${gridLine}" stroke-width="0.4" stroke-dasharray="2,8" opacity="0.4"/>
-    <line x1="0" y1="284" x2="900" y2="284" stroke="${gridLine}" stroke-width="0.4" stroke-dasharray="2,8" opacity="0.4"/>
-    <line x1="450" y1="0" x2="450" y2="450" stroke="${gridLine}" stroke-width="0.3" stroke-dasharray="1,10" opacity="0.3"/>
-
-    <!-- Antarctica coast ~68-70S -->
-    <path d="M 0,400 Q 90,408 180,402 Q 270,410 360,404 Q 450,410 540,404 Q 630,410 720,404 Q 810,410 900,400 L 900,450 L 0,450 Z" fill="${antart}"/>
-
-    <!-- Greenland: NW 77N 68W, N 83N 44W, NE 77N 18W, S 60N 43W  x=(lon+180)*2.5 y=(90-lat)*2.5 -->
-    <path d="M 268,17 Q 308,13 343,13 Q 378,13 407,32 Q 418,50 402,60 L 392,68 L 377,75 L 343,76 L 319,69 Q 306,57 306,43 Q 303,29 287,28 Z" fill="${greenl}"/>
-
-    <!-- Iceland 65N 18W -->
-    <path d="M 390,59 L 418,61 L 418,67 L 390,67 Z" fill="${greenl}"/>
-
-    <!-- Alaska: Barrow 71N 157W=57.5,47.5; SE border 60N 141W=97.5,75; panhandle 55N 131W=122.5,87.5 -->
-    <path d="M 30,60 L 30,47 L 58,47 L 82,50 L 97.5,52 L 97.5,75 L 120,84 L 122.5,88 L 108,84 L 72,76 L 59,83 L 42,88 L 30,90 Z" fill="${canada}"/>
-    <ellipse cx="14" cy="93" rx="14" ry="3" fill="${canada}" opacity="0.6"/>
-
-    <!-- Canada: Pacific coast 50N 126W=135,100; border 49N y=102.5; Arctic 73N y=42.5 -->
-    <path d="M 97.5,75 L 126,98 L 138,103.75 L 150,102.5 L 175,102.5 L 212.5,102.5 L 225,105 L 242.5,120 L 253,116 L 260,115 L 283,107 L 290,107 L 300,109 L 318,107 L 313,94 L 292,79 L 275,69 L 250,42.5 L 225,42 L 200,50 L 175,44 L 137,42 L 97.5,52 Z" fill="${canada}"/>
-
-    <!-- USA 48 states: Pacific NW 48.5N 124.7W=138.25,103.75
-         Pacific coast SE to San Diego 32.5N 117.1W=157.25,143.75
-         US-Mexico border east to Rio Grande 26N 97.4W=206.5,160
-         Gulf Coast: Houston->New Orleans->Alabama->Florida peninsula tip 24.5N 81.2W=247,163.75
-         East Coast north to Maine 47N 67W=282.5,107.25
-         US-Canada border west along ~49N (y=102.5) back to Pacific NW -->
-    <path id="wm-us" class="wm-country" data-country="USA"
-      d="M 138.25,103.75
-         L 138.75,109.5 L 139.75,115 L 138.75,117.5 L 139.75,120.5
-         L 148,128.75 L 144,130.5 L 145.25,133.5 L 148.25,136.5 L 151.5,139
-         L 153.75,140 L 156.75,142.25 L 157.25,143.75
-         L 163,143.75 L 172.5,146.75 L 179.5,146.75 L 183.5,145.5
-         L 188.25,150.5 L 200,155 L 206.5,160
-         L 213.5,151.25 L 215.75,150.5 L 222.5,152.5 L 227.25,149.5
-         L 230,148.75 L 233.5,148.5 L 239.75,150 L 243.75,150.75
-         L 243.25,155.5 L 244.75,159 L 245.5,160
-         L 247,162.25 L 248.9,163.75
-         L 249.75,160.5 L 249.5,157.5 L 249.25,153.75 L 248,147.5
-         L 246.5,145.25
-         L 250.25,142.9 L 253.75,140.25 L 256,138.25 L 258.75,138 L 260.75,137
-         L 260,133 L 260,130 L 259.5,127.75 L 262.25,128
-         L 265,124.75 L 265.25,123.25 L 268.5,121.75 L 272.5,121.25
-         L 275,120.75 L 275.25,119.75
-         L 273.75,117 L 272.75,115 L 280,114.25 L 282.75,112.9
-         L 282.5,107.25
-         L 270,112.5 L 259.75,115 L 253,116 L 242.5,120
-         L 225,105 L 212.5,102.5 L 175,102.5 L 150,102.5 Z"
-      fill="${usCol}"/>
-    <!-- Hawaii 21N 157W=57.5,172.5 -->
-    <ellipse cx="57.5" cy="172.5" rx="9" ry="4" fill="${usCol}" opacity="0.8"/>
-
-    <!-- Mexico mainland: Tijuana 32.5N 117W -> Rio Grande 26N 97.4W -> Gulf coast south -> Yucatan 21N 87W=232.5,172.5 -->
-    <path id="wm-mexico" class="wm-country" data-country="Mexico"
-      d="M 157.25,143.75 L 163,143.75 L 172.5,146.75 L 179.5,146.75
-         L 183.5,145.5 L 188.25,150.5 L 200,155 L 206.5,160
-         L 202.5,170 L 199,178 L 208,180 L 220,178 L 232.5,172.5
-         L 231.25,184 L 222.5,185 L 222.5,180 L 212.5,180
-         L 199.5,177 L 187.5,172.5 L 178,166 L 175.5,162 L 157.25,143.75 Z"
-      fill="${mexCol}"/>
-    <!-- Baja California peninsula: tip 23N 109.5W=176.25,167.5 -->
-    <path d="M 157.25,143.75 L 160,150 L 165,158 L 167,167.5 L 163,176 L 157,181 L 153,176 L 153,167 L 155,159 L 158,150 Z" fill="${mexCol}" opacity="0.9"/>
-
-    <!-- Central America + Caribbean -->
-    <path d="M 225,185 L 232.5,185 L 237,196 L 242,202 L 240,208 L 232,212 L 223,207 L 219,196 Z" fill="${neutral}"/>
-    <ellipse cx="282" cy="187" rx="12" ry="5" fill="${neutral}" opacity="0.7"/>
-    <ellipse cx="297" cy="196" rx="6" ry="4" fill="${neutral}" opacity="0.7"/>
-
-    <!-- Colombia + Venezuela coast -->
-    <path d="M 241,208 L 255,205 L 271,199 L 298,197 L 311,202 L 310,214 L 296,218 L 273,215 L 260,218 L 252,223 L 247,228 L 240,220 Z" fill="${neutral}"/>
-
-    <!-- South America: Colombia 8N 77W=257.5,205 -> Cape Horn 56S 68W=280,365 -->
-    <path d="M 248,228 L 257,220 L 273,215 L 296,218 L 315,207 L 330,210 L 354,228 L 364,252 L 361,272 L 354,287 L 340,302 L 333,323 L 322,348 L 307,366 L 295,372 L 283,372 L 271,359 L 265,340 L 260,320 L 254,296 L 250,272 L 249,252 Z" fill="${neutral}"/>
-
-    <!-- UK: NW Scotland 58.5N 5W=437.5,78.75; SE England 51N 1.5E=453.75,97.5 -->
-    <path d="M 433,78 L 451,73 L 457,80 L 456,94 L 451,101 L 443,107 L 437,101 L 435,90 Z" fill="${europe}"/>
-    <!-- Ireland -->
-    <path d="M 424,88 L 434,84 L 435,98 L 427,100 L 420,95 Z" fill="${europe}"/>
-
-    <!-- Scandinavia + Finland: Norway tip 71N 28E=520,47.5; SW Norway 58N 5E=462.5,80; SE Sweden 56N 18E=495,85 -->
-    <path d="M 462.5,80 L 466,73 L 474,64 L 486,56 L 504,52 L 522,47 L 530,55 L 545,56 L 555,55 L 568,58 L 568,78 L 555,86 L 542,80 L 530,86 L 514,96 L 500,101 L 484,101 L 480,90 L 473,87 Z" fill="${europe}"/>
-    <!-- Denmark 57N 9E=472.5,82.5 -->
-    <path d="M 451,102 L 461,100 L 465,107 L 458,113 L 450,112 Z" fill="${europe}"/>
-
-    <!-- Western + Central Europe: Brittany 48N 5W=437.5,105; Poland E 54N 24E=510,90 -->
-    <path d="M 436,98 L 444,107 L 451,102 L 462.5,100 L 484,101 L 480,110 L 470,108 L 460,112 L 452,120 L 452,128 L 447,133 L 436,134 L 424,131 L 418,124 L 421,112 L 419,104 L 428,96 Z" fill="${europe}"/>
-
-    <!-- Iberian Peninsula: NW 43N 9W=427.5,117.5; Gibraltar 36N 5.5W=436.25,135 -->
-    <path d="M 419,104 L 428,96 L 439,96 L 452,100 L 462.5,100 L 460,112 L 452,120 L 452,128 L 447,133 L 436,134 L 422,131 L 418,124 L 411,120 L 412,110 Z" fill="${europe}"/>
-
-    <!-- Italy boot shape: top 45N 8E=470,112.5; heel 40N 18E=495,125; toe/tip 38N 15-16E -->
-    <path id="wm-italy" class="wm-country" data-country="Italy"
-      d="M 453,110 L 471,108 L 483,112 L 491,120 L 493,130 L 488,143 L 476,153 L 469,158 L 464,155 L 461,144 L 457,132 L 452,120 Z"
-      fill="${italyCol}"/>
-    <!-- Sicily 37.5N 14E=485,131 -->
-    <ellipse cx="462" cy="161" rx="9" ry="4" fill="${italyCol}"/>
-    <!-- Sardinia 40N 9E=472.5,125 -->
-    <ellipse cx="450" cy="148" rx="4" ry="7" fill="${italyCol}" opacity="0.7"/>
-
-    <!-- Eastern Europe: Poland/Czech/Hungary/Romania/Bulgaria -->
-    <path d="M 480,90 L 500,86 L 530,86 L 542,80 L 555,86 L 568,78 L 568,96 L 555,103 L 542,108 L 530,110 L 518,122 L 510,132 L 500,130 L 493,130 L 491,120 L 483,112 L 480,110 L 484,101 Z" fill="${europe}"/>
-
-    <!-- Balkans + Greece: Athens 38N 24E=510,130 -->
-    <path d="M 493,130 L 500,130 L 510,132 L 518,122 L 530,120 L 532,133 L 520,146 L 516,160 L 508,163 L 498,159 L 490,150 L 488,143 L 493,130 Z" fill="${europe}"/>
-    <!-- Crete + islands 35N 25E=512.5,137.5 -->
-    <ellipse cx="510" cy="168" rx="9" ry="4" fill="${europe}" opacity="0.8"/>
-
-    <!-- Turkey: W 38N 26E=515,130; E 40N 44E=560,125 -->
-    <path d="M 509,109 L 542,105 L 558,108 L 563,116 L 557,124 L 544,129 L 530,127 L 518,124 L 510,120 Z" fill="${europe}" opacity="0.9"/>
-
-    <!-- Russia: 60N 30E=525,75 to 68N 170E=875,55; Far East coast 45N 140E=800,112.5 -->
-    <path d="M 510,60 L 545,56 L 600,50 L 660,47 L 724,46 L 785,48 L 840,50 L 884,55 L 897,66 L 889,80 L 873,92 L 862,103 L 862,122 L 864,140 L 862,159 L 851,168 L 839,179 L 823,190 L 812,200 L 797,197 L 783,190 L 768,192 L 755,198 L 749,208 L 741,196 L 733,176 L 717,172 L 701,182 L 687,198 L 673,210 L 653,212 L 637,207 L 625,196 L 617,180 L 617,162 L 622,148 L 636,124 L 638,98 L 625,88 L 607,82 L 589,74 L 571,70 L 555,74 L 542,78 L 530,86 L 542,80 L 545,56 Z" fill="${russia}"/>
-
-    <!-- Caucasus 42N 44E=560,120 -->
-    <path d="M 554,109 L 570,107 L 578,108 L 580,118 L 568,122 L 554,120 Z" fill="${neutral}" opacity="0.8"/>
-
-    <!-- Iran/Afghanistan/Pakistan: W 38N 44E; SE 25N 62E=605,162.5 -->
-    <path d="M 556,124 L 590,112 L 620,108 L 642,116 L 650,132 L 648,150 L 636,162 L 622,170 L 617,162 L 622,148 L 636,124 Z" fill="${neutral}" opacity="0.85"/>
-
-    <!-- Arabian Peninsula: Aden 13N 45E=562.5,192.5; Oman tip 22N 59E=597.5,170 -->
-    <path d="M 556,124 L 581,118 L 598,122 L 605,132 L 601,155 L 595,177 L 590,199 L 577,219 L 563,225 L 549,218 L 541,201 L 539,181 L 541,161 L 543,140 L 547,127 Z" fill="${neutral}" opacity="0.85"/>
-
-    <!-- Africa: NW Morocco 36N 6W=435,135; Cape of Good Hope 34S 18E=495,310; Horn 12N 51E=577.5,195 -->
-    <path d="M 413,138 L 430,132 L 447,133 L 453,110 L 461,144 L 469,158 L 490,150 L 498,159 L 508,163 L 521,160 L 540,150 L 544,162 L 547,180 L 547,201 L 563,218 L 567,238 L 564,262 L 556,286 L 545,314 L 529,344 L 513,368 L 497,380 L 484,378 L 469,361 L 456,330 L 447,297 L 441,265 L 433,238 L 424,217 L 414,196 L 410,168 L 412,148 Z" fill="${africa}"/>
-    <!-- Madagascar 20S 47E=567.5,275 -->
-    <path d="M 570,260 L 580,252 L 590,261 L 587,287 L 574,289 L 571,276 Z" fill="${africa}" opacity="0.85"/>
-
-    <!-- India: NW 23N 68E=620,167.5; tip 8N 77.5E=643.75,205; NE 26N 92E=680,160 -->
-    <path d="M 617,150 L 650,145 L 670,150 L 677,166 L 682,184 L 681,204 L 671,222 L 656,240 L 641,244 L 627,236 L 618,217 L 616,199 L 616,177 Z" fill="${neutral}"/>
-    <!-- Sri Lanka 8N 81E=652.5,205 -->
-    <ellipse cx="661" cy="249" rx="5" ry="6" fill="${neutral}"/>
-
-    <!-- China: NW 40N 73E=632.5,125; NE 53N 135E=787.5,92.5; SE 20N 110E=725,175; SW 28N 97E=692.5,155 -->
-    <path id="wm-china" class="wm-country" data-country="China"
-      d="M 638,98 L 668,90 L 702,87 L 742,87 L 772,92 L 793,100 L 809,113 L 824,127 L 827,145 L 821,162 L 808,173 L 795,183 L 783,190 L 768,192 L 755,198 L 749,208 L 741,196 L 733,176 L 717,172 L 701,182 L 687,198 L 673,210 L 653,212 L 637,207 L 625,196 L 617,180 L 617,162 L 622,148 L 636,124 Z"
-      fill="${chinaCol}"/>
-
-    <!-- Korea 38N 127E=767.5,130 -->
-    <path d="M 795,120 L 808,114 L 820,122 L 820,135 L 810,140 L 800,138 L 796,130 Z" fill="${neutral}"/>
-
-    <!-- Japan Honshu 36N 138E=795,135; Hokkaido 43N 144E=810,117.5 -->
-    <path d="M 820,109 L 841,107 L 849,116 L 843,129 L 830,136 L 820,133 L 820,122 Z" fill="${neutral}"/>
-    <path d="M 840,99 L 858,97 L 862,107 L 852,115 L 840,111 Z" fill="${neutral}"/>
-    <ellipse cx="820" cy="144" rx="9" ry="5" fill="${neutral}" opacity="0.85"/>
-
-    <!-- SE Asia / Indochina: Bangkok 14N 100E=700,190; S tip Malay 1N 104E=710,222.5 -->
-    <path d="M 717,172 L 748,170 L 765,178 L 765,194 L 756,210 L 751,232 L 742,245 L 733,239 L 732,222 L 739,206 L 749,208 L 741,196 L 733,176 Z" fill="${neutral}"/>
-    <!-- Malay Peninsula -->
-    <path d="M 751,232 L 766,228 L 773,238 L 763,249 L 750,246 Z" fill="${neutral}"/>
-
-    <!-- Borneo/Kalimantan 1N 114E=735,222.5 -->
-    <path d="M 762,236 L 792,230 L 808,242 L 808,263 L 795,273 L 775,271 L 762,258 L 756,245 Z" fill="${neutral}"/>
-    <!-- Sumatra 0 104E=710,225 -->
-    <path d="M 704,222 L 727,224 L 742,235 L 750,246 L 742,254 L 726,253 L 710,246 L 703,234 Z" fill="${neutral}"/>
-    <!-- Java 7S 110E=725,242.5 -->
-    <ellipse cx="742" cy="260" rx="22" ry="6" fill="${neutral}"/>
-    <!-- Sulawesi 1S 121E=752.5,227.5 -->
-    <ellipse cx="810" cy="256" rx="9" ry="13" fill="${neutral}" opacity="0.9"/>
-    <!-- New Guinea 6S 144E=810,240 -->
-    <path d="M 840,248 L 870,244 L 882,252 L 876,264 L 856,267 L 840,260 Z" fill="${neutral}"/>
-
-    <!-- Philippines 12N 122E=755,195 -->
-    <ellipse cx="785" cy="196" rx="8" ry="14" fill="${neutral}"/>
-
-    <!-- Australia: NW 22S 114E=735,280; Darwin 12S 131E=777.5,255; Cape York 10S 142E=805,250;
-         Brisbane 27S 153E=832.5,292.5; Melbourne 38S 145E=812.5,320; Perth 32S 116E=740,305 -->
-    <path d="M 736,282 L 779,256 L 808,250 L 834,269 L 837,291 L 832,311 L 820,323 L 808,325 L 792,321 L 775,319 L 756,317 L 741,316 L 733,311 L 730,297 Z" fill="${africa}" opacity="0.85"/>
-    <!-- Tasmania 42S 147E=817.5,330 -->
-    <ellipse cx="820" cy="335" rx="8" ry="5" fill="${africa}" opacity="0.75"/>
-
-    <!-- New Zealand: N Island 38S 175E=887.5,320; S Island 44S 170E=875,335 -->
-    <path d="M 880,308 L 891,313 L 889,325 L 879,327 L 877,318 Z" fill="${neutral}"/>
-    <path d="M 877,330 L 889,327 L 893,340 L 886,351 L 877,345 Z" fill="${neutral}"/>
-
-    <!-- Country labels -->
-    <text x="208" y="134" text-anchor="middle" font-size="9.5" font-weight="800" fill="${lblFill}" pointer-events="none" opacity="0.92" font-family="sans-serif">USA</text>
-    <text x="197" y="172" text-anchor="middle" font-size="7.5" font-weight="600" fill="${textFill}" pointer-events="none" font-family="sans-serif">Mexico</text>
-    <text x="194" y="52" text-anchor="middle" font-size="8" fill="${textFill}" pointer-events="none" font-family="sans-serif">Canada</text>
-    <text x="303" y="285" text-anchor="middle" font-size="8.5" fill="${textFill}" pointer-events="none" font-family="sans-serif">Brazil</text>
-    <text x="290" y="350" text-anchor="middle" font-size="7" fill="${textFill}" pointer-events="none" font-family="sans-serif">Argentina</text>
-    <text x="460" y="93" text-anchor="middle" font-size="8" fill="${textFill}" pointer-events="none" font-family="sans-serif">Europe</text>
-    <text x="469" y="127" text-anchor="middle" font-size="8" font-weight="700" fill="${lblFill}" pointer-events="none" opacity="0.9" font-family="sans-serif">Italy</text>
-    <text x="471" y="141" text-anchor="middle" font-size="6.5" fill="${pisaLabel}" pointer-events="none" font-family="sans-serif">Pisa &#9733;</text>
-    <text x="474" y="298" text-anchor="middle" font-size="8.5" fill="${textFill}" pointer-events="none" font-family="sans-serif">Africa</text>
-    <text x="700" y="67" text-anchor="middle" font-size="7" fill="${textFill}" pointer-events="none" font-family="sans-serif">Russia</text>
-    <text x="707" y="149" text-anchor="middle" font-size="9.5" font-weight="800" fill="${lblFill}" pointer-events="none" opacity="0.92" font-family="sans-serif">China</text>
-    <text x="650" y="200" text-anchor="middle" font-size="7" fill="${textFill}" pointer-events="none" font-family="sans-serif">India</text>
-    <text x="782" y="294" text-anchor="middle" font-size="8" fill="${textFill}" pointer-events="none" font-family="sans-serif">Australia</text>
-    <text x="335" y="25" text-anchor="middle" font-size="7" fill="${textFill}" pointer-events="none" font-family="sans-serif">Greenland</text>
-
-    <!-- Marathon city dots with pulse rings -->
-    <circle cx="231" cy="121" r="11" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
-    <circle cx="231" cy="121" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="Chicago, IL" data-date="Oct 2024" data-story="stories/english/chicago-marathon.html"/>
-    <circle cx="235" cy="129" r="10" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
-    <circle cx="235" cy="129" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="Louisville, KY" data-date="Nov 8, 2020" data-story="stories/english/louisville-marathon.html"/>
-    <circle cx="204" cy="152" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="San Antonio, TX" data-date="Dec 2024" data-story="stories/english/san-antonio-marathon.html"/>
-    <circle cx="250" cy="160" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="Miami, FL" data-date="Jan 2025" data-story="stories/english/miami-marathon.html"/>
-    <circle cx="234" cy="135" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="Nashville, TN" data-date="Apr 2025" data-story="stories/english/nashville-marathon.html"/>
-    <circle cx="219" cy="138" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="Little Rock, AR" data-date="Mar 2025" data-story="stories/english/little-rock-marathon.html"/>
-    <circle cx="245" cy="138" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="South Carolina" data-date="Feb 2025" data-story="stories/english/south-carolina-marathon.html"/>
-    <circle cx="244" cy="130" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="West Virginia" data-date="May 2025" data-story="stories/english/west-virginia-marathon.html"/>
-    <circle cx="250" cy="125" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="Pittsburgh, PA" data-date="2025" data-story="stories/english/pittsburgh-marathon.html"/>
-    <!-- Mexico City 19.4N 99.1W=202.25,176.5 -->
-    <circle cx="202" cy="177" r="10" fill="rgba(232,176,64,0.18)" pointer-events="none"/>
-    <circle cx="202" cy="177" r="5" fill="${mexCol}" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="Mexico City" data-date="2024" data-story="facebook/mexico-marathon.html"/>
-    <!-- Pisa, Italy 43.7N 10.4E=476,115.75 -->
-    <circle cx="470" cy="135" r="11" fill="rgba(220,60,60,0.18)" pointer-events="none"/>
-    <circle cx="470" cy="135" r="5" fill="${italyCol}" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="Pisa, Italy" data-date="2025" data-story="facebook/pisa-marathon.html"/>
-    <!-- China: Xiangyang 32N 112E=730,145; Guilin 25.3N 110.3E=726.25,161.75 -->
-    <circle cx="714" cy="148" r="11" fill="rgba(80,180,80,0.18)" pointer-events="none"/>
-    <circle cx="714" cy="148" r="5" fill="${chinaCol}" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="Xiangyang, China" data-date="2024" data-story="stories/chinese/"/>
-    <circle cx="726" cy="163" r="5" fill="${chinaCol}" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="Guilin, China" data-date="2024" data-story="stories/chinese/"/>
-    <!-- Hong Kong 22.3N 114.2E=735.5,169.25 -->
-    <circle cx="737" cy="170" r="5" fill="#e89838" stroke="#fff" stroke-width="1.6" class="wm-dot"
-      data-city="Hong Kong" data-date="2025" data-story="facebook/hong-kong-marathon.html"/>
-
-    <!-- Legend -->
-    <g>
-      <rect x="16" y="374" width="155" height="65" rx="7" fill="${legendBg}" stroke="${legendBord}" stroke-width="1"/>
-      <circle cx="30" cy="391" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.2"/>
-      <text x="42" y="395" font-size="9" fill="${legendText}" font-family="sans-serif">US Marathons</text>
-      <circle cx="30" cy="408" r="5" fill="${chinaCol}" stroke="#fff" stroke-width="1.2"/>
-      <text x="42" y="412" font-size="9" fill="${legendText}" font-family="sans-serif">China Marathons</text>
-      <circle cx="30" cy="425" r="5" fill="${italyCol}" stroke="#fff" stroke-width="1.2"/>
-      <text x="42" y="429" font-size="9" fill="${legendText}" font-family="sans-serif">International</text>
-    </g>
-
-    <!-- Marathon count badge -->
-    <g>
-      <rect x="814" y="10" width="76" height="38" rx="8" fill="${badgeBg}"/>
-      <text x="852" y="30" text-anchor="middle" font-size="18" font-weight="800" fill="#fff" font-family="sans-serif">12+</text>
-      <text x="852" y="42" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.8)" font-family="sans-serif">Marathons</text>
-    </g>
-  </svg>`;
-
-  // Bind world map dot tooltips
-  slot.querySelectorAll('.wm-dot').forEach(dot => {
-    dot.addEventListener('mouseenter', e => {
-      const {city,date,story} = dot.dataset;
-      showTT(e, `<strong>${city}</strong><br><span style="color:#9ab;">${date}</span>` +
-        (story ? `<br><a href="${story}" target="_blank">Read Story →</a>` : ''));
-    });
+  // Marathon dots  (coordinates from real lon/lat via same projection)
+  const dg = mkEl('g', {id:'wm_dots'});
+  // [cx, cy, fill, pulseRing, city, date, story]
+  [[462, 241, '#ff4040', true,  'Chicago, IL',     'Oct 2024', 'stories/english/chicago-marathon.html'],
+   [408, 303, '#ff4040', false, 'San Antonio, TX', 'Dec 2024', 'stories/english/san-antonio-marathon.html'],
+   [499, 321, '#ff4040', false, 'Miami, FL',       'Jan 2025', 'stories/english/miami-marathon.html'],
+   [466, 269, '#ff4040', false, 'Nashville, TN',   'Apr 2025', 'stories/english/nashville-marathon.html'],
+   [439, 276, '#ff4040', false, 'Little Rock, AR', 'Mar 2025', 'stories/english/little-rock-marathon.html'],
+   [495, 280, '#ff4040', false, 'South Carolina',  'Feb 2025', 'stories/english/south-carolina-marathon.html'],
+   [492, 258, '#ff4040', false, 'West Virginia',   'May 2025', 'stories/english/west-virginia-marathon.html'],
+   [500, 248, '#ff4040', false, 'Pittsburgh, PA',  '2025',     'stories/english/pittsburgh-marathon.html'],
+   [471, 259, '#ff4040', false, 'Louisville, KY',  '2025',     'stories/english/louisville-marathon.html'],
+   [404, 353, mxCol,     false, 'Mexico City',     '2024',     'facebook/mexico-marathon.html'],
+   [952, 231, itCol,     true,  'Pisa, Italy',     '2025',     'facebook/pisa-marathon.html'],
+   [1461, 290, cnCol,   true,  'Xiangyang, China', '2024',    'stories/chinese/'],
+   [1451, 324, cnCol,   false, 'Guilin, China',    '2024',    'stories/chinese/'],
+   [1471, 338, '#e89838',false,'Hong Kong',        '2025',    'facebook/hong-kong-marathon.html'],
+  ].forEach(([cx, cy, fill, pulse, city, date, story]) => {
+    if (pulse) dg.appendChild(mkEl('circle',
+      {cx, cy, r:12, fill:'none', stroke:fill, 'stroke-width':1.5, opacity:0.35}));
+    const dot = mkEl('circle', {cx, cy, r:5, fill, stroke:'#fff', 'stroke-width':1.8});
+    dot.style.cursor = 'pointer';
+    dot.addEventListener('mouseenter', e => showTT(e,
+      `<strong>${city}</strong><br><span style="color:#9ab;">${date}</span>` +
+      (story ? `<br><a href="${story}" target="_blank">Read Story →</a>` : '')));
     dot.addEventListener('mouseleave', hideTT);
-    dot.addEventListener('click', e => { e.stopPropagation(); if (dot.dataset.story) window.open(dot.dataset.story,'_blank'); });
+    dot.addEventListener('click', ev => { ev.stopPropagation(); if (story) window.open(story,'_blank'); });
+    dg.appendChild(dot);
   });
+  svgEl.appendChild(dg);
 
-  // Bind country hover
-  slot.querySelectorAll('.wm-country').forEach(el => {
-    const labels = {
-      'USA':['United States','7+ marathons across US states'],
-      'China':['China','Xiangyang · Guilin · Hong Kong'],
-      'Mexico':['Mexico','Mexico City Marathon · 2024'],
-      'Italy':['Italy','Pisa Marathon · 2025']
-    };
-    el.addEventListener('mouseenter', e => {
-      const [name,sub] = labels[el.dataset.country]||[el.dataset.country,''];
-      showTT(e, `<strong>${name}</strong>${sub?`<br><span style="color:#9ab;">${sub}</span>`:''}`);
-    });
+  // Legend
+  const leg = mkEl('g', {id:'wm_legend'});
+  leg.appendChild(mkEl('rect', {x:20, y:810, width:182, height:74, rx:8,
+    fill: dark ? 'rgba(15,20,15,0.82)' : 'rgba(240,248,240,0.88)',
+    stroke: dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)', 'stroke-width':1}));
+  [[34,826,'#ff4040','US Marathons'],
+   [34,844, cnCol,   'China Marathons'],
+   [34,862, itCol,   'International'],
+  ].forEach(([cx, cy, fill, label]) => {
+    leg.appendChild(mkEl('circle', {cx, cy:cy-4, r:5, fill, stroke:'#fff', 'stroke-width':1.2}));
+    leg.appendChild(mkEl('text', {x:cx+16, y:cy, 'font-size':10,
+      fill: dark?'#ccc':'#333', 'font-family':'sans-serif'}, label));
+  });
+  svgEl.appendChild(leg);
+
+  // Marathon count badge (top-right)
+  const bdg = mkEl('g', {id:'wm_badge'});
+  bdg.appendChild(mkEl('rect', {x:1692, y:12, width:96, height:50, rx:10,
+    fill: dark?'#8a4a08':'#d4823a'}));
+  bdg.appendChild(mkEl('text', {x:1740, y:38, 'text-anchor':'middle',
+    'font-size':22, 'font-weight':800, fill:'#fff', 'font-family':'sans-serif'}, '12+'));
+  bdg.appendChild(mkEl('text', {x:1740, y:54, 'text-anchor':'middle',
+    'font-size':8, fill:'rgba(255,255,255,0.8)', 'font-family':'sans-serif'}, 'Marathons'));
+  svgEl.appendChild(bdg);
+
+  // Highlighted country hover tooltips
+  [['wm_usa', 'United States', '7+ marathons across states'],
+   ['wm_chn', 'China',         'Xiangyang · Guilin · Hong Kong'],
+   ['wm_mex', 'Mexico',        'Mexico City Marathon · 2024'],
+   ['wm_ita', 'Italy',         'Pisa Marathon · 2025'],
+   ['wm_hkg', 'Hong Kong',     'Marathon · 2025'],
+  ].forEach(([id, name, sub]) => {
+    const el = svgEl.querySelector('#' + id);
+    if (!el) return;
+    el.style.cursor = 'pointer';
+    el.addEventListener('mouseenter', e =>
+      showTT(e, `<strong>${name}</strong><br><span style="color:#9ab;">${sub}</span>`));
     el.addEventListener('mouseleave', hideTT);
   });
 }
