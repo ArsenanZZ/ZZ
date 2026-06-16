@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-labelledby="title desc">
+  <title id="title">Louisville Marathon Run50 icon cover</title>
+  <desc id="desc">Icon cover for Kentucky Derby Festival Marathon with city motifs and a Run50 Kentucky badge.</desc>
+  <rect width="1200" height="750" fill="#cfe9f4"/>
+  <circle cx="965" cy="132" r="58" fill="#f7b733"/>
+  <path d="M0 510 L250 440 L520 485 L760 420 L1200 490 L1200 750 L0 750Z" fill="#9acb6e"/>
+  <path d="M0 615 L360 555 L780 602 L1200 552 L1200 750 L0 750Z" fill="#80bd5b"/>
+
+  <ellipse cx="455" cy="625" rx="225" ry="74" fill="#f5efe1" stroke="#fff" stroke-width="8"/>
+  <ellipse cx="455" cy="625" rx="130" ry="39" fill="#80bd5b"/>
+  <g fill="#f8e2b8" stroke="#20242b" stroke-width="4"><rect x="815" y="320" width="72" height="238"/><rect x="940" y="320" width="72" height="238"/></g>
+  <g fill="#d35245" stroke="#20242b" stroke-width="4"><path d="M807 320 L851 250 L895 320Z"/><path d="M932 320 L976 250 L1020 320Z"/></g>
+  <rect x="785" y="558" width="260" height="42" fill="#d35245" stroke="#20242b" stroke-width="4"/>
+  <path d="M845 440 Q915 345 985 440" fill="none" stroke="#20242b" stroke-width="7"/>
+  <ellipse cx="450" cy="475" rx="78" ry="42" fill="#8d6a55"/><ellipse cx="530" cy="455" rx="29" ry="25" fill="#8d6a55"/>
+  <path d="M420 516 L405 585 M505 515 L532 585 M377 470 L335 448" stroke="#20242b" stroke-width="7" stroke-linecap="round"/>
+
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">LOUISVILLE</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">DERBY CITY · TWIN SPIRES · RUNNING PARTY</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #01+</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">KENTUCKY</text>
+</svg>

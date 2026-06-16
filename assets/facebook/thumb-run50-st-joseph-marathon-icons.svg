@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-labelledby="title desc">
+  <title id="title">St. Joseph Marathon Run50 icon cover</title>
+  <desc id="desc">Icon cover for St. Joseph Missouri Marathon with city motifs and a Run50 Missouri badge.</desc>
+  <rect width="1200" height="750" fill="#cfe9f4"/>
+  <circle cx="965" cy="132" r="58" fill="#f7b733"/>
+  <path d="M0 510 L250 440 L520 485 L760 420 L1200 490 L1200 750 L0 750Z" fill="#9acb6e"/>
+  <path d="M0 615 L360 555 L780 602 L1200 552 L1200 750 L0 750Z" fill="#80bd5b"/>
+
+  <path d="M430 750 L555 480 H665 L825 750Z" fill="#4f5b66"/><path d="M610 510 L622 750" stroke="#f5d66c" stroke-width="7"/>
+  <rect x="175" y="440" width="280" height="140" fill="#f1e0c5" stroke="#20242b" stroke-width="4"/><rect x="210" y="380" width="210" height="60" fill="#d7b98b" stroke="#20242b" stroke-width="4"/><path d="M248 390 Q315 310 385 390" fill="none" stroke="#20242b" stroke-width="6"/>
+  <ellipse cx="920" cy="498" rx="90" ry="45" fill="#b07a50" stroke="#20242b" stroke-width="4"/><path d="M815 543 H1030 L940 600Z" fill="#b07a50" stroke="#20242b" stroke-width="4"/><path d="M875 543 L850 625 M960 543 L988 625" stroke="#20242b" stroke-width="6"/>
+
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">ST. JOSEPH</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">MISSOURI · PARKWAYS · INAUGURAL RACE</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #10</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">MISSOURI</text>
+</svg>

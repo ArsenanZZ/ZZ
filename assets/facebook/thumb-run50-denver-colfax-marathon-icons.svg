@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-labelledby="title desc">
+  <title id="title">Denver Marathon Run50 icon cover</title>
+  <desc id="desc">Icon cover for Denver Colfax Marathon with city motifs and a Run50 Colorado badge.</desc>
+  <rect width="1200" height="750" fill="#cfe9f4"/>
+  <circle cx="965" cy="132" r="58" fill="#f7b733"/>
+  <path d="M0 510 L250 440 L520 485 L760 420 L1200 490 L1200 750 L0 750Z" fill="#9acb6e"/>
+  <path d="M0 615 L360 555 L780 602 L1200 552 L1200 750 L0 750Z" fill="#80bd5b"/>
+
+  <path d="M0 495 L190 280 L375 495Z" fill="#9aa5b1"/><path d="M140 345 L190 280 L242 350Z" fill="#fff"/>
+  <path d="M285 515 L525 215 L765 515Z" fill="#7f8c98"/><path d="M460 295 L525 215 L590 315Z" fill="#fff"/>
+  <ellipse cx="895" cy="535" rx="160" ry="80" fill="#fff" stroke="#20242b" stroke-width="6"/><ellipse cx="895" cy="535" rx="95" ry="42" fill="#62a85f"/><rect x="850" y="438" width="96" height="85" fill="#ef7d45" stroke="#20242b" stroke-width="4"/>
+
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">DENVER</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">MILE HIGH · COLFAX · ROCKY MOUNTAINS</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #08</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">COLORADO</text>
+</svg>

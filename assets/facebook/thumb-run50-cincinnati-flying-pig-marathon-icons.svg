@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-labelledby="title desc">
+  <title id="title">Cincinnati Marathon Run50 icon cover</title>
+  <desc id="desc">Icon cover for Flying Pig Marathon with city motifs and a Run50 Ohio badge.</desc>
+  <rect width="1200" height="750" fill="#cfe9f4"/>
+  <circle cx="965" cy="132" r="58" fill="#f7b733"/>
+  <path d="M0 510 L250 440 L520 485 L760 420 L1200 490 L1200 750 L0 750Z" fill="#9acb6e"/>
+  <path d="M0 615 L360 555 L780 602 L1200 552 L1200 750 L0 750Z" fill="#80bd5b"/>
+
+  <rect y="600" width="1200" height="150" fill="#3fb8ca"/>
+  <g fill="none" stroke="#20242b" stroke-width="8"><path d="M320 315 V615 M850 315 V615"/><path d="M230 415 H940"/><path d="M234 405 Q320 250 406 405"/><path d="M764 405 Q850 250 936 405"/></g>
+  <g stroke="#5b6b7a" stroke-width="4"> <path d="M280 415 L305 602"/><path d="M350 415 L375 602"/><path d="M420 415 L445 602"/><path d="M490 415 L515 602"/><path d="M560 415 L585 602"/><path d="M630 415 L655 602"/><path d="M700 415 L725 602"/><path d="M770 415 L795 602"/><path d="M840 415 L865 602"/></g>
+  <ellipse cx="590" cy="452" rx="85" ry="50" fill="#ff9fb5" stroke="#20242b" stroke-width="4"/>
+  <ellipse cx="676" cy="462" rx="35" ry="27" fill="#ff9fb5" stroke="#20242b" stroke-width="4"/>
+  <path d="M560 452 L510 402 L610 428Z M590 448 L650 400 L632 465Z" fill="#ffd2df" stroke="#20242b" stroke-width="4"/>
+  <circle cx="693" cy="460" r="6" fill="#20242b"/><path d="M507 448 Q482 465 502 490" fill="none" stroke="#20242b" stroke-width="5"/>
+
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">CINCINNATI</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">FLYING PIG · QUEEN CITY · RIVER BRIDGES</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #02+</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">OHIO</text>
+</svg>

@@ -544,16 +544,20 @@ const _CITY_LL = {
   'Baton Rouge':{lat:30.4515,lon:-91.1871},'Roanoke':{lat:37.271,lon:-79.9414},
   'Fargo':{lat:46.8772,lon:-96.7898},'Huntsville':{lat:34.7304,lon:-86.5861},
   'Cleveland':{lat:41.4993,lon:-81.6944},'New York City':{lat:40.7128,lon:-74.0060},'San Francisco':{lat:37.7749,lon:-122.4194},'Indianapolis':{lat:39.7684,lon:-86.1581},'Cincinnati':{lat:39.1031,lon:-84.512},
-  'Atlanta':{lat:33.749,lon:-84.388},'Denver':{lat:39.7392,lon:-104.9903}
+  'Atlanta':{lat:33.749,lon:-84.388},'Denver':{lat:39.7392,lon:-104.9903},'Anchorage':{lat:61.2181,lon:-149.9003},'St. Joseph':{lat:39.7675,lon:-94.8466}
 };
 
 const _RACES = {
-  'KY':[{city:'Louisville',date:'Nov 8, 2020',story:'stories/english/louisville-marathon.html',fb:'facebook/louisville-marathon.html'}],
-  'OH':[{city:'Cleveland',date:'Oct 24, 2021',story:'stories/english/cleveland-marathon.html',fb:'facebook/cleveland-marathon.html'}],
   'NY':[{city:'New York City',date:'Nov 7, 2021',story:'stories/english/new-york-city-marathon.html',fb:'facebook/new-york-city-marathon.html'}],
   'CA':[{city:'San Francisco',date:'Jul 24, 2022',story:'stories/english/san-francisco-marathon.html',fb:'facebook/san-francisco-marathon.html'}],
   'IN':[{city:'Indianapolis',date:'Nov 5, 2022',story:'stories/english/indianapolis-monumental-marathon.html',fb:'facebook/indianapolis-monumental-marathon.html'}],
   'HI':[{city:'Honolulu',date:'Dec 11, 2022',story:'stories/english/honolulu-marathon.html',fb:'facebook/honolulu-marathon.html'}],
+  'KY':[{city:'Louisville',date:'Nov 8, 2020',story:'stories/english/louisville-marathon.html',fb:'facebook/louisville-marathon.html'},{city:'Louisville',date:'Apr 29, 2023',story:'stories/english/kentucky-derby-marathon.html',fb:'facebook/kentucky-derby-marathon.html'}],
+  'OH':[{city:'Cleveland',date:'Oct 24, 2021',story:'stories/english/cleveland-marathon.html',fb:'facebook/cleveland-marathon.html'},{city:'Cincinnati',date:'May 7, 2023',story:'stories/english/cincinnati-flying-pig-marathon.html',fb:'facebook/cincinnati-flying-pig-marathon.html'}],
+  'GA':[{city:'Atlanta',date:'Feb 26, 2023',story:'stories/english/atlanta-marathon.html',fb:'facebook/atlanta-marathon.html'}],
+  'CO':[{city:'Denver',date:'May 21, 2023',story:'stories/english/denver-colfax-marathon.html',fb:'facebook/denver-colfax-marathon.html'}],
+  'AK':[{city:'Anchorage',date:'Jun 17, 2023',story:'stories/english/anchorage-marathon.html',fb:'facebook/anchorage-marathon.html'}],
+  'MO':[{city:'St. Joseph',date:'Sep 23, 2023',story:'stories/english/st-joseph-marathon.html',fb:'facebook/st-joseph-marathon.html'}],
   'IL':[{city:'Chicago',date:'Oct 2024',story:'stories/english/chicago-marathon.html',fb:'facebook/chicago-marathon.html'}],
   'AR':[{city:'Little Rock',date:'Mar 2025',story:'stories/english/little-rock-marathon.html',fb:'facebook/little-rock-marathon.html'}],
   'FL':[{city:'Miami',date:'Jan 2025',story:'stories/english/miami-marathon.html',fb:'facebook/miami-marathon.html'}],
@@ -736,6 +740,28 @@ function _injectWorldMap() {
 
     <!-- Hawaii (US) -->
     <ellipse cx="168" cy="188" rx="7" ry="4" fill="${usCol}" opacity="0.75"/>
+
+
+    <!-- 2023 batch Run50 story dots -->
+    <circle cx="236" cy="131" r="10" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
+    <circle cx="236" cy="131" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Louisville, KY" data-date="Apr 29, 2023" data-story="stories/english/kentucky-derby-marathon.html"/>
+    <circle cx="238" cy="128" r="10" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
+    <circle cx="238" cy="128" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Cincinnati, OH" data-date="May 7, 2023" data-story="stories/english/cincinnati-flying-pig-marathon.html"/>
+    <circle cx="239" cy="143" r="10" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
+    <circle cx="239" cy="143" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Atlanta, GA" data-date="Feb 26, 2023" data-story="stories/english/atlanta-marathon.html"/>
+    <circle cx="204" cy="132" r="10" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
+    <circle cx="204" cy="132" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Denver, CO" data-date="May 21, 2023" data-story="stories/english/denver-colfax-marathon.html"/>
+    <circle cx="162" cy="92" r="10" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
+    <circle cx="162" cy="92" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="Anchorage, AK" data-date="Jun 17, 2023" data-story="stories/english/anchorage-marathon.html"/>
+    <circle cx="217" cy="129" r="10" fill="rgba(255,80,40,0.18)" pointer-events="none"/>
+    <circle cx="217" cy="129" r="5" fill="#ff4040" stroke="#fff" stroke-width="1.6" class="wm-dot"
+      data-city="St. Joseph, MO" data-date="Sep 23, 2023" data-story="stories/english/st-joseph-marathon.html"/>
+    <!-- /2023 batch Run50 story dots -->
 
     <!-- Mexico -->
     <path id="wm-mexico" class="wm-country" data-country="Mexico"

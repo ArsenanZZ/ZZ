@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-labelledby="title desc">
+  <title id="title">Atlanta Marathon Run50 icon cover</title>
+  <desc id="desc">Icon cover for Publix Atlanta Marathon with city motifs and a Run50 Georgia badge.</desc>
+  <rect width="1200" height="750" fill="#cfe9f4"/>
+  <circle cx="965" cy="132" r="58" fill="#f7b733"/>
+  <path d="M0 510 L250 440 L520 485 L760 420 L1200 490 L1200 750 L0 750Z" fill="#9acb6e"/>
+  <path d="M0 615 L360 555 L780 602 L1200 552 L1200 750 L0 750Z" fill="#80bd5b"/>
+
+  <g fill="none" stroke-width="11"><circle cx="430" cy="465" r="55" stroke="#0085c7"/><circle cx="500" cy="515" r="55" stroke="#f4c300"/><circle cx="570" cy="465" r="55" stroke="#000"/><circle cx="640" cy="515" r="55" stroke="#009f3d"/><circle cx="710" cy="465" r="55" stroke="#df0024"/></g>
+  <g stroke="#667085" stroke-width="3"><rect x="780" y="395" width="62" height="170" fill="#b7d7e5"/><rect x="860" y="345" width="70" height="220" fill="#f5d66c"/><rect x="955" y="382" width="62" height="183" fill="#d2c2ee"/></g>
+  <ellipse cx="235" cy="505" rx="70" ry="75" fill="#f47f4b" stroke="#20242b" stroke-width="4"/><path d="M275 430 L342 392 L318 470Z" fill="#4b9b54"/>
+
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">ATLANTA</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">OLYMPIC RINGS · PEACHTREE · CNN</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #07</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">GEORGIA</text>
+</svg>
