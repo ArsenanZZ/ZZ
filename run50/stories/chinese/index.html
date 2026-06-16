@@ -69,6 +69,81 @@
       font-size: 17px;
       max-width: 660px;
     }
+
+    .series-nav {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0 0 38px;
+    }
+    .series-nav a {
+      min-height: 78px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      border: 1px solid var(--line);
+      border-left: 5px solid #2f70d0;
+      border-radius: 8px;
+      background: rgba(255,255,255,.78);
+      text-decoration: none;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, .06);
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .series-nav a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(15, 23, 42, .09);
+    }
+    .series-nav a:nth-child(2) { border-left-color: #a33a2b; }
+    .series-nav a:nth-child(3) { border-left-color: #3f7f46; }
+    .series-nav span {
+      color: #111827;
+      font-size: 16px;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+    .series-nav small {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .story-section {
+      margin-top: 54px;
+      scroll-margin-top: 22px;
+    }
+    .series-nav + .story-section { margin-top: 0; }
+    .story-section + .story-section { margin-top: 62px; }
+    .section-head {
+      margin: 0 0 18px;
+      padding: 0 0 0 18px;
+      border-left: 6px solid #2f70d0;
+    }
+    .run-cn-zone .section-head { border-left-color: #a33a2b; }
+    .run-world-zone .section-head { border-left-color: #3f7f46; }
+    .section-kicker {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+    .section-head h2 {
+      margin: 0;
+      color: #111827;
+      font-size: clamp(24px, 4vw, 36px);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+    .section-head p:last-child {
+      margin: 8px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .story-section .story-grid { margin-top: 0; }
+
     .story-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -153,6 +228,7 @@
     @media (max-width: 640px) {
       .shell { padding: 28px 18px 46px; }
       .intro { font-size: 16px; }
+      .series-nav { grid-template-columns: 1fr; }
     }
 
     /* ── INTERACTIVE MAP STYLES ── */
@@ -313,277 +389,313 @@
       </div>
     </div>
 
-    <section class="story-grid" aria-label="中文故事列表">
-      <a class="story-card run-50" href="./louisville-marathon.html">
-        <img src="../../../assets/cover-medal-ky.jpg?v=20260615-2" alt="路易斯维尔马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">肯塔基路易斯维尔 · 2020.11.08</p>
-          <h2 class="story-title">Run50 #第1州｜路易斯维尔马拉松</h2>
-          <p class="story-desc">疫情中的间隔起跑、六英尺社交距离、Beckley Creek Park的秋日折返，以及我在北美完成的第一个全马。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
+    <nav class="series-nav" aria-label="故事系列分类">
+      <a href="#run50-series"><span>Run50</span><small>美国50州 · 按州序排列</small></a>
+      <a href="#runcn-series"><span>RunCN</span><small>中国马拉松故事</small></a>
+      <a href="#runworld-series"><span>RunWorld</span><small>世界各地跑旅</small></a>
+    </nav>
 
-      <a class="story-card run-50" href="./cleveland-marathon.html">
-        <img src="../../../assets/cover-medal-oh.jpg?v=20260615-1" alt="克利夫兰马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">俄亥俄克利夫兰 · 2021.10.24</p>
-          <h2 class="story-title">Run50 #第2州｜克利夫兰马拉松</h2>
-          <p class="story-desc">城市篇与比赛篇合并：摇滚名人堂、骑士主场、伊利湖晨光、工业风高架和从黑夜跑到白昼的42.195公里。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
+    <section class="story-section run-50-zone" id="run50-series" aria-labelledby="run50-series-title">
+      <div class="section-head">
+        <p class="section-kicker">Run50 · U.S. States</p>
+        <h2 id="run50-series-title">美国50州马拉松故事</h2>
+        <p>按 Run50 州序排列，从第1州开始一路往后看；番外和重跑也放在对应州附近。</p>
+      </div>
+      <div class="story-grid" aria-label="美国50州马拉松故事">
+        <a class="story-card run-50" href="./louisville-marathon.html">
+                <img src="../../../assets/cover-medal-ky.jpg?v=20260615-2" alt="路易斯维尔马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">肯塔基路易斯维尔 · 2020.11.08</p>
+                  <h2 class="story-title">Run50 #第1州｜路易斯维尔马拉松</h2>
+                  <p class="story-desc">疫情中的间隔起跑、六英尺社交距离、Beckley Creek Park的秋日折返，以及我在北美完成的第一个全马。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
-      <a class="story-card run-50" href="./new-york-city-marathon.html">
-        <img src="../../../assets/cover-medal-ny.jpg?v=20260615-3" alt="纽约马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">纽约纽约市 · 2021.11.07</p>
-          <h2 class="story-title">Run50 #第3州｜纽约马拉松</h2>
-          <p class="story-desc">城市篇与比赛篇合并：赛博朋克纽约、法拉盛、时代广场、哈德逊河游船，以及50周年纽约马拉松的五区奔跑。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./kentucky-derby-marathon.html">
+                <img src="../../../assets/cover-medal-ky-derby.jpg?v=20260616-2" alt="肯塔基德比马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">肯塔基路易斯维尔 · 2023.04.29</p>
+                  <h2 class="story-title">Run50 #第1州番外｜肯塔基德比马拉松</h2>
+                  <p class="story-desc">回到路易斯维尔自己的主场，补上德比马拉松这一篇：赛马城、Twin Spires、市中心、朋友们和一场真正属于本地人的跑步 Party。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
-      <a class="story-card run-50" href="./san-francisco-marathon.html">
-        <img src="../../../assets/cover-medal-ca.jpg?v=20260615-4" alt="旧金山马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">加州旧金山 · 2022.07.24</p>
-          <h2 class="story-title">Run50 #第4州｜旧金山马拉松</h2>
-          <p class="story-desc">城市篇与比赛篇合并：流雾Karl、联合广场、金门大桥、唐人街、单车游城，以及45届旧金山马拉松的桥风、山坡和湾区阳光。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./cleveland-marathon.html">
+                <img src="../../../assets/cover-medal-oh.jpg?v=20260615-1" alt="克利夫兰马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">俄亥俄克利夫兰 · 2021.10.24</p>
+                  <h2 class="story-title">Run50 #第2州｜克利夫兰马拉松</h2>
+                  <p class="story-desc">城市篇与比赛篇合并：摇滚名人堂、骑士主场、伊利湖晨光、工业风高架和从黑夜跑到白昼的42.195公里。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
-      <a class="story-card run-50" href="./indianapolis-monumental-marathon.html">
-        <img src="../../../assets/cover-medal-in.jpg?v=20260615-5" alt="印第安纳波利斯纪念碑马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">印第安纳印第安纳波利斯 · 2022.11.05</p>
-          <h2 class="story-title">Run50 #第5州｜印第安纳波利斯纪念碑马拉松</h2>
-          <p class="story-desc">一日狂飙去印城跑“牦牛”马：凌晨出发、秋雨开跑、纪念碑广场、430和445兔子、跑走策略，以及4小时55分12秒的回归。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./cincinnati-flying-pig-marathon.html">
+                <img src="../../../assets/cover-medal-oh-flying-pig.jpg?v=20260616-2" alt="辛辛那提飞猪马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">俄亥俄辛辛那提 · 2023.05.07</p>
+                  <h2 class="story-title">Run50 #第2州番外｜辛辛那提飞猪马拉松</h2>
+                  <p class="story-desc">在皇后城再跑一次俄亥俄：飞猪、俄亥俄河、城市坡道和一场湿透的比赛，让 Flying Pig 变成了 Flying Fish。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
-      <a class="story-card run-50" href="./honolulu-marathon.html">
-        <img src="../../../assets/cover-medal-hi.jpg?v=20260615-6" alt="火奴鲁鲁马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">夏威夷火奴鲁鲁 · 2022.12.11</p>
-          <h2 class="story-title">Run50 #第6州｜火奴鲁鲁马拉松</h2>
-          <p class="story-desc">两篇合并：火奴鲁鲁白日梦、威基基晨光、钻石头和彩虹船，以及50周年火奴鲁鲁马拉松，47的第一个全马。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./new-york-city-marathon.html">
+                <img src="../../../assets/cover-medal-ny.jpg?v=20260615-3" alt="纽约马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">纽约纽约市 · 2021.11.07</p>
+                  <h2 class="story-title">Run50 #第3州｜纽约马拉松</h2>
+                  <p class="story-desc">城市篇与比赛篇合并：赛博朋克纽约、法拉盛、时代广场、哈德逊河游船，以及50周年纽约马拉松的五区奔跑。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./san-francisco-marathon.html">
+                <img src="../../../assets/cover-medal-ca.jpg?v=20260615-4" alt="旧金山马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">加州旧金山 · 2022.07.24</p>
+                  <h2 class="story-title">Run50 #第4州｜旧金山马拉松</h2>
+                  <p class="story-desc">城市篇与比赛篇合并：流雾Karl、联合广场、金门大桥、唐人街、单车游城，以及45届旧金山马拉松的桥风、山坡和湾区阳光。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./indianapolis-monumental-marathon.html">
+                <img src="../../../assets/cover-medal-in.jpg?v=20260615-5" alt="印第安纳波利斯纪念碑马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">印第安纳印第安纳波利斯 · 2022.11.05</p>
+                  <h2 class="story-title">Run50 #第5州｜印第安纳波利斯纪念碑马拉松</h2>
+                  <p class="story-desc">一日狂飙去印城跑“牦牛”马：凌晨出发、秋雨开跑、纪念碑广场、430和445兔子、跑走策略，以及4小时55分12秒的回归。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./honolulu-marathon.html">
+                <img src="../../../assets/cover-medal-hi.jpg?v=20260615-6" alt="火奴鲁鲁马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">夏威夷火奴鲁鲁 · 2022.12.11</p>
+                  <h2 class="story-title">Run50 #第6州｜火奴鲁鲁马拉松</h2>
+                  <p class="story-desc">两篇合并：火奴鲁鲁白日梦、威基基晨光、钻石头和彩虹船，以及50周年火奴鲁鲁马拉松，47的第一个全马。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./atlanta-marathon.html">
+                <img src="../../../assets/cover-medal-ga.jpg?v=20260616-2" alt="亚特兰大马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">佐治亚亚特兰大 · 2023.02.26</p>
+                  <h2 class="story-title">Run50 #第7州｜亚特兰大马拉松</h2>
+                  <p class="story-desc">为了点亮佐治亚，自驾16小时往返亚特兰大：96奥运之城、CNN、可口可乐、城市坡道，以及26.2和13.1的周末。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./denver-colfax-marathon.html">
+                <img src="../../../assets/cover-medal-co.jpg?v=20260616-2" alt="丹佛 Colfax 马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">科罗拉多丹佛 · 2023.05.21</p>
+                  <h2 class="story-title">Run50 #第8州｜丹佛 Colfax 马拉松</h2>
+                  <p class="story-desc">生日后的周末去里高城点亮科罗拉多：老同学请饭、丹佛阳光、雪山远景、球场草地和高海拔的26.2英里。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
-      <a class="story-card run-50" href="./kentucky-derby-marathon.html">
-        <img src="../../../assets/cover-medal-ky-derby.jpg?v=20260616-2" alt="肯塔基德比马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">肯塔基路易斯维尔 · 2023.04.29</p>
-          <h2 class="story-title">Run50 #第1州番外｜肯塔基德比马拉松</h2>
-          <p class="story-desc">回到路易斯维尔自己的主场，补上德比马拉松这一篇：赛马城、Twin Spires、市中心、朋友们和一场真正属于本地人的跑步 Party。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
-<a class="story-card run-50" href="./cincinnati-flying-pig-marathon.html">
-        <img src="../../../assets/cover-medal-oh-flying-pig.jpg?v=20260616-2" alt="辛辛那提飞猪马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">俄亥俄辛辛那提 · 2023.05.07</p>
-          <h2 class="story-title">Run50 #第2州番外｜辛辛那提飞猪马拉松</h2>
-          <p class="story-desc">在皇后城再跑一次俄亥俄：飞猪、俄亥俄河、城市坡道和一场湿透的比赛，让 Flying Pig 变成了 Flying Fish。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
-<a class="story-card run-50" href="./atlanta-marathon.html">
-        <img src="../../../assets/cover-medal-ga.jpg?v=20260616-2" alt="亚特兰大马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">佐治亚亚特兰大 · 2023.02.26</p>
-          <h2 class="story-title">Run50 #第7州｜亚特兰大马拉松</h2>
-          <p class="story-desc">为了点亮佐治亚，自驾16小时往返亚特兰大：96奥运之城、CNN、可口可乐、城市坡道，以及26.2和13.1的周末。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
-<a class="story-card run-50" href="./denver-colfax-marathon.html">
-        <img src="../../../assets/cover-medal-co.jpg?v=20260616-2" alt="丹佛 Colfax 马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">科罗拉多丹佛 · 2023.05.21</p>
-          <h2 class="story-title">Run50 #第8州｜丹佛 Colfax 马拉松</h2>
-          <p class="story-desc">生日后的周末去里高城点亮科罗拉多：老同学请饭、丹佛阳光、雪山远景、球场草地和高海拔的26.2英里。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
-<a class="story-card run-50" href="./anchorage-marathon.html">
-        <img src="../../../assets/cover-medal-ak.jpg?v=20260616-2" alt="安克雷奇市长马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">阿拉斯加安克雷奇 · 2023.06.17</p>
-          <h2 class="story-title">Run50 #第9州｜安克雷奇马拉松</h2>
-          <p class="story-desc">去没有极光的阿拉斯加，跑一次安克雷奇马拉松：雪山、海湾、野性、长日照，以及一次把地图拉得更远的旅行。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
-<a class="story-card run-50" href="./st-joseph-marathon.html">
-        <img src="../../../assets/cover-medal-mo.jpg?v=20260616-2" alt="圣约瑟夫马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">密苏里圣约瑟夫 · 2023.09.23</p>
-          <h2 class="story-title">Run50 #第10州｜圣约瑟夫马拉松</h2>
-          <p class="story-desc">穿越密苏里去跑第一届圣约瑟夫马拉松：公园道路、坡、热浪、婚礼，以及芝加哥前的一次长距离训练。</p>
-          <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
-        </div>
-      </a>
-<a class="story-card run-50" href="./chicago-marathon.html">
-        <img src="../../../assets/cover-medal-il.jpg" alt="芝加哥马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">伊利诺伊芝加哥 · 2023.10.08</p>
-          <h2 class="story-title">Run50 #第12州｜芝加哥马拉松</h2>
-          <p class="story-desc">45周年芝加哥马拉松，也是我的第二个世界大满贯。错过早班飞机、唐人街补给、格兰特公园起跑、见证基普图姆世界纪录诞生，再陪Siqi七小时冲线。</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./anchorage-marathon.html">
+                <img src="../../../assets/cover-medal-ak.jpg?v=20260616-2" alt="安克雷奇市长马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">阿拉斯加安克雷奇 · 2023.06.17</p>
+                  <h2 class="story-title">Run50 #第9州｜安克雷奇马拉松</h2>
+                  <p class="story-desc">去没有极光的阿拉斯加，跑一次安克雷奇马拉松：雪山、海湾、野性、长日照，以及一次把地图拉得更远的旅行。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./st-joseph-marathon.html">
+                <img src="../../../assets/cover-medal-mo.jpg?v=20260616-2" alt="圣约瑟夫马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">密苏里圣约瑟夫 · 2023.09.23</p>
+                  <h2 class="story-title">Run50 #第10州｜圣约瑟夫马拉松</h2>
+                  <p class="story-desc">穿越密苏里去跑第一届圣约瑟夫马拉松：公园道路、坡、热浪、婚礼，以及芝加哥前的一次长距离训练。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./chicago-marathon.html">
+                <img src="../../../assets/cover-medal-il.jpg" alt="芝加哥马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">伊利诺伊芝加哥 · 2023.10.08</p>
+                  <h2 class="story-title">Run50 #第12州｜芝加哥马拉松</h2>
+                  <p class="story-desc">45周年芝加哥马拉松，也是我的第二个世界大满贯。错过早班飞机、唐人街补给、格兰特公园起跑、见证基普图姆世界纪录诞生，再陪Siqi七小时冲线。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./nashville-marathon.html">
+                <img src="../../../assets/cover-medal-tn.jpg" alt="纳什维尔马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">田纳西纳什维尔 · 2023.10.28</p>
+                  <h2 class="story-title">Run50 #第12州｜纳什维尔马拉松</h2>
+                  <p class="story-desc">十月底的音乐之都纳什维尔，在万圣节前夕跑过坎伯兰河与行人天桥，在极其炎热与暴晒的艳阳下，跑出了本年最慢的PW成绩，并在纳什维尔之音棒球场冲线！</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./west-virginia-marathon.html">
+                <img src="../../../assets/cover-medal-wv.jpg" alt="西弗吉尼亚马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">西弗吉尼亚亨廷顿 · 2023.11.05</p>
+                  <h2 class="story-title">Run50 #第13州｜西弗吉尼亚马拉松</h2>
+                  <p class="story-desc">十一月初的西弗吉尼亚亨廷顿，在秋高气爽的马歇尔大学校园，将一朵花送给1970年空难的离世队员们；在终点抱着橄榄球“达阵”冲线，成功破4！</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./san-antonio-marathon.html">
+                <img src="../../../assets/cover-medal-tx.jpg" alt="圣安东尼奥马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">德克萨斯圣安东尼奥 · 2023.12.03</p>
+                  <h2 class="story-title">Run50 #第14州｜圣安东尼奥摇滚马拉松</h2>
+                  <p class="story-desc">因为马刺和文班亚马来到圣安东尼奥，结果球没看成，却跑完了2023收官马。阿拉莫、River Walk、Fort Sam Houston、墨西哥风情和4小时12分的德州热坡。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./miami-marathon.html">
+                <img src="../../../assets/cover-medal-fl.jpg" alt="迈阿密马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">佛罗里达迈阿密 · 2024.01.28</p>
+                  <h2 class="story-title">Run50 #第15州｜迈阿密马拉松</h2>
+                  <p class="story-desc">一张买错日期的机票，让我们意外重返迈阿密。身披C罗战袍，在梅西的主场迎着热浪跑完26.2英里。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
 
-      <a class="story-card run-cn" href="./xiangyang-marathon.html">
-        <img src="../../../assets/cover-medal-xiangyang.jpg" alt="襄阳马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">湖北襄阳 · 2025.10.19</p>
-          <h2 class="story-title">RunCN #第1站｜襄阳马拉松</h2>
-          <p class="story-desc">从珞珈山到汉江边，回国第一跑意外跑进四小时。婚礼、武汉、襄阳古城 and 一条节奏友好的赛道。</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
-      <a class="story-card run-cn" href="./guilin-marathon.html">
-        <img src="../../../assets/cover-medal-guilin.jpg" alt="桂林马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">广西桂林 · 2025.11.16</p>
-          <h2 class="story-title">RunCN #第2站｜桂林马拉松</h2>
-          <p class="story-desc">热浪滚滚的一场桂林马拉松。漓江、穿山、七星、象鼻山，还有爸妈 and 姨妈在终点等我。</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
-      <a class="story-card run-cn" href="./hong-kong-marathon.html">
-        <img src="../../../assets/cover-medal-hk.jpg" alt="香港马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">中国香港 · 2025.11.23</p>
-          <h2 class="story-title">RunCN #第3站｜香港嘉里街道马拉松</h2>
-          <p class="story-desc">凌晨五点开跑，穿过隧道、高架、海风 and 将军澳跨湾大桥，给两个半月的中国行画上收尾的一站。</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
-      <a class="story-card run-world" href="./pisa-marathon.html">
-        <img src="../../../assets/cover-medal-pisa.jpg" alt="比萨马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">意大利比萨 · 2025.12.21</p>
-          <h2 class="story-title">RunWorld #第6国｜意大利：比萨马拉松</h2>
-          <p class="story-desc">从斜塔旁起跑，穿过阿诺河、托斯卡纳乡村和利古里亚海，再把奖牌一路带去威尼斯、米兰、佛罗伦萨和罗马。</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./san-antonio-marathon.html">
-        <img src="../../../assets/cover-medal-tx.jpg" alt="圣安东尼奥马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">德克萨斯圣安东尼奥 · 2023.12.03</p>
-          <h2 class="story-title">Run50 #第14州｜圣安东尼奥摇滚马拉松</h2>
-          <p class="story-desc">因为马刺和文班亚马来到圣安东尼奥，结果球没看成，却跑完了2023收官马。阿拉莫、River Walk、Fort Sam Houston、墨西哥风情和4小时12分的德州热坡。</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./miami-marathon.html">
-        <img src="../../../assets/cover-medal-fl.jpg" alt="迈阿密马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">佛罗里达迈阿密 · 2024.01.28</p>
-          <h2 class="story-title">Run50 #第15州｜迈阿密马拉松</h2>
-          <p class="story-desc">一张买错日期的机票，让我们意外重返迈阿密。身披C罗战袍，在梅西的主场迎着热浪跑完26.2英里。</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
-      <a class="story-card run-world" href="./mexico-marathon.html">
-        <img src="../../../assets/cover-medal-mexico.jpg" alt="墨西哥城马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">墨西哥城 · 2025.08.31</p>
-          <h2 class="story-title">RunWorld #第5国｜墨西哥城马拉松</h2>
-          <p class="story-desc">在2,240米的高原跑过改革大道，终点冲进宪法广场。赛后金字塔的奇妙之旅，与一车热情好客的墨西哥人的偶遇。</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./little-rock-marathon.html">
-        <img src="../../../assets/cover-medal-ar.jpg" alt="小石城马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">阿肯色小石城 · 2024.03.03</p>
-          <h2 class="story-title">Run50 #第17州｜小石城马拉松</h2>
-          <p class="story-desc">三月初的小石城马拉松，为了那块巨大的绿色暴龙奖牌驱车向南。跑过市中心、达索公司和奥索普森林公园，冲线克林顿总统的故乡。</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./south-carolina-marathon.html">
-        <img src="../../../assets/cover-medal-sc.jpg" alt="南卡罗莱纳马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">南卡罗莱纳Greer · 2024.04.14</p>
-          <h2 class="story-title">Run50 #第18州｜南卡罗莱纳马拉松</h2>
-          <p class="story-desc">南卡罗莱纳小镇Greer的2Slow4Boston马拉松，一个专为跑不进波马的人准备的反向比赛。在宁静的小区里绕圈20次，收获一块骡子拉大叔的奇特奖牌。</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./west-virginia-marathon.html">
-        <img src="../../../assets/cover-medal-wv.jpg" alt="西弗吉尼亚马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">西弗吉尼亚亨廷顿 · 2023.11.05</p>
-          <h2 class="story-title">Run50 #第13州｜西弗吉尼亚马拉松</h2>
-          <p class="story-desc">十一月初的西弗吉尼亚亨廷顿，在秋高气爽的马歇尔大学校园，将一朵花送给1970年空难的离世队员们；在终点抱着橄榄球“达阵”冲线，成功破4！</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./nashville-marathon.html">
-        <img src="../../../assets/cover-medal-tn.jpg" alt="纳什维尔马拉松奖牌封面" loading="lazy" decoding="async">
-        <div class="story-copy">
-          <p class="story-meta">田纳西纳什维尔 · 2023.10.28</p>
-          <h2 class="story-title">Run50 #第12州｜纳什维尔马拉松</h2>
-          <p class="story-desc">十月底的音乐之都纳什维尔，在万圣节前夕跑过坎伯兰河与行人天桥，在极其炎热与暴晒的艳阳下，跑出了本年最慢的PW成绩，并在纳什维尔之音棒球场冲线！</p>
-          <div class="story-foot">
-            <span>长文图记</span>
-            <span>阅读 →</span>
-          </div>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./little-rock-marathon.html">
+                <img src="../../../assets/cover-medal-ar.jpg" alt="小石城马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">阿肯色小石城 · 2024.03.03</p>
+                  <h2 class="story-title">Run50 #第17州｜小石城马拉松</h2>
+                  <p class="story-desc">三月初的小石城马拉松，为了那块巨大的绿色暴龙奖牌驱车向南。跑过市中心、达索公司和奥索普森林公园，冲线克林顿总统的故乡。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./south-carolina-marathon.html">
+                <img src="../../../assets/cover-medal-sc.jpg" alt="南卡罗莱纳马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">南卡罗莱纳Greer · 2024.04.14</p>
+                  <h2 class="story-title">Run50 #第18州｜南卡罗莱纳马拉松</h2>
+                  <p class="story-desc">南卡罗莱纳小镇Greer的2Slow4Boston马拉松，一个专为跑不进波马的人准备的反向比赛。在宁静的小区里绕圈20次，收获一块骡子拉大叔的奇特奖牌。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+      </div>
+    </section>
+
+    <section class="story-section run-cn-zone" id="runcn-series" aria-labelledby="runcn-series-title">
+      <div class="section-head">
+        <p class="section-kicker">RunCN · China</p>
+        <h2 id="runcn-series-title">中国马拉松系列</h2>
+        <p>回国后的城市马拉松，从湖北、广西到香港，按站点顺序收在这里。</p>
+      </div>
+      <div class="story-grid" aria-label="中国马拉松系列">
+        <a class="story-card run-cn" href="./xiangyang-marathon.html">
+                <img src="../../../assets/cover-medal-xiangyang.jpg" alt="襄阳马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">湖北襄阳 · 2025.10.19</p>
+                  <h2 class="story-title">RunCN #第1站｜襄阳马拉松</h2>
+                  <p class="story-desc">从珞珈山到汉江边，回国第一跑意外跑进四小时。婚礼、武汉、襄阳古城 and 一条节奏友好的赛道。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-cn" href="./guilin-marathon.html">
+                <img src="../../../assets/cover-medal-guilin.jpg" alt="桂林马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">广西桂林 · 2025.11.16</p>
+                  <h2 class="story-title">RunCN #第2站｜桂林马拉松</h2>
+                  <p class="story-desc">热浪滚滚的一场桂林马拉松。漓江、穿山、七星、象鼻山，还有爸妈 and 姨妈在终点等我。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-cn" href="./hong-kong-marathon.html">
+                <img src="../../../assets/cover-medal-hk.jpg" alt="香港马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">中国香港 · 2025.11.23</p>
+                  <h2 class="story-title">RunCN #第3站｜香港嘉里街道马拉松</h2>
+                  <p class="story-desc">凌晨五点开跑，穿过隧道、高架、海风 and 将军澳跨湾大桥，给两个半月的中国行画上收尾的一站。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+      </div>
+    </section>
+
+    <section class="story-section run-world-zone" id="runworld-series" aria-labelledby="runworld-series-title">
+      <div class="section-head">
+        <p class="section-kicker">RunWorld · Global</p>
+        <h2 id="runworld-series-title">世界马拉松系列</h2>
+        <p>美国和中国之外的跑旅故事，按 RunWorld 站点顺序展示。</p>
+      </div>
+      <div class="story-grid" aria-label="世界马拉松系列">
+        <a class="story-card run-world" href="./mexico-marathon.html">
+                <img src="../../../assets/cover-medal-mexico.jpg" alt="墨西哥城马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">墨西哥城 · 2025.08.31</p>
+                  <h2 class="story-title">RunWorld #第5国｜墨西哥城马拉松</h2>
+                  <p class="story-desc">在2,240米的高原跑过改革大道，终点冲进宪法广场。赛后金字塔的奇妙之旅，与一车热情好客的墨西哥人的偶遇。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-world" href="./pisa-marathon.html">
+                <img src="../../../assets/cover-medal-pisa.jpg" alt="比萨马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">意大利比萨 · 2025.12.21</p>
+                  <h2 class="story-title">RunWorld #第6国｜意大利：比萨马拉松</h2>
+                  <p class="story-desc">从斜塔旁起跑，穿过阿诺河、托斯卡纳乡村和利古里亚海，再把奖牌一路带去威尼斯、米兰、佛罗伦萨和罗马。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+      </div>
     </section>
   </main>
 

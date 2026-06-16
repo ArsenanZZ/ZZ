@@ -57,6 +57,84 @@
       font-size: 1.08rem;
       line-height: 1.8;
     }
+
+    .series-nav {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 0 0 40px;
+    }
+    .series-nav a {
+      min-height: 82px;
+      padding: 15px 17px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      border: 1px solid #d0dfe8;
+      border-left: 5px solid #2f70d0;
+      border-radius: 8px;
+      background: rgba(255,255,255,.72);
+      color: inherit;
+      text-decoration: none;
+      box-shadow: 0 16px 34px rgba(82, 53, 16, .08);
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .series-nav a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 44px rgba(82, 53, 16, .12);
+    }
+    .series-nav a:nth-child(2) { border-left-color: #bb5c45; }
+    .series-nav a:nth-child(3) { border-left-color: #3f7f46; }
+    .series-nav span {
+      font-size: 1.02rem;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+    .series-nav small {
+      color: rgba(33, 26, 22, .62);
+      font-size: .8rem;
+      line-height: 1.4;
+    }
+    .story-section {
+      margin-top: 56px;
+      scroll-margin-top: 24px;
+    }
+    .series-nav + .story-section { margin-top: 0; }
+    .story-section + .story-section { margin-top: 66px; }
+    .section-head {
+      margin: 0 0 20px;
+      padding: 0 0 0 18px;
+      border-left: 6px solid #2f70d0;
+    }
+    .run-cn-zone .section-head { border-left-color: #bb5c45; }
+    .run-world-zone .section-head { border-left-color: #3f7f46; }
+    .section-kicker {
+      margin: 0 0 6px;
+      color: #a36e23;
+      font-size: .78rem;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.72rem, 4vw, 2.5rem);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+    .section-head p:last-child {
+      max-width: 760px;
+      margin: 9px 0 0;
+      color: rgba(33, 26, 22, .66);
+      line-height: 1.7;
+    }
+    .story-section .story-grid { margin-top: 0; }
+
+    @media (max-width: 760px) {
+      .series-nav { grid-template-columns: 1fr; }
+    }
+
     .story-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -283,219 +361,253 @@
       </div>
     </div>
 
-    <section class="story-grid" aria-label="English story list">
-      <a class="story-card run-50" href="./louisville-marathon.html">
-        <img src="../../../assets/thumb-run50-louisville-marathon-icons.svg?v=20260615-2" alt="Icon cover for Louisville Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">Kentucky · Louisville · 2020.11.08</div>
-          <h2>Louisville Marathon: my first marathon in North America</h2>
-          <p>A pandemic-era out-and-back through Beckley Creek Park, with masks, staggered starts, six-foot gaps, a hot final stretch, and State 1 of Run50.</p>
-        </div>
-      </a>
+    <nav class="series-nav" aria-label="Story series">
+      <a href="#run50-series"><span>Run50</span><small>U.S. states in running order</small></a>
+      <a href="#runcn-series"><span>RunCN</span><small>China marathon stories</small></a>
+      <a href="#runworld-series"><span>RunWorld</span><small>International race trips</small></a>
+    </nav>
 
-      <a class="story-card run-50" href="./cleveland-marathon.html">
-        <img src="../../../assets/thumb-run50-cleveland-marathon-icons.svg?v=20260615-1" alt="Icon cover for Cleveland Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">Ohio · Cleveland · 2021.10.24</div>
-          <h2>Cleveland Marathon: from night into daylight</h2>
-          <p>A two-part Cleveland weekend: Rock Hall, Cavaliers, Lake Erie, then a cold dawn marathon through bridges, skyline, and industrial grit.</p>
-        </div>
-      </a>
+    <section class="story-section run-50-zone" id="run50-series" aria-labelledby="run50-series-title">
+      <div class="section-head">
+        <p class="section-kicker">Run50 / U.S. States</p>
+        <h2 id="run50-series-title">Run50 U.S. State Stories</h2>
+        <p>Ordered from State 1 onward, with revisit races kept near the state where they belong.</p>
+      </div>
+      <div class="story-grid" aria-label="Run50 U.S. State Stories">
+        <a class="story-card run-50" href="./louisville-marathon.html">
+                <img src="../../../assets/thumb-run50-louisville-marathon-icons.svg?v=20260615-2" alt="Icon cover for Louisville Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">Kentucky · Louisville · 2020.11.08</div>
+                  <h2>Louisville Marathon: my first marathon in North America</h2>
+                  <p>A pandemic-era out-and-back through Beckley Creek Park, with masks, staggered starts, six-foot gaps, a hot final stretch, and State 1 of Run50.</p>
+                </div>
+              </a>
 
-      <a class="story-card run-50" href="./new-york-city-marathon.html">
-        <img src="../../../assets/thumb-run50-new-york-city-marathon-icons.svg?v=20260615-3" alt="Icon cover for New York City Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">New York · New York City · 2021.11.07</div>
-          <h2>New York City Marathon: the 50th running across five boroughs</h2>
-          <p>A two-part New York weekend: cyberpunk city scenes, Flushing, Times Square, Central Park, the Hudson River, then my first World Marathon Major.</p>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./kentucky-derby-marathon.html">
+                <img src="../../../assets/thumb-run50-kentucky-derby-marathon-icons.svg?v=20260616-2" alt="Icon cover for Kentucky Derby Festival Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">Kentucky · Louisville · 2023.04.29</div>
+                  <h2>Kentucky Derby Marathon: Louisville&#x27;s biggest running party</h2>
+                  <p>A hometown Run50 revisit through Derby season, downtown Louisville, Churchill Downs spirit, old friends, and a city that knows how to turn race weekend into a party.</p>
+                </div>
+              </a>
 
-      <a class="story-card run-50" href="./san-francisco-marathon.html">
-        <img src="../../../assets/thumb-run50-san-francisco-marathon-icons.svg?v=20260615-4" alt="Icon cover for San Francisco Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">California · San Francisco · 2022.07.24</div>
-          <h2>San Francisco Marathon: Golden Gate fog, hills and bay light</h2>
-          <p>A two-part San Francisco weekend: Karl the fog, Chinatown breakfast, Golden Gate sunset, biking the city, then a hard beautiful marathon across the bridge.</p>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./cleveland-marathon.html">
+                <img src="../../../assets/thumb-run50-cleveland-marathon-icons.svg?v=20260615-1" alt="Icon cover for Cleveland Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">Ohio · Cleveland · 2021.10.24</div>
+                  <h2>Cleveland Marathon: from night into daylight</h2>
+                  <p>A two-part Cleveland weekend: Rock Hall, Cavaliers, Lake Erie, then a cold dawn marathon through bridges, skyline, and industrial grit.</p>
+                </div>
+              </a>
 
-      <a class="story-card run-50" href="./indianapolis-monumental-marathon.html">
-        <img src="../../../assets/thumb-run50-indianapolis-monumental-marathon-icons.svg?v=20260615-5" alt="Icon cover for Indianapolis Monumental Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">Indiana · Indianapolis · 2022.11.05</div>
-          <h2>Indianapolis Monumental Marathon: a rainy one-day run back under five</h2>
-          <p>A pre-dawn drive from Louisville, autumn rain downtown, Monument Circle, pacer groups, run-walk intervals, and a 4:55:12 finish that made running feel possible again.</p>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./cincinnati-flying-pig-marathon.html">
+                <img src="../../../assets/thumb-run50-cincinnati-flying-pig-marathon-icons.svg?v=20260616-2" alt="Icon cover for Flying Pig Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">Ohio · Cincinnati · 2023.05.07</div>
+                  <h2>Flying Pig Marathon: Queen City bridges and a rain-soaked finish</h2>
+                  <p>A second Ohio marathon through Cincinnati&#x27;s river city: flying-pig branding, bridges, hills, rain, and a race that somehow became even more memorable when it got wet.</p>
+                </div>
+              </a>
 
-      <a class="story-card run-50" href="./honolulu-marathon.html">
-        <img src="../../../assets/thumb-run50-honolulu-marathon-icons.svg?v=20260615-6" alt="Icon cover for Honolulu Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">Hawaii · Honolulu · 2022.12.11</div>
-          <h2>Honolulu Marathon: an island daydream and 47's first full marathon</h2>
-          <p>A two-part Hawaii story: Waikiki mornings, Diamond Head, rainbow seas, west-side roads, then the 50th Honolulu Marathon with fireworks and a nearly eleven-hour finish.</p>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./new-york-city-marathon.html">
+                <img src="../../../assets/thumb-run50-new-york-city-marathon-icons.svg?v=20260615-3" alt="Icon cover for New York City Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">New York · New York City · 2021.11.07</div>
+                  <h2>New York City Marathon: the 50th running across five boroughs</h2>
+                  <p>A two-part New York weekend: cyberpunk city scenes, Flushing, Times Square, Central Park, the Hudson River, then my first World Marathon Major.</p>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./san-francisco-marathon.html">
+                <img src="../../../assets/thumb-run50-san-francisco-marathon-icons.svg?v=20260615-4" alt="Icon cover for San Francisco Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">California · San Francisco · 2022.07.24</div>
+                  <h2>San Francisco Marathon: Golden Gate fog, hills and bay light</h2>
+                  <p>A two-part San Francisco weekend: Karl the fog, Chinatown breakfast, Golden Gate sunset, biking the city, then a hard beautiful marathon across the bridge.</p>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./indianapolis-monumental-marathon.html">
+                <img src="../../../assets/thumb-run50-indianapolis-monumental-marathon-icons.svg?v=20260615-5" alt="Icon cover for Indianapolis Monumental Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">Indiana · Indianapolis · 2022.11.05</div>
+                  <h2>Indianapolis Monumental Marathon: a rainy one-day run back under five</h2>
+                  <p>A pre-dawn drive from Louisville, autumn rain downtown, Monument Circle, pacer groups, run-walk intervals, and a 4:55:12 finish that made running feel possible again.</p>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./honolulu-marathon.html">
+                <img src="../../../assets/thumb-run50-honolulu-marathon-icons.svg?v=20260615-6" alt="Icon cover for Honolulu Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">Hawaii · Honolulu · 2022.12.11</div>
+                  <h2>Honolulu Marathon: an island daydream and 47's first full marathon</h2>
+                  <p>A two-part Hawaii story: Waikiki mornings, Diamond Head, rainbow seas, west-side roads, then the 50th Honolulu Marathon with fireworks and a nearly eleven-hour finish.</p>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./atlanta-marathon.html">
+                <img src="../../../assets/thumb-run50-atlanta-marathon-icons.svg?v=20260616-2" alt="Icon cover for Publix Atlanta Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">Georgia · Atlanta · 2023.02.26</div>
+                  <h2>Atlanta Marathon: Olympic rings, hills, and a 16-hour road trip</h2>
+                  <p>A Georgia marathon weekend with Chattanooga on the way, Olympic city landmarks, Coca-Cola, CNN, rolling Atlanta streets, and the shared rhythm of 26.2 and 13.1.</p>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./denver-colfax-marathon.html">
+                <img src="../../../assets/thumb-run50-denver-colfax-marathon-icons.svg?v=20260616-2" alt="Icon cover for Denver Colfax Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">Colorado · Denver · 2023.05.21</div>
+                  <h2>Denver Colfax Marathon: 26.2 Mile High miles</h2>
+                  <p>A Colorado weekend built around old friends, Denver sun, Rocky Mountain light, stadium miles, and the thin-air rhythm of the Colfax Marathon.</p>
+                </div>
+              </a>
 
-      <a class="story-card run-50" href="./kentucky-derby-marathon.html">
-        <img src="../../../assets/thumb-run50-kentucky-derby-marathon-icons.svg?v=20260616-2" alt="Icon cover for Kentucky Derby Festival Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">Kentucky · Louisville · 2023.04.29</div>
-          <h2>Kentucky Derby Marathon: Louisville&#x27;s biggest running party</h2>
-          <p>A hometown Run50 revisit through Derby season, downtown Louisville, Churchill Downs spirit, old friends, and a city that knows how to turn race weekend into a party.</p>
-        </div>
-      </a>
-<a class="story-card run-50" href="./cincinnati-flying-pig-marathon.html">
-        <img src="../../../assets/thumb-run50-cincinnati-flying-pig-marathon-icons.svg?v=20260616-2" alt="Icon cover for Flying Pig Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">Ohio · Cincinnati · 2023.05.07</div>
-          <h2>Flying Pig Marathon: Queen City bridges and a rain-soaked finish</h2>
-          <p>A second Ohio marathon through Cincinnati&#x27;s river city: flying-pig branding, bridges, hills, rain, and a race that somehow became even more memorable when it got wet.</p>
-        </div>
-      </a>
-<a class="story-card run-50" href="./atlanta-marathon.html">
-        <img src="../../../assets/thumb-run50-atlanta-marathon-icons.svg?v=20260616-2" alt="Icon cover for Publix Atlanta Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">Georgia · Atlanta · 2023.02.26</div>
-          <h2>Atlanta Marathon: Olympic rings, hills, and a 16-hour road trip</h2>
-          <p>A Georgia marathon weekend with Chattanooga on the way, Olympic city landmarks, Coca-Cola, CNN, rolling Atlanta streets, and the shared rhythm of 26.2 and 13.1.</p>
-        </div>
-      </a>
-<a class="story-card run-50" href="./denver-colfax-marathon.html">
-        <img src="../../../assets/thumb-run50-denver-colfax-marathon-icons.svg?v=20260616-2" alt="Icon cover for Denver Colfax Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">Colorado · Denver · 2023.05.21</div>
-          <h2>Denver Colfax Marathon: 26.2 Mile High miles</h2>
-          <p>A Colorado weekend built around old friends, Denver sun, Rocky Mountain light, stadium miles, and the thin-air rhythm of the Colfax Marathon.</p>
-        </div>
-      </a>
-<a class="story-card run-50" href="./anchorage-marathon.html">
-        <img src="../../../assets/thumb-run50-anchorage-marathon-icons.svg?v=20260616-2" alt="Icon cover for Anchorage Mayor&#x27;s Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">Alaska · Anchorage · 2023.06.17</div>
-          <h2>Anchorage Marathon: Alaska without the aurora</h2>
-          <p>A summer-solstice Alaska story: no northern lights, but mountains, coastal trails, wild scenery, long daylight, local runners and the kind of trip that makes the map feel larger.</p>
-        </div>
-      </a>
-<a class="story-card run-50" href="./st-joseph-marathon.html">
-        <img src="../../../assets/thumb-run50-st-joseph-marathon-icons.svg?v=20260616-2" alt="Icon cover for St. Joseph Missouri Marathon" loading="lazy" decoding="async">
-        <div class="story-card-content">
-          <div class="meta">Missouri · St. Joseph · 2023.09.23</div>
-          <h2>St. Joseph Marathon: the first edition across Missouri</h2>
-          <p>A Missouri road-trip marathon before Chicago: long drive, inaugural race energy, parkways, heat, hills, friends, and a wedding weekend at the end.</p>
-        </div>
-      </a>
-<a class="story-card run-50" href="./chicago-marathon.html">
-        <img src="../../../assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1" alt="Icon cover for Chicago Marathon" />
-        <div class="story-card-content">
-          <div class="meta">Illinois · Chicago · 2023.10.08</div>
-          <h2>Chicago Marathon: State 12 and a second World Marathon Major</h2>
-          <p>Running the 45th Chicago Marathon, missing the first flight, eating in Chinatown, starting in Grant Park, witnessing Kelvin Kiptum's world record day, and walking Siqi into her first Major finish.</p>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./anchorage-marathon.html">
+                <img src="../../../assets/thumb-run50-anchorage-marathon-icons.svg?v=20260616-2" alt="Icon cover for Anchorage Mayor&#x27;s Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">Alaska · Anchorage · 2023.06.17</div>
+                  <h2>Anchorage Marathon: Alaska without the aurora</h2>
+                  <p>A summer-solstice Alaska story: no northern lights, but mountains, coastal trails, wild scenery, long daylight, local runners and the kind of trip that makes the map feel larger.</p>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./st-joseph-marathon.html">
+                <img src="../../../assets/thumb-run50-st-joseph-marathon-icons.svg?v=20260616-2" alt="Icon cover for St. Joseph Missouri Marathon" loading="lazy" decoding="async">
+                <div class="story-card-content">
+                  <div class="meta">Missouri · St. Joseph · 2023.09.23</div>
+                  <h2>St. Joseph Marathon: the first edition across Missouri</h2>
+                  <p>A Missouri road-trip marathon before Chicago: long drive, inaugural race energy, parkways, heat, hills, friends, and a wedding weekend at the end.</p>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./chicago-marathon.html">
+                <img src="../../../assets/thumb-run50-chicago-marathon-icons.svg?v=20260605-1" alt="Icon cover for Chicago Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">Illinois · Chicago · 2023.10.08</div>
+                  <h2>Chicago Marathon: State 12 and a second World Marathon Major</h2>
+                  <p>Running the 45th Chicago Marathon, missing the first flight, eating in Chinatown, starting in Grant Park, witnessing Kelvin Kiptum's world record day, and walking Siqi into her first Major finish.</p>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./nashville-marathon.html">
+                <img src="../../../assets/thumb-run50-nashville-marathon-icons.svg?v=20260605-1" alt="Icon cover for Nashville Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">Tennessee · Nashville · 2023.10.28</div>
+                  <h2>Nashville Marathon: running in the music city under autumn sunshine</h2>
+                  <p>Running U.S. State 12 quest in the Capital of Country Music, crossing the John Seigenthaler Pedestrian Bridge on a hot October day, and completing my slowest marathon of the year inside the baseball stadium.</p>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./west-virginia-marathon.html">
+                <img src="../../../assets/thumb-run50-west-virginia-marathon-icons.svg?v=20260605-1" alt="Icon cover for West Virginia Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">West Virginia · Huntington · 2023.11.05</div>
+                  <h2>Marshall University Marathon: scoring a football touchdown in West Virginia</h2>
+                  <p>Running U.S. State 13 quest under the autumn sunshine, honoring the 1970 sports plane tragedy memorial on campus, and scoring a touchdown at the finish line inside the football stadium to break 4 hours.</p>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./san-antonio-marathon.html">
+                <img src="../../../assets/thumb-run50-san-antonio-marathon-icons.svg?v=20260605-1" alt="Icon cover for San Antonio Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">Texas · San Antonio · 2023.12.03</div>
+                  <h2>San Antonio Rock 'n' Roll Marathon: the Spurs trip that became State 14</h2>
+                  <p>A Spurs-inspired Texas weekend with the Alamo, River Walk, Fort Sam Houston, live bands, a late hill, and a 4:12 finish to close out 2023.</p>
+                </div>
+              </a>
 
+        <a class="story-card run-50" href="./miami-marathon.html">
+                <img src="../../../assets/thumb-run50-miami-icons.svg?v=20260605-1" alt="Icon cover for Miami Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">Florida · Miami · 2024.01.28</div>
+                  <h2>Miami Marathon: wearing CR7 in Messi's backyard</h2>
+                  <p>An accidental double-run of Florida. A wrong-date plane ticket brought us back to the heat of Miami, where I ran 26.2 miles in a Ronaldo jersey—right in Messi's territory.</p>
+                </div>
+              </a>
 
-      <a class="story-card run-cn" href="./xiangyang-marathon.html">
-        <img src="../../../assets/thumb-run50-xiangyang-icons.svg?v=20260604-8" alt="Icon cover for Xiangyang Marathon" />
-        <div class="story-card-content">
-          <div class="meta">Hubei · Xiangyang · 2025.10.19</div>
-          <h2>Xiangyang Marathon: from Luojia Mountain to the Han River</h2>
-          <p>First marathon back in China after almost six years, with Wuhan rain, Xiangyang beef noodles, old city walls, and a surprise 3:57.</p>
-        </div>
-      </a>
-      <a class="story-card run-cn" href="./guilin-marathon.html">
-        <img src="../../../assets/thumb-run50-guilin-icons.svg?v=20260604-8" alt="Icon cover for Guilin Marathon" />
-        <div class="story-card-content">
-          <div class="meta">Guangxi · Guilin · 2025.11.16</div>
-          <h2>Guilin Marathon: heat, karst hills, and family at the finish</h2>
-          <p>A hot run along the Li River and through Guilin's mountain-lined streets, with my parents and aunt waiting at the finish.</p>
-        </div>
-      </a>
-      <a class="story-card run-cn" href="./hong-kong-marathon.html">
-        <img src="../../../assets/thumb-run50-hong-kong-icons.svg?v=20260604-8" alt="Icon cover for Hong Kong Streetathon" />
-        <div class="story-card-content">
-          <div class="meta">Hong Kong · 2025.11.23</div>
-          <h2>Hong Kong Streetathon: tunnels, bridges, and a 5 a.m. start</h2>
-          <p>A race through expressway tunnels, elevated roads, Victoria Harbour wind, Tseung Kwan O Bridge, and the final stop of a long China trip.</p>
-        </div>
-      </a>
-      <a class="story-card run-world" href="./pisa-marathon.html">
-        <img src="../../../assets/thumb-run50-pisa-icons.svg?v=20260605-1" alt="Icon cover for Pisa Marathon" />
-        <div class="story-card-content">
-          <div class="meta">Italy · Pisa · 2025.12.21</div>
-          <h2>Pisa Marathon: under the Leaning Tower and through Tuscany</h2>
-          <p>A winter-sun marathon from the Leaning Tower to the Arno, Tuscan villages, Marina di Pisa and the Ligurian Sea, followed by an Italy art-school road trip.</p>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./san-antonio-marathon.html">
-        <img src="../../../assets/thumb-run50-san-antonio-marathon-icons.svg?v=20260605-1" alt="Icon cover for San Antonio Marathon" />
-        <div class="story-card-content">
-          <div class="meta">Texas · San Antonio · 2023.12.03</div>
-          <h2>San Antonio Rock 'n' Roll Marathon: the Spurs trip that became State 14</h2>
-          <p>A Spurs-inspired Texas weekend with the Alamo, River Walk, Fort Sam Houston, live bands, a late hill, and a 4:12 finish to close out 2023.</p>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./miami-marathon.html">
-        <img src="../../../assets/thumb-run50-miami-icons.svg?v=20260605-1" alt="Icon cover for Miami Marathon" />
-        <div class="story-card-content">
-          <div class="meta">Florida · Miami · 2024.01.28</div>
-          <h2>Miami Marathon: wearing CR7 in Messi's backyard</h2>
-          <p>An accidental double-run of Florida. A wrong-date plane ticket brought us back to the heat of Miami, where I ran 26.2 miles in a Ronaldo jersey—right in Messi's territory.</p>
-        </div>
-      </a>
-      <a class="story-card run-world" href="./mexico-marathon.html">
-        <img src="../../../assets/thumb-run50-mexico-icons.svg?v=20260605-1" alt="Icon cover for Mexico City Marathon" />
-        <div class="story-card-content">
-          <div class="meta">Mexico City · 2025.08.31</div>
-          <h2>Mexico City Marathon: high altitude, pyramids, and a bus full of friends</h2>
-          <p>Running at 2,240m altitude down Paseo de la Reforma to the Zócalo, followed by a pyramid detour and a memorable ride with local marathoners.</p>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./little-rock-marathon.html">
-        <img src="../../../assets/thumb-run50-little-rock-marathon-icons.svg?v=20260605-1" alt="Icon cover for Little Rock Marathon" />
-        <div class="story-card-content">
-          <div class="meta">Arkansas · Little Rock · 2024.03.03</div>
-          <h2>Little Rock Marathon: running in President Clinton's backyard</h2>
-          <p>A U.S. State 17 quest under the dawn lights, crossing the Clinton Presidential Bridge, loop around the Dassault Jet center, and climbing rolling hills of Allsopp Park.</p>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./south-carolina-marathon.html">
-        <img src="../../../assets/thumb-run50-south-carolina-marathon-icons.svg?v=20260605-1" alt="Icon cover for South Carolina Marathon" />
-        <div class="story-card-content">
-          <div class="meta">South Carolina · Greer · 2024.04.14</div>
-          <h2>Too Slow for Boston Marathon: loops, RV camping, and the stubborn mule</h2>
-          <p>A U.S. State 18 quest going against the speed-worshipping norm, completing 20 neighborhood loops under the sun, and celebrating with local block-party volunteers.</p>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./west-virginia-marathon.html">
-        <img src="../../../assets/thumb-run50-west-virginia-marathon-icons.svg?v=20260605-1" alt="Icon cover for West Virginia Marathon" />
-        <div class="story-card-content">
-          <div class="meta">West Virginia · Huntington · 2023.11.05</div>
-          <h2>Marshall University Marathon: scoring a football touchdown in West Virginia</h2>
-          <p>Running U.S. State 13 quest under the autumn sunshine, honoring the 1970 sports plane tragedy memorial on campus, and scoring a touchdown at the finish line inside the football stadium to break 4 hours.</p>
-        </div>
-      </a>
-      <a class="story-card run-50" href="./nashville-marathon.html">
-        <img src="../../../assets/thumb-run50-nashville-marathon-icons.svg?v=20260605-1" alt="Icon cover for Nashville Marathon" />
-        <div class="story-card-content">
-          <div class="meta">Tennessee · Nashville · 2023.10.28</div>
-          <h2>Nashville Marathon: running in the music city under autumn sunshine</h2>
-          <p>Running U.S. State 12 quest in the Capital of Country Music, crossing the John Seigenthaler Pedestrian Bridge on a hot October day, and completing my slowest marathon of the year inside the baseball stadium.</p>
-        </div>
-      </a>
+        <a class="story-card run-50" href="./little-rock-marathon.html">
+                <img src="../../../assets/thumb-run50-little-rock-marathon-icons.svg?v=20260605-1" alt="Icon cover for Little Rock Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">Arkansas · Little Rock · 2024.03.03</div>
+                  <h2>Little Rock Marathon: running in President Clinton's backyard</h2>
+                  <p>A U.S. State 17 quest under the dawn lights, crossing the Clinton Presidential Bridge, loop around the Dassault Jet center, and climbing rolling hills of Allsopp Park.</p>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./south-carolina-marathon.html">
+                <img src="../../../assets/thumb-run50-south-carolina-marathon-icons.svg?v=20260605-1" alt="Icon cover for South Carolina Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">South Carolina · Greer · 2024.04.14</div>
+                  <h2>Too Slow for Boston Marathon: loops, RV camping, and the stubborn mule</h2>
+                  <p>A U.S. State 18 quest going against the speed-worshipping norm, completing 20 neighborhood loops under the sun, and celebrating with local block-party volunteers.</p>
+                </div>
+              </a>
+      </div>
     </section>
-  </main>
+
+    <section class="story-section run-cn-zone" id="runcn-series" aria-labelledby="runcn-series-title">
+      <div class="section-head">
+        <p class="section-kicker">RunCN / China</p>
+        <h2 id="runcn-series-title">RunCN China Stories</h2>
+        <p>China race weekends from Hubei, Guangxi and Hong Kong, kept together as their own series.</p>
+      </div>
+      <div class="story-grid" aria-label="RunCN China Stories">
+        <a class="story-card run-cn" href="./xiangyang-marathon.html">
+                <img src="../../../assets/thumb-run50-xiangyang-icons.svg?v=20260604-8" alt="Icon cover for Xiangyang Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">Hubei · Xiangyang · 2025.10.19</div>
+                  <h2>Xiangyang Marathon: from Luojia Mountain to the Han River</h2>
+                  <p>First marathon back in China after almost six years, with Wuhan rain, Xiangyang beef noodles, old city walls, and a surprise 3:57.</p>
+                </div>
+              </a>
+
+        <a class="story-card run-cn" href="./guilin-marathon.html">
+                <img src="../../../assets/thumb-run50-guilin-icons.svg?v=20260604-8" alt="Icon cover for Guilin Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">Guangxi · Guilin · 2025.11.16</div>
+                  <h2>Guilin Marathon: heat, karst hills, and family at the finish</h2>
+                  <p>A hot run along the Li River and through Guilin's mountain-lined streets, with my parents and aunt waiting at the finish.</p>
+                </div>
+              </a>
+
+        <a class="story-card run-cn" href="./hong-kong-marathon.html">
+                <img src="../../../assets/thumb-run50-hong-kong-icons.svg?v=20260604-8" alt="Icon cover for Hong Kong Streetathon" />
+                <div class="story-card-content">
+                  <div class="meta">Hong Kong · 2025.11.23</div>
+                  <h2>Hong Kong Streetathon: tunnels, bridges, and a 5 a.m. start</h2>
+                  <p>A race through expressway tunnels, elevated roads, Victoria Harbour wind, Tseung Kwan O Bridge, and the final stop of a long China trip.</p>
+                </div>
+              </a>
+      </div>
+    </section>
+
+    <section class="story-section run-world-zone" id="runworld-series" aria-labelledby="runworld-series-title">
+      <div class="section-head">
+        <p class="section-kicker">RunWorld / Global</p>
+        <h2 id="runworld-series-title">RunWorld Stories</h2>
+        <p>International marathon trips outside the U.S. and China, sorted by RunWorld entry order.</p>
+      </div>
+      <div class="story-grid" aria-label="RunWorld Stories">
+        <a class="story-card run-world" href="./mexico-marathon.html">
+                <img src="../../../assets/thumb-run50-mexico-icons.svg?v=20260605-1" alt="Icon cover for Mexico City Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">Mexico City · 2025.08.31</div>
+                  <h2>Mexico City Marathon: high altitude, pyramids, and a bus full of friends</h2>
+                  <p>Running at 2,240m altitude down Paseo de la Reforma to the Zócalo, followed by a pyramid detour and a memorable ride with local marathoners.</p>
+                </div>
+              </a>
+
+        <a class="story-card run-world" href="./pisa-marathon.html">
+                <img src="../../../assets/thumb-run50-pisa-icons.svg?v=20260605-1" alt="Icon cover for Pisa Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">Italy · Pisa · 2025.12.21</div>
+                  <h2>Pisa Marathon: under the Leaning Tower and through Tuscany</h2>
+                  <p>A winter-sun marathon from the Leaning Tower to the Arno, Tuscan villages, Marina di Pisa and the Ligurian Sea, followed by an Italy art-school road trip.</p>
+                </div>
+              </a>
+      </div>
     </section>
   </main>
 
