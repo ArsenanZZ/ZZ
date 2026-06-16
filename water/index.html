@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Hub | ZZ</title>
+<meta name="description" content="All water content in one place — water softeners, reverse osmosis, WQA 2026 research, and NSF/ANSI standards.">
+<script>
+  (() => {
+    const t = localStorage.getItem('zz-theme') || 'dark';
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f4f6f3;
+    --panel: #ffffff;
+    --panel-strong: #ffffff;
+    --header: rgba(250,251,249,.94);
+    --ink: #17201c;
+    --muted: #617068;
+    --line: #d8dfda;
+    --soft: #e7ece8;
+    --focus: #2675bb;
+    --shadow-hover: 0 18px 42px rgba(23,42,32,.14);
+    --wqa: #087f69;
+    --ro: #13758a;
+    --softener: #1f7a8c;
+    --nsf: #5a7d3c;
+    --water: #13758a;
+  }
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #121512;
+    --panel: #1b201c;
+    --panel-strong: #202720;
+    --header: rgba(18,21,18,.94);
+    --ink: #f2f5f1;
+    --muted: #a9b5ad;
+    --line: #343b35;
+    --soft: #252b26;
+    --focus: #65a9e3;
+    --shadow-hover: 0 20px 48px rgba(0,0,0,.34);
+    --wqa: #29a58d;
+    --ro: #3c9bb0;
+    --softener: #45a0b3;
+    --nsf: #84a85a;
+    --water: #3c9bb0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    color: var(--ink);
+    background: var(--bg);
+    font-family: Inter, "Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    transition: color .18s ease, background-color .18s ease;
+    min-height: 100vh;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── HEADER ── */
+  .hub-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 54px;
+    padding: 0 20px;
+    background: var(--header);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(12px);
+  }
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: var(--muted);
+    font-size: 12.5px;
+    font-weight: 600;
+    transition: background .15s, color .15s;
+  }
+  .back-btn:hover { background: var(--soft); color: var(--ink); }
+  .hub-title { font-size: 15px; font-weight: 800; color: var(--water); flex: 1; }
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+  }
+  .theme-btn:hover { background: var(--soft); }
+
+  /* ── MASTHEAD ── */
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px 56px; }
+  .masthead { padding: 30px 0 8px; }
+  .masthead h1 { font-size: clamp(26px, 4vw, 38px); line-height: 1.1; }
+  .masthead p { margin-top: 10px; max-width: 720px; color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+  /* ── JUMP CHIPS ── */
+  .jump { display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0 8px; }
+  .jump a {
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--panel);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    transition: border-color .15s, color .15s;
+  }
+  .jump a:hover { border-color: var(--water); color: var(--ink); }
+
+  /* ── SECTION + GRID ── */
+  .section { scroll-margin-top: 64px; margin-top: 30px; }
+  .section h2 {
+    font-size: 22px;
+    line-height: 1.2;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section h2 small { font-weight: 500; font-size: 14px; color: var(--muted); margin-left: 6px; }
+  .grid {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .video-card {
+    min-width: 0;
+    padding: 8px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  }
+  .video-card:hover, .video-card:focus-within {
+    border-color: var(--line);
+    background: var(--panel);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+  .thumb {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--panel-strong);
+  }
+  .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .18s ease; }
+  .video-card:hover .thumb img { transform: scale(1.035); }
+  .duration {
+    position: absolute; right: 8px; bottom: 8px;
+    padding: 3px 6px;
+    color: #fff; background: rgba(0,0,0,.84);
+    border-radius: 4px; font-size: 12px; font-weight: 700;
+  }
+  .meta { display: grid; grid-template-columns: 40px minmax(0,1fr); gap: 10px; padding-top: 10px; }
+  .avatar {
+    display: grid; place-items: center;
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    color: #fff; font-size: 12px; font-weight: 800;
+  }
+  .avatar.wqa { background: var(--wqa); }
+  .avatar.ro { background: var(--ro); }
+  .avatar.softener { background: var(--softener); }
+  .avatar.nsf { background: var(--nsf); }
+  .video-title {
+    display: -webkit-box; min-height: 40px; overflow: hidden;
+    color: var(--ink); font-size: 15px; font-weight: 700; line-height: 1.32;
+    -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+  }
+  .video-card:hover .video-title { color: var(--water); }
+  .video-sub { margin-top: 4px; color: var(--muted); font-size: 13px; line-height: 1.35; }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--line); margin-top: 48px; padding: 22px 0; text-align: center; color: var(--muted); font-size: 13px; }
+
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } .hub-header { padding: 0 14px; } }
+</style>
+<link rel="stylesheet" href="../assets/zz-comments.css">
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="hub-header">
+  <a href="../" class="back-btn">
+    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    ZZ Hub
+  </a>
+  <div class="hub-title">&#128167; Water Hub</div>
+  <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.2 3.2l1 1M11.8 11.8l1 1M12.8 3.2l-1 1M4.2 11.8l-1 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+    <span id="themeLabel">Light</span>
+  </button>
+</header>
+
+<div class="wrap">
+
+  <section class="masthead">
+    <h1>Water Research &amp; Tech</h1>
+    <p>Everything water in one place — whole-house softeners, reverse osmosis, WQA 2026 convention research, and NSF/ANSI drinking-water standards.</p>
+  </section>
+
+  <nav class="jump" aria-label="Jump to section">
+    <a href="#softener">Water Softener</a>
+    <a href="#ro">Reverse Osmosis</a>
+    <a href="#wqa">WQA 2026 Research</a>
+    <a href="#nsf">NSF Standards</a>
+  </nav>
+
+  <!-- ── WATER SOFTENER ── -->
+  <section class="section" id="softener">
+    <h2>&#129532; Water Softener <small>软水 · principles, sizing &amp; valve analysis</small></h2>
+    <div class="grid">
+
+      <article class="video-card">
+        <a class="thumb" href="../Softener-Water/index.html"><img src="../assets/thumb-softener.svg" alt="Water Softener Guide"><span class="duration">Guide + Calc</span></a>
+        <div class="meta"><span class="avatar softener">S</span><div>
+          <a class="video-title" href="../Softener-Water/index.html">Whole-House Smart Water Softener — Tech &amp; Buyer's Guide</a>
+          <p class="video-sub">Softener &middot; Principles + sizing calculator</p>
+        </div></div>
+      </article>
+
+      <article class="video-card">
+        <a class="thumb" href="../water-softener/index.html"><img src="../assets/thumb-water-softener.svg" alt="Water Softener Study"><span class="duration">Study Hub</span></a>
+        <div class="meta"><span class="avatar softener">S</span><div>
+          <a class="video-title" href="../water-softener/index.html">Water Softener Study</a>
+          <p class="video-sub">Softener &middot; Bilingual study hub</p>
+        </div></div>
+      </article>
+
+      <article class="video-card">
+        <a class="thumb" href="../water-softener/softener-valve-analysis-zh.html"><img src="../assets/thumb-softener-valve-zh.svg" alt="软水阀头分析"><span class="duration">&#20013;&#25991;</span></a>
+        <div class="meta"><span class="avatar softener">S</span><div>
+          <a class="video-title" href="../water-softener/softener-valve-analysis-zh.html">&#36719;&#27700;&#21407;&#29702;&#19982;&#38349;&#22836;&#31454;&#21697;&#20998;&#26512;</a>
+          <p class="video-sub">软水 &middot; 离子交换 / Fleck / Clack / Runxin</p>
+        </div></div>
+      </article>
+
+      <article class="video-card">
+        <a class="thumb" href="../water-softener/softener-valve-analysis-en.html"><img src="../assets/thumb-softener-valve-en.svg" alt="Softener Valve Analysis"><span class="duration">EN</span></a>
+        <div class="meta"><span class="avatar softener">S</span><div>
+          <a class="video-title" href="../water-softener/softener-valve-analysis-en.html">Water Softening: Principles &amp; Valve Analysis</a>
+          <p class="video-sub">Softener &middot; Chemistry + competitor tiers</p>
+        </div></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── REVERSE OSMOSIS ── -->
+  <section class="section" id="ro">
+    <h2>&#128167; Reverse Osmosis (RO) <small>how membranes purify drinking water</small></h2>
+    <div class="grid">
+
+      <article class="video-card">
+        <a class="thumb" href="../ro/ro-system-explained.html"><img src="../assets/thumb-ro-system.svg" alt="RO System Explained"><span class="duration">Explainer</span></a>
+        <div class="meta"><span class="avatar ro">RO</span><div>
+          <a class="video-title" href="../ro/ro-system-explained.html">How a Reverse Osmosis System Works</a>
+          <p class="video-sub">RO &middot; Visual walkthrough</p>
+        </div></div>
+      </article>
+
+      <article class="video-card">
+        <a class="thumb" href="../ro/RO-Complete-Guide-EN.html"><img src="../assets/thumb-ro-guide.svg" alt="RO Complete Guide"><span class="duration">Guide</span></a>
+        <div class="meta"><span class="avatar ro">RO</span><div>
+          <a class="video-title" href="../ro/RO-Complete-Guide-EN.html">Reverse Osmosis Complete Guide</a>
+          <p class="video-sub">RO &middot; Components, stages, maintenance</p>
+        </div></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── WQA 2026 RESEARCH ── -->
+  <section class="section" id="wqa">
+    <h2>&#128300; WQA 2026 Research <small>convention notes &amp; product research</small></h2>
+    <div class="grid">
+
+      <article class="video-card">
+        <a class="thumb" href="../wqa/WQA_2026_Presentations_Summary-V2.html"><img src="../assets/thumb-wqa-presentations.svg" alt="WQA 2026 Presentations"><span class="duration">Summaries</span></a>
+        <div class="meta"><span class="avatar wqa">W</span><div>
+          <a class="video-title" href="../wqa/WQA_2026_Presentations_Summary-V2.html">WQA 2026 Convention — Presentation Summaries</a>
+          <p class="video-sub">WQA &middot; Key technical talks</p>
+        </div></div>
+      </article>
+
+      <article class="video-card">
+        <a class="thumb" href="../wqa/WQA_2026_Expo_Observation_Report_EN.html"><img src="../assets/thumb-wqa-expo.svg" alt="WQA 2026 Expo Report"><span class="duration">Expo</span></a>
+        <div class="meta"><span class="avatar wqa">W</span><div>
+          <a class="video-title" href="../wqa/WQA_2026_Expo_Observation_Report_EN.html">WQA 2026 Expo Observation Report</a>
+          <p class="video-sub">WQA &middot; Expo field report</p>
+        </div></div>
+      </article>
+
+      <article class="video-card">
+        <a class="thumb" href="../wqa/EZsalt_Research_Report_2_EN.html"><img src="../assets/thumb-ezsalt.svg" alt="EZsalt Research Report"><span class="duration">Product</span></a>
+        <div class="meta"><span class="avatar wqa">W</span><div>
+          <a class="video-title" href="../wqa/EZsalt_Research_Report_2_EN.html">EZsalt Research Report</a>
+          <p class="video-sub">WQA &middot; Softener-salt product</p>
+        </div></div>
+      </article>
+
+      <article class="video-card">
+        <a class="thumb" href="../wqa/DROP_Research_Report_EN.html"><img src="../assets/thumb-drop.svg" alt="DROP Research Report"><span class="duration">Product</span></a>
+        <div class="meta"><span class="avatar wqa">W</span><div>
+          <a class="video-title" href="../wqa/DROP_Research_Report_EN.html">DROP Research Report</a>
+          <p class="video-sub">WQA &middot; Connected water platform</p>
+        </div></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── NSF STANDARDS ── -->
+  <section class="section" id="nsf">
+    <h2>&#128220; NSF Standards <small>NSF/ANSI drinking-water standards &amp; measurement</small></h2>
+    <div class="grid">
+
+      <article class="video-card">
+        <a class="thumb" href="../nsf/nsf-water-guide-claude.html"><img src="../assets/thumb-wqa-presentations.svg" alt="Water Quality Measurement Guide"><span class="duration">Measure</span></a>
+        <div class="meta"><span class="avatar nsf">N</span><div>
+          <a class="video-title" href="../nsf/nsf-water-guide-claude.html">&#27700;&#36136;&#27979;&#37327;&#25163;&#20876; · Water Quality Measurement Guide</a>
+          <p class="video-sub">NSF &middot; Parameters, instruments, PFAS / microplastics</p>
+        </div></div>
+      </article>
+
+      <article class="video-card">
+        <a class="thumb" href="../nsf/nsf-water-guide-codex.html"><img src="../assets/thumb-wqa-presentations.svg" alt="NSF Standards & Endpoints Guide"><span class="duration">Standards</span></a>
+        <div class="meta"><span class="avatar nsf">N</span><div>
+          <a class="video-title" href="../nsf/nsf-water-guide-codex.html">NSF &#26631;&#20934;&#19982;&#32456;&#28857;&#23398;&#20064; · NSF Standards &amp; Endpoints</a>
+          <p class="video-sub">NSF &middot; Standard map, endpoint matrix, calculators</p>
+        </div></div>
+      </article>
+
+    </div>
+  </section>
+
+</div>
+
+<footer>Arsenan<strong>ZZ</strong> &middot; Water Hub &middot; all water content in one place</footer>
+
+<section data-zz-comments></section>
+<script src="../assets/zz-comments.js"></script>
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const themeLabel  = document.getElementById('themeLabel');
+  function syncThemeLabel() {
+    const dark = document.documentElement.dataset.theme === 'dark';
+    themeLabel.textContent = dark ? 'Light' : 'Dark';
+    themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  themeToggle.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('zz-theme', next);
+    syncThemeLabel();
+  });
+  syncThemeLabel();
+</script>
+</body>
+</html>

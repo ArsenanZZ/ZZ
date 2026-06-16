@@ -711,6 +711,7 @@
 <div class="shell">
   <aside class="sidebar" aria-label="Channels">
     <a class="side-link active" href="#" data-filter="all"><span class="ico all">ZZ</span><span>Home</span></a>
+    <a class="side-link" href="water/index.html"><span class="ico ro">&#128167;</span><span>Water</span></a>
     <a class="side-link" href="#wqa" data-filter="wqa"><span class="ico wqa">W</span><span>WQA</span></a>
     <a class="side-link" href="#reading" data-filter="reading"><span class="ico reading">R</span><span>Reading</span></a>
     <a class="side-link" href="#run50" data-filter="run50"><span class="ico run50">50</span><span>Run50</span></a>
@@ -1066,7 +1067,10 @@
 
       <!-- Water Header -->
       <div class="grid-header" id="waterHeader" data-section="water">
-        <h2>Water Research &amp; Tech</h2>
+        <h2 style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <span>Water Research &amp; Tech</span>
+          <a href="water/index.html" style="font-size:13px; font-weight:600; color:var(--ro);">View all water &rsaquo;</a>
+        </h2>
       </div>
 
       <article class="video-card" data-section="water" data-category="wqa research" data-title="WQA 2026 Expo Observation Report">
@@ -1454,6 +1458,7 @@
   sideLinks.forEach(link => {
     link.addEventListener('click', event => {
       const filter = link.dataset.filter;
+      if (filter === undefined) return; // real navigation link (e.g. Water hub)
       if (filter === 'all') event.preventDefault();
       setActiveFilter(filter);
     });
