@@ -1,0 +1,1469 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZZ</title>
+<script>
+  (() => {
+    const savedTheme = localStorage.getItem('zz-theme');
+    const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = savedTheme || preferredTheme;
+  })();
+</script>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f4f6f3;
+    --panel: #ffffff;
+    --panel-strong: #ffffff;
+    --header: rgba(250, 251, 249, .94);
+    --sidebar: #edf1ed;
+    --ink: #17201c;
+    --muted: #617068;
+    --line: #d8dfda;
+    --soft: #e7ece8;
+    --soft-2: #dde5df;
+    --focus: #2675bb;
+    --shadow: 0 14px 36px rgba(23, 42, 32, .08);
+    --shadow-hover: 0 18px 42px rgba(23, 42, 32, .14);
+    --all: #263d34;
+    --wqa: #087f69;
+    --reading: #a24351;
+    --run: #a96208;
+    --ro: #13758a;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #121512;
+    --panel: #1b201c;
+    --panel-strong: #202720;
+    --header: rgba(18, 21, 18, .94);
+    --sidebar: #171b18;
+    --ink: #f2f5f1;
+    --muted: #a9b5ad;
+    --line: #343b35;
+    --soft: #252b26;
+    --soft-2: #303730;
+    --focus: #65a9e3;
+    --shadow: 0 16px 42px rgba(0, 0, 0, .22);
+    --shadow-hover: 0 20px 48px rgba(0, 0, 0, .34);
+    --all: #d9e4dc;
+    --wqa: #29a58d;
+    --reading: #cb6975;
+    --run: #d18b30;
+    --ro: #3c9bb0;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--bg);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    transition: color .18s ease, background-color .18s ease;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: grid;
+    grid-template-columns: 208px minmax(240px, 720px) minmax(190px, 1fr);
+    gap: 22px;
+    align-items: center;
+    min-height: 66px;
+    padding: 0 26px;
+    background: var(--header);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(12px);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    color: var(--ink);
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0;
+  }
+
+  .mark {
+    display: block;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    border: 2px solid var(--panel);
+    border-radius: 50%;
+    background: #ffc51b;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .18);
+    object-fit: cover;
+  }
+
+  .search {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 58px;
+    width: 100%;
+  }
+
+  .search input {
+    min-width: 0;
+    height: 40px;
+    padding: 0 16px;
+    color: var(--ink);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-right: 0;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+  }
+
+  .search input:focus {
+    border-color: var(--focus);
+    box-shadow: inset 0 0 0 1px var(--focus);
+  }
+
+  .search button {
+    position: relative;
+    height: 40px;
+    border: 1px solid var(--line);
+    border-radius: 0 8px 8px 0;
+    background: var(--soft);
+    cursor: pointer;
+  }
+
+  .search button::before {
+    content: "";
+    position: absolute;
+    left: 19px;
+    top: 11px;
+    width: 13px;
+    height: 13px;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+  }
+
+  .search button::after {
+    content: "";
+    position: absolute;
+    left: 32px;
+    top: 26px;
+    width: 10px;
+    height: 2px;
+    background: var(--ink);
+    transform: rotate(45deg);
+    transform-origin: left center;
+  }
+
+  .top-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .status {
+    color: var(--muted);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 104px;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 750;
+    cursor: pointer;
+  }
+
+  .theme-toggle:hover {
+    background: var(--soft);
+  }
+
+  .shell {
+    display: grid;
+    grid-template-columns: 208px minmax(0, 1fr);
+    min-height: calc(100vh - 66px);
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 66px;
+    align-self: start;
+    height: calc(100vh - 66px);
+    padding: 18px 14px;
+    overflow: auto;
+    background: var(--sidebar);
+    border-right: 1px solid var(--line);
+  }
+
+  .side-link {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 8px 10px;
+    border-radius: 7px;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 650;
+  }
+
+  .side-link:hover,
+  .side-link:focus-visible,
+  .side-link.active {
+    background: var(--soft);
+    outline: none;
+  }
+
+  .ico {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .ico.all { background: #263d34; }
+  .ico.wqa { background: var(--wqa); }
+  .ico.reading { background: var(--reading); }
+  .ico.run50 { background: var(--run); }
+  .ico.ro { background: var(--ro); }
+
+  .side-rule {
+    height: 1px;
+    margin: 12px;
+    background: var(--line);
+  }
+
+  .side-note {
+    margin: 0;
+    padding: 6px 12px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  main {
+    min-width: 0;
+    max-width: 1660px;
+    width: 100%;
+    padding: 22px 30px 54px;
+    margin: 0 auto;
+  }
+
+  .chips {
+    position: sticky;
+    top: 66px;
+    z-index: 15;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 0 14px;
+    background: var(--bg);
+  }
+
+  .chip {
+    flex: 0 0 auto;
+    min-height: 32px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    color: var(--ink);
+    background: var(--panel);
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+  }
+
+  .chip:hover {
+    background: var(--soft);
+  }
+
+  .chip.active {
+    color: var(--panel);
+    background: var(--all);
+    border-color: var(--all);
+  }
+
+  /* Run50 quick-access sub-nav */
+  .run50-subnav[hidden] { display: none; }
+  .run50-subnav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 8px 0 10px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 4px;
+  }
+  .r50btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 7px;
+    background: var(--panel);
+    border: 1px solid var(--run);
+    color: var(--run);
+    font-size: 12.5px;
+    font-weight: 650;
+    text-decoration: none;
+    transition: background .15s, color .15s;
+    white-space: nowrap;
+  }
+  .r50btn:hover {
+    background: var(--run);
+    color: #fff;
+  }
+
+  .masthead {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 28px;
+    align-items: center;
+    margin: 4px 0 30px;
+    padding: clamp(24px, 4vw, 42px);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background:
+      linear-gradient(120deg, color-mix(in srgb, var(--wqa) 10%, var(--panel)), var(--panel) 46%, color-mix(in srgb, var(--run) 8%, var(--panel)));
+    box-shadow: var(--shadow);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: .96;
+    letter-spacing: 0;
+  }
+
+  .masthead p {
+    max-width: 700px;
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .quick-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(92px, 1fr));
+    gap: 10px;
+    align-items: center;
+  }
+
+  .stat {
+    min-width: 102px;
+    padding: 13px 14px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: color-mix(in srgb, var(--panel) 88%, transparent);
+  }
+
+  .stat b {
+    display: block;
+    font-size: 23px;
+    line-height: 1;
+  }
+
+  .stat span {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 18px 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .results {
+    color: var(--muted);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px 18px;
+  }
+
+  .grid-header {
+    grid-column: 1 / -1;
+    margin-top: 14px;
+    margin-bottom: 6px;
+  }
+
+  .grid-header h2 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .video-card {
+    min-width: 0;
+    padding: 8px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  }
+
+  .video-card:hover,
+  .video-card:focus-within {
+    border-color: var(--line);
+    background: var(--panel);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .thumb {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--panel-strong);
+  }
+
+  .thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .18s ease;
+  }
+
+  .video-card:hover .thumb img,
+  .video-card:focus-within .thumb img {
+    transform: scale(1.035);
+  }
+
+  .duration {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    padding: 3px 6px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, .84);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 10px;
+    padding-top: 10px;
+  }
+
+  .avatar {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .avatar.wqa { background: var(--wqa); }
+  .avatar.reading { background: var(--reading); }
+  .avatar.run50 { background: var(--run); }
+  .avatar.ro { background: var(--ro); }
+
+  .video-title {
+    display: -webkit-box;
+    min-height: 40px;
+    overflow: hidden;
+    margin: 0;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.32;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .video-sub {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .empty {
+    display: none;
+    min-height: 160px;
+    place-items: center;
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--muted);
+  }
+
+  .empty.show {
+    display: grid;
+  }
+
+
+  @media (max-width: 980px) {
+    .topbar {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      padding: 0 16px;
+    }
+
+    .status {
+      display: none;
+    }
+
+    .shell {
+      grid-template-columns: 72px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      padding: 10px 8px;
+    }
+
+    .side-link {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 4px;
+      padding: 8px 4px;
+      font-size: 11px;
+    }
+
+    .side-note,
+    .side-rule {
+      display: none;
+    }
+
+    .masthead {
+      grid-template-columns: 1fr;
+    }
+
+    .quick-stats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .theme-toggle {
+      min-width: 92px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .topbar {
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 12px 14px;
+    }
+
+    .brand {
+      font-size: 22px;
+    }
+
+    .search {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    .top-actions {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .shell {
+      display: block;
+    }
+
+    .sidebar {
+      position: static;
+      display: flex;
+      gap: 8px;
+      height: auto;
+      padding: 10px 14px;
+      overflow-x: auto;
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .side-link {
+      flex: 0 0 auto;
+      grid-template-columns: 28px auto;
+      justify-items: start;
+      min-width: 104px;
+      font-size: 13px;
+    }
+
+    main {
+      padding: 12px 14px 36px;
+    }
+
+    .chips {
+      position: static;
+      padding-top: 0;
+    }
+
+    .video-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px 12px;
+    }
+
+    .quick-stats {
+      display: none;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .theme-toggle {
+      min-width: 84px;
+      padding: 0 9px;
+    }
+
+    .masthead {
+      padding: 24px 18px;
+    }
+
+    .video-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+</style>
+<link rel="stylesheet" href="../assets/zz-comments.css?v=20260601-no-comments">
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="../" aria-label="ZZ home">
+      <img class="mark" src="../assets/zz-logo.svg" alt="ZZ logo">
+    </a>
+  <form class="search" role="search">
+    <input id="searchInput" type="search" placeholder="Search ZZ" autocomplete="off" aria-label="Search ZZ">
+    <button type="submit" aria-label="Search"></button>
+  </form>
+  <div class="top-actions">
+    <span class="status"><span data-upload-count>14</span> entries</span>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme">
+      <span id="themeLabel">Dark mode</span>
+    </button>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" aria-label="Channels">
+    <a class="side-link active" href="#" data-filter="all"><span class="ico all">ZZ</span><span>Home</span></a>
+    <a class="side-link" href="#wqa" data-filter="wqa"><span class="ico wqa">W</span><span>WQA</span></a>
+    <a class="side-link" href="#reading" data-filter="reading"><span class="ico reading">R</span><span>Reading</span></a>
+    <a class="side-link" href="#run50" data-filter="run50"><span class="ico run50">50</span><span>Run50</span></a>
+    <a class="side-link" href="#ro" data-filter="ro"><span class="ico ro">RO</span><span>RO</span></a>
+    <div class="side-rule"></div>
+    <p class="side-note">ArsenanZZ learning hub</p>
+  </aside>
+
+  <main>
+    <nav class="chips" aria-label="Filters">
+      <button class="chip active" type="button" data-filter="all">All</button>
+      <button class="chip" type="button" data-filter="wqa">WQA</button>
+      <button class="chip" type="button" data-filter="reading">Reading</button>
+      <button class="chip" type="button" data-filter="run50">Run50</button>
+      <button class="chip" type="button" data-filter="ro">RO</button>
+      <button class="chip" type="button" data-filter="trip">Trip</button>
+      <button class="chip" type="button" data-filter="research">Research</button>
+      <button class="chip" type="button" data-filter="atomic">Atomic Habits</button>
+      <button class="chip" type="button" data-filter="semiconductor">Semiconductor</button>
+    </nav>
+
+    <!-- Run50 quick-access buttons (visible when Run50 chip is active) -->
+    <div class="run50-subnav" id="run50Subnav" hidden>
+      <a class="r50btn" href="../run50/hub.html#home">&#127968; Run50 Home</a>
+      <a class="r50btn" href="../run50/hub.html#chinese">&#128214; Chinese Stories</a>
+      <a class="r50btn" href="../run50/hub.html#english">&#128217; English Stories</a>
+      <a class="r50btn" href="../run50/hub.html#facebook">&#128216; Facebook Stories</a>
+      <a class="r50btn" href="../run50/hub.html#map">&#128506; Running Map</a>
+    </div>
+
+    <section class="masthead" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">ZZ</h1>
+        <p>A personal knowledge library for water research, semiconductor study, reading notes, endurance training, and field projects.</p>
+      </div>
+      <div class="quick-stats" aria-label="Library stats">
+        <div class="stat"><b>4</b><span>channels</span></div>
+        <div class="stat"><b data-upload-count>14</b><span>entries</span></div>
+        <div class="stat"><b>9</b><span>topics</span></div>
+      </div>
+    </section>
+
+    <!-- Search / Filter Results Title (hidden by default, shown only when filtered) -->
+    <section class="section-title" id="mainSectionTitle" style="display: none; margin-bottom: 20px;">
+      <h2>Search Results</h2>
+      <span class="results" id="resultCount">0 items</span>
+    </section>
+
+    <section class="video-grid" id="videoGrid" aria-label="ZZ uploads">
+      <!-- Run50 Header -->
+      <div class="grid-header" id="run50Header" data-section="run50">
+        <h2>Run50 Latest Stories</h2>
+      </div>
+
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Too Slow for Boston gave me a 26.2-mile run with the stubborn mule medal">
+        <a class="thumb" href="../run50/facebook/south-carolina-marathon.html">
+          <img src="../assets/cover-medal-sc.jpg?v=20260616-medal-light" alt="Medal-style South Carolina Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/south-carolina-marathon.html">Too Slow for Boston gave me a 26.2-mile run with the stubborn mule medal</a>
+            <p class="video-sub">Greer, SC &middot; Apr 14, 2024</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Little Rock gave me a 26.2-mile run with the massive dinosaur medal">
+        <a class="thumb" href="../run50/facebook/little-rock-marathon.html">
+          <img src="../assets/cover-medal-ar.jpg?v=20260616-medal-light" alt="Medal-style Little Rock Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/little-rock-marathon.html">Little Rock gave me a 26.2-mile run with the massive dinosaur medal</a>
+            <p class="video-sub">Little Rock, AR &middot; Mar 3, 2024</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi's backyard">
+        <a class="thumb" href="../run50/facebook/miami-marathon.html">
+          <img src="../assets/cover-medal-fl.jpg?v=20260616-medal-light" alt="Medal-style Miami Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/miami-marathon.html">Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi's backyard</a>
+            <p class="video-sub">Miami, Florida &middot; Jan 28, 2024</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="San Antonio turned a Spurs trip into my Texas marathon story">
+        <a class="thumb" href="../run50/facebook/san-antonio-marathon.html">
+          <img src="../assets/cover-medal-tx.jpg?v=20260616-medal-light" alt="Medal-style San Antonio Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/san-antonio-marathon.html">San Antonio turned a Spurs trip into my Texas marathon story</a>
+            <p class="video-sub">San Antonio, Texas &middot; Dec 3, 2023</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="West Virginia gave me a touchdown stadium finish to break 4 hours">
+        <a class="thumb" href="../run50/facebook/west-virginia-marathon.html">
+          <img src="../assets/cover-medal-wv.jpg?v=20260616-medal-light" alt="Medal-style West Virginia Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/west-virginia-marathon.html">West Virginia gave me a touchdown stadium finish to break 4 hours</a>
+            <p class="video-sub">Huntington, WV &middot; Nov 5, 2023</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Scorching October sun gave me my slowest marathon of the year in Music City">
+        <a class="thumb" href="../run50/facebook/nashville-marathon.html">
+          <img src="../assets/cover-medal-tn.jpg?v=20260616-medal-light" alt="Medal-style Nashville Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/nashville-marathon.html">Scorching October sun gave me my slowest marathon of the year in Music City</a>
+            <p class="video-sub">Nashville, TN &middot; Oct 28, 2023</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Chicago gave me my second World Marathon Major and State 11 of Run50">
+        <a class="thumb" href="../run50/facebook/chicago-marathon.html">
+          <img src="../assets/cover-medal-il.jpg?v=20260616-medal-light" alt="Medal-style Chicago Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/chicago-marathon.html">Chicago gave me my second World Marathon Major and State 11 of Run50</a>
+            <p class="video-sub">Chicago, IL &middot; Oct 8, 2023</p>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- Kentucky Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Kentucky gave me my first marathon in North America">
+        <a class="thumb" href="../run50/facebook/louisville-marathon.html">
+          <img src="../assets/cover-medal-louisville.jpg?v=20260616-medal-light" alt="Medal-style Louisville Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/louisville-marathon.html">Kentucky gave me my first marathon in North America</a>
+            <p class="video-sub">Louisville, KY &middot; Nov 8, 2020</p>
+          </div>
+        </div>
+      </article>
+      <!-- /Kentucky Run50 story -->
+
+      <!-- Ohio Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Cleveland gave me a cold 26.2-mile run from night into daylight">
+        <a class="thumb" href="../run50/facebook/cleveland-marathon.html">
+          <img src="../assets/cover-medal-cleveland.jpg?v=20260616-medal-light" alt="Medal-style Cleveland Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/cleveland-marathon.html">Cleveland gave me a cold 26.2-mile run from night into daylight</a>
+            <p class="video-sub">Cleveland, OH &middot; Oct 24, 2021</p>
+          </div>
+        </div>
+      </article>
+      <!-- /Ohio Run50 story -->
+
+      <!-- New York Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="New York turned 26.2 miles into one enormous five-borough street party">
+        <a class="thumb" href="../run50/facebook/new-york-city-marathon.html">
+          <img src="../assets/cover-medal-new-york.jpg?v=20260616-medal-light" alt="Medal-style New York City Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/new-york-city-marathon.html">New York turned 26.2 miles into one enormous five-borough street party</a>
+            <p class="video-sub">New York City, NY &middot; Nov 7, 2021</p>
+          </div>
+        </div>
+      </article>
+      <!-- /New York Run50 story -->
+
+      <!-- San Francisco Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="San Francisco turned 26.2 miles into fog, bridge wind, hills and bay light">
+        <a class="thumb" href="../run50/facebook/san-francisco-marathon.html">
+          <img src="../assets/cover-medal-san-francisco.jpg?v=20260616-medal-light" alt="Medal-style San Francisco Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/san-francisco-marathon.html">San Francisco turned 26.2 miles into fog, bridge wind, hills and bay light</a>
+            <p class="video-sub">San Francisco, CA &middot; Jul 24, 2022</p>
+          </div>
+        </div>
+      </article>
+      <!-- /San Francisco Run50 story -->
+
+      <!-- Indiana Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Indianapolis turned a rainy one-day marathon into a way back to running">
+        <a class="thumb" href="../run50/facebook/indianapolis-monumental-marathon.html">
+          <img src="../assets/cover-medal-indianapolis.jpg?v=20260616-medal-light" alt="Medal-style Indianapolis Monumental Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/indianapolis-monumental-marathon.html">Indianapolis turned a rainy one-day marathon into a way back to running</a>
+            <p class="video-sub">Indianapolis, IN &middot; Nov 5, 2022</p>
+          </div>
+        </div>
+      </article>
+      <!-- /Indiana Run50 story -->
+
+      <!-- Hawaii Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Honolulu made a first marathon feel like an all-day island celebration">
+        <a class="thumb" href="../run50/facebook/honolulu-marathon.html">
+          <img src="../assets/cover-medal-honolulu.jpg?v=20260616-medal-light" alt="Medal-style Honolulu Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/honolulu-marathon.html">Honolulu made a first marathon feel like an all-day island celebration</a>
+            <p class="video-sub">Honolulu, HI &middot; Dec 11, 2022</p>
+          </div>
+        </div>
+      </article>
+      <!-- /Hawaii Run50 story -->
+
+      <!-- Kentucky Derby 2023 Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Louisville turned Derby season into the city&#x27;s biggest running party">
+        <a class="thumb" href="../run50/facebook/kentucky-derby-marathon.html">
+          <img src="../assets/cover-medal-kentucky-derby.jpg?v=20260616-medal-light" alt="Medal-style Kentucky Derby Festival Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/kentucky-derby-marathon.html">Louisville turned Derby season into the city&#x27;s biggest running party</a>
+            <p class="video-sub">Louisville, KY &middot; Apr 29, 2023</p>
+          </div>
+        </div>
+      </article>
+      <!-- /Kentucky Derby 2023 Run50 story -->
+
+      <!-- Cincinnati Flying Pig 2023 Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Cincinnati&#x27;s Flying Pig turned into a Flying Fish in the rain">
+        <a class="thumb" href="../run50/facebook/cincinnati-flying-pig-marathon.html">
+          <img src="../assets/cover-medal-cincinnati.jpg?v=20260616-medal-light" alt="Medal-style Flying Pig Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/cincinnati-flying-pig-marathon.html">Cincinnati&#x27;s Flying Pig turned into a Flying Fish in the rain</a>
+            <p class="video-sub">Cincinnati, OH &middot; May 7, 2023</p>
+          </div>
+        </div>
+      </article>
+      <!-- /Cincinnati Flying Pig 2023 Run50 story -->
+
+      <!-- Atlanta 2023 Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Atlanta made 26.2 miles feel like an Olympic city walk">
+        <a class="thumb" href="../run50/facebook/atlanta-marathon.html">
+          <img src="../assets/cover-medal-atlanta.jpg?v=20260616-medal-light" alt="Medal-style Publix Atlanta Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/atlanta-marathon.html">Atlanta made 26.2 miles feel like an Olympic city walk</a>
+            <p class="video-sub">Atlanta, GA &middot; Feb 26, 2023</p>
+          </div>
+        </div>
+      </article>
+      <!-- /Atlanta 2023 Run50 story -->
+
+      <!-- Denver Colfax 2023 Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Denver gave me 26.2 Mile High miles, stadium grass and mountain light">
+        <a class="thumb" href="../run50/facebook/denver-colfax-marathon.html">
+          <img src="../assets/cover-medal-denver.jpg?v=20260616-medal-light" alt="Medal-style Denver Colfax Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/denver-colfax-marathon.html">Denver gave me 26.2 Mile High miles, stadium grass and mountain light</a>
+            <p class="video-sub">Denver, CO &middot; May 21, 2023</p>
+          </div>
+        </div>
+      </article>
+      <!-- /Denver Colfax 2023 Run50 story -->
+
+      <!-- Anchorage 2023 Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="Alaska had no aurora, but Anchorage still gave me a wild 26.2 miles">
+        <a class="thumb" href="../run50/facebook/anchorage-marathon.html">
+          <img src="../assets/cover-medal-anchorage.jpg?v=20260616-medal-light" alt="Medal-style Anchorage Mayor&#x27;s Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/anchorage-marathon.html">Alaska had no aurora, but Anchorage still gave me a wild 26.2 miles</a>
+            <p class="video-sub">Anchorage, AK &middot; Jun 17, 2023</p>
+          </div>
+        </div>
+      </article>
+      <!-- /Anchorage 2023 Run50 story -->
+
+      <!-- St Joseph 2023 Run50 story -->
+      <article class="video-card" data-section="run50" data-category="run50 facebook" data-title="St. Joseph made Missouri feel like a first-edition marathon road trip">
+        <a class="thumb" href="../run50/facebook/st-joseph-marathon.html">
+          <img src="../assets/cover-medal-st-joseph.jpg?v=20260616-medal-light" alt="Medal-style St. Joseph Missouri Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/st-joseph-marathon.html">St. Joseph made Missouri feel like a first-edition marathon road trip</a>
+            <p class="video-sub">St. Joseph, MO &middot; Sep 23, 2023</p>
+          </div>
+        </div>
+      </article>
+      <!-- /St Joseph 2023 Run50 story -->
+
+
+
+
+
+
+
+
+
+      <!-- Water Header -->
+      <div class="grid-header" id="waterHeader" data-section="water">
+        <h2>Water Research &amp; Tech</h2>
+      </div>
+
+      <article class="video-card" data-section="water" data-category="wqa research" data-title="WQA 2026 Expo Observation Report">
+        <a class="thumb" href="../wqa/WQA_2026_Expo_Observation_Report_EN.html">
+          <img src="../assets/thumb-wqa-expo.svg?v=20260601" alt="WQA 2026 Expo Observation Report cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar wqa">W</span>
+          <div>
+            <a class="video-title" href="../wqa/WQA_2026_Expo_Observation_Report_EN.html">WQA 2026 Expo Observation Report</a>
+            <p class="video-sub">WQA &middot; Expo field report</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="water" data-category="wqa research" data-title="Water Softening: Principles &amp; Competitor Study">
+        <a class="thumb" href="../water-softener/softener-valve-analysis-en.html">
+          <img src="../assets/thumb-softener-valve-en.svg?v=20260601" alt="Water Softening cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar wqa">W</span>
+          <div>
+            <a class="video-title" href="../water-softener/softener-valve-analysis-en.html">Water Softening: Principles &amp; Competitor Study</a>
+            <p class="video-sub">Water Softening &middot; Technical reference</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="water" data-category="ro" data-title="Reverse Osmosis Complete Guide">
+        <a class="thumb" href="../ro/RO-Complete-Guide-EN.html">
+          <img src="../assets/thumb-ro-guide.svg?v=20260601" alt="Reverse Osmosis Complete Guide cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar ro">RO</span>
+          <div>
+            <a class="video-title" href="../ro/RO-Complete-Guide-EN.html">Reverse Osmosis Complete Guide</a>
+            <p class="video-sub">RO &middot; Complete guide</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Reading Header -->
+      <div class="grid-header" id="readingHeader" data-section="reading">
+        <h2>Reading &amp; Study</h2>
+      </div>
+
+      <article class="video-card" data-hide-on-all="true" data-section="reading" data-category="reading atomic" data-title="Atomic Habits Full English">
+        <a class="thumb" href="../reading/atomic-habits-full-english.html">
+          <img src="../assets/thumb-atomic-full.svg?v=20260601" alt="Atomic Habits Full English cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar reading">R</span>
+          <div>
+            <a class="video-title" href="../reading/atomic-habits-full-english.html">Atomic Habits Full English</a>
+            <p class="video-sub">Reading &middot; Book edition</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="reading" data-category="reading atomic" data-title="Atomic Habits Study Cards">
+        <a class="thumb" href="../reading/atomic-habits-bloom-cards.html">
+          <img src="../assets/thumb-atomic-cards.svg?v=20260601" alt="Atomic Habits Study Cards cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar reading">R</span>
+          <div>
+            <a class="video-title" href="../reading/atomic-habits-bloom-cards.html">Atomic Habits Study Cards</a>
+            <p class="video-sub">Reading &middot; Study cards</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="reading" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Study Notes">
+        <a class="thumb" href="../reading/nano-ic-manufacturing-study.html">
+          <img src="../assets/thumb-nano-ic-prep.svg?v=20260601" alt="Nano IC Manufacturing Study Notes cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar reading">R</span>
+          <div>
+            <a class="video-title" href="../reading/nano-ic-manufacturing-study.html">Nano IC Manufacturing Study Notes</a>
+            <p class="video-sub">Reading &middot; Semiconductor prep</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="reading" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Detailed Handbook">
+        <a class="thumb" href="../reading/nano-ic-manufacturing-handbook-detailed.html">
+          <img src="../assets/thumb-nano-ic-reader.svg?v=20260601" alt="Nano IC Manufacturing Detailed Handbook cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar reading">R</span>
+          <div>
+            <a class="video-title" href="../reading/nano-ic-manufacturing-handbook-detailed.html">Nano IC Manufacturing Detailed Handbook</a>
+            <p class="video-sub">Reading &middot; Detailed handbook</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Secondary / Hidden Cards (Filter Only) -->
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 runworld facebook" data-title="Pisa turned a marathon into a Tuscan art-school road trip">
+        <a class="thumb" href="../run50/facebook/pisa-marathon.html">
+          <img src="../assets/cover-medal-pisa.jpg?v=20260616-medal-light" alt="Medal-style Pisa Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/pisa-marathon.html">Pisa turned a marathon into a Tuscan art-school road trip</a>
+            <p class="video-sub">Pisa, Italy &middot; Dec 21, 2025</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 runcn facebook" data-title="Hong Kong turned a marathon into a tunnel-and-bridge city tour">
+        <a class="thumb" href="../run50/facebook/hong-kong-marathon.html">
+          <img src="../assets/cover-medal-hk.jpg?v=20260616-medal-light" alt="Medal-style Hong Kong Streetathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/hong-kong-marathon.html">Hong Kong turned a marathon into a tunnel-and-bridge city tour</a>
+            <p class="video-sub">Hong Kong, China &middot; Nov 23, 2025</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 runcn facebook" data-title="Guilin turned a beautiful marathon into a full-sun test">
+        <a class="thumb" href="../run50/facebook/guilin-marathon.html">
+          <img src="../assets/cover-medal-guilin.jpg?v=20260616-medal-light" alt="Medal-style Guilin Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/guilin-marathon.html">Guilin turned a beautiful marathon into a full-sun test</a>
+            <p class="video-sub">Guilin, Guangxi &middot; Nov 16, 2025</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 runcn facebook" data-title="Xiangyang gave me a marathon with a finish I did not see coming">
+        <a class="thumb" href="../run50/facebook/xiangyang-marathon.html">
+          <img src="../assets/cover-medal-xiangyang.jpg?v=20260616-medal-light" alt="Medal-style Xiangyang Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/xiangyang-marathon.html">Xiangyang gave me a marathon with a finish I did not see coming</a>
+            <p class="video-sub">Xiangyang, Hubei &middot; Oct 19, 2025</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 runworld facebook" data-title="Mexico City gave me a 26.2-mile high-altitude plateau challenge">
+        <a class="thumb" href="../run50/facebook/mexico-marathon.html">
+          <img src="../assets/cover-medal-mexico.jpg?v=20260616-medal-light" alt="Medal-style Mexico City Marathon cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/facebook/mexico-marathon.html">Mexico City gave me a 26.2-mile high-altitude plateau challenge</a>
+            <p class="video-sub">Mexico City, Mexico &middot; Aug 31, 2025</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="wqa research" data-title="WQA 2026 Presentation Summaries">
+        <a class="thumb" href="../wqa/WQA_2026_Presentations_Summary-V2.html">
+          <img src="../assets/thumb-wqa-presentations.svg?v=20260601" alt="WQA 2026 Presentation Summaries cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar wqa">W</span>
+          <div>
+            <a class="video-title" href="../wqa/WQA_2026_Presentations_Summary-V2.html">WQA 2026 Presentation Summaries</a>
+            <p class="video-sub">WQA &middot; Presentation notes</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="wqa research" data-title="EZsalt Research Report">
+        <a class="thumb" href="../wqa/EZsalt_Research_Report_2_EN.html">
+          <img src="../assets/thumb-ezsalt.svg?v=20260601" alt="EZsalt Research Report cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar wqa">W</span>
+          <div>
+            <a class="video-title" href="../wqa/EZsalt_Research_Report_2_EN.html">EZsalt Research Report</a>
+            <p class="video-sub">Research &middot; Product report</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="wqa research" data-title="DROP Research Report">
+        <a class="thumb" href="../wqa/DROP_Research_Report_EN.html">
+          <img src="../assets/thumb-drop.svg?v=20260601" alt="DROP Research Report cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar wqa">W</span>
+          <div>
+            <a class="video-title" href="../wqa/DROP_Research_Report_EN.html">DROP Research Report</a>
+            <p class="video-sub">Research &middot; Product report</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="ro" data-title="How a Reverse Osmosis System Works">
+        <a class="thumb" href="../ro/ro-system-explained.html">
+          <img src="../assets/thumb-ro-system.svg?v=20260601" alt="How a Reverse Osmosis System Works cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar ro">RO</span>
+          <div>
+            <a class="video-title" href="../ro/ro-system-explained.html">How a Reverse Osmosis System Works</a>
+            <p class="video-sub">RO &middot; System explanation</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50" data-title="Run50 Personal Space">
+        <a class="thumb" href="../run50/index.html">
+          <img src="../assets/thumb-run50-home.svg?v=20260601" alt="Run50 Personal Space cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/index.html">Run50 Personal Space</a>
+            <p class="video-sub">Run50 &middot; Home</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50" data-title="Run50 Training Page">
+        <a class="thumb" href="../run50/run50.html">
+          <img src="../assets/thumb-run50-training.svg?v=20260601" alt="Run50 Training Page cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/run50.html">Run50 Training Page</a>
+            <p class="video-sub">Run50 &middot; Training library</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 trip marathon travel" data-title="Mainly Marathons New England 2026">
+        <a class="thumb" href="../run50/mainly-marathons-new-england-2026-guide.html">
+          <img src="../assets/thumb-trip-new-england.svg?v=20260601" alt="Mainly Marathons New England 2026 cover">
+          <span class="duration">HTML</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/mainly-marathons-new-england-2026-guide.html">Mainly Marathons New England 2026</a>
+            <p class="video-sub">Run50 &middot; Trip guide</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 story chinese marathon travel" data-title="Run50 Chinese Stories">
+        <a class="thumb" href="../run50/stories/chinese/">
+          <img src="../assets/cover-medal-xiangyang.jpg?v=20260616-medal-light" alt="Run50 Chinese Stories cover">
+          <span class="duration">Story</span>
+        </a>
+        <div class="meta">
+          <span class="avatar run50">50</span>
+          <div>
+            <a class="video-title" href="../run50/stories/chinese/">Run50 Chinese Stories</a>
+            <p class="video-sub">Run50 &middot; Chinese index</p>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <div class="empty" id="emptyState">No matching uploads</div>
+  </main>
+</div>
+
+<script>
+  const searchInput = document.querySelector('#searchInput');
+  const cards = Array.from(document.querySelectorAll('.video-card'));
+  const chips = Array.from(document.querySelectorAll('.chip'));
+  const sideLinks = Array.from(document.querySelectorAll('.side-link'));
+  const resultCount = document.querySelector('#resultCount');
+  const emptyState = document.querySelector('#emptyState');
+  const themeToggle = document.querySelector('#themeToggle');
+  const themeLabel = document.querySelector('#themeLabel');
+  const uploadCount = cards.length;
+  let currentFilter = 'all';
+
+  document.querySelectorAll('[data-upload-count]').forEach(element => {
+    element.textContent = uploadCount;
+  });
+
+  function updateThemeControl() {
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    themeLabel.textContent = isDark ? 'Light mode' : 'Dark mode';
+    themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    themeToggle.setAttribute('aria-pressed', String(isDark));
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nextTheme;
+    localStorage.setItem('zz-theme', nextTheme);
+    updateThemeControl();
+  });
+
+  function setActiveFilter(filter) {
+    currentFilter = filter;
+    chips.forEach(chip => chip.classList.toggle('active', chip.dataset.filter === filter));
+    sideLinks.forEach(link => link.classList.toggle('active', link.dataset.filter === filter));
+    const _r50n = document.getElementById('run50Subnav'); if (_r50n) _r50n.hidden = (filter !== 'run50');
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const query = searchInput.value.trim().toLowerCase();
+    let visible = 0;
+    const isFiltered = currentFilter !== 'all' || query !== '';
+
+    cards.forEach(card => {
+      const haystack = `${card.dataset.title} ${card.dataset.category}`.toLowerCase();
+      const tokens = haystack.split(/[^a-z0-9]+/).filter(Boolean);
+      const matchesQuery = !query || (query.length <= 2
+        ? tokens.some(token => token === query)
+        : haystack.includes(query));
+      const categoryTokens = (card.dataset.category || '').split(/\s+/).filter(Boolean);
+      const matchesFilter = currentFilter === 'all' || categoryTokens.includes(currentFilter);
+      const hideOnAll = card.dataset.hideOnAll === 'true';
+
+      const show = matchesQuery && matchesFilter && !(currentFilter === 'all' && hideOnAll && !query);
+      card.hidden = !show;
+      if (show) visible += 1;
+    });
+
+    // Toggle grid-headers and flat results heading
+    const mainTitle = document.querySelector('#mainSectionTitle');
+    const headers = Array.from(document.querySelectorAll('.grid-header'));
+
+    if (isFiltered) {
+      if (mainTitle) mainTitle.style.display = 'flex';
+      headers.forEach(h => h.style.display = 'none');
+    } else {
+      if (mainTitle) mainTitle.style.display = 'none';
+      headers.forEach(h => {
+        const section = h.dataset.section;
+        const sectionCards = cards.filter(c => c.dataset.section === section);
+        const hasVisible = sectionCards.some(c => !c.hidden);
+        h.style.display = hasVisible ? 'block' : 'none';
+      });
+    }
+
+    resultCount.textContent = `${visible} item${visible === 1 ? '' : 's'}`;
+    emptyState.classList.toggle('show', visible === 0);
+  }
+
+  document.querySelector('.search').addEventListener('submit', event => {
+    event.preventDefault();
+    applyFilters();
+  });
+
+  searchInput.addEventListener('input', applyFilters);
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => setActiveFilter(chip.dataset.filter));
+  });
+
+  sideLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      const filter = link.dataset.filter;
+      if (filter === 'all') event.preventDefault();
+      setActiveFilter(filter);
+    });
+  });
+
+  updateThemeControl();
+  applyFilters();
+</script>
+<section data-zz-comments></section>
+<script src="../assets/zz-comments.js?v=20260601-no-comments"></script>
+</body>
+</html>
+
