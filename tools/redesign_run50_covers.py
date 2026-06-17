@@ -167,12 +167,86 @@ def write_svg_assets():
         encoding="utf-8",
         newline="\n",
     )
+    (ASSETS / "thumb-run50-shanghai-vertical-marathon-icons.svg").write_text(
+        '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">Shanghai Tower Vertical Marathon icon cover</title>
+<desc id="desc">Icon style cover with Shanghai title, RunCN badge, skyline, river and medal.</desc>
+<rect width="1200" height="750" fill="#faf5f0"/>
+<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="900" fill="#20242b">Shanghai Vertical Marathon</text>
+<text x="74" y="158" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#667085">Shanghai Tower · 119 floors · 3,398 steps · 632m</text>
+<rect x="790" y="62" width="320" height="146" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="820" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunCN #4</text>
+<text x="820" y="178" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#cc0000">SHANGHAI</text>
+<circle cx="1030" cy="290" r="56" fill="#f7b733"/>
+
+<rect x="238" y="300" width="14" height="280" fill="#2c3e50"/>
+<circle cx="245" cy="480" r="32" fill="#cc2424"/>
+<circle cx="245" cy="380" r="18" fill="#cc2424"/>
+<line x1="245" y1="200" x2="245" y2="300" stroke="#2c3e50" stroke-width="6"/>
+
+<path d="M340 580 L370 280 L430 280 L460 580 Z" fill="#34495e"/>
+<rect x="382" y="310" width="36" height="36" fill="#faf5f0"/>
+
+<path d="M500 580 L510 320 L550 320 L560 580 Z" fill="#2c3e50"/>
+
+<path d="M600 580 L640 210 L680 210 L720 580 Z" fill="#4a5e6a"/>
+<path d="M600 580 Q660 380 680 210" stroke="#faf5f0" stroke-width="6" fill="none"/>
+<path d="M720 580 Q660 380 640 210" stroke="#faf5f0" stroke-width="6" fill="none"/>
+
+<path d="M0 580 L1200 580 L1200 750 L0 750 Z" fill="#2980b9"/>
+<path d="M0 620 C200 580 400 660 600 600 C800 540 1000 640 1200 580 L1200 750 L0 750 Z" fill="#3498db"/>
+
+<circle cx="286" cy="652" r="55" fill="#d9a441" stroke="#8b5e20" stroke-width="8"/>
+<circle cx="286" cy="652" r="25" fill="#faf5f0"/>
+<path d="M254 626 L286 586 L318 626" stroke="#8b5e20" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>''',
+        encoding="utf-8",
+        newline="\n",
+    )
+
+
+def write_shanghai_png():
+    image = Image.new("RGB", (1200, 630), "#faf5f0")
+    draw = ImageDraw.Draw(image)
+    draw.text((64, 62), "Shanghai Vertical Marathon", font=font(58, True), fill="#20242b")
+    draw.text((68, 132), "Shanghai Tower - 119 floors - 3,398 steps - 632m", font=font(28), fill="#667085")
+    draw_badge(draw, (790, 64, 1110, 206), "RunCN #4", "SHANGHAI", "#cc0000")
+    draw.ellipse((960, 244, 1060, 344), fill="#f7b733")
+
+    # Oriental Pearl Tower
+    draw.rectangle((238, 250, 252, 480), fill="#2c3e50")
+    draw.ellipse((213, 380, 277, 444), fill="#cc2424")
+    draw.ellipse((227, 300, 263, 336), fill="#cc2424")
+    draw.line([(245, 170), (245, 250)], fill="#2c3e50", width=6)
+
+    # SWFC
+    draw.polygon([(340, 480), (370, 230), (430, 230), (460, 480)], fill="#34495e")
+    draw.rectangle((382, 260, 418, 296), fill="#faf5f0")
+
+    # Jin Mao
+    draw.polygon([(500, 480), (510, 270), (550, 270), (560, 480)], fill="#2c3e50")
+
+    # Shanghai Tower
+    draw.polygon([(600, 480), (640, 160), (680, 160), (720, 480)], fill="#4a5e6a")
+    draw.arc((570, 160, 750, 480), 200, 340, fill="#faf5f0", width=6)
+
+    # Ground water
+    draw.polygon([(0, 480), (1200, 480), (1200, 630), (0, 630)], fill="#2980b9")
+    draw.polygon([(0, 520), (300, 480), (600, 540), (900, 500), (1200, 480), (1200, 630), (0, 630)], fill="#3498db")
+
+    # Medal
+    draw.ellipse((238, 505, 342, 609), fill="#d9a441", outline="#8b5e20", width=8)
+    draw.ellipse((266, 533, 314, 581), fill="#faf5f0")
+    draw.line([(258, 504), (290, 464), (322, 504)], fill="#8b5e20", width=7)
+
+    image.save(ASSETS / "og-run50-shanghai-vertical-marathon-icons.png", "PNG")
 
 
 def main():
     write_svg_assets()
     write_guilin_png()
     write_hong_kong_png()
+    write_shanghai_png()
 
 
 if __name__ == "__main__":

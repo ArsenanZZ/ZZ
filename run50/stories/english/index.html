@@ -580,6 +580,15 @@
                   <p>A race through expressway tunnels, elevated roads, Victoria Harbour wind, Tseung Kwan O Bridge, and the final stop of a long China trip.</p>
                 </div>
               </a>
+
+        <a class="story-card run-cn" href="./shanghai-vertical-marathon.html">
+                <img src="../../../assets/thumb-run50-shanghai-vertical-marathon-icons.svg" alt="Icon cover for Shanghai Tower Vertical Marathon" />
+                <div class="story-card-content">
+                  <div class="meta">Shanghai · 2019.11.24</div>
+                  <h2>Shanghai Vertical Marathon: climbing China's tallest skyscraper</h2>
+                  <p>Scaling 119 floors and 3,399 steps of the Shanghai Tower to reach the top of China's tallest building in the late autumn of 2019.</p>
+                </div>
+              </a>
       </div>
     </section>
 
@@ -1276,7 +1285,7 @@
       svg.style.width = '100%'; svg.style.height = 'auto'; svg.style.display = 'block';
 
       // Only visited provinces get color; all others neutral (matching US map style)
-      const visitedColors = { cn_hubei:'#d4614a', cn_guangxi:'#5ca860', cn_hongkong:'#e89838' };
+      const visitedColors = { cn_hubei:'#d4614a', cn_guangxi:'#5ca860', cn_hongkong:'#e89838', cn_shanghai:'#d4614a' };
       const allP = ['cn_xinjiang','cn_tibet','cn_innermongolia','cn_qinghai','cn_sichuan',
         'cn_heilongjiang','cn_gansu','cn_yunnan','cn_guangxi','cn_hunan','cn_shaanxi',
         'cn_guangdong','cn_jilin','cn_hebei','cn_hubei','cn_guizhou','cn_shandong',
@@ -1346,7 +1355,8 @@
       const cities = [
         { name:'Xiangyang', x:497, y:344, url:'./xiangyang-marathon.html' },
         { name:'Guilin',    x:475, y:446, url:'./guilin-marathon.html' },
-        { name:'Hong Kong', x:521, y:490, url:'./hong-kong-marathon.html' }
+        { name:'Hong Kong', x:521, y:490, url:'./hong-kong-marathon.html' },
+        { name:'Shanghai',  x:606, y:357, url:'./shanghai-vertical-marathon.html' }
       ];
       cities.forEach(c => {
         const glow = document.createElementNS('http://www.w3.org/2000/svg','circle');

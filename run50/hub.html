@@ -655,7 +655,7 @@ function _injectChinaMap() {
   if (!svg) return;
   svg.style.cssText = 'width:100%;height:auto;display:block';
 
-  const visited = {cn_hubei:'#d4614a', cn_guangxi:'#5ca860', cn_hongkong:'#e89838'};
+  const visited = {cn_hubei:'#d4614a', cn_guangxi:'#5ca860', cn_hongkong:'#e89838', cn_shanghai:'#d4614a'};
   const all = ['cn_xinjiang','cn_tibet','cn_innermongolia','cn_qinghai','cn_sichuan',
     'cn_heilongjiang','cn_gansu','cn_yunnan','cn_guangxi','cn_hunan','cn_shaanxi',
     'cn_guangdong','cn_jilin','cn_hebei','cn_hubei','cn_guizhou','cn_shandong',
@@ -670,8 +670,8 @@ function _injectChinaMap() {
       el.setAttribute('stroke','#fff');
       el.setAttribute('stroke-width','1.5');
       el.style.cursor='pointer';
-      const names={cn_hubei:'Hubei (Xiangyang)',cn_guangxi:'Guangxi (Guilin)',cn_hongkong:'Hong Kong'};
-      const dates={cn_hubei:'2024',cn_guangxi:'2024',cn_hongkong:'2025'};
+      const names={cn_hubei:'Hubei (Xiangyang)',cn_guangxi:'Guangxi (Guilin)',cn_hongkong:'Hong Kong',cn_shanghai:'Shanghai (Shanghai Tower)'};
+      const dates={cn_hubei:'2024',cn_guangxi:'2024',cn_hongkong:'2025',cn_shanghai:'2019'};
       el.addEventListener('mouseenter', e => showTT(e,
         `<strong>${names[id]}</strong><br><span style="color:#9ab;">${dates[id]}</span>` +
         `<br><a href="stories/chinese/?v=20260616-medal-light" target="_blank">中文故事 →</a>`));
@@ -765,6 +765,7 @@ function _injectWorldMap() {
    [1461, 290, cnCol,   true,  'Xiangyang, China', '2024',    'stories/chinese/?v=20260616-medal-light'],
    [1451, 324, cnCol,   false, 'Guilin, China',    '2024',    'stories/chinese/?v=20260616-medal-light'],
    [1471, 338, '#e89838',false,'Hong Kong',        '2025',    'facebook/hong-kong-marathon.html'],
+   [1507, 294, cnCol,   false, 'Shanghai, China',  '2019',    'stories/chinese/shanghai-vertical-marathon.html'],
   ].forEach(([cx, cy, fill, pulse, city, date, story]) => {
     if (pulse) dg.appendChild(mkEl('circle',
       {cx, cy, r:12, fill:'none', stroke:fill, 'stroke-width':1.5, opacity:0.35}));
@@ -806,7 +807,7 @@ function _injectWorldMap() {
 
   // Highlighted country hover tooltips
   [['wm_usa', 'United States', '7+ marathons across states'],
-   ['wm_chn', 'China',         'Xiangyang · Guilin · Hong Kong'],
+   ['wm_chn', 'China',         'Shanghai · Xiangyang · Guilin · Hong Kong'],
    ['wm_mex', 'Mexico',        'Mexico City Marathon · 2024'],
    ['wm_ita', 'Italy',         'Pisa Marathon · 2025'],
    ['wm_hkg', 'Hong Kong',     'Marathon · 2025'],

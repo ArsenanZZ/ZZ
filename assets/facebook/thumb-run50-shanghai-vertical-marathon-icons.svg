@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+<title id="title">Shanghai Tower Vertical Marathon icon cover</title>
+<desc id="desc">Icon style cover with Shanghai title, RunCN badge, skyline, river and medal.</desc>
+<rect width="1200" height="750" fill="#faf5f0"/>
+<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="900" fill="#20242b">Shanghai Vertical Marathon</text>
+<text x="74" y="158" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#667085">Shanghai Tower · 119 floors · 3,398 steps · 632m</text>
+<rect x="790" y="62" width="320" height="146" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+<text x="820" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunCN #4</text>
+<text x="820" y="178" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#cc0000">SHANGHAI</text>
+<circle cx="1030" cy="290" r="56" fill="#f7b733"/>
+
+<rect x="238" y="300" width="14" height="280" fill="#2c3e50"/>
+<circle cx="245" cy="480" r="32" fill="#cc2424"/>
+<circle cx="245" cy="380" r="18" fill="#cc2424"/>
+<line x1="245" y1="200" x2="245" y2="300" stroke="#2c3e50" stroke-width="6"/>
+
+<path d="M340 580 L370 280 L430 280 L460 580 Z" fill="#34495e"/>
+<rect x="382" y="310" width="36" height="36" fill="#faf5f0"/>
+
+<path d="M500 580 L510 320 L550 320 L560 580 Z" fill="#2c3e50"/>
+
+<path d="M600 580 L640 210 L680 210 L720 580 Z" fill="#4a5e6a"/>
+<path d="M600 580 Q660 380 680 210" stroke="#faf5f0" stroke-width="6" fill="none"/>
+<path d="M720 580 Q660 380 640 210" stroke="#faf5f0" stroke-width="6" fill="none"/>
+
+<path d="M0 580 L1200 580 L1200 750 L0 750 Z" fill="#2980b9"/>
+<path d="M0 620 C200 580 400 660 600 600 C800 540 1000 640 1200 580 L1200 750 L0 750 Z" fill="#3498db"/>
+
+<circle cx="286" cy="652" r="55" fill="#d9a441" stroke="#8b5e20" stroke-width="8"/>
+<circle cx="286" cy="652" r="25" fill="#faf5f0"/>
+<path d="M254 626 L286 586 L318 626" stroke="#8b5e20" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
