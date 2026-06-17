@@ -172,6 +172,7 @@
     .story-card {
       display: flex;
       flex-direction: column-reverse;
+      min-height: 100%;
       padding: 0;
       overflow: hidden;
       border: 1px solid var(--line);
@@ -182,7 +183,10 @@
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
     .story-card > div {
+      height: 318px;
       padding: 15px 17px 18px;
+      display: flex;
+      flex-direction: column;
     }
     .story-card:hover {
       transform: translateY(-3px);
@@ -229,6 +233,10 @@
       font-size: 1.24rem;
       line-height: 1.25;
       letter-spacing: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .story-card p {
       margin: 0 0 14px;
@@ -236,10 +244,17 @@
       font-size: .95rem;
       line-height: 1.6;
     }
+    .story-card > div > p:not(.eyebrow) {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
     .meta {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-top: auto;
       color: var(--muted);
       font-size: 13px;
       font-weight: 700;
