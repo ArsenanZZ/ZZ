@@ -18,7 +18,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 REPO = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = Path(r"Z:\ZhennanZ Folder\0-Running Story Web")
 SITE = "https://arsenanzz.github.io/ZZ"
-VERSION = "20260618-series-merge"
+VERSION = "20260618-medal-varied"
 ENGAGEMENT_VERSION = "20260617"
 TRANSLATION_CACHE = Path(tempfile.gettempdir()) / "zz_running_story_web_translation_cache.json"
 FONT_DIR = Path(r"C:\Windows\Fonts")
