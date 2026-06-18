@@ -18,10 +18,11 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 REPO = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = Path(r"Z:\ZhennanZ Folder\0-Running Story Web")
 SITE = "https://arsenanzz.github.io/ZZ"
-VERSION = "20260618-medal-varied"
+VERSION = "20260618-medal-uploaded"
 ENGAGEMENT_VERSION = "20260617"
 TRANSLATION_CACHE = Path(tempfile.gettempdir()) / "zz_running_story_web_translation_cache.json"
 FONT_DIR = Path(r"C:\Windows\Fonts")
+PRESERVE_MEDAL_COVER_SLUGS = {"xiamen-marathon", "shanghai-vertical-marathon"}
 
 
 @dataclass(frozen=True)
@@ -1405,7 +1406,9 @@ def write_covers(config: StoryConfig) -> None:
     assets = REPO / "assets"
     (assets / "facebook").mkdir(parents=True, exist_ok=True)
     draw_cover_png(config)
-    draw_medal_jpg(config)
+    medal_path = assets / f"cover-medal-{config.slug}.jpg"
+    if config.slug not in PRESERVE_MEDAL_COVER_SLUGS or not medal_path.exists():
+        draw_medal_jpg(config)
     svg = svg_cover(config)
     (assets / f"thumb-run50-{config.slug}-icons.svg").write_text(svg, encoding="utf-8", newline="\n")
     (assets / "facebook" / f"thumb-run50-{config.slug}-icons.svg").write_text(svg, encoding="utf-8", newline="\n")
