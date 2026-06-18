@@ -18,11 +18,27 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 REPO = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = Path(r"Z:\ZhennanZ Folder\0-Running Story Web")
 SITE = "https://arsenanzz.github.io/ZZ"
-VERSION = "20260618-medal-uploaded"
+VERSION = "20260618-medal-ai-polished"
 ENGAGEMENT_VERSION = "20260617"
 TRANSLATION_CACHE = Path(tempfile.gettempdir()) / "zz_running_story_web_translation_cache.json"
 FONT_DIR = Path(r"C:\Windows\Fonts")
-PRESERVE_MEDAL_COVER_SLUGS = {"xiamen-marathon", "shanghai-vertical-marathon"}
+PRESERVE_MEDAL_COVER_SLUGS = {
+    "bangkok-marathon",
+    "dalian-trail",
+    "disney-marathon",
+    "haikou-marathon",
+    "harbin-marathon",
+    "lanzhou-marathon",
+    "north-carolina-oak-island-marathon",
+    "shanghai-vertical-marathon",
+    "steel-tank-story",
+    "west-lake-half-marathon",
+    "wuhan-graduation",
+    "wuhan-han-marathon",
+    "wuhan-marathon-2018",
+    "wuhan-wuxi-marathon-notes",
+    "xiamen-marathon",
+}
 
 
 @dataclass(frozen=True)
