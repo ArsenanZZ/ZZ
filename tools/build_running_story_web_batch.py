@@ -18,10 +18,17 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 REPO = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = Path(r"Z:\ZhennanZ Folder\0-Running Story Web")
 SITE = "https://arsenanzz.github.io/ZZ"
-VERSION = "20260617-running-web"
+VERSION = "20260618-series-merge"
 ENGAGEMENT_VERSION = "20260617"
 TRANSLATION_CACHE = Path(tempfile.gettempdir()) / "zz_running_story_web_translation_cache.json"
 FONT_DIR = Path(r"C:\Windows\Fonts")
+
+
+@dataclass(frozen=True)
+class SourcePart:
+    source_name: str
+    source_subdir: str | None = None
+    heading_zh: str | None = None
 
 
 @dataclass(frozen=True)
@@ -54,15 +61,28 @@ class StoryConfig:
     map_y: int | None = None
     map_color: str | None = None
     show_in_indexes: bool = True
+    source_parts: tuple[SourcePart, ...] = ()
 
     @property
     def source_path(self) -> Path:
-        base = SOURCE_ROOT / self.source_subdir if self.source_subdir else SOURCE_ROOT
-        return base / self.source_name
+        return self._source_path(SourcePart(self.source_name, self.source_subdir))
 
     @property
     def source_files(self) -> Path:
         return self.source_path.with_name(self.source_path.stem + "_files")
+
+    @property
+    def source_paths(self) -> tuple[Path, ...]:
+        parts = self.source_parts or (SourcePart(self.source_name, self.source_subdir),)
+        return tuple(self._source_path(part) for part in parts)
+
+    @property
+    def source_files_list(self) -> tuple[Path, ...]:
+        return tuple(path.with_name(path.stem + "_files") for path in self.source_paths)
+
+    def _source_path(self, part: SourcePart) -> Path:
+        base = SOURCE_ROOT / part.source_subdir if part.source_subdir else SOURCE_ROOT
+        return base / part.source_name
 
 
 STORIES: list[StoryConfig] = [
@@ -184,14 +204,14 @@ STORIES: list[StoryConfig] = [
         slug="bangkok-marathon",
         image_dir="RunWorld-Bangkok-Marathon-clean_files",
         channel="RunWorld",
-        series="RunWorld #7",
+        series="RunWorld #3",
         card_class="run-world",
         location_zh="泰国曼谷",
         location_en="Bangkok, Thailand",
         date_zh="2019 归档",
         date_en="2019 archive",
-        title_zh="RunWorld #第7国｜曼谷马拉松：昼夜不停",
-        title_en="RunWorld #7 | Bangkok Marathon: day and night, nonstop",
+        title_zh="RunWorld #第3站｜曼谷马拉松：昼夜不停",
+        title_en="RunWorld #3 | Bangkok Marathon: day and night, nonstop",
         title_fb="Bangkok kept moving from temple light to marathon night",
         deck_zh="去泰国跑马，不囧，反而意犹未尽：寺庙、夜色、四面佛和一个昼夜不停的曼谷。",
         deck_en="A Thailand marathon trip that was not awkward at all: temples, night streets, the Erawan Shrine, and a Bangkok that never stopped moving.",
@@ -461,92 +481,57 @@ STORIES: list[StoryConfig] = [
     ),
     StoryConfig(
         source_subdir="迪士尼马拉松",
-        source_name="0-美国小海南「基韦斯特🥥」， 跨年不冻手🥶 短袖沙滩走🥻 烦恼全溜走🥳.html",
-        slug="key-west-florida",
-        image_dir="Run50-Key-West-Florida-clean_files",
-        channel="Run50",
-        series="Run50 Florida",
-        card_class="run-50",
-        location_zh="佛罗里达基韦斯特",
-        location_en="Key West, Florida",
-        date_zh="2025 归档",
-        date_en="2025 archive",
-        title_zh="Run50 佛罗里达篇｜美国小海南：基韦斯特",
-        title_en="Run50 Florida | Key West, America's little Hainan",
-        title_fb="Key West made New Year's feel like short sleeves, beaches, and no frozen hands",
-        deck_zh="跨年去美国最南端，短袖、沙滩、椰子树和佛罗里达小海南，把迪士尼马拉松前奏写暖。",
-        deck_en="A warm New Year's trip to America's southern edge: short sleeves, beaches, palms, and a Florida prelude before Disney Marathon.",
-        card_desc_zh="基韦斯特跨年、美国最南端、短袖沙滩和佛州跑旅前奏。",
-        card_desc_en="A Key West New Year's trip with America's southern edge, beach heat, and the prelude to a Florida running week.",
-        cover_title="KEY WEST",
-        cover_subtitle="FLORIDA KEYS · NEW YEAR",
-        badge_text="FLORIDA",
-        badge_color="#0b67c2",
-        palette=("#e6fffb", "#00a6a6", "#ff8fab", "#0b67c2"),
-        motifs=("palm trees", "ocean", "southernmost point", "sunset"),
-        map_x=491,
-        map_y=327,
-        map_color="#ff4040",
-    ),
-    StoryConfig(
-        source_subdir="迪士尼马拉松",
-        source_name="1-奥兰多速通计划｜迪士尼 「呆呆挑战」，环球影城，过山车真香！哎～.html",
-        slug="orlando-disney-challenge",
-        image_dir="Run50-Orlando-Disney-Challenge-clean_files",
-        channel="Run50",
-        series="Run50 Florida",
-        card_class="run-50",
-        location_zh="佛罗里达奥兰多",
-        location_en="Orlando, Florida",
-        date_zh="2025 归档",
-        date_en="2025 archive",
-        title_zh="Run50 佛罗里达篇｜奥兰多速通计划：迪士尼挑战与环球影城",
-        title_en="Run50 Florida | Orlando speedrun: Disney challenge and Universal",
-        title_fb="Orlando speedrun: Disney challenge, Universal, and the roller coaster conversion",
-        deck_zh="迪士尼、环球影城、过山车和奥兰多速通计划，一篇热闹的佛州跑旅支线。",
-        deck_en="Disney, Universal, roller coasters, and an Orlando speedrun: a lively Florida side quest around race week.",
-        card_desc_zh="奥兰多乐园速通、迪士尼挑战、环球影城和过山车真香现场。",
-        card_desc_en="An Orlando theme-park speedrun through Disney, Universal, and the moment roller coasters became irresistible.",
-        cover_title="ORLANDO",
-        cover_subtitle="DISNEY · UNIVERSAL · SPEEDRUN",
-        badge_text="ORLANDO",
-        badge_color="#0b67c2",
-        palette=("#edf3f7", "#7c3aed", "#f59e0b", "#0b67c2"),
-        motifs=("castle", "roller coaster", "theme parks", "stars"),
-        map_x=493,
-        map_y=307,
-        map_color="#ff4040",
-    ),
-    StoryConfig(
-        source_subdir="迪士尼马拉松",
         source_name="2-美国50州挑战 ｜第15州：佛罗里达 奥兰多 “迪士尼马拉松”｜ Run50 系列更新.html",
         slug="disney-marathon",
         image_dir="Run50-Disney-Marathon-clean_files",
         channel="Run50",
         series="Run50 #15",
         card_class="run-50",
-        location_zh="佛罗里达奥兰多",
-        location_en="Orlando, Florida",
+        location_zh="佛罗里达基韦斯特 / 奥兰多",
+        location_en="Key West / Orlando, Florida",
         date_zh="2025 归档",
         date_en="2025 archive",
-        title_zh="Run50 #第15州｜佛罗里达：奥兰多迪士尼马拉松",
-        title_en="Run50 #15 | Florida: Orlando Disney Marathon",
-        title_fb="Disney Marathon turned Florida into Run50 State 15",
-        deck_zh="美国50州挑战第15州，奥兰多迪士尼马拉松：用乐园、角色、烟火和26.2英里点亮佛罗里达。",
-        deck_en="Run50 State 15 in Florida: Orlando Disney Marathon, with parks, characters, fireworks, and 26.2 miles of theme-park energy.",
-        card_desc_zh="佛罗里达第15州：奥兰多迪士尼马拉松，乐园气氛和26.2英里一起在线。",
-        card_desc_en="Run50 State 15 at Orlando Disney Marathon: theme-park energy stretched across 26.2 miles.",
-        cover_title="DISNEY",
-        cover_subtitle="ORLANDO · FLORIDA · RUN50 15",
+        title_zh="Run50 #第15州｜佛罗里达：基韦斯特、奥兰多与迪士尼马拉松",
+        title_en="Run50 #15 | Florida: Key West, Orlando, and Disney Marathon",
+        title_fb="A Florida week from Key West beaches to Disney Marathon",
+        deck_zh="把基韦斯特跨年、奥兰多乐园速通和迪士尼马拉松合成一篇完整的佛州第15州故事。",
+        deck_en="A complete Run50 State 15 story: New Year's in Key West, an Orlando park speedrun, and the Disney Marathon.",
+        card_desc_zh="佛罗里达第15州完整篇：基韦斯特跨年、奥兰多速通、环球影城和迪士尼马拉松。",
+        card_desc_en="Run50 State 15 as one Florida arc: Key West New Year, Orlando speedrun, Universal, and Disney Marathon.",
+        cover_title="FLORIDA",
+        cover_subtitle="KEY WEST · ORLANDO · DISNEY MARATHON",
         badge_text="FLORIDA",
         badge_color="#0b67c2",
         palette=("#edf3f7", "#2563eb", "#fbbf24", "#0b67c2"),
-        motifs=("castle silhouette", "fireworks", "mouse medal", "finish flag"),
+        motifs=("castle silhouette", "palm trees", "roller coaster", "fireworks"),
         map_x=493,
         map_y=307,
         map_color="#ff4040",
+        source_parts=(
+            SourcePart(
+                source_subdir="迪士尼马拉松",
+                source_name="0-美国小海南「基韦斯特🥥」， 跨年不冻手🥶 短袖沙滩走🥻 烦恼全溜走🥳.html",
+                heading_zh="# 01｜基韦斯特：美国小海南",
+            ),
+            SourcePart(
+                source_subdir="迪士尼马拉松",
+                source_name="1-奥兰多速通计划｜迪士尼 「呆呆挑战」，环球影城，过山车真香！哎～.html",
+                heading_zh="# 02｜奥兰多速通计划：迪士尼挑战与环球影城",
+            ),
+            SourcePart(
+                source_subdir="迪士尼马拉松",
+                source_name="2-美国50州挑战 ｜第15州：佛罗里达 奥兰多 “迪士尼马拉松”｜ Run50 系列更新.html",
+                heading_zh="# 03｜Run50 第15州：奥兰多迪士尼马拉松",
+            ),
+        ),
     ),
 ]
+
+
+DEPRECATED_REDIRECTS = {
+    "key-west-florida": "disney-marathon",
+    "orlando-disney-challenge": "disney-marathon",
+}
 
 
 SPECIAL_TRANSLATIONS = {
@@ -557,6 +542,9 @@ SPECIAL_TRANSLATIONS = {
     "文字丨Arsenan": "Words | Arsenan",
     "摄影丨Arsenan": "Photos | Arsenan",
     "设计丨Arsenan": "Design | Arsenan",
+    "# 01｜基韦斯特：美国小海南": "# 01 | Key West: America's little Hainan",
+    "# 02｜奥兰多速通计划：迪士尼挑战与环球影城": "# 02 | Orlando speedrun: Disney challenge and Universal",
+    "# 03｜Run50 第15州：奥兰多迪士尼马拉松": "# 03 | Run50 State 15: Orlando Disney Marathon",
 }
 
 
@@ -590,8 +578,8 @@ def is_platform_text(text: str) -> bool:
     return text.startswith(("鲜花", "微信扫一扫", "Read more", "继续滑动看下一个"))
 
 
-def extract_story(config: StoryConfig) -> list[dict]:
-    source = config.source_path.read_text(encoding="utf-8", errors="replace")
+def extract_source_events(source_path: Path, source_files: Path) -> list[dict]:
+    source = source_path.read_text(encoding="utf-8", errors="replace")
     doc = html.fromstring(source)
     roots = doc.xpath('//*[@id="js_content"]')
     root = roots[0] if roots else doc
@@ -607,7 +595,7 @@ def extract_story(config: StoryConfig) -> list[dict]:
         if el.tag == "img":
             src = el.get("src") or el.get("data-src") or ""
             if should_keep_image(src):
-                events.append({"type": "image", "src": src})
+                events.append({"type": "image", "src": src, "source_files": source_files})
             return
         if el.tag in ("p", "section"):
             text = norm("".join(el.itertext()))
@@ -617,7 +605,7 @@ def extract_story(config: StoryConfig) -> list[dict]:
                 for img in el.xpath(".//img"):
                     src = img.get("src") or img.get("data-src") or ""
                     if should_keep_image(src):
-                        events.append({"type": "image", "src": src})
+                        events.append({"type": "image", "src": src, "source_files": source_files})
                 return
         for child in el:
             walk(child)
@@ -638,6 +626,17 @@ def extract_story(config: StoryConfig) -> list[dict]:
             end = idx + 1
             break
     return deduped[:end]
+
+
+def extract_story(config: StoryConfig) -> list[dict]:
+    if not config.source_parts:
+        return extract_source_events(config.source_path, config.source_files)
+    combined: list[dict] = []
+    for part, source_path, source_files in zip(config.source_parts, config.source_paths, config.source_files_list):
+        if part.heading_zh:
+            combined.append({"type": "text", "text": part.heading_zh})
+        combined.extend(extract_source_events(source_path, source_files))
+    return combined
 
 
 def load_translation_cache() -> dict[str, str]:
@@ -778,14 +777,16 @@ def fit_font(draw: ImageDraw.ImageDraw, text: str, max_width: int, start: int, m
     return font(minimum, bold)
 
 
-def local_image_path(config: StoryConfig, src: str) -> Path | None:
+def local_image_path(config: StoryConfig, event: dict) -> Path | None:
+    src = event["src"]
     parsed = urllib.parse.urlparse(src)
     name = Path(urllib.parse.unquote(parsed.path)).name
     if "_files/" in src:
         name = urllib.parse.unquote(src.split("_files/", 1)[1].split("?", 1)[0].split("#", 1)[0])
+    source_files = event.get("source_files") or config.source_files
     candidates = [
-        config.source_files / name,
-        config.source_files / name.replace("%28", "(").replace("%29", ")"),
+        source_files / name,
+        source_files / name.replace("%28", "(").replace("%29", ")"),
     ]
     for candidate in candidates:
         if candidate.exists() and candidate.is_file():
@@ -803,7 +804,7 @@ def copy_story_images(config: StoryConfig, events: list[dict]) -> int:
     for event in events:
         if event["type"] != "image":
             continue
-        src_path = local_image_path(config, event["src"])
+        src_path = local_image_path(config, event)
         if not src_path:
             missing.append(event["src"])
             event["skip"] = True
@@ -1012,7 +1013,8 @@ def render_page(config: StoryConfig, article: str, lang: str) -> str:
         f'<a href="../{"english" if is_zh else "chinese"}/{config.slug}.html">{"English" if is_zh else "中文"}</a>'
         f'<a href="../../facebook/{config.slug}.html">Facebook</a><a href="../../index.html">Run50</a>'
     )
-    og = f"{SITE}/assets/og-run50-{config.slug}-icons.png"
+    hero_image = f"cover-medal-{config.slug}.jpg" if is_zh else f"og-run50-{config.slug}-icons.png"
+    og = f"{SITE}/assets/{hero_image}"
     accent = config.badge_color
     soft = "#faf2ee" if config.card_class == "run-cn" else ("#f1f6f2" if config.card_class == "run-world" else "#edf3f7")
     return f"""<!doctype html>
@@ -1043,7 +1045,7 @@ def render_page(config: StoryConfig, article: str, lang: str) -> str:
     <h1>{escape(title)}</h1>
     <div class="meta"><span>Arsenan</span><span>{escape(config.date_zh if is_zh else config.date_en)}</span><span>{escape(config.channel)}</span></div>
     <p class="dek">{escape(deck)}</p>
-    <img class="cover" src="../../../assets/og-run50-{config.slug}-icons.png?v={VERSION}" alt="{escape(title)} cover" loading="eager" decoding="async">
+    <img class="cover" src="../../../assets/{hero_image}?v={VERSION}" alt="{escape(title)} cover" loading="eager" decoding="async">
   </header>
   <main class="article-shell"><article class="article-body">
       {article}
@@ -1107,6 +1109,44 @@ def render_facebook_page(config: StoryConfig, article: str) -> str:
 </body>
 </html>
 """
+
+
+def render_redirect_page(title: str, target: str) -> str:
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="0; url={escape(target)}">
+  <link rel="canonical" href="{escape(target)}">
+  <title>{escape(title)}</title>
+  <style>
+    body {{ margin:0; min-height:100vh; display:grid; place-items:center; font-family:Arial, Helvetica, sans-serif; background:#edf3f7; color:#20242b; }}
+    main {{ width:min(560px, calc(100% - 40px)); }}
+    a {{ color:#0b67c2; font-weight:800; }}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>{escape(title)}</h1>
+    <p>This story has been merged into the full Florida Disney Marathon page.</p>
+    <p><a href="{escape(target)}">Open the merged story</a></p>
+  </main>
+  <script>location.replace({json.dumps(target)});</script>
+</body>
+</html>
+"""
+
+
+def write_deprecated_redirects() -> None:
+    for old_slug, target_slug in DEPRECATED_REDIRECTS.items():
+        targets = [
+            (REPO / "run50" / "stories" / "chinese" / f"{old_slug}.html", f"./{target_slug}.html"),
+            (REPO / "run50" / "stories" / "english" / f"{old_slug}.html", f"./{target_slug}.html"),
+            (REPO / "run50" / "facebook" / f"{old_slug}.html", f"./{target_slug}.html"),
+        ]
+        for path, target in targets:
+            path.write_text(render_redirect_page("Story merged", target), encoding="utf-8", newline="\n")
 
 
 def rounded_rectangle(draw: ImageDraw.ImageDraw, box, radius, fill, outline=None, width=1):
@@ -1409,19 +1449,19 @@ def facebook_card(config: StoryConfig) -> str:
 def marker_block(kind: str, cards_by_channel: dict[str, list[str]]) -> str:
     headings = {
         "zh": {
-            "Run50": ("Run50 · 新导入", "美国州跑旅与佛罗里达支线"),
-            "RunCN": ("RunCN · 旧文归档", "中国城市、校园、越野与马拉松旧文整理"),
-            "RunWorld": ("RunWorld · 旧文归档", "美国和中国之外的跑旅故事"),
+            "Run50": ("Run50 · 州挑战", "北卡第16州，以及基韦斯特、奥兰多速通和迪士尼马拉松合并后的佛州第15州故事"),
+            "RunCN": ("RunCN · 中国马拉松系列", "上海、武汉、哈尔滨、无锡、杭州西湖、大连、兰州和钢铁战车等中国跑旅归类"),
+            "RunWorld": ("RunWorld · 世界马拉松系列", "曼谷归入 RunWorld 第3站，美国和中国之外的跑旅故事"),
         },
         "en": {
-            "Run50": ("Run50 / New Imports", "U.S. state stories and Florida side quests."),
-            "RunCN": ("RunCN / Archive Imports", "China city, campus, trail, and marathon stories."),
-            "RunWorld": ("RunWorld / Archive Imports", "Running stories beyond the U.S. and China."),
+            "Run50": ("Run50 / State Challenge", "North Carolina State 16 and the merged Florida State 15 story across Key West, Orlando, and Disney Marathon."),
+            "RunCN": ("RunCN / China Marathon Series", "Shanghai, Wuhan, Harbin, Wuxi, West Lake, Dalian, Lanzhou, Steel Tank, and other China running stories."),
+            "RunWorld": ("RunWorld / Global Marathon Series", "Bangkok is RunWorld stop 3, with running stories beyond the U.S. and China."),
         },
         "fb": {
-            "Run50": ("Run50 / New Imports", "U.S. state stories and Florida side quests."),
-            "RunCN": ("RunCN / Archive Imports", "China city, campus, trail, and marathon stories."),
-            "RunWorld": ("RunWorld / Archive Imports", "Running stories beyond the U.S. and China."),
+            "Run50": ("Run50 / State Challenge", "North Carolina State 16 and the merged Florida State 15 story across Key West, Orlando, and Disney Marathon."),
+            "RunCN": ("RunCN / China Marathon Series", "Shanghai, Wuhan, Harbin, Wuxi, West Lake, Dalian, Lanzhou, Steel Tank, and other China running stories."),
+            "RunWorld": ("RunWorld / Global Marathon Series", "Bangkok is RunWorld stop 3, with running stories beyond the U.S. and China."),
         },
     }
     zone_class = {"Run50": "run-50-zone", "RunCN": "run-cn-zone", "RunWorld": "run-world-zone"}
@@ -1476,7 +1516,7 @@ def update_cache_versions() -> None:
         if not path.exists():
             continue
         text = path.read_text(encoding="utf-8")
-        text = re.sub(r"\?v=2026061[67][A-Za-z0-9._-]*", f"?v={VERSION}", text)
+        text = re.sub(r"\?v=2026061[678][A-Za-z0-9._-]*", f"?v={VERSION}", text)
         path.write_text(text, encoding="utf-8", newline="\n")
 
 
@@ -1503,6 +1543,11 @@ def update_hub_world_dots() -> None:
 def update_sql() -> None:
     path = REPO / "supabase" / "run50-comments.sql"
     text = path.read_text(encoding="utf-8")
+    original = text
+    for slug in DEPRECATED_REDIRECTS:
+        for suffix in ("facebook-en", "en", "zh"):
+            key = f"run50-{slug}-{suffix}"
+            text = re.sub(rf"\n\s*'{re.escape(key)}',?", "", text)
     keys: list[str] = []
     for story in STORIES:
         keys.extend([
@@ -1512,6 +1557,8 @@ def update_sql() -> None:
         ])
     missing = [key for key in keys if text.count(f"'{key}'") == 0]
     if not missing:
+        if text != original:
+            path.write_text(text, encoding="utf-8", newline="\n")
         return
     block = "".join(f"      '{key}',\n" for key in missing)
     text = text.replace("      'run50-shanghai-vertical-marathon-facebook-en',", block + "      'run50-shanghai-vertical-marathon-facebook-en',", 3)
@@ -1526,10 +1573,11 @@ def update_sql() -> None:
 
 def build() -> None:
     for config in STORIES:
-        if not config.source_path.exists():
-            raise FileNotFoundError(config.source_path)
-        if not config.source_files.exists():
-            raise FileNotFoundError(config.source_files)
+        for source_path, source_files in zip(config.source_paths, config.source_files_list):
+            if not source_path.exists():
+                raise FileNotFoundError(source_path)
+            if not source_files.exists():
+                raise FileNotFoundError(source_files)
     all_events = [extract_story(story) for story in STORIES]
     for story, events in zip(STORIES, all_events):
         images = sum(1 for e in events if e["type"] == "image")
@@ -1548,6 +1596,7 @@ def build() -> None:
         (REPO / "run50" / "stories" / "english" / f"{story.slug}.html").write_text(render_page(story, en_article, "en"), encoding="utf-8", newline="\n")
         (REPO / "run50" / "facebook" / f"{story.slug}.html").write_text(render_facebook_page(story, fb_article), encoding="utf-8", newline="\n")
 
+    write_deprecated_redirects()
     update_indexes()
     update_cache_versions()
     update_hub_world_dots()

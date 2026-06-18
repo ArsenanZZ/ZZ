@@ -346,17 +346,17 @@
 
   <!-- Chinese Stories -->
   <div class="tab-pane" id="pane-chinese">
-    <iframe class="embed-frame" src="stories/chinese/?v=20260617-running-web" title="Chinese Stories" loading="lazy"></iframe>
+    <iframe class="embed-frame" src="stories/chinese/?v=20260618-series-merge" title="Chinese Stories" loading="lazy"></iframe>
   </div>
 
   <!-- English Stories -->
   <div class="tab-pane" id="pane-english">
-    <iframe class="embed-frame" src="stories/english/?v=20260617-running-web" title="English Stories" loading="lazy"></iframe>
+    <iframe class="embed-frame" src="stories/english/?v=20260618-series-merge" title="English Stories" loading="lazy"></iframe>
   </div>
 
   <!-- Facebook Stories -->
   <div class="tab-pane" id="pane-facebook">
-    <iframe class="embed-frame" src="facebook/?v=20260617-running-web" title="Run50 Facebook Stories" loading="lazy"></iframe>
+    <iframe class="embed-frame" src="facebook/?v=20260618-series-merge" title="Run50 Facebook Stories" loading="lazy"></iframe>
   </div>
 
   <!-- Running Map -->
@@ -674,7 +674,7 @@ function _injectChinaMap() {
       const dates={cn_hubei:'2024',cn_guangxi:'2024',cn_hongkong:'2025',cn_shanghai:'2019'};
       el.addEventListener('mouseenter', e => showTT(e,
         `<strong>${names[id]}</strong><br><span style="color:#9ab;">${dates[id]}</span>` +
-        `<br><a href="stories/chinese/?v=20260617-running-web" target="_blank">中文故事 →</a>`));
+        `<br><a href="stories/chinese/?v=20260618-series-merge" target="_blank">中文故事 →</a>`));
       el.addEventListener('mouseleave', hideTT);
     }
   });
@@ -762,8 +762,8 @@ function _injectWorldMap() {
    [471, 259, '#ff4040', false, 'Louisville, KY',  '2025',     'stories/english/louisville-marathon.html'],
    [404, 353, mxCol,     false, 'Mexico City',     '2024',     'facebook/mexico-marathon.html'],
    [952, 231, itCol,     true,  'Pisa, Italy',     '2025',     'facebook/pisa-marathon.html'],
-   [1461, 290, cnCol,   true,  'Xiangyang, China', '2024',    'stories/chinese/?v=20260617-running-web'],
-   [1451, 324, cnCol,   false, 'Guilin, China',    '2024',    'stories/chinese/?v=20260617-running-web'],
+   [1461, 290, cnCol,   true,  'Xiangyang, China', '2024',    'stories/chinese/?v=20260618-series-merge'],
+   [1451, 324, cnCol,   false, 'Guilin, China',    '2024',    'stories/chinese/?v=20260618-series-merge'],
    [1471, 338, '#e89838',false,'Hong Kong',        '2025',    'facebook/hong-kong-marathon.html'],
    [1507, 294, cnCol,   false, 'Shanghai, China',  '2019',    'stories/chinese/shanghai-vertical-marathon.html'],
    // running-story-web-batch:dots:start
@@ -780,9 +780,7 @@ function _injectWorldMap() {
    [1533, 221, '#d4614a', false, 'Harbin, Heilongjiang', '2019 archive', 'facebook/harbin-marathon.html'],
    [1533, 221, '#d4614a', false, 'Harbin / Wuhan', '2017 archive', 'facebook/steel-tank-story.html'],
    [1502, 292, '#d4614a', false, 'Wuhan / Wuxi', '2018 archive', 'facebook/wuhan-wuxi-marathon-notes.html'],
-   [491, 327, '#ff4040', false, 'Key West, Florida', '2025 archive', 'facebook/key-west-florida.html'],
-   [493, 307, '#ff4040', false, 'Orlando, Florida', '2025 archive', 'facebook/orlando-disney-challenge.html'],
-   [493, 307, '#ff4040', false, 'Orlando, Florida', '2025 archive', 'facebook/disney-marathon.html'],
+   [493, 307, '#ff4040', false, 'Key West / Orlando, Florida', '2025 archive', 'facebook/disney-marathon.html'],
    // running-story-web-batch:dots:end
   ].forEach(([cx, cy, fill, pulse, city, date, story]) => {
     if (pulse) dg.appendChild(mkEl('circle',
