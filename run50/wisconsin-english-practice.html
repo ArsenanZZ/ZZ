@@ -271,31 +271,53 @@ let selected = -1;
 
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 
+const hintEl = document.getElementById('ttsHint');
+const DEFAULT_HINT = hintEl.innerHTML;   // 记下正常提示，加载好后恢复
+const pref = ['Google US English','Samantha','Microsoft Aria','Microsoft Jenny','Microsoft Guy','Microsoft Ava','Microsoft Andrew','Alex','Microsoft David','Microsoft Zira','Microsoft Mark'];
+
+function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }
+function isEN(v){ return /^en/i.test(v.lang) || /\bEnglish\b/i.test(v.name); }
+
 function loadVoices(){
-  voices = synth.getVoices().filter(v => /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name) || (v.lang==='en-US'));
-  if (!voices.length) voices = synth.getVoices().filter(v => /^en/i.test(v.lang));
-  voiceSel.innerHTML = '';
-  // 优先排序：常见高质量美音
-  const pref = ['Google US English','Samantha','Microsoft Aria','Microsoft Jenny','Microsoft Guy','Alex','Microsoft David','Microsoft Zira'];
+  const all = synth.getVoices();
+  if (!all.length) return false;   // 还没加载好，等下次回调/轮询
+
+  const us = all.filter(isUS);
+  const en = all.filter(v => isEN(v) && !isUS(v));
+  let mode;
+  if (us.length){ voices = us.concat(en); mode='us'; }
+  else if (en.length){ voices = en; mode='en'; }
+  else { voices = all; mode='none'; }   // 实在没英文，全列出来兜底
+
   voices.sort((a,b)=>{
     const ai = pref.findIndex(p=>a.name.includes(p));
     const bi = pref.findIndex(p=>b.name.includes(p));
     return (ai<0?99:ai)-(bi<0?99:bi);
   });
+  voiceSel.innerHTML = '';
   voices.forEach((v,i)=>{
     const o = document.createElement('option');
     o.value = i; o.textContent = v.name + ' ('+v.lang+')';
     voiceSel.appendChild(o);
   });
   chosenVoice = voices[0] || null;
-  if (!voices.length){
-    document.getElementById('ttsHint').innerHTML =
-      '⚠️ 你的浏览器没有找到美式英语语音包。请用 <b>Chrome / Edge</b> 打开，或在系统设置里安装 English (United States) 语音。';
+
+  if (mode==='us'){
+    hintEl.innerHTML = DEFAULT_HINT;
+  } else if (mode==='en'){
+    hintEl.innerHTML = '🔊 没找到纯美音，已自动选用其它英语音色（'+(chosenVoice?chosenVoice.lang:'')+'）。发音基本可用；想要标准美音可用 <b>Chrome / Edge</b> 打开，或在系统「语音」设置里添加 <b>English (United States)</b>。';
+  } else {
+    hintEl.innerHTML = '⚠️ 这台设备没有安装任何英语语音包。建议用 <b>Chrome / Edge</b> 打开（自带在线美音），或到 Windows 设置 → 时间和语言 → 语音 → 添加 <b>English (United States)</b> 后刷新本页。';
   }
+  return true;
 }
 voiceSel.addEventListener('change', ()=> chosenVoice = voices[+voiceSel.value]);
-loadVoices();
 if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = loadVoices;
+// 轮询兜底：部分浏览器语音列表加载较慢，最多重试 ~3 秒
+(function tryLoad(n){
+  if (loadVoices()) return;
+  if (n>0) setTimeout(()=>tryLoad(n-1), 300);
+})(10);
 
 function makeUtter(text){
   const u = new SpeechSynthesisUtterance(text);
