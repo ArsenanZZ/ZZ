@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from html import escape
 from pathlib import Path
 import json
+import os
 import re
 import shutil
 import tempfile
@@ -18,7 +19,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 REPO = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = Path(r"Z:\ZhennanZ Folder\0-Running Story Web")
 SITE = "https://arsenanzz.github.io/ZZ"
-VERSION = "20260618-medal-ai-polished"
+VERSION = "20260618-addddd"
 ENGAGEMENT_VERSION = "20260617"
 TRANSLATION_CACHE = Path(tempfile.gettempdir()) / "zz_running_story_web_translation_cache.json"
 FONT_DIR = Path(r"C:\Windows\Fonts")
@@ -215,6 +216,35 @@ STORIES: list[StoryConfig] = [
         map_x=1501,
         map_y=299,
         map_color="#d4614a",
+    ),
+    StoryConfig(
+        source_subdir="ADDDDD",
+        source_name="十年之约，归来仍是少年——Run Your Singapore.html",
+        slug="singapore-sundown-marathon",
+        image_dir="RunWorld-Singapore-Sundown-Marathon-clean_files",
+        channel="RunWorld",
+        series="RunWorld #1",
+        card_class="run-world",
+        location_zh="新加坡",
+        location_en="Singapore",
+        date_zh="2018 归档",
+        date_en="2018 archive",
+        title_zh="RunWorld #第1站｜新加坡 Sundown Marathon：十年之约，归来仍是少年",
+        title_en="RunWorld #1 | Singapore Sundown Marathon: still young after ten years",
+        title_fb="Singapore brought me back to a ten-year promise and a midnight marathon",
+        deck_zh="十年之后，再下南洋：从樟宜、南洋理工到 Sundown Marathon，在新加坡的夜与晨之间，确认自己仍然可以热血。",
+        deck_en="Ten years later, I returned to Singapore: from Changi and NTU to the Sundown Marathon, finding old heat between night and morning.",
+        card_desc_zh="新加坡十年之约、校园朝圣、滨海湾夜色和一场从午夜跑到天亮的 Sundown Marathon。",
+        card_desc_en="A ten-year Singapore promise, campus pilgrimage, Marina Bay night, and a Sundown Marathon from midnight into morning.",
+        cover_title="SINGAPORE",
+        cover_subtitle="SUNDOWN · MARINA BAY · TEN YEARS",
+        badge_text="SINGAPORE",
+        badge_color="#2f855a",
+        palette=("#f1f6f2", "#0f766e", "#f59e0b", "#2f855a"),
+        motifs=("Marina Bay", "Merlion", "Sundown", "campus"),
+        map_x=1412,
+        map_y=424,
+        map_color="#2f855a",
     ),
     StoryConfig(
         source_name="曼谷，昼夜不停.html",
@@ -495,6 +525,93 @@ STORIES: list[StoryConfig] = [
         map_x=1502,
         map_y=292,
         map_color="#d4614a",
+    ),
+    StoryConfig(
+        source_subdir="ADDDDD",
+        source_name="夜郎漫行，此心光明——贵阳 Climb.html",
+        slug="guiyang-marathon-climb",
+        image_dir="RunCN-Guiyang-Marathon-Climb-clean_files",
+        channel="RunCN",
+        series="RunCN #12",
+        card_class="run-cn",
+        location_zh="贵州贵阳",
+        location_en="Guiyang, Guizhou",
+        date_zh="2018 归档",
+        date_en="2018 archive",
+        title_zh="RunCN #第12站｜贵阳马拉松：夜郎漫行，此心光明",
+        title_en="RunCN #12 | Guiyang Marathon: climbing through Yelang and the heart",
+        title_fb="Guiyang turned a brutal climb into a journey through Yelang, Wang Yangming, and Fanjing Mountain",
+        deck_zh="从青岩古镇、花溪夜郎谷到贵阳马拉松和梵净山，在“Climb”的爬升里，把身体和心都带去贵州修行。",
+        deck_en="From Qingyan Ancient Town and Yelang Valley to Guiyang Marathon and Fanjing Mountain, this was a Guizhou climb for both body and heart.",
+        card_desc_zh="贵阳马拉松的高温爬升、青岩古镇、夜郎谷、阳明洞和梵净山，写成一堂西南修行课。",
+        card_desc_en="Guiyang Marathon heat and climbing, Qingyan, Yelang Valley, Yangming Cave, and Fanjing Mountain as one southwestern lesson.",
+        cover_title="GUIYANG",
+        cover_subtitle="YELANG · CLIMB · FANJING",
+        badge_text="GUIYANG",
+        badge_color="#2f855a",
+        palette=("#faf2ee", "#356859", "#d9a441", "#2f855a"),
+        motifs=("Yelang Valley", "Jiaxiu Tower", "mountains", "climb"),
+        map_x=1442,
+        map_y=334,
+        map_color="#2f855a",
+    ),
+    StoryConfig(
+        source_subdir="ADDDDD",
+        source_name="风雨城墙路 _ 纵横秦川八百里，阅尽长安三千年.html",
+        slug="xian-city-wall-marathon",
+        image_dir="RunCN-Xian-City-Wall-Marathon-clean_files",
+        channel="RunCN",
+        series="RunCN #13",
+        card_class="run-cn",
+        location_zh="陕西西安",
+        location_en="Xi'an, Shaanxi",
+        date_zh="2018 归档",
+        date_en="2018 archive",
+        title_zh="RunCN #第13站｜西安城墙马拉松：风雨城墙路",
+        title_en="RunCN #13 | Xi'an City Wall Marathon: rain on the city wall",
+        title_fb="Xi'an turned a city-wall race into a walk through three thousand years of China",
+        deck_zh="一场西安城墙马，把兵马俑、华清池、大雁塔、华山、壶口瀑布和千年长安都串进风雨里。",
+        deck_en="A Xi'an City Wall race threaded Terracotta Warriors, Huaqing Pool, Big Wild Goose Pagoda, Huashan, Hukou Falls, and old Chang'an through rain.",
+        card_desc_zh="风雨城墙路、八百里秦川、兵马俑、华山与壶口瀑布，写成一篇厚重的长安行记。",
+        card_desc_en="Rain on the wall, the Qin plain, Terracotta Warriors, Huashan, and Hukou Falls in one heavy Chang'an travelogue.",
+        cover_title="XI'AN",
+        cover_subtitle="CITY WALL · CHANG'AN · QIN",
+        badge_text="XI'AN",
+        badge_color="#9a3412",
+        palette=("#faf2ee", "#8b3a2b", "#d6a34a", "#9a3412"),
+        motifs=("city wall", "Terracotta Warriors", "pagoda", "Huashan"),
+        map_x=1457,
+        map_y=287,
+        map_color="#9a3412",
+    ),
+    StoryConfig(
+        source_subdir="ADDDDD",
+        source_name="鲜衣怒马，烈焰红花——记三座城的朝圣之旅.html",
+        slug="three-city-pilgrimage",
+        image_dir="RunCN-Three-City-Pilgrimage-clean_files",
+        channel="RunCN",
+        series="RunCN Archive",
+        card_class="run-cn",
+        location_zh="广安 / 宜昌 / 长沙",
+        location_en="Guang'an / Yichang / Changsha",
+        date_zh="2017 归档",
+        date_en="2017 archive",
+        title_zh="RunCN 归档｜鲜衣怒马，烈焰红花：三座城的朝圣之旅",
+        title_en="RunCN Archive | Fresh clothes, fierce flowers: a pilgrimage through three cities",
+        title_fb="Three 2017 races became a pilgrimage through Guang'an, Yichang, and Changsha",
+        deck_zh="广安、宜昌、长沙，三座城，三场跑，一路红花，把科研间隙里的热血和朝圣都写进 2017。",
+        deck_en="Guang'an, Yichang, and Changsha: three cities, three races, and a 2017 pilgrimage squeezed between research days.",
+        card_desc_zh="广安马、宜昌半马、长沙马拉松，以及邓小平、导师、毛主席三条线索串起的跑马朝圣。",
+        card_desc_en="Guang'an Marathon, Yichang Half, Changsha Marathon, and a pilgrimage threaded through Deng Xiaoping, a mentor, and Mao.",
+        cover_title="THREE CITIES",
+        cover_subtitle="GUANG'AN · YICHANG · CHANGSHA",
+        badge_text="ARCHIVE",
+        badge_color="#be185d",
+        palette=("#faf2ee", "#b91c1c", "#f59e0b", "#be185d"),
+        motifs=("red flowers", "bridges", "pilgrimage", "marathon"),
+        map_x=1462,
+        map_y=318,
+        map_color="#be185d",
     ),
     StoryConfig(
         source_subdir="迪士尼马拉松",
@@ -1067,7 +1184,7 @@ def render_page(config: StoryConfig, article: str, lang: str) -> str:
   <main class="article-shell"><article class="article-body">
       {article}
     </article></main>
-  {engagement(config, lang)}
+{engagement(config, lang)}
   <footer class="page-footer">© ArsenanZZ · Run50</footer>
   <script src="../../../assets/zz-engagement-config.js?v={ENGAGEMENT_VERSION}"></script>
   <script src="../../../assets/zz-engagement.js?v={ENGAGEMENT_VERSION}"></script>
@@ -1120,7 +1237,7 @@ def render_facebook_page(config: StoryConfig, article: str) -> str:
       </article>
     </section>
   </main>
-  {engagement(config, "en", fb=True)}
+{engagement(config, "en", fb=True)}
   <script src="../../assets/zz-engagement-config.js?v={ENGAGEMENT_VERSION}"></script>
   <script src="../../assets/zz-engagement.js?v={ENGAGEMENT_VERSION}"></script>
 </body>
@@ -1423,7 +1540,7 @@ def write_covers(config: StoryConfig) -> None:
     (assets / "facebook").mkdir(parents=True, exist_ok=True)
     draw_cover_png(config)
     medal_path = assets / f"cover-medal-{config.slug}.jpg"
-    if config.slug not in PRESERVE_MEDAL_COVER_SLUGS or not medal_path.exists():
+    if not medal_path.exists():
         draw_medal_jpg(config)
     svg = svg_cover(config)
     (assets / f"thumb-run50-{config.slug}-icons.svg").write_text(svg, encoding="utf-8", newline="\n")
@@ -1506,6 +1623,8 @@ def marker_block(kind: str, cards_by_channel: dict[str, list[str]]) -> str:
 
 def replace_marker(html_text: str, kind: str, block: str) -> str:
     pattern = re.compile(rf"\n\s*<!-- running-story-web-batch:{kind}:start -->.*?<!-- running-story-web-batch:{kind}:end -->", re.S)
+    if not pattern.search(html_text):
+        return html_text
     html_text = pattern.sub("", html_text)
     return html_text.replace("\n  </main>", "\n" + block + "\n  </main>")
 
@@ -1562,7 +1681,6 @@ def update_hub_world_dots() -> None:
 def update_sql() -> None:
     path = REPO / "supabase" / "run50-comments.sql"
     text = path.read_text(encoding="utf-8")
-    original = text
     for slug in DEPRECATED_REDIRECTS:
         for suffix in ("facebook-en", "en", "zh"):
             key = f"run50-{slug}-{suffix}"
@@ -1574,37 +1692,60 @@ def update_sql() -> None:
             f"run50-{story.slug}-en",
             f"run50-{story.slug}-zh",
         ])
-    missing = [key for key in keys if text.count(f"'{key}'") == 0]
-    if not missing:
-        if text != original:
-            path.write_text(text, encoding="utf-8", newline="\n")
-        return
-    block = "".join(f"      '{key}',\n" for key in missing)
-    text = text.replace("      'run50-shanghai-vertical-marathon-facebook-en',", block + "      'run50-shanghai-vertical-marathon-facebook-en',", 3)
-    text = text.replace("    'run50-shanghai-vertical-marathon-facebook-en',", block.replace("      ", "    ") + "    'run50-shanghai-vertical-marathon-facebook-en',", 1)
-    for key in missing:
-        for indent in ("      ", "    "):
-            target = f"{indent}'{key}',\n"
-            while text.count(f"'{key}'") > 3 and target in text:
-                text = text.replace(target, "", 1)
+
+    def add_missing_keys(match: re.Match[str]) -> str:
+        body = match.group("body")
+        present = set(re.findall(r"'([^']+)'", body))
+        missing = [key for key in keys if key not in present]
+        if not missing:
+            return match.group(0)
+
+        lines = body.splitlines(keepends=True)
+        for index, line in enumerate(lines):
+            if "'run50-shanghai-vertical-marathon-facebook-en'" in line:
+                indent = re.match(r"\s*", line).group(0)
+                lines.insert(index, "".join(f"{indent}'{key}',\n" for key in missing))
+                return match.group("prefix") + "".join(lines) + match.group("suffix")
+        return match.group(0)
+
+    text = re.sub(
+        r"(?P<prefix>page_id in \(\n)(?P<body>.*?)(?P<suffix>\n\s*\))",
+        add_missing_keys,
+        text,
+        flags=re.S,
+    )
     path.write_text(text, encoding="utf-8", newline="\n")
 
 
+def selected_stories() -> list[StoryConfig]:
+    raw = os.environ.get("RUN50_BUILD_SLUGS", "").strip()
+    if not raw:
+        return STORIES
+    wanted = {slug.strip() for slug in raw.split(",") if slug.strip()}
+    selected = [story for story in STORIES if story.slug in wanted]
+    missing = wanted - {story.slug for story in selected}
+    if missing:
+        raise ValueError(f"Unknown RUN50_BUILD_SLUGS: {', '.join(sorted(missing))}")
+    return selected
+
+
 def build() -> None:
-    for config in STORIES:
+    active_stories = selected_stories()
+    print("active stories:", ", ".join(story.slug for story in active_stories))
+    for config in active_stories:
         for source_path, source_files in zip(config.source_paths, config.source_files_list):
             if not source_path.exists():
                 raise FileNotFoundError(source_path)
             if not source_files.exists():
                 raise FileNotFoundError(source_files)
-    all_events = [extract_story(story) for story in STORIES]
-    for story, events in zip(STORIES, all_events):
+    all_events = [extract_story(story) for story in active_stories]
+    for story, events in zip(active_stories, all_events):
         images = sum(1 for e in events if e["type"] == "image")
         texts = sum(1 for e in events if e["type"] == "text")
         print(f"{story.slug}: {texts} text blocks, {images} images")
     cache = ensure_translations(all_events)
 
-    for story, events in zip(STORIES, all_events):
+    for story, events in zip(active_stories, all_events):
         count = copy_story_images(story, events)
         print(f"{story.slug}: copied {count} images")
         write_covers(story)

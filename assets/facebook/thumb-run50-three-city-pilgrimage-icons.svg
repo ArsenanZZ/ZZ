@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="RunCN Archive | Fresh clothes, fierce flowers: a pilgrimage through three cities cover">
+  <rect width="1200" height="750" fill="#faf2ee"/>
+  <path d="M0 552 C180 500 255 590 420 535 S740 490 930 552 S1120 585 1200 540 L1200 750 L0 750 Z" fill="#b91c1c" opacity=".92"/>
+  <path d="M116 580 C250 510 360 612 500 548 S790 502 1018 578" fill="none" stroke="#be185d" stroke-width="16" stroke-linecap="round"/>
+  <g opacity=".86" fill="#f59e0b">
+    <polygon points="120,552 210,378 300,552"/>
+    <polygon points="260,552 360,324 462,552"/>
+    <polygon points="440,552 548,355 658,552"/>
+    <polygon points="645,552 760,318 890,552"/>
+    <polygon points="835,552 950,382 1070,552"/>
+  </g>
+  <g transform="translate(600 428)" stroke="#20242b" stroke-width="7" stroke-linecap="round">
+    <path d="M-110 54 H110" fill="none"/>
+    <path d="M-96 54 C-52 -58 52 -58 96 54" fill="none" stroke="#be185d" stroke-width="12"/>
+    <path d="M-60 54 V0 M-24 54 V-24 M24 54 V-24 M60 54 V0" fill="none"/>
+  </g>
+  <g transform="translate(884 432)">
+    <rect width="162" height="102" fill="#fff" stroke="#20242b" stroke-width="6"/>
+    <rect x="6" y="6" width="38" height="44" fill="#20242b"/>
+    <rect x="82" y="6" width="38" height="44" fill="#20242b"/>
+    <rect x="44" y="50" width="38" height="44" fill="#20242b"/>
+    <rect x="120" y="50" width="36" height="44" fill="#20242b"/>
+  </g>
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">THREE CITIES</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">GUANG&#x27;AN · YICHANG · CHANGSHA</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunCN Archive</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#be185d">ARCHIVE</text>
+  <text x="82" y="690" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900" fill="#fff">RED FLOWERS · BRIDGES · PILGRIMAGE</text>
+</svg>
