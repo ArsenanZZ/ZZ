@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="RunCN Origin | The story of the steel tank cover">
+  <rect width="1200" height="750" fill="#f7f3e8"/>
+  <path d="M0 552 C180 500 255 590 420 535 S740 490 930 552 S1120 585 1200 540 L1200 750 L0 750 Z" fill="#374151" opacity=".92"/>
+  <path d="M116 580 C250 510 360 612 500 548 S790 502 1018 578" fill="none" stroke="#cc0000" stroke-width="16" stroke-linecap="round"/>
+  <g opacity=".86" fill="#ef4444">
+    <polygon points="120,552 210,378 300,552"/>
+    <polygon points="260,552 360,324 462,552"/>
+    <polygon points="440,552 548,355 658,552"/>
+    <polygon points="645,552 760,318 890,552"/>
+    <polygon points="835,552 950,382 1070,552"/>
+  </g>
+  <g transform="translate(600 420)" stroke="#20242b" stroke-width="7">
+    <ellipse cx="0" cy="0" rx="102" ry="58" fill="#fff"/>
+    <path d="M-52 0 H52" stroke="#cc0000" stroke-width="9"/>
+    <path d="M-28 -20 V20 M0 -22 V22 M28 -20 V20"/>
+  </g>
+  <g transform="translate(884 432)">
+    <rect width="162" height="102" fill="#fff" stroke="#20242b" stroke-width="6"/>
+    <rect x="6" y="6" width="38" height="44" fill="#20242b"/>
+    <rect x="82" y="6" width="38" height="44" fill="#20242b"/>
+    <rect x="44" y="50" width="38" height="44" fill="#20242b"/>
+    <rect x="120" y="50" width="36" height="44" fill="#20242b"/>
+  </g>
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">STEEL TANK</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">ORIGIN · FOOTBALL · MARATHON</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RunCN Origin</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#cc0000">ORIGIN</text>
+  <text x="82" y="690" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900" fill="#fff">FOOTBALL · RUNNING SHOES · MEDAL</text>
+</svg>
