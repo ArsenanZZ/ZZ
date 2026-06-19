@@ -237,7 +237,46 @@
       .series-nav { grid-template-columns: 1fr; }
       .story-grid { grid-template-columns: 1fr; }
     }
-  </style>
+    /* ── RunCN / RunWorld photo cover overlay ── */
+    .card-cover {
+      aspect-ratio: 16 / 10;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .card-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(10,16,28,.08) 0%,
+        rgba(10,16,28,.30) 55%,
+        rgba(10,16,28,.82) 100%);
+    }
+    .card-cover-text {
+      position: relative;
+      z-index: 1;
+      padding: 14px 16px 16px;
+      width: 100%;
+    }
+    .card-cover-label {
+      margin: 0 0 4px;
+      color: rgba(255,255,255,.80);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+    }
+    .card-cover-title {
+      margin: 0;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.2;
+    }  </style>
 </head>
 <body>
   <div class="top-strip">
@@ -495,61 +534,65 @@
         <p>China race weekends gathered in one place for cleaner sharing.</p>
       </div>
       <div class="story-grid" aria-label="RunCN China Stories">
-        <a class="story-card run-cn" href="./xiangyang-marathon.html">
-              <div>
-                <p class="eyebrow">World / China / Marathon</p>
-                <h2>Xiangyang gave me a marathon with a finish I did not see coming</h2>
-                <p>Race date: October 19, 2025. A Three Kingdoms city, the Han River, old city walls, Tang-style palaces and an unexpected 3:57 finish.</p>
-                <div class="meta">
-                  <span>Xiangyang, Hubei</span>
-                  <span>3:57 finish</span>
-                  <span>Run50 Facebook</span>
-                </div>
-              </div>
-              <img src="../../assets/cover-medal-xiangyang.jpg" alt="Icon-style Xiangyang Marathon cover">
-            </a>
+                <a class="story-card run-cn" href="./xiangyang-marathon.html">
+          <div class="card-cover" style="background-image:url(../../assets/cover-medal-xiangyang.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">3:57 finish</p>
+              <p class="card-cover-title">Xiangyang, Hubei</p>
+            </div>
+          </div>
+          <div class="story-copy">
+            <p class="story-meta">Xiangyang, Hubei · 3:57 finish</p>
+            <h2 class="story-title">Xiangyang gave me a marathon with a finish I did not see coming</h2>
+            <p class="story-desc">Race date: October 19, 2025. A Three Kingdoms city, the Han River, old city walls, Tang-style palaces and an unexpected 3:57 finish.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-cn" href="./guilin-marathon.html">
-              <div>
-                <p class="eyebrow">World / China / Marathon</p>
-                <h2>Guilin turned a beautiful marathon into a full-sun test</h2>
-                <p>Race date: November 16, 2025. Li River views, karst hills, spray trucks, a Messi jersey chase, and my family waiting at the finish.</p>
-                <div class="meta">
-                  <span>Guilin, Guangxi</span>
-                  <span>Full-sun course</span>
-                  <span>Run50 Facebook</span>
-                </div>
-              </div>
-              <img src="../../assets/cover-medal-guilin.jpg" alt="Icon-style Guilin Marathon cover">
-            </a>
+                <a class="story-card run-cn" href="./guilin-marathon.html">
+          <div class="card-cover" style="background-image:url(../../assets/cover-medal-guilin.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">Full-sun course</p>
+              <p class="card-cover-title">Guilin, Guangxi</p>
+            </div>
+          </div>
+          <div class="story-copy">
+            <p class="story-meta">Guilin, Guangxi · Full-sun course</p>
+            <h2 class="story-title">Guilin turned a beautiful marathon into a full-sun test</h2>
+            <p class="story-desc">Race date: November 16, 2025. Li River views, karst hills, spray trucks, a Messi jersey chase, and my family waiting at the finish.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-cn" href="./hong-kong-marathon.html">
-              <div>
-                <p class="eyebrow">World / China / Marathon</p>
-                <h2>Hong Kong turned a marathon into a tunnel-and-bridge city tour</h2>
-                <p>Race date: November 23, 2025. A 5 a.m. start, expressway tunnels, Victoria Harbour wind, Tseung Kwan O Bridge, and one last uphill punch.</p>
-                <div class="meta">
-                  <span>Hong Kong, China</span>
-                  <span>Tunnels + bridges</span>
-                  <span>Run50 Facebook</span>
-                </div>
-              </div>
-              <img src="../../assets/cover-medal-hk.jpg" alt="Icon-style Hong Kong Streetathon cover">
-            </a>
+                <a class="story-card run-cn" href="./hong-kong-marathon.html">
+          <div class="card-cover" style="background-image:url(../../assets/cover-medal-hk.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">Tunnels + bridges</p>
+              <p class="card-cover-title">Hong Kong, China</p>
+            </div>
+          </div>
+          <div class="story-copy">
+            <p class="story-meta">Hong Kong, China · Tunnels + bridges</p>
+            <h2 class="story-title">Hong Kong turned a marathon into a tunnel-and-bridge city tour</h2>
+            <p class="story-desc">Race date: November 23, 2025. A 5 a.m. start, expressway tunnels, Victoria Harbour wind, Tseung Kwan O Bridge, and one last uphill punch.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-cn" href="./shanghai-vertical-marathon.html">
-              <div>
-                <p class="eyebrow">World / China / Vertical Marathon</p>
-                <h2>Climbing 3,398 steps to the top of China's tallest skyscraper</h2>
-                <p>Race date: November 24, 2019. Scaling 119 floors and 3,398 steps of the Shanghai Tower to reach 632m height during a stressful visa waiting period.</p>
-                <div class="meta">
-                  <span>Shanghai, China</span>
-                  <span>3,398 steps</span>
-                  <span>Run50 Facebook</span>
-                </div>
-              </div>
-              <img src="../../assets/cover-medal-shanghai-vertical-marathon.jpg" alt="Icon-style Shanghai Tower Vertical Marathon cover">
-            </a>
+                <a class="story-card run-cn" href="./shanghai-vertical-marathon.html">
+          <div class="card-cover" style="background-image:url(../../assets/cover-medal-shanghai-vertical-marathon.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">3,398 steps</p>
+              <p class="card-cover-title">Shanghai, China</p>
+            </div>
+          </div>
+          <div class="story-copy">
+            <p class="story-meta">Shanghai, China · 3,398 steps</p>
+            <h2 class="story-title">Climbing 3,398 steps to the top of China's tallest skyscraper</h2>
+            <p class="story-desc">Race date: November 24, 2019. Scaling 119 floors and 3,398 steps of the Shanghai Tower to reach 632m height during a stressful visa waiting period.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -560,33 +603,35 @@
         <p>International marathon stories beyond the U.S. and China.</p>
       </div>
       <div class="story-grid" aria-label="RunWorld Stories">
-        <a class="story-card run-world" href="./mexico-marathon.html">
-              <div>
-                <p class="eyebrow">World / Mexico / Marathon</p>
-                <h2>Mexico City gave me a 26.2-mile high-altitude plateau challenge</h2>
-                <p>Race date: August 31, 2025. 2,240m altitude down Reforma to the Zócalo, followed by sun-drenched pyramids and a ride home with a carful of friendly locals.</p>
-                <div class="meta">
-                  <span>Mexico City, Mexico</span>
-                  <span>Pyramids &amp; Locals</span>
-                  <span>Run50 Facebook</span>
-                </div>
-              </div>
-              <img src="../../assets/cover-medal-mexico.jpg" alt="Icon-style Mexico City Marathon cover">
-            </a>
+                <a class="story-card run-world" href="./mexico-marathon.html">
+          <div class="card-cover" style="background-image:url(../../assets/cover-medal-mexico.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">Pyramids &amp; Locals</p>
+              <p class="card-cover-title">Mexico City, Mexico</p>
+            </div>
+          </div>
+          <div class="story-copy">
+            <p class="story-meta">Mexico City, Mexico · Pyramids &amp; Locals</p>
+            <h2 class="story-title">Mexico City gave me a 26.2-mile high-altitude plateau challenge</h2>
+            <p class="story-desc">Race date: August 31, 2025. 2,240m altitude down Reforma to the Zócalo, followed by sun-drenched pyramids and a ride home with a carful of friendly locals.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-world" href="./pisa-marathon.html">
-              <div>
-                <p class="eyebrow">World / Italy / Marathon</p>
-                <h2>Pisa turned a marathon into a Tuscan art-school road trip</h2>
-                <p>Race date: December 21, 2025. The Leaning Tower, Arno River, Tuscan villages, Ligurian Sea, and an Italy trip through Venice, Milan, Florence and Rome.</p>
-                <div class="meta">
-                  <span>Pisa, Italy</span>
-                  <span>RunWorld #6</span>
-                  <span>Run50 Facebook</span>
-                </div>
-              </div>
-              <img src="../../assets/cover-medal-pisa.jpg" alt="Icon-style Pisa Marathon cover">
-            </a>
+                <a class="story-card run-world" href="./pisa-marathon.html">
+          <div class="card-cover" style="background-image:url(../../assets/cover-medal-pisa.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunWorld #6</p>
+              <p class="card-cover-title">Pisa, Italy</p>
+            </div>
+          </div>
+          <div class="story-copy">
+            <p class="story-meta">Pisa, Italy · RunWorld #6</p>
+            <h2 class="story-title">Pisa turned a marathon into a Tuscan art-school road trip</h2>
+            <p class="story-desc">Race date: December 21, 2025. The Leaning Tower, Arno River, Tuscan villages, Ligurian Sea, and an Italy trip through Venice, Milan, Florence and Rome.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
       </div>
     </section>
     <!-- running-story-web-batch:fb:start -->
@@ -626,7 +671,12 @@
       </div>
       <div class="story-grid" aria-label="RunCN / China Marathon Series">
                 <a class="story-card run-cn" href="./xiamen-marathon.html">
-          <img src="../../assets/cover-medal-xiamen-marathon.jpg" alt="Icon-style RunCN #5 | Xiamen Marathon: the most unforgettable entrance cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-xiamen-marathon.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN #5</p>
+              <p class="card-cover-title">Xiamen, Fujian</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Xiamen, Fujian · RunCN #5</p>
             <h2 class="story-title">Xiamen gave my 2018 season a rain-soaked, unforgettable opening</h2>
@@ -635,7 +685,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./west-lake-half-marathon.html">
-          <img src="../../assets/cover-medal-west-lake-half-marathon.jpg" alt="Icon-style RunCN #6 | West Lake Half Marathon and a surprise encounter cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-west-lake-half-marathon.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN #6</p>
+              <p class="card-cover-title">Hangzhou, Zhejiang</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Hangzhou, Zhejiang · RunCN #6</p>
             <h2 class="story-title">A West Lake half marathon turned into a lakeside reset and an unexpected encounter</h2>
@@ -644,7 +699,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./wuhan-graduation.html">
-          <img src="../../assets/cover-medal-wuhan-graduation.jpg" alt="Icon-style RunCN Archive | Graduation photos, two years late cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-wuhan-graduation.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN Archive</p>
+              <p class="card-cover-title">Wuhan, Hubei</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Wuhan, Hubei · RunCN Archive</p>
             <h2 class="story-title">A delayed Wuhan graduation album became a time capsule</h2>
@@ -653,7 +713,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./lanzhou-marathon.html">
-          <img src="../../assets/cover-medal-lanzhou-marathon.jpg" alt="Icon-style RunCN #7 | Lanzhou Marathon on the eastern edge of the Hexi Corridor cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-lanzhou-marathon.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN #7</p>
+              <p class="card-cover-title">Lanzhou, Gansu</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Lanzhou, Gansu · RunCN #7</p>
             <h2 class="story-title">Lanzhou Strong: a marathon at the edge of the Yellow River and the Hexi dream</h2>
@@ -662,7 +727,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./haikou-marathon.html">
-          <img src="../../assets/cover-medal-haikou-marathon.jpg" alt="Icon-style RunCN #8 | Haikou: poetry, distance, and a sea full of stars cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-haikou-marathon.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN #8</p>
+              <p class="card-cover-title">Haikou, Hainan</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Haikou, Hainan · RunCN #8</p>
             <h2 class="story-title">Haikou became an unfinished running story by the sea</h2>
@@ -671,7 +741,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./wuhan-han-marathon.html">
-          <img src="../../assets/cover-medal-wuhan-han-marathon.jpg" alt="Icon-style RunCN #9 | Wuhan Han Marathon: a private memory cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-wuhan-han-marathon.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN #9</p>
+              <p class="card-cover-title">Wuhan, Hubei</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Wuhan, Hubei · RunCN #9</p>
             <h2 class="story-title">Wuhan and the Han Marathon became my private memory of leaving home</h2>
@@ -680,7 +755,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./dalian-trail.html">
-          <img src="../../assets/cover-medal-dalian-trail.jpg" alt="Icon-style RunCN Trail | Over the hills in Dalian cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-dalian-trail.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN Trail</p>
+              <p class="card-cover-title">Dalian, Liaoning</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Dalian, Liaoning · RunCN Trail</p>
             <h2 class="story-title">Dalian turned my first real trail race into a Northeastern coming-of-age story</h2>
@@ -689,7 +769,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./wuhan-marathon-2018.html">
-          <img src="../../assets/cover-medal-wuhan-marathon-2018.jpg" alt="Icon-style RunCN #10 | Wuhan Marathon: a century-spanning run cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-wuhan-marathon-2018.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN #10</p>
+              <p class="card-cover-title">Wuhan, Hubei</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Wuhan, Hubei · RunCN #10</p>
             <h2 class="story-title">Wuhan Marathon connected a century of city fire and running energy</h2>
@@ -698,7 +783,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./harbin-marathon.html">
-          <img src="../../assets/cover-medal-harbin-marathon.jpg" alt="Icon-style RunCN #11 | Harbin Marathon: running back home in the Northeast cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-harbin-marathon.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN #11</p>
+              <p class="card-cover-title">Harbin, Heilongjiang</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Harbin, Heilongjiang · RunCN #11</p>
             <h2 class="story-title">Harbin Marathon brought me back to the black soil and Songhua River</h2>
@@ -707,7 +797,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./steel-tank-story.html">
-          <img src="../../assets/cover-medal-steel-tank-story.jpg" alt="Icon-style RunCN Origin | The story of the steel tank cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-steel-tank-story.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN Origin</p>
+              <p class="card-cover-title">Harbin / Wuhan</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Harbin / Wuhan · RunCN Origin</p>
             <h2 class="story-title">The steel tank story: how a heavy football kid found marathons</h2>
@@ -716,7 +811,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./wuhan-wuxi-marathon-notes.html">
-          <img src="../../assets/cover-medal-wuhan-wuxi-marathon-notes.jpg" alt="Icon-style RunCN Notes | Wuhan and Wuxi: three races under cherry blossoms cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-wuhan-wuxi-marathon-notes.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN Notes</p>
+              <p class="card-cover-title">Wuhan / Wuxi</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Wuhan / Wuxi · RunCN Notes</p>
             <h2 class="story-title">Three spring races bloomed under cherry trees in Wuhan and Wuxi</h2>
@@ -725,7 +825,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./guiyang-marathon-climb.html">
-          <img src="../../assets/cover-medal-guiyang-marathon-climb.jpg" alt="Icon-style RunCN #12 | Guiyang Marathon: climbing through Yelang and the heart cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-guiyang-marathon-climb.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN #12</p>
+              <p class="card-cover-title">Guiyang, Guizhou</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Guiyang, Guizhou · RunCN #12</p>
             <h2 class="story-title">Guiyang turned a brutal climb into a journey through Yelang, Wang Yangming, and Fanjing Mountain</h2>
@@ -734,7 +839,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./xian-city-wall-marathon.html">
-          <img src="../../assets/cover-medal-xian-city-wall-marathon.jpg" alt="Icon-style RunCN #13 | Xi&#x27;an City Wall Marathon: rain on the city wall cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-xian-city-wall-marathon.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN #13</p>
+              <p class="card-cover-title">Xi&#x27;an, Shaanxi</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Xi&#x27;an, Shaanxi · RunCN #13</p>
             <h2 class="story-title">Xi&#x27;an turned a city-wall race into a walk through three thousand years of China</h2>
@@ -743,7 +853,12 @@
           </div>
         </a>
                 <a class="story-card run-cn" href="./three-city-pilgrimage.html">
-          <img src="../../assets/cover-medal-three-city-pilgrimage.jpg" alt="Icon-style RunCN Archive | Fresh clothes, fierce flowers: a pilgrimage through three cities cover" loading="lazy" decoding="async">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-three-city-pilgrimage.jpg)">
+            <div class="card-cover-text">
+              <p class="card-cover-label">RunCN Archive</p>
+              <p class="card-cover-title">Guang&#x27;an / Yichang / Changsha</p>
+            </div>
+          </div>
           <div class="story-copy">
             <p class="story-meta">Guang&#x27;an / Yichang / Changsha · RunCN Archive</p>
             <h2 class="story-title">Three 2017 races became a pilgrimage through Guang&#x27;an, Yichang, and Changsha</h2>
