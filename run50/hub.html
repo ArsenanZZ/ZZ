@@ -154,6 +154,7 @@
     border-bottom: 2px solid transparent;
     cursor: pointer;
     white-space: nowrap;
+    text-decoration: none;
     transition: color .15s, border-color .15s;
   }
   .hub-tab:hover { color: var(--ink); }
@@ -329,11 +330,11 @@
 
 <!-- ── MAIN TAB NAV ── -->
 <nav class="hub-tabs" role="tablist" aria-label="Run50 sections">
-  <button class="hub-tab active" role="tab" aria-selected="true" data-tab="home">🏠 Run50 Home</button>
-  <button class="hub-tab" role="tab" aria-selected="false" data-tab="chinese">📖 Chinese Stories</button>
-    <button class="hub-tab" role="tab" aria-selected="false" data-tab="english">📗 English Stories</button>
-  <button class="hub-tab" role="tab" aria-selected="false" data-tab="facebook">📘 Facebook Stories</button>
-  <button class="hub-tab" role="tab" aria-selected="false" data-tab="map">🗺 Running Map</button>
+  <a href="#home" class="hub-tab active" role="tab" aria-selected="true" data-tab="home">🏠 Run50 Home</a>
+  <a href="#chinese" class="hub-tab" role="tab" aria-selected="false" data-tab="chinese">📖 Chinese Stories</a>
+  <a href="#english" class="hub-tab" role="tab" aria-selected="false" data-tab="english">📗 English Stories</a>
+  <a href="#facebook" class="hub-tab" role="tab" aria-selected="false" data-tab="facebook">📘 Facebook Stories</a>
+  <a href="#map" class="hub-tab" role="tab" aria-selected="false" data-tab="map">🗺 Running Map</a>
 </nav>
 
 <!-- ── CONTENT ── -->
@@ -449,7 +450,7 @@ function switchTab(name) {
   if (name === 'map') initMaps();
 }
 
-hubTabs.forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
+hubTabs.forEach(t => t.addEventListener('click', e => { e.preventDefault(); switchTab(t.dataset.tab); }));
 
 /* ====================================================
    MAP SUB-TABS
