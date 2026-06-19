@@ -329,12 +329,12 @@
 </header>
 
 <!-- ── MAIN TAB NAV ── -->
-<nav class="hub-tabs" role="tablist" aria-label="Run50 sections">
-  <a href="#home" class="hub-tab active" role="tab" aria-selected="true" data-tab="home">🏠 Run50 Home</a>
-  <a href="#chinese" class="hub-tab" role="tab" aria-selected="false" data-tab="chinese">📖 Chinese Stories</a>
-  <a href="#english" class="hub-tab" role="tab" aria-selected="false" data-tab="english">📗 English Stories</a>
-  <a href="#facebook" class="hub-tab" role="tab" aria-selected="false" data-tab="facebook">📘 Facebook Stories</a>
-  <a href="#map" class="hub-tab" role="tab" aria-selected="false" data-tab="map">🗺 Running Map</a>
+<nav class="hub-tabs">
+  <a href="index.html" class="hub-tab">🏠 Run50 Home</a>
+  <a href="stories/chinese/" class="hub-tab">📖 Chinese Stories</a>
+  <a href="stories/english/" class="hub-tab">📗 English Stories</a>
+  <a href="facebook/" class="hub-tab">📘 Facebook Stories</a>
+  <a href="run50.html" class="hub-tab">🗺 Running Map</a>
 </nav>
 
 <!-- ── CONTENT ── -->
@@ -450,7 +450,6 @@ function switchTab(name) {
   if (name === 'map') initMaps();
 }
 
-hubTabs.forEach(t => t.addEventListener('click', e => { e.preventDefault(); switchTab(t.dataset.tab); }));
 
 /* ====================================================
    MAP SUB-TABS
