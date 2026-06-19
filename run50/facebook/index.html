@@ -170,99 +170,65 @@
     }
 
     .story-card {
-      display: flex;
-      flex-direction: column-reverse;
+      display: grid;
+      grid-template-rows: auto 1fr;
       min-height: 100%;
-      padding: 0;
       overflow: hidden;
       border: 1px solid var(--line);
-      border-radius: 12px;
-      margin: 0;
+      border-radius: 8px;
+      color: inherit;
       text-decoration: none;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+      box-shadow: 0 18px 44px rgba(15,23,42,.08);
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
-    .story-card > div {
-      height: 318px;
-      padding: 15px 17px 18px;
-      display: flex;
-      flex-direction: column;
     }
     .story-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      box-shadow: 0 24px 54px rgba(15,23,42,.12);
     }
-    .story-card.run-cn {
-      background: #faf2ee;
-      border-color: #ebdcd6;
-    }
-    .story-card.run-cn:hover {
-      border-color: #dfbeaf;
-    }
-    .story-card.run-50 {
-      background: #edf3f7;
-      border-color: #d0dfe8;
-    }
-    .story-card.run-50:hover {
-      border-color: #acc4d3;
-    }
-    .story-card.run-world {
-      background: #eef5ec;
-      border-color: #cfdcc8;
-    }
-    .story-card.run-world:hover {
-      border-color: #a9c1a2;
-    }
+    .story-card.run-cn { background: #faf2ee; border-color: #ebdcd6; }
+    .story-card.run-cn:hover { border-color: #dfbeaf; }
+    .story-card.run-50 { background: #edf3f7; border-color: #d0dfe8; }
+    .story-card.run-50:hover { border-color: #acc4d3; }
+    .story-card.run-world { background: #eef5ec; border-color: #cfdcc8; }
+    .story-card.run-world:hover { border-color: #a9c1a2; }
     .story-card img {
+      display: block;
       width: 100%;
       aspect-ratio: 16 / 10;
       object-fit: cover;
-      border-bottom: 1px solid var(--line);
-      display: block;
+      background: #e8edf1;
     }
-    .eyebrow {
-      margin: 0 0 10px;
-      color: var(--red);
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: .08em;
+    .story-copy { padding: 20px 20px 18px; }
+    .story-meta {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .04em;
       text-transform: uppercase;
     }
-    .story-card h2 {
-      margin: 0 0 10px;
-      font-size: 1.24rem;
-      line-height: 1.25;
-      letter-spacing: 0;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+    .story-title {
+      margin: 0;
+      color: #111827;
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 850;
     }
-    .story-card p {
-      margin: 0 0 14px;
-      color: #333333;
-      font-size: .95rem;
+    .story-desc {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
       line-height: 1.6;
     }
-    .story-card > div > p:not(.eyebrow) {
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .meta {
+    .story-foot {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: auto;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 16px;
       color: var(--muted);
       font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .meta span {
-      padding: 5px 8px;
-      background: var(--soft);
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
     }
     @media (max-width: 1000px) {
       .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -301,131 +267,132 @@
         <p>Start with State 1 and follow the project in order. Revisit races sit beside their original state.</p>
       </div>
       <div class="story-grid" aria-label="Run50 U.S. State Stories">
-        <a class="story-card run-50" href="./louisville-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>Kentucky gave me my first marathon in North America</h2>
-                <p>Race date: November 8, 2020. A socially distanced Louisville Marathon moved into Beckley Creek Park, with staggered starts, a quiet forest course, and a hard final 12 kilometers.</p>
-                <div class="meta"><span>Louisville, KY</span><span>Run50 #1</span><span>First North American marathon</span></div>
-              </div>
-              <img src="../../assets/cover-medal-louisville.jpg" alt="Icon-style Louisville Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./louisville-marathon.html">
+          <img src="../../assets/cover-medal-louisville.jpg" alt="Icon-style Louisville Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Louisville, KY · Run50 #1</p>
+            <h2 class="story-title">Kentucky gave me my first marathon in North America</h2>
+            <p class="story-desc">Race date: November 8, 2020. A socially distanced Louisville Marathon moved into Beckley Creek Park, with staggered starts, a quiet forest course, and a hard final 12 kilometers.</p>
+            <div class="story-foot"><span>First North American marathon</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./kentucky-derby-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>Louisville turned Derby season into the city&#x27;s biggest running party</h2>
-                <p>Race date: April 29, 2023. A hometown Derby-season marathon in Louisville, with horse-racing energy, city streets, friends, and one more Kentucky chapter.</p>
-                <div class="meta"><span>Louisville, KY</span><span>Run50 #01+</span><span>Derby season</span></div>
-              </div>
-              <img src="../../assets/cover-medal-kentucky-derby.jpg" alt="Icon-style Kentucky Derby Festival Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./kentucky-derby-marathon.html">
+          <img src="../../assets/cover-medal-kentucky-derby.jpg" alt="Icon-style Kentucky Derby Festival Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Louisville, KY · Run50 #01+</p>
+            <h2 class="story-title">Louisville turned Derby season into the city&#x27;s biggest running party</h2>
+            <p class="story-desc">Race date: April 29, 2023. A hometown Derby-season marathon in Louisville, with horse-racing energy, city streets, friends, and one more Kentucky chapter.</p>
+            <div class="story-foot"><span>Derby season</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./cleveland-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>Cleveland gave me a cold 26.2-mile run from night into daylight</h2>
-                <p>Race date: October 24, 2021. State 2 of Run50 started in the dark near Tower City, crossed Lake Erie light and industrial bridges, and ended with a medal that looked exactly like Cleveland felt.</p>
-                <div class="meta"><span>Cleveland, OH</span><span>Run50 #2</span><span>Rock Hall weekend</span></div>
-              </div>
-              <img src="../../assets/cover-medal-cleveland.jpg" alt="Icon-style Cleveland Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./cleveland-marathon.html">
+          <img src="../../assets/cover-medal-cleveland.jpg" alt="Icon-style Cleveland Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Cleveland, OH · Run50 #2</p>
+            <h2 class="story-title">Cleveland gave me a cold 26.2-mile run from night into daylight</h2>
+            <p class="story-desc">Race date: October 24, 2021. State 2 of Run50 started in the dark near Tower City, crossed Lake Erie light and industrial bridges, and ended with a medal that looked exactly like Cleveland felt.</p>
+            <div class="story-foot"><span>Rock Hall weekend</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./cincinnati-flying-pig-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>Cincinnati&#x27;s Flying Pig turned into a Flying Fish in the rain</h2>
-                <p>Race date: May 7, 2023. Cincinnati&#x27;s Flying Pig Marathon brought bridges, hills, rain and a full Queen City tour.</p>
-                <div class="meta"><span>Cincinnati, OH</span><span>Run50 #02+</span><span>Flying Pig</span></div>
-              </div>
-              <img src="../../assets/cover-medal-cincinnati.jpg" alt="Icon-style Flying Pig Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./cincinnati-flying-pig-marathon.html">
+          <img src="../../assets/cover-medal-cincinnati.jpg" alt="Icon-style Flying Pig Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Cincinnati, OH · Run50 #02+</p>
+            <h2 class="story-title">Cincinnati&#x27;s Flying Pig turned into a Flying Fish in the rain</h2>
+            <p class="story-desc">Race date: May 7, 2023. Cincinnati&#x27;s Flying Pig Marathon brought bridges, hills, rain and a full Queen City tour.</p>
+            <div class="story-foot"><span>Flying Pig</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./new-york-city-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>New York turned 26.2 miles into one enormous five-borough street party</h2>
-                <p>Race date: November 7, 2021. State 3 of Run50 and my first World Marathon Major: Staten Island, the Verrazzano Bridge, Brooklyn, Queens, Manhattan, and Central Park.</p>
-                <div class="meta"><span>New York City, NY</span><span>Run50 #3</span><span>World Major #1</span></div>
-              </div>
-              <img src="../../assets/cover-medal-new-york.jpg" alt="Icon-style New York City Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./new-york-city-marathon.html">
+          <img src="../../assets/cover-medal-new-york.jpg" alt="Icon-style New York City Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">New York City, NY · Run50 #3</p>
+            <h2 class="story-title">New York turned 26.2 miles into one enormous five-borough street party</h2>
+            <p class="story-desc">Race date: November 7, 2021. State 3 of Run50 and my first World Marathon Major: Staten Island, the Verrazzano Bridge, Brooklyn, Queens, Manhattan, and Central Park.</p>
+            <div class="story-foot"><span>World Major #1</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./san-francisco-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>San Francisco turned 26.2 miles into fog, bridge wind, hills and bay light</h2>
-                <p>Race date: July 24, 2022. State 4 of Run50 crossed the Golden Gate Bridge, ran through fog and sudden sun, and ended with a medal beside the bay.</p>
-                <div class="meta"><span>San Francisco, CA</span><span>Run50 #4</span><span>Golden Gate course</span></div>
-              </div>
-              <img src="../../assets/cover-medal-san-francisco.jpg" alt="Icon-style San Francisco Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./san-francisco-marathon.html">
+          <img src="../../assets/cover-medal-san-francisco.jpg" alt="Icon-style San Francisco Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">San Francisco, CA · Run50 #4</p>
+            <h2 class="story-title">San Francisco turned 26.2 miles into fog, bridge wind, hills and bay light</h2>
+            <p class="story-desc">Race date: July 24, 2022. State 4 of Run50 crossed the Golden Gate Bridge, ran through fog and sudden sun, and ended with a medal beside the bay.</p>
+            <div class="story-foot"><span>Golden Gate course</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./indianapolis-monumental-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>Indianapolis turned a rainy one-day marathon into a way back to running</h2>
-                <p>Race date: November 5, 2022. Run50 State 5 at the 15th Indianapolis Monumental Marathon: autumn rain, Monument Circle, run-walk intervals, and a 4:55:12 finish.</p>
-                <div class="meta"><span>Indianapolis, IN</span><span>Run50 #5</span><span>4:55:12 finish</span></div>
-              </div>
-              <img src="../../assets/cover-medal-indianapolis.jpg" alt="Icon-style Indianapolis Monumental Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./indianapolis-monumental-marathon.html">
+          <img src="../../assets/cover-medal-indianapolis.jpg" alt="Icon-style Indianapolis Monumental Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Indianapolis, IN · Run50 #5</p>
+            <h2 class="story-title">Indianapolis turned a rainy one-day marathon into a way back to running</h2>
+            <p class="story-desc">Race date: November 5, 2022. Run50 State 5 at the 15th Indianapolis Monumental Marathon: autumn rain, Monument Circle, run-walk intervals, and a 4:55:12 finish.</p>
+            <div class="story-foot"><span>4:55:12 finish</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./honolulu-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>Honolulu made a first marathon feel like an all-day island celebration</h2>
-                <p>Race date: December 11, 2022. State 6 of Run50 at the 50th Honolulu Marathon: fireworks, Waikiki, Diamond Head, no cutoff, and 47's first marathon finish.</p>
-                <div class="meta"><span>Honolulu, HI</span><span>Run50 #6</span><span>50th anniversary race</span></div>
-              </div>
-              <img src="../../assets/cover-medal-honolulu.jpg" alt="Icon-style Honolulu Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./honolulu-marathon.html">
+          <img src="../../assets/cover-medal-honolulu.jpg" alt="Icon-style Honolulu Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Honolulu, HI · Run50 #6</p>
+            <h2 class="story-title">Honolulu made a first marathon feel like an all-day island celebration</h2>
+            <p class="story-desc">Race date: December 11, 2022. State 6 of Run50 at the 50th Honolulu Marathon: fireworks, Waikiki, Diamond Head, no cutoff, and 47's first marathon finish.</p>
+            <div class="story-foot"><span>50th anniversary race</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./atlanta-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>Atlanta made 26.2 miles feel like an Olympic city walk</h2>
-                <p>Race date: February 26, 2023. State 7 of Run50 in Atlanta: Olympic rings, Coca-Cola, CNN, hills, and a long road-trip weekend.</p>
-                <div class="meta"><span>Atlanta, GA</span><span>Run50 #07</span><span>Olympic city</span></div>
-              </div>
-              <img src="../../assets/cover-medal-atlanta.jpg" alt="Icon-style Publix Atlanta Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./atlanta-marathon.html">
+          <img src="../../assets/cover-medal-atlanta.jpg" alt="Icon-style Publix Atlanta Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Atlanta, GA · Run50 #07</p>
+            <h2 class="story-title">Atlanta made 26.2 miles feel like an Olympic city walk</h2>
+            <p class="story-desc">Race date: February 26, 2023. State 7 of Run50 in Atlanta: Olympic rings, Coca-Cola, CNN, hills, and a long road-trip weekend.</p>
+            <div class="story-foot"><span>Olympic city</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./denver-colfax-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>Denver gave me 26.2 Mile High miles, stadium grass and mountain light</h2>
-                <p>Race date: May 21, 2023. State 8 of Run50 in Denver: Colfax, stadium grass, mountain light and Mile High air.</p>
-                <div class="meta"><span>Denver, CO</span><span>Run50 #08</span><span>Mile High</span></div>
-              </div>
-              <img src="../../assets/cover-medal-denver.jpg" alt="Icon-style Denver Colfax Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./denver-colfax-marathon.html">
+          <img src="../../assets/cover-medal-denver.jpg" alt="Icon-style Denver Colfax Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Denver, CO · Run50 #08</p>
+            <h2 class="story-title">Denver gave me 26.2 Mile High miles, stadium grass and mountain light</h2>
+            <p class="story-desc">Race date: May 21, 2023. State 8 of Run50 in Denver: Colfax, stadium grass, mountain light and Mile High air.</p>
+            <div class="story-foot"><span>Mile High</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./anchorage-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>Alaska had no aurora, but Anchorage still gave me a wild 26.2 miles</h2>
-                <p>Race date: June 17, 2023. State 9 of Run50 in Anchorage: no aurora, but Alaska mountains, coastal trails and summer-solstice light.</p>
-                <div class="meta"><span>Anchorage, AK</span><span>Run50 #09</span><span>Alaska light</span></div>
-              </div>
-              <img src="../../assets/cover-medal-anchorage.jpg" alt="Icon-style Anchorage Mayor&#x27;s Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./anchorage-marathon.html">
+          <img src="../../assets/cover-medal-anchorage.jpg" alt="Icon-style Anchorage Mayor&#x27;s Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Anchorage, AK · Run50 #09</p>
+            <h2 class="story-title">Alaska had no aurora, but Anchorage still gave me a wild 26.2 miles</h2>
+            <p class="story-desc">Race date: June 17, 2023. State 9 of Run50 in Anchorage: no aurora, but Alaska mountains, coastal trails and summer-solstice light.</p>
+            <div class="story-foot"><span>Alaska light</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./st-joseph-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>St. Joseph made Missouri feel like a first-edition marathon road trip</h2>
-                <p>Race date: September 23, 2023. State 10 of Run50 at the inaugural St. Joseph Missouri Marathon: parkways, heat, hills and a wedding weekend.</p>
-                <div class="meta"><span>St. Joseph, MO</span><span>Run50 #10</span><span>Inaugural race</span></div>
-              </div>
-              <img src="../../assets/cover-medal-st-joseph.jpg" alt="Icon-style St. Joseph Missouri Marathon cover">
-            </a>
+                <a class="story-card run-50" href="./st-joseph-marathon.html">
+          <img src="../../assets/cover-medal-st-joseph.jpg" alt="Icon-style St. Joseph Missouri Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">St. Joseph, MO · Run50 #10</p>
+            <h2 class="story-title">St. Joseph made Missouri feel like a first-edition marathon road trip</h2>
+            <p class="story-desc">Race date: September 23, 2023. State 10 of Run50 at the inaugural St. Joseph Missouri Marathon: parkways, heat, hills and a wedding weekend.</p>
+            <div class="story-foot"><span>Inaugural race</span><span>Read →</span></div>
+          </div>
+        </a>
 
-        <a class="story-card run-50" href="./chicago-marathon.html">
-              <div>
-                <p class="eyebrow">World / USA / Marathon</p>
-                <h2>Chicago gave me my second World Marathon Major and State 11 of Run50</h2>
-                <p>Race date: October 8, 2023. The 45th Chicago Marathon: Grant Park, the L, Chinatown, roaring crowds, Kelvin Kiptum's world record day, and a second finish beside Siqi.</p>
+                <a class="story-card run-50" href="./chicago-marathon.html">
+          <img src="../../assets/cover-medal-north-carolina-oak-island-marathon.jpg" alt="Icon-style Run50 #16 | North Carolina: Oak Island Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Oak Island, North Carolina · Run50 #16</p>
+            <h2 class="story-title">Chicago gave me my second World Marathon Major and State 11 of Run50</h2>
+            <p class="story-desc">Race date: October 8, 2023. The 45th Chicago Marathon: Grant Park, the L, Chinatown, roaring crowds, Kelvin Kiptum's world record day, and a second finish beside Siqi.</p>
                 <div class="meta">
                   <span>Chicago, IL</span>
                   <span>World Major #2</span>
@@ -636,18 +603,17 @@
             <p class="eyebrow">Run50 / Longform</p>
             <h2>Oak Island sent Run50 toward the Atlantic with a medal bigger than my face</h2>
             <p>A North Carolina coast marathon with winter legs, ocean wind, Atlantic light, and a medal that refused to be subtle.</p>
-            <div class="meta"><span>Oak Island, North Carolina</span><span>Run50 #16</span><span>Run50 Facebook</span></div>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-north-carolina-oak-island-marathon.jpg" alt="Icon-style Run50 #16 | North Carolina: Oak Island Marathon cover">
         </a>
-        <a class="story-card run-50" href="./disney-marathon.html">
-          <div>
-            <p class="eyebrow">Run50 / Longform</p>
-            <h2>A Florida week from Key West beaches to Disney Marathon</h2>
-            <p>Run50 State 15 as one Florida arc: Key West New Year, Orlando speedrun, Universal, and Disney Marathon.</p>
-            <div class="meta"><span>Key West / Orlando, Florida</span><span>Run50 #15</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-50" href="./disney-marathon.html">
+          <img src="../../assets/cover-medal-disney-marathon.jpg" alt="Icon-style Run50 #15 | Florida: Key West, Orlando, and Disney Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Key West / Orlando, Florida · Run50 #15</p>
+            <h2 class="story-title">A Florida week from Key West beaches to Disney Marathon</h2>
+            <p class="story-desc">Run50 State 15 as one Florida arc: Key West New Year, Orlando speedrun, Universal, and Disney Marathon.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-disney-marathon.jpg" alt="Icon-style Run50 #15 | Florida: Key West, Orlando, and Disney Marathon cover">
         </a>
       </div>
     </section>
@@ -659,131 +625,131 @@
         <p>Shanghai, Wuhan, Harbin, Wuxi, West Lake, Dalian, Lanzhou, Steel Tank, and other China running stories.</p>
       </div>
       <div class="story-grid" aria-label="RunCN / China Marathon Series">
-        <a class="story-card run-cn" href="./xiamen-marathon.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>Xiamen gave my 2018 season a rain-soaked, unforgettable opening</h2>
-            <p>A rainy Xiamen Marathon, a Zengcuo&#x27;an reunion, and the first full-marathon chapter of 2018.</p>
-            <div class="meta"><span>Xiamen, Fujian</span><span>RunCN #5</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./xiamen-marathon.html">
+          <img src="../../assets/cover-medal-xiamen-marathon.jpg" alt="Icon-style RunCN #5 | Xiamen Marathon: the most unforgettable entrance cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Xiamen, Fujian · RunCN #5</p>
+            <h2 class="story-title">Xiamen gave my 2018 season a rain-soaked, unforgettable opening</h2>
+            <p class="story-desc">A rainy Xiamen Marathon, a Zengcuo&#x27;an reunion, and the first full-marathon chapter of 2018.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-xiamen-marathon.jpg" alt="Icon-style RunCN #5 | Xiamen Marathon: the most unforgettable entrance cover">
         </a>
-        <a class="story-card run-cn" href="./west-lake-half-marathon.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>A West Lake half marathon turned into a lakeside reset and an unexpected encounter</h2>
-            <p>West Lake, Qingzhiwu, Westlake University, and a half marathon that helped me restart.</p>
-            <div class="meta"><span>Hangzhou, Zhejiang</span><span>RunCN #6</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./west-lake-half-marathon.html">
+          <img src="../../assets/cover-medal-west-lake-half-marathon.jpg" alt="Icon-style RunCN #6 | West Lake Half Marathon and a surprise encounter cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Hangzhou, Zhejiang · RunCN #6</p>
+            <h2 class="story-title">A West Lake half marathon turned into a lakeside reset and an unexpected encounter</h2>
+            <p class="story-desc">West Lake, Qingzhiwu, Westlake University, and a half marathon that helped me restart.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-west-lake-half-marathon.jpg" alt="Icon-style RunCN #6 | West Lake Half Marathon and a surprise encounter cover">
         </a>
-        <a class="story-card run-cn" href="./wuhan-graduation.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>A delayed Wuhan graduation album became a time capsule</h2>
-            <p>Wuhan University graduation, family visiting Wuhan, East Lake, and a photo album that arrived two years late.</p>
-            <div class="meta"><span>Wuhan, Hubei</span><span>RunCN Archive</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./wuhan-graduation.html">
+          <img src="../../assets/cover-medal-wuhan-graduation.jpg" alt="Icon-style RunCN Archive | Graduation photos, two years late cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Wuhan, Hubei · RunCN Archive</p>
+            <h2 class="story-title">A delayed Wuhan graduation album became a time capsule</h2>
+            <p class="story-desc">Wuhan University graduation, family visiting Wuhan, East Lake, and a photo album that arrived two years late.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-wuhan-graduation.jpg" alt="Icon-style RunCN Archive | Graduation photos, two years late cover">
         </a>
-        <a class="story-card run-cn" href="./lanzhou-marathon.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>Lanzhou Strong: a marathon at the edge of the Yellow River and the Hexi dream</h2>
-            <p>The Yellow River, beef noodles, Zhongshan Bridge, Gaolan Mountain, and a Lanzhou Marathon with roaring local energy.</p>
-            <div class="meta"><span>Lanzhou, Gansu</span><span>RunCN #7</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./lanzhou-marathon.html">
+          <img src="../../assets/cover-medal-lanzhou-marathon.jpg" alt="Icon-style RunCN #7 | Lanzhou Marathon on the eastern edge of the Hexi Corridor cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Lanzhou, Gansu · RunCN #7</p>
+            <h2 class="story-title">Lanzhou Strong: a marathon at the edge of the Yellow River and the Hexi dream</h2>
+            <p class="story-desc">The Yellow River, beef noodles, Zhongshan Bridge, Gaolan Mountain, and a Lanzhou Marathon with roaring local energy.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-lanzhou-marathon.jpg" alt="Icon-style RunCN #7 | Lanzhou Marathon on the eastern edge of the Hexi Corridor cover">
         </a>
-        <a class="story-card run-cn" href="./haikou-marathon.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>Haikou became an unfinished running story by the sea</h2>
-            <p>Haikou arcades, Hainan sea wind, an unfinished race, and a city story still worth keeping.</p>
-            <div class="meta"><span>Haikou, Hainan</span><span>RunCN #8</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./haikou-marathon.html">
+          <img src="../../assets/cover-medal-haikou-marathon.jpg" alt="Icon-style RunCN #8 | Haikou: poetry, distance, and a sea full of stars cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Haikou, Hainan · RunCN #8</p>
+            <h2 class="story-title">Haikou became an unfinished running story by the sea</h2>
+            <p class="story-desc">Haikou arcades, Hainan sea wind, an unfinished race, and a city story still worth keeping.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-haikou-marathon.jpg" alt="Icon-style RunCN #8 | Haikou: poetry, distance, and a sea full of stars cover">
         </a>
-        <a class="story-card run-cn" href="./wuhan-han-marathon.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>Wuhan and the Han Marathon became my private memory of leaving home</h2>
-            <p>Han Marathon, Wuhan University, River City, pre-graduation homesickness, and a private Wuhan memory.</p>
-            <div class="meta"><span>Wuhan, Hubei</span><span>RunCN #9</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./wuhan-han-marathon.html">
+          <img src="../../assets/cover-medal-wuhan-han-marathon.jpg" alt="Icon-style RunCN #9 | Wuhan Han Marathon: a private memory cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Wuhan, Hubei · RunCN #9</p>
+            <h2 class="story-title">Wuhan and the Han Marathon became my private memory of leaving home</h2>
+            <p class="story-desc">Han Marathon, Wuhan University, River City, pre-graduation homesickness, and a private Wuhan memory.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-wuhan-han-marathon.jpg" alt="Icon-style RunCN #9 | Wuhan Han Marathon: a private memory cover">
         </a>
-        <a class="story-card run-cn" href="./dalian-trail.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>Dalian turned my first real trail race into a Northeastern coming-of-age story</h2>
-            <p>Dalian&#x27;s west coast, the Yellow Sea and Bohai Sea divide, a trail race, and a hill story for the Northeast.</p>
-            <div class="meta"><span>Dalian, Liaoning</span><span>RunCN Trail</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./dalian-trail.html">
+          <img src="../../assets/cover-medal-dalian-trail.jpg" alt="Icon-style RunCN Trail | Over the hills in Dalian cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Dalian, Liaoning · RunCN Trail</p>
+            <h2 class="story-title">Dalian turned my first real trail race into a Northeastern coming-of-age story</h2>
+            <p class="story-desc">Dalian&#x27;s west coast, the Yellow Sea and Bohai Sea divide, a trail race, and a hill story for the Northeast.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-dalian-trail.jpg" alt="Icon-style RunCN Trail | Over the hills in Dalian cover">
         </a>
-        <a class="story-card run-cn" href="./wuhan-marathon-2018.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>Wuhan Marathon connected a century of city fire and running energy</h2>
-            <p>1911 memory, East Lake, Han Marathon volunteers, and Wuhan at full volume.</p>
-            <div class="meta"><span>Wuhan, Hubei</span><span>RunCN #10</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./wuhan-marathon-2018.html">
+          <img src="../../assets/cover-medal-wuhan-marathon-2018.jpg" alt="Icon-style RunCN #10 | Wuhan Marathon: a century-spanning run cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Wuhan, Hubei · RunCN #10</p>
+            <h2 class="story-title">Wuhan Marathon connected a century of city fire and running energy</h2>
+            <p class="story-desc">1911 memory, East Lake, Han Marathon volunteers, and Wuhan at full volume.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-wuhan-marathon-2018.jpg" alt="Icon-style RunCN #10 | Wuhan Marathon: a century-spanning run cover">
         </a>
-        <a class="story-card run-cn" href="./harbin-marathon.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>Harbin Marathon brought me back to the black soil and Songhua River</h2>
-            <p>Songhua River, black soil, Northeastern home, and a delayed Harbin Marathon memory.</p>
-            <div class="meta"><span>Harbin, Heilongjiang</span><span>RunCN #11</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./harbin-marathon.html">
+          <img src="../../assets/cover-medal-harbin-marathon.jpg" alt="Icon-style RunCN #11 | Harbin Marathon: running back home in the Northeast cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Harbin, Heilongjiang · RunCN #11</p>
+            <h2 class="story-title">Harbin Marathon brought me back to the black soil and Songhua River</h2>
+            <p class="story-desc">Songhua River, black soil, Northeastern home, and a delayed Harbin Marathon memory.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-harbin-marathon.jpg" alt="Icon-style RunCN #11 | Harbin Marathon: running back home in the Northeast cover">
         </a>
-        <a class="story-card run-cn" href="./steel-tank-story.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>The steel tank story: how a heavy football kid found marathons</h2>
-            <p>From the steel tank on the football field to a proud son at the Harbin Marathon finish.</p>
-            <div class="meta"><span>Harbin / Wuhan</span><span>RunCN Origin</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./steel-tank-story.html">
+          <img src="../../assets/cover-medal-steel-tank-story.jpg" alt="Icon-style RunCN Origin | The story of the steel tank cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Harbin / Wuhan · RunCN Origin</p>
+            <h2 class="story-title">The steel tank story: how a heavy football kid found marathons</h2>
+            <p class="story-desc">From the steel tank on the football field to a proud son at the Harbin Marathon finish.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-steel-tank-story.jpg" alt="Icon-style RunCN Origin | The story of the steel tank cover">
         </a>
-        <a class="story-card run-cn" href="./wuhan-wuxi-marathon-notes.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>Three spring races bloomed under cherry trees in Wuhan and Wuxi</h2>
-            <p>Wuhan, Wuxi, cherry blossoms, a college marathon, and three spring race notes.</p>
-            <div class="meta"><span>Wuhan / Wuxi</span><span>RunCN Notes</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./wuhan-wuxi-marathon-notes.html">
+          <img src="../../assets/cover-medal-wuhan-wuxi-marathon-notes.jpg" alt="Icon-style RunCN Notes | Wuhan and Wuxi: three races under cherry blossoms cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Wuhan / Wuxi · RunCN Notes</p>
+            <h2 class="story-title">Three spring races bloomed under cherry trees in Wuhan and Wuxi</h2>
+            <p class="story-desc">Wuhan, Wuxi, cherry blossoms, a college marathon, and three spring race notes.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-wuhan-wuxi-marathon-notes.jpg" alt="Icon-style RunCN Notes | Wuhan and Wuxi: three races under cherry blossoms cover">
         </a>
-        <a class="story-card run-cn" href="./guiyang-marathon-climb.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>Guiyang turned a brutal climb into a journey through Yelang, Wang Yangming, and Fanjing Mountain</h2>
-            <p>Guiyang Marathon heat and climbing, Qingyan, Yelang Valley, Yangming Cave, and Fanjing Mountain as one southwestern lesson.</p>
-            <div class="meta"><span>Guiyang, Guizhou</span><span>RunCN #12</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./guiyang-marathon-climb.html">
+          <img src="../../assets/cover-medal-guiyang-marathon-climb.jpg" alt="Icon-style RunCN #12 | Guiyang Marathon: climbing through Yelang and the heart cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Guiyang, Guizhou · RunCN #12</p>
+            <h2 class="story-title">Guiyang turned a brutal climb into a journey through Yelang, Wang Yangming, and Fanjing Mountain</h2>
+            <p class="story-desc">Guiyang Marathon heat and climbing, Qingyan, Yelang Valley, Yangming Cave, and Fanjing Mountain as one southwestern lesson.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-guiyang-marathon-climb.jpg" alt="Icon-style RunCN #12 | Guiyang Marathon: climbing through Yelang and the heart cover">
         </a>
-        <a class="story-card run-cn" href="./xian-city-wall-marathon.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>Xi&#x27;an turned a city-wall race into a walk through three thousand years of China</h2>
-            <p>Rain on the wall, the Qin plain, Terracotta Warriors, Huashan, and Hukou Falls in one heavy Chang&#x27;an travelogue.</p>
-            <div class="meta"><span>Xi&#x27;an, Shaanxi</span><span>RunCN #13</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./xian-city-wall-marathon.html">
+          <img src="../../assets/cover-medal-xian-city-wall-marathon.jpg" alt="Icon-style RunCN #13 | Xi&#x27;an City Wall Marathon: rain on the city wall cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Xi&#x27;an, Shaanxi · RunCN #13</p>
+            <h2 class="story-title">Xi&#x27;an turned a city-wall race into a walk through three thousand years of China</h2>
+            <p class="story-desc">Rain on the wall, the Qin plain, Terracotta Warriors, Huashan, and Hukou Falls in one heavy Chang&#x27;an travelogue.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-xian-city-wall-marathon.jpg" alt="Icon-style RunCN #13 | Xi&#x27;an City Wall Marathon: rain on the city wall cover">
         </a>
-        <a class="story-card run-cn" href="./three-city-pilgrimage.html">
-          <div>
-            <p class="eyebrow">RunCN / Longform</p>
-            <h2>Three 2017 races became a pilgrimage through Guang&#x27;an, Yichang, and Changsha</h2>
-            <p>Guang&#x27;an Marathon, Yichang Half, Changsha Marathon, and a pilgrimage threaded through Deng Xiaoping, a mentor, and Mao.</p>
-            <div class="meta"><span>Guang&#x27;an / Yichang / Changsha</span><span>RunCN Archive</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-cn" href="./three-city-pilgrimage.html">
+          <img src="../../assets/cover-medal-three-city-pilgrimage.jpg" alt="Icon-style RunCN Archive | Fresh clothes, fierce flowers: a pilgrimage through three cities cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Guang&#x27;an / Yichang / Changsha · RunCN Archive</p>
+            <h2 class="story-title">Three 2017 races became a pilgrimage through Guang&#x27;an, Yichang, and Changsha</h2>
+            <p class="story-desc">Guang&#x27;an Marathon, Yichang Half, Changsha Marathon, and a pilgrimage threaded through Deng Xiaoping, a mentor, and Mao.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-three-city-pilgrimage.jpg" alt="Icon-style RunCN Archive | Fresh clothes, fierce flowers: a pilgrimage through three cities cover">
         </a>
       </div>
     </section>
@@ -795,23 +761,23 @@
         <p>Bangkok is RunWorld stop 3, with running stories beyond the U.S. and China.</p>
       </div>
       <div class="story-grid" aria-label="RunWorld / Global Marathon Series">
-        <a class="story-card run-world" href="./singapore-sundown-marathon.html">
-          <div>
-            <p class="eyebrow">RunWorld / Longform</p>
-            <h2>Singapore brought me back to a ten-year promise and a midnight marathon</h2>
-            <p>A ten-year Singapore promise, campus pilgrimage, Marina Bay night, and a Sundown Marathon from midnight into morning.</p>
-            <div class="meta"><span>Singapore</span><span>RunWorld #1</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-world" href="./singapore-sundown-marathon.html">
+          <img src="../../assets/cover-medal-singapore-sundown-marathon.jpg" alt="Icon-style RunWorld #1 | Singapore Sundown Marathon: still young after ten years cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Singapore · RunWorld #1</p>
+            <h2 class="story-title">Singapore brought me back to a ten-year promise and a midnight marathon</h2>
+            <p class="story-desc">A ten-year Singapore promise, campus pilgrimage, Marina Bay night, and a Sundown Marathon from midnight into morning.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-singapore-sundown-marathon.jpg" alt="Icon-style RunWorld #1 | Singapore Sundown Marathon: still young after ten years cover">
         </a>
-        <a class="story-card run-world" href="./bangkok-marathon.html">
-          <div>
-            <p class="eyebrow">RunWorld / Longform</p>
-            <h2>Bangkok kept moving from temple light to marathon night</h2>
-            <p>A Bangkok running weekend through temple light, night streets, the Erawan Shrine, and the warmth of Thailand.</p>
-            <div class="meta"><span>Bangkok, Thailand</span><span>RunWorld #3</span><span>Run50 Facebook</span></div>
+                <a class="story-card run-world" href="./bangkok-marathon.html">
+          <img src="../../assets/cover-medal-bangkok-marathon.jpg" alt="Icon-style RunWorld #3 | Bangkok Marathon: day and night, nonstop cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Bangkok, Thailand · RunWorld #3</p>
+            <h2 class="story-title">Bangkok kept moving from temple light to marathon night</h2>
+            <p class="story-desc">A Bangkok running weekend through temple light, night streets, the Erawan Shrine, and the warmth of Thailand.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
-          <img src="../../assets/cover-medal-bangkok-marathon.jpg" alt="Icon-style RunWorld #3 | Bangkok Marathon: day and night, nonstop cover">
         </a>
       </div>
     </section>
