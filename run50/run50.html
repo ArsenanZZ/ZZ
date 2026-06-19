@@ -2407,8 +2407,18 @@
                 if(welcome) welcome.classList.remove('active');
                 // 切换后滚回顶部
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                // 更新 URL hash，使每张卡片有独立链接
+                history.replaceState(null, '', '#' + scriptId);
             }
         }
+
+        // 页面加载时读取 hash，直接跳转到对应卡片
+        (function() {
+            const h = location.hash.slice(1);
+            if (h && document.getElementById(h)) {
+                switchScript(h);
+            }
+        })();
     </script>
 
 
