@@ -1,0 +1,144 @@
+/* Shared Run50 Facebook article formatting.
+   Keeps the U.S. Run50 story pages visually aligned with the St. Joseph benchmark. */
+
+article p,
+.article-body p,
+.article p,
+.copy p,
+.story-body p,
+.story p {
+  font-size: 18px;
+  line-height: 1.78;
+}
+
+article h2,
+.article-body h2,
+.article h2,
+.copy h2,
+.story-body h2,
+.story h2 {
+  margin: 34px 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(26px, 3vw, 32px);
+  line-height: 1.2;
+  color: #111827;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+article h2.section-label,
+.article-body h2.section-label,
+.article h2.section-label,
+.copy h2.section-label,
+.story-body h2.section-label,
+.story h2.section-label {
+  margin: 34px 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(26px, 3vw, 32px);
+  line-height: 1.2;
+  color: #0b67c2;
+  font-weight: 950;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+article p.section-label,
+.article-body p.section-label,
+.article p.section-label,
+.copy p.section-label,
+.story-body p.section-label,
+.story p.section-label {
+  margin: 0 0 14px;
+  color: #0b67c2;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 950;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+article .transition,
+.article-body .transition,
+.article .transition,
+.copy .transition,
+.story-body .transition,
+.story .transition {
+  margin: 42px 0 22px;
+  padding-top: 24px;
+  border-top: 1px solid #d0dfe8;
+  color: #475467;
+  font-weight: 850;
+}
+
+article blockquote,
+.article-body blockquote,
+.article blockquote,
+.copy blockquote,
+.story-body blockquote,
+.story blockquote {
+  margin: 30px auto;
+  padding: 18px 24px;
+  border-left: 4px solid #b7c8dc;
+  background: #f8fbff;
+  color: #475467;
+  font-size: 17px;
+  line-height: 1.75;
+  font-style: italic;
+}
+
+article .end-mark,
+article .credit-line,
+.article-body .end-mark,
+.article-body .credit-line,
+.article .end-mark,
+.article .credit-line,
+.copy .end-mark,
+.copy .credit-line,
+.story-body .end-mark,
+.story-body .credit-line,
+.story .end-mark,
+.story .credit-line {
+  text-align: center;
+  color: #667085;
+  font-weight: 850;
+  letter-spacing: .02em;
+}
+
+article .end-mark,
+.article-body .end-mark,
+.article .end-mark,
+.copy .end-mark,
+.story-body .end-mark,
+.story .end-mark {
+  margin-top: 44px;
+}
+
+article figcaption,
+.article-body figcaption,
+.article figcaption,
+.copy figcaption,
+.story-body figcaption,
+.story figcaption,
+article .caption-line,
+.article-body .caption-line,
+.article .caption-line,
+.copy .caption-line,
+.story-body .caption-line,
+.story .caption-line {
+  color: #667085;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+@media (max-width: 620px) {
+  article p,
+  .article-body p,
+  .article p,
+  .copy p,
+  .story-body p,
+  .story p {
+    font-size: 16px;
+  }
+}
