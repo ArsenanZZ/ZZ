@@ -279,82 +279,6 @@
       line-height: 1.2;
     }
 
-    /* FB-only English enamel plates. The shared medal artwork stays untouched. */
-    .story-card.run-cn .card-cover::before,
-    .story-card.run-world[href="./pisa-marathon.html"] .card-cover::before,
-    .story-card.run-world[href="./singapore-sundown-marathon.html"]::before {
-      position: absolute;
-      z-index: 3;
-      top: 9px;
-      left: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      border: 3px solid #e8dfcf;
-      outline: 1px solid rgba(22, 28, 36, .92);
-      border-radius: 6px;
-      color: #fff8e8;
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: .035em;
-      text-align: center;
-      text-shadow: 0 2px 0 rgba(0, 0, 0, .75);
-      box-shadow:
-        inset 0 0 0 2px rgba(255, 255, 255, .16),
-        inset 0 -10px 18px rgba(0, 0, 0, .18),
-        0 3px 8px rgba(0, 0, 0, .34);
-      pointer-events: none;
-    }
-    .story-card.run-cn .card-cover::before {
-      width: 52%;
-      height: 58px;
-      padding: 8px 10px;
-      background: linear-gradient(145deg, #a52b2f, #5d1118);
-      font-size: clamp(17px, 1.8vw, 23px);
-      white-space: nowrap;
-    }
-    .story-card.run-cn[href="./steel-tank-story.html"] .card-cover::before { content: "STEEL TANK"; }
-    .story-card.run-cn[href="./three-city-pilgrimage.html"] .card-cover::before { content: "THREE CITIES"; font-size: clamp(15px, 1.55vw, 19px); }
-    .story-card.run-cn[href="./xiamen-marathon.html"] .card-cover::before { content: "XIAMEN"; }
-    .story-card.run-cn[href="./lanzhou-marathon.html"] .card-cover::before { content: "LANZHOU"; }
-    .story-card.run-cn[href="./wuhan-marathon-2018.html"] .card-cover::before { content: "WUHAN"; }
-    .story-card.run-cn[href="./wuhan-wuxi-marathon-notes.html"] .card-cover::before { content: "WUHAN / WUXI"; font-size: clamp(14px, 1.55vw, 20px); }
-    .story-card.run-cn[href="./guiyang-marathon-climb.html"] .card-cover::before { content: "GUIYANG"; }
-    .story-card.run-cn[href="./xian-city-wall-marathon.html"] .card-cover::before { content: "XI'AN"; }
-    .story-card.run-cn[href="./west-lake-half-marathon.html"] .card-cover::before { content: "HANGZHOU"; }
-    .story-card.run-cn[href="./wuhan-graduation.html"] .card-cover::before { content: "WUHAN"; }
-    .story-card.run-cn[href="./haikou-marathon.html"] .card-cover::before { content: "HAIKOU"; }
-    .story-card.run-cn[href="./wuhan-han-marathon.html"] .card-cover::before { content: "WUHAN"; }
-    .story-card.run-cn[href="./dalian-trail.html"] .card-cover::before { content: "DALIAN"; }
-    .story-card.run-cn[href="./harbin-marathon.html"] .card-cover::before { content: "HARBIN"; }
-    .story-card.run-cn[href="./shanghai-vertical-marathon.html"] .card-cover::before { content: "SHANGHAI"; }
-    .story-card.run-cn[href="./xiangyang-marathon.html"] .card-cover::before { content: "XIANGYANG"; }
-    .story-card.run-cn[href="./guilin-marathon.html"] .card-cover::before { content: "GUILIN"; }
-    .story-card.run-cn[href="./hong-kong-marathon.html"] .card-cover::before { content: "HONG KONG"; }
-
-    .story-card.run-world[href="./pisa-marathon.html"] .card-cover::before {
-      content: "ITALY\A PISA";
-      width: 46%;
-      min-height: 88px;
-      padding: 8px 12px;
-      white-space: pre-line;
-      background: linear-gradient(to bottom, #8f2028 0 49%, #17623c 49% 100%);
-      font-size: clamp(17px, 1.65vw, 21px);
-      line-height: 1.25;
-    }
-    .story-card.run-world[href="./singapore-sundown-marathon.html"] {
-      position: relative;
-    }
-    .story-card.run-world[href="./singapore-sundown-marathon.html"]::before {
-      content: "SINGAPORE";
-      width: 48%;
-      min-height: 64px;
-      padding: 8px 12px;
-      background: linear-gradient(145deg, #146f70, #073f51);
-      font-size: clamp(20px, 2.1vw, 27px);
-    }
   </style>
 </head>
 <body>
@@ -585,7 +509,7 @@
       </div>
       <div class="story-grid" aria-label="RunCN China Stories">
         <a class="story-card run-cn" href="./steel-tank-story.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-steel-tank-story.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-steel-tank-story.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN Origin</p>
               <p class="card-cover-title">Harbin / Wuhan</p>
@@ -599,7 +523,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./three-city-pilgrimage.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-three-city-pilgrimage.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-three-city-pilgrimage.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN Archive</p>
               <p class="card-cover-title">Guang&#x27;an / Yichang / Changsha</p>
@@ -613,7 +537,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./xiamen-marathon.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-xiamen-marathon.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-xiamen-marathon.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN #5</p>
               <p class="card-cover-title">Xiamen, Fujian</p>
@@ -627,7 +551,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./lanzhou-marathon.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-lanzhou-marathon.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-lanzhou-marathon.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN #7</p>
               <p class="card-cover-title">Lanzhou, Gansu</p>
@@ -641,7 +565,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./wuhan-marathon-2018.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-wuhan-marathon-2018.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-wuhan-marathon-2018.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN #10</p>
               <p class="card-cover-title">Wuhan, Hubei</p>
@@ -655,7 +579,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./wuhan-wuxi-marathon-notes.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-wuhan-wuxi-marathon-notes.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-wuhan-wuxi-marathon-notes.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN Notes</p>
               <p class="card-cover-title">Wuhan / Wuxi</p>
@@ -669,7 +593,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./guiyang-marathon-climb.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-guiyang-marathon-climb.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-guiyang-marathon-climb.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN #12</p>
               <p class="card-cover-title">Guiyang, Guizhou</p>
@@ -683,7 +607,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./xian-city-wall-marathon.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-xian-city-wall-marathon.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-xian-city-wall-marathon.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN #13</p>
               <p class="card-cover-title">Xi&#x27;an, Shaanxi</p>
@@ -697,7 +621,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./west-lake-half-marathon.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-west-lake-half-marathon.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-west-lake-half-marathon.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN #6</p>
               <p class="card-cover-title">Hangzhou, Zhejiang</p>
@@ -711,7 +635,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./wuhan-graduation.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-wuhan-graduation.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-wuhan-graduation.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN Archive</p>
               <p class="card-cover-title">Wuhan, Hubei</p>
@@ -725,7 +649,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./haikou-marathon.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-haikou-marathon.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-haikou-marathon.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN #8</p>
               <p class="card-cover-title">Haikou, Hainan</p>
@@ -739,7 +663,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./wuhan-han-marathon.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-wuhan-han-marathon.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-wuhan-han-marathon.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN #9</p>
               <p class="card-cover-title">Wuhan, Hubei</p>
@@ -753,7 +677,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./dalian-trail.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-dalian-trail.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-dalian-trail.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN Trail</p>
               <p class="card-cover-title">Dalian, Liaoning</p>
@@ -767,7 +691,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./harbin-marathon.html">
-                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-harbin-marathon.jpg)">
+                    <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-harbin-marathon.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunCN #11</p>
               <p class="card-cover-title">Harbin, Heilongjiang</p>
@@ -781,7 +705,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./shanghai-vertical-marathon.html">
-          <div class="card-cover" style="background-image:url(../../assets/cover-medal-shanghai-vertical-marathon.jpg)">
+          <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-shanghai-vertical-marathon.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">3,398 steps</p>
               <p class="card-cover-title">Shanghai, China</p>
@@ -795,7 +719,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./xiangyang-marathon.html">
-          <div class="card-cover" style="background-image:url(../../assets/cover-medal-xiangyang.jpg)">
+          <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-xiangyang.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">3:57 finish</p>
               <p class="card-cover-title">Xiangyang, Hubei</p>
@@ -809,7 +733,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./guilin-marathon.html">
-          <div class="card-cover" style="background-image:url(../../assets/cover-medal-guilin.jpg)">
+          <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-guilin.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">Full-sun course</p>
               <p class="card-cover-title">Guilin, Guangxi</p>
@@ -823,7 +747,7 @@
           </div>
         </a>
         <a class="story-card run-cn" href="./hong-kong-marathon.html">
-          <div class="card-cover" style="background-image:url(../../assets/cover-medal-hk.jpg)">
+          <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-hk.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">Tunnels + bridges</p>
               <p class="card-cover-title">Hong Kong, China</p>
@@ -847,7 +771,7 @@
       </div>
       <div class="story-grid" aria-label="RunWorld Stories">
         <a class="story-card run-world" href="./singapore-sundown-marathon.html">
-          <img src="../../assets/cover-medal-singapore-sundown-marathon.jpg?v=20260619-en" alt="Singapore Sundown Marathon cover" loading="lazy" decoding="async">
+          <img src="../../assets/cover-medal-fb-singapore-sundown-marathon.jpg?v=20260622-fb-en" alt="Singapore Sundown Marathon cover" loading="lazy" decoding="async">
           <div class="story-copy">
             <p class="story-meta">Singapore · RunWorld #1</p>
             <h2 class="story-title">Singapore brought me back to a ten-year promise and a midnight marathon</h2>
@@ -879,7 +803,7 @@
           </div>
         </a>
         <a class="story-card run-world" href="./pisa-marathon.html">
-          <div class="card-cover" style="background-image:url(../../assets/cover-medal-pisa.jpg)">
+          <div class="card-cover" style="background-image:url(../../assets/cover-medal-fb-pisa.jpg?v=20260622-fb-en)">
             <div class="card-cover-text">
               <p class="card-cover-label">RunWorld #6</p>
               <p class="card-cover-title">Pisa, Italy</p>
