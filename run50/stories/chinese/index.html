@@ -1596,15 +1596,16 @@
 
     const _CHINA_LABEL_OVERRIDES = {
       cn_xinjiang:[202,220,13], cn_tibet:[222,360,13], cn_qinghai:[310,300,12],
-      cn_innermongolia:[520,166,11], cn_heilongjiang:[684,112,10], cn_jilin:[665,174,10],
+      cn_innermongolia:[520,190,11], cn_heilongjiang:[684,112,10], cn_jilin:[665,174,10],
       cn_liaoning:[622,216,9], cn_gansu:[362,268,10], cn_ningxia:[425,273,8],
-      cn_shanxi:[500,264,9], cn_shaanxi:[456,300,9], cn_hebei:[545,240,8],
+      cn_shanxi:[500,264,9], cn_shaanxi:[456,300,9], cn_hebei:[542,266,8],
       cn_shandong:[574,284,9], cn_henan:[518,320,8], cn_anhui:[557,350,8],
       cn_jiangsu:[590,336,8], cn_hubei:[500,368,9], cn_chongqing:[447,380,8],
       cn_sichuan:[386,374,10], cn_guizhou:[434,446,9], cn_hunan:[492,416,9],
       cn_jiangxi:[540,414,8], cn_zhejiang:[590,390,8], cn_fujian:[566,436,8],
       cn_guangxi:[456,472,9], cn_yunnan:[373,452,10], cn_guangdong:[510,478,9],
-      cn_hainan:[470,540,8], cn_taiwan:[602,470,8], cn_beijing:[548,222,8]
+      cn_hainan:[470,540,8], cn_taiwan:[602,470,8], cn_beijing:[548,219,8],
+      cn_tianjin:[565,244,7]
     };
 
     const _CHINA_RUN_PROVINCES = {
@@ -1837,8 +1838,8 @@
       if (typeof _CN_LABELS !== 'undefined') {
         for (const [id, [lx, ly, fs]] of Object.entries(_CN_LABELS)) {
           const name = _CHINA_PROVINCE_NAMES[id];
-          if (!name || fs === 0) continue;
           const override = _CHINA_LABEL_OVERRIDES[id] || [];
+          if (!name || (fs === 0 && !override[2])) continue;
           const labelX = override[0] || lx;
           const labelY = override[1] || ly;
           const labelSize = override[2] || (_CHINA_RUN_PROVINCES[id] ? fs : Math.max(8, fs - 1));
