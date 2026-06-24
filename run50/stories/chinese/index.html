@@ -249,6 +249,23 @@
         stroke: #fff;
         stroke-width: 2px;
     }
+    #cn-map-master {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 800 / 720;
+        display: block;
+    }
+    #cn-map-master path {
+        transition: fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease;
+    }
+    #cn-map-master path.cn-run-province {
+        cursor: pointer;
+    }
+    #cn-map-master path.cn-run-province:hover {
+        opacity: 0.86;
+        stroke: #fff;
+        stroke-width: 2px;
+    }
 
     /* City Dot styling */
     .city-dot {
@@ -382,10 +399,24 @@
 
     <!-- 中国足迹互动地图 -->
     <div id="china-map-container" style="max-width:980px; margin: 0 auto 34px; background:#fff; border-radius:12px; border:1px solid var(--line); padding:24px; box-shadow: 0 18px 44px rgba(15, 23, 42, .08);">
-      <div style="font-size:16px; font-weight:700; color:var(--ink); margin-bottom:15px; display:flex; align-items:center; gap:8px;">
-        <span>🗺️ 中国足迹地图</span>
+      <div style="font-size:16px; font-weight:700; color:var(--ink); margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span>🗺️ 中国马拉松跑旅足迹 (Interactive Map)</span>
+          <span style="font-size:12px; background:#fff2e8; color:#cc0000; padding:2px 8px; border-radius:12px; font-weight:bold;">已跑过 15 个省级区域</span>
+        </div>
+        <span id="china-map-hover-status" style="font-size:13px; font-weight:normal; color:var(--muted); transition:color 0.2s;">鼠标悬停在省份或红点上查看故事，点击可跳转到对应卡片</span>
       </div>
-      <div id="cn-map-slot" style="position:relative; width:100%; background:#f4f6f7; border-radius:8px; overflow:visible; border:1px solid var(--line);">
+      <div id="cn-map-slot" style="position:relative; width:100%; aspect-ratio: 800 / 720; background:#f4f6f7; border-radius:8px; overflow:hidden; border:1px solid var(--line);">
+      </div>
+      <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:10px; flex-wrap:wrap;">
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span style="display:inline-block; width:12px; height:12px; background:linear-gradient(135deg,#d4614a 0 25%,#e89838 25% 50%,#5ca860 50% 75%,#3898a8 75%); border-radius:3px;"></span>
+          <span>彩色省份/地区：已跑过或有 RunCN 参赛故事</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
+          <span>跑马城市 / 比赛城市</span>
+        </div>
       </div>
     </div>
 
@@ -1541,6 +1572,170 @@
 
     document.addEventListener('DOMContentLoaded', _injectMap);
 
+    const _CHINA_ALL_PROVINCES = ['cn_xinjiang','cn_tibet','cn_innermongolia','cn_qinghai','cn_sichuan',
+      'cn_heilongjiang','cn_gansu','cn_yunnan','cn_guangxi','cn_hunan','cn_shaanxi',
+      'cn_guangdong','cn_jilin','cn_hebei','cn_hubei','cn_guizhou','cn_shandong',
+      'cn_jiangxi','cn_henan','cn_liaoning','cn_shanxi','cn_anhui','cn_fujian',
+      'cn_zhejiang','cn_jiangsu','cn_chongqing','cn_ningxia','cn_hainan','cn_taiwan',
+      'cn_beijing','cn_tianjin','cn_shanghai','cn_hongkong','cn_macao'];
+
+    const _CHINA_PROVINCE_NAMES = {
+      cn_xinjiang:'新疆', cn_tibet:'西藏', cn_innermongolia:'内蒙古', cn_qinghai:'青海', cn_sichuan:'四川',
+      cn_heilongjiang:'黑龙江', cn_gansu:'甘肃', cn_yunnan:'云南', cn_guangxi:'广西', cn_hunan:'湖南',
+      cn_shaanxi:'陕西', cn_guangdong:'广东', cn_jilin:'吉林', cn_hebei:'河北', cn_hubei:'湖北',
+      cn_guizhou:'贵州', cn_shandong:'山东', cn_jiangxi:'江西', cn_henan:'河南', cn_liaoning:'辽宁',
+      cn_shanxi:'山西', cn_anhui:'安徽', cn_fujian:'福建', cn_zhejiang:'浙江', cn_jiangsu:'江苏',
+      cn_chongqing:'重庆', cn_ningxia:'宁夏', cn_hainan:'海南', cn_taiwan:'台湾', cn_beijing:'北京',
+      cn_tianjin:'天津', cn_shanghai:'上海', cn_hongkong:'香港', cn_macao:'澳门'
+    };
+
+    const _CHINA_RUN_PROVINCES = {
+      cn_heilongjiang:{ color:'#d4614a' }, cn_hubei:{ color:'#5ca860' }, cn_sichuan:{ color:'#e89838' },
+      cn_hunan:{ color:'#9068c0' }, cn_fujian:{ color:'#3898a8' }, cn_gansu:{ color:'#d4614a' },
+      cn_jiangsu:{ color:'#98c038' }, cn_guizhou:{ color:'#5ca860' }, cn_shaanxi:{ color:'#e89838' },
+      cn_zhejiang:{ color:'#9068c0' }, cn_hainan:{ color:'#3898a8' }, cn_liaoning:{ color:'#d4614a' },
+      cn_shanghai:{ color:'#5ca860' }, cn_guangxi:{ color:'#e89838' }, cn_hongkong:{ color:'#9068c0' }
+    };
+
+    const _CHINA_CITY_DOTS = [
+      { name:'哈尔滨', province:'cn_heilongjiang', x:688, y:116, dx:8, dy:-6, races:[
+        { title:'RunCN #第1-6站｜钢铁战车的故事', date:'2017 归档', url:'./steel-tank-story.html' },
+        { title:'RunCN #第14站｜哈尔滨马拉松', date:'2019 归档', url:'./harbin-marathon.html' }
+      ]},
+      { name:'武汉', province:'cn_hubei', x:512, y:367, dx:9, dy:15, races:[
+        { title:'RunCN #第9站｜武汉马拉松', date:'2018 归档', url:'./wuhan-marathon-2018.html' },
+        { title:'RunCN #第12站｜武汉汉马', date:'2019 归档', url:'./wuhan-han-marathon.html' }
+      ]},
+      { name:'宜昌', province:'cn_hubei', x:486, y:362, dx:-34, dy:15, races:[
+        { title:'RunCN 归档｜宜昌半马', date:'2017 归档', url:'./three-city-pilgrimage.html' }
+      ]},
+      { name:'襄阳', province:'cn_hubei', x:497, y:344, dx:8, dy:-8, races:[
+        { title:'RunCN #第15站｜襄阳马拉松', date:'2025.10.19', url:'./xiangyang-marathon.html' }
+      ]},
+      { name:'广安', province:'cn_sichuan', x:421, y:354, dx:-34, dy:-6, races:[
+        { title:'RunCN 归档｜广安马', date:'2017 归档', url:'./three-city-pilgrimage.html' }
+      ]},
+      { name:'长沙', province:'cn_hunan', x:496, y:421, dx:8, dy:15, races:[
+        { title:'RunCN 归档｜长沙马拉松', date:'2017 归档', url:'./three-city-pilgrimage.html' }
+      ]},
+      { name:'厦门', province:'cn_fujian', x:574, y:455, dx:8, dy:13, races:[
+        { title:'RunCN #第7站｜厦门马拉松', date:'2018 归档', url:'./xiamen-marathon.html' }
+      ]},
+      { name:'兰州', province:'cn_gansu', x:400, y:283, dx:-33, dy:-6, races:[
+        { title:'RunCN #第8站｜兰州马拉松', date:'2018 归档', url:'./lanzhou-marathon.html' }
+      ]},
+      { name:'无锡', province:'cn_jiangsu', x:591, y:346, dx:-34, dy:-6, races:[
+        { title:'RunCN #第10站｜无锡马拉松笔记', date:'2018 归档', url:'./wuhan-wuxi-marathon-notes.html' }
+      ]},
+      { name:'贵阳', province:'cn_guizhou', x:436, y:425, dx:-34, dy:15, races:[
+        { title:'RunCN #第12站｜贵阳马拉松', date:'2018 归档', url:'./guiyang-marathon-climb.html' }
+      ]},
+      { name:'西安', province:'cn_shaanxi', x:466, y:305, dx:8, dy:-7, races:[
+        { title:'RunCN #第13站｜西安城墙马拉松', date:'2018 归档', url:'./xian-city-wall-marathon.html' }
+      ]},
+      { name:'杭州', province:'cn_zhejiang', x:592, y:390, dx:8, dy:15, races:[
+        { title:'RunCN 半马归档｜西湖半马', date:'2019 归档', url:'./west-lake-half-marathon.html' }
+      ]},
+      { name:'海口', province:'cn_hainan', x:472, y:536, dx:8, dy:-6, races:[
+        { title:'RunCN #第11站｜海口马拉松', date:'2019 归档', url:'./haikou-marathon.html' }
+      ]},
+      { name:'大连', province:'cn_liaoning', x:634, y:234, dx:8, dy:13, races:[
+        { title:'RunCN #第13站｜大连越野', date:'2019 归档', url:'./dalian-trail.html' }
+      ]},
+      { name:'上海', province:'cn_shanghai', x:606, y:357, dx:8, dy:-7, races:[
+        { title:'RunCN 特别篇｜上海中心垂直马拉松', date:'2019.11.24', url:'./shanghai-vertical-marathon.html' }
+      ]},
+      { name:'桂林', province:'cn_guangxi', x:475, y:446, dx:8, dy:-7, races:[
+        { title:'RunCN #第16站｜桂林马拉松', date:'2025.11.16', url:'./guilin-marathon.html' }
+      ]},
+      { name:'香港', province:'cn_hongkong', x:521, y:490, dx:8, dy:13, races:[
+        { title:'RunCN #第17站｜香港嘉里街道马拉松', date:'2025.11.23', url:'./hong-kong-marathon.html' }
+      ]}
+    ];
+
+    function _setChinaStatus(text) {
+      const status = document.getElementById('china-map-hover-status');
+      if (status) status.textContent = text || '鼠标悬停在省份或红点上查看故事，点击可跳转到对应卡片';
+    }
+
+    function _chinaProvinceRaces(provinceId) {
+      return _CHINA_CITY_DOTS
+        .filter(c => c.province === provinceId)
+        .flatMap(c => c.races.map(r => ({...r, city:c.name})));
+    }
+
+    function _flashChinaStoryCard(url) {
+      if (!url) return false;
+      let card = null;
+      document.querySelectorAll('a.story-card').forEach(a => {
+        if (a.getAttribute('href') === url) card = a;
+      });
+      if (!card) return false;
+      card.scrollIntoView({ behavior:'smooth', block:'center' });
+      card.classList.add('card-highlight-flash');
+      setTimeout(() => card.classList.remove('card-highlight-flash'), 3000);
+      return true;
+    }
+
+    function _chinaRaceLinks(r) {
+      const slug = (r.url || '').replace('./','');
+      return `<div class="story-links" style="margin-top:6px; display:flex; gap:6px; flex-wrap:wrap;">
+        <a href="${r.url}" class="map-tooltip-link" style="background:#cc0000; color:#fff; font-size:11px;">中文故事 ↗</a>
+        <a href="../../facebook/${slug}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size:11px;">Facebook ↗</a>
+      </div>`;
+    }
+
+    function _shortChinaTitle(title) {
+      const bar = '｜';
+      return title
+        .replace(/^RunCN\s+/, '')
+        .replace(new RegExp('^#.*?' + bar), '')
+        .replace(new RegExp('^归档' + bar), '')
+        .replace(new RegExp('^半马归档' + bar), '')
+        .replace(new RegExp('^特别篇' + bar), '');
+    }
+
+    function _showChinaProvinceTooltip(e, provinceId) {
+      const tooltip = _getTooltip();
+      const name = _CHINA_PROVINCE_NAMES[provinceId] || provinceId;
+      const races = _chinaProvinceRaces(provinceId);
+      let html = `<h4>📍 ${name}（${races.length} 条 RunCN 记录）</h4>`;
+      races.forEach(r => {
+        html += `<div class="map-tooltip-race">
+          <strong>${r.city}</strong><br>
+          <span style="font-size:12px;color:#eee;">${r.title}</span>
+          <div class="map-tooltip-meta">${r.date}</div>
+          ${_chinaRaceLinks(r)}
+        </div>`;
+      });
+      tooltip.innerHTML = html;
+      tooltip.style.display = 'block';
+      _setChinaStatus(`${name}: ${races.map(r => r.city).join(' / ')}`);
+      _moveCityTooltip(e);
+    }
+
+    function _showChinaCityTooltip(e, city) {
+      const tooltip = _getTooltip();
+      let html = `<h4>📍 ${city.name}</h4>`;
+      city.races.forEach(r => {
+        html += `<div class="map-tooltip-race">
+          <strong>${r.title}</strong><br>
+          <div class="map-tooltip-meta">${r.date}</div>
+          ${_chinaRaceLinks(r)}
+        </div>`;
+      });
+      tooltip.innerHTML = html;
+      tooltip.style.display = 'block';
+      _setChinaStatus(`${city.name}: ${city.races.map(r => _shortChinaTitle(r.title)).join(' / ')}`);
+      _moveCityTooltip(e);
+    }
+
+    function _hideChinaTooltip() {
+      const tooltip = _getTooltip();
+      tooltip.style.display = 'none';
+      _setChinaStatus();
+    }
+
     function _injectChinaMap() {
       const slot = document.getElementById('cn-map-slot');
       if (!slot || typeof CHINA_MAP_SVG === 'undefined') return;
@@ -1549,30 +1744,31 @@
       if (!svg) return;
       svg.style.width = '100%'; svg.style.height = 'auto'; svg.style.display = 'block';
 
-      // Only visited provinces get color; all others neutral (matching US map style)
-      const visitedColors = { cn_hubei:'#d4614a', cn_guangxi:'#5ca860', cn_hongkong:'#e89838', cn_shanghai:'#d4614a' };
-      const allP = ['cn_xinjiang','cn_tibet','cn_innermongolia','cn_qinghai','cn_sichuan',
-        'cn_heilongjiang','cn_gansu','cn_yunnan','cn_guangxi','cn_hunan','cn_shaanxi',
-        'cn_guangdong','cn_jilin','cn_hebei','cn_hubei','cn_guizhou','cn_shandong',
-        'cn_jiangxi','cn_henan','cn_liaoning','cn_shanxi','cn_anhui','cn_fujian',
-        'cn_zhejiang','cn_jiangsu','cn_chongqing','cn_ningxia','cn_hainan','cn_taiwan',
-        'cn_beijing','cn_tianjin','cn_shanghai','cn_hongkong','cn_macao'];
-      for (const id of allP) {
+      _CHINA_ALL_PROVINCES.forEach(id => {
         const el = document.getElementById(id);
-        if (!el) continue;
-        if (visitedColors[id]) {
-          el.setAttribute('fill', visitedColors[id]);
-          el.setAttribute('stroke', '#fff');
+        if (!el) return;
+        el.setAttribute('fill', '#d8e0d4');
+        el.setAttribute('stroke', '#ffffff');
+        el.setAttribute('stroke-width', '0.9');
+        el.style.transition = 'fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease';
+        const runInfo = _CHINA_RUN_PROVINCES[id];
+        if (runInfo) {
+          el.setAttribute('fill', runInfo.color);
           el.setAttribute('stroke-width', '1.5');
+          el.classList.add('cn-run-province');
+          el.addEventListener('mouseenter', e => _showChinaProvinceTooltip(e, id));
+          el.addEventListener('mousemove', _moveCityTooltip);
+          el.addEventListener('mouseleave', _hideChinaTooltip);
+          el.addEventListener('click', e => {
+            const first = _chinaProvinceRaces(id)[0];
+            if (first && !_flashChinaStoryCard(first.url)) window.location.href = first.url;
+          });
         }
-        // unvisited: terrain fill from SVG shows through
-      }
+      });
 
       // Surrounding country labels
       const countryNames = {
-        russia:'俄罗斯', mongolia:'蒙古', kazakhstan:'哈萨克',
-        india:'印度', myanmar:'缅甸', vietnam:'越南',
-        korea:'朝鲜半岛', japan:'日本',
+        russia:'俄罗斯', mongolia:'蒙古', kazakhstan:'哈萨克', india:'印度', myanmar:'缅甸', vietnam:'越南', korea:'朝鲜半岛', japan:'日本',
       };
       if (typeof _COUNTRY_LABELS !== 'undefined') {
         for (const [id, [lx, ly, fs]] of Object.entries(_COUNTRY_LABELS)) {
@@ -1583,70 +1779,67 @@
           txt.setAttribute('fill','#5a4a30');
           txt.setAttribute('font-family','-apple-system,"PingFang SC","Microsoft YaHei",sans-serif');
           txt.setAttribute('font-weight','500'); txt.setAttribute('pointer-events','none');
-          txt.setAttribute('opacity','0.8');
+          txt.setAttribute('opacity','0.72');
           txt.textContent = countryNames[id];
           svg.appendChild(txt);
         }
       }
 
-      // Chinese province labels
-      const names = {
-        cn_xinjiang:'新疆', cn_tibet:'西藏', cn_innermongolia:'内蒙古',
-        cn_qinghai:'青海', cn_sichuan:'四川', cn_heilongjiang:'黑龙江',
-        cn_gansu:'甘肃', cn_yunnan:'云南', cn_guangxi:'广西', cn_hunan:'湖南',
-        cn_shaanxi:'陕西', cn_guangdong:'广东', cn_jilin:'吉林',
-        cn_hebei:'河北', cn_hubei:'湖北', cn_guizhou:'贵州',
-        cn_shandong:'山东', cn_jiangxi:'江西', cn_henan:'河南',
-        cn_liaoning:'辽宁', cn_shanxi:'山西', cn_anhui:'安徽',
-        cn_fujian:'福建', cn_zhejiang:'浙江', cn_jiangsu:'江苏',
-        cn_chongqing:'渝', cn_ningxia:'宁夏', cn_hainan:'海南',
-        cn_taiwan:'台湾', cn_beijing:'京',
-      };
       if (typeof _CN_LABELS !== 'undefined') {
         for (const [id, [lx, ly, fs]] of Object.entries(_CN_LABELS)) {
-          if (!names[id] || fs === 0) continue;
+          const name = _CHINA_PROVINCE_NAMES[id];
+          if (!name || fs === 0) continue;
           const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
           txt.setAttribute('x',lx); txt.setAttribute('y',ly);
           txt.setAttribute('text-anchor','middle'); txt.setAttribute('font-size',fs);
-          txt.setAttribute('fill','#2a3a45');
+          txt.setAttribute('fill','#243642');
           txt.setAttribute('font-family','-apple-system,"PingFang SC","Microsoft YaHei",sans-serif');
-          txt.setAttribute('font-weight','600'); txt.setAttribute('pointer-events','none');
-          txt.textContent = names[id];
+          txt.setAttribute('font-weight', _CHINA_RUN_PROVINCES[id] ? '800' : '600');
+          txt.setAttribute('pointer-events','none');
+          txt.textContent = name;
           svg.appendChild(txt);
         }
       }
 
-      // City dots
-      const cities = [
-        { name:'襄阳', x:497, y:344, url:'./xiangyang-marathon.html' },
-        { name:'桂林', x:475, y:446, url:'./guilin-marathon.html' },
-        { name:'香港', x:521, y:490, url:'./hong-kong-marathon.html' },
-        { name:'上海', x:606, y:357, url:'./shanghai-vertical-marathon.html' }
-      ];
-      cities.forEach(c => {
+      const dotGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
+      dotGroup.id = 'china-city-dots-group';
+      svg.appendChild(dotGroup);
+      _CHINA_CITY_DOTS.forEach(c => {
         const glow = document.createElementNS('http://www.w3.org/2000/svg','circle');
         glow.setAttribute('cx',c.x); glow.setAttribute('cy',c.y); glow.setAttribute('r',10);
-        glow.setAttribute('fill','rgba(255,59,48,0.3)'); glow.style.animation='pulse-glow 2s infinite alternate'; glow.style.pointerEvents='none';
-        svg.appendChild(glow);
+        glow.setAttribute('fill','rgba(255,59,48,0.3)');
+        glow.setAttribute('class','city-dot-glow');
+        glow.style.pointerEvents='none';
+        dotGroup.appendChild(glow);
+
         const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
         dot.setAttribute('cx',c.x); dot.setAttribute('cy',c.y); dot.setAttribute('r',5);
         dot.setAttribute('fill','#ff3b30'); dot.setAttribute('stroke','#fff'); dot.setAttribute('stroke-width','1.5');
+        dot.setAttribute('class','city-dot');
         dot.style.cursor='pointer';
-        if (c.url) dot.addEventListener('click', () => window.location.href = c.url);
-        svg.appendChild(dot);
+        dot.addEventListener('mouseenter', e => _showChinaCityTooltip(e, c));
+        dot.addEventListener('mousemove', _moveCityTooltip);
+        dot.addEventListener('mouseleave', _hideChinaTooltip);
+        dot.addEventListener('click', e => {
+          e.stopPropagation();
+          const first = c.races[0];
+          if (first && !_flashChinaStoryCard(first.url)) window.location.href = first.url;
+        });
+        dotGroup.appendChild(dot);
+
         const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
-        lbl.setAttribute('x',c.x+8); lbl.setAttribute('y',c.y-4);
-        lbl.setAttribute('font-size','11'); lbl.setAttribute('fill','#cc2200');
-        lbl.setAttribute('font-family','-apple-system,sans-serif'); lbl.setAttribute('font-weight','700');
-        lbl.setAttribute('pointer-events','none');
+        lbl.setAttribute('x',c.x + (c.dx || 8)); lbl.setAttribute('y',c.y + (c.dy || -4));
+        lbl.setAttribute('font-size','11'); lbl.setAttribute('fill','#9f1d12');
+        lbl.setAttribute('font-family','-apple-system,"PingFang SC","Microsoft YaHei",sans-serif');
+        lbl.setAttribute('font-weight','800'); lbl.setAttribute('pointer-events','none');
         lbl.textContent = c.name;
-        svg.appendChild(lbl);
+        dotGroup.appendChild(lbl);
       });
 
-      // 海洋标注
       const oceans = [
         { name:'黄海', x:700, y:278, size:9 },
         { name:'东海', x:698, y:415, size:9 },
+        { name:'南海', x:575, y:565, size:9 },
       ];
       oceans.forEach(o => {
         const t = document.createElementNS('http://www.w3.org/2000/svg','text');
