@@ -1595,13 +1595,16 @@
     };
 
     const _CHINA_LABEL_OVERRIDES = {
-      cn_xinjiang:[205,222,13],
-      cn_heilongjiang:[682,122,10], cn_innermongolia:[530,178,11], cn_liaoning:[625,225,9],
-      cn_gansu:[386,292,10], cn_ningxia:[425,279,8], cn_shanxi:[510,280,9], cn_shaanxi:[461,318,9],
-      cn_hebei:[545,252,8], cn_shandong:[576,294,9], cn_henan:[522,328,8], cn_anhui:[557,358,8],
-      cn_jiangsu:[590,340,8], cn_hubei:[505,378,9], cn_chongqing:[447,389,8], cn_sichuan:[390,386,10],
-      cn_guizhou:[432,438,9], cn_hunan:[492,432,9], cn_jiangxi:[540,422,8], cn_zhejiang:[590,402,8],
-      cn_fujian:[568,452,8], cn_guangxi:[454,484,9], cn_hainan:[472,548,8], cn_beijing:[548,216,8]
+      cn_xinjiang:[202,220,13], cn_tibet:[222,360,13], cn_qinghai:[310,300,12],
+      cn_innermongolia:[520,166,11], cn_heilongjiang:[684,112,10], cn_jilin:[665,174,10],
+      cn_liaoning:[622,216,9], cn_gansu:[362,268,10], cn_ningxia:[425,273,8],
+      cn_shanxi:[500,264,9], cn_shaanxi:[456,300,9], cn_hebei:[545,240,8],
+      cn_shandong:[574,284,9], cn_henan:[518,320,8], cn_anhui:[557,350,8],
+      cn_jiangsu:[590,336,8], cn_hubei:[500,368,9], cn_chongqing:[447,380,8],
+      cn_sichuan:[386,374,10], cn_guizhou:[434,446,9], cn_hunan:[492,416,9],
+      cn_jiangxi:[540,414,8], cn_zhejiang:[590,390,8], cn_fujian:[566,436,8],
+      cn_guangxi:[456,472,9], cn_yunnan:[373,452,10], cn_guangdong:[510,478,9],
+      cn_hainan:[470,540,8], cn_taiwan:[602,470,8], cn_beijing:[548,222,8]
     };
 
     const _CHINA_RUN_PROVINCES = {
@@ -1818,6 +1821,19 @@
       // The base China SVG has a compressed regional projection; external country labels
       // can visually drift into China. Keep the map clean and show details via province/city tooltip.
 
+      const dotGlowGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
+      dotGlowGroup.id = 'china-city-dot-glows-group';
+      svg.appendChild(dotGlowGroup);
+      _CHINA_CITY_DOTS.forEach(c => {
+        const p = _chinaProject(c.lat, c.lon);
+        const glow = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        glow.setAttribute('cx',p.x.toFixed(1)); glow.setAttribute('cy',p.y.toFixed(1)); glow.setAttribute('r',10);
+        glow.setAttribute('fill','rgba(255,59,48,0.24)');
+        glow.setAttribute('class','city-dot-glow');
+        glow.style.pointerEvents='none';
+        dotGlowGroup.appendChild(glow);
+      });
+
       if (typeof _CN_LABELS !== 'undefined') {
         for (const [id, [lx, ly, fs]] of Object.entries(_CN_LABELS)) {
           const name = _CHINA_PROVINCE_NAMES[id];
@@ -1847,13 +1863,6 @@
       svg.appendChild(dotGroup);
       _CHINA_CITY_DOTS.forEach(c => {
         const p = _chinaProject(c.lat, c.lon);
-        const glow = document.createElementNS('http://www.w3.org/2000/svg','circle');
-        glow.setAttribute('cx',p.x.toFixed(1)); glow.setAttribute('cy',p.y.toFixed(1)); glow.setAttribute('r',10);
-        glow.setAttribute('fill','rgba(255,59,48,0.3)');
-        glow.setAttribute('class','city-dot-glow');
-        glow.style.pointerEvents='none';
-        dotGroup.appendChild(glow);
-
         const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
         dot.setAttribute('cx',p.x.toFixed(1)); dot.setAttribute('cy',p.y.toFixed(1)); dot.setAttribute('r',5);
         dot.setAttribute('fill','#ff3b30'); dot.setAttribute('stroke','#fff'); dot.setAttribute('stroke-width','1.5');
