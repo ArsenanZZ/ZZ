@@ -1589,6 +1589,15 @@
       cn_tianjin:'天津', cn_shanghai:'上海', cn_hongkong:'香港', cn_macao:'澳门'
     };
 
+    const _CHINA_LABEL_OVERRIDES = {
+      cn_heilongjiang:[682,122,10], cn_innermongolia:[530,178,11], cn_liaoning:[625,225,9],
+      cn_gansu:[386,292,10], cn_ningxia:[425,279,8], cn_shanxi:[510,280,9], cn_shaanxi:[461,318,9],
+      cn_hebei:[545,252,8], cn_shandong:[576,294,9], cn_henan:[522,328,8], cn_anhui:[557,358,8],
+      cn_jiangsu:[590,340,8], cn_hubei:[505,378,9], cn_chongqing:[447,389,8], cn_sichuan:[390,386,10],
+      cn_guizhou:[432,438,9], cn_hunan:[492,432,9], cn_jiangxi:[540,422,8], cn_zhejiang:[590,402,8],
+      cn_fujian:[568,452,8], cn_guangxi:[454,484,9], cn_hainan:[472,548,8], cn_beijing:[548,216,8]
+    };
+
     const _CHINA_RUN_PROVINCES = {
       cn_heilongjiang:{ color:'#d4614a' }, cn_hubei:{ color:'#5ca860' }, cn_sichuan:{ color:'#e89838' },
       cn_innermongolia:{ color:'#3898a8' }, cn_shanxi:{ color:'#98c038' },
@@ -1780,10 +1789,18 @@
         for (const [id, [lx, ly, fs]] of Object.entries(_CN_LABELS)) {
           const name = _CHINA_PROVINCE_NAMES[id];
           if (!name || fs === 0) continue;
+          const override = _CHINA_LABEL_OVERRIDES[id] || [];
+          const labelX = override[0] || lx;
+          const labelY = override[1] || ly;
+          const labelSize = override[2] || (_CHINA_RUN_PROVINCES[id] ? fs : Math.max(8, fs - 1));
           const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
-          txt.setAttribute('x',lx); txt.setAttribute('y',ly);
-          txt.setAttribute('text-anchor','middle'); txt.setAttribute('font-size',fs);
+          txt.setAttribute('x',labelX); txt.setAttribute('y',labelY);
+          txt.setAttribute('text-anchor','middle'); txt.setAttribute('font-size',labelSize);
           txt.setAttribute('fill','#243642');
+          txt.setAttribute('stroke','#f7faf7');
+          txt.setAttribute('stroke-width','3.5');
+          txt.setAttribute('stroke-linejoin','round');
+          txt.setAttribute('paint-order','stroke');
           txt.setAttribute('font-family','-apple-system,"PingFang SC","Microsoft YaHei",sans-serif');
           txt.setAttribute('font-weight', _CHINA_RUN_PROVINCES[id] ? '800' : '600');
           txt.setAttribute('pointer-events','none');
