@@ -1,222 +1,254 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Run50 English Stories | Arsenan</title>
-  <meta name="description" content="English stories from Arsenan's Run50 project." />
+  <meta name="description" content="English editions of Arsenan's Run50, RunCN, and RunWorld marathon stories.">
   <style>
+    :root {
+      --paper: #f4f6f7;
+      --surface: #ffffff;
+      --ink: #20242b;
+      --muted: #667085;
+      --line: #dde5ec;
+      --river: #4a6c36;
+      --brick: #a33a2b;
+      --gold: #7c4125;
+      --run50: #0b67c2;
+      --runcn: #cc0000;
+      --runworld: #2f855a;
+    }
+    * { box-sizing: border-box; }
     body {
-      background: #f7f4ee;
-      color: #211a16;
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #eef5f6 0, var(--paper) 320px);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
+      line-height: 1.7;
     }
-    .story-list-shell {
-      width: min(1080px, calc(100% - 40px));
+    a { color: inherit; }
+    .shell {
+      max-width: 980px;
       margin: 0 auto;
-      padding: 32px 0 72px;
+      padding: 42px 22px 64px;
     }
-    .story-list-nav {
+    .topline {
       display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       justify-content: space-between;
-      gap: 16px;
       align-items: center;
-      margin-bottom: 44px;
-      color: rgba(33, 26, 22, .66);
-      font-size: .92rem;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 14px;
     }
-    .story-list-nav a {
-      color: inherit;
+    .topline a {
       text-decoration: none;
       border-bottom: 1px solid transparent;
     }
-    .story-list-nav a:hover {
-      border-bottom-color: currentColor;
+    .topline a:hover { border-color: currentColor; }
+    .hero {
+      max-width: 760px;
+      margin-bottom: 34px;
     }
-    .story-list-hero {
-      margin-bottom: 36px;
-    }
-    .story-list-hero .kicker {
-      color: #b7832f;
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .15em;
-      text-transform: uppercase;
+    .kicker {
       margin: 0 0 12px;
+      color: var(--brick);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
-    .story-list-hero h1 {
-      font-size: clamp(2.15rem, 6vw, 4.7rem);
-      line-height: .95;
-      letter-spacing: 0;
-      margin: 0 0 18px;
-      max-width: 780px;
-    }
-    .story-list-hero p {
-      max-width: 680px;
+    h1 {
       margin: 0;
-      color: rgba(33, 26, 22, .68);
-      font-size: 1.08rem;
-      line-height: 1.8;
+      font-size: clamp(34px, 7vw, 66px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .intro {
+      margin: 18px 0 0;
+      color: #344054;
+      font-size: 17px;
+      max-width: 680px;
     }
 
     .series-nav {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin: 0 0 40px;
+      gap: 12px;
+      margin: 0 0 38px;
     }
     .series-nav a {
-      min-height: 82px;
-      padding: 15px 17px;
+      min-height: 78px;
+      padding: 14px 16px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 5px;
-      border: 1px solid #d0dfe8;
-      border-left: 5px solid #2f70d0;
+      gap: 4px;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--run50);
       border-radius: 8px;
-      background: rgba(255,255,255,.72);
-      color: inherit;
+      background: rgba(255,255,255,.78);
       text-decoration: none;
-      box-shadow: 0 16px 34px rgba(82, 53, 16, .08);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, .06);
       transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
     }
     .series-nav a:hover {
       transform: translateY(-2px);
-      box-shadow: 0 22px 44px rgba(82, 53, 16, .12);
+      box-shadow: 0 18px 38px rgba(15, 23, 42, .09);
     }
-    .series-nav a:nth-child(2) { border-left-color: #bb5c45; }
-    .series-nav a:nth-child(3) { border-left-color: #3f7f46; }
+    .series-nav a:nth-child(2) { border-left-color: var(--runcn); }
+    .series-nav a:nth-child(3) { border-left-color: var(--runworld); }
     .series-nav span {
-      font-size: 1.02rem;
+      color: #111827;
+      font-size: 16px;
       font-weight: 850;
       letter-spacing: 0;
     }
     .series-nav small {
-      color: rgba(33, 26, 22, .62);
-      font-size: .8rem;
+      color: var(--muted);
+      font-size: 12px;
       line-height: 1.4;
     }
     .story-section {
-      margin-top: 56px;
-      scroll-margin-top: 24px;
+      margin-top: 54px;
+      scroll-margin-top: 22px;
     }
     .series-nav + .story-section { margin-top: 0; }
-    .story-section + .story-section { margin-top: 66px; }
+    .story-section + .story-section { margin-top: 62px; }
     .section-head {
-      margin: 0 0 20px;
+      margin: 0 0 18px;
       padding: 0 0 0 18px;
-      border-left: 6px solid #2f70d0;
+      border-left: 6px solid var(--run50);
     }
-    .run-cn-zone .section-head { border-left-color: #bb5c45; }
-    .run-world-zone .section-head { border-left-color: #3f7f46; }
+    .run-cn-zone .section-head { border-left-color: var(--runcn); }
+    .run-world-zone .section-head { border-left-color: var(--runworld); }
     .section-kicker {
-      margin: 0 0 6px;
-      color: #a36e23;
-      font-size: .78rem;
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 12px;
       font-weight: 850;
-      letter-spacing: .12em;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
     }
     .section-head h2 {
       margin: 0;
-      font-size: clamp(1.72rem, 4vw, 2.5rem);
-      line-height: 1.08;
+      color: #111827;
+      font-size: clamp(24px, 4vw, 36px);
+      line-height: 1.15;
       letter-spacing: 0;
     }
     .section-head p:last-child {
-      max-width: 760px;
-      margin: 9px 0 0;
-      color: rgba(33, 26, 22, .66);
-      line-height: 1.7;
-    }
-    .story-section .story-grid { margin-top: 0; }
-
-    @media (max-width: 760px) {
-      .series-nav { grid-template-columns: 1fr; }
+      margin: 8px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 15px;
     }
 
     .story-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
+      gap: 18px;
     }
     .story-card {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+      min-height: 100%;
       overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
       color: inherit;
       text-decoration: none;
-      border-radius: 8px;
-      box-shadow: 0 20px 50px rgba(82, 53, 16, .1);
+      box-shadow: 0 18px 44px rgba(15, 23, 42, .08);
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
-    .story-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 24px 54px rgba(82, 53, 16, .15);
     }
     .story-card.run-cn {
       background: #faf2ee;
-      border: 1px solid #ebdcd6;
-    }
-    .story-card.run-cn:hover {
-      border-color: #dfbeaf;
+      border-color: #ebdcd6;
     }
     .story-card.run-50 {
       background: #edf3f7;
-      border: 1px solid #d0dfe8;
-    }
-    .story-card.run-50:hover {
-      border-color: #acc4d3;
+      border-color: #d0dfe8;
     }
     .story-card.run-world {
       background: #eef5ec;
-      border: 1px solid #cfdcc8;
+      border-color: #cfdcc8;
     }
-    .story-card.run-world:hover {
-      border-color: #a9c1a2;
+    .story-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 54px rgba(15, 23, 42, .12);
     }
+    .story-card.run-cn:hover { border-color: #dfbeaf; }
+    .story-card.run-50:hover { border-color: #acc4d3; }
+    .story-card.run-world:hover { border-color: #a9c1a2; }
     .story-card img {
+      display: block;
       width: 100%;
       aspect-ratio: 16 / 10;
       object-fit: cover;
-      display: block;
+      background: #e8edf1;
     }
-    .story-card-content {
-      padding: 22px;
+    .story-copy {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 20px 18px;
+      min-height: 254px;
     }
-    .story-card-content .meta {
-      color: #a36e23;
-      font-size: .78rem;
+    .story-meta {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-size: 12px;
       font-weight: 800;
-      letter-spacing: .08em;
+      letter-spacing: .02em;
       text-transform: uppercase;
-      margin-bottom: 10px;
     }
-    .story-card-content h2 {
-      margin: 0 0 12px;
-      font-size: 1.42rem;
-      line-height: 1.2;
-    }
-    .story-card-content p {
+    .story-title {
       margin: 0;
-      color: rgba(33, 26, 22, .68);
-      line-height: 1.7;
+      color: #111827;
+      font-size: 21px;
+      line-height: 1.35;
+      font-weight: 850;
+    }
+    .story-desc {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .story-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: auto;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+    @media (max-width: 640px) {
+      .shell { padding: 28px 18px 46px; }
+      .intro { font-size: 16px; }
+      .series-nav { grid-template-columns: 1fr; }
+      .story-copy { min-height: auto; }
     }
 
     /* ── INTERACTIVE MAP STYLES ── */
     #us-map-master {
         width: 100%;
         height: auto;
-        aspect-ratio: 1722 / 989; /* match viewBox so Safari sizes it correctly */
+        aspect-ratio: 1722 / 989;
         display: block;
     }
     #us-map-master path {
-        stroke: none;
         transition: fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease;
     }
-    #us-map-master path.run-state {
-        cursor: pointer;
-    }
+    #us-map-master path.run-state { cursor: pointer; }
     #us-map-master path.run-state:hover {
         opacity: 0.85;
         stroke: #fff;
@@ -231,9 +263,7 @@
     #cn-map-master path {
         transition: fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease;
     }
-    #cn-map-master path.cn-province {
-        cursor: pointer;
-    }
+    #cn-map-master path.cn-province { cursor: pointer; }
     #cn-map-master path.cn-province:hover {
         opacity: 0.9;
         stroke: #fff;
@@ -244,34 +274,19 @@
         stroke: #fff;
         stroke-width: 2px;
     }
-
-    /* City Dot styling */
-    .city-dot {
-        transition: r 0.2s ease, fill 0.2s ease;
-    }
-    .city-dot:hover {
-        r: 7px;
-        fill: #ffcc00;
-    }
-    .city-dot-glow {
-        animation: pulse-glow 2s infinite alternate;
-    }
+    .city-dot { transition: r 0.2s ease, fill 0.2s ease; }
+    .city-dot:hover { r: 7px; fill: #ffcc00; }
+    .city-dot-glow { animation: pulse-glow 2s infinite alternate; }
     @keyframes pulse-glow {
         0% { r: 9px; opacity: 0.25; }
         100% { r: 16px; opacity: 0.65; }
     }
-
-    /* Flashing card highlight style */
     @keyframes card-flash {
-        0% { transform: scale(1); box-shadow: 0 20px 50px rgba(82, 53, 16, .1); }
-        50% { transform: scale(1.03); box-shadow: 0 0 15px rgba(183,131,47,0.7); border-color: #b7832f; }
-        100% { transform: scale(1); box-shadow: 0 20px 50px rgba(82, 53, 16, .1); }
+        0% { transform: scale(1); box-shadow: 0 18px 44px rgba(15, 23, 42, .08); }
+        50% { transform: scale(1.03); box-shadow: 0 0 15px rgba(183,137,47,0.7); border-color: var(--gold); }
+        100% { transform: scale(1); box-shadow: 0 18px 44px rgba(15, 23, 42, .08); }
     }
-    .card-highlight-flash {
-        animation: card-flash 1.5s ease 2;
-    }
-
-    /* Floating Tooltip */
+    .card-highlight-flash { animation: card-flash 1.5s ease 2; }
     .map-tooltip {
         position: absolute;
         z-index: 1000;
@@ -282,7 +297,7 @@
         font-size: 13px;
         line-height: 1.5;
         box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-        pointer-events: auto; /* Enable hover/clicking inside tooltip */
+        pointer-events: auto;
         display: none;
         border: 1px solid rgba(255, 255, 255, 0.12);
         backdrop-filter: blur(8px);
@@ -335,502 +350,491 @@
   </style>
 </head>
 <body>
-  <main class="story-list-shell">
-    <nav class="story-list-nav" aria-label="Story navigation">
-      <a href="../../../#run50">Back to ZZ</a>
-      <a href="../chinese/">Chinese Stories</a>
-      <a href="../../index.html">Run50</a>
+  <main class="shell">
+    <nav class="topline" aria-label="Page navigation">
+      <a href="../../index.html">← Run50</a>
+      <span>English Stories</span>
+      <a href="../chinese/">中文故事</a>
+      <a href="../../facebook/">Facebook</a>
     </nav>
-    <section class="story-list-hero">
-      <p class="kicker">Run50 Stories</p>
+
+    <section class="hero">
+      <p class="kicker">Run50 Stories · English</p>
       <h1>English Stories</h1>
-      <p>Race stories translated with a more conversational voice, keeping the travel notes, food detours, and finish-line messiness intact.</p>
+      <p class="intro">English editions of the Run50 archive: U.S. state marathons, RunCN China stories, and RunWorld trips, organized with the same covers and series structure as the Facebook feed.</p>
     </section>
 
-    <!-- 跑马足迹互动地图 (Interactive Map) -->
-    <div id="stories-map-container" style="max-width:1080px; margin: 0 auto 34px; background:#fff; border-radius:12px; border:1px solid #d0dfe8; padding:24px; box-shadow: 0 20px 50px rgba(82, 53, 16, .1);">
-      <div style="font-size:16px; font-weight:700; color:#211a16; margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+    <!-- Run50 Footprints Map -->
+    <div id="stories-map-container" style="max-width:980px; margin: 0 auto 34px; background:#fff; border-radius:12px; border:1px solid var(--line); padding:24px; box-shadow: 0 18px 44px rgba(15, 23, 42, .08);">
+      <div style="font-size:16px; font-weight:700; color:var(--ink); margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
         <div style="display:flex; align-items:center; gap:8px;">
-          <span>🗺️ U.S. Footprints Map (Interactive)</span>
-          <span style="font-size:12px; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px; font-weight:bold;">Run in 35 States</span>
+          <span>🗺️ Run50 Marathon Travel Footprint (Interactive Map)</span>
+          <span style="font-size:12px; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px; font-weight:bold;">35 states run</span>
         </div>
-        <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:#a36e23; transition:color 0.2s;">Hover over states or dots to view race details, click to jump</span>
+        <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:var(--muted); transition:color 0.2s;">Hover over states or red dots to view stories; click to jump</span>
       </div>
 
-      <div class="welcome-map-slot" id="welcome-map-slot" style="position:relative; width:100%; aspect-ratio: 1722 / 989; background:#f7f4ee; border-radius:8px; overflow:hidden; border:1px solid #d0dfe8;">
+      <div class="welcome-map-slot" id="welcome-map-slot" style="position:relative; width:100%; aspect-ratio: 1722 / 989; background:#f4f6f7; border-radius:8px; overflow:hidden; border:1px solid var(--line);">
         <!-- SVG Map will be dynamically appended here from US_MAP_SVG -->
       </div>
 
-      <!-- 地图图例 -->
-      <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:rgba(33, 26, 22, .68); border-top:1px solid #d0dfe8; padding-top:10px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:10px; flex-wrap:wrap;">
         <div style="display:flex; align-items:center; gap:6px;">
-          <span style="display:inline-block; width:12px; height:12px; background:linear-gradient(135deg,#f4a09a 0 25%,#f5b840 25% 50%,#5bb87c 50% 75%,#5baad0 75%); border-radius:3px;"></span>
-          <span>Every colored state is one I've run in (35 States)</span>
+          <span style="display:inline-block; width:12px; height:12px; background:linear-gradient(135deg,#d4614a 0 25%,#e89838 25% 50%,#5ca860 50% 75%,#3898a8 75%); border-radius:3px;"></span>
+          <span>Colored states are places I have run</span>
         </div>
         <div style="display:flex; align-items:center; gap:6px;">
           <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
-          <span>Race Cities</span>
+          <span>Race cities</span>
         </div>
       </div>
     </div>
 
     <!-- China Footprints Map -->
-    <div id="china-map-container" style="max-width:1080px; margin: 0 auto 34px; background:#fff; border-radius:12px; border:1px solid #d0dfe8; padding:24px; box-shadow: 0 20px 50px rgba(82, 53, 16, .1);">
-      <div style="font-size:16px; font-weight:700; color:#211a16; margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+    <div id="china-map-container" style="max-width:980px; margin: 0 auto 34px; background:#fff; border-radius:12px; border:1px solid var(--line); padding:24px; box-shadow: 0 18px 44px rgba(15, 23, 42, .08);">
+      <div style="font-size:16px; font-weight:700; color:var(--ink); margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
         <div style="display:flex; align-items:center; gap:8px;">
-          <span>🗺️ China Footprints Map (Interactive)</span>
-          <span style="font-size:12px; background:#fff0e8; color:#cc0000; padding:2px 8px; border-radius:12px; font-weight:bold;">Run in 17 province-level regions</span>
+          <span>🗺️ China Marathon Travel Footprint (Interactive Map)</span>
+          <span style="font-size:12px; background:#fff2e8; color:#cc0000; padding:2px 8px; border-radius:12px; font-weight:bold;">17 province-level regions</span>
         </div>
-        <span id="china-map-hover-status" style="font-size:13px; font-weight:normal; color:#a36e23; transition:color 0.2s;">Hover over provinces or red dots to view RunCN stories; click to jump</span>
+        <span id="china-map-hover-status" style="font-size:13px; font-weight:normal; color:var(--muted); transition:color 0.2s;">Hover over provinces or red dots to view RunCN stories; click to jump</span>
       </div>
-      <div id="cn-map-slot" style="position:relative; width:100%; aspect-ratio: 800 / 720; background:#f7f4ee; border-radius:8px; overflow:hidden; border:1px solid #d0dfe8;">
+      <div id="cn-map-slot" style="position:relative; width:100%; aspect-ratio: 800 / 720; background:#f4f6f7; border-radius:8px; overflow:hidden; border:1px solid var(--line);">
       </div>
-      <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:rgba(33, 26, 22, .68); border-top:1px solid #d0dfe8; padding-top:10px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:10px; flex-wrap:wrap;">
         <div style="display:flex; align-items:center; gap:6px;">
           <span style="display:inline-block; width:12px; height:12px; background:linear-gradient(135deg,#d4614a 0 25%,#e89838 25% 50%,#5ca860 50% 75%,#3898a8 75%); border-radius:3px;"></span>
           <span>Colored provinces/regions have RunCN race stories</span>
         </div>
         <div style="display:flex; align-items:center; gap:6px;">
           <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
-          <span>Race cities / comparison cities</span>
+          <span>Race cities</span>
         </div>
       </div>
     </div>
 
     <nav class="series-nav" aria-label="Story series">
-      <a href="#run50-series"><span>Run50</span><small>U.S. states in running order</small></a>
-      <a href="#runcn-series"><span>RunCN</span><small>China marathon stories</small></a>
-      <a href="#runworld-series"><span>RunWorld</span><small>International race trips</small></a>
+      <a href="#run50-series"><span>Run50</span><small>U.S. state stories in project order</small></a>
+      <a href="#runcn-series"><span>RunCN</span><small>China marathon and travel stories</small></a>
+      <a href="#runworld-series"><span>RunWorld</span><small>International marathon trips</small></a>
     </nav>
 
     <section class="story-section run-50-zone" id="run50-series" aria-labelledby="run50-series-title">
       <div class="section-head">
-        <p class="section-kicker">Run50 / U.S. States</p>
+        <p class="section-kicker">Run50 · U.S. States</p>
         <h2 id="run50-series-title">Run50 U.S. State Stories</h2>
-        <p>Ordered from State 1 onward, with revisit races kept near the state where they belong.</p>
+        <p>Start with State 1 and follow the U.S. project in order. Revisit races sit beside their original state.</p>
       </div>
       <div class="story-grid" aria-label="Run50 U.S. State Stories">
-        <a class="story-card run-50" href="./louisville-marathon.html">
-                <img src="../../../assets/thumb-run50-louisville-marathon-icons.svg?v=20260615-2" alt="Icon cover for Louisville Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">Kentucky · Louisville · 2020.11.08</div>
-                  <h2>Louisville Marathon: my first marathon in North America</h2>
-                  <p>A pandemic-era out-and-back through Beckley Creek Park, with masks, staggered starts, six-foot gaps, a hot final stretch, and State 1 of Run50.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./kentucky-derby-marathon.html">
-                <img src="../../../assets/thumb-run50-kentucky-derby-marathon-icons.svg?v=20260616-2" alt="Icon cover for Kentucky Derby Festival Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">Kentucky · Louisville · 2023.04.29</div>
-                  <h2>Kentucky Derby Marathon: Louisville&#x27;s biggest running party</h2>
-                  <p>A hometown Run50 revisit through Derby season, downtown Louisville, Churchill Downs spirit, old friends, and a city that knows how to turn race weekend into a party.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./cleveland-marathon.html">
-                <img src="../../../assets/thumb-run50-cleveland-marathon-icons.svg?v=20260615-1" alt="Icon cover for Cleveland Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">Ohio · Cleveland · 2021.10.24</div>
-                  <h2>Cleveland Marathon: from night into daylight</h2>
-                  <p>A two-part Cleveland weekend: Rock Hall, Cavaliers, Lake Erie, then a cold dawn marathon through bridges, skyline, and industrial grit.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./cincinnati-flying-pig-marathon.html">
-                <img src="../../../assets/thumb-run50-cincinnati-flying-pig-marathon-icons.svg?v=20260616-2" alt="Icon cover for Flying Pig Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">Ohio · Cincinnati · 2023.05.07</div>
-                  <h2>Flying Pig Marathon: Queen City bridges and a rain-soaked finish</h2>
-                  <p>A second Ohio marathon through Cincinnati&#x27;s river city: flying-pig branding, bridges, hills, rain, and a race that somehow became even more memorable when it got wet.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./new-york-city-marathon.html">
-                <img src="../../../assets/thumb-run50-new-york-city-marathon-icons.svg?v=20260615-3" alt="Icon cover for New York City Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">New York · New York City · 2021.11.07</div>
-                  <h2>New York City Marathon: the 50th running across five boroughs</h2>
-                  <p>A two-part New York weekend: cyberpunk city scenes, Flushing, Times Square, Central Park, the Hudson River, then my first World Marathon Major.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./san-francisco-marathon.html">
-                <img src="../../../assets/thumb-run50-san-francisco-marathon-icons.svg?v=20260615-4" alt="Icon cover for San Francisco Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">California · San Francisco · 2022.07.24</div>
-                  <h2>San Francisco Marathon: Golden Gate fog, hills and bay light</h2>
-                  <p>A two-part San Francisco weekend: Karl the fog, Chinatown breakfast, Golden Gate sunset, biking the city, then a hard beautiful marathon across the bridge.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./indianapolis-monumental-marathon.html">
-                <img src="../../../assets/thumb-run50-indianapolis-monumental-marathon-icons.svg?v=20260615-5" alt="Icon cover for Indianapolis Monumental Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">Indiana · Indianapolis · 2022.11.05</div>
-                  <h2>Indianapolis Monumental Marathon: a rainy one-day run back under five</h2>
-                  <p>A pre-dawn drive from Louisville, autumn rain downtown, Monument Circle, pacer groups, run-walk intervals, and a 4:55:12 finish that made running feel possible again.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./honolulu-marathon.html">
-                <img src="../../../assets/thumb-run50-honolulu-marathon-icons.svg?v=20260615-6" alt="Icon cover for Honolulu Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">Hawaii · Honolulu · 2022.12.11</div>
-                  <h2>Honolulu Marathon: an island daydream and 47's first full marathon</h2>
-                  <p>A two-part Hawaii story: Waikiki mornings, Diamond Head, rainbow seas, west-side roads, then the 50th Honolulu Marathon with fireworks and a nearly eleven-hour finish.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./atlanta-marathon.html">
-                <img src="../../../assets/thumb-run50-atlanta-marathon-icons.svg?v=20260616-2" alt="Icon cover for Publix Atlanta Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">Georgia · Atlanta · 2023.02.26</div>
-                  <h2>Atlanta Marathon: Olympic rings, hills, and a 16-hour road trip</h2>
-                  <p>A Georgia marathon weekend with Chattanooga on the way, Olympic city landmarks, Coca-Cola, CNN, rolling Atlanta streets, and the shared rhythm of 26.2 and 13.1.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./denver-colfax-marathon.html">
-                <img src="../../../assets/thumb-run50-denver-colfax-marathon-icons.svg?v=20260616-2" alt="Icon cover for Denver Colfax Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">Colorado · Denver · 2023.05.21</div>
-                  <h2>Denver Colfax Marathon: 26.2 Mile High miles</h2>
-                  <p>A Colorado weekend built around old friends, Denver sun, Rocky Mountain light, stadium miles, and the thin-air rhythm of the Colfax Marathon.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./anchorage-marathon.html">
-                <img src="../../../assets/thumb-run50-anchorage-marathon-icons.svg?v=20260616-2" alt="Icon cover for Anchorage Mayor&#x27;s Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">Alaska · Anchorage · 2023.06.17</div>
-                  <h2>Anchorage Marathon: Alaska without the aurora</h2>
-                  <p>A summer-solstice Alaska story: no northern lights, but mountains, coastal trails, wild scenery, long daylight, local runners and the kind of trip that makes the map feel larger.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./st-joseph-marathon.html">
-                <img src="../../../assets/thumb-run50-st-joseph-marathon-icons.svg?v=20260616-2" alt="Icon cover for St. Joseph Missouri Marathon" loading="lazy" decoding="async">
-                <div class="story-card-content">
-                  <div class="meta">Missouri · St. Joseph · 2023.09.23</div>
-                  <h2>St. Joseph Marathon: the first edition across Missouri</h2>
-                  <p>A Missouri road-trip marathon before Chicago: long drive, inaugural race energy, parkways, heat, hills, friends, and a wedding weekend at the end.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./chicago-marathon.html">
-                <img src="../../../assets/thumb-run50-chicago-marathon-icons.svg?v=20260616-state11" alt="Icon cover for Chicago Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">Illinois · Chicago · 2023.10.08</div>
-                  <h2>Chicago Marathon: State 11 and a second World Marathon Major</h2>
-                  <p>Running the 45th Chicago Marathon, missing the first flight, eating in Chinatown, starting in Grant Park, witnessing Kelvin Kiptum's world record day, and walking Siqi into her first Major finish.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./nashville-marathon.html">
-                <img src="../../../assets/thumb-run50-nashville-marathon-icons.svg?v=20260605-1" alt="Icon cover for Nashville Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">Tennessee · Nashville · 2023.10.28</div>
-                  <h2>Nashville Marathon: running in the music city under autumn sunshine</h2>
-                  <p>Running U.S. State 12 quest in the Capital of Country Music, crossing the John Seigenthaler Pedestrian Bridge on a hot October day, and completing my slowest marathon of the year inside the baseball stadium.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./west-virginia-marathon.html">
-                <img src="../../../assets/thumb-run50-west-virginia-marathon-icons.svg?v=20260605-1" alt="Icon cover for West Virginia Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">West Virginia · Huntington · 2023.11.05</div>
-                  <h2>Marshall University Marathon: scoring a football touchdown in West Virginia</h2>
-                  <p>Running U.S. State 13 quest under the autumn sunshine, honoring the 1970 sports plane tragedy memorial on campus, and scoring a touchdown at the finish line inside the football stadium to break 4 hours.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./san-antonio-marathon.html">
-                <img src="../../../assets/thumb-run50-san-antonio-marathon-icons.svg?v=20260605-1" alt="Icon cover for San Antonio Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">Texas · San Antonio · 2023.12.03</div>
-                  <h2>San Antonio Rock 'n' Roll Marathon: the Spurs trip that became State 14</h2>
-                  <p>A Spurs-inspired Texas weekend with the Alamo, River Walk, Fort Sam Houston, live bands, a late hill, and a 4:12 finish to close out 2023.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./miami-marathon.html">
-                <img src="../../../assets/thumb-run50-miami-icons.svg?v=20260605-1" alt="Icon cover for Miami Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">Florida · Miami · 2024.01.28</div>
-                  <h2>Miami Marathon: wearing CR7 in Messi's backyard</h2>
-                  <p>An accidental double-run of Florida. A wrong-date plane ticket brought us back to the heat of Miami, where I ran 26.2 miles in a Ronaldo jersey—right in Messi's territory.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./little-rock-marathon.html">
-                <img src="../../../assets/thumb-run50-little-rock-marathon-icons.svg?v=20260605-1" alt="Icon cover for Little Rock Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">Arkansas · Little Rock · 2024.03.03</div>
-                  <h2>Little Rock Marathon: running in President Clinton's backyard</h2>
-                  <p>A U.S. State 17 quest under the dawn lights, crossing the Clinton Presidential Bridge, loop around the Dassault Jet center, and climbing rolling hills of Allsopp Park.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-50" href="./south-carolina-marathon.html">
-                <img src="../../../assets/thumb-run50-south-carolina-marathon-icons.svg?v=20260605-1" alt="Icon cover for South Carolina Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">South Carolina · Greer · 2024.04.14</div>
-                  <h2>Too Slow for Boston Marathon: loops, RV camping, and the stubborn mule</h2>
-                  <p>A U.S. State 18 quest going against the speed-worshipping norm, completing 20 neighborhood loops under the sun, and celebrating with local block-party volunteers.</p>
-                </div>
-              </a>
+        <a class="story-card run-50" href="./louisville-marathon.html" data-map-meta="Kentucky · Louisville · 2020.11.08">
+          <img src="../../../assets/cover-medal-zh-louisville.jpg?v=20260619-en" alt="Icon-style Louisville Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Louisville, KY · Run50 #1</p>
+            <h2 class="story-title">Kentucky gave me my first marathon in North America</h2>
+            <p class="story-desc">Race date: November 8, 2020. A socially distanced Louisville Marathon moved into Beckley Creek Park, with staggered starts, a quiet forest course, and a hard final 12 kilometers.</p>
+            <div class="story-foot"><span>First North American marathon</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./cleveland-marathon.html" data-map-meta="Ohio · Cleveland · 2021.10.24">
+          <img src="../../../assets/cover-medal-zh-cleveland.jpg?v=20260619-en" alt="Icon-style Cleveland Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Cleveland, OH · Run50 #2</p>
+            <h2 class="story-title">Cleveland gave me a cold 26.2-mile run from night into daylight</h2>
+            <p class="story-desc">Race date: October 24, 2021. State 2 of Run50 started in the dark near Tower City, crossed Lake Erie light and industrial bridges, and ended with a medal that looked exactly like Cleveland felt.</p>
+            <div class="story-foot"><span>Rock Hall weekend</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./new-york-city-marathon.html" data-map-meta="New York · New York City · 2021.11.07">
+          <img src="../../../assets/cover-medal-zh-new-york.jpg?v=20260619-en" alt="Icon-style New York City Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">New York City, NY · Run50 #3</p>
+            <h2 class="story-title">New York turned 26.2 miles into one enormous five-borough street party</h2>
+            <p class="story-desc">Race date: November 7, 2021. State 3 of Run50 and my first World Marathon Major: Staten Island, the Verrazzano Bridge, Brooklyn, Queens, Manhattan, and Central Park.</p>
+            <div class="story-foot"><span>World Major #1</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./san-francisco-marathon.html" data-map-meta="California · San Francisco · 2022.07.24">
+          <img src="../../../assets/cover-medal-zh-san-francisco.jpg?v=20260619-en" alt="Icon-style San Francisco Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">San Francisco, CA · Run50 #4</p>
+            <h2 class="story-title">San Francisco turned 26.2 miles into fog, bridge wind, hills and bay light</h2>
+            <p class="story-desc">Race date: July 24, 2022. State 4 of Run50 crossed the Golden Gate Bridge, ran through fog and sudden sun, and ended with a medal beside the bay.</p>
+            <div class="story-foot"><span>Golden Gate course</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./indianapolis-monumental-marathon.html" data-map-meta="Indiana · Indianapolis · 2022.11.05">
+          <img src="../../../assets/cover-medal-zh-indianapolis.jpg?v=20260619-en" alt="Icon-style Indianapolis Monumental Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Indianapolis, IN · Run50 #5</p>
+            <h2 class="story-title">Indianapolis turned a rainy one-day marathon into a way back to running</h2>
+            <p class="story-desc">Race date: November 5, 2022. Run50 State 5 at the 15th Indianapolis Monumental Marathon: autumn rain, Monument Circle, run-walk intervals, and a 4:55:12 finish.</p>
+            <div class="story-foot"><span>4:55:12 finish</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./honolulu-marathon.html" data-map-meta="Hawaii · Honolulu · 2022.12.11">
+          <img src="../../../assets/cover-medal-zh-honolulu.jpg?v=20260619-en" alt="Icon-style Honolulu Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Honolulu, HI · Run50 #6</p>
+            <h2 class="story-title">Honolulu made a first marathon feel like an all-day island celebration</h2>
+            <p class="story-desc">Race date: December 11, 2022. State 6 of Run50 at the 50th Honolulu Marathon: fireworks, Waikiki, Diamond Head, no cutoff, and 47's first marathon finish.</p>
+            <div class="story-foot"><span>50th anniversary race</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./atlanta-marathon.html" data-map-meta="Georgia · Atlanta · 2023.02.26">
+          <img src="../../../assets/cover-medal-zh-atlanta.jpg?v=20260619-en" alt="Icon-style Publix Atlanta Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Atlanta, GA · Run50 #07</p>
+            <h2 class="story-title">Atlanta made 26.2 miles feel like an Olympic city walk</h2>
+            <p class="story-desc">Race date: February 26, 2023. State 7 of Run50 in Atlanta: Olympic rings, Coca-Cola, CNN, hills, and a long road-trip weekend.</p>
+            <div class="story-foot"><span>Olympic city</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./kentucky-derby-marathon.html" data-map-meta="Kentucky · Louisville · 2023.04.29">
+          <img src="../../../assets/cover-medal-zh-kentucky-derby.jpg?v=20260619-en" alt="Icon-style Kentucky Derby Festival Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Louisville, KY · Run50 #01+</p>
+            <h2 class="story-title">Louisville turned Derby season into the city's biggest running party</h2>
+            <p class="story-desc">Race date: April 29, 2023. A hometown Derby-season marathon in Louisville, with horse-racing energy, city streets, friends, and one more Kentucky chapter.</p>
+            <div class="story-foot"><span>Derby season</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./cincinnati-flying-pig-marathon.html" data-map-meta="Ohio · Cincinnati · 2023.05.07">
+          <img src="../../../assets/cover-medal-zh-cincinnati.jpg?v=20260619-en" alt="Icon-style Flying Pig Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Cincinnati, OH · Run50 #02+</p>
+            <h2 class="story-title">Cincinnati's Flying Pig turned into a Flying Fish in the rain</h2>
+            <p class="story-desc">Race date: May 7, 2023. Cincinnati's Flying Pig Marathon brought bridges, hills, rain and a full Queen City tour.</p>
+            <div class="story-foot"><span>Flying Pig</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./denver-colfax-marathon.html" data-map-meta="Colorado · Denver · 2023.05.21">
+          <img src="../../../assets/cover-medal-zh-denver.jpg?v=20260619-en" alt="Icon-style Denver Colfax Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Denver, CO · Run50 #08</p>
+            <h2 class="story-title">Denver gave me 26.2 Mile High miles, stadium grass and mountain light</h2>
+            <p class="story-desc">Race date: May 21, 2023. State 8 of Run50 in Denver: Colfax, stadium grass, mountain light and Mile High air.</p>
+            <div class="story-foot"><span>Mile High</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./anchorage-marathon.html" data-map-meta="Alaska · Anchorage · 2023.06.17">
+          <img src="../../../assets/cover-medal-zh-anchorage.jpg?v=20260619-en" alt="Icon-style Anchorage Mayor's Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Anchorage, AK · Run50 #09</p>
+            <h2 class="story-title">Alaska had no aurora, but Anchorage still gave me a wild 26.2 miles</h2>
+            <p class="story-desc">Race date: June 17, 2023. State 9 of Run50 in Anchorage: no aurora, but Alaska mountains, coastal trails and summer-solstice light.</p>
+            <div class="story-foot"><span>Alaska light</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./st-joseph-marathon.html" data-map-meta="Missouri · St. Joseph · 2023.09.23">
+          <img src="../../../assets/cover-medal-zh-st-joseph.jpg?v=20260619-en" alt="Icon-style St. Joseph Missouri Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">St. Joseph, MO · Run50 #10</p>
+            <h2 class="story-title">St. Joseph made Missouri feel like a first-edition marathon road trip</h2>
+            <p class="story-desc">Race date: September 23, 2023. State 10 of Run50 at the inaugural St. Joseph Missouri Marathon: parkways, heat, hills and a wedding weekend.</p>
+            <div class="story-foot"><span>Inaugural race</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./chicago-marathon.html" data-map-meta="Illinois · Chicago · 2023.10.08">
+          <img src="../../../assets/cover-medal-il.jpg?v=20260619-en" alt="Chicago Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Chicago, IL · Run50 #11</p>
+            <h2 class="story-title">Chicago gave me my second World Marathon Major and State 11 of Run50</h2>
+            <p class="story-desc">Race date: October 8, 2023. The 45th Chicago Marathon: Grant Park, the L, Chinatown, roaring crowds, Kelvin Kiptum's world record day, and a second finish beside Siqi.</p>
+            <div class="story-foot"><span>World Major #2</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./nashville-marathon.html" data-map-meta="Tennessee · Nashville · 2023.10.28">
+          <img src="../../../assets/cover-medal-zh-nashville.jpg?v=20260619-en" alt="Icon-style Nashville Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Nashville, TN · slowest run survived</p>
+            <h2 class="story-title">Scorching October sun gave me my slowest marathon of the year in Music City</h2>
+            <p class="story-desc">Race date: October 28, 2023. Running U.S. State 12 at Nashville, TN. A hot city greenway run with a minor league baseball stadium finish, crossing the Cumberland River, and surviving a PW.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./west-virginia-marathon.html" data-map-meta="West Virginia · Huntington · 2023.11.05">
+          <img src="../../../assets/cover-medal-zh-wv.jpg?v=20260619-en" alt="Icon-style West Virginia Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Huntington, WV · touchdown secured</p>
+            <h2 class="story-title">West Virginia gave me a touchdown stadium finish to break 4 hours</h2>
+            <p class="story-desc">Race date: November 5, 2023. Running U.S. State 13 at Marshall University in Huntington, WV. A beautiful autumn loop race with a football stadium finish, placing a flower on the 1970 team plane crash memorial, and a PR.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./san-antonio-marathon.html" data-map-meta="Texas · San Antonio · 2023.12.03">
+          <img src="../../../assets/cover-medal-tx.jpg?v=20260619-en" alt="Icon-style San Antonio Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">San Antonio, Texas · 4:12 finish</p>
+            <h2 class="story-title">San Antonio turned a Spurs trip into my Texas marathon story</h2>
+            <p class="story-desc">Race date: December 3, 2023. State 14 of Run50, from the Alamo and River Walk to Fort Sam Houston, greenway miles, one late Texas hill and a 4:12 finish.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./disney-marathon.html" data-map-meta="Key West / Orlando, Florida · 2025 archive">
+          <img src="../../../assets/cover-medal-disney-marathon.jpg?v=20260619-en" alt="Disney Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Key West / Orlando, Florida · Run50 #15</p>
+            <h2 class="story-title">A Florida week from Key West beaches to Disney Marathon</h2>
+            <p class="story-desc">Run50 State 15 as one Florida arc: Key West New Year, Orlando speedrun, Universal, and Disney Marathon.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./miami-marathon.html" data-map-meta="Florida · Miami · 2024.01.28">
+          <img src="../../../assets/cover-medal-fl.jpg?v=20260619-en" alt="Icon-style Miami Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Miami, Florida · 4:23 finish</p>
+            <h2 class="story-title">Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi's backyard</h2>
+            <p class="story-desc">Race date: January 28, 2024. A wrong-date plane ticket turned a finished state into an accidental double-run, complete with construction zones, heat-stroke miles, and a Portuguese connection.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./north-carolina-oak-island-marathon.html" data-map-meta="Oak Island, North Carolina · 2025 archive">
+          <img src="../../../assets/cover-medal-north-carolina-oak-island-marathon.jpg?v=20260619-en" alt="Oak Island Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Oak Island, North Carolina · Run50 #16</p>
+            <h2 class="story-title">Oak Island sent Run50 toward the Atlantic with a medal bigger than my face</h2>
+            <p class="story-desc">A North Carolina coast marathon with winter legs, ocean wind, Atlantic light, and a medal that refused to be subtle.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./little-rock-marathon.html" data-map-meta="Arkansas · Little Rock · 2024.03.03">
+          <img src="../../../assets/cover-medal-zh-little-rock.jpg?v=20260619-en" alt="Icon-style Little Rock Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Little Rock, AR · Dinosaur Medal secured</p>
+            <h2 class="story-title">Little Rock gave me a 26.2-mile run with the massive dinosaur medal</h2>
+            <p class="story-desc">Race date: March 3, 2024. A Southern weekend road trip down to Arkansas for the legendary dinosaur medal, looping the aviation giants and wooded forest parks.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="./south-carolina-marathon.html" data-map-meta="South Carolina · Greer · 2024.04.14">
+          <img src="../../../assets/cover-medal-sc.jpg?v=20260619-en" alt="Icon-style South Carolina Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Greer, SC · Stubborn Mule secured</p>
+            <h2 class="story-title">Too Slow for Boston gave me a 26.2-mile run with the stubborn mule medal</h2>
+            <p class="story-desc">Race date: April 14, 2024. A neighborhood loop road race designed for those who can't qualify for Boston—featuring trailer RV camping, a clicker lap-counting system, and a trophy for the slowest.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
       </div>
     </section>
 
     <section class="story-section run-cn-zone" id="runcn-series" aria-labelledby="runcn-series-title">
       <div class="section-head">
-        <p class="section-kicker">RunCN / China</p>
+        <p class="section-kicker">RunCN · China</p>
         <h2 id="runcn-series-title">RunCN China Stories</h2>
-        <p>China race weekends from Hubei, Guangxi and Hong Kong, kept together as their own series.</p>
+        <p>China race weekends and travel archives, using the same medal-style covers as the Facebook feed.</p>
       </div>
       <div class="story-grid" aria-label="RunCN China Stories">
-        <a class="story-card run-cn" href="./xiangyang-marathon.html">
-                <img src="../../../assets/thumb-run50-xiangyang-icons.svg?v=20260604-8" alt="Icon cover for Xiangyang Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">Hubei · Xiangyang · 2025.10.19</div>
-                  <h2>Xiangyang Marathon: from Luojia Mountain to the Han River</h2>
-                  <p>First marathon back in China after almost six years, with Wuhan rain, Xiangyang beef noodles, old city walls, and a surprise 3:57.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-cn" href="./guilin-marathon.html">
-                <img src="../../../assets/thumb-run50-guilin-icons.svg?v=20260604-8" alt="Icon cover for Guilin Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">Guangxi · Guilin · 2025.11.16</div>
-                  <h2>Guilin Marathon: heat, karst hills, and family at the finish</h2>
-                  <p>A hot run along the Li River and through Guilin's mountain-lined streets, with my parents and aunt waiting at the finish.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-cn" href="./hong-kong-marathon.html">
-                <img src="../../../assets/thumb-run50-hong-kong-icons.svg?v=20260604-8" alt="Icon cover for Hong Kong Streetathon" />
-                <div class="story-card-content">
-                  <div class="meta">Hong Kong · 2025.11.23</div>
-                  <h2>Hong Kong Streetathon: tunnels, bridges, and a 5 a.m. start</h2>
-                  <p>A race through expressway tunnels, elevated roads, Victoria Harbour wind, Tseung Kwan O Bridge, and the final stop of a long China trip.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-cn" href="./shanghai-vertical-marathon.html">
-                <img src="../../../assets/thumb-run50-shanghai-vertical-marathon-icons.svg" alt="Icon cover for Shanghai Tower Vertical Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">Shanghai · 2019.11.24</div>
-                  <h2>Shanghai Vertical Marathon: climbing China's tallest skyscraper</h2>
-                  <p>Scaling 119 floors and 3,399 steps of the Shanghai Tower to reach the top of China's tallest building in the late autumn of 2019.</p>
-                </div>
-              </a>
+        <a class="story-card run-cn" href="./steel-tank-story.html" data-map-meta="Harbin / Wuhan · 2017 archive">
+          <img src="../../../assets/cover-medal-fb-steel-tank-story.jpg?v=20260622-fb-en" alt="Harbin / Wuhan cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Harbin / Wuhan · RunCN Origin</p>
+            <h2 class="story-title">The steel tank story: how a heavy football kid found marathons</h2>
+            <p class="story-desc">From the steel tank on the football field to a proud son at the Harbin Marathon finish.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./three-city-pilgrimage.html" data-map-meta="Guang'an / Yichang / Changsha · 2017 archive">
+          <img src="../../../assets/cover-medal-fb-three-city-pilgrimage.jpg?v=20260622-fb-en" alt="Guang'an / Yichang / Changsha cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Guang'an / Yichang / Changsha · RunCN Archive</p>
+            <h2 class="story-title">Three 2017 races became a pilgrimage through Guang'an, Yichang, and Changsha</h2>
+            <p class="story-desc">Guang'an Marathon, Yichang Half, Changsha Marathon, and a pilgrimage threaded through Deng Xiaoping, a mentor, and Mao.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./xiamen-marathon.html" data-map-meta="Xiamen, Fujian · 2018 archive">
+          <img src="../../../assets/cover-medal-fb-xiamen-marathon.jpg?v=20260623-title-fix" alt="Xiamen, Fujian cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Xiamen, Fujian · RunCN #5</p>
+            <h2 class="story-title">Xiamen gave my 2018 season a rain-soaked, unforgettable opening</h2>
+            <p class="story-desc">A rainy Xiamen Marathon, a Zengcuo'an reunion, and the first full-marathon chapter of 2018.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./lanzhou-marathon.html" data-map-meta="Lanzhou, Gansu · 2018 archive">
+          <img src="../../../assets/cover-medal-fb-lanzhou-marathon.jpg?v=20260622-fb-en" alt="Lanzhou, Gansu cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Lanzhou, Gansu · RunCN #7</p>
+            <h2 class="story-title">Lanzhou Strong: a marathon at the edge of the Yellow River and the Hexi dream</h2>
+            <p class="story-desc">The Yellow River, beef noodles, Zhongshan Bridge, Gaolan Mountain, and a Lanzhou Marathon with roaring local energy.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./wuhan-marathon-2018.html" data-map-meta="Wuhan, Hubei · 2018 archive">
+          <img src="../../../assets/cover-medal-fb-wuhan-marathon-2018.jpg?v=20260622-fb-en" alt="Wuhan, Hubei cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Wuhan, Hubei · RunCN #10</p>
+            <h2 class="story-title">Wuhan Marathon connected a century of city fire and running energy</h2>
+            <p class="story-desc">1911 memory, East Lake, Han Marathon volunteers, and Wuhan at full volume.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./wuhan-wuxi-marathon-notes.html" data-map-meta="Wuhan / Wuxi · 2018 archive">
+          <img src="../../../assets/cover-medal-fb-wuhan-wuxi-marathon-notes.jpg?v=20260623-title-fix" alt="Wuhan / Wuxi cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Wuhan / Wuxi · RunCN Notes</p>
+            <h2 class="story-title">Three spring races bloomed under cherry trees in Wuhan and Wuxi</h2>
+            <p class="story-desc">Wuhan, Wuxi, cherry blossoms, a college marathon, and three spring race notes.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./guiyang-marathon-climb.html" data-map-meta="Guiyang, Guizhou · 2018 archive">
+          <img src="../../../assets/cover-medal-fb-guiyang-marathon-climb.jpg?v=20260623-title-fix" alt="Guiyang, Guizhou cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Guiyang, Guizhou · RunCN #12</p>
+            <h2 class="story-title">Guiyang turned a brutal climb into a journey through Yelang, Wang Yangming, and Fanjing Mountain</h2>
+            <p class="story-desc">Guiyang Marathon heat and climbing, Qingyan, Yelang Valley, Yangming Cave, and Fanjing Mountain as one southwestern lesson.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./xian-city-wall-marathon.html" data-map-meta="Xi'an, Shaanxi · 2018 archive">
+          <img src="../../../assets/cover-medal-fb-xian-city-wall-marathon.jpg?v=20260623-title-fix" alt="Xi'an, Shaanxi cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Xi'an, Shaanxi · RunCN #13</p>
+            <h2 class="story-title">Xi'an turned a city-wall race into a walk through three thousand years of China</h2>
+            <p class="story-desc">Rain on the wall, the Qin plain, Terracotta Warriors, Huashan, and Hukou Falls in one heavy Chang'an travelogue.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./west-lake-half-marathon.html" data-map-meta="Hangzhou, Zhejiang · 2019 archive">
+          <img src="../../../assets/cover-medal-fb-west-lake-half-marathon.jpg?v=20260623-title-fix" alt="Hangzhou, Zhejiang cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Hangzhou, Zhejiang · RunCN #6</p>
+            <h2 class="story-title">A West Lake half marathon turned into a lakeside reset and an unexpected encounter</h2>
+            <p class="story-desc">West Lake, Qingzhiwu, Westlake University, and a half marathon that helped me restart.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./wuhan-graduation.html" data-map-meta="Wuhan, Hubei · 2019 archive">
+          <img src="../../../assets/cover-medal-fb-wuhan-graduation.jpg?v=20260622-fb-en" alt="Wuhan, Hubei cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Wuhan, Hubei · RunCN Archive</p>
+            <h2 class="story-title">A delayed Wuhan graduation album became a time capsule</h2>
+            <p class="story-desc">Wuhan University graduation, family visiting Wuhan, East Lake, and a photo album that arrived two years late.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./haikou-marathon.html" data-map-meta="Haikou, Hainan · 2019 archive">
+          <img src="../../../assets/cover-medal-fb-haikou-marathon.jpg?v=20260622-fb-en" alt="Haikou, Hainan cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Haikou, Hainan · RunCN #8</p>
+            <h2 class="story-title">Haikou became an unfinished running story by the sea</h2>
+            <p class="story-desc">Haikou arcades, Hainan sea wind, an unfinished race, and a city story still worth keeping.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./wuhan-han-marathon.html" data-map-meta="Wuhan, Hubei · 2019 archive">
+          <img src="../../../assets/cover-medal-fb-wuhan-han-marathon.jpg?v=20260622-fb-en" alt="Wuhan, Hubei cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Wuhan, Hubei · RunCN #9</p>
+            <h2 class="story-title">Wuhan and the Han Marathon became my private memory of leaving home</h2>
+            <p class="story-desc">Han Marathon, Wuhan University, River City, pre-graduation homesickness, and a private Wuhan memory.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./dalian-trail.html" data-map-meta="Dalian, Liaoning · 2019 archive">
+          <img src="../../../assets/cover-medal-fb-dalian-trail.jpg?v=20260622-fb-en" alt="Dalian, Liaoning cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Dalian, Liaoning · RunCN Trail</p>
+            <h2 class="story-title">Dalian turned my first real trail race into a Northeastern coming-of-age story</h2>
+            <p class="story-desc">Dalian's west coast, the Yellow Sea and Bohai Sea divide, a trail race, and a hill story for the Northeast.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./harbin-marathon.html" data-map-meta="Harbin, Heilongjiang · 2019 archive">
+          <img src="../../../assets/cover-medal-fb-harbin-marathon.jpg?v=20260622-fb-en" alt="Harbin, Heilongjiang cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Harbin, Heilongjiang · RunCN #11</p>
+            <h2 class="story-title">Harbin Marathon brought me back to the black soil and Songhua River</h2>
+            <p class="story-desc">Songhua River, black soil, Northeastern home, and a delayed Harbin Marathon memory.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./shanghai-vertical-marathon.html" data-map-meta="Shanghai · 2019.11.24">
+          <img src="../../../assets/cover-medal-fb-shanghai-vertical-marathon.jpg?v=20260622-fb-en" alt="Shanghai, China cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Shanghai, China · 3,398 steps</p>
+            <h2 class="story-title">Climbing 3,398 steps to the top of China's tallest skyscraper</h2>
+            <p class="story-desc">Race date: November 24, 2019. Scaling 119 floors and 3,398 steps of the Shanghai Tower to reach 632m height during a stressful visa waiting period.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./xiangyang-marathon.html" data-map-meta="Hubei · Xiangyang · 2025.10.19">
+          <img src="../../../assets/cover-medal-fb-xiangyang.jpg?v=20260622-fb-en" alt="Xiangyang, Hubei cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Xiangyang, Hubei · 3:57 finish</p>
+            <h2 class="story-title">Xiangyang gave me a marathon with a finish I did not see coming</h2>
+            <p class="story-desc">Race date: October 19, 2025. A Three Kingdoms city, the Han River, old city walls, Tang-style palaces and an unexpected 3:57 finish.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./guilin-marathon.html" data-map-meta="Guangxi · Guilin · 2025.11.16">
+          <img src="../../../assets/cover-medal-fb-guilin.jpg?v=20260623-title-fix" alt="Guilin, Guangxi cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Guilin, Guangxi · Full-sun course</p>
+            <h2 class="story-title">Guilin turned a beautiful marathon into a full-sun test</h2>
+            <p class="story-desc">Race date: November 16, 2025. Li River views, karst hills, spray trucks, a Messi jersey chase, and my family waiting at the finish.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-cn" href="./hong-kong-marathon.html" data-map-meta="Hong Kong · 2025.11.23">
+          <img src="../../../assets/cover-medal-fb-hk.jpg?v=20260622-fb-en" alt="Hong Kong, China cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Hong Kong, China · Tunnels + bridges</p>
+            <h2 class="story-title">Hong Kong turned a marathon into a tunnel-and-bridge city tour</h2>
+            <p class="story-desc">Race date: November 23, 2025. A 5 a.m. start, expressway tunnels, Victoria Harbour wind, Tseung Kwan O Bridge, and one last uphill punch.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
       </div>
     </section>
 
     <section class="story-section run-world-zone" id="runworld-series" aria-labelledby="runworld-series-title">
       <div class="section-head">
-        <p class="section-kicker">RunWorld / Global</p>
+        <p class="section-kicker">RunWorld · Global</p>
         <h2 id="runworld-series-title">RunWorld Stories</h2>
         <p>International marathon trips outside the U.S. and China, sorted by RunWorld entry order.</p>
       </div>
       <div class="story-grid" aria-label="RunWorld Stories">
-        <a class="story-card run-world" href="./mexico-marathon.html">
-                <img src="../../../assets/thumb-run50-mexico-icons.svg?v=20260605-1" alt="Icon cover for Mexico City Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">Mexico City · 2025.08.31</div>
-                  <h2>Mexico City Marathon: high altitude, pyramids, and a bus full of friends</h2>
-                  <p>Running at 2,240m altitude down Paseo de la Reforma to the Zócalo, followed by a pyramid detour and a memorable ride with local marathoners.</p>
-                </div>
-              </a>
-
-        <a class="story-card run-world" href="./pisa-marathon.html">
-                <img src="../../../assets/thumb-run50-pisa-icons.svg?v=20260605-1" alt="Icon cover for Pisa Marathon" />
-                <div class="story-card-content">
-                  <div class="meta">Italy · Pisa · 2025.12.21</div>
-                  <h2>Pisa Marathon: under the Leaning Tower and through Tuscany</h2>
-                  <p>A winter-sun marathon from the Leaning Tower to the Arno, Tuscan villages, Marina di Pisa and the Ligurian Sea, followed by an Italy art-school road trip.</p>
-                </div>
-              </a>
-      </div>
-    </section>
-    <!-- running-story-web-batch:en:start -->
-
-    <section class="story-section run-50-zone" id="running-story-web-en-run50">
-      <div class="section-head">
-        <p class="section-kicker">Run50</p>
-        <h2>Run50 / State Challenge</h2>
-        <p>North Carolina State 16 and the merged Florida State 15 story across Key West, Orlando, and Disney Marathon.</p>
-      </div>
-      <div class="story-grid" aria-label="Run50 / State Challenge">
-        <a class="story-card run-50" href="./north-carolina-oak-island-marathon.html">
-          <img src="../../../assets/thumb-run50-north-carolina-oak-island-marathon-icons.svg?v=20260618-addddd" alt="Icon cover for Run50 #16 | North Carolina: Oak Island Marathon" />
-          <div class="story-card-content">
-            <div class="meta">Oak Island, North Carolina · 2025 archive</div>
-            <h2>Run50 #16 | North Carolina: Oak Island Marathon</h2>
-            <p>A North Carolina coast marathon with winter legs, ocean wind, Atlantic light, and a medal that refused to be subtle.</p>
+        <a class="story-card run-world" href="./singapore-sundown-marathon.html" data-map-meta="Singapore · 2018 archive">
+          <img src="../../../assets/cover-medal-fb-singapore-sundown-marathon.jpg?v=20260623-title-size" alt="Singapore Sundown Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Singapore · RunWorld #1</p>
+            <h2 class="story-title">Singapore brought me back to a ten-year promise and a midnight marathon</h2>
+            <p class="story-desc">A ten-year Singapore promise, campus pilgrimage, Marina Bay night, and a Sundown Marathon from midnight into morning.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
         </a>
-        <a class="story-card run-50" href="./disney-marathon.html">
-          <img src="../../../assets/thumb-run50-disney-marathon-icons.svg?v=20260618-addddd" alt="Icon cover for Run50 #15 | Florida: Key West, Orlando, and Disney Marathon" />
-          <div class="story-card-content">
-            <div class="meta">Key West / Orlando, Florida · 2025 archive</div>
-            <h2>Run50 #15 | Florida: Key West, Orlando, and Disney Marathon</h2>
-            <p>Run50 State 15 as one Florida arc: Key West New Year, Orlando speedrun, Universal, and Disney Marathon.</p>
+        <a class="story-card run-world" href="./bangkok-marathon.html" data-map-meta="Bangkok, Thailand · 2019 archive">
+          <img src="../../../assets/cover-medal-bangkok-marathon.jpg?v=20260619-en" alt="Bangkok Marathon cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Bangkok, Thailand · RunWorld #3</p>
+            <h2 class="story-title">Bangkok kept moving from temple light to marathon night</h2>
+            <p class="story-desc">A Bangkok running weekend through temple light, night streets, the Erawan Shrine, and the warmth of Thailand.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-world" href="./mexico-marathon.html" data-map-meta="Mexico City · 2025.08.31">
+          <img src="../../../assets/cover-medal-mexico.jpg" alt="Mexico City, Mexico cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Mexico City, Mexico · Pyramids & Locals</p>
+            <h2 class="story-title">Mexico City gave me a 26.2-mile high-altitude plateau challenge</h2>
+            <p class="story-desc">Race date: August 31, 2025. 2,240m altitude down Reforma to the Zócalo, followed by sun-drenched pyramids and a ride home with a carful of friendly locals.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-world" href="./pisa-marathon.html" data-map-meta="Italy · Pisa · 2025.12.21">
+          <img src="../../../assets/cover-medal-fb-pisa.jpg?v=20260623-title-fix" alt="Pisa, Italy cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">Pisa, Italy · RunWorld #6</p>
+            <h2 class="story-title">Pisa turned a marathon into a Tuscan art-school road trip</h2>
+            <p class="story-desc">Race date: December 21, 2025. The Leaning Tower, Arno River, Tuscan villages, Ligurian Sea, and an Italy trip through Venice, Milan, Florence and Rome.</p>
+            <div class="story-foot"><span>Run50 Facebook</span><span>Read →</span></div>
           </div>
         </a>
       </div>
     </section>
-
-    <section class="story-section run-cn-zone" id="running-story-web-en-runcn">
-      <div class="section-head">
-        <p class="section-kicker">RunCN</p>
-        <h2>RunCN / China Marathon Series</h2>
-        <p>Shanghai, Wuhan, Harbin, Wuxi, West Lake, Dalian, Lanzhou, Steel Tank, and other China running stories.</p>
-      </div>
-      <div class="story-grid" aria-label="RunCN / China Marathon Series">
-        <a class="story-card run-cn" href="./xiamen-marathon.html">
-          <img src="../../../assets/thumb-run50-xiamen-marathon-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN #5 | Xiamen Marathon: the most unforgettable entrance" />
-          <div class="story-card-content">
-            <div class="meta">Xiamen, Fujian · 2018 archive</div>
-            <h2>RunCN #5 | Xiamen Marathon: the most unforgettable entrance</h2>
-            <p>A rainy Xiamen Marathon, a Zengcuo&#x27;an reunion, and the first full-marathon chapter of 2018.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./west-lake-half-marathon.html">
-          <img src="../../../assets/thumb-run50-west-lake-half-marathon-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN #6 | West Lake Half Marathon and a surprise encounter" />
-          <div class="story-card-content">
-            <div class="meta">Hangzhou, Zhejiang · 2019 archive</div>
-            <h2>RunCN #6 | West Lake Half Marathon and a surprise encounter</h2>
-            <p>West Lake, Qingzhiwu, Westlake University, and a half marathon that helped me restart.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./wuhan-graduation.html">
-          <img src="../../../assets/thumb-run50-wuhan-graduation-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN Archive | Graduation photos, two years late" />
-          <div class="story-card-content">
-            <div class="meta">Wuhan, Hubei · 2019 archive</div>
-            <h2>RunCN Archive | Graduation photos, two years late</h2>
-            <p>Wuhan University graduation, family visiting Wuhan, East Lake, and a photo album that arrived two years late.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./lanzhou-marathon.html">
-          <img src="../../../assets/thumb-run50-lanzhou-marathon-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN #7 | Lanzhou Marathon on the eastern edge of the Hexi Corridor" />
-          <div class="story-card-content">
-            <div class="meta">Lanzhou, Gansu · 2018 archive</div>
-            <h2>RunCN #7 | Lanzhou Marathon on the eastern edge of the Hexi Corridor</h2>
-            <p>The Yellow River, beef noodles, Zhongshan Bridge, Gaolan Mountain, and a Lanzhou Marathon with roaring local energy.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./haikou-marathon.html">
-          <img src="../../../assets/thumb-run50-haikou-marathon-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN #8 | Haikou: poetry, distance, and a sea full of stars" />
-          <div class="story-card-content">
-            <div class="meta">Haikou, Hainan · 2019 archive</div>
-            <h2>RunCN #8 | Haikou: poetry, distance, and a sea full of stars</h2>
-            <p>Haikou arcades, Hainan sea wind, an unfinished race, and a city story still worth keeping.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./wuhan-han-marathon.html">
-          <img src="../../../assets/thumb-run50-wuhan-han-marathon-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN #9 | Wuhan Han Marathon: a private memory" />
-          <div class="story-card-content">
-            <div class="meta">Wuhan, Hubei · 2019 archive</div>
-            <h2>RunCN #9 | Wuhan Han Marathon: a private memory</h2>
-            <p>Han Marathon, Wuhan University, River City, pre-graduation homesickness, and a private Wuhan memory.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./dalian-trail.html">
-          <img src="../../../assets/thumb-run50-dalian-trail-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN Trail | Over the hills in Dalian" />
-          <div class="story-card-content">
-            <div class="meta">Dalian, Liaoning · 2019 archive</div>
-            <h2>RunCN Trail | Over the hills in Dalian</h2>
-            <p>Dalian&#x27;s west coast, the Yellow Sea and Bohai Sea divide, a trail race, and a hill story for the Northeast.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./wuhan-marathon-2018.html">
-          <img src="../../../assets/thumb-run50-wuhan-marathon-2018-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN #10 | Wuhan Marathon: a century-spanning run" />
-          <div class="story-card-content">
-            <div class="meta">Wuhan, Hubei · 2018 archive</div>
-            <h2>RunCN #10 | Wuhan Marathon: a century-spanning run</h2>
-            <p>1911 memory, East Lake, Han Marathon volunteers, and Wuhan at full volume.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./harbin-marathon.html">
-          <img src="../../../assets/thumb-run50-harbin-marathon-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN #11 | Harbin Marathon: running back home in the Northeast" />
-          <div class="story-card-content">
-            <div class="meta">Harbin, Heilongjiang · 2019 archive</div>
-            <h2>RunCN #11 | Harbin Marathon: running back home in the Northeast</h2>
-            <p>Songhua River, black soil, Northeastern home, and a delayed Harbin Marathon memory.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./steel-tank-story.html">
-          <img src="../../../assets/thumb-run50-steel-tank-story-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN Origin | The story of the steel tank" />
-          <div class="story-card-content">
-            <div class="meta">Harbin / Wuhan · 2017 archive</div>
-            <h2>RunCN Origin | The story of the steel tank</h2>
-            <p>From the steel tank on the football field to a proud son at the Harbin Marathon finish.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./wuhan-wuxi-marathon-notes.html">
-          <img src="../../../assets/thumb-run50-wuhan-wuxi-marathon-notes-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN Notes | Wuhan and Wuxi: three races under cherry blossoms" />
-          <div class="story-card-content">
-            <div class="meta">Wuhan / Wuxi · 2018 archive</div>
-            <h2>RunCN Notes | Wuhan and Wuxi: three races under cherry blossoms</h2>
-            <p>Wuhan, Wuxi, cherry blossoms, a college marathon, and three spring race notes.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./guiyang-marathon-climb.html">
-          <img src="../../../assets/thumb-run50-guiyang-marathon-climb-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN #12 | Guiyang Marathon: climbing through Yelang and the heart" />
-          <div class="story-card-content">
-            <div class="meta">Guiyang, Guizhou · 2018 archive</div>
-            <h2>RunCN #12 | Guiyang Marathon: climbing through Yelang and the heart</h2>
-            <p>Guiyang Marathon heat and climbing, Qingyan, Yelang Valley, Yangming Cave, and Fanjing Mountain as one southwestern lesson.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./xian-city-wall-marathon.html">
-          <img src="../../../assets/thumb-run50-xian-city-wall-marathon-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN #13 | Xi&#x27;an City Wall Marathon: rain on the city wall" />
-          <div class="story-card-content">
-            <div class="meta">Xi&#x27;an, Shaanxi · 2018 archive</div>
-            <h2>RunCN #13 | Xi&#x27;an City Wall Marathon: rain on the city wall</h2>
-            <p>Rain on the wall, the Qin plain, Terracotta Warriors, Huashan, and Hukou Falls in one heavy Chang&#x27;an travelogue.</p>
-          </div>
-        </a>
-        <a class="story-card run-cn" href="./three-city-pilgrimage.html">
-          <img src="../../../assets/thumb-run50-three-city-pilgrimage-icons.svg?v=20260618-addddd" alt="Icon cover for RunCN Archive | Fresh clothes, fierce flowers: a pilgrimage through three cities" />
-          <div class="story-card-content">
-            <div class="meta">Guang&#x27;an / Yichang / Changsha · 2017 archive</div>
-            <h2>RunCN Archive | Fresh clothes, fierce flowers: a pilgrimage through three cities</h2>
-            <p>Guang&#x27;an Marathon, Yichang Half, Changsha Marathon, and a pilgrimage threaded through Deng Xiaoping, a mentor, and Mao.</p>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <section class="story-section run-world-zone" id="running-story-web-en-runworld">
-      <div class="section-head">
-        <p class="section-kicker">RunWorld</p>
-        <h2>RunWorld / Global Marathon Series</h2>
-        <p>Bangkok is RunWorld stop 3, with running stories beyond the U.S. and China.</p>
-      </div>
-      <div class="story-grid" aria-label="RunWorld / Global Marathon Series">
-        <a class="story-card run-world" href="./singapore-sundown-marathon.html">
-          <img src="../../../assets/thumb-run50-singapore-sundown-marathon-icons.svg?v=20260618-addddd" alt="Icon cover for RunWorld #1 | Singapore Sundown Marathon: still young after ten years" />
-          <div class="story-card-content">
-            <div class="meta">Singapore · 2018 archive</div>
-            <h2>RunWorld #1 | Singapore Sundown Marathon: still young after ten years</h2>
-            <p>A ten-year Singapore promise, campus pilgrimage, Marina Bay night, and a Sundown Marathon from midnight into morning.</p>
-          </div>
-        </a>
-        <a class="story-card run-world" href="./bangkok-marathon.html">
-          <img src="../../../assets/thumb-run50-bangkok-marathon-icons.svg?v=20260618-addddd" alt="Icon cover for RunWorld #3 | Bangkok Marathon: day and night, nonstop" />
-          <div class="story-card-content">
-            <div class="meta">Bangkok, Thailand · 2019 archive</div>
-            <h2>RunWorld #3 | Bangkok Marathon: day and night, nonstop</h2>
-            <p>A Bangkok running weekend through temple light, night streets, the Erawan Shrine, and the warmth of Thailand.</p>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <!-- running-story-web-batch:en:end -->
   </main>
 
   <!-- 引入 US SVG 地图数据 -->
@@ -1015,7 +1019,7 @@
       };
 
       document.querySelectorAll('.story-grid .story-card, .story-list-hero .story-card').forEach((card, idx) => {
-        const metaText = card.querySelector('.meta')?.textContent || '';
+        const metaText = card.getAttribute('data-map-meta') || card.querySelector('.meta')?.textContent || card.querySelector('.story-meta')?.textContent || '';
         const parts = metaText.split('·').map(p => p.trim());
         let stateName = '';
         let city = '';
