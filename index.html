@@ -410,23 +410,6 @@
     color: var(--ink);
   }
 
-  .map-tile.run-50-map-card {
-    border-color: #d0dfe8;
-    background: #edf3f7;
-    color: #20242b;
-  }
-
-  .map-tile.run-cn-map-card {
-    border-color: #ebdcd6;
-    background: #faf2ee;
-    color: #20242b;
-  }
-
-  .map-tile.run-50-map-card .map-tile-count,
-  .map-tile.run-cn-map-card .map-tile-count {
-    color: #526170;
-  }
-
   .map-tile:hover,
   .map-tile:focus-visible {
     border-color: color-mix(in srgb, var(--run) 45%, var(--line));
@@ -461,22 +444,15 @@
     display: grid;
     align-items: center;
     min-height: 0;
-    padding: 8px 12px 13px;
+    padding: 6px 10px 12px;
   }
 
   .mini-map-slot svg {
     width: 100%;
     height: auto;
-    max-height: 220px;
+    max-height: 206px;
     display: block;
-  }
-
-  .run-50-map-card .mini-map-slot svg {
-    filter: drop-shadow(0 10px 18px rgba(11, 103, 194, .12));
-  }
-
-  .run-cn-map-card .mini-map-slot svg {
-    filter: drop-shadow(0 10px 18px rgba(204, 0, 0, .10));
+    background: transparent;
   }
 
   .mini-map-slot path {
@@ -858,14 +834,14 @@
         <p>A personal knowledge library for water research, reading notes, semiconductor study, endurance training, and field projects.</p>
       </div>
       <div class="masthead-maps" aria-label="Run maps">
-        <a class="map-tile run-50-map-card" href="run50/run50.html" aria-label="Open Run50 map">
+        <a class="map-tile" href="run50/run50.html" aria-label="Open Run50 map">
           <div class="map-tile-head">
             <span class="map-tile-title">Run50</span>
             <span class="map-tile-count" data-map-count="run50">stories</span>
           </div>
           <div class="mini-map-slot" id="homeRun50Map"></div>
         </a>
-        <a class="map-tile run-cn-map-card" href="run50/facebook/#runcn-series" aria-label="Open RunCN map stories">
+        <a class="map-tile" href="run50/facebook/#runcn-series" aria-label="Open RunCN map stories">
           <div class="map-tile-head">
             <span class="map-tile-title">RunCN</span>
             <span class="map-tile-count" data-map-count="runcn">stories</span>
@@ -1446,8 +1422,8 @@
   </main>
 </div>
 
-<script src="run50/us-map-svg.js?v=20260625-home-map-fb"></script>
-<script src="run50/china-map-svg.js?v=20260625-home-map-fb"></script>
+<script src="run50/us-map-svg.js?v=20260625-home-map-coordinated"></script>
+<script src="run50/china-map-svg.js?v=20260625-home-map-coordinated"></script>
 <script>
   const searchInput = document.querySelector('#searchInput');
   let cards = Array.from(document.querySelectorAll('.video-card'));
@@ -1652,8 +1628,7 @@
     'harbin-marathon.html':[{province:'cn_heilongjiang', city:'Harbin', lat:45.8038, lon:126.5350}]
   };
 
-  const HOME_RUN50_MAP_COLORS = ['#0b67c2', '#2f70d0', '#5893d4', '#88b7dc', '#335c8a', '#79a8c7'];
-  const HOME_RUNCN_MAP_COLORS = ['#cc0000', '#d4614a', '#df8b67', '#f0b08f', '#b94b3d', '#e4a56e'];
+  const HOME_MAP_COLORS = ['#d4614a', '#e89838', '#5ca860', '#3898a8', '#9068c0', '#98c038'];
   let homeMapEntries = [];
 
   function setHomeMapCount(kind, count, unit) {
@@ -1711,10 +1686,11 @@
   function colorHomeMapPath(svg, id, color) {
     const element = svg.querySelector(`#${CSS.escape(id)}`);
     if (!element) return;
+    const stroke = document.documentElement.dataset.theme === 'dark' ? '#1d2924' : '#ffffff';
     element.setAttribute('fill', color);
     element.style.fill = color;
-    element.style.stroke = '#ffffff';
-    element.style.strokeWidth = '1.1';
+    element.style.stroke = stroke;
+    element.style.strokeWidth = '.9';
     element.style.opacity = '1';
   }
 
@@ -1726,15 +1702,16 @@
     if (!svg) return;
     svg.removeAttribute('id');
     svg.setAttribute('aria-hidden', 'true');
-    svg.style.background = 'transparent';
     svg.querySelectorAll('text').forEach(text => { text.style.display = 'none'; });
-    const neutral = '#dce7f0';
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    const neutral = isDark ? '#26332d' : '#dfe7dd';
+    const stroke = isDark ? '#37473f' : '#ffffff';
     svg.querySelectorAll('path').forEach(path => {
       if (path.id === 'map_USA') path.setAttribute('fill', 'none');
       else path.setAttribute('fill', neutral);
       path.style.pointerEvents = 'none';
-      path.style.stroke = '#ffffff';
-      path.style.strokeWidth = '.75';
+      path.style.stroke = stroke;
+      path.style.strokeWidth = '.65';
       path.style.opacity = '.95';
     });
     const states = new Set();
@@ -1742,10 +1719,10 @@
       const item = HOME_RUN50_SLUGS[slug];
       if (!item) return;
       states.add(item.state);
-      addMapDot(svg, item, '#0b67c2', `${item.city}, ${item.state}`, projectHomeUS);
+      addMapDot(svg, item, '#ff3b30', `${item.city}, ${item.state}`, projectHomeUS);
     });
     Array.from(states).sort().forEach((abbr, index) => {
-      (HOME_US_STATE_PATHS[abbr] || []).forEach(pathId => colorHomeMapPath(svg, `map_${pathId}`, HOME_RUN50_MAP_COLORS[index % HOME_RUN50_MAP_COLORS.length]));
+      (HOME_US_STATE_PATHS[abbr] || []).forEach(pathId => colorHomeMapPath(svg, `map_${pathId}`, HOME_MAP_COLORS[index % HOME_MAP_COLORS.length]));
     });
     setHomeMapCount('run50', slugs.length, 'story');
   }
@@ -1758,33 +1735,36 @@
     if (!svg) return;
     svg.removeAttribute('id');
     svg.setAttribute('aria-hidden', 'true');
-    svg.style.background = 'transparent';
+    svg.querySelectorAll('text').forEach(text => { text.style.display = 'none'; });
+    const isDark = document.documentElement.dataset.theme === 'dark';
     const ocean = svg.querySelector('rect');
     if (ocean) ocean.setAttribute('fill', 'transparent');
     svg.querySelectorAll('path[id^="bg_"]').forEach(path => {
-      path.setAttribute('fill', '#f7efe9');
-      path.style.fill = '#f7efe9';
-      path.style.stroke = '#eadbd4';
+      const backgroundLand = isDark ? '#17221d' : '#eef2ed';
+      path.setAttribute('fill', backgroundLand);
+      path.style.fill = backgroundLand;
+      path.style.stroke = isDark ? '#2d3b34' : '#ffffff';
       path.style.strokeWidth = '.45';
-      path.style.opacity = '.32';
+      path.style.opacity = isDark ? '.42' : '.55';
       path.style.pointerEvents = 'none';
     });
-    const neutral = '#f3e7e0';
+    const neutral = isDark ? '#26332d' : '#dfe7dd';
+    const stroke = isDark ? '#37473f' : '#ffffff';
     svg.querySelectorAll('path[id^="cn_"]').forEach(path => {
       path.setAttribute('fill', neutral);
       path.style.fill = neutral;
-      path.style.stroke = '#ffffff';
-      path.style.strokeWidth = '.9';
+      path.style.stroke = stroke;
+      path.style.strokeWidth = '.8';
     });
     const provinces = new Map();
     slugs.forEach(slug => {
       (HOME_RUNCN_SLUGS[slug] || []).forEach(point => {
         if (!provinces.has(point.province)) provinces.set(point.province, point);
-        addMapDot(svg, point, '#cc0000', point.city, projectHomeChina);
+        addMapDot(svg, point, '#ff3b30', point.city, projectHomeChina);
       });
     });
     Array.from(provinces.keys()).sort().forEach((province, index) => {
-      colorHomeMapPath(svg, province, HOME_RUNCN_MAP_COLORS[index % HOME_RUNCN_MAP_COLORS.length]);
+      colorHomeMapPath(svg, province, HOME_MAP_COLORS[index % HOME_MAP_COLORS.length]);
     });
     setHomeMapCount('runcn', slugs.length, 'story');
   }
