@@ -473,7 +473,16 @@ body > main:not(.article-shell) > article .credit-line {
 }
 
 @media (max-width: 640px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   .story-nav {
+    width: 100%;
+    max-width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
     padding: 16px 18px 0;
@@ -481,12 +490,17 @@ body > main:not(.article-shell) > article .credit-line {
   }
 
   .page-header {
+    width: 100%;
+    max-width: 100%;
     padding: 30px 18px 22px;
   }
 
   h1 {
+    width: 100%;
+    max-width: 100%;
     font-size: 27px;
     line-height: 1.24;
+    overflow-wrap: anywhere;
   }
 
   .meta {
@@ -532,6 +546,8 @@ body > main:not(.article-shell) > article .credit-line {
   }
 
   body > nav:not(.story-nav) {
+    width: 100%;
+    max-width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
     padding: 16px 18px 0;
@@ -539,6 +555,8 @@ body > main:not(.article-shell) > article .credit-line {
   }
 
   body > .hero {
+    width: 100%;
+    max-width: 100%;
     padding: 30px 18px 22px;
   }
 
@@ -552,6 +570,8 @@ body > main:not(.article-shell) > article .credit-line {
   }
 
   body > .hero .cover {
+    width: 100%;
+    max-width: 100%;
     margin-top: 24px;
   }
 
