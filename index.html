@@ -458,6 +458,27 @@
     transition: fill .18s ease, opacity .18s ease;
   }
 
+  .story-tile {
+    grid-template-rows: auto minmax(0, 1fr);
+    text-decoration: none;
+  }
+
+  .story-tile-media {
+    display: flex;
+    min-height: 0;
+    padding: 10px 12px 12px;
+  }
+
+  .story-tile-cover {
+    width: 100%;
+    height: 100%;
+    min-height: 184px;
+    object-fit: cover;
+    border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+    border-radius: 6px;
+    background: #0f172a;
+  }
+
   .quick-stats {
     display: grid;
     grid-template-columns: repeat(3, minmax(92px, 1fr));
@@ -787,7 +808,7 @@
     <button type="submit" aria-label="Search"></button>
   </form>
   <div class="top-actions">
-    <span class="status"><span data-upload-count>29</span> entries</span>
+    <span class="status"><span data-upload-count>32</span> entries</span>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme">
       <span id="themeLabel">Dark mode</span>
     </button>
@@ -817,14 +838,11 @@
       <button class="chip" type="button" data-filter="research">Research</button>
       <button class="chip" type="button" data-filter="nsf">NSF Standards</button>
       <button class="chip" type="button" data-filter="atomic">Atomic Habits</button>
-      <button class="chip" type="button" data-filter="semiconductor">Semiconductor</button>
     </nav>
 
     <!-- Run50 quick-access buttons (visible when Run50 chip is active) -->
     <div class="run50-subnav" id="run50Subnav" hidden>
       <a class="r50btn" href="run50/hub.html">&#127968; Run50 Home</a>
-      <a class="r50btn" href="run50/stories/chinese/">&#128214; Chinese Stories</a>
-      <a class="r50btn" href="run50/stories/english/">&#128217; English Stories</a>
       <a class="r50btn" href="run50/facebook/">&#128216; Facebook Stories</a>
       <a class="r50btn" href="run50/run50.html">&#128506; Running Map</a>
     </div>
@@ -832,22 +850,26 @@
     <section class="masthead" aria-labelledby="page-title">
       <div class="masthead-copy">
         <h1 id="page-title">ZZ</h1>
-        <p>A personal knowledge library for water research, semiconductor study, reading notes, endurance training, and field projects.</p>
+        <p>A personal knowledge library for water research, reading notes, endurance training, and field projects.</p>
       </div>
-      <div class="masthead-maps" aria-label="Run maps">
-        <a class="map-tile" href="run50/run50.html" aria-label="Open Run50 map">
+      <div class="masthead-maps" aria-label="Run story shortcuts">
+        <a class="map-tile story-tile" href="run50/facebook/#run50-state-series" aria-label="Open Run50 Facebook stories">
           <div class="map-tile-head">
             <span class="map-tile-title">Run50</span>
-            <span class="map-tile-count" data-map-count="run50">loading</span>
+            <span class="map-tile-count" data-map-count="run50">stories</span>
           </div>
-          <div class="mini-map-slot" id="homeRun50Map"></div>
+          <div class="story-tile-media">
+            <img class="story-tile-cover" src="assets/facebook/thumb-run50-south-carolina-marathon-icons.svg?v=20260625-home-fb" alt="Run50 Facebook story cover">
+          </div>
         </a>
-        <a class="map-tile" href="run50/facebook/#runcn-series" aria-label="Open RunCN stories">
+        <a class="map-tile story-tile" href="run50/facebook/#runcn-series" aria-label="Open RunCN Facebook stories">
           <div class="map-tile-head">
             <span class="map-tile-title">RunCN</span>
-            <span class="map-tile-count" data-map-count="runcn">loading</span>
+            <span class="map-tile-count" data-map-count="runcn">stories</span>
           </div>
-          <div class="mini-map-slot" id="homeRunCnMap"></div>
+          <div class="story-tile-media">
+            <img class="story-tile-cover" src="assets/facebook/thumb-run50-hong-kong-icons.svg?v=20260625-home-fb" alt="RunCN Facebook story cover">
+          </div>
         </a>
       </div>
     </section>
@@ -866,7 +888,7 @@
 
       <article class="video-card" data-section="run50" data-feature-group="run50-state" data-category="run50 run50-state facebook story marathon travel" data-title="Too Slow for Boston gave me a 26.2-mile run with the stubborn mule medal">
         <a class="thumb" href="run50/facebook/south-carolina-marathon.html">
-          <img src="assets/cover-medal-sc.jpg?v=20260618-addddd" alt="南卡罗莱纳马拉松奖牌封面">
+          <img src="assets/facebook/thumb-run50-south-carolina-marathon-icons.svg?v=20260625-home-fb" alt="Too Slow for Boston icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -880,7 +902,7 @@
 
       <article class="video-card" data-section="run50" data-feature-group="run50-state" data-category="run50 run50-state facebook story marathon travel" data-title="Little Rock gave me a 26.2-mile run with the massive dinosaur medal">
         <a class="thumb" href="run50/facebook/little-rock-marathon.html">
-          <img src="assets/cover-medal-zh-little-rock.jpg?v=20260618-addddd" alt="小石城马拉松奖牌封面">
+          <img src="assets/facebook/thumb-run50-little-rock-marathon-icons.svg?v=20260625-home-fb" alt="Little Rock Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -894,7 +916,7 @@
 
       <article class="video-card" data-section="run50" data-feature-group="run50-state" data-category="run50 run50-state facebook story marathon travel" data-title="Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi's backyard">
         <a class="thumb" href="run50/facebook/miami-marathon.html">
-          <img src="assets/cover-medal-fl.jpg?v=20260618-addddd" alt="迈阿密马拉松奖牌封面">
+          <img src="assets/facebook/thumb-run50-miami-icons.svg?v=20260625-home-fb" alt="Miami Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -908,7 +930,7 @@
 
       <article class="video-card" data-section="run50" data-feature-group="run50-state" data-category="run50 run50-state facebook story marathon travel" data-title="San Antonio turned a Spurs trip into my Texas marathon story">
         <a class="thumb" href="run50/facebook/san-antonio-marathon.html">
-          <img src="assets/cover-medal-tx.jpg?v=20260618-addddd" alt="圣安东尼奥马拉松奖牌封面">
+          <img src="assets/facebook/thumb-run50-san-antonio-marathon-icons.svg?v=20260625-home-fb" alt="San Antonio Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -922,7 +944,7 @@
 
       <article class="video-card" data-section="run50" data-feature-group="run50-state" data-category="run50 run50-state facebook story marathon travel" data-title="West Virginia gave me a touchdown stadium finish to break 4 hours">
         <a class="thumb" href="run50/facebook/west-virginia-marathon.html">
-          <img src="assets/cover-medal-zh-wv.jpg?v=20260618-addddd" alt="西弗吉尼亚马拉松奖牌封面">
+          <img src="assets/facebook/thumb-run50-west-virginia-marathon-icons.svg?v=20260625-home-fb" alt="West Virginia Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -936,7 +958,7 @@
 
       <article class="video-card" data-section="run50" data-feature-group="run50-state" data-category="run50 run50-state facebook story marathon travel" data-title="Scorching October sun gave me my slowest marathon of the year in Music City">
         <a class="thumb" href="run50/facebook/nashville-marathon.html">
-          <img src="assets/cover-medal-zh-nashville.jpg?v=20260618-addddd" alt="纳什维尔马拉松奖牌封面">
+          <img src="assets/facebook/thumb-run50-nashville-marathon-icons.svg?v=20260625-home-fb" alt="Nashville Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -955,7 +977,7 @@
 
       <article class="video-card" data-section="run50" data-feature-group="runcn" data-category="run50 runcn facebook story marathon travel" data-title="Climbing 3,398 steps to the top of China's tallest skyscraper">
         <a class="thumb" href="run50/facebook/shanghai-vertical-marathon.html">
-          <img src="assets/thumb-run50-shanghai-vertical-marathon-icons.svg" alt="Shanghai Tower Vertical Marathon cover">
+          <img src="assets/facebook/thumb-run50-shanghai-vertical-marathon-icons.svg?v=20260625-home-fb" alt="Shanghai Tower Vertical Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -969,7 +991,7 @@
 
       <article class="video-card" data-section="run50" data-feature-group="runcn" data-category="run50 runcn facebook story marathon travel" data-title="Hong Kong turned a marathon into a tunnel-and-bridge city tour">
         <a class="thumb" href="run50/facebook/hong-kong-marathon.html">
-          <img src="assets/cover-medal-hk.jpg?v=20260618-addddd" alt="Hong Kong marathon medal cover">
+          <img src="assets/facebook/thumb-run50-hong-kong-icons.svg?v=20260625-home-fb" alt="Hong Kong Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -983,7 +1005,7 @@
 
       <article class="video-card" data-section="run50" data-feature-group="runcn" data-category="run50 runcn facebook story marathon travel" data-title="Guilin turned a beautiful marathon into a full-sun test">
         <a class="thumb" href="run50/facebook/guilin-marathon.html">
-          <img src="assets/cover-medal-guilin.jpg?v=20260618-addddd" alt="Guilin marathon medal cover">
+          <img src="assets/facebook/thumb-run50-guilin-icons.svg?v=20260625-home-fb" alt="Guilin Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -1002,7 +1024,7 @@
 
       <article class="video-card" data-section="run50" data-feature-group="runworld" data-category="run50 runworld facebook story marathon travel" data-title="Pisa turned a marathon into a Tuscan art-school road trip">
         <a class="thumb" href="run50/facebook/pisa-marathon.html">
-          <img src="assets/cover-medal-pisa.jpg?v=20260618-addddd" alt="比萨马拉松奖牌封面">
+          <img src="assets/facebook/thumb-run50-pisa-icons.svg?v=20260625-home-fb" alt="Pisa Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -1016,7 +1038,7 @@
 
       <article class="video-card" data-section="run50" data-feature-group="runworld" data-category="run50 runworld facebook story marathon travel" data-title="Mexico City gave me a 26.2-mile high-altitude plateau challenge">
         <a class="thumb" href="run50/facebook/mexico-marathon.html">
-          <img src="assets/cover-medal-mexico.jpg?v=20260618-addddd" alt="墨西哥城马拉松奖牌封面">
+          <img src="assets/facebook/thumb-run50-mexico-icons.svg?v=20260625-home-fb" alt="Mexico City Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -1122,16 +1144,16 @@
         <h2>Reading &amp; Study</h2>
       </div>
 
-      <article class="video-card" data-section="reading" data-category="reading atomic semiconductor equipment book image hub" data-title="Reading Hub">
+      <article class="video-card" data-section="reading" data-category="reading study hub atomic notes" data-title="Reading & Study Hub">
         <a class="thumb" href="reading/hub.html">
-          <img src="assets/thumb-atomic-cards.svg?v=20260625" alt="Reading Hub cover">
+          <img src="assets/thumb-reading-home.png?v=20260625-reading-hub" alt="Reading and Study Hub cover">
           <span class="duration">Hub</span>
         </a>
         <div class="meta">
           <span class="avatar reading">R</span>
           <div>
-            <a class="video-title" href="reading/hub.html">Reading Hub</a>
-            <p class="video-sub">Reading &middot; Books and study notes</p>
+            <a class="video-title" href="reading/hub.html">Reading &amp; Study Hub</a>
+            <p class="video-sub">Reading &middot; Notes and study modules</p>
           </div>
         </div>
       </article>
@@ -1164,7 +1186,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="reading" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Study Notes">
+      <article class="video-card" data-hide-on-all="true" data-section="reading" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Study Notes">
         <a class="thumb" href="reading/nano-ic-manufacturing-study.html">
           <img src="assets/thumb-nano-ic-prep.svg?v=20260601" alt="Nano IC Manufacturing Study Notes cover">
           <span class="duration">HTML</span>
@@ -1178,7 +1200,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="reading" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Detailed Handbook">
+      <article class="video-card" data-hide-on-all="true" data-section="reading" data-category="reading semiconductor equipment research" data-title="Nano IC Manufacturing Detailed Handbook">
         <a class="thumb" href="reading/nano-ic-manufacturing-handbook-detailed.html">
           <img src="assets/thumb-nano-ic-handbook.svg?v=20260601" alt="Nano IC Manufacturing Detailed Handbook cover">
           <span class="duration">HTML</span>
@@ -1192,7 +1214,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="reading" data-category="reading semiconductor equipment book image reader" data-title="Nano-Scale Equipment Illustrated Handbook Reader">
+      <article class="video-card" data-hide-on-all="true" data-section="reading" data-category="reading semiconductor equipment book image reader" data-title="Nano-Scale Equipment Illustrated Handbook Reader">
         <a class="thumb" href="reading/nano-ic.html">
           <img src="assets/thumb-nano-ic-reader.svg?v=20260601" alt="Nano-Scale Equipment Illustrated Handbook Reader cover">
           <span class="duration">Images</span>
@@ -1206,7 +1228,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="reading" data-category="reading semiconductor equipment book image pages directory" data-title="Nano-IC Page Image Directory">
+      <article class="video-card" data-hide-on-all="true" data-section="reading" data-category="reading semiconductor equipment book image pages directory" data-title="Nano-IC Page Image Directory">
         <a class="thumb" href="reading/nano-ic-pages/">
           <img src="assets/thumb-nano-ic-reader.svg?v=20260625" alt="Nano-IC Page Image Directory cover">
           <span class="duration">488 Pages</span>
@@ -1223,7 +1245,7 @@
       <!-- Secondary / Hidden Cards (Filter Only) -->
       <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 runworld facebook" data-title="Pisa turned a marathon into a Tuscan art-school road trip">
         <a class="thumb" href="run50/facebook/pisa-marathon.html">
-          <img src="assets/cover-medal-pisa.jpg?v=20260618-addddd" alt="Medal-style Pisa Marathon cover">
+          <img src="assets/facebook/thumb-run50-pisa-icons.svg?v=20260625-home-fb" alt="Pisa Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -1237,7 +1259,7 @@
 
       <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 runcn facebook" data-title="Hong Kong turned a marathon into a tunnel-and-bridge city tour">
         <a class="thumb" href="run50/facebook/hong-kong-marathon.html">
-          <img src="assets/cover-medal-hk.jpg?v=20260618-addddd" alt="Medal-style Hong Kong Streetathon cover">
+          <img src="assets/facebook/thumb-run50-hong-kong-icons.svg?v=20260625-home-fb" alt="Hong Kong Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -1265,7 +1287,7 @@
 
       <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 runcn facebook" data-title="Guilin turned a beautiful marathon into a full-sun test">
         <a class="thumb" href="run50/facebook/guilin-marathon.html">
-          <img src="assets/cover-medal-guilin.jpg?v=20260618-addddd" alt="Medal-style Guilin Marathon cover">
+          <img src="assets/facebook/thumb-run50-guilin-icons.svg?v=20260625-home-fb" alt="Guilin Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -1279,7 +1301,7 @@
 
       <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 runcn facebook" data-title="Xiangyang gave me a marathon with a finish I did not see coming">
         <a class="thumb" href="run50/facebook/xiangyang-marathon.html">
-          <img src="assets/cover-medal-xiangyang.jpg?v=20260618-addddd" alt="Medal-style Xiangyang Marathon cover">
+          <img src="assets/facebook/thumb-run50-xiangyang-icons.svg?v=20260625-home-fb" alt="Xiangyang Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -1293,7 +1315,7 @@
 
       <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 runworld facebook" data-title="Mexico City gave me a 26.2-mile high-altitude plateau challenge">
         <a class="thumb" href="run50/facebook/mexico-marathon.html">
-          <img src="assets/cover-medal-mexico.jpg?v=20260618-addddd" alt="Medal-style Mexico City Marathon cover">
+          <img src="assets/facebook/thumb-run50-mexico-icons.svg?v=20260625-home-fb" alt="Mexico City Marathon icon cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
@@ -1403,16 +1425,16 @@
         </div>
       </article>
 
-      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 story chinese marathon travel" data-title="Run50 Chinese Stories">
-        <a class="thumb" href="run50/stories/chinese/">
-          <img src="assets/cover-medal-xiangyang.jpg?v=20260618-addddd" alt="Run50 Chinese Stories cover">
+      <article class="video-card" data-hide-on-all="true" data-section="run50" data-category="run50 facebook story marathon travel" data-title="Run50 Facebook Stories">
+        <a class="thumb" href="run50/facebook/">
+          <img src="assets/facebook/thumb-run50-hong-kong-icons.svg?v=20260625-home-fb" alt="Run50 Facebook Stories cover">
           <span class="duration">Story</span>
         </a>
         <div class="meta">
           <span class="avatar run50">50</span>
           <div>
-            <a class="video-title" href="run50/stories/chinese/">Run50 Chinese Stories</a>
-            <p class="video-sub">Run50 &middot; Chinese index</p>
+            <a class="video-title" href="run50/facebook/">Run50 Facebook Stories</a>
+            <p class="video-sub">Run50 &middot; Facebook story index</p>
           </div>
         </div>
       </article>
@@ -1423,8 +1445,6 @@
   </main>
 </div>
 
-<script src="run50/us-map-svg.js"></script>
-<script src="run50/china-map-svg.js"></script>
 <script>
   const searchInput = document.querySelector('#searchInput');
   let cards = Array.from(document.querySelectorAll('.video-card'));
@@ -1516,7 +1536,6 @@
     emptyState.classList.toggle('show', visible === 0);
   }
 
-  const RUN50_CHINESE_INDEX_URL = 'run50/stories/chinese/?v=20260618-addddd';
   const RUN50_FACEBOOK_INDEX_URL = 'run50/facebook/?v=20260618-addddd';
   const RUN50_LATEST_LIMITS = {
     'run50-state': 6,
@@ -1545,6 +1564,21 @@
 
   function resolveFromIndex(src, indexUrl) {
     return new URL(src, new URL(indexUrl, location.href)).href;
+  }
+
+  const FACEBOOK_ICON_COVER_ALIASES = {
+    'miami-marathon': 'miami',
+    'xiangyang-marathon': 'xiangyang',
+    'guilin-marathon': 'guilin',
+    'hong-kong-marathon': 'hong-kong',
+    'mexico-marathon': 'mexico',
+    'pisa-marathon': 'pisa'
+  };
+
+  function facebookIconCoverFromSlug(slug) {
+    const base = slug.replace(/\.html$/i, '');
+    const assetBase = FACEBOOK_ICON_COVER_ALIASES[base] || base;
+    return `assets/facebook/thumb-run50-${assetBase}-icons.svg?v=20260625-home-fb`;
   }
 
   function limitRun50LatestEntries(entries) {
@@ -1760,8 +1794,8 @@
     const runCnSlugs = entries.length
       ? entries.filter(entry => entry.theme === 'runcn').map(entry => entry.slug).filter(slug => HOME_RUNCN_SLUGS[slug])
       : Object.keys(HOME_RUNCN_SLUGS);
-    renderHomeRun50Map([...new Set(run50Slugs)]);
-    renderHomeRunCnMap([...new Set(runCnSlugs)]);
+    setHomeMapCount('run50', new Set(run50Slugs).size, 'story');
+    setHomeMapCount('runcn', new Set(runCnSlugs).size, 'story');
   }
 
   function buildRun50HomeCard(entry) {
@@ -1816,40 +1850,25 @@
     const headers = Object.entries(run50LatestHeaders).filter(([, header]) => header);
     if (!headers.length) return;
 
-    const [chineseDoc, facebookDoc] = await Promise.all([
-      loadIndexDocument(RUN50_CHINESE_INDEX_URL),
-      loadIndexDocument(RUN50_FACEBOOK_INDEX_URL)
-    ]);
-
-    const coverBySlug = new Map();
-    chineseDoc.querySelectorAll('.story-card[href$=".html"]').forEach(card => {
-      const img = card.querySelector('img');
-      if (!img) return;
-      const slug = slugFromHref(card.getAttribute('href'));
-      coverBySlug.set(slug, {
-        src: resolveFromIndex(img.getAttribute('src'), RUN50_CHINESE_INDEX_URL),
-        alt: img.getAttribute('alt') || 'Run50 story cover',
-        theme: cardTheme(card)
-      });
-    });
+    const facebookDoc = await loadIndexDocument(RUN50_FACEBOOK_INDEX_URL);
 
     const entries = Array.from(facebookDoc.querySelectorAll('.story-card[href$=".html"]'))
       .map(card => {
         const slug = slugFromHref(card.getAttribute('href'));
-        const cover = coverBySlug.get(slug);
         const fallbackImg = card.querySelector('img');
-        const summary = card.querySelector('div > p:not(.eyebrow)')?.textContent.trim() || '';
+        const titleText = card.querySelector('h2')?.textContent.trim() || 'Run50 story';
+        const summary = card.querySelector('.story-desc')?.textContent.trim() || '';
         const raceDate = parseRaceDate(summary);
-        const locationText = card.querySelector('.meta span')?.textContent.trim() || '';
+        const locationText = card.querySelector('.story-meta')?.textContent.trim() || '';
         return {
           slug,
-          title: card.querySelector('h2')?.textContent.trim() || 'Run50 story',
+          title: titleText,
           location: locationText,
           dateLabel: raceDate.label,
           dateValue: raceDate.value,
           theme: cardTheme(card),
-          coverSrc: cover?.src || resolveFromIndex(fallbackImg?.getAttribute('src') || '', RUN50_FACEBOOK_INDEX_URL),
-          coverAlt: cover?.alt || fallbackImg?.getAttribute('alt') || 'Run50 story cover'
+          coverSrc: facebookIconCoverFromSlug(slug) || resolveFromIndex(fallbackImg?.getAttribute('src') || '', RUN50_FACEBOOK_INDEX_URL),
+          coverAlt: `${titleText} icon cover`
         };
       })
       .filter(entry => entry.slug && entry.coverSrc);
