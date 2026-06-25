@@ -357,16 +357,23 @@
 
   .masthead {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 28px;
-    align-items: center;
+    grid-template-columns: minmax(260px, .72fr) minmax(520px, 1.28fr);
+    gap: 22px;
+    align-items: stretch;
     margin: 4px 0 30px;
-    padding: clamp(24px, 4vw, 42px);
+    padding: clamp(20px, 3vw, 34px);
     border: 1px solid var(--line);
     border-radius: 8px;
     background:
       linear-gradient(120deg, color-mix(in srgb, var(--wqa) 10%, var(--panel)), var(--panel) 46%, color-mix(in srgb, var(--run) 8%, var(--panel)));
     box-shadow: var(--shadow);
+  }
+
+  .masthead-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
   }
 
   h1 {
@@ -382,6 +389,73 @@
     color: var(--muted);
     font-size: 16px;
     line-height: 1.6;
+  }
+
+  .masthead-maps {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .map-tile {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    min-width: 0;
+    min-height: 250px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--panel) 90%, transparent);
+    color: var(--ink);
+  }
+
+  .map-tile:hover,
+  .map-tile:focus-visible {
+    border-color: color-mix(in srgb, var(--run) 45%, var(--line));
+    outline: none;
+  }
+
+  .map-tile-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 13px 0;
+  }
+
+  .map-tile-title {
+    min-width: 0;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .map-tile-count {
+    flex: 0 0 auto;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .mini-map-slot {
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: 0;
+    padding: 6px 10px 12px;
+  }
+
+  .mini-map-slot svg {
+    width: 100%;
+    height: auto;
+    max-height: 206px;
+    display: block;
+  }
+
+  .mini-map-slot path {
+    transition: fill .18s ease, opacity .18s ease;
   }
 
   .quick-stats {
@@ -601,6 +675,10 @@
       grid-template-columns: 1fr;
     }
 
+    .masthead-maps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .quick-stats {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -671,6 +749,10 @@
     .quick-stats {
       display: none;
     }
+
+    .map-tile {
+      min-height: 210px;
+    }
   }
 
   @media (max-width: 520px) {
@@ -686,6 +768,10 @@
     .video-grid {
       grid-template-columns: 1fr;
       gap: 24px;
+    }
+
+    .masthead-maps {
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -744,14 +830,25 @@
     </div>
 
     <section class="masthead" aria-labelledby="page-title">
-      <div>
+      <div class="masthead-copy">
         <h1 id="page-title">ZZ</h1>
         <p>A personal knowledge library for water research, semiconductor study, reading notes, endurance training, and field projects.</p>
       </div>
-      <div class="quick-stats" aria-label="Library stats">
-        <div class="stat"><b>4</b><span>channels</span></div>
-        <div class="stat"><b data-upload-count>29</b><span>entries</span></div>
-        <div class="stat"><b>10</b><span>topics</span></div>
+      <div class="masthead-maps" aria-label="Run maps">
+        <a class="map-tile" href="run50/run50.html" aria-label="Open Run50 map">
+          <div class="map-tile-head">
+            <span class="map-tile-title">Run50</span>
+            <span class="map-tile-count" data-map-count="run50">loading</span>
+          </div>
+          <div class="mini-map-slot" id="homeRun50Map"></div>
+        </a>
+        <a class="map-tile" href="run50/facebook/#runcn-series" aria-label="Open RunCN stories">
+          <div class="map-tile-head">
+            <span class="map-tile-title">RunCN</span>
+            <span class="map-tile-count" data-map-count="runcn">loading</span>
+          </div>
+          <div class="mini-map-slot" id="homeRunCnMap"></div>
+        </a>
       </div>
     </section>
 
@@ -936,6 +1033,34 @@
         <h2>Water Research &amp; Tech</h2>
       </div>
 
+      <article class="video-card" data-section="water" data-category="wqa water research ro softener nsf hub" data-title="Water Research & Tech Hub">
+        <a class="thumb" href="water/">
+          <img src="assets/thumb-wqa-presentations.svg?v=20260625" alt="Water Research and Tech Hub cover">
+          <span class="duration">Hub</span>
+        </a>
+        <div class="meta">
+          <span class="avatar wqa">W</span>
+          <div>
+            <a class="video-title" href="water/">Water Research &amp; Tech Hub</a>
+            <p class="video-sub">Water &middot; Softener, RO, WQA, NSF</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="water" data-category="wqa research nsf standard water library" data-title="NSF Standards Library">
+        <a class="thumb" href="nsf/">
+          <img src="assets/thumb-nsf-standards.svg?v=20260625" alt="NSF Standards Library cover">
+          <span class="duration">Library</span>
+        </a>
+        <div class="meta">
+          <span class="avatar wqa">W</span>
+          <div>
+            <a class="video-title" href="nsf/">NSF Standards Library</a>
+            <p class="video-sub">NSF Standards &middot; Directory</p>
+          </div>
+        </div>
+      </article>
+
       <article class="video-card" data-section="water" data-category="wqa research" data-title="WQA 2026 Expo Observation Report">
         <a class="thumb" href="wqa/WQA_2026_Expo_Observation_Report_EN.html">
           <img src="assets/thumb-wqa-expo.svg?v=20260601" alt="WQA 2026 Expo Observation Report cover">
@@ -996,6 +1121,20 @@
       <div class="grid-header" id="readingHeader" data-section="reading">
         <h2>Reading &amp; Study</h2>
       </div>
+
+      <article class="video-card" data-section="reading" data-category="reading atomic semiconductor equipment book image hub" data-title="Reading Hub">
+        <a class="thumb" href="reading/hub.html">
+          <img src="assets/thumb-atomic-cards.svg?v=20260625" alt="Reading Hub cover">
+          <span class="duration">Hub</span>
+        </a>
+        <div class="meta">
+          <span class="avatar reading">R</span>
+          <div>
+            <a class="video-title" href="reading/hub.html">Reading Hub</a>
+            <p class="video-sub">Reading &middot; Books and study notes</p>
+          </div>
+        </div>
+      </article>
 
       <article class="video-card" data-section="reading" data-category="reading atomic" data-title="Atomic Habits Full English">
         <a class="thumb" href="reading/atomic-habits-full-english.html">
@@ -1063,6 +1202,20 @@
           <div>
             <a class="video-title" href="reading/nano-ic.html">Nano-Scale Equipment Illustrated Handbook Reader</a>
             <p class="video-sub">Reading &middot; Semiconductor book images</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="reading" data-category="reading semiconductor equipment book image pages directory" data-title="Nano-IC Page Image Directory">
+        <a class="thumb" href="reading/nano-ic-pages/">
+          <img src="assets/thumb-nano-ic-reader.svg?v=20260625" alt="Nano-IC Page Image Directory cover">
+          <span class="duration">488 Pages</span>
+        </a>
+        <div class="meta">
+          <span class="avatar reading">R</span>
+          <div>
+            <a class="video-title" href="reading/nano-ic-pages/">Nano-IC Page Image Directory</a>
+            <p class="video-sub">Reading &middot; Full image directory</p>
           </div>
         </div>
       </article>
@@ -1270,6 +1423,8 @@
   </main>
 </div>
 
+<script src="run50/us-map-svg.js"></script>
+<script src="run50/china-map-svg.js"></script>
 <script>
   const searchInput = document.querySelector('#searchInput');
   let cards = Array.from(document.querySelectorAll('.video-card'));
@@ -1305,6 +1460,7 @@
     document.documentElement.dataset.theme = nextTheme;
     localStorage.setItem('zz-theme', nextTheme);
     updateThemeControl();
+    renderHomeMaps(homeMapEntries);
   });
 
   function setActiveFilter(filter) {
@@ -1408,6 +1564,206 @@
     return new DOMParser().parseFromString(html, 'text/html');
   }
 
+  const HOME_US_STATE_PATHS = {
+    AK:['ocean_3_'], AR:['Tennessee','Arkansas'], CA:['Arizona'], CO:['Texas_1_','Colorado'],
+    FL:['South_Carolina_1_'], GA:['Georgia','Florida_1_'], HI:['ocean_2_'],
+    IL:['Illinois','Kentucky_1_'], IN:['Indiana','Ohio_1_'], KY:['Georgia_1_','Kentucky'],
+    MO:['Iowa_1_','Missouri'], NC:['Maryland'], NY:['Rhode_Island_1_','New_York'],
+    OH:['Ohio','West_Virginia_1_'], SC:['South_Carolina','Indiana_1_'],
+    TN:['Alabama'], TX:['Kansas_1_'], WV:['West_Virginia','Virginia_1_']
+  };
+
+  const HOME_RUN50_SLUGS = {
+    'louisville-marathon.html':{state:'KY', city:'Louisville', lat:38.2527, lon:-85.7585},
+    'cleveland-marathon.html':{state:'OH', city:'Cleveland', lat:41.4993, lon:-81.6944},
+    'new-york-city-marathon.html':{state:'NY', city:'New York City', lat:40.7128, lon:-74.0060},
+    'san-francisco-marathon.html':{state:'CA', city:'San Francisco', lat:37.7749, lon:-122.4194},
+    'indianapolis-monumental-marathon.html':{state:'IN', city:'Indianapolis', lat:39.7684, lon:-86.1581},
+    'honolulu-marathon.html':{state:'HI', city:'Honolulu', x:580.3, y:959.2},
+    'atlanta-marathon.html':{state:'GA', city:'Atlanta', lat:33.7490, lon:-84.3880},
+    'kentucky-derby-marathon.html':{state:'KY', city:'Louisville', lat:38.2527, lon:-85.7585},
+    'cincinnati-flying-pig-marathon.html':{state:'OH', city:'Cincinnati', lat:39.1031, lon:-84.5120},
+    'denver-colfax-marathon.html':{state:'CO', city:'Denver', lat:39.7392, lon:-104.9903},
+    'anchorage-marathon.html':{state:'AK', city:'Anchorage', x:368.4, y:929.4},
+    'st-joseph-marathon.html':{state:'MO', city:'St. Joseph', lat:39.7675, lon:-94.8467},
+    'chicago-marathon.html':{state:'IL', city:'Chicago', lat:41.8781, lon:-87.6298},
+    'nashville-marathon.html':{state:'TN', city:'Nashville', lat:36.1627, lon:-86.7816},
+    'west-virginia-marathon.html':{state:'WV', city:'Huntington', lat:38.4192, lon:-82.4453},
+    'san-antonio-marathon.html':{state:'TX', city:'San Antonio', lat:29.4241, lon:-98.4936},
+    'disney-marathon.html':{state:'FL', city:'Orlando', lat:28.5383, lon:-81.3792},
+    'orlando-disney-challenge.html':{state:'FL', city:'Orlando', lat:28.5383, lon:-81.3792},
+    'key-west-florida.html':{state:'FL', city:'Key West', lat:24.5551, lon:-81.7800},
+    'miami-marathon.html':{state:'FL', city:'Miami', lat:25.7617, lon:-80.1918},
+    'north-carolina-oak-island-marathon.html':{state:'NC', city:'Oak Island', lat:33.9166, lon:-78.1611},
+    'little-rock-marathon.html':{state:'AR', city:'Little Rock', lat:34.7465, lon:-92.2896},
+    'south-carolina-marathon.html':{state:'SC', city:'Greer', lat:34.9387, lon:-82.2271}
+  };
+
+  const HOME_RUNCN_SLUGS = {
+    'steel-tank-story.html':[
+      {province:'cn_heilongjiang', city:'Harbin', lat:45.8038, lon:126.5350},
+      {province:'cn_innermongolia', city:'Ordos', lat:39.6086, lon:109.7813},
+      {province:'cn_shanxi', city:'Changzhi', lat:36.1954, lon:113.1163}
+    ],
+    'three-city-pilgrimage.html':[
+      {province:'cn_hubei', city:'Yichang', lat:30.6919, lon:111.2865},
+      {province:'cn_sichuan', city:'Guangan', lat:30.4564, lon:106.6332},
+      {province:'cn_hunan', city:'Changsha', lat:28.2282, lon:112.9388}
+    ],
+    'xiamen-marathon.html':[{province:'cn_fujian', city:'Xiamen', lat:24.4798, lon:118.0894}],
+    'lanzhou-marathon.html':[{province:'cn_gansu', city:'Lanzhou', lat:36.0611, lon:103.8343}],
+    'wuhan-marathon-2018.html':[{province:'cn_hubei', city:'Wuhan', lat:30.5928, lon:114.3055}],
+    'wuhan-han-marathon.html':[{province:'cn_hubei', city:'Wuhan', lat:30.5928, lon:114.3055}],
+    'wuhan-wuxi-marathon-notes.html':[
+      {province:'cn_hubei', city:'Wuhan', lat:30.5928, lon:114.3055},
+      {province:'cn_jiangsu', city:'Wuxi', lat:31.4912, lon:120.3119}
+    ],
+    'guiyang-marathon-climb.html':[{province:'cn_guizhou', city:'Guiyang', lat:26.6470, lon:106.6302}],
+    'xian-city-wall-marathon.html':[{province:'cn_shaanxi', city:'Xian', lat:34.3416, lon:108.9398}],
+    'west-lake-half-marathon.html':[{province:'cn_zhejiang', city:'Hangzhou', lat:30.2741, lon:120.1551}],
+    'haikou-marathon.html':[{province:'cn_hainan', city:'Haikou', lat:20.0440, lon:110.1999}],
+    'dalian-trail.html':[{province:'cn_liaoning', city:'Dalian', lat:38.9140, lon:121.6147}],
+    'shanghai-vertical-marathon.html':[{province:'cn_shanghai', city:'Shanghai', lat:31.2304, lon:121.4737}],
+    'xiangyang-marathon.html':[{province:'cn_hubei', city:'Xiangyang', lat:32.0090, lon:112.1224}],
+    'guilin-marathon.html':[{province:'cn_guangxi', city:'Guilin', lat:25.2345, lon:110.1799}],
+    'hong-kong-marathon.html':[{province:'cn_hongkong', city:'Hong Kong', lat:22.3193, lon:114.1694}],
+    'harbin-marathon.html':[{province:'cn_heilongjiang', city:'Harbin', lat:45.8038, lon:126.5350}]
+  };
+
+  const HOME_MAP_COLORS = ['#cb6975', '#d18b30', '#29a58d', '#3c9bb0', '#9a7bb8', '#e89838'];
+  let homeMapEntries = [];
+
+  function setHomeMapCount(kind, count, unit) {
+    const element = document.querySelector(`[data-map-count="${kind}"]`);
+    const plural = unit === 'story' ? 'stories' : `${unit}s`;
+    if (element) element.textContent = `${count} ${count === 1 ? unit : plural}`;
+  }
+
+  function projectHomeUS(lat, lon) {
+    const lat0 = 37.5 * Math.PI / 180;
+    const lon0 = -96 * Math.PI / 180;
+    const lat1 = 29.5 * Math.PI / 180;
+    const lat2 = 45.5 * Math.PI / 180;
+    const n = 0.5 * (Math.sin(lat1) + Math.sin(lat2));
+    const c = Math.cos(lat1) ** 2 + 2 * n * Math.sin(lat1);
+    const rho0 = Math.sqrt(c - 2 * n * Math.sin(lat0)) / n;
+    const lr = lat * Math.PI / 180;
+    const lnr = lon * Math.PI / 180;
+    const theta = n * (lnr - lon0);
+    const rho = Math.sqrt(c - 2 * n * Math.sin(lr)) / n;
+    return { x: 1798.50 * rho * Math.sin(theta) + 935.11, y: -1851.29 * (rho0 - rho * Math.cos(theta)) + 579.07 };
+  }
+
+  function projectHomeChina(lat, lon) {
+    return { x: (lon - 70) * 11.8, y: (55 - lat) * 15.0 };
+  }
+
+  function addMapDot(svg, point, color, title, projector) {
+    const { x, y } = point.x ? point : projector(point.lat, point.lon);
+    const group = svg.querySelector('[data-home-dots]') || document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    if (!group.parentNode) {
+      group.setAttribute('data-home-dots', 'true');
+      svg.appendChild(group);
+    }
+    const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    glow.setAttribute('cx', x);
+    glow.setAttribute('cy', y);
+    glow.setAttribute('r', 12);
+    glow.setAttribute('fill', color);
+    glow.setAttribute('opacity', '.22');
+    glow.style.pointerEvents = 'none';
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('cx', x);
+    dot.setAttribute('cy', y);
+    dot.setAttribute('r', 5);
+    dot.setAttribute('fill', color);
+    dot.setAttribute('stroke', '#ffffff');
+    dot.setAttribute('stroke-width', '1.6');
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+    label.textContent = title;
+    dot.appendChild(label);
+    group.append(glow, dot);
+  }
+
+  function colorHomeMapPath(svg, id, color) {
+    const element = svg.querySelector(`#${CSS.escape(id)}`);
+    if (!element) return;
+    element.setAttribute('fill', color);
+    element.style.fill = color;
+    element.style.stroke = '#ffffff';
+    element.style.strokeWidth = '1.1';
+    element.style.opacity = '1';
+  }
+
+  function renderHomeRun50Map(slugs) {
+    const slot = document.getElementById('homeRun50Map');
+    if (!slot || typeof US_MAP_SVG === 'undefined') return;
+    slot.innerHTML = US_MAP_SVG;
+    const svg = slot.querySelector('svg');
+    if (!svg) return;
+    svg.removeAttribute('id');
+    svg.setAttribute('aria-hidden', 'true');
+    const neutral = document.documentElement.dataset.theme === 'dark' ? '#283129' : '#dce4dc';
+    svg.querySelectorAll('path').forEach(path => {
+      if (path.id === 'map_USA') path.setAttribute('fill', 'none');
+      else path.setAttribute('fill', neutral);
+      path.style.pointerEvents = 'none';
+      path.style.stroke = document.documentElement.dataset.theme === 'dark' ? '#3a443b' : '#ffffff';
+      path.style.strokeWidth = '.55';
+      path.style.opacity = '.95';
+    });
+    const states = new Set();
+    slugs.forEach(slug => {
+      const item = HOME_RUN50_SLUGS[slug];
+      if (!item) return;
+      states.add(item.state);
+      addMapDot(svg, item, '#ff4f43', `${item.city}, ${item.state}`, projectHomeUS);
+    });
+    Array.from(states).sort().forEach((abbr, index) => {
+      (HOME_US_STATE_PATHS[abbr] || []).forEach(pathId => colorHomeMapPath(svg, `map_${pathId}`, HOME_MAP_COLORS[index % HOME_MAP_COLORS.length]));
+    });
+    setHomeMapCount('run50', slugs.length, 'story');
+  }
+
+  function renderHomeRunCnMap(slugs) {
+    const slot = document.getElementById('homeRunCnMap');
+    if (!slot || typeof CHINA_MAP_SVG === 'undefined') return;
+    slot.innerHTML = CHINA_MAP_SVG;
+    const svg = slot.querySelector('svg');
+    if (!svg) return;
+    svg.removeAttribute('id');
+    svg.setAttribute('aria-hidden', 'true');
+    const neutral = document.documentElement.dataset.theme === 'dark' ? '#283129' : '#e3e5dc';
+    svg.querySelectorAll('path[id^="cn_"]').forEach(path => {
+      path.setAttribute('fill', neutral);
+      path.style.fill = neutral;
+      path.style.stroke = document.documentElement.dataset.theme === 'dark' ? '#3a443b' : '#ffffff';
+      path.style.strokeWidth = '.8';
+    });
+    const provinces = new Map();
+    slugs.forEach(slug => {
+      (HOME_RUNCN_SLUGS[slug] || []).forEach(point => {
+        if (!provinces.has(point.province)) provinces.set(point.province, point);
+        addMapDot(svg, point, '#d4614a', point.city, projectHomeChina);
+      });
+    });
+    Array.from(provinces.keys()).sort().forEach((province, index) => {
+      colorHomeMapPath(svg, province, HOME_MAP_COLORS[index % HOME_MAP_COLORS.length]);
+    });
+    setHomeMapCount('runcn', slugs.length, 'story');
+  }
+
+  function renderHomeMaps(entries = homeMapEntries) {
+    const run50Slugs = entries.length
+      ? entries.filter(entry => entry.theme === 'run50-state').map(entry => entry.slug).filter(slug => HOME_RUN50_SLUGS[slug])
+      : Object.keys(HOME_RUN50_SLUGS);
+    const runCnSlugs = entries.length
+      ? entries.filter(entry => entry.theme === 'runcn').map(entry => entry.slug).filter(slug => HOME_RUNCN_SLUGS[slug])
+      : Object.keys(HOME_RUNCN_SLUGS);
+    renderHomeRun50Map([...new Set(run50Slugs)]);
+    renderHomeRunCnMap([...new Set(runCnSlugs)]);
+  }
+
   function buildRun50HomeCard(entry) {
     const article = document.createElement('article');
     article.className = 'video-card';
@@ -1491,7 +1847,7 @@
           location: locationText,
           dateLabel: raceDate.label,
           dateValue: raceDate.value,
-          theme: cover?.theme || cardTheme(card),
+          theme: cardTheme(card),
           coverSrc: cover?.src || resolveFromIndex(fallbackImg?.getAttribute('src') || '', RUN50_FACEBOOK_INDEX_URL),
           coverAlt: cover?.alt || fallbackImg?.getAttribute('alt') || 'Run50 story cover'
         };
@@ -1499,6 +1855,8 @@
       .filter(entry => entry.slug && entry.coverSrc);
 
     if (!entries.length) return;
+    homeMapEntries = entries;
+    renderHomeMaps(entries);
 
     const latestEntries = limitRun50LatestEntries(entries);
     const entriesByTheme = latestEntries.reduce((groups, entry) => {
@@ -1541,6 +1899,7 @@
 
   refreshCards();
   updateThemeControl();
+  renderHomeMaps();
   applyFilters();
   syncRun50LatestStories()
     .catch(error => console.warn('Run50 latest stories stayed on the static fallback.', error))

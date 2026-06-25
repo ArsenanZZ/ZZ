@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nano-IC Page Directory | ZZ</title>
+<meta name="description" content="Image page directory for the Nano-scale manufacturing illustrated reader.">
+<style>
+  :root {
+    --bg:#f2f0eb;
+    --ink:#1a1a1a;
+    --muted:#666;
+    --panel:#fff;
+    --line:#ddd;
+    --green:#1a5c48;
+    --soft:#e8f4f0;
+    --shadow:0 4px 20px rgba(0,0,0,.10);
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  body {
+    margin:0;
+    color:var(--ink);
+    background:var(--bg);
+    font-family:"Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  a { color:inherit; text-decoration:none; }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline:2px solid var(--green); outline-offset:2px; }
+  .topbar {
+    position:sticky;
+    top:0;
+    z-index:20;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:10px 20px;
+    background:rgba(242,240,235,.96);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(12px);
+  }
+  .brand {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:0;
+    font-size:15px;
+    font-weight:800;
+  }
+  .mark {
+    display:grid;
+    place-items:center;
+    width:34px;
+    height:34px;
+    flex:0 0 auto;
+    color:#fff;
+    background:var(--green);
+    border-radius:8px;
+    font-size:13px;
+    font-weight:900;
+  }
+  .brand span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .nav-actions { display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; }
+  .btn {
+    display:inline-flex;
+    min-height:32px;
+    align-items:center;
+    padding:5px 12px;
+    color:var(--ink);
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:7px;
+    font-size:13px;
+    font-weight:650;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn:hover { background:var(--soft); border-color:var(--green); }
+  .wrap { max-width:1240px; margin:0 auto; padding:22px 20px 52px; }
+  .masthead {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:16px;
+    align-items:end;
+    margin-bottom:18px;
+  }
+  h1 { margin:0; font-size:clamp(26px,4vw,40px); line-height:1.1; }
+  .masthead p { max-width:720px; margin:10px 0 0; color:var(--muted); line-height:1.6; }
+  .count {
+    color:var(--green);
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:10px 12px;
+    font-size:13px;
+    font-weight:800;
+    white-space:nowrap;
+  }
+  .tools {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+    margin:12px 0 16px;
+  }
+  .tools label {
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:var(--muted);
+    font-size:13px;
+  }
+  .tools input {
+    width:88px;
+    min-height:32px;
+    padding:5px 8px;
+    color:var(--ink);
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:7px;
+    font:inherit;
+  }
+  .grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(132px, 1fr));
+    gap:12px;
+  }
+  .page-card {
+    display:block;
+    min-width:0;
+    padding:8px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    box-shadow:0 8px 18px rgba(0,0,0,.05);
+    transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .page-card:hover {
+    transform:translateY(-2px);
+    border-color:var(--green);
+    box-shadow:var(--shadow);
+  }
+  .page-card img {
+    display:block;
+    width:100%;
+    aspect-ratio:3 / 4;
+    object-fit:cover;
+    object-position:top center;
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:6px;
+  }
+  .page-card span {
+    display:block;
+    margin-top:6px;
+    color:var(--muted);
+    font-size:12px;
+    font-weight:750;
+    text-align:center;
+  }
+  @media (max-width:640px) {
+    .topbar { align-items:flex-start; flex-direction:column; }
+    .nav-actions { justify-content:flex-start; }
+    .masthead { grid-template-columns:1fr; align-items:start; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="mark">IC</div><span>Nano-IC Page Directory</span></div>
+  <div class="nav-actions">
+    <a class="btn" href="../nano-ic.html">Open Reader</a>
+    <a class="btn" href="../hub.html">Reading Hub</a>
+    <a class="btn" href="../../">ZZ Hub</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="masthead">
+    <div>
+      <h1>Nano-Scale Manufacturing Pages</h1>
+      <p>Direct image directory for the 488-page illustrated handbook used by the Nano-IC reader.</p>
+    </div>
+    <div class="count">488 pages</div>
+  </section>
+
+  <div class="tools">
+    <label for="pageJump">Page <input id="pageJump" type="number" min="1" max="488" value="1"></label>
+    <button class="btn" id="jumpButton" type="button">Jump</button>
+  </div>
+
+  <section class="grid" id="pageGrid" aria-label="Nano-IC page images"></section>
+</main>
+
+<script>
+  const TOTAL = 488;
+  const grid = document.getElementById('pageGrid');
+  const jumpInput = document.getElementById('pageJump');
+  const jumpButton = document.getElementById('jumpButton');
+
+  const frag = document.createDocumentFragment();
+  for (let page = 1; page <= TOTAL; page += 1) {
+    const pageId = String(page).padStart(3, '0');
+    const card = document.createElement('a');
+    card.className = 'page-card';
+    card.href = `p${pageId}.jpg`;
+    card.id = `page-${page}`;
+    card.innerHTML = `
+      <img src="p${pageId}.jpg" loading="${page <= 8 ? 'eager' : 'lazy'}" decoding="async" alt="Nano-IC page ${page}">
+      <span>Page ${page}</span>
+    `;
+    frag.appendChild(card);
+  }
+  grid.appendChild(frag);
+
+  function jumpToPage() {
+    const page = Math.max(1, Math.min(TOTAL, Number(jumpInput.value) || 1));
+    document.getElementById(`page-${page}`)?.scrollIntoView({ block:'start', behavior:'smooth' });
+  }
+  jumpButton.addEventListener('click', jumpToPage);
+  jumpInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') jumpToPage();
+  });
+</script>
+</body>
+</html>
