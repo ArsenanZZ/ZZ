@@ -33,8 +33,8 @@ DECK_ZH = "第四次回到 Louisville Derby Marathon，从赛马节、热气球�
 DECK_EN = "My fourth Louisville Derby Marathon brought together Derby season, hot-air balloons, Old Louisville, Churchill Downs, Iroquois Park, and finally a hometown sub-four."
 LOCATION_ZH = "路易斯维尔，肯塔基"
 LOCATION_EN = "Louisville, Kentucky"
-DATE_ZH = "2026.04.25"
-DATE_EN = "Apr 25, 2026"
+DATE_ZH = "2024.04.27"
+DATE_EN = "Apr 27, 2024"
 RACE_NAME = "Kentucky Derby Marathon"
 
 SPECIAL_TRANSLATIONS = {
@@ -553,20 +553,20 @@ def update_indexes() -> None:
             <span class="story-tag">Run50 #1 · Kentucky</span>
             <h2 class="story-title">肯塔基：赛马节马拉松｜四刷主场，蓝草州终破4！</h2>
             <p class="story-desc">第四次跑 Louisville Derby Marathon，从赛马节和 Churchill Downs 到 Iroquois Park，终于在主场破四。</p>
-            <p class="story-meta">路易斯维尔 · 肯塔基 · 2026.04.25</p>
+            <p class="story-meta">路易斯维尔 · 肯塔基 · 2024.04.27</p>
           </div>
         </a>''',
         ),
         (
             REPO / "run50" / "stories" / "english" / "index.html",
             r'(<a class="story-card run-50" href="./kentucky-derby-marathon.html"[^>]*>.*?</a>)',
-            f'''<a class="story-card run-50" href="./kentucky-derby-marathon.html" data-map-meta="Kentucky · Louisville · 2026.04.25">
+            f'''<a class="story-card run-50" href="./kentucky-derby-marathon.html" data-map-meta="Kentucky · Louisville · 2024.04.27">
           <img src="../../../assets/cover-medal-zh-kentucky-derby.jpg?v={VERSION}" alt="Kentucky Derby Marathon medal cover" loading="lazy" decoding="async">
           <div class="story-card-body">
             <span class="story-tag">Run50 #1 · Kentucky</span>
             <h2 class="story-title">Kentucky Derby Marathon: fourth time at home, finally under four</h2>
             <p class="story-desc">A hometown Louisville Derby Marathon with Derby-season color, Churchill Downs, Iroquois Park, running friends, and a long-awaited sub-four.</p>
-            <p class="story-meta">Louisville · Kentucky · Apr 25, 2026</p>
+            <p class="story-meta">Louisville · Kentucky · Apr 27, 2024</p>
           </div>
         </a>''',
         ),
