@@ -396,13 +396,14 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
     min-width: 0;
+    align-self: center;
   }
 
   .map-tile {
     display: grid;
-    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-self: start;
     min-width: 0;
-    min-height: 250px;
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -442,15 +443,15 @@
   .mini-map-slot {
     position: relative;
     display: grid;
-    align-items: center;
+    place-items: center;
     min-height: 0;
     padding: 6px 10px 12px;
+    aspect-ratio: 1722 / 989;
   }
 
   .mini-map-slot svg {
     width: 100%;
-    height: auto;
-    max-height: 206px;
+    height: 100%;
     display: block;
     background: transparent;
   }
@@ -834,7 +835,7 @@
         <p>A personal knowledge library for water research, reading notes, semiconductor study, endurance training, and field projects.</p>
       </div>
       <div class="masthead-maps" aria-label="Run maps">
-        <a class="map-tile" href="run50/run50.html" aria-label="Open Run50 map">
+        <a class="map-tile" href="run50/facebook/#run50-series" aria-label="Open Run50 Facebook stories">
           <div class="map-tile-head">
             <span class="map-tile-title">Run50</span>
             <span class="map-tile-count" data-map-count="run50">stories</span>
@@ -1702,6 +1703,8 @@
     if (!svg) return;
     svg.removeAttribute('id');
     svg.setAttribute('aria-hidden', 'true');
+    svg.style.width = '100%';
+    svg.style.height = '100%';
     svg.querySelectorAll('text').forEach(text => { text.style.display = 'none'; });
     const isDark = document.documentElement.dataset.theme === 'dark';
     const neutral = isDark ? '#26332d' : '#dfe7dd';
@@ -1735,19 +1738,13 @@
     if (!svg) return;
     svg.removeAttribute('id');
     svg.setAttribute('aria-hidden', 'true');
-    svg.querySelectorAll('text').forEach(text => { text.style.display = 'none'; });
+    svg.style.width = '100%';
+    svg.style.height = '100%';
+    // Match the US tile: drop the ocean fill, neighbouring countries and the
+    // South China Sea decorations so only the mainland body shows on a
+    // transparent background.
+    svg.querySelectorAll('rect, circle, text, [id^="bg_"]').forEach(el => el.remove());
     const isDark = document.documentElement.dataset.theme === 'dark';
-    const ocean = svg.querySelector('rect');
-    if (ocean) ocean.setAttribute('fill', 'transparent');
-    svg.querySelectorAll('path[id^="bg_"]').forEach(path => {
-      const backgroundLand = isDark ? '#17221d' : '#eef2ed';
-      path.setAttribute('fill', backgroundLand);
-      path.style.fill = backgroundLand;
-      path.style.stroke = isDark ? '#2d3b34' : '#ffffff';
-      path.style.strokeWidth = '.45';
-      path.style.opacity = isDark ? '.42' : '.55';
-      path.style.pointerEvents = 'none';
-    });
     const neutral = isDark ? '#26332d' : '#dfe7dd';
     const stroke = isDark ? '#37473f' : '#ffffff';
     svg.querySelectorAll('path[id^="cn_"]').forEach(path => {
@@ -1766,6 +1763,25 @@
     Array.from(provinces.keys()).sort().forEach((province, index) => {
       colorHomeMapPath(svg, province, HOME_MAP_COLORS[index % HOME_MAP_COLORS.length]);
     });
+    // Zoom the viewBox to the mainland so the China body fills the tile to a
+    // similar size as the US map body.
+    let bb = null;
+    svg.querySelectorAll('path[id^="cn_"]').forEach(path => {
+      let box;
+      try { box = path.getBBox(); } catch (err) { return; }
+      if (!box || (!box.width && !box.height)) return;
+      if (!bb) bb = { x1: box.x, y1: box.y, x2: box.x + box.width, y2: box.y + box.height };
+      else {
+        bb.x1 = Math.min(bb.x1, box.x); bb.y1 = Math.min(bb.y1, box.y);
+        bb.x2 = Math.max(bb.x2, box.x + box.width); bb.y2 = Math.max(bb.y2, box.y + box.height);
+      }
+    });
+    if (bb) {
+      const pad = 14;
+      const x = bb.x1 - pad, y = bb.y1 - pad;
+      const w = (bb.x2 - bb.x1) + pad * 2, h = (bb.y2 - bb.y1) + pad * 2;
+      svg.setAttribute('viewBox', `${x.toFixed(1)} ${y.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);
+    }
     setHomeMapCount('runcn', slugs.length, 'story');
   }
 
