@@ -220,6 +220,216 @@
   }
   .section-see-all:hover { text-decoration: underline; color: #c7511f; }
 
+  /* RUNNING MAP */
+  .running-map-section {
+    max-width: 980px;
+    margin: 0 auto 32px;
+    background: #fff;
+    border: 1px solid var(--amz-border);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 18px 44px rgba(15, 23, 42, .08);
+  }
+
+  .running-map-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 16px;
+  }
+
+  .running-map-kicker {
+    margin: 0 0 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--amz-teal);
+  }
+
+  .running-map-head h2 {
+    margin: 0 0 6px;
+    font-size: 24px;
+    line-height: 1.2;
+    color: var(--amz-text);
+  }
+
+  .running-map-head p {
+    max-width: 650px;
+    margin: 0;
+    color: var(--amz-muted);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .running-map-link {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border: 1px solid #FFA41C;
+    border-radius: 18px;
+    background: linear-gradient(to bottom, #FFE082, #FFD814);
+    color: #0F1111;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .running-map-link:hover { background: linear-gradient(to bottom, #f5d576, #f0c400); }
+
+  .running-map-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .running-map-stat {
+    border: 1px solid #e5eaee;
+    border-radius: 8px;
+    background: #f7faf9;
+    padding: 10px 12px;
+  }
+
+  .running-map-stat strong {
+    display: block;
+    font-size: 21px;
+    line-height: 1.1;
+    color: #a33a2b;
+  }
+
+  .running-map-stat span {
+    display: block;
+    margin-top: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    color: var(--amz-muted);
+  }
+
+  .running-map-shell {
+    position: relative;
+  }
+
+  .world-running-map-slot {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    background: #a8d4e8;
+    border: 1px solid var(--amz-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .world-running-map-slot svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .world-running-map-slot path {
+    transition: fill .2s ease, opacity .2s ease, stroke .2s ease;
+  }
+
+  .wm-country-run {
+    cursor: pointer;
+  }
+
+  .wm-country-run:hover {
+    opacity: .85;
+    stroke: #fff;
+    stroke-width: 1.4;
+  }
+
+  .world-city-dot {
+    fill: #ff3b30;
+    stroke: #fff;
+    stroke-width: 1.5;
+    cursor: pointer;
+    transition: r .2s ease, fill .2s ease;
+  }
+
+  .world-city-dot:hover {
+    r: 6.5;
+    fill: #ffcc00;
+  }
+
+  .world-city-glow {
+    fill: rgba(255, 59, 48, .28);
+    pointer-events: none;
+    animation: world-dot-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes world-dot-pulse {
+    0%, 100% { opacity: .22; r: 6; }
+    50% { opacity: .62; r: 12; }
+  }
+
+  .world-running-map-tooltip {
+    position: absolute;
+    z-index: 20;
+    display: none;
+    min-width: 230px;
+    max-width: 320px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 8px;
+    background: rgba(26, 37, 47, .95);
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .25);
+    backdrop-filter: blur(8px);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .world-running-map-tooltip h4 {
+    margin: 0 0 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, .15);
+    color: #ffb612;
+    font-size: 14px;
+  }
+
+  .world-running-map-tooltip a {
+    display: inline-flex;
+    margin-top: 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #ffb612;
+    color: #1a252f;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .running-map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    margin-top: 12px;
+    color: var(--amz-muted);
+    font-size: 12px;
+  }
+
+  .running-map-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  .running-map-legend i {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 17, 17, .2);
+  }
+
   /* PRODUCT GRID */
   .products {
     display: grid;
@@ -431,6 +641,11 @@
     .header-search select { display: none; }
     .header-links { display: none; }
     .products { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .running-map-section { padding: 16px; }
+    .running-map-head { display: block; }
+    .running-map-link { margin-top: 14px; }
+    .running-map-stats { grid-template-columns: 1fr; }
+    .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
     .hero-title { font-size: 26px; }
     .hero { padding: 24px 16px; }
   }
@@ -471,6 +686,7 @@
 <!-- NAV BAR -->
 <nav class="nav-bar">
   <a href="#" class="active">&#9776; All</a>
+  <a href="#running-map">Running Map</a>
   <a href="./run50.html">&#127939; Run50</a>
   <a href="./stories/chinese/?v=20260618-addddd">文 Chinese Stories</a>
   <a href="./stories/english/?v=20260618-addddd">EN English Stories</a>
@@ -490,6 +706,35 @@
 
 <!-- MAIN -->
 <div class="content">
+
+  <section class="running-map-section" id="running-map" aria-labelledby="running-map-title">
+    <div class="running-map-head">
+      <div>
+        <p class="running-map-kicker">Running Map · Global Marathon Footprint</p>
+        <h2 id="running-map-title">Countries I Have Run</h2>
+        <p>Race countries are highlighted, and each city dot is placed from real latitude and longitude. This map will grow with Run50, RunCN, and RunWorld.</p>
+      </div>
+      <a class="running-map-link" href="./stories/english/?v=20260618-addddd#runworld-series">Explore Stories &rsaquo;</a>
+    </div>
+
+    <div class="running-map-stats" aria-label="Running map statistics">
+      <div class="running-map-stat"><strong>6 + HK</strong><span>Countries / Region</span></div>
+      <div class="running-map-stat"><strong>35</strong><span>US States Run</span></div>
+      <div class="running-map-stat"><strong>17</strong><span>China Regions</span></div>
+    </div>
+
+    <div class="running-map-shell">
+      <div class="world-running-map-slot" id="world-running-map-slot" aria-label="World running map"></div>
+      <div class="world-running-map-tooltip" id="world-running-map-tooltip" role="tooltip"></div>
+    </div>
+
+    <div class="running-map-legend" aria-label="World map legend">
+      <span><i style="background:#0b67c2"></i>Run50 USA</span>
+      <span><i style="background:#cc0000"></i>RunCN China</span>
+      <span><i style="background:#2f855a"></i>RunWorld</span>
+      <span><i style="background:#ff3b30"></i>Race city</span>
+    </div>
+  </section>
 
   <div class="section-header">
     <div class="section-title">My Projects &amp; Stories</div>
@@ -653,6 +898,268 @@
 
 <link rel="stylesheet" href="../assets/zz-comments.css">
 <section data-zz-comments></section>
+<script src="./world-map-svg.js?v=20260626-running-map"></script>
+<script>
+(() => {
+  const slot = document.getElementById('world-running-map-slot');
+  const tooltip = document.getElementById('world-running-map-tooltip');
+  if (!slot || !tooltip) return;
+
+  const COLORS = {
+    ocean: '#a8d4e8',
+    land: '#dedad3',
+    border: '#ffffff',
+    grid: 'rgba(74,108,54,.28)',
+    usa: '#0b67c2',
+    china: '#cc0000',
+    runworld: '#2f855a',
+    mexico: '#e8b040',
+    italy: '#e05050',
+    hongkong: '#9068c0',
+    dot: '#ff3b30'
+  };
+
+  const countries = [
+    { key:'USA', id:'wm_usa', name:'United States', label:'Run50', color:COLORS.usa, url:'./stories/english/?v=20260618-addddd#run50-series' },
+    { key:'CHN', id:'wm_chn', name:'China', label:'RunCN', color:COLORS.china, url:'./stories/english/?v=20260618-addddd#runcn-series' },
+    { key:'HKG', id:'wm_hkg', name:'Hong Kong SAR', label:'RunCN', color:COLORS.hongkong, url:'./stories/english/hong-kong-marathon.html' },
+    { key:'SGP', id:'wm_sgp', name:'Singapore', label:'RunWorld', color:COLORS.runworld, url:'./stories/english/singapore-sundown-marathon.html' },
+    { key:'THA', id:'wm_tha', name:'Thailand', label:'RunWorld', color:'#c490d0', url:'./stories/english/bangkok-marathon.html' },
+    { key:'MEX', id:'wm_mex', name:'Mexico', label:'RunWorld', color:COLORS.mexico, url:'./stories/english/mexico-marathon.html' },
+    { key:'ITA', id:'wm_ita', name:'Italy', label:'RunWorld', color:COLORS.italy, url:'./stories/english/pisa-marathon.html' }
+  ];
+
+  const raceDots = [
+    { country:'USA', city:'Louisville, Kentucky', lat:38.2527, lon:-85.7585, races:[
+      ['Louisville Marathon', '2020.11.08', './stories/english/louisville-marathon.html'],
+      ['Kentucky Derby Marathon', '2024.04.27', './stories/english/kentucky-derby-marathon.html'],
+      ['Louisville Marathon', '2024.11.03', './stories/english/louisville-marathon-2024.html'],
+      ['Kentucky Derby Marathon', '2025.04.26', './stories/english/kentucky-derby-marathon-2025.html']
+    ]},
+    { country:'USA', city:'Cleveland, Ohio', lat:41.4993, lon:-81.6944, races:[['Cleveland Marathon', '2021.10.24', './stories/english/cleveland-marathon.html']] },
+    { country:'USA', city:'New York City, New York', lat:40.7128, lon:-74.0060, races:[['NYC Marathon', '2021.11.07', './stories/english/new-york-city-marathon.html']] },
+    { country:'USA', city:'San Francisco, California', lat:37.7749, lon:-122.4194, races:[['San Francisco Marathon', '2022.07.24', './stories/english/san-francisco-marathon.html']] },
+    { country:'USA', city:'Indianapolis, Indiana', lat:39.7684, lon:-86.1581, races:[['Indianapolis Monumental Marathon', '2022.11.05', './stories/english/indianapolis-monumental-marathon.html']] },
+    { country:'USA', city:'Honolulu, Hawaii', lat:21.3069, lon:-157.8583, races:[['Honolulu Marathon', '2022.12.11', './stories/english/honolulu-marathon.html']] },
+    { country:'USA', city:'Atlanta, Georgia', lat:33.7490, lon:-84.3880, races:[['Atlanta Marathon', '2023.02.26', './stories/english/atlanta-marathon.html']] },
+    { country:'USA', city:'Cincinnati, Ohio', lat:39.1031, lon:-84.5120, races:[['Flying Pig Marathon', '2023.05.07', './stories/english/cincinnati-flying-pig-marathon.html']] },
+    { country:'USA', city:'Denver, Colorado', lat:39.7392, lon:-104.9903, races:[['Denver Colfax Marathon', '2023.05.21', './stories/english/denver-colfax-marathon.html']] },
+    { country:'USA', city:'Anchorage, Alaska', lat:61.2181, lon:-149.9003, races:[['Anchorage Marathon', '2023.06.17', './stories/english/anchorage-marathon.html']] },
+    { country:'USA', city:'St. Joseph, Missouri', lat:39.7675, lon:-94.8466, races:[['St. Joseph Marathon', '2023.09.23', './stories/english/st-joseph-marathon.html']] },
+    { country:'USA', city:'Chicago, Illinois', lat:41.8781, lon:-87.6298, races:[['Chicago Marathon', '2023.10.08', './stories/english/chicago-marathon.html']] },
+    { country:'USA', city:'Nashville, Tennessee', lat:36.1627, lon:-86.7816, races:[['Nashville Marathon', '2023.10.28', './stories/english/nashville-marathon.html']] },
+    { country:'USA', city:'Huntington, West Virginia', lat:38.4192, lon:-82.4453, races:[['West Virginia Marathon', '2023.11.05', './stories/english/west-virginia-marathon.html']] },
+    { country:'USA', city:'San Antonio, Texas', lat:29.4241, lon:-98.4936, races:[['San Antonio Rock n Roll Marathon', '2023.12.03', './stories/english/san-antonio-marathon.html']] },
+    { country:'USA', city:'Orlando, Florida', lat:28.5383, lon:-81.3792, races:[['Run Disney Marathon', '2024.01.04', './stories/english/disney-marathon.html']] },
+    { country:'USA', city:'Miami, Florida', lat:25.7617, lon:-80.1918, races:[['Miami Marathon', '2024.01.28', './stories/english/miami-marathon.html']] },
+    { country:'USA', city:'Oak Island, North Carolina', lat:33.9174, lon:-78.1575, races:[['Oak Island Marathon', '2024.02.18', './stories/english/north-carolina-oak-island-marathon.html']] },
+    { country:'USA', city:'Little Rock, Arkansas', lat:34.7465, lon:-92.2896, races:[['Little Rock Marathon', '2024.03.03', './stories/english/little-rock-marathon.html']] },
+    { country:'USA', city:'Greer, South Carolina', lat:34.9387, lon:-82.2271, races:[['2Slow4Boston Marathon', '2024.04.14', './stories/english/south-carolina-marathon.html']] },
+    { country:'USA', city:'Pittsburgh, Pennsylvania', lat:40.4406, lon:-79.9959, races:[['Pittsburgh Marathon', '2024.05.04', '']] },
+    { country:'USA', city:'Green Bay, Wisconsin', lat:44.5133, lon:-88.0133, races:[['Green Bay Marathon', '2024.05.20', '']] },
+    { country:'USA', city:'Williamson, West Virginia / Kentucky', lat:37.6740, lon:-82.2776, races:[['Hatfield McCoy Marathon', '2024.06.08', '']] },
+    { country:'USA', city:'Grand Rapids, Michigan', lat:42.9634, lon:-85.6681, races:[['Michigan Meadows Marathon', '2024.08.25', './stories/english/michigan-meadows-marathon.html']] },
+    { country:'USA', city:'Keene, New Hampshire', lat:42.9337, lon:-72.2781, races:[['Clarence DeMar Marathon', '2024.09.28', './stories/english/new-hampshire-clarence-demar-marathon.html']] },
+    { country:'USA', city:'Baton Rouge, Louisiana', lat:30.4515, lon:-91.1871, races:[['Louisiana Marathon', '2025.01.19', './stories/english/louisiana-marathon.html']] },
+    { country:'USA', city:'Roanoke, Virginia', lat:37.2710, lon:-79.9414, races:[['Blue Ridge Marathon', '2025.04.12', './stories/english/blue-ridge-marathon.html']] },
+    { country:'USA', city:'Fargo, North Dakota', lat:46.8772, lon:-96.7898, races:[['Fargo Marathon', '2025.05.31', './stories/english/fargo-marathon.html']] },
+    { country:'USA', city:'El Dorado, Kansas', lat:37.8172, lon:-96.8623, races:[['Hell on Gravel Marathon', '2025.06.28', './stories/english/hell-on-gravel-marathon.html']] },
+    { country:'USA', city:'Warren, Vermont', lat:44.1112, lon:-72.8573, races:[['Mad Marathon', '2025.07.17', './stories/english/mad-marathon.html']] },
+    { country:'USA', city:'Huntsville, Alabama', lat:34.7304, lon:-86.5861, races:[['Rocket City Marathon', '2025.12.12', './stories/english/rocket-city-marathon.html']] },
+    { country:'USA', city:'Buckeye, Arizona', lat:33.3703, lon:-112.5838, races:[['Buckeye Marathon', '2026.01.10', '']] },
+    { country:'USA', city:'Wilmington, Delaware', lat:39.7458, lon:-75.5466, races:[['Delaware Marathon Festival', '2026.04.20', '']] },
+    { country:'USA', city:'Rochester, Minnesota', lat:44.0234, lon:-92.4629, races:[['Med City Marathon', '2026.05.16', '']] },
+    { country:'USA', city:'Simsbury, Connecticut', lat:41.8759, lon:-72.8018, races:[['Mainly Marathons New England', '2026.06.08', '']] },
+    { country:'USA', city:'Woonsocket, Rhode Island', lat:42.0084, lon:-71.5148, races:[['Mainly Marathons New England', '2026.06.09', '']] },
+    { country:'USA', city:'Holyoke, Massachusetts', lat:42.2043, lon:-72.6162, races:[['Mainly Marathons New England', '2026.06.10', '']] },
+    { country:'USA', city:'Springfield, Vermont', lat:43.2995, lon:-72.4876, races:[['Mainly Marathons New England', '2026.06.11', '']] },
+    { country:'USA', city:'Claremont, New Hampshire', lat:43.3767, lon:-72.3473, races:[['Mainly Marathons New England', '2026.06.12', '']] },
+    { country:'USA', city:'Sanford, Maine', lat:43.4393, lon:-70.7742, races:[['Mainly Marathons New England', '2026.06.13', '']] },
+    { country:'CHN', city:'Harbin, China', lat:45.8038, lon:126.5350, races:[['The Steel Tank Story', '2017 archive', './stories/english/steel-tank-story.html'], ['Harbin Marathon', '2019 archive', './stories/english/harbin-marathon.html']] },
+    { country:'CHN', city:'Ordos, China', lat:39.6086, lon:109.7813, races:[['Ordos Marathon', '2017 archive', './stories/english/steel-tank-story.html']] },
+    { country:'CHN', city:'Changzhi, China', lat:36.1954, lon:113.1163, races:[['Changzhi Marathon', '2017 archive', './stories/english/steel-tank-story.html']] },
+    { country:'CHN', city:'Wuhan, China', lat:30.5928, lon:114.3055, races:[['Wuhan Marathon', '2018 archive', './stories/english/wuhan-marathon-2018.html'], ['Wuhan Han Marathon', '2019 archive', './stories/english/wuhan-han-marathon.html']] },
+    { country:'CHN', city:'Yichang, China', lat:30.6919, lon:111.2865, races:[['Yichang Half Marathon', '2017 archive', './stories/english/three-city-pilgrimage.html']] },
+    { country:'CHN', city:'Xiangyang, China', lat:32.0090, lon:112.1224, races:[['Xiangyang Marathon', '2025.10.19', './stories/english/xiangyang-marathon.html']] },
+    { country:'CHN', city:'Guang an, China', lat:30.4564, lon:106.6332, races:[['Guang an Marathon', '2017 archive', './stories/english/three-city-pilgrimage.html']] },
+    { country:'CHN', city:'Changsha, China', lat:28.2282, lon:112.9388, races:[['Changsha Marathon', '2017 archive', './stories/english/three-city-pilgrimage.html']] },
+    { country:'CHN', city:'Xiamen, China', lat:24.4798, lon:118.0894, races:[['Xiamen Marathon', '2018 archive', './stories/english/xiamen-marathon.html']] },
+    { country:'CHN', city:'Lanzhou, China', lat:36.0611, lon:103.8343, races:[['Lanzhou Marathon', '2018 archive', './stories/english/lanzhou-marathon.html']] },
+    { country:'CHN', city:'Wuxi, China', lat:31.4912, lon:120.3119, races:[['Wuxi Marathon Notes', '2018 archive', './stories/english/wuhan-wuxi-marathon-notes.html']] },
+    { country:'CHN', city:'Guiyang, China', lat:26.6470, lon:106.6302, races:[['Guiyang Marathon', '2018 archive', './stories/english/guiyang-marathon-climb.html']] },
+    { country:'CHN', city:'Xi an, China', lat:34.3416, lon:108.9398, races:[['Xi an City Wall Marathon', '2018 archive', './stories/english/xian-city-wall-marathon.html']] },
+    { country:'CHN', city:'Hangzhou, China', lat:30.2741, lon:120.1551, races:[['West Lake Half Marathon', '2019 archive', './stories/english/west-lake-half-marathon.html']] },
+    { country:'CHN', city:'Ningbo, China', lat:29.8683, lon:121.5440, races:[['Ningbo Dongqian Lake Marathon', '2019.12.08', './stories/english/ningbo-dongqian-lake-marathon.html']] },
+    { country:'CHN', city:'Haikou, China', lat:20.0440, lon:110.1999, races:[['Haikou Marathon', '2019 archive', './stories/english/haikou-marathon.html']] },
+    { country:'CHN', city:'Dalian, China', lat:38.9140, lon:121.6147, races:[['Dalian Trail', '2019 archive', './stories/english/dalian-trail.html']] },
+    { country:'CHN', city:'Shanghai, China', lat:31.2304, lon:121.4737, races:[['Shanghai Vertical Marathon', '2019.11.24', './stories/english/shanghai-vertical-marathon.html']] },
+    { country:'CHN', city:'Guilin, China', lat:25.2345, lon:110.1799, races:[['Guilin Marathon', '2025.11.16', './stories/english/guilin-marathon.html']] },
+    { country:'HKG', city:'Hong Kong SAR', lat:22.3193, lon:114.1694, races:[['Hong Kong Marathon', '2025.11.23', './stories/english/hong-kong-marathon.html']] },
+    { country:'SGP', city:'Singapore', lat:1.3521, lon:103.8198, races:[['Singapore Sundown Marathon', '2018 archive', './stories/english/singapore-sundown-marathon.html']] },
+    { country:'THA', city:'Bangkok, Thailand', lat:13.7563, lon:100.5018, races:[['Bangkok Marathon', '2019 archive', './stories/english/bangkok-marathon.html']] },
+    { country:'MEX', city:'Mexico City, Mexico', lat:19.4326, lon:-99.1332, races:[['Mexico City Marathon', '2025.08.31', './stories/english/mexico-marathon.html']] },
+    { country:'ITA', city:'Pisa, Italy', lat:43.7228, lon:10.4017, races:[['Pisa Marathon', '2025.12.21', './stories/english/pisa-marathon.html']] }
+  ];
+
+  function project(lat, lon) {
+    return { x: (lon + 180) * 5, y: (90 - lat) * 5 };
+  }
+
+  function countryByKey(key) {
+    return countries.find(c => c.key === key);
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, ch => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[ch]));
+  }
+
+  let hideTimer = 0;
+  function showTooltip(e, html) {
+    clearTimeout(hideTimer);
+    tooltip.innerHTML = html;
+    tooltip.style.display = 'block';
+    moveTooltip(e);
+  }
+
+  function scheduleHideTooltip() {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => { tooltip.style.display = 'none'; }, 120);
+  }
+
+  function moveTooltip(e) {
+    const shell = slot.parentElement.getBoundingClientRect();
+    const tooltipWidth = Math.min(320, Math.max(230, tooltip.offsetWidth || 260));
+    const tooltipHeight = tooltip.offsetHeight || 130;
+    let left = e.clientX - shell.left + 14;
+    let top = e.clientY - shell.top - 12;
+    if (left + tooltipWidth > shell.width - 12) left = e.clientX - shell.left - tooltipWidth - 14;
+    if (top + tooltipHeight > shell.height - 12) top = shell.height - tooltipHeight - 12;
+    tooltip.style.left = Math.max(12, left) + 'px';
+    tooltip.style.top = Math.max(12, top) + 'px';
+  }
+
+  tooltip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+  tooltip.addEventListener('mouseleave', scheduleHideTooltip);
+
+  function buildCountryTooltip(country, dots) {
+    const count = dots.reduce((sum, d) => sum + d.races.length, 0);
+    const cityNames = dots.slice(0, 10).map(d => escapeHtml(d.city.replace(/, United States|, China/g, ''))).join(' / ');
+    return `<h4>${escapeHtml(country.name)}</h4>
+      <div><strong>${escapeHtml(country.label)}</strong> · ${count} race record${count === 1 ? '' : 's'}</div>
+      <div style="margin-top:6px;color:#d8e0e8;">${cityNames}${dots.length > 10 ? ' / ...' : ''}</div>
+      <a href="${country.url}">Open stories</a>`;
+  }
+
+  function buildCityTooltip(dot) {
+    const country = countryByKey(dot.country);
+    const raceHtml = dot.races.map(([title, date, url]) => {
+      const link = url ? `<a href="${url}">Open story</a>` : '';
+      return `<div style="margin-top:7px;">
+        <strong>${escapeHtml(title)}</strong><br>
+        <span style="color:#d8e0e8;">${escapeHtml(date)}</span>
+        ${link}
+      </div>`;
+    }).join('');
+    return `<h4>${escapeHtml(dot.city)}</h4>
+      <div>${escapeHtml(country ? country.name : dot.country)} · ${dot.lat.toFixed(4)}, ${dot.lon.toFixed(4)}</div>
+      ${raceHtml}`;
+  }
+
+  function addSvgEl(parent, tag, attrs, text) {
+    const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, String(value)));
+    if (text !== undefined) el.textContent = text;
+    parent.appendChild(el);
+    return el;
+  }
+
+  function initWorldRunningMap() {
+    if (typeof WORLD_MAP_SVG === 'undefined') {
+      slot.innerHTML = '<div style="padding:24px;color:#667085;">World map asset is missing.</div>';
+      return;
+    }
+
+    const baseSvg = WORLD_MAP_SVG
+      .replace(/OCEAN/g, COLORS.ocean)
+      .replace(/LAND/g, COLORS.land)
+      .replace(/BORDER/g, COLORS.border)
+      .replace(/GRID/g, COLORS.grid)
+      .replace(/FILL_[a-z]+/g, COLORS.land);
+
+    slot.innerHTML = baseSvg;
+    const svg = slot.querySelector('#world-map-master');
+    if (!svg) return;
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+    svg.querySelectorAll('path').forEach(path => {
+      path.style.pointerEvents = 'none';
+      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.8' : '0.5');
+    });
+
+    countries.forEach(country => {
+      const path = svg.querySelector('#' + country.id);
+      if (!path) return;
+      const dots = raceDots.filter(dot => dot.country === country.key);
+      path.setAttribute('fill', country.color);
+      path.setAttribute('stroke', '#fff');
+      path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.5' : '0.8');
+      path.style.pointerEvents = 'auto';
+      path.classList.add('wm-country-run');
+      path.addEventListener('mouseenter', e => showTooltip(e, buildCountryTooltip(country, dots)));
+      path.addEventListener('mousemove', moveTooltip);
+      path.addEventListener('mouseleave', scheduleHideTooltip);
+      path.addEventListener('click', () => { window.location.href = country.url; });
+    });
+
+    const labelLayer = addSvgEl(svg, 'g', { id:'world-running-map-labels', 'pointer-events':'none' });
+    [
+      ['USA', 39, -98, 18],
+      ['CHINA', 36, 104, 18],
+      ['MEXICO', 23, -102, 12],
+      ['ITALY', 42.8, 12.5, 11],
+      ['THAILAND', 15.5, 101, 10],
+      ['SINGAPORE', 3, 106, 9]
+    ].forEach(([text, lat, lon, size]) => {
+      const p = project(lat, lon);
+      addSvgEl(labelLayer, 'text', {
+        x:p.x, y:p.y, 'text-anchor':'middle', 'font-size':size, 'font-weight':900,
+        'font-family':'Arial, Helvetica, sans-serif', fill:'#fff', stroke:'rgba(26,37,47,.45)',
+        'stroke-width':2.4, 'paint-order':'stroke'
+      }, text);
+    });
+
+    const dotLayer = addSvgEl(svg, 'g', { id:'world-running-city-dots' });
+    raceDots.forEach(dot => {
+      const country = countryByKey(dot.country);
+      const p = project(dot.lat, dot.lon);
+      addSvgEl(dotLayer, 'circle', {
+        class:'world-city-glow', cx:p.x, cy:p.y, r:8,
+        fill: dot.country === 'CHN' || dot.country === 'HKG' ? 'rgba(204,0,0,.28)' : 'rgba(255,59,48,.28)'
+      });
+      const cityDot = addSvgEl(dotLayer, 'circle', {
+        class:'world-city-dot', cx:p.x, cy:p.y, r:4.7,
+        fill: country ? country.color : COLORS.dot,
+        stroke:'#fff', 'stroke-width':1.45,
+        tabindex:0, role:'button', 'aria-label':dot.city
+      });
+      cityDot.addEventListener('mouseenter', e => showTooltip(e, buildCityTooltip(dot)));
+      cityDot.addEventListener('mousemove', moveTooltip);
+      cityDot.addEventListener('mouseleave', scheduleHideTooltip);
+      cityDot.addEventListener('focus', e => showTooltip(e, buildCityTooltip(dot)));
+      cityDot.addEventListener('blur', scheduleHideTooltip);
+      cityDot.addEventListener('click', ev => {
+        ev.stopPropagation();
+        const firstStory = dot.races.find(r => r[2]);
+        if (firstStory) window.location.href = firstStory[2];
+      });
+    });
+  }
+
+  initWorldRunningMap();
+})();
+</script>
 <script src="../assets/zz-comments.js"></script>
 </body>
 </html>
