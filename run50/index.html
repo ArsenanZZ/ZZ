@@ -335,7 +335,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1516 / 1033;
-    background: #a8d4e8;
+    background: linear-gradient(135deg, #004a75 0%, #0789ac 44%, #003f6c 100%);
     border: 1px solid var(--line);
     border-radius: 8px;
     overflow: hidden;
@@ -349,6 +349,8 @@
 
   .world-running-map-slot path {
     transition: fill .2s ease, opacity .2s ease, stroke .2s ease;
+    stroke-linejoin: round;
+    stroke-linecap: round;
   }
 
   .wm-country-run {
@@ -961,8 +963,15 @@
     italy: '#f4a09a',
     hongkong: '#9068c0',
     thailand: '#c490d0',
-    dot: '#ff3b30'
+    dot: '#ff3b30',
+    posterLand: ['#d9c56a', '#74b978', '#e2a65a', '#bba6cf', '#9ccf7b', '#d98a55', '#c8d77b', '#73b6ad', '#d6b36b']
   };
+
+  function posterFillForId(id) {
+    let hash = 0;
+    for (let i = 0; i < id.length; i++) hash = (hash * 33 + id.charCodeAt(i)) % 65521;
+    return COLORS.posterLand[hash % COLORS.posterLand.length];
+  }
 
   const countries = [
     { key:'USA', id:'wm_usa', name:'United States', label:'Run50', color:COLORS.usa, url:'./stories/english/?v=20260618-addddd#run50-series' },
@@ -1032,7 +1041,7 @@
     { country:'CHN', city:'Lanzhou, China', lat:36.0611, lon:103.8343, races:[['Lanzhou Marathon', '2018.06.10', './stories/english/lanzhou-marathon.html']] },
     { country:'CHN', city:'Wuxi, China', lat:31.4912, lon:120.3119, races:[['Wuxi Marathon Notes', '2018.03.25', './stories/english/wuhan-wuxi-marathon-notes.html']] },
     { country:'CHN', city:'Guiyang, China', lat:26.6470, lon:106.6302, races:[['Guiyang Marathon', '2018.07.22', './stories/english/guiyang-marathon-climb.html']] },
-    { country:'CHN', city:'Xi an, China', lat:34.3416, lon:108.9398, races:[['Xi'an City Wall Marathon', '2018.04.21', './stories/english/xian-city-wall-marathon.html']] },
+    { country:'CHN', city:'Xi an, China', lat:34.3416, lon:108.9398, races:[["Xi'an City Wall Marathon", '2018.04.21', './stories/english/xian-city-wall-marathon.html']] },
     { country:'CHN', city:'Hangzhou, China', lat:30.2741, lon:120.1551, races:[['West Lake Half Marathon', '2019.11.10', './stories/english/west-lake-half-marathon.html']] },
     { country:'CHN', city:'Ningbo, China', lat:29.8683, lon:121.5440, races:[['Ningbo Dongqian Lake Marathon', '2019.12.08', './stories/english/ningbo-dongqian-lake-marathon.html']] },
     { country:'CHN', city:'Haikou, China', lat:20.0440, lon:110.1999, races:[['Haikou Marathon', '2019.03.03', './stories/english/haikou-marathon.html']] },
@@ -1127,6 +1136,25 @@
     return el;
   }
 
+  function injectPosterMapDefs(svg) {
+    if (svg.querySelector('#world-ocean-poster')) return;
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    defs.innerHTML = `
+      <linearGradient id="world-ocean-poster" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#00446f"/>
+        <stop offset="34%" stop-color="#0b95b4"/>
+        <stop offset="62%" stop-color="#08799b"/>
+        <stop offset="100%" stop-color="#003a67"/>
+      </linearGradient>
+      <filter id="world-ocean-texture" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.009 0.026" numOctaves="3" seed="18" result="noise"/>
+        <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.02 0 0 0 0 0.55 0 0 0 0 0.70 0 0 0 .20 0" result="tint"/>
+        <feBlend in="SourceGraphic" in2="tint" mode="screen"/>
+      </filter>
+    `;
+    svg.insertBefore(defs, svg.firstChild);
+  }
+
   function initWorldRunningMap() {
     if (typeof WORLD_MAP_SVG === 'undefined') {
       slot.innerHTML = '<div style="padding:24px;color:#667085;">World map asset is missing.</div>';
@@ -1143,6 +1171,7 @@
     slot.innerHTML = baseSvg;
     const svg = slot.querySelector('#world-map-master');
     if (!svg) return;
+    injectPosterMapDefs(svg);
     svg.setAttribute('viewBox', '0 60 1800 670');
     svg.setAttribute('preserveAspectRatio', 'none');
     svg.style.width = '100%';
@@ -1153,15 +1182,18 @@
       oceanRect.setAttribute('y', '60');
       oceanRect.setAttribute('width', '1800');
       oceanRect.setAttribute('height', '670');
+      oceanRect.setAttribute('fill', 'url(#world-ocean-poster)');
+      oceanRect.setAttribute('filter', 'url(#world-ocean-texture)');
     }
 
     const runCountryIds = new Set(countries.map(country => country.id));
     svg.querySelectorAll('path').forEach(path => {
       path.style.pointerEvents = 'none';
-      path.setAttribute('stroke', 'rgba(255,255,255,.85)');
-      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.8' : '0.45');
+      path.setAttribute('stroke', 'rgba(5,42,50,.66)');
+      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.85' : '0.62');
+      path.style.filter = 'drop-shadow(0 1.5px 1.2px rgba(0,30,45,.32))';
       if (path.id && path.id.startsWith('wm_') && !runCountryIds.has(path.id)) {
-        path.setAttribute('fill', COLORS.land);
+        path.setAttribute('fill', posterFillForId(path.id));
       }
     });
 
@@ -1171,8 +1203,9 @@
       const dots = raceDots.filter(dot => dot.country === country.key);
       const raceCount = dots.reduce((sum, dot) => sum + dot.races.length, 0);
       path.setAttribute('fill', country.color);
-      path.setAttribute('stroke', '#fff');
-      path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.5' : '1');
+      path.setAttribute('stroke', '#f7fbff');
+      path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.65' : '1.35');
+      path.style.filter = 'drop-shadow(0 3px 2.5px rgba(0,32,45,.45))';
       path.style.pointerEvents = 'auto';
       path.classList.add('wm-country-run');
       path.addEventListener('mouseenter', e => {
