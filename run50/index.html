@@ -334,7 +334,7 @@
   .world-running-map-slot {
     position: relative;
     width: 100%;
-    aspect-ratio: 1516 / 1033;
+    aspect-ratio: 9 / 4;
     background: linear-gradient(135deg, #004a75 0%, #0789ac 44%, #003f6c 100%);
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -693,7 +693,7 @@
     .running-map-stats { grid-template-columns: 1fr; }
     .running-map-card-head { display: block; }
     .running-map-status { display: block; max-width: 100%; margin-top: 8px; overflow-wrap: anywhere; }
-    .world-running-map-slot { aspect-ratio: 1516 / 1033; }
+    .world-running-map-slot { aspect-ratio: 9 / 4; }
     .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
     .hero-title { font-size: 26px; }
     .hero { padding: 24px 16px; }
@@ -963,15 +963,8 @@
     italy: '#f4a09a',
     hongkong: '#9068c0',
     thailand: '#c490d0',
-    dot: '#ff3b30',
-    posterLand: ['#d9c56a', '#74b978', '#e2a65a', '#bba6cf', '#9ccf7b', '#d98a55', '#c8d77b', '#73b6ad', '#d6b36b']
+    dot: '#ff3b30'
   };
-
-  function posterFillForId(id) {
-    let hash = 0;
-    for (let i = 0; i < id.length; i++) hash = (hash * 33 + id.charCodeAt(i)) % 65521;
-    return COLORS.posterLand[hash % COLORS.posterLand.length];
-  }
 
   const countries = [
     { key:'USA', id:'wm_usa', name:'United States', label:'Run50', color:COLORS.usa, url:'./stories/english/?v=20260618-addddd#run50-series' },
@@ -1172,16 +1165,16 @@
     const svg = slot.querySelector('#world-map-master');
     if (!svg) return;
     injectPosterMapDefs(svg);
-    svg.setAttribute('viewBox', '0 60 1800 670');
-    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.setAttribute('viewBox', '0 35 1800 800');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     svg.style.width = '100%';
     svg.style.height = '100%';
     const oceanRect = svg.querySelector('#wm_ocean');
     if (oceanRect) {
       oceanRect.setAttribute('x', '0');
-      oceanRect.setAttribute('y', '60');
+      oceanRect.setAttribute('y', '35');
       oceanRect.setAttribute('width', '1800');
-      oceanRect.setAttribute('height', '670');
+      oceanRect.setAttribute('height', '800');
       oceanRect.setAttribute('fill', 'url(#world-ocean-poster)');
       oceanRect.setAttribute('filter', 'url(#world-ocean-texture)');
     }
@@ -1193,7 +1186,7 @@
       path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.85' : '0.62');
       path.style.filter = 'drop-shadow(0 1.5px 1.2px rgba(0,30,45,.32))';
       if (path.id && path.id.startsWith('wm_') && !runCountryIds.has(path.id)) {
-        path.setAttribute('fill', posterFillForId(path.id));
+        path.setAttribute('fill', COLORS.land);
       }
     });
 
