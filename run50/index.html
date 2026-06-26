@@ -964,6 +964,14 @@
     dot: '#ff3b30'
   };
 
+  const posterPastels = ['#d8e9cf', '#f7d6b4', '#f3c7c0', '#d6e6f3', '#ead9f2', '#f6e6a9', '#cfe8de'];
+
+  function pastelForId(id) {
+    let hash = 0;
+    for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) % 9973;
+    return posterPastels[hash % posterPastels.length];
+  }
+
   const countries = [
     { key:'USA', id:'wm_usa', name:'United States', label:'Run50', color:COLORS.usa, url:'./stories/english/?v=20260618-addddd#run50-series' },
     { key:'CHN', id:'wm_chn', name:'China', label:'RunCN', color:COLORS.china, url:'./stories/english/?v=20260618-addddd#runcn-series' },
@@ -1143,13 +1151,24 @@
     slot.innerHTML = baseSvg;
     const svg = slot.querySelector('#world-map-master');
     if (!svg) return;
+    svg.setAttribute('viewBox', '0 -110 1800 1125');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     svg.style.width = '100%';
     svg.style.height = '100%';
+    const oceanRect = svg.querySelector('#wm_ocean');
+    if (oceanRect) {
+      oceanRect.setAttribute('y', '-110');
+      oceanRect.setAttribute('height', '1125');
+    }
 
+    const runCountryIds = new Set(countries.map(country => country.id));
     svg.querySelectorAll('path').forEach(path => {
       path.style.pointerEvents = 'none';
-      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.8' : '0.5');
+      path.setAttribute('stroke', 'rgba(255,255,255,.85)');
+      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.8' : '0.45');
+      if (path.id && path.id.startsWith('wm_') && !runCountryIds.has(path.id)) {
+        path.setAttribute('fill', pastelForId(path.id));
+      }
     });
 
     countries.forEach(country => {
