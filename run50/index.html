@@ -951,7 +951,7 @@
 
   const COLORS = {
     ocean: '#a8d4e8',
-    land: '#d8e0d4',
+    land: '#dedad3',
     border: '#ffffff',
     grid: 'rgba(74,108,54,.28)',
     usa: '#5baad0',
@@ -963,14 +963,6 @@
     thailand: '#c490d0',
     dot: '#ff3b30'
   };
-
-  const posterPastels = ['#d8e9cf', '#f7d6b4', '#f3c7c0', '#d6e6f3', '#ead9f2', '#f6e6a9', '#cfe8de'];
-
-  function pastelForId(id) {
-    let hash = 0;
-    for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) % 9973;
-    return posterPastels[hash % posterPastels.length];
-  }
 
   const countries = [
     { key:'USA', id:'wm_usa', name:'United States', label:'Run50', color:COLORS.usa, url:'./stories/english/?v=20260618-addddd#run50-series' },
@@ -1034,13 +1026,13 @@
     { country:'CHN', city:'Wuhan, China', lat:30.5928, lon:114.3055, races:[['Wuhan Marathon', '2018.04.15', './stories/english/wuhan-marathon-2018.html'], ['Wuhan Han Marathon', '2019.04.14', './stories/english/wuhan-han-marathon.html']] },
     { country:'CHN', city:'Yichang, China', lat:30.6919, lon:111.2865, races:[['Yichang Half Marathon', '2017.11.05', './stories/english/three-city-pilgrimage.html']] },
     { country:'CHN', city:'Xiangyang, China', lat:32.0090, lon:112.1224, races:[['Xiangyang Marathon', '2025.10.19', './stories/english/xiangyang-marathon.html']] },
-    { country:'CHN', city:'Guang an, China', lat:30.4564, lon:106.6332, races:[['Guang'an Marathon', '2017.10.15', './stories/english/three-city-pilgrimage.html']] },
+    { country:'CHN', city:'Guang an, China', lat:30.4564, lon:106.6332, races:[["Guang'an Marathon", '2017.10.15', './stories/english/three-city-pilgrimage.html']] },
     { country:'CHN', city:'Changsha, China', lat:28.2282, lon:112.9388, races:[['Changsha Marathon', '2017.11.18', './stories/english/three-city-pilgrimage.html']] },
     { country:'CHN', city:'Xiamen, China', lat:24.4798, lon:118.0894, races:[['Xiamen Marathon', '2018.01.07', './stories/english/xiamen-marathon.html']] },
     { country:'CHN', city:'Lanzhou, China', lat:36.0611, lon:103.8343, races:[['Lanzhou Marathon', '2018.06.10', './stories/english/lanzhou-marathon.html']] },
     { country:'CHN', city:'Wuxi, China', lat:31.4912, lon:120.3119, races:[['Wuxi Marathon Notes', '2018.03.25', './stories/english/wuhan-wuxi-marathon-notes.html']] },
     { country:'CHN', city:'Guiyang, China', lat:26.6470, lon:106.6302, races:[['Guiyang Marathon', '2018.07.22', './stories/english/guiyang-marathon-climb.html']] },
-    { country:'CHN', city:'Xi an, China', lat:34.3416, lon:108.9398, races:[['Xi'an City Wall Marathon', '2018.04.21', './stories/english/xian-city-wall-marathon.html']] },
+    { country:'CHN', city:'Xi an, China', lat:34.3416, lon:108.9398, races:[["Xi'an City Wall Marathon", '2018.04.21', './stories/english/xian-city-wall-marathon.html']] },
     { country:'CHN', city:'Hangzhou, China', lat:30.2741, lon:120.1551, races:[['West Lake Half Marathon', '2019', './stories/english/west-lake-half-marathon.html']] },
     { country:'CHN', city:'Ningbo, China', lat:29.8683, lon:121.5440, races:[['Ningbo Dongqian Lake Marathon', '2019.12.08', './stories/english/ningbo-dongqian-lake-marathon.html']] },
     { country:'CHN', city:'Haikou, China', lat:20.0440, lon:110.1999, races:[['Haikou Marathon', '2019.03.03', './stories/english/haikou-marathon.html']] },
@@ -1151,16 +1143,16 @@
     slot.innerHTML = baseSvg;
     const svg = slot.querySelector('#world-map-master');
     if (!svg) return;
-    svg.setAttribute('viewBox', '80 -10 1640 942');
+    svg.setAttribute('viewBox', '90 0 1460 839');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     svg.style.width = '100%';
     svg.style.height = '100%';
     const oceanRect = svg.querySelector('#wm_ocean');
     if (oceanRect) {
-      oceanRect.setAttribute('x', '80');
-      oceanRect.setAttribute('y', '-10');
-      oceanRect.setAttribute('width', '1640');
-      oceanRect.setAttribute('height', '942');
+      oceanRect.setAttribute('x', '90');
+      oceanRect.setAttribute('y', '0');
+      oceanRect.setAttribute('width', '1460');
+      oceanRect.setAttribute('height', '839');
     }
 
     const runCountryIds = new Set(countries.map(country => country.id));
@@ -1169,7 +1161,7 @@
       path.setAttribute('stroke', 'rgba(255,255,255,.85)');
       path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.8' : '0.45');
       if (path.id && path.id.startsWith('wm_') && !runCountryIds.has(path.id)) {
-        path.setAttribute('fill', pastelForId(path.id));
+        path.setAttribute('fill', COLORS.land);
       }
     });
 
