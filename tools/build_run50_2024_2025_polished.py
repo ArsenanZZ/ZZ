@@ -1343,7 +1343,7 @@ def generate_pages(story: Story, blocks_zh: list[dict[str, str]], images: list[S
 def card_html(story: Story, variant: str) -> str:
     if variant == "zh":
         href = f"./{story.page_name}"
-        img = f"../../../assets/{story.cover_zh}?v=20260626-run50-2024-2025"
+        img = f"../../../assets/{story.cover_en}?v=20260626-medal-final"
         meta = f"{story.state_zh}{story.city_zh} · {story.card_date}"
         title = story.title_zh
         desc = story.subtitle_zh
