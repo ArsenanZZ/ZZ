@@ -1143,16 +1143,16 @@
     slot.innerHTML = baseSvg;
     const svg = slot.querySelector('#world-map-master');
     if (!svg) return;
-    svg.setAttribute('viewBox', '90 0 1460 800');
+    svg.setAttribute('viewBox', '0 60 1800 670');
     svg.setAttribute('preserveAspectRatio', 'none');
     svg.style.width = '100%';
     svg.style.height = '100%';
     const oceanRect = svg.querySelector('#wm_ocean');
     if (oceanRect) {
-      oceanRect.setAttribute('x', '90');
-      oceanRect.setAttribute('y', '0');
-      oceanRect.setAttribute('width', '1460');
-      oceanRect.setAttribute('height', '800');
+      oceanRect.setAttribute('x', '0');
+      oceanRect.setAttribute('y', '60');
+      oceanRect.setAttribute('width', '1800');
+      oceanRect.setAttribute('height', '670');
     }
 
     const runCountryIds = new Set(countries.map(country => country.id));

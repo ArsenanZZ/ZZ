@@ -349,13 +349,13 @@
     </section>
   </main>
 
-  <script src="./world-map-svg.js?v=20260626-poster-land"></script>
+  <script src="./world-map-svg.js?v=20260626-global-land-first"></script>
   <script>
   (() => {
     const slot = document.getElementById('world-running-map-slot');
     if (!slot) return;
 
-    fetch('./index.html?v=20260626-poster-land')
+    fetch('./index.html?v=20260626-global-land-first')
       .then(response => {
         if (!response.ok) throw new Error('Could not load map renderer');
         return response.text();
