@@ -22,6 +22,14 @@
     --amz-muted: #565959;
     --amz-red: #CC0C39;
     --amz-blue: #1877F2;
+    --paper: #f4f6f7;
+    --surface: #ffffff;
+    --ink: #20242b;
+    --muted: #667085;
+    --line: #dde5ec;
+    --run50: #0b67c2;
+    --runcn: #cc0000;
+    --runworld: #2f855a;
   }
 
   body {
@@ -29,6 +37,7 @@
     color: var(--amz-text);
     font-family: Arial, 'Noto Serif SC', sans-serif;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
   /* HEADER */
@@ -221,85 +230,91 @@
   .section-see-all:hover { text-decoration: underline; color: #c7511f; }
 
   /* RUNNING MAP */
+  .running-map-tab {
+    margin-top: 4px;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+  }
+
+  .running-map-tab .section-title {
+    min-width: 0;
+    max-width: 100%;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .running-map-title-break {
+    display: none;
+  }
+
   .running-map-section {
     max-width: 980px;
-    margin: 0 auto 32px;
-    background: #fff;
-    border: 1px solid var(--amz-border);
+    margin: 0 auto 34px;
+    background: var(--surface);
+    border: 1px solid var(--line);
     border-radius: 12px;
     padding: 24px;
     box-shadow: 0 18px 44px rgba(15, 23, 42, .08);
   }
 
-  .running-map-head {
+  .running-map-card-head {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    gap: 18px;
-    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
   }
 
-  .running-map-kicker {
-    margin: 0 0 6px;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--amz-teal);
+  .running-map-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 700;
   }
 
-  .running-map-head h2 {
-    margin: 0 0 6px;
-    font-size: 24px;
-    line-height: 1.2;
-    color: var(--amz-text);
-  }
-
-  .running-map-head p {
-    max-width: 650px;
-    margin: 0;
-    color: var(--amz-muted);
-    font-size: 13px;
-    line-height: 1.55;
-  }
-
-  .running-map-link {
-    flex-shrink: 0;
+  .running-map-pill {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    min-height: 34px;
-    padding: 0 14px;
-    border: 1px solid #FFA41C;
-    border-radius: 18px;
-    background: linear-gradient(to bottom, #FFE082, #FFD814);
-    color: #0F1111;
-    font-size: 13px;
+    min-height: 22px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: #e2f0d9;
+    color: #2d6a4f;
+    font-size: 12px;
     font-weight: 800;
-    text-decoration: none;
   }
 
-  .running-map-link:hover { background: linear-gradient(to bottom, #f5d576, #f0c400); }
+  .running-map-status {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 400;
+    transition: color .2s ease;
+  }
 
   .running-map-stats {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
-    margin-bottom: 16px;
+    margin-bottom: 15px;
   }
 
   .running-map-stat {
-    border: 1px solid #e5eaee;
+    border: 1px solid var(--line);
     border-radius: 8px;
-    background: #f7faf9;
+    background: #f7faf7;
     padding: 10px 12px;
   }
 
   .running-map-stat strong {
     display: block;
-    font-size: 21px;
+    font-size: 20px;
     line-height: 1.1;
-    color: #a33a2b;
+    color: #243642;
   }
 
   .running-map-stat span {
@@ -309,7 +324,7 @@
     font-weight: 700;
     letter-spacing: .4px;
     text-transform: uppercase;
-    color: var(--amz-muted);
+    color: var(--muted);
   }
 
   .running-map-shell {
@@ -319,9 +334,9 @@
   .world-running-map-slot {
     position: relative;
     width: 100%;
-    aspect-ratio: 2 / 1;
+    aspect-ratio: 1722 / 989;
     background: #a8d4e8;
-    border: 1px solid var(--amz-border);
+    border: 1px solid var(--line);
     border-radius: 8px;
     overflow: hidden;
   }
@@ -341,9 +356,9 @@
   }
 
   .wm-country-run:hover {
-    opacity: .85;
+    opacity: .86;
     stroke: #fff;
-    stroke-width: 1.4;
+    stroke-width: 1.8;
   }
 
   .world-city-dot {
@@ -360,14 +375,14 @@
   }
 
   .world-city-glow {
-    fill: rgba(255, 59, 48, .28);
+    fill: rgba(255, 59, 48, .35);
     pointer-events: none;
-    animation: world-dot-pulse 2s ease-in-out infinite;
+    animation: world-dot-pulse 2s infinite alternate;
   }
 
   @keyframes world-dot-pulse {
-    0%, 100% { opacity: .22; r: 6; }
-    50% { opacity: .62; r: 12; }
+    0% { opacity: .25; r: 9; }
+    100% { opacity: .65; r: 16; }
   }
 
   .world-running-map-tooltip {
@@ -408,10 +423,13 @@
 
   .running-map-legend {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 8px 14px;
+    gap: 8px 15px;
     margin-top: 12px;
-    color: var(--amz-muted);
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
     font-size: 12px;
   }
 
@@ -428,6 +446,11 @@
     height: 10px;
     border-radius: 999px;
     border: 1px solid rgba(15, 17, 17, .2);
+  }
+
+  .running-map-swatch {
+    background: linear-gradient(135deg,#d4614a 0 25%,#e89838 25% 50%,#5ca860 50% 75%,#3898a8 75%);
+    border-radius: 3px !important;
   }
 
   /* PRODUCT GRID */
@@ -640,11 +663,17 @@
   @media (max-width: 640px) {
     .header-search select { display: none; }
     .header-links { display: none; }
+    .content { max-width: 100vw; overflow-x: hidden; }
     .products { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .running-map-tab,
+    .running-map-section { width: calc(100vw - 32px); max-width: calc(100vw - 32px); }
     .running-map-section { padding: 16px; }
-    .running-map-head { display: block; }
-    .running-map-link { margin-top: 14px; }
+    .running-map-tab .section-title { display: block; flex: 0 0 100%; width: calc(100vw - 32px); max-width: calc(100vw - 32px); }
+    .running-map-title-break { display: block; }
     .running-map-stats { grid-template-columns: 1fr; }
+    .running-map-card-head { display: block; }
+    .running-map-status { display: block; max-width: 100%; margin-top: 8px; overflow-wrap: anywhere; }
+    .world-running-map-slot { aspect-ratio: 4 / 3; }
     .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
     .hero-title { font-size: 26px; }
     .hero { padding: 24px 16px; }
@@ -707,14 +736,18 @@
 <!-- MAIN -->
 <div class="content">
 
-  <section class="running-map-section" id="running-map" aria-labelledby="running-map-title">
-    <div class="running-map-head">
-      <div>
-        <p class="running-map-kicker">Running Map · Global Marathon Footprint</p>
-        <h2 id="running-map-title">Countries I Have Run</h2>
-        <p>Race countries are highlighted, and each city dot is placed from real latitude and longitude. This map will grow with Run50, RunCN, and RunWorld.</p>
+  <div class="section-header running-map-tab" id="running-map">
+    <div class="section-title">Running Map &middot;<br class="running-map-title-break"> Global Marathon Footprint</div>
+    <a href="./stories/english/?v=20260618-addddd#runworld-series" class="section-see-all">Explore stories &rsaquo;</a>
+  </div>
+
+  <section class="running-map-section" aria-labelledby="running-map-title">
+    <div class="running-map-card-head">
+      <div class="running-map-card-title">
+        <span id="running-map-title">&#128506;&#65039; Countries I Have Run</span>
+        <span class="running-map-pill">6 countries + HK</span>
       </div>
-      <a class="running-map-link" href="./stories/english/?v=20260618-addddd#runworld-series">Explore Stories &rsaquo;</a>
+      <span class="running-map-status" id="world-running-map-status">Hover over countries or red dots to view stories; click to jump</span>
     </div>
 
     <div class="running-map-stats" aria-label="Running map statistics">
@@ -729,10 +762,9 @@
     </div>
 
     <div class="running-map-legend" aria-label="World map legend">
-      <span><i style="background:#0b67c2"></i>Run50 USA</span>
-      <span><i style="background:#cc0000"></i>RunCN China</span>
-      <span><i style="background:#2f855a"></i>RunWorld</span>
-      <span><i style="background:#ff3b30"></i>Race city</span>
+      <span><i class="running-map-swatch"></i>Colored countries/regions have race stories</span>
+      <span><i style="background:#ff3b30"></i>Race cities</span>
+      <span><i style="background:#d8e0d4"></i>Unvisited land</span>
     </div>
   </section>
 
@@ -903,19 +935,21 @@
 (() => {
   const slot = document.getElementById('world-running-map-slot');
   const tooltip = document.getElementById('world-running-map-tooltip');
+  const status = document.getElementById('world-running-map-status');
   if (!slot || !tooltip) return;
 
   const COLORS = {
     ocean: '#a8d4e8',
-    land: '#dedad3',
+    land: '#d8e0d4',
     border: '#ffffff',
     grid: 'rgba(74,108,54,.28)',
-    usa: '#0b67c2',
-    china: '#cc0000',
-    runworld: '#2f855a',
-    mexico: '#e8b040',
-    italy: '#e05050',
+    usa: '#5baad0',
+    china: '#d4614a',
+    runworld: '#5ca860',
+    mexico: '#e89838',
+    italy: '#f4a09a',
     hongkong: '#9068c0',
+    thailand: '#c490d0',
     dot: '#ff3b30'
   };
 
@@ -924,7 +958,7 @@
     { key:'CHN', id:'wm_chn', name:'China', label:'RunCN', color:COLORS.china, url:'./stories/english/?v=20260618-addddd#runcn-series' },
     { key:'HKG', id:'wm_hkg', name:'Hong Kong SAR', label:'RunCN', color:COLORS.hongkong, url:'./stories/english/hong-kong-marathon.html' },
     { key:'SGP', id:'wm_sgp', name:'Singapore', label:'RunWorld', color:COLORS.runworld, url:'./stories/english/singapore-sundown-marathon.html' },
-    { key:'THA', id:'wm_tha', name:'Thailand', label:'RunWorld', color:'#c490d0', url:'./stories/english/bangkok-marathon.html' },
+    { key:'THA', id:'wm_tha', name:'Thailand', label:'RunWorld', color:COLORS.thailand, url:'./stories/english/bangkok-marathon.html' },
     { key:'MEX', id:'wm_mex', name:'Mexico', label:'RunWorld', color:COLORS.mexico, url:'./stories/english/mexico-marathon.html' },
     { key:'ITA', id:'wm_ita', name:'Italy', label:'RunWorld', color:COLORS.italy, url:'./stories/english/pisa-marathon.html' }
   ];
@@ -1015,6 +1049,13 @@
     }[ch]));
   }
 
+  const defaultStatus = 'Hover over countries or red dots to view stories; click to jump';
+  function setStatus(text, color) {
+    if (!status) return;
+    status.textContent = text || defaultStatus;
+    status.style.color = color || 'var(--muted)';
+  }
+
   let hideTimer = 0;
   function showTooltip(e, html) {
     clearTimeout(hideTimer);
@@ -1047,7 +1088,7 @@
     const count = dots.reduce((sum, d) => sum + d.races.length, 0);
     const cityNames = dots.slice(0, 10).map(d => escapeHtml(d.city.replace(/, United States|, China/g, ''))).join(' / ');
     return `<h4>${escapeHtml(country.name)}</h4>
-      <div><strong>${escapeHtml(country.label)}</strong> · ${count} race record${count === 1 ? '' : 's'}</div>
+      <div><strong>${escapeHtml(country.label)}</strong> &middot; ${count} race record${count === 1 ? '' : 's'}</div>
       <div style="margin-top:6px;color:#d8e0e8;">${cityNames}${dots.length > 10 ? ' / ...' : ''}</div>
       <a href="${country.url}">Open stories</a>`;
   }
@@ -1063,7 +1104,7 @@
       </div>`;
     }).join('');
     return `<h4>${escapeHtml(dot.city)}</h4>
-      <div>${escapeHtml(country ? country.name : dot.country)} · ${dot.lat.toFixed(4)}, ${dot.lon.toFixed(4)}</div>
+      <div>${escapeHtml(country ? country.name : dot.country)} &middot; ${dot.lat.toFixed(4)}, ${dot.lon.toFixed(4)}</div>
       ${raceHtml}`;
   }
 
@@ -1092,6 +1133,8 @@
     const svg = slot.querySelector('#world-map-master');
     if (!svg) return;
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    svg.style.width = '100%';
+    svg.style.height = '100%';
 
     svg.querySelectorAll('path').forEach(path => {
       path.style.pointerEvents = 'none';
@@ -1102,14 +1145,21 @@
       const path = svg.querySelector('#' + country.id);
       if (!path) return;
       const dots = raceDots.filter(dot => dot.country === country.key);
+      const raceCount = dots.reduce((sum, dot) => sum + dot.races.length, 0);
       path.setAttribute('fill', country.color);
       path.setAttribute('stroke', '#fff');
-      path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.5' : '0.8');
+      path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.5' : '1');
       path.style.pointerEvents = 'auto';
       path.classList.add('wm-country-run');
-      path.addEventListener('mouseenter', e => showTooltip(e, buildCountryTooltip(country, dots)));
+      path.addEventListener('mouseenter', e => {
+        setStatus(`${country.name}: ${raceCount} race record${raceCount === 1 ? '' : 's'} in ${dots.length} city dot${dots.length === 1 ? '' : 's'}`, country.color);
+        showTooltip(e, buildCountryTooltip(country, dots));
+      });
       path.addEventListener('mousemove', moveTooltip);
-      path.addEventListener('mouseleave', scheduleHideTooltip);
+      path.addEventListener('mouseleave', () => {
+        setStatus();
+        scheduleHideTooltip();
+      });
       path.addEventListener('click', () => { window.location.href = country.url; });
     });
 
@@ -1125,30 +1175,41 @@
       const p = project(lat, lon);
       addSvgEl(labelLayer, 'text', {
         x:p.x, y:p.y, 'text-anchor':'middle', 'font-size':size, 'font-weight':900,
-        'font-family':'Arial, Helvetica, sans-serif', fill:'#fff', stroke:'rgba(26,37,47,.45)',
-        'stroke-width':2.4, 'paint-order':'stroke'
+        'font-family':'Arial, Helvetica, sans-serif', fill:'#243642', stroke:'#f7faf7',
+        'stroke-width':2.8, 'stroke-linejoin':'round', 'paint-order':'stroke'
       }, text);
     });
 
     const dotLayer = addSvgEl(svg, 'g', { id:'world-running-city-dots' });
     raceDots.forEach(dot => {
-      const country = countryByKey(dot.country);
       const p = project(dot.lat, dot.lon);
       addSvgEl(dotLayer, 'circle', {
         class:'world-city-glow', cx:p.x, cy:p.y, r:8,
-        fill: dot.country === 'CHN' || dot.country === 'HKG' ? 'rgba(204,0,0,.28)' : 'rgba(255,59,48,.28)'
+        fill: 'rgba(255,59,48,.35)'
       });
       const cityDot = addSvgEl(dotLayer, 'circle', {
         class:'world-city-dot', cx:p.x, cy:p.y, r:4.7,
-        fill: country ? country.color : COLORS.dot,
+        fill: COLORS.dot,
         stroke:'#fff', 'stroke-width':1.45,
         tabindex:0, role:'button', 'aria-label':dot.city
       });
-      cityDot.addEventListener('mouseenter', e => showTooltip(e, buildCityTooltip(dot)));
+      cityDot.addEventListener('mouseenter', e => {
+        setStatus(`${dot.city}: ${dot.races.map(r => r[0]).join(' / ')}`, '#a33a2b');
+        showTooltip(e, buildCityTooltip(dot));
+      });
       cityDot.addEventListener('mousemove', moveTooltip);
-      cityDot.addEventListener('mouseleave', scheduleHideTooltip);
-      cityDot.addEventListener('focus', e => showTooltip(e, buildCityTooltip(dot)));
-      cityDot.addEventListener('blur', scheduleHideTooltip);
+      cityDot.addEventListener('mouseleave', () => {
+        setStatus();
+        scheduleHideTooltip();
+      });
+      cityDot.addEventListener('focus', e => {
+        setStatus(`${dot.city}: ${dot.races.map(r => r[0]).join(' / ')}`, '#a33a2b');
+        showTooltip(e, buildCityTooltip(dot));
+      });
+      cityDot.addEventListener('blur', () => {
+        setStatus();
+        scheduleHideTooltip();
+      });
       cityDot.addEventListener('click', ev => {
         ev.stopPropagation();
         const firstStory = dot.races.find(r => r[2]);
