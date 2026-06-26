@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="HUNTSVILLE Run50 icon cover">
+  <rect width="1200" height="750" fill="#edf3f7"/>
+  <circle cx="180" cy="40" r="260" fill="#ffffff" opacity=".78"/>
+
+  <path d="M0 520 L190 380 L360 500 L540 420 L740 535 L980 410 L1200 500 L1200 750 L0 750 Z" fill="#d9e7ee"/>
+  <path d="M0 630 L245 470 L500 595 L745 465 L980 615 L1200 540 L1200 750 L0 750 Z" fill="#1A3A6B"/>
+  <path d="M450 750 L588 548 L715 750 Z" fill="#dce5ec"/>
+  <path d="M588 548 L575 750 M588 548 L650 750" stroke="#f8fafc" stroke-width="5" fill="none"/>
+
+  <rect x="0" y="640" width="1200" height="110" fill="#cfe0e5"/>
+  <path d="M860 405 L930 280 L1000 405 Z" fill="#eef3f6" stroke="#20242b" stroke-width="6"/>
+  <rect x="846" y="405" width="168" height="257" fill="#eef3f6" stroke="#20242b" stroke-width="6"/>
+  <path d="M846 580 L770 662 L846 662 Z M1014 580 L1090 662 L1014 662 Z" fill="#D8D6C7" stroke="#20242b" stroke-width="5"/>
+  <circle cx="930" cy="435" r="30" fill="#6196b2" stroke="#20242b" stroke-width="5"/>
+
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">HUNTSVILLE</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">Rocket City Marathon</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #28</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">ALABAMA</text>
+</svg>

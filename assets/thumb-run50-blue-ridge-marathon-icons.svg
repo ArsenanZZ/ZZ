@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="ROANOKE Run50 icon cover">
+  <rect width="1200" height="750" fill="#edf3f7"/>
+  <circle cx="180" cy="40" r="260" fill="#ffffff" opacity=".78"/>
+
+  <path d="M0 520 L190 380 L360 500 L540 420 L740 535 L980 410 L1200 500 L1200 750 L0 750 Z" fill="#d9e7ee"/>
+  <path d="M0 630 L245 470 L500 595 L745 465 L980 615 L1200 540 L1200 750 L0 750 Z" fill="#1B4332"/>
+  <path d="M450 750 L588 548 L715 750 Z" fill="#dce5ec"/>
+  <path d="M588 548 L575 750 M588 548 L650 750" stroke="#f8fafc" stroke-width="5" fill="none"/>
+
+  <path d="M70 668 L230 488 L390 668 Z" fill="#36585d"/>
+  <path d="M180 668 L365 452 L555 668 Z" fill="#447070"/>
+  <path d="M330 668 L545 528 L760 668 Z" fill="#5e8478"/>
+
+  <polygon points="870,500 888,555 946,555 899,589 917,644 870,610 823,644 841,589 794,555 852,555" fill="#B55C2A"/>
+
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">ROANOKE</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">Blue Ridge Marathon</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #24</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">VIRGINIA</text>
+</svg>

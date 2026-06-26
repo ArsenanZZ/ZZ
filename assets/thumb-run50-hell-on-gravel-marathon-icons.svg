@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="EL DORADO Run50 icon cover">
+  <rect width="1200" height="750" fill="#edf3f7"/>
+  <circle cx="180" cy="40" r="260" fill="#ffffff" opacity=".78"/>
+
+  <path d="M0 520 L190 380 L360 500 L540 420 L740 535 L980 410 L1200 500 L1200 750 L0 750 Z" fill="#d9e7ee"/>
+  <path d="M0 630 L245 470 L500 595 L745 465 L980 615 L1200 540 L1200 750 L0 750 Z" fill="#5C4033"/>
+  <path d="M450 750 L588 548 L715 750 Z" fill="#dce5ec"/>
+  <path d="M588 548 L575 750 M588 548 L650 750" stroke="#f8fafc" stroke-width="5" fill="none"/>
+<rect x="0" y="632" width="1200" height="118" fill="#dacd8f"/><path d="M700 668 L718 552 M718 552 L688 520 M718 552 L748 520" stroke="#a4782a" stroke-width="5" fill="none"/><path d="M742 668 L760 552 M760 552 L730 520 M760 552 L790 520" stroke="#a4782a" stroke-width="5" fill="none"/><path d="M784 668 L802 552 M802 552 L772 520 M802 552 L832 520" stroke="#a4782a" stroke-width="5" fill="none"/><path d="M826 668 L844 552 M844 552 L814 520 M844 552 L874 520" stroke="#a4782a" stroke-width="5" fill="none"/><path d="M868 668 L886 552 M886 552 L856 520 M886 552 L916 520" stroke="#a4782a" stroke-width="5" fill="none"/><path d="M910 668 L928 552 M928 552 L898 520 M928 552 L958 520" stroke="#a4782a" stroke-width="5" fill="none"/><path d="M952 668 L970 552 M970 552 L940 520 M970 552 L1000 520" stroke="#a4782a" stroke-width="5" fill="none"/><path d="M994 668 L1012 552 M1012 552 L982 520 M1012 552 L1042 520" stroke="#a4782a" stroke-width="5" fill="none"/><path d="M1036 668 L1054 552 M1054 552 L1024 520 M1054 552 L1084 520" stroke="#a4782a" stroke-width="5" fill="none"/><path d="M1078 668 L1096 552 M1096 552 L1066 520 M1096 552 L1126 520" stroke="#a4782a" stroke-width="5" fill="none"/>
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">EL DORADO</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">Hell on Gravel Marathon</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #26</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0b67c2">KANSAS</text>
+</svg>

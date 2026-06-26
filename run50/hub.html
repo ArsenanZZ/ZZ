@@ -553,23 +553,30 @@ const _CITY_LL = {
   'Baton Rouge':{lat:30.4515,lon:-91.1871},'Roanoke':{lat:37.271,lon:-79.9414},
   'Fargo':{lat:46.8772,lon:-96.7898},'Huntsville':{lat:34.7304,lon:-86.5861},
   'Cleveland':{lat:41.4993,lon:-81.6944},'Cincinnati':{lat:39.1031,lon:-84.512},
-  'Atlanta':{lat:33.749,lon:-84.388},'Denver':{lat:39.7392,lon:-104.9903}
+  'Atlanta':{lat:33.749,lon:-84.388},'Denver':{lat:39.7392,lon:-104.9903},
+  'Keene':{lat:42.9337,lon:-72.2781},
+  'El Dorado':{lat:37.8172,lon:-96.8623},
+  'Warren':{lat:44.112,lon:-72.855},
 };
 
 const _RACES = {
-  'KY':[
-    {city:'Louisville',date:'Nov 8, 2020',story:'stories/english/louisville-marathon.html',fb:'facebook/louisville-marathon.html'},
-    {city:'Louisville',date:'Apr 27, 2024',story:'stories/english/kentucky-derby-marathon.html',fb:'facebook/kentucky-derby-marathon.html'}
-  ],
-  'OH':[{city:'Cleveland',date:'Oct 24, 2021',story:'stories/english/cleveland-marathon.html',fb:'facebook/cleveland-marathon.html'}],
-  'IL':[{city:'Chicago',date:'Oct 2023',story:'stories/english/chicago-marathon.html',fb:'facebook/chicago-marathon.html'}],
+  'AL':[{city:'Huntsville',date:'2025.12.12',story:'stories/english/rocket-city-marathon.html',fb:'facebook/rocket-city-marathon.html'}],
   'AR':[{city:'Little Rock',date:'Mar 2025',story:'stories/english/little-rock-marathon.html',fb:'facebook/little-rock-marathon.html'}],
   'FL':[{city:'Miami',date:'Jan 2025',story:'stories/english/miami-marathon.html',fb:'facebook/miami-marathon.html'}],
+  'IL':[{city:'Chicago',date:'Oct 2023',story:'stories/english/chicago-marathon.html',fb:'facebook/chicago-marathon.html'}],
+  'KS':[{city:'El Dorado',date:'2025.06.28',story:'stories/english/hell-on-gravel-marathon.html',fb:'facebook/hell-on-gravel-marathon.html'}],
+  'KY':[{city:'Louisville',date:'Nov 8, 2020',story:'stories/english/louisville-marathon.html',fb:'facebook/louisville-marathon.html'},{city:'Louisville',date:'Apr 27, 2024',story:'stories/english/kentucky-derby-marathon.html',fb:'facebook/kentucky-derby-marathon.html'},{city:'Louisville',date:'2024.11.03',story:'stories/english/louisville-marathon-2024.html',fb:'facebook/louisville-marathon-2024.html'},{city:'Louisville',date:'2025.04.26',story:'stories/english/kentucky-derby-marathon-2025.html',fb:'facebook/kentucky-derby-marathon-2025.html'}],
+  'LA':[{city:'Baton Rouge',date:'2025.01.19',story:'stories/english/louisiana-marathon.html',fb:'facebook/louisiana-marathon.html'}],
+  'MI':[{city:'Grand Rapids',date:'Aug 2024',story:'stories/english/michigan-meadows-marathon.html',fb:'facebook/michigan-meadows-marathon.html'}],
+  'ND':[{city:'Fargo',date:'2025.05.31',story:'stories/english/fargo-marathon.html',fb:'facebook/fargo-marathon.html'}],
+  'NH':[{city:'Keene',date:'2024.09.28',story:'stories/english/new-hampshire-clarence-demar-marathon.html',fb:'facebook/new-hampshire-clarence-demar-marathon.html'}],
+  'OH':[{city:'Cleveland',date:'Oct 24, 2021',story:'stories/english/cleveland-marathon.html',fb:'facebook/cleveland-marathon.html'}],
+  'SC':[{city:'Greer',date:'Feb 2025',story:'stories/english/south-carolina-marathon.html',fb:'facebook/south-carolina-marathon.html'}],
   'TN':[{city:'Nashville',date:'Apr 2025',story:'stories/english/nashville-marathon.html',fb:'facebook/nashville-marathon.html'}],
   'TX':[{city:'San Antonio',date:'Dec 2024',story:'stories/english/san-antonio-marathon.html',fb:'facebook/san-antonio-marathon.html'}],
-  'SC':[{city:'Greer',date:'Feb 2025',story:'stories/english/south-carolina-marathon.html',fb:'facebook/south-carolina-marathon.html'}],
-  'WV':[{city:'Huntington',date:'May 2025',story:'stories/english/west-virginia-marathon.html',fb:'facebook/west-virginia-marathon.html'}],
-  'MI':[{city:'Grand Rapids',date:'Aug 2024',story:'stories/english/michigan-meadows-marathon.html',fb:'facebook/michigan-meadows-marathon.html'}]
+  'VA':[{city:'Roanoke',date:'2025.04.12',story:'stories/english/blue-ridge-marathon.html',fb:'facebook/blue-ridge-marathon.html'}],
+  'VT':[{city:'Warren',date:'2025.07.17',story:'stories/english/mad-marathon.html',fb:'facebook/mad-marathon.html'}],
+  'WV':[{city:'Huntington',date:'May 2025',story:'stories/english/west-virginia-marathon.html',fb:'facebook/west-virginia-marathon.html'}]
 };
 
 const _storyStates = Object.keys(_RACES);
@@ -790,8 +797,8 @@ function _injectWorldMap() {
    [1533, 221, '#d4614a', false, 'Harbin / Wuhan', '2017 archive', 'facebook/steel-tank-story.html'],
    [1502, 292, '#d4614a', false, 'Wuhan / Wuxi', '2018 archive', 'facebook/wuhan-wuxi-marathon-notes.html'],
    [1442, 334, '#2f855a', false, 'Guiyang, Guizhou', '2018 archive', 'facebook/guiyang-marathon-climb.html'],
-   [1457, 287, '#9a3412', false, 'Xi'an, Shaanxi', '2018 archive', 'facebook/xian-city-wall-marathon.html'],
-   [1462, 318, '#be185d', false, 'Guang'an / Yichang / Changsha', '2017 archive', 'facebook/three-city-pilgrimage.html'],
+   [1457, 287, '#9a3412', false, "Xi'an, Shaanxi", '2018 archive', 'facebook/xian-city-wall-marathon.html'],
+   [1462, 318, '#be185d', false, "Guang'an / Yichang / Changsha", '2017 archive', 'facebook/three-city-pilgrimage.html'],
    [493, 307, '#ff4040', false, 'Key West / Orlando, Florida', '2025 archive', 'facebook/disney-marathon.html'],
    // running-story-web-batch:dots:end
   ].forEach(([cx, cy, fill, pulse, city, date, story]) => {
