@@ -37,6 +37,180 @@ DATE_ZH = "2024.04.27"
 DATE_EN = "Apr 27, 2024"
 RACE_NAME = "Kentucky Derby Marathon"
 
+CAPTIONS_ZH = {
+    1: "Run50 美国地图上的肯塔基起点",
+    2: "Thunder Over Louisville 夜色里的俄亥俄河",
+    3: "蓝草州清晨的热气球",
+    4: "Derby Marathon 与 miniMarathon 号码布",
+    5: "Kentucky Derby Festival Race Expo",
+    6: "Sichuan House 跑者聚餐",
+    7: "Official 镜头里的冲线瞬间",
+    8: "Kentucky Derby Marathon 赛道图",
+    9: "起点区的跑友合影",
+    10: "赛前遇见本地跑友",
+    11: "Louisville Slugger Field 附近的起点",
+    12: "跑进 Downtown Louisville",
+    13: "市中心赛道上的官方照片",
+    14: "摄影吊臂下的空中视角",
+    15: "人潮涌过 Downtown 赛道",
+    16: "金色大卫像旁的赛道",
+    17: "Louisville Slugger 巨型棒球棍",
+    18: "Louisville 城市标识",
+    19: "晨光里的 Old Louisville 教堂",
+    20: "路边孩子伸手击掌",
+    21: "Louisville 市政建筑群",
+    22: "Fourth Street 上的赛道",
+    23: "在 Fourth Street 追上杰哥",
+    24: "Old Louisville 的维多利亚街区",
+    25: "本地跑者传奇 Manfred Schmidt",
+    26: "Old Louisville 附近的 Mile 6",
+    27: "跑过 University of Louisville",
+    28: "Louisville Fire Station 18",
+    29: "消防局门口的加油人群",
+    30: "向 Churchill Downs 方向前进",
+    31: "Churchill Downs 门口的 Barbaro 雕像",
+    32: "进入 Churchill Downs 赛马场",
+    33: "Churchill Downs 前的官方赛照",
+    34: "跑进 Churchill Downs 的阳光里",
+    35: "赛道上遇见 Lynsey O'Donnell",
+    36: "Churchill Downs 隧道里的光影",
+    37: "离开 Churchill Downs",
+    38: "从赛马场继续南下",
+    39: "路边学生管乐队加油",
+    40: "Iroquois Park 里的 Mile 12",
+    41: "Iroquois Park 山路赛道",
+    42: "Iroquois Park 补给桌",
+    43: "Iroquois Park 的林荫下坡",
+    44: "公园赛道上的稳定节奏",
+    45: "后半程重新并入城市街道",
+    46: "路边跑友伸手击掌",
+    47: "社区居民沿途加油",
+    48: "回到 Louisville Cardinals 主场附近",
+    49: "University of Louisville 校园路段",
+    50: "校园旁的补给站志愿者",
+    51: "补给区里的短暂停靠",
+    52: "Cardinal Stadium 外的赛道",
+    53: "电视转播镜头里的背影",
+    54: "后半程路上的跑者",
+    55: "回城路上的长直道",
+    56: "官方镜头里的市中心赛道",
+    57: "重新跑回 Louisville 市中心",
+    58: "终点拱门在望",
+    59: "最后两英里的坚持",
+    60: "Mile 24 路牌",
+    61: "Mile 25 路牌",
+    62: "官方镜头里的冲刺",
+    63: "笑着跑向终点",
+    64: "冲线时刻",
+    65: "终点直道的最后几步",
+    66: "俄亥俄河边的终点区",
+    67: "终点线俯拍",
+    68: "GPS 记录：42.58 公里",
+    69: "Kentucky Derby Marathon 完赛奖牌",
+    70: "Racing Louisville FC 赛后打卡",
+    71: "终点区和跑友庆祝",
+    72: "赛后和跑友合影",
+    73: "赛后补给区的杰哥",
+    74: "Oaks Day 的 Churchill Downs",
+    75: "Oaks Day 看台上",
+    76: "Oaks Day 正装打卡",
+    77: "蓝色西装版赛马节",
+    78: "Oaks Day 花墙合影",
+    79: "Oaks Day 和朋友合影",
+    80: "Urban Bourbon Half Marathon 奖牌",
+    81: "Urban Bourbon Half Marathon 官方照片",
+    82: "Urban Bourbon Half Marathon 林荫赛道",
+    83: "Downtown Louisville 的半马冲线",
+    84: "半马终点和跑友击掌",
+}
+
+CAPTIONS_EN = {
+    1: "Kentucky on the Run50 map",
+    2: "Thunder Over Louisville above the Ohio River",
+    3: "Hot-air balloons over the Bluegrass State",
+    4: "Derby Marathon and miniMarathon bibs",
+    5: "Kentucky Derby Festival Race Expo",
+    6: "Runner dinner at Sichuan House",
+    7: "The finish-line moment through the official lens",
+    8: "Kentucky Derby Marathon course map",
+    9: "Friends in the start area",
+    10: "Meeting local runners before the race",
+    11: "The start near Louisville Slugger Field",
+    12: "Running into Downtown Louisville",
+    13: "Official race photo downtown",
+    14: "An overhead view under the camera crane",
+    15: "The downtown course in full flow",
+    16: "Running past the golden David statue",
+    17: "The giant Louisville Slugger bat",
+    18: "The Louisville city sign",
+    19: "An Old Louisville church in morning light",
+    20: "A high five from the curb",
+    21: "Louisville civic buildings",
+    22: "The course on Fourth Street",
+    23: "Catching Jie on Fourth Street",
+    24: "Victorian blocks in Old Louisville",
+    25: "Local running legend Manfred Schmidt",
+    26: "Mile 6 near Old Louisville",
+    27: "Running through the University of Louisville",
+    28: "Louisville Fire Station 18",
+    29: "Cheers outside the fire station",
+    30: "Heading toward Churchill Downs",
+    31: "The Barbaro statue at Churchill Downs",
+    32: "Entering Churchill Downs",
+    33: "Official race photo at Churchill Downs",
+    34: "Sunlight inside Churchill Downs",
+    35: "Meeting Lynsey O'Donnell on the course",
+    36: "Light and shadow in the Churchill Downs tunnel",
+    37: "Leaving Churchill Downs",
+    38: "Continuing south after the racetrack",
+    39: "A student band cheering from the roadside",
+    40: "Mile 12 inside Iroquois Park",
+    41: "The rolling road through Iroquois Park",
+    42: "Aid tables in Iroquois Park",
+    43: "A shaded downhill in Iroquois Park",
+    44: "Keeping rhythm on the park road",
+    45: "Rejoining the city streets in the second half",
+    46: "A roadside high five",
+    47: "Neighborhood cheers along the course",
+    48: "Back near the Louisville Cardinals' home field",
+    49: "The University of Louisville stretch",
+    50: "Aid-station volunteers by campus",
+    51: "A quick pause in the aid zone",
+    52: "The course outside Cardinal Stadium",
+    53: "A race-day glimpse from the broadcast",
+    54: "Runners on the late miles",
+    55: "The long road back toward downtown",
+    56: "Downtown miles through the official lens",
+    57: "Running back into Downtown Louisville",
+    58: "The finish arch comes into view",
+    59: "Holding on through the final two miles",
+    60: "Mile 24 marker",
+    61: "Mile 25 marker",
+    62: "The final push through the official lens",
+    63: "Smiling toward the finish",
+    64: "Crossing the finish line",
+    65: "The last steps down the finish chute",
+    66: "The finish area by the Ohio River",
+    67: "An overhead finish-line view",
+    68: "GPS record: 42.58 km",
+    69: "Kentucky Derby Marathon finisher medal",
+    70: "Post-race stop at Racing Louisville FC",
+    71: "Celebrating with friends in the finish area",
+    72: "Post-race photo with a runner friend",
+    73: "Jie in the post-race area",
+    74: "Churchill Downs on Oaks Day",
+    75: "In the grandstand on Oaks Day",
+    76: "Dressed up for Oaks Day",
+    77: "A blue-suit Derby Festival moment",
+    78: "Oaks Day photo wall",
+    79: "Oaks Day with friends",
+    80: "Urban Bourbon Half Marathon medal",
+    81: "Official Urban Bourbon Half Marathon photo",
+    82: "The shaded Urban Bourbon Half Marathon course",
+    83: "Finishing the half in Downtown Louisville",
+    84: "A finish-line high five at the half",
+}
+
 SPECIAL_TRANSLATIONS = {
     "- Run50# 第1州全马 -": "- Run50 #1 Full Marathon -",
     "📍地点：路易斯维尔，肯塔基": "Location: Louisville, Kentucky",
@@ -267,6 +441,11 @@ def is_caption(text: str) -> bool:
     return text.startswith("▲")
 
 
+def caption_for(number: int, lang: str) -> str:
+    captions = CAPTIONS_EN if lang == "en" else CAPTIONS_ZH
+    return captions.get(number, "")
+
+
 def render_text(text: str, lang: str, cache: dict[str, str]) -> str:
     value = text if lang == "zh" else translate(text, cache)
     clean = value[2:].strip() if value.startswith("# ") else value
@@ -294,19 +473,15 @@ def render_events(events: list[dict], lang: str, image_prefix: str, cache: dict[
             number = int(event["out"].split("-")[1].split(".")[0])
             alt = f"{LOCATION_EN} story photo {number}" if lang == "en" else f"{LOCATION_ZH}故事照片 {number}"
             figure = f'<figure><img src="{image_prefix}{event["out"]}" alt="{escape(alt)}" loading="lazy" decoding="async">'
-            if pending_caption:
-                figure += f"<figcaption>{escape(pending_caption)}</figcaption>"
-                pending_caption = None
+            caption = caption_for(number, lang)
+            if caption:
+                figure += f"<figcaption>{escape(caption)}</figcaption>"
+            pending_caption = None
             figure += "</figure>"
             parts.append(figure)
             continue
         text = event["text"]
         if is_caption(text):
-            caption = text[1:].strip()
-            if parts and parts[-1].endswith("</figure>") and "<figcaption>" not in parts[-1]:
-                parts[-1] = parts[-1].replace("</figure>", f"<figcaption>{escape(caption)}</figcaption></figure>")
-            else:
-                pending_caption = caption
             continue
         if pending_caption:
             parts.append(f'<p class="caption-line">{escape(pending_caption)}</p>')
