@@ -557,7 +557,10 @@ const _CITY_LL = {
 };
 
 const _RACES = {
-  'KY':[{city:'Louisville',date:'Nov 8, 2020',story:'stories/english/louisville-marathon.html',fb:'facebook/louisville-marathon.html'}],
+  'KY':[
+    {city:'Louisville',date:'Nov 8, 2020',story:'stories/english/louisville-marathon.html',fb:'facebook/louisville-marathon.html'},
+    {city:'Louisville',date:'Apr 25, 2026',story:'stories/english/kentucky-derby-marathon.html',fb:'facebook/kentucky-derby-marathon.html'}
+  ],
   'OH':[{city:'Cleveland',date:'Oct 24, 2021',story:'stories/english/cleveland-marathon.html',fb:'facebook/cleveland-marathon.html'}],
   'IL':[{city:'Chicago',date:'Oct 2023',story:'stories/english/chicago-marathon.html',fb:'facebook/chicago-marathon.html'}],
   'AR':[{city:'Little Rock',date:'Mar 2025',story:'stories/english/little-rock-marathon.html',fb:'facebook/little-rock-marathon.html'}],
@@ -565,7 +568,8 @@ const _RACES = {
   'TN':[{city:'Nashville',date:'Apr 2025',story:'stories/english/nashville-marathon.html',fb:'facebook/nashville-marathon.html'}],
   'TX':[{city:'San Antonio',date:'Dec 2024',story:'stories/english/san-antonio-marathon.html',fb:'facebook/san-antonio-marathon.html'}],
   'SC':[{city:'Greer',date:'Feb 2025',story:'stories/english/south-carolina-marathon.html',fb:'facebook/south-carolina-marathon.html'}],
-  'WV':[{city:'Huntington',date:'May 2025',story:'stories/english/west-virginia-marathon.html',fb:'facebook/west-virginia-marathon.html'}]
+  'WV':[{city:'Huntington',date:'May 2025',story:'stories/english/west-virginia-marathon.html',fb:'facebook/west-virginia-marathon.html'}],
+  'MI':[{city:'Grand Rapids',date:'Aug 2024',story:'stories/english/michigan-meadows-marathon.html',fb:'facebook/michigan-meadows-marathon.html'}]
 };
 
 const _storyStates = Object.keys(_RACES);
@@ -760,8 +764,10 @@ function _injectWorldMap() {
    [439, 276, '#ff4040', false, 'Little Rock, AR', 'Mar 2025', 'stories/english/little-rock-marathon.html'],
    [495, 280, '#ff4040', false, 'South Carolina',  'Feb 2025', 'stories/english/south-carolina-marathon.html'],
    [492, 258, '#ff4040', false, 'West Virginia',   'May 2025', 'stories/english/west-virginia-marathon.html'],
+   [474, 235, '#ff4040', false, 'Grand Rapids, MI', 'Aug 2024', 'stories/english/michigan-meadows-marathon.html'],
    [500, 248, '#ff4040', false, 'Pittsburgh, PA',  '2025',     'stories/english/pittsburgh-marathon.html'],
-   [471, 259, '#ff4040', false, 'Louisville, KY',  '2025',     'stories/english/louisville-marathon.html'],
+   [471, 259, '#ff4040', false, 'Louisville, KY',  'Nov 2020', 'stories/english/louisville-marathon.html'],
+   [476, 264, '#ff4040', false, 'Louisville Derby, KY', 'Apr 2026', 'stories/english/kentucky-derby-marathon.html'],
    [404, 353, mxCol,     false, 'Mexico City',     '2024',     'facebook/mexico-marathon.html'],
    [952, 231, itCol,     true,  'Pisa, Italy',     '2025',     'facebook/pisa-marathon.html'],
    [1461, 290, cnCol,   true,  'Xiangyang, China', '2024',    'stories/chinese/?v=20260618-addddd'],
