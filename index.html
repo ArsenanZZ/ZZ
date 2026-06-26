@@ -1563,13 +1563,79 @@
     return new DOMParser().parseFromString(html, 'text/html');
   }
 
+  // State abbreviation -> US_MAP_SVG path ids (mirrors the full map on
+  // run50/stories/english/index.html so the homepage marks every state).
   const HOME_US_STATE_PATHS = {
-    AK:['ocean_3_'], AR:['Tennessee','Arkansas'], CA:['Arizona'], CO:['Texas_1_','Colorado'],
-    FL:['South_Carolina_1_'], GA:['Georgia','Florida_1_'], HI:['ocean_2_'],
-    IL:['Illinois','Kentucky_1_'], IN:['Indiana','Ohio_1_'], KY:['Georgia_1_','Kentucky'],
-    MO:['Iowa_1_','Missouri'], NC:['Maryland'], NY:['Rhode_Island_1_','New_York'],
-    OH:['Ohio','West_Virginia_1_'], SC:['South_Carolina','Indiana_1_'],
-    TN:['Alabama'], TX:['Kansas_1_'], WV:['West_Virginia','Virginia_1_']
+    IL:['Illinois','Kentucky_1_'], TN:['Alabama'], WV:['West_Virginia','Virginia_1_'],
+    TX:['Kansas_1_'], FL:['South_Carolina_1_'], NC:['Maryland'], AR:['Tennessee','Arkansas'],
+    SC:['South_Carolina','Indiana_1_'], KY:['Georgia_1_','Kentucky'], PA:['Pensilvania','New_Jersey_1_'],
+    WI:['Wisconsin','Illinois_1_'], MI:['Michigan','Ocean'], NH:['New_Hampshire','Maine_1_'],
+    LA:['Arkansas_1_'], VA:['North_Carolina_1_','Virginia'], ND:['South_Dakota_1_','North_Dakota'],
+    KS:['Kansas','North_Dakota_1_'], VT:['New_Hampshire_1_','Vermont'], AL:['alabama','Missispi'],
+    AZ:['Arizona_1_','Utah'], DE:['Massachusets_1_'], MN:['Minnesotta','Wisconsin_1_'],
+    CT:['New_York_2_','Connecticut'], RI:['Delaware','Rhode_Island'], MA:['Vermont_1_','Massachusets'],
+    ME:['Michigan_1_','Maine'], OH:['Ohio','West_Virginia_1_'], NY:['Rhode_Island_1_','New_York'],
+    CA:['Arizona'], IN:['Indiana','Ohio_1_'], GA:['Georgia','Florida_1_'], CO:['Texas_1_','Colorado'],
+    MO:['Iowa_1_','Missouri'], HI:['ocean_2_'], AK:['ocean_3_'], ID:['Idaho','Wyoming'],
+    IA:['Minessota','Iowa'], MS:['Mossouri','Missisppi'], MT:['Washington_1_','Montana'],
+    NE:['Nebraska','Louisiana_1_'], NV:['Nevada_41_','California'], NJ:['New_Jersey','Connecticut_1_'],
+    NM:['Idaho_1_','New_Mexico_1_'], OK:['Oklahoma','Colorado_1_'], OR:['Nevada_1_','Oregon_41_'],
+    SD:['South_Dakota','Nebraska_1_'], UT:['Utah_1_','New_Mexico'], WY:['Montana_1_','Wyoming_1_'],
+    MD:['Pensilvania_1_','Oregon_1_'], WA:['Oklahoma_1_']
+  };
+
+  // Per-state colour (graph-coloured so neighbours differ) and the complete
+  // Run50 race list — kept in sync with run50/stories/english/index.html.
+  const HOME_RUN50_STATE_COLORS = {
+    AK:'#f4a09a', AL:'#a8cc5a', AR:'#5bb87c', AZ:'#f5b840', CA:'#f4a09a',
+    CO:'#c490d0', CT:'#c490d0', DE:'#f5b840', FL:'#f4a09a', GA:'#f5b840',
+    HI:'#9068c0', IA:'#a8cc5a', ID:'#f4a09a', IL:'#c490d0', IN:'#f5b840',
+    KS:'#5baad0', KY:'#a8cc5a', LA:'#a8cc5a', MA:'#5baad0', MD:'#a8cc5a',
+    ME:'#f4a09a', MI:'#5baad0', MN:'#f5b840', MO:'#f5b840', MS:'#f5b840',
+    MT:'#a8cc5a', NC:'#a8cc5a', ND:'#5bb87c', NE:'#5bb87c', NH:'#f5b840',
+    NJ:'#a8cc5a', NM:'#5bb87c', NV:'#5bb87c', NY:'#f5b840', OH:'#5bb87c',
+    OK:'#a8cc5a', OR:'#f5b840', PA:'#f4a09a', RI:'#f4a09a', SC:'#c490d0',
+    SD:'#5baad0', TN:'#5baad0', TX:'#c490d0', UT:'#a8cc5a', VA:'#5bb87c',
+    VT:'#a8cc5a', WA:'#a8cc5a', WI:'#5bb87c', WV:'#f5b840', WY:'#f5b840'
+  };
+
+  // {city, lat, lon} projects through projectHomeUS; {city, x, y} is placed
+  // directly in the US_MAP_SVG viewBox (small NE states + AK/HI insets).
+  const HOME_RUN50_RACES = {
+    FL:[{city:'Miami',lat:25.7617,lon:-80.1918},{city:'Orlando',lat:28.5383,lon:-81.3792}],
+    NC:[{city:'Oak Island',lat:33.9174,lon:-78.1575}],
+    AR:[{city:'Little Rock',lat:34.7465,lon:-92.2896}],
+    SC:[{city:'Greer',lat:34.9387,lon:-82.2271}],
+    KY:[{city:'Louisville',lat:38.2527,lon:-85.7585},{city:'Williamson',lat:37.6740,lon:-82.2776}],
+    PA:[{city:'Pittsburgh',lat:40.4406,lon:-79.9959}],
+    WI:[{city:'Green Bay',lat:44.5133,lon:-88.0133}],
+    MI:[{city:'Grand Rapids',lat:42.9634,lon:-85.6681}],
+    NH:[{city:'Keene',x:1502,y:310}],
+    LA:[{city:'Baton Rouge',lat:30.4515,lon:-91.1871}],
+    VA:[{city:'Roanoke',lat:37.2710,lon:-79.9414}],
+    ND:[{city:'Fargo',lat:46.8772,lon:-96.7898}],
+    KS:[{city:'Gravel',lat:39.0473,lon:-95.6752}],
+    VT:[{city:'Warren',x:1466,y:270},{city:'Springfield',x:1477,y:270}],
+    AL:[{city:'Huntsville',lat:34.7304,lon:-86.5861}],
+    AZ:[{city:'Buckeye',lat:33.3703,lon:-112.5838}],
+    DE:[{city:'Wilmington',lat:39.7458,lon:-75.5466}],
+    MN:[{city:'Rochester',lat:44.0234,lon:-92.4629}],
+    CT:[{city:'Simsbury',x:1503,y:362}],
+    RI:[{city:'Woonsocket',x:1488,y:376}],
+    MA:[{city:'Holyoke',lat:42.2043,lon:-72.6162}],
+    HI:[{city:'Honolulu',x:570,y:933}],
+    AK:[{city:'Anchorage',x:275,y:917}],
+    OH:[{city:'Cleveland',lat:41.4993,lon:-81.6944}],
+    NY:[{city:'New York City',lat:40.7128,lon:-74.0060}],
+    CA:[{city:'San Francisco',lat:37.7749,lon:-122.4194}],
+    IN:[{city:'Indianapolis',lat:39.7684,lon:-86.1581}],
+    GA:[{city:'Atlanta',lat:33.7490,lon:-84.3880}],
+    CO:[{city:'Denver',lat:39.7392,lon:-104.9903}],
+    MO:[{city:'St. Joseph',lat:39.7675,lon:-94.8466}],
+    IL:[{city:'Chicago',lat:41.8781,lon:-87.6298}],
+    TN:[{city:'Nashville',lat:36.1627,lon:-86.7816}],
+    WV:[{city:'Huntington',lat:38.4192,lon:-82.4453}],
+    TX:[{city:'San Antonio',lat:29.4241,lon:-98.4936}]
   };
 
   const HOME_RUN50_SLUGS = {
@@ -1717,17 +1783,17 @@
       path.style.strokeWidth = '.65';
       path.style.opacity = '.95';
     });
-    const states = new Set();
-    slugs.forEach(slug => {
-      const item = HOME_RUN50_SLUGS[slug];
-      if (!item) return;
-      states.add(item.state);
-      addMapDot(svg, item, '#ff3b30', `${item.city}, ${item.state}`, projectHomeUS);
+    // Mark every Run50 state and every race city — the full footprint shown on
+    // run50/stories/english/index.html, not just the slugs with a story card.
+    const stateAbbrs = Object.keys(HOME_RUN50_RACES);
+    stateAbbrs.forEach(abbr => {
+      const color = HOME_RUN50_STATE_COLORS[abbr] || '#ff3b30';
+      (HOME_US_STATE_PATHS[abbr] || []).forEach(pathId => colorHomeMapPath(svg, `map_${pathId}`, color));
+      HOME_RUN50_RACES[abbr].forEach(race => {
+        addMapDot(svg, race, '#ff3b30', `${race.city}, ${abbr}`, projectHomeUS);
+      });
     });
-    Array.from(states).sort().forEach((abbr, index) => {
-      (HOME_US_STATE_PATHS[abbr] || []).forEach(pathId => colorHomeMapPath(svg, `map_${pathId}`, HOME_MAP_COLORS[index % HOME_MAP_COLORS.length]));
-    });
-    setHomeMapCount('run50', slugs.length, 'story');
+    setHomeMapCount('run50', stateAbbrs.length, 'state');
   }
 
   function renderHomeRunCnMap(slugs) {
