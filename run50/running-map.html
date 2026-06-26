@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Running Map | ArsenanZZ Run50</title>
+  <meta name="description" content="ArsenanZZ global marathon footprint map across Run50, RunCN, and RunWorld.">
+  <style>
+    :root {
+      --paper: #f4f6f7;
+      --surface: #ffffff;
+      --ink: #20242b;
+      --muted: #667085;
+      --line: #dde5ec;
+      --brick: #a33a2b;
+      --run50: #0b67c2;
+      --runcn: #cc0000;
+      --runworld: #2f855a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #eef5f6 0, var(--paper) 320px);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 34px 22px 56px;
+    }
+
+    .topline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .topline a {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .topline a:hover { border-color: currentColor; }
+
+    .map-intro {
+      margin: 0 0 22px;
+    }
+
+    .kicker {
+      margin: 0 0 10px;
+      color: var(--brick);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 7vw, 58px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 680px;
+      margin: 16px 0 0;
+      color: #344054;
+      font-size: 16px;
+    }
+
+    .running-map-section {
+      max-width: 980px;
+      margin: 0 auto 34px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 18px 44px rgba(15, 23, 42, .08);
+    }
+
+    .running-map-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .running-map-card-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .running-map-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: #e2f0d9;
+      color: #2d6a4f;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .running-map-status {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 400;
+      transition: color .2s ease;
+    }
+
+    .running-map-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .running-map-stat {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f7faf7;
+      padding: 10px 12px;
+    }
+
+    .running-map-stat strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1.1;
+      color: #243642;
+    }
+
+    .running-map-stat span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+
+    .running-map-shell {
+      position: relative;
+    }
+
+    .world-running-map-slot {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1722 / 989;
+      background: #a8d4e8;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .world-running-map-slot svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .world-running-map-slot path {
+      transition: fill .2s ease, opacity .2s ease, stroke .2s ease;
+    }
+
+    .wm-country-run { cursor: pointer; }
+
+    .wm-country-run:hover {
+      opacity: .86;
+      stroke: #fff;
+      stroke-width: 1.8;
+    }
+
+    .world-city-dot {
+      fill: #ff3b30;
+      stroke: #fff;
+      stroke-width: 1.5;
+      cursor: pointer;
+      transition: r .2s ease, fill .2s ease;
+    }
+
+    .world-city-dot:hover {
+      r: 6.5;
+      fill: #ffcc00;
+    }
+
+    .world-city-glow {
+      fill: rgba(255, 59, 48, .35);
+      pointer-events: none;
+      animation: world-dot-pulse 2s infinite alternate;
+    }
+
+    @keyframes world-dot-pulse {
+      0% { opacity: .25; r: 9; }
+      100% { opacity: .65; r: 16; }
+    }
+
+    .world-running-map-tooltip {
+      position: absolute;
+      z-index: 20;
+      display: none;
+      min-width: 230px;
+      max-width: 320px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 8px;
+      background: rgba(26, 37, 47, .95);
+      color: #fff;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .25);
+      backdrop-filter: blur(8px);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .world-running-map-tooltip h4 {
+      margin: 0 0 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, .15);
+      color: #ffb612;
+      font-size: 14px;
+    }
+
+    .world-running-map-tooltip a {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: #ffb612;
+      color: #1a252f;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .running-map-legend {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 15px;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .running-map-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .running-map-legend i {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border: 1px solid rgba(15, 17, 17, .2);
+      border-radius: 999px;
+    }
+
+    .running-map-swatch {
+      background: linear-gradient(135deg,#d4614a 0 25%,#e89838 25% 50%,#5ca860 50% 75%,#3898a8 75%);
+      border-radius: 3px !important;
+    }
+
+    .map-error {
+      padding: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .shell { padding: 22px 16px 42px; }
+      .topline { justify-content: flex-start; }
+      .running-map-section { padding: 16px; }
+      .running-map-card-head { display: block; }
+      .running-map-status { display: block; margin-top: 8px; overflow-wrap: anywhere; }
+      .running-map-stats { grid-template-columns: 1fr; }
+      .world-running-map-slot { aspect-ratio: 4 / 3; }
+      .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="topline" aria-label="Page navigation">
+      <a href="./index.html">&larr; Home</a>
+      <span>Running Map</span>
+      <a href="./stories/english/?v=20260618-addddd">English Stories</a>
+      <a href="./stories/chinese/?v=20260618-addddd">Chinese Stories</a>
+    </nav>
+
+    <section class="map-intro" aria-labelledby="running-map-page-title">
+      <p class="kicker">Run50 / RunCN / RunWorld</p>
+      <h1 id="running-map-page-title">Running Map</h1>
+      <p class="intro">Global Marathon Footprint, with completed countries and regions highlighted and race cities placed from latitude and longitude.</p>
+    </section>
+
+    <section class="running-map-section" aria-labelledby="running-map-title">
+      <div class="running-map-card-head">
+        <div class="running-map-card-title">
+          <span id="running-map-title">&#128506;&#65039; Countries I Have Run</span>
+          <span class="running-map-pill">6 countries + HK</span>
+        </div>
+        <span class="running-map-status" id="world-running-map-status">Hover over countries or red dots to view stories; click to jump</span>
+      </div>
+
+      <div class="running-map-stats" aria-label="Running map statistics">
+        <div class="running-map-stat"><strong>6 + HK</strong><span>Countries / Region</span></div>
+        <div class="running-map-stat"><strong>35</strong><span>US States Run</span></div>
+        <div class="running-map-stat"><strong>17</strong><span>China Regions</span></div>
+      </div>
+
+      <div class="running-map-shell">
+        <div class="world-running-map-slot" id="world-running-map-slot" aria-label="World running map">
+          <div class="map-error">Loading world map...</div>
+        </div>
+        <div class="world-running-map-tooltip" id="world-running-map-tooltip" role="tooltip"></div>
+      </div>
+
+      <div class="running-map-legend" aria-label="World map legend">
+        <span><i class="running-map-swatch"></i>Colored countries/regions have race stories</span>
+        <span><i style="background:#ff3b30"></i>Race cities</span>
+        <span><i style="background:#d8e0d4"></i>Unvisited land</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="./world-map-svg.js?v=20260626-running-map-page"></script>
+  <script>
+  (() => {
+    const slot = document.getElementById('world-running-map-slot');
+    if (!slot) return;
+
+    fetch('./index.html?v=20260626-running-map-page')
+      .then(response => {
+        if (!response.ok) throw new Error('Could not load map renderer');
+        return response.text();
+      })
+      .then(html => {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const renderer = doc.getElementById('global-running-map-renderer');
+        if (!renderer || !renderer.textContent.trim()) {
+          throw new Error('Map renderer template is missing');
+        }
+        (0, eval)(renderer.textContent);
+      })
+      .catch(error => {
+        slot.innerHTML = `<div class="map-error">${error.message}</div>`;
+      });
+  })();
+  </script>
+</body>
+</html>

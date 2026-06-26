@@ -453,6 +453,24 @@
     border-radius: 3px !important;
   }
 
+  .products.running-map-entry-grid {
+    grid-template-columns: minmax(230px, 330px);
+    margin-bottom: 32px;
+  }
+
+  .running-map-entry-thumb {
+    background:
+      radial-gradient(circle at 32% 52%, #5baad0 0 12%, transparent 13%),
+      radial-gradient(circle at 63% 43%, #d4614a 0 11%, transparent 12%),
+      radial-gradient(circle at 55% 61%, #5ca860 0 5%, transparent 6%),
+      linear-gradient(180deg, #a8d4e8, #c5e1ee);
+  }
+
+  .running-map-entry-icon {
+    font-size: 56px;
+    filter: drop-shadow(0 6px 12px rgba(15, 23, 42, .18));
+  }
+
   /* PRODUCT GRID */
   .products {
     display: grid;
@@ -715,7 +733,7 @@
 <!-- NAV BAR -->
 <nav class="nav-bar">
   <a href="#" class="active">&#9776; All</a>
-  <a href="#running-map">Running Map</a>
+  <a href="./running-map.html">Running Map</a>
   <a href="./run50.html">&#127939; Run50</a>
   <a href="./stories/chinese/?v=20260618-addddd">文 Chinese Stories</a>
   <a href="./stories/english/?v=20260618-addddd">EN English Stories</a>
@@ -737,36 +755,30 @@
 <div class="content">
 
   <div class="section-header running-map-tab" id="running-map">
-    <div class="section-title">Running Map &middot;<br class="running-map-title-break"> Global Marathon Footprint</div>
-    <a href="./stories/english/?v=20260618-addddd#runworld-series" class="section-see-all">Explore stories &rsaquo;</a>
+    <div class="section-title">Running Map</div>
+    <a href="./running-map.html" class="section-see-all">Open map &rsaquo;</a>
   </div>
 
-  <section class="running-map-section" aria-labelledby="running-map-title">
-    <div class="running-map-card-head">
-      <div class="running-map-card-title">
-        <span id="running-map-title">&#128506;&#65039; Countries I Have Run</span>
-        <span class="running-map-pill">6 countries + HK</span>
+  <div class="products running-map-entry-grid">
+    <a href="./running-map.html" class="product running-map-entry-card">
+      <div class="product-thumb running-map-entry-thumb">
+        <span class="badge-year">GLOBAL</span>
+        <span class="running-map-entry-icon">&#128506;&#65039;</span>
       </div>
-      <span class="running-map-status" id="world-running-map-status">Hover over countries or red dots to view stories; click to jump</span>
-    </div>
-
-    <div class="running-map-stats" aria-label="Running map statistics">
-      <div class="running-map-stat"><strong>6 + HK</strong><span>Countries / Region</span></div>
-      <div class="running-map-stat"><strong>35</strong><span>US States Run</span></div>
-      <div class="running-map-stat"><strong>17</strong><span>China Regions</span></div>
-    </div>
-
-    <div class="running-map-shell">
-      <div class="world-running-map-slot" id="world-running-map-slot" aria-label="World running map"></div>
-      <div class="world-running-map-tooltip" id="world-running-map-tooltip" role="tooltip"></div>
-    </div>
-
-    <div class="running-map-legend" aria-label="World map legend">
-      <span><i class="running-map-swatch"></i>Colored countries/regions have race stories</span>
-      <span><i style="background:#ff3b30"></i>Race cities</span>
-      <span><i style="background:#d8e0d4"></i>Unvisited land</span>
-    </div>
-  </section>
+      <div class="product-body">
+        <div class="product-category">Map &middot; Run50 / RunCN / RunWorld</div>
+        <div class="product-title">Global Marathon Footprint</div>
+        <div class="product-subtitle">Countries, regions, and race cities</div>
+        <div>
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="stars-count"> 64 city dots</span>
+        </div>
+        <div class="product-desc">An interactive world map for completed marathon countries and story links.</div>
+        <div class="product-stat"><strong>6 + HK</strong> countries / region &middot; 35 US states &middot; 17 China regions</div>
+      </div>
+      <span class="btn-view">Open Running Map &rarr;</span>
+    </a>
+  </div>
 
   <div class="section-header">
     <div class="section-title">My Projects &amp; Stories</div>
@@ -930,8 +942,7 @@
 
 <link rel="stylesheet" href="../assets/zz-comments.css">
 <section data-zz-comments></section>
-<script src="./world-map-svg.js?v=20260626-running-map"></script>
-<script>
+<script type="application/x-run50-map-renderer" id="global-running-map-renderer">
 (() => {
   const slot = document.getElementById('world-running-map-slot');
   const tooltip = document.getElementById('world-running-map-tooltip');
