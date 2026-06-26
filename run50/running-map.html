@@ -33,7 +33,7 @@
     a { color: inherit; }
 
     .shell {
-      max-width: 1120px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 34px 22px 56px;
     }
@@ -84,37 +84,13 @@
     }
 
     .running-map-section {
-      max-width: 1060px;
+      max-width: 980px;
       margin: 0 auto 34px;
-      background: #fffaf0;
-      border: 1px solid #e7cf8d;
+      background: var(--surface);
+      border: 1px solid var(--line);
       border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 22px 54px rgba(15, 23, 42, .10);
-    }
-
-    .map-poster-strip {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 0 0 14px;
-      padding: 10px 14px;
-      border: 1px solid #e8c86a;
-      border-radius: 8px;
-      background: #fff3bd;
-      color: #243642;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .map-poster-strip span:last-child {
-      color: #8f4d2b;
-      font-size: 12px;
-      letter-spacing: .6px;
+      padding: 24px;
+      box-shadow: 0 18px 44px rgba(15, 23, 42, .08);
     }
 
     .running-map-card-head {
@@ -163,9 +139,9 @@
     }
 
     .running-map-stat {
-      border: 1px solid #eadcaf;
+      border: 1px solid var(--line);
       border-radius: 8px;
-      background: rgba(255, 255, 255, .74);
+      background: #f7faf7;
       padding: 10px 12px;
     }
 
@@ -193,25 +169,17 @@
     .world-running-map-slot {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 3;
-      background:
-        linear-gradient(90deg, rgba(64, 142, 176, .11) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(64, 142, 176, .11) 1px, transparent 1px),
-        #b8e1f0;
-      background-size: 92px 92px;
-      border: 8px solid #f4d573;
+      aspect-ratio: 1722 / 989;
+      background: #f4f6f7;
+      border: 1px solid var(--line);
       border-radius: 8px;
       overflow: hidden;
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, .55),
-        inset 0 0 34px rgba(48, 118, 151, .16);
     }
 
     .world-running-map-slot svg {
       width: 100%;
       height: 100%;
       display: block;
-      filter: drop-shadow(0 5px 0 rgba(77, 112, 132, .10));
     }
 
     .world-running-map-slot path {
@@ -293,7 +261,7 @@
       gap: 8px 15px;
       margin-top: 12px;
       padding-top: 10px;
-      border-top: 1px solid #eadcaf;
+      border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 12px;
     }
@@ -328,13 +296,10 @@
       .shell { padding: 22px 16px 42px; }
       .topline { justify-content: flex-start; }
       .running-map-section { padding: 16px; }
-      .map-poster-strip { display: block; }
-      .map-poster-strip span { display: block; }
-      .map-poster-strip span + span { margin-top: 3px; }
       .running-map-card-head { display: block; }
       .running-map-status { display: block; margin-top: 8px; overflow-wrap: anywhere; }
       .running-map-stats { grid-template-columns: 1fr; }
-      .world-running-map-slot { aspect-ratio: 4 / 3; background-size: 64px 64px; }
+      .world-running-map-slot { aspect-ratio: 1722 / 989; }
       .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
     }
   </style>
@@ -355,11 +320,6 @@
     </section>
 
     <section class="running-map-section" aria-labelledby="running-map-title">
-      <div class="map-poster-strip" aria-hidden="true">
-        <span>Global Marathon Footprint</span>
-        <span>Run50 · RunCN · RunWorld</span>
-      </div>
-
       <div class="running-map-card-head">
         <div class="running-map-card-title">
           <span id="running-map-title">&#128506;&#65039; Countries I Have Run</span>
