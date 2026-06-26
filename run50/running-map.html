@@ -169,7 +169,7 @@
     .world-running-map-slot {
       position: relative;
       width: 100%;
-      aspect-ratio: 1722 / 989;
+      aspect-ratio: 1516 / 1033;
       background: #f4f6f7;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -299,7 +299,7 @@
       .running-map-card-head { display: block; }
       .running-map-status { display: block; margin-top: 8px; overflow-wrap: anywhere; }
       .running-map-stats { grid-template-columns: 1fr; }
-      .world-running-map-slot { aspect-ratio: 1722 / 989; }
+      .world-running-map-slot { aspect-ratio: 1516 / 1033; }
       .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
     }
   </style>
@@ -349,13 +349,13 @@
     </section>
   </main>
 
-  <script src="./world-map-svg.js?v=20260626-us-muted-zoom2"></script>
+  <script src="./world-map-svg.js?v=20260626-poster-land"></script>
   <script>
   (() => {
     const slot = document.getElementById('world-running-map-slot');
     if (!slot) return;
 
-    fetch('./index.html?v=20260626-us-muted-zoom2')
+    fetch('./index.html?v=20260626-poster-land')
       .then(response => {
         if (!response.ok) throw new Error('Could not load map renderer');
         return response.text();
