@@ -1,50 +1,107 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
-<title id="title">Reverse Osmosis Cover</title>
-<desc id="desc">Icon style cover with RO Guide title, spiral membrane filter, and purified water drops.</desc>
-<rect width="1200" height="750" fill="#081e30"/>
+  <title id="title">REVERSE OSMOSIS</title>
+  <desc id="desc">Modern enamel plaque cover for reverse osmosis guide.</desc>
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff6d4"/>
+      <stop offset="18%" stop-color="#9c7a3d"/>
+      <stop offset="36%" stop-color="#f9f2df"/>
+      <stop offset="58%" stop-color="#706041"/>
+      <stop offset="80%" stop-color="#f6f7f4"/>
+      <stop offset="100%" stop-color="#886b36"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#061f3b"/>
+      <stop offset="56%" stop-color="#0b7fb5"/>
+      <stop offset="100%" stop-color="#062a45"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#07578f"/>
+      <stop offset="100%" stop-color="#052b5f"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="48%" stop-color="#7ee9ff"/>
+      <stop offset="100%" stop-color="#147eb8"/>
+    </linearGradient>
+    <linearGradient id="tube" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6ffff"/>
+      <stop offset="45%" stop-color="#7ee9ff"/>
+      <stop offset="100%" stop-color="#147eb8"/>
+    </linearGradient>
+    <radialGradient id="wafer" cx="42%" cy="32%" r="68%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="28%" stop-color="#7ee9ff"/>
+      <stop offset="58%" stop-color="#0d50a1"/>
+      <stop offset="100%" stop-color="#147eb8"/>
+    </radialGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity=".34"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity=".24"/>
+    </filter>
+    <pattern id="pinstripe" width="44" height="44" patternUnits="userSpaceOnUse" patternTransform="rotate(24)">
+      <path d="M0 0 H44" stroke="#ffffff" stroke-width="3" opacity=".08"/>
+    </pattern>
+  </defs>
+  <style>
+    text { font-family: Inter, "Segoe UI", Arial, sans-serif; }
+  </style>
+  <rect width="1200" height="750" fill="#090f12"/>
+  <rect x="26" y="24" width="1148" height="702" rx="48" fill="url(#metal)" filter="url(#shadow)"/>
+  <rect x="42" y="40" width="1116" height="670" rx="40" fill="#111817"/>
+  <rect x="61" y="59" width="1078" height="632" rx="32" fill="url(#bg)"/>
+  <rect x="61" y="59" width="1078" height="632" rx="32" fill="url(#pinstripe)"/>
+  <path d="M92 102 C248 52 394 88 548 126 C734 172 872 128 1100 80 L1100 260 C912 302 754 276 586 234 C382 184 224 202 92 260 Z" fill="#ffffff" opacity=".08"/>
+  <path d="M82 468 C214 418 354 484 496 444 C664 396 836 432 1114 348 L1114 672 H82 Z" fill="#000000" opacity=".14"/>
 
-<!-- Top-left Titles -->
-<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#ffffff">RO GUIDE</text>
-<text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#8ba1b4">REVERSE OSMOSIS MEMBRANES &amp; SYSTEM</text>
+  <g transform="translate(90 86)" filter="url(#softShadow)">
+    <path d="M0 0 H246 L276 36 V144 L246 180 H0 Z" fill="#075b91" stroke="url(#metal)" stroke-width="9"/>
+    <text x="132" y="116" text-anchor="middle" font-size="94" font-weight="950" fill="#fff8df" stroke="#0b1114" stroke-width="4" paint-order="stroke">RO</text>
+  </g>
 
-<!-- Top-right Badge Box -->
-<rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
-<text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">RO Guide</text>
-<text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#0ea5e9">SYSTEM</text>
+  <g transform="translate(928 92)" opacity=".96">
+    <path d="M34 0 H150 L184 34 V116 L150 150 H34 L0 116 V34 Z" fill="#092b54" stroke="url(#metal)" stroke-width="7"/>
+    <circle cx="92" cy="56" r="28" fill="#f0d56b" opacity=".9" stroke="#fff" stroke-width="5"/>
+    <path d="M76 56 h32 M92 40 v32" stroke="#0c1214" stroke-width="7" stroke-linecap="round" opacity=".54"/>
+    <text x="92" y="120" text-anchor="middle" font-size="21" font-weight="900" fill="#fff8df">GUIDE</text>
+  </g>
 
-<!-- Bottom deep blue landscape block -->
-<rect x="0" y="580" width="1200" height="170" fill="#041220"/>
-<path d="M0 580 Q300 550 600 580 T1200 580 L1200 750 L0 750 Z" fill="#041220"/>
 
-<!-- Stylized RO Membrane Cylinder -->
-<g transform="translate(480, 480)" stroke="#20242b" stroke-width="8" fill="none">
-  <!-- Outer shell -->
-  <rect x="-240" y="-120" width="480" height="240" rx="30" fill="#0284c7" stroke="#20242b" stroke-width="10"/>
-  <!-- Spiral layers inside -->
-  <path d="M-200 0 C-200 -80 -100 -80 0 -80 C100 -80 200 -80 200 0 C200 80 100 80 0 80 C-100 80 -150 40 -150 0" stroke="#bae6fd" stroke-width="6"/>
-  <path d="M-150 0 C-150 -50 -80 -50 0 -50 C80 -50 150 -50 150 0 C150 50 80 50 0 50 C-80 50 -100 20 -100 0" stroke="#bae6fd" stroke-width="4"/>
-  <!-- Central product tube -->
-  <line x1="-270" y1="0" x2="270" y2="0" stroke="#20242b" stroke-width="18" stroke-linecap="round"/>
-  <line x1="-270" y1="0" x2="270" y2="0" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
-</g>
+    <g transform="translate(270 164)" filter="url(#softShadow)">
+      <path d="M20 245 C158 186 276 210 404 254 C520 294 598 286 720 220" fill="none" stroke="#7ee9ff" stroke-width="34" stroke-linecap="round" opacity=".7"/>
+      <path d="M24 255 C164 204 270 220 398 260 C518 298 610 286 716 228" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" opacity=".8"/>
+      <g transform="translate(218 18)">
+        <rect x="0" y="78" width="360" height="240" rx="96" fill="url(#tube)" stroke="#f6ffff" stroke-width="12"/>
+        <ellipse cx="38" cy="198" rx="46" ry="112" fill="#77e3ff" opacity=".55" stroke="#ffffff" stroke-width="8"/>
+        <ellipse cx="322" cy="198" rx="46" ry="112" fill="#092e4f" opacity=".52" stroke="#ffffff" stroke-width="8"/>
+        <rect x="86" y="128" width="196" height="140" rx="22" fill="#e9fdff" opacity=".28" stroke="#ffffff" stroke-width="5"/>
+        <path d="M111 144 h152 M111 178 h152 M111 212 h152 M111 246 h152" stroke="#f0d56b" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+        <path d="M-104 198 H72 M288 198 H480" stroke="#dffcff" stroke-width="44" stroke-linecap="round"/>
+        <path d="M-90 198 H76 M290 198 H472" stroke="#7ee9ff" stroke-width="13" stroke-linecap="round"/>
+      </g>
+      <circle cx="158" cy="146" r="38" fill="#e9ffff" stroke="#ffffff" stroke-width="7"/>
+      <path d="M158 146 l22 -20" stroke="#07578f" stroke-width="7" stroke-linecap="round"/>
+      <path d="M637 268 C705 300 760 328 825 302" fill="none" stroke="#f0d56b" stroke-width="24" stroke-linecap="round" opacity=".8"/>
+      <path d="M640 269 C707 297 760 318 819 299" fill="none" stroke="#fff5c8" stroke-width="7" stroke-linecap="round"/>
+    </g>
 
-<!-- Water droplets passing through -->
-<!-- Raw water (feed) on left -->
-<g fill="#3b82f6" opacity="0.6">
-  <circle cx="150" cy="400" r="14"/>
-  <circle cx="110" cy="460" r="10"/>
-  <circle cx="180" cy="480" r="16"/>
-  <circle cx="90" cy="360" r="12"/>
-</g>
 
-<!-- Purified water on right -->
-<g fill="#0ea5e9">
-  <!-- Droplet 1 -->
-  <path d="M850 420 C850 450 820 470 795 470 C770 470 740 450 740 420 C740 390 795 320 795 320 C795 320 850 390 850 420 Z" stroke="#20242b" stroke-width="6" stroke-linejoin="round"/>
-  <circle cx="780" cy="410" r="6" fill="#ffffff" opacity="0.6"/>
-  <!-- Droplet 2 -->
-  <path d="M1020 480 C1020 500 1000 515 982 515 C965 515 945 500 945 480 C945 460 982 410 982 410 C982 410 1020 460 1020 480 Z" stroke="#20242b" stroke-width="5" stroke-linejoin="round"/>
-  <circle cx="972" cy="472" r="4" fill="#ffffff" opacity="0.6"/>
-</g>
+  <g filter="url(#softShadow)">
+    <path d="M104 524 L252 496 H948 L1096 524 L1052 696 H148 Z" fill="url(#titleGrad)" stroke="url(#metal)" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M168 538 C308 510 418 548 560 528 C720 506 832 524 1032 508" fill="none" stroke="#ffffff" stroke-width="5" opacity=".22"/>
+    <text x="600" y="566" text-anchor="middle" font-size="66" font-weight="900" fill="#fff" letter-spacing="1">REVERSE</text>
+<text x="600" y="634" text-anchor="middle" font-size="66" font-weight="900" fill="#fff" letter-spacing="1">OSMOSIS</text>
+    <text x="600" y="646" text-anchor="middle" font-size="23" font-weight="850" fill="#e5fbff" letter-spacing="3">MEMBRANE • STAGES • MAINTENANCE</text>
 
+    <g opacity=".75">
+      <path d="M178 650 C250 624 318 674 392 646 C472 616 524 662 602 636 C678 610 724 662 804 638 C882 614 934 654 1020 626" fill="none" stroke="#7ee9ff" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="338" cy="646" r="10" fill="#f0d56b" stroke="#fff" stroke-width="4"/>
+      <circle cx="862" cy="638" r="10" fill="#f0d56b" stroke="#fff" stroke-width="4"/>
+    </g>
+
+  </g>
+  <rect x="61" y="59" width="1078" height="632" rx="32" fill="none" stroke="#ffffff" stroke-width="3" opacity=".24"/>
+  <rect x="34" y="32" width="1132" height="686" rx="44" fill="none" stroke="#ffffff" stroke-width="4" opacity=".58"/>
 </svg>

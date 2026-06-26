@@ -1,75 +1,110 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
-<title id="title">Water Softening Cover</title>
-<desc id="desc">Icon style cover with Softening title, resin tank, control valve gears, and sodium calcium ions.</desc>
-<rect width="1200" height="750" fill="#0f2924"/>
+  <title id="title">SOFTENER VALVES</title>
+  <desc id="desc">Modern enamel plaque cover for softener valve analysis.</desc>
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff6d4"/>
+      <stop offset="18%" stop-color="#9c7a3d"/>
+      <stop offset="36%" stop-color="#f9f2df"/>
+      <stop offset="58%" stop-color="#706041"/>
+      <stop offset="80%" stop-color="#f6f7f4"/>
+      <stop offset="100%" stop-color="#886b36"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f3245"/>
+      <stop offset="56%" stop-color="#208aa2"/>
+      <stop offset="100%" stop-color="#5e4524"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8a6230"/>
+      <stop offset="100%" stop-color="#1e7284"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="48%" stop-color="#9cecff"/>
+      <stop offset="100%" stop-color="#249ab5"/>
+    </linearGradient>
+    <linearGradient id="tube" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6ffff"/>
+      <stop offset="45%" stop-color="#9cecff"/>
+      <stop offset="100%" stop-color="#249ab5"/>
+    </linearGradient>
+    <radialGradient id="wafer" cx="42%" cy="32%" r="68%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="28%" stop-color="#9cecff"/>
+      <stop offset="58%" stop-color="#166276"/>
+      <stop offset="100%" stop-color="#249ab5"/>
+    </radialGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity=".34"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity=".24"/>
+    </filter>
+    <pattern id="pinstripe" width="44" height="44" patternUnits="userSpaceOnUse" patternTransform="rotate(24)">
+      <path d="M0 0 H44" stroke="#ffffff" stroke-width="3" opacity=".08"/>
+    </pattern>
+  </defs>
+  <style>
+    text { font-family: Inter, "Segoe UI", Arial, sans-serif; }
+  </style>
+  <rect width="1200" height="750" fill="#090f12"/>
+  <rect x="26" y="24" width="1148" height="702" rx="48" fill="url(#metal)" filter="url(#shadow)"/>
+  <rect x="42" y="40" width="1116" height="670" rx="40" fill="#111817"/>
+  <rect x="61" y="59" width="1078" height="632" rx="32" fill="url(#bg)"/>
+  <rect x="61" y="59" width="1078" height="632" rx="32" fill="url(#pinstripe)"/>
+  <path d="M92 102 C248 52 394 88 548 126 C734 172 872 128 1100 80 L1100 260 C912 302 754 276 586 234 C382 184 224 202 92 260 Z" fill="#ffffff" opacity=".08"/>
+  <path d="M82 468 C214 418 354 484 496 444 C664 396 836 432 1114 348 L1114 672 H82 Z" fill="#000000" opacity=".14"/>
 
-<!-- Top-left Titles -->
-<text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#ffffff">SOFTENING</text>
-<text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#a3b8b5">VALVES &amp; ION EXCHANGE PRINCIPLES</text>
+  <g transform="translate(90 86)" filter="url(#softShadow)">
+    <path d="M0 0 H246 L276 36 V144 L246 180 H0 Z" fill="#8a6230" stroke="url(#metal)" stroke-width="9"/>
+    <text x="132" y="116" text-anchor="middle" font-size="54" font-weight="950" fill="#fff8df" stroke="#0b1114" stroke-width="4" paint-order="stroke">VALVE</text>
+  </g>
 
-<!-- Top-right Badge Box -->
-<rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
-<text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Softening</text>
-<text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#e2922f">VALVES</text>
+  <g transform="translate(928 92)" opacity=".96">
+    <path d="M34 0 H150 L184 34 V116 L150 150 H34 L0 116 V34 Z" fill="#183d4d" stroke="url(#metal)" stroke-width="7"/>
+    <circle cx="92" cy="56" r="28" fill="#e0ad52" opacity=".9" stroke="#fff" stroke-width="5"/>
+    <path d="M76 56 h32 M92 40 v32" stroke="#0c1214" stroke-width="7" stroke-linecap="round" opacity=".54"/>
+    <text x="92" y="120" text-anchor="middle" font-size="21" font-weight="900" fill="#fff8df">EN</text>
+  </g>
 
-<!-- Bottom green landscape / resin bed block -->
-<rect x="0" y="580" width="1200" height="170" fill="#0c4a40"/>
-<path d="M0 580 Q300 550 600 580 T1200 580 L1200 750 L0 750 Z" fill="#0c4a40"/>
 
-<!-- Resin Bed Bead Pattern -->
-<g fill="#115e52" stroke="#0f2924" stroke-width="2">
-  <circle cx="150" cy="640" r="18"/>
-  <circle cx="210" cy="630" r="18"/>
-  <circle cx="270" cy="650" r="18"/>
-  <circle cx="330" cy="620" r="18"/>
-  <circle cx="390" cy="640" r="18"/>
-  <circle cx="450" cy="630" r="18"/>
-  <circle cx="510" cy="650" r="18"/>
-  <circle cx="570" cy="620" r="18"/>
-  <circle cx="630" cy="640" r="18"/>
-  <circle cx="690" cy="630" r="18"/>
-  <circle cx="750" cy="650" r="18"/>
-  <circle cx="810" cy="620" r="18"/>
-  <circle cx="870" cy="640" r="18"/>
-  <circle cx="930" cy="630" r="18"/>
-  <circle cx="990" cy="650" r="18"/>
-  <circle cx="1050" cy="620" r="18"/>
-  <circle cx="1110" cy="640" r="18"/>
-</g>
+    <g transform="translate(296 128)" filter="url(#softShadow)">
+      <path d="M-76 286 C72 226 186 284 310 252 C430 221 548 232 708 182" fill="none" stroke="#d8fbff" stroke-width="38" stroke-linecap="round" opacity=".72"/>
+      <path d="M-62 286 C84 246 184 296 312 260 C432 228 550 246 698 194" fill="none" stroke="#9cecff" stroke-width="12" stroke-linecap="round"/>
+      <rect x="168" y="104" width="356" height="246" rx="42" fill="url(#tube)" stroke="#f6ffff" stroke-width="12"/>
+      <rect x="218" y="150" width="256" height="80" rx="22" fill="#102c3a" stroke="#ffffff" stroke-width="8" opacity=".88"/>
+      <rect x="258" y="174" width="118" height="32" rx="10" fill="#9cecff" opacity=".72"/>
+      <circle cx="412" cy="190" r="17" fill="#e0ad52" stroke="#ffffff" stroke-width="5"/>
+      <circle cx="452" cy="190" r="17" fill="#249ab5" stroke="#ffffff" stroke-width="5"/>
+      <g stroke="#ffffff" stroke-width="9" stroke-linecap="round" opacity=".92">
+        <path d="M168 226 H30"/>
+        <path d="M524 226 H670"/>
+        <path d="M346 350 V464"/>
+      </g>
+      <rect x="262" y="360" width="168" height="118" rx="38" fill="#8a6230" stroke="#ffffff" stroke-width="9" opacity=".82"/>
+      <path d="M302 420 h88 M346 382 v76" stroke="#9cecff" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="136" cy="226" r="28" fill="#effcff" stroke="#ffffff" stroke-width="7"/>
+      <path d="M136 226 l16 -17" stroke="#8a6230" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="558" cy="226" r="28" fill="#effcff" stroke="#ffffff" stroke-width="7"/>
+      <path d="M558 226 l18 14" stroke="#8a6230" stroke-width="6" stroke-linecap="round"/>
+      <g opacity=".88">
+        <circle cx="162" cy="384" r="14" fill="#e0ad52" stroke="#ffffff" stroke-width="5"/>
+        <circle cx="202" cy="412" r="18" fill="#9cecff" stroke="#ffffff" stroke-width="5"/>
+        <circle cx="536" cy="376" r="16" fill="#e0ad52" stroke="#ffffff" stroke-width="5"/>
+        <circle cx="580" cy="408" r="13" fill="#9cecff" stroke="#ffffff" stroke-width="5"/>
+      </g>
+    </g>
 
-<!-- Stylized Softener Piston Valve Gear -->
-<g transform="translate(600, 390)" stroke="#20242b" stroke-width="6" fill="#f59e0b">
-  <!-- Gear teeth -->
-  <path d="M-20 -80 L20 -80 L30 -60 L-30 -60 Z"/>
-  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(45)"/>
-  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(90)"/>
-  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(135)"/>
-  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(180)"/>
-  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(225)"/>
-  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(270)"/>
-  <path d="M-20 80 L20 80 L30 60 L-30 60 Z" transform="rotate(315)"/>
-  <!-- Central disc -->
-  <circle cx="0" cy="0" r="65" fill="#f59e0b"/>
-  <circle cx="0" cy="0" r="30" fill="#0f2924"/>
-  <circle cx="0" cy="0" r="10" fill="#ffffff"/>
-</g>
 
-<!-- Resin Tank Silhouette on Left -->
-<rect x="180" y="220" width="160" height="400" rx="40" fill="none" stroke="#20242b" stroke-width="10"/>
-<rect x="200" y="240" width="120" height="360" rx="30" fill="#14b8a6" opacity="0.3"/>
-<line x1="260" y1="200" x2="260" y2="600" stroke="#20242b" stroke-width="8"/>
-
-<!-- Swapping Ions -->
-<!-- Sodium (Na+) -->
-<circle cx="850" cy="380" r="34" fill="#fb923c" stroke="#20242b" stroke-width="6"/>
-<text x="850" y="392" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="34" fill="#ffffff">Na</text>
-
-<!-- Calcium (Ca2+) -->
-<circle cx="340" cy="460" r="42" fill="#60a5fa" stroke="#20242b" stroke-width="6"/>
-<text x="340" y="472" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="36" fill="#ffffff">Ca</text>
-
-<!-- Magnesium (Mg2+) -->
-<circle cx="1020" cy="480" r="38" fill="#3b82f6" stroke="#20242b" stroke-width="6"/>
-<text x="1020" y="492" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="32" fill="#ffffff">Mg</text>
-
+  <g filter="url(#softShadow)">
+    <path d="M104 524 L252 496 H948 L1096 524 L1052 696 H148 Z" fill="url(#titleGrad)" stroke="url(#metal)" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M168 538 C308 510 418 548 560 528 C720 506 832 524 1032 508" fill="none" stroke="#ffffff" stroke-width="5" opacity=".22"/>
+    <text x="600" y="566" text-anchor="middle" font-size="66" font-weight="900" fill="#fff" letter-spacing="1">SOFTENER</text>
+<text x="600" y="634" text-anchor="middle" font-size="66" font-weight="900" fill="#fff" letter-spacing="1">VALVES</text>
+    <text x="600" y="646" text-anchor="middle" font-size="23" font-weight="850" fill="#fff5d9" letter-spacing="3">FLECK • CLACK • RUNXIN</text>
+    <g><circle cx="205" cy="650" r="13" fill="#9cecff" stroke="#fff" stroke-width="4" opacity=".86"/><circle cx="244" cy="650" r="16" fill="#e0ad52" stroke="#fff" stroke-width="4" opacity=".86"/><circle cx="284" cy="650" r="19" fill="#9cecff" stroke="#fff" stroke-width="4" opacity=".86"/><circle cx="896" cy="650" r="13" fill="#e0ad52" stroke="#fff" stroke-width="4" opacity=".86"/><circle cx="936" cy="650" r="16" fill="#9cecff" stroke="#fff" stroke-width="4" opacity=".86"/><circle cx="976" cy="650" r="19" fill="#e0ad52" stroke="#fff" stroke-width="4" opacity=".86"/><path d="M350 652 h156 M694 652 h156" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".56"/></g>
+  </g>
+  <rect x="61" y="59" width="1078" height="632" rx="32" fill="none" stroke="#ffffff" stroke-width="3" opacity=".24"/>
+  <rect x="34" y="32" width="1132" height="686" rx="44" fill="none" stroke="#ffffff" stroke-width="4" opacity=".58"/>
 </svg>
