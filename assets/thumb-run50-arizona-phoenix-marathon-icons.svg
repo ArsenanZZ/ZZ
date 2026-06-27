@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750">
+  <rect width="1200" height="750" fill="#f1c982"/>
+  <circle cx="884" cy="175" r="110" fill="#df6b37"/>
+  <path d="M0 520 280 310 530 486 782 280 1200 520v230H0z" fill="#b87043"/>
+  <path d="M500 750 590 520h48l122 230z" fill="#273034"/>
+  <text x="92" y="178" font-family="Arial Black,Arial,sans-serif" font-size="120" fill="#b74f31">AZ</text>
+  <text x="92" y="616" font-family="Arial Black,Arial,sans-serif" font-size="92" fill="#243136">BUCKEYE</text>
+  <text x="98" y="666" font-family="Arial,sans-serif" font-size="34" fill="#243136">RUN50 29 · RACE TO THE RUNWAY</text>
+</svg>
