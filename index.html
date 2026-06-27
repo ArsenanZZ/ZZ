@@ -32,6 +32,7 @@
     --reading: #a24351;
     --run: #a96208;
     --ro: #13758a;
+    --me: #6650a4;
   }
 
   html[data-theme="dark"] {
@@ -54,6 +55,7 @@
     --reading: #cb6975;
     --run: #d18b30;
     --ro: #3c9bb0;
+    --me: #9d8fe3;
   }
 
   * {
@@ -265,6 +267,7 @@
 
   .ico.all { background: #263d34; }
   .ico.wqa { background: var(--wqa); }
+  .ico.me { background: var(--me); }
   .ico.reading { background: var(--reading); }
   .ico.run50 { background: var(--run); }
   .ico.ro { background: var(--ro); }
@@ -607,6 +610,7 @@
   }
 
   .avatar.wqa { background: var(--wqa); }
+  .avatar.me { background: var(--me); }
   .avatar.reading { background: var(--reading); }
   .avatar.run50 { background: var(--run); }
   .avatar.ro { background: var(--ro); }
@@ -793,7 +797,7 @@
     <button type="submit" aria-label="Search"></button>
   </form>
   <div class="top-actions">
-    <span class="status"><span data-upload-count>32</span> entries</span>
+    <span class="status"><span data-upload-count>44</span> entries</span>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme">
       <span id="themeLabel">Dark mode</span>
     </button>
@@ -803,7 +807,7 @@
 <div class="shell">
   <aside class="sidebar" aria-label="Channels">
     <a class="side-link active" href="#" data-filter="all"><span class="ico all">ZZ</span><span>Home</span></a>
-    <a class="side-link" href="./this-is-me/"><span class="ico" style="background:#1e1b4b;font-size:14px;">👤</span><span>This is Me</span></a>
+    <a class="side-link" href="#me" data-filter="me"><span class="ico me">Me</span><span>This is Me</span></a>
     <a class="side-link" href="#wqa" data-filter="wqa"><span class="ico wqa">W</span><span>WQA</span></a>
     <a class="side-link" href="#reading" data-filter="reading"><span class="ico reading">R</span><span>Reading</span></a>
     <a class="side-link" href="#run50" data-filter="run50"><span class="ico run50">50</span><span>Run50</span></a>
@@ -815,6 +819,7 @@
   <main>
     <nav class="chips" aria-label="Filters">
       <button class="chip active" type="button" data-filter="all">All</button>
+      <button class="chip" type="button" data-filter="me">This is Me</button>
       <button class="chip" type="button" data-filter="wqa">WQA</button>
       <button class="chip" type="button" data-filter="reading">Reading</button>
       <button class="chip" type="button" data-filter="run50">Run50</button>
@@ -836,7 +841,7 @@
     <section class="masthead" aria-labelledby="page-title">
       <div class="masthead-copy">
         <h1 id="page-title">ZZ</h1>
-        <p>A personal knowledge library for water research, reading notes, semiconductor study, endurance training, and field projects.</p>
+        <p>A personal knowledge library for my engineering portfolio, water research, reading notes, semiconductor study, endurance training, and field projects.</p>
       </div>
       <div class="masthead-maps" aria-label="Run maps">
         <a class="map-tile" href="run50/facebook/#run50-series" aria-label="Open Run50 Facebook stories">
@@ -863,6 +868,179 @@
     </section>
 
     <section class="video-grid" id="videoGrid" aria-label="ZZ uploads">
+      <!-- This is Me Header -->
+      <div class="grid-header" id="me" data-section="me">
+        <h2>This is Me</h2>
+      </div>
+
+      <article class="video-card" data-section="me" data-category="me about resume portfolio stem doctoral student arsenal marathon personal" data-title="This is Me">
+        <a class="thumb" href="this-is-me/this-is-me/">
+          <img src="assets/bio/125f8af6-d7bd-4d2f-823d-31bf39491f42-CV-IMAGES.png" alt="This is Me cover">
+          <span class="duration">About</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/this-is-me/">This is Me</a>
+            <p class="video-sub">STEM doctoral student &middot; team player &middot; marathoner</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-category="me skills engineering structural design research metamaterial geometry" data-title="Structural Design">
+        <a class="thumb" href="this-is-me/structural-design/">
+          <img src="assets/bio/e0d1b0aa-3a50-4c5a-9960-73e104184a97-00-Geo11.png" alt="Structural Design cover">
+          <span class="duration">Skill</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/structural-design/">Structural Design</a>
+            <p class="video-sub">Engineering &middot; meta-structures and geometry</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-category="me skills engineering fea simulation fem research mechanics" data-title="FEA Simulation">
+        <a class="thumb" href="this-is-me/fea-simulation/">
+          <img src="assets/bio/b77aeae9-735f-4cbd-bd93-9e71fcbbcdca-00-Sim333.png" alt="FEA Simulation cover">
+          <span class="duration">Skill</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/fea-simulation/">FEA Simulation</a>
+            <p class="video-sub">Engineering &middot; simulation and mechanics</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-category="me skills engineering mechanical testing research experiment mechanics" data-title="Mechanical Testing">
+        <a class="thumb" href="this-is-me/mechanical-testing/">
+          <img src="assets/bio/4d38b531-a321-4483-a62a-bdf9e1e4180e-000-TTT.png" alt="Mechanical Testing cover">
+          <span class="duration">Skill</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/mechanical-testing/">Mechanical Testing</a>
+            <p class="video-sub">Engineering &middot; experiments and material response</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-category="me skills engineering 3d printing polyjet fabrication prototype" data-title="3D Printing">
+        <a class="thumb" href="this-is-me/3d-printing/">
+          <img src="assets/bio/f1abc256-f40b-4018-b160-c2a210004b28-00-3DPRNTING111.png" alt="3D Printing cover">
+          <span class="duration">Skill</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/3d-printing/">3D Printing</a>
+            <p class="video-sub">Fabrication &middot; PolyJet printing and prototypes</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-category="me research projects engineering portfolio" data-title="Projects">
+        <a class="thumb" href="this-is-me/projects/">
+          <img src="https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Projects cover">
+          <span class="duration">Research</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/projects/">Projects</a>
+            <p class="video-sub">Research &middot; selected project archive</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-category="me research publications papers citations stem" data-title="Publications">
+        <a class="thumb" href="this-is-me/publications/">
+          <img src="https://images.unsplash.com/photo-1502078534399-8190479363f5?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Publications cover">
+          <span class="duration">Papers</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/publications/">Publications (17)</a>
+            <p class="video-sub">Research &middot; 2018-present, publications and citations</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-category="me research facilities lab equipment samples stem" data-title="Facilities">
+        <a class="thumb" href="this-is-me/samples/">
+          <img src="https://images.unsplash.com/photo-1615286922420-c6b348ffbd62?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Facilities cover">
+          <span class="duration">Lab</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/samples/">Facilities</a>
+            <p class="video-sub">Research &middot; lab resources and samples</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-category="me teaching stem education mentoring class" data-title="Teaching">
+        <a class="thumb" href="this-is-me/facilities/">
+          <img src="https://images.unsplash.com/photo-1570616969692-54d6ba3d0397?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Teaching cover">
+          <span class="duration">Teach</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/facilities/">Teaching</a>
+            <p class="video-sub">STEM &middot; teaching and mentoring notes</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-category="me teamplayer teamwork collaboration leadership" data-title="Team Player">
+        <a class="thumb" href="this-is-me/teamplayer/">
+          <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Team Player cover">
+          <span class="duration">Team</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/teamplayer/">Team Player</a>
+            <p class="video-sub">Personal &middot; collaboration and team work</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-category="me life trip travel photography food adventurer" data-title="Travel">
+        <a class="thumb" href="this-is-me/teaching/">
+          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Travel cover">
+          <span class="duration">Life</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/teaching/">Travel</a>
+            <p class="video-sub">Life &middot; photography, food, and places</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-category="me life marathon run50 running endurance travel" data-title="Marathon">
+        <a class="thumb" href="this-is-me/marathon/">
+          <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Marathon cover">
+          <span class="duration">Life</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/marathon/">Marathon</a>
+            <p class="video-sub">Life &middot; endurance running and adventures</p>
+          </div>
+        </div>
+      </article>
+
       <!-- Run50 Header -->
       <div class="grid-header" id="run50Header" data-section="run50" data-feature-group="run50-state">
         <h2>Run50 Latest Stories</h2>
