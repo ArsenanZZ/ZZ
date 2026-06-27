@@ -334,8 +334,8 @@
   .world-running-map-slot {
     position: relative;
     width: 100%;
-    aspect-ratio: 2 / 1;
-    background: linear-gradient(135deg, #004a75 0%, #0789ac 44%, #003f6c 100%);
+    aspect-ratio: 16 / 9;
+    background: #fff;
     border: 1px solid var(--line);
     border-radius: 8px;
     overflow: hidden;
@@ -693,7 +693,7 @@
     .running-map-stats { grid-template-columns: 1fr; }
     .running-map-card-head { display: block; }
     .running-map-status { display: block; max-width: 100%; margin-top: 8px; overflow-wrap: anywhere; }
-    .world-running-map-slot { aspect-ratio: 2 / 1; }
+    .world-running-map-slot { aspect-ratio: 16 / 9; }
     .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
     .hero-title { font-size: 26px; }
     .hero { padding: 24px 16px; }
@@ -952,10 +952,10 @@
   if (!slot || !tooltip) return;
 
   const COLORS = {
-    ocean: '#a8d4e8',
-    land: '#dedad3',
+    ocean: '#ffffff',
+    land: '#b9b9b9',
     border: '#ffffff',
-    grid: 'rgba(74,108,54,.28)',
+    grid: 'rgba(255,255,255,0)',
     usa: '#5baad0',
     china: '#d4614a',
     runworld: '#5ca860',
@@ -1129,43 +1129,6 @@
     return el;
   }
 
-  function injectPosterMapDefs(svg) {
-    if (svg.querySelector('#world-ocean-poster')) return;
-    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-    defs.innerHTML = `
-      <linearGradient id="world-ocean-poster" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#00446f"/>
-        <stop offset="34%" stop-color="#0b95b4"/>
-        <stop offset="62%" stop-color="#08799b"/>
-        <stop offset="100%" stop-color="#003a67"/>
-      </linearGradient>
-      <filter id="world-ocean-texture" x="-5%" y="-5%" width="110%" height="110%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.009 0.026" numOctaves="3" seed="18" result="noise"/>
-        <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.02 0 0 0 0 0.55 0 0 0 0 0.70 0 0 0 .20 0" result="tint"/>
-        <feBlend in="SourceGraphic" in2="tint" mode="screen"/>
-      </filter>
-    `;
-    svg.insertBefore(defs, svg.firstChild);
-  }
-
-  function addAntarcticaShelf(svg) {
-    if (svg.querySelector('#world-antarctica')) return;
-    const oceanRect = svg.querySelector('#wm_ocean');
-    const antarctica = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    antarctica.setAttribute('id', 'world-antarctica');
-    antarctica.setAttribute('d', 'M0 850 L72 840 L128 850 L182 836 L245 845 L330 832 L420 838 L502 820 L590 829 L680 812 L760 826 L852 813 L940 824 L1035 806 L1128 818 L1215 805 L1306 816 L1395 803 L1490 812 L1580 800 L1680 810 L1800 796 L1800 900 L0 900 Z');
-    antarctica.setAttribute('fill', '#f7faf7');
-    antarctica.setAttribute('stroke', 'rgba(5,42,50,.55)');
-    antarctica.setAttribute('stroke-width', '0.85');
-    antarctica.setAttribute('pointer-events', 'none');
-    antarctica.style.filter = 'drop-shadow(0 -1px 1.6px rgba(0,30,45,.24))';
-    if (oceanRect && oceanRect.nextSibling) {
-      svg.insertBefore(antarctica, oceanRect.nextSibling);
-    } else {
-      svg.appendChild(antarctica);
-    }
-  }
-
   function initWorldRunningMap() {
     if (typeof WORLD_MAP_SVG === 'undefined') {
       slot.innerHTML = '<div style="padding:24px;color:#667085;">World map asset is missing.</div>';
@@ -1182,10 +1145,8 @@
     slot.innerHTML = baseSvg;
     const svg = slot.querySelector('#world-map-master');
     if (!svg) return;
-    injectPosterMapDefs(svg);
-    addAntarcticaShelf(svg);
     svg.setAttribute('viewBox', '0 0 1800 900');
-    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
     svg.style.width = '100%';
     svg.style.height = '100%';
     const oceanRect = svg.querySelector('#wm_ocean');
@@ -1194,16 +1155,16 @@
       oceanRect.setAttribute('y', '0');
       oceanRect.setAttribute('width', '1800');
       oceanRect.setAttribute('height', '900');
-      oceanRect.setAttribute('fill', 'url(#world-ocean-poster)');
-      oceanRect.setAttribute('filter', 'url(#world-ocean-texture)');
+      oceanRect.setAttribute('fill', COLORS.ocean);
+      oceanRect.removeAttribute('filter');
     }
 
     const runCountryIds = new Set(countries.flatMap(country => country.parts || [country.id]));
     svg.querySelectorAll('path').forEach(path => {
       path.style.pointerEvents = 'none';
-      path.setAttribute('stroke', 'rgba(5,42,50,.66)');
-      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.85' : '0.62');
-      path.style.filter = 'drop-shadow(0 1.5px 1.2px rgba(0,30,45,.32))';
+      path.setAttribute('stroke', 'rgba(255,255,255,.92)');
+      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.95' : '0.72');
+      path.style.filter = 'none';
       if (path.id && path.id.startsWith('wm_') && !runCountryIds.has(path.id)) {
         path.setAttribute('fill', COLORS.land);
       }
@@ -1220,7 +1181,7 @@
         path.setAttribute('fill', country.color);
         path.setAttribute('stroke', '#f7fbff');
         path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.65' : '1.35');
-        path.style.filter = 'drop-shadow(0 3px 2.5px rgba(0,32,45,.45))';
+        path.style.filter = 'drop-shadow(0 1.4px 1.2px rgba(0,0,0,.24))';
         path.style.pointerEvents = 'auto';
         path.classList.add('wm-country-run');
         path.addEventListener('mouseenter', e => {

@@ -169,8 +169,8 @@
     .world-running-map-slot {
       position: relative;
       width: 100%;
-      aspect-ratio: 2 / 1;
-      background: linear-gradient(135deg, #004a75 0%, #0789ac 44%, #003f6c 100%);
+      aspect-ratio: 16 / 9;
+      background: #fff;
       border: 1px solid var(--line);
       border-radius: 8px;
       overflow: hidden;
@@ -301,7 +301,7 @@
       .running-map-card-head { display: block; }
       .running-map-status { display: block; margin-top: 8px; overflow-wrap: anywhere; }
       .running-map-stats { grid-template-columns: 1fr; }
-      .world-running-map-slot { aspect-ratio: 2 / 1; }
+      .world-running-map-slot { aspect-ratio: 16 / 9; }
       .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
     }
   </style>
@@ -346,18 +346,18 @@
       <div class="running-map-legend" aria-label="World map legend">
         <span><i class="running-map-swatch"></i>Highlighted countries/regions have race stories</span>
         <span><i style="background:#ff3b30"></i>Race cities</span>
-        <span><i style="background:#dedad3"></i>Unvisited land</span>
+        <span><i style="background:#b9b9b9"></i>Unvisited land</span>
       </div>
     </section>
   </main>
 
-  <script src="./world-map-svg.js?v=20260626-real-proportion-antarctica"></script>
+  <script src="./world-map-svg.js?v=20260627-grey-layout-run-only"></script>
   <script>
   (() => {
     const slot = document.getElementById('world-running-map-slot');
     if (!slot) return;
 
-    fetch('./index.html?v=20260626-real-proportion-antarctica')
+    fetch('./index.html?v=20260627-grey-layout-run-only')
       .then(response => {
         if (!response.ok) throw new Error('Could not load map renderer');
         return response.text();
