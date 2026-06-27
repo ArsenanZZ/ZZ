@@ -343,7 +343,7 @@ def render_modern(title: str, dek: str, blocks: list[Block]) -> str:
         '<section style="max-width: 677px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 28px 18px 58px; background: #ffffff;">',
         '<section style="margin: 0 0 22px; padding: 16px 0 18px; border-top: 4px solid #2d6f9f; border-bottom: 1px solid #dfe9ef;">',
         '<p style="margin: 0 0 8px; font-size: 12px; line-height: 1.4; letter-spacing: 2px; color: #2d6f9f; font-weight: 800;">RUN50 DISPATCH · MICHIGAN</p>',
-        f'<h1 style="margin: 0; font-size: 26px; line-height: 1.38; font-weight: 900; color: #17212b; letter-spacing: 0;">{split_title(title)}</h1>',
+        '<p style="margin: 0; font-size: 20px; line-height: 1.55; font-weight: 900; color: #17212b; letter-spacing: 0;">第21州 · 密歇根 · Meadow Marathon</p>',
         '<p style="margin: 14px 0 0; font-size: 13px; line-height: 1.7; color: #6f7d89;">Grand Rapids · Millennium Park · Meadow Marathon</p>',
         "</section>",
     ]
@@ -377,7 +377,7 @@ def render_modern_variant(title: str, dek: str, blocks: list[Block], variant: st
         '<section style="max-width: 677px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 28px 18px 58px; background: #ffffff;">',
         '<section style="margin: 0 0 22px; padding: 16px 0 18px; border-top: 4px solid #2d6f9f; border-bottom: 1px solid #dfe9ef;">',
         f'<p style="margin: 0 0 8px; font-size: 12px; line-height: 1.4; letter-spacing: 2px; color: #2d6f9f; font-weight: 800;">RUN50 DISPATCH · MICHIGAN · {escape(label.upper())}</p>',
-        f'<h1 style="margin: 0; font-size: 26px; line-height: 1.38; font-weight: 900; color: #17212b; letter-spacing: 0;">{split_title(title)}</h1>',
+        '<p style="margin: 0; font-size: 20px; line-height: 1.55; font-weight: 900; color: #17212b; letter-spacing: 0;">第21州 · 密歇根 · Meadow Marathon</p>',
         '<p style="margin: 14px 0 0; font-size: 13px; line-height: 1.7; color: #6f7d89;">Grand Rapids · Millennium Park · Meadow Marathon</p>',
         "</section>",
     ]
