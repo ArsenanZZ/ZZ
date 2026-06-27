@@ -1287,6 +1287,73 @@
     }
   }
 
+  function addMapText(svg, group, text, x, y, opts = {}) {
+    return addSvgEl(group, 'text', {
+      x, y,
+      'text-anchor': opts.anchor || 'middle',
+      'font-size': opts.size || 12,
+      'font-weight': opts.weight || 700,
+      'font-family': 'Arial, Helvetica, sans-serif',
+      fill: opts.fill || '#29485a',
+      stroke: opts.stroke || 'rgba(248,251,247,.72)',
+      'stroke-width': opts.strokeWidth || 2,
+      'stroke-linejoin': 'round',
+      'paint-order': 'stroke',
+      opacity: opts.opacity ?? .70,
+      'letter-spacing': opts.spacing || 0,
+      'font-style': opts.italic ? 'italic' : 'normal',
+      'pointer-events': 'none'
+    }, text);
+  }
+
+  function addFlatMapContextLabels(svg) {
+    const layer = addSvgEl(svg, 'g', { id:'world-flat-context-labels', 'pointer-events':'none' });
+    [
+      ['ARCTIC OCEAN', 75, -30, 13, '#305d76', .45, true],
+      ['NORTH PACIFIC OCEAN', 28, -157, 14, '#2e637f', .42, true],
+      ['NORTH ATLANTIC OCEAN', 32, -38, 13, '#2e637f', .42, true],
+      ['INDIAN OCEAN', -24, 78, 14, '#2e637f', .42, true],
+      ['SOUTHERN OCEAN', -60, 18, 13, '#2e637f', .38, true]
+    ].forEach(([text, lat, lon, size, fill, opacity, italic]) => {
+      const p = project(lat, lon);
+      addMapText(svg, layer, text, p.x, p.y, {
+        size, fill, opacity, italic, weight:700, spacing:.8,
+        stroke:'rgba(226,241,242,.58)', strokeWidth:1.4
+      });
+    });
+
+    [
+      ['NORTH AMERICA', 55, -101, 15],
+      ['SOUTH AMERICA', -17, -61, 14],
+      ['EUROPE', 53, 17, 12],
+      ['AFRICA', 6, 20, 15],
+      ['ASIA', 50, 84, 16],
+      ['AUSTRALIA', -24, 136, 12]
+    ].forEach(([text, lat, lon, size]) => {
+      const p = project(lat, lon);
+      addMapText(svg, layer, text, p.x, p.y, {
+        size, fill:'#536047', opacity:.42, weight:800, spacing:.7,
+        stroke:'rgba(246,249,238,.76)', strokeWidth:1.8
+      });
+    });
+
+    [
+      ['CANADA', 61, -111, 10],
+      ['BRAZIL', -8, -53, 10],
+      ['RUSSIA', 61, 96, 13],
+      ['INDIA', 22, 78, 9],
+      ['AUSTRALIA', -26, 135, 9],
+      ['SOUTH AFRICA', -30, 24, 8],
+      ['GREENLAND', 73, -42, 8]
+    ].forEach(([text, lat, lon, size]) => {
+      const p = project(lat, lon);
+      addMapText(svg, layer, text, p.x, p.y, {
+        size, fill:'#344139', opacity:.52, weight:800, spacing:.5,
+        stroke:'rgba(247,250,240,.76)', strokeWidth:1.6
+      });
+    });
+  }
+
   function featurePath(feature, projector, closePaths = true) {
     if (!feature?.polygons) return '';
     const parts = [];
@@ -1415,6 +1482,7 @@
     addWorldOceanRelief(svg, mapWidth, mapHeight);
     addFlatAntarctica(svg, mapWidth, mapHeight);
     addWorldGraticule(svg, mapWidth, mapHeight);
+    addFlatMapContextLabels(svg);
 
     const runCountryIds = new Set(countries.flatMap(country => country.parts || [country.id]));
     svg.querySelectorAll('#wm_countries path').forEach(path => {
@@ -1553,6 +1621,35 @@
     }
   }
 
+  function addHemisphereContextLabels(svg, hemispheres, r) {
+    const layer = addSvgEl(svg, 'g', { id:'world-hemisphere-context-labels', 'pointer-events':'none' });
+    const labels = [
+      ['NORTH AMERICA', 47, -105, 13, '#4b6048', .46, false],
+      ['SOUTH AMERICA', -20, -61, 12, '#4b6048', .42, false],
+      ['ATLANTIC OCEAN', 6, -34, 11, '#315f79', .38, true],
+      ['PACIFIC OCEAN', 4, -152, 12, '#315f79', .38, true],
+      ['EUROPE', 53, 18, 10, '#4b6048', .44, false],
+      ['AFRICA', 3, 20, 13, '#4b6048', .42, false],
+      ['ASIA', 48, 88, 14, '#4b6048', .44, false],
+      ['INDIAN OCEAN', -22, 78, 11, '#315f79', .36, true],
+      ['AUSTRALIA', -25, 135, 10, '#4b6048', .42, false]
+    ];
+    hemispheres.forEach(hemi => {
+      labels.forEach(([text, lat, lon, size, fill, opacity, italic]) => {
+        const p = orthoProject(lat, lon, hemi.cx, hemi.cy, r, hemi.lon, hemi.lat);
+        if (!p) return;
+        const label = addMapText(svg, layer, text, p.x, p.y, {
+          size, fill, opacity, italic,
+          weight: italic ? 700 : 800,
+          spacing: italic ? .8 : .5,
+          stroke:'rgba(244,247,237,.68)',
+          strokeWidth:1.4
+        });
+        label.setAttribute('clip-path', `url(#${hemi.clip})`);
+      });
+    });
+  }
+
   function bindGeoCountry(el, feature, tooltipEl, shellEl) {
     const id = featureId(feature);
     const country = countryByGeoId(id);
@@ -1682,6 +1779,8 @@
       });
     });
 
+    addHemisphereContextLabels(svg, hemispheres, r);
+
     svg.querySelectorAll('rect, ellipse, path, text, circle').forEach(el => {
       el.setAttribute('pointer-events', 'none');
     });
@@ -1768,7 +1867,7 @@
       const { w, h } = sizeCanvas();
       const cx = w / 2;
       const cy = h / 2;
-      const r = Math.min(w, h) * .39;
+      const r = Math.min(w, h) * .455;
       ctx.clearRect(0, 0, w, h);
       ctx.save();
       ctx.beginPath();
