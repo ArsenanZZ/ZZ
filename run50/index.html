@@ -1920,25 +1920,6 @@
       ctx.fillStyle = ocean;
       ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
 
-      [
-        { color:'#f5fbfa', alpha:.10, width:r*.075, points:[[-.92,-.24],[-.48,-.50],[-.12,-.20],[.35,-.34],[.78,-.40],[.98,-.55]] },
-        { color:'#4f7f99', alpha:.07, width:r*.10, points:[[-.95,.06],[-.48,-.08],[-.13,.22],[.30,.04],[.68,.06],[.97,.20]] },
-        { color:'#d8edf0', alpha:.10, width:r*.06, points:[[-.72,.50],[-.36,.30],[.06,.56],[.48,.38],[.78,.42],[.96,.56]] }
-      ].forEach(band => {
-        ctx.save();
-        ctx.globalAlpha = band.alpha;
-        ctx.strokeStyle = band.color;
-        ctx.lineWidth = band.width;
-        ctx.lineCap = 'round';
-        ctx.beginPath();
-        const pts = band.points.map(([x, y]) => [cx + r * x, cy + r * y]);
-        ctx.moveTo(pts[0][0], pts[0][1]);
-        ctx.bezierCurveTo(pts[1][0], pts[1][1], pts[2][0], pts[2][1], pts[3][0], pts[3][1]);
-        ctx.bezierCurveTo(pts[4][0], pts[4][1], pts[4][0], pts[4][1], pts[5][0], pts[5][1]);
-        ctx.stroke();
-        ctx.restore();
-      });
-
       ctx.strokeStyle = 'rgba(28,64,84,.10)';
       ctx.lineWidth = .7;
       for (let lon = -180; lon <= 180; lon += 45) {
