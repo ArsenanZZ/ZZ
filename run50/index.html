@@ -953,9 +953,9 @@
 
   const COLORS = {
     ocean: '#a8d4e8',
-    land: '#d8e0d4',
-    border: '#ffffff',
-    grid: 'rgba(74,108,54,.13)',
+    land: '#dce7cc',
+    border: '#46524d',
+    grid: 'rgba(42,64,68,.10)',
     usa: '#5baad0',
     china: '#d4614a',
     runworld: '#5ca860',
@@ -1143,15 +1143,10 @@
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     defs.innerHTML = `
       <linearGradient id="world-ocean-wash" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#c4e2ef"/>
-        <stop offset="46%" stop-color="#a8d4e8"/>
-        <stop offset="100%" stop-color="#8fc5dc"/>
+        <stop offset="0%" stop-color="#c3e7f3"/>
+        <stop offset="52%" stop-color="#a9d9ec"/>
+        <stop offset="100%" stop-color="#91cbe3"/>
       </linearGradient>
-      <filter id="world-paper-water" x="-4%" y="-4%" width="108%" height="108%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.014 0.026" numOctaves="2" seed="27" result="noise"/>
-        <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.72 0 0 0 0 0.86 0 0 0 0 0.92 0 0 0 .10 0" result="tint"/>
-        <feBlend in="SourceGraphic" in2="tint" mode="multiply"/>
-      </filter>
     `;
     svg.insertBefore(defs, svg.firstChild);
   }
@@ -1164,8 +1159,8 @@
     grid.setAttribute('pointer-events', 'none');
     grid.setAttribute('fill', 'none');
     grid.setAttribute('stroke', COLORS.grid);
-    grid.setAttribute('stroke-width', '0.55');
-    grid.setAttribute('opacity', '0.55');
+    grid.setAttribute('stroke-width', '0.5');
+    grid.setAttribute('opacity', '0.35');
 
     for (let lon = -150; lon <= 150; lon += 30) {
       const north = project(82, lon);
@@ -1220,15 +1215,15 @@
       oceanRect.setAttribute('width', String(mapWidth));
       oceanRect.setAttribute('height', String(mapHeight));
       oceanRect.setAttribute('fill', 'url(#world-ocean-wash)');
-      oceanRect.setAttribute('filter', 'url(#world-paper-water)');
+      oceanRect.removeAttribute('filter');
     }
     addWorldGraticule(svg, mapWidth, mapHeight);
 
     const runCountryIds = new Set(countries.flatMap(country => country.parts || [country.id]));
     svg.querySelectorAll('path').forEach(path => {
       path.style.pointerEvents = 'none';
-      path.setAttribute('stroke', 'rgba(255,255,255,.96)');
-      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '1.25' : '1.05');
+      path.setAttribute('stroke', 'rgba(45,52,48,.62)');
+      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.9' : '0.72');
       path.setAttribute('vector-effect', 'non-scaling-stroke');
       path.style.filter = 'none';
       if (path.id && path.id.startsWith('wm_') && !runCountryIds.has(path.id)) {
@@ -1245,9 +1240,9 @@
       const raceCount = dots.reduce((sum, dot) => sum + dot.races.length, 0);
       paths.forEach(path => {
         path.setAttribute('fill', country.color);
-        path.setAttribute('stroke', '#f7fbff');
-        path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.75' : '1.5');
-        path.style.filter = 'drop-shadow(0 1px 0.8px rgba(0,0,0,.18))';
+        path.setAttribute('stroke', 'rgba(35,43,42,.78)');
+        path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.25' : '1.05');
+        path.style.filter = 'none';
         path.style.pointerEvents = 'auto';
         path.classList.add('wm-country-run');
         path.addEventListener('mouseenter', e => {
