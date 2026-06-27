@@ -949,6 +949,11 @@
   const slot = document.getElementById('world-running-map-slot');
   const tooltip = document.getElementById('world-running-map-tooltip');
   const status = document.getElementById('world-running-map-status');
+  const hemisphereSlot = document.getElementById('world-hemisphere-map-slot');
+  const hemisphereTooltip = document.getElementById('world-hemisphere-map-tooltip');
+  const globeSlot = document.getElementById('world-globe-map-slot');
+  const globeCanvas = document.getElementById('world-globe-canvas');
+  const globeTooltip = document.getElementById('world-globe-map-tooltip');
   if (!slot || !tooltip) return;
 
   const COLORS = {
@@ -968,6 +973,14 @@
 
   const MUTED_LAND_COLORS = ['#dce7cc', '#e6ead2', '#d8e7d8', '#e4e1ca', '#dce4cf', '#e9e4d0', '#d5e3dc'];
   const DENSE_COAST_IDS = new Set(['wm_usa', 'wm_can', 'wm_chl', 'wm_nor', 'wm_grl', 'wm_idn', 'wm_phl', 'wm_jpn', 'wm_nzl']);
+  const GEO_RUN_COLORS = {
+    usa: COLORS.usa, chn: COLORS.china, twn: COLORS.china, hkg: COLORS.hongkong,
+    sgp: COLORS.runworld, tha: COLORS.thailand, mex: COLORS.mexico, ita: COLORS.italy
+  };
+  const GEO_TO_COUNTRY_KEY = {
+    usa: 'USA', chn: 'CHN', twn: 'CHN', hkg: 'HKG',
+    sgp: 'SGP', tha: 'THA', mex: 'MEX', ita: 'ITA'
+  };
 
   const countries = [
     { key:'USA', id:'wm_usa', name:'United States', label:'Run50', color:COLORS.usa, url:'./stories/english/?v=20260618-addddd#run50-series' },
@@ -1068,6 +1081,18 @@
     return countries.find(c => c.key === key);
   }
 
+  function countryByGeoId(id) {
+    return countryByKey(GEO_TO_COUNTRY_KEY[id]);
+  }
+
+  function featureId(feature) {
+    return String(feature?.id || '').toLowerCase();
+  }
+
+  function geoRunColor(id) {
+    return GEO_RUN_COLORS[id] || null;
+  }
+
   function escapeHtml(value) {
     return String(value).replace(/[&<>"']/g, ch => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -1082,11 +1107,11 @@
   }
 
   let hideTimer = 0;
-  function showTooltip(e, html) {
+  function showTooltipIn(e, tooltipEl, shellEl, html) {
     clearTimeout(hideTimer);
-    tooltip.innerHTML = html;
-    tooltip.style.display = 'block';
-    moveTooltip(e);
+    tooltipEl.innerHTML = html;
+    tooltipEl.style.display = 'block';
+    moveTooltipIn(e, tooltipEl, shellEl);
   }
 
   function scheduleHideTooltip() {
@@ -1094,20 +1119,41 @@
     hideTimer = setTimeout(() => { tooltip.style.display = 'none'; }, 120);
   }
 
-  function moveTooltip(e) {
-    const shell = slot.parentElement.getBoundingClientRect();
-    const tooltipWidth = Math.min(320, Math.max(230, tooltip.offsetWidth || 260));
-    const tooltipHeight = tooltip.offsetHeight || 130;
+  function scheduleHideTooltipIn(tooltipEl) {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => { tooltipEl.style.display = 'none'; }, 120);
+  }
+
+  function moveTooltipIn(e, tooltipEl, shellEl) {
+    const shell = shellEl.getBoundingClientRect();
+    const tooltipWidth = Math.min(320, Math.max(230, tooltipEl.offsetWidth || 260));
+    const tooltipHeight = tooltipEl.offsetHeight || 130;
     let left = e.clientX - shell.left + 14;
     let top = e.clientY - shell.top - 12;
     if (left + tooltipWidth > shell.width - 12) left = e.clientX - shell.left - tooltipWidth - 14;
     if (top + tooltipHeight > shell.height - 12) top = shell.height - tooltipHeight - 12;
-    tooltip.style.left = Math.max(12, left) + 'px';
-    tooltip.style.top = Math.max(12, top) + 'px';
+    tooltipEl.style.left = Math.max(12, left) + 'px';
+    tooltipEl.style.top = Math.max(12, top) + 'px';
+  }
+
+  function showTooltip(e, html) {
+    showTooltipIn(e, tooltip, slot.parentElement, html);
+  }
+
+  function moveTooltip(e) {
+    moveTooltipIn(e, tooltip, slot.parentElement);
   }
 
   tooltip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
   tooltip.addEventListener('mouseleave', scheduleHideTooltip);
+  if (hemisphereTooltip) {
+    hemisphereTooltip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+    hemisphereTooltip.addEventListener('mouseleave', () => scheduleHideTooltipIn(hemisphereTooltip));
+  }
+  if (globeTooltip) {
+    globeTooltip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+    globeTooltip.addEventListener('mouseleave', () => scheduleHideTooltipIn(globeTooltip));
+  }
 
   function buildCountryTooltip(country, dots) {
     const count = dots.reduce((sum, d) => sum + d.races.length, 0);
@@ -1158,15 +1204,21 @@
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     defs.innerHTML = `
       <linearGradient id="world-ocean-wash" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#c3e7f3"/>
-        <stop offset="52%" stop-color="#a9d9ec"/>
-        <stop offset="100%" stop-color="#91cbe3"/>
+        <stop offset="0%" stop-color="#8ed0eb"/>
+        <stop offset="28%" stop-color="#4aa3d6"/>
+        <stop offset="62%" stop-color="#176db8"/>
+        <stop offset="100%" stop-color="#07529d"/>
       </linearGradient>
       <linearGradient id="world-land-wash" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#edf3da"/>
         <stop offset="55%" stop-color="#dce7cc"/>
         <stop offset="100%" stop-color="#c9d9b9"/>
       </linearGradient>
+      <radialGradient id="world-ocean-shine" cx="34%" cy="18%" r="78%">
+        <stop offset="0%" stop-color="#d9f5ff" stop-opacity=".55"/>
+        <stop offset="42%" stop-color="#77c5e6" stop-opacity=".22"/>
+        <stop offset="100%" stop-color="#003c86" stop-opacity=".20"/>
+      </radialGradient>
     `;
     svg.insertBefore(defs, svg.firstChild);
   }
@@ -1177,18 +1229,24 @@
     const relief = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     relief.setAttribute('id', 'world-ocean-relief');
     relief.setAttribute('pointer-events', 'none');
-    relief.setAttribute('opacity', '0.82');
+    relief.setAttribute('opacity', '0.9');
 
     [
-      { cx: mapWidth * .18, cy: mapHeight * .54, rx: mapWidth * .16, ry: mapHeight * .24, fill:'#5db3d2', opacity:.12 },
-      { cx: mapWidth * .31, cy: mapHeight * .42, rx: mapWidth * .10, ry: mapHeight * .17, fill:'#eef9fb', opacity:.24 },
-      { cx: mapWidth * .48, cy: mapHeight * .56, rx: mapWidth * .11, ry: mapHeight * .25, fill:'#4fa8cb', opacity:.10 },
-      { cx: mapWidth * .70, cy: mapHeight * .64, rx: mapWidth * .13, ry: mapHeight * .24, fill:'#55afd0', opacity:.11 },
-      { cx: mapWidth * .82, cy: mapHeight * .46, rx: mapWidth * .17, ry: mapHeight * .27, fill:'#e8f8fb', opacity:.19 },
-      { cx: mapWidth * .88, cy: mapHeight * .30, rx: mapWidth * .11, ry: mapHeight * .15, fill:'#63b7d5', opacity:.09 },
-      { cx: mapWidth * .50, cy: mapHeight * .84, rx: mapWidth * .42, ry: mapHeight * .12, fill:'#4ca9cf', opacity:.08 }
+      { cx: mapWidth * .12, cy: mapHeight * .18, rx: mapWidth * .24, ry: mapHeight * .20, fill:'#b9e5f4', opacity:.30 },
+      { cx: mapWidth * .22, cy: mapHeight * .55, rx: mapWidth * .20, ry: mapHeight * .30, fill:'#0b5fab', opacity:.16 },
+      { cx: mapWidth * .36, cy: mapHeight * .38, rx: mapWidth * .12, ry: mapHeight * .18, fill:'#d6f3fb', opacity:.22 },
+      { cx: mapWidth * .52, cy: mapHeight * .58, rx: mapWidth * .13, ry: mapHeight * .27, fill:'#0a5ca7', opacity:.13 },
+      { cx: mapWidth * .70, cy: mapHeight * .63, rx: mapWidth * .16, ry: mapHeight * .27, fill:'#0c63ae', opacity:.14 },
+      { cx: mapWidth * .82, cy: mapHeight * .43, rx: mapWidth * .19, ry: mapHeight * .29, fill:'#b8e5f2', opacity:.18 },
+      { cx: mapWidth * .90, cy: mapHeight * .28, rx: mapWidth * .12, ry: mapHeight * .16, fill:'#084c93', opacity:.10 },
+      { cx: mapWidth * .50, cy: mapHeight * .86, rx: mapWidth * .44, ry: mapHeight * .14, fill:'#79c9e5', opacity:.14 }
     ].forEach(shape => {
       addSvgEl(relief, 'ellipse', shape);
+    });
+
+    addSvgEl(relief, 'rect', {
+      x:0, y:0, width:mapWidth, height:mapHeight,
+      fill:'url(#world-ocean-shine)', opacity:.58
     });
 
     [
@@ -1200,8 +1258,8 @@
       `M${mapWidth * .57} ${mapHeight * .50} C${mapWidth * .63} ${mapHeight * .44} ${mapWidth * .72} ${mapHeight * .43} ${mapWidth * .81} ${mapHeight * .47}`
     ].forEach(d => {
       addSvgEl(relief, 'path', {
-        d, fill:'none', stroke:'#3f9dbd', 'stroke-width':1,
-        'stroke-linecap':'round', opacity:.12
+        d, fill:'none', stroke:'#d6f3fb', 'stroke-width':1.2,
+        'stroke-linecap':'round', opacity:.18
       });
     });
 
@@ -1209,6 +1267,65 @@
       svg.insertBefore(relief, countriesLayer);
     } else {
       svg.appendChild(relief);
+    }
+  }
+
+  function featurePath(feature, projector, closePaths = true) {
+    if (!feature?.polygons) return '';
+    const parts = [];
+    feature.polygons.forEach(poly => {
+      poly.forEach(ring => {
+        let d = '';
+        let visibleCount = 0;
+        let open = false;
+        ring.forEach(([lon, lat]) => {
+          const p = projector(lat, lon);
+          if (!p || p.visible === false || !Number.isFinite(p.x) || !Number.isFinite(p.y)) {
+            if (open && visibleCount > 2 && closePaths) d += 'Z';
+            if (d) parts.push(d);
+            d = '';
+            visibleCount = 0;
+            open = false;
+            return;
+          }
+          d += `${open ? 'L' : 'M'}${p.x.toFixed(1)} ${p.y.toFixed(1)}`;
+          visibleCount += 1;
+          open = true;
+        });
+        if (open && visibleCount > 2 && closePaths) d += 'Z';
+        if (d) parts.push(d);
+      });
+    });
+    return parts.join('');
+  }
+
+  function worldFeatures() {
+    return typeof WORLD_GEO_FEATURES !== 'undefined' && Array.isArray(WORLD_GEO_FEATURES) ? WORLD_GEO_FEATURES : [];
+  }
+
+  function addFlatAntarctica(svg, mapWidth, mapHeight) {
+    if (svg.querySelector('#world-flat-antarctica')) return;
+    const antarctica = worldFeatures().find(feature => featureId(feature) === 'ata');
+    if (!antarctica) return;
+    const countriesLayer = svg.querySelector('#wm_countries');
+    const layer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    layer.setAttribute('id', 'world-flat-antarctica');
+    layer.setAttribute('pointer-events', 'none');
+    const d = featurePath(antarctica, (lat, lon) => {
+      const p = project(Math.max(-83.7, lat), lon);
+      if (p.y < mapHeight * .86 || p.y > mapHeight + 24) return null;
+      return p;
+    });
+    if (d) {
+      addSvgEl(layer, 'path', {
+        d, fill:'#edf6f8', stroke:'rgba(58,74,79,.40)', 'stroke-width':0.55,
+        'vector-effect':'non-scaling-stroke', opacity:.95
+      });
+    }
+    if (countriesLayer) {
+      svg.insertBefore(layer, countriesLayer);
+    } else {
+      svg.appendChild(layer);
     }
   }
 
@@ -1279,6 +1396,7 @@
       oceanRect.removeAttribute('filter');
     }
     addWorldOceanRelief(svg, mapWidth, mapHeight);
+    addFlatAntarctica(svg, mapWidth, mapHeight);
     addWorldGraticule(svg, mapWidth, mapHeight);
 
     const runCountryIds = new Set(countries.flatMap(country => country.parts || [country.id]));
@@ -1325,18 +1443,18 @@
 
     const labelLayer = addSvgEl(svg, 'g', { id:'world-running-map-labels', 'pointer-events':'none' });
     [
-      ['USA', 39, -98, 18],
-      ['CHINA', 36, 104, 18],
-      ['MEXICO', 23, -102, 12],
-      ['ITALY', 42.8, 12.5, 11],
-      ['THAILAND', 15.5, 101, 10],
-      ['SINGAPORE', 3, 106, 9]
+      ['USA', 45, -106, 16],
+      ['CHINA', 41, 96, 16],
+      ['MEXICO', 26.5, -108, 11],
+      ['ITALY', 45.4, 10.8, 10],
+      ['THAILAND', 17.5, 98.5, 9],
+      ['SINGAPORE', -1.2, 106.5, 8]
     ].forEach(([text, lat, lon, size]) => {
       const p = project(lat, lon);
       addSvgEl(labelLayer, 'text', {
         x:p.x, y:p.y, 'text-anchor':'middle', 'font-size':size, 'font-weight':900,
-        'font-family':'Arial, Helvetica, sans-serif', fill:'#243642', stroke:'#f7faf7',
-        'stroke-width':2.8, 'stroke-linejoin':'round', 'paint-order':'stroke'
+        'font-family':'Arial, Helvetica, sans-serif', fill:'#183141', stroke:'#f7faf7',
+        'stroke-width':2.4, 'stroke-linejoin':'round', 'paint-order':'stroke', opacity:.92
       }, text);
     });
 
@@ -1378,7 +1496,416 @@
     });
   }
 
+  function orthoProject(lat, lon, cx, cy, r, centerLon, centerLat = 5) {
+    const rad = Math.PI / 180;
+    const lambda = (lon - centerLon) * rad;
+    const phi = lat * rad;
+    const phi0 = centerLat * rad;
+    const cosc = Math.sin(phi0) * Math.sin(phi) + Math.cos(phi0) * Math.cos(phi) * Math.cos(lambda);
+    if (cosc < -0.015) return null;
+    return {
+      x: cx + r * Math.cos(phi) * Math.sin(lambda),
+      y: cy - r * (Math.cos(phi0) * Math.sin(phi) - Math.sin(phi0) * Math.cos(phi) * Math.cos(lambda)),
+      visible: true,
+      depth: cosc
+    };
+  }
+
+  function addHemisphereGraticule(svg, clipId, cx, cy, r, centerLon, centerLat) {
+    const grid = addSvgEl(svg, 'g', {
+      'clip-path':`url(#${clipId})`, fill:'none', stroke:'rgba(46,62,75,.26)',
+      'stroke-width':.7, 'vector-effect':'non-scaling-stroke', opacity:.78
+    });
+    for (let lon = -180; lon <= 180; lon += 15) {
+      let d = '';
+      for (let lat = -80; lat <= 80; lat += 2) {
+        const p = orthoProject(lat, lon, cx, cy, r, centerLon, centerLat);
+        if (!p) { d += d ? '' : ''; continue; }
+        d += `${d ? 'L' : 'M'}${p.x.toFixed(1)} ${p.y.toFixed(1)}`;
+      }
+      if (d) addSvgEl(grid, 'path', { d });
+    }
+    for (let lat = -75; lat <= 75; lat += 15) {
+      let d = '';
+      for (let lon = -180; lon <= 180; lon += 2) {
+        const p = orthoProject(lat, lon, cx, cy, r, centerLon, centerLat);
+        if (!p) { if (d) { addSvgEl(grid, 'path', { d }); d = ''; } continue; }
+        d += `${d ? 'L' : 'M'}${p.x.toFixed(1)} ${p.y.toFixed(1)}`;
+      }
+      if (d) addSvgEl(grid, 'path', { d });
+    }
+  }
+
+  function bindGeoCountry(el, feature, tooltipEl, shellEl) {
+    const id = featureId(feature);
+    const country = countryByGeoId(id);
+    if (!country) return;
+    const dots = raceDots.filter(dot => dot.country === country.key);
+    const raceCount = dots.reduce((sum, dot) => sum + dot.races.length, 0);
+    el.style.cursor = 'pointer';
+    el.addEventListener('mouseenter', e => {
+      setStatus(`${country.name}: ${raceCount} race record${raceCount === 1 ? '' : 's'} in ${dots.length} city dot${dots.length === 1 ? '' : 's'}`, country.color);
+      showTooltipIn(e, tooltipEl, shellEl, buildCountryTooltip(country, dots));
+    });
+    el.addEventListener('mousemove', e => moveTooltipIn(e, tooltipEl, shellEl));
+    el.addEventListener('mouseleave', () => {
+      setStatus();
+      scheduleHideTooltipIn(tooltipEl);
+    });
+    el.addEventListener('click', () => { window.location.href = country.url; });
+  }
+
+  function bindGeoDot(el, dot, tooltipEl, shellEl) {
+    el.addEventListener('mouseenter', e => {
+      setStatus(`${dot.city}: ${dot.races.map(r => r[0]).join(' / ')}`, '#a33a2b');
+      showTooltipIn(e, tooltipEl, shellEl, buildCityTooltip(dot));
+    });
+    el.addEventListener('mousemove', e => moveTooltipIn(e, tooltipEl, shellEl));
+    el.addEventListener('mouseleave', () => {
+      setStatus();
+      scheduleHideTooltipIn(tooltipEl);
+    });
+    el.addEventListener('click', ev => {
+      ev.stopPropagation();
+      const firstStory = dot.races.find(r => r[2]);
+      if (firstStory) window.location.href = firstStory[2];
+    });
+  }
+
+  function initHemisphereAtlas() {
+    if (!hemisphereSlot || !hemisphereTooltip) return;
+    const features = worldFeatures();
+    if (!features.length) {
+      hemisphereSlot.innerHTML = '<div class="map-error">World geo data is missing.</div>';
+      return;
+    }
+    hemisphereSlot.innerHTML = '';
+    const w = 1516;
+    const h = 760;
+    const r = 318;
+    const hemispheres = [
+      { cx:390, cy:382, lon:-95, lat:5, clip:'hemi-west', title:'WESTERN HEMISPHERE' },
+      { cx:1126, cy:382, lon:85, lat:5, clip:'hemi-east', title:'EASTERN HEMISPHERE' }
+    ];
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Dual hemisphere marathon atlas');
+    svg.style.width = '100%';
+    svg.style.height = '100%';
+    hemisphereSlot.appendChild(svg);
+
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    defs.innerHTML = `
+      <radialGradient id="atlas-ocean" cx="36%" cy="22%" r="78%">
+        <stop offset="0%" stop-color="#d8f4ff"/>
+        <stop offset="45%" stop-color="#6cbbe2"/>
+        <stop offset="100%" stop-color="#0b5aa3"/>
+      </radialGradient>
+      <filter id="atlas-paper-grain">
+        <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="12" result="noise"/>
+        <feColorMatrix type="saturate" values=".18"/>
+        <feComponentTransfer><feFuncA type="table" tableValues="0 .13"/></feComponentTransfer>
+      </filter>
+    `;
+    hemispheres.forEach(hemi => {
+      const clip = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+      clip.setAttribute('id', hemi.clip);
+      addSvgEl(clip, 'circle', { cx:hemi.cx, cy:hemi.cy, r });
+      defs.appendChild(clip);
+    });
+    svg.appendChild(defs);
+    addSvgEl(svg, 'rect', { x:0, y:0, width:w, height:h, fill:'#f4eddd' });
+    addSvgEl(svg, 'rect', { x:0, y:0, width:w, height:h, fill:'#6b5739', opacity:.10, filter:'url(#atlas-paper-grain)' });
+
+    hemispheres.forEach(hemi => {
+      addSvgEl(svg, 'circle', { cx:hemi.cx, cy:hemi.cy, r:r + 14, fill:'#e5c56e', opacity:.52 });
+      addSvgEl(svg, 'circle', { cx:hemi.cx, cy:hemi.cy, r:r + 7, fill:'#f7edc9', stroke:'#8d7446', 'stroke-width':1.3 });
+      addSvgEl(svg, 'circle', { cx:hemi.cx, cy:hemi.cy, r, fill:'url(#atlas-ocean)', stroke:'#233949', 'stroke-width':1.2 });
+      [
+        { rx:r*.92, ry:r*.48, fill:'#aee0ef', opacity:.22, rot:-18 },
+        { rx:r*.70, ry:r*.28, fill:'#074b98', opacity:.13, rot:16 },
+        { rx:r*.44, ry:r*.18, fill:'#ecfbff', opacity:.18, rot:-35 }
+      ].forEach(shape => {
+        addSvgEl(svg, 'ellipse', {
+          cx:hemi.cx, cy:hemi.cy, rx:shape.rx, ry:shape.ry, fill:shape.fill,
+          opacity:shape.opacity, transform:`rotate(${shape.rot} ${hemi.cx} ${hemi.cy})`,
+          'clip-path':`url(#${hemi.clip})`
+        });
+      });
+      addHemisphereGraticule(svg, hemi.clip, hemi.cx, hemi.cy, r, hemi.lon, hemi.lat);
+    });
+
+    const landLayer = addSvgEl(svg, 'g', { id:'world-hemisphere-countries' });
+    features.forEach(feature => {
+      const id = featureId(feature);
+      const runColor = geoRunColor(id);
+      hemispheres.forEach(hemi => {
+        const d = featurePath(feature, (lat, lon) => orthoProject(lat, lon, hemi.cx, hemi.cy, r, hemi.lon, hemi.lat));
+        if (!d) return;
+        const path = addSvgEl(landLayer, 'path', {
+          d,
+          fill: runColor || (id === 'ata' ? '#f3f7f7' : mutedLandFill(id)),
+          stroke: runColor ? 'rgba(35,43,42,.72)' : 'rgba(38,47,42,.42)',
+          'stroke-width': runColor ? .72 : .45,
+          'vector-effect':'non-scaling-stroke',
+          'clip-path':`url(#${hemi.clip})`,
+          opacity: runColor ? .98 : .93,
+          'pointer-events':'none'
+        });
+      });
+    });
+
+    svg.querySelectorAll('rect, ellipse, path, text, circle').forEach(el => {
+      el.setAttribute('pointer-events', 'none');
+    });
+
+    const dotLayer = addSvgEl(svg, 'g', { id:'world-hemisphere-dots' });
+    hemispheres.forEach(hemi => {
+      raceDots.forEach(dot => {
+        const p = orthoProject(dot.lat, dot.lon, hemi.cx, hemi.cy, r, hemi.lon, hemi.lat);
+        if (!p) return;
+        addSvgEl(dotLayer, 'circle', {
+          cx:p.x, cy:p.y, r:8.5, fill:'rgba(255,59,48,.28)',
+          'clip-path':`url(#${hemi.clip})`, 'pointer-events':'none'
+        });
+        const cityDot = addSvgEl(dotLayer, 'circle', {
+          cx:p.x, cy:p.y, r:4.4, fill:COLORS.dot, stroke:'#fff', 'stroke-width':1.25,
+          'clip-path':`url(#${hemi.clip})`, 'pointer-events':'all', tabindex:0, role:'button', 'aria-label':dot.city
+        });
+        bindGeoDot(cityDot, dot, hemisphereTooltip, hemisphereSlot.parentElement);
+      });
+    });
+
+    hemispheres.forEach(hemi => {
+      addSvgEl(svg, 'text', {
+        x:hemi.cx, y:46, 'text-anchor':'middle', fill:'#5c4a2d',
+        'font-size':15, 'font-weight':800, 'letter-spacing':1.2, 'pointer-events':'none'
+      }, hemi.title);
+    });
+  }
+
+  function drawCanvasFeature(ctx, feature, projector) {
+    let drew = false;
+    feature.polygons.forEach(poly => {
+      poly.forEach(ring => {
+        let open = false;
+        let count = 0;
+        ring.forEach(([lon, lat]) => {
+          const p = projector(lat, lon);
+          if (!p) {
+            if (open && count > 2) ctx.closePath();
+            open = false;
+            count = 0;
+            return;
+          }
+          if (!open) {
+            ctx.moveTo(p.x, p.y);
+            open = true;
+          } else {
+            ctx.lineTo(p.x, p.y);
+          }
+          count += 1;
+          drew = true;
+        });
+        if (open && count > 2) ctx.closePath();
+      });
+    });
+    return drew;
+  }
+
+  function initGlobeMap() {
+    if (!globeSlot || !globeCanvas || !globeTooltip) return;
+    const features = worldFeatures();
+    if (!features.length) {
+      globeSlot.innerHTML = '<div class="map-error">World geo data is missing.</div>';
+      return;
+    }
+    const ctx = globeCanvas.getContext('2d');
+    let centerLon = -82;
+    let centerLat = 13;
+    let dragging = false;
+    let last = null;
+    let hoverDot = null;
+    let hitDots = [];
+
+    function sizeCanvas() {
+      const box = globeSlot.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      globeCanvas.width = Math.max(1, Math.round(box.width * dpr));
+      globeCanvas.height = Math.max(1, Math.round(box.height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { w:box.width, h:box.height };
+    }
+
+    function drawGlobe() {
+      const { w, h } = sizeCanvas();
+      const cx = w / 2;
+      const cy = h / 2;
+      const r = Math.min(w, h) * .39;
+      ctx.clearRect(0, 0, w, h);
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.clip();
+
+      const ocean = ctx.createRadialGradient(cx - r * .38, cy - r * .42, r * .08, cx, cy, r);
+      ocean.addColorStop(0, '#e8fbff');
+      ocean.addColorStop(.25, '#58b8e5');
+      ocean.addColorStop(.62, '#075caf');
+      ocean.addColorStop(1, '#021b43');
+      ctx.fillStyle = ocean;
+      ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+
+      ctx.globalAlpha = .18;
+      [
+        [-.46, -.18, .65, .28, '#c8f1ff'],
+        [.24, .24, .78, .42, '#003f93'],
+        [.38, -.36, .42, .22, '#94d7ee'],
+        [-.15, .58, .90, .25, '#9bd9ef']
+      ].forEach(([ox, oy, rx, ry, fill]) => {
+        ctx.save();
+        ctx.translate(cx + r * ox, cy + r * oy);
+        ctx.rotate(-0.35);
+        ctx.fillStyle = fill;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, r * rx, r * ry, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+      ctx.globalAlpha = 1;
+
+      ctx.strokeStyle = 'rgba(226,246,255,.16)';
+      ctx.lineWidth = 1;
+      for (let lon = -180; lon <= 180; lon += 30) {
+        ctx.beginPath();
+        for (let lat = -80; lat <= 80; lat += 3) {
+          const p = orthoProject(lat, lon, cx, cy, r, centerLon, centerLat);
+          if (!p) continue;
+          if (lat === -80) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+        }
+        ctx.stroke();
+      }
+      for (let lat = -60; lat <= 75; lat += 15) {
+        ctx.beginPath();
+        let started = false;
+        for (let lon = -180; lon <= 180; lon += 3) {
+          const p = orthoProject(lat, lon, cx, cy, r, centerLon, centerLat);
+          if (!p) { started = false; continue; }
+          if (!started) { ctx.moveTo(p.x, p.y); started = true; } else { ctx.lineTo(p.x, p.y); }
+        }
+        ctx.stroke();
+      }
+
+      features.forEach(feature => {
+        const id = featureId(feature);
+        const runColor = geoRunColor(id);
+        ctx.beginPath();
+        const drew = drawCanvasFeature(ctx, feature, (lat, lon) => orthoProject(lat, lon, cx, cy, r, centerLon, centerLat));
+        if (!drew) return;
+        ctx.fillStyle = runColor || (id === 'ata' ? '#f5f8f8' : '#76a96b');
+        ctx.globalAlpha = runColor ? .98 : .78;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = runColor ? 'rgba(255,255,255,.70)' : 'rgba(11,38,36,.36)';
+        ctx.lineWidth = runColor ? 1.05 : .55;
+        ctx.stroke();
+      });
+
+      hitDots = [];
+      raceDots.forEach(dot => {
+        const p = orthoProject(dot.lat, dot.lon, cx, cy, r, centerLon, centerLat);
+        if (!p) return;
+        const rr = hoverDot === dot ? 6.7 : 4.9;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, rr + 5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,59,48,.25)';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, rr, 0, Math.PI * 2);
+        ctx.fillStyle = hoverDot === dot ? '#ffcc00' : COLORS.dot;
+        ctx.fill();
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = '#fff';
+        ctx.stroke();
+        hitDots.push({ dot, x:p.x, y:p.y, r:rr + 7 });
+      });
+
+      ctx.restore();
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      const rim = ctx.createRadialGradient(cx - r * .45, cy - r * .45, r * .1, cx, cy, r);
+      rim.addColorStop(.55, 'rgba(255,255,255,0)');
+      rim.addColorStop(.86, 'rgba(255,255,255,.10)');
+      rim.addColorStop(1, 'rgba(0,14,38,.42)');
+      ctx.fillStyle = rim;
+      ctx.fill();
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = 'rgba(23,42,58,.34)';
+      ctx.stroke();
+    }
+
+    function pointerPosition(e) {
+      const box = globeCanvas.getBoundingClientRect();
+      return { x:e.clientX - box.left, y:e.clientY - box.top };
+    }
+
+    globeCanvas.addEventListener('pointerdown', e => {
+      dragging = true;
+      last = { x:e.clientX, y:e.clientY };
+      globeCanvas.setPointerCapture(e.pointerId);
+    });
+    globeCanvas.addEventListener('pointerup', e => {
+      dragging = false;
+      last = null;
+      globeCanvas.releasePointerCapture(e.pointerId);
+    });
+    globeCanvas.addEventListener('pointerleave', () => {
+      dragging = false;
+      hoverDot = null;
+      scheduleHideTooltipIn(globeTooltip);
+    });
+    globeCanvas.addEventListener('pointermove', e => {
+      if (dragging && last) {
+        centerLon -= (e.clientX - last.x) * .35;
+        centerLat = Math.max(-45, Math.min(45, centerLat + (e.clientY - last.y) * .22));
+        last = { x:e.clientX, y:e.clientY };
+        drawGlobe();
+        return;
+      }
+      const p = pointerPosition(e);
+      const hit = hitDots.find(item => Math.hypot(item.x - p.x, item.y - p.y) <= item.r);
+      hoverDot = hit?.dot || null;
+      if (hoverDot) {
+        setStatus(`${hoverDot.city}: ${hoverDot.races.map(r => r[0]).join(' / ')}`, '#a33a2b');
+        showTooltipIn(e, globeTooltip, globeSlot.parentElement, buildCityTooltip(hoverDot));
+      } else {
+        setStatus();
+        scheduleHideTooltipIn(globeTooltip);
+      }
+      drawGlobe();
+    });
+    globeCanvas.addEventListener('click', () => {
+      if (!hoverDot) return;
+      const firstStory = hoverDot.races.find(r => r[2]);
+      if (firstStory) window.location.href = firstStory[2];
+    });
+
+    let lastFrame = performance.now();
+    function animate(now) {
+      const elapsed = now - lastFrame;
+      lastFrame = now;
+      if (!dragging && !hoverDot) centerLon += elapsed * .0038;
+      drawGlobe();
+      requestAnimationFrame(animate);
+    }
+    window.addEventListener('resize', drawGlobe);
+    requestAnimationFrame(animate);
+  }
+
   initWorldRunningMap();
+  initHemisphereAtlas();
+  initGlobeMap();
 })();
 </script>
 <script src="../assets/zz-comments.js"></script>
