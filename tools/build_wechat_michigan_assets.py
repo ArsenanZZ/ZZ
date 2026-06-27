@@ -99,7 +99,7 @@ COLORS = {
     "IL": "#9068c0",
     "IN": "#e89838",
     "KY": "#98c038",
-    "MI": "#157f99",
+    "MI": "#0f86a6",
     "MO": "#e89838",
     "NC": "#98c038",
     "NY": "#e89838",
@@ -318,6 +318,14 @@ def build_html() -> str:
               el.classList.add("run-state");
             }}
           }});
+        }});
+        (STATE_PATHS.MI || []).forEach(id => {{
+          const el = document.getElementById("map_" + id);
+          if (el) {{
+            el.style.stroke = "#06384a";
+            el.style.strokeWidth = "1.8";
+            el.style.strokeLinejoin = "round";
+          }}
         }});
 
         const alaskaFrame = document.getElementById("map_exterior_2_");
