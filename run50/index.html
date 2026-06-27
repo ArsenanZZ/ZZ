@@ -1293,7 +1293,7 @@
       'text-anchor': opts.anchor || 'middle',
       'font-size': opts.size || 12,
       'font-weight': opts.weight || 700,
-      'font-family': 'Arial, Helvetica, sans-serif',
+      'font-family': opts.family || 'Trebuchet MS, Avenir Next, Arial, Helvetica, sans-serif',
       fill: opts.fill || '#29485a',
       stroke: opts.stroke || 'rgba(248,251,247,.72)',
       'stroke-width': opts.strokeWidth || 2,
@@ -1309,47 +1309,45 @@
   function addFlatMapContextLabels(svg) {
     const layer = addSvgEl(svg, 'g', { id:'world-flat-context-labels', 'pointer-events':'none' });
     [
-      ['ARCTIC OCEAN', 75, -30, 13, '#305d76', .45, true],
-      ['NORTH PACIFIC OCEAN', 28, -157, 14, '#2e637f', .42, true],
-      ['NORTH ATLANTIC OCEAN', 32, -38, 13, '#2e637f', .42, true],
-      ['INDIAN OCEAN', -24, 78, 14, '#2e637f', .42, true],
-      ['SOUTHERN OCEAN', -60, 18, 13, '#2e637f', .38, true]
+      ['ARCTIC OCEAN', 76, 18, 12, '#305d76', .34, true],
+      ['PACIFIC OCEAN', 15, -165, 13, '#2e637f', .34, true],
+      ['ATLANTIC OCEAN', 18, -35, 12, '#2e637f', .33, true],
+      ['INDIAN OCEAN', -27, 82, 13, '#2e637f', .34, true],
+      ['SOUTHERN OCEAN', -58, 22, 11, '#2e637f', .30, true]
     ].forEach(([text, lat, lon, size, fill, opacity, italic]) => {
       const p = project(lat, lon);
       addMapText(svg, layer, text, p.x, p.y, {
         size, fill, opacity, italic, weight:700, spacing:.8,
-        stroke:'rgba(226,241,242,.58)', strokeWidth:1.4
+        stroke:'rgba(226,241,242,.52)', strokeWidth:1.2
       });
     });
 
     [
-      ['NORTH AMERICA', 55, -101, 15],
-      ['SOUTH AMERICA', -17, -61, 14],
-      ['EUROPE', 53, 17, 12],
-      ['AFRICA', 6, 20, 15],
-      ['ASIA', 50, 84, 16],
-      ['AUSTRALIA', -24, 136, 12]
+      ['NORTH AMERICA', 57, -106, 13],
+      ['SOUTH AMERICA', -16, -62, 13],
+      ['EUROPE', 54, 18, 10],
+      ['AFRICA', 4, 22, 13],
+      ['ASIA', 53, 76, 14],
+      ['AUSTRALIA', -25, 134, 10]
     ].forEach(([text, lat, lon, size]) => {
       const p = project(lat, lon);
       addMapText(svg, layer, text, p.x, p.y, {
-        size, fill:'#536047', opacity:.42, weight:800, spacing:.7,
-        stroke:'rgba(246,249,238,.76)', strokeWidth:1.8
+        size, fill:'#536047', opacity:.31, weight:800, spacing:.6,
+        stroke:'rgba(246,249,238,.68)', strokeWidth:1.45
       });
     });
 
     [
-      ['CANADA', 61, -111, 10],
-      ['BRAZIL', -8, -53, 10],
-      ['RUSSIA', 61, 96, 13],
-      ['INDIA', 22, 78, 9],
-      ['AUSTRALIA', -26, 135, 9],
-      ['SOUTH AFRICA', -30, 24, 8],
-      ['GREENLAND', 73, -42, 8]
+      ['BRAZIL', -10, -54, 8],
+      ['RUSSIA', 60, 92, 10],
+      ['INDIA', 20, 78, 7],
+      ['SOUTH AFRICA', -30, 25, 6],
+      ['GREENLAND', 73, -40, 7]
     ].forEach(([text, lat, lon, size]) => {
       const p = project(lat, lon);
       addMapText(svg, layer, text, p.x, p.y, {
-        size, fill:'#344139', opacity:.52, weight:800, spacing:.5,
-        stroke:'rgba(247,250,240,.76)', strokeWidth:1.6
+        size, fill:'#344139', opacity:.42, weight:800, spacing:.35,
+        stroke:'rgba(247,250,240,.68)', strokeWidth:1.25
       });
     });
   }
@@ -1853,6 +1851,22 @@
     let last = null;
     let hoverDot = null;
     let hitDots = [];
+    const globeLabels = [
+      { text:'NORTH AMERICA', lat:50, lon:-103, size:16, fill:'#314b3e', alpha:.58, weight:800, type:'continent' },
+      { text:'SOUTH AMERICA', lat:-18, lon:-61, size:14, fill:'#314b3e', alpha:.50, weight:800, type:'continent' },
+      { text:'AFRICA', lat:5, lon:22, size:15, fill:'#314b3e', alpha:.52, weight:800, type:'continent' },
+      { text:'EUROPE', lat:53, lon:18, size:12, fill:'#314b3e', alpha:.50, weight:800, type:'continent' },
+      { text:'ASIA', lat:48, lon:86, size:16, fill:'#314b3e', alpha:.54, weight:800, type:'continent' },
+      { text:'AUSTRALIA', lat:-25, lon:134, size:12, fill:'#314b3e', alpha:.50, weight:800, type:'continent' },
+      { text:'PACIFIC OCEAN', lat:2, lon:-150, size:13, fill:'#315f79', alpha:.38, weight:700, italic:true, type:'ocean' },
+      { text:'ATLANTIC OCEAN', lat:8, lon:-35, size:12, fill:'#315f79', alpha:.36, weight:700, italic:true, type:'ocean' },
+      { text:'INDIAN OCEAN', lat:-24, lon:78, size:12, fill:'#315f79', alpha:.36, weight:700, italic:true, type:'ocean' },
+      { text:'USA', lat:39, lon:-114, size:12, fill:'#173141', alpha:.84, weight:900, type:'run' },
+      { text:'MEXICO', lat:23, lon:-103, size:10, fill:'#46351e', alpha:.68, weight:900, type:'run' },
+      { text:'CHINA', lat:35, lon:103, size:13, fill:'#172f34', alpha:.78, weight:900, type:'run' },
+      { text:'BRAZIL', lat:-10, lon:-53, size:10, fill:'#344139', alpha:.45, weight:800, type:'country' },
+      { text:'CANADA', lat:58, lon:-108, size:10, fill:'#344139', alpha:.42, weight:800, type:'country' }
+    ];
 
     function sizeCanvas() {
       const box = globeSlot.getBoundingClientRect();
@@ -1861,6 +1875,30 @@
       globeCanvas.height = Math.max(1, Math.round(box.height * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       return { w:box.width, h:box.height };
+    }
+
+    function drawGlobeLabel(label, cx, cy, r) {
+      const p = orthoProject(label.lat, label.lon, cx, cy, r, centerLon, centerLat);
+      if (!p) return;
+      const edgeFade = Math.max(0, Math.min(1, 1 - Math.hypot(p.x - cx, p.y - cy) / (r * .93)));
+      const alpha = (label.alpha || .5) * Math.min(1, edgeFade * 2.05);
+      if (alpha < .10) return;
+
+      const labelScale = Math.max(.58, Math.min(1, r / 360));
+      const fontSize = Math.max(7, (label.size || 12) * labelScale);
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.font = `${label.italic ? 'italic ' : ''}${label.weight || 800} ${fontSize}px "Trebuchet MS", "Avenir Next", Arial, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.lineJoin = 'round';
+      ctx.miterLimit = 2;
+      ctx.strokeStyle = label.type === 'ocean' ? 'rgba(213,235,238,.48)' : 'rgba(246,249,238,.70)';
+      ctx.lineWidth = (label.type === 'run' ? 3.2 : 2.2) * labelScale;
+      ctx.fillStyle = label.fill || '#29485a';
+      ctx.strokeText(label.text, p.x, p.y);
+      ctx.fillText(label.text, p.x, p.y);
+      ctx.restore();
     }
 
     function drawGlobe() {
@@ -1901,21 +1939,23 @@
         ctx.restore();
       });
 
-      ctx.strokeStyle = 'rgba(226,246,255,.16)';
-      ctx.lineWidth = 1;
-      for (let lon = -180; lon <= 180; lon += 30) {
+      ctx.strokeStyle = 'rgba(28,64,84,.10)';
+      ctx.lineWidth = .7;
+      for (let lon = -180; lon <= 180; lon += 45) {
         ctx.beginPath();
-        for (let lat = -80; lat <= 80; lat += 3) {
+        for (let lat = -80; lat <= 80; lat += 4) {
           const p = orthoProject(lat, lon, cx, cy, r, centerLon, centerLat);
           if (!p) continue;
           if (lat === -80) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
         }
         ctx.stroke();
       }
-      for (let lat = -60; lat <= 75; lat += 15) {
+      ctx.strokeStyle = 'rgba(240,249,248,.06)';
+      ctx.lineWidth = .65;
+      for (let lat = -60; lat <= 60; lat += 30) {
         ctx.beginPath();
         let started = false;
-        for (let lon = -180; lon <= 180; lon += 3) {
+        for (let lon = -180; lon <= 180; lon += 4) {
           const p = orthoProject(lat, lon, cx, cy, r, centerLon, centerLat);
           if (!p) { started = false; continue; }
           if (!started) { ctx.moveTo(p.x, p.y); started = true; } else { ctx.lineTo(p.x, p.y); }
@@ -1937,6 +1977,8 @@
         ctx.lineWidth = runColor ? 1.05 : .55;
         ctx.stroke();
       });
+
+      globeLabels.forEach(label => drawGlobeLabel(label, cx, cy, r));
 
       hitDots = [];
       raceDots.forEach(dot => {
