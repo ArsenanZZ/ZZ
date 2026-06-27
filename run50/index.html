@@ -957,7 +957,7 @@
   if (!slot || !tooltip) return;
 
   const COLORS = {
-    ocean: '#a8d4e8',
+    ocean: '#bddde7',
     land: '#dce7cc',
     border: '#46524d',
     grid: 'rgba(42,64,68,.10)',
@@ -1204,10 +1204,10 @@
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     defs.innerHTML = `
       <linearGradient id="world-ocean-wash" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#c9e7ee"/>
-        <stop offset="34%" stop-color="#aed8e7"/>
-        <stop offset="68%" stop-color="#9ac9dc"/>
-        <stop offset="100%" stop-color="#82b5cf"/>
+        <stop offset="0%" stop-color="#d8edf1"/>
+        <stop offset="30%" stop-color="#c3e1e9"/>
+        <stop offset="64%" stop-color="#aacfdc"/>
+        <stop offset="100%" stop-color="#8bb8cb"/>
       </linearGradient>
       <linearGradient id="world-land-wash" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#edf3da"/>
@@ -1215,10 +1215,15 @@
         <stop offset="100%" stop-color="#c9d9b9"/>
       </linearGradient>
       <linearGradient id="world-ocean-shine" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#f2fafb" stop-opacity=".26"/>
-        <stop offset="46%" stop-color="#d7edf3" stop-opacity=".12"/>
-        <stop offset="100%" stop-color="#5e91ad" stop-opacity=".08"/>
+        <stop offset="0%" stop-color="#f8fbfa" stop-opacity=".30"/>
+        <stop offset="48%" stop-color="#dceff1" stop-opacity=".15"/>
+        <stop offset="100%" stop-color="#5f8fa4" stop-opacity=".08"/>
       </linearGradient>
+      <filter id="world-ocean-paper-grain">
+        <feTurbulence type="fractalNoise" baseFrequency=".58" numOctaves="2" seed="27" result="noise"/>
+        <feColorMatrix type="saturate" values=".22"/>
+        <feComponentTransfer><feFuncA type="table" tableValues="0 .08"/></feComponentTransfer>
+      </filter>
     `;
     svg.insertBefore(defs, svg.firstChild);
   }
@@ -1229,25 +1234,30 @@
     const relief = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     relief.setAttribute('id', 'world-ocean-relief');
     relief.setAttribute('pointer-events', 'none');
-    relief.setAttribute('opacity', '0.78');
+    relief.setAttribute('opacity', '0.72');
 
     addSvgEl(relief, 'rect', {
       x:0, y:0, width:mapWidth, height:mapHeight,
-      fill:'url(#world-ocean-shine)', opacity:.62
+      fill:'url(#world-ocean-shine)', opacity:.54
+    });
+
+    addSvgEl(relief, 'rect', {
+      x:0, y:0, width:mapWidth, height:mapHeight,
+      fill:'#5d8fa4', opacity:.045, filter:'url(#world-ocean-paper-grain)'
     });
 
     [
       {
         d:`M${mapWidth * -.04} ${mapHeight * .30} C${mapWidth * .15} ${mapHeight * .20} ${mapWidth * .34} ${mapHeight * .28} ${mapWidth * .48} ${mapHeight * .23} S${mapWidth * .78} ${mapHeight * .08} ${mapWidth * 1.04} ${mapHeight * .18}`,
-        stroke:'#e6f5f7', width:mapHeight * .055, opacity:.12
+        stroke:'#f2faf9', width:mapHeight * .050, opacity:.10
       },
       {
         d:`M${mapWidth * -.06} ${mapHeight * .58} C${mapWidth * .18} ${mapHeight * .46} ${mapWidth * .34} ${mapHeight * .64} ${mapWidth * .53} ${mapHeight * .54} S${mapWidth * .82} ${mapHeight * .45} ${mapWidth * 1.06} ${mapHeight * .56}`,
-        stroke:'#6fa9c3', width:mapHeight * .07, opacity:.07
+        stroke:'#6f9eb4', width:mapHeight * .060, opacity:.06
       },
       {
         d:`M${mapWidth * .04} ${mapHeight * .78} C${mapWidth * .22} ${mapHeight * .70} ${mapWidth * .45} ${mapHeight * .83} ${mapWidth * .68} ${mapHeight * .74} S${mapWidth * .89} ${mapHeight * .73} ${mapWidth * .99} ${mapHeight * .84}`,
-        stroke:'#c9e7ef', width:mapHeight * .045, opacity:.10
+        stroke:'#d7ecef', width:mapHeight * .040, opacity:.09
       }
     ].forEach(band => {
       addSvgEl(relief, 'path', {
@@ -1265,8 +1275,8 @@
       `M${mapWidth * .57} ${mapHeight * .50} C${mapWidth * .63} ${mapHeight * .44} ${mapWidth * .72} ${mapHeight * .43} ${mapWidth * .81} ${mapHeight * .47}`
     ].forEach(d => {
       addSvgEl(relief, 'path', {
-        d, fill:'none', stroke:'#e4f3f6', 'stroke-width':1.1,
-        'stroke-linecap':'round', opacity:.16
+        d, fill:'none', stroke:'#edf7f7', 'stroke-width':0.9,
+        'stroke-linecap':'round', opacity:.12
       });
     });
 
@@ -1605,10 +1615,10 @@
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     defs.innerHTML = `
       <radialGradient id="atlas-ocean" cx="36%" cy="22%" r="78%">
-        <stop offset="0%" stop-color="#eef8f8"/>
-        <stop offset="42%" stop-color="#a9d7e5"/>
-        <stop offset="78%" stop-color="#82b8cf"/>
-        <stop offset="100%" stop-color="#5d93af"/>
+        <stop offset="0%" stop-color="#f1f8f7"/>
+        <stop offset="40%" stop-color="#bedde6"/>
+        <stop offset="76%" stop-color="#91bbce"/>
+        <stop offset="100%" stop-color="#6f9eb7"/>
       </radialGradient>
       <filter id="atlas-paper-grain">
         <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="12" result="noise"/>
@@ -1633,15 +1643,15 @@
       [
         {
           d:`M${hemi.cx - r * .95} ${hemi.cy - r * .20} C${hemi.cx - r * .55} ${hemi.cy - r * .44} ${hemi.cx - r * .16} ${hemi.cy - r * .18} ${hemi.cx + r * .18} ${hemi.cy - r * .32} S${hemi.cx + r * .74} ${hemi.cy - r * .30} ${hemi.cx + r * .96} ${hemi.cy - r * .48}`,
-          stroke:'#edf8f8', width:r * .09, opacity:.16
+          stroke:'#f5fbfa', width:r * .075, opacity:.13
         },
         {
           d:`M${hemi.cx - r * .98} ${hemi.cy + r * .12} C${hemi.cx - r * .55} ${hemi.cy - r * .03} ${hemi.cx - r * .20} ${hemi.cy + r * .28} ${hemi.cx + r * .18} ${hemi.cy + r * .12} S${hemi.cx + r * .76} ${hemi.cy + r * .08} ${hemi.cx + r * .98} ${hemi.cy + r * .28}`,
-          stroke:'#6fa9c3', width:r * .12, opacity:.09
+          stroke:'#6f9fb7', width:r * .10, opacity:.07
         },
         {
           d:`M${hemi.cx - r * .72} ${hemi.cy + r * .48} C${hemi.cx - r * .34} ${hemi.cy + r * .33} ${hemi.cx + r * .10} ${hemi.cy + r * .56} ${hemi.cx + r * .52} ${hemi.cy + r * .38}`,
-          stroke:'#d9eef3', width:r * .07, opacity:.13
+          stroke:'#dceff1', width:r * .06, opacity:.11
         }
       ].forEach(band => {
         addSvgEl(svg, 'path', {
@@ -1766,17 +1776,17 @@
       ctx.clip();
 
       const ocean = ctx.createRadialGradient(cx - r * .38, cy - r * .42, r * .08, cx, cy, r);
-      ocean.addColorStop(0, '#edf8f8');
-      ocean.addColorStop(.28, '#9ed0df');
-      ocean.addColorStop(.70, '#5f9ab8');
-      ocean.addColorStop(1, '#173f63');
+      ocean.addColorStop(0, '#f2f8f7');
+      ocean.addColorStop(.30, '#b7d9e4');
+      ocean.addColorStop(.72, '#679db8');
+      ocean.addColorStop(1, '#214d6e');
       ctx.fillStyle = ocean;
       ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
 
       [
-        { color:'#edf8f8', alpha:.13, width:r*.09, points:[[-.92,-.24],[-.48,-.50],[-.12,-.20],[.35,-.34],[.78,-.40],[.98,-.55]] },
-        { color:'#477f9f', alpha:.09, width:r*.13, points:[[-.95,.06],[-.48,-.08],[-.13,.22],[.30,.04],[.68,.06],[.97,.20]] },
-        { color:'#cfe8ef', alpha:.12, width:r*.07, points:[[-.72,.50],[-.36,.30],[.06,.56],[.48,.38],[.78,.42],[.96,.56]] }
+        { color:'#f5fbfa', alpha:.10, width:r*.075, points:[[-.92,-.24],[-.48,-.50],[-.12,-.20],[.35,-.34],[.78,-.40],[.98,-.55]] },
+        { color:'#4f7f99', alpha:.07, width:r*.10, points:[[-.95,.06],[-.48,-.08],[-.13,.22],[.30,.04],[.68,.06],[.97,.20]] },
+        { color:'#d8edf0', alpha:.10, width:r*.06, points:[[-.72,.50],[-.36,.30],[.06,.56],[.48,.38],[.78,.42],[.96,.56]] }
       ].forEach(band => {
         ctx.save();
         ctx.globalAlpha = band.alpha;
