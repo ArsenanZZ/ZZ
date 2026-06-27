@@ -1726,7 +1726,18 @@
 
   function revealModuleControls() {
     const activeSubnav = document.querySelector('.module-subnav:not([hidden])');
-    (activeSubnav || document.querySelector('.chips'))?.scrollIntoView({ block: 'start' });
+    const target = activeSubnav || document.querySelector('.chips');
+    if (!target) return;
+    const chips = document.querySelector('.chips');
+    const offset = activeSubnav && chips ? chips.getBoundingClientRect().bottom + 8 : 84;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+  }
+
+  function scheduleModuleControlsReveal() {
+    [0, 120, 400, 900, 1600].forEach(delay => {
+      window.setTimeout(revealModuleControls, delay);
+    });
   }
 
   function refreshCards() {
@@ -2282,7 +2293,7 @@
       if (filter === 'all') clearHash();
       else updateHash(filter);
       setActiveFilter(filter);
-      revealModuleControls();
+      scheduleModuleControlsReveal();
     });
   });
 
@@ -2293,7 +2304,7 @@
       if (filter === 'all') clearHash();
       else updateHash(filter);
       setActiveFilter(filter);
-      revealModuleControls();
+      scheduleModuleControlsReveal();
     });
   });
 
@@ -2315,7 +2326,7 @@
     const filter = filterFromHash();
     if (filter) {
       setActiveFilter(filter);
-      if (hash === filter) revealModuleControls();
+      if (hash === filter) scheduleModuleControlsReveal();
     }
   });
 
@@ -2325,12 +2336,16 @@
   const initialFilter = filterFromHash() || 'all';
   setActiveFilter(initialFilter);
   if (initialFilter !== 'all' && currentHashId() === initialFilter) {
-    requestAnimationFrame(revealModuleControls);
-    window.setTimeout(revealModuleControls, 120);
+    scheduleModuleControlsReveal();
   }
   syncRun50LatestStories()
     .catch(error => console.warn('Run50 latest stories stayed on the static fallback.', error))
-    .finally(applyFilters);
+    .finally(() => {
+      applyFilters();
+      if (currentFilter !== 'all' && currentHashId() === currentFilter) {
+        scheduleModuleControlsReveal();
+      }
+    });
 </script>
 <section data-zz-comments></section>
 <script src="assets/zz-comments.js?v=20260601-no-comments"></script>
