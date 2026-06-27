@@ -253,6 +253,22 @@ def build_html() -> str:
         }}).join(" "));
       }}
 
+      function removeFloridaHoles() {{
+        const el = document.getElementById("map_South_Carolina_1_");
+        if (!el) return;
+        const parts = splitPath(el.getAttribute("d") || "");
+        const boxes = parts.map(bbox);
+        const maxArea = Math.max(...boxes.map(b => b.area));
+        const outerIdx = boxes.findIndex(b => b.area === maxArea);
+        const outer = boxes[outerIdx];
+        if (!outer || !isFinite(maxArea) || maxArea <= 0) return;
+        el.setAttribute("d", parts.filter((_, i) => {{
+          const b = boxes[i];
+          const nested = b.xMin >= outer.xMin && b.xMax <= outer.xMax && b.yMin >= outer.yMin && b.yMax <= outer.yMax;
+          return i === outerIdx || !nested || b.area < maxArea * 0.05;
+        }}).join(" "));
+      }}
+
       function renderMap() {{
         const slot = document.getElementById("map-slot");
         slot.innerHTML = {js_literal(svg)};
@@ -275,6 +291,7 @@ def build_html() -> str:
           }}
         }});
 
+        removeFloridaHoles();
         HOLLOW_CLEANUP.forEach(removeNestedSubpaths);
         STATE_PATH_IDS.forEach(id => {{
           const el = document.getElementById("map_" + id);
@@ -288,6 +305,15 @@ def build_html() -> str:
               el.classList.add("run-state");
             }}
           }});
+        }});
+
+        (STATE_PATHS.MI || []).forEach(id => {{
+          const el = document.getElementById("map_" + id);
+          if (el) {{
+            el.style.stroke = "#0f4962";
+            el.style.strokeWidth = "3.2";
+            el.style.paintOrder = "stroke fill markers";
+          }}
         }});
 
         const alaskaFrame = document.getElementById("map_exterior_2_");
@@ -313,6 +339,17 @@ def build_html() -> str:
           glow.setAttribute("r", 11);
           glow.setAttribute("fill", "rgba(255, 59, 48, 0.35)");
           dotGroup.appendChild(glow);
+          if (abbr === "MI") {{
+            const ring = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            ring.setAttribute("cx", x);
+            ring.setAttribute("cy", y);
+            ring.setAttribute("r", 13);
+            ring.setAttribute("fill", "none");
+            ring.setAttribute("stroke", "#ffcc00");
+            ring.setAttribute("stroke-width", "3.2");
+            ring.setAttribute("opacity", "0.95");
+            dotGroup.appendChild(ring);
+          }}
           const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
           dot.setAttribute("cx", x);
           dot.setAttribute("cy", y);
