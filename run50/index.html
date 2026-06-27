@@ -966,6 +966,9 @@
     dot: '#ff3b30'
   };
 
+  const MUTED_LAND_COLORS = ['#dce7cc', '#e6ead2', '#d8e7d8', '#e4e1ca', '#dce4cf', '#e9e4d0', '#d5e3dc'];
+  const DENSE_COAST_IDS = new Set(['wm_usa', 'wm_can', 'wm_chl', 'wm_nor', 'wm_grl', 'wm_idn', 'wm_phl', 'wm_jpn', 'wm_nzl']);
+
   const countries = [
     { key:'USA', id:'wm_usa', name:'United States', label:'Run50', color:COLORS.usa, url:'./stories/english/?v=20260618-addddd#run50-series' },
     { key:'CHN', id:'wm_chn', parts:['wm_chn','wm_twn'], name:'China', label:'RunCN', color:COLORS.china, url:'./stories/english/?v=20260618-addddd#runcn-series' },
@@ -1138,6 +1141,18 @@
     return el;
   }
 
+  function hashId(id) {
+    return String(id || '').split('').reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+  }
+
+  function mutedLandFill(id) {
+    return MUTED_LAND_COLORS[hashId(id) % MUTED_LAND_COLORS.length];
+  }
+
+  function isDenseCoastPath(path) {
+    return DENSE_COAST_IDS.has(path.id);
+  }
+
   function injectWorldMapTexture(svg) {
     if (svg.querySelector('#world-ocean-wash')) return;
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
@@ -1162,14 +1177,16 @@
     const relief = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     relief.setAttribute('id', 'world-ocean-relief');
     relief.setAttribute('pointer-events', 'none');
-    relief.setAttribute('opacity', '0.75');
+    relief.setAttribute('opacity', '0.82');
 
     [
-      { cx: mapWidth * .18, cy: mapHeight * .56, rx: mapWidth * .13, ry: mapHeight * .20, fill:'#d9f2f6', opacity:.28 },
-      { cx: mapWidth * .36, cy: mapHeight * .42, rx: mapWidth * .09, ry: mapHeight * .16, fill:'#eef9fb', opacity:.24 },
-      { cx: mapWidth * .52, cy: mapHeight * .57, rx: mapWidth * .11, ry: mapHeight * .22, fill:'#73bfd9', opacity:.10 },
-      { cx: mapWidth * .78, cy: mapHeight * .58, rx: mapWidth * .15, ry: mapHeight * .26, fill:'#e6f7fa', opacity:.20 },
-      { cx: mapWidth * .86, cy: mapHeight * .30, rx: mapWidth * .10, ry: mapHeight * .13, fill:'#6fb6d1', opacity:.08 }
+      { cx: mapWidth * .18, cy: mapHeight * .54, rx: mapWidth * .16, ry: mapHeight * .24, fill:'#5db3d2', opacity:.12 },
+      { cx: mapWidth * .31, cy: mapHeight * .42, rx: mapWidth * .10, ry: mapHeight * .17, fill:'#eef9fb', opacity:.24 },
+      { cx: mapWidth * .48, cy: mapHeight * .56, rx: mapWidth * .11, ry: mapHeight * .25, fill:'#4fa8cb', opacity:.10 },
+      { cx: mapWidth * .70, cy: mapHeight * .64, rx: mapWidth * .13, ry: mapHeight * .24, fill:'#55afd0', opacity:.11 },
+      { cx: mapWidth * .82, cy: mapHeight * .46, rx: mapWidth * .17, ry: mapHeight * .27, fill:'#e8f8fb', opacity:.19 },
+      { cx: mapWidth * .88, cy: mapHeight * .30, rx: mapWidth * .11, ry: mapHeight * .15, fill:'#63b7d5', opacity:.09 },
+      { cx: mapWidth * .50, cy: mapHeight * .84, rx: mapWidth * .42, ry: mapHeight * .12, fill:'#4ca9cf', opacity:.08 }
     ].forEach(shape => {
       addSvgEl(relief, 'ellipse', shape);
     });
@@ -1178,11 +1195,13 @@
       `M${mapWidth * .04} ${mapHeight * .47} C${mapWidth * .15} ${mapHeight * .43} ${mapWidth * .25} ${mapHeight * .45} ${mapWidth * .34} ${mapHeight * .50}`,
       `M${mapWidth * .46} ${mapHeight * .30} C${mapWidth * .57} ${mapHeight * .26} ${mapWidth * .67} ${mapHeight * .31} ${mapWidth * .76} ${mapHeight * .39}`,
       `M${mapWidth * .38} ${mapHeight * .72} C${mapWidth * .50} ${mapHeight * .66} ${mapWidth * .62} ${mapHeight * .70} ${mapWidth * .72} ${mapHeight * .78}`,
-      `M${mapWidth * .76} ${mapHeight * .79} C${mapWidth * .84} ${mapHeight * .75} ${mapWidth * .91} ${mapHeight * .77} ${mapWidth * .97} ${mapHeight * .83}`
+      `M${mapWidth * .76} ${mapHeight * .79} C${mapWidth * .84} ${mapHeight * .75} ${mapWidth * .91} ${mapHeight * .77} ${mapWidth * .97} ${mapHeight * .83}`,
+      `M${mapWidth * .08} ${mapHeight * .66} C${mapWidth * .19} ${mapHeight * .73} ${mapWidth * .28} ${mapHeight * .73} ${mapWidth * .36} ${mapHeight * .66}`,
+      `M${mapWidth * .57} ${mapHeight * .50} C${mapWidth * .63} ${mapHeight * .44} ${mapWidth * .72} ${mapHeight * .43} ${mapWidth * .81} ${mapHeight * .47}`
     ].forEach(d => {
       addSvgEl(relief, 'path', {
-        d, fill:'none', stroke:'#6aaec9', 'stroke-width':1,
-        'stroke-linecap':'round', opacity:.16
+        d, fill:'none', stroke:'#3f9dbd', 'stroke-width':1,
+        'stroke-linecap':'round', opacity:.12
       });
     });
 
@@ -1263,14 +1282,15 @@
     addWorldGraticule(svg, mapWidth, mapHeight);
 
     const runCountryIds = new Set(countries.flatMap(country => country.parts || [country.id]));
-    svg.querySelectorAll('path').forEach(path => {
+    svg.querySelectorAll('#wm_countries path').forEach(path => {
       path.style.pointerEvents = 'none';
-      path.setAttribute('stroke', 'rgba(45,52,48,.62)');
-      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.9' : '0.72');
+      path.setAttribute('stroke', isDenseCoastPath(path) ? 'rgba(45,52,48,.34)' : 'rgba(45,52,48,.58)');
+      path.setAttribute('stroke-width', isDenseCoastPath(path) ? '0.36' : (path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.82' : '0.62'));
+      path.setAttribute('stroke-linejoin', 'round');
       path.setAttribute('vector-effect', 'non-scaling-stroke');
       path.style.filter = 'none';
       if (path.id && path.id.startsWith('wm_') && !runCountryIds.has(path.id)) {
-        path.setAttribute('fill', 'url(#world-land-wash)');
+        path.setAttribute('fill', mutedLandFill(path.id));
       }
     });
 
@@ -1283,8 +1303,10 @@
       const raceCount = dots.reduce((sum, dot) => sum + dot.races.length, 0);
       paths.forEach(path => {
         path.setAttribute('fill', country.color);
-        path.setAttribute('stroke', 'rgba(35,43,42,.78)');
-        path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.25' : '1.05');
+        const denseCoast = paths.some(isDenseCoastPath);
+        path.setAttribute('stroke', denseCoast ? 'rgba(35,43,42,.46)' : 'rgba(35,43,42,.76)');
+        path.setAttribute('stroke-width', denseCoast ? '0.58' : (country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.18' : '0.98'));
+        path.setAttribute('stroke-linejoin', 'round');
         path.style.filter = 'drop-shadow(0 1px 0 rgba(30,40,36,.16))';
         path.style.pointerEvents = 'auto';
         path.classList.add('wm-country-run');
