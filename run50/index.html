@@ -953,9 +953,9 @@
 
   const COLORS = {
     ocean: '#a8d4e8',
-    land: '#d8d5cc',
+    land: '#d8e0d4',
     border: '#ffffff',
-    grid: 'rgba(74,108,54,.18)',
+    grid: 'rgba(74,108,54,.13)',
     usa: '#5baad0',
     china: '#d4614a',
     runworld: '#5ca860',
@@ -1148,8 +1148,8 @@
         <stop offset="100%" stop-color="#8fc5dc"/>
       </linearGradient>
       <filter id="world-paper-water" x="-4%" y="-4%" width="108%" height="108%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.018 0.032" numOctaves="2" seed="27" result="noise"/>
-        <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.72 0 0 0 0 0.86 0 0 0 0 0.92 0 0 0 .16 0" result="tint"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.014 0.026" numOctaves="2" seed="27" result="noise"/>
+        <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.72 0 0 0 0 0.86 0 0 0 0 0.92 0 0 0 .10 0" result="tint"/>
         <feBlend in="SourceGraphic" in2="tint" mode="multiply"/>
       </filter>
     `;
@@ -1164,8 +1164,8 @@
     grid.setAttribute('pointer-events', 'none');
     grid.setAttribute('fill', 'none');
     grid.setAttribute('stroke', COLORS.grid);
-    grid.setAttribute('stroke-width', '0.65');
-    grid.setAttribute('opacity', '0.75');
+    grid.setAttribute('stroke-width', '0.55');
+    grid.setAttribute('opacity', '0.55');
 
     for (let lon = -150; lon <= 150; lon += 30) {
       const north = project(82, lon);
@@ -1227,9 +1227,10 @@
     const runCountryIds = new Set(countries.flatMap(country => country.parts || [country.id]));
     svg.querySelectorAll('path').forEach(path => {
       path.style.pointerEvents = 'none';
-      path.setAttribute('stroke', 'rgba(255,255,255,.88)');
-      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.95' : '0.72');
-      path.style.filter = 'drop-shadow(0 1px 0.8px rgba(65,83,82,.16))';
+      path.setAttribute('stroke', 'rgba(255,255,255,.96)');
+      path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '1.25' : '1.05');
+      path.setAttribute('vector-effect', 'non-scaling-stroke');
+      path.style.filter = 'none';
       if (path.id && path.id.startsWith('wm_') && !runCountryIds.has(path.id)) {
         path.setAttribute('fill', COLORS.land);
       }
@@ -1245,8 +1246,8 @@
       paths.forEach(path => {
         path.setAttribute('fill', country.color);
         path.setAttribute('stroke', '#f7fbff');
-        path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.65' : '1.35');
-        path.style.filter = 'drop-shadow(0 1.4px 1.2px rgba(0,0,0,.24))';
+        path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.75' : '1.5');
+        path.style.filter = 'drop-shadow(0 1px 0.8px rgba(0,0,0,.18))';
         path.style.pointerEvents = 'auto';
         path.classList.add('wm-country-run');
         path.addEventListener('mouseenter', e => {
