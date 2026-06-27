@@ -952,10 +952,10 @@
   if (!slot || !tooltip) return;
 
   const COLORS = {
-    ocean: '#ffffff',
-    land: '#b9b9b9',
+    ocean: '#a8d4e8',
+    land: '#d8d5cc',
     border: '#ffffff',
-    grid: 'rgba(255,255,255,0)',
+    grid: 'rgba(74,108,54,.18)',
     usa: '#5baad0',
     china: '#d4614a',
     runworld: '#5ca860',
@@ -1138,6 +1138,57 @@
     return el;
   }
 
+  function injectWorldMapTexture(svg) {
+    if (svg.querySelector('#world-ocean-wash')) return;
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    defs.innerHTML = `
+      <linearGradient id="world-ocean-wash" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#c4e2ef"/>
+        <stop offset="46%" stop-color="#a8d4e8"/>
+        <stop offset="100%" stop-color="#8fc5dc"/>
+      </linearGradient>
+      <filter id="world-paper-water" x="-4%" y="-4%" width="108%" height="108%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.018 0.032" numOctaves="2" seed="27" result="noise"/>
+        <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.72 0 0 0 0 0.86 0 0 0 0 0.92 0 0 0 .16 0" result="tint"/>
+        <feBlend in="SourceGraphic" in2="tint" mode="multiply"/>
+      </filter>
+    `;
+    svg.insertBefore(defs, svg.firstChild);
+  }
+
+  function addWorldGraticule(svg, mapWidth, mapHeight) {
+    if (svg.querySelector('#world-graticule')) return;
+    const countriesLayer = svg.querySelector('#wm_countries');
+    const grid = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    grid.setAttribute('id', 'world-graticule');
+    grid.setAttribute('pointer-events', 'none');
+    grid.setAttribute('fill', 'none');
+    grid.setAttribute('stroke', COLORS.grid);
+    grid.setAttribute('stroke-width', '0.65');
+    grid.setAttribute('opacity', '0.75');
+
+    for (let lon = -150; lon <= 150; lon += 30) {
+      const north = project(82, lon);
+      const south = project(-58, lon);
+      addSvgEl(grid, 'line', { x1:north.x, y1:north.y, x2:south.x, y2:south.y });
+    }
+
+    for (let lat = -45; lat <= 75; lat += 15) {
+      const west = project(lat, -180);
+      const east = project(lat, 180);
+      addSvgEl(grid, 'line', {
+        x1:Math.max(0, west.x), y1:west.y,
+        x2:Math.min(mapWidth, east.x), y2:east.y
+      });
+    }
+
+    if (countriesLayer) {
+      svg.insertBefore(grid, countriesLayer);
+    } else {
+      svg.appendChild(grid);
+    }
+  }
+
   function initWorldRunningMap() {
     if (typeof WORLD_MAP_SVG === 'undefined') {
       slot.innerHTML = '<div style="padding:24px;color:#667085;">World map asset is missing.</div>';
@@ -1157,6 +1208,7 @@
     const projection = typeof WORLD_MAP_PROJECTION !== 'undefined' ? WORLD_MAP_PROJECTION : null;
     const mapWidth = projection?.width || 1800;
     const mapHeight = projection?.height || 900;
+    injectWorldMapTexture(svg);
     svg.setAttribute('viewBox', `0 0 ${mapWidth} ${mapHeight}`);
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     svg.style.width = '100%';
@@ -1167,16 +1219,17 @@
       oceanRect.setAttribute('y', '0');
       oceanRect.setAttribute('width', String(mapWidth));
       oceanRect.setAttribute('height', String(mapHeight));
-      oceanRect.setAttribute('fill', COLORS.ocean);
-      oceanRect.removeAttribute('filter');
+      oceanRect.setAttribute('fill', 'url(#world-ocean-wash)');
+      oceanRect.setAttribute('filter', 'url(#world-paper-water)');
     }
+    addWorldGraticule(svg, mapWidth, mapHeight);
 
     const runCountryIds = new Set(countries.flatMap(country => country.parts || [country.id]));
     svg.querySelectorAll('path').forEach(path => {
       path.style.pointerEvents = 'none';
-      path.setAttribute('stroke', 'rgba(255,255,255,.92)');
+      path.setAttribute('stroke', 'rgba(255,255,255,.88)');
       path.setAttribute('stroke-width', path.id === 'wm_hkg' || path.id === 'wm_sgp' ? '0.95' : '0.72');
-      path.style.filter = 'none';
+      path.style.filter = 'drop-shadow(0 1px 0.8px rgba(65,83,82,.16))';
       if (path.id && path.id.startsWith('wm_') && !runCountryIds.has(path.id)) {
         path.setAttribute('fill', COLORS.land);
       }
