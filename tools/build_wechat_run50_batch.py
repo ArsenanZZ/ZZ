@@ -304,12 +304,17 @@ def strip_tail_text(text: str) -> tuple[str, bool]:
 def caption_text(text: str) -> str:
     text = normalize_text(text)
     is_official = bool(re.search(r"Official (race )?photo|赛事摄影|官方赛照|官方摄影", text, flags=re.I))
+    is_external = bool(re.search(r"网络|资料图|Photo by|摄影师|Wikipedia|Unsplash|赛事方", text, flags=re.I))
     text = text.replace("@阿森南", "").replace("@Arsenan", "")
-    text = re.sub(r"\bOfficial race photo\b|\bOfficial photo\b|赛事摄影|官方赛照|官方摄影", "", text, flags=re.I)
+    text = re.sub(r"\bOfficial race photo\b|\bOfficial photo\b|赛事摄影|官方摄影", "", text, flags=re.I)
     text = re.sub(r"\s+", " ", text)
     text = text.strip(" ·｜|-")
     if is_official:
         return f"{text} · 赛事摄影" if text else "赛事摄影"
+    if is_external:
+        return text
+    if text:
+        return f"{text} @Arsenan"
     return text
 
 
@@ -479,6 +484,8 @@ def render_story_blocks(blocks: list[Block], cfg: StoryConfig) -> list[str]:
     rendered: list[str] = []
     section_items: list[Block | tuple[Block, str]] = []
     section_index = 0
+    pending_label = ""
+    section_labels = {"前言", "后记", "楔子", "尾声"}
 
     def flush_section() -> None:
         for item in interleave_section_items(section_items):
@@ -487,16 +494,69 @@ def render_story_blocks(blocks: list[Block], cfg: StoryConfig) -> list[str]:
             elif item.kind == "p":
                 rendered.append(paragraph(item.text, cfg))
 
-    for item in paired_blocks(blocks):
+    items = paired_blocks(blocks)
+    for index, item in enumerate(items):
         if not isinstance(item, tuple) and item.kind in {"h2", "h3"}:
+            if item.text in section_labels:
+                flush_section()
+                section_items.clear()
+                pending_label = item.text
+                continue
             flush_section()
             section_items.clear()
             section_index += 1
-            rendered.append(section_heading(item.text, section_index, cfg))
+            heading_text = f"{pending_label}｜{item.text}" if pending_label else item.text
+            pending_label = ""
+            rendered.append(section_heading(heading_text, section_index, cfg))
         else:
+            if (
+                pending_label
+                and not isinstance(item, tuple)
+                and item.kind == "p"
+                and item.text.strip() in {"Run50", "RUN50"}
+            ):
+                continue
             section_items.append(item)
     flush_section()
     return rendered
+
+
+def normalize_existing_page(cfg: StoryConfig) -> None:
+    path = OUT_DIR / f"{cfg.slug}-modern-rail.html"
+    if not path.exists():
+        return
+    text = path.read_text(encoding="utf-8")
+
+    def normalize_caption(match: re.Match[str]) -> str:
+        prefix, body, suffix = match.groups()
+        plain = re.sub(r"<[^>]+>", "", body)
+        plain = normalize_text(plain)
+        if (
+            not plain
+            or "@Arsenan" in plain
+            or "赛事摄影" in plain
+            or "官方" in plain
+            or "网络" in plain
+            or "奖牌质感封面" in plain
+            or "Vlog" in plain
+            or "地图" in plain
+            or "第21州" in plain
+        ):
+            return match.group(0)
+        return f"{prefix}{body} @Arsenan{suffix}"
+
+    text = re.sub(
+        r'(<p style="[^"]*border-left: 3px solid[^"]*">)(.*?)(</p>)',
+        normalize_caption,
+        text,
+        flags=re.S,
+    )
+    text = text.replace(
+        "跑完以后也可以聊两句。如果你也跑过绕圈赛道，或者也有一次“看起来不顺、回头却很难忘”的比赛，欢迎在公众号留言区见。",
+        "绕圈赛道很容易让人精神出走，但也最容易把一场比赛的细节钉进脑子里。如果你也跑过这种“绕到怀疑人生”的路线，欢迎在留言里互相取暖。",
+    )
+    text = text.replace("文字 / 摄影 / 设计 · Arsenan", "文字 / 编辑 / 排版 · Arsenan")
+    path.write_text(text, encoding="utf-8", newline="\n")
 
 
 def vlog_card(cfg: StoryConfig) -> str:
@@ -673,6 +733,8 @@ def main() -> None:
             path = OUT_DIR / f"{cfg.slug}-modern-rail.html"
             path.write_text(render_page(cfg), encoding="utf-8", newline="\n")
             generated.append(path)
+        else:
+            normalize_existing_page(cfg)
     (OUT_DIR / "index.html").write_text(render_index(), encoding="utf-8", newline="\n")
     print(f"generated {len(generated)} WeChat pages")
     for path in generated:

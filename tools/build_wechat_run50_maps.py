@@ -233,6 +233,23 @@ function starPoints(cx,cy,outer,inner) {{
   }}
   return points.join(" ");
 }}
+function addCurrentLabel(group,x,y) {{
+  const label=document.createElementNS("http://www.w3.org/2000/svg","text");
+  label.textContent=CURRENT;
+  label.setAttribute("x",x+18);
+  label.setAttribute("y",y-18);
+  label.setAttribute("font-size","38");
+  label.setAttribute("font-family","Arial, sans-serif");
+  label.setAttribute("font-weight","900");
+  label.setAttribute("letter-spacing","1");
+  label.setAttribute("paint-order","stroke");
+  label.setAttribute("stroke","#ffffff");
+  label.setAttribute("stroke-width","7");
+  label.setAttribute("stroke-linejoin","round");
+  label.setAttribute("fill","#101820");
+  label.style.pointerEvents="none";
+  group.appendChild(label);
+}}
 function addOutline(master) {{
   const group=document.createElementNS("http://www.w3.org/2000/svg","g");
   group.id="current-state-outline"; master.appendChild(group);
@@ -281,11 +298,12 @@ function render() {{
     glow.setAttribute("fill",isCurrent?"rgba(255,204,0,.45)":"rgba(255,59,48,.35)"); dotGroup.appendChild(glow);
     if(isCurrent) {{
       const shadow=document.createElementNS("http://www.w3.org/2000/svg","polygon");
-      shadow.setAttribute("points",starPoints(x+2.1,y+2.6,13.2,5.8)); shadow.setAttribute("fill","#5f4500"); shadow.setAttribute("opacity",".38"); dotGroup.appendChild(shadow);
+      shadow.setAttribute("points",starPoints(x+2.6,y+3.2,17.2,7.6)); shadow.setAttribute("fill","#5f4500"); shadow.setAttribute("opacity",".38"); dotGroup.appendChild(shadow);
       const star=document.createElementNS("http://www.w3.org/2000/svg","polygon");
-      star.setAttribute("points",starPoints(x,y,13,5.7)); star.setAttribute("fill","#ffcc00"); star.setAttribute("stroke","#6b4d00"); star.setAttribute("stroke-width","1.9"); star.setAttribute("stroke-linejoin","round"); dotGroup.appendChild(star);
+      star.setAttribute("points",starPoints(x,y,17,7.5)); star.setAttribute("fill","#ffcc00"); star.setAttribute("stroke","#6b4d00"); star.setAttribute("stroke-width","2.2"); star.setAttribute("stroke-linejoin","round"); dotGroup.appendChild(star);
       const shine=document.createElementNS("http://www.w3.org/2000/svg","polygon");
-      shine.setAttribute("points",starPoints(x-2.4,y-3.2,5.2,2.1)); shine.setAttribute("fill","#fff1a8"); shine.setAttribute("opacity",".9"); dotGroup.appendChild(shine);
+      shine.setAttribute("points",starPoints(x-3.0,y-4.0,6.4,2.6)); shine.setAttribute("fill","#fff1a8"); shine.setAttribute("opacity",".9"); dotGroup.appendChild(shine);
+      addCurrentLabel(dotGroup,x,y);
       return;
     }}
     const dot=document.createElementNS("http://www.w3.org/2000/svg","circle");
