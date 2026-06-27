@@ -437,14 +437,14 @@
     </section>
   </main>
 
-  <script src="./world-map-svg.js?v=20260627-no-fixed-globe-bands"></script>
-  <script src="./world-geo-data.js?v=20260627-no-fixed-globe-bands"></script>
+  <script src="./world-map-svg.js?v=20260627-globe-seam-grid"></script>
+  <script src="./world-geo-data.js?v=20260627-globe-seam-grid"></script>
   <script>
   (() => {
     const slot = document.getElementById('world-running-map-slot');
     if (!slot) return;
 
-    fetch('./index.html?v=20260627-no-fixed-globe-bands')
+    fetch('./index.html?v=20260627-globe-seam-grid')
       .then(response => {
         if (!response.ok) throw new Error('Could not load map renderer');
         return response.text();

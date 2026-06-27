@@ -1585,7 +1585,7 @@
     const phi = lat * rad;
     const phi0 = centerLat * rad;
     const cosc = Math.sin(phi0) * Math.sin(phi) + Math.cos(phi0) * Math.cos(phi) * Math.cos(lambda);
-    if (cosc < -0.015) return null;
+    if (cosc <= 0) return null;
     return {
       x: cx + r * Math.cos(phi) * Math.sin(lambda),
       y: cy - r * (Math.cos(phi0) * Math.sin(phi) - Math.sin(phi0) * Math.cos(phi) * Math.cos(lambda)),
@@ -1808,30 +1808,28 @@
     });
   }
 
-  function drawCanvasFeature(ctx, feature, projector) {
+  function drawCanvasFeature(ctx, feature, projector, options = {}) {
     let drew = false;
     feature.polygons.forEach(poly => {
       poly.forEach(ring => {
-        let open = false;
-        let count = 0;
+        const points = [];
+        let clipped = false;
         ring.forEach(([lon, lat]) => {
           const p = projector(lat, lon);
           if (!p) {
-            if (open && count > 2) ctx.closePath();
-            open = false;
-            count = 0;
+            clipped = true;
             return;
           }
-          if (!open) {
-            ctx.moveTo(p.x, p.y);
-            open = true;
-          } else {
-            ctx.lineTo(p.x, p.y);
-          }
-          count += 1;
-          drew = true;
+          points.push(p);
         });
-        if (open && count > 2) ctx.closePath();
+        if (clipped && options.skipClippedRings) return;
+        if (points.length <= 2) return;
+        points.forEach((p, i) => {
+          if (i === 0) ctx.moveTo(p.x, p.y);
+          else ctx.lineTo(p.x, p.y);
+        });
+        ctx.closePath();
+        drew = true;
       });
     });
     return drew;
@@ -1920,23 +1918,24 @@
       ctx.fillStyle = ocean;
       ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
 
-      ctx.strokeStyle = 'rgba(28,64,84,.10)';
-      ctx.lineWidth = .7;
-      for (let lon = -180; lon <= 180; lon += 45) {
+      ctx.strokeStyle = 'rgba(28,64,84,.18)';
+      ctx.lineWidth = .72;
+      for (let lon = -180; lon <= 180; lon += 30) {
         ctx.beginPath();
-        for (let lat = -80; lat <= 80; lat += 4) {
+        let started = false;
+        for (let lat = -80; lat <= 80; lat += 3) {
           const p = orthoProject(lat, lon, cx, cy, r, centerLon, centerLat);
-          if (!p) continue;
-          if (lat === -80) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+          if (!p) { started = false; continue; }
+          if (!started) { ctx.moveTo(p.x, p.y); started = true; } else { ctx.lineTo(p.x, p.y); }
         }
         ctx.stroke();
       }
-      ctx.strokeStyle = 'rgba(240,249,248,.06)';
-      ctx.lineWidth = .65;
-      for (let lat = -60; lat <= 60; lat += 30) {
+      ctx.strokeStyle = 'rgba(230,245,246,.16)';
+      ctx.lineWidth = .68;
+      for (let lat = -60; lat <= 75; lat += 15) {
         ctx.beginPath();
         let started = false;
-        for (let lon = -180; lon <= 180; lon += 4) {
+        for (let lon = -180; lon <= 180; lon += 3) {
           const p = orthoProject(lat, lon, cx, cy, r, centerLon, centerLat);
           if (!p) { started = false; continue; }
           if (!started) { ctx.moveTo(p.x, p.y); started = true; } else { ctx.lineTo(p.x, p.y); }
@@ -1948,7 +1947,7 @@
         const id = featureId(feature);
         const runColor = geoRunColor(id);
         ctx.beginPath();
-        const drew = drawCanvasFeature(ctx, feature, (lat, lon) => orthoProject(lat, lon, cx, cy, r, centerLon, centerLat));
+        const drew = drawCanvasFeature(ctx, feature, (lat, lon) => orthoProject(lat, lon, cx, cy, r, centerLon, centerLat), { skipClippedRings:true });
         if (!drew) return;
         ctx.fillStyle = runColor || (id === 'ata' ? '#f5f8f8' : '#76a96b');
         ctx.globalAlpha = runColor ? .98 : .78;
