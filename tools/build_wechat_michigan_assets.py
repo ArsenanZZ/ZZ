@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 import subprocess
 from pathlib import Path
@@ -11,16 +12,6 @@ TMP_HTML = ROOT / "tmp" / "wechat-run50-map-michigan-21.html"
 CHROME = Path(r"C:\Program Files\Google\Chrome\Application\chrome.exe")
 
 STATE_PATHS = {
-    "KY": ["Georgia_1_", "Kentucky"],
-    "OH": ["Ohio", "West_Virginia_1_"],
-    "NY": ["Rhode_Island_1_", "New_York"],
-    "CA": ["Arizona"],
-    "IN": ["Indiana", "Ohio_1_"],
-    "HI": ["ocean_2_"],
-    "GA": ["Georgia", "Florida_1_"],
-    "CO": ["Texas_1_", "Colorado"],
-    "AK": ["ocean_3_"],
-    "MO": ["Iowa_1_", "Missouri"],
     "IL": ["Illinois", "Kentucky_1_"],
     "TN": ["Alabama"],
     "WV": ["West_Virginia", "Virginia_1_"],
@@ -29,9 +20,48 @@ STATE_PATHS = {
     "NC": ["Maryland"],
     "AR": ["Tennessee", "Arkansas"],
     "SC": ["South_Carolina", "Indiana_1_"],
+    "KY": ["Georgia_1_", "Kentucky"],
     "PA": ["Pensilvania", "New_Jersey_1_"],
     "WI": ["Wisconsin", "Illinois_1_"],
     "MI": ["Michigan", "Ocean"],
+    "NH": ["New_Hampshire", "Maine_1_"],
+    "LA": ["Arkansas_1_"],
+    "VA": ["North_Carolina_1_", "Virginia"],
+    "ND": ["South_Dakota_1_", "North_Dakota"],
+    "KS": ["Kansas", "North_Dakota_1_"],
+    "VT": ["New_Hampshire_1_", "Vermont"],
+    "AL": ["alabama", "Missispi"],
+    "AZ": ["Arizona_1_", "Utah"],
+    "DE": ["Massachusets_1_"],
+    "MN": ["Minnesotta", "Wisconsin_1_"],
+    "CT": ["New_York_2_", "Connecticut"],
+    "RI": ["Delaware", "Rhode_Island"],
+    "MA": ["Vermont_1_", "Massachusets"],
+    "ME": ["Michigan_1_", "Maine"],
+    "OH": ["Ohio", "West_Virginia_1_"],
+    "NY": ["Rhode_Island_1_", "New_York"],
+    "CA": ["Arizona"],
+    "IN": ["Indiana", "Ohio_1_"],
+    "GA": ["Georgia", "Florida_1_"],
+    "CO": ["Texas_1_", "Colorado"],
+    "MO": ["Iowa_1_", "Missouri"],
+    "HI": ["ocean_2_"],
+    "AK": ["ocean_3_"],
+    "ID": ["Idaho", "Wyoming"],
+    "IA": ["Minessota", "Iowa"],
+    "MS": ["Mossouri", "Missisppi"],
+    "MT": ["Washington_1_", "Montana"],
+    "NE": ["Nebraska", "Louisiana_1_"],
+    "NV": ["Nevada_41_", "California"],
+    "NJ": ["New_Jersey", "Connecticut_1_"],
+    "NM": ["Idaho_1_", "New_Mexico_1_"],
+    "OK": ["Oklahoma", "Colorado_1_"],
+    "OR": ["Nevada_1_", "Oregon_41_"],
+    "SD": ["South_Dakota", "Nebraska_1_"],
+    "UT": ["Utah_1_", "New_Mexico"],
+    "WY": ["Montana_1_", "Wyoming_1_"],
+    "MD": ["Pensilvania_1_", "Oregon_1_"],
+    "WA": ["Oklahoma_1_"],
 }
 
 RUN50_FIRST_21 = [
@@ -58,9 +88,55 @@ RUN50_FIRST_21 = [
     "MI",
 ]
 
+COLORS = {
+    "AK": "#d4614a",
+    "AR": "#5ca860",
+    "CA": "#d4614a",
+    "CO": "#9068c0",
+    "FL": "#d4614a",
+    "GA": "#e89838",
+    "HI": "#9068c0",
+    "IL": "#9068c0",
+    "IN": "#e89838",
+    "KY": "#98c038",
+    "MI": "#3898a8",
+    "MO": "#e89838",
+    "NC": "#98c038",
+    "NY": "#e89838",
+    "OH": "#5ca860",
+    "PA": "#d4614a",
+    "SC": "#9068c0",
+    "TN": "#3898a8",
+    "TX": "#9068c0",
+    "WI": "#5ca860",
+    "WV": "#e89838",
+}
 
-def css_ids(ids: list[str]) -> str:
-    return ",".join(f"#us-map-master #map_{item}" for item in ids)
+CITY_DOTS = [
+    ("KY", "Louisville", 38.2527, -85.7585),
+    ("KY", "Williamson", 37.6740, -82.2776),
+    ("OH", "Cleveland", 41.4993, -81.6944),
+    ("NY", "New York City", 40.7128, -74.0060),
+    ("CA", "San Francisco", 37.7749, -122.4194),
+    ("IN", "Indianapolis", 39.7684, -86.1581),
+    ("HI", "Honolulu", 21.3069, -157.8583),
+    ("GA", "Atlanta", 33.7490, -84.3880),
+    ("CO", "Denver", 39.7392, -104.9903),
+    ("AK", "Anchorage", 61.2181, -149.9003),
+    ("MO", "St. Joseph", 39.7675, -94.8466),
+    ("IL", "Chicago", 41.8781, -87.6298),
+    ("TN", "Nashville", 36.1627, -86.7816),
+    ("WV", "Huntington", 38.4192, -82.4453),
+    ("TX", "San Antonio", 29.4241, -98.4936),
+    ("FL", "Miami", 25.7617, -80.1918),
+    ("FL", "Orlando", 28.5383, -81.3792),
+    ("NC", "Oak Island", 33.9174, -78.1575),
+    ("AR", "Little Rock", 34.7465, -92.2896),
+    ("SC", "Greer", 34.9387, -82.2271),
+    ("PA", "Pittsburgh", 40.4406, -79.9959),
+    ("WI", "Green Bay", 44.5133, -88.0133),
+    ("MI", "Grand Rapids", 42.9634, -85.6681),
+]
 
 
 def read_us_svg() -> str:
@@ -71,140 +147,225 @@ def read_us_svg() -> str:
     return match.group(1)
 
 
+def js_literal(value: object) -> str:
+    return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+
+
 def build_html() -> str:
     svg = read_us_svg()
-    completed_paths = [path for abbr in RUN50_FIRST_21 for path in STATE_PATHS[abbr]]
-    michigan_paths = STATE_PATHS["MI"]
-    completed_selector = css_ids(completed_paths)
-    michigan_selector = css_ids(michigan_paths)
-    grand_rapids_x, grand_rapids_y = 1170.64, 387.84
+    state_path_ids = sorted({path for paths in STATE_PATHS.values() for path in paths})
+    hollow_cleanup = [
+        "Arizona",
+        "Michigan",
+        "Oklahoma_1_",
+        "Alabama",
+        "Maryland",
+        "ocean_3_",
+        "Kansas_1_",
+        "Arkansas_1_",
+        "Illinois",
+        "West_Virginia",
+        "South_Carolina",
+        "Pensilvania",
+        "Wisconsin",
+        "Vermont",
+        "New_Hampshire",
+        "Kansas",
+        "alabama",
+        "Arizona_1_",
+        "Minnesotta",
+        "Ohio",
+        "New_York",
+        "Indiana",
+        "Georgia",
+        "Alaska_1_",
+        "Idaho",
+        "Nebraska",
+        "Nevada_41_",
+        "Oklahoma",
+        "South_Dakota",
+        "Utah_1_",
+        "Pensilvania_1_",
+    ]
 
-    css = f"""
-      html, body {{
-        width: 1200px;
-        height: 760px;
-        margin: 0;
-        overflow: hidden;
-        background: #f6fbfe;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      }}
-      .canvas {{
-        width: 1200px;
-        height: 760px;
-        box-sizing: border-box;
-        padding: 46px 58px 38px;
-        background:
-          linear-gradient(180deg, rgba(255,255,255,.96), rgba(239,249,253,.98));
-      }}
-      .eyebrow {{
-        margin: 0 0 8px;
-        color: #2d6f9f;
-        font-size: 24px;
-        line-height: 1.2;
-        font-weight: 900;
-        letter-spacing: 3px;
-      }}
-      .title {{
-        margin: 0;
-        color: #12283b;
-        font-size: 48px;
-        line-height: 1.12;
-        font-weight: 900;
-        letter-spacing: 0;
-      }}
-      .subtitle {{
-        margin: 13px 0 18px;
-        color: #647887;
-        font-size: 22px;
-        line-height: 1.35;
-        font-weight: 600;
-        letter-spacing: 0;
-      }}
-      .map-wrap {{
-        position: relative;
-        width: 100%;
-        height: 505px;
-        border-top: 1px solid #d6e7ef;
-        padding-top: 14px;
-      }}
-      svg {{
-        width: 100%;
-        height: 100%;
-        display: block;
-      }}
-      #us-map-master path[id^="map_"] {{
-        fill: #dce8ef !important;
-        stroke: #ffffff !important;
-        stroke-width: 1.25 !important;
-      }}
-      #map_USA {{
-        fill: #eaf3f8 !important;
-        stroke: none !important;
-      }}
-      {completed_selector} {{
-        fill: #69abc9 !important;
-        stroke: #ffffff !important;
-        stroke-width: 1.45 !important;
-        opacity: 1 !important;
-      }}
-      {michigan_selector} {{
-        fill: #1f6f9e !important;
-        stroke: #ffffff !important;
-        stroke-width: 1.75 !important;
-        opacity: 1 !important;
-      }}
-      .legend {{
-        position: absolute;
-        left: 18px;
-        bottom: 16px;
-        display: flex;
-        gap: 22px;
-        align-items: center;
-        color: #5d7080;
-        font-size: 18px;
-        font-weight: 700;
-      }}
-      .swatch {{
-        display: inline-block;
-        width: 20px;
-        height: 12px;
-        margin-right: 8px;
-        border-radius: 999px;
-        vertical-align: 1px;
-      }}
-    """
+    script = f"""
+      const STATE_PATHS = {js_literal(STATE_PATHS)};
+      const RUN_STATES = {js_literal(RUN50_FIRST_21)};
+      const COLORS = {js_literal(COLORS)};
+      const STATE_PATH_IDS = {js_literal(state_path_ids)};
+      const HOLLOW_CLEANUP = {js_literal(hollow_cleanup)};
+      const CITY_DOTS = {js_literal(CITY_DOTS)};
+      const MUTED = "#dedad3";
 
-    overlay = f"""
-      <g id="wechat-mi-callout">
-        <circle cx="{grand_rapids_x}" cy="{grand_rapids_y}" r="19" fill="rgba(45,111,159,.22)" />
-        <circle cx="{grand_rapids_x}" cy="{grand_rapids_y}" r="8.5" fill="#d4a669" stroke="#ffffff" stroke-width="4" />
-        <path d="M1195 374 C1243 342 1290 326 1338 318" fill="none" stroke="#2d6f9f" stroke-width="4" stroke-linecap="round" />
-        <rect x="1346" y="268" width="248" height="84" rx="18" fill="#ffffff" stroke="#c8dce8" stroke-width="2" />
-        <text x="1372" y="303" fill="#2d6f9f" font-size="24" font-weight="900">#21 MICHIGAN</text>
-        <text x="1372" y="332" fill="#667a89" font-size="18" font-weight="700">Grand Rapids · Aug 2024</text>
-      </g>
+      function projectAlbers(lat, lon) {{
+        const lat0 = 37.5 * Math.PI / 180;
+        const lon0 = -96 * Math.PI / 180;
+        const lat1 = 29.5 * Math.PI / 180;
+        const lat2 = 45.5 * Math.PI / 180;
+        const n = 0.5 * (Math.sin(lat1) + Math.sin(lat2));
+        const C = Math.cos(lat1) * Math.cos(lat1) + 2 * n * Math.sin(lat1);
+        const rho0 = Math.sqrt(C - 2 * n * Math.sin(lat0)) / n;
+        const latRad = lat * Math.PI / 180;
+        const lonRad = lon * Math.PI / 180;
+        const theta = n * (lonRad - lon0);
+        const rho = Math.sqrt(C - 2 * n * Math.sin(latRad)) / n;
+        return {{
+          x: 1798.50 * rho * Math.sin(theta) + 935.11,
+          y: -1851.29 * (rho0 - rho * Math.cos(theta)) + 579.07
+        }};
+      }}
+
+      function splitPath(d) {{
+        const parts = [];
+        let last = 0;
+        for (let i = 1; i < d.length; i++) {{
+          if (d[i] === "M" && /\\s/.test(d[i - 1])) {{
+            parts.push(d.slice(last, i).trim());
+            last = i;
+          }}
+        }}
+        parts.push(d.slice(last).trim());
+        return parts;
+      }}
+
+      function bbox(part) {{
+        const coords = part.match(/([\\d.]+),([\\d.]+)/g) || [];
+        if (!coords.length) return {{ xMin: 0, xMax: 0, yMin: 0, yMax: 0, area: 0 }};
+        const xs = coords.map(c => parseFloat(c.split(",")[0]));
+        const ys = coords.map(c => parseFloat(c.split(",")[1]));
+        const xMin = Math.min(...xs), xMax = Math.max(...xs), yMin = Math.min(...ys), yMax = Math.max(...ys);
+        return {{ xMin, xMax, yMin, yMax, area: (xMax - xMin) * (yMax - yMin) }};
+      }}
+
+      function removeNestedSubpaths(id) {{
+        const el = document.getElementById("map_" + id);
+        if (!el) return;
+        const d = el.getAttribute("d") || "";
+        const parts = splitPath(d);
+        const boxes = parts.map(bbox);
+        const maxArea = Math.max(...boxes.map(b => b.area));
+        if (!isFinite(maxArea) || maxArea <= 0) return;
+        el.removeAttribute("fill-rule");
+        el.setAttribute("d", parts.filter((_, i) => {{
+          const b = boxes[i];
+          if (b.area < maxArea * 0.05) return true;
+          return !boxes.some((o, j) => j !== i && b.xMin >= o.xMin && b.xMax <= o.xMax && b.yMin >= o.yMin && b.yMax <= o.yMax);
+        }}).join(" "));
+      }}
+
+      function renderMap() {{
+        const slot = document.getElementById("map-slot");
+        slot.innerHTML = {js_literal(svg)};
+        const master = document.getElementById("us-map-master");
+        master.style.width = "100%";
+        master.style.height = "100%";
+        master.style.display = "block";
+
+        master.querySelectorAll("path").forEach(path => {{
+          const id = path.id.replace("map_", "");
+          if (!STATE_PATH_IDS.includes(id)) {{
+            path.style.pointerEvents = "none";
+            if (id !== "USA" && id !== "White" && id !== "exterior_2_") {{
+              const fill = path.getAttribute("fill") || "";
+              if (/^#[0-9a-fA-F]{{6}}$/.test(fill)) {{
+                const r = parseInt(fill.slice(1, 3), 16), g = parseInt(fill.slice(3, 5), 16), b = parseInt(fill.slice(5, 7), 16);
+                if (r * .299 + g * .587 + b * .114 >= 60) path.style.fill = "none";
+              }}
+            }}
+          }}
+        }});
+
+        HOLLOW_CLEANUP.forEach(removeNestedSubpaths);
+        STATE_PATH_IDS.forEach(id => {{
+          const el = document.getElementById("map_" + id);
+          if (el) el.style.fill = MUTED;
+        }});
+        RUN_STATES.forEach(abbr => {{
+          (STATE_PATHS[abbr] || []).forEach(id => {{
+            const el = document.getElementById("map_" + id);
+            if (el) {{
+              el.style.fill = COLORS[abbr] || "#3898a8";
+              el.classList.add("run-state");
+            }}
+          }});
+        }});
+
+        const alaskaFrame = document.getElementById("map_exterior_2_");
+        const hawaiiFrame = document.getElementById("map_hawaii_1_");
+        if (alaskaFrame && hawaiiFrame) alaskaFrame.style.fill = getComputedStyle(hawaiiFrame).fill;
+
+        const dotGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        dotGroup.id = "city-dots-group";
+        master.appendChild(dotGroup);
+        CITY_DOTS.forEach(([abbr, city, lat, lon]) => {{
+          let x, y;
+          if (abbr === "HI") {{
+            x = 570.0; y = 933.0;
+          }} else if (abbr === "AK") {{
+            x = 275.0; y = 917.0;
+          }} else {{
+            const p = projectAlbers(lat, lon);
+            x = p.x; y = p.y;
+          }}
+          const glow = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          glow.setAttribute("cx", x);
+          glow.setAttribute("cy", y);
+          glow.setAttribute("r", 11);
+          glow.setAttribute("fill", "rgba(255, 59, 48, 0.35)");
+          dotGroup.appendChild(glow);
+          const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          dot.setAttribute("cx", x);
+          dot.setAttribute("cy", y);
+          dot.setAttribute("r", 4.5);
+          dot.setAttribute("fill", "#ff3b30");
+          dot.setAttribute("stroke", "#ffffff");
+          dot.setAttribute("stroke-width", "1.5");
+          dotGroup.appendChild(dot);
+        }});
+      }}
+
+      renderMap();
     """
-    svg = svg.replace("</svg>", overlay + "</svg>")
 
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<style>{css}</style>
+<style>
+  html, body {{
+    width: 1200px;
+    height: 704px;
+    margin: 0;
+    overflow: hidden;
+    background: #ffffff;
+  }}
+  .frame {{
+    width: 1200px;
+    height: 704px;
+    box-sizing: border-box;
+    padding: 12px;
+    background: #ffffff;
+  }}
+  #map-slot {{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1722 / 989;
+    background: #f4f6f7;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #dde5ec;
+    box-sizing: border-box;
+  }}
+  #us-map-master path {{
+    transition: fill .2s ease, opacity .2s ease, stroke .2s ease;
+  }}
+</style>
 </head>
 <body>
-  <main class="canvas">
-    <p class="eyebrow">RUN50 MAP · STATE 21</p>
-    <h1 class="title">Michigan Lights Up the Map</h1>
-    <p class="subtitle">21 states completed from Kentucky to Grand Rapids</p>
-    <section class="map-wrap">
-      {svg}
-      <div class="legend">
-        <span><span class="swatch" style="background:#69abc9"></span>Completed before/through #21</span>
-        <span><span class="swatch" style="background:#1f6f9e"></span>Michigan</span>
-      </div>
-    </section>
+  <main class="frame">
+    <section id="map-slot"></section>
   </main>
+  <script>{script}</script>
 </body>
 </html>
 """
@@ -222,7 +383,7 @@ def main() -> None:
             "--disable-gpu",
             "--hide-scrollbars",
             "--allow-file-access-from-files",
-            "--window-size=1200,760",
+            "--window-size=1200,704",
             f"--screenshot={OUT}",
             TMP_HTML.resolve().as_uri(),
         ],
