@@ -491,14 +491,14 @@
     </section>
   </main>
 
-  <script src="./world-map-svg.js?v=20260627-flat-panzoom-details"></script>
-  <script src="./world-geo-data.js?v=20260627-flat-panzoom-details"></script>
+  <script src="./world-map-svg.js?v=20260627-flat-panzoom-details-tuned"></script>
+  <script src="./world-geo-data.js?v=20260627-flat-panzoom-details-tuned"></script>
   <script>
   (() => {
     const slot = document.getElementById('world-running-map-slot');
     if (!slot) return;
 
-    fetch('./index.html?v=20260627-flat-panzoom-details')
+    fetch('./index.html?v=20260627-flat-panzoom-details-tuned')
       .then(response => {
         if (!response.ok) throw new Error('Could not load map renderer');
         return response.text();

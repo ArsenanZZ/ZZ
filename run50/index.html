@@ -1415,21 +1415,21 @@
   function addFlatMapDetailLabels(svg) {
     const layer = addSvgEl(svg, 'g', { id:'world-flat-detail-labels', 'pointer-events':'none' });
     [
-      ['CANADA', 60, -112, 8, 1.55],
-      ['UNITED STATES', 38, -98, 8, 1.55],
-      ['MEXICO', 23, -102, 7, 1.55],
-      ['CHINA', 34, 104, 8, 1.55],
-      ['JAPAN', 38, 138, 6, 1.85],
-      ['KOREA', 37, 128, 5.5, 2.1],
-      ['THAILAND', 15, 101, 5.5, 2.1],
-      ['ITALY', 42.5, 12.5, 5.8, 2.0],
-      ['SINGAPORE', 1.3, 104, 4.8, 2.35],
-      ['HONG KONG', 22.2, 115.2, 4.8, 2.35],
-      ['AUSTRALIA', -25, 134, 7, 1.75],
-      ['GREENLAND', 73, -42, 6, 1.9],
-      ['RUSSIA', 61, 92, 8, 1.7],
-      ['BRAZIL', -10, -53, 7, 1.9],
-      ['SOUTH AFRICA', -29, 24, 5.8, 2.05]
+      ['CANADA', 60, -112, 8, 1.35],
+      ['UNITED STATES', 38, -98, 8, 1.35],
+      ['MEXICO', 23, -102, 7, 1.35],
+      ['CHINA', 34, 104, 8, 1.35],
+      ['JAPAN', 38, 138, 6, 1.55],
+      ['KOREA', 37, 128, 5.5, 1.95],
+      ['THAILAND', 15, 101, 5.5, 1.95],
+      ['ITALY', 42.5, 12.5, 5.8, 1.55],
+      ['SINGAPORE', 1.3, 104, 4.8, 2.20],
+      ['HONG KONG', 22.2, 115.2, 4.8, 2.20],
+      ['AUSTRALIA', -25, 134, 7, 1.45],
+      ['GREENLAND', 73, -42, 6, 1.55],
+      ['RUSSIA', 61, 92, 8, 1.45],
+      ['BRAZIL', -10, -53, 7, 1.55],
+      ['SOUTH AFRICA', -29, 24, 5.8, 1.90]
     ].forEach(([text, lat, lon, size, minZoom]) => {
       const p = project(lat, lon);
       addMapText(svg, layer, text, p.x, p.y, {
