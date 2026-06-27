@@ -5,127 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Run50 WeChat Editions</title>
   <style>
-    :root {
-      --bg: #edf3f7;
-      --paper: #ffffff;
-      --ink: #17212b;
-      --muted: #5e6c78;
-      --line: #d9e4ec;
-      --blue: #2d6f9f;
-      --gold: #b98735;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
-    }
-    .tabs {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 18px 20px;
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 800;
-    }
-    .tabs a { color: #435569; text-decoration: none; }
-    .tabs a.active { color: var(--blue); }
-    main {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 32px 20px 64px;
-    }
-    .hero {
-      padding: 26px 0 24px;
-      border-top: 4px solid var(--blue);
-      border-bottom: 1px solid var(--line);
-    }
-    .kicker {
-      margin: 0 0 10px;
-      font-size: 12px;
-      letter-spacing: 2px;
-      color: var(--blue);
-      font-weight: 900;
-    }
-    h1 {
-      margin: 0;
-      font-size: clamp(32px, 6vw, 56px);
-      line-height: 1.05;
-      letter-spacing: 0;
-    }
-    .dek {
-      max-width: 720px;
-      margin: 16px 0 0;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.8;
-    }
-    .grid {
-      margin-top: 30px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      display: block;
-      overflow: hidden;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      text-decoration: none;
-      color: inherit;
-      box-shadow: 0 16px 40px rgba(31, 51, 70, 0.08);
-    }
-    .cover {
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-      display: block;
-      background: #dbe7ef;
-    }
-    .body { padding: 18px 18px 20px; }
-    .meta {
-      margin: 0 0 8px;
-      color: var(--gold);
-      font-size: 12px;
-      letter-spacing: 1.1px;
-      font-weight: 900;
-    }
-    h2 {
-      margin: 0;
-      font-size: 22px;
-      line-height: 1.35;
-      letter-spacing: 0;
-    }
-    .summary {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.75;
-    }
-    .button {
-      display: inline-block;
-      margin-top: 16px;
-      padding-bottom: 3px;
-      color: var(--blue);
-      border-bottom: 2px solid var(--gold);
-      font-size: 14px;
-      font-weight: 900;
-    }
-    .note {
-      margin: 28px 0 0;
-      padding: 16px 18px;
-      background: rgba(255,255,255,0.72);
-      border-left: 4px solid var(--gold);
-      color: var(--muted);
-      line-height: 1.75;
-      border-radius: 7px;
-      font-size: 14px;
-    }
+    :root { --bg:#edf3f7; --paper:#fff; --ink:#17212b; --muted:#5e6c78; --line:#d9e4ec; --blue:#2d6f9f; --gold:#b98735; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif; }
+    .tabs { max-width:1080px; margin:0 auto; padding:18px 20px; display:flex; gap:18px; flex-wrap:wrap; justify-content:center; font-size:14px; font-weight:800; }
+    .tabs a { color:#435569; text-decoration:none; } .tabs a.active { color:var(--blue); }
+    main { max-width:1160px; margin:0 auto; padding:32px 20px 64px; }
+    .hero { padding:26px 0 24px; border-top:4px solid var(--blue); border-bottom:1px solid var(--line); }
+    .kicker { margin:0 0 10px; font-size:12px; letter-spacing:2px; color:var(--blue); font-weight:900; }
+    h1 { margin:0; font-size:clamp(32px,6vw,56px); line-height:1.05; letter-spacing:0; }
+    .dek { max-width:760px; margin:16px 0 0; color:var(--muted); font-size:17px; line-height:1.8; }
+    .grid { margin-top:30px; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+    .card { display:block; overflow:hidden; background:var(--paper); border:1px solid var(--line); border-radius:8px; text-decoration:none; color:inherit; box-shadow:0 16px 40px rgba(31,51,70,.08); }
+    .cover { width:100%; aspect-ratio:16/10; object-fit:cover; display:block; background:#dbe7ef; }
+    .body { padding:18px 18px 20px; }
+    .meta { margin:0 0 8px; color:var(--gold); font-size:12px; letter-spacing:1.1px; font-weight:900; }
+    h2 { margin:0; font-size:21px; line-height:1.38; letter-spacing:0; }
+    .place { margin:10px 0 0; color:#425466; font-size:13px; font-weight:800; }
+    .summary { margin:10px 0 0; color:var(--muted); font-size:15px; line-height:1.72; }
+    .button { display:inline-block; margin-top:16px; padding-bottom:3px; color:var(--blue); border-bottom:2px solid var(--gold); font-size:14px; font-weight:900; }
+    .note { margin:28px 0 0; padding:16px 18px; background:rgba(255,255,255,.72); border-left:4px solid var(--gold); color:var(--muted); line-height:1.75; border-radius:7px; font-size:14px; }
   </style>
 </head>
 <body>
@@ -136,26 +35,125 @@
     <a href="./" class="active">WeChat</a>
     <a href="../facebook/">Facebook</a>
   </nav>
-
   <main>
     <section class="hero">
       <p class="kicker">RUN50 WECHAT EDITIONS</p>
       <h1>微信公众号版</h1>
       <p class="dek">为公众号复制和发布准备的杂志版文章：Vlog 开场、图文穿插、精致图注、适合手机阅读的节奏。</p>
     </section>
-
     <section class="grid" aria-label="WeChat editions">
-      <a class="card" href="michigan-meadows-marathon-modern-rail.html?v=20260627-interleave-a9df42d">
-        <img class="cover" src="../../assets/cover-medal-michigan-meadows-marathon.jpg" alt="Run50 Michigan WeChat cover">
+
+      <a class="card" href="michigan-meadows-marathon-modern-rail.html?v=20260627-wechat-batch">
+        <img class="cover" src="../../assets/cover-medal-michigan-meadows-marathon.jpg" alt="Run50 #第21州 密歇根 梅多马拉松 在大急流城数圈，6次穿越千禧公园！奖牌封面">
         <div class="body">
           <p class="meta">RUN50 DISPATCH · MICHIGAN</p>
-          <h2>第21州 · 密歇根 · Meadow Marathon</h2>
-          <p class="summary">在大急流城数圈，6次穿越千禧公园。Vlog 开场、奖牌封面、21州地图和图文穿插版已经整理好。</p>
+          <h2>Run50 #第21州 密歇根 梅多马拉松 在大急流城数圈，6次穿越千禧公园！</h2>
+          <p class="place">密歇根大急流城 · 2024.08.25</p>
+          <p class="summary">在大急流城千禧公园跑六圈全马：Parkrun 开头、车祸小插曲、Grand River 日出、六道轮回和 4 小时 44 分的三味真火。</p>
+          <span class="button">Open WeChat Edition →</span>
+        </div>
+      </a>
+      <a class="card" href="new-hampshire-clarence-demar-marathon-modern-rail.html?v=20260627-wechat-batch">
+        <img class="cover" src="../../assets/cover-medal-new-hampshire-clarence-demar-marathon.jpg" alt="Run50 #第22州｜新罕布什尔：克拉伦斯·德马尔马拉松｜跑进新英格兰小镇，穿越秋色森林与墓地！奖牌封面">
+        <div class="body">
+          <p class="meta">RUN50 DISPATCH · NEW HAMPSHIRE</p>
+          <h2>Run50 #第22州｜新罕布什尔：克拉伦斯·德马尔马拉松｜跑进新英格兰小镇，穿越秋色森林与墓地！</h2>
+          <p class="place">新罕布什尔基恩 · 2024.09.28</p>
+          <p class="summary">从尼亚加拉瀑布一路开进新英格兰秋色，在基恩的小镇清晨、山林赛道和校园终点里完成第22州。</p>
+          <span class="button">Open WeChat Edition →</span>
+        </div>
+      </a>
+      <a class="card" href="louisville-marathon-2024-modern-rail.html?v=20260627-wechat-batch">
+        <img class="cover" src="../../assets/cover-medal-louisville-marathon-2024.jpg" alt="Run50 #第1州番外｜肯塔基#3：路易斯维尔马拉松｜博士收官战，送我一朵小红花奖牌封面">
+        <div class="body">
+          <p class="meta">RUN50 DISPATCH · KENTUCKY</p>
+          <h2>Run50 #第1州番外｜肯塔基#3：路易斯维尔马拉松｜博士收官战，送我一朵小红花</h2>
+          <p class="place">肯塔基路易斯维尔 · 2024.11.03</p>
+          <p class="summary">回到美国跑马起点，在 Floyds Fork 的秋色里把博士生涯跑成一个完整的 loop。</p>
+          <span class="button">Open WeChat Edition →</span>
+        </div>
+      </a>
+      <a class="card" href="louisiana-marathon-modern-rail.html?v=20260627-wechat-batch">
+        <img class="cover" src="../../assets/cover-medal-louisiana-marathon.jpg" alt="Run50 #第23州｜路易斯安那：巴吞鲁日马拉松｜法兰西底色，2025 第一跑奖牌封面">
+        <div class="body">
+          <p class="meta">RUN50 DISPATCH · LOUISIANA</p>
+          <h2>Run50 #第23州｜路易斯安那：巴吞鲁日马拉松｜法兰西底色，2025 第一跑</h2>
+          <p class="place">路易斯安那巴吞鲁日 · 2025.01.19</p>
+          <p class="summary">新年第一跑，从达拉斯转机到新奥尔良，再开进巴吞鲁日，把南方湿地、LSU 紫金色和 Finish Fest 串在一起。</p>
+          <span class="button">Open WeChat Edition →</span>
+        </div>
+      </a>
+      <a class="card" href="blue-ridge-marathon-modern-rail.html?v=20260627-wechat-batch">
+        <img class="cover" src="../../assets/cover-medal-blue-ridge-marathon.jpg" alt="Run50 #第24州｜弗吉尼亚：蓝岭山马拉松｜全美最虐赛道，3,564英尺的暴力美学奖牌封面">
+        <div class="body">
+          <p class="meta">RUN50 DISPATCH · VIRGINIA</p>
+          <h2>Run50 #第24州｜弗吉尼亚：蓝岭山马拉松｜全美最虐赛道，3,564英尺的暴力美学</h2>
+          <p class="place">弗吉尼亚罗阿诺克 · 2025.04.12</p>
+          <p class="summary">America&#x27;s Toughest Road Marathon，把马拉松跑成登山赛，也把蓝岭山脉的硬派风光跑进腿里。</p>
+          <span class="button">Open WeChat Edition →</span>
+        </div>
+      </a>
+      <a class="card" href="kentucky-derby-marathon-2025-modern-rail.html?v=20260627-wechat-batch">
+        <img class="cover" src="../../assets/cover-medal-kentucky-derby-marathon-2025.jpg" alt="Run50 #第1州番外｜肯塔基#4：德比马拉松｜三个奖牌，一块蛋糕，我的第50场马拉松！奖牌封面">
+        <div class="body">
+          <p class="meta">RUN50 DISPATCH · KENTUCKY</p>
+          <h2>Run50 #第1州番外｜肯塔基#4：德比马拉松｜三个奖牌，一块蛋糕，我的第50场马拉松！</h2>
+          <p class="place">肯塔基路易斯维尔 · 2025.04.26</p>
+          <p class="summary">工作后的第一场德比马拉松，也是个人第50场全马：周五 5K、周六全马、三块奖牌和一块蛋糕。</p>
+          <span class="button">Open WeChat Edition →</span>
+        </div>
+      </a>
+      <a class="card" href="fargo-marathon-modern-rail.html?v=20260627-wechat-batch">
+        <img class="cover" src="../../assets/cover-medal-fargo-marathon.jpg" alt="Run50 #第25州｜北达科他州：法戈马拉松｜跑进美剧小镇，踏上50州跑马的“半程分水岭”！奖牌封面">
+        <div class="body">
+          <p class="meta">RUN50 DISPATCH · NORTH DAKOTA</p>
+          <h2>Run50 #第25州｜北达科他州：法戈马拉松｜跑进美剧小镇，踏上50州跑马的“半程分水岭”！</h2>
+          <p class="place">北达科他法戈 · 2025.05.31</p>
+          <p class="summary">从蓝草州一路开到大平原，在粉色天空、玉米地、热浪和破4里完成 Run50 半程分水岭。</p>
+          <span class="button">Open WeChat Edition →</span>
+        </div>
+      </a>
+      <a class="card" href="hell-on-gravel-marathon-modern-rail.html?v=20260627-wechat-batch">
+        <img class="cover" src="../../assets/cover-medal-hell-on-gravel-marathon.jpg" alt="Run50 #第26州｜堪萨斯：地狱砂石马拉松｜冠军就是冠军，哪怕全马只有十个人！奖牌封面">
+        <div class="body">
+          <p class="meta">RUN50 DISPATCH · KANSAS</p>
+          <h2>Run50 #第26州｜堪萨斯：地狱砂石马拉松｜冠军就是冠军，哪怕全马只有十个人！</h2>
+          <p class="place">堪萨斯埃尔多拉多 · 2025.06.28</p>
+          <p class="summary">风、牛群、麦田和砂石路，把一场小到只有十个人的全马跑成了冠军故事。</p>
+          <span class="button">Open WeChat Edition →</span>
+        </div>
+      </a>
+      <a class="card" href="mad-marathon-modern-rail.html?v=20260627-wechat-batch">
+        <img class="cover" src="../../assets/cover-medal-mad-marathon.jpg" alt="Run50 #第27州｜佛蒙特：疯河谷马拉松｜绿山之州的夏天，跑进乡村油画里奖牌封面">
+        <div class="body">
+          <p class="meta">RUN50 DISPATCH · VERMONT</p>
+          <h2>Run50 #第27州｜佛蒙特：疯河谷马拉松｜绿山之州的夏天，跑进乡村油画里</h2>
+          <p class="place">佛蒙特沃伦 · 2025.07.17</p>
+          <p class="summary">开进新英格兰腹地，在绿山、谷仓、国旗和乡村小路中，跑进一幅夏天的油画。</p>
+          <span class="button">Open WeChat Edition →</span>
+        </div>
+      </a>
+      <a class="card" href="rocket-city-marathon-modern-rail.html?v=20260627-wechat-batch">
+        <img class="cover" src="../../assets/cover-medal-rocket-city-marathon.jpg" alt="Run50 #第28州｜阿拉巴马：火箭城马拉松｜寒流来袭，南方跑马也得穿秋裤奖牌封面">
+        <div class="body">
+          <p class="meta">RUN50 DISPATCH · ALABAMA</p>
+          <h2>Run50 #第28州｜阿拉巴马：火箭城马拉松｜寒流来袭，南方跑马也得穿秋裤</h2>
+          <p class="place">阿拉巴马亨茨维尔 · 2025.12.12</p>
+          <p class="summary">在寒流里的火箭城起跑，把南方州、航天工业、大火箭和路村朋友们一起跑进 2025 收官。</p>
+          <span class="button">Open WeChat Edition →</span>
+        </div>
+      </a>
+      <a class="card" href="arizona-phoenix-marathon-modern-rail.html?v=20260627-wechat-batch">
+        <img class="cover" src="../../assets/cover-medal-arizona-phoenix-marathon.jpg" alt="Run50 #第29州｜亚利桑那：Buckeye Marathon｜沙漠清晨、巨人柱、Buckeye 机场终点，还有二〇二六第一场意外破四。奖牌封面">
+        <div class="body">
+          <p class="meta">RUN50 DISPATCH · ARIZONA</p>
+          <h2>Run50 #第29州｜亚利桑那：Buckeye Marathon｜沙漠清晨、巨人柱、Buckeye 机场终点，还有二〇二六第一场意外破四。</h2>
+          <p class="place">Run50 #第29州 · 2026</p>
+          <p class="summary">沙漠清晨、巨人柱、Buckeye 机场终点，还有二〇二六第一场意外破四。</p>
           <span class="button">Open WeChat Edition →</span>
         </div>
       </a>
     </section>
-
     <p class="note">后续每一篇公众号杂志版都会放在这里，方便从 Run50 首页直接进入。</p>
   </main>
 </body>
