@@ -161,6 +161,59 @@ def paired_blocks(blocks: list[Block]) -> list[Block | tuple[Block, str]]:
     return result
 
 
+def interleave_section_items(items: list[Block | tuple[Block, str]]) -> list[Block | tuple[Block, str]]:
+    paragraphs = [item for item in items if not isinstance(item, tuple) and item.kind == "p"]
+    figures = [item for item in items if isinstance(item, tuple)]
+    if not paragraphs or not figures:
+        return items
+
+    first_figure = next((i for i, item in enumerate(items) if isinstance(item, tuple)), -1)
+    last_paragraph = max(i for i, item in enumerate(items) if not isinstance(item, tuple) and item.kind == "p")
+    if first_figure < last_paragraph:
+        return items
+
+    woven: list[Block | tuple[Block, str]] = []
+    figure_index = 0
+    figure_count = len(figures)
+    paragraph_count = len(paragraphs)
+    for paragraph_index, paragraph in enumerate(paragraphs, start=1):
+        woven.append(paragraph)
+        target = round(paragraph_index * figure_count / paragraph_count)
+        while figure_index < target:
+            woven.append(figures[figure_index])
+            figure_index += 1
+    woven.extend(figures[figure_index:])
+    return woven
+
+
+def render_story_blocks(
+    blocks: list[Block],
+    heading_renderer,
+    paragraph_renderer,
+) -> list[str]:
+    rendered: list[str] = []
+    section_items: list[Block | tuple[Block, str]] = []
+    section_index = 0
+
+    def flush_section() -> None:
+        for item in interleave_section_items(section_items):
+            if isinstance(item, tuple):
+                rendered.append(modern_figure(item[0], item[1]))
+            elif item.kind == "p":
+                rendered.append(paragraph_renderer(item.text))
+
+    for item in paired_blocks(blocks):
+        if not isinstance(item, tuple) and item.kind in {"h2", "h3"}:
+            flush_section()
+            section_items.clear()
+            section_index += 1
+            rendered.append(heading_renderer(item.text, section_index))
+        else:
+            section_items.append(item)
+    flush_section()
+    return rendered
+
+
 def blocks_for_wechat(blocks: list[Block]) -> list[Block]:
     """Drop website-only engagement copy before rendering WeChat layouts."""
     result: list[Block] = []
@@ -313,10 +366,45 @@ def accent_inline(text: str) -> str:
     escaped = escape(text)
     blue = "#2d6f9f"
     gold = "#9b6d24"
+    ink = "#162636"
+    underline_terms = [
+        "六道轮回",
+        "跳出这六圈的轮回",
+        "只要能稳住方向盘，就能回家",
+        "否极必然泰来",
+        "第 21 个州",
+    ]
+    for term in underline_terms:
+        escaped = escaped.replace(
+            escape(term),
+            f'<span style="border-bottom: 2px solid #d4a669; color: {ink}; font-weight: 800; padding-bottom: 1px;">{escape(term)}</span>',
+        )
+    italic_terms = [
+        "Good job",
+        "Blue Bridge",
+        "Meadow Marathon",
+        "50 States Marathon Club",
+    ]
+    for term in italic_terms:
+        escaped = escaped.replace(
+            escape(term),
+            f'<em style="font-family: Georgia, Times, serif; color: {blue}; font-style: italic;">{escape(term)}</em>',
+        )
     terms = [
         ("Grand Rapids", blue),
         ("Millennium Park", blue),
+        ("Grand River", blue),
+        ("Riverside Parkrun", blue),
+        ("Grand Valley State University", blue),
+        ("GVSU", blue),
+        ("Siqi", blue),
+        ("CR-V", blue),
+        ("Louisville", blue),
         ("Parkrun", gold),
+        ("日出", gold),
+        ("终点", gold),
+        ("最后一圈", gold),
+        ("444", gold),
         ("六圈", gold),
         ("4 小时 44 分", blue),
         ("三味真火", gold),
@@ -334,6 +422,14 @@ def accent_inline(text: str) -> str:
 
 
 def modern_paragraph_accent(text: str) -> str:
+    if text.endswith("：") and len(text) <= 12:
+        return (
+            '<p style="margin: 4px 0 14px; line-height: 1.7; text-align: left; '
+            "font-size: 15px; letter-spacing: 0.6px; color: #9b6d24; "
+            "font-style: italic; font-family: Georgia, 'Times New Roman', "
+            "'PingFang SC', serif;\">"
+            f"{escape(text)}</p>"
+        )
     return (
         '<p style="margin: 0 0 18px; line-height: 1.95; text-align: justify; '
         "font-size: 16px; letter-spacing: 0.2px; color: #26343f; "
@@ -458,13 +554,13 @@ def render_modern(title: str, dek: str, blocks: list[Block]) -> str:
         '<p style="margin: 0; font-size: 14px; line-height: 1.9; color: #53616f;">从肯塔基北上大急流城，先用 Parkrun 热身，再在 Millennium Park 绕六圈完成密歇根州。不是最快的一场，但很有夏天、湿地和重复路线的味道。</p>'
         "</section>"
     )
-    for block in paired_blocks(blocks):
-        if isinstance(block, tuple):
-            body.append(modern_figure(block[0], block[1]))
-        elif block.kind in {"h2", "h3"}:
-            body.append(modern_section_heading(block.text))
-        elif block.kind == "p":
-            body.append(modern_paragraph(block.text))
+    body.extend(
+        render_story_blocks(
+            blocks,
+            lambda text, _index: modern_section_heading(text),
+            modern_paragraph_accent,
+        )
+    )
     body.append(modern_finish_card())
     body.append("</section>")
     return page_shell(title + "｜微信公众号增强版", "\n".join(body))
@@ -500,15 +596,13 @@ def render_modern_variant(title: str, dek: str, blocks: list[Block], variant: st
     )
     if variant == "rail":
         body.extend(opening_visuals())
-    section_index = 0
-    for block in paired_blocks(blocks):
-        if isinstance(block, tuple):
-            body.append(modern_figure(block[0], block[1]))
-        elif block.kind in {"h2", "h3"}:
-            section_index += 1
-            body.append(variant_section_heading(block.text, section_index, variant))
-        elif block.kind == "p":
-            body.append(modern_paragraph_accent(block.text))
+    body.extend(
+        render_story_blocks(
+            blocks,
+            lambda text, index: variant_section_heading(text, index, variant),
+            modern_paragraph_accent,
+        )
+    )
     body.append(modern_finish_card())
     body.append("</section>")
     page_title = WECHAT_PUBLIC_TITLE if variant == "rail" else title + f"｜微信公众号增强版｜{label}"
