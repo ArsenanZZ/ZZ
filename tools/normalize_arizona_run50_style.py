@@ -123,6 +123,10 @@ def normalize_arizona_story_style() -> None:
 
     update_index_copy()
 
+    from clean_arizona_three_city_pages import clean_arizona_chinese_page
+
+    clean_arizona_chinese_page()
+
 
 def rename_story_images() -> None:
     for idx in range(1, 88):
