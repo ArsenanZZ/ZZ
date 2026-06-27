@@ -169,7 +169,7 @@
     .world-running-map-slot {
       position: relative;
       width: 100%;
-      aspect-ratio: 9 / 4;
+      aspect-ratio: 2 / 1;
       background: linear-gradient(135deg, #004a75 0%, #0789ac 44%, #003f6c 100%);
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -301,7 +301,7 @@
       .running-map-card-head { display: block; }
       .running-map-status { display: block; margin-top: 8px; overflow-wrap: anywhere; }
       .running-map-stats { grid-template-columns: 1fr; }
-      .world-running-map-slot { aspect-ratio: 9 / 4; }
+      .world-running-map-slot { aspect-ratio: 2 / 1; }
       .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
     }
   </style>
@@ -351,13 +351,13 @@
     </section>
   </main>
 
-  <script src="./world-map-svg.js?v=20260626-real-proportion-run-only-taiwan"></script>
+  <script src="./world-map-svg.js?v=20260626-real-proportion-antarctica"></script>
   <script>
   (() => {
     const slot = document.getElementById('world-running-map-slot');
     if (!slot) return;
 
-    fetch('./index.html?v=20260626-real-proportion-run-only-taiwan')
+    fetch('./index.html?v=20260626-real-proportion-antarctica')
       .then(response => {
         if (!response.ok) throw new Error('Could not load map renderer');
         return response.text();

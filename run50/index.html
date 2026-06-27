@@ -334,7 +334,7 @@
   .world-running-map-slot {
     position: relative;
     width: 100%;
-    aspect-ratio: 9 / 4;
+    aspect-ratio: 2 / 1;
     background: linear-gradient(135deg, #004a75 0%, #0789ac 44%, #003f6c 100%);
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -693,7 +693,7 @@
     .running-map-stats { grid-template-columns: 1fr; }
     .running-map-card-head { display: block; }
     .running-map-status { display: block; max-width: 100%; margin-top: 8px; overflow-wrap: anywhere; }
-    .world-running-map-slot { aspect-ratio: 9 / 4; }
+    .world-running-map-slot { aspect-ratio: 2 / 1; }
     .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
     .hero-title { font-size: 26px; }
     .hero { padding: 24px 16px; }
@@ -1148,6 +1148,24 @@
     svg.insertBefore(defs, svg.firstChild);
   }
 
+  function addAntarcticaShelf(svg) {
+    if (svg.querySelector('#world-antarctica')) return;
+    const oceanRect = svg.querySelector('#wm_ocean');
+    const antarctica = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    antarctica.setAttribute('id', 'world-antarctica');
+    antarctica.setAttribute('d', 'M0 850 L72 840 L128 850 L182 836 L245 845 L330 832 L420 838 L502 820 L590 829 L680 812 L760 826 L852 813 L940 824 L1035 806 L1128 818 L1215 805 L1306 816 L1395 803 L1490 812 L1580 800 L1680 810 L1800 796 L1800 900 L0 900 Z');
+    antarctica.setAttribute('fill', '#f7faf7');
+    antarctica.setAttribute('stroke', 'rgba(5,42,50,.55)');
+    antarctica.setAttribute('stroke-width', '0.85');
+    antarctica.setAttribute('pointer-events', 'none');
+    antarctica.style.filter = 'drop-shadow(0 -1px 1.6px rgba(0,30,45,.24))';
+    if (oceanRect && oceanRect.nextSibling) {
+      svg.insertBefore(antarctica, oceanRect.nextSibling);
+    } else {
+      svg.appendChild(antarctica);
+    }
+  }
+
   function initWorldRunningMap() {
     if (typeof WORLD_MAP_SVG === 'undefined') {
       slot.innerHTML = '<div style="padding:24px;color:#667085;">World map asset is missing.</div>';
@@ -1165,16 +1183,17 @@
     const svg = slot.querySelector('#world-map-master');
     if (!svg) return;
     injectPosterMapDefs(svg);
-    svg.setAttribute('viewBox', '0 35 1800 800');
+    addAntarcticaShelf(svg);
+    svg.setAttribute('viewBox', '0 0 1800 900');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     svg.style.width = '100%';
     svg.style.height = '100%';
     const oceanRect = svg.querySelector('#wm_ocean');
     if (oceanRect) {
       oceanRect.setAttribute('x', '0');
-      oceanRect.setAttribute('y', '35');
+      oceanRect.setAttribute('y', '0');
       oceanRect.setAttribute('width', '1800');
-      oceanRect.setAttribute('height', '800');
+      oceanRect.setAttribute('height', '900');
       oceanRect.setAttribute('fill', 'url(#world-ocean-poster)');
       oceanRect.setAttribute('filter', 'url(#world-ocean-texture)');
     }
