@@ -161,6 +161,60 @@ def paired_blocks(blocks: list[Block]) -> list[Block | tuple[Block, str]]:
     return result
 
 
+def blocks_for_wechat(blocks: list[Block]) -> list[Block]:
+    """Drop website-only engagement copy before rendering WeChat layouts."""
+    result: list[Block] = []
+    for block in blocks:
+        text = normalize_text(block.text)
+        if block.kind == "p" and text.replace(" ", "") in {"留言/阅读", "留言／阅读"}:
+            break
+        if block.kind in {"h2", "h3"} and "跑完也可以聊两句" in text:
+            break
+        result.append(block)
+
+    credit_markers = {"- 本文完 -", "文字丨Arsenan", "摄影丨Arsenan", "设计丨Arsenan"}
+    while result and result[-1].kind == "p" and normalize_text(result[-1].text) in credit_markers:
+        result.pop()
+    return result
+
+
+def modern_finish_card() -> str:
+    return """
+<section style="margin: 46px 0 0; padding: 22px 18px 20px; border-radius: 8px; background: linear-gradient(135deg, #132535 0%, #205f87 58%, #d1a35f 100%); color: #ffffff; box-shadow: 0 14px 32px rgba(19, 37, 53, 0.18);">
+  <p style="margin: 0 0 10px; font-size: 11px; line-height: 1.4; letter-spacing: 2.2px; font-weight: 900; color: rgba(255,255,255,0.78);">RUN50 FINISH LINE</p>
+  <h2 style="margin: 0 0 12px; font-size: 24px; line-height: 1.35; font-weight: 900; color: #ffffff; letter-spacing: 0;">第21州，点亮。</h2>
+  <p style="margin: 0; font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.92); text-align: justify;">从 Parkrun 热身，到 Millennium Park 的六圈轮回，再到 4 小时 44 分冲过终点，密歇根不是最顺的一站，却很像一枚被烈日烤出来的徽章。跑完这一场，Run50 的地图又多亮了一块。</p>
+  <section style="margin: 18px 0 0; display: table; width: 100%; border-collapse: collapse;">
+    <section style="display: table-cell; width: 33.33%; padding: 10px 6px; border-right: 1px solid rgba(255,255,255,0.18); text-align: center;">
+      <p style="margin: 0; font-size: 18px; line-height: 1.2; font-weight: 900; color: #ffffff;">21</p>
+      <p style="margin: 5px 0 0; font-size: 11px; line-height: 1.4; color: rgba(255,255,255,0.74); letter-spacing: 0.8px;">STATE</p>
+    </section>
+    <section style="display: table-cell; width: 33.33%; padding: 10px 6px; border-right: 1px solid rgba(255,255,255,0.18); text-align: center;">
+      <p style="margin: 0; font-size: 18px; line-height: 1.2; font-weight: 900; color: #ffffff;">6</p>
+      <p style="margin: 5px 0 0; font-size: 11px; line-height: 1.4; color: rgba(255,255,255,0.74); letter-spacing: 0.8px;">LOOPS</p>
+    </section>
+    <section style="display: table-cell; width: 33.33%; padding: 10px 6px; text-align: center;">
+      <p style="margin: 0; font-size: 18px; line-height: 1.2; font-weight: 900; color: #ffffff;">4:44</p>
+      <p style="margin: 5px 0 0; font-size: 11px; line-height: 1.4; color: rgba(255,255,255,0.74); letter-spacing: 0.8px;">FINISH</p>
+    </section>
+  </section>
+</section>
+<section style="margin: 16px 0 0; padding: 15px 16px; border-left: 4px solid #d1a35f; background: #f4f8fb; border-radius: 7px;">
+  <p style="margin: 0; font-size: 14px; line-height: 1.9; color: #314657; text-align: justify;">跑完以后也可以聊两句。如果你也跑过绕圈赛道，或者也有一次“看起来不顺、回头却很难忘”的比赛，欢迎在公众号留言区见。</p>
+</section>
+<p style="margin: 24px 0 0; text-align: center; color: #8a9bad; font-size: 12px; line-height: 1.8; letter-spacing: 1.2px;">文字 / 摄影 / 设计 · Arsenan</p>"""
+
+
+def classic_finish_card() -> str:
+    return """
+<section style="margin: 40px 0 0; padding: 18px 18px; border-top: 2px solid #d4a669; border-bottom: 1px solid #ead9bb; background: #fbf8f2;">
+  <p style="margin: 0 0 8px; text-align: center; color: #d4a669; font-size: 12px; letter-spacing: 1.6px; font-weight: bold;">RUN50 FINISH LINE</p>
+  <p style="margin: 0; text-align: center; font-size: 18px; line-height: 1.7; color: #202124; font-weight: bold;">第21州，点亮。</p>
+  <p style="margin: 10px 0 0; font-size: 14px; line-height: 2; color: #5d5142; text-align: justify;">密歇根这一站有车祸、有六圈、有烈日，也有 4 小时 44 分的终点。跑完以后，故事就留在这里；想聊两句，公众号留言区见。</p>
+</section>
+<p style="margin: 24px 0 0; text-align: center; color: #888888; font-size: 12px; line-height: 1.8; letter-spacing: 1px;">文字 / 摄影 / 设计 · Arsenan</p>"""
+
+
 def classic_section_heading(text: str) -> str:
     label = text.split("｜", 1)[0].strip()
     if "·" in label:
@@ -351,6 +405,7 @@ def opening_visuals() -> list[str]:
 
 
 def render_classic(title: str, dek: str, blocks: list[Block]) -> str:
+    blocks = blocks_for_wechat(blocks)
     body: list[str] = [
         '<section style="max-width: 677px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 26px 18px 56px; background: #ffffff;">',
         '<p style="text-align: center; margin: 0 0 10px; color: #d4a669; font-size: 13px; letter-spacing: 0.5px;">丨密歇根丨</p>',
@@ -375,12 +430,13 @@ def render_classic(title: str, dek: str, blocks: list[Block]) -> str:
             body.append(classic_section_heading(block.text))
         elif block.kind == "p":
             body.append(classic_paragraph(block.text))
-    body.append('<p style="margin: 38px 0 0; text-align: center; color: #d4a669; font-size: 13px; letter-spacing: 1px;">- End -</p>')
+    body.append(classic_finish_card())
     body.append("</section>")
     return page_shell(title + "｜微信公众号版", "\n".join(body))
 
 
 def render_modern(title: str, dek: str, blocks: list[Block]) -> str:
+    blocks = blocks_for_wechat(blocks)
     body: list[str] = [
         '<section style="max-width: 677px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 28px 18px 58px; background: #ffffff;">',
         '<section style="margin: 0 0 22px; padding: 16px 0 18px; border-top: 4px solid #2d6f9f; border-bottom: 1px solid #dfe9ef;">',
@@ -409,12 +465,13 @@ def render_modern(title: str, dek: str, blocks: list[Block]) -> str:
             body.append(modern_section_heading(block.text))
         elif block.kind == "p":
             body.append(modern_paragraph(block.text))
-    body.append('<p style="margin: 42px 0 0; padding-top: 16px; border-top: 1px solid #dfe9ef; text-align: center; color: #8a9bad; font-size: 12px; letter-spacing: 1.6px;">RUN50 · MICHIGAN · END</p>')
+    body.append(modern_finish_card())
     body.append("</section>")
     return page_shell(title + "｜微信公众号增强版", "\n".join(body))
 
 
 def render_modern_variant(title: str, dek: str, blocks: list[Block], variant: str, label: str) -> str:
+    blocks = blocks_for_wechat(blocks)
     dispatch_label = "RUN50 DISPATCH · MICHIGAN"
     if variant != "rail":
         dispatch_label += f" · {label.upper()}"
@@ -452,8 +509,7 @@ def render_modern_variant(title: str, dek: str, blocks: list[Block], variant: st
             body.append(variant_section_heading(block.text, section_index, variant))
         elif block.kind == "p":
             body.append(modern_paragraph_accent(block.text))
-    end_label = "RUN50 · MICHIGAN · END" if variant == "rail" else f"RUN50 · MICHIGAN · {label.upper()} · END"
-    body.append(f'<p style="margin: 42px 0 0; padding-top: 16px; border-top: 1px solid #dfe9ef; text-align: center; color: #8a9bad; font-size: 12px; letter-spacing: 1.6px;">{escape(end_label)}</p>')
+    body.append(modern_finish_card())
     body.append("</section>")
     page_title = WECHAT_PUBLIC_TITLE if variant == "rail" else title + f"｜微信公众号增强版｜{label}"
     return page_shell(page_title, "\n".join(body))
