@@ -13,6 +13,8 @@ from pathlib import Path
 from lxml import html as lxml_html
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
+from normalize_arizona_run50_style import normalize_arizona_story_style
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = Path(r"Z:\ZhennanZ Folder\0-Running Story Web\Run50 #第29州｜亚利桑那：凤凰城马拉松｜沙漠·仙人掌·干冷清晨｜二〇二六·第一跑·破4_files")
@@ -40,7 +42,7 @@ FONT_EN = FONT_DIR / "arial.ttf"
 
 
 CAPTIONS = [
-    ("凤凰城马拉松 Vlog 封面", "Phoenix marathon weekend vlog cover", "@Arsenan"),
+    ("Buckeye Marathon Vlog 封面", "Buckeye Marathon weekend vlog cover", "@Arsenan"),
     ("飞往亚利桑那途中的云海与荒漠", "Clouds and desert on the way to Arizona", "@Arsenan"),
     ("Buckeye Race to the Runway 号码布", "Buckeye Race to the Runway bib pickup", "@Arsenan"),
     ("North Mountain Park 的山路和巨人柱", "Cactus-lined climb at North Mountain Park", "@Arsenan"),
@@ -893,6 +895,7 @@ def main() -> None:
     make_covers()
     write_pages(events, images)
     update_indexes()
+    normalize_arizona_story_style()
     print(f"Built {SLUG}: {len(events)} story events, {len(images)} images")
 
 
