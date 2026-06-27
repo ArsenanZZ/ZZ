@@ -99,7 +99,7 @@ COLORS = {
     "IL": "#9068c0",
     "IN": "#e89838",
     "KY": "#98c038",
-    "MI": "#3898a8",
+    "MI": "#157f99",
     "MO": "#e89838",
     "NC": "#98c038",
     "NY": "#e89838",
@@ -195,6 +195,9 @@ def build_html() -> str:
       const STATE_PATH_IDS = {js_literal(state_path_ids)};
       const HOLLOW_CLEANUP = {js_literal(hollow_cleanup)};
       const CITY_DOTS = {js_literal(CITY_DOTS)};
+      const SPECIAL_POSITIONS = {{
+        "NY:New York City": {{ x: 1474.0, y: 418.0 }}
+      }};
       const MUTED = "#dedad3";
 
       function projectAlbers(lat, lon) {{
@@ -253,6 +256,16 @@ def build_html() -> str:
         }}).join(" "));
       }}
 
+      function starPoints(cx, cy, outer, inner) {{
+        const points = [];
+        for (let i = 0; i < 10; i++) {{
+          const angle = -Math.PI / 2 + i * Math.PI / 5;
+          const radius = i % 2 === 0 ? outer : inner;
+          points.push(`${{cx + Math.cos(angle) * radius}},${{cy + Math.sin(angle) * radius}}`);
+        }}
+        return points.join(" ");
+      }}
+
       function removeFloridaHoles() {{
         const el = document.getElementById("map_South_Carolina_1_");
         if (!el) return;
@@ -307,15 +320,6 @@ def build_html() -> str:
           }});
         }});
 
-        (STATE_PATHS.MI || []).forEach(id => {{
-          const el = document.getElementById("map_" + id);
-          if (el) {{
-            el.style.stroke = "#0f4962";
-            el.style.strokeWidth = "3.2";
-            el.style.paintOrder = "stroke fill markers";
-          }}
-        }});
-
         const alaskaFrame = document.getElementById("map_exterior_2_");
         const hawaiiFrame = document.getElementById("map_hawaii_1_");
         if (alaskaFrame && hawaiiFrame) alaskaFrame.style.fill = getComputedStyle(hawaiiFrame).fill;
@@ -325,7 +329,10 @@ def build_html() -> str:
         master.appendChild(dotGroup);
         CITY_DOTS.forEach(([abbr, city, lat, lon]) => {{
           let x, y;
-          if (abbr === "HI") {{
+          const special = SPECIAL_POSITIONS[abbr + ":" + city];
+          if (special) {{
+            x = special.x; y = special.y;
+          }} else if (abbr === "HI") {{
             x = 570.0; y = 933.0;
           }} else if (abbr === "AK") {{
             x = 275.0; y = 917.0;
@@ -340,15 +347,21 @@ def build_html() -> str:
           glow.setAttribute("fill", "rgba(255, 59, 48, 0.35)");
           dotGroup.appendChild(glow);
           if (abbr === "MI") {{
-            const ring = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            ring.setAttribute("cx", x);
-            ring.setAttribute("cy", y);
-            ring.setAttribute("r", 13);
-            ring.setAttribute("fill", "none");
-            ring.setAttribute("stroke", "#ffcc00");
-            ring.setAttribute("stroke-width", "3.2");
-            ring.setAttribute("opacity", "0.95");
-            dotGroup.appendChild(ring);
+            const halo = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            halo.setAttribute("cx", x);
+            halo.setAttribute("cy", y);
+            halo.setAttribute("r", 15);
+            halo.setAttribute("fill", "#ffffff");
+            halo.setAttribute("opacity", "0.88");
+            dotGroup.appendChild(halo);
+            const star = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            star.setAttribute("points", starPoints(x, y, 13, 5.7));
+            star.setAttribute("fill", "#ffcc00");
+            star.setAttribute("stroke", "#0f4962");
+            star.setAttribute("stroke-width", "2.2");
+            star.setAttribute("stroke-linejoin", "round");
+            dotGroup.appendChild(star);
+            return;
           }}
           const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
           dot.setAttribute("cx", x);
