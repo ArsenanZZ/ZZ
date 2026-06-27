@@ -328,9 +328,9 @@
     border-color: var(--all);
   }
 
-  /* Run50 quick-access sub-nav */
-  .run50-subnav[hidden] { display: none; }
-  .run50-subnav {
+  /* Module quick-access sub-nav */
+  .module-subnav[hidden] { display: none; }
+  .module-subnav {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
@@ -338,25 +338,34 @@
     border-bottom: 1px solid var(--line);
     margin-bottom: 4px;
   }
-  .r50btn {
+
+  .module-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     padding: 6px 14px;
     border-radius: 7px;
     background: var(--panel);
-    border: 1px solid var(--run);
-    color: var(--run);
+    border: 1px solid var(--module-accent, var(--run));
+    color: var(--module-accent, var(--run));
     font-size: 12.5px;
     font-weight: 650;
     text-decoration: none;
     transition: background .15s, color .15s;
     white-space: nowrap;
   }
-  .r50btn:hover {
-    background: var(--run);
+
+  .module-btn:hover {
+    background: var(--module-accent, var(--run));
     color: #fff;
   }
+
+  .module-subnav[data-theme="run"] { --module-accent: var(--run); }
+  .module-subnav[data-theme="wqa"] { --module-accent: var(--wqa); }
+  .module-subnav[data-theme="reading"] { --module-accent: var(--reading); }
+  .module-subnav[data-theme="me"] { --module-accent: var(--me); }
+  .module-subnav[data-theme="ro"] { --module-accent: var(--ro); }
+  .module-subnav[data-theme="research"] { --module-accent: #7b6f52; }
 
   .masthead {
     display: grid;
@@ -542,6 +551,18 @@
     border-radius: 8px;
     transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease;
   }
+
+  .grid-header[data-section="run50"],
+  .video-card[data-section="run50"] { order: 10; }
+
+  .grid-header[data-section="water"],
+  .video-card[data-section="water"] { order: 20; }
+
+  .grid-header[data-section="reading"],
+  .video-card[data-section="reading"] { order: 30; }
+
+  .grid-header[data-section="me"],
+  .video-card[data-section="me"] { order: 40; }
 
   .video-card:hover,
   .video-card:focus-within {
@@ -797,7 +818,7 @@
     <button type="submit" aria-label="Search"></button>
   </form>
   <div class="top-actions">
-    <span class="status"><span data-upload-count>44</span> entries</span>
+    <span class="status"><span data-upload-count>42</span> entries</span>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme">
       <span id="themeLabel">Dark mode</span>
     </button>
@@ -807,10 +828,10 @@
 <div class="shell">
   <aside class="sidebar" aria-label="Channels">
     <a class="side-link active" href="#" data-filter="all"><span class="ico all">ZZ</span><span>Home</span></a>
-    <a class="side-link" href="#me" data-filter="me"><span class="ico me">Me</span><span>This is Me</span></a>
+    <a class="side-link" href="#run50" data-filter="run50"><span class="ico run50">50</span><span>Run50</span></a>
     <a class="side-link" href="#wqa" data-filter="wqa"><span class="ico wqa">W</span><span>WQA</span></a>
     <a class="side-link" href="#reading" data-filter="reading"><span class="ico reading">R</span><span>Reading</span></a>
-    <a class="side-link" href="#run50" data-filter="run50"><span class="ico run50">50</span><span>Run50</span></a>
+    <a class="side-link" href="#me" data-filter="me"><span class="ico me">Me</span><span>This is Me</span></a>
     <a class="side-link" href="#ro" data-filter="ro"><span class="ico ro">RO</span><span>RO</span></a>
     <div class="side-rule"></div>
     <p class="side-note">ArsenanZZ learning hub</p>
@@ -819,10 +840,10 @@
   <main>
     <nav class="chips" aria-label="Filters">
       <button class="chip active" type="button" data-filter="all">All</button>
-      <button class="chip" type="button" data-filter="me">This is Me</button>
+      <button class="chip" type="button" data-filter="run50">Run50</button>
       <button class="chip" type="button" data-filter="wqa">WQA</button>
       <button class="chip" type="button" data-filter="reading">Reading</button>
-      <button class="chip" type="button" data-filter="run50">Run50</button>
+      <button class="chip" type="button" data-filter="me">This is Me</button>
       <button class="chip" type="button" data-filter="ro">RO</button>
       <button class="chip" type="button" data-filter="trip">Trip</button>
       <button class="chip" type="button" data-filter="research">Research</button>
@@ -831,11 +852,97 @@
       <button class="chip" type="button" data-filter="semiconductor">Semiconductor</button>
     </nav>
 
-    <!-- Run50 quick-access buttons (visible when Run50 chip is active) -->
-    <div class="run50-subnav" id="run50Subnav" hidden>
-      <a class="r50btn" href="run50/hub.html">&#127968; Run50 Home</a>
-      <a class="r50btn" href="run50/facebook/">&#128216; Facebook Stories</a>
-      <a class="r50btn" href="run50/run50.html">&#128506; Running Map</a>
+    <!-- Module quick-access buttons (visible when a chip is active) -->
+    <div class="module-subnav" data-subnav="run50" data-theme="run" hidden>
+      <a class="module-btn" href="run50/hub.html">&#127968; Hub</a>
+      <a class="module-btn" href="run50/index.html">&#127939; Run50 Home</a>
+      <a class="module-btn" href="run50/stories/chinese/">&#128214; Chinese Stories</a>
+      <a class="module-btn" href="run50/stories/english/">&#128215; English Stories</a>
+      <a class="module-btn" href="run50/facebook/">&#128216; Facebook Stories</a>
+      <a class="module-btn" href="run50/facebook/#run50-series">&#127482;&#127480; Run50 U.S.</a>
+      <a class="module-btn" href="run50/facebook/#runcn-series">&#127464;&#127475; RunCN</a>
+      <a class="module-btn" href="run50/facebook/#runworld-series">&#127757; RunWorld</a>
+      <a class="module-btn" href="run50/run50.html">&#128506; Running Map</a>
+      <a class="module-btn" href="run50/mainly-marathons-new-england-2026-guide.html">&#128663; New England Trip</a>
+    </div>
+
+    <div class="module-subnav" data-subnav="wqa" data-theme="wqa" hidden>
+      <a class="module-btn" href="water/">&#128167; Water Hub</a>
+      <a class="module-btn" href="water/#softener">Softener</a>
+      <a class="module-btn" href="water/#ro">RO</a>
+      <a class="module-btn" href="water/#wqa">WQA 2026</a>
+      <a class="module-btn" href="wqa/WQA_2026_Presentations_Summary-V2.html">Presentations</a>
+      <a class="module-btn" href="water/#nsf">NSF Standards</a>
+      <a class="module-btn" href="wqa/EZsalt_Research_Report_2_EN.html">EZsalt</a>
+      <a class="module-btn" href="wqa/DROP_Research_Report_EN.html">DROP</a>
+    </div>
+
+    <div class="module-subnav" data-subnav="reading" data-theme="reading" hidden>
+      <a class="module-btn" href="reading/hub.html">&#128218; Reading Hub</a>
+      <a class="module-btn" href="reading/hub.html#atomic">Atomic Habits</a>
+      <a class="module-btn" href="reading/atomic-habits-full-english.html">Full English</a>
+      <a class="module-btn" href="reading/atomic-habits-bloom-cards.html">Study Cards</a>
+      <a class="module-btn" href="reading/hub.html#nano">Nano-IC</a>
+      <a class="module-btn" href="reading/nano-ic-manufacturing-handbook-detailed.html">Nano Handbook</a>
+      <a class="module-btn" href="reading/nano-ic-pages/">Page Directory</a>
+    </div>
+
+    <div class="module-subnav" data-subnav="me" data-theme="me" hidden>
+      <a class="module-btn" href="this-is-me/this-is-me/">Profile</a>
+      <a class="module-btn" href="this-is-me/structural-design/">Structural Design</a>
+      <a class="module-btn" href="this-is-me/fea-simulation/">FEA Simulation</a>
+      <a class="module-btn" href="this-is-me/mechanical-testing/">Mechanical Testing</a>
+      <a class="module-btn" href="this-is-me/3d-printing/">3D Printing</a>
+      <a class="module-btn" href="this-is-me/projects/">Projects</a>
+      <a class="module-btn" href="this-is-me/publications/">Publications</a>
+      <a class="module-btn" href="this-is-me/samples/">Facilities</a>
+      <a class="module-btn" href="this-is-me/facilities/">Teaching</a>
+      <a class="module-btn" href="this-is-me/teamplayer/">Team Player</a>
+    </div>
+
+    <div class="module-subnav" data-subnav="ro" data-theme="ro" hidden>
+      <a class="module-btn" href="water/#ro">RO Section</a>
+      <a class="module-btn" href="ro/RO-Complete-Guide-EN.html">Complete Guide</a>
+      <a class="module-btn" href="ro/ro-system-explained.html">System Explained</a>
+    </div>
+
+    <div class="module-subnav" data-subnav="trip" data-theme="run" hidden>
+      <a class="module-btn" href="run50/facebook/#run50-series">Run50 Trips</a>
+      <a class="module-btn" href="run50/facebook/#runcn-series">China Trips</a>
+      <a class="module-btn" href="run50/facebook/#runworld-series">World Trips</a>
+      <a class="module-btn" href="run50/mainly-marathons-new-england-2026-guide.html">New England Guide</a>
+      <a class="module-btn" href="this-is-me/teaching/">Personal Travel</a>
+    </div>
+
+    <div class="module-subnav" data-subnav="research" data-theme="research" hidden>
+      <a class="module-btn" href="this-is-me/projects/">Projects</a>
+      <a class="module-btn" href="this-is-me/publications/">Publications</a>
+      <a class="module-btn" href="water/">Water Research</a>
+      <a class="module-btn" href="water/#wqa">WQA Research</a>
+      <a class="module-btn" href="nsf/">NSF Standards</a>
+      <a class="module-btn" href="reading/hub.html#nano">Nano-IC Study</a>
+    </div>
+
+    <div class="module-subnav" data-subnav="nsf" data-theme="wqa" hidden>
+      <a class="module-btn" href="nsf/">NSF Library</a>
+      <a class="module-btn" href="nsf/nsf-water-guide-codex.html">Standards Guide</a>
+      <a class="module-btn" href="nsf/nsf-water-guide-claude.html">Measurement Guide</a>
+      <a class="module-btn" href="water/#nsf">Water Hub NSF</a>
+    </div>
+
+    <div class="module-subnav" data-subnav="atomic" data-theme="reading" hidden>
+      <a class="module-btn" href="reading/hub.html#atomic">Atomic Section</a>
+      <a class="module-btn" href="reading/index.html">Cards Portal</a>
+      <a class="module-btn" href="reading/atomic-habits-full-english.html">Full English</a>
+      <a class="module-btn" href="reading/atomic-habits-bloom-cards.html">Study Cards</a>
+    </div>
+
+    <div class="module-subnav" data-subnav="semiconductor" data-theme="reading" hidden>
+      <a class="module-btn" href="reading/hub.html#nano">Nano-IC Section</a>
+      <a class="module-btn" href="reading/nano-ic-manufacturing-study.html">Study Notes</a>
+      <a class="module-btn" href="reading/nano-ic-manufacturing-handbook-detailed.html">Detailed Handbook</a>
+      <a class="module-btn" href="reading/nano-ic.html">Illustrated Reader</a>
+      <a class="module-btn" href="reading/nano-ic-pages/">Page Directory</a>
     </div>
 
     <section class="masthead" aria-labelledby="page-title">
@@ -1009,34 +1116,6 @@
           <div>
             <a class="video-title" href="this-is-me/teamplayer/">Team Player</a>
             <p class="video-sub">Personal &middot; collaboration and team work</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="video-card" data-section="me" data-category="me life trip travel photography food adventurer" data-title="Travel">
-        <a class="thumb" href="this-is-me/teaching/">
-          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Travel cover">
-          <span class="duration">Life</span>
-        </a>
-        <div class="meta">
-          <span class="avatar me">Me</span>
-          <div>
-            <a class="video-title" href="this-is-me/teaching/">Travel</a>
-            <p class="video-sub">Life &middot; photography, food, and places</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="video-card" data-section="me" data-category="me life marathon run50 running endurance travel" data-title="Marathon">
-        <a class="thumb" href="this-is-me/marathon/">
-          <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Marathon cover">
-          <span class="duration">Life</span>
-        </a>
-        <div class="meta">
-          <span class="avatar me">Me</span>
-          <div>
-            <a class="video-title" href="this-is-me/marathon/">Marathon</a>
-            <p class="video-sub">Life &middot; endurance running and adventures</p>
           </div>
         </div>
       </article>
@@ -1257,7 +1336,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="water" data-category="wqa research nsf standard water" data-title="NSF/ANSI Drinking Water Standards Guide">
+      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="nsf research standard water" data-title="NSF/ANSI Drinking Water Standards Guide">
         <a class="thumb" href="nsf/nsf-water-guide-codex.html">
           <img src="assets/thumb-nsf-standards.jpg?v=20260626-medal-v2" alt="NSF/ANSI Drinking Water Standards Guide cover">
           <span class="duration">Guide</span>
@@ -1388,7 +1467,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="reading" data-category="reading semiconductor equipment book image pages directory" data-title="Nano-IC Page Image Directory">
+      <article class="video-card" data-hide-on-all="true" data-section="reading" data-category="semiconductor equipment book image pages directory" data-title="Nano-IC Page Image Directory">
         <a class="thumb" href="reading/nano-ic-pages/">
           <img src="assets/thumb-nano-ic-reader.jpg?v=20260626-medal-v2" alt="Nano-IC Page Image Directory cover">
           <span class="duration">488 Pages</span>
@@ -1487,7 +1566,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="wqa research" data-title="WQA 2026 Presentation Summaries">
+      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="research presentations" data-title="WQA 2026 Presentation Summaries">
         <a class="thumb" href="wqa/WQA_2026_Presentations_Summary-V2.html">
           <img src="assets/thumb-wqa-presentations.jpg?v=20260626-medal-v2" alt="WQA 2026 Presentation Summaries cover">
           <span class="duration">HTML</span>
@@ -1515,7 +1594,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-hide-on-all="true" data-section="water" data-category="wqa research" data-title="DROP Research Report">
+      <article class="video-card" data-section="water" data-category="wqa research" data-title="DROP Research Report">
         <a class="thumb" href="wqa/DROP_Research_Report_EN.html">
           <img src="assets/thumb-drop.jpg?v=20260626-medal-v2" alt="DROP Research Report cover">
           <span class="duration">HTML</span>
@@ -1649,8 +1728,16 @@
     currentFilter = filter;
     chips.forEach(chip => chip.classList.toggle('active', chip.dataset.filter === filter));
     sideLinks.forEach(link => link.classList.toggle('active', link.dataset.filter === filter));
-    const _r50n = document.getElementById('run50Subnav'); if (_r50n) _r50n.hidden = (filter !== 'run50');
+    document.querySelectorAll('.module-subnav').forEach(nav => {
+      nav.hidden = nav.dataset.subnav !== filter;
+    });
     applyFilters();
+  }
+
+  function filterFromHash() {
+    const hash = window.location.hash.replace(/^#/, '').trim().toLowerCase();
+    const availableFilters = new Set(chips.map(chip => chip.dataset.filter));
+    return availableFilters.has(hash) ? hash : '';
   }
 
   function applyFilters() {
@@ -2169,10 +2256,15 @@
     });
   });
 
+  window.addEventListener('hashchange', () => {
+    const filter = filterFromHash();
+    if (filter) setActiveFilter(filter);
+  });
+
   refreshCards();
   updateThemeControl();
   renderHomeMaps();
-  applyFilters();
+  setActiveFilter(filterFromHash() || 'all');
   syncRun50LatestStories()
     .catch(error => console.warn('Run50 latest stories stayed on the static fallback.', error))
     .finally(applyFilters);
