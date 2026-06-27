@@ -186,6 +186,54 @@ def modern_section_heading(text: str) -> str:
 </section>"""
 
 
+def split_section(text: str) -> tuple[str, str]:
+    if "｜" in text:
+        label, rest = text.split("｜", 1)
+        return label.strip(), rest.strip()
+    return "Run50", text.strip()
+
+
+def section_number(index: int) -> str:
+    return f"{index:02d}"
+
+
+def variant_section_heading(text: str, index: int, variant: str) -> str:
+    label, rest = split_section(text)
+    number = section_number(index)
+    if variant == "rail":
+        return f"""
+<section style="margin: 44px 0 18px; padding: 0 0 0 14px; border-left: 5px solid #2d6f9f;">
+  <p style="margin: 0 0 5px; font-size: 11px; line-height: 1.4; letter-spacing: 1.6px; color: #8a9bad; font-weight: 800;">FIELD NOTE {number}</p>
+  <h2 style="margin: 0; font-size: 20px; line-height: 1.45; font-weight: 900; color: #162636; letter-spacing: 0;">{escape(rest or text)}</h2>
+  <p style="margin: 7px 0 0; font-size: 12px; line-height: 1.6; color: #9b6d24;">{escape(label)}</p>
+</section>"""
+    if variant == "badge":
+        return f"""
+<section style="margin: 46px 0 20px; padding: 16px 16px 15px; background: #f1f7fa; border: 1px solid #d8e7ef; border-radius: 7px;">
+  <p style="margin: 0 0 10px; font-size: 12px; line-height: 1; color: #2d6f9f; font-weight: 900; letter-spacing: 1.2px;"><span style="display: inline-block; padding: 5px 8px; background: #2d6f9f; color: #ffffff; border-radius: 999px;">{number}</span> <span style="color: #8a6a2f;">{escape(label)}</span></p>
+  <h2 style="margin: 0; font-size: 20px; line-height: 1.5; font-weight: 900; color: #182635; letter-spacing: 0;">{escape(rest or text)}</h2>
+</section>"""
+    if variant == "stamp":
+        return f"""
+<section style="margin: 48px 0 22px; text-align: center;">
+  <p style="margin: 0 auto 10px; display: inline-block; padding: 4px 12px; border-top: 1px solid #d4a669; border-bottom: 1px solid #d4a669; font-size: 11px; line-height: 1.6; letter-spacing: 1.8px; color: #9b6d24; font-weight: 800;">RUN50 · {number}</p>
+  <h2 style="margin: 0; font-size: 20px; line-height: 1.55; font-weight: 900; color: #17212b; letter-spacing: 0;">{escape(label)}</h2>
+  <p style="margin: 7px 0 0; font-size: 14px; line-height: 1.8; color: #53616f;">{escape(rest)}</p>
+</section>"""
+    if variant == "timeline":
+        return f"""
+<section style="margin: 44px 0 20px; display: table; width: 100%; border-collapse: collapse;">
+  <section style="display: table-cell; width: 42px; vertical-align: top;">
+    <span style="display: inline-block; width: 30px; height: 30px; border-radius: 50%; background: #d4a669; color: #ffffff; text-align: center; line-height: 30px; font-size: 12px; font-weight: 900;">{number}</span>
+  </section>
+  <section style="display: table-cell; vertical-align: top; padding-left: 4px; border-bottom: 1px solid #e7edf1; padding-bottom: 12px;">
+    <p style="margin: 0 0 4px; font-size: 11px; line-height: 1.4; color: #2d6f9f; letter-spacing: 1.4px; font-weight: 800;">{escape(label)}</p>
+    <h2 style="margin: 0; font-size: 19px; line-height: 1.5; font-weight: 900; color: #17212b; letter-spacing: 0;">{escape(rest or text)}</h2>
+  </section>
+</section>"""
+    return modern_section_heading(text)
+
+
 def classic_paragraph(text: str) -> str:
     return (
         '<p style="margin: 0 0 16px; line-height: 2em; text-indent: 2em; '
@@ -203,6 +251,40 @@ def modern_paragraph(text: str) -> str:
         "font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', "
         "'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">"
         f"{escape(text)}</p>"
+    )
+
+
+def accent_inline(text: str) -> str:
+    escaped = escape(text)
+    blue = "#2d6f9f"
+    gold = "#9b6d24"
+    terms = [
+        ("Grand Rapids", blue),
+        ("Millennium Park", blue),
+        ("Parkrun", gold),
+        ("六圈", gold),
+        ("4 小时 44 分", blue),
+        ("三味真火", gold),
+        ("Mile ", blue),
+        ("大急流城", blue),
+        ("千禧公园", blue),
+        ("密歇根", blue),
+    ]
+    for term, color in terms:
+        escaped = escaped.replace(
+            escape(term),
+            f'<strong style="color: {color}; font-weight: 800;">{escape(term)}</strong>',
+        )
+    return escaped
+
+
+def modern_paragraph_accent(text: str) -> str:
+    return (
+        '<p style="margin: 0 0 18px; line-height: 1.95; text-align: justify; '
+        "font-size: 16px; letter-spacing: 0.2px; color: #26343f; "
+        "font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', "
+        "'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">"
+        f"{accent_inline(text)}</p>"
     )
 
 
@@ -290,6 +372,74 @@ def render_modern(title: str, dek: str, blocks: list[Block]) -> str:
     return page_shell(title + "｜微信公众号增强版", "\n".join(body))
 
 
+def render_modern_variant(title: str, dek: str, blocks: list[Block], variant: str, label: str) -> str:
+    body: list[str] = [
+        '<section style="max-width: 677px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 28px 18px 58px; background: #ffffff;">',
+        '<section style="margin: 0 0 22px; padding: 16px 0 18px; border-top: 4px solid #2d6f9f; border-bottom: 1px solid #dfe9ef;">',
+        f'<p style="margin: 0 0 8px; font-size: 12px; line-height: 1.4; letter-spacing: 2px; color: #2d6f9f; font-weight: 800;">RUN50 DISPATCH · MICHIGAN · {escape(label.upper())}</p>',
+        f'<h1 style="margin: 0; font-size: 26px; line-height: 1.38; font-weight: 900; color: #17212b; letter-spacing: 0;">{split_title(title)}</h1>',
+        '<p style="margin: 14px 0 0; font-size: 13px; line-height: 1.7; color: #6f7d89;">Grand Rapids · Millennium Park · Meadow Marathon</p>',
+        "</section>",
+    ]
+    if dek:
+        body.append(
+            '<section style="margin: 0 0 28px; padding: 16px 18px; background: #edf5f8; border-radius: 6px;">'
+            '<p style="margin: 0 0 6px; font-size: 12px; line-height: 1.5; letter-spacing: 1px; color: #2d6f9f; font-weight: 800;">OPENING NOTE</p>'
+            f'<p style="margin: 0; font-size: 15px; line-height: 1.9; color: #26343f; text-align: justify;">{accent_inline(dek)}</p>'
+            "</section>"
+        )
+    body.append(
+        '<section style="margin: 0 0 28px; display: block;">'
+        '<p style="margin: 0 0 8px; font-size: 14px; line-height: 1.8; color: #8a6a2f; font-weight: 800;">本文速记</p>'
+        '<p style="margin: 0; font-size: 14px; line-height: 1.9; color: #53616f;">从肯塔基北上大急流城，先用 <strong style="color: #9b6d24; font-weight: 800;">Parkrun</strong> 热身，再在 <strong style="color: #2d6f9f; font-weight: 800;">Millennium Park</strong> 绕六圈完成密歇根州。不是最快的一场，但很有夏天、湿地和重复路线的味道。</p>'
+        "</section>"
+    )
+    section_index = 0
+    for block in paired_blocks(blocks):
+        if isinstance(block, tuple):
+            body.append(modern_figure(block[0], block[1]))
+        elif block.kind in {"h2", "h3"}:
+            section_index += 1
+            body.append(variant_section_heading(block.text, section_index, variant))
+        elif block.kind == "p":
+            body.append(modern_paragraph_accent(block.text))
+    body.append(f'<p style="margin: 42px 0 0; padding-top: 16px; border-top: 1px solid #dfe9ef; text-align: center; color: #8a9bad; font-size: 12px; letter-spacing: 1.6px;">RUN50 · MICHIGAN · {escape(label.upper())} · END</p>')
+    body.append("</section>")
+    return page_shell(title + f"｜微信公众号增强版｜{label}", "\n".join(body))
+
+
+def render_title_lab(title: str, blocks: list[Block]) -> str:
+    headings = [block.text for block in blocks if block.kind in {"h2", "h3"}][:4]
+    descriptions = {
+        "rail": "左侧杂志栏：最像新版公众号专栏，利落、现代，适合长期使用。",
+        "badge": "编号章卡：信息感更强，适合 Run50 这种系列文章。",
+        "stamp": "居中印章：保留一点旧公众号的仪式感，但比 Italy 版更干净。",
+        "timeline": "路线时间线：有跑步路线和旅程推进感，章节感最强。",
+    }
+    body: list[str] = [
+        '<section style="max-width: 677px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 28px 18px 58px; background: #ffffff;">',
+        '<p style="margin: 0 0 8px; font-size: 12px; line-height: 1.4; letter-spacing: 2px; color: #2d6f9f; font-weight: 800;">RUN50 WECHAT TITLE LAB</p>',
+        f'<h1 style="margin: 0 0 14px; font-size: 25px; line-height: 1.4; font-weight: 900; color: #17212b; letter-spacing: 0;">{split_title(title)}</h1>',
+        '<p style="margin: 0 0 28px; font-size: 14px; line-height: 1.9; color: #53616f;">下面是四套小章标题风格。每套先给一句定位，再连续展示几个章节标题，方便比较它在长文里的节奏。</p>',
+    ]
+    for variant, label in [
+        ("rail", "Version A · Rail"),
+        ("badge", "Version B · Badge"),
+        ("stamp", "Version C · Stamp"),
+        ("timeline", "Version D · Timeline"),
+    ]:
+        body.append(
+            f'<section style="margin: 34px 0 18px; padding: 12px 14px; background: #f7fafc; border-radius: 7px;">'
+            f'<p style="margin: 0 0 5px; font-size: 13px; line-height: 1.6; color: #2d6f9f; font-weight: 900;">{escape(label)}</p>'
+            f'<p style="margin: 0; font-size: 13px; line-height: 1.8; color: #53616f;">{escape(descriptions[variant])}</p>'
+            "</section>"
+        )
+        for index, heading in enumerate(headings, start=1):
+            body.append(variant_section_heading(heading, index, variant))
+    body.append("</section>")
+    return page_shell(title + "｜微信公众号标题样式对照", "\n".join(body))
+
+
 def page_shell(title: str, body: str) -> str:
     return f"""<!doctype html>
 <html lang="zh-CN">
@@ -310,8 +460,21 @@ def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     (OUT_DIR / f"{SLUG}.html").write_text(render_classic(title, dek, blocks), encoding="utf-8", newline="\n")
     (OUT_DIR / f"{SLUG}-modern.html").write_text(render_modern(title, dek, blocks), encoding="utf-8", newline="\n")
+    (OUT_DIR / f"{SLUG}-title-styles.html").write_text(render_title_lab(title, blocks), encoding="utf-8", newline="\n")
+    for variant, label in [
+        ("rail", "rail"),
+        ("badge", "badge"),
+        ("stamp", "stamp"),
+        ("timeline", "timeline"),
+    ]:
+        (OUT_DIR / f"{SLUG}-modern-{variant}.html").write_text(
+            render_modern_variant(title, dek, blocks, variant, label),
+            encoding="utf-8",
+            newline="\n",
+        )
     print(f"generated {OUT_DIR / (SLUG + '.html')}")
     print(f"generated {OUT_DIR / (SLUG + '-modern.html')}")
+    print("generated modern variants")
 
 
 if __name__ == "__main__":
