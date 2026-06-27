@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SLUG = "michigan-meadows-marathon"
 SOURCE = ROOT / "run50" / "stories" / "chinese" / f"{SLUG}.html"
 OUT_DIR = ROOT / "run50" / "wechat"
+WECHAT_PUBLIC_TITLE = "Run50 #第21州 密歇根 梅多马拉松 在大急流城数圈，6次穿越千禧公园！"
 
 
 @dataclass
@@ -454,7 +455,7 @@ def render_modern_variant(title: str, dek: str, blocks: list[Block], variant: st
     end_label = "RUN50 · MICHIGAN · END" if variant == "rail" else f"RUN50 · MICHIGAN · {label.upper()} · END"
     body.append(f'<p style="margin: 42px 0 0; padding-top: 16px; border-top: 1px solid #dfe9ef; text-align: center; color: #8a9bad; font-size: 12px; letter-spacing: 1.6px;">{escape(end_label)}</p>')
     body.append("</section>")
-    page_title = title + "｜微信公众号增强版" if variant == "rail" else title + f"｜微信公众号增强版｜{label}"
+    page_title = WECHAT_PUBLIC_TITLE if variant == "rail" else title + f"｜微信公众号增强版｜{label}"
     return page_shell(page_title, "\n".join(body))
 
 
