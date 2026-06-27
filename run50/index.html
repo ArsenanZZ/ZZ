@@ -1147,8 +1147,50 @@
         <stop offset="52%" stop-color="#a9d9ec"/>
         <stop offset="100%" stop-color="#91cbe3"/>
       </linearGradient>
+      <linearGradient id="world-land-wash" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#edf3da"/>
+        <stop offset="55%" stop-color="#dce7cc"/>
+        <stop offset="100%" stop-color="#c9d9b9"/>
+      </linearGradient>
     `;
     svg.insertBefore(defs, svg.firstChild);
+  }
+
+  function addWorldOceanRelief(svg, mapWidth, mapHeight) {
+    if (svg.querySelector('#world-ocean-relief')) return;
+    const countriesLayer = svg.querySelector('#wm_countries');
+    const relief = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    relief.setAttribute('id', 'world-ocean-relief');
+    relief.setAttribute('pointer-events', 'none');
+    relief.setAttribute('opacity', '0.75');
+
+    [
+      { cx: mapWidth * .18, cy: mapHeight * .56, rx: mapWidth * .13, ry: mapHeight * .20, fill:'#d9f2f6', opacity:.28 },
+      { cx: mapWidth * .36, cy: mapHeight * .42, rx: mapWidth * .09, ry: mapHeight * .16, fill:'#eef9fb', opacity:.24 },
+      { cx: mapWidth * .52, cy: mapHeight * .57, rx: mapWidth * .11, ry: mapHeight * .22, fill:'#73bfd9', opacity:.10 },
+      { cx: mapWidth * .78, cy: mapHeight * .58, rx: mapWidth * .15, ry: mapHeight * .26, fill:'#e6f7fa', opacity:.20 },
+      { cx: mapWidth * .86, cy: mapHeight * .30, rx: mapWidth * .10, ry: mapHeight * .13, fill:'#6fb6d1', opacity:.08 }
+    ].forEach(shape => {
+      addSvgEl(relief, 'ellipse', shape);
+    });
+
+    [
+      `M${mapWidth * .04} ${mapHeight * .47} C${mapWidth * .15} ${mapHeight * .43} ${mapWidth * .25} ${mapHeight * .45} ${mapWidth * .34} ${mapHeight * .50}`,
+      `M${mapWidth * .46} ${mapHeight * .30} C${mapWidth * .57} ${mapHeight * .26} ${mapWidth * .67} ${mapHeight * .31} ${mapWidth * .76} ${mapHeight * .39}`,
+      `M${mapWidth * .38} ${mapHeight * .72} C${mapWidth * .50} ${mapHeight * .66} ${mapWidth * .62} ${mapHeight * .70} ${mapWidth * .72} ${mapHeight * .78}`,
+      `M${mapWidth * .76} ${mapHeight * .79} C${mapWidth * .84} ${mapHeight * .75} ${mapWidth * .91} ${mapHeight * .77} ${mapWidth * .97} ${mapHeight * .83}`
+    ].forEach(d => {
+      addSvgEl(relief, 'path', {
+        d, fill:'none', stroke:'#6aaec9', 'stroke-width':1,
+        'stroke-linecap':'round', opacity:.16
+      });
+    });
+
+    if (countriesLayer) {
+      svg.insertBefore(relief, countriesLayer);
+    } else {
+      svg.appendChild(relief);
+    }
   }
 
   function addWorldGraticule(svg, mapWidth, mapHeight) {
@@ -1217,6 +1259,7 @@
       oceanRect.setAttribute('fill', 'url(#world-ocean-wash)');
       oceanRect.removeAttribute('filter');
     }
+    addWorldOceanRelief(svg, mapWidth, mapHeight);
     addWorldGraticule(svg, mapWidth, mapHeight);
 
     const runCountryIds = new Set(countries.flatMap(country => country.parts || [country.id]));
@@ -1227,7 +1270,7 @@
       path.setAttribute('vector-effect', 'non-scaling-stroke');
       path.style.filter = 'none';
       if (path.id && path.id.startsWith('wm_') && !runCountryIds.has(path.id)) {
-        path.setAttribute('fill', COLORS.land);
+        path.setAttribute('fill', 'url(#world-land-wash)');
       }
     });
 
@@ -1242,7 +1285,7 @@
         path.setAttribute('fill', country.color);
         path.setAttribute('stroke', 'rgba(35,43,42,.78)');
         path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.25' : '1.05');
-        path.style.filter = 'none';
+        path.style.filter = 'drop-shadow(0 1px 0 rgba(30,40,36,.16))';
         path.style.pointerEvents = 'auto';
         path.classList.add('wm-country-run');
         path.addEventListener('mouseenter', e => {

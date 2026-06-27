@@ -351,13 +351,13 @@
     </section>
   </main>
 
-  <script src="./world-map-svg.js?v=20260627-cartoon-boundaries"></script>
+  <script src="./world-map-svg.js?v=20260627-ocean-relief"></script>
   <script>
   (() => {
     const slot = document.getElementById('world-running-map-slot');
     if (!slot) return;
 
-    fetch('./index.html?v=20260627-cartoon-boundaries')
+    fetch('./index.html?v=20260627-ocean-relief')
       .then(response => {
         if (!response.ok) throw new Error('Could not load map renderer');
         return response.text();
