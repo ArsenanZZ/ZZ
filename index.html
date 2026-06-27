@@ -62,6 +62,10 @@
     box-sizing: border-box;
   }
 
+  [hidden] {
+    display: none !important;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -888,16 +892,10 @@
     </div>
 
     <div class="module-subnav" data-subnav="me" data-theme="me" hidden>
-      <a class="module-btn" href="this-is-me/this-is-me/">Profile</a>
-      <a class="module-btn" href="this-is-me/structural-design/">Structural Design</a>
-      <a class="module-btn" href="this-is-me/fea-simulation/">FEA Simulation</a>
-      <a class="module-btn" href="this-is-me/mechanical-testing/">Mechanical Testing</a>
-      <a class="module-btn" href="this-is-me/3d-printing/">3D Printing</a>
-      <a class="module-btn" href="this-is-me/projects/">Projects</a>
-      <a class="module-btn" href="this-is-me/publications/">Publications</a>
-      <a class="module-btn" href="this-is-me/samples/">Facilities</a>
-      <a class="module-btn" href="this-is-me/facilities/">Teaching</a>
-      <a class="module-btn" href="this-is-me/teamplayer/">Team Player</a>
+      <a class="module-btn" href="#me">Profile</a>
+      <a class="module-btn" href="#me-engineering">Engineering Skills</a>
+      <a class="module-btn" href="#me-research">Research Portfolio</a>
+      <a class="module-btn" href="#me-teaching">Teaching &amp; Collaboration</a>
     </div>
 
     <div class="module-subnav" data-subnav="ro" data-theme="ro" hidden>
@@ -975,14 +973,14 @@
     </section>
 
     <section class="video-grid" id="videoGrid" aria-label="ZZ uploads">
-      <!-- This is Me Header -->
-      <div class="grid-header" id="me" data-section="me">
+      <!-- This is Me / Profile Header -->
+      <div class="grid-header" id="me" data-section="me" data-feature-group="me-profile">
         <h2>This is Me</h2>
       </div>
 
-      <article class="video-card" data-section="me" data-category="me about resume portfolio stem doctoral student arsenal marathon personal" data-title="This is Me">
+      <article class="video-card" data-section="me" data-feature-group="me-profile" data-category="me about resume portfolio stem doctoral student arsenal marathon personal profile" data-title="This is Me">
         <a class="thumb" href="this-is-me/this-is-me/">
-          <img src="assets/bio/125f8af6-d7bd-4d2f-823d-31bf39491f42-CV-IMAGES.png" alt="This is Me cover">
+          <img src="assets/thumb-me-profile.jpg?v=20260627-me-plaque-v1" alt="This is Me cover">
           <span class="duration">About</span>
         </a>
         <div class="meta">
@@ -994,9 +992,13 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="me" data-category="me skills engineering structural design research metamaterial geometry" data-title="Structural Design">
+      <div class="grid-header" id="me-engineering" data-section="me" data-feature-group="me-engineering">
+        <h2>Engineering Skills</h2>
+      </div>
+
+      <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me skills engineering structural design research metamaterial geometry" data-title="Structural Design">
         <a class="thumb" href="this-is-me/structural-design/">
-          <img src="assets/bio/e0d1b0aa-3a50-4c5a-9960-73e104184a97-00-Geo11.png" alt="Structural Design cover">
+          <img src="assets/thumb-me-structural-design.jpg?v=20260627-me-plaque-v1" alt="Structural Design cover">
           <span class="duration">Skill</span>
         </a>
         <div class="meta">
@@ -1008,9 +1010,9 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="me" data-category="me skills engineering fea simulation fem research mechanics" data-title="FEA Simulation">
+      <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me skills engineering fea simulation fem research mechanics" data-title="FEA Simulation">
         <a class="thumb" href="this-is-me/fea-simulation/">
-          <img src="assets/bio/b77aeae9-735f-4cbd-bd93-9e71fcbbcdca-00-Sim333.png" alt="FEA Simulation cover">
+          <img src="assets/thumb-me-fea-simulation.jpg?v=20260627-me-plaque-v1" alt="FEA Simulation cover">
           <span class="duration">Skill</span>
         </a>
         <div class="meta">
@@ -1022,9 +1024,9 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="me" data-category="me skills engineering mechanical testing research experiment mechanics" data-title="Mechanical Testing">
+      <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me skills engineering mechanical testing research experiment mechanics" data-title="Mechanical Testing">
         <a class="thumb" href="this-is-me/mechanical-testing/">
-          <img src="assets/bio/4d38b531-a321-4483-a62a-bdf9e1e4180e-000-TTT.png" alt="Mechanical Testing cover">
+          <img src="assets/thumb-me-mechanical-testing.jpg?v=20260627-me-plaque-v1" alt="Mechanical Testing cover">
           <span class="duration">Skill</span>
         </a>
         <div class="meta">
@@ -1036,9 +1038,9 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="me" data-category="me skills engineering 3d printing polyjet fabrication prototype" data-title="3D Printing">
+      <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me skills engineering 3d printing polyjet fabrication prototype" data-title="3D Printing">
         <a class="thumb" href="this-is-me/3d-printing/">
-          <img src="assets/bio/f1abc256-f40b-4018-b160-c2a210004b28-00-3DPRNTING111.png" alt="3D Printing cover">
+          <img src="assets/thumb-me-3d-printing.jpg?v=20260627-me-plaque-v1" alt="3D Printing cover">
           <span class="duration">Skill</span>
         </a>
         <div class="meta">
@@ -1050,9 +1052,13 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="me" data-category="me research projects engineering portfolio" data-title="Projects">
+      <div class="grid-header" id="me-research" data-section="me" data-feature-group="me-research">
+        <h2>Research Portfolio</h2>
+      </div>
+
+      <article class="video-card" data-section="me" data-feature-group="me-research" data-category="me research projects engineering portfolio" data-title="Projects">
         <a class="thumb" href="this-is-me/projects/">
-          <img src="https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Projects cover">
+          <img src="assets/thumb-me-projects.jpg?v=20260627-me-plaque-v1" alt="Projects cover">
           <span class="duration">Research</span>
         </a>
         <div class="meta">
@@ -1064,9 +1070,9 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="me" data-category="me research publications papers citations stem" data-title="Publications">
+      <article class="video-card" data-section="me" data-feature-group="me-research" data-category="me research publications papers citations stem" data-title="Publications">
         <a class="thumb" href="this-is-me/publications/">
-          <img src="https://images.unsplash.com/photo-1502078534399-8190479363f5?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Publications cover">
+          <img src="assets/thumb-me-publications.jpg?v=20260627-me-plaque-v1" alt="Publications cover">
           <span class="duration">Papers</span>
         </a>
         <div class="meta">
@@ -1078,9 +1084,9 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="me" data-category="me research facilities lab equipment samples stem" data-title="Facilities">
+      <article class="video-card" data-section="me" data-feature-group="me-research" data-category="me research facilities lab equipment samples stem" data-title="Facilities">
         <a class="thumb" href="this-is-me/samples/">
-          <img src="https://images.unsplash.com/photo-1615286922420-c6b348ffbd62?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Facilities cover">
+          <img src="assets/thumb-me-facilities.jpg?v=20260627-me-plaque-v1" alt="Facilities cover">
           <span class="duration">Lab</span>
         </a>
         <div class="meta">
@@ -1092,9 +1098,13 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="me" data-category="me teaching stem education mentoring class" data-title="Teaching">
+      <div class="grid-header" id="me-teaching" data-section="me" data-feature-group="me-teaching">
+        <h2>Teaching &amp; Collaboration</h2>
+      </div>
+
+      <article class="video-card" data-section="me" data-feature-group="me-teaching" data-category="me teaching stem education mentoring class" data-title="Teaching">
         <a class="thumb" href="this-is-me/facilities/">
-          <img src="https://images.unsplash.com/photo-1570616969692-54d6ba3d0397?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Teaching cover">
+          <img src="assets/thumb-me-teaching.jpg?v=20260627-me-plaque-v1" alt="Teaching cover">
           <span class="duration">Teach</span>
         </a>
         <div class="meta">
@@ -1106,9 +1116,9 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="me" data-category="me teamplayer teamwork collaboration leadership" data-title="Team Player">
+      <article class="video-card" data-section="me" data-feature-group="me-teaching" data-category="me teamplayer teamwork collaboration leadership" data-title="Team Player">
         <a class="thumb" href="this-is-me/teamplayer/">
-          <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&amp;q=90&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1920" alt="Team Player cover">
+          <img src="assets/thumb-me-team-player.jpg?v=20260627-me-plaque-v1" alt="Team Player cover">
           <span class="duration">Team</span>
         </a>
         <div class="meta">
@@ -1702,6 +1712,23 @@
   };
   let currentFilter = 'all';
 
+  function currentHashId() {
+    return window.location.hash.replace(/^#/, '').trim().toLowerCase();
+  }
+
+  function clearHash() {
+    history.pushState(null, '', `${window.location.pathname}${window.location.search}`);
+  }
+
+  function updateHash(hash) {
+    history.pushState(null, '', `#${hash}`);
+  }
+
+  function revealModuleControls() {
+    const activeSubnav = document.querySelector('.module-subnav:not([hidden])');
+    (activeSubnav || document.querySelector('.chips'))?.scrollIntoView({ block: 'start' });
+  }
+
   function refreshCards() {
     cards = Array.from(document.querySelectorAll('.video-card'));
     document.querySelectorAll('[data-upload-count]').forEach(element => {
@@ -1735,9 +1762,11 @@
   }
 
   function filterFromHash() {
-    const hash = window.location.hash.replace(/^#/, '').trim().toLowerCase();
+    const hash = currentHashId();
     const availableFilters = new Set(chips.map(chip => chip.dataset.filter));
-    return availableFilters.has(hash) ? hash : '';
+    if (availableFilters.has(hash)) return hash;
+    const target = document.getElementById(hash);
+    return target?.dataset?.section || '';
   }
 
   function applyFilters() {
@@ -1745,6 +1774,8 @@
     const query = searchInput.value.trim().toLowerCase();
     let visible = 0;
     const isFiltered = currentFilter !== 'all' || query !== '';
+    const masthead = document.querySelector('.masthead');
+    if (masthead) masthead.hidden = isFiltered;
 
     cards.forEach(card => {
       const haystack = `${card.dataset.title} ${card.dataset.category}`.toLowerCase();
@@ -1764,8 +1795,9 @@
     // Toggle grid-headers and flat results heading
     const mainTitle = document.querySelector('#mainSectionTitle');
     const headers = Array.from(document.querySelectorAll('.grid-header'));
+    const showGroupedModule = currentFilter === 'me' && query === '';
 
-    if (isFiltered) {
+    if (isFiltered && !showGroupedModule) {
       if (mainTitle) mainTitle.style.display = 'flex';
       headers.forEach(h => h.style.display = 'none');
     } else {
@@ -2245,26 +2277,57 @@
   searchInput.addEventListener('input', applyFilters);
 
   chips.forEach(chip => {
-    chip.addEventListener('click', () => setActiveFilter(chip.dataset.filter));
+    chip.addEventListener('click', () => {
+      const filter = chip.dataset.filter;
+      if (filter === 'all') clearHash();
+      else updateHash(filter);
+      setActiveFilter(filter);
+      revealModuleControls();
+    });
   });
 
   sideLinks.forEach(link => {
     link.addEventListener('click', event => {
       const filter = link.dataset.filter;
-      if (filter === 'all') event.preventDefault();
+      event.preventDefault();
+      if (filter === 'all') clearHash();
+      else updateHash(filter);
       setActiveFilter(filter);
+      revealModuleControls();
+    });
+  });
+
+  document.querySelectorAll('.module-subnav .module-btn[href^="#"]').forEach(link => {
+    link.addEventListener('click', event => {
+      const targetId = link.getAttribute('href').replace(/^#/, '');
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      event.preventDefault();
+      const filter = target.dataset.section || link.closest('.module-subnav')?.dataset.subnav;
+      if (filter) setActiveFilter(filter);
+      updateHash(targetId);
+      requestAnimationFrame(() => target.scrollIntoView({ block: 'start', behavior: 'smooth' }));
     });
   });
 
   window.addEventListener('hashchange', () => {
+    const hash = currentHashId();
     const filter = filterFromHash();
-    if (filter) setActiveFilter(filter);
+    if (filter) {
+      setActiveFilter(filter);
+      if (hash === filter) revealModuleControls();
+    }
   });
 
   refreshCards();
   updateThemeControl();
   renderHomeMaps();
-  setActiveFilter(filterFromHash() || 'all');
+  const initialFilter = filterFromHash() || 'all';
+  setActiveFilter(initialFilter);
+  if (initialFilter !== 'all' && currentHashId() === initialFilter) {
+    requestAnimationFrame(revealModuleControls);
+    window.setTimeout(revealModuleControls, 120);
+  }
   syncRun50LatestStories()
     .catch(error => console.warn('Run50 latest stories stayed on the static fallback.', error))
     .finally(applyFilters);
