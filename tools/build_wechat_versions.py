@@ -308,6 +308,29 @@ def modern_figure(img: Block, caption: str) -> str:
 </section>"""
 
 
+def opening_asset_figure(src: str, alt: str, caption: str) -> str:
+    return f"""
+<section style="margin: 24px 0 28px;">
+  <img src="{escape(src)}" alt="{escape(alt)}" style="width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 7px;">
+  <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid #d4a669; font-size: 12px; line-height: 1.8; letter-spacing: 0.4px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">{escape(caption)}</p>
+</section>"""
+
+
+def opening_visuals() -> list[str]:
+    return [
+        opening_asset_figure(
+            "../../assets/cover-medal-michigan-meadows-marathon.jpg",
+            "Run50 Michigan medal cover",
+            "Run50 #21 · 密歇根州奖牌质感封面。",
+        ),
+        opening_asset_figure(
+            "../../assets/wechat-run50-map-michigan-21.png",
+            "Run50 first 21 states map with Michigan highlighted",
+            "从肯塔基到密歇根，Run50 已点亮前 21 个州。",
+        ),
+    ]
+
+
 def render_classic(title: str, dek: str, blocks: list[Block]) -> str:
     body: list[str] = [
         '<section style="max-width: 677px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 26px 18px 56px; background: #ffffff;">',
@@ -373,14 +396,19 @@ def render_modern(title: str, dek: str, blocks: list[Block]) -> str:
 
 
 def render_modern_variant(title: str, dek: str, blocks: list[Block], variant: str, label: str) -> str:
+    dispatch_label = "RUN50 DISPATCH · MICHIGAN"
+    if variant != "rail":
+        dispatch_label += f" · {label.upper()}"
     body: list[str] = [
         '<section style="max-width: 677px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 28px 18px 58px; background: #ffffff;">',
         '<section style="margin: 0 0 22px; padding: 16px 0 18px; border-top: 4px solid #2d6f9f; border-bottom: 1px solid #dfe9ef;">',
-        f'<p style="margin: 0 0 8px; font-size: 12px; line-height: 1.4; letter-spacing: 2px; color: #2d6f9f; font-weight: 800;">RUN50 DISPATCH · MICHIGAN · {escape(label.upper())}</p>',
+        f'<p style="margin: 0 0 8px; font-size: 12px; line-height: 1.4; letter-spacing: 2px; color: #2d6f9f; font-weight: 800;">{escape(dispatch_label)}</p>',
         '<p style="margin: 0; font-size: 20px; line-height: 1.55; font-weight: 900; color: #17212b; letter-spacing: 0;">第21州 · 密歇根 · Meadow Marathon</p>',
         '<p style="margin: 14px 0 0; font-size: 13px; line-height: 1.7; color: #6f7d89;">Grand Rapids · Millennium Park · Meadow Marathon</p>',
         "</section>",
     ]
+    if variant == "rail":
+        body.extend(opening_visuals())
     if dek:
         body.append(
             '<section style="margin: 0 0 28px; padding: 16px 18px; background: #edf5f8; border-radius: 6px;">'
@@ -403,9 +431,11 @@ def render_modern_variant(title: str, dek: str, blocks: list[Block], variant: st
             body.append(variant_section_heading(block.text, section_index, variant))
         elif block.kind == "p":
             body.append(modern_paragraph_accent(block.text))
-    body.append(f'<p style="margin: 42px 0 0; padding-top: 16px; border-top: 1px solid #dfe9ef; text-align: center; color: #8a9bad; font-size: 12px; letter-spacing: 1.6px;">RUN50 · MICHIGAN · {escape(label.upper())} · END</p>')
+    end_label = "RUN50 · MICHIGAN · END" if variant == "rail" else f"RUN50 · MICHIGAN · {label.upper()} · END"
+    body.append(f'<p style="margin: 42px 0 0; padding-top: 16px; border-top: 1px solid #dfe9ef; text-align: center; color: #8a9bad; font-size: 12px; letter-spacing: 1.6px;">{escape(end_label)}</p>')
     body.append("</section>")
-    return page_shell(title + f"｜微信公众号增强版｜{label}", "\n".join(body))
+    page_title = title + "｜微信公众号增强版" if variant == "rail" else title + f"｜微信公众号增强版｜{label}"
+    return page_shell(page_title, "\n".join(body))
 
 
 def render_title_lab(title: str, blocks: list[Block]) -> str:
