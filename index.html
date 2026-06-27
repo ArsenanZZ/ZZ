@@ -556,6 +556,37 @@
     transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease;
   }
 
+  .feature-card {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(280px, 520px) minmax(260px, 1fr);
+    gap: 18px;
+    align-items: center;
+    padding: 10px;
+    border-color: var(--line);
+    background:
+      linear-gradient(120deg, color-mix(in srgb, var(--me) 10%, var(--panel)), var(--panel) 58%, color-mix(in srgb, var(--run) 7%, var(--panel)));
+  }
+
+  .feature-card .thumb {
+    aspect-ratio: 16 / 10;
+  }
+
+  .feature-card .meta {
+    align-content: center;
+    padding-top: 0;
+  }
+
+  .feature-card .video-title {
+    min-height: auto;
+    font-size: 20px;
+  }
+
+  .feature-card .video-sub {
+    max-width: 520px;
+    font-size: 14px;
+  }
+
   .grid-header[data-section="run50"],
   .video-card[data-section="run50"] { order: 10; }
 
@@ -781,6 +812,18 @@
       gap: 22px 12px;
     }
 
+    .feature-card {
+      grid-template-columns: 1fr;
+    }
+
+    .feature-card .thumb {
+      aspect-ratio: 16 / 10;
+    }
+
+    .feature-card .meta {
+      padding-top: 10px;
+    }
+
     .quick-stats {
       display: none;
     }
@@ -893,9 +936,8 @@
 
     <div class="module-subnav" data-subnav="me" data-theme="me" hidden>
       <a class="module-btn" href="#me">Profile</a>
-      <a class="module-btn" href="#me-engineering">Engineering Skills</a>
-      <a class="module-btn" href="#me-research">Research Portfolio</a>
-      <a class="module-btn" href="#me-teaching">Teaching &amp; Collaboration</a>
+      <a class="module-btn" href="#me-engineering">Engineering &amp; Research</a>
+      <a class="module-btn" href="#me-research">Academic &amp; Team</a>
     </div>
 
     <div class="module-subnav" data-subnav="ro" data-theme="ro" hidden>
@@ -973,12 +1015,8 @@
     </section>
 
     <section class="video-grid" id="videoGrid" aria-label="ZZ uploads">
-      <!-- This is Me / Profile Header -->
-      <div class="grid-header" id="me" data-section="me" data-feature-group="me-profile">
-        <h2>This is Me</h2>
-      </div>
-
-      <article class="video-card" data-section="me" data-feature-group="me-profile" data-category="me about resume portfolio stem doctoral student arsenal marathon personal profile" data-title="This is Me">
+      <!-- This is Me / Profile Highlight -->
+      <article class="video-card feature-card" id="me" data-section="me" data-feature-group="me-profile" data-category="me about resume portfolio stem doctoral student arsenal marathon personal profile" data-title="This is Me">
         <a class="thumb" href="this-is-me/this-is-me/">
           <img src="assets/thumb-me-profile.jpg?v=20260627-me-plaque-v1" alt="This is Me cover">
           <span class="duration">About</span>
@@ -993,7 +1031,7 @@
       </article>
 
       <div class="grid-header" id="me-engineering" data-section="me" data-feature-group="me-engineering">
-        <h2>Engineering Skills</h2>
+        <h2>Engineering &amp; Research Skills</h2>
       </div>
 
       <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me skills engineering structural design research metamaterial geometry" data-title="Structural Design">
@@ -1052,11 +1090,7 @@
         </div>
       </article>
 
-      <div class="grid-header" id="me-research" data-section="me" data-feature-group="me-research">
-        <h2>Research Portfolio</h2>
-      </div>
-
-      <article class="video-card" data-section="me" data-feature-group="me-research" data-category="me research projects engineering portfolio" data-title="Projects">
+      <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me research projects engineering portfolio" data-title="Projects">
         <a class="thumb" href="this-is-me/projects/">
           <img src="assets/thumb-me-projects.jpg?v=20260627-me-plaque-v1" alt="Projects cover">
           <span class="duration">Research</span>
@@ -1069,6 +1103,24 @@
           </div>
         </div>
       </article>
+
+      <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me research facilities lab equipment samples stem" data-title="Facilities">
+        <a class="thumb" href="this-is-me/samples/">
+          <img src="assets/thumb-me-facilities.jpg?v=20260627-me-plaque-v1" alt="Facilities cover">
+          <span class="duration">Lab</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/samples/">Facilities</a>
+            <p class="video-sub">Research &middot; lab resources and samples</p>
+          </div>
+        </div>
+      </article>
+
+      <div class="grid-header" id="me-research" data-section="me" data-feature-group="me-research">
+        <h2>Academic &amp; Team</h2>
+      </div>
 
       <article class="video-card" data-section="me" data-feature-group="me-research" data-category="me research publications papers citations stem" data-title="Publications">
         <a class="thumb" href="this-is-me/publications/">
@@ -1084,25 +1136,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="me" data-feature-group="me-research" data-category="me research facilities lab equipment samples stem" data-title="Facilities">
-        <a class="thumb" href="this-is-me/samples/">
-          <img src="assets/thumb-me-facilities.jpg?v=20260627-me-plaque-v1" alt="Facilities cover">
-          <span class="duration">Lab</span>
-        </a>
-        <div class="meta">
-          <span class="avatar me">Me</span>
-          <div>
-            <a class="video-title" href="this-is-me/samples/">Facilities</a>
-            <p class="video-sub">Research &middot; lab resources and samples</p>
-          </div>
-        </div>
-      </article>
-
-      <div class="grid-header" id="me-teaching" data-section="me" data-feature-group="me-teaching">
-        <h2>Teaching &amp; Collaboration</h2>
-      </div>
-
-      <article class="video-card" data-section="me" data-feature-group="me-teaching" data-category="me teaching stem education mentoring class" data-title="Teaching">
+      <article class="video-card" data-section="me" data-feature-group="me-research" data-category="me teaching stem education mentoring class" data-title="Teaching">
         <a class="thumb" href="this-is-me/facilities/">
           <img src="assets/thumb-me-teaching.jpg?v=20260627-me-plaque-v1" alt="Teaching cover">
           <span class="duration">Teach</span>
@@ -1116,7 +1150,7 @@
         </div>
       </article>
 
-      <article class="video-card" data-section="me" data-feature-group="me-teaching" data-category="me teamplayer teamwork collaboration leadership" data-title="Team Player">
+      <article class="video-card" data-section="me" data-feature-group="me-research" data-category="me teamplayer teamwork collaboration leadership" data-title="Team Player">
         <a class="thumb" href="this-is-me/teamplayer/">
           <img src="assets/thumb-me-team-player.jpg?v=20260627-me-plaque-v1" alt="Team Player cover">
           <span class="duration">Team</span>
@@ -1740,6 +1774,20 @@
     });
   }
 
+  function scrollToCurrentHashTarget() {
+    const hash = currentHashId();
+    const target = hash ? document.getElementById(hash) : null;
+    if (!target || hash === currentFilter) return;
+    [0, 160, 520, 1000].forEach(delay => {
+      window.setTimeout(() => {
+        const chips = document.querySelector('.chips');
+        const offset = chips ? chips.getBoundingClientRect().bottom + 12 : 120;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+      }, delay);
+    });
+  }
+
   function refreshCards() {
     cards = Array.from(document.querySelectorAll('.video-card'));
     document.querySelectorAll('[data-upload-count]').forEach(element => {
@@ -2327,6 +2375,7 @@
     if (filter) {
       setActiveFilter(filter);
       if (hash === filter) scheduleModuleControlsReveal();
+      else scrollToCurrentHashTarget();
     }
   });
 
@@ -2337,6 +2386,8 @@
   setActiveFilter(initialFilter);
   if (initialFilter !== 'all' && currentHashId() === initialFilter) {
     scheduleModuleControlsReveal();
+  } else {
+    scrollToCurrentHashTarget();
   }
   syncRun50LatestStories()
     .catch(error => console.warn('Run50 latest stories stayed on the static fallback.', error))
@@ -2344,6 +2395,8 @@
       applyFilters();
       if (currentFilter !== 'all' && currentHashId() === currentFilter) {
         scheduleModuleControlsReveal();
+      } else {
+        scrollToCurrentHashTarget();
       }
     });
 </script>
