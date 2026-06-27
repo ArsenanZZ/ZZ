@@ -316,6 +316,24 @@ def opening_asset_figure(src: str, alt: str, caption: str) -> str:
 </section>"""
 
 
+def vlog_opening() -> str:
+    return """
+<section style="margin: 24px 0 30px;">
+  <section style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 8px; overflow: hidden; background: #12384a; border: 1px solid #d5e4eb; box-shadow: 0 16px 36px rgba(20, 52, 68, 0.16);">
+    <section style="position: absolute; inset: 0; padding: 24px 26px; box-sizing: border-box; background: linear-gradient(135deg, #12384a 0%, #1f6f8f 55%, #0f2634 100%); color: #ffffff;">
+      <p style="margin: 0 0 10px; font-size: 12px; line-height: 1.3; letter-spacing: 2.2px; font-weight: 900; color: #ffdd75;">RUN50 VLOG · MICHIGAN</p>
+      <p style="margin: 0; max-width: 430px; font-size: 28px; line-height: 1.25; font-weight: 900; letter-spacing: 0;">先看一段大急流城</p>
+      <p style="margin: 10px 0 0; max-width: 460px; font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.86);">从 Parkrun 热身到 Millennium Park 六圈，Run50 第21州就在这里点亮。</p>
+      <section style="position: absolute; left: 26px; bottom: 22px; display: inline-block; padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.9); font-size: 12px; line-height: 1.4; letter-spacing: 0.5px;">Grand Rapids · 16:9 Vlog</section>
+      <section style="position: absolute; right: 30px; bottom: 26px; width: 64px; height: 64px; border-radius: 50%; background: #ffcc00; box-shadow: 0 10px 24px rgba(0,0,0,0.22);">
+        <span style="position: absolute; left: 25px; top: 19px; display: block; width: 0; height: 0; border-top: 13px solid transparent; border-bottom: 13px solid transparent; border-left: 20px solid #153242;"></span>
+      </section>
+    </section>
+  </section>
+  <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid #d4a669; font-size: 12px; line-height: 1.8; letter-spacing: 0.4px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">Vlog 开场位｜从肯塔基北上密歇根，把 Run50 第21州点亮。</p>
+</section>"""
+
+
 def opening_visuals() -> list[str]:
     return [
         opening_asset_figure(
@@ -408,7 +426,7 @@ def render_modern_variant(title: str, dek: str, blocks: list[Block], variant: st
         "</section>",
     ]
     if variant == "rail":
-        body.extend(opening_visuals())
+        body.append(vlog_opening())
     if dek:
         body.append(
             '<section style="margin: 0 0 28px; padding: 16px 18px; background: #edf5f8; border-radius: 6px;">'
@@ -422,6 +440,8 @@ def render_modern_variant(title: str, dek: str, blocks: list[Block], variant: st
         '<p style="margin: 0; font-size: 14px; line-height: 1.9; color: #53616f;">从肯塔基北上大急流城，先用 <strong style="color: #9b6d24; font-weight: 800;">Parkrun</strong> 热身，再在 <strong style="color: #2d6f9f; font-weight: 800;">Millennium Park</strong> 绕六圈完成密歇根州。不是最快的一场，但很有夏天、湿地和重复路线的味道。</p>'
         "</section>"
     )
+    if variant == "rail":
+        body.extend(opening_visuals())
     section_index = 0
     for block in paired_blocks(blocks):
         if isinstance(block, tuple):
