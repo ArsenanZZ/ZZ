@@ -332,11 +332,12 @@
 
 <!-- ── MAIN TAB NAV ── -->
 <nav class="hub-tabs">
-  <a href="index.html" class="hub-tab">🏠 Run50 Home</a>
-  <a href="stories/chinese/" class="hub-tab">📖 Chinese Stories</a>
-  <a href="stories/english/" class="hub-tab">📗 English Stories</a>
-  <a href="facebook/" class="hub-tab">📘 Facebook Stories</a>
-  <a href="run50.html" class="hub-tab">🗺 Running Map</a>
+  <a href="#home" class="hub-tab active" data-tab="home" aria-selected="true">🏠 Run50 Home</a>
+  <a href="#chinese" class="hub-tab" data-tab="chinese" aria-selected="false">📖 Chinese Stories</a>
+  <a href="#english" class="hub-tab" data-tab="english" aria-selected="false">📗 English Stories</a>
+  <a href="#wechat" class="hub-tab" data-tab="wechat" aria-selected="false">💬 WeChat</a>
+  <a href="#facebook" class="hub-tab" data-tab="facebook" aria-selected="false">📘 Facebook Stories</a>
+  <a href="#map" class="hub-tab" data-tab="map" aria-selected="false">🗺 Running Map</a>
 </nav>
 
 <!-- ── CONTENT ── -->
@@ -360,6 +361,11 @@
   <!-- Facebook Stories -->
   <div class="tab-pane" id="pane-facebook">
     <iframe class="embed-frame" src="facebook/?v=20260618-addddd" title="Run50 Facebook Stories" loading="lazy"></iframe>
+  </div>
+
+  <!-- WeChat Stories -->
+  <div class="tab-pane" id="pane-wechat">
+    <iframe class="embed-frame" src="wechat/?v=20260627-wechat-index" title="Run50 WeChat Editions" loading="lazy"></iframe>
   </div>
 
   <!-- Running Map -->
@@ -451,6 +457,11 @@ function switchTab(name) {
   history.replaceState(null, '', '#' + name);
   if (name === 'map') initMaps();
 }
+
+hubTabs.forEach(tab => tab.addEventListener('click', event => {
+  event.preventDefault();
+  switchTab(tab.dataset.tab);
+}));
 
 
 /* ====================================================
@@ -863,7 +874,7 @@ function _injectWorldMap() {
    ==================================================== */
 function initFromHash() {
   const h = location.hash.slice(1);
-  const valid = ['home','chinese','english','facebook','map'];
+  const valid = ['home','chinese','english','wechat','facebook','map'];
   if (valid.includes(h)) switchTab(h);
 }
 initFromHash();

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Run50 WeChat Editions</title>
+  <style>
+    :root {
+      --bg: #edf3f7;
+      --paper: #ffffff;
+      --ink: #17212b;
+      --muted: #5e6c78;
+      --line: #d9e4ec;
+      --blue: #2d6f9f;
+      --gold: #b98735;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    }
+    .tabs {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .tabs a { color: #435569; text-decoration: none; }
+    .tabs a.active { color: var(--blue); }
+    main {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    .hero {
+      padding: 26px 0 24px;
+      border-top: 4px solid var(--blue);
+      border-bottom: 1px solid var(--line);
+    }
+    .kicker {
+      margin: 0 0 10px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--blue);
+      font-weight: 900;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 6vw, 56px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    .dek {
+      max-width: 720px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+    .grid {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      display: block;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 16px 40px rgba(31, 51, 70, 0.08);
+    }
+    .cover {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+      background: #dbe7ef;
+    }
+    .body { padding: 18px 18px 20px; }
+    .meta {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 1.1px;
+      font-weight: 900;
+    }
+    h2 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+    .summary {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 16px;
+      padding-bottom: 3px;
+      color: var(--blue);
+      border-bottom: 2px solid var(--gold);
+      font-size: 14px;
+      font-weight: 900;
+    }
+    .note {
+      margin: 28px 0 0;
+      padding: 16px 18px;
+      background: rgba(255,255,255,0.72);
+      border-left: 4px solid var(--gold);
+      color: var(--muted);
+      line-height: 1.75;
+      border-radius: 7px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="tabs" aria-label="Run50 story sections">
+    <a href="../index.html">← Run50</a>
+    <a href="../stories/chinese/">Chinese Stories</a>
+    <a href="../stories/english/">English Stories</a>
+    <a href="./" class="active">WeChat</a>
+    <a href="../facebook/">Facebook</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <p class="kicker">RUN50 WECHAT EDITIONS</p>
+      <h1>微信公众号版</h1>
+      <p class="dek">为公众号复制和发布准备的杂志版文章：Vlog 开场、图文穿插、精致图注、适合手机阅读的节奏。</p>
+    </section>
+
+    <section class="grid" aria-label="WeChat editions">
+      <a class="card" href="michigan-meadows-marathon-modern-rail.html?v=20260627-interleave-a9df42d">
+        <img class="cover" src="../../assets/cover-medal-michigan-meadows-marathon.jpg" alt="Run50 Michigan WeChat cover">
+        <div class="body">
+          <p class="meta">RUN50 DISPATCH · MICHIGAN</p>
+          <h2>第21州 · 密歇根 · Meadow Marathon</h2>
+          <p class="summary">在大急流城数圈，6次穿越千禧公园。Vlog 开场、奖牌封面、21州地图和图文穿插版已经整理好。</p>
+          <span class="button">Open WeChat Edition →</span>
+        </div>
+      </a>
+    </section>
+
+    <p class="note">后续每一篇公众号杂志版都会放在这里，方便从 Run50 首页直接进入。</p>
+  </main>
+</body>
+</html>
