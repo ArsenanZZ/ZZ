@@ -334,7 +334,7 @@
   .world-running-map-slot {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 1516 / 1033;
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -693,7 +693,7 @@
     .running-map-stats { grid-template-columns: 1fr; }
     .running-map-card-head { display: block; }
     .running-map-status { display: block; max-width: 100%; margin-top: 8px; overflow-wrap: anywhere; }
-    .world-running-map-slot { aspect-ratio: 16 / 9; }
+    .world-running-map-slot { aspect-ratio: 1516 / 1033; }
     .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
     .hero-title { font-size: 26px; }
     .hero { padding: 24px 16px; }
@@ -1049,6 +1049,15 @@
   ];
 
   function project(lat, lon) {
+    const projection = typeof WORLD_MAP_PROJECTION !== 'undefined' ? WORLD_MAP_PROJECTION : null;
+    if (projection && projection.type === 'mercator') {
+      const lambda = lon * Math.PI / 180;
+      const phi = Math.max(-84, Math.min(84, lat)) * Math.PI / 180;
+      return {
+        x: lambda * projection.scale + projection.tx,
+        y: -Math.log(Math.tan(Math.PI / 4 + phi / 2)) * projection.scale + projection.ty
+      };
+    }
     return { x: (lon + 180) * 5, y: (90 - lat) * 5 };
   }
 
@@ -1145,16 +1154,19 @@
     slot.innerHTML = baseSvg;
     const svg = slot.querySelector('#world-map-master');
     if (!svg) return;
-    svg.setAttribute('viewBox', '0 0 1800 900');
-    svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+    const projection = typeof WORLD_MAP_PROJECTION !== 'undefined' ? WORLD_MAP_PROJECTION : null;
+    const mapWidth = projection?.width || 1800;
+    const mapHeight = projection?.height || 900;
+    svg.setAttribute('viewBox', `0 0 ${mapWidth} ${mapHeight}`);
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     svg.style.width = '100%';
     svg.style.height = '100%';
     const oceanRect = svg.querySelector('#wm_ocean');
     if (oceanRect) {
       oceanRect.setAttribute('x', '0');
       oceanRect.setAttribute('y', '0');
-      oceanRect.setAttribute('width', '1800');
-      oceanRect.setAttribute('height', '900');
+      oceanRect.setAttribute('width', String(mapWidth));
+      oceanRect.setAttribute('height', String(mapHeight));
       oceanRect.setAttribute('fill', COLORS.ocean);
       oceanRect.removeAttribute('filter');
     }
