@@ -381,6 +381,26 @@ def build_html() -> str:
             shine.setAttribute("fill", "#fff1a8");
             shine.setAttribute("opacity", "0.9");
             dotGroup.appendChild(shine);
+            const label = document.getElementById("map_MI");
+            if (label) {{
+              const labelTop = label.cloneNode(false);
+              labelTop.removeAttribute("id");
+              labelTop.setAttribute("fill", "#101820");
+              labelTop.style.pointerEvents = "none";
+              dotGroup.appendChild(labelTop);
+            }}
+            const miText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            miText.setAttribute("x", "1228");
+            miText.setAttribute("y", "412");
+            miText.setAttribute("text-anchor", "middle");
+            miText.setAttribute("font-family", "'Segoe Print', 'Comic Sans MS', cursive");
+            miText.setAttribute("font-size", "42");
+            miText.setAttribute("font-weight", "500");
+            miText.setAttribute("fill", "#101820");
+            miText.setAttribute("transform", "rotate(-2 1228 412)");
+            miText.style.pointerEvents = "none";
+            miText.textContent = "MI";
+            dotGroup.appendChild(miText);
             return;
           }}
           const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
