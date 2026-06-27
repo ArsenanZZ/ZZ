@@ -323,6 +323,24 @@ def build_html() -> str:
         const hawaiiFrame = document.getElementById("map_hawaii_1_");
         if (alaskaFrame && hawaiiFrame) alaskaFrame.style.fill = getComputedStyle(hawaiiFrame).fill;
 
+        const highlightGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        highlightGroup.id = "mi-highlight-outline";
+        master.appendChild(highlightGroup);
+        (STATE_PATHS.MI || []).forEach(id => {{
+          const source = document.getElementById("map_" + id);
+          if (!source) return;
+          const outline = source.cloneNode(false);
+          outline.removeAttribute("id");
+          outline.setAttribute("fill", "none");
+          outline.setAttribute("stroke", "#ffcc00");
+          outline.setAttribute("stroke-width", "4.2");
+          outline.setAttribute("stroke-linejoin", "round");
+          outline.setAttribute("stroke-linecap", "round");
+          outline.setAttribute("opacity", "0.95");
+          outline.style.pointerEvents = "none";
+          highlightGroup.appendChild(outline);
+        }});
+
         const dotGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
         dotGroup.id = "city-dots-group";
         master.appendChild(dotGroup);
@@ -346,20 +364,23 @@ def build_html() -> str:
           glow.setAttribute("fill", "rgba(255, 59, 48, 0.35)");
           dotGroup.appendChild(glow);
           if (abbr === "MI") {{
-            const halo = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            halo.setAttribute("cx", x);
-            halo.setAttribute("cy", y);
-            halo.setAttribute("r", 15);
-            halo.setAttribute("fill", "#ffffff");
-            halo.setAttribute("opacity", "0.88");
-            dotGroup.appendChild(halo);
+            const shadow = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            shadow.setAttribute("points", starPoints(x + 2.1, y + 2.6, 13.2, 5.8));
+            shadow.setAttribute("fill", "#5f4500");
+            shadow.setAttribute("opacity", "0.38");
+            dotGroup.appendChild(shadow);
             const star = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
             star.setAttribute("points", starPoints(x, y, 13, 5.7));
             star.setAttribute("fill", "#ffcc00");
-            star.setAttribute("stroke", "#0f4962");
-            star.setAttribute("stroke-width", "2.2");
+            star.setAttribute("stroke", "#6b4d00");
+            star.setAttribute("stroke-width", "1.9");
             star.setAttribute("stroke-linejoin", "round");
             dotGroup.appendChild(star);
+            const shine = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            shine.setAttribute("points", starPoints(x - 2.4, y - 3.2, 5.2, 2.1));
+            shine.setAttribute("fill", "#fff1a8");
+            shine.setAttribute("opacity", "0.9");
+            dotGroup.appendChild(shine);
             return;
           }}
           const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
