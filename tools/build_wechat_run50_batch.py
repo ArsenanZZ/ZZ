@@ -145,63 +145,63 @@ CONFIGS: list[StoryConfig] = [
 STORY_EXTRAS = {
     "new-hampshire-clarence-demar-marathon": {
         "map_asset": "wechat-run50-map-new-hampshire-22.png",
-        "map_caption": "第22州，新罕布什尔点亮；星标落在 Keene，秋色和小镇终点都在这里。",
+        "map_caption": "第22州 · Keene",
         "finish": "这一站最好的地方，不是它有多快，而是新英格兰的小镇、树林和校园终点，把一场全马跑得很有季节感。",
-        "chat": "如果你也喜欢这种小镇比赛，可以在留言里讲讲：是秋色更迷人，还是赛后热汤更救命。",
+        "chat": "这类小镇比赛很适合慢慢回味：赛道不一定热闹，但路边的树、学校终点和赛后那碗热东西，会把人留住。你要是也跑过类似的新英格兰小城马，可以留言告诉我是哪一场。",
     },
     "louisville-marathon-2024": {
         "map_asset": "wechat-run50-map-kentucky-extra-louisville-2024.png",
-        "map_caption": "番外回到肯塔基。地图已经往前走了很多州，星标还是落回 Louisville。",
+        "map_caption": "番外 · Louisville",
         "finish": "博士收官这一跑，像给肯塔基这条老线又补了一枚书签：不是第一次来，却刚好卡在一个人生章节的结尾。",
-        "chat": "这一篇适合聊一点人生节点：毕业、搬家、告别，或者某场刚好卡在转折点上的比赛。",
+        "chat": "有些比赛的意义不在配速，而在它刚好卡在人生节点上。毕业、搬家、换工作、告别一座城，如果你也有这种带着时间戳的比赛，留言区很适合慢慢讲。",
     },
     "louisiana-marathon": {
         "map_asset": "wechat-run50-map-louisiana-23.png",
-        "map_caption": "第23州路易斯安那点亮，星标落在 Baton Rouge。",
+        "map_caption": "第23州 · Baton Rouge",
         "finish": "这站有点南方口味：湿地、紫金色、Finish Fest，还有年初第一场把身体重新叫醒的长跑。",
-        "chat": "如果你跑过南方湿热的比赛，欢迎来吐槽一下：到底是风景先到，还是汗先到。",
+        "chat": "南方比赛有一种很直接的身体记忆：空气、湿度、音乐和赛后食物都一起上来。跑过湿热赛道的人，应该都懂那种一边嫌弃一边又记很久的感觉。",
     },
     "blue-ridge-marathon": {
         "map_asset": "wechat-run50-map-virginia-24.png",
-        "map_caption": "第24州弗吉尼亚点亮，星标落在 Roanoke，蓝岭山的爬升也一起写进地图。",
+        "map_caption": "第24州 · Roanoke",
         "finish": "蓝岭山这一跑不像普通城市马，更像一次把腿借给山路的旅行。痛是真的，风景也是真的。",
-        "chat": "这一站可以聊爬坡。你跑过最狠的一段坡是哪儿？我很想听听大家的腿是怎么被教育的。",
+        "chat": "爬坡赛道很公平，它不会跟你讲道理，只会一点点把腿里的存货掏出来。你跑过最狠的坡在哪儿？我很想知道大家都是在哪一段被教育的。",
     },
     "kentucky-derby-marathon-2025": {
         "map_asset": "wechat-run50-map-kentucky-extra-derby-2025.png",
-        "map_caption": "又一次回到肯塔基 Louisville。这一次，地图外还有第50场全马这个私人坐标。",
+        "map_caption": "第50场 · Louisville",
         "finish": "三块奖牌和一块蛋糕，听着有点夸张，但刚好适合第50场：郑重一点，也好笑一点。",
-        "chat": "如果你也有一个私人的整数纪念场，欢迎留言。第10场、第42场、第50场，都算数。",
+        "chat": "整数场次不一定非要隆重，但它确实会让人忍不住回头数一数。第10场、第42场、第50场，或者任何一个你自己在意的数字，都值得被认真记一下。",
     },
     "fargo-marathon": {
         "map_asset": "wechat-run50-map-north-dakota-25.png",
-        "map_caption": "第25州北达科他点亮，Run50 的半程分水岭落在 Fargo。",
+        "map_caption": "第25州 · Fargo",
         "finish": "跑到第25州，数字突然有了重量。Fargo 不只是一个美剧名字，也成了这张地图的中点。",
-        "chat": "半程分水岭这种东西，跑的时候没感觉，回头看才有点重。你也可以留言讲讲自己的 halfway moment。",
+        "chat": "半程分水岭这种东西，站在当下未必觉得多宏大，回头看才发现它真的把前后分开了。跑步、旅行、读书、工作，好像很多事情都有一个自己的 halfway moment。",
     },
     "hell-on-gravel-marathon": {
         "map_asset": "wechat-run50-map-kansas-26.png",
-        "map_caption": "第26州堪萨斯点亮，星标落在 El Dorado 的砂石路边。",
+        "map_caption": "第26州 · El Dorado",
         "finish": "这场小比赛的妙处就在于它不装大。十个人的全马，风、牛、砂石路都是真的，冠军也是真的。",
-        "chat": "这一篇欢迎聊小比赛。人少、路野、补给随缘，但有时候记得最牢的就是这种。",
+        "chat": "小比赛常常没有大场面的声浪，但会留下很多奇怪又鲜活的细节。人少、路野、补给随缘，偏偏就是这种比赛，最容易在很久以后还被想起来。",
     },
     "mad-marathon": {
         "map_asset": "wechat-run50-map-vermont-27.png",
-        "map_caption": "第27州佛蒙特点亮，星标落在 Warren 和 Mad River Valley。",
+        "map_caption": "第27州 · Warren",
         "finish": "佛蒙特这一站像夏天慢慢展开的一张明信片：绿山、谷仓、乡村路，跑得不急，但很留人。",
-        "chat": "如果你也有一场像明信片一样的比赛，可以留言丢给我。好看的乡村路永远不嫌多。",
+        "chat": "有些比赛不是靠成绩留下来的，而是靠颜色、风和路边房子的样子。要是你也跑过那种像明信片一样的乡村赛道，可以留言把名字丢给我。",
     },
     "rocket-city-marathon": {
         "map_asset": "wechat-run50-map-alabama-28.png",
-        "map_caption": "第28州阿拉巴马点亮，星标落在 Huntsville 的火箭城。",
+        "map_caption": "第28州 · Huntsville",
         "finish": "南方也会冷得很认真。火箭城这一跑，把航天、寒流和路村朋友们都收进了 2025 的尾声。",
-        "chat": "这一站欢迎讨论低温跑马装备：穿少了是勇敢，穿多了是智慧，我现在越来越尊重后者。",
+        "chat": "低温跑马这件事，年轻时总想证明自己不怕冷，后来才发现穿对衣服也是一种能力。火箭城提醒我：南方不等于暖和，起跑线也不负责照顾嘴硬的人。",
     },
     "arizona-phoenix-marathon": {
         "map_asset": "wechat-run50-map-arizona-29.png",
-        "map_caption": "第29州亚利桑那点亮，星标落在 Buckeye，沙漠公路一路通向机场终点。",
+        "map_caption": "第29州 · Buckeye",
         "finish": "新年的第一场，没有硬追，反而破了4。沙漠很空，路很直，这种顺下来的状态最难得。",
-        "chat": "如果你也有过一次“没想破，结果破了”的比赛，欢迎留言。我觉得这种惊喜比计划表更有意思。",
+        "chat": "有时候最舒服的破4，不是赛前写在计划表上的那种，而是一路跑着跑着发现身体愿意给你。沙漠很空，路很直，这种意外顺下来的比赛，比硬追更让人开心。",
     },
 }
 
@@ -275,6 +275,27 @@ def normalize_text(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+CAPTION_REWRITES = {
+    "Keene State Colleg 2": "Keene State 赛后合影",
+    "Keene State Colleg": "Keene State 校园终点",
+    "跑进 Keene State Col": "跑进 Keene State",
+    "挂满 Clarence DeMar": "Clarence DeMar 旗帜",
+    "Clarence DeMar 奖牌特": "Clarence DeMar 奖牌",
+    "路边展开的 Surry Mounta": "Surry Mountain 路段",
+    "距离 Keene State 终点只": "接近 Keene State 终点",
+    "Buckeye Race to the Runway 号码布": "Buckeye 号码布",
+    "Phoenix Race to the Runway 起跑拱门": "Phoenix 起跑拱门",
+    "Race to the Runway 起点的冷空气": "起点冷空气",
+    "Race to the Runway 终点方向": "机场终点方向",
+    "飞行主题的 Race to the Runway 奖牌": "飞行主题奖牌",
+    "Race to the Runway 奖牌特写": "奖牌特写",
+    "巨人柱旁的 Race to the Runway 奖牌": "巨人柱旁奖牌",
+    "接近 Surry Mountain": "接近萨里山湖",
+    "沿着 Surry Mountain": "沿着萨里山路",
+    "Surry Mountain 路段": "萨里山湖路段",
+}
+
+
 TAIL_MARKERS = (
     "- \u672c\u6587\u5b8c -",
     "\u6587\u5b57\u4e28Arsenan",
@@ -283,6 +304,9 @@ TAIL_MARKERS = (
     "\u7559\u8a00 / \u6d4f\u89c8",
     "\u7559\u8a00/\u6d4f\u89c8",
     "\u7559\u8a00\uff0f\u6d4f\u89c8",
+    "\u7559\u8a00 / \u9605\u8bfb",
+    "\u7559\u8a00/\u9605\u8bfb",
+    "\u7559\u8a00\uff0f\u9605\u8bfb",
     "\u4e0d\u7528\u767b\u5f55",
     "\u7559\u8a00\u533a\u52a0\u8f7d\u4e2d",
     "supabase",
@@ -304,18 +328,186 @@ def strip_tail_text(text: str) -> tuple[str, bool]:
 def caption_text(text: str) -> str:
     text = normalize_text(text)
     is_official = bool(re.search(r"Official (race )?photo|赛事摄影|官方赛照|官方摄影", text, flags=re.I))
-    is_external = bool(re.search(r"网络|资料图|Photo by|摄影师|Wikipedia|Unsplash|赛事方", text, flags=re.I))
+    is_external = bool(re.search(r"网络|资料图|航拍资料|赛事资料|Photo by|摄影师|Wikipedia|Unsplash|赛事方|Google|地图", text, flags=re.I))
+    external_label = "资料图"
+    if re.search(r"航拍资料", text):
+        external_label = "航拍资料"
+    elif re.search(r"赛事资料|赛事方", text):
+        external_label = "赛事资料"
     text = text.replace("@阿森南", "").replace("@Arsenan", "")
-    text = re.sub(r"\bOfficial race photo\b|\bOfficial photo\b|赛事摄影|官方摄影", "", text, flags=re.I)
+    text = re.sub(r"\bOfficial race photo\b|\bOfficial photo\b|赛事摄影|官方摄影|资料图|航拍资料|赛事资料", "", text, flags=re.I)
     text = re.sub(r"\s+", " ", text)
     text = text.strip(" ·｜|-")
+    for old, new in CAPTION_REWRITES.items():
+        if old in text:
+            text = text.replace(old, new)
+    text = compact_caption_base(text, is_official)
     if is_official:
         return f"{text} · 赛事摄影" if text else "赛事摄影"
     if is_external:
-        return text
+        return f"{text} · {external_label}" if text else external_label
     if text:
         return f"{text} @Arsenan"
     return text
+
+
+def compact_caption_base(text: str, is_official: bool = False) -> str:
+    text = normalize_text(text).strip(" ·｜|-")
+    if not text:
+        return text
+    official_map = [
+        (r"pink|粉", "粉色球衣"),
+        (r"first miles|early", "前半程赛照"),
+        (r"pack|crew", "队伍中奔跑"),
+        (r"finish|final|终点|冲线", "终点瞬间"),
+        (r"arms up|庆祝", "举手庆祝"),
+        (r"Churchill|Louisville logo", "路易斯维尔赛照"),
+        (r"green hills|blue kit", "山谷赛道"),
+    ]
+    if is_official:
+        for pattern, replacement in official_map:
+            if re.search(pattern, text, re.I):
+                return replacement
+        return english_caption_to_chinese(text, fallback="官方赛照")
+    if re.search(r"[A-Za-z]", text) and len(text) > 18:
+        return english_caption_to_chinese(text)
+    if len(text) <= 18:
+        return text
+    for sep in ["，", "；", "：", " · ", "｜", "和", "与", "里的", "旁的", "前的", "后的"]:
+        if sep in text:
+            candidate = text.split(sep, 1)[0].strip()
+            if 5 <= len(candidate) <= 18:
+                return candidate
+    for suffix in ["介绍牌", "英里牌", "起跑区", "终点线", "补给站", "停车场", "观景台", "合影", "自拍", "奖牌", "赛道"]:
+        index = text.find(suffix)
+        if 0 <= index <= 16:
+            return text[: index + len(suffix)]
+    return text[:18].rstrip("的和与，；：")
+
+
+def english_caption_to_chinese(text: str, fallback: str = "路上片刻") -> str:
+    raw = normalize_text(text)
+    lower = raw.lower()
+    replacements = [
+        (r"blue ridge marathon finish", "蓝岭山终点标识"),
+        (r"downtown roanoke street", "Roanoke 赛前街景"),
+        (r"pre-race buffet", "赛前自助餐"),
+        (r"steel bridge", "进山路上的钢桥"),
+        (r"foggy highway", "山间雾路"),
+        (r"tesla navigation", "弗吉尼亚导航"),
+        (r"roanoke skyline", "Roanoke 天际线"),
+        (r"fog settling", "蓝岭山雾气"),
+        (r"art-covered building", "市中心壁画楼"),
+        (r"quiet roanoke street", "清晨街道"),
+        (r"start-line selfie|pink kit selfie", "起点自拍"),
+        (r"volunteers and tents|aid station|water stop", "补给站"),
+        (r"gravel path", "爬坡前的砂石路"),
+        (r"roanoke star", "Roanoke Star 合影"),
+        (r"old brick building", "赛道旁砖楼"),
+        (r"empty finish chute", "空荡终点通道"),
+        (r"roanoke finish arch", "Roanoke 终点拱门"),
+        (r"distance signs", "终点区距离牌"),
+        (r"blue ridge medal|full marathon medal|post-race medal", "蓝岭山奖牌"),
+        (r"cooling down", "赛后市中心放松"),
+        (r"medal pose", "街角奖牌照"),
+        (r"storm clouds", "北上路上的风暴云"),
+        (r"colorful overpass", "彩色天桥下"),
+        (r"red sunset|sunset stripe", "州际公路落日"),
+        (r"wind turbines", "平原风车"),
+        (r"exit sign", "北达科他出口牌"),
+        (r"dark highway", "夜色高速路"),
+        (r"campsite|campground", "营地一角"),
+        (r"road-trip snacks", "路上零食"),
+        (r"car lunch", "车上午餐"),
+        (r"flat prairie", "车窗外的大平原"),
+        (r"quiet field", "营地后的田野"),
+        (r"dusty gravel road", "农田砂石路"),
+        (r"fargodome", "FargoDome 起点"),
+        (r"fargo marathon start", "Fargo 起跑牌"),
+        (r"runners heading out", "跑者冲出场馆"),
+        (r"early miles", "前半程清晨"),
+        (r"turning through fargo", "Fargo 街区转弯"),
+        (r"mile \d+", "英里牌"),
+        (r"vintage red truck", "复古红色卡车"),
+        (r"two-lane road", "通往火箭城的公路"),
+        (r"utility poles", "冬日路边电线杆"),
+        (r"morning mist", "清晨薄雾"),
+        (r"rocket city course", "Rocket City 路线图"),
+        (r"siqi posing", "Siqi 赛前留影"),
+        (r"sunlit creek", "阳光下的小溪"),
+        (r"final aid area", "最后补给区"),
+        (r"blue-kit selfie", "蓝色跑衣自拍"),
+        (r"final sunny selfie", "赛后阳光自拍"),
+        (r"cincinnati skyline", "辛辛那提天际线"),
+        (r"hot-air balloon", "热气球拖车"),
+        (r"orange sunset", "橙色落日"),
+        (r"night highway", "夜色高速"),
+        (r"covered bridge", "乡村廊桥"),
+        (r"small boat", "湖上的小船"),
+        (r"cyclists climbing", "绿坡上的骑行者"),
+        (r"farm lane", "谷仓旁小路"),
+        (r"red b", "红色谷仓"),
+        (r"thumbs-up", "路边竖起大拇指"),
+        (r"shadow selfie", "烈日下的影子自拍"),
+        (r"park gazebo", "公园凉亭自拍"),
+        (r"hotel hallway", "酒店走廊"),
+        (r"long evening shadow", "傍晚长影"),
+        (r"pond", "池塘边"),
+        (r"campground road", "营地小路"),
+        (r"pouring water", "浇水降温"),
+        (r"friday 5k", "周五 5K 起点"),
+        (r"ohio river sunset", "俄亥俄河落日"),
+        (r"big .*bridge|bridge deck", "雨中的大桥"),
+        (r"mile 3 sign", "5K 三英里牌"),
+        (r"mile 22 sign|mile 25 sign", "马拉松英里牌"),
+        (r"runner raising", "跑者举手瞬间"),
+        (r"turn-around sign", "折返点标识"),
+        (r"underpass shade", "桥下阴影"),
+        (r"sunrise haze", "清晨霞光"),
+        (r"bayous|brown water", "湾流与褐色水面"),
+        (r"seatback map|in-flight map", "飞行地图"),
+        (r"korean lunch", "转机韩餐"),
+        (r"bib", "号码布"),
+        (r"baton rouge mural", "Baton Rouge 壁画"),
+        (r"lsu tiger", "LSU 虎队吉祥物"),
+        (r"finish fest", "Finish Fest"),
+        (r"hydration", "赛道补水"),
+        (r"buckeye marathon vlog", "Buckeye Vlog 封面"),
+        (r"race to the runway", "Race to the Runway"),
+        (r"north mountain park", "North Mountain 山路"),
+        (r"dobbins lookout", "Dobbins Lookout"),
+        (r"festival foothills", "Festival Foothills 起点"),
+        (r"sun city festival", "Sun City 赛道路段"),
+        (r"papago park", "Papago Park 红岩"),
+        (r"hole-in-the-rock", "Hole-in-the-Rock"),
+    ]
+    for pattern, label in replacements:
+        if re.search(pattern, lower, re.I):
+            return label
+    generic = [
+        (r"selfie", "路上自拍"),
+        (r"medal", "奖牌照"),
+        (r"start|corral", "起点现场"),
+        (r"finish|chute", "终点现场"),
+        (r"runners|runner", "赛道跑者"),
+        (r"aid|water|hydration", "补给站"),
+        (r"sunset", "落日时分"),
+        (r"sunrise|morning", "清晨风景"),
+        (r"road|highway|interstate", "路上风景"),
+        (r"bridge", "桥上风景"),
+        (r"downtown|street", "城市街景"),
+        (r"field|farm|prairie|corn", "田野风景"),
+        (r"mountain|hill|ridge", "山路风景"),
+        (r"creek|lake|river", "水边风景"),
+        (r"sign", "路边标识"),
+    ]
+    for pattern, label in generic:
+        if re.search(pattern, lower, re.I):
+            return label
+    words = re.sub(r"[^A-Za-z0-9 ]+", " ", raw).split()
+    if words:
+        return " ".join(words[:2])
+    return fallback
 
 
 def parse_source(slug: str) -> tuple[str, str, list[Block]]:
@@ -351,6 +543,7 @@ def blocks_for_wechat(blocks: list[Block]) -> list[Block]:
 
 def paired_blocks(blocks: list[Block]) -> list[Block | tuple[Block, str]]:
     result: list[Block | tuple[Block, str]] = []
+    seen_captions: dict[str, int] = {}
     i = 0
     while i < len(blocks):
         block = blocks[i]
@@ -358,6 +551,10 @@ def paired_blocks(blocks: list[Block]) -> list[Block | tuple[Block, str]]:
             cap = ""
             if i + 1 < len(blocks) and blocks[i + 1].kind == "figcaption":
                 cap = caption_text(blocks[i + 1].text)
+                original_cap = cap
+                count = seen_captions.get(original_cap, 0)
+                cap = uniquify_caption(original_cap, count)
+                seen_captions[original_cap] = count + 1
                 i += 2
             else:
                 i += 1
@@ -368,6 +565,47 @@ def paired_blocks(blocks: list[Block]) -> list[Block | tuple[Block, str]]:
             result.append(block)
             i += 1
     return result
+
+
+def uniquify_caption(caption: str, count: int) -> str:
+    if count <= 0 or not caption:
+        return caption
+    source = ""
+    base = caption
+    for marker in [" @Arsenan", " · 赛事摄影", " · 航拍资料", " · 赛事资料", " · 资料图"]:
+        if caption.endswith(marker):
+            base = caption[: -len(marker)]
+            source = marker
+            break
+    variants = {
+        "终点瞬间": ["冲线瞬间", "终点挥手", "终点近照", "终点回望", "终点蓝衣"],
+        "山路风景": ["山路转弯", "山顶视野", "林间山路", "下坡路段", "山城远景"],
+        "营地一角": ["营地车位", "营地黄昏", "营地清晨", "树边营位"],
+        "路上风景": ["路边远景", "车窗风景", "前方长路", "转场路上"],
+        "城市街景": ["街角一幕", "市中心路口", "赛前街道", "城市立面"],
+        "桥上风景": ["桥面路段", "过桥瞬间", "桥下阴影", "桥边视角"],
+        "落日时分": ["落日公路", "傍晚天色", "夕阳余光", "天边橙光"],
+        "起点现场": ["起点人群", "起跑拱门", "出发前一刻", "起点队伍"],
+        "赛道跑者": ["路上跑者", "转弯跑者", "队伍中段", "赛道节奏"],
+        "补给站": ["补给桌前", "志愿者补给", "水站一角", "赛道补水"],
+        "英里牌": ["里程标识", "路边英里牌", "后半程英里牌", "关键里程"],
+        "路边标识": ["路牌细节", "赛道指示牌", "路口标识", "方向牌"],
+        "FargoDome 起点": ["FargoDome 外场", "场馆起跑线", "冲出 FargoDome"],
+        "红色谷仓": ["谷仓侧影", "乡村红屋", "田野谷仓"],
+        "Dobbins Lookout": ["Dobbins 石屋", "Dobbins 山脊", "Dobbins 暮色"],
+        "Hole-in-the-Rock": ["红岩洞口", "岩洞窗口", "红岩观景点"],
+        "Race to the Runway": ["机场赛道", "飞行主题赛道", "跑道方向"],
+        "蓝岭山奖牌": ["蓝岭山奖牌近照", "完赛奖牌", "赛后奖牌"],
+        "街角奖牌照": ["阳光奖牌照", "赛后街角", "市中心奖牌照"],
+        "飞行地图": ["转机航线图", "落地前地图", "机上路线图"],
+        "号码布": ["号码布近照", "Expo 号码布", "赛前号码布"],
+    }
+    options = variants.get(base)
+    if options:
+        if count - 1 < len(options):
+            return f"{options[count - 1]}{source}"
+        return f"{base} · {count + 1}{source}"
+    return f"{base} · {count + 1}{source}"
 
 
 def interleave_section_items(items: list[Block | tuple[Block, str]]) -> list[Block | tuple[Block, str]]:
@@ -409,9 +647,15 @@ def image_src(src: str) -> str:
 
 def accent_inline(text: str, cfg: StoryConfig) -> str:
     escaped = escape(text)
+    escaped = re.sub(
+        r"(3:58|4:44|Sub4|sub4|\d+(?:\.\d+)?\s?(?:小时|分钟|英里|英尺|场|州|K|k)?)",
+        lambda m: f'<span style="display: inline-block; padding: 0 3px; margin: 0 1px; border-radius: 3px; background: rgba(185,135,53,0.16); color: {cfg.gold}; font-weight: 900;">{m.group(1)}</span>',
+        escaped,
+    )
     underline_terms = [
         "第22州", "第23州", "第24州", "第25州", "第26州", "第27州", "第28州", "第29州",
         "半程分水岭", "全美最虐赛道", "冠军就是冠军", "第50场马拉松", "2025 第一跑",
+        "二〇二六第一跑", "机场终点", "博士收官", "第50场", "破 4", "破4",
     ]
     for term in underline_terms:
         escaped = escaped.replace(
@@ -420,7 +664,8 @@ def accent_inline(text: str, cfg: StoryConfig) -> str:
         )
     italic_terms = [
         "Run50", "Parkrun", "Finish Fest", "America's Toughest Road Marathon",
-        "Buckeye", "Floyds Fork", "loop", "sub4", "Sub4",
+        "Buckeye", "Floyds Fork", "loop", "sub4", "Sub4", "Race to the Runway",
+        "Halfway", "halfway moment", "Vlog",
     ]
     for term in italic_terms:
         escaped = escaped.replace(
@@ -432,8 +677,10 @@ def accent_inline(text: str, cfg: StoryConfig) -> str:
         cfg.place.split("·")[0].strip(),
         "新英格兰", "基恩", "路易斯维尔", "巴吞鲁日", "蓝岭山", "罗阿诺克",
         "法戈", "堪萨斯", "佛蒙特", "火箭城", "亚利桑那", "大平原",
-        "Grand River", "LSU", "大火箭", "巨人柱", "机场终点",
+        "Grand River", "LSU", "大火箭", "巨人柱", "机场终点", "凤凰城",
+        "Roanoke", "Baton Rouge", "Fargo", "Huntsville", "Warren",
         "4 小时", "破4", "秋色", "热浪", "寒流", "砂石路", "绿山",
+        "沙漠", "湿地", "谷仓", "玉米地", "蛋糕", "冠军", "UFO",
     ]
     for term in terms:
         if term:
@@ -449,11 +696,19 @@ def figure(img: Block, caption: str) -> str:
     return f"""
 <section style="margin: 28px 0 30px;">
   <img src="{escape(image_src(img.src))}" alt="{escape(img.alt)}" style="width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 6px;">
-  <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid #d4a669; font-size: 12px; line-height: 1.8; letter-spacing: 0.4px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">{cap}</p>
+  <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid #d4a669; font-size: 12px; line-height: 1.6; letter-spacing: 0.2px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">{cap}</p>
 </section>"""
 
 
 def paragraph(text: str, cfg: StoryConfig) -> str:
+    if len(text) <= 18 and not text.endswith("。"):
+        return (
+            '<p style="margin: 6px 0 15px; padding: 8px 11px; line-height: 1.65; '
+            f"font-size: 15px; letter-spacing: 0.3px; color: {cfg.accent}; "
+            "background: #f4f8fb; border-left: 3px solid #d4a669; "
+            "font-family: Georgia, 'Times New Roman', 'PingFang SC', serif; font-style: italic;\">"
+            f"{accent_inline(text, cfg)}</p>"
+        )
     if text.endswith("：") and len(text) <= 14:
         return (
             '<p style="margin: 4px 0 14px; line-height: 1.7; text-align: left; '
@@ -552,6 +807,14 @@ def normalize_existing_page(cfg: StoryConfig) -> None:
         flags=re.S,
     )
     text = text.replace(
+        "Vlog \u5f00\u573a\u4f4d\uff5c\u4ece\u80af\u5854\u57fa\u5317\u4e0a\u5bc6\u6b47\u6839\uff0c\u628a Run50 \u7b2c21\u5dde\u70b9\u4eae\u3002",
+        "Vlog \u5f00\u573a\u4f4d\uff5cMichigan",
+    )
+    text = text.replace(
+        "\u4ece\u80af\u5854\u57fa\u5230\u5bc6\u6b47\u6839\uff0cRun50 \u5df2\u70b9\u4eae\u524d 21 \u4e2a\u5dde\u3002 @Arsenan",
+        "\u7b2c21\u5dde \u00b7 Michigan",
+    )
+    text = text.replace(
         "跑完以后也可以聊两句。如果你也跑过绕圈赛道，或者也有一次“看起来不顺、回头却很难忘”的比赛，欢迎在公众号留言区见。",
         "绕圈赛道很容易让人精神出走，但也最容易把一场比赛的细节钉进脑子里。如果你也跑过这种“绕到怀疑人生”的路线，欢迎在留言里互相取暖。",
     )
@@ -573,7 +836,7 @@ def vlog_card(cfg: StoryConfig) -> str:
       </section>
     </section>
   </section>
-  <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid {cfg.gold}; font-size: 12px; line-height: 1.8; letter-spacing: 0.4px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">Vlog 开场位｜{escape(cfg.summary)}</p>
+  <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid {cfg.gold}; font-size: 12px; line-height: 1.65; letter-spacing: 0.2px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">Vlog 开场位｜{escape(cfg.state_en.title())}</p>
 </section>"""
 
 
@@ -581,7 +844,7 @@ def medal_figure(cfg: StoryConfig) -> str:
     return f"""
 <section style="margin: 24px 0 28px;">
   <img src="../../assets/cover-medal-{escape(cfg.slug)}.jpg" alt="{escape(cfg.public_title)}奖牌封面" style="width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 7px;">
-  <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid {cfg.gold}; font-size: 12px; line-height: 1.8; letter-spacing: 0.4px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">{escape(cfg.public_title)}奖牌质感封面。</p>
+  <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid {cfg.gold}; font-size: 12px; line-height: 1.65; letter-spacing: 0.2px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">奖牌质感封面｜{escape(cfg.state_en.title())}</p>
 </section>"""
 
 
@@ -592,7 +855,7 @@ def map_figure(cfg: StoryConfig) -> str:
     return f"""
 <section style="margin: 12px 0 30px;">
   <img src="../../assets/{escape(str(extra['map_asset']))}" alt="{escape(str(extra['map_caption']))}" style="width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 7px;">
-  <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid {cfg.gold}; font-size: 12px; line-height: 1.8; letter-spacing: 0.4px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">{escape(str(extra['map_caption']))}</p>
+  <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid {cfg.gold}; font-size: 12px; line-height: 1.65; letter-spacing: 0.2px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">{escape(str(extra['map_caption']))}</p>
 </section>"""
 
 
