@@ -55,42 +55,42 @@ def tabs_for(path: Path) -> str:
         links = [
             ("../../index.html", "← Run50"),
             ("../english/", "English Stories"),
-            ("./", "中文故事"),
+            ("./", "Chinese Stories"),
             ("../../facebook/", "Facebook"),
         ]
     elif rel == "run50/stories/english/index.html":
         links = [
             ("../../index.html", "← Run50"),
             ("./", "English Stories"),
-            ("../chinese/", "中文故事"),
+            ("../chinese/", "Chinese Stories"),
             ("../../facebook/", "Facebook"),
         ]
     elif rel == "run50/facebook/index.html":
         links = [
             ("../index.html", "← Run50"),
             ("../stories/english/", "English Stories"),
-            ("../stories/chinese/", "中文故事"),
+            ("../stories/chinese/", "Chinese Stories"),
             ("./", "Facebook"),
         ]
     elif rel.startswith("run50/stories/chinese/"):
         links = [
             ("../../index.html", "← Run50"),
             (f"../english/{slug}.html" if (ROOT / "run50" / "stories" / "english" / f"{slug}.html").exists() else "../english/", "English Stories"),
-            ("./index.html", "中文故事"),
+            ("./index.html", "Chinese Stories"),
             (f"../../facebook/{slug}.html" if (ROOT / "run50" / "facebook" / f"{slug}.html").exists() else "../../facebook/", "Facebook"),
         ]
     elif rel.startswith("run50/stories/english/"):
         links = [
             ("../../index.html", "← Run50"),
             ("./index.html", "English Stories"),
-            (f"../chinese/{slug}.html" if (ROOT / "run50" / "stories" / "chinese" / f"{slug}.html").exists() else "../chinese/", "中文故事"),
+            (f"../chinese/{slug}.html" if (ROOT / "run50" / "stories" / "chinese" / f"{slug}.html").exists() else "../chinese/", "Chinese Stories"),
             (f"../../facebook/{slug}.html" if (ROOT / "run50" / "facebook" / f"{slug}.html").exists() else "../../facebook/", "Facebook"),
         ]
     elif rel.startswith("run50/facebook/"):
         links = [
             ("../index.html", "← Run50"),
             (f"../stories/english/{slug}.html" if (ROOT / "run50" / "stories" / "english" / f"{slug}.html").exists() else "../stories/english/", "English Stories"),
-            (f"../stories/chinese/{slug}.html" if (ROOT / "run50" / "stories" / "chinese" / f"{slug}.html").exists() else "../stories/chinese/", "中文故事"),
+            (f"../stories/chinese/{slug}.html" if (ROOT / "run50" / "stories" / "chinese" / f"{slug}.html").exists() else "../stories/chinese/", "Chinese Stories"),
             ("./index.html", "Facebook"),
         ]
     else:
@@ -110,6 +110,20 @@ def remove_old_top_navs(text: str) -> str:
     )
     text = re.sub(
         r"\s*<nav\b[^>]*class=\"[^\"]*\bstory-nav\b[^\"]*\"[^>]*>.*?</nav>",
+        "",
+        text,
+        count=1,
+        flags=re.S,
+    )
+    text = re.sub(
+        r"\s*<nav\b[^>]*class=\"[^\"]*\bnav\b[^\"]*\"[^>]*>.*?</nav>",
+        "",
+        text,
+        count=1,
+        flags=re.S,
+    )
+    text = re.sub(
+        r"\s*<nav\b(?![^>]*\brun50-global-tabs\b)[^>]*>\s*<a\b[^>]*>(?:←\s*)?(?:中文故事|English Stories|English|Facebook|Run50).*?</nav>",
         "",
         text,
         count=1,
