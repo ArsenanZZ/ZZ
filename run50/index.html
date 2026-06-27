@@ -968,7 +968,7 @@
 
   const countries = [
     { key:'USA', id:'wm_usa', name:'United States', label:'Run50', color:COLORS.usa, url:'./stories/english/?v=20260618-addddd#run50-series' },
-    { key:'CHN', id:'wm_chn', name:'China', label:'RunCN', color:COLORS.china, url:'./stories/english/?v=20260618-addddd#runcn-series' },
+    { key:'CHN', id:'wm_chn', parts:['wm_chn','wm_twn'], name:'China', label:'RunCN', color:COLORS.china, url:'./stories/english/?v=20260618-addddd#runcn-series' },
     { key:'HKG', id:'wm_hkg', name:'Hong Kong SAR', label:'RunCN', color:COLORS.hongkong, url:'./stories/english/hong-kong-marathon.html' },
     { key:'SGP', id:'wm_sgp', name:'Singapore', label:'RunWorld', color:COLORS.runworld, url:'./stories/english/singapore-sundown-marathon.html' },
     { key:'THA', id:'wm_tha', name:'Thailand', label:'RunWorld', color:COLORS.thailand, url:'./stories/english/bangkok-marathon.html' },
@@ -1179,7 +1179,7 @@
       oceanRect.setAttribute('filter', 'url(#world-ocean-texture)');
     }
 
-    const runCountryIds = new Set(countries.map(country => country.id));
+    const runCountryIds = new Set(countries.flatMap(country => country.parts || [country.id]));
     svg.querySelectorAll('path').forEach(path => {
       path.style.pointerEvents = 'none';
       path.setAttribute('stroke', 'rgba(5,42,50,.66)');
@@ -1191,26 +1191,30 @@
     });
 
     countries.forEach(country => {
-      const path = svg.querySelector('#' + country.id);
-      if (!path) return;
+      const paths = (country.parts || [country.id])
+        .map(id => svg.querySelector('#' + id))
+        .filter(Boolean);
+      if (!paths.length) return;
       const dots = raceDots.filter(dot => dot.country === country.key);
       const raceCount = dots.reduce((sum, dot) => sum + dot.races.length, 0);
-      path.setAttribute('fill', country.color);
-      path.setAttribute('stroke', '#f7fbff');
-      path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.65' : '1.35');
-      path.style.filter = 'drop-shadow(0 3px 2.5px rgba(0,32,45,.45))';
-      path.style.pointerEvents = 'auto';
-      path.classList.add('wm-country-run');
-      path.addEventListener('mouseenter', e => {
-        setStatus(`${country.name}: ${raceCount} race record${raceCount === 1 ? '' : 's'} in ${dots.length} city dot${dots.length === 1 ? '' : 's'}`, country.color);
-        showTooltip(e, buildCountryTooltip(country, dots));
+      paths.forEach(path => {
+        path.setAttribute('fill', country.color);
+        path.setAttribute('stroke', '#f7fbff');
+        path.setAttribute('stroke-width', country.id === 'wm_sgp' || country.id === 'wm_hkg' ? '1.65' : '1.35');
+        path.style.filter = 'drop-shadow(0 3px 2.5px rgba(0,32,45,.45))';
+        path.style.pointerEvents = 'auto';
+        path.classList.add('wm-country-run');
+        path.addEventListener('mouseenter', e => {
+          setStatus(`${country.name}: ${raceCount} race record${raceCount === 1 ? '' : 's'} in ${dots.length} city dot${dots.length === 1 ? '' : 's'}`, country.color);
+          showTooltip(e, buildCountryTooltip(country, dots));
+        });
+        path.addEventListener('mousemove', moveTooltip);
+        path.addEventListener('mouseleave', () => {
+          setStatus();
+          scheduleHideTooltip();
+        });
+        path.addEventListener('click', () => { window.location.href = country.url; });
       });
-      path.addEventListener('mousemove', moveTooltip);
-      path.addEventListener('mouseleave', () => {
-        setStatus();
-        scheduleHideTooltip();
-      });
-      path.addEventListener('click', () => { window.location.href = country.url; });
     });
 
     const labelLayer = addSvgEl(svg, 'g', { id:'world-running-map-labels', 'pointer-events':'none' });

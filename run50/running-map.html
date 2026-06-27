@@ -351,13 +351,13 @@
     </section>
   </main>
 
-  <script src="./world-map-svg.js?v=20260626-real-proportion-run-only"></script>
+  <script src="./world-map-svg.js?v=20260626-real-proportion-run-only-taiwan"></script>
   <script>
   (() => {
     const slot = document.getElementById('world-running-map-slot');
     if (!slot) return;
 
-    fetch('./index.html?v=20260626-real-proportion-run-only')
+    fetch('./index.html?v=20260626-real-proportion-run-only-taiwan')
       .then(response => {
         if (!response.ok) throw new Error('Could not load map renderer');
         return response.text();
