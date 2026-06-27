@@ -133,13 +133,77 @@ CONFIGS: list[StoryConfig] = [
         "arizona-phoenix-marathon",
         "ARIZONA",
         "第29州 · 亚利桑那 · Buckeye Marathon",
-        "Run50 #第29州 · 2026",
-        "Run50 #第29州｜亚利桑那：Buckeye Marathon｜沙漠清晨、巨人柱、Buckeye 机场终点，还有二〇二六第一场意外破四。",
+        "亚利桑那巴克艾 · 2026.01.10",
+        "Run50 #第29州｜亚利桑那 Buckeye Marathon：沙漠清晨，机场终点，2026 第一跑破4",
         "沙漠清晨、巨人柱、Buckeye 机场终点，还有二〇二六第一场意外破四。",
         "29", "DESERT", "SUB4",
         "#d97706",
     ),
 ]
+
+
+STORY_EXTRAS = {
+    "new-hampshire-clarence-demar-marathon": {
+        "map_asset": "wechat-run50-map-new-hampshire-22.png",
+        "map_caption": "第22州，新罕布什尔点亮；星标落在 Keene，秋色和小镇终点都在这里。",
+        "finish": "这一站最好的地方，不是它有多快，而是新英格兰的小镇、树林和校园终点，把一场全马跑得很有季节感。",
+        "chat": "如果你也喜欢这种小镇比赛，可以在留言里讲讲：是秋色更迷人，还是赛后热汤更救命。",
+    },
+    "louisville-marathon-2024": {
+        "map_asset": "wechat-run50-map-kentucky-extra-louisville-2024.png",
+        "map_caption": "番外回到肯塔基。地图已经往前走了很多州，星标还是落回 Louisville。",
+        "finish": "博士收官这一跑，像给肯塔基这条老线又补了一枚书签：不是第一次来，却刚好卡在一个人生章节的结尾。",
+        "chat": "这一篇适合聊一点人生节点：毕业、搬家、告别，或者某场刚好卡在转折点上的比赛。",
+    },
+    "louisiana-marathon": {
+        "map_asset": "wechat-run50-map-louisiana-23.png",
+        "map_caption": "第23州路易斯安那点亮，星标落在 Baton Rouge。",
+        "finish": "这站有点南方口味：湿地、紫金色、Finish Fest，还有年初第一场把身体重新叫醒的长跑。",
+        "chat": "如果你跑过南方湿热的比赛，欢迎来吐槽一下：到底是风景先到，还是汗先到。",
+    },
+    "blue-ridge-marathon": {
+        "map_asset": "wechat-run50-map-virginia-24.png",
+        "map_caption": "第24州弗吉尼亚点亮，星标落在 Roanoke，蓝岭山的爬升也一起写进地图。",
+        "finish": "蓝岭山这一跑不像普通城市马，更像一次把腿借给山路的旅行。痛是真的，风景也是真的。",
+        "chat": "这一站可以聊爬坡。你跑过最狠的一段坡是哪儿？我很想听听大家的腿是怎么被教育的。",
+    },
+    "kentucky-derby-marathon-2025": {
+        "map_asset": "wechat-run50-map-kentucky-extra-derby-2025.png",
+        "map_caption": "又一次回到肯塔基 Louisville。这一次，地图外还有第50场全马这个私人坐标。",
+        "finish": "三块奖牌和一块蛋糕，听着有点夸张，但刚好适合第50场：郑重一点，也好笑一点。",
+        "chat": "如果你也有一个私人的整数纪念场，欢迎留言。第10场、第42场、第50场，都算数。",
+    },
+    "fargo-marathon": {
+        "map_asset": "wechat-run50-map-north-dakota-25.png",
+        "map_caption": "第25州北达科他点亮，Run50 的半程分水岭落在 Fargo。",
+        "finish": "跑到第25州，数字突然有了重量。Fargo 不只是一个美剧名字，也成了这张地图的中点。",
+        "chat": "半程分水岭这种东西，跑的时候没感觉，回头看才有点重。你也可以留言讲讲自己的 halfway moment。",
+    },
+    "hell-on-gravel-marathon": {
+        "map_asset": "wechat-run50-map-kansas-26.png",
+        "map_caption": "第26州堪萨斯点亮，星标落在 El Dorado 的砂石路边。",
+        "finish": "这场小比赛的妙处就在于它不装大。十个人的全马，风、牛、砂石路都是真的，冠军也是真的。",
+        "chat": "这一篇欢迎聊小比赛。人少、路野、补给随缘，但有时候记得最牢的就是这种。",
+    },
+    "mad-marathon": {
+        "map_asset": "wechat-run50-map-vermont-27.png",
+        "map_caption": "第27州佛蒙特点亮，星标落在 Warren 和 Mad River Valley。",
+        "finish": "佛蒙特这一站像夏天慢慢展开的一张明信片：绿山、谷仓、乡村路，跑得不急，但很留人。",
+        "chat": "如果你也有一场像明信片一样的比赛，可以留言丢给我。好看的乡村路永远不嫌多。",
+    },
+    "rocket-city-marathon": {
+        "map_asset": "wechat-run50-map-alabama-28.png",
+        "map_caption": "第28州阿拉巴马点亮，星标落在 Huntsville 的火箭城。",
+        "finish": "南方也会冷得很认真。火箭城这一跑，把航天、寒流和路村朋友们都收进了 2025 的尾声。",
+        "chat": "这一站欢迎讨论低温跑马装备：穿少了是勇敢，穿多了是智慧，我现在越来越尊重后者。",
+    },
+    "arizona-phoenix-marathon": {
+        "map_asset": "wechat-run50-map-arizona-29.png",
+        "map_caption": "第29州亚利桑那点亮，星标落在 Buckeye，沙漠公路一路通向机场终点。",
+        "finish": "新年的第一场，没有硬追，反而破了4。沙漠很空，路很直，这种顺下来的状态最难得。",
+        "chat": "如果你也有过一次“没想破，结果破了”的比赛，欢迎留言。我觉得这种惊喜比计划表更有意思。",
+    },
+}
 
 
 @dataclass
@@ -239,8 +303,13 @@ def strip_tail_text(text: str) -> tuple[str, bool]:
 
 def caption_text(text: str) -> str:
     text = normalize_text(text)
-    text = text.replace("@阿森南", "@Arsenan")
+    is_official = bool(re.search(r"Official (race )?photo|赛事摄影|官方赛照|官方摄影", text, flags=re.I))
+    text = text.replace("@阿森南", "").replace("@Arsenan", "")
+    text = re.sub(r"\bOfficial race photo\b|\bOfficial photo\b|赛事摄影|官方赛照|官方摄影", "", text, flags=re.I)
     text = re.sub(r"\s+", " ", text)
+    text = text.strip(" ·｜|-")
+    if is_official:
+        return f"{text} · 赛事摄影" if text else "赛事摄影"
     return text
 
 
@@ -456,12 +525,26 @@ def medal_figure(cfg: StoryConfig) -> str:
 </section>"""
 
 
+def map_figure(cfg: StoryConfig) -> str:
+    extra = STORY_EXTRAS.get(cfg.slug)
+    if not extra:
+        return ""
+    return f"""
+<section style="margin: 12px 0 30px;">
+  <img src="../../assets/{escape(str(extra['map_asset']))}" alt="{escape(str(extra['map_caption']))}" style="width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 7px;">
+  <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid {cfg.gold}; font-size: 12px; line-height: 1.8; letter-spacing: 0.4px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">{escape(str(extra['map_caption']))}</p>
+</section>"""
+
+
 def finish_card(cfg: StoryConfig) -> str:
+    extra = STORY_EXTRAS.get(cfg.slug, {})
+    finish = str(extra.get("finish", f"{cfg.summary} 跑完这一篇，Run50 的故事又多了一块颜色。"))
+    chat = str(extra.get("chat", "如果这一站也勾起了你的某段跑步记忆，欢迎在公众号留言里接着聊。别太正式，像赛后坐下来喝一口水那样就行。"))
     return f"""
 <section style="margin: 46px 0 0; padding: 22px 18px 20px; border-radius: 8px; background: linear-gradient(135deg, #132535 0%, {cfg.accent} 58%, {cfg.gold} 100%); color: #ffffff; box-shadow: 0 14px 32px rgba(19, 37, 53, 0.18);">
   <p style="margin: 0 0 10px; font-size: 11px; line-height: 1.4; letter-spacing: 2.2px; font-weight: 900; color: rgba(255,255,255,0.78);">RUN50 FINISH LINE</p>
   <h2 style="margin: 0 0 12px; font-size: 24px; line-height: 1.35; font-weight: 900; color: #ffffff; letter-spacing: 0;">这一站，收进地图。</h2>
-  <p style="margin: 0; font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.92); text-align: justify;">{escape(cfg.summary)} 跑完这一篇，Run50 的故事又多了一块颜色。</p>
+  <p style="margin: 0; font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.92); text-align: justify;">{escape(finish)}</p>
   <section style="margin: 18px 0 0; display: table; width: 100%; border-collapse: collapse;">
     <section style="display: table-cell; width: 33.33%; padding: 10px 6px; border-right: 1px solid rgba(255,255,255,0.18); text-align: center;"><p style="margin: 0; font-size: 18px; line-height: 1.2; font-weight: 900; color: #ffffff;">{escape(cfg.stat_one)}</p><p style="margin: 5px 0 0; font-size: 11px; line-height: 1.4; color: rgba(255,255,255,0.74); letter-spacing: 0.8px;">RUN50</p></section>
     <section style="display: table-cell; width: 33.33%; padding: 10px 6px; border-right: 1px solid rgba(255,255,255,0.18); text-align: center;"><p style="margin: 0; font-size: 18px; line-height: 1.2; font-weight: 900; color: #ffffff;">{escape(cfg.stat_two)}</p><p style="margin: 5px 0 0; font-size: 11px; line-height: 1.4; color: rgba(255,255,255,0.74); letter-spacing: 0.8px;">MARK</p></section>
@@ -469,9 +552,9 @@ def finish_card(cfg: StoryConfig) -> str:
   </section>
 </section>
 <section style="margin: 16px 0 0; padding: 15px 16px; border-left: 4px solid {cfg.gold}; background: #f4f8fb; border-radius: 7px;">
-  <p style="margin: 0; font-size: 14px; line-height: 1.9; color: #314657; text-align: justify;">跑完以后也可以聊两句。如果你也跑过这座城市，或者也有一场让你记很久的比赛，欢迎在公众号留言区见。</p>
+  <p style="margin: 0; font-size: 14px; line-height: 1.9; color: #314657; text-align: justify;">{escape(chat)}</p>
 </section>
-<p style="margin: 24px 0 0; text-align: center; color: #8a9bad; font-size: 12px; line-height: 1.8; letter-spacing: 1.2px;">文字 / 摄影 / 设计 · Arsenan</p>"""
+<p style="margin: 24px 0 0; text-align: center; color: #8a9bad; font-size: 12px; line-height: 1.8; letter-spacing: 1.2px;">文字 / 编辑 / 排版 · Arsenan</p>"""
 
 
 def page_shell(title: str, body: str) -> str:
@@ -507,6 +590,7 @@ def render_page(cfg: StoryConfig) -> str:
         f'<p style="margin: 0; font-size: 14px; line-height: 1.9; color: #53616f;">{accent_inline(cfg.summary, cfg)}</p>'
         "</section>",
         medal_figure(cfg),
+        map_figure(cfg),
     ]
     body.extend(render_story_blocks(blocks, cfg))
     body.append(finish_card(cfg))
