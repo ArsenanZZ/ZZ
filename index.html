@@ -556,37 +556,6 @@
     transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease;
   }
 
-  .feature-card {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: minmax(280px, 520px) minmax(260px, 1fr);
-    gap: 18px;
-    align-items: center;
-    padding: 10px;
-    border-color: var(--line);
-    background:
-      linear-gradient(120deg, color-mix(in srgb, var(--me) 10%, var(--panel)), var(--panel) 58%, color-mix(in srgb, var(--run) 7%, var(--panel)));
-  }
-
-  .feature-card .thumb {
-    aspect-ratio: 16 / 10;
-  }
-
-  .feature-card .meta {
-    align-content: center;
-    padding-top: 0;
-  }
-
-  .feature-card .video-title {
-    min-height: auto;
-    font-size: 20px;
-  }
-
-  .feature-card .video-sub {
-    max-width: 520px;
-    font-size: 14px;
-  }
-
   .grid-header[data-section="run50"],
   .video-card[data-section="run50"] { order: 10; }
 
@@ -812,18 +781,6 @@
       gap: 22px 12px;
     }
 
-    .feature-card {
-      grid-template-columns: 1fr;
-    }
-
-    .feature-card .thumb {
-      aspect-ratio: 16 / 10;
-    }
-
-    .feature-card .meta {
-      padding-top: 10px;
-    }
-
     .quick-stats {
       display: none;
     }
@@ -935,9 +892,8 @@
     </div>
 
     <div class="module-subnav" data-subnav="me" data-theme="me" hidden>
-      <a class="module-btn" href="#me">Profile</a>
+      <a class="module-btn" href="#me">Personal &amp; Academic</a>
       <a class="module-btn" href="#me-engineering">Engineering &amp; Research</a>
-      <a class="module-btn" href="#me-research">Academic &amp; Team</a>
     </div>
 
     <div class="module-subnav" data-subnav="ro" data-theme="ro" hidden>
@@ -1015,10 +971,13 @@
     </section>
 
     <section class="video-grid" id="videoGrid" aria-label="ZZ uploads">
-      <!-- This is Me / Profile Highlight -->
-      <article class="video-card feature-card" id="me" data-section="me" data-feature-group="me-profile" data-category="me about resume portfolio stem doctoral student arsenal marathon personal profile" data-title="This is Me">
+      <div class="grid-header" id="me" data-section="me" data-feature-group="me-personal">
+        <h2>Personal &amp; Academic</h2>
+      </div>
+
+      <article class="video-card" data-section="me" data-feature-group="me-personal" data-category="me about resume portfolio stem doctoral student personal profile" data-title="This is Me">
         <a class="thumb" href="this-is-me/this-is-me/">
-          <img src="assets/thumb-me-profile.jpg?v=20260627-me-engraved-v2" alt="This is Me cover">
+          <img src="assets/thumb-me-profile.jpg?v=20260627-me-native-v3" alt="This is Me cover">
           <span class="duration">About</span>
         </a>
         <div class="meta">
@@ -1030,13 +989,83 @@
         </div>
       </article>
 
+      <article class="video-card" data-section="me" data-feature-group="me-personal" data-category="me marathon running endurance training race personal run50" data-title="Marathon">
+        <a class="thumb" href="this-is-me/marathon/">
+          <img src="assets/thumb-me-marathon.jpg?v=20260627-me-native-v3" alt="Marathon cover">
+          <span class="duration">Run</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/marathon/">Marathon</a>
+            <p class="video-sub">Personal &middot; marathon training and race notes</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-feature-group="me-personal" data-category="me travel trip field notes personal" data-title="Travel">
+        <a class="thumb" href="this-is-me/teaching/">
+          <img src="assets/thumb-me-travel.jpg?v=20260627-me-native-v3" alt="Travel cover">
+          <span class="duration">Trip</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/teaching/">Travel</a>
+            <p class="video-sub">Personal &middot; travel and field notes</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-feature-group="me-personal" data-category="me research publications papers citations stem academic" data-title="Publications">
+        <a class="thumb" href="this-is-me/publications/">
+          <img src="assets/thumb-me-publications.jpg?v=20260627-me-native-v3" alt="Publications cover">
+          <span class="duration">Papers</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/publications/">Publications (17)</a>
+            <p class="video-sub">Research &middot; 2018-present, publications and citations</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-feature-group="me-personal" data-category="me teaching stem education mentoring class academic" data-title="Teaching">
+        <a class="thumb" href="this-is-me/facilities/">
+          <img src="assets/thumb-me-teaching.jpg?v=20260627-me-native-v3" alt="Teaching cover">
+          <span class="duration">Teach</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/facilities/">Teaching</a>
+            <p class="video-sub">STEM &middot; teaching and mentoring notes</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-section="me" data-feature-group="me-personal" data-category="me teamplayer teamwork collaboration leadership personal academic" data-title="Team Player">
+        <a class="thumb" href="this-is-me/teamplayer/">
+          <img src="assets/thumb-me-team-player.jpg?v=20260627-me-native-v3" alt="Team Player cover">
+          <span class="duration">Team</span>
+        </a>
+        <div class="meta">
+          <span class="avatar me">Me</span>
+          <div>
+            <a class="video-title" href="this-is-me/teamplayer/">Team Player</a>
+            <p class="video-sub">Personal &middot; collaboration and team work</p>
+          </div>
+        </div>
+      </article>
+
       <div class="grid-header" id="me-engineering" data-section="me" data-feature-group="me-engineering">
         <h2>Engineering &amp; Research Skills</h2>
       </div>
 
       <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me skills engineering structural design research metamaterial geometry" data-title="Structural Design">
         <a class="thumb" href="this-is-me/structural-design/">
-          <img src="assets/thumb-me-structural-design.jpg?v=20260627-me-engraved-v2" alt="Structural Design cover">
+          <img src="assets/thumb-me-structural-design.jpg?v=20260627-me-native-v3" alt="Structural Design cover">
           <span class="duration">Skill</span>
         </a>
         <div class="meta">
@@ -1050,7 +1079,7 @@
 
       <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me skills engineering fea simulation fem research mechanics" data-title="FEA Simulation">
         <a class="thumb" href="this-is-me/fea-simulation/">
-          <img src="assets/thumb-me-fea-simulation.jpg?v=20260627-me-engraved-v2" alt="FEA Simulation cover">
+          <img src="assets/thumb-me-fea-simulation.jpg?v=20260627-me-native-v3" alt="FEA Simulation cover">
           <span class="duration">Skill</span>
         </a>
         <div class="meta">
@@ -1064,7 +1093,7 @@
 
       <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me skills engineering mechanical testing research experiment mechanics" data-title="Mechanical Testing">
         <a class="thumb" href="this-is-me/mechanical-testing/">
-          <img src="assets/thumb-me-mechanical-testing.jpg?v=20260627-me-engraved-v2" alt="Mechanical Testing cover">
+          <img src="assets/thumb-me-mechanical-testing.jpg?v=20260627-me-native-v3" alt="Mechanical Testing cover">
           <span class="duration">Skill</span>
         </a>
         <div class="meta">
@@ -1078,7 +1107,7 @@
 
       <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me skills engineering 3d printing polyjet fabrication prototype" data-title="3D Printing">
         <a class="thumb" href="this-is-me/3d-printing/">
-          <img src="assets/thumb-me-3d-printing.jpg?v=20260627-me-engraved-v2" alt="3D Printing cover">
+          <img src="assets/thumb-me-3d-printing.jpg?v=20260627-me-native-v3" alt="3D Printing cover">
           <span class="duration">Skill</span>
         </a>
         <div class="meta">
@@ -1092,7 +1121,7 @@
 
       <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me research projects engineering portfolio" data-title="Projects">
         <a class="thumb" href="this-is-me/projects/">
-          <img src="assets/thumb-me-projects.jpg?v=20260627-me-engraved-v2" alt="Projects cover">
+          <img src="assets/thumb-me-projects.jpg?v=20260627-me-native-v3" alt="Projects cover">
           <span class="duration">Research</span>
         </a>
         <div class="meta">
@@ -1106,7 +1135,7 @@
 
       <article class="video-card" data-section="me" data-feature-group="me-engineering" data-category="me research facilities lab equipment samples stem" data-title="Facilities">
         <a class="thumb" href="this-is-me/samples/">
-          <img src="assets/thumb-me-facilities.jpg?v=20260627-me-engraved-v2" alt="Facilities cover">
+          <img src="assets/thumb-me-facilities.jpg?v=20260627-me-native-v3" alt="Facilities cover">
           <span class="duration">Lab</span>
         </a>
         <div class="meta">
@@ -1114,52 +1143,6 @@
           <div>
             <a class="video-title" href="this-is-me/samples/">Facilities</a>
             <p class="video-sub">Research &middot; lab resources and samples</p>
-          </div>
-        </div>
-      </article>
-
-      <div class="grid-header" id="me-research" data-section="me" data-feature-group="me-research">
-        <h2>Academic &amp; Team</h2>
-      </div>
-
-      <article class="video-card" data-section="me" data-feature-group="me-research" data-category="me research publications papers citations stem" data-title="Publications">
-        <a class="thumb" href="this-is-me/publications/">
-          <img src="assets/thumb-me-publications.jpg?v=20260627-me-engraved-v2" alt="Publications cover">
-          <span class="duration">Papers</span>
-        </a>
-        <div class="meta">
-          <span class="avatar me">Me</span>
-          <div>
-            <a class="video-title" href="this-is-me/publications/">Publications (17)</a>
-            <p class="video-sub">Research &middot; 2018-present, publications and citations</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="video-card" data-section="me" data-feature-group="me-research" data-category="me teaching stem education mentoring class" data-title="Teaching">
-        <a class="thumb" href="this-is-me/facilities/">
-          <img src="assets/thumb-me-teaching.jpg?v=20260627-me-engraved-v2" alt="Teaching cover">
-          <span class="duration">Teach</span>
-        </a>
-        <div class="meta">
-          <span class="avatar me">Me</span>
-          <div>
-            <a class="video-title" href="this-is-me/facilities/">Teaching</a>
-            <p class="video-sub">STEM &middot; teaching and mentoring notes</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="video-card" data-section="me" data-feature-group="me-research" data-category="me teamplayer teamwork collaboration leadership" data-title="Team Player">
-        <a class="thumb" href="this-is-me/teamplayer/">
-          <img src="assets/thumb-me-team-player.jpg?v=20260627-me-engraved-v2" alt="Team Player cover">
-          <span class="duration">Team</span>
-        </a>
-        <div class="meta">
-          <span class="avatar me">Me</span>
-          <div>
-            <a class="video-title" href="this-is-me/teamplayer/">Team Player</a>
-            <p class="video-sub">Personal &middot; collaboration and team work</p>
           </div>
         </div>
       </article>
