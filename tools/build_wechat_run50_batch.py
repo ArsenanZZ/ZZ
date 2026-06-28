@@ -293,6 +293,31 @@ CAPTION_REWRITES = {
     "接近 Surry Mountain": "接近萨里山湖",
     "沿着 Surry Mountain": "沿着萨里山路",
     "Surry Mountain 路段": "萨里山湖路段",
+    "开往 Huntsville 的冬日公路": "冬日公路",
+    "Rocket City Expo 取包现场": "Expo 取包现场",
+    "U.S. Space & Rocket Center 外场": "火箭中心外场",
+    "Big Spring Park 的喷泉和水边": "公园喷泉水边",
+    "Big Spring Park 的赛后合影": "赛后公园合影",
+    "Saturn V 与阿波罗展区": "Saturn V 展区",
+    "跑进 Von Braun Center 室内终点": "室内终点",
+    "Rocket City 起点与前半程": "起点与前半程",
+    "Rocket City 早段街区": "早段街区",
+    "回程路上的 Huntsville 晚霞": "回程晚霞",
+    "Big Spring Park 返程": "公园返程",
+    "Buckeye Marathon Vlog 封面": "Vlog 封面",
+    "North Mountain Park 的山路和巨人柱": "North Mountain 山路",
+    "Dobbins Lookout 的石屋与凤凰城夜色": "Dobbins 石屋夜色",
+    "Dobbins Lookout 的石屋": "Dobbins 石屋",
+    "Dobbins Lookout 日落前的山脊": "Dobbins 山脊",
+    "Dobbins Lookout 的停车场与暮色": "Dobbins 暮色停车场",
+    "Papago Park 红岩入口": "Papago 红岩入口",
+    "Papago Park 小路和红砂岩": "Papago 红砂岩",
+    "Hole-in-the-Rock 的洞口": "红岩洞口",
+    "Hole-in-the-Rock": "红岩洞口",
+    "奖牌和 Papago Park 红岩": "奖牌和红岩",
+    "Papago Park 的沙漠植物": "Papago 沙漠植物",
+    "Papago Park 的红岩层次": "Papago 红岩层次",
+    "Papago Park 山坡上的小路": "Papago 山坡小路",
 }
 
 
@@ -369,7 +394,7 @@ def compact_caption_base(text: str, is_official: bool = False) -> str:
             if re.search(pattern, text, re.I):
                 return replacement
         return english_caption_to_chinese(text, fallback="官方赛照")
-    if re.search(r"[A-Za-z]", text) and len(text) > 18:
+    if re.search(r"[A-Za-z]", text) and not re.search(r"[\u4e00-\u9fff]", text) and len(text) > 18:
         return english_caption_to_chinese(text)
     if len(text) <= 18:
         return text

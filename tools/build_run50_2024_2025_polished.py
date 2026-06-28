@@ -336,7 +336,7 @@ STORIES: list[Story] = [
     ),
     Story(
         key="al",
-        source=Path(r"Y:\ZhennanZ Folder\000-Marathon-Story-2024-2025\20251212-AL-Rocket City Marathon\00-Polished Photos"),
+        source=Path(r"Z:\ZhennanZ Folder\000-Marathon-Story-2024-2025\20251212-AL-Rocket City Marathon\00-Polished Photos"),
         slug="rocket-city-marathon",
         asset_dir="Run50-Rocket-City-Marathon-clean_files",
         run_no="#28",
@@ -359,7 +359,7 @@ STORIES: list[Story] = [
         script_id="script-al",
         lat=34.7304,
         lon=-86.5861,
-        max_images=78,
+        max_images=140,
         cover_hint="AL",
         start_marker="公众号文章",
     ),
@@ -608,7 +608,7 @@ def select_and_convert_images(story: Story) -> tuple[list[SelectedImage], dict[s
             skipped["invalid"] += 1
             continue
 
-        if any(hamming(image_hash, old) <= 3 for old in recent_hashes[-26:]):
+        if story.key != "al" and any(hamming(image_hash, old) <= 3 for old in recent_hashes[-26:]):
             skipped["near_duplicate"] += 1
             continue
 
@@ -979,7 +979,9 @@ def nearest_heading(blocks: list[dict[str, str]], index: int) -> str:
     return "路途与比赛"
 
 
-def distribute_images(blocks: list[dict[str, str]], images: list[SelectedImage]) -> dict[int, list[SelectedImage]]:
+def distribute_images(story: Story, blocks: list[dict[str, str]], images: list[SelectedImage]) -> dict[int, list[SelectedImage]]:
+    if story.key == "al":
+        return distribute_rocket_city_images(blocks, images)
     if not images:
         return {}
     eligible = [i for i, block in enumerate(blocks) if block["type"] == "p"]
@@ -993,6 +995,103 @@ def distribute_images(blocks: list[dict[str, str]], images: list[SelectedImage])
     return result
 
 
+def block_after(blocks: list[dict[str, str]], needle: str, fallback: int = 0) -> int:
+    for index, block in enumerate(blocks):
+        if needle in block["text"]:
+            return index
+    return min(fallback, max(0, len(blocks) - 1))
+
+
+def block_after_last(blocks: list[dict[str, str]], needle: str, fallback: int = 0) -> int:
+    for index in range(len(blocks) - 1, -1, -1):
+        if needle in blocks[index]["text"]:
+            return index
+    return min(fallback, max(0, len(blocks) - 1))
+
+
+def distribute_rocket_city_images(blocks: list[dict[str, str]], images: list[SelectedImage]) -> dict[int, list[SelectedImage]]:
+    anchors = {
+        "sat_road": block_after(blocks, "一路从肯塔基往南", 0),
+        "expo": block_after(blocks, "我第一站直奔马拉松 Expo", 0),
+        "park": block_after(blocks, "外面是 Big Spring Park", 0),
+        "rocket_out": block_after(blocks, "直奔 U.S. Space & Rocket Center", 0),
+        "museum": block_after(blocks, "馆内最狠的展品之一", 0),
+        "sat_return": block_after(blocks, "趁着天还没完全黑", 0),
+        "race_prep": block_after(blocks, "比赛这天是真冷", 0),
+        "start": block_after(blocks, "起点这片全是", 0),
+        "early": block_after(blocks, "前几英里跑在社区里", 0),
+        "ten_mile": block_after(blocks, "10 英里", 0),
+        "industrial": block_after(blocks, "铁路沿线的工业区域", 0),
+        "rocket_course": block_after(blocks, "19 英里左右", 0),
+        "botanical": block_after(blocks, "Huntsville Botanical Garden", 0),
+        "mile22": block_after(blocks, "22 英里", 0),
+        "downtown": block_after_last(blocks, "Big Spring Park", 0),
+        "finish": block_after(blocks, "最后的冲线居然是在室内", 0),
+        "friends": block_after(blocks, "被 Jackie 和 Scott", 0),
+        "post": block_after(blocks, "比赛结束的下午", len(blocks) - 1),
+    }
+    result: dict[int, list[SelectedImage]] = {}
+
+    def place(anchor: str, item: SelectedImage) -> None:
+        result.setdefault(anchors[anchor], []).append(item)
+
+    for image in images:
+        place(rocket_city_anchor(image), image)
+    return result
+
+
+def rocket_city_numbers(item: SelectedImage) -> list[int]:
+    return [int(value) for value in re.findall(r"\d+", item.source.stem)]
+
+
+def rocket_city_anchor(item: SelectedImage) -> str:
+    nums = rocket_city_numbers(item)
+    if item.source.parent.name == "00-Sat":
+        main = nums[0] if nums else 0
+        if main in {0, 1}:
+            return "sat_road"
+        if main in {5, 6}:
+            return "expo"
+        if main == 7:
+            return "park"
+        if main in {8, 9}:
+            return "rocket_out"
+        if main in {10, 11, 12}:
+            return "museum"
+        if main == 13:
+            return "sat_return"
+        return "park"
+
+    if not nums:
+        return "race_prep"
+    if nums[0] in {0, 1}:
+        return "race_prep"
+    main = nums[1] if len(nums) > 1 else 0
+    if main <= 1:
+        return "start"
+    if 2 <= main <= 7:
+        return "early"
+    if main in {8, 9, 10}:
+        return "ten_mile"
+    if main == 11:
+        return "industrial"
+    if main in {12, 13, 14}:
+        return "rocket_course"
+    if main in {15, 16, 17, 18, 19}:
+        return "botanical"
+    if main == 20:
+        return "mile22"
+    if 21 <= main <= 29:
+        return "downtown"
+    if main == 30:
+        return "finish"
+    if 31 <= main <= 37:
+        return "friends"
+    if main >= 38:
+        return "post"
+    return "early"
+
+
 def caption_for(story: Story, heading: str, index: int, lang: str) -> str:
     clean = re.sub(r"^(Chapter|章节|第[一二三四五六七八九十0-9]+章)[^｜|]*[｜|]?", "", heading).strip()
     clean = clean.replace("·", " · ")
@@ -1003,14 +1102,118 @@ def caption_for(story: Story, heading: str, index: int, lang: str) -> str:
     return f"{story.city_en}, {story.state_en} | {heading_en}"
 
 
-def render_figure(story: Story, item: SelectedImage, index: int, heading: str, lang: str) -> str:
+def rocket_city_caption(item: SelectedImage, index: int, lang: str) -> str:
+    nums = rocket_city_numbers(item)
+    anchor = rocket_city_anchor(item)
+    sat_main = nums[0] if nums else 0
+    sun_main = nums[1] if item.source.parent.name != "00-Sat" and len(nums) > 1 else None
+    zh_by_anchor = {
+        "sat_road": "开往 Huntsville 的冬日公路",
+        "expo": "Rocket City Expo 取包现场",
+        "park": "Big Spring Park 的喷泉和水边",
+        "rocket_out": "U.S. Space & Rocket Center 外场",
+        "museum": "Saturn V 与阿波罗展区",
+        "sat_return": "回程路上的 Huntsville 晚霞",
+        "race_prep": "比赛日清晨开往起点",
+        "start": "Rocket City 起点与前半程",
+        "early": "Rocket City 早段街区",
+        "ten_mile": "10 英里后摘掉大花袄",
+        "industrial": "铁路工业区旁的赛道",
+        "rocket_course": "跑进火箭中心路段",
+        "botanical": "植物园附近的后半程",
+        "mile22": "22 英里牌",
+        "downtown": "回到市中心的最后几英里",
+        "finish": "跑进 Von Braun Center 室内终点",
+        "friends": "赛后和路村朋友们会合",
+        "post": "阿拉巴马收官后的返程",
+    }
+    en_by_anchor = {
+        "sat_road": "Winter road into Huntsville",
+        "expo": "Packet pickup at the Rocket City Expo",
+        "park": "Fountain and water at Big Spring Park",
+        "rocket_out": "Outside the U.S. Space & Rocket Center",
+        "museum": "Saturn V and Apollo exhibits",
+        "sat_return": "Huntsville sunset on the way back",
+        "race_prep": "Driving to the start before dawn",
+        "start": "Rocket City start and early miles",
+        "early": "Rocket City early neighborhoods",
+        "ten_mile": "Shedding the flower jacket after mile 10",
+        "industrial": "Course by the railroad industrial zone",
+        "rocket_course": "Running through the rocket center",
+        "botanical": "Late miles near the botanical garden",
+        "mile22": "Mile 22 marker",
+        "downtown": "Final miles back downtown",
+        "finish": "Indoor finish at Von Braun Center",
+        "friends": "Meeting friends after the race",
+        "post": "The drive home after Alabama",
+    }
+    if lang == "zh":
+        if item.source.parent.name == "00-Sat" and sat_main == 0:
+            return "南下路边的红色老皮卡"
+        if item.source.parent.name == "00-Sat" and sat_main == 11:
+            return "Space Camp 背景墙"
+        if item.source.parent.name != "00-Sat" and nums and nums[0] == 0:
+            return "东北大花袄赛前造型" if "0000" in item.source.stem else "比赛日清晨开往起点"
+        if sun_main in {9, 10}:
+            return "赛道上的节日 cosplay"
+        if sun_main in {36, 37}:
+            return "火箭城完赛奖牌"
+        if sun_main == 38:
+            return "Big Spring Park 的赛后合影"
+        if sun_main in {39, 40}:
+            return "纳什维尔返程路上的晚饭"
+        return zh_by_anchor.get(anchor, "火箭城周末")
+    return en_by_anchor.get(anchor, "Rocket City race weekend")
+
+
+def unique_rocket_caption(caption: str, count: int, lang: str) -> str:
+    if count <= 0:
+        return caption
+    zh_variants = {
+        "开往 Huntsville 的冬日公路": ["路边冬雾", "进城前的双车道", "南下路上的冬光", "Huntsville 近郊路况"],
+        "Rocket City Expo 取包现场": ["路线图前留影", "Siqi 和路线图", "Expo 展位", "Packet Pickup 标识", "取包大厅", "赛事展区", "路线图细节"],
+        "Big Spring Park 的喷泉和水边": ["喷泉里的彩虹", "Von Braun Center 外侧", "公园水边步道", "水面里的金鱼", "市中心公园小桥"],
+        "U.S. Space & Rocket Center 外场": ["火箭中心外场", "Saturn V 外景", "火箭花园", "航天中心入口", "傍晚的火箭塔"],
+        "Saturn V 与阿波罗展区": ["航天馆展厅", "航天馆背景墙", "Saturn V 大厅", "阿波罗返回舱", "月球展区", "土星五号下方", "馆内火箭细节"],
+        "比赛日清晨开往起点": ["赛前穿搭检查", "车里最后整理", "天亮前开往市中心"],
+        "Rocket City 起点与前半程": ["起点人群", "国歌后的起跑队伍", "清晨第一波跑者", "市中心起跑线"],
+        "Rocket City 早段街区": ["圣诞老人跑者", "晨光里的街区", "红叶下的跑者", "节日装饰路段", "蓝天里的前半程"],
+        "10 英里后摘掉大花袄": ["蓝色毛衣登场", "赛道 selfie", "大花袄下线"],
+        "跑进火箭中心路段": ["远处的大火箭", "火箭中心折返", "航天飞机旁跑过", "火箭路段蓝天"],
+        "植物园附近的后半程": ["植物园边的小溪", "后半程晒太阳", "蓝衣后半程", "顺光里的后半程"],
+        "回到市中心的最后几英里": ["市中心路口", "帐篷旁的赛道", "白色围栏边", "桥边最后路段", "Big Spring Park 返程"],
+        "跑进 Von Braun Center 室内终点": ["室内终点拱门", "冲线瞬间"],
+        "赛后和路村朋友们会合": ["完赛区递毛巾", "Scott 的赛后笑容", "Jackie 带着奖牌", "完赛区热食", "赛后大合影", "奖牌自拍"],
+        "阿拉巴马收官后的返程": ["赛后公园合影", "回程车里的夕阳", "纳什维尔晚饭", "夜里回到路城"],
+    }
+    en_variants = {
+        "Winter road into Huntsville": ["Roadside winter mist", "Two-lane road into town", "Southern winter light", "Huntsville outskirts"],
+        "Packet pickup at the Rocket City Expo": ["Course-map photo", "Siqi with the route map", "Expo booth", "Packet pickup sign", "Expo hall", "Race expo floor"],
+        "Fountain and water at Big Spring Park": ["Rainbow in the fountain", "Outside Von Braun Center", "Waterfront path", "Goldfish in the spring", "Downtown park bridge"],
+        "Outside the U.S. Space & Rocket Center": ["Rocket center grounds", "Saturn V outside", "Rocket garden", "Space center entrance", "Evening rocket tower"],
+        "Saturn V and Apollo exhibits": ["Museum exhibit hall", "Space Camp wall", "Saturn V hall", "Apollo command module", "Moon exhibit", "Under the Saturn V"],
+        "Rocket City start and early miles": ["Start crowd", "First wave out", "Morning runners", "Downtown start line"],
+        "Final miles back downtown": ["Downtown intersection", "Course by the tents", "White fence section", "Bridge-side final miles"],
+        "Meeting friends after the race": ["Finish-area towel handoff", "Scott after the race", "Jackie with her medal", "Finish-area hot food", "Post-race group photo"],
+    }
+    variants = (zh_variants if lang == "zh" else en_variants).get(caption, [])
+    if count - 1 < len(variants):
+        return variants[count - 1]
+    return f"{caption} · {count + 1}"
+
+
+def render_figure(story: Story, item: SelectedImage, index: int, heading: str, lang: str, caption_counts: dict[str, int] | None = None) -> str:
     if lang == "zh":
         src = f"{story.asset_dir}/{item.dest_name}"
     elif lang == "en":
         src = f"../chinese/{story.asset_dir}/{item.dest_name}"
     else:
         src = f"../stories/chinese/{story.asset_dir}/{item.dest_name}"
-    cap = caption_for(story, heading, index, "zh" if lang == "zh" else "en")
+    cap = rocket_city_caption(item, index, lang) if story.key == "al" else caption_for(story, heading, index, "zh" if lang == "zh" else "en")
+    if story.key == "al" and caption_counts is not None:
+        count = caption_counts.get(cap, 0)
+        caption_counts[cap] = count + 1
+        cap = unique_rocket_caption(cap, count, lang)
     alt = f"{story.race_en} photo {index}" if lang != "zh" else f"{story.race_zh}照片 {index}"
     return (
         "      <figure>\n"
@@ -1031,7 +1234,8 @@ def translated_blocks(blocks: list[dict[str, str]]) -> list[dict[str, str]]:
 
 
 def render_article(story: Story, blocks: list[dict[str, str]], images: list[SelectedImage], lang: str, facebook: bool = False) -> str:
-    distributed = distribute_images(blocks, images)
+    distributed = distribute_images(story, blocks, images)
+    caption_counts: dict[str, int] = {}
     parts: list[str] = []
     if facebook:
         parts.append(
@@ -1048,7 +1252,7 @@ def render_article(story: Story, blocks: list[dict[str, str]], images: list[Sele
         for image in distributed.get(i, []):
             heading = nearest_heading(blocks, i)
             figure_index = images.index(image) + 1
-            parts.append(render_figure(story, image, figure_index, heading, lang))
+            parts.append(render_figure(story, image, figure_index, heading, lang, caption_counts))
     if lang == "zh":
         parts.append('      <p class="end-mark">- 本文完 -</p>\n')
         parts.append('      <p class="credit-line">文字丨Arsenan</p>\n')
