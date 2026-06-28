@@ -133,6 +133,9 @@ class MapConfig:
 
 
 MAPS = [
+    MapConfig("wechat-run50-map-kentucky-1-derby-2024.png", "KY", 1, "Louisville"),
+    MapConfig("wechat-run50-map-kentucky-extra-hatfield-2024.png", "KY", 1, "Williamson"),
+    MapConfig("wechat-run50-map-pennsylvania-19.png", "PA", 19, "Pittsburgh"),
     MapConfig("wechat-run50-map-new-hampshire-22.png", "NH", 22, "Keene"),
     MapConfig("wechat-run50-map-kentucky-extra-louisville-2024.png", "KY", 22, "Louisville"),
     MapConfig("wechat-run50-map-louisiana-23.png", "LA", 23, "Baton Rouge"),
