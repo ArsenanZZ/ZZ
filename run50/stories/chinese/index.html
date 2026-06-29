@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Run50 Chinese Stories</title>
+  <title>Run50 中文故事 | Arsenan</title>
+  <meta name="description" content="Arsenan 的 Run50、RunCN 和 RunWorld 中文马拉松长文索引。">
   <style>
     :root {
-      --paper: #f4f6f7;
+      --paper: #f3f7f8;
       --surface: #ffffff;
       --ink: #20242b;
       --muted: #667085;
@@ -14,21 +15,30 @@
       --river: #4a6c36;
       --brick: #a33a2b;
       --gold: #7c4125;
+      --run50: #0b67c2;
+      --runcn: #cc0000;
+      --runworld: #2f855a;
+      --plate-blue: #eaf3f7;
+      --plate-peach: #faf0ea;
+      --plate-sage: #eef6ef;
+      --shadow: 0 22px 58px rgba(20, 36, 55, .12);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
-      background: linear-gradient(180deg, #eef5f6 0, var(--paper) 320px);
+      background:
+        linear-gradient(180deg, #eaf4f6 0, #f7f3ed 420px, var(--paper) 960px),
+        var(--paper);
       color: var(--ink);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       line-height: 1.7;
     }
     a { color: inherit; }
     .shell {
-      max-width: 980px;
+      max-width: 1880px;
       margin: 0 auto;
-      padding: 42px 22px 64px;
+      padding: 38px 32px 76px;
     }
     .topline {
       display: flex;
@@ -46,12 +56,12 @@
     }
     .topline a:hover { border-color: currentColor; }
     .hero {
-      max-width: 720px;
-      margin-bottom: 34px;
+      max-width: 1180px;
+      margin-bottom: 24px;
     }
     .kicker {
       margin: 0 0 12px;
-      color: var(--brick);
+      color: var(--run50);
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 1.5px;
@@ -59,32 +69,32 @@
     }
     h1 {
       margin: 0;
-      font-size: clamp(34px, 7vw, 66px);
+      font-size: 64px;
       line-height: 1;
       letter-spacing: 0;
     }
     .intro {
       margin: 18px 0 0;
       color: #344054;
-      font-size: 17px;
-      max-width: 660px;
+      font-size: 19px;
+      max-width: 860px;
     }
 
     .series-nav {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin: 0 0 38px;
+      gap: 16px;
+      margin: 0 0 28px;
     }
     .series-nav a {
-      min-height: 78px;
-      padding: 14px 16px;
+      min-height: 94px;
+      padding: 16px 18px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 4px;
       border: 1px solid var(--line);
-      border-left: 5px solid #2f70d0;
+      border-left: 7px solid var(--run50);
       border-radius: 8px;
       background: rgba(255,255,255,.78);
       text-decoration: none;
@@ -95,32 +105,48 @@
       transform: translateY(-2px);
       box-shadow: 0 18px 38px rgba(15, 23, 42, .09);
     }
-    .series-nav a:nth-child(2) { border-left-color: #a33a2b; }
-    .series-nav a:nth-child(3) { border-left-color: #3f7f46; }
+    .series-nav a:nth-child(2) { border-left-color: var(--runcn); }
+    .series-nav a:nth-child(3) { border-left-color: var(--runworld); }
     .series-nav span {
       color: #111827;
-      font-size: 16px;
+      font-size: 21px;
       font-weight: 850;
       letter-spacing: 0;
     }
     .series-nav small {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 14px;
       line-height: 1.4;
     }
+    .map-deck {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+      gap: 20px;
+      margin: 0 0 52px;
+      align-items: start;
+    }
+    #stories-map-container,
+    #china-map-container {
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 18px !important;
+      border-radius: 8px !important;
+      background: rgba(255,255,255,.82) !important;
+      box-shadow: 0 18px 44px rgba(15, 23, 42, .08) !important;
+    }
     .story-section {
-      margin-top: 54px;
+      margin-top: 56px;
       scroll-margin-top: 22px;
     }
     .series-nav + .story-section { margin-top: 0; }
     .story-section + .story-section { margin-top: 62px; }
     .section-head {
-      margin: 0 0 18px;
-      padding: 0 0 0 18px;
-      border-left: 6px solid #2f70d0;
+      margin: 0 0 22px;
+      padding: 0 0 0 20px;
+      border-left: 8px solid var(--run50);
     }
-    .run-cn-zone .section-head { border-left-color: #a33a2b; }
-    .run-world-zone .section-head { border-left-color: #3f7f46; }
+    .run-cn-zone .section-head { border-left-color: var(--runcn); }
+    .run-world-zone .section-head { border-left-color: var(--runworld); }
     .section-kicker {
       margin: 0 0 5px;
       color: var(--muted);
@@ -132,46 +158,46 @@
     .section-head h2 {
       margin: 0;
       color: #111827;
-      font-size: clamp(24px, 4vw, 36px);
+      font-size: 38px;
       line-height: 1.15;
       letter-spacing: 0;
     }
     .section-head p:last-child {
       margin: 8px 0 0;
-      max-width: 720px;
+      max-width: 860px;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 17px;
     }
     .story-section .story-grid { margin-top: 0; }
 
     .story-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+      gap: 34px;
     }
     .story-card {
       display: grid;
       grid-template-rows: auto 1fr;
       min-height: 100%;
       overflow: hidden;
-      border: 1px solid var(--line);
+      border: 1px solid #cfe0ea;
       border-radius: 8px;
       background: var(--surface);
       color: inherit;
       text-decoration: none;
-      box-shadow: 0 18px 44px rgba(15, 23, 42, .08);
+      box-shadow: var(--shadow);
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
     .story-card.run-cn {
-      background: #faf2ee;
+      background: var(--plate-peach);
       border-color: #ebdcd6;
     }
     .story-card.run-50 {
-      background: #edf3f7;
+      background: var(--plate-blue);
       border-color: #d0dfe8;
     }
     .story-card.run-world {
-      background: #eef5ec;
+      background: var(--plate-sage);
       border-color: #cfdcc8;
     }
     .story-card:hover {
@@ -194,41 +220,95 @@
       object-fit: cover;
       background: #e8edf1;
     }
-    .story-copy {
-      padding: 20px 20px 18px;
+    .story-copy,
+    .story-card-body {
+      display: flex;
+      flex-direction: column;
+      min-height: 324px;
+      padding: 28px 34px 26px;
     }
     .story-meta {
       margin: 0 0 8px;
       color: var(--gold);
-      font-size: 12px;
+      font-size: 20px;
       font-weight: 800;
+      letter-spacing: 0;
+    }
+    .story-tag {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0;
     }
     .story-title {
       margin: 0;
       color: #111827;
-      font-size: 22px;
-      line-height: 1.35;
+      font-size: 36px;
+      line-height: 1.22;
       font-weight: 850;
+      letter-spacing: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .story-desc {
-      margin: 10px 0 0;
+      margin: 18px 0 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 23px;
+      line-height: 1.7;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .story-foot {
       display: flex;
       justify-content: space-between;
       gap: 14px;
-      margin-top: 16px;
+      margin-top: auto;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 20px;
       border-top: 1px solid var(--line);
-      padding-top: 12px;
+      padding-top: 18px;
     }
-    @media (max-width: 640px) {
+    .story-card-body .story-meta {
+      order: 4;
+      margin: auto 0 0;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 20px;
+      font-weight: 500;
+    }
+    @media (max-width: 1180px) {
+      .shell { padding: 34px 24px 68px; }
+      .map-deck { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+      .story-title { font-size: 30px; }
+      .story-desc { font-size: 19px; }
+      .story-meta,
+      .story-tag,
+      .story-foot,
+      .story-card-body .story-meta { font-size: 17px; }
+    }
+    @media (max-width: 760px) {
       .shell { padding: 28px 18px 46px; }
+      h1 { font-size: 42px; line-height: 1.08; }
       .intro { font-size: 16px; }
       .series-nav { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: 1fr; }
+      .story-copy,
+      .story-card-body {
+        min-height: 260px;
+        padding: 22px 22px 20px;
+      }
+      .story-title { font-size: 25px; }
+      .story-desc { font-size: 16px; -webkit-line-clamp: 5; }
+      .story-foot { font-size: 15px; }
+      #stories-map-container,
+      #china-map-container { padding: 14px !important; }
     }
 
     /* ── INTERACTIVE MAP STYLES ── */
@@ -363,9 +443,9 @@
 
   <style id="run50-global-tabs-style">
     .run50-global-tabs {
-      max-width: 1120px;
+      max-width: 1880px;
       margin: 0 auto;
-      padding: 18px 22px 0;
+      padding: 18px 32px 0;
       display: grid !important;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
@@ -401,20 +481,27 @@
 
 </head>
 <body>
-  <nav class="run50-global-tabs" aria-label="Run50 story sections"><a href="../../index.html">← Run50</a><a href="../english/">English Stories</a><a href="./">Chinese Stories</a><a href="../../facebook/">Facebook</a></nav>
+  <nav class="run50-global-tabs" aria-label="Run50 story sections"><a href="../../index.html">← Run50</a><a href="../english/">英文故事</a><a href="./">中文故事</a><a href="../../facebook/">Facebook</a></nav>
   <main class="shell">
 
     <section class="hero">
-      <p class="kicker">Run50 Stories · Chinese</p>
-      <h1>中文故事</h1>
-      <p class="intro">这里放 Run50 之外但同属跑步旅程的中文长文。以后新的比赛、旅行和训练故事都可以继续加到这里。</p>
+      <p class="kicker">Run50 · 中文长文档案</p>
+      <h1>跑过的州、城市和世界</h1>
+      <p class="intro">这里整理 Run50、RunCN 和 RunWorld 的中文长文。每张卡片保留一张车牌 / 奖牌式封面，下面是比赛地点、时间、故事标题和一段跑旅记忆。</p>
     </section>
 
+    <nav class="series-nav" aria-label="中文故事系列导航">
+      <a href="#run50-series"><span>美国50州</span><small>Run50 时间线，按比赛日期排列。</small></a>
+      <a href="#runcn-series"><span>中国马拉松</span><small>RunCN 站点，保留国内跑旅原始记忆。</small></a>
+      <a href="#runworld-series"><span>世界马拉松</span><small>RunWorld 故事，美国和中国之外的路线。</small></a>
+    </nav>
+
     <!-- 跑马足迹互动地图 (Interactive Map) -->
+    <section class="map-deck" aria-label="跑马足迹地图">
     <div id="stories-map-container" style="max-width:980px; margin: 0 auto 34px; background:#fff; border-radius:12px; border:1px solid var(--line); padding:24px; box-shadow: 0 18px 44px rgba(15, 23, 42, .08);">
       <div style="font-size:16px; font-weight:700; color:var(--ink); margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
         <div style="display:flex; align-items:center; gap:8px;">
-          <span>🗺️ Run50 马拉松跑旅足迹 (Interactive Map)</span>
+          <span>Run50 马拉松跑旅地图</span>
           <span style="font-size:12px; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px; font-weight:bold;">已跑过 35 州</span>
         </div>
         <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:var(--muted); transition:color 0.2s;">鼠标悬停在州或红点上查看长文，点击卡片跳转</span>
@@ -441,7 +528,7 @@
     <div id="china-map-container" style="max-width:980px; margin: 0 auto 34px; background:#fff; border-radius:12px; border:1px solid var(--line); padding:24px; box-shadow: 0 18px 44px rgba(15, 23, 42, .08);">
       <div style="font-size:16px; font-weight:700; color:var(--ink); margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
         <div style="display:flex; align-items:center; gap:8px;">
-          <span>🗺️ 中国马拉松跑旅足迹 (Interactive Map)</span>
+          <span>中国马拉松跑旅地图</span>
           <span style="font-size:12px; background:#fff2e8; color:#cc0000; padding:2px 8px; border-radius:12px; font-weight:bold;">已跑过 17 个省级区域</span>
         </div>
         <span id="china-map-hover-status" style="font-size:13px; font-weight:normal; color:var(--muted); transition:color 0.2s;">鼠标悬停在省份或红点上查看故事，点击可跳转到对应卡片</span>
@@ -459,10 +546,11 @@
         </div>
       </div>
     </div>
+    </section>
 
     <section class="story-section run-50-zone" id="run50-series" aria-labelledby="run50-series-title">
       <div class="section-head">
-        <p class="section-kicker">Run50 · U.S. States</p>
+        <p class="section-kicker">Run50 · 美国50州</p>
         <h2 id="run50-series-title">美国50州马拉松故事</h2>
         <p>按比赛日期从早到晚排列，保留 Run50 州序编号；番外和重跑按实际年份归入时间线。</p>
       </div>
@@ -540,11 +628,11 @@
 
         <a class="story-card run-50" href="./kentucky-derby-marathon.html">
           <img src="../../../assets/cover-medal-zh-kentucky-derby.jpg?v=20260626-ky-derby" alt="肯塔基德比马拉松奖牌封面" loading="lazy" decoding="async">
-          <div class="story-card-body">
-            <span class="story-tag">Run50 #1 · Kentucky</span>
+          <div class="story-copy">
+            <p class="story-meta">肯塔基路易斯维尔 · 2024.04.27</p>
             <h2 class="story-title">肯塔基：赛马节马拉松｜四刷主场，蓝草州终破4！</h2>
             <p class="story-desc">第四次跑 Louisville Derby Marathon，从赛马节和 Churchill Downs 到 Iroquois Park，终于在主场破四。</p>
-            <p class="story-meta">路易斯维尔 · 肯塔基 · 2024.04.27</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
           </div>
         </a>
 
@@ -805,7 +893,7 @@
 
     <section class="story-section run-cn-zone" id="runcn-series" aria-labelledby="runcn-series-title">
       <div class="section-head">
-        <p class="section-kicker">RunCN · China</p>
+        <p class="section-kicker">RunCN · 中国站点</p>
         <h2 id="runcn-series-title">中国马拉松系列</h2>
         <p>回国前后的中国跑步故事，按年份时间整理，全马站点编号独立标注。</p>
       </div>
@@ -1017,7 +1105,7 @@
 
     <section class="story-section run-world-zone" id="runworld-series" aria-labelledby="runworld-series-title">
       <div class="section-head">
-        <p class="section-kicker">RunWorld · Global</p>
+        <p class="section-kicker">RunWorld · 世界路线</p>
         <h2 id="runworld-series-title">世界马拉松系列</h2>
         <p>美国和中国之外的跑旅故事，按 RunWorld 站点顺序展示。</p>
       </div>
