@@ -439,6 +439,59 @@
         background: #ffffff;
         color: #1a252f;
     }
+    html[data-theme="dark"] {
+      --paper: #0e1117;
+      --surface: #161d27;
+      --ink: #e8eef6;
+      --muted: #b8c3d2;
+      --line: #334155;
+      --gold: #f0b071;
+      --plate-blue: #152638;
+      --plate-peach: #2b201d;
+      --plate-sage: #17281d;
+      --shadow: 0 22px 58px rgba(0, 0, 0, .34);
+    }
+    html[data-theme="dark"] body {
+      background:
+        linear-gradient(180deg, #101925 0, #171819 420px, var(--paper) 960px),
+        var(--paper);
+    }
+    html[data-theme="dark"] h1,
+    html[data-theme="dark"] .section-head h2,
+    html[data-theme="dark"] .story-title,
+    html[data-theme="dark"] .series-nav span {
+      color: #f5f7fb;
+    }
+    html[data-theme="dark"] .intro,
+    html[data-theme="dark"] .section-head p:last-child,
+    html[data-theme="dark"] .series-nav small,
+    html[data-theme="dark"] .story-desc,
+    html[data-theme="dark"] .story-foot,
+    html[data-theme="dark"] .story-card-body .story-meta {
+      color: var(--muted);
+    }
+    html[data-theme="dark"] .series-nav a,
+    html[data-theme="dark"] .story-card {
+      border-color: var(--line);
+      box-shadow: var(--shadow);
+    }
+    html[data-theme="dark"] .series-nav a {
+      background: rgba(22, 29, 39, .92);
+    }
+    html[data-theme="dark"] #stories-map-container,
+    html[data-theme="dark"] #china-map-container {
+      background: rgba(20, 27, 36, .92) !important;
+      border-color: var(--line) !important;
+      box-shadow: var(--shadow) !important;
+    }
+    html[data-theme="dark"] #welcome-map-slot,
+    html[data-theme="dark"] #cn-map-slot {
+      background: #111827 !important;
+      border-color: var(--line) !important;
+    }
+    html[data-theme="dark"] .story-card.run-cn { border-color: #4b342d; }
+    html[data-theme="dark"] .story-card.run-50 { border-color: #2e4a63; }
+    html[data-theme="dark"] .story-card.run-world { border-color: #2d4f35; }
   </style>
 
   <style id="run50-global-tabs-style">
@@ -447,7 +500,7 @@
       margin: 0 auto;
       padding: 18px 32px 0;
       display: grid !important;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 14px;
       align-items: center;
       color: #53647c;
@@ -455,7 +508,8 @@
       font-weight: 650;
       letter-spacing: 0;
     }
-    .run50-global-tabs a {
+    .run50-global-tabs a,
+    .theme-toggle {
       color: inherit;
       text-decoration: none;
       text-align: center;
@@ -463,8 +517,47 @@
       padding: 4px 0;
     }
     .run50-global-tabs a:first-child { text-align: left; }
-    .run50-global-tabs a:last-child { text-align: right; }
+    .run50-global-tabs a:nth-child(4) { text-align: right; }
     .run50-global-tabs a:hover { border-color: currentColor; }
+    .theme-toggle {
+      appearance: none;
+      -webkit-appearance: none;
+      color-scheme: light;
+      forced-color-adjust: none;
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 32px;
+      padding: 4px 12px;
+      border: 1px solid rgba(83, 100, 124, .35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .58);
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .18s ease, border-color .18s ease, color .18s ease;
+    }
+    .theme-toggle:hover,
+    .theme-toggle:focus-visible {
+      border-color: currentColor;
+      background: rgba(255, 255, 255, .82);
+      outline: none;
+    }
+    html[data-theme="dark"] .run50-global-tabs {
+      color: #c7d3e2;
+    }
+    html[data-theme="dark"] .run50-global-tabs .theme-toggle {
+      border-color: rgba(199, 211, 226, .34) !important;
+      background: #1e293b !important;
+      color: #e8eef6 !important;
+    }
+    html[data-theme="dark"] .run50-global-tabs .theme-toggle:hover,
+    html[data-theme="dark"] .run50-global-tabs .theme-toggle:focus-visible {
+      background: #263449 !important;
+    }
     @media (max-width: 640px) {
       .run50-global-tabs {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -473,15 +566,16 @@
       }
       .run50-global-tabs a,
       .run50-global-tabs a:first-child,
-      .run50-global-tabs a:last-child {
+      .run50-global-tabs a:nth-child(4) {
         text-align: left;
       }
+      .theme-toggle { justify-self: start; }
     }
   </style>
 
 </head>
 <body>
-  <nav class="run50-global-tabs" aria-label="Run50 story sections"><a href="../../index.html">← Run50</a><a href="../english/">英文故事</a><a href="./">中文故事</a><a href="../../facebook/">Facebook</a></nav>
+  <nav class="run50-global-tabs" aria-label="Run50 story sections"><a href="../../index.html">← Run50</a><a href="../english/">英文故事</a><a href="./">中文故事</a><a href="../../facebook/">Facebook</a><a href="#theme" role="button" class="theme-toggle" data-theme-toggle aria-pressed="false"><span aria-hidden="true">◐</span><span data-theme-label>深色</span></a></nav>
   <main class="shell">
 
     <section class="hero">
@@ -2151,6 +2245,43 @@
       });
     }
     document.addEventListener('DOMContentLoaded', _injectChinaMap);
+  </script>
+  <script>
+    (function () {
+      const key = 'run50-chinese-index-theme';
+      const root = document.documentElement;
+
+      function applyTheme(theme) {
+        const isDark = theme === 'dark';
+        if (isDark) {
+          root.setAttribute('data-theme', 'dark');
+        } else {
+          root.removeAttribute('data-theme');
+        }
+        const button = document.querySelector('[data-theme-toggle]');
+        const label = document.querySelector('[data-theme-label]');
+        if (button) button.setAttribute('aria-pressed', String(isDark));
+        if (label) label.textContent = isDark ? '浅色' : '深色';
+      }
+
+      const savedTheme = localStorage.getItem(key);
+      applyTheme(savedTheme || 'light');
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const button = document.querySelector('[data-theme-toggle]');
+        if (!button) return;
+        function toggleTheme(event) {
+          if (event) event.preventDefault();
+          const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(key, nextTheme);
+          applyTheme(nextTheme);
+        }
+        button.addEventListener('click', toggleTheme);
+        button.addEventListener('keydown', function (event) {
+          if (event.key === ' ' || event.key === 'Enter') toggleTheme(event);
+        });
+      });
+    }());
   </script>
   <script src="../../china-map-svg.js"></script>
 </body>
