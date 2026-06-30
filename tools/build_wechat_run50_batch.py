@@ -362,7 +362,9 @@ def caption_text(text: str) -> str:
         external_label = "航拍资料"
     elif re.search(r"赛事资料|赛事方", text):
         external_label = "赛事资料"
-    text = text.replace("@阿森南", "").replace("@Arsenan", "")
+    text = text.replace("@阿森南", "")
+    text = re.sub(r"@\s*Arsenan\b", "", text, flags=re.I)
+    text = re.sub(r"(?:图[/／]?\s*|by\s*|#\s*)?Arsenan\b", "", text, flags=re.I)
     text = re.sub(r"\bOfficial race photo\b|\bOfficial photo\b|赛事摄影|官方摄影|资料图|航拍资料|赛事资料", "", text, flags=re.I)
     text = re.sub(r"\s+", " ", text)
     text = text.strip(" ·｜|-")
@@ -599,6 +601,12 @@ STATE_LABELS = {
 
 ACCENTS = ["#2d6f9f", "#2f855a", "#6f4aa8", "#b7791f", "#294f7a", "#c05621", "#0f766e", "#9f3a38"]
 
+PRESERVE_EXISTING_SLUGS = {
+    "kentucky-derby-marathon",
+    "hatfield-mccoy-marathon",
+    "pittsburgh-marathon",
+}
+
 
 def source_path(slug: str) -> Path:
     return SOURCE_DIR / f"{slug}.html"
@@ -816,8 +824,7 @@ def collect_configs() -> list[StoryConfig]:
         if is_redirect_stub(slug):
             continue
         if slug not in configs:
-            output_exists = (OUT_DIR / f"{slug}-modern-rail.html").exists()
-            configs[slug] = default_config(slug, generate=not output_exists)
+            configs[slug] = default_config(slug, generate=slug not in PRESERVE_EXISTING_SLUGS)
     for page in sorted(OUT_DIR.glob("*-modern-rail.html")):
         slug = page.name.removesuffix("-modern-rail.html")
         if slug not in configs:
@@ -974,6 +981,13 @@ def image_src(src: str) -> str:
     return "../stories/chinese/" + src
 
 
+def image_alt_text(text: str) -> str:
+    text = normalize_text(text)
+    text = re.sub(r"@\s*Arsenan\b", "", text, flags=re.I)
+    text = re.sub(r"(?:图[/／]?\s*|by\s*|#\s*)?Arsenan\b", "", text, flags=re.I)
+    return text or "Run50 story image"
+
+
 def accent_inline(text: str, cfg: StoryConfig) -> str:
     escaped = escape(text)
     escaped = re.sub(
@@ -1024,7 +1038,7 @@ def figure(img: Block, caption: str) -> str:
     cap = escape(caption)
     return f"""
 <section style="margin: 28px 0 30px;">
-  <img src="{escape(image_src(img.src))}" alt="{escape(img.alt)}" style="width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 6px;">
+  <img src="{escape(image_src(img.src))}" alt="{escape(image_alt_text(img.alt))}" style="width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 6px;">
   <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid #d4a669; font-size: 12px; line-height: 1.6; letter-spacing: 0.2px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">{cap}</p>
 </section>"""
 
