@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract wechat-new cover">
+
+  <defs>
+    <linearGradient id="bg-wechat-new" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#171c2f"/>
+      <stop offset="100%" stop-color="#2b3248"/>
+    </linearGradient>
+    <radialGradient id="burst-wechat-new" cx="28%" cy="24%" r="72%">
+      <stop offset="0%" stop-color="#4fc3ff" stop-opacity="0.42"/>
+      <stop offset="54%" stop-color="#ff6f91" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft-wechat-new" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#020617" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="750" rx="0" fill="url(#bg-wechat-new)"/>
+  <rect width="1200" height="750" fill="url(#burst-wechat-new)"/>
+  <circle cx="1040" cy="104" r="210" fill="#4fc3ff" opacity="0.10"/>
+  <circle cx="90" cy="680" r="230" fill="#37d67a" opacity="0.12"/>
+  <path d="M-80 540 C170 420 280 680 520 555 S865 285 1280 360" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="58" stroke-linecap="round"/>
+
+<text x="78" y="132" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#ffffff" opacity="0.94" letter-spacing="0">WX+</text>
+
+  <g filter="url(#soft-wechat-new)">
+    <rect x="190" y="140" width="820" height="470" rx="44" fill="#202536" stroke="#ffffff" stroke-opacity="0.18" stroke-width="8"/>
+    <rect x="246" y="202" width="274" height="148" rx="28" fill="#4fc3ff"/>
+    <rect x="558" y="202" width="192" height="148" rx="28" fill="#ff6f91"/>
+    <rect x="788" y="202" width="166" height="148" rx="28" fill="#37d67a"/>
+    <rect x="246" y="392" width="708" height="50" rx="25" fill="#ffffff" opacity="0.86"/>
+    <rect x="246" y="470" width="530" height="50" rx="25" fill="#ffffff" opacity="0.54"/>
+    <circle cx="918" cy="500" r="116" fill="#ffffff" opacity="0.18"/>
+    <path d="M848 500 L916 432 L984 500 L916 568Z" fill="#ff6f91"/>
+  </g>
+
+</svg>

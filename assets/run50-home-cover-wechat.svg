@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract wechat cover">
+
+  <defs>
+    <linearGradient id="bg-wechat" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#102821"/>
+      <stop offset="100%" stop-color="#1f4a3d"/>
+    </linearGradient>
+    <radialGradient id="burst-wechat" cx="28%" cy="24%" r="72%">
+      <stop offset="0%" stop-color="#37d67a" stop-opacity="0.42"/>
+      <stop offset="54%" stop-color="#4fc3ff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft-wechat" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#020617" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="750" rx="0" fill="url(#bg-wechat)"/>
+  <rect width="1200" height="750" fill="url(#burst-wechat)"/>
+  <circle cx="1040" cy="104" r="210" fill="#37d67a" opacity="0.10"/>
+  <circle cx="90" cy="680" r="230" fill="#ffbe4a" opacity="0.12"/>
+  <path d="M-80 540 C170 420 280 680 520 555 S865 285 1280 360" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="58" stroke-linecap="round"/>
+
+<text x="78" y="132" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#ffffff" opacity="0.94" letter-spacing="0">WX</text>
+
+  <g filter="url(#soft-wechat)">
+    <ellipse cx="478" cy="384" rx="278" ry="194" fill="#37d67a"/>
+    <ellipse cx="744" cy="314" rx="246" ry="172" fill="#ffffff"/>
+    <path d="M318 526 L242 628 L418 558Z" fill="#37d67a"/>
+    <path d="M850 448 L950 524 L884 408Z" fill="#ffffff"/>
+    <circle cx="388" cy="354" r="36" fill="#102821"/><circle cx="552" cy="354" r="36" fill="#102821"/>
+    <circle cx="672" cy="292" r="30" fill="#4fc3ff"/><circle cx="812" cy="292" r="30" fill="#ffbe4a"/>
+  </g>
+
+</svg>

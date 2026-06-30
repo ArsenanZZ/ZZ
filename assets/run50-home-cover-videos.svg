@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract videos cover">
+
+  <defs>
+    <linearGradient id="bg-videos" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#23131b"/>
+      <stop offset="100%" stop-color="#5a1e17"/>
+    </linearGradient>
+    <radialGradient id="burst-videos" cx="28%" cy="24%" r="72%">
+      <stop offset="0%" stop-color="#ff6f91" stop-opacity="0.42"/>
+      <stop offset="54%" stop-color="#ffbe4a" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft-videos" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#020617" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="750" rx="0" fill="url(#bg-videos)"/>
+  <rect width="1200" height="750" fill="url(#burst-videos)"/>
+  <circle cx="1040" cy="104" r="210" fill="#ff6f91" opacity="0.10"/>
+  <circle cx="90" cy="680" r="230" fill="#4fc3ff" opacity="0.12"/>
+  <path d="M-80 540 C170 420 280 680 520 555 S865 285 1280 360" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="58" stroke-linecap="round"/>
+
+<text x="78" y="132" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#ffffff" opacity="0.94" letter-spacing="0">PLAY</text>
+
+  <g filter="url(#soft-videos)">
+    <rect x="196" y="160" width="808" height="430" rx="48" fill="#111827" stroke="#ffffff" stroke-opacity="0.16" stroke-width="8"/>
+    <path d="M526 276 L526 474 L724 375Z" fill="#ff6f91"/>
+    <circle cx="625" cy="375" r="218" fill="none" stroke="#ffbe4a" stroke-width="34" stroke-dasharray="52 38"/>
+    <rect x="244" y="210" width="74" height="72" rx="14" fill="#ffffff" opacity="0.18"/>
+    <rect x="882" y="468" width="74" height="72" rx="14" fill="#ffffff" opacity="0.18"/>
+  </g>
+
+</svg>

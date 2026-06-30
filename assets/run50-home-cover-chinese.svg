@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract chinese cover">
+
+  <defs>
+    <linearGradient id="bg-chinese" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#321915"/>
+      <stop offset="100%" stop-color="#573022"/>
+    </linearGradient>
+    <radialGradient id="burst-chinese" cx="28%" cy="24%" r="72%">
+      <stop offset="0%" stop-color="#ffbe4a" stop-opacity="0.42"/>
+      <stop offset="54%" stop-color="#ff6f91" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft-chinese" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#020617" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="750" rx="0" fill="url(#bg-chinese)"/>
+  <rect width="1200" height="750" fill="url(#burst-chinese)"/>
+  <circle cx="1040" cy="104" r="210" fill="#ffbe4a" opacity="0.10"/>
+  <circle cx="90" cy="680" r="230" fill="#37d67a" opacity="0.12"/>
+  <path d="M-80 540 C170 420 280 680 520 555 S865 285 1280 360" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="58" stroke-linecap="round"/>
+
+<text x="78" y="132" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#ffffff" opacity="0.94" letter-spacing="0">CN</text>
+
+  <g filter="url(#soft-chinese)">
+    <circle cx="888" cy="226" r="126" fill="#ff6f91"/>
+    <path d="M256 504 C380 196 502 160 650 236 C790 308 770 470 610 558 C468 636 334 612 256 504Z" fill="#fff2de"/>
+    <path d="M328 504 C444 314 540 280 696 310" fill="none" stroke="#ffbe4a" stroke-width="76" stroke-linecap="round"/>
+    <path d="M430 570 C555 505 680 442 812 472" fill="none" stroke="#1b1110" stroke-width="44" stroke-linecap="round" opacity="0.82"/>
+    <rect x="196" y="182" width="140" height="140" rx="32" fill="#37d67a" opacity="0.86"/>
+  </g>
+
+</svg>

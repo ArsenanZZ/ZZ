@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract run50 cover">
+
+  <defs>
+    <linearGradient id="bg-run50" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14233f"/>
+      <stop offset="100%" stop-color="#1d3b66"/>
+    </linearGradient>
+    <radialGradient id="burst-run50" cx="28%" cy="24%" r="72%">
+      <stop offset="0%" stop-color="#4fc3ff" stop-opacity="0.42"/>
+      <stop offset="54%" stop-color="#f8dc8a" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft-run50" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#020617" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="750" rx="0" fill="url(#bg-run50)"/>
+  <rect width="1200" height="750" fill="url(#burst-run50)"/>
+  <circle cx="1040" cy="104" r="210" fill="#4fc3ff" opacity="0.10"/>
+  <circle cx="90" cy="680" r="230" fill="#ff6f91" opacity="0.12"/>
+  <path d="M-80 540 C170 420 280 680 520 555 S865 285 1280 360" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="58" stroke-linecap="round"/>
+
+<text x="78" y="132" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#ffffff" opacity="0.94" letter-spacing="0">50</text>
+
+  <g filter="url(#soft-run50)">
+    <path d="M154 540 C250 288 396 246 558 356 C720 466 834 260 1038 244" fill="none" stroke="#f8dc8a" stroke-width="54" stroke-linecap="round"/>
+    <text x="360" y="494" font-family="Arial Black, Arial, sans-serif" font-size="310" font-weight="900" fill="#ffffff">50</text>
+    <path d="M246 570 C344 596 454 586 532 550 L578 602 C472 660 298 654 198 608Z" fill="#ff6f91"/>
+    <circle cx="984" cy="248" r="64" fill="#4fc3ff"/>
+  </g>
+
+</svg>
