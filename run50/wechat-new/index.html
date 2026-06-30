@@ -155,9 +155,10 @@
     }
 
     .rail a {
-      display: flex;
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       min-height: 54px;
       margin: 10px 0;
       padding: 8px 14px;
@@ -166,7 +167,18 @@
       font-weight: 600;
     }
 
-    .rail a span {
+    .rail-icon {
+      width: 44px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 17px;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .rail-copy {
       display: grid;
       gap: 1px;
       min-width: 0;
@@ -722,10 +734,10 @@
 
   <div class="shell">
     <aside class="rail" aria-label="Run50 series">
-      <a class="active" href="#score">🏁 <span><b>Run50</b><small>美国50州</small></span></a>
-      <a href="#runcn-map">🇨🇳 <span><b>RunCN</b><small>中国马拉松</small></span></a>
-      <a href="#stories">🌍 <span><b>RunWorld</b><small>世界跑旅</small></span></a>
-      <a href="#stats">▤ <span><b>Stats</b><small>文章与进度</small></span></a>
+      <a class="active" href="#score"><span class="rail-icon">🏁</span><span class="rail-copy"><b>Run50</b><small>美国50州</small></span></a>
+      <a href="#runcn-map"><span class="rail-icon">CN</span><span class="rail-copy"><b>RunCN</b><small>中国马拉松</small></span></a>
+      <a href="#stories"><span class="rail-icon">🌍</span><span class="rail-copy"><b>RunWorld</b><small>世界跑旅</small></span></a>
+      <a href="#stats"><span class="rail-icon">▤</span><span class="rail-copy"><b>Stats</b><small>文章与进度</small></span></a>
     </aside>
 
     <main class="main">
