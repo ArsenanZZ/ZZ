@@ -1506,6 +1506,15 @@
         'South_Dakota', 'Utah_1_', 'Pensilvania_1_'
       ];
 
+      const US_LABEL_PATHS = new Set([
+        'NV', 'UT', 'ID', 'MT', 'ND', 'MN', 'IA', 'WI', 'IL', 'MO', 'AR', 'LA',
+        'MS', 'AL', 'TN', 'KY', 'IN', 'MI', 'OH', 'WV', 'VA', 'SC', 'NC', 'PA',
+        'NY', 'ME', 'GA', 'FL', 'SD', 'NE', 'KS', 'OK', 'WY', 'CO', 'OR', 'WA',
+        'CA', 'HI', 'AZ', 'AK', 'NM', 'TX', 'VT_1_', 'NH_1_', 'MD', 'DE_1_',
+        'NJ_1_', 'CT_1_', 'RI_1_', 'STATES', 'ATLANTIC_OCEAN', 'gulf_of_mexico',
+        'OCEANS'
+      ]);
+
       const US_COLORS = {
         AK: '#d4614a', AL: '#98c038', AR: '#5ca860', AZ: '#e89838', CA: '#d4614a',
         CO: '#9068c0', CT: '#9068c0', DE: '#e89838', FL: '#d4614a', GA: '#e89838',
@@ -1653,6 +1662,10 @@
         const hawaiiFrame = svg.querySelector('#map_hawaii_1_');
         const alaskaFrame = svg.querySelector('#map_exterior_2_');
         if (alaskaFrame && hawaiiFrame) alaskaFrame.style.fill = hawaiiFrame.style.fill || hawaiiFrame.getAttribute('fill') || '';
+        US_LABEL_PATHS.forEach(labelId => {
+          const label = svg.querySelector('#map_' + labelId);
+          if (label) svg.appendChild(label);
+        });
       }
 
       function projectChina(lat, lon) {
@@ -1682,6 +1695,14 @@
           const isFrame = id === 'map_USA' || id === 'map_White' || id === 'map_exterior_2_';
           const isStateGeometry = US_SOURCE_PATHS.has(sourceId);
           if (!isFrame && !isStateGeometry) {
+            if (US_LABEL_PATHS.has(sourceId)) {
+              const isOceanLabel = sourceId === 'ATLANTIC_OCEAN' || sourceId === 'gulf_of_mexico' || sourceId === 'OCEANS';
+              path.setAttribute('fill', isOceanLabel ? '#7f899d' : '#a8b0c2');
+              path.setAttribute('stroke', 'none');
+              path.style.opacity = isOceanLabel ? '.34' : '.58';
+              path.style.pointerEvents = 'none';
+              return;
+            }
             path.setAttribute('fill', 'none');
             path.setAttribute('stroke', 'rgba(207,218,232,.18)');
             path.setAttribute('stroke-width', '.55');
