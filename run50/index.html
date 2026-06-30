@@ -1217,42 +1217,32 @@
 <!-- MAIN -->
 <div class="content">
 
-  <div class="section-header running-map-tab" id="running-map">
-    <div class="section-title">Running Map</div>
-    <a href="./running-map.html" class="section-see-all">Open map &rsaquo;</a>
-  </div>
-
-  <section class="running-map-section" aria-label="Global marathon footprint">
-    <div class="running-map-card-head">
-      <div class="running-map-card-title">
-        Global Marathon Footprint
-        <span class="running-map-pill">Run50 / RunCN / RunWorld</span>
-      </div>
-      <div class="running-map-status" id="world-running-map-status">Hover a country or race city</div>
-    </div>
-    <div class="running-map-stats" aria-label="Running map stats">
-      <div class="running-map-stat"><strong>6 + HK</strong><span>Countries / region</span></div>
-      <div class="running-map-stat"><strong>35</strong><span>US states</span></div>
-      <div class="running-map-stat"><strong>17</strong><span>China regions</span></div>
-      <div class="running-map-stat"><strong>64</strong><span>Race city dots</span></div>
-    </div>
-    <div class="running-map-shell">
-      <div class="world-running-map-slot" id="world-running-map-slot" aria-label="Interactive world running map"></div>
-      <div class="world-running-map-tooltip" id="world-running-map-tooltip" role="tooltip"></div>
-    </div>
-    <div class="running-map-legend" aria-label="Map legend">
-      <span><i class="running-map-swatch"></i>Completed running regions</span>
-      <span><i style="background:#ff3b30"></i>Race city</span>
-      <span>Zoom, drag, and click a city to open its story</span>
-    </div>
-  </section>
-
   <div class="section-header">
     <div class="section-title">My Projects &amp; Stories</div>
     <a href="https://zhennanzhang.bio" target="_blank" class="section-see-all">See all &rsaquo;</a>
   </div>
 
   <div class="products">
+
+    <!-- Running Map -->
+    <a href="./running-map.html" class="product" id="running-map">
+      <div class="product-thumb running-map-entry-thumb">
+        <span class="badge-year">GLOBAL</span>
+        <span class="running-map-entry-icon">&#128506;&#65039;</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Project &middot; Interactive Map</div>
+        <div class="product-title">Running Map</div>
+        <div class="product-subtitle">Run50 / RunCN / RunWorld footprint</div>
+        <div>
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="stars-count"> 64 city dots</span>
+        </div>
+        <div class="product-desc">A global marathon map for completed countries, regions, race cities, and story links.</div>
+        <div class="product-stat"><strong>6 + HK</strong> countries / region &middot; 35 US states &middot; 17 China regions</div>
+      </div>
+      <span class="btn-view">Open Running Map &rarr;</span>
+    </a>
 
     <!-- 21天计划 -->
     <a href="./21day.html" class="product">
@@ -1450,8 +1440,6 @@
 
 <link rel="stylesheet" href="../assets/zz-comments.css">
 <section data-zz-comments></section>
-<script src="./world-geo-data.js?v=20260630-run50-home"></script>
-<script src="./world-map-svg.js?v=20260630-run50-home"></script>
 <script id="global-running-map-renderer">
 (() => {
   const slot = document.getElementById('world-running-map-slot');
