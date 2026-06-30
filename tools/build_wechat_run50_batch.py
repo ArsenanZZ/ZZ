@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from html import escape
+from html import escape, unescape
 from html.parser import HTMLParser
 from pathlib import Path
 import re
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SOURCE_DIR = ROOT / "run50" / "stories" / "chinese"
 OUT_DIR = ROOT / "run50" / "wechat"
 VERSION = "20260627-wechat-batch"
 
@@ -26,6 +27,8 @@ class StoryConfig:
     accent: str = "#2d6f9f"
     gold: str = "#b98735"
     generate: bool = True
+    cover_src: str = ""
+    source_slug: str = ""
 
 
 CONFIGS: list[StoryConfig] = [
@@ -232,10 +235,10 @@ class StoryParser(HTMLParser):
         cls = attrs.get("class", "")
         if tag == "h1":
             self.in_title = True
-        if "dek" in cls.split():
+        if "dek" in cls.split() or "deck" in cls.split():
             self.in_dek = True
             self.dek_tag = tag
-        if tag == "article" and "article-body" in cls.split():
+        if not self.in_article and (tag == "article" or "article-body" in cls.split()):
             self.in_article = True
             self.article_depth = 1
         elif self.in_article:
@@ -535,9 +538,310 @@ def english_caption_to_chinese(text: str, fallback: str = "路上片刻") -> str
     return fallback
 
 
+ASSET_ALIASES = {
+    "anchorage-marathon": "zh-anchorage",
+    "atlanta-marathon": "zh-atlanta",
+    "chicago-marathon": "il",
+    "cincinnati-flying-pig-marathon": "zh-cincinnati",
+    "cleveland-marathon": "zh-cleveland",
+    "denver-colfax-marathon": "zh-denver",
+    "guilin-marathon": "guilin",
+    "hong-kong-marathon": "hk",
+    "honolulu-marathon": "zh-honolulu",
+    "indianapolis-monumental-marathon": "zh-indianapolis",
+    "kentucky-derby-marathon": "zh-kentucky-derby",
+    "little-rock-marathon": "zh-little-rock",
+    "louisville-marathon": "zh-louisville",
+    "mexico-marathon": "mexico",
+    "nashville-marathon": "zh-nashville",
+    "new-york-city-marathon": "zh-new-york",
+    "pisa-marathon": "pisa",
+    "san-antonio-marathon": "tx",
+    "san-francisco-marathon": "zh-san-francisco",
+    "south-carolina-marathon": "sc",
+    "st-joseph-marathon": "zh-st-joseph",
+    "west-virginia-marathon": "zh-wv",
+    "xiangyang-marathon": "xiangyang",
+}
+
+STATE_LABELS = {
+    "肯塔基": "KENTUCKY",
+    "俄亥俄": "OHIO",
+    "纽约": "NEW YORK",
+    "加州": "CALIFORNIA",
+    "印第安纳": "INDIANA",
+    "夏威夷": "HAWAII",
+    "佐治亚": "GEORGIA",
+    "科罗拉多": "COLORADO",
+    "阿拉斯加": "ALASKA",
+    "密苏里": "MISSOURI",
+    "伊利诺伊": "ILLINOIS",
+    "田纳西": "TENNESSEE",
+    "西弗吉尼亚": "WEST VIRGINIA",
+    "德克萨斯": "TEXAS",
+    "佛罗里达": "FLORIDA",
+    "北卡": "NORTH CAROLINA",
+    "北卡罗莱纳": "NORTH CAROLINA",
+    "阿肯色": "ARKANSAS",
+    "南卡": "SOUTH CAROLINA",
+    "南卡罗莱纳": "SOUTH CAROLINA",
+    "宾夕法尼亚": "PENNSYLVANIA",
+    "密歇根": "MICHIGAN",
+    "新罕布什尔": "NEW HAMPSHIRE",
+    "路易斯安那": "LOUISIANA",
+    "弗吉尼亚": "VIRGINIA",
+    "北达科他": "NORTH DAKOTA",
+    "堪萨斯": "KANSAS",
+    "佛蒙特": "VERMONT",
+    "阿拉巴马": "ALABAMA",
+    "亚利桑那": "ARIZONA",
+}
+
+ACCENTS = ["#2d6f9f", "#2f855a", "#6f4aa8", "#b7791f", "#294f7a", "#c05621", "#0f766e", "#9f3a38"]
+
+
+def source_path(slug: str) -> Path:
+    return SOURCE_DIR / f"{slug}.html"
+
+
+def strip_tags(text: str) -> str:
+    return normalize_text(re.sub(r"<[^>]+>", " ", unescape(text)))
+
+
+def meta_content(html: str, key: str) -> str:
+    patterns = [
+        rf'<meta[^>]+property=["\']{re.escape(key)}["\'][^>]+content=["\']([^"\']*)["\']',
+        rf'<meta[^>]+content=["\']([^"\']*)["\'][^>]+property=["\']{re.escape(key)}["\']',
+        rf'<meta[^>]+name=["\']{re.escape(key)}["\'][^>]+content=["\']([^"\']*)["\']',
+        rf'<meta[^>]+content=["\']([^"\']*)["\'][^>]+name=["\']{re.escape(key)}["\']',
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, html, flags=re.I | re.S)
+        if match:
+            return normalize_text(unescape(match.group(1)))
+    return ""
+
+
+def source_image_to_wechat(src: str) -> str:
+    src = src.strip()
+    if not src:
+        return ""
+    if src.startswith(("http://", "https://")):
+        match = re.search(r"/ZZ/(assets/[^?#]+)", src)
+        if match:
+            return "../../" + match.group(1)
+        match = re.search(r"/(assets/[^?#]+)", src)
+        if match:
+            return "../../" + match.group(1)
+        return src
+    src = src.split("?", 1)[0]
+    if src.startswith("../../../assets/"):
+        return "../../assets/" + src.rsplit("/", 1)[-1]
+    if src.startswith("../../assets/") or src.startswith("../"):
+        return src
+    return "../stories/chinese/" + src
+
+
+def cover_src_for(cfg: StoryConfig) -> str:
+    if cfg.cover_src:
+        return cfg.cover_src
+    slug = cfg.source_slug or cfg.slug
+    candidates = [f"cover-medal-{slug}.jpg", f"cover-medal-zh-{slug}.jpg"]
+    alias = ASSET_ALIASES.get(slug)
+    if alias:
+        candidates.extend([f"cover-medal-{alias}.jpg", f"cover-medal-zh-{alias}.jpg"])
+    for name in candidates:
+        if (ROOT / "assets" / name).exists():
+            return f"../../assets/{name}"
+    return ""
+
+
+def clean_public_title(title: str, html: str = "") -> str:
+    title = normalize_text(unescape(title))
+    if not title or title == "Story merged":
+        title = meta_content(html, "og:title") or meta_content(html, "twitter:title") or title
+    return title
+
+
+def first_story_paragraph(blocks: list[Block]) -> str:
+    for block in blocks:
+        if block.kind == "p":
+            text, hit_tail = strip_tail_text(block.text)
+            if hit_tail:
+                return ""
+            if len(text) >= 24 and "留言" not in text and "加载中" not in text:
+                return text
+    return ""
+
+
+def compact_summary(text: str, limit: int = 86) -> str:
+    text = normalize_text(text)
+    if len(text) <= limit:
+        return text
+    return text[:limit].rstrip("，。；：、 ") + "。"
+
+
+def derive_series(title: str, slug: str) -> str:
+    parts = [part.strip() for part in title.split("｜") if part.strip()]
+    if len(parts) >= 2:
+        head = parts[0].replace("#第", "第")
+        place = parts[1].replace("：", " · ", 1)
+        return f"{head} · {place}"
+    if parts:
+        return parts[0]
+    return slug.replace("-", " ").title()
+
+
+def derive_dispatch(title: str) -> str:
+    if title.startswith("RunCN"):
+        return "RUNCN"
+    if title.startswith("RunWorld"):
+        return "RUNWORLD"
+    for zh, en in STATE_LABELS.items():
+        if zh in title:
+            return en
+    if title.startswith("Run50"):
+        return "RUN50"
+    return "RUNNING"
+
+
+def derive_stats(title: str, dispatch: str) -> tuple[str, str, str]:
+    match = re.search(r"第\s*(\d+)\s*([州站])", title)
+    if match:
+        return match.group(1), dispatch.replace(" ", ""), match.group(2)
+    match = re.search(r"#\s*(\d+)", title)
+    if match:
+        return match.group(1), dispatch.replace(" ", ""), "NOTE"
+    return dispatch.replace(" ", ""), "STORY", "WECHAT"
+
+
+def derive_place(html: str, title: str) -> str:
+    match = re.search(r'<(?:div|section)[^>]+class=["\'][^"\']*meta-row[^"\']*["\'][^>]*>(.*?)</(?:div|section)>', html, flags=re.I | re.S)
+    if match:
+        spans = [strip_tags(item) for item in re.findall(r"<span[^>]*>(.*?)</span>", match.group(1), flags=re.I | re.S)]
+        spans = [item for item in spans if item]
+        if spans:
+            return " · ".join(spans[:2])
+    if title.startswith("RunCN"):
+        return "RunCN · 中国跑马故事"
+    if title.startswith("RunWorld"):
+        return "RunWorld · 世界跑马故事"
+    if title.startswith("Run50"):
+        return "Run50 · 50州跑马故事"
+    return "Running Story · WeChat Edition"
+
+
+def default_cover_src(slug: str, html: str, blocks: list[Block]) -> str:
+    cover = cover_src_for(StoryConfig(slug, "", "", "", "", "", "", "", ""))
+    if cover:
+        return cover
+    for key in ["og:image", "twitter:image"]:
+        value = meta_content(html, key)
+        if value:
+            return source_image_to_wechat(value)
+    for block in blocks:
+        if block.kind == "img" and block.src:
+            return source_image_to_wechat(block.src)
+    return ""
+
+
+def is_redirect_stub(slug: str) -> bool:
+    html = source_path(slug).read_text(encoding="utf-8")
+    if "Story merged" not in html:
+        return False
+    return bool(re.search(r"http-equiv=[\"']refresh[\"']|location\.replace", html, flags=re.I))
+
+
+def default_config(slug: str, generate: bool) -> StoryConfig:
+    html = source_path(slug).read_text(encoding="utf-8")
+    title, dek, blocks = parse_source(slug)
+    title = clean_public_title(title, html)
+    dispatch = derive_dispatch(title)
+    summary = compact_summary(dek or meta_content(html, "description") or meta_content(html, "og:description") or first_story_paragraph(blocks) or title)
+    stat_one, stat_two, stat_three = derive_stats(title, dispatch)
+    accent = ACCENTS[sum(ord(ch) for ch in slug) % len(ACCENTS)]
+    return StoryConfig(
+        slug=slug,
+        state_en=dispatch,
+        series=derive_series(title, slug),
+        place=derive_place(html, title),
+        public_title=title,
+        summary=summary,
+        stat_one=stat_one,
+        stat_two=stat_two,
+        stat_three=stat_three,
+        accent=accent,
+        generate=generate,
+        cover_src=default_cover_src(slug, html, blocks),
+        source_slug=slug,
+    )
+
+
+def existing_page_config(path: Path) -> StoryConfig:
+    slug = path.name.removesuffix("-modern-rail.html")
+    html = path.read_text(encoding="utf-8")
+    title_match = re.search(r"<title[^>]*>(.*?)</title>", html, flags=re.I | re.S)
+    title = clean_public_title(strip_tags(title_match.group(1)) if title_match else slug, html)
+    dispatch_match = re.search(r"RUN50 DISPATCH\s*·\s*([^<]+)", html)
+    dispatch = normalize_text(dispatch_match.group(1)) if dispatch_match else derive_dispatch(title)
+    summary_match = re.search(r'<p class=["\']summary["\'][^>]*>(.*?)</p>', html, flags=re.I | re.S)
+    summary = compact_summary(strip_tags(summary_match.group(1)) if summary_match else title)
+    cover_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', html, flags=re.I)
+    cover = cover_match.group(1) if cover_match else cover_src_for(StoryConfig(slug, "", "", "", "", "", "", "", ""))
+    stat_one, stat_two, stat_three = derive_stats(title, dispatch)
+    return StoryConfig(slug, dispatch, title, "Run50 · WeChat Edition", title, summary, stat_one, stat_two, stat_three, generate=False, cover_src=cover)
+
+
+def ordered_slugs_from_index(path: Path) -> list[str]:
+    if not path.exists():
+        return []
+    html = path.read_text(encoding="utf-8")
+    slugs: list[str] = []
+    for href in re.findall(r'href=["\']([^"\']+\.html)(?:\?[^"\']*)?["\']', html, flags=re.I):
+        name = Path(href).name
+        if name == "index.html":
+            continue
+        slug = name.removesuffix("-modern-rail.html").removesuffix(".html")
+        if slug not in slugs:
+            slugs.append(slug)
+    return slugs
+
+
+def collect_configs() -> list[StoryConfig]:
+    configs: dict[str, StoryConfig] = {cfg.slug: cfg for cfg in CONFIGS}
+    for source in sorted(SOURCE_DIR.glob("*.html")):
+        if source.name == "index.html":
+            continue
+        slug = source.stem
+        if is_redirect_stub(slug):
+            continue
+        if slug not in configs:
+            output_exists = (OUT_DIR / f"{slug}-modern-rail.html").exists()
+            configs[slug] = default_config(slug, generate=not output_exists)
+    for page in sorted(OUT_DIR.glob("*-modern-rail.html")):
+        slug = page.name.removesuffix("-modern-rail.html")
+        if slug not in configs:
+            configs[slug] = existing_page_config(page)
+
+    source_order = ordered_slugs_from_index(SOURCE_DIR / "index.html")
+    wechat_order = ordered_slugs_from_index(OUT_DIR / "index.html")
+    source_rank = {slug: index for index, slug in enumerate(source_order)}
+    wechat_rank = {slug: index for index, slug in enumerate(wechat_order)}
+
+    def rank(cfg: StoryConfig) -> tuple[int, int, str]:
+        source_slug = cfg.source_slug or cfg.slug
+        if source_slug in source_rank:
+            return (0, source_rank[source_slug], cfg.slug)
+        if cfg.slug in wechat_rank:
+            return (1, wechat_rank[cfg.slug], cfg.slug)
+        return (2, 0, cfg.slug)
+
+    return sorted(configs.values(), key=rank)
+
+
 def parse_source(slug: str) -> tuple[str, str, list[Block]]:
     parser = StoryParser()
-    path = ROOT / "run50" / "stories" / "chinese" / f"{slug}.html"
+    path = source_path(slug)
     parser.feed(path.read_text(encoding="utf-8"))
     title = normalize_text("".join(parser.title_parts))
     dek = normalize_text("".join(parser.dek_parts))
@@ -866,9 +1170,12 @@ def vlog_card(cfg: StoryConfig) -> str:
 
 
 def medal_figure(cfg: StoryConfig) -> str:
+    cover = cover_src_for(cfg)
+    if not cover:
+        return ""
     return f"""
 <section style="margin: 24px 0 28px;">
-  <img src="../../assets/cover-medal-{escape(cfg.slug)}.jpg" alt="{escape(cfg.public_title)}奖牌封面" style="width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 7px;">
+  <img src="{escape(cover)}" alt="{escape(cfg.public_title)}奖牌封面" style="width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 7px;">
   <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid {cfg.gold}; font-size: 12px; line-height: 1.65; letter-spacing: 0.2px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">奖牌质感封面｜{escape(cfg.state_en.title())}</p>
 </section>"""
 
@@ -921,7 +1228,7 @@ def page_shell(title: str, body: str) -> str:
 
 
 def render_page(cfg: StoryConfig) -> str:
-    _title, dek, blocks = parse_source(cfg.slug)
+    _title, dek, blocks = parse_source(cfg.source_slug or cfg.slug)
     blocks = blocks_for_wechat(blocks)
     opening = dek or cfg.summary
     body: list[str] = [
@@ -948,10 +1255,11 @@ def render_page(cfg: StoryConfig) -> str:
 
 def render_index() -> str:
     cards = []
-    for cfg in CONFIGS:
+    for cfg in collect_configs():
+        cover = cover_src_for(cfg)
         cards.append(f"""
       <a class="card" href="{escape(cfg.slug)}-modern-rail.html?v={VERSION}">
-        <img class="cover" src="../../assets/cover-medal-{escape(cfg.slug)}.jpg" alt="{escape(cfg.public_title)}奖牌封面">
+        <img class="cover" src="{escape(cover)}" alt="{escape(cfg.public_title)}奖牌封面">
         <div class="body">
           <p class="meta">RUN50 DISPATCH · {escape(cfg.state_en)}</p>
           <h2>{escape(cfg.public_title)}</h2>
@@ -1016,7 +1324,7 @@ def render_index() -> str:
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     generated = []
-    for cfg in CONFIGS:
+    for cfg in collect_configs():
         if cfg.generate:
             path = OUT_DIR / f"{cfg.slug}-modern-rail.html"
             path.write_text(render_page(cfg), encoding="utf-8", newline="\n")
