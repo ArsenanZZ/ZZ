@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ArsenanZZ - Personal Space</title>
+<title>Run50 - ArsenanZZ Running Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -757,6 +757,392 @@
   @media (max-width: 400px) {
     .products { grid-template-columns: 1fr; }
   }
+
+  /* Run50 WeChat-new visual refresh */
+  body {
+    background: linear-gradient(180deg, #10131d 0%, #111524 48%, #0e111a 100%);
+    color: #f5f7fb;
+    font-family: "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    min-height: 72px;
+    padding: 0 40px;
+    background: rgba(26, 28, 34, .94);
+    border-bottom: 1px solid rgba(255, 255, 255, .11);
+    backdrop-filter: blur(18px);
+  }
+
+  .header-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 40px;
+    color: #f5f7fb;
+    font-size: 18px;
+    border: 0;
+    padding: 0;
+  }
+
+  .header-logo::before {
+    content: "R";
+    width: 31px;
+    height: 31px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #37d67a, #4fc3ff 52%, #ff6f91);
+    color: #081018;
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .header-logo span { color: #4fc3ff; }
+  .header-search { max-width: 520px; }
+  .header-search select,
+  .header-search input,
+  .header-search button {
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, .11);
+  }
+  .header-search select,
+  .header-search input {
+    background: #202536;
+    color: #f5f7fb;
+  }
+  .header-search input::placeholder { color: #8f98ad; }
+  .header-search button {
+    background: #30364f;
+    color: #f5f7fb;
+  }
+  .header-search button:hover { background: #3a425f; }
+
+  .header-link {
+    color: #f5f7fb;
+    border: 1px solid rgba(255, 255, 255, .11);
+    border-radius: 8px;
+    background: #30364f;
+    padding: 8px 12px;
+  }
+  .header-link:hover { border-color: rgba(79, 195, 255, .42); }
+  .header-link .hl-small { color: #b9c0d0; }
+
+  .nav-bar {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 18px 24px 0;
+    background: transparent;
+    gap: 10px;
+    scrollbar-width: none;
+  }
+
+  .nav-bar::-webkit-scrollbar { display: none; }
+
+  .nav-bar a {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 15px;
+    border-radius: 8px;
+    background: rgba(37, 43, 63, .78);
+    border: 1px solid rgba(255, 255, 255, .11);
+    color: #dfe6f6;
+    font-weight: 650;
+  }
+
+  .nav-bar a:hover,
+  .nav-bar a.active {
+    border-color: rgba(255, 255, 255, .18);
+    background: #262c42;
+  }
+
+  .hero {
+    width: min(1220px, calc(100% - 48px));
+    margin: 26px auto 0;
+    padding: 30px 32px;
+    text-align: left;
+    color: #f5f7fb;
+    border: 1px solid rgba(255, 255, 255, .11);
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(39, 45, 67, .96), rgba(31, 36, 53, .98));
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .24);
+  }
+
+  .hero::before { content: none; }
+  .hero-title {
+    max-width: 720px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 52px;
+    line-height: 1.04;
+    letter-spacing: 0;
+  }
+  .hero-title span { color: #4fc3ff; }
+  .hero-sub {
+    color: #d2d8e8;
+    font-size: 17px;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-bottom: 22px;
+  }
+  .hero-badges {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  .hero-badge,
+  .hero-badge-outline {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, .11);
+  }
+  .hero-badge {
+    background: rgba(55, 214, 122, .14);
+    color: #9ee7c0;
+  }
+  .hero-badge-outline {
+    background: rgba(255, 255, 255, .055);
+    color: #dfe6f6;
+  }
+
+  .hero-copy {
+    max-width: 760px;
+    margin: 0 0 22px;
+    color: #d2d8e8;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .series-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, .11);
+  }
+
+  .series-chip {
+    min-height: 90px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, .11);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .055);
+  }
+
+  .series-chip strong {
+    display: block;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.1;
+  }
+
+  .series-chip span {
+    display: block;
+    margin-top: 8px;
+    color: #b9c0d0;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .content {
+    width: min(1220px, calc(100% - 48px));
+    max-width: none;
+    padding: 26px 0 54px;
+  }
+
+  .section-header {
+    border-bottom: 0;
+    margin: 34px 0 16px;
+    padding-bottom: 0;
+  }
+  .section-title {
+    color: #f5f7fb;
+    font-size: 24px;
+  }
+  .section-see-all {
+    color: #f8dc8a;
+    font-weight: 750;
+  }
+  .section-see-all:hover { color: #fff0b4; }
+
+  .running-map-section {
+    max-width: none;
+    margin: 0 0 34px;
+    padding: 18px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(46, 52, 76, .98), rgba(23, 30, 48, .99));
+    border-color: rgba(255, 255, 255, .11);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .24);
+  }
+  .running-map-card-head { margin-bottom: 16px; }
+  .running-map-card-title {
+    color: #f5f7fb;
+    font-size: 24px;
+  }
+  .running-map-pill {
+    background: rgba(55, 214, 122, .14);
+    color: #9ee7c0;
+    border-radius: 8px;
+  }
+  .running-map-status { color: #b9c0d0; }
+  .running-map-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .running-map-stat {
+    border-color: rgba(255, 255, 255, .11);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .055);
+  }
+  .running-map-stat strong { color: #fff; }
+  .running-map-stat span {
+    color: #b9c0d0;
+    letter-spacing: 0;
+  }
+  .world-running-map-slot {
+    background: #111827;
+    border-color: rgba(255, 255, 255, .16);
+    border-radius: 8px;
+  }
+  .running-map-legend {
+    border-top-color: rgba(255, 255, 255, .11);
+    color: #b9c0d0;
+  }
+
+  .products {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .product {
+    min-height: 100%;
+    background: linear-gradient(180deg, rgba(39, 45, 67, .96), rgba(31, 36, 53, .98));
+    border: 1px solid rgba(255, 255, 255, .11);
+    border-radius: 8px;
+    color: #f5f7fb;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .18);
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  }
+  .product:hover {
+    transform: translateY(-4px);
+    border-color: rgba(79, 195, 255, .42);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .24);
+  }
+  .product-thumb {
+    height: 170px;
+    background: #171b28;
+    border-bottom-color: rgba(255, 255, 255, .1);
+    color: #f5f7fb !important;
+    letter-spacing: 0 !important;
+  }
+  .product-body { padding: 17px 18px 18px; gap: 10px; }
+  .product-category {
+    color: #9ee7c0;
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+  .product-title {
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.35;
+  }
+  .product:hover .product-title { color: #fff; }
+  .product-subtitle,
+  .product-desc,
+  .product-stat,
+  .stars-count {
+    color: #b9c0d0;
+  }
+  .product-subtitle { font-family: inherit; }
+  .product-desc { font-size: 14px; line-height: 1.65; }
+  .product-stat {
+    border-top-color: rgba(255, 255, 255, .11);
+    font-size: 13px;
+  }
+  .product-stat strong { color: #f8dc8a; }
+  .stars { color: #ffbe4a; letter-spacing: 0; }
+  .badge-status,
+  .badge-prime,
+  .badge-year {
+    border-radius: 8px;
+    letter-spacing: 0;
+  }
+  .btn-view {
+    margin: auto 18px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #f8dc8a;
+    text-align: left;
+    padding: 0;
+  }
+  .btn-view:hover { background: transparent; color: #fff0b4; }
+
+  footer {
+    width: min(1220px, calc(100% - 48px));
+    margin: 0 auto 48px;
+    background: transparent;
+    color: #8f98ad;
+    text-align: center;
+  }
+  .footer-top {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    margin-bottom: 18px;
+    padding: 0 14px;
+    border-radius: 8px;
+    background: #30364f;
+  }
+  .footer-top:hover { background: #3a425f; }
+  .footer-cols,
+  .footer-divider { display: none; }
+  .footer-bottom {
+    background: transparent;
+    color: #8f98ad;
+  }
+  .footer-logo-bottom span { color: #4fc3ff; }
+
+  @media (max-width: 980px) {
+    header { padding: 0 18px; }
+    .header-search { display: none; }
+    .nav-bar,
+    .content,
+    .hero,
+    footer {
+      width: min(100% - 32px, 760px);
+    }
+    .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .running-map-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .series-strip { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 620px) {
+    .header-links { display: none; }
+    .nav-bar,
+    .content,
+    .hero,
+    footer {
+      width: min(100% - 24px, 520px);
+    }
+    .nav-bar { padding-top: 12px; }
+    .hero {
+      margin-top: 18px;
+      padding: 24px 20px;
+    }
+    .hero-title { font-size: 34px; }
+    .hero-sub { font-size: 15px; }
+    .products,
+    .running-map-stats {
+      grid-template-columns: 1fr;
+    }
+    .running-map-section { padding: 16px; }
+  }
 </style>
 </head>
 <body>
@@ -804,9 +1190,24 @@
 <div class="hero">
   <div class="hero-title">Arsenan<span>ZZ</span></div>
   <div class="hero-sub">Running &middot; Reading &middot; Building</div>
+  <p class="hero-copy">Run50 是我的跑步故事总入口：美国50州、中国马拉松、世界跑旅、公众号版、英文版和 Facebook 版，都从这里进入。</p>
   <div class="hero-badges">
     <span class="hero-badge">&#127939; 22 / 50 States Completed</span>
     <span class="hero-badge-outline">2024 &ndash; 2026</span>
+  </div>
+  <div class="series-strip" aria-label="Run50 story families">
+    <div class="series-chip">
+      <strong>Run50</strong>
+      <span>美国50州马拉松时间线，按州、城市和比赛故事进入。</span>
+    </div>
+    <div class="series-chip">
+      <strong>RunCN</strong>
+      <span>中国马拉松跑旅，武汉、哈尔滨、桂林、兰州等故事入口。</span>
+    </div>
+    <div class="series-chip">
+      <strong>RunWorld</strong>
+      <span>美国和中国之外的世界路线，用地图连接每一站。</span>
+    </div>
   </div>
 </div>
 
@@ -818,26 +1219,30 @@
     <a href="./running-map.html" class="section-see-all">Open map &rsaquo;</a>
   </div>
 
-  <div class="products running-map-entry-grid">
-    <a href="./running-map.html" class="product running-map-entry-card">
-      <div class="product-thumb running-map-entry-thumb">
-        <span class="badge-year">GLOBAL</span>
-        <span class="running-map-entry-icon">&#128506;&#65039;</span>
+  <section class="running-map-section" aria-label="Global marathon footprint">
+    <div class="running-map-card-head">
+      <div class="running-map-card-title">
+        Global Marathon Footprint
+        <span class="running-map-pill">Run50 / RunCN / RunWorld</span>
       </div>
-      <div class="product-body">
-        <div class="product-category">Map &middot; Run50 / RunCN / RunWorld</div>
-        <div class="product-title">Global Marathon Footprint</div>
-        <div class="product-subtitle">Countries, regions, and race cities</div>
-        <div>
-          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span class="stars-count"> 64 city dots</span>
-        </div>
-        <div class="product-desc">An interactive world map for completed marathon countries and story links.</div>
-        <div class="product-stat"><strong>6 + HK</strong> countries / region &middot; 35 US states &middot; 17 China regions</div>
-      </div>
-      <span class="btn-view">Open Running Map &rarr;</span>
-    </a>
-  </div>
+      <div class="running-map-status" id="world-running-map-status">Hover a country or race city</div>
+    </div>
+    <div class="running-map-stats" aria-label="Running map stats">
+      <div class="running-map-stat"><strong>6 + HK</strong><span>Countries / region</span></div>
+      <div class="running-map-stat"><strong>35</strong><span>US states</span></div>
+      <div class="running-map-stat"><strong>17</strong><span>China regions</span></div>
+      <div class="running-map-stat"><strong>64</strong><span>Race city dots</span></div>
+    </div>
+    <div class="running-map-shell">
+      <div class="world-running-map-slot" id="world-running-map-slot" aria-label="Interactive world running map"></div>
+      <div class="world-running-map-tooltip" id="world-running-map-tooltip" role="tooltip"></div>
+    </div>
+    <div class="running-map-legend" aria-label="Map legend">
+      <span><i class="running-map-swatch"></i>Completed running regions</span>
+      <span><i style="background:#ff3b30"></i>Race city</span>
+      <span>Zoom, drag, and click a city to open its story</span>
+    </div>
+  </section>
 
   <div class="section-header">
     <div class="section-title">My Projects &amp; Stories</div>
@@ -1021,7 +1426,9 @@
 
 <link rel="stylesheet" href="../assets/zz-comments.css">
 <section data-zz-comments></section>
-<script type="application/x-run50-map-renderer" id="global-running-map-renderer">
+<script src="./world-geo-data.js?v=20260630-run50-home"></script>
+<script src="./world-map-svg.js?v=20260630-run50-home"></script>
+<script id="global-running-map-renderer">
 (() => {
   const slot = document.getElementById('world-running-map-slot');
   const tooltip = document.getElementById('world-running-map-tooltip');
