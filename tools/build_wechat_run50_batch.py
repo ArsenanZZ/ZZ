@@ -1335,6 +1335,148 @@ def render_index() -> str:
 """
 
 
+def story_family(cfg: StoryConfig) -> str:
+    title = cfg.public_title
+    if title.startswith("RunCN"):
+        return "RunCN"
+    if title.startswith("RunWorld"):
+        return "RunWorld"
+    if title.startswith("Run50"):
+        return "Run50"
+    return "Other"
+
+
+def wechat_new_card(cfg: StoryConfig, cover_overrides: dict[str, str]) -> str:
+    cover = cover_overrides.get(cfg.slug) or cover_src_for(cfg)
+    href = f"https://zhennanzhang.com/run50/wechat/{cfg.slug}-modern-rail.html?v={VERSION}"
+    return f"""
+          <a class="story-card" href="{escape(href)}">
+            <img src="{escape(cover)}" alt="{escape(cfg.public_title)}封面">
+            <div class="story-body">
+              <div class="eyebrow">RUN50 DISPATCH · {escape(cfg.state_en)}</div>
+              <h3>{escape(cfg.public_title)}</h3>
+              <div class="meta">{escape(cfg.place)}</div>
+              <p class="desc">{escape(cfg.summary)}</p>
+              <div class="open">Open WeChat Edition →</div>
+            </div>
+          </a>"""
+
+
+def wechat_new_cover_overrides(template: str) -> dict[str, str]:
+    overrides: dict[str, str] = {}
+    for match in re.finditer(
+        r'<a class="story-card" href="[^"]*/wechat/([^"/]+)-modern-rail\.html[^"]*">\s*<img src="([^"]+)"',
+        template,
+        flags=re.S,
+    ):
+        overrides[match.group(1)] = match.group(2)
+    return overrides
+
+
+WECHAT_NEW_TICKER = [
+    ("kentucky-derby-marathon", "第1州 · 2024.04.27", "肯塔基赛马节马拉松"),
+    ("pittsburgh-marathon", "第19州 · 2024.05.05", "匹兹堡马拉松"),
+    ("fargo-marathon", "第25州 · 2025.05.31", "法戈马拉松"),
+    ("arizona-phoenix-marathon", "第29州 · 2026.01.10", "亚利桑那 Buckeye"),
+]
+
+
+def wechat_new_ticker(configs: list[StoryConfig]) -> str:
+    by_slug = {cfg.slug: cfg for cfg in configs}
+    items = []
+    for slug, label, title in WECHAT_NEW_TICKER:
+        if slug not in by_slug:
+            continue
+        href = f"https://zhennanzhang.com/run50/wechat/{slug}-modern-rail.html?v={VERSION}"
+        items.append(
+            f"""        <a class="ticker-item" href="{escape(href)}">
+          <small>{escape(label)}</small>
+          <b>{escape(title)}</b>
+        </a>"""
+        )
+    return f"""      <section class="ticker" id="featured" aria-label="Featured Run50 stories">
+{chr(10).join(items)}
+      </section>
+
+"""
+
+
+def wechat_new_map_and_story_sections(configs: list[StoryConfig], cover_overrides: dict[str, str]) -> str:
+    total = len(configs)
+    cards = "".join(wechat_new_card(cfg, cover_overrides) for cfg in configs)
+    return f"""        <div class="map-board" aria-label="Run50 and RunCN maps">
+          <a class="run-map-card" href="https://zhennanzhang.com/run50/stories/chinese/#run50-series">
+            <div>
+              <div class="eyebrow">Interactive Map</div>
+              <h2>Run50 · 美国50州地图</h2>
+              <p>沿用 Chinese Stories 里的美国交互地图，把跑过的州、城市红点和长文入口放在同一张地图里。</p>
+            </div>
+            <div class="map-window" id="run50-us-map-mini" aria-label="Run50 美国地图"></div>
+            <div class="map-foot"><span id="us-map-mini-status">点击打开完整互动地图</span><b>Run50</b></div>
+          </a>
+
+          <a class="run-map-card" id="runcn-map" href="https://zhennanzhang.com/run50/stories/chinese/#runcn-series">
+            <div>
+              <div class="eyebrow">Interactive Map</div>
+              <h2>RunCN · 中国马拉松地图</h2>
+              <p>把中国跑马故事集中到一张地图里，用城市红点和省份高亮进入每一段路书。</p>
+            </div>
+            <div class="map-window" id="runcn-china-map-mini" aria-label="RunCN 中国地图"></div>
+            <div class="map-foot"><span id="cn-map-mini-status">点击打开完整互动地图</span><b>RunCN</b></div>
+          </a>
+        </div>
+      </section>
+
+{wechat_new_ticker(configs)}      <section id="stories">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Story Grid</div>
+            <h2>微信公众号故事</h2>
+          </div>
+          <p>已同步 Chinese Stories 全量 {total} 篇。</p>
+        </div>
+
+        <div class="stories">{cards}
+        </div>
+      </section>
+
+"""
+
+
+def render_wechat_new_index() -> str:
+    path = ROOT / "run50" / "wechat-new" / "index.html"
+    if not path.exists():
+        return ""
+    template = path.read_text(encoding="utf-8")
+    configs = collect_configs()
+    covers = wechat_new_cover_overrides(template)
+
+    content_start = template.index('        <div class="map-board"')
+    stats_start = template.index('      <section class="stats"', content_start)
+    template = (
+        template[:content_start]
+        + wechat_new_map_and_story_sections(configs, covers)
+        + template[stats_start:]
+    )
+
+    total = len(configs)
+    family_counts = {"Run50": 0, "RunCN": 0, "RunWorld": 0}
+    for cfg in configs:
+        family = story_family(cfg)
+        if family in family_counts:
+            family_counts[family] += 1
+
+    stats_start = template.index('      <section class="stats"')
+    stats_end = template.index("      </section>", stats_start) + len("      </section>")
+    stats_block = f"""      <section class="stats" id="stats" aria-label="Run50 statistics">
+        <div class="stat-card"><b>{total}</b><span>公众号版文章</span></div>
+        <div class="stat-card"><b>{family_counts['Run50']}</b><span>Run50 故事</span></div>
+        <div class="stat-card"><b>{family_counts['RunCN']}</b><span>RunCN 故事</span></div>
+        <div class="stat-card"><b>{family_counts['RunWorld']}</b><span>RunWorld 故事</span></div>
+      </section>"""
+    return template[:stats_start] + stats_block + template[stats_end:]
+
+
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     generated = []
@@ -1346,10 +1488,15 @@ def main() -> None:
         else:
             normalize_existing_page(cfg)
     (OUT_DIR / "index.html").write_text(render_index(), encoding="utf-8", newline="\n")
+    wechat_new = render_wechat_new_index()
+    if wechat_new:
+        (ROOT / "run50" / "wechat-new" / "index.html").write_text(wechat_new, encoding="utf-8", newline="\n")
     print(f"generated {len(generated)} WeChat pages")
     for path in generated:
         print(path)
     print(OUT_DIR / "index.html")
+    if wechat_new:
+        print(ROOT / "run50" / "wechat-new" / "index.html")
 
 
 if __name__ == "__main__":
