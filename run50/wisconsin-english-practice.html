@@ -138,7 +138,7 @@
   </div>
 
   <div class="hint" id="ttsHint">
-    <b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 让这句循环跟读。最下方还能<b>录下你自己的声音和原句对比</b>。
+    <b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；点 <b>🔁</b> 让这句循环跟读。最下方还能<b>录下你自己的声音和原句对比</b>。
     如果某句 mp3 还没放入，本页才会临时使用浏览器备用发音。
   </div>
   <div class="hint">
@@ -305,7 +305,7 @@ const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
 const humanAudio = new Audio();
 const HUMAN_AUDIO_BASE = 'audio/wisconsin-english-practice';
-const HUMAN_AUDIO_VERSION = '20260630-brian-voice-v1';
+const HUMAN_AUDIO_VERSION = '20260630-multivoice-v2';
 let voices = [], chosenVoice = null;
 let loopIdx = -1;          // 正在循环的句子
 let playingAll = false;

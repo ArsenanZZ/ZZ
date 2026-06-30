@@ -25,7 +25,7 @@
   <div class="banner">
     <span class="tag">RUN50 #01+ | READ-ALONG</span>
     <h1>#01+ Kentucky | Louisville Derby Marathon</h1>
-    <div class="sub">English script for read-along practice · Natural voice audio · 中英对照逐句跟读</div>
+    <div class="sub">English script for read-along practice · Multi-voice natural audio · 中英对照逐句跟读</div>
     <a class="backbtn" href="run50.html">← 返回口播稿</a>
   </div>
   <div class="controls">
@@ -34,7 +34,7 @@
     <div class="grp"><label>备用发音</label><select id="voice"></select></div>
     <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
   </div>
-  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
   <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/louisville-derby-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
   <div class="stats"><div class="stat"><div class="v">Kentucky</div><div class="t">State</div></div><div class="stat"><div class="v">Louisville</div><div class="t">City</div></div><div class="stat"><div class="v">3h57m</div><div class="t">Finish time</div></div><div class="stat"><div class="v">Sub-4</div><div class="t">Race note</div></div></div>
   <div class="list" id="list"></div>
@@ -47,241 +47,281 @@ const DATA = [
     "cue": "00:00 历史铺陈",
     "en": "This is my fourth time running the Kentucky Derby Marathon.",
     "zh": "这是我第四次跑肯塔基德比马拉松。",
-    "tip": "重音: FOURTH · TIME · RUNNING"
+    "tip": "重音: FOURTH · TIME · RUNNING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 历史铺陈.2",
     "en": "Hey everyone, this is Asen Man.",
     "zh": "大家好，这里是阿森男。",
-    "tip": "重音: EVERYONE · ASEN"
+    "tip": "重音: EVERYONE · ASEN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 历史铺陈.3",
     "en": "This one was the Louisville Marathon in Kentucky—my fourth derby, but first, officially counting it as part of the Run50 series.",
     "zh": "这一站跑的是肯塔基的路易斯维尔马拉松——我的第四次德比，但也是第一次，把它正式算进 Run50 系列。",
-    "tip": "重音: LOUISVILLE · MARATHON · KENTUCKY"
+    "tip": "重音: LOUISVILLE · MARATHON · KENTUCKY",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:18 州情科普",
     "en": "Kentucky is nicknamed the Bluegrass State because the grasslands here are rich in minerals and are particularly suitable for raising horses.",
     "zh": "肯塔基外号叫蓝草州，因为这里的草地富含矿物质，特别适合养马。",
-    "tip": "重音: KENTUCKY · NICKNAMED · BLUEGRASS"
+    "tip": "重音: KENTUCKY · NICKNAMED · BLUEGRASS",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:18 州情科普.2",
     "en": "So the most famous horse race in the United States, the Kentucky Derby, is here.",
     "zh": "所以全美最有名的赛马，肯塔基德比，就在这里。",
-    "tip": "重音: MOST · FAMOUS · HORSE"
+    "tip": "重音: MOST · FAMOUS · HORSE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:28 波本与UPS",
     "en": "Along with horse racing, comes bourbon.",
     "zh": "和赛马一起的，是波本威士忌。",
-    "tip": "重音: ALONG · HORSE · RACING"
+    "tip": "重音: ALONG · HORSE · RACING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:28 波本与UPS.2",
     "en": "Most bourbon in the United States is produced in Kentucky, and many old brick buildings in the city center are actually distilleries.",
     "zh": "美国绝大多数波本，都产自肯塔基，市中心很多老砖楼，其实就是蒸馏厂。",
-    "tip": "重音: MOST · BOURBON · UNITED"
+    "tip": "重音: MOST · BOURBON · UNITED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:28 波本与UPS.3",
     "en": "The global headquarters of UPS is also in Louisville, and Worldport in the south of the city is one of the largest cargo airports in the world.",
     "zh": "还有UPS 的全球总部也在 Louisville，城南 Worldport 是世界上最大的货运机场之一。",
-    "tip": "重音: GLOBAL · HEADQUARTERS · ALSO"
+    "tip": "重音: GLOBAL · HEADQUARTERS · ALSO",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:40 肯德基与阿里",
     "en": "This is the birthplace of Kentucky Fried Chicken. In the small town of Corbin, there is the former site of the restaurant next to the gas station.",
     "zh": "这里是肯德基炸鸡的发源地，在 Corbin 小镇有当年开在加油站旁边的餐馆旧址。",
-    "tip": "重音: BIRTHPLACE · KENTUCKY · FRIED"
+    "tip": "重音: BIRTHPLACE · KENTUCKY · FRIED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:40 肯德基与阿里.2",
     "en": "There is another thing that must be mentioned - Muhammad Ali was born in Louisville, and there is his museum in the city center.",
     "zh": "还有一个不能不提的——拳王阿里，出生在 Louisville，市中心有他的博物馆。",
-    "tip": "重音: ANOTHER · THING · MUST"
+    "tip": "重音: ANOTHER · THING · MUST",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:55 赛前晚餐",
     "en": "The day before the race, I went to the Expo to get my bib number, and in the evening I had Sichuan food with Siqi and Brother Jie who came from Cincinnati.",
     "zh": "比赛前一天，去 博览会 领了号码布，晚上和 Siqi 还有从辛辛那提赶来的杰哥一起吃了川菜。",
-    "tip": "重音: BEFORE · RACE · WENT"
+    "tip": "重音: BEFORE · RACE · WENT",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:55 赛前晚餐.2",
     "en": "Brother Jie is a running friend I met in Xiaohongshu, and he came here specifically to run the Derby Marathon.",
     "zh": "杰哥是我在小红书认识的跑友，这次专门来跑德比马拉松。",
-    "tip": "重音: BROTHER · RUNNING · FRIEND"
+    "tip": "重音: BROTHER · RUNNING · FRIEND",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:55 赛前晚餐.3",
     "en": "Running allows you to meet people in different places, and they gradually become real friends.",
     "zh": "跑步会让你在不同地方认识人，慢慢就变成现实中的朋友。",
-    "tip": "重音: RUNNING · ALLOWS · MEET"
+    "tip": "重音: RUNNING · ALLOWS · MEET",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:10 比赛日起步",
     "en": "On the day of the game, in late April in Louisville, it was still a little cool in the morning.",
     "zh": "比赛当天，四月底的 Louisville，早上还有点凉。",
-    "tip": "重音: GAME · LATE · APRIL"
+    "tip": "重音: GAME · LATE · APRIL",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:10 比赛日起步.2",
     "en": "The start was lively, and after gunfire, we entered the city center.",
     "zh": "起点很热闹，枪响之后，我们进入市中心。",
-    "tip": "重音: START · LIVELY · AFTER"
+    "tip": "重音: START · LIVELY · AFTER",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:10 比赛日起步.3",
     "en": "Old red brick buildings and old warehouses, with some new buildings sandwiched between them, look like a glass of bourbon and Coke.",
     "zh": "老红砖楼、旧仓库，夹着一些新楼，看起来就像一杯波本加可乐。",
-    "tip": "重音: BRICK · BUILDINGS · WAREHOUSES"
+    "tip": "重音: BRICK · BUILDINGS · WAREHOUSES",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:22 标志地标",
     "en": "Further ahead, there are two typical landmarks: the golden statue of David and the largest baseball bat in the world.",
     "zh": "再往前，是两个很典型的地标：金色的大卫雕像，还有那根世界上最大的棒球棍。",
-    "tip": "重音: FURTHER · AHEAD · TYPICAL"
+    "tip": "重音: FURTHER · AHEAD · TYPICAL",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:32 追上杰哥",
     "en": "Run into the Old Louisville neighborhood, lined with old Victorian-style houses.",
     "zh": "跑进 老路易斯维尔街区，两边是维多利亚风格的老房子。",
-    "tip": "重音: LOUISVILLE · NEIGHBORHOOD · LINED"
+    "tip": "重音: LOUISVILLE · NEIGHBORHOOD · LINED",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:32 追上杰哥.2",
     "en": "It was here that I caught up with Brother Jie.",
     "zh": "就在这里，我追上了杰哥。",
-    "tip": "重音: HERE · CAUGHT · BROTHER"
+    "tip": "重音: HERE · CAUGHT · BROTHER",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:32 追上杰哥.3",
     "en": "I was faster than him back then, but at the end of the year he ran in three hours and thirty. This growth rate is quite exaggerated.",
     "zh": "当年我比他快，结果年底他直接跑了个三小时三十，这成长速度，挺夸张的。",
-    "tip": "重音: FASTER · BACK · YEAR"
+    "tip": "重音: FASTER · BACK · YEAR",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:45 路大校园",
     "en": "Continuing south, I entered the University of Louisville, where I had lived for a year.",
     "zh": "继续往南，进入路易斯维尔大学，这里我以前住过一年。",
-    "tip": "重音: CONTINUING · SOUTH · ENTERED"
+    "tip": "重音: CONTINUING · SOUTH · ENTERED",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:45 路大校园.2",
     "en": "A thought suddenly flashed through my mind: If I become prosperous in the future, I will have to donate a building to my alma mater.",
     "zh": "心里突然闪过一句：以后要是发达了，得给母校捐个楼啊。",
-    "tip": "重音: THOUGHT · SUDDENLY · FLASHED"
+    "tip": "重音: THOUGHT · SUDDENLY · FLASHED",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:58 丘吉尔赛马场",
     "en": "Coming out of campus, you'll arrive at Churchill Downs, the home of the Kentucky Derby, with its iconic twin-spire roof that's instantly recognizable.",
     "zh": "从校园出来，就到了丘吉尔赛马场——肯塔基德比的主场，标志性的双尖塔屋顶，一眼就能认出来。",
-    "tip": "重音: COMING · CAMPUS · YOU'LL"
+    "tip": "重音: COMING · CAMPUS · YOU'LL",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:58 丘吉尔赛马场.2",
     "en": "The track winds around a section of the racecourse, and you can actually see people training horses next to it. There is an earthy smell in the air, and a bit of horse smell.",
     "zh": "赛道绕进赛马场一段，旁边真的能看到有人在训练马，空气里有泥土味，也有一点马的味道。",
-    "tip": "重音: TRACK · WINDS · AROUND"
+    "tip": "重音: TRACK · WINDS · AROUND",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:12 伊罗奎公园",
     "en": "After leaving the racecourse is Iroqua Park, the most tiring section of the Derby track, with many slopes and long undulations, but many trees, like a natural air conditioner.",
     "zh": "出赛马场后是伊罗奎公园，德比赛道最累的一段，坡多，起伏长，但树很多，像天然空调。",
-    "tip": "重音: AFTER · LEAVING · RACECOURSE"
+    "tip": "重音: AFTER · LEAVING · RACECOURSE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:22 23英里华人教授",
     "en": "About mile 23, I met Teacher Li Yang, a local Chinese professor and a strong player. This time I should definitely break four again.",
     "zh": "大约 23 英里，遇到了Li Yang 老师，本地华人教授，实力选手，这次应该又是稳稳破四。",
-    "tip": "重音: MILE · TEACHER · YANG"
+    "tip": "重音: MILE · TEACHER · YANG",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:32 终于破四",
     "en": "Finally crossed the line, 3 hours and 57 minutes!",
     "zh": "最后冲线，3 小时 57 分！",
-    "tip": "重音: FINALLY · CROSSED · LINE"
+    "tip": "重音: FINALLY · CROSSED · LINE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:32 终于破四.2",
     "en": "The fourth derby finally hit 4 hours.",
     "zh": "第四次德比，终于跑进了 4 小时。",
-    "tip": "重音: FOURTH · DERBY · FINALLY"
+    "tip": "重音: FOURTH · DERBY · FINALLY",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:40 赛后欢聚",
     "en": "In the party area after the game, Siqi and Cindy were already waiting for me.",
     "zh": "赛后在 派对 区，Siqi 和 Cindy 已经在等我。",
-    "tip": "重音: PARTY · AREA · AFTER"
+    "tip": "重音: PARTY · AREA · AFTER",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:40 赛后欢聚.2",
     "en": "Poor Jim, the car was blocked on the track and he had to walk a short distance before coming back to pick up the car - a home marathon is always a bit of a hiccup.",
     "zh": "可怜的 Jim，车被封在赛道里，只能先走一段路再回来取车——主场马拉松，总有点小插曲。",
-    "tip": "重音: POOR · BLOCKED · TRACK"
+    "tip": "重音: POOR · BLOCKED · TRACK",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:52 奥克斯日",
     "en": "A few days later, we went to see Oaks Day, the Kentucky Derby for mares, where the tradition is for everyone to wear pink to support breast cancer causes.",
     "zh": "几天之后，我们去看 奥克斯日——肯塔基德比的母马赛，传统是大家穿粉色，支持乳腺癌公益项目。",
-    "tip": "重音: DAYS · LATER · WENT"
+    "tip": "重音: DAYS · LATER · WENT",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:52 奥克斯日.2",
     "en": "The entire stand was awash in pink.",
     "zh": "整片看台，一片粉色。",
-    "tip": "重音: ENTIRE · STAND · AWASH"
+    "tip": "重音: ENTIRE · STAND · AWASH",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:52 奥克斯日.3",
     "en": "This time I bought a ticket with seats, the treatment was upgraded, and food and drinks were included.",
     "zh": "这次买到了有座位的票，待遇升级，吃的喝的都包含在内。",
-    "tip": "重音: TIME · BOUGHT · TICKET"
+    "tip": "重音: TIME · BOUGHT · TICKET",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:05 醉汉合影",
     "en": "The most interesting thing was that a drunk stranger suddenly rushed over and insisted on taking a photo with us.",
     "zh": "最有意思的是，一个喝得微醺的陌生人突然冲过来，非要跟我们合影。",
-    "tip": "重音: MOST · INTERESTING · THING"
+    "tip": "重音: MOST · INTERESTING · THING",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:05 醉汉合影.2",
     "en": "His wife's voice came from a distance: \"Come back!\"",
     "zh": "远处传来他老婆的声音：\"你给我回来！",
-    "tip": "重音: WIFE'S · VOICE · CAME"
+    "tip": "重音: WIFE'S · VOICE · CAME",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:15 波本半马",
     "en": "In October, I ran the Urban Bourbon Half Marathon again.",
     "zh": "十月份，我又参加了Urban Bourbon Half Marathon。",
-    "tip": "重音: OCTOBER · URBAN · BOURBON"
+    "tip": "重音: OCTOBER · URBAN · BOURBON",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:15 波本半马.2",
     "en": "The route passes through Cherokee Park, and the autumn colors cover the track. After crossing the line, the atmosphere immediately changes - bourbon, craft beer, live band, with a drink in one hand and swaying to the music in the other.",
     "zh": "路线穿过 Cherokee Park，秋色铺满赛道，冲线之后，气氛立刻切换——波本、精酿、现场乐队，一手拿酒，一手跟着音乐晃。",
-    "tip": "重音: ROUTE · PASSES · THROUGH"
+    "tip": "重音: ROUTE · PASSES · THROUGH",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:15 波本半马.3",
     "en": "I like the apple flavored bourbon the best, it’s slightly sweet and slightly tangy, just right.",
     "zh": "我最喜欢苹果味波本，微甜微烈，刚刚好。",
-    "tip": "重音: LIKE · APPLE · FLAVORED"
+    "tip": "重音: LIKE · APPLE · FLAVORED",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:30 结尾感言",
     "en": "Finally running under four hours this time at the Louisville Derby Marathon.",
     "zh": "这次终于在 Louisville Derby Marathon 跑进四小时。",
-    "tip": "重音: FINALLY · RUNNING · UNDER"
+    "tip": "重音: FINALLY · RUNNING · UNDER",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:30 结尾感言.2",
     "en": "After four home games, this hurdle has been passed.",
     "zh": "四刷主场，这道坎算是过了。",
-    "tip": "重音: AFTER · FOUR · HOME"
+    "tip": "重音: AFTER · FOUR · HOME",
+    "voice": "Ava - friendly female"
   }
 ];
 const listEl = document.getElementById('list');
@@ -304,7 +344,7 @@ const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
 const humanAudio = new Audio();
 const HUMAN_AUDIO_BASE = 'audio/louisville-derby-english-practice';
-const HUMAN_AUDIO_VERSION = '20260630-brian-batch-v1';
+const HUMAN_AUDIO_VERSION = '20260630-multivoice-v2';
 let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }

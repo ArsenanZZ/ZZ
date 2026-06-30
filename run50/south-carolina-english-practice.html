@@ -25,7 +25,7 @@
   <div class="banner">
     <span class="tag">RUN50 #18 | READ-ALONG</span>
     <h1>#18 South Carolina | 2Slow4Boston</h1>
-    <div class="sub">English script for read-along practice · Natural voice audio · 中英对照逐句跟读</div>
+    <div class="sub">English script for read-along practice · Multi-voice natural audio · 中英对照逐句跟读</div>
     <a class="backbtn" href="run50.html">← 返回口播稿</a>
   </div>
   <div class="controls">
@@ -34,7 +34,7 @@
     <div class="grp"><label>备用发音</label><select id="voice"></select></div>
     <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
   </div>
-  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
   <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/south-carolina-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
   <div class="stats"><div class="stat"><div class="v">South Carolina</div><div class="t">State</div></div><div class="stat"><div class="v">Greer</div><div class="t">Town</div></div><div class="stat"><div class="v">2024.04.14</div><div class="t">Race date</div></div><div class="stat"><div class="v">20 loops</div><div class="t">Theme</div></div></div>
   <div class="list" id="list"></div>
@@ -47,277 +47,323 @@ const DATA = [
     "cue": "00:00 钩子开场",
     "en": "This was definitely the most boring marathon I have ever run.",
     "zh": "这绝对是我跑过——最无聊的一个马拉松。",
-    "tip": "重音: DEFINITELY · MOST · BORING"
+    "tip": "重音: DEFINITELY · MOST · BORING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 钩子开场.2",
-    "en": "Hey everyone, this is - Asen Man.",
+    "en": "Hey everyone, I'm Asennan.",
     "zh": "大家好啊，这里是——阿森男。",
-    "tip": "重音: EVERYONE · ASEN"
+    "tip": "重音: EVERYONE · ASENNAN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 钩子开场.3",
-    "en": "This time, Run50 comes to the 18th state: South Carolina.",
+    "en": "This time, Run50 takes us to the 18th state: South Carolina.",
     "zh": "这一次，Run50 来到了第 18 个州：南卡罗莱纳。",
-    "tip": "重音: TIME · COMES · STATE"
+    "tip": "重音: TIME · TAKES · STATE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:18 地理历史",
-    "en": "South Carolina is located in the southeastern United States, adjacent to the Atlantic Ocean, with North Carolina to the north and Georgia to the south.",
+    "en": "South Carolina is in the southeastern United States, adjacent to the Atlantic Ocean, with North Carolina to the north and Georgia to the south.",
     "zh": "南卡罗莱纳州，位于美国东南部，贴着大西洋，北边是北卡，南边是佐治亚。",
-    "tip": "重音: SOUTH · CAROLINA · LOCATED"
+    "tip": "重音: SOUTH · CAROLINA · SOUTHEASTERN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:18 地理历史.2",
     "en": "This is a state that is not too showy but has a lot of history.",
     "zh": "这是一个不太张扬，但很有历史的州。",
-    "tip": "重音: STATE · SHOWY · HISTORY"
+    "tip": "重音: STATE · SHOWY · HISTORY",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:18 地理历史.3",
     "en": "The first shots of the American Civil War were fired in South Carolina.",
     "zh": "美国内战，第一枪，就是从南卡打响的。",
-    "tip": "重音: FIRST · SHOTS · AMERICAN"
+    "tip": "重音: FIRST · SHOTS · AMERICAN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:32 目的地",
     "en": "Today, we came to Greer, a small town in northern South Carolina near the state border.",
     "zh": "今天，我们来到了南卡北部，靠近州界的小镇——格里尔。",
-    "tip": "重音: TODAY · CAME · GREER"
+    "tip": "重音: TODAY · CAME · GREER",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:42 赛事揭秘",
     "en": "The name of this competition is very interesting: 2Slow4Boston - which translates to: too slow to enter Boston.",
     "zh": "这次的比赛，名字很有意思：2Slow4Boston——翻译过来就是：慢到进不了波士顿。",
-    "tip": "重音: NAME · COMPETITION · VERY"
+    "tip": "重音: NAME · COMPETITION · VERY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:42 赛事揭秘.2",
     "en": "This is a marathon specially prepared for people who can't run into Poma.",
     "zh": "这是一场专门给跑不进波马的人准备的马拉松。",
-    "tip": "重音: MARATHON · SPECIALLY · PREPARED"
+    "tip": "重音: MARATHON · SPECIALLY · PREPARED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:55 规则反转",
     "en": "The rules are simple: if you run too fast, you will not be eligible to receive the prize.",
     "zh": "规则很简单：跑太快，反而没资格领奖。",
-    "tip": "重音: RULES · SIMPLE · FAST"
+    "tip": "重音: RULES · SIMPLE · FAST",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:55 规则反转.2",
     "en": "Top three?",
     "zh": "前三名？",
-    "tip": "重音: THREE"
+    "tip": "重音: THREE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:55 规则反转.3",
     "en": "No.",
     "zh": "没有。",
-    "tip": "重音: RUN · RACE · STATE"
+    "tip": "重音: RUN · RACE · STATE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:55 规则反转.4",
     "en": "The winners are the last three finishers.",
     "zh": "领奖的，是——最后三个完赛的人。",
-    "tip": "重音: WINNERS · LAST · THREE"
+    "tip": "重音: WINNERS · LAST · THREE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "00:55 规则反转.5",
     "en": "Slowness is not failure here, but honor.",
     "zh": "慢，在这里不是失败，而是荣誉。",
-    "tip": "重音: SLOWNESS · FAILURE · HERE"
+    "tip": "重音: SLOWNESS · FAILURE · HERE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:10 途中补给",
     "en": "The day before the game, we drove all the way from Kentucky to South Carolina and had a very American buffet at Pigeon Forge.",
     "zh": "比赛前一天，我们从肯塔基一路开到南卡，中途在皮金福奇吃了顿很美国的自助。",
-    "tip": "重音: BEFORE · GAME · DROVE"
+    "tip": "重音: BEFORE · GAME · DROVE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:10 途中补给.2",
     "en": "In the afternoon, go to Greer to pick up equipment——",
     "zh": "下午到格里尔领装备——",
-    "tip": "重音: AFTERNOON · GREER · PICK"
+    "tip": "重音: AFTERNOON · GREER · PICK",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:20 前廊领包",
     "en": "The bag pick-up location is on the front porch of the organizer's house. The tables are set up, the bib numbers are placed, and the atmosphere is like a community barbecue.",
     "zh": "取包地点在主办方自家前廊，桌子一摆，号码布一放，气氛像社区烧烤。",
-    "tip": "重音: PICK-UP · LOCATION · FRONT"
+    "tip": "重音: PICK-UP · LOCATION · FRONT",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:20 前廊领包.2",
     "en": "The clothes were in Boston colors, yellow and blue, with a man on the chest dragging a mule that refused to move.",
     "zh": "衣服是波士顿配色，黄加蓝，胸口印着一个男人，拖着一头死活不肯走的骡子。",
-    "tip": "重音: CLOTHES · BOSTON · COLORS"
+    "tip": "重音: CLOTHES · BOSTON · COLORS",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:20 前廊领包.3",
     "en": "The theme is clear: slow.",
     "zh": "主题很明确：慢。",
-    "tip": "重音: THEME · CLEAR · SLOW"
+    "tip": "重音: THEME · CLEAR · SLOW",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:35 RV住宿",
     "en": "Our Airbnb, was – a big RV parked on the grass.",
     "zh": "我们的 Airbnb，是——一辆停在草地上的大房车。",
-    "tip": "重音: AIRBNB · PARKED · GRASS"
+    "tip": "重音: AIRBNB · PARKED · GRASS",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:35 RV住宿.2",
     "en": "The trailer-mounted RV, when unfolded, has a living room, kitchen, sofa, and fireplace.",
     "zh": "拖挂式 RV，一展开，客厅、厨房、沙发、壁炉，全都有。",
-    "tip": "重音: TRAILER-MOUNTED · WHEN · UNFOLDED"
+    "tip": "重音: TRAILER-MOUNTED · WHEN · UNFOLDED",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:48 无依之地",
     "en": "I was thinking at the time, isn't this the kind of life in \"Nowhere\"?",
     "zh": "我当时就在想，这不就是《无依之地》里面的那种生活吗。",
-    "tip": "重音: THINKING · TIME · ISN'T"
+    "tip": "重音: THINKING · TIME · ISN'T",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:48 无依之地.2",
     "en": "If you have money in the future, it would be really interesting to drive all the states in a RV with Siqi.",
     "zh": "如果以后有钱了，开着房车和 Siqi 一起把所有的州都刷完，那可真挺有意思。",
-    "tip": "重音: MONEY · FUTURE · REALLY"
+    "tip": "重音: MONEY · FUTURE · REALLY",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:05 迟到出发",
     "en": "On the morning of the race day, we walked out slowly, arrived at the track, and found a problem - the race had already started.",
     "zh": "比赛日早上，我们慢悠悠出门，到了赛道，发现一个问题——比赛已经开始了。",
-    "tip": "重音: MORNING · RACE · WALKED"
+    "tip": "重音: MORNING · RACE · WALKED",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:05 迟到出发.2",
     "en": "We were half an hour late.",
     "zh": "我们迟到了半小时。",
-    "tip": "重音: HALF · HOUR · LATE"
+    "tip": "重音: HALF · HOUR · LATE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:05 迟到出发.3",
     "en": "However, no one was in a hurry.",
     "zh": "但，完全没人急。",
-    "tip": "重音: HOWEVER · HURRY"
+    "tip": "重音: HOWEVER · HURRY",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:05 迟到出发.4",
     "en": "Because this game focuses on one word: slow.",
     "zh": "因为这场比赛，主打一个字：慢。",
-    "tip": "重音: BECAUSE · GAME · FOCUSES"
+    "tip": "重音: BECAUSE · GAME · FOCUSES",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:18 无仪式开跑",
     "en": "There is a green arch at the starting point, no gunfire, no countdown.",
     "zh": "起点就一个绿色拱门，没有枪声，没有倒计时。",
-    "tip": "重音: GREEN · ARCH · STARTING"
+    "tip": "重音: GREEN · ARCH · STARTING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:18 无仪式开跑.2",
     "en": "I also went to the toilet and then set off slowly.",
     "zh": "我还上了个厕所，然后才慢慢出发。",
-    "tip": "重音: ALSO · WENT · TOILET"
+    "tip": "重音: ALSO · WENT · TOILET",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:28 赛道介绍",
     "en": "The track is in a residential area, 1.31 miles per lap, 20 laps.",
     "zh": "赛道在一个小区，1.31 英里一圈，跑 20 圈。",
-    "tip": "重音: TRACK · RESIDENTIAL · AREA"
+    "tip": "重音: TRACK · RESIDENTIAL · AREA",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:28 赛道介绍.2",
     "en": "The scenery is: trees, houses, lawns, playing in a loop.",
     "zh": "风景就是：树，房子，草坪，循环播放。",
-    "tip": "重音: SCENERY · TREES · HOUSES"
+    "tip": "重音: SCENERY · TREES · HOUSES",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:28 赛道介绍.3",
     "en": "In such a small community, there are actually more than one slope.",
     "zh": "这么点个小区，居然还有坡，还不止一个。",
-    "tip": "重音: SUCH · SMALL · COMMUNITY"
+    "tip": "重音: SUCH · SMALL · COMMUNITY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:28 赛道介绍.4",
     "en": "There were only a few spectators, and the most enthusiastic one was a dog.",
     "zh": "观众很少，最热情的，是一只狗。",
-    "tip": "重音: ONLY · SPECTATORS · MOST"
+    "tip": "重音: ONLY · SPECTATORS · MOST",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:42 秘密补给角",
     "en": "There is only one supply point, near the starting point, with potato chips, soda, and the occasional sandwich.",
     "zh": "补给点就一个，在起点附近，薯片、汽水，偶尔有三明治。",
-    "tip": "重音: ONLY · SUPPLY · POINT"
+    "tip": "重音: ONLY · SUPPLY · POINT",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:42 秘密补给角.2",
     "en": "I didn’t bring a water bag, so I simply set up a secret supply corner on the roadside and piled up a few plastic bottles.",
     "zh": "我没带水袋，干脆在路边搞了个秘密补给角，堆了几个塑料瓶。",
-    "tip": "重音: DIDN · BRING · WATER"
+    "tip": "重音: DIDN · BRING · WATER",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:55 烈日暴晒",
     "en": "The sun is slowly rising, and the sunshine in South Carolina is really shining.",
     "zh": "太阳慢慢升高，南卡的阳光，是真的晒。",
-    "tip": "重音: SLOWLY · RISING · SUNSHINE"
+    "tip": "重音: SLOWLY · RISING · SUNSHINE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:55 烈日暴晒.2",
     "en": "The track became quieter and quieter, leaving only the sounds of footsteps, breathing, and the sounds in my head.",
     "zh": "赛道越来越安静，只剩下脚步声，呼吸声，和自己脑子里的声音。",
-    "tip": "重音: TRACK · BECAME · QUIETER"
+    "tip": "重音: TRACK · BECAME · QUIETER",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:08 Siqi夺慢奖",
     "en": "Siqi is in good condition, slow and steady, and slow and confident.",
     "zh": "Siqi 状态很好，慢得很稳定，慢得很自信。",
-    "tip": "重音: SIQI · GOOD · CONDITION"
+    "tip": "重音: SIQI · GOOD · CONDITION",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:08 Siqi夺慢奖.2",
     "en": "Later, she directly won a \"Slow Prize\".",
     "zh": "后来，她直接拿了一个\"慢奖\"。",
-    "tip": "重音: LATER · DIRECTLY · SLOW"
+    "tip": "重音: LATER · DIRECTLY · SLOW",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:08 Siqi夺慢奖.3",
     "en": "Very consistent with the character.",
     "zh": "非常符合人设。",
-    "tip": "重音: VERY · CONSISTENT · CHARACTER"
+    "tip": "重音: VERY · CONSISTENT · CHARACTER",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:18 骡子奖牌",
     "en": "I hold my medal in my hand like a Boston unicorn.",
     "zh": "我的奖牌拿在手里，像波士顿独角兽。",
-    "tip": "重音: HOLD · MEDAL · HAND"
+    "tip": "重音: HOLD · MEDAL · HAND",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:18 骡子奖牌.2",
     "en": "But if you look closely, it's not a horse, but a man, dragging a mule.",
     "zh": "但仔细一看，不是马，是人，拖着一头骡子。",
-    "tip": "重音: LOOK · CLOSELY · IT'S"
+    "tip": "重音: LOOK · CLOSELY · IT'S",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:30 结尾金句",
     "en": "This was definitely the most boring marathon I have ever run.",
     "zh": "这绝对是我跑过最无聊的一场马拉松。",
-    "tip": "重音: DEFINITELY · MOST · BORING"
+    "tip": "重音: DEFINITELY · MOST · BORING",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:30 结尾金句.2",
     "en": "There was no audience and no decent supplies. It was really boring and boring.",
     "zh": "没有观众，没有像样的补给，真的挺无聊，还晒够呛。",
-    "tip": "重音: AUDIENCE · DECENT · SUPPLIES"
+    "tip": "重音: AUDIENCE · DECENT · SUPPLIES",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:30 结尾金句.3",
     "en": "But running is not just one mode.",
     "zh": "但跑步嘛，本来就不是只有一种模式。",
-    "tip": "重音: RUNNING · MODE"
+    "tip": "重音: RUNNING · MODE",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:30 结尾金句.4",
     "en": "The 18th state, South Carolina - so boring that I can only replenish myself by eating hot pot after the game!",
     "zh": "第 18 个州，南卡罗莱纳——无聊至极，只能赛后吃个火锅补一补了！",
-    "tip": "重音: STATE · SOUTH · CAROLINA"
+    "tip": "重音: STATE · SOUTH · CAROLINA",
+    "voice": "Emma - clear female"
   }
 ];
 const listEl = document.getElementById('list');
@@ -340,7 +386,7 @@ const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
 const humanAudio = new Audio();
 const HUMAN_AUDIO_BASE = 'audio/south-carolina-english-practice';
-const HUMAN_AUDIO_VERSION = '20260630-brian-batch-v1';
+const HUMAN_AUDIO_VERSION = '20260630-multivoice-v2';
 let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }

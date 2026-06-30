@@ -25,7 +25,7 @@
   <div class="banner">
     <span class="tag">RUN50 #17 | READ-ALONG</span>
     <h1>#17 Arkansas | Little Rock Marathon</h1>
-    <div class="sub">English script for read-along practice · Natural voice audio · 中英对照逐句跟读</div>
+    <div class="sub">English script for read-along practice · Multi-voice natural audio · 中英对照逐句跟读</div>
     <a class="backbtn" href="run50.html">← 返回口播稿</a>
   </div>
   <div class="controls">
@@ -34,7 +34,7 @@
     <div class="grp"><label>备用发音</label><select id="voice"></select></div>
     <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
   </div>
-  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
   <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/little-rock-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
   <div class="stats"><div class="stat"><div class="v">Arkansas</div><div class="t">State</div></div><div class="stat"><div class="v">Little Rock</div><div class="t">City</div></div><div class="stat"><div class="v">2024.03.03</div><div class="t">Race date</div></div><div class="stat"><div class="v">Big medal</div><div class="t">Theme</div></div></div>
   <div class="list" id="list"></div>
@@ -45,207 +45,241 @@
 const DATA = [
   {
     "cue": "00:00 钩子开场",
-    "en": "This is the marathon I have ever run - the biggest medal.",
+    "en": "This race had the biggest medal I've ever seen at a marathon.",
     "zh": "这是我跑过——奖牌最大的马拉松。",
-    "tip": "重音: MARATHON · EVER · BIGGEST"
+    "tip": "重音: RACE · BIGGEST · MEDAL",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 钩子开场.2",
-    "en": "Hey everyone, this is - Asen Man.",
+    "en": "Hey everyone, I'm Asennan.",
     "zh": "大家好啊，这里是——阿森男。",
-    "tip": "重音: EVERYONE · ASEN"
+    "tip": "重音: EVERYONE · ASENNAN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 钩子开场.3",
-    "en": "This time, Run50 comes to the 17th state: Arkansas.",
+    "en": "This time, Run50 takes us to the 17th state: Arkansas.",
     "zh": "这一次呢，Run50 来到了第 17 个州：阿肯色。",
-    "tip": "重音: TIME · COMES · STATE"
+    "tip": "重音: TIME · TAKES · STATE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:18 地理位置",
-    "en": "Arkansas is located in the south-central United States, separated by the Mississippi River to the east, Oklahoma to the west, and Louisiana to the south.",
+    "en": "Arkansas is in the south-central United States, separated by the Mississippi River to the east, Oklahoma to the west, and Louisiana to the south.",
     "zh": "阿肯色州，位于美国中南部，东边隔着密西西比河，西边是俄克拉荷马，南边连着路易斯安那。",
-    "tip": "重音: ARKANSAS · LOCATED · SOUTH-CENTRAL"
+    "tip": "重音: ARKANSAS · SOUTH-CENTRAL · UNITED",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:18 地理位置.2",
-    "en": "This is a state that doesn’t have a strong presence, but is very American.",
+    "en": "This state tends to fly under the radar, but is very American.",
     "zh": "这是一个存在感不算强，但很美国的州。",
-    "tip": "重音: STATE · DOESN · STRONG"
+    "tip": "重音: STATE · TENDS · UNDER",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:30 自然资源",
     "en": "There are many hills, many forests, many rivers and many lakes.",
     "zh": "丘陵多，森林多，河也多，湖也多。",
-    "tip": "重音: MANY · HILLS · FORESTS"
+    "tip": "重音: MANY · HILLS · FORESTS",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:30 自然资源.2",
-    "en": "The name Arkansas comes from an Indian language and means roughly \"the wind of the south\".",
+    "en": "The name Arkansas comes from a Native American language and means roughly \"the wind of the south\".",
     "zh": "阿肯色这个名字，来自印第安语言，意思大概是——\"南方的风\"。",
-    "tip": "重音: NAME · ARKANSAS · COMES"
+    "tip": "重音: NAME · ARKANSAS · COMES",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:40 温泉水晶钻石",
-    "en": "There are natural hot springs here, and the gang leader Capone used to come here to take a bath and stay healthy.",
+    "en": "There are natural hot springs here, and mob boss Al Capone used to come here to take a bath and stay healthy.",
     "zh": "这里有天然温泉，以前黑帮老大卡彭都来这儿泡澡养生。",
-    "tip": "重音: NATURAL · SPRINGS · HERE"
+    "tip": "重音: NATURAL · SPRINGS · HERE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:40 温泉水晶钻石.2",
     "en": "Crystal is also produced, and the largest natural crystal mine in the United States is in Arkansas.",
     "zh": "还产水晶，全美最大的天然水晶矿就在阿肯色。",
-    "tip": "重音: CRYSTAL · ALSO · PRODUCED"
+    "tip": "重音: CRYSTAL · ALSO · PRODUCED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:40 温泉水晶钻石.3",
     "en": "There is even a Crater of Diamonds State Park where you can take away the diamonds you find.",
     "zh": "甚至有一个钻石坑州立公园，挖到钻石可以直接带走。",
-    "tip": "重音: EVEN · CRATER · DIAMONDS"
+    "tip": "重音: EVEN · CRATER · DIAMONDS",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:55 克林顿",
     "en": "Speaking of Arkansas, one cannot avoid it - Bill Clinton, the former President of the United States, came out of here.",
     "zh": "说到阿肯色，绕不开——比尔·克林顿，美国前总统，就是从这里走出去的。",
-    "tip": "重音: SPEAKING · ARKANSAS · CANNOT"
+    "tip": "重音: SPEAKING · ARKANSAS · CANNOT",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "01:08 长途出发",
     "en": "We drove from Kentucky on Friday afternoon, all the way through Tennessee, then into Mississippi, and finally arrived in Arkansas.",
     "zh": "我们是周五下午从肯塔基开车出发，一路穿过田纳西，再进密西西比，最后抵达阿肯色。",
-    "tip": "重音: DROVE · KENTUCKY · FRIDAY"
+    "tip": "重音: DROVE · KENTUCKY · FRIDAY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "01:18 路况变化",
     "en": "The Tennessee Highway is wide and flat; as soon as we enter Mississippi, the road surface immediately becomes bumpy; when we arrive in Arkansas, there are many potholes and many trucks. There are really many trucks.",
     "zh": "田纳西高速，又宽又平；一进密西西比，路面立刻咯噔咯噔；到了阿肯色，坑多，卡车多，卡车是真的多。",
-    "tip": "重音: TENNESSEE · HIGHWAY · WIDE"
+    "tip": "重音: TENNESSEE · HIGHWAY · WIDE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:18 路况变化.2",
     "en": "This is an important logistics channel in the United States, and J.B. Hunt's headquarters is nearby.",
     "zh": "这里是全美重要物流通道，J.B. Hunt 总部就在附近。",
-    "tip": "重音: IMPORTANT · LOGISTICS · CHANNEL"
+    "tip": "重音: IMPORTANT · LOGISTICS · CHANNEL",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:30 议会大厦偶遇",
     "en": "I arrived in Little Rock in the afternoon and passed by a white domed building. The trees on the roadside happened to be blooming with pink flowers, so I simply pulled over - this was the Arkansas State Capitol, a bit like a smaller version of Capitol Hill.",
     "zh": "下午到达小石城，路过一栋白色圆顶大楼，路边树正好开着粉色的花，干脆靠边停车——这是阿肯色州议会大厦，有点像缩小版的国会山。",
-    "tip": "重音: ARRIVED · LITTLE · ROCK"
+    "tip": "重音: ARRIVED · LITTLE · ROCK",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:45 恐龙装备节",
     "en": "Get equipment, dinosaur theme, balloons, display boards, medals. The organizer is not low-key at all, it is quite lively.",
     "zh": "取装备，恐龙主题，气球、展板、奖牌，主办方一点也不低调，挺热闹。",
-    "tip": "重音: EQUIPMENT · DINOSAUR · THEME"
+    "tip": "重音: EQUIPMENT · DINOSAUR · THEME",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:45 恐龙装备节.2",
     "en": "Then we walked around the Arkansas River and placed a drone - the big river in the lens went eastward from the Rocky Mountains and finally merged into the Mississippi River.",
     "zh": "然后在阿肯色河边转了转，放了个无人机——镜头里这条大河，从落基山一路向东，最后汇入密西西比河。",
-    "tip": "重音: WALKED · AROUND · ARKANSAS"
+    "tip": "重音: WALKED · AROUND · ARKANSAS",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "02:05 比赛日入场",
     "en": "On race day on Sunday, the starting point was in the city center. Before dawn, the lights already illuminated the starting area.",
     "zh": "周日比赛日，起点在市中心，天还没亮，灯光已经把起跑区照得很亮。",
-    "tip": "重音: RACE · SUNDAY · STARTING"
+    "tip": "重音: RACE · SUNDAY · STARTING",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "02:05 比赛日入场.2",
     "en": "As soon as the gun was fired, we ran around the city for a while, then went directly onto the bridge and crossed the Arkansas River - there was water under the bridge, lights on the bridge, and it was still dark.",
     "zh": "枪一响，我们先在市区跑了一会，直接上了桥，跨过阿肯色河——桥下是水，桥上是灯，天还是黑的。",
-    "tip": "重音: SOON · FIRED · AROUND"
+    "tip": "重音: SOON · FIRED · AROUND",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:22 前半程节奏",
     "en": "The pace of the first half was quite comfortable, the weather was cloudy and not exposed to the sun, the volunteers were enthusiastic, and there was a dinosaur-themed supply station on the roadside.",
     "zh": "前半程节奏挺舒服，天气阴着，不晒，志愿者热情，路边还有恐龙主题补给站。",
-    "tip": "重音: PACE · FIRST · HALF"
+    "tip": "重音: PACE · FIRST · HALF",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:22 前半程节奏.2",
     "en": "After running ten miles, I saw the Arkansas State Capitol again. The white dome was particularly conspicuous in the gray sky.",
     "zh": "跑到十英里，再次看到阿肯色州议会大厦，白色穹顶在灰天色里特别显眼。",
-    "tip": "重音: AFTER · RUNNING · MILES"
+    "tip": "重音: AFTER · RUNNING · MILES",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:38 公园绿道",
     "en": "After sixteen miles, the track suddenly became quiet and ran into the woods - Althorp Park, which is like a green path around mountains in China, with many trees and humid air.",
     "zh": "过了十六英里，赛道突然安静下来，跑进树林——奥尔索普公园，像国内那种环山绿道，树很多，空气湿润。",
-    "tip": "重音: AFTER · SIXTEEN · MILES"
+    "tip": "重音: AFTER · SIXTEEN · MILES",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:38 公园绿道.2",
     "en": "But the slope is also quite steep, and there is more than one.",
     "zh": "但坡也挺陡，而且不止一个。",
-    "tip": "重音: SLOPE · ALSO · QUITE"
+    "tip": "重音: SLOPE · ALSO · QUITE",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:38 公园绿道.3",
     "en": "Running inside, the sounds of footsteps and breathing became very clear.",
     "zh": "跑在里面，脚步声、呼吸声，都变得很清晰。",
-    "tip": "重音: RUNNING · INSIDE · SOUNDS"
+    "tip": "重音: RUNNING · INSIDE · SOUNDS",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:55 回城加油",
     "en": "Twenty-two miles later, the track returned to the city. There were more spectators, some beating drums and some holding signs.",
     "zh": "二十二英里之后，赛道回到城市，观众多了，有人敲鼓，有人举牌子。",
-    "tip": "重音: TWENTY-TWO · MILES · LATER"
+    "tip": "重音: TWENTY-TWO · MILES · LATER",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:55 回城加油.2",
     "en": "On the last mile, an old man was holding an American flag and wearing a star-and-striped hat - very old-school, very American.",
     "zh": "最后一英里，一位老大爷举着美国国旗，戴着星条旗帽子——很老派，很美国。",
-    "tip": "重音: LAST · MILE · HOLDING"
+    "tip": "重音: LAST · MILE · HOLDING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:08 成绩揭晓",
     "en": "Running towards the finish line, I glanced at my watch - 3 hours and 54 minutes.",
     "zh": "跑向终点，我看了一眼表——3 小时 54 分。",
-    "tip": "重音: RUNNING · TOWARDS · FINISH"
+    "tip": "重音: RUNNING · TOWARDS · FINISH",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:08 成绩揭晓.2",
     "en": "There were quite a few hills in the second half, so I was quite satisfied with this result.",
     "zh": "后半段坡不少，对这个成绩，我挺满意的。",
-    "tip": "重音: QUITE · HILLS · SECOND"
+    "tip": "重音: QUITE · HILLS · SECOND",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:15 奖牌特写",
     "en": "After crossing the line, go inside to receive your prize.",
     "zh": "冲线之后，进室内领奖。",
-    "tip": "重音: AFTER · CROSSING · LINE"
+    "tip": "重音: AFTER · CROSSING · LINE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:15 奖牌特写.2",
     "en": "That green Tyrannosaurus Rex medal is really heavy and made of solid materials in your hand.",
     "zh": "那块绿色霸王龙奖牌，真的很沉，拿在手里用料很扎实。",
-    "tip": "重音: GREEN · TYRANNOSAURUS · MEDAL"
+    "tip": "重音: GREEN · TYRANNOSAURUS · MEDAL",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:22 武道门彩蛋",
     "en": "There is also a Songyan Martial Arts Gate near the finish line - Little Rock is home to the headquarters of ATA, the world's largest Taekwondo organization.",
     "zh": "终点附近还有一座松岩武道门——小石城是全球最大跆拳道组织 ATA 总部的所在地。",
-    "tip": "重音: ALSO · SONGYAN · MARTIAL"
+    "tip": "重音: ALSO · SONGYAN · MARTIAL",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:32 结尾定格",
     "en": "On the way back, there were still so many trucks.",
     "zh": "回去的路上，还是那么多卡车。",
-    "tip": "重音: BACK · STILL · MANY"
+    "tip": "重音: BACK · STILL · MANY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:32 结尾定格.2",
     "en": "But this time, there were two more Tyrannosaurus rexes in the car.",
     "zh": "但这一次，车里多了两只霸王龙。",
-    "tip": "重音: TIME · MORE · TYRANNOSAURUS"
+    "tip": "重音: TIME · MORE · TYRANNOSAURUS",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:32 结尾定格.3",
     "en": "The 17th state, Arkansas, Little Rock Marathon, clock in and get off!",
     "zh": "第 17 个州，阿肯色，小石城马拉松，打卡，下班！",
-    "tip": "重音: STATE · ARKANSAS · LITTLE"
+    "tip": "重音: STATE · ARKANSAS · LITTLE",
+    "voice": "Andrew - warm male"
   }
 ];
 const listEl = document.getElementById('list');
@@ -268,7 +302,7 @@ const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
 const humanAudio = new Audio();
 const HUMAN_AUDIO_BASE = 'audio/little-rock-english-practice';
-const HUMAN_AUDIO_VERSION = '20260630-brian-batch-v1';
+const HUMAN_AUDIO_VERSION = '20260630-multivoice-v2';
 let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }

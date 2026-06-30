@@ -25,7 +25,7 @@
   <div class="banner">
     <span class="tag">RUN50 #01 | READ-ALONG</span>
     <h1>#01 Kentucky | Hatfield-McCoy Marathon</h1>
-    <div class="sub">English script for read-along practice · Natural voice audio · 中英对照逐句跟读</div>
+    <div class="sub">English script for read-along practice · Multi-voice natural audio · 中英对照逐句跟读</div>
     <a class="backbtn" href="run50.html">← 返回口播稿</a>
   </div>
   <div class="controls">
@@ -34,7 +34,7 @@
     <div class="grp"><label>备用发音</label><select id="voice"></select></div>
     <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
   </div>
-  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
   <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/hatfield-mccoy-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
   <div class="stats"><div class="stat"><div class="v">Kentucky</div><div class="t">State</div></div><div class="stat"><div class="v">Williamson</div><div class="t">Town</div></div><div class="stat"><div class="v">4h20m</div><div class="t">Finish time</div></div><div class="stat"><div class="v">25th | Feud</div><div class="t">Race note</div></div></div>
   <div class="list" id="list"></div>
@@ -47,217 +47,253 @@ const DATA = [
     "cue": "00:00 悬疑低沉",
     "en": "Dare you imagine?",
     "zh": "你敢想象吗？",
-    "tip": "重音: DARE · IMAGINE"
+    "tip": "重音: DARE · IMAGINE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 悬疑低沉.2",
     "en": "Today, the head of NVIDIA, Jen-Hsun Huang, who wears black leather clothes every day and has a market value of more than 4 trillion, has the most profound memory of his childhood, which is that he was \"exiled\" to the most \"closed, poorest, and wildest\" mountains in the United States.",
     "zh": "如今那个天天穿着黑皮衣、市值破四万亿的英伟达掌门人——黄仁勋，童年最深刻的记忆，就是被“流放”到了美国最“封闭、最穷、最野”的深山里。",
-    "tip": "重音: TODAY · HEAD · NVIDIA"
+    "tip": "重音: TODAY · HEAD · NVIDIA",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:10 反差猎奇",
     "en": "When he was 10 years old, his family mistakenly sent him to a juvenile detention center here.",
     "zh": "当年 10 岁的他，被家人误送到了这里的一所少管所。",
-    "tip": "重音: WHEN · YEARS · FAMILY"
+    "tip": "重音: WHEN · YEARS · FAMILY",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:10 反差猎奇.2",
     "en": "His daily routine involves frantically cleaning toilets, and even teaching a 17-year-old inmate covered in scars to read in exchange for being taught how to lift weights.",
     "zh": "每天的日常就是疯狂刷厕所，甚至还要教满身刀疤的 17 岁狱友识字，以此换取人家教他举重。",
-    "tip": "重音: DAILY · ROUTINE · INVOLVES"
+    "tip": "重音: DAILY · ROUTINE · INVOLVES",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:18 疑问引出",
     "en": "What kind of magical place is this?",
     "zh": "这到底是个什么神仙地方？",
-    "tip": "重音: WHAT · KIND · MAGICAL"
+    "tip": "重音: WHAT · KIND · MAGICAL",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:18 疑问引出.2",
     "en": "Can the \"AI Godfather\" develop an iron will?",
     "zh": "能让“AI教父”练就一身钢铁意志？",
-    "tip": "重音: GODFATHER · DEVELOP · IRON"
+    "tip": "重音: GODFATHER · DEVELOP · IRON",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:23 切入正题",
     "en": "This is Eastern Kentucky, the heart of the Appalachian Mountains.",
     "zh": "这就是东肯塔基州，阿巴拉契亚山脉的腹地。",
-    "tip": "重音: EASTERN · KENTUCKY · HEART"
+    "tip": "重音: EASTERN · KENTUCKY · HEART",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:23 切入正题.2",
     "en": "If you walk into this deep mountain alone, what may be heard behind you may not only be the sound of wind, but also the sound of gunshots that have not been extinguished a hundred years ago.",
     "zh": "如果你独自走进这片深山，背后响起的可能不只是风声，还有百年前未曾熄灭的枪声。",
-    "tip": "重音: WALK · DEEP · MOUNTAIN"
+    "tip": "重音: WALK · DEEP · MOUNTAIN",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:32 灵魂发问",
     "en": "Do you dare to run a marathon here?",
     "zh": "你，敢在这里跑一场马拉松吗？",
-    "tip": "重音: DARE · MARATHON · HERE"
+    "tip": "重音: DARE · MARATHON · HERE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:35 背景铺垫",
     "en": "This place has been isolated from the world for a long time and has become a legendary hot spot for incest marriages and various mental illnesses.",
     "zh": "这里长期与世隔绝，成了传说中近亲结婚和各类精神疾病高发的重灾区。",
-    "tip": "重音: PLACE · BEEN · ISOLATED"
+    "tip": "重音: PLACE · BEEN · ISOLATED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:35 背景铺垫.2",
     "en": "It was once the backbone of the coal mining industry in the United States, but after the energy transition and the closure of mines, it fell into long-term poverty and silence.",
     "zh": "它曾是全美煤矿业的脊梁，却也在能源转型、矿场关闭后，陷入了长期的贫困与沉寂。",
-    "tip": "重音: ONCE · BACKBONE · COAL"
+    "tip": "重音: ONCE · BACKBONE · COAL",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:48 故事高潮",
-    "en": "In this forested valley lies the most famous family feud in the United States - Hatfield and McCoy.",
+    "en": "In this forested valley lies the most famous family feud in the U.S.: Hatfield and McCoy.",
     "zh": "在这片森林密布的山谷里，藏着全美最著名的家族世仇——哈特菲尔德（Hatfield）与麦考伊（McCoy）。",
-    "tip": "重音: FORESTED · VALLEY · LIES"
+    "tip": "重音: FORESTED · VALLEY · LIES",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:55 荒诞现实",
     "en": "Back then, the two families fought for decades across the river over a pig, resulting in numerous deaths and injuries.",
     "zh": "当年为了头猪，两个家族隔着河火拼了几十年，死伤无数。",
-    "tip": "重音: BACK · FAMILIES · FOUGHT"
+    "tip": "重音: BACK · FAMILIES · FOUGHT",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "00:55 荒诞现实.2",
     "en": "The blood of this land is born with an exclusive and conservative gene.",
     "zh": "这片土地的血液里，天生就带着一种排外又保守的基因。",
-    "tip": "重音: BLOOD · LAND · BORN"
+    "tip": "重音: BLOOD · LAND · BORN",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:03 语气转折",
     "en": "Hey everyone, I am Asen Nan.",
     "zh": "大家好，我是阿森男。",
-    "tip": "重音: EVERYONE · ASEN"
+    "tip": "重音: EVERYONE · ASEN",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:03 语气转折.2",
     "en": "In early June, looking for a cool place, Siqi and I locked in on this niche event with a 4.7 rating: the Hatfield-McCoy Marathon.",
     "zh": "六月初，为了找个凉快地儿，我和 Siqi 锁定了这个评分 4.7 的小众赛事：Hatfield-McCoy Marathon。",
-    "tip": "重音: EARLY · JUNE · LOOKING"
+    "tip": "重音: EARLY · JUNE · LOOKING",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:12 出发视角",
     "en": "After get off work on Friday, Siqi and I set out overnight from Louisville and headed straight into the mountains.",
     "zh": "周五下班，我和 Siqi 连夜从路易斯维尔出发，直接杀进山里。",
-    "tip": "重音: AFTER · WORK · FRIDAY"
+    "tip": "重音: AFTER · WORK · FRIDAY",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:18 细节抓取",
     "en": "At night we stayed in a small wooden house in the mountains. The house was filled with various bear decorations, as if to remind us: this is the bear's territory, and we are just overnight guests.",
     "zh": "晚上我们住进了深山里的小木屋，屋子里摆满了各种熊的装饰，仿佛在提醒我们：这是熊的地盘，我们只是借宿的客人。",
-    "tip": "重音: NIGHT · STAYED · SMALL"
+    "tip": "重音: NIGHT · STAYED · SMALL",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:28 实况起步",
     "en": "At 7 o'clock in the morning, the starting gun rang out, and I was greeted by the white fog that had not yet cleared and \"Country Roads\" echoing in the valley.",
     "zh": "清晨 7 点，发令枪响，迎接我的是还没散尽的白雾和山谷里回荡的《Country Roads》。",
-    "tip": "重音: O'CLOCK · MORNING · STARTING"
+    "tip": "重音: O'CLOCK · MORNING · STARTING",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:36 呼吸感",
     "en": "Not long after the start, the cumulative 1,200 feet of climb begins to show its force.",
     "zh": "起跑没多久，1200 英尺的累计爬升就开始显威。",
-    "tip": "重音: LONG · AFTER · START"
+    "tip": "重音: LONG · AFTER · START",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:36 呼吸感.2",
     "en": "You can still hear the rushing sound of mountain streams in the first half of the journey, but as I ran, I was the only one left in the valley with my violent breathing and footsteps.",
     "zh": "前半程你还能听到山间溪流的哗哗声，但跑着跑着，山谷里就只剩下我一个人剧烈的喘息和脚步声。",
-    "tip": "重音: STILL · HEAR · RUSHING"
+    "tip": "重音: STILL · HEAR · RUSHING",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:48 音乐激昂",
     "en": "The most hardcore challenge is at mile 18.",
     "zh": "最硬核的挑战在 18 英里处。",
-    "tip": "重音: MOST · HARDCORE · CHALLENGE"
+    "tip": "重音: MOST · HARDCORE · CHALLENGE",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:48 音乐激昂.2",
     "en": "You'll see the Blackberry Bridge, a long, narrow bridge spanning the Tugger Fork River.",
     "zh": "你会看到一座又长又窄、横跨在塔格福克河上的黑莓桥（Blackberry Bridge）。",
-    "tip": "重音: YOU'LL · BLACKBERRY · BRIDGE"
+    "tip": "重音: YOU'LL · BLACKBERRY · BRIDGE",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:58 沉浸感",
     "en": "That was the place where the two families faced each other across the river.",
     "zh": "那是当年两个家族隔河对峙的地方。",
-    "tip": "重音: PLACE · WHERE · FAMILIES"
+    "tip": "重音: PLACE · WHERE · FAMILIES",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:58 沉浸感.2",
     "en": "The old wooden boards creak when your feet step on them, and the bridge sways slightly with the rhythm. The rusty feeling of history is a sense of ritual that can never be given by a big city track.",
     "zh": "脚踩在旧木板上“嘎吱”作响，桥身随节奏轻微晃动，那种带着历史铁锈味的感觉，是大城市赛道永远给不了的仪式感。",
-    "tip": "重音: WOODEN · BOARDS · CREAK"
+    "tip": "重音: WOODEN · BOARDS · CREAK",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:10 疲惫破防",
     "en": "As we neared the finish line, the sun was getting a little stronger.",
     "zh": "快到终点时，太阳已经有点厉害了。",
-    "tip": "重音: NEARED · FINISH · LINE"
+    "tip": "重音: NEARED · FINISH · LINE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:10 疲惫破防.2",
     "en": "The volunteer aunt handed over iced watermelon under the scorching sun, which was a life-saving medicine.",
     "zh": "志愿者大妈顶着烈日递上冰镇西瓜，简直是救命神药。",
-    "tip": "重音: VOLUNTEER · AUNT · HANDED"
+    "tip": "重音: VOLUNTEER · AUNT · HANDED",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:18 剧情高亮",
     "en": "The moment we rushed into the small town of Williamson, there were several big brothers wearing old-fashioned coarse clothes and carrying long guns standing in front of the finishing arch.",
     "zh": "冲进威廉姆森小镇的那一刻，终点拱门前站着几个穿着旧式粗布衣、怀揣长枪的大哥。",
-    "tip": "重音: MOMENT · RUSHED · SMALL"
+    "tip": "重音: MOMENT · RUSHED · SMALL",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:18 剧情高亮.2",
     "en": "They will yell loudly and take a photo with you, telling you: The battle here is over and only runners are welcome now!",
     "zh": "他们会大声吼着跟你合影，告诉你：这里的仗打完了，现在只欢迎跑者！",
-    "tip": "重音: THEY · WILL · YELL"
+    "tip": "重音: THEY · WILL · YELL",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:28 语气放缓",
     "en": "I was in good shape this time and finished the race in just over 4 hours and 20 minutes.",
     "zh": "这次我状态不错，4 小时 20 多分钟完赛。",
-    "tip": "重音: GOOD · SHAPE · TIME"
+    "tip": "重音: GOOD · SHAPE · TIME",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:28 语气放缓.2",
     "en": "He even “upset” beat our Louisville lap master Chris.",
     "zh": "甚至还“爆冷”跑赢了咱们路易斯维尔跑圈的高手 Chris。",
-    "tip": "重音: EVEN · UPSET · BEAT"
+    "tip": "重音: EVEN · UPSET · BEAT",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:36 展示彩蛋",
     "en": "This 25th anniversary commemorative medal is the most unique. There are reliefs of family members on the outside, but it can be opened inside to reveal maps of two states. It is full of human touch.",
     "zh": "这块 25 周年纪念奖牌最绝，外面是家族成员浮雕，里面居然能打开，藏着两个州的地图，人情味拉满。",
-    "tip": "重音: ANNIVERSARY · COMMEMORATIVE · MEDAL"
+    "tip": "重音: ANNIVERSARY · COMMEMORATIVE · MEDAL",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:45 走心升华",
     "en": "After the game, looking at the few wooden houses standing alone in the mountains, you will find that although there are still declining mining towns and dilapidated houses, the bright smiles of the people are the most real warmth here.",
     "zh": "赛后，看着那几栋孤零零立在大山里的木屋，你会发现，虽然这里依然有衰落的矿镇和破旧的房子，但人们灿烂的笑容才是这里最真实的温度。",
-    "tip": "重音: AFTER · GAME · LOOKING"
+    "tip": "重音: AFTER · GAME · LOOKING",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:55 诗意定格",
     "en": "As my footsteps fell into the valley, behind me were hundreds of years of gunfire, and looking up were the still green mountains.",
     "zh": "脚步落在山谷，背后是百年的枪声，抬头是依旧翠绿的群山。",
-    "tip": "重音: FOOTSTEPS · FELL · VALLEY"
+    "tip": "重音: FOOTSTEPS · FELL · VALLEY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:02 结尾预告",
     "en": "I am an Asen man, and the Run50 progress bar continues to load. I don’t know how many times it took to complete my hometown of Kentucky.",
     "zh": "我是阿森男，Run50 进度条继续加载，我的老巢肯塔基不知道是几刷完成。",
-    "tip": "重音: ASEN · PROGRESS · CONTINUES"
+    "tip": "重音: ASEN · PROGRESS · CONTINUES",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:02 结尾预告.2",
     "en": "See you next state!",
     "zh": "下个州，我们再见！",
-    "tip": "重音: NEXT · STATE"
+    "tip": "重音: NEXT · STATE",
+    "voice": "Andrew - warm male"
   }
 ];
 const listEl = document.getElementById('list');
@@ -280,7 +316,7 @@ const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
 const humanAudio = new Audio();
 const HUMAN_AUDIO_BASE = 'audio/hatfield-mccoy-english-practice';
-const HUMAN_AUDIO_VERSION = '20260630-brian-batch-v1';
+const HUMAN_AUDIO_VERSION = '20260630-multivoice-v2';
 let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }

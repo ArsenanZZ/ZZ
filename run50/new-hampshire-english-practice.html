@@ -25,7 +25,7 @@
   <div class="banner">
     <span class="tag">RUN50 #22 | READ-ALONG</span>
     <h1>#22 New Hampshire | Clarence DeMar Marathon</h1>
-    <div class="sub">English script for read-along practice · Natural voice audio · 中英对照逐句跟读</div>
+    <div class="sub">English script for read-along practice · Multi-voice natural audio · 中英对照逐句跟读</div>
     <a class="backbtn" href="run50.html">← 返回口播稿</a>
   </div>
   <div class="controls">
@@ -34,7 +34,7 @@
     <div class="grp"><label>备用发音</label><select id="voice"></select></div>
     <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
   </div>
-  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
   <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/new-hampshire-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
   <div class="stats"><div class="stat"><div class="v">New Hampshire</div><div class="t">State</div></div><div class="stat"><div class="v">Keene</div><div class="t">City</div></div><div class="stat"><div class="v">2024.09.28</div><div class="t">Race date</div></div><div class="stat"><div class="v">Fall colors</div><div class="t">Theme</div></div></div>
   <div class="list" id="list"></div>
@@ -47,541 +47,631 @@ const DATA = [
     "cue": "00:00 问句钩子",
     "en": "Can you imagine running a marathon in a cemetery?",
     "zh": "你能想象，在墓地里还能跑马拉松吗？",
-    "tip": "重音: IMAGINE · RUNNING · MARATHON"
+    "tip": "重音: IMAGINE · RUNNING · MARATHON",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:06 反转加码",
-    "en": "Moreover, there were volunteers cheering on both sides.",
+    "en": "And yes, volunteers were cheering on both sides.",
     "zh": "而且，两侧还有志愿者在加油。",
-    "tip": "重音: MOREOVER · VOLUNTEERS · CHEERING"
+    "tip": "重音: VOLUNTEERS · CHEERING · BOTH",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:10 自我介绍",
-    "en": "Hey everyone, this is - Asen Man.",
+    "en": "Hey everyone, I'm Asennan.",
     "zh": "大家好啊，这里是——阿森男。",
-    "tip": "重音: EVERYONE · ASEN"
+    "tip": "重音: EVERYONE · ASENNAN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:10 自我介绍.2",
-    "en": "This time, Run50 comes to state 22: New Hampshire.",
+    "en": "This time, Run50 takes us to state 22: New Hampshire.",
     "zh": "这一次，Run50 来到了第 22 个州：新罕布什尔。",
-    "tip": "重音: TIME · COMES · STATE"
+    "tip": "重音: TIME · TAKES · STATE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:20 地理位置",
-    "en": "New Hampshire, located in the northeastern corner of the United States, is one of the six New England states.",
+    "en": "New Hampshire, in the northeastern corner of the United States, is one of the six New England states.",
     "zh": "新罕布什尔，位于美国东北角，是新英格兰六州之一。",
-    "tip": "重音: HAMPSHIRE · LOCATED · NORTHEASTERN"
+    "tip": "重音: HAMPSHIRE · NORTHEASTERN · CORNER",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:20 地理位置.2",
-    "en": "New England includes Maine, Vermont, New Hampshire, Massachusetts, Connecticut and Rhode Island. It is the earliest colony in the United States, with a rich history and beautiful autumn colors.",
+    "en": "New England includes Maine, Vermont, New Hampshire, Massachusetts, Connecticut, and Rhode Island. The region has some of America's earliest colonial history, plus gorgeous fall colors.",
     "zh": "新英格兰包括缅因、佛蒙特、新罕布什尔、马萨诸塞、康涅狄格和罗得岛，是美国最早的殖民地，历史厚，秋色美。",
-    "tip": "重音: ENGLAND · INCLUDES · MAINE"
+    "tip": "重音: ENGLAND · INCLUDES · MAINE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:20 地理位置.3",
-    "en": "The genes of the Boston Marathon grew out of here.",
+    "en": "You can feel the roots of the Boston Marathon around here.",
     "zh": "波士顿马拉松的基因，就从这里长出来的。",
-    "tip": "重音: GENES · BOSTON · MARATHON"
+    "tip": "重音: FEEL · ROOTS · BOSTON",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:35 州情特点",
     "en": "New Hampshire itself is a small state with a lot of character.",
     "zh": "新罕布什尔本身是个小州，但特点很集中。",
-    "tip": "重音: HAMPSHIRE · ITSELF · SMALL"
+    "tip": "重音: HAMPSHIRE · ITSELF · SMALL",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:35 州情特点.2",
     "en": "To the north is the famous White Mountains, the highest peak of which is Mount Washington. It is windy all year round and the weather is changeable. It is a place that climbers love and fear.",
     "zh": "北边是著名的白山，最高峰华盛顿山，常年风大，天气多变，是登山客又爱又怕的地方。",
-    "tip": "重音: NORTH · FAMOUS · WHITE"
+    "tip": "重音: NORTH · FAMOUS · WHITE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:35 州情特点.3",
     "en": "There are many lakes in the central region, including Lake Winnipesaukee, which is a resort destination in the summer.",
     "zh": "中部湖泊很多，温尼珀索基湖，夏天是度假胜地。",
-    "tip": "重音: MANY · LAKES · CENTRAL"
+    "tip": "重音: MANY · LAKES · CENTRAL",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:35 州情特点.4",
     "en": "The capital is Concord and the largest city is Manchester, but neither is too big.",
     "zh": "首府是康科德，最大城市是曼彻斯特，但哪个都不算大。",
-    "tip": "重音: CAPITAL · CONCORD · LARGEST"
+    "tip": "重音: CAPITAL · CONCORD · LARGEST",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:52 秋色定调",
     "en": "The temperament of the entire state is mountains, trees, small towns, quiet, and a bit cold.",
     "zh": "整个州的气质，就是山、树、小镇，安静，有点冷。",
-    "tip": "重音: TEMPERAMENT · ENTIRE · STATE"
+    "tip": "重音: TEMPERAMENT · ENTIRE · STATE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:52 秋色定调.2",
     "en": "But the autumn colors at the end of September are really beautiful.",
     "zh": "但九月底的秋色，是真的好看。",
-    "tip": "重音: AUTUMN · COLORS · SEPTEMBER"
+    "tip": "重音: AUTUMN · COLORS · SEPTEMBER",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "00:52 秋色定调.3",
     "en": "It’s maple leaf season in New England, with layers of red, yellow and orange, and New Hampshire happens to be one of the most colorful places.",
     "zh": "新英格兰的枫叶季，红、黄、橙层层叠叠，新罕布什尔，正好是那片颜色最浓的地方之一。",
-    "tip": "重音: MAPLE · LEAF · SEASON"
+    "tip": "重音: MAPLE · LEAF · SEASON",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:05 出发引入",
     "en": "The destination this time is a university town called Keene.",
     "zh": "这次的目的地，是一座叫基恩的大学城。",
-    "tip": "重音: DESTINATION · TIME · UNIVERSITY"
+    "tip": "重音: DESTINATION · TIME · UNIVERSITY",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:05 出发引入.2",
     "en": "We set off from Kentucky and drove for seventeen hours. Along the way, we first took a turn to see something——",
     "zh": "我们从肯塔基出发，整整开了十七个小时，沿途先拐去看了一样东西——",
-    "tip": "重音: KENTUCKY · DROVE · SEVENTEEN"
+    "tip": "重音: KENTUCKY · DROVE · SEVENTEEN",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:14 尼亚加拉引出",
     "en": "Niagara Falls.",
     "zh": "尼亚加拉瀑布。",
-    "tip": "重音: NIAGARA · FALLS"
+    "tip": "重音: NIAGARA · FALLS",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:18 公园科普",
     "en": "Entering Niagara Falls State Park, this is the oldest state park in the United States. The designer was Olmstead who designed Central Park.",
     "zh": "进了尼亚加拉瀑布州立公园，这是全美历史最悠久的州立公园，设计者就是设计中央公园的奥姆斯特德。",
-    "tip": "重音: ENTERING · NIAGARA · FALLS"
+    "tip": "重音: ENTERING · NIAGARA · FALLS",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:18 公园科普.2",
     "en": "First we went to the observation deck next to the Tesla statue.",
     "zh": "先去了特斯拉雕像旁边的观景台。",
-    "tip": "重音: FIRST · WENT · OBSERVATION"
+    "tip": "重音: FIRST · WENT · OBSERVATION",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:28 特斯拉彩蛋",
     "en": "The reason why there is a statue of Tesla is because the winner of the electric current war between him and Edison was decided here.",
     "zh": "之所以有特斯拉的雕像，是因为他和爱迪生当年的电流大战，就在这里分出了胜负。",
-    "tip": "重音: REASON · STATUE · TESLA"
+    "tip": "重音: REASON · STATUE · TESLA",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:28 特斯拉彩蛋.2",
     "en": "Tesla's alternating current solution won, and the first hydroelectric power station was built in Niagara, which became a symbol of the electrical age.",
     "zh": "特斯拉的交流电方案赢了，第一座水力发电站就建在尼亚加拉，这里也成了电气时代的象征。",
-    "tip": "重音: TESLA'S · ALTERNATING · CURRENT"
+    "tip": "重音: TESLA'S · ALTERNATING · CURRENT",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:40 风之洞体验",
     "en": "Then we experienced the \"Cave of the Winds\".",
     "zh": "然后我们体验了\"风之洞\"。",
-    "tip": "重音: EXPERIENCED · CAVE · WINDS"
+    "tip": "重音: EXPERIENCED · CAVE · WINDS",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:40 风之洞体验.2",
     "en": "Wear a yellow raincoat and take the elevator down to the wooden boardwalk at the foot of the waterfall.",
     "zh": "领一件黄色雨衣，坐电梯下到瀑布脚下的木栈道。",
-    "tip": "重音: WEAR · YELLOW · RAINCOAT"
+    "tip": "重音: WEAR · YELLOW · RAINCOAT",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:40 风之洞体验.3",
     "en": "At that moment, it was like walking into a violent storm, with water splashing directly on my face, I couldn't open my eyes, and my shoes were soaked in a short time.",
     "zh": "那一刻就像走进了狂风暴雨里，水花直接砸在脸上，眼睛都睁不开，鞋子一会儿就湿透了。",
-    "tip": "重音: MOMENT · LIKE · WALKING"
+    "tip": "重音: MOMENT · LIKE · WALKING",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:40 风之洞体验.4",
     "en": "There was a roaring sound in my ears, and the waterfall roared right in front of me.",
     "zh": "耳边全是轰鸣声，瀑布就在眼前咆哮。",
-    "tip": "重音: ROARING · SOUND · EARS"
+    "tip": "重音: ROARING · SOUND · EARS",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "01:55 马蹄瀑布",
     "en": "Going forward, you can also see the Horseshoe Falls, across from Canada, which is wider and more spectacular than the American Falls.",
     "zh": "往前走还能看到马蹄瀑布，对面就是加拿大，比美国瀑布更宽，更壮观。",
-    "tip": "重音: GOING · FORWARD · ALSO"
+    "tip": "重音: GOING · FORWARD · ALSO",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:03 夜景收尾",
     "en": "Went back again in the evening to see the night view.",
     "zh": "晚上又回来看了夜景。",
-    "tip": "重音: WENT · BACK · AGAIN"
+    "tip": "重音: WENT · BACK · AGAIN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:03 夜景收尾.2",
     "en": "The light shines on the water mist, and blue, purple, and red change in turns.",
     "zh": "灯光打在水雾上，蓝、紫、红轮流变换。",
-    "tip": "重音: LIGHT · SHINES · WATER"
+    "tip": "重音: LIGHT · SHINES · WATER",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:03 夜景收尾.3",
     "en": "The shock of the day was replaced by the dream of the night.",
     "zh": "白天的震撼，换成了夜晚的梦幻。",
-    "tip": "重音: SHOCK · REPLACED · DREAM"
+    "tip": "重音: SHOCK · REPLACED · DREAM",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:12 佛蒙特秋色",
     "en": "After seeing the night view, we continued driving through Vermont.",
     "zh": "看完夜景，继续开车，穿越了佛蒙特州。",
-    "tip": "重音: AFTER · SEEING · NIGHT"
+    "tip": "重音: AFTER · SEEING · NIGHT",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:12 佛蒙特秋色.2",
     "en": "The end of September is the leaf-viewing season, and the entire mountain forest begins to change colors, layer upon layer of red, yellow, and orange.",
     "zh": "九月底正是观叶季，整片山林开始变色，红、黄、橙，层层叠叠。",
-    "tip": "重音: SEPTEMBER · LEAF-VIEWING · SEASON"
+    "tip": "重音: SEPTEMBER · LEAF-VIEWING · SEASON",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:12 佛蒙特秋色.3",
     "en": "We pulled over and took a few photos.",
     "zh": "我们随手靠边停车，拍了几张照片。",
-    "tip": "重音: PULLED · OVER · TOOK"
+    "tip": "重音: PULLED · OVER · TOOK",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:12 佛蒙特秋色.4",
     "en": "That color, no filter needed.",
     "zh": "那种颜色，不需要滤镜。",
-    "tip": "重音: COLOR · FILTER · NEEDED"
+    "tip": "重音: COLOR · FILTER · NEEDED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:25 抵达基恩",
     "en": "Arrived in Keene in the afternoon and went to Keene State College to pick up equipment.",
     "zh": "下午到达基恩，去基恩州立学院取了装备。",
-    "tip": "重音: ARRIVED · KEENE · AFTERNOON"
+    "tip": "重音: ARRIVED · KEENE · AFTERNOON",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:25 抵达基恩.2",
     "en": "Then I drove into the mountains and found an Airbnb. It was a cabin owned by an old lady who lived alone. It was neatly maintained and the autumn forest could be seen outside the window.",
     "zh": "然后开车进山，找到 Airbnb——是房东独居老奶奶的小木屋，打理得整整齐齐，窗外就是秋天的森林。",
-    "tip": "重音: DROVE · MOUNTAINS · FOUND"
+    "tip": "重音: DROVE · MOUNTAINS · FOUND",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:38 赛前派对",
     "en": "There was a pre-game party in the evening, spaghetti with meatballs, very homely.",
     "zh": "傍晚有个赛前派对，意大利面配肉丸子，很家常。",
-    "tip": "重音: PRE-GAME · PARTY · EVENING"
+    "tip": "重音: PRE-GAME · PARTY · EVENING",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:38 赛前派对.2",
     "en": "But there was an unusual guest speaking - Kathrine Switzer.",
     "zh": "但有位不普通的嘉宾来演讲——Kathrine Switzer。",
-    "tip": "重音: UNUSUAL · GUEST · SPEAKING"
+    "tip": "重音: UNUSUAL · GUEST · SPEAKING",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "02:46 传奇女跑者",
     "en": "In 1967, the first woman officially registered and completed the Boston Marathon.",
     "zh": "1967年，第一位正式报名并跑完波士顿马拉松的女性。",
-    "tip": "重音: FIRST · WOMAN · OFFICIALLY"
+    "tip": "重音: FIRST · WOMAN · OFFICIALLY",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "02:46 传奇女跑者.2",
     "en": "The race director rushed over to drag her down, but her boyfriend blocked him. She continued running and finished the entire race.",
     "zh": "当年赛事总监冲过来要把她拽下去，她的男友挡住了他，她继续跑，跑完了全程。",
-    "tip": "重音: RACE · DIRECTOR · RUSHED"
+    "tip": "重音: RACE · DIRECTOR · RUSHED",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "02:46 传奇女跑者.3",
     "en": "It was such a person who sat with us at a pre-game party in a small town.",
     "zh": "就是这样一个人，在一个小镇的赛前晚会上，和我们坐在一起。",
-    "tip": "重音: SUCH · PERSON · PRE-GAME"
+    "tip": "重音: SUCH · PERSON · PRE-GAME",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:02 比赛日出发",
     "en": "On the morning of the competition, before Siqi and I set off, we left a few words in my landlady’s notebook.",
     "zh": "比赛当天早上，我和 Siqi 出发前，在房东奶奶的笔记本上留了几句话。",
-    "tip": "重音: MORNING · COMPETITION · BEFORE"
+    "tip": "重音: MORNING · COMPETITION · BEFORE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:02 比赛日出发.2",
     "en": "Siqi sent me to the starting point of the full marathon and she went to the starting point of the half marathon.",
     "zh": "Siqi 送我去全马起点，她自己去半马的起点。",
-    "tip": "重音: SIQI · SENT · STARTING"
+    "tip": "重音: SIQI · SENT · STARTING",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:12 50州奶奶",
     "en": "The starting point is at the intersection of the town. It is small and has a friendly atmosphere.",
     "zh": "起点就是小镇的路口，规模不大，气氛很亲切。",
-    "tip": "重音: STARTING · POINT · INTERSECTION"
+    "tip": "重音: STARTING · POINT · INTERSECTION",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:12 50州奶奶.2",
     "en": "I noticed a white-haired grandma wearing a white ribbon - this was the last stop of her 50-state marathon in the United States.",
     "zh": "我注意到一位白发奶奶，身上披着白色绶带——这是她完成美国50个州马拉松的最后一站。",
-    "tip": "重音: NOTICED · WHITE-HAIRED · GRANDMA"
+    "tip": "重音: NOTICED · WHITE-HAIRED · GRANDMA",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:22 开跑林间",
     "en": "Gunshot, set off.",
     "zh": "枪响，出发。",
-    "tip": "重音: GUNSHOT"
+    "tip": "重音: GUNSHOT",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:22 开跑林间.2",
     "en": "The temperature was a bit cold, so I took off my jacket not long after running and put it next to the mile sign.",
     "zh": "气温有点凉，跑了没多久把外套脱了，放在英里牌那边。",
-    "tip": "重音: TEMPERATURE · COLD · TOOK"
+    "tip": "重音: TEMPERATURE · COLD · TOOK",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:22 开跑林间.3",
     "en": "I bought the clothes from Pinduoduo, they are cheap.",
     "zh": "衣服是拼多多买的，便宜货。",
-    "tip": "重音: BOUGHT · CLOTHES · PINDUODUO"
+    "tip": "重音: BOUGHT · CLOTHES · PINDUODUO",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:22 开跑林间.4",
     "en": "There are woods on both sides of the track, and the fallen leaves are spread on the ground, making a rustling sound when you step on them.",
     "zh": "赛道两边都是树林，落叶铺了一地，踩上去沙沙作响。",
-    "tip": "重音: WOODS · BOTH · SIDES"
+    "tip": "重音: WOODS · BOTH · SIDES",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:35 8英里湖景",
     "en": "8 miles to Surrey Mountain Lake.",
     "zh": "8 英里，到了 萨里山湖。",
-    "tip": "重音: MILES · SURREY · MOUNTAIN"
+    "tip": "重音: MILES · SURREY · MOUNTAIN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:35 8英里湖景.2",
     "en": "The lake is open, and the mountains in the distance are already red and yellow.",
     "zh": "湖面开阔，远处的山已经红黄相间。",
-    "tip": "重音: LAKE · OPEN · MOUNTAINS"
+    "tip": "重音: LAKE · OPEN · MOUNTAINS",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:35 8英里湖景.3",
     "en": "This section is the calmest and the most relaxing.",
     "zh": "这一段最平，也是心情最放松的一段。",
-    "tip": "重音: SECTION · CALMEST · MOST"
+    "tip": "重音: SECTION · CALMEST · MOST",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:45 11英里大坝",
     "en": "Mile 11, running up Surry Hills Dam.",
     "zh": "11 英里，跑上了萨里山大坝。",
-    "tip": "重音: MILE · RUNNING · SURRY"
+    "tip": "重音: MILE · RUNNING · SURRY",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:45 11英里大坝.2",
     "en": "On the left is the lake, on the right are the woods, and there are mountain shadows in the distance. The wind is a bit cool.",
     "zh": "左边是湖水，右边是树林，远处有山影，风吹过来有点凉。",
-    "tip": "重音: LEFT · LAKE · RIGHT"
+    "tip": "重音: LEFT · LAKE · RIGHT",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:45 11英里大坝.3",
     "en": "It feels like running on a lake.",
     "zh": "感觉就像在湖面上跑。",
-    "tip": "重音: FEELS · LIKE · RUNNING"
+    "tip": "重音: FEELS · LIKE · RUNNING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:58 超人登场",
     "en": "Fourteen miles ago, a \"Superman\" suddenly appeared next to the track, wearing a red cape and raising his fist, which was particularly conspicuous.",
     "zh": "14 英里前，一个\"超人\"突然出现在赛道旁边，披着红色斗篷，举着拳头，特别显眼。",
-    "tip": "重音: FOURTEEN · MILES · SUPERMAN"
+    "tip": "重音: FOURTEEN · MILES · SUPERMAN",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:58 超人登场.2",
     "en": "I couldn't help but go up and take a photo.",
     "zh": "我忍不住上去合了张影。",
-    "tip": "重音: COULDN'T · HELP · TAKE"
+    "tip": "重音: COULDN'T · HELP · TAKE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:58 超人登场.3",
     "en": "My body felt instantly lighter.",
     "zh": "感觉身体瞬间轻快了。",
-    "tip": "重音: BODY · FELT · INSTANTLY"
+    "tip": "重音: BODY · FELT · INSTANTLY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:58 超人登场.4",
     "en": "Some kind of dark matter, no explanation.",
     "zh": "某种暗物质，不解释。",
-    "tip": "重音: SOME · KIND · DARK"
+    "tip": "重音: SOME · KIND · DARK",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "04:10 一遇Siqi",
     "en": "Mile 17, saw Siqi, she was in good shape.",
     "zh": "17 英里，看到了 Siqi，她状态不错。",
-    "tip": "重音: MILE · SIQI · GOOD"
+    "tip": "重音: MILE · SIQI · GOOD",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "04:16 墓地登场",
     "en": "Then the track turned into a cemetery.",
     "zh": "接着，赛道拐进了墓地。",
-    "tip": "重音: TRACK · TURNED · CEMETERY"
+    "tip": "重音: TRACK · TURNED · CEMETERY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "04:16 墓地登场.2",
     "en": "Woodland Cemetery and Green Lawn Cemetery, Keene's oldest cemeteries.",
     "zh": "伍德兰墓地和绿草坪墓地，基恩最古老的墓地。",
-    "tip": "重音: WOODLAND · CEMETERY · GREEN"
+    "tip": "重音: WOODLAND · CEMETERY · GREEN",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "04:16 墓地登场.3",
     "en": "The 22 mile marker stands among the tombstones.",
     "zh": "22 英里的里程牌，就立在墓碑之间。",
-    "tip": "重音: MILE · MARKER · STANDS"
+    "tip": "重音: MILE · MARKER · STANDS",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "04:16 墓地登场.4",
     "en": "Next to it, there are supply points and volunteers.",
     "zh": "旁边，还有补给点和志愿者。",
-    "tip": "重音: NEXT · SUPPLY · POINTS"
+    "tip": "重音: NEXT · SUPPLY · POINTS",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "04:28 墓地感悟",
     "en": "The atmosphere is very quiet, but not scary, but has a peaceful sense of power.",
     "zh": "气氛很安静，却不让人害怕，反而带着一种平和的力量感。",
-    "tip": "重音: ATMOSPHERE · VERY · QUIET"
+    "tip": "重音: ATMOSPHERE · VERY · QUIET",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "04:28 墓地感悟.2",
     "en": "In China, it may be considered unlucky to enter a cemetery.",
     "zh": "在中国，跑进墓地大概会觉得不吉利。",
-    "tip": "重音: CHINA · CONSIDERED · UNLUCKY"
+    "tip": "重音: CHINA · CONSIDERED · UNLUCKY",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "04:28 墓地感悟.3",
     "en": "But in the United States, cemeteries are part of the community, where people walk, run, and even have picnics.",
     "zh": "但在美国，墓地就是社区的一部分，人们在里面散步、跑步，甚至野餐。",
-    "tip": "重音: UNITED · STATES · CEMETERIES"
+    "tip": "重音: UNITED · STATES · CEMETERIES",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "04:28 墓地感悟.4",
     "en": "Running among the tombstones, I feel like I am with history.",
     "zh": "跑在墓碑之间，感觉自己和历史同在。",
-    "tip": "重音: RUNNING · AMONG · TOMBSTONES"
+    "tip": "重音: RUNNING · AMONG · TOMBSTONES",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "04:45 出墓地对比",
     "en": "After running out of the cemetery, there was a cheering team of children outside, jumping up and down and shouting \"Great job\", which formed a strong contrast with the silence inside.",
     "zh": "跑出墓地，外面是小孩子的加油队，蹦蹦跳跳，喊着\"干得漂亮\"，和里面的安静，形成了强烈的对比。",
-    "tip": "重音: AFTER · RUNNING · CEMETERY"
+    "tip": "重音: AFTER · RUNNING · CEMETERY",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "04:53 三遇Siqi",
     "en": "Encountered Siqi for the third time 25 miles ago.",
     "zh": "25 英里前，第三次遇到了 Siqi。",
-    "tip": "重音: ENCOUNTERED · SIQI · THIRD"
+    "tip": "重音: ENCOUNTERED · SIQI · THIRD",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "04:53 三遇Siqi.2",
     "en": "The routes for the full marathon and the half marathon sometimes separate and sometimes overlap. It is quite rare to meet them three times in the same race.",
     "zh": "全马和半马的路线时而分开，时而重合，同一场比赛里碰了三次，也挺难得的。",
-    "tip": "重音: ROUTES · FULL · MARATHON"
+    "tip": "重音: ROUTES · FULL · MARATHON",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "05:02 冲线入校",
     "en": "Last mile, running into Keene State College.",
     "zh": "最后一英里，跑进基恩州立学院。",
-    "tip": "重音: LAST · MILE · RUNNING"
+    "tip": "重音: LAST · MILE · RUNNING",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "05:02 冲线入校.2",
     "en": "There were cheerleaders at the school gate and spectators lined up on both sides.",
     "zh": "校门口有啦啦队，观众排在两侧。",
-    "tip": "重音: CHEERLEADERS · SCHOOL · GATE"
+    "tip": "重音: CHEERLEADERS · SCHOOL · GATE",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "05:02 冲线入校.3",
     "en": "This marathon is not big. I was the only one running the section before crossing the finish line, and I felt like I had the whole audience’s cheers to myself.",
     "zh": "这个马拉松规模不大，冲线前的那一段只有我自己跑着，感觉独享了全场的欢呼。",
-    "tip": "重音: MARATHON · ONLY · RUNNING"
+    "tip": "重音: MARATHON · ONLY · RUNNING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "05:02 冲线入校.4",
     "en": "Raise your hands and cross the finish line.",
     "zh": "举起双手，冲过终点。",
-    "tip": "重音: RAISE · HANDS · CROSS"
+    "tip": "重音: RAISE · HANDS · CROSS",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "05:12 奖牌热汤",
     "en": "The volunteer aunt smiled and hung the medal around my neck.",
     "zh": "志愿者阿姨笑着把奖牌挂在我脖子上。",
-    "tip": "重音: VOLUNTEER · AUNT · SMILED"
+    "tip": "重音: VOLUNTEER · AUNT · SMILED",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "05:12 奖牌热汤.2",
     "en": "The medal is simple: a silhouette of a runner with arms raised, with the mountains and lakes of New Hampshire in the background.",
     "zh": "奖牌很简洁：一个跑者举起双臂的剪影，背景是新罕布什尔的群山和湖泊。",
-    "tip": "重音: MEDAL · SIMPLE · SILHOUETTE"
+    "tip": "重音: MEDAL · SIMPLE · SILHOUETTE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "05:12 奖牌热汤.3",
     "en": "Then I drank hot soup with Siqi on the grass, and my body warmed up immediately.",
     "zh": "然后和 Siqi 在草地上端着热汤喝，身体立刻暖和了。",
-    "tip": "重音: DRANK · SOUP · SIQI"
+    "tip": "重音: DRANK · SOUP · SIQI",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "05:25 湖面无人机",
     "en": "After the game, I went to pick up the car and dropped a drone at Salishan Lake.",
     "zh": "赛后去取车，顺便在萨里山湖放了个无人机。",
-    "tip": "重音: AFTER · GAME · WENT"
+    "tip": "重音: AFTER · GAME · WENT",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "05:25 湖面无人机.2",
     "en": "In the lens, the lake is like a mirror, reflecting all the clouds in the sky, and the trees on the shore are dyed in autumn colors.",
     "zh": "镜头里，湖水像一面镜子，把天上的云彩都照了进去，岸边的树正好染上了秋色。",
-    "tip": "重音: LENS · LAKE · LIKE"
+    "tip": "重音: LENS · LAKE · LIKE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "05:25 湖面无人机.3",
     "en": "It’s hard to come to New Hampshire, but seeing this scene makes it worth it.",
     "zh": "来一次新罕布什尔挺辛苦，但看到这一幕，感觉值回票价了。",
-    "tip": "重音: HARD · COME · HAMPSHIRE"
+    "tip": "重音: HARD · COME · HAMPSHIRE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "05:38 耶鲁绕道",
     "en": "On the way back, we took a detour to New Haven and visited Yale University.",
     "zh": "回程绕道去了纽黑文，顺便看了看耶鲁大学。",
-    "tip": "重音: BACK · TOOK · DETOUR"
+    "tip": "重音: BACK · TOOK · DETOUR",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "05:38 耶鲁绕道.2",
     "en": "Founded in 1701, it is one of the earliest Ivy League schools in the United States.",
     "zh": "1701 年建校，是美国最早的常春藤名校之一。",
-    "tip": "重音: FOUNDED · EARLIEST · LEAGUE"
+    "tip": "重音: FOUNDED · EARLIEST · LEAGUE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "05:38 耶鲁绕道.3",
     "en": "George W. Bush, Clinton, Hillary, and Jin Yong—all came out of here.",
     "zh": "小布什、克林顿、希拉里、金庸——都从这儿走出去的。",
-    "tip": "重音: GEORGE · BUSH · CLINTON"
+    "tip": "重音: GEORGE · BUSH · CLINTON",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "05:48 印度餐馆",
     "en": "I found an Indian restaurant and ordered mutton curry and naan to replenish my energy.",
     "zh": "找了家印度餐馆，点了羊肉咖喱和烤饼，补了顿能量。",
-    "tip": "重音: FOUND · INDIAN · RESTAURANT"
+    "tip": "重音: FOUND · INDIAN · RESTAURANT",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "05:48 印度餐馆.2",
     "en": "Then we drove around the campus. It was raining lightly outside, and the lights were shining on the red brick buildings and tall towers. It was very beautiful.",
     "zh": "然后在校园里开车转了一圈，外面下着小雨，灯光打在红砖楼和高塔上，挺好看。",
-    "tip": "重音: DROVE · AROUND · CAMPUS"
+    "tip": "重音: DROVE · AROUND · CAMPUS",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "06:00 结尾金句",
     "en": "Run50 State 22, New Hampshire.",
     "zh": "Run50 第 22 州，新罕布什尔。",
-    "tip": "重音: STATE · HAMPSHIRE"
+    "tip": "重音: STATE · HAMPSHIRE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "06:00 结尾金句.2",
     "en": "Autumn colors, cemeteries, Superman, the legendary female runner, and drones on the lake.",
     "zh": "秋色、墓地、超人、传奇女跑者，还有湖面上的无人机。",
-    "tip": "重音: AUTUMN · COLORS · CEMETERIES"
+    "tip": "重音: AUTUMN · COLORS · CEMETERIES",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "06:00 结尾金句.3",
     "en": "Running is something that sometimes you can’t tell what it brings to you.",
     "zh": "跑步这件事，有时候说不清带给你什么。",
-    "tip": "重音: RUNNING · SOMETHING · SOMETIMES"
+    "tip": "重音: RUNNING · SOMETHING · SOMETIMES",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "06:00 结尾金句.4",
     "en": "But you just know, you need it.",
     "zh": "但你就是知道，你需要它。",
-    "tip": "重音: KNOW · NEED"
+    "tip": "重音: KNOW · NEED",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "06:00 结尾金句.5",
     "en": "Next state, see you.",
     "zh": "下一个州，再见。",
-    "tip": "重音: NEXT · STATE"
+    "tip": "重音: NEXT · STATE",
+    "voice": "Ava - friendly female"
   }
 ];
 const listEl = document.getElementById('list');
@@ -604,7 +694,7 @@ const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
 const humanAudio = new Audio();
 const HUMAN_AUDIO_BASE = 'audio/new-hampshire-english-practice';
-const HUMAN_AUDIO_VERSION = '20260630-brian-batch-v1';
+const HUMAN_AUDIO_VERSION = '20260630-multivoice-v2';
 let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }

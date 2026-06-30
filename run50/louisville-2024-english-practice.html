@@ -25,7 +25,7 @@
   <div class="banner">
     <span class="tag">RUN50 #01++ | READ-ALONG</span>
     <h1>#01++ Kentucky | Louisville Marathon</h1>
-    <div class="sub">English script for read-along practice · Natural voice audio · 中英对照逐句跟读</div>
+    <div class="sub">English script for read-along practice · Multi-voice natural audio · 中英对照逐句跟读</div>
     <a class="backbtn" href="run50.html">← 返回口播稿</a>
   </div>
   <div class="controls">
@@ -34,7 +34,7 @@
     <div class="grp"><label>备用发音</label><select id="voice"></select></div>
     <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
   </div>
-  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
   <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/louisville-2024-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
   <div class="stats"><div class="stat"><div class="v">Kentucky</div><div class="t">State</div></div><div class="stat"><div class="v">Louisville</div><div class="t">City</div></div><div class="stat"><div class="v">Black-gold medal</div><div class="t">Record</div></div><div class="stat"><div class="v">PhD finish</div><div class="t">Race note</div></div></div>
   <div class="list" id="list"></div>
@@ -47,367 +47,428 @@ const DATA = [
     "cue": "00:00 问句钩子",
     "en": "A marathon to commemorate my PhD graduation?",
     "zh": "用一个马拉松，纪念我的博士毕业？",
-    "tip": "重音: MARATHON · COMMEMORATE · GRADUATION"
+    "tip": "重音: MARATHON · COMMEMORATE · GRADUATION",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 问句钩子.2",
     "en": "I think this idea is quite right.",
     "zh": "这个想法，我觉得挺对的。",
-    "tip": "重音: THINK · IDEA · QUITE"
+    "tip": "重音: THINK · IDEA · QUITE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 问句钩子.3",
-    "en": "Hey everyone, this is - Asen Man.",
+    "en": "Hey everyone, I'm Asennan.",
     "zh": "大家好啊，这里是——阿森男。",
-    "tip": "重音: EVERYONE · ASEN"
+    "tip": "重音: EVERYONE · ASENNAN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:10 定调",
     "en": "This race, not counting Run50's new state.",
     "zh": "这场比赛，不算 Run50 的新州。",
-    "tip": "重音: RACE · COUNTING · STATE"
+    "tip": "重音: RACE · COUNTING · STATE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:10 定调.2",
     "en": "But for me, it was the end of five years.",
     "zh": "但对我来说，它是五年的句号。",
-    "tip": "重音: FIVE · YEARS"
+    "tip": "重音: FIVE · YEARS",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:20 2020起点",
     "en": "At the end of 2020, the epidemic was in full swing.",
     "zh": "2020 年底，疫情正紧。",
-    "tip": "重音: EPIDEMIC · FULL · SWING"
+    "tip": "重音: EPIDEMIC · FULL · SWING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:20 2020起点.2",
     "en": "I came to the United States for almost a year. I wore a mask and ran my first marathon in the United States in the fall in Louisville.",
     "zh": "我来美国快一年，戴着口罩，在路易斯维尔的秋天，跑完了我在美国的第一场全马。",
-    "tip": "重音: CAME · UNITED · STATES"
+    "tip": "重音: CAME · UNITED · STATES",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:20 2020起点.3",
     "en": "I ran very slowly and was exhausted from the sun.",
     "zh": "跑挺慢，晒够呛。",
-    "tip": "重音: VERY · SLOWLY · EXHAUSTED"
+    "tip": "重音: VERY · SLOWLY · EXHAUSTED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:32 2024回归",
     "en": "Four years later, in the fall of 2024, I stood on the starting line in the same city again.",
     "zh": "四年后，2024 年的秋天，我又站在了同一座城市的起跑线上。",
-    "tip": "重音: FOUR · YEARS · LATER"
+    "tip": "重音: FOUR · YEARS · LATER",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:32 2024回归.2",
     "en": "But this time it's different.",
     "zh": "但这次不一样了。",
-    "tip": "重音: TIME · IT'S · DIFFERENT"
+    "tip": "重音: TIME · IT'S · DIFFERENT",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:32 2024回归.3",
     "en": "I have more hair, my steps are lighter, and my identity is different - my doctoral thesis defense has been completed.",
     "zh": "头发更多了，脚步更轻了，身份也不一样了——博士论文答辩，已经完成。",
-    "tip": "重音: MORE · HAIR · STEPS"
+    "tip": "重音: MORE · HAIR · STEPS",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:32 2024回归.4",
     "en": "This game is the final game of Dr. ZZ Academic Marathon.",
     "zh": "这场比赛，是 Dr. ZZ 学术马拉松的收官战。",
-    "tip": "重音: GAME · FINAL · ACADEMIC"
+    "tip": "重音: GAME · FINAL · ACADEMIC",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:48 赛道描述",
     "en": "The track is at Floyds Fork Park on the east side of the city.",
     "zh": "赛道在城市东边的 Floyds Fork 公园。",
-    "tip": "重音: TRACK · FLOYDS · FORK"
+    "tip": "重音: TRACK · FLOYDS · FORK",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "00:48 赛道描述.2",
     "en": "There is no hustle and bustle of the big city, just winding asphalt paths, woods and small bridges.",
     "zh": "没有大都市的喧嚣，只有蜿蜒的柏油小径、树林和小桥。",
-    "tip": "重音: HUSTLE · BUSTLE · CITY"
+    "tip": "重音: HUSTLE · BUSTLE · CITY",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "00:48 赛道描述.3",
     "en": "Autumn in Lucheng has turned yellow, and the leaves creak when stepped on.",
     "zh": "路城的秋天已经变黄了，树叶踩上去咯吱作响。",
-    "tip": "重音: AUTUMN · LUCHENG · TURNED"
+    "tip": "重音: AUTUMN · LUCHENG · TURNED",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:00 铁桥纪念",
     "en": "For three miles, the track passed under an iron bridge. Under the bridge were a girl's photo and flowers, a memorial to the community.",
     "zh": "三英里，赛道从一座铁桥下穿过，桥下放着一个女生的照片和花，社区里的纪念。",
-    "tip": "重音: THREE · MILES · TRACK"
+    "tip": "重音: THREE · MILES · TRACK",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:00 铁桥纪念.2",
     "en": "I didn't stop, but I took another look.",
     "zh": "我没停，但多看了两眼。",
-    "tip": "重音: DIDN'T · STOP · TOOK"
+    "tip": "重音: DIDN'T · STOP · TOOK",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:10 芦苇荡",
     "en": "Five miles, a large reed field, the sun shines from the side, and the shadow is stretched very long on the ground.",
     "zh": "五英里，大片芦苇荡，阳光从侧面照过来，影子在地上被拉得很长。",
-    "tip": "重音: FIVE · MILES · LARGE"
+    "tip": "重音: FIVE · MILES · LARGE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:10 芦苇荡.2",
     "en": "It feels like I'm running with myself.",
     "zh": "感觉像在和自己一起跑。",
-    "tip": "重音: FEELS · LIKE · RUNNING"
+    "tip": "重音: FEELS · LIKE · RUNNING",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:22 半程顺利",
     "en": "Before the halfway point, the run was going pretty smoothly.",
     "zh": "半程之前，跑得还算顺。",
-    "tip": "重音: BEFORE · HALFWAY · POINT"
+    "tip": "重音: BEFORE · HALFWAY · POINT",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:22 半程顺利.2",
     "en": "13 miles, less than two hours.",
     "zh": "13 英里，不到两个小时。",
-    "tip": "重音: MILES · LESS · HOURS"
+    "tip": "重音: MILES · LESS · HOURS",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:22 半程顺利.3",
     "en": "For me, who hasn’t been training well recently and whose belly is still growing, this result is pretty good.",
     "zh": "对最近训练不咋样、肚子还见长的我来说，这成绩已经可以交差了。",
-    "tip": "重音: HASN · BEEN · TRAINING"
+    "tip": "重音: HASN · BEEN · TRAINING",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:32 撞墙了",
     "en": "Halfway through, the scenery started to repeat itself.",
     "zh": "过了半程，风景开始重复。",
-    "tip": "重音: HALFWAY · THROUGH · SCENERY"
+    "tip": "重音: HALFWAY · THROUGH · SCENERY",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:32 撞墙了.2",
     "en": "The same woods, the same river banks, the same meadows.",
     "zh": "同样的树林，同样的河岸，同样的草地。",
-    "tip": "重音: SAME · WOODS · RIVER"
+    "tip": "重音: SAME · WOODS · RIVER",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:32 撞墙了.3",
     "en": "Mile 16 and my legs felt like lead.",
     "zh": "16 英里，腿像灌了铅。",
-    "tip": "重音: MILE · LEGS · FELT"
+    "tip": "重音: MILE · LEGS · FELT",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "01:42 博士类比",
     "en": "It feels like halfway through a Ph.D.—funding breaks, the simulation crashes, and the boss throws in a project at any time, asking you to put down all the overtime work and write a notebook.",
     "zh": "这感觉，就像博士读到一半——经费断裂，仿真跑崩，老板随时丢来个项目，要你放下所有加班写本子。",
-    "tip": "重音: FEELS · LIKE · HALFWAY"
+    "tip": "重音: FEELS · LIKE · HALFWAY",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "01:42 博士类比.2",
     "en": "It's not nutritious. I want to complain, but I can only do it in silence. I have to pretend to eat the boss's fragrant pancake, which is endless aftertaste.",
     "zh": "没营养，想吐槽，却只能闷头干，还得假装吃了老板香喷喷的大饼，回味无穷。",
-    "tip": "重音: IT'S · NUTRITIOUS · WANT"
+    "tip": "重音: IT'S · NUTRITIOUS · WANT",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "01:58 Pacer偶遇",
     "en": "When I was confused, a familiar face suddenly appeared on the track - Gleen, holding a five-hour Pacer sign and happily leading the team forward.",
     "zh": "正迷糊的时候，赛道上突然蹦出个熟人——Gleen，举着五小时的 Pacer 牌子，乐呵呵往前带队。",
-    "tip": "重音: WHEN · CONFUSED · FAMILIAR"
+    "tip": "重音: WHEN · CONFUSED · FAMILIAR",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "01:58 Pacer偶遇.2",
     "en": "After saying hello, my mood suddenly returned to normal.",
     "zh": "打了个招呼，心态一下子回笼了。",
-    "tip": "重音: AFTER · SAYING · HELLO"
+    "tip": "重音: AFTER · SAYING · HELLO",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "01:58 Pacer偶遇.3",
     "en": "It's like meeting a colleague during the Ph.D. program and saying, \"You haven't graduated yet.\" It instantly makes me feel balanced.",
     "zh": "就像博士中途偶遇同行，说\"你也还没毕业啊\"，瞬间心里平衡了。",
-    "tip": "重音: IT'S · LIKE · MEETING"
+    "tip": "重音: IT'S · LIKE · MEETING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:12 20英里复活",
     "en": "At mile 20, my body suddenly switches modes, my rhythm settles, and my mind clears.",
     "zh": "20 英里，身体突然切换了模式，节奏稳住，脑子清醒。",
-    "tip": "重音: MILE · BODY · SUDDENLY"
+    "tip": "重音: MILE · BODY · SUDDENLY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:12 20英里复活.2",
     "en": "The red berries on the roadside are in full bloom, like little red flowers given to every runner.",
     "zh": "路边红彤彤的浆果正盛，像是给每个跑者送的小红花。",
-    "tip": "重音: BERRIES · ROADSIDE · FULL"
+    "tip": "重音: BERRIES · ROADSIDE · FULL",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:25 Strava名言",
     "en": "Someone on the roadside held up a sign and shouted: \"Pain is temporary, Strava is forever.\"",
     "zh": "路边有人举牌喊：\"Pain is temporary, Strava is forever。",
-    "tip": "重音: SOMEONE · ROADSIDE · HELD"
+    "tip": "重音: SOMEONE · ROADSIDE · HELD",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:25 Strava名言.2",
     "en": "\"The sun is a little bit hot, but I am physically and mentally healthy and my steps are not messy.",
     "zh": "\"太阳有点晒，但我身心健康，脚步也没乱。",
-    "tip": "重音: LITTLE · PHYSICALLY · MENTALLY"
+    "tip": "重音: LITTLE · PHYSICALLY · MENTALLY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:35 冲线",
     "en": "The mile 26 sign finally appeared.",
     "zh": "26 英里的牌子，终于出现了。",
-    "tip": "重音: MILE · SIGN · FINALLY"
+    "tip": "重音: MILE · SIGN · FINALLY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:35 冲线.2",
     "en": "The final arch is not grand and there are not many people.",
     "zh": "终点拱门不算宏大，人也不多。",
-    "tip": "重音: FINAL · ARCH · GRAND"
+    "tip": "重音: FINAL · ARCH · GRAND",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:35 冲线.3",
     "en": "But after running that moment, I still applauded myself.",
     "zh": "但跑过那一刻，我还是给自己鼓了个掌。",
-    "tip": "重音: AFTER · RUNNING · MOMENT"
+    "tip": "重音: AFTER · RUNNING · MOMENT",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "02:35 冲线.4",
     "en": "The medal is gold on a black background, engraved with 26.2 and Louisville Marathon.",
     "zh": "奖牌黑底金字，刻着 26.2 和 Louisville Marathon。",
-    "tip": "重音: MEDAL · GOLD · BLACK"
+    "tip": "重音: MEDAL · GOLD · BLACK",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "02:48 五年总结",
     "en": "Five years, starts from here and ends from here.",
     "zh": "五年，从这里开始，也从这里结束。",
-    "tip": "重音: FIVE · YEARS · STARTS"
+    "tip": "重音: FIVE · YEARS · STARTS",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "02:48 五年总结.2",
     "en": "I ran 30 full marathons in 22 states in the United States, published 12 papers, helped my boss write projects, and won $918,734. I have developed in all aspects, morally, intellectually, physically, artistically, and physically.",
     "zh": "在美国跑了 30 场全马，22 个州，发了 12 篇 paper，帮老板写项目，中了 $918,734，德智体美劳，全面发展。",
-    "tip": "重音: FULL · MARATHONS · STATES"
+    "tip": "重音: FULL · MARATHONS · STATES",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:00 师生情",
     "en": "I am worthy of my boss.",
     "zh": "我对得起我老板。",
-    "tip": "重音: WORTHY · BOSS"
+    "tip": "重音: WORTHY · BOSS",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:00 师生情.2",
     "en": "He was not at a loss either, he got tenure and successfully changed jobs.",
     "zh": "他也不亏，拿到了终身教职，顺利跳槽。",
-    "tip": "重音: LOSS · EITHER · TENURE"
+    "tip": "重音: LOSS · EITHER · TENURE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:00 师生情.3",
     "en": "The pressure you should have should be left in the past; the gratitude you should have should be kept in your heart.",
     "zh": "该有的压力，留在过去；该有的感谢，记在心里。",
-    "tip": "重音: PRESSURE · SHOULD · LEFT"
+    "tip": "重音: PRESSURE · SHOULD · LEFT",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:00 师生情.4",
     "en": "That's it, pretty good.",
     "zh": "就这样，挺好。",
-    "tip": "重音: THAT'S · PRETTY · GOOD"
+    "tip": "重音: THAT'S · PRETTY · GOOD",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:12 父母抵美",
     "en": "In December, my parents came to the United States for the first time.",
     "zh": "十二月，爸妈第一次来了美国。",
-    "tip": "重音: DECEMBER · PARENTS · CAME"
+    "tip": "重音: DECEMBER · PARENTS · CAME",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:12 父母抵美.2",
     "en": "I haven't seen them for five years, but when I first saw them, I felt that nothing had changed.",
     "zh": "五年没见，第一眼看到他们，感觉居然没啥变化。",
-    "tip": "重音: HAVEN'T · SEEN · THEM"
+    "tip": "重音: HAVEN'T · SEEN · THEM",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:12 父母抵美.3",
     "en": "It's good, no need to sensationalize.",
     "zh": "挺好，不用煽情。",
-    "tip": "重音: IT'S · GOOD · NEED"
+    "tip": "重音: IT'S · GOOD · NEED",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:22 毕业典礼",
     "en": "On the day of the graduation ceremony, my tutor was not there, so Teacher Yang plucked the ears for me.",
     "zh": "毕业典礼那天，导师不在，Yang 老师替我拨穗。",
-    "tip": "重音: GRADUATION · CEREMONY · TUTOR"
+    "tip": "重音: GRADUATION · CEREMONY · TUTOR",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:22 毕业典礼.2",
     "en": "In the audience, my parents are there, Dr. Wang's wife is there, Dad Wang is holding a camera, and Mom Wang is blessing next to me.",
     "zh": "台下，爸妈在，Dr. 老婆在，王爸爸架着相机，王妈妈在旁边祝福。",
-    "tip": "重音: AUDIENCE · PARENTS · WANG'S"
+    "tip": "重音: AUDIENCE · PARENTS · WANG'S",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:22 毕业典礼.3",
     "en": "At the school ceremony in the evening, at the arena named after KFC, some graduates sang and some danced. My dad sneaked up to the stage and took a photo of me.",
     "zh": "晚上全校大典，在肯德基冠名的球馆，毕业生们有的唱歌，有的跳舞，我爸偷偷跑到台前，给我拍了一张。",
-    "tip": "重音: SCHOOL · CEREMONY · EVENING"
+    "tip": "重音: SCHOOL · CEREMONY · EVENING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:38 骄傲",
     "en": "I'm very proud of this whole day.",
     "zh": "这一整天，我很骄傲。",
-    "tip": "重音: VERY · PROUD · WHOLE"
+    "tip": "重音: VERY · PROUD · WHOLE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:38 骄傲.2",
     "en": "My parents must be too.",
     "zh": "爸妈一定也是。",
-    "tip": "重音: PARENTS · MUST"
+    "tip": "重音: PARENTS · MUST",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:45 圣诞月",
     "en": "That December, we saw waterfalls and stayed in a cabin in the mountains. Siqi prepared uniform pajamas in advance, and the family took pictures in plaid suits.",
     "zh": "那个十二月，我们看了瀑布，住了山里的小木屋，Siqi 提前备好了统一的睡衣，一家人穿着格子套装拍照。",
-    "tip": "重音: DECEMBER · WATERFALLS · STAYED"
+    "tip": "重音: DECEMBER · WATERFALLS · STAYED",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:55 无人机插曲",
     "en": "On a whim, I launched the drone and flew up to the roof.",
     "zh": "我一时兴起放飞无人机，飞上了屋顶。",
-    "tip": "重音: WHIM · LAUNCHED · DRONE"
+    "tip": "重音: WHIM · LAUNCHED · DRONE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:55 无人机插曲.2",
     "en": "Fortunately, my dad and Siqi cooperated and successfully fished it out.",
     "zh": "幸好我爸和 Siqi 三个人配合，成功捞下来了。",
-    "tip": "重音: FORTUNATELY · SIQI · COOPERATED"
+    "tip": "重音: FORTUNATELY · SIQI · COOPERATED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:55 无人机插曲.3",
     "en": "The team fighting spirit of the doctor's family is vividly demonstrated.",
     "zh": "博士家庭的团队作战精神，展现得淋漓尽致。",
-    "tip": "重音: TEAM · FIGHTING · SPIRIT"
+    "tip": "重音: TEAM · FIGHTING · SPIRIT",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "04:08 结尾升华",
     "en": "Five years of a PhD is like an ultra-marathon.",
     "zh": "博士五年，像一场超长马拉松。",
-    "tip": "重音: FIVE · YEARS · LIKE"
+    "tip": "重音: FIVE · YEARS · LIKE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "04:08 结尾升华.2",
     "en": "There are the fresh ten miles, the eighteen miles where we hit the wall, the twenty miles where we endured, and the black gold medal when we crossed the finish line.",
     "zh": "有新鲜的十英里，有撞墙的十八英里，有硬撑的二十英里，也有冲线时那枚黑金奖牌。",
-    "tip": "重音: FRESH · MILES · EIGHTEEN"
+    "tip": "重音: FRESH · MILES · EIGHTEEN",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "04:20 小红花",
     "en": "The medal is a small red flower, the academic cap is a small red flower, and the family reunion is also a small red flower.",
     "zh": "奖牌是一朵小红花，学位帽是一朵小红花，家人团聚，也是一朵小红花。",
-    "tip": "重音: MEDAL · SMALL · FLOWER"
+    "tip": "重音: MEDAL · SMALL · FLOWER",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "04:20 小红花.2",
     "en": "Give me a little red flower.",
     "zh": "送我一朵小红花。",
-    "tip": "重音: GIVE · LITTLE · FLOWER"
+    "tip": "重音: GIVE · LITTLE · FLOWER",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "04:20 小红花.3",
     "en": "See you next state.",
     "zh": "下一个州，见。",
-    "tip": "重音: NEXT · STATE"
+    "tip": "重音: NEXT · STATE",
+    "voice": "Ava - friendly female"
   }
 ];
 const listEl = document.getElementById('list');
@@ -430,7 +491,7 @@ const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
 const humanAudio = new Audio();
 const HUMAN_AUDIO_BASE = 'audio/louisville-2024-english-practice';
-const HUMAN_AUDIO_VERSION = '20260630-brian-batch-v1';
+const HUMAN_AUDIO_VERSION = '20260630-multivoice-v2';
 let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }

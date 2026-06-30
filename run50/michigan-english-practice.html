@@ -25,7 +25,7 @@
   <div class="banner">
     <span class="tag">RUN50 #21 | READ-ALONG</span>
     <h1>#21 Michigan | Grand Rapids Marathon</h1>
-    <div class="sub">English script for read-along practice · Natural voice audio · 中英对照逐句跟读</div>
+    <div class="sub">English script for read-along practice · Multi-voice natural audio · 中英对照逐句跟读</div>
     <a class="backbtn" href="run50.html">← 返回口播稿</a>
   </div>
   <div class="controls">
@@ -34,7 +34,7 @@
     <div class="grp"><label>备用发音</label><select id="voice"></select></div>
     <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
   </div>
-  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
   <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/michigan-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
   <div class="stats"><div class="stat"><div class="v">Michigan</div><div class="t">State</div></div><div class="stat"><div class="v">Grand Rapids</div><div class="t">City</div></div><div class="stat"><div class="v">2024.08.25</div><div class="t">Race date</div></div><div class="stat"><div class="v">Hot comeback</div><div class="t">Theme</div></div></div>
   <div class="list" id="list"></div>
@@ -47,217 +47,253 @@ const DATA = [
     "cue": "00:00 冠军悬疑开场",
     "en": "If you paid attention to this year's NCAA March Madness finals, you must remember the enthusiasm when the University of Michigan won the championship trophy.",
     "zh": "如果你关注今年NCAA疯三月决赛，一定记得密歇根大学捧起冠军奖杯时的那种狂热。",
-    "tip": "重音: PAID · ATTENTION · YEAR'S"
+    "tip": "重音: PAID · ATTENTION · YEAR'S",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 冠军悬疑开场.2",
     "en": "Won the championship again 15 years later - the ratings of college basketball surpassed the NBA that day.",
     "zh": "15年后再次夺冠——大学篮球的收视率，那天硬生生压过了NBA。",
-    "tip": "重音: CHAMPIONSHIP · AGAIN · YEARS"
+    "tip": "重音: CHAMPIONSHIP · AGAIN · YEARS",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:15 州情科普①",
     "en": "Where is Michigan?",
     "zh": "密歇根在哪？",
-    "tip": "重音: WHERE · MICHIGAN"
+    "tip": "重音: WHERE · MICHIGAN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:15 州情科普①.2",
     "en": "In the north of the United States, next to the Great Lakes, the shape on the map really looks like a palm.",
     "zh": "美国北边，五大湖旁边，地图上看形状真的像一只手掌。",
-    "tip": "重音: NORTH · UNITED · STATES"
+    "tip": "重音: NORTH · UNITED · STATES",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:15 州情科普①.3",
     "en": "This state is quite special. It is divided into two peninsulas, the upper and lower peninsulas, connected in the middle by the Mackinac Bridge.",
     "zh": "这州比较特别，分上下两块半岛，中间靠一座麦基诺大桥（Mackinac Bridge）连着。",
-    "tip": "重音: STATE · QUITE · SPECIAL"
+    "tip": "重音: STATE · QUITE · SPECIAL",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:25 底特律",
     "en": "Speaking of Michigan, one cannot avoid Detroit, the city of automobiles, where Ford and General Motors both started.",
     "zh": "说密歇根绕不开底特律——汽车之城，福特、通用都在这起家。",
-    "tip": "重音: SPEAKING · MICHIGAN · CANNOT"
+    "tip": "重音: SPEAKING · MICHIGAN · CANNOT",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:25 底特律.2",
     "en": "Then the manufacturing industry declined and it became the Rust Belt.",
     "zh": "后来制造业衰退，变成了铁锈带。",
-    "tip": "重音: MANUFACTURING · INDUSTRY · DECLINED"
+    "tip": "重音: MANUFACTURING · INDUSTRY · DECLINED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:25 底特律.3",
     "en": "But it was during this time that Motown was born, and black pop music became popular all over the United States.",
     "zh": "但也就是在这段时间，整出了摩城音乐（Motown），黑人流行音乐从这里火遍全美。",
-    "tip": "重音: DURING · TIME · MOTOWN"
+    "tip": "重音: DURING · TIME · MOTOWN",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:36 安娜堡",
     "en": "There is also Ann Arbor, where the University of Michigan is, the top public university in the United States, and the home stadium of the winning team at the beginning.",
     "zh": "还有安娜堡，密歇根大学在那，全美顶尖公立大学，就是开头那支夺冠的球队的主场。",
-    "tip": "重音: ALSO · ARBOR · WHERE"
+    "tip": "重音: ALSO · ARBOR · WHERE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:44 目的地",
     "en": "This time we went to Grand Rapids.",
     "zh": "我们这次去的是大急流城。",
-    "tip": "重音: TIME · WENT · GRAND"
+    "tip": "重音: TIME · WENT · GRAND",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:44 目的地.2",
     "en": "It used to rely on wood and was called the City of Furniture; now craft beer is everywhere and is known as the \"Beer Capital of the United States.\"",
     "zh": "以前靠木材起家，叫家具之城；现在精酿啤酒到处都是，被称为\"美国啤酒之都\"。",
-    "tip": "重音: USED · RELY · WOOD"
+    "tip": "重音: USED · RELY · WOOD",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:44 目的地.3",
     "en": "It sounds like a perfect drink to drink after a marathon.",
     "zh": "听着就很适合跑完马拉松喝一杯。",
-    "tip": "重音: SOUNDS · LIKE · PERFECT"
+    "tip": "重音: SOUNDS · LIKE · PERFECT",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "01:05 个人入场",
     "en": "Hey everyone, I am Asen Nan.",
     "zh": "大家好，我是阿森男。",
-    "tip": "重音: EVERYONE · ASEN"
+    "tip": "重音: EVERYONE · ASEN",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:05 个人入场.2",
     "en": "This is our stop 21, Michigan.",
     "zh": "这就是我们的第 21 站，密歇根。",
-    "tip": "重音: STOP · MICHIGAN"
+    "tip": "重音: STOP · MICHIGAN",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:10 出发动机",
     "en": "Pursuing the goal of \"boating, blowing the lake breeze, and drinking craft beer\", Siqi and I drove hundreds of kilometers through Ohio and came straight here.",
     "zh": "奔着\"划船、吹湖风、喝精酿\"这个目标，我和 Siqi 开了几百公里穿过俄亥俄，直接杀过来了。",
-    "tip": "重音: PURSUING · GOAL · BOATING"
+    "tip": "重音: PURSUING · GOAL · BOATING",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:18 反差铺垫",
     "en": "I thought I could cool off a bit, but I was overthinking it.",
     "zh": "以为能凉快一下，结果完全想多了。",
-    "tip": "重音: THOUGHT · COOL · OVERTHINKING"
+    "tip": "重音: THOUGHT · COOL · OVERTHINKING",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:25 悬念突转",
     "en": "If you knew in advance what would happen in the next 48 hours: getting hit by another car as soon as you entered the city, being so poisonous by the sun that you doubt your life, and a weird marathon that goes around the same park six times...",
     "zh": "如果提前知道接下来 48 小时会发生什么：刚进城就被别车蹭了、大太阳毒到怀疑人生，还有一场在同一个公园绕六圈的奇葩马拉松……",
-    "tip": "重音: KNEW · ADVANCE · WHAT"
+    "tip": "重音: KNEW · ADVANCE · WHAT",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:36 后置预警",
     "en": "I imagine many people turned around and went back to Kentucky on the spot.",
     "zh": "我估计很多人当场就掉头回肯塔基了。",
-    "tip": "重音: IMAGINE · MANY · PEOPLE"
+    "tip": "重音: IMAGINE · MANY · PEOPLE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:45 事故开场",
     "en": "This trip got off to a bad start.",
     "zh": "这趟开局很烂。",
-    "tip": "重音: TRIP · START"
+    "tip": "重音: TRIP · START",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:48 别车惊魂",
     "en": "Just entering the city, a car came directly towards me at the highway exit. I dodged for a moment, and \"bang\", I bumped into a pickup truck next to me.",
     "zh": "刚进市区，高速出口一辆车直接硬别过来，我躲了一下，\"砰\"，蹭上旁边一辆皮卡。",
-    "tip": "重音: ENTERING · CITY · CAME"
+    "tip": "重音: ENTERING · CITY · CAME",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:48 别车惊魂.2",
     "en": "The rearview mirror was broken, the car door was decorated, and the other party ran away.",
     "zh": "后视镜废了，车门挂彩，对方直接跑路。",
-    "tip": "重音: REARVIEW · MIRROR · BROKEN"
+    "tip": "重音: REARVIEW · MIRROR · BROKEN",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:58 经验总结",
     "en": "What I learned: If you encounter this kind of situation in the future, honk the horn and don’t move.",
     "zh": "学到了：以后遇到这种情况，按死喇叭，别乱动。",
-    "tip": "重音: WHAT · LEARNED · ENCOUNTER"
+    "tip": "重音: WHAT · LEARNED · ENCOUNTER",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:04 情绪疏解",
     "en": "Full of energy, I went to Blue Bridge for a walk and ran in the park to warm up.",
     "zh": "带着一肚子火，去 蓝桥 走了走，顺便跑了个 公园跑，当热身了。",
-    "tip": "重音: FULL · ENERGY · WENT"
+    "tip": "重音: FULL · ENERGY · WENT",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:15 比赛日入场",
     "en": "It was still dark on game day and the lights were still on in Millennium Park, so we set out.",
     "zh": "比赛日天还没亮，千禧公园灯还开着，我们就出发了。",
-    "tip": "重音: STILL · DARK · GAME"
+    "tip": "重音: STILL · DARK · GAME",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:15 比赛日入场.2",
     "en": "At mile 7, the sun came up and the river was covered in orange and red, which was quite beautiful.",
     "zh": "跑到 7 英里，太阳升起来了，河面上一片橙红，挺好看的。",
-    "tip": "重音: MILE · CAME · RIVER"
+    "tip": "重音: MILE · CAME · RIVER",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:22 烤炉登场",
     "en": "But as soon as the sun comes out, it's over and it turns into an oven.",
     "zh": "但太阳一出来就完了，直接变烤炉。",
-    "tip": "重音: SOON · COMES · IT'S"
+    "tip": "重音: SOON · COMES · IT'S",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:28 六道轮回①",
     "en": "Walking around the park six times, I thought of the six reincarnations: running into the shade of a tree is a way of heaven and refreshing; seeing the audience applauding is a way of humanity, and it feels like there are still people who care about you;",
     "zh": "公园里绕六圈，我就想到了六道轮回：跑进树荫是天道，爽；看到观众鼓掌是人道，感觉还有人关心你；",
-    "tip": "重音: WALKING · AROUND · PARK"
+    "tip": "重音: WALKING · AROUND · PARK",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:38 六道轮回②",
     "en": "Running under the poisonous sun is the hell realm; drinking that energy gel at the supply station is the hungry ghost realm - it really saves lives.",
     "zh": "顶着毒日头跑就是地狱道；到补给站喝那口能量胶，那就是饿鬼道——真的救命。",
-    "tip": "重音: RUNNING · UNDER · POISONOUS"
+    "tip": "重音: RUNNING · UNDER · POISONOUS",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:50 三昧真火",
     "en": "This is the true fire of Samadhi in Taishang Laojun’s alchemy furnace!",
     "zh": "这就是太上老君炼丹炉里的三昧真火！",
-    "tip": "重音: TRUE · FIRE · SAMADHI"
+    "tip": "重音: TRUE · FIRE · SAMADHI",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:50 三昧真火.2",
     "en": "The top of your head is roasted, the soles of your feet are hot, and it won't be complete until you get a dazzling look after six rounds.",
     "zh": "头顶烤、脚底烫，六圈下来不把你整出个火眼金睛不算完。",
-    "tip": "重音: HEAD · ROASTED · SOLES"
+    "tip": "重音: HEAD · ROASTED · SOLES",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:00 成绩揭晓",
     "en": "Final score: 4 hours, 44 minutes.",
     "zh": "最终成绩：4 小时 44 分。",
-    "tip": "重音: FINAL · SCORE · HOURS"
+    "tip": "重音: FINAL · SCORE · HOURS",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:05 444 翻转",
     "en": "When a 444 came out, I laughed instead - OK, just treat everything as you want and live towards the \"four\"!",
     "zh": "跑出个 444，我反而笑了——行，就当事事如意，向\"四\"而生吧！",
-    "tip": "重音: WHEN · CAME · LAUGHED"
+    "tip": "重音: WHEN · CAME · LAUGHED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:12 回程收尾",
     "en": "On the way back, the rearview mirror was wrapped with white tape, but I felt fine.",
     "zh": "回去的路上，后视镜用白胶布缠着，但心里没事。",
-    "tip": "重音: BACK · REARVIEW · MIRROR"
+    "tip": "重音: BACK · REARVIEW · MIRROR",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:12 回程收尾.2",
     "en": "I drove the car, basked in the sun, and ran around with unlucky results, but I still managed to drive home without letting go of the steering wheel.",
     "zh": "蹭了车、晒了太阳、跑了个看着不吉利的成绩，但方向盘没撒手，就能开回家。",
-    "tip": "重音: DROVE · BASKED · AROUND"
+    "tip": "重音: DROVE · BASKED · AROUND",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:22 结尾金句",
     "en": "Luck is conserved, and if you are roasted by the fire, you will have good fortune in the future.",
     "zh": "运气守恒，烈火烤过，必有后福。",
-    "tip": "重音: LUCK · CONSERVED · ROASTED"
+    "tip": "重音: LUCK · CONSERVED · ROASTED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:28 结尾定格",
     "en": "Run50 State 21 Michigan, I’m an Ashen guy, see you in the next state!",
     "zh": "Run50 第 21 州密歇根，我是阿森男，下个州见！",
-    "tip": "重音: STATE · MICHIGAN · ASHEN"
+    "tip": "重音: STATE · MICHIGAN · ASHEN",
+    "voice": "Andrew - warm male"
   }
 ];
 const listEl = document.getElementById('list');
@@ -280,7 +316,7 @@ const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
 const humanAudio = new Audio();
 const HUMAN_AUDIO_BASE = 'audio/michigan-english-practice';
-const HUMAN_AUDIO_VERSION = '20260630-brian-batch-v1';
+const HUMAN_AUDIO_VERSION = '20260630-multivoice-v2';
 let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }

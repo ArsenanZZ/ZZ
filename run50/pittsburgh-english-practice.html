@@ -25,7 +25,7 @@
   <div class="banner">
     <span class="tag">RUN50 #19 | READ-ALONG</span>
     <h1>#19 Pennsylvania | Pittsburgh Marathon</h1>
-    <div class="sub">English script for read-along practice · Natural voice audio · 中英对照逐句跟读</div>
+    <div class="sub">English script for read-along practice · Multi-voice natural audio · 中英对照逐句跟读</div>
     <a class="backbtn" href="run50.html">← 返回口播稿</a>
   </div>
   <div class="controls">
@@ -34,7 +34,7 @@
     <div class="grp"><label>备用发音</label><select id="voice"></select></div>
     <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
   </div>
-  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
   <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/pittsburgh-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
   <div class="stats"><div class="stat"><div class="v">Pennsylvania</div><div class="t">State</div></div><div class="stat"><div class="v">Pittsburgh</div><div class="t">City</div></div><div class="stat"><div class="v">2024.05.04</div><div class="t">Race date</div></div><div class="stat"><div class="v">Bridges</div><div class="t">Theme</div></div></div>
   <div class="list" id="list"></div>
@@ -47,295 +47,344 @@ const DATA = [
     "cue": "00:00 政治悬疑",
     "en": "Which is the most swing state in the United States?",
     "zh": "美国最摇摆的州，是哪一个呢？",
-    "tip": "重音: WHICH · MOST · SWING"
+    "tip": "重音: WHICH · MOST · SWING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 政治悬疑.2",
     "en": "It's the state that can sway the president.",
     "zh": "它就是那个能左右总统归属的州。",
-    "tip": "重音: IT'S · STATE · SWAY"
+    "tip": "重音: IT'S · STATE · SWAY",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 政治悬疑.3",
     "en": "It was also the state where Trump was shot at a rally in 2024.",
     "zh": "也是那个 2024 年，特朗普在造势现场遭遇枪击的州。",
-    "tip": "重音: ALSO · STATE · WHERE"
+    "tip": "重音: ALSO · STATE · WHERE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:14 历史双重身份",
     "en": "It is both the birthplace of the Declaration of Independence and the eye of the storm in the general election.",
     "zh": "它既是独立宣言诞生地，也是大选的风暴眼。",
-    "tip": "重音: BOTH · BIRTHPLACE · DECLARATION"
+    "tip": "重音: BOTH · BIRTHPLACE · DECLARATION",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:14 历史双重身份.2",
     "en": "It is Pennsylvania.",
     "zh": "它就是——宾夕法尼亚。",
-    "tip": "重音: PENNSYLVANIA"
+    "tip": "重音: PENNSYLVANIA",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:22 个人切入",
     "en": "Hey everyone, this is Asen Man.",
     "zh": "大家好，这里是阿森男。",
-    "tip": "重音: EVERYONE · ASEN"
+    "tip": "重音: EVERYONE · ASEN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:22 个人切入.2",
     "en": "At this stop, we started from Kentucky and ran towards the steel city of Pittsburgh, running a marathon with many bridges and steep slopes.",
     "zh": "这一站，我们从肯塔基出发，奔向钢铁之城匹兹堡，跑了一场桥贼多、坡贼陡的马拉松。",
-    "tip": "重音: STOP · STARTED · KENTUCKY"
+    "tip": "重音: STOP · STARTED · KENTUCKY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:22 个人切入.3",
     "en": "Run50 State 19, Pennsylvania – Not only is the state shaking, but so is the track.",
     "zh": "Run50 第 19 州，宾夕法尼亚——不仅州在摇，赛道也在摇。",
-    "tip": "重音: STATE · PENNSYLVANIA · ONLY"
+    "tip": "重音: STATE · PENNSYLVANIA · ONLY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:38 地理位置",
     "en": "Pennsylvania's location on the U.S. map is crucial: New York to the east, Ohio to the west, Maryland to the south, and the Great Lakes to the north.",
     "zh": "宾夕法尼亚在美国版图上位置很关键：往东是纽约，往西是俄亥俄，往南是马里兰，往北连着五大湖。",
-    "tip": "重音: PENNSYLVANIA'S · LOCATION · CRUCIAL"
+    "tip": "重音: PENNSYLVANIA'S · LOCATION · CRUCIAL",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:38 地理位置.2",
     "en": "It's like a true \"cornerstone\" - the Cornerstone State.",
     "zh": "它像一块真正的\"基石\"——基石州。",
-    "tip": "重音: IT'S · LIKE · TRUE"
+    "tip": "重音: IT'S · LIKE · TRUE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:38 地理位置.3",
     "en": "The Declaration of Independence was signed in Philadelphia, and the Constitution was born here. The history is ridiculously thick.",
     "zh": "美国独立宣言在费城签署，宪法也在这里诞生，历史厚得离谱。",
-    "tip": "重音: DECLARATION · INDEPENDENCE · SIGNED"
+    "tip": "重音: DECLARATION · INDEPENDENCE · SIGNED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:52 摇摆州标签",
     "en": "But in modern times, it is better known as a swing state.",
     "zh": "但现代的它，更出名的身份是摇摆州。",
-    "tip": "重音: MODERN · TIMES · BETTER"
+    "tip": "重音: MODERN · TIMES · BETTER",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:52 摇摆州标签.2",
     "en": "Every election, the national media focuses on it—turning red, turning blue, turning red again.",
     "zh": "每次大选，全国媒体都盯着它——翻红，翻蓝，再翻红。",
-    "tip": "重音: EVERY · ELECTION · NATIONAL"
+    "tip": "重音: EVERY · ELECTION · NATIONAL",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "00:52 摇摆州标签.3",
     "en": "In the summer of 2024, Trump was shot in Butler County, Pennsylvania, and a bullet grazed his ear.",
     "zh": "2024 年夏天，特朗普在宾州巴特勒县遭遇枪击，子弹擦过耳朵。",
-    "tip": "重音: SUMMER · TRUMP · SHOT"
+    "tip": "重音: SUMMER · TRUMP · SHOT",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "00:52 摇摆州标签.4",
     "en": "At that moment, the whole world once again realized that Pennsylvania was not only important, but also sensitive.",
     "zh": "那一刻，全世界都再次意识到——宾夕法尼亚，不仅重要，而且敏感。",
-    "tip": "重音: MOMENT · WHOLE · WORLD"
+    "tip": "重音: MOMENT · WHOLE · WORLD",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:12 匹兹堡简介",
     "en": "However, this time we are not going to Philadelphia, we are going to Pittsburgh.",
     "zh": "不过，我们这次不是去费城，我们去匹兹堡。",
-    "tip": "重音: HOWEVER · TIME · GOING"
+    "tip": "重音: HOWEVER · TIME · GOING",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:12 匹兹堡简介.2",
     "en": "Three rivers intersect and there are more than 400 bridges, so it is nicknamed - Bridge Capital.",
     "zh": "三条河交汇，四百多座桥，外号——桥都。",
-    "tip": "重音: THREE · RIVERS · INTERSECT"
+    "tip": "重音: THREE · RIVERS · INTERSECT",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:22 钢铁转型",
     "en": "Once upon a time, chimneys stood tall and steel roared, a microcosm of American industry.",
     "zh": "曾经烟囱林立，钢铁轰鸣，美国工业的缩影。",
-    "tip": "重音: ONCE · UPON · TIME"
+    "tip": "重音: ONCE · UPON · TIME",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:22 钢铁转型.2",
     "en": "Now steel is out, CMU is here, Pitt is here, robotics, medicine, technology.",
     "zh": "如今钢铁退场，CMU 在这里，Pitt 在这里，机器人、医学、科技。",
-    "tip": "重音: STEEL · HERE · PITT"
+    "tip": "重音: STEEL · HERE · PITT",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:22 钢铁转型.3",
     "en": "A heart of steel, a brain of wisdom, this is Pittsburgh.",
     "zh": "钢铁的心脏，智慧的大脑，这就是匹兹堡。",
-    "tip": "重音: HEART · STEEL · BRAIN"
+    "tip": "重音: HEART · STEEL · BRAIN",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:35 凌晨出发",
     "en": "We set out at 4:30 on Saturday morning, while it was still dark, pulling out of the night and driving slowly until dawn.",
     "zh": "我们周六早晨 4 点半出发，天还黑着，从夜色里驶出，慢慢开到天亮。",
-    "tip": "重音: SATURDAY · MORNING · WHILE"
+    "tip": "重音: SATURDAY · MORNING · WHILE",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:35 凌晨出发.2",
     "en": "The sky is gray, the road has just rained, and there are large golden rapeseed flowers on the roadside.",
     "zh": "灰蒙蒙的天空，刚下过雨的公路，路边大片金黄的油菜花。",
-    "tip": "重音: GRAY · ROAD · RAINED"
+    "tip": "重音: GRAY · ROAD · RAINED",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:45 十年记忆",
     "en": "At that moment, I suddenly thought of Yuan'an, Hubei - where I ran my first half-marathon ten years ago.",
     "zh": "那一瞬间，我突然想起湖北远安——十年前，我在那里跑了人生第一场半马。",
-    "tip": "重音: MOMENT · SUDDENLY · THOUGHT"
+    "tip": "重音: MOMENT · SUDDENLY · THOUGHT",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:45 十年记忆.2",
     "en": "Ten years later, I was on my way to the 19th state.",
     "zh": "十年后，我在去第 19 州的路上。",
-    "tip": "重音: YEARS · LATER · STATE"
+    "tip": "重音: YEARS · LATER · STATE",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "01:45 十年记忆.3",
     "en": "Time is like a butcher's knife.",
     "zh": "时间，像把杀猪刀。",
-    "tip": "重音: TIME · LIKE · BUTCHER'S"
+    "tip": "重音: TIME · LIKE · BUTCHER'S",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "01:55 抵达安顿",
     "en": "Arrive at the Airbnb. On the hillside, you can see the red brick hut looking up and the confluence of three rivers looking down.",
     "zh": "抵达 Airbnb，在山坡上，抬头是红砖小屋，低头是三河交汇。",
-    "tip": "重音: ARRIVE · AIRBNB · HILLSIDE"
+    "tip": "重音: ARRIVE · AIRBNB · HILLSIDE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "01:55 抵达安顿.2",
     "en": "After eating at the Bangladesh buffet, we went to the expo to pick up equipment. The hall was full of runners and it was very lively.",
     "zh": "吃了孟加拉自助，再去 博览会 领装备，大厅里全是跑者，很热闹。",
-    "tip": "重音: AFTER · EATING · BANGLADESH"
+    "tip": "重音: AFTER · EATING · BANGLADESH",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:10 比赛日入场",
     "en": "Early the next morning, the sky was already white when we arrived at the starting point of the city center.",
     "zh": "第二天清晨，到 市中心 起点时天空已经泛白。",
-    "tip": "重音: EARLY · NEXT · MORNING"
+    "tip": "重音: EARLY · NEXT · MORNING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:10 比赛日入场.2",
     "en": "The black and yellow color scheme, my outfit for the day, just blended in with the crowd.",
     "zh": "黑黄配色，我当天的装备，刚好融进人群。",
-    "tip": "重音: BLACK · YELLOW · COLOR"
+    "tip": "重音: BLACK · YELLOW · COLOR",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:10 比赛日入场.3",
     "en": "The starting point was bustling with people, the rain had just washed the streets, and the tall buildings looked like polished iron.",
     "zh": "起点人声鼎沸，雨水刚洗过街道，高楼像被擦亮的铁器。",
-    "tip": "重音: STARTING · POINT · BUSTLING"
+    "tip": "重音: STARTING · POINT · BUSTLING",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:22 艺术仓库区",
     "en": "In the first two miles, the old warehouse has been turned into a cafe, and the walls are covered with graffiti - steel shell, artistic heart.",
     "zh": "前两英里，旧仓库变成了咖啡馆，墙上满是涂鸦——钢铁外壳，艺术心脏。",
-    "tip": "重音: FIRST · MILES · WAREHOUSE"
+    "tip": "重音: FIRST · MILES · WAREHOUSE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:32 黄桥系列",
     "en": "Three miles away, the first yellow bridge - the 16th Street Yellow Bridge, the stone tower looks like a gatekeeper, and the wind blows up from the river.",
     "zh": "三英里，第一座黄桥——16街黄桥，石塔像守门人，风从河面吹上来。",
-    "tip": "重音: THREE · MILES · AWAY"
+    "tip": "重音: THREE · MILES · AWAY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:32 黄桥系列.2",
     "en": "Seven Mile, West End Bridge, skyline spreads, Mount Washington in the distance.",
     "zh": "七英里，西端大桥，天际线展开，远处 华盛顿山。",
-    "tip": "重音: SEVEN · MILE · WEST"
+    "tip": "重音: SEVEN · MILE · WEST",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:32 黄桥系列.3",
     "en": "The bridge is the metronome of Pittsburgh.",
     "zh": "桥，就是匹兹堡的节拍器。",
-    "tip": "重音: BRIDGE · METRONOME · PITTSBURGH"
+    "tip": "重音: BRIDGE · METRONOME · PITTSBURGH",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:45 南区热闹",
     "en": "Ten miles away, in the southern commercial district, there were suddenly more people.",
     "zh": "十英里，南区商业区，人突然变多。",
-    "tip": "重音: MILES · AWAY · SOUTHERN"
+    "tip": "重音: MILES · AWAY · SOUTHERN",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:45 南区热闹.2",
     "en": "Gummies, oranges, pickle juice, the children held black and yellow flags, and their cheers were particularly sincere.",
     "zh": "软糖、橙子、酸黄瓜汁，小朋友举着黑黄旗子，加油声特别真诚。",
-    "tip": "重音: GUMMIES · ORANGES · PICKLE"
+    "tip": "重音: GUMMIES · ORANGES · PICKLE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "02:55 大学圣殿",
     "en": "Twelve miles later, we entered the University of Pittsburgh, the palace of learning—a 42-story Gothic tower that was particularly solemn under the cloudy sky.",
     "zh": "十二英里，进入匹兹堡大学，学识殿堂——42 层哥特式高塔，在阴天下格外庄重。",
-    "tip": "重音: TWELVE · MILES · LATER"
+    "tip": "重音: TWELVE · MILES · LATER",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "02:55 大学圣殿.2",
     "en": "Across the street, Carnegie Mellon is the mecca of computers and the cradle of robots.",
     "zh": "一街之隔，卡耐基梅隆，计算机圣地，机器人摇篮。",
-    "tip": "重音: ACROSS · STREET · CARNEGIE"
+    "tip": "重音: ACROSS · STREET · CARNEGIE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:08 安静街区",
     "en": "Fourteen miles later, the neighborhood became quiet, with green trees, churches, and brick houses. Residents brought out chairs to cheer, another side of the Steel City.",
     "zh": "十四英里以后，街区变得安静，绿树、教堂、砖房，居民搬椅子出来加油，钢铁之城的另一面。",
-    "tip": "重音: FOURTEEN · MILES · LATER"
+    "tip": "重音: FOURTEEN · MILES · LATER",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:18 最后冲刺",
     "en": "The last six miles, back to the city center, high-rise canyons, shouting echoes, the end is just ahead.",
     "zh": "最后六英里，回到市中心，高楼峡谷，呐喊回声，终点就在前面。",
-    "tip": "重音: LAST · MILES · BACK"
+    "tip": "重音: LAST · MILES · BACK",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:18 最后冲刺.2",
     "en": "Crossed the finish line in just over 4 hours - with so many slopes, I was quite satisfied.",
     "zh": "冲线，4 小时出头——坡这么多，我挺满意。",
-    "tip": "重音: CROSSED · FINISH · LINE"
+    "tip": "重音: CROSSED · FINISH · LINE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:28 奖牌与巧遇",
     "en": "The medal is the confluence of three rivers, a cutting-edge state park, and fountains soaring into the sky. Everything is just right.",
     "zh": "奖牌是三河交汇，尖端州立公园，喷泉冲天，一切刚刚好。",
-    "tip": "重音: MEDAL · CONFLUENCE · THREE"
+    "tip": "重音: MEDAL · CONFLUENCE · THREE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "03:28 奖牌与巧遇.2",
     "en": "I met a runner who was wearing a Manchester United jersey and I was wearing an Arsenal jersey. We politely took a photo with each other, feeling very arrogant in my heart.",
     "zh": "我遇到一个穿曼联球衣的跑友，我穿阿森纳，礼貌合影，心里是趾高气昂。",
-    "tip": "重音: RUNNER · WEARING · MANCHESTER"
+    "tip": "重音: RUNNER · WEARING · MANCHESTER",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:40 返程回味",
     "en": "On the way back, I took a shower at the gym, put on my finishing clothes, and turned into a local alley.",
     "zh": "回程，健身房 洗澡，换上完赛衣，拐进 当地小路。",
-    "tip": "重音: BACK · TOOK · SHOWER"
+    "tip": "重音: BACK · TOOK · SHOWER",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:40 返程回味.2",
     "en": "Blue sky, green grass, and hills, returning from the Steel City to the Bluegrass State is like completing a cycle.",
     "zh": "蓝天、绿草、丘陵，从钢铁之城回到蓝草州，像完成一个循环。",
-    "tip": "重音: BLUE · GREEN · GRASS"
+    "tip": "重音: BLUE · GREEN · GRASS",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:52 结尾金句",
     "en": "Steel is not just metal.",
     "zh": "钢铁，不只是金属。",
-    "tip": "重音: STEEL · METAL"
+    "tip": "重音: STEEL · METAL",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:52 结尾金句.2",
     "en": "It's resilience.",
     "zh": "是韧性。",
-    "tip": "重音: IT'S · RESILIENCE"
+    "tip": "重音: IT'S · RESILIENCE",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:52 结尾金句.3",
     "en": "This is also my memory of these 42 kilometers.",
     "zh": "也是我这 42 公里的记忆。",
-    "tip": "重音: ALSO · MEMORY · THESE"
+    "tip": "重音: ALSO · MEMORY · THESE",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "03:52 结尾金句.4",
     "en": "Run50 State 19, Pennsylvania finished, see you in the next state.",
     "zh": "Run50 第 19 州，宾夕法尼亚完赛，下一个州再见。",
-    "tip": "重音: STATE · PENNSYLVANIA · FINISHED"
+    "tip": "重音: STATE · PENNSYLVANIA · FINISHED",
+    "voice": "Brian - casual male"
   }
 ];
 const listEl = document.getElementById('list');
@@ -358,7 +407,7 @@ const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
 const humanAudio = new Audio();
 const HUMAN_AUDIO_BASE = 'audio/pittsburgh-english-practice';
-const HUMAN_AUDIO_VERSION = '20260630-brian-batch-v1';
+const HUMAN_AUDIO_VERSION = '20260630-multivoice-v2';
 let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }

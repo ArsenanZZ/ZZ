@@ -25,7 +25,7 @@
   <div class="banner">
     <span class="tag">RUN50 #16 | READ-ALONG</span>
     <h1>#16 North Carolina | Oak Island Marathon</h1>
-    <div class="sub">English script for read-along practice · Natural voice audio · 中英对照逐句跟读</div>
+    <div class="sub">English script for read-along practice · Multi-voice natural audio · 中英对照逐句跟读</div>
     <a class="backbtn" href="run50.html">← 返回口播稿</a>
   </div>
   <div class="controls">
@@ -34,7 +34,7 @@
     <div class="grp"><label>备用发音</label><select id="voice"></select></div>
     <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
   </div>
-  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
   <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/north-carolina-oak-island-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
   <div class="stats"><div class="stat"><div class="v">North Carolina</div><div class="t">State</div></div><div class="stat"><div class="v">Oak Island</div><div class="t">Town</div></div><div class="stat"><div class="v">2024.02.18</div><div class="t">Race date</div></div><div class="stat"><div class="v">Atlantic PB</div><div class="t">Theme</div></div></div>
   <div class="list" id="list"></div>
@@ -47,193 +47,225 @@ const DATA = [
     "cue": "00:00 奖牌悬念",
     "en": "In this marathon, the medal is bigger than my face!",
     "zh": "这个马拉松，奖牌比脸还大呀！",
-    "tip": "重音: MARATHON · MEDAL · BIGGER"
+    "tip": "重音: MARATHON · MEDAL · BIGGER",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:00 奖牌悬念.2",
-    "en": "Hey everyone, this is - Asen Man.",
+    "en": "Hey everyone, I'm Asennan.",
     "zh": "大家好啊，这里是——阿森男。",
-    "tip": "重音: EVERYONE · ASEN"
+    "tip": "重音: EVERYONE · ASENNAN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:10 本期切入",
-    "en": "This time, we came to the end of the east coast of the United States - Oak Island, North Carolina, to participate in a winter marathon running close to the Atlantic Ocean and blowing in the sea breeze.",
+    "en": "This time, we came to the end of the east coast of the U.S.: Oak Island, North Carolina, to participate in a winter marathon running close to the Atlantic Ocean and blowing in the sea breeze.",
     "zh": "这次呢，我们来到了美国东海岸的尽头——北卡罗莱纳的橡树岛，参加一场贴着大西洋边、吹着海风跑的冬季马拉松。",
-    "tip": "重音: TIME · CAME · EAST"
+    "tip": "重音: TIME · CAME · EAST",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:10 本期切入.2",
     "en": "This is the 16th state I’ve run in, North Carolina.",
     "zh": "这是我跑的第 16 个州，北卡罗莱纳。",
-    "tip": "重音: STATE · NORTH · CAROLINA"
+    "tip": "重音: STATE · NORTH · CAROLINA",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:28 地理位置",
-    "en": "North Carolina is located in the middle of the east coast of the United States, with the Appalachian Mountains on one end and the Atlantic Ocean on the other.",
+    "en": "North Carolina is in the middle of the east coast of the United States, with the Appalachian Mountains on one end and the Atlantic Ocean on the other.",
     "zh": "北卡，位于美国东海岸中段，一头连着阿巴拉契亚山，一头伸进大西洋。",
-    "tip": "重音: NORTH · CAROLINA · LOCATED"
+    "tip": "重音: NORTH · CAROLINA · MIDDLE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:28 地理位置.2",
     "en": "This is the starting point of human flight. In 1903, the first human aircraft took off from the Bund here.",
     "zh": "这里是人类飞行的起点，1903 年，人类第一架飞机，就在这儿的外滩起飞。",
-    "tip": "重音: STARTING · POINT · HUMAN"
+    "tip": "重音: STARTING · POINT · HUMAN",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "00:40 篮球圣地",
     "en": "In the basketball world, this is the mecca of college basketball.",
     "zh": "在篮球世界，这里更是大学篮球的圣地。",
-    "tip": "重音: BASKETBALL · WORLD · MECCA"
+    "tip": "重音: BASKETBALL · WORLD · MECCA",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:40 篮球圣地.2",
     "en": "UNC and Duke, rivals in every game, turned basketball into a religion.",
     "zh": "UNC、Duke，场场宿敌，把篮球卷成了信仰。",
-    "tip": "重音: DUKE · RIVALS · EVERY"
+    "tip": "重音: DUKE · RIVALS · EVERY",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:50 乔丹彩蛋",
     "en": "Basketball god Jordan was born in North Carolina!",
     "zh": "篮球之神乔丹，就出生在北卡！",
-    "tip": "重音: BASKETBALL · JORDAN · BORN"
+    "tip": "重音: BASKETBALL · JORDAN · BORN",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "00:50 乔丹彩蛋.2",
     "en": "He was here in high school and college, played all the way from UNC to the NBA, flew into the sky and escaped from the earth, and became a god with six championships.",
     "zh": "他高中、大学都在这里，从 UNC 一路打到 NBA，飞天遁地，六冠封神。",
-    "tip": "重音: HERE · HIGH · SCHOOL"
+    "tip": "重音: HERE · HIGH · SCHOOL",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "01:05 目的地描述",
     "en": "The place I came to this time was Oak Island, a small island in the Atlantic Ocean.",
     "zh": "这次我来的地方，是贴着大西洋的小岛——橡树岛。",
-    "tip": "重音: PLACE · CAME · TIME"
+    "tip": "重音: PLACE · CAME · TIME",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "01:05 目的地描述.2",
     "en": "There is no excitement or noise, just the sea breeze, the lighthouse, and the low houses.",
     "zh": "不热闹，不喧哗，只有海风、灯塔，还有低矮的房子。",
-    "tip": "重音: EXCITEMENT · NOISE · BREEZE"
+    "tip": "重音: EXCITEMENT · NOISE · BREEZE",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "01:05 目的地描述.3",
     "en": "We drove for more than ten hours and crossed several states, and finally we arrived!",
     "zh": "我们开车十多个小时，跨了好几个州，终于到了！",
-    "tip": "重音: DROVE · MORE · HOURS"
+    "tip": "重音: DROVE · MORE · HOURS",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:22 比赛日早起",
     "en": "We got up early in the morning and drove to the starting point before dawn.",
     "zh": "早上我们起得很早，赶在天亮前开车去起点。",
-    "tip": "重音: EARLY · MORNING · DROVE"
+    "tip": "重音: EARLY · MORNING · DROVE",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:22 比赛日早起.2",
     "en": "We were slightly late and had already seen the first wave of runners setting off.",
     "zh": "我们稍微迟到了一些，已经看到第一波跑者出发了。",
-    "tip": "重音: SLIGHTLY · LATE · ALREADY"
+    "tip": "重音: SLIGHTLY · LATE · ALREADY",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:22 比赛日早起.3",
     "en": "The air is humid and slightly salty, and you can tell you're not far from the Atlantic Ocean when you smell it.",
     "zh": "空气潮湿，带点咸味，一闻就知道离大西洋不远了。",
-    "tip": "重音: HUMID · SLIGHTLY · SALTY"
+    "tip": "重音: HUMID · SLIGHTLY · SALTY",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:38 晨雾开跑",
     "en": "At the moment we started running, the entire island was still shrouded in morning mist, and there were no people on the track except for the sound of footsteps.",
     "zh": "开跑的那一刻，整座岛还沉在晨雾里，赛道上都没啥人了，只有脚步声。",
-    "tip": "重音: MOMENT · STARTED · RUNNING"
+    "tip": "重音: MOMENT · STARTED · RUNNING",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:38 晨雾开跑.2",
     "en": "I almost went the wrong way.",
     "zh": "我差点跑错路。",
-    "tip": "重音: ALMOST · WENT · WRONG"
+    "tip": "重音: ALMOST · WENT · WRONG",
+    "voice": "Ava - friendly female"
   },
   {
     "cue": "01:38 晨雾开跑.3",
     "en": "The track is very lively, lined with holiday cabins, chapels, and small fenced yards.",
     "zh": "赛道很有生活气，两旁是度假小屋、小教堂，还有带篱笆的小院子。",
-    "tip": "重音: TRACK · VERY · LIVELY"
+    "tip": "重音: TRACK · VERY · LIVELY",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:00 灯塔登场",
     "en": "About mile 7, I saw a black and white lighthouse in the distance - Oak Island Lighthouse.",
     "zh": "大概到 7 英里，远远看到一个黑白相间的灯塔——橡树岛灯塔。",
-    "tip": "重音: MILE · BLACK · WHITE"
+    "tip": "重音: MILE · BLACK · WHITE",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:00 灯塔登场.2",
     "en": "Built in 1958, it is 47 meters high and the light can illuminate 16 nautical miles.",
     "zh": "1958 年建的，高 47 米，灯光能照 16 海里。",
-    "tip": "重音: BUILT · METERS · HIGH"
+    "tip": "重音: BUILT · METERS · HIGH",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:15 状态稳定",
     "en": "At mile 17, I felt pretty good and had a chance to break 4 hours.",
     "zh": "跑到 17 英里，感觉状态还行，有机会破 4 小时。",
-    "tip": "重音: MILE · FELT · PRETTY"
+    "tip": "重音: MILE · FELT · PRETTY",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:25 大桥考验",
     "en": "At mile 21 we came to a bridge, the slope was not long but quite steep.",
     "zh": "21 英里处来了一座大桥，坡不长但挺陡。",
-    "tip": "重音: MILE · CAME · BRIDGE"
+    "tip": "重音: MILE · CAME · BRIDGE",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:25 大桥考验.2",
     "en": "In the second half, it is really difficult.",
     "zh": "放在后半程，确实让人吃力。",
-    "tip": "重音: SECOND · HALF · REALLY"
+    "tip": "重音: SECOND · HALF · REALLY",
+    "voice": "Emma - clear female"
   },
   {
     "cue": "02:25 大桥考验.3",
     "en": "In the last few miles, there were more photographers, more spectators, and the end point - sprint!",
     "zh": "最后几英里，摄影师多了，观众也多了，终点——冲刺！",
-    "tip": "重音: LAST · MILES · MORE"
+    "tip": "重音: LAST · MILES · MORE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:40 PB揭晓",
     "en": "The final result - 3 hours and 51 minutes, refreshed my personal PR in the United States!",
     "zh": "最终成绩——3 小时 51 分，刷新了我在美国的个人 PR！",
-    "tip": "重音: FINAL · RESULT · HOURS"
+    "tip": "重音: FINAL · RESULT · HOURS",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:48 奖牌特写",
     "en": "The medal at the finish line was indeed, no exaggeration, really bigger than my face.",
     "zh": "终点那枚奖牌，确实，不夸张，真的比脸还大。",
-    "tip": "重音: MEDAL · FINISH · LINE"
+    "tip": "重音: MEDAL · FINISH · LINE",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:48 奖牌特写.2",
     "en": "It's metal, heavy, with a compass in the middle and a relief of big waves, and the outer ring is serrated, like a pot lid.",
     "zh": "金属的，沉甸甸的，中间是个指南针，还有大海浪花浮雕，外圈有锯齿，像锅盖。",
-    "tip": "重音: IT'S · METAL · HEAVY"
+    "tip": "重音: IT'S · METAL · HEAVY",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "02:48 奖牌特写.3",
     "en": "The Big Ass Medal is truly worthy of its name!",
     "zh": "超大奖牌（Big Ass Medal），名副其实！",
-    "tip": "重音: MEDAL · TRULY · WORTHY"
+    "tip": "重音: MEDAL · TRULY · WORTHY",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:05 结尾金句",
     "en": "This is my sixteenth state in the United States.",
     "zh": "这是我在美国跑的第十六个州。",
-    "tip": "重音: SIXTEENTH · STATE · UNITED"
+    "tip": "重音: SIXTEENTH · STATE · UNITED",
+    "voice": "Brian - casual male"
   },
   {
     "cue": "03:05 结尾金句.2",
     "en": "The lighthouse is the witness, the PB is refreshed, and the Atlantic Ocean witnesses every step.",
     "zh": "灯塔为证，PB 刷新，大西洋见证每一步。",
-    "tip": "重音: LIGHTHOUSE · WITNESS · REFRESHED"
+    "tip": "重音: LIGHTHOUSE · WITNESS · REFRESHED",
+    "voice": "Andrew - warm male"
   },
   {
     "cue": "03:05 结尾金句.3",
     "en": "Arkansas Little Rock Marathon, see you soon!",
     "zh": "阿肯色小石城马拉松，我们再见！",
-    "tip": "重音: ARKANSAS · LITTLE · ROCK"
+    "tip": "重音: ARKANSAS · LITTLE · ROCK",
+    "voice": "Andrew - warm male"
   }
 ];
 const listEl = document.getElementById('list');
@@ -256,7 +288,7 @@ const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
 const humanAudio = new Audio();
 const HUMAN_AUDIO_BASE = 'audio/north-carolina-oak-island-english-practice';
-const HUMAN_AUDIO_VERSION = '20260630-brian-batch-v1';
+const HUMAN_AUDIO_VERSION = '20260630-multivoice-v2';
 let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }
