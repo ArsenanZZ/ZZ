@@ -52,6 +52,8 @@
   .hint{background:#fffbe9;border-left:4px solid var(--gold);color:#6a5a1e;
     margin:18px;padding:12px 14px;border-radius:8px;font-size:13.5px}
   .hint b{color:#8a6d14}
+  .hint code{background:rgba(255,255,255,.65);border:1px solid rgba(138,109,20,.18);
+    border-radius:5px;padding:1px 5px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px}
 
   /* sentence rows */
   .stats{display:flex;flex-wrap:wrap;gap:10px;padding:0 18px;margin:16px 0 4px}
@@ -122,8 +124,8 @@
     </div>
     <div class="grp">
       <label>语速</label>
-      <input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="0.85">
-      <span class="rateval" id="rateval">0.85x</span>
+      <input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="1">
+      <span class="rateval" id="rateval">1.00x</span>
     </div>
     <div class="grp">
       <label>发音</label>
@@ -136,8 +138,11 @@
   </div>
 
   <div class="hint" id="ttsHint">
-    <b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听标准美音；点 <b>🔁</b> 让这句循环跟读；拖动「语速」可放慢到 0.5x 慢速精读。最下方还能<b>录下你自己的声音和原句对比</b>。
-    建议用 <b>Chrome 或 Edge 浏览器</b>打开，自带的美音引擎质量最好。
+    <b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 让这句循环跟读。最下方还能<b>录下你自己的声音和原句对比</b>。
+    如果某句 mp3 还没放入，本页才会临时使用浏览器备用发音。
+  </div>
+  <div class="hint">
+    <b>🎧 人声音频模式：</b>已接入 29 段人声音频，文件位于 <code>run50/audio/wisconsin-english-practice/01.mp3</code> 到 <code>29.mp3</code>。本页会优先播放这些音频；缺少对应文件时才临时回退到浏览器发音。
   </div>
 
   <div class="stats">
@@ -168,94 +173,94 @@
 <script>
 /* ---------- 文案数据：英文 + 中文对照 ---------- */
 const DATA = [
-  {cue:"00:00 Hook", en:"Yo — have you ever seen somebody in America just slap a giant block of cheese right on their head? 🧀",
+  {cue:"00:00 Hook", en:"Okay, have you ever seen someone in America wear a giant wedge of cheese on their head? 🧀",
    zh:"在美国，你见过有人把一块大奶酪直接扣脑袋上吗？🧀",
-   tip:"连读: seen‿a→'seena', block‿of→'blocka', on‿their→'onther' | 重音: SLAP · CHEESE · HEAD"},
-  {cue:"00:03", en:"And nah — it's not even a joke. That's literally their whole thing!",
+   tip:"连读: seen‿someone→'seen-sum-wun', wedge‿of→'wedja', on‿their→'onther' | 重音: SEEN · CHEESE · HEAD"},
+  {cue:"00:03", en:"And no, it's not a prank. In Wisconsin, that's a real point of pride.",
    zh:"这还真不是整蛊，这是人家的文化！",
-   tip:"连读: it's‿not→'snot', not‿even→'noteven' | 重音: JOKE · WHOLE THING | literally 读 'LIT-ruh-lee'"},
-  {cue:"00:06", en:"So today I'm taking you to this city that's straight-up weird and hardcore: only a hundred thousand people live here, but they built a stadium that packs in eighty thousand! Run50, state number twenty — Wisconsin, Green Bay.",
+   tip:"连读: it's‿not→'snot', point‿of→'pointa' | 重音: PRANK · WIS-CON-sin · PRIDE"},
+  {cue:"00:06", en:"Today I'm taking you to a city that feels small, proud, and a little unusual: about a hundred thousand people live here, but their football stadium holds around eighty thousand. Run50, state number twenty: Wisconsin, Green Bay.",
    zh:"今天带你去看个奇葩又硬核的城市：全城只有 10 万人，却建了个能装下 8 万人的大球场！Run50 第 20 州 —— 威斯康辛，绿湾。",
-   tip:"连读: taking‿you→'takin-ya', packs‿in→'packsin' | straight-up 连成一词 | 重音: WEIRD · HARD-core · EIGHTY"},
-  {cue:"00:15", en:"What's up everyone, it's ya boy Asennan. This time, me and Siqi hit the road way up north to knock out my twentieth state.",
+   tip:"连读: taking‿you→'takin-ya', that‿feels→'thatfeels', holds‿around→'holdsaround' | 重音: SMALL · PROUD · EIGHTY"},
+  {cue:"00:15", en:"Hey everyone, I'm Asennan. This time, Siqi and I drove north from Kentucky for my twentieth state.",
    zh:"大家好，我是阿森男。这一次，我和 Siqi 开车一路北上，去跑我的第 20 个州。",
-   tip:"What's up→'Wassup', hit‿the→'hi-the', knock‿out→'knockout' | 重音: NORTH · TWEN-tieth"},
-  {cue:"00:23", en:"So where's Wisconsin at? Way up north, right on the Great Lakes. They call it 'the Cheese State' — and yeah, like half the cheese in America comes from right here.",
+   tip:"连读: everyone‿I'm→'evry-wun-aim', Siqi‿and‿I→'Siqi-n-I' | 重音: NORTH · KEN-TUCK-y · TWEN-tieth"},
+  {cue:"00:23", en:"So where is Wisconsin? It's way up north, right on the Great Lakes. People call it America's Dairyland, and yes, a lot of the country's cheese comes from here.",
    zh:"威斯康辛在哪？美国大北边，紧挨着五大湖。外号“奶酪州”，全美一半的奶酪都被这儿承包了。",
-   tip:"连读: comes‿from→'comesfrom', right‿here→'righ-here' | 重音: NORTH · CHEESE · HERE"},
-  {cue:"00:30", en:"Now the biggest city out here's Milwaukee — and if you're into the NBA, you already know. It's the Greek Freak's house nowadays.",
+   tip:"连读: where‿is→'wherez', lot‿of→'lotta', comes‿from→'comesfrom' | 重音: NORTH · DAIRY-land · CHEESE"},
+  {cue:"00:30", en:"The biggest city is Milwaukee. If you follow the NBA, you already know it as Giannis's town these days.",
    zh:"说起这州最大的城市密尔沃基，常看 NBA 的兄弟肯定熟，毕竟现在是“字母哥”的地盘。",
-   tip:"if‿you're→'fyer', into‿the→'intuh-the' | 重音: mil-WAU-kee · KNOW · HOUSE"},
-  {cue:"00:38", en:"But let's rewind a sec — back in 2007, our guy Yi Jianlian got scooped up right here by the Bucks with the sixth pick.",
+   tip:"连读: city‿is→'cityiz', follow‿the→'followthe', know‿it‿as→'knowidas' | 重音: mil-WAU-kee · NBA · Gi-AN-nis"},
+  {cue:"00:38", en:"But rewind to 2007: Yi Jianlian was drafted right here by the Bucks with the sixth pick.",
    zh:"但要把时间轴往前倒倒，当年 2007 年，咱们的易建联就是在这儿被雄鹿队用第 6 签给“截胡”的。",
-   tip:"连读: got‿scooped‿up→'gotscoopedup', with‿the→'wi-the' | 重音: BUCKS · SIXTH PICK"},
-  {cue:"00:45", en:"Word is, the second Yi's people heard 'Milwaukee,' you could just see it on their faces — like, ain't that the freezing little middle-of-nowhere town? They didn't even wanna go.",
+   tip:"连读: drafted‿right→'draftedright', by‿the→'bythe', with‿the→'withthe' | 重音: DRAFT-ed · BUCKS · SIXTH PICK"},
+  {cue:"00:45", en:"At the time, people around Yi heard 'Milwaukee,' and you could almost see the reaction on their faces: wait, isn't that the freezing little city in the middle of nowhere? They really didn't want to go.",
    zh:"听说当时阿联团队一听密尔沃基，满脸写着拒绝，这不是那个冰天雪地的“北大荒小村子”吗，连去都不想去。",
-   tip:"could‿just→'cudjus', see‿it‿on→'seeiton', didn't‿even→'dint-even' | wanna=want to | 重音: FREEZING · NO-where"},
-  {cue:"00:54", en:"But honestly? The coolest thing about this whole state is where we're headed — Green Bay.",
+   tip:"连读: could‿almost→'couldalmost', reaction‿on→'reactionon', didn't‿want→'didntwant' | 重音: FREEZING · MID-dle · NO-where"},
+  {cue:"00:54", en:"Honestly, though, the place I was most excited about was Green Bay.",
    zh:"不过，这州最神的，还得是我们这趟的目的地——绿湾。",
-   tip:"连读: about‿this→'aboutthis', where‿we're→'where-wer' | 重音: COOL-est · GREEN BAY"},
-  {cue:"01:00", en:"So they've got this NFL team, the Green Bay Packers — the only team in the whole country that's literally owned by its own fans, who chipped in their own cash. Out here, football ain't a hobby. It's a straight-up religion.",
+   tip:"连读: though‿the→'though-the', excited‿about→'excitedabout' | 重音: PLACE · ex-CIT-ed · GREEN BAY"},
+  {cue:"01:00", en:"Green Bay has the Packers, one of the most unusual teams in American sports. The fans own the team, and in this town, football is not just a hobby. It feels almost like a religion.",
    zh:"这儿有支 NFL 橄榄球队（绿湾包装工队 Green Bay Packers），全美唯一一支球迷自己凑钱入股的队。在这儿，橄榄球不是爱好，是绝对的信仰！",
-   tip:"they've‿got→'theyv-got', owned‿by→'ownedby' | ain't=is not | 重音: OWNED · FANS · re-LI-gion"},
-  {cue:"01:10", en:"And the best part of this whole race? Right before the finish, you run straight into Lambeau Field! 🏟️",
+   tip:"连读: has‿the→'hasthe', fans‿own→'fanzown', like‿a→'likea' | 重音: PACK-ers · OWN · re-LI-gion"},
+  {cue:"01:10", en:"And the best part of this race? Just before the finish, the course takes you right into Lambeau Field! 🏟️",
    zh:"而这趟马拉松最大的卖点，就是你在终点附近，会直接跑进兰博球场！🏟️",
-   tip:"part‿of→'parta', straight‿into→'straigh-tinto' | 重音: BEST · LAM-beau FIELD"},
+   tip:"连读: part‿of→'parta', takes‿you→'takesyou', right‿into→'rightinto' | 重音: BEST · COURSE · LAM-beau FIELD"},
   {br:"( 稍微停顿 ⏳ 画面切换至周五下班、深夜出发 )"},
-  {cue:"01:15", en:"So Friday after work, we take off from Kentucky. Cruise past Chicago, push through all the traffic, and the second we hit the north, the whole sky just opens up.",
+  {cue:"01:15", en:"Friday after work, we left Kentucky, passed Chicago, worked through the traffic, and once we got farther north, the sky suddenly opened up.",
    zh:"周五下班，我们从肯塔基出发。经过芝加哥的高速，穿过拥挤的城市，一到北境，天都开阔了。",
-   tip:"take‿off→'takeoff', hit‿the→'hi-the', opens‿up→'opensup' | 重音: NORTH · SKY · O-pens"},
-  {cue:"01:25", en:"Rolling through Milwaukee, we drove around a bit, hit up an Indian buffet, and caught a little breeze by Lake Michigan.",
+   tip:"连读: after‿work→'afterwork', worked‿through→'workedthrough', opened‿up→'openedup' | 重音: KEN-TUCK-y · TRAF-fic · SKY"},
+  {cue:"01:25", en:"When we rolled through Milwaukee, we drove around for a bit, grabbed an Indian buffet, and took in the breeze by Lake Michigan.",
    zh:"路过密尔沃基的时候，我们自己开车去溜达了一圈，吃了个印度自助，然后在密歇根湖边吹了吹风。",
-   tip:"hit‿up‿an→'hituppan', caught‿a→'caughta' | 重音: buf-FET(buh-FAY) · BREEZE"},
-  {cue:"01:34", en:"And turns out, the city's not even small — nothing like that 'tiny little village' everybody talked about. We keep driving and finally roll into Green Bay.",
+   tip:"连读: rolled‿through→'rolledthrough', grabbed‿an→'grabdan', took‿in→'tookin' | 重音: mil-WAU-kee · buf-FET(buh-FAY) · BREEZE"},
+  {cue:"01:34", en:"And honestly, Milwaukee was not small at all. Nothing like the tiny village people used to joke about. We kept driving and finally got to Green Bay.",
    zh:"发现这城市其实一点也不小，根本不是当年传的啥“小村子”。继续开，终于抵达绿湾。",
-   tip:"turns‿out→'turnzout', not‿even→'noteven', roll‿into→'rollinto' | 重音: SMALL · GREEN BAY"},
-  {cue:"01:42", en:"Race day, and the sun is no joke. I throw on this Arsenal jersey my mom just mailed over from back home — Coquelin on the back, the old beast. Kinda played like him back in the day.",
+   tip:"连读: not‿small→'notsmall', at‿all→'adall', got‿to→'gotta' | 重音: SMALL · JOKE · GREEN BAY"},
+  {cue:"01:42", en:"On race day, the sun was brutal. I put on an Arsenal jersey my mom had just mailed from China, with Coquelin on the back, the old midfield battler. That was basically my style when I played.",
    zh:"比赛这天，太阳毒得很。我穿了件我妈刚从国内寄来的阿森纳球衣，印着老兽腰科奎林，跟我年轻那会儿的球风挺像。",
-   tip:"throw‿on→'throwon', mailed‿over→'mailedover' | kinda=kind of | 重音: SUN · AR-senal · BEAST"},
-  {cue:"01:53", en:"This year's Green Bay Marathon was the twenty-fifth one — and the very last one ever. After this, it's gone for good.",
+   tip:"连读: put‿on→'puton', had‿just→'hadjust', when‿I→'whenai' | 重音: SUN · AR-senal · MID-field"},
+  {cue:"01:53", en:"This was the twenty-fifth Green Bay Marathon, and also the last one ever. After this year, the race was gone for good.",
    zh:"今年的绿湾马是第 25 周年，也是最后一届，跑完直接绝版了。",
-   tip:"last‿one→'lastone', for‿good→'fer-good' | 重音: LAST · EV-er · GOOD"},
-  {cue:"02:00", en:"First ten miles, we're just looping through neighborhoods. And as I'm running, my brand-new kicks — the Feiying PB 5.0 — start tearing my feet apart.",
+   tip:"连读: also‿the→'alsothe', last‿one→'lastone', for‿good→'fer-good' | 重音: TWEN-ty-fifth · LAST · GOOD"},
+  {cue:"02:00", en:"For the first ten miles, we were mostly looping through neighborhoods. Then my brand-new Feiying PB 5.0s started rubbing my feet raw.",
    zh:"起跑后前十英里，都在小区里绕。跑着跑着，我脚下这双新鞋飞影 PB 5.0 开始疯狂磨脚。",
-   tip:"kicks=鞋(俚语), as‿I'm→'azaim', tearing...apart→'tearin-apart' | 重音: BRAND-new · FEET a-PART"},
-  {cue:"02:08", en:"And yet again, proof of the number-one rule of marathons: new shoes on race day? Yeah, you're on your own.",
+   tip:"连读: first‿ten→'firstten', looping‿through→'loopingthrough', feet‿raw→'feetraw' | 重音: TEN MILES · BRAND-new · RAW"},
+  {cue:"02:08", en:"Once again, I learned the number-one marathon rule the hard way: never race in brand-new shoes.",
    zh:"再次验证了跑马铁律：新鞋上马，风险自担！",
-   tip:"proof‿of→'proofa', on‿your‿own→'onyerown' | 重音: NEW SHOES · OWN"},
-  {cue:"02:12", en:"Then I'm heading up this big steel bridge over the Fox River. The thing actually lifts up to let cargo ships through, and the metal grate's creaking under every single step.",
+   tip:"连读: once‿again→'wunsagain', learned‿the→'learndthe', brand-new→连成一组 | 重音: RULE · HARD WAY · NEW SHOES"},
+  {cue:"02:12", en:"Then the course climbed onto a big steel bridge over the Fox River. It can lift for cargo ships, and the metal deck creaked under every step.",
    zh:"接着跑上跨过福克斯河的大铁桥。这桥能抬起来过大货船，踩在铁网子上咯吱咯吱响。",
-   tip:"heading‿up→'headingup', lifts‿up→'liftsup' | 重音: STEEL BRIDGE · CREAK-ing"},
-  {cue:"02:22", en:"They call it the 'Snow State,' but today? Straight-up oven. Down by the river trail, even the geese are honking 'cause it's so hot. I just can't hang anymore, so I start run-walking it.",
+   tip:"连读: climbed‿onto→'climbedonto', can‿lift→'canlift', creaked‿under→'creakedunder' | 重音: STEEL BRIDGE · FOX River · CREAKED"},
+  {cue:"02:22", en:"Wisconsin may be known for snow, but that day felt like an oven. Down by the river trail, it was so hot even the geese sounded annoyed. I finally had to switch to a run-walk.",
    zh:"号称“冰雪州”，今天却像个大烤箱。河边绿道里，连大鹅都热得直叫唤。我实在顶不住，开始跑跑走走。",
-   tip:"'cause=because, can't hang=撑不住(俚语), even‿the→'eventhe' | 重音: O-ven · HOT · HANG"},
-  {cue:"02:32", en:"Grinding it out till mile twenty-five, and finally — boom, there it is, that big green monster: Lambeau Field! 🏟️",
+   tip:"连读: known‿for→'knownfor', felt‿like→'feltlike', had‿to→'hadta' | 重音: SNOW · O-ven · RUN-WALK"},
+  {cue:"02:32", en:"I kept grinding until mile twenty-five, and then there it was: the big green shape of Lambeau Field! 🏟️",
    zh:"熬到 25 英里，那个绿色的庞然大物终于出现了——兰博球场！🏟️",
-   tip:"grinding‿it‿out→'grindin-it-out', there‿it‿is→'theritiz' | 重音: MILE 25 · GREEN · LAM-beau"},
-  {cue:"02:38", en:"This is my third time running into a football stadium now. And I'm just sitting there thinking — not only can I run, I'm kinda thick too. If I weren't so nice at soccer, I'd probably ball out at football too.",
+   tip:"连读: kept‿grinding→'keptgrinding', there‿it‿was→'thereitwuz' | 重音: MILE 25 · GREEN · LAM-beau"},
+  {cue:"02:38", en:"That was my third time running into a football stadium during a marathon. And for a second I thought, I can run, I've got some size, maybe football would have worked too if soccer hadn't already claimed me.",
    zh:"这已经是我第三次跑进橄榄球场了。当时我就想，我不仅能跑，我还挺胖，要是不踢球太厉害，打个橄榄球估计也挺猛。",
-   tip:"running‿into→'runnin-into' | kinda=kind of, ball out=表现猛(俚语) | 重音: THIRD · RUN · FOOT-ball"},
-  {cue:"02:48", en:"But the second I come out of the stadium, a bunch of local kids point at my jersey and start straight-up screaming: 'Man City are the champions!'",
+   tip:"连读: running‿into→'runnin-into', for‿a→'fora', would‿have→'woulda' | 重音: THIRD · STADIUM · FOOT-ball"},
+  {cue:"02:48", en:"But as soon as I came out of the stadium, a group of local kids pointed at my jersey and yelled, 'Man City are the champions!'",
    zh:"结果刚从球场绕出来，路边一群老外小孩指着我的球衣大喊：“曼城是冠军！”",
-   tip:"come‿out‿of→'comeoutta', point‿at→'pointat' | 重音: KIDS · JER-sey · CHAM-pions"},
-  {cue:"02:55", en:"Oh, that one hurt — that day just so happened to be the last day of the Premier League, and Arsenal blew it again. Those kids were straight-up stabbing me right in the heart.",
+   tip:"连读: soon‿as→'soonas', came‿out‿of→'cameoutta', pointed‿at→'pointedat' | 重音: KIDS · JER-sey · CHAM-pions"},
+  {cue:"02:55", en:"That one actually hurt. It was the final day of the Premier League season, Arsenal had come up short again, and those kids found the exact spot to hit.",
    zh:"好家伙，那天正好是英超大结局，阿森纳又差了一口气。这帮小孩简直是往我心窝子里插刀子。",
-   tip:"happened‿to‿be→'happen-tabe', blew‿it→'blewit' | 重音: HURT · AR-senal · HEART"},
-  {cue:"03:03", en:"Last mile, and I'm grinding it to that line under the crazy sun. Four and a half hours. My first and last Green Bay Marathon — done and done! ✅",
+   tip:"连读: actually‿hurt→'actuallyhurt', come‿up→'comeup', spot‿to→'spotta' | 重音: HURT · AR-senal · HIT"},
+  {cue:"03:03", en:"One last mile under that sharp sun, then the finish line. Four and a half hours. My first and last Green Bay Marathon: done. ✅",
    zh:"最后一英里，顶着毒太阳冲线。4 个半小时。第一次也是最后一次绿湾马，搞定！✅",
-   tip:"grinding‿it→'grindinit', and‿a‿half→'anna-half' | 重音: LAST MILE · SUN · DONE"},
-  {cue:"03:10", en:"No time to even celebrate — straight back on the road.",
+   tip:"连读: last‿mile→'lastmile', and‿a‿half→'anna-half', marathon‿done→'marathondone' | 重音: LAST MILE · FIN-ish · DONE"},
+  {cue:"03:10", en:"No time to celebrate. We had to get right back on the road.",
    zh:"跑完没时间得瑟，直接返程。",
-   tip:"time‿to→'timeta', back‿on‿the→'backonthe' | 重音: CEL-e-brate · ROAD"},
-  {cue:"03:13", en:"We grab a quick bite at some American-Chinese spot in Chicago, then me and Siqi trade off driving all night — didn't even get home till like half past midnight.",
+   tip:"连读: time‿to→'timeta', had‿to→'hadta', back‿on‿the→'backonthe' | 重音: CEL-e-brate · ROAD"},
+  {cue:"03:13", en:"We grabbed a quick bite at an American-Chinese place in Chicago, then Siqi and I took turns driving through the night. We didn't get home until about half past midnight.",
    zh:"我们随便在芝加哥找了家美式中餐对付了两口，我和 Siqi 连夜换着开车，半夜 12 点半才到家。",
-   tip:"grab‿a→'grabba', trade‿off→'tradeoff', get‿home→'gethome' | 重音: chi-CA-go · MID-night"},
-  {cue:"03:22", en:"Quick shower, and I'm out cold — 'cause first thing in the morning, I gotta drag myself up and go to my internship. The grown-up marathon, man — that's just how real it gets.",
+   tip:"连读: grabbed‿a→'grabda', at‿an→'adan', took‿turns→'tookturns' | 重音: chi-CA-go · NIGHT · MID-night"},
+  {cue:"03:22", en:"I took a quick shower and passed out, because the next morning I had to drag myself up for my internship. That is the grown-up version of a marathon.",
    zh:"冲个澡倒头就睡，因为第二天一早，我还得爬起来去公司实习。成年人的马拉松，就是这么真实。",
-   tip:"gotta=got to, out cold=秒睡, first‿thing→'firstthing' | 重音: MORN-ing · in-TERN-ship · REAL"},
-  {cue:"03:31", en:"But then I look at that twenty-out-of-fifty bar — two-fifths done, finally a nice clean number. Run50 — catch y'all in the next state!",
+   tip:"连读: took‿a→'tooka', passed‿out→'passedout', had‿to→'hadta' | 重音: SHOW-er · MORN-ing · in-TERN-ship"},
+  {cue:"03:31", en:"Then I looked at the Run50 progress bar: twenty out of fifty states. Two-fifths done. Finally, a clean number. See you in the next state!",
    zh:"但看着这 20 / 50 的进度条，五分之二了，总算有零有整了。Run50，下个州见！",
-   tip:"look‿at→'lookat', out‿of→'outta' | y'all=you all | 重音: TWEN-ty · FIF-ty · NEXT STATE"}
+   tip:"连读: looked‿at→'looktat', out‿of→'outta', see‿you→'see-ya' | 重音: TWEN-ty · FIF-ty · NEXT STATE"}
 ];
 
 /* ---------- 渲染列表 ---------- */
@@ -298,10 +303,14 @@ const synth = window.speechSynthesis;
 const voiceSel = document.getElementById('voice');
 const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
+const humanAudio = new Audio();
+const HUMAN_AUDIO_BASE = 'audio/wisconsin-english-practice';
+const HUMAN_AUDIO_VERSION = '20260630-brian-voice-v1';
 let voices = [], chosenVoice = null;
 let loopIdx = -1;          // 正在循环的句子
 let playingAll = false;
 let selected = -1;
+let playToken = 0;
 
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 
@@ -361,6 +370,18 @@ function makeUtter(text){
   return u;
 }
 
+function humanAudioSrc(idx){
+  return HUMAN_AUDIO_BASE + '/' + String(idx + 1).padStart(2, '0') + '.mp3?v=' + HUMAN_AUDIO_VERSION;
+}
+
+function stopCurrentVoice(){
+  playToken++;
+  synth.cancel();
+  humanAudio.pause();
+  humanAudio.removeAttribute('src');
+  humanAudio.load();
+}
+
 function clearActive(){ rows.forEach(r=> r.el.classList.remove('active')); }
 function selectRow(idx){
   selected = idx;
@@ -371,19 +392,42 @@ function selectRow(idx){
 }
 
 function speakOne(idx, after){
+  const token = ++playToken;
   synth.cancel();
-  const u = makeUtter(rows[idx].data.en);
-  u.onend = ()=>{
+  humanAudio.pause();
+
+  const done = ()=>{
+    if (token !== playToken) return;
     if (loopIdx===idx){ setTimeout(()=>{ if(loopIdx===idx) speakOne(idx); }, 500); return; }
     if (after) after();
   };
-  synth.speak(u);
+  const fallbackToTts = ()=>{
+    if (token !== playToken) return;
+    humanAudio.onerror = null;
+    const u = makeUtter(rows[idx].data.en);
+    u.onend = done;
+    synth.speak(u);
+  };
+
+  humanAudio.onended = done;
+  let fellBack = false;
+  const fallbackOnce = ()=>{
+    if (fellBack) return;
+    fellBack = true;
+    fallbackToTts();
+  };
+
+  humanAudio.onerror = fallbackOnce;
+  humanAudio.src = humanAudioSrc(idx);
+  humanAudio.currentTime = 0;
+  humanAudio.playbackRate = +rateEl.value;
+  humanAudio.play().catch(fallbackOnce);
 }
 
 /* 循环单句 */
 function toggleLoop(idx, btn){
   document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on'));
-  if (loopIdx===idx){ loopIdx=-1; synth.cancel(); return; }
+  if (loopIdx===idx){ loopIdx=-1; stopCurrentVoice(); return; }
   loopIdx = idx; btn.classList.add('on');
   playingAll = false;
   selectRow(idx);
@@ -394,7 +438,7 @@ function toggleLoop(idx, btn){
 document.getElementById('playAll').addEventListener('click', ()=>{
   loopIdx = -1;
   document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on'));
-  synth.cancel();
+  stopCurrentVoice();
   playingAll = true;
   let i = 0;
   const step = ()=>{
@@ -409,7 +453,7 @@ document.getElementById('playAll').addEventListener('click', ()=>{
 document.getElementById('stopBtn').addEventListener('click', ()=>{
   playingAll=false; loopIdx=-1;
   document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on'));
-  synth.cancel();
+  stopCurrentVoice();
 });
 
 /* 发音提示显隐 */
@@ -465,13 +509,11 @@ document.getElementById('playOrig').addEventListener('click', ()=>{ if(selected>
 document.getElementById('playMine').addEventListener('click', ()=>{ if(myURL){ myAudio.currentTime=0; myAudio.play(); } });
 document.getElementById('playCompare').addEventListener('click', ()=>{
   if(selected<0 || !myURL) return;
-  synth.cancel();
-  const u = makeUtter(rows[selected].data.en);
-  u.onend = ()=> setTimeout(()=>{ myAudio.currentTime=0; myAudio.play(); }, 400);
-  synth.speak(u);
+  stopCurrentVoice();
+  speakOne(selected, ()=> setTimeout(()=>{ myAudio.currentTime=0; myAudio.play(); }, 400));
 });
 
-window.addEventListener('beforeunload', ()=> synth.cancel());
+window.addEventListener('beforeunload', ()=> stopCurrentVoice());
 </script>
 </body>
 </html>
