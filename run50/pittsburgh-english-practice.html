@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#19 Pennsylvania | Pittsburgh Marathon — English Read-Along</title>
+<style>
+  :root{--green:#1C2951;--green2:#1C2951;--gold:#ffb612;--paper:#f5f8f7;--ink:#1f2d27;--muted:#6b7d75;--line:#dfeae4}
+  *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;background:#e9efeb;color:var(--ink);line-height:1.6}
+  .wrap{max-width:880px;margin:0 auto;padding:0 0 80px} .banner{background:var(--green);color:#fff;border-bottom:6px solid var(--gold);padding:28px 26px 24px;position:relative}
+  .tag{display:inline-block;background:var(--gold);color:var(--green);font-weight:800;font-size:12px;letter-spacing:.5px;padding:4px 10px;border-radius:5px}
+  .banner h1{margin:12px 0 6px;font-size:24px;line-height:1.3} .banner .sub{color:rgba(255,255,255,.72);font-size:14px}
+  .backbtn{position:absolute;top:14px;right:16px;background:rgba(255,255,255,.18);color:#fff;border:none;border-radius:6px;padding:6px 12px;font-size:13px;cursor:pointer;text-decoration:none;backdrop-filter:blur(4px)} .backbtn:hover{background:rgba(255,255,255,.3)}
+  .controls{background:#fff;position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line);padding:12px 18px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+  .controls .grp{display:flex;align-items:center;gap:8px} .controls label{font-size:13px;color:var(--muted);white-space:nowrap} select,button{font-family:inherit} select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:13px;max-width:200px}
+  .btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px} .btn:hover{filter:brightness(1.08)} .btn.ghost{background:#eef4f1;color:var(--green)} .btn.ghost:hover{background:#e0ece6} .btn:disabled{opacity:.5;cursor:not-allowed} input[type=range]{accent-color:var(--green)} .rateval{font-weight:800;color:var(--green);font-size:13px;min-width:38px;text-align:center}
+  .hint{background:#fffbe9;border-left:4px solid var(--gold);color:#6a5a1e;margin:18px;padding:12px 14px;border-radius:8px;font-size:13.5px} .hint b{color:#8a6d14} .hint code{background:rgba(255,255,255,.65);border:1px solid rgba(138,109,20,.18);border-radius:5px;padding:1px 5px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px}
+  .stats{display:flex;flex-wrap:wrap;gap:10px;padding:0 18px;margin:16px 0 4px} .stat{flex:1;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:center} .stat .v{font-weight:800;color:var(--green);font-size:16px} .stat .t{font-size:11px;color:var(--muted);margin-top:2px}
+  .list{padding:8px 18px} .row{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 14px 14px 16px;margin:12px 0;display:flex;gap:12px;align-items:flex-start;transition:.15s;position:relative;border-left:4px solid transparent} .row.active{border-left-color:var(--gold);box-shadow:0 4px 16px rgba(18,70,52,.12);background:#fcfffe} .row .num{font-size:11px;color:#fff;background:var(--green);border-radius:5px;padding:2px 7px;font-weight:800;white-space:nowrap;margin-top:3px} .row .body{flex:1;min-width:0} .row .cue{font-size:11px;color:var(--muted);margin-bottom:4px} .row .en{font-size:18px;line-height:1.55;color:var(--ink)} .row.active .en{color:var(--green)} .row .zh{font-size:13.5px;color:var(--muted);margin-top:6px;display:none} .row.show-zh .zh{display:block} .row .tip{font-size:12.5px;color:#7a5a00;background:#fff8e1;border:1px dashed #e7c66b;border-radius:8px;padding:6px 10px;margin-top:8px;line-height:1.7;display:none} .row.show-tip .tip{display:block} .row .ops{display:flex;flex-direction:column;gap:6px;align-items:center} .iconbtn{width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;background:#eef4f1;color:var(--green)} .iconbtn:hover{background:var(--green);color:#fff} .iconbtn.on{background:var(--gold);color:var(--green)}
+  .rec{background:#fff;border:1px solid var(--line);border-radius:12px;margin:18px;padding:16px} .rec h3{margin:0 0 4px;color:var(--green);font-size:16px} .rec p{margin:0 0 12px;font-size:13px;color:var(--muted)} .rec .recrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center} .dot{width:10px;height:10px;border-radius:50%;background:#cdd;display:inline-block;margin-right:6px} .dot.live{background:#e23;animation:pulse 1s infinite} @keyframes pulse{50%{opacity:.3}} audio{height:34px} .foot{text-align:center;color:var(--muted);font-size:12px;padding:24px} @media(max-width:600px){.banner h1{font-size:20px}.row .en{font-size:16px}.controls{gap:8px 10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="banner">
+    <span class="tag">RUN50 #19 | READ-ALONG</span>
+    <h1>#19 Pennsylvania | Pittsburgh Marathon</h1>
+    <div class="sub">English script for read-along practice · Natural voice audio · 中英对照逐句跟读</div>
+    <a class="backbtn" href="run50.html">← 返回口播稿</a>
+  </div>
+  <div class="controls">
+    <div class="grp"><button class="btn" id="playAll">▶ 全文连读</button><button class="btn ghost" id="stopBtn">■ 停止</button></div>
+    <div class="grp"><label>语速</label><input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="1"><span class="rateval" id="rateval">1.00x</span></div>
+    <div class="grp"><label>备用发音</label><select id="voice"></select></div>
+    <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
+  </div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/pittsburgh-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
+  <div class="stats"><div class="stat"><div class="v">Pennsylvania</div><div class="t">State</div></div><div class="stat"><div class="v">Pittsburgh</div><div class="t">City</div></div><div class="stat"><div class="v">2024.05.04</div><div class="t">Race date</div></div><div class="stat"><div class="v">Bridges</div><div class="t">Theme</div></div></div>
+  <div class="list" id="list"></div>
+  <div class="rec"><h3>🎙️ 录音对比练习</h3><p>先选上面任意一句，再录下自己的发音，对比原句。</p><div class="recrow"><button class="btn" id="recBtn"><span class="dot" id="recDot"></span>开始录音</button><button class="btn ghost" id="playOrig" disabled>▶ 听原句</button><button class="btn ghost" id="playMine" disabled>▶ 听我的录音</button><button class="btn ghost" id="playCompare" disabled>⇄ 原句→我的 对比</button></div><p id="recStatus" style="margin-top:10px">当前选中：<b id="selText">（未选择，点上面任意一句）</b></p><audio id="myAudio" controls style="display:none;width:100%;margin-top:6px"></audio></div>
+  <div class="foot">© Run50 · English Read-Along · 愿每一双跑鞋都不被辜负</div>
+</div>
+<script>
+const DATA = [
+  {
+    "cue": "00:00 政治悬疑",
+    "en": "Which is the most swing state in the United States?",
+    "zh": "美国最摇摆的州，是哪一个呢？",
+    "tip": "重音: WHICH · MOST · SWING"
+  },
+  {
+    "cue": "00:00 政治悬疑.2",
+    "en": "It's the state that can sway the president.",
+    "zh": "它就是那个能左右总统归属的州。",
+    "tip": "重音: IT'S · STATE · SWAY"
+  },
+  {
+    "cue": "00:00 政治悬疑.3",
+    "en": "It was also the state where Trump was shot at a rally in 2024.",
+    "zh": "也是那个 2024 年，特朗普在造势现场遭遇枪击的州。",
+    "tip": "重音: ALSO · STATE · WHERE"
+  },
+  {
+    "cue": "00:14 历史双重身份",
+    "en": "It is both the birthplace of the Declaration of Independence and the eye of the storm in the general election.",
+    "zh": "它既是独立宣言诞生地，也是大选的风暴眼。",
+    "tip": "重音: BOTH · BIRTHPLACE · DECLARATION"
+  },
+  {
+    "cue": "00:14 历史双重身份.2",
+    "en": "It is Pennsylvania.",
+    "zh": "它就是——宾夕法尼亚。",
+    "tip": "重音: PENNSYLVANIA"
+  },
+  {
+    "cue": "00:22 个人切入",
+    "en": "Hey everyone, this is Asen Man.",
+    "zh": "大家好，这里是阿森男。",
+    "tip": "重音: EVERYONE · ASEN"
+  },
+  {
+    "cue": "00:22 个人切入.2",
+    "en": "At this stop, we started from Kentucky and ran towards the steel city of Pittsburgh, running a marathon with many bridges and steep slopes.",
+    "zh": "这一站，我们从肯塔基出发，奔向钢铁之城匹兹堡，跑了一场桥贼多、坡贼陡的马拉松。",
+    "tip": "重音: STOP · STARTED · KENTUCKY"
+  },
+  {
+    "cue": "00:22 个人切入.3",
+    "en": "Run50 State 19, Pennsylvania – Not only is the state shaking, but so is the track.",
+    "zh": "Run50 第 19 州，宾夕法尼亚——不仅州在摇，赛道也在摇。",
+    "tip": "重音: STATE · PENNSYLVANIA · ONLY"
+  },
+  {
+    "cue": "00:38 地理位置",
+    "en": "Pennsylvania's location on the U.S. map is crucial: New York to the east, Ohio to the west, Maryland to the south, and the Great Lakes to the north.",
+    "zh": "宾夕法尼亚在美国版图上位置很关键：往东是纽约，往西是俄亥俄，往南是马里兰，往北连着五大湖。",
+    "tip": "重音: PENNSYLVANIA'S · LOCATION · CRUCIAL"
+  },
+  {
+    "cue": "00:38 地理位置.2",
+    "en": "It's like a true \"cornerstone\" - the Cornerstone State.",
+    "zh": "它像一块真正的\"基石\"——基石州。",
+    "tip": "重音: IT'S · LIKE · TRUE"
+  },
+  {
+    "cue": "00:38 地理位置.3",
+    "en": "The Declaration of Independence was signed in Philadelphia, and the Constitution was born here. The history is ridiculously thick.",
+    "zh": "美国独立宣言在费城签署，宪法也在这里诞生，历史厚得离谱。",
+    "tip": "重音: DECLARATION · INDEPENDENCE · SIGNED"
+  },
+  {
+    "cue": "00:52 摇摆州标签",
+    "en": "But in modern times, it is better known as a swing state.",
+    "zh": "但现代的它，更出名的身份是摇摆州。",
+    "tip": "重音: MODERN · TIMES · BETTER"
+  },
+  {
+    "cue": "00:52 摇摆州标签.2",
+    "en": "Every election, the national media focuses on it—turning red, turning blue, turning red again.",
+    "zh": "每次大选，全国媒体都盯着它——翻红，翻蓝，再翻红。",
+    "tip": "重音: EVERY · ELECTION · NATIONAL"
+  },
+  {
+    "cue": "00:52 摇摆州标签.3",
+    "en": "In the summer of 2024, Trump was shot in Butler County, Pennsylvania, and a bullet grazed his ear.",
+    "zh": "2024 年夏天，特朗普在宾州巴特勒县遭遇枪击，子弹擦过耳朵。",
+    "tip": "重音: SUMMER · TRUMP · SHOT"
+  },
+  {
+    "cue": "00:52 摇摆州标签.4",
+    "en": "At that moment, the whole world once again realized that Pennsylvania was not only important, but also sensitive.",
+    "zh": "那一刻，全世界都再次意识到——宾夕法尼亚，不仅重要，而且敏感。",
+    "tip": "重音: MOMENT · WHOLE · WORLD"
+  },
+  {
+    "cue": "01:12 匹兹堡简介",
+    "en": "However, this time we are not going to Philadelphia, we are going to Pittsburgh.",
+    "zh": "不过，我们这次不是去费城，我们去匹兹堡。",
+    "tip": "重音: HOWEVER · TIME · GOING"
+  },
+  {
+    "cue": "01:12 匹兹堡简介.2",
+    "en": "Three rivers intersect and there are more than 400 bridges, so it is nicknamed - Bridge Capital.",
+    "zh": "三条河交汇，四百多座桥，外号——桥都。",
+    "tip": "重音: THREE · RIVERS · INTERSECT"
+  },
+  {
+    "cue": "01:22 钢铁转型",
+    "en": "Once upon a time, chimneys stood tall and steel roared, a microcosm of American industry.",
+    "zh": "曾经烟囱林立，钢铁轰鸣，美国工业的缩影。",
+    "tip": "重音: ONCE · UPON · TIME"
+  },
+  {
+    "cue": "01:22 钢铁转型.2",
+    "en": "Now steel is out, CMU is here, Pitt is here, robotics, medicine, technology.",
+    "zh": "如今钢铁退场，CMU 在这里，Pitt 在这里，机器人、医学、科技。",
+    "tip": "重音: STEEL · HERE · PITT"
+  },
+  {
+    "cue": "01:22 钢铁转型.3",
+    "en": "A heart of steel, a brain of wisdom, this is Pittsburgh.",
+    "zh": "钢铁的心脏，智慧的大脑，这就是匹兹堡。",
+    "tip": "重音: HEART · STEEL · BRAIN"
+  },
+  {
+    "cue": "01:35 凌晨出发",
+    "en": "We set out at 4:30 on Saturday morning, while it was still dark, pulling out of the night and driving slowly until dawn.",
+    "zh": "我们周六早晨 4 点半出发，天还黑着，从夜色里驶出，慢慢开到天亮。",
+    "tip": "重音: SATURDAY · MORNING · WHILE"
+  },
+  {
+    "cue": "01:35 凌晨出发.2",
+    "en": "The sky is gray, the road has just rained, and there are large golden rapeseed flowers on the roadside.",
+    "zh": "灰蒙蒙的天空，刚下过雨的公路，路边大片金黄的油菜花。",
+    "tip": "重音: GRAY · ROAD · RAINED"
+  },
+  {
+    "cue": "01:45 十年记忆",
+    "en": "At that moment, I suddenly thought of Yuan'an, Hubei - where I ran my first half-marathon ten years ago.",
+    "zh": "那一瞬间，我突然想起湖北远安——十年前，我在那里跑了人生第一场半马。",
+    "tip": "重音: MOMENT · SUDDENLY · THOUGHT"
+  },
+  {
+    "cue": "01:45 十年记忆.2",
+    "en": "Ten years later, I was on my way to the 19th state.",
+    "zh": "十年后，我在去第 19 州的路上。",
+    "tip": "重音: YEARS · LATER · STATE"
+  },
+  {
+    "cue": "01:45 十年记忆.3",
+    "en": "Time is like a butcher's knife.",
+    "zh": "时间，像把杀猪刀。",
+    "tip": "重音: TIME · LIKE · BUTCHER'S"
+  },
+  {
+    "cue": "01:55 抵达安顿",
+    "en": "Arrive at the Airbnb. On the hillside, you can see the red brick hut looking up and the confluence of three rivers looking down.",
+    "zh": "抵达 Airbnb，在山坡上，抬头是红砖小屋，低头是三河交汇。",
+    "tip": "重音: ARRIVE · AIRBNB · HILLSIDE"
+  },
+  {
+    "cue": "01:55 抵达安顿.2",
+    "en": "After eating at the Bangladesh buffet, we went to the expo to pick up equipment. The hall was full of runners and it was very lively.",
+    "zh": "吃了孟加拉自助，再去 博览会 领装备，大厅里全是跑者，很热闹。",
+    "tip": "重音: AFTER · EATING · BANGLADESH"
+  },
+  {
+    "cue": "02:10 比赛日入场",
+    "en": "Early the next morning, the sky was already white when we arrived at the starting point of the city center.",
+    "zh": "第二天清晨，到 市中心 起点时天空已经泛白。",
+    "tip": "重音: EARLY · NEXT · MORNING"
+  },
+  {
+    "cue": "02:10 比赛日入场.2",
+    "en": "The black and yellow color scheme, my outfit for the day, just blended in with the crowd.",
+    "zh": "黑黄配色，我当天的装备，刚好融进人群。",
+    "tip": "重音: BLACK · YELLOW · COLOR"
+  },
+  {
+    "cue": "02:10 比赛日入场.3",
+    "en": "The starting point was bustling with people, the rain had just washed the streets, and the tall buildings looked like polished iron.",
+    "zh": "起点人声鼎沸，雨水刚洗过街道，高楼像被擦亮的铁器。",
+    "tip": "重音: STARTING · POINT · BUSTLING"
+  },
+  {
+    "cue": "02:22 艺术仓库区",
+    "en": "In the first two miles, the old warehouse has been turned into a cafe, and the walls are covered with graffiti - steel shell, artistic heart.",
+    "zh": "前两英里，旧仓库变成了咖啡馆，墙上满是涂鸦——钢铁外壳，艺术心脏。",
+    "tip": "重音: FIRST · MILES · WAREHOUSE"
+  },
+  {
+    "cue": "02:32 黄桥系列",
+    "en": "Three miles away, the first yellow bridge - the 16th Street Yellow Bridge, the stone tower looks like a gatekeeper, and the wind blows up from the river.",
+    "zh": "三英里，第一座黄桥——16街黄桥，石塔像守门人，风从河面吹上来。",
+    "tip": "重音: THREE · MILES · AWAY"
+  },
+  {
+    "cue": "02:32 黄桥系列.2",
+    "en": "Seven Mile, West End Bridge, skyline spreads, Mount Washington in the distance.",
+    "zh": "七英里，西端大桥，天际线展开，远处 华盛顿山。",
+    "tip": "重音: SEVEN · MILE · WEST"
+  },
+  {
+    "cue": "02:32 黄桥系列.3",
+    "en": "The bridge is the metronome of Pittsburgh.",
+    "zh": "桥，就是匹兹堡的节拍器。",
+    "tip": "重音: BRIDGE · METRONOME · PITTSBURGH"
+  },
+  {
+    "cue": "02:45 南区热闹",
+    "en": "Ten miles away, in the southern commercial district, there were suddenly more people.",
+    "zh": "十英里，南区商业区，人突然变多。",
+    "tip": "重音: MILES · AWAY · SOUTHERN"
+  },
+  {
+    "cue": "02:45 南区热闹.2",
+    "en": "Gummies, oranges, pickle juice, the children held black and yellow flags, and their cheers were particularly sincere.",
+    "zh": "软糖、橙子、酸黄瓜汁，小朋友举着黑黄旗子，加油声特别真诚。",
+    "tip": "重音: GUMMIES · ORANGES · PICKLE"
+  },
+  {
+    "cue": "02:55 大学圣殿",
+    "en": "Twelve miles later, we entered the University of Pittsburgh, the palace of learning—a 42-story Gothic tower that was particularly solemn under the cloudy sky.",
+    "zh": "十二英里，进入匹兹堡大学，学识殿堂——42 层哥特式高塔，在阴天下格外庄重。",
+    "tip": "重音: TWELVE · MILES · LATER"
+  },
+  {
+    "cue": "02:55 大学圣殿.2",
+    "en": "Across the street, Carnegie Mellon is the mecca of computers and the cradle of robots.",
+    "zh": "一街之隔，卡耐基梅隆，计算机圣地，机器人摇篮。",
+    "tip": "重音: ACROSS · STREET · CARNEGIE"
+  },
+  {
+    "cue": "03:08 安静街区",
+    "en": "Fourteen miles later, the neighborhood became quiet, with green trees, churches, and brick houses. Residents brought out chairs to cheer, another side of the Steel City.",
+    "zh": "十四英里以后，街区变得安静，绿树、教堂、砖房，居民搬椅子出来加油，钢铁之城的另一面。",
+    "tip": "重音: FOURTEEN · MILES · LATER"
+  },
+  {
+    "cue": "03:18 最后冲刺",
+    "en": "The last six miles, back to the city center, high-rise canyons, shouting echoes, the end is just ahead.",
+    "zh": "最后六英里，回到市中心，高楼峡谷，呐喊回声，终点就在前面。",
+    "tip": "重音: LAST · MILES · BACK"
+  },
+  {
+    "cue": "03:18 最后冲刺.2",
+    "en": "Crossed the finish line in just over 4 hours - with so many slopes, I was quite satisfied.",
+    "zh": "冲线，4 小时出头——坡这么多，我挺满意。",
+    "tip": "重音: CROSSED · FINISH · LINE"
+  },
+  {
+    "cue": "03:28 奖牌与巧遇",
+    "en": "The medal is the confluence of three rivers, a cutting-edge state park, and fountains soaring into the sky. Everything is just right.",
+    "zh": "奖牌是三河交汇，尖端州立公园，喷泉冲天，一切刚刚好。",
+    "tip": "重音: MEDAL · CONFLUENCE · THREE"
+  },
+  {
+    "cue": "03:28 奖牌与巧遇.2",
+    "en": "I met a runner who was wearing a Manchester United jersey and I was wearing an Arsenal jersey. We politely took a photo with each other, feeling very arrogant in my heart.",
+    "zh": "我遇到一个穿曼联球衣的跑友，我穿阿森纳，礼貌合影，心里是趾高气昂。",
+    "tip": "重音: RUNNER · WEARING · MANCHESTER"
+  },
+  {
+    "cue": "03:40 返程回味",
+    "en": "On the way back, I took a shower at the gym, put on my finishing clothes, and turned into a local alley.",
+    "zh": "回程，健身房 洗澡，换上完赛衣，拐进 当地小路。",
+    "tip": "重音: BACK · TOOK · SHOWER"
+  },
+  {
+    "cue": "03:40 返程回味.2",
+    "en": "Blue sky, green grass, and hills, returning from the Steel City to the Bluegrass State is like completing a cycle.",
+    "zh": "蓝天、绿草、丘陵，从钢铁之城回到蓝草州，像完成一个循环。",
+    "tip": "重音: BLUE · GREEN · GRASS"
+  },
+  {
+    "cue": "03:52 结尾金句",
+    "en": "Steel is not just metal.",
+    "zh": "钢铁，不只是金属。",
+    "tip": "重音: STEEL · METAL"
+  },
+  {
+    "cue": "03:52 结尾金句.2",
+    "en": "It's resilience.",
+    "zh": "是韧性。",
+    "tip": "重音: IT'S · RESILIENCE"
+  },
+  {
+    "cue": "03:52 结尾金句.3",
+    "en": "This is also my memory of these 42 kilometers.",
+    "zh": "也是我这 42 公里的记忆。",
+    "tip": "重音: ALSO · MEMORY · THESE"
+  },
+  {
+    "cue": "03:52 结尾金句.4",
+    "en": "Run50 State 19, Pennsylvania finished, see you in the next state.",
+    "zh": "Run50 第 19 州，宾夕法尼亚完赛，下一个州再见。",
+    "tip": "重音: STATE · PENNSYLVANIA · FINISHED"
+  }
+];
+const listEl = document.getElementById('list');
+const rows = [];
+DATA.forEach((d) => {
+  const idx = rows.length;
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML = '<div class="num">'+(idx+1)+'</div><div class="body"><div class="cue">'+d.cue+'</div><div class="en">'+d.en+'</div>'+(d.tip ? '<div class="tip">🗣 '+d.tip+'</div>' : '')+'<div class="zh">'+d.zh+'</div></div><div class="ops"><button class="iconbtn play" title="朗读这一句">▶</button><button class="iconbtn loop" title="循环这一句">🔁</button></div>';
+  listEl.appendChild(row);
+  const rec = {el:row, idx:idx, data:d};
+  rows.push(rec);
+  row.querySelector('.play').addEventListener('click', e=>{ e.stopPropagation(); selectRow(idx); speakOne(idx); });
+  row.querySelector('.loop').addEventListener('click', e=>{ e.stopPropagation(); toggleLoop(idx, e.currentTarget); });
+  row.addEventListener('click', ()=> selectRow(idx));
+});
+const synth = window.speechSynthesis;
+const voiceSel = document.getElementById('voice');
+const rateEl = document.getElementById('rate');
+const ratevalEl = document.getElementById('rateval');
+const humanAudio = new Audio();
+const HUMAN_AUDIO_BASE = 'audio/pittsburgh-english-practice';
+const HUMAN_AUDIO_VERSION = '20260630-brian-batch-v1';
+let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
+rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
+function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }
+function isEN(v){ return /^en/i.test(v.lang) || /\bEnglish\b/i.test(v.name); }
+function loadVoices(){ const all = synth.getVoices(); if(!all.length) return false; const us = all.filter(isUS); const en = all.filter(v => isEN(v) && !isUS(v)); voices = (us.length ? us.concat(en) : en.length ? en : all); voiceSel.innerHTML=''; voices.forEach((v,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=v.name+' ('+v.lang+')'; voiceSel.appendChild(o); }); chosenVoice=voices[0]||null; return true; }
+voiceSel.addEventListener('change', ()=> chosenVoice = voices[+voiceSel.value]); if(synth.onvoiceschanged !== undefined) synth.onvoiceschanged = loadVoices; (function tryLoad(n){ if(loadVoices()) return; if(n>0) setTimeout(()=>tryLoad(n-1), 300); })(10);
+function makeUtter(text){ const u = new SpeechSynthesisUtterance(text); if(chosenVoice) u.voice = chosenVoice; u.lang = (chosenVoice && chosenVoice.lang) || 'en-US'; u.rate = +rateEl.value; return u; }
+function humanAudioSrc(idx){ return HUMAN_AUDIO_BASE + '/' + String(idx + 1).padStart(2, '0') + '.mp3?v=' + HUMAN_AUDIO_VERSION; }
+function stopCurrentVoice(){ playToken++; synth.cancel(); humanAudio.pause(); humanAudio.removeAttribute('src'); humanAudio.load(); }
+function selectRow(idx){ selected = idx; rows.forEach((r,i)=> r.el.classList.toggle('active', i===idx)); document.getElementById('selText').textContent = rows[idx].data.en; document.getElementById('playOrig').disabled = false; refreshCompareBtns(); }
+function speakOne(idx, after){ const token = ++playToken; synth.cancel(); humanAudio.pause(); const done = ()=>{ if(token !== playToken) return; if(loopIdx===idx){ setTimeout(()=>{ if(loopIdx===idx) speakOne(idx); }, 500); return; } if(after) after(); }; const fallbackToTts = ()=>{ if(token !== playToken) return; humanAudio.onerror = null; const u = makeUtter(rows[idx].data.en); u.onend = done; synth.speak(u); }; let fellBack = false; const fallbackOnce = ()=>{ if(fellBack) return; fellBack = true; fallbackToTts(); }; humanAudio.onended = done; humanAudio.onerror = fallbackOnce; humanAudio.src = humanAudioSrc(idx); humanAudio.currentTime = 0; humanAudio.playbackRate = +rateEl.value; humanAudio.play().catch(fallbackOnce); }
+function toggleLoop(idx, btn){ document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on')); if(loopIdx===idx){ loopIdx=-1; stopCurrentVoice(); return; } loopIdx = idx; btn.classList.add('on'); playingAll = false; selectRow(idx); speakOne(idx); }
+document.getElementById('playAll').addEventListener('click', ()=>{ loopIdx = -1; document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on')); stopCurrentVoice(); playingAll = true; let i = 0; const step = ()=>{ if(!playingAll || i>=rows.length){ playingAll=false; rows.forEach(r=>r.el.classList.remove('active')); return; } selectRow(i); rows[i].el.scrollIntoView({behavior:'smooth', block:'center'}); speakOne(i, ()=>{ i++; step(); }); }; step(); });
+document.getElementById('stopBtn').addEventListener('click', ()=>{ playingAll=false; loopIdx=-1; document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on')); stopCurrentVoice(); });
+let showTip = false; document.getElementById('toggleTip').addEventListener('click', e=>{ showTip=!showTip; rows.forEach(r=>r.el.classList.toggle('show-tip', showTip)); e.currentTarget.textContent = showTip ? '🗣 隐藏提示' : '🗣 发音提示'; });
+let showZh = false; document.getElementById('toggleZh').addEventListener('click', e=>{ showZh=!showZh; rows.forEach(r=>r.el.classList.toggle('show-zh', showZh)); e.currentTarget.textContent = showZh ? '隐藏中文' : '显示中文'; });
+let mediaRec=null, chunks=[], myURL=null, recording=false; const recBtn=document.getElementById('recBtn'), recDot=document.getElementById('recDot'), myAudio=document.getElementById('myAudio');
+function refreshCompareBtns(){ const has=!!myURL, sel=selected>=0; document.getElementById('playMine').disabled=!has; document.getElementById('playCompare').disabled=!(has&&sel); }
+recBtn.addEventListener('click', async ()=>{ if(recording){ mediaRec.stop(); return; } try{ const stream=await navigator.mediaDevices.getUserMedia({audio:true}); mediaRec=new MediaRecorder(stream); chunks=[]; mediaRec.ondataavailable=e=>chunks.push(e.data); mediaRec.onstop=()=>{ const blob=new Blob(chunks, {type:'audio/webm'}); if(myURL) URL.revokeObjectURL(myURL); myURL=URL.createObjectURL(blob); myAudio.src=myURL; myAudio.style.display='block'; recording=false; recDot.classList.remove('live'); recBtn.lastChild.textContent='重新录音'; stream.getTracks().forEach(t=>t.stop()); refreshCompareBtns(); }; mediaRec.start(); recording=true; recDot.classList.add('live'); recBtn.lastChild.textContent='停止录音'; }catch(err){ alert('无法访问麦克风：'+err.message+'\n请在浏览器允许麦克风权限后重试。'); } });
+document.getElementById('playOrig').addEventListener('click', ()=>{ if(selected>=0) speakOne(selected); }); document.getElementById('playMine').addEventListener('click', ()=>{ if(myURL){ myAudio.currentTime=0; myAudio.play(); } }); document.getElementById('playCompare').addEventListener('click', ()=>{ if(selected<0 || !myURL) return; stopCurrentVoice(); speakOne(selected, ()=> setTimeout(()=>{ myAudio.currentTime=0; myAudio.play(); }, 400)); }); window.addEventListener('beforeunload', ()=> stopCurrentVoice());
+</script>
+</body>
+</html>

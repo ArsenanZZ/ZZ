@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#22 New Hampshire | Clarence DeMar Marathon — English Read-Along</title>
+<style>
+  :root{--green:#1B3A2D;--green2:#1B3A2D;--gold:#d97845;--paper:#f5f8f7;--ink:#1f2d27;--muted:#6b7d75;--line:#dfeae4}
+  *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;background:#e9efeb;color:var(--ink);line-height:1.6}
+  .wrap{max-width:880px;margin:0 auto;padding:0 0 80px} .banner{background:var(--green);color:#fff;border-bottom:6px solid var(--gold);padding:28px 26px 24px;position:relative}
+  .tag{display:inline-block;background:var(--gold);color:var(--green);font-weight:800;font-size:12px;letter-spacing:.5px;padding:4px 10px;border-radius:5px}
+  .banner h1{margin:12px 0 6px;font-size:24px;line-height:1.3} .banner .sub{color:rgba(255,255,255,.72);font-size:14px}
+  .backbtn{position:absolute;top:14px;right:16px;background:rgba(255,255,255,.18);color:#fff;border:none;border-radius:6px;padding:6px 12px;font-size:13px;cursor:pointer;text-decoration:none;backdrop-filter:blur(4px)} .backbtn:hover{background:rgba(255,255,255,.3)}
+  .controls{background:#fff;position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line);padding:12px 18px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+  .controls .grp{display:flex;align-items:center;gap:8px} .controls label{font-size:13px;color:var(--muted);white-space:nowrap} select,button{font-family:inherit} select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:13px;max-width:200px}
+  .btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px} .btn:hover{filter:brightness(1.08)} .btn.ghost{background:#eef4f1;color:var(--green)} .btn.ghost:hover{background:#e0ece6} .btn:disabled{opacity:.5;cursor:not-allowed} input[type=range]{accent-color:var(--green)} .rateval{font-weight:800;color:var(--green);font-size:13px;min-width:38px;text-align:center}
+  .hint{background:#fffbe9;border-left:4px solid var(--gold);color:#6a5a1e;margin:18px;padding:12px 14px;border-radius:8px;font-size:13.5px} .hint b{color:#8a6d14} .hint code{background:rgba(255,255,255,.65);border:1px solid rgba(138,109,20,.18);border-radius:5px;padding:1px 5px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px}
+  .stats{display:flex;flex-wrap:wrap;gap:10px;padding:0 18px;margin:16px 0 4px} .stat{flex:1;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:center} .stat .v{font-weight:800;color:var(--green);font-size:16px} .stat .t{font-size:11px;color:var(--muted);margin-top:2px}
+  .list{padding:8px 18px} .row{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 14px 14px 16px;margin:12px 0;display:flex;gap:12px;align-items:flex-start;transition:.15s;position:relative;border-left:4px solid transparent} .row.active{border-left-color:var(--gold);box-shadow:0 4px 16px rgba(18,70,52,.12);background:#fcfffe} .row .num{font-size:11px;color:#fff;background:var(--green);border-radius:5px;padding:2px 7px;font-weight:800;white-space:nowrap;margin-top:3px} .row .body{flex:1;min-width:0} .row .cue{font-size:11px;color:var(--muted);margin-bottom:4px} .row .en{font-size:18px;line-height:1.55;color:var(--ink)} .row.active .en{color:var(--green)} .row .zh{font-size:13.5px;color:var(--muted);margin-top:6px;display:none} .row.show-zh .zh{display:block} .row .tip{font-size:12.5px;color:#7a5a00;background:#fff8e1;border:1px dashed #e7c66b;border-radius:8px;padding:6px 10px;margin-top:8px;line-height:1.7;display:none} .row.show-tip .tip{display:block} .row .ops{display:flex;flex-direction:column;gap:6px;align-items:center} .iconbtn{width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;background:#eef4f1;color:var(--green)} .iconbtn:hover{background:var(--green);color:#fff} .iconbtn.on{background:var(--gold);color:var(--green)}
+  .rec{background:#fff;border:1px solid var(--line);border-radius:12px;margin:18px;padding:16px} .rec h3{margin:0 0 4px;color:var(--green);font-size:16px} .rec p{margin:0 0 12px;font-size:13px;color:var(--muted)} .rec .recrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center} .dot{width:10px;height:10px;border-radius:50%;background:#cdd;display:inline-block;margin-right:6px} .dot.live{background:#e23;animation:pulse 1s infinite} @keyframes pulse{50%{opacity:.3}} audio{height:34px} .foot{text-align:center;color:var(--muted);font-size:12px;padding:24px} @media(max-width:600px){.banner h1{font-size:20px}.row .en{font-size:16px}.controls{gap:8px 10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="banner">
+    <span class="tag">RUN50 #22 | READ-ALONG</span>
+    <h1>#22 New Hampshire | Clarence DeMar Marathon</h1>
+    <div class="sub">English script for read-along practice · Natural voice audio · 中英对照逐句跟读</div>
+    <a class="backbtn" href="run50.html">← 返回口播稿</a>
+  </div>
+  <div class="controls">
+    <div class="grp"><button class="btn" id="playAll">▶ 全文连读</button><button class="btn ghost" id="stopBtn">■ 停止</button></div>
+    <div class="grp"><label>语速</label><input type="range" id="rate" min="0.5" max="1.1" step="0.05" value="1"><span class="rateval" id="rateval">1.00x</span></div>
+    <div class="grp"><label>备用发音</label><select id="voice"></select></div>
+    <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
+  </div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/new-hampshire-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
+  <div class="stats"><div class="stat"><div class="v">New Hampshire</div><div class="t">State</div></div><div class="stat"><div class="v">Keene</div><div class="t">City</div></div><div class="stat"><div class="v">2024.09.28</div><div class="t">Race date</div></div><div class="stat"><div class="v">Fall colors</div><div class="t">Theme</div></div></div>
+  <div class="list" id="list"></div>
+  <div class="rec"><h3>🎙️ 录音对比练习</h3><p>先选上面任意一句，再录下自己的发音，对比原句。</p><div class="recrow"><button class="btn" id="recBtn"><span class="dot" id="recDot"></span>开始录音</button><button class="btn ghost" id="playOrig" disabled>▶ 听原句</button><button class="btn ghost" id="playMine" disabled>▶ 听我的录音</button><button class="btn ghost" id="playCompare" disabled>⇄ 原句→我的 对比</button></div><p id="recStatus" style="margin-top:10px">当前选中：<b id="selText">（未选择，点上面任意一句）</b></p><audio id="myAudio" controls style="display:none;width:100%;margin-top:6px"></audio></div>
+  <div class="foot">© Run50 · English Read-Along · 愿每一双跑鞋都不被辜负</div>
+</div>
+<script>
+const DATA = [
+  {
+    "cue": "00:00 问句钩子",
+    "en": "Can you imagine running a marathon in a cemetery?",
+    "zh": "你能想象，在墓地里还能跑马拉松吗？",
+    "tip": "重音: IMAGINE · RUNNING · MARATHON"
+  },
+  {
+    "cue": "00:06 反转加码",
+    "en": "Moreover, there were volunteers cheering on both sides.",
+    "zh": "而且，两侧还有志愿者在加油。",
+    "tip": "重音: MOREOVER · VOLUNTEERS · CHEERING"
+  },
+  {
+    "cue": "00:10 自我介绍",
+    "en": "Hey everyone, this is - Asen Man.",
+    "zh": "大家好啊，这里是——阿森男。",
+    "tip": "重音: EVERYONE · ASEN"
+  },
+  {
+    "cue": "00:10 自我介绍.2",
+    "en": "This time, Run50 comes to state 22: New Hampshire.",
+    "zh": "这一次，Run50 来到了第 22 个州：新罕布什尔。",
+    "tip": "重音: TIME · COMES · STATE"
+  },
+  {
+    "cue": "00:20 地理位置",
+    "en": "New Hampshire, located in the northeastern corner of the United States, is one of the six New England states.",
+    "zh": "新罕布什尔，位于美国东北角，是新英格兰六州之一。",
+    "tip": "重音: HAMPSHIRE · LOCATED · NORTHEASTERN"
+  },
+  {
+    "cue": "00:20 地理位置.2",
+    "en": "New England includes Maine, Vermont, New Hampshire, Massachusetts, Connecticut and Rhode Island. It is the earliest colony in the United States, with a rich history and beautiful autumn colors.",
+    "zh": "新英格兰包括缅因、佛蒙特、新罕布什尔、马萨诸塞、康涅狄格和罗得岛，是美国最早的殖民地，历史厚，秋色美。",
+    "tip": "重音: ENGLAND · INCLUDES · MAINE"
+  },
+  {
+    "cue": "00:20 地理位置.3",
+    "en": "The genes of the Boston Marathon grew out of here.",
+    "zh": "波士顿马拉松的基因，就从这里长出来的。",
+    "tip": "重音: GENES · BOSTON · MARATHON"
+  },
+  {
+    "cue": "00:35 州情特点",
+    "en": "New Hampshire itself is a small state with a lot of character.",
+    "zh": "新罕布什尔本身是个小州，但特点很集中。",
+    "tip": "重音: HAMPSHIRE · ITSELF · SMALL"
+  },
+  {
+    "cue": "00:35 州情特点.2",
+    "en": "To the north is the famous White Mountains, the highest peak of which is Mount Washington. It is windy all year round and the weather is changeable. It is a place that climbers love and fear.",
+    "zh": "北边是著名的白山，最高峰华盛顿山，常年风大，天气多变，是登山客又爱又怕的地方。",
+    "tip": "重音: NORTH · FAMOUS · WHITE"
+  },
+  {
+    "cue": "00:35 州情特点.3",
+    "en": "There are many lakes in the central region, including Lake Winnipesaukee, which is a resort destination in the summer.",
+    "zh": "中部湖泊很多，温尼珀索基湖，夏天是度假胜地。",
+    "tip": "重音: MANY · LAKES · CENTRAL"
+  },
+  {
+    "cue": "00:35 州情特点.4",
+    "en": "The capital is Concord and the largest city is Manchester, but neither is too big.",
+    "zh": "首府是康科德，最大城市是曼彻斯特，但哪个都不算大。",
+    "tip": "重音: CAPITAL · CONCORD · LARGEST"
+  },
+  {
+    "cue": "00:52 秋色定调",
+    "en": "The temperament of the entire state is mountains, trees, small towns, quiet, and a bit cold.",
+    "zh": "整个州的气质，就是山、树、小镇，安静，有点冷。",
+    "tip": "重音: TEMPERAMENT · ENTIRE · STATE"
+  },
+  {
+    "cue": "00:52 秋色定调.2",
+    "en": "But the autumn colors at the end of September are really beautiful.",
+    "zh": "但九月底的秋色，是真的好看。",
+    "tip": "重音: AUTUMN · COLORS · SEPTEMBER"
+  },
+  {
+    "cue": "00:52 秋色定调.3",
+    "en": "It’s maple leaf season in New England, with layers of red, yellow and orange, and New Hampshire happens to be one of the most colorful places.",
+    "zh": "新英格兰的枫叶季，红、黄、橙层层叠叠，新罕布什尔，正好是那片颜色最浓的地方之一。",
+    "tip": "重音: MAPLE · LEAF · SEASON"
+  },
+  {
+    "cue": "01:05 出发引入",
+    "en": "The destination this time is a university town called Keene.",
+    "zh": "这次的目的地，是一座叫基恩的大学城。",
+    "tip": "重音: DESTINATION · TIME · UNIVERSITY"
+  },
+  {
+    "cue": "01:05 出发引入.2",
+    "en": "We set off from Kentucky and drove for seventeen hours. Along the way, we first took a turn to see something——",
+    "zh": "我们从肯塔基出发，整整开了十七个小时，沿途先拐去看了一样东西——",
+    "tip": "重音: KENTUCKY · DROVE · SEVENTEEN"
+  },
+  {
+    "cue": "01:14 尼亚加拉引出",
+    "en": "Niagara Falls.",
+    "zh": "尼亚加拉瀑布。",
+    "tip": "重音: NIAGARA · FALLS"
+  },
+  {
+    "cue": "01:18 公园科普",
+    "en": "Entering Niagara Falls State Park, this is the oldest state park in the United States. The designer was Olmstead who designed Central Park.",
+    "zh": "进了尼亚加拉瀑布州立公园，这是全美历史最悠久的州立公园，设计者就是设计中央公园的奥姆斯特德。",
+    "tip": "重音: ENTERING · NIAGARA · FALLS"
+  },
+  {
+    "cue": "01:18 公园科普.2",
+    "en": "First we went to the observation deck next to the Tesla statue.",
+    "zh": "先去了特斯拉雕像旁边的观景台。",
+    "tip": "重音: FIRST · WENT · OBSERVATION"
+  },
+  {
+    "cue": "01:28 特斯拉彩蛋",
+    "en": "The reason why there is a statue of Tesla is because the winner of the electric current war between him and Edison was decided here.",
+    "zh": "之所以有特斯拉的雕像，是因为他和爱迪生当年的电流大战，就在这里分出了胜负。",
+    "tip": "重音: REASON · STATUE · TESLA"
+  },
+  {
+    "cue": "01:28 特斯拉彩蛋.2",
+    "en": "Tesla's alternating current solution won, and the first hydroelectric power station was built in Niagara, which became a symbol of the electrical age.",
+    "zh": "特斯拉的交流电方案赢了，第一座水力发电站就建在尼亚加拉，这里也成了电气时代的象征。",
+    "tip": "重音: TESLA'S · ALTERNATING · CURRENT"
+  },
+  {
+    "cue": "01:40 风之洞体验",
+    "en": "Then we experienced the \"Cave of the Winds\".",
+    "zh": "然后我们体验了\"风之洞\"。",
+    "tip": "重音: EXPERIENCED · CAVE · WINDS"
+  },
+  {
+    "cue": "01:40 风之洞体验.2",
+    "en": "Wear a yellow raincoat and take the elevator down to the wooden boardwalk at the foot of the waterfall.",
+    "zh": "领一件黄色雨衣，坐电梯下到瀑布脚下的木栈道。",
+    "tip": "重音: WEAR · YELLOW · RAINCOAT"
+  },
+  {
+    "cue": "01:40 风之洞体验.3",
+    "en": "At that moment, it was like walking into a violent storm, with water splashing directly on my face, I couldn't open my eyes, and my shoes were soaked in a short time.",
+    "zh": "那一刻就像走进了狂风暴雨里，水花直接砸在脸上，眼睛都睁不开，鞋子一会儿就湿透了。",
+    "tip": "重音: MOMENT · LIKE · WALKING"
+  },
+  {
+    "cue": "01:40 风之洞体验.4",
+    "en": "There was a roaring sound in my ears, and the waterfall roared right in front of me.",
+    "zh": "耳边全是轰鸣声，瀑布就在眼前咆哮。",
+    "tip": "重音: ROARING · SOUND · EARS"
+  },
+  {
+    "cue": "01:55 马蹄瀑布",
+    "en": "Going forward, you can also see the Horseshoe Falls, across from Canada, which is wider and more spectacular than the American Falls.",
+    "zh": "往前走还能看到马蹄瀑布，对面就是加拿大，比美国瀑布更宽，更壮观。",
+    "tip": "重音: GOING · FORWARD · ALSO"
+  },
+  {
+    "cue": "02:03 夜景收尾",
+    "en": "Went back again in the evening to see the night view.",
+    "zh": "晚上又回来看了夜景。",
+    "tip": "重音: WENT · BACK · AGAIN"
+  },
+  {
+    "cue": "02:03 夜景收尾.2",
+    "en": "The light shines on the water mist, and blue, purple, and red change in turns.",
+    "zh": "灯光打在水雾上，蓝、紫、红轮流变换。",
+    "tip": "重音: LIGHT · SHINES · WATER"
+  },
+  {
+    "cue": "02:03 夜景收尾.3",
+    "en": "The shock of the day was replaced by the dream of the night.",
+    "zh": "白天的震撼，换成了夜晚的梦幻。",
+    "tip": "重音: SHOCK · REPLACED · DREAM"
+  },
+  {
+    "cue": "02:12 佛蒙特秋色",
+    "en": "After seeing the night view, we continued driving through Vermont.",
+    "zh": "看完夜景，继续开车，穿越了佛蒙特州。",
+    "tip": "重音: AFTER · SEEING · NIGHT"
+  },
+  {
+    "cue": "02:12 佛蒙特秋色.2",
+    "en": "The end of September is the leaf-viewing season, and the entire mountain forest begins to change colors, layer upon layer of red, yellow, and orange.",
+    "zh": "九月底正是观叶季，整片山林开始变色，红、黄、橙，层层叠叠。",
+    "tip": "重音: SEPTEMBER · LEAF-VIEWING · SEASON"
+  },
+  {
+    "cue": "02:12 佛蒙特秋色.3",
+    "en": "We pulled over and took a few photos.",
+    "zh": "我们随手靠边停车，拍了几张照片。",
+    "tip": "重音: PULLED · OVER · TOOK"
+  },
+  {
+    "cue": "02:12 佛蒙特秋色.4",
+    "en": "That color, no filter needed.",
+    "zh": "那种颜色，不需要滤镜。",
+    "tip": "重音: COLOR · FILTER · NEEDED"
+  },
+  {
+    "cue": "02:25 抵达基恩",
+    "en": "Arrived in Keene in the afternoon and went to Keene State College to pick up equipment.",
+    "zh": "下午到达基恩，去基恩州立学院取了装备。",
+    "tip": "重音: ARRIVED · KEENE · AFTERNOON"
+  },
+  {
+    "cue": "02:25 抵达基恩.2",
+    "en": "Then I drove into the mountains and found an Airbnb. It was a cabin owned by an old lady who lived alone. It was neatly maintained and the autumn forest could be seen outside the window.",
+    "zh": "然后开车进山，找到 Airbnb——是房东独居老奶奶的小木屋，打理得整整齐齐，窗外就是秋天的森林。",
+    "tip": "重音: DROVE · MOUNTAINS · FOUND"
+  },
+  {
+    "cue": "02:38 赛前派对",
+    "en": "There was a pre-game party in the evening, spaghetti with meatballs, very homely.",
+    "zh": "傍晚有个赛前派对，意大利面配肉丸子，很家常。",
+    "tip": "重音: PRE-GAME · PARTY · EVENING"
+  },
+  {
+    "cue": "02:38 赛前派对.2",
+    "en": "But there was an unusual guest speaking - Kathrine Switzer.",
+    "zh": "但有位不普通的嘉宾来演讲——Kathrine Switzer。",
+    "tip": "重音: UNUSUAL · GUEST · SPEAKING"
+  },
+  {
+    "cue": "02:46 传奇女跑者",
+    "en": "In 1967, the first woman officially registered and completed the Boston Marathon.",
+    "zh": "1967年，第一位正式报名并跑完波士顿马拉松的女性。",
+    "tip": "重音: FIRST · WOMAN · OFFICIALLY"
+  },
+  {
+    "cue": "02:46 传奇女跑者.2",
+    "en": "The race director rushed over to drag her down, but her boyfriend blocked him. She continued running and finished the entire race.",
+    "zh": "当年赛事总监冲过来要把她拽下去，她的男友挡住了他，她继续跑，跑完了全程。",
+    "tip": "重音: RACE · DIRECTOR · RUSHED"
+  },
+  {
+    "cue": "02:46 传奇女跑者.3",
+    "en": "It was such a person who sat with us at a pre-game party in a small town.",
+    "zh": "就是这样一个人，在一个小镇的赛前晚会上，和我们坐在一起。",
+    "tip": "重音: SUCH · PERSON · PRE-GAME"
+  },
+  {
+    "cue": "03:02 比赛日出发",
+    "en": "On the morning of the competition, before Siqi and I set off, we left a few words in my landlady’s notebook.",
+    "zh": "比赛当天早上，我和 Siqi 出发前，在房东奶奶的笔记本上留了几句话。",
+    "tip": "重音: MORNING · COMPETITION · BEFORE"
+  },
+  {
+    "cue": "03:02 比赛日出发.2",
+    "en": "Siqi sent me to the starting point of the full marathon and she went to the starting point of the half marathon.",
+    "zh": "Siqi 送我去全马起点，她自己去半马的起点。",
+    "tip": "重音: SIQI · SENT · STARTING"
+  },
+  {
+    "cue": "03:12 50州奶奶",
+    "en": "The starting point is at the intersection of the town. It is small and has a friendly atmosphere.",
+    "zh": "起点就是小镇的路口，规模不大，气氛很亲切。",
+    "tip": "重音: STARTING · POINT · INTERSECTION"
+  },
+  {
+    "cue": "03:12 50州奶奶.2",
+    "en": "I noticed a white-haired grandma wearing a white ribbon - this was the last stop of her 50-state marathon in the United States.",
+    "zh": "我注意到一位白发奶奶，身上披着白色绶带——这是她完成美国50个州马拉松的最后一站。",
+    "tip": "重音: NOTICED · WHITE-HAIRED · GRANDMA"
+  },
+  {
+    "cue": "03:22 开跑林间",
+    "en": "Gunshot, set off.",
+    "zh": "枪响，出发。",
+    "tip": "重音: GUNSHOT"
+  },
+  {
+    "cue": "03:22 开跑林间.2",
+    "en": "The temperature was a bit cold, so I took off my jacket not long after running and put it next to the mile sign.",
+    "zh": "气温有点凉，跑了没多久把外套脱了，放在英里牌那边。",
+    "tip": "重音: TEMPERATURE · COLD · TOOK"
+  },
+  {
+    "cue": "03:22 开跑林间.3",
+    "en": "I bought the clothes from Pinduoduo, they are cheap.",
+    "zh": "衣服是拼多多买的，便宜货。",
+    "tip": "重音: BOUGHT · CLOTHES · PINDUODUO"
+  },
+  {
+    "cue": "03:22 开跑林间.4",
+    "en": "There are woods on both sides of the track, and the fallen leaves are spread on the ground, making a rustling sound when you step on them.",
+    "zh": "赛道两边都是树林，落叶铺了一地，踩上去沙沙作响。",
+    "tip": "重音: WOODS · BOTH · SIDES"
+  },
+  {
+    "cue": "03:35 8英里湖景",
+    "en": "8 miles to Surrey Mountain Lake.",
+    "zh": "8 英里，到了 萨里山湖。",
+    "tip": "重音: MILES · SURREY · MOUNTAIN"
+  },
+  {
+    "cue": "03:35 8英里湖景.2",
+    "en": "The lake is open, and the mountains in the distance are already red and yellow.",
+    "zh": "湖面开阔，远处的山已经红黄相间。",
+    "tip": "重音: LAKE · OPEN · MOUNTAINS"
+  },
+  {
+    "cue": "03:35 8英里湖景.3",
+    "en": "This section is the calmest and the most relaxing.",
+    "zh": "这一段最平，也是心情最放松的一段。",
+    "tip": "重音: SECTION · CALMEST · MOST"
+  },
+  {
+    "cue": "03:45 11英里大坝",
+    "en": "Mile 11, running up Surry Hills Dam.",
+    "zh": "11 英里，跑上了萨里山大坝。",
+    "tip": "重音: MILE · RUNNING · SURRY"
+  },
+  {
+    "cue": "03:45 11英里大坝.2",
+    "en": "On the left is the lake, on the right are the woods, and there are mountain shadows in the distance. The wind is a bit cool.",
+    "zh": "左边是湖水，右边是树林，远处有山影，风吹过来有点凉。",
+    "tip": "重音: LEFT · LAKE · RIGHT"
+  },
+  {
+    "cue": "03:45 11英里大坝.3",
+    "en": "It feels like running on a lake.",
+    "zh": "感觉就像在湖面上跑。",
+    "tip": "重音: FEELS · LIKE · RUNNING"
+  },
+  {
+    "cue": "03:58 超人登场",
+    "en": "Fourteen miles ago, a \"Superman\" suddenly appeared next to the track, wearing a red cape and raising his fist, which was particularly conspicuous.",
+    "zh": "14 英里前，一个\"超人\"突然出现在赛道旁边，披着红色斗篷，举着拳头，特别显眼。",
+    "tip": "重音: FOURTEEN · MILES · SUPERMAN"
+  },
+  {
+    "cue": "03:58 超人登场.2",
+    "en": "I couldn't help but go up and take a photo.",
+    "zh": "我忍不住上去合了张影。",
+    "tip": "重音: COULDN'T · HELP · TAKE"
+  },
+  {
+    "cue": "03:58 超人登场.3",
+    "en": "My body felt instantly lighter.",
+    "zh": "感觉身体瞬间轻快了。",
+    "tip": "重音: BODY · FELT · INSTANTLY"
+  },
+  {
+    "cue": "03:58 超人登场.4",
+    "en": "Some kind of dark matter, no explanation.",
+    "zh": "某种暗物质，不解释。",
+    "tip": "重音: SOME · KIND · DARK"
+  },
+  {
+    "cue": "04:10 一遇Siqi",
+    "en": "Mile 17, saw Siqi, she was in good shape.",
+    "zh": "17 英里，看到了 Siqi，她状态不错。",
+    "tip": "重音: MILE · SIQI · GOOD"
+  },
+  {
+    "cue": "04:16 墓地登场",
+    "en": "Then the track turned into a cemetery.",
+    "zh": "接着，赛道拐进了墓地。",
+    "tip": "重音: TRACK · TURNED · CEMETERY"
+  },
+  {
+    "cue": "04:16 墓地登场.2",
+    "en": "Woodland Cemetery and Green Lawn Cemetery, Keene's oldest cemeteries.",
+    "zh": "伍德兰墓地和绿草坪墓地，基恩最古老的墓地。",
+    "tip": "重音: WOODLAND · CEMETERY · GREEN"
+  },
+  {
+    "cue": "04:16 墓地登场.3",
+    "en": "The 22 mile marker stands among the tombstones.",
+    "zh": "22 英里的里程牌，就立在墓碑之间。",
+    "tip": "重音: MILE · MARKER · STANDS"
+  },
+  {
+    "cue": "04:16 墓地登场.4",
+    "en": "Next to it, there are supply points and volunteers.",
+    "zh": "旁边，还有补给点和志愿者。",
+    "tip": "重音: NEXT · SUPPLY · POINTS"
+  },
+  {
+    "cue": "04:28 墓地感悟",
+    "en": "The atmosphere is very quiet, but not scary, but has a peaceful sense of power.",
+    "zh": "气氛很安静，却不让人害怕，反而带着一种平和的力量感。",
+    "tip": "重音: ATMOSPHERE · VERY · QUIET"
+  },
+  {
+    "cue": "04:28 墓地感悟.2",
+    "en": "In China, it may be considered unlucky to enter a cemetery.",
+    "zh": "在中国，跑进墓地大概会觉得不吉利。",
+    "tip": "重音: CHINA · CONSIDERED · UNLUCKY"
+  },
+  {
+    "cue": "04:28 墓地感悟.3",
+    "en": "But in the United States, cemeteries are part of the community, where people walk, run, and even have picnics.",
+    "zh": "但在美国，墓地就是社区的一部分，人们在里面散步、跑步，甚至野餐。",
+    "tip": "重音: UNITED · STATES · CEMETERIES"
+  },
+  {
+    "cue": "04:28 墓地感悟.4",
+    "en": "Running among the tombstones, I feel like I am with history.",
+    "zh": "跑在墓碑之间，感觉自己和历史同在。",
+    "tip": "重音: RUNNING · AMONG · TOMBSTONES"
+  },
+  {
+    "cue": "04:45 出墓地对比",
+    "en": "After running out of the cemetery, there was a cheering team of children outside, jumping up and down and shouting \"Great job\", which formed a strong contrast with the silence inside.",
+    "zh": "跑出墓地，外面是小孩子的加油队，蹦蹦跳跳，喊着\"干得漂亮\"，和里面的安静，形成了强烈的对比。",
+    "tip": "重音: AFTER · RUNNING · CEMETERY"
+  },
+  {
+    "cue": "04:53 三遇Siqi",
+    "en": "Encountered Siqi for the third time 25 miles ago.",
+    "zh": "25 英里前，第三次遇到了 Siqi。",
+    "tip": "重音: ENCOUNTERED · SIQI · THIRD"
+  },
+  {
+    "cue": "04:53 三遇Siqi.2",
+    "en": "The routes for the full marathon and the half marathon sometimes separate and sometimes overlap. It is quite rare to meet them three times in the same race.",
+    "zh": "全马和半马的路线时而分开，时而重合，同一场比赛里碰了三次，也挺难得的。",
+    "tip": "重音: ROUTES · FULL · MARATHON"
+  },
+  {
+    "cue": "05:02 冲线入校",
+    "en": "Last mile, running into Keene State College.",
+    "zh": "最后一英里，跑进基恩州立学院。",
+    "tip": "重音: LAST · MILE · RUNNING"
+  },
+  {
+    "cue": "05:02 冲线入校.2",
+    "en": "There were cheerleaders at the school gate and spectators lined up on both sides.",
+    "zh": "校门口有啦啦队，观众排在两侧。",
+    "tip": "重音: CHEERLEADERS · SCHOOL · GATE"
+  },
+  {
+    "cue": "05:02 冲线入校.3",
+    "en": "This marathon is not big. I was the only one running the section before crossing the finish line, and I felt like I had the whole audience’s cheers to myself.",
+    "zh": "这个马拉松规模不大，冲线前的那一段只有我自己跑着，感觉独享了全场的欢呼。",
+    "tip": "重音: MARATHON · ONLY · RUNNING"
+  },
+  {
+    "cue": "05:02 冲线入校.4",
+    "en": "Raise your hands and cross the finish line.",
+    "zh": "举起双手，冲过终点。",
+    "tip": "重音: RAISE · HANDS · CROSS"
+  },
+  {
+    "cue": "05:12 奖牌热汤",
+    "en": "The volunteer aunt smiled and hung the medal around my neck.",
+    "zh": "志愿者阿姨笑着把奖牌挂在我脖子上。",
+    "tip": "重音: VOLUNTEER · AUNT · SMILED"
+  },
+  {
+    "cue": "05:12 奖牌热汤.2",
+    "en": "The medal is simple: a silhouette of a runner with arms raised, with the mountains and lakes of New Hampshire in the background.",
+    "zh": "奖牌很简洁：一个跑者举起双臂的剪影，背景是新罕布什尔的群山和湖泊。",
+    "tip": "重音: MEDAL · SIMPLE · SILHOUETTE"
+  },
+  {
+    "cue": "05:12 奖牌热汤.3",
+    "en": "Then I drank hot soup with Siqi on the grass, and my body warmed up immediately.",
+    "zh": "然后和 Siqi 在草地上端着热汤喝，身体立刻暖和了。",
+    "tip": "重音: DRANK · SOUP · SIQI"
+  },
+  {
+    "cue": "05:25 湖面无人机",
+    "en": "After the game, I went to pick up the car and dropped a drone at Salishan Lake.",
+    "zh": "赛后去取车，顺便在萨里山湖放了个无人机。",
+    "tip": "重音: AFTER · GAME · WENT"
+  },
+  {
+    "cue": "05:25 湖面无人机.2",
+    "en": "In the lens, the lake is like a mirror, reflecting all the clouds in the sky, and the trees on the shore are dyed in autumn colors.",
+    "zh": "镜头里，湖水像一面镜子，把天上的云彩都照了进去，岸边的树正好染上了秋色。",
+    "tip": "重音: LENS · LAKE · LIKE"
+  },
+  {
+    "cue": "05:25 湖面无人机.3",
+    "en": "It’s hard to come to New Hampshire, but seeing this scene makes it worth it.",
+    "zh": "来一次新罕布什尔挺辛苦，但看到这一幕，感觉值回票价了。",
+    "tip": "重音: HARD · COME · HAMPSHIRE"
+  },
+  {
+    "cue": "05:38 耶鲁绕道",
+    "en": "On the way back, we took a detour to New Haven and visited Yale University.",
+    "zh": "回程绕道去了纽黑文，顺便看了看耶鲁大学。",
+    "tip": "重音: BACK · TOOK · DETOUR"
+  },
+  {
+    "cue": "05:38 耶鲁绕道.2",
+    "en": "Founded in 1701, it is one of the earliest Ivy League schools in the United States.",
+    "zh": "1701 年建校，是美国最早的常春藤名校之一。",
+    "tip": "重音: FOUNDED · EARLIEST · LEAGUE"
+  },
+  {
+    "cue": "05:38 耶鲁绕道.3",
+    "en": "George W. Bush, Clinton, Hillary, and Jin Yong—all came out of here.",
+    "zh": "小布什、克林顿、希拉里、金庸——都从这儿走出去的。",
+    "tip": "重音: GEORGE · BUSH · CLINTON"
+  },
+  {
+    "cue": "05:48 印度餐馆",
+    "en": "I found an Indian restaurant and ordered mutton curry and naan to replenish my energy.",
+    "zh": "找了家印度餐馆，点了羊肉咖喱和烤饼，补了顿能量。",
+    "tip": "重音: FOUND · INDIAN · RESTAURANT"
+  },
+  {
+    "cue": "05:48 印度餐馆.2",
+    "en": "Then we drove around the campus. It was raining lightly outside, and the lights were shining on the red brick buildings and tall towers. It was very beautiful.",
+    "zh": "然后在校园里开车转了一圈，外面下着小雨，灯光打在红砖楼和高塔上，挺好看。",
+    "tip": "重音: DROVE · AROUND · CAMPUS"
+  },
+  {
+    "cue": "06:00 结尾金句",
+    "en": "Run50 State 22, New Hampshire.",
+    "zh": "Run50 第 22 州，新罕布什尔。",
+    "tip": "重音: STATE · HAMPSHIRE"
+  },
+  {
+    "cue": "06:00 结尾金句.2",
+    "en": "Autumn colors, cemeteries, Superman, the legendary female runner, and drones on the lake.",
+    "zh": "秋色、墓地、超人、传奇女跑者，还有湖面上的无人机。",
+    "tip": "重音: AUTUMN · COLORS · CEMETERIES"
+  },
+  {
+    "cue": "06:00 结尾金句.3",
+    "en": "Running is something that sometimes you can’t tell what it brings to you.",
+    "zh": "跑步这件事，有时候说不清带给你什么。",
+    "tip": "重音: RUNNING · SOMETHING · SOMETIMES"
+  },
+  {
+    "cue": "06:00 结尾金句.4",
+    "en": "But you just know, you need it.",
+    "zh": "但你就是知道，你需要它。",
+    "tip": "重音: KNOW · NEED"
+  },
+  {
+    "cue": "06:00 结尾金句.5",
+    "en": "Next state, see you.",
+    "zh": "下一个州，再见。",
+    "tip": "重音: NEXT · STATE"
+  }
+];
+const listEl = document.getElementById('list');
+const rows = [];
+DATA.forEach((d) => {
+  const idx = rows.length;
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML = '<div class="num">'+(idx+1)+'</div><div class="body"><div class="cue">'+d.cue+'</div><div class="en">'+d.en+'</div>'+(d.tip ? '<div class="tip">🗣 '+d.tip+'</div>' : '')+'<div class="zh">'+d.zh+'</div></div><div class="ops"><button class="iconbtn play" title="朗读这一句">▶</button><button class="iconbtn loop" title="循环这一句">🔁</button></div>';
+  listEl.appendChild(row);
+  const rec = {el:row, idx:idx, data:d};
+  rows.push(rec);
+  row.querySelector('.play').addEventListener('click', e=>{ e.stopPropagation(); selectRow(idx); speakOne(idx); });
+  row.querySelector('.loop').addEventListener('click', e=>{ e.stopPropagation(); toggleLoop(idx, e.currentTarget); });
+  row.addEventListener('click', ()=> selectRow(idx));
+});
+const synth = window.speechSynthesis;
+const voiceSel = document.getElementById('voice');
+const rateEl = document.getElementById('rate');
+const ratevalEl = document.getElementById('rateval');
+const humanAudio = new Audio();
+const HUMAN_AUDIO_BASE = 'audio/new-hampshire-english-practice';
+const HUMAN_AUDIO_VERSION = '20260630-brian-batch-v1';
+let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
+rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
+function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }
+function isEN(v){ return /^en/i.test(v.lang) || /\bEnglish\b/i.test(v.name); }
+function loadVoices(){ const all = synth.getVoices(); if(!all.length) return false; const us = all.filter(isUS); const en = all.filter(v => isEN(v) && !isUS(v)); voices = (us.length ? us.concat(en) : en.length ? en : all); voiceSel.innerHTML=''; voices.forEach((v,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=v.name+' ('+v.lang+')'; voiceSel.appendChild(o); }); chosenVoice=voices[0]||null; return true; }
+voiceSel.addEventListener('change', ()=> chosenVoice = voices[+voiceSel.value]); if(synth.onvoiceschanged !== undefined) synth.onvoiceschanged = loadVoices; (function tryLoad(n){ if(loadVoices()) return; if(n>0) setTimeout(()=>tryLoad(n-1), 300); })(10);
+function makeUtter(text){ const u = new SpeechSynthesisUtterance(text); if(chosenVoice) u.voice = chosenVoice; u.lang = (chosenVoice && chosenVoice.lang) || 'en-US'; u.rate = +rateEl.value; return u; }
+function humanAudioSrc(idx){ return HUMAN_AUDIO_BASE + '/' + String(idx + 1).padStart(2, '0') + '.mp3?v=' + HUMAN_AUDIO_VERSION; }
+function stopCurrentVoice(){ playToken++; synth.cancel(); humanAudio.pause(); humanAudio.removeAttribute('src'); humanAudio.load(); }
+function selectRow(idx){ selected = idx; rows.forEach((r,i)=> r.el.classList.toggle('active', i===idx)); document.getElementById('selText').textContent = rows[idx].data.en; document.getElementById('playOrig').disabled = false; refreshCompareBtns(); }
+function speakOne(idx, after){ const token = ++playToken; synth.cancel(); humanAudio.pause(); const done = ()=>{ if(token !== playToken) return; if(loopIdx===idx){ setTimeout(()=>{ if(loopIdx===idx) speakOne(idx); }, 500); return; } if(after) after(); }; const fallbackToTts = ()=>{ if(token !== playToken) return; humanAudio.onerror = null; const u = makeUtter(rows[idx].data.en); u.onend = done; synth.speak(u); }; let fellBack = false; const fallbackOnce = ()=>{ if(fellBack) return; fellBack = true; fallbackToTts(); }; humanAudio.onended = done; humanAudio.onerror = fallbackOnce; humanAudio.src = humanAudioSrc(idx); humanAudio.currentTime = 0; humanAudio.playbackRate = +rateEl.value; humanAudio.play().catch(fallbackOnce); }
+function toggleLoop(idx, btn){ document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on')); if(loopIdx===idx){ loopIdx=-1; stopCurrentVoice(); return; } loopIdx = idx; btn.classList.add('on'); playingAll = false; selectRow(idx); speakOne(idx); }
+document.getElementById('playAll').addEventListener('click', ()=>{ loopIdx = -1; document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on')); stopCurrentVoice(); playingAll = true; let i = 0; const step = ()=>{ if(!playingAll || i>=rows.length){ playingAll=false; rows.forEach(r=>r.el.classList.remove('active')); return; } selectRow(i); rows[i].el.scrollIntoView({behavior:'smooth', block:'center'}); speakOne(i, ()=>{ i++; step(); }); }; step(); });
+document.getElementById('stopBtn').addEventListener('click', ()=>{ playingAll=false; loopIdx=-1; document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on')); stopCurrentVoice(); });
+let showTip = false; document.getElementById('toggleTip').addEventListener('click', e=>{ showTip=!showTip; rows.forEach(r=>r.el.classList.toggle('show-tip', showTip)); e.currentTarget.textContent = showTip ? '🗣 隐藏提示' : '🗣 发音提示'; });
+let showZh = false; document.getElementById('toggleZh').addEventListener('click', e=>{ showZh=!showZh; rows.forEach(r=>r.el.classList.toggle('show-zh', showZh)); e.currentTarget.textContent = showZh ? '隐藏中文' : '显示中文'; });
+let mediaRec=null, chunks=[], myURL=null, recording=false; const recBtn=document.getElementById('recBtn'), recDot=document.getElementById('recDot'), myAudio=document.getElementById('myAudio');
+function refreshCompareBtns(){ const has=!!myURL, sel=selected>=0; document.getElementById('playMine').disabled=!has; document.getElementById('playCompare').disabled=!(has&&sel); }
+recBtn.addEventListener('click', async ()=>{ if(recording){ mediaRec.stop(); return; } try{ const stream=await navigator.mediaDevices.getUserMedia({audio:true}); mediaRec=new MediaRecorder(stream); chunks=[]; mediaRec.ondataavailable=e=>chunks.push(e.data); mediaRec.onstop=()=>{ const blob=new Blob(chunks, {type:'audio/webm'}); if(myURL) URL.revokeObjectURL(myURL); myURL=URL.createObjectURL(blob); myAudio.src=myURL; myAudio.style.display='block'; recording=false; recDot.classList.remove('live'); recBtn.lastChild.textContent='重新录音'; stream.getTracks().forEach(t=>t.stop()); refreshCompareBtns(); }; mediaRec.start(); recording=true; recDot.classList.add('live'); recBtn.lastChild.textContent='停止录音'; }catch(err){ alert('无法访问麦克风：'+err.message+'\n请在浏览器允许麦克风权限后重试。'); } });
+document.getElementById('playOrig').addEventListener('click', ()=>{ if(selected>=0) speakOne(selected); }); document.getElementById('playMine').addEventListener('click', ()=>{ if(myURL){ myAudio.currentTime=0; myAudio.play(); } }); document.getElementById('playCompare').addEventListener('click', ()=>{ if(selected<0 || !myURL) return; stopCurrentVoice(); speakOne(selected, ()=> setTimeout(()=>{ myAudio.currentTime=0; myAudio.play(); }, 400)); }); window.addEventListener('beforeunload', ()=> stopCurrentVoice());
+</script>
+</body>
+</html>
