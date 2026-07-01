@@ -1770,17 +1770,51 @@
         cn_hongkong: ['香港', '#a678dc']
       };
 
+      const WECHAT_STORY_BASE = 'https://zhennanzhang.com/run50/wechat/';
+      const WECHAT_STORY_VERSION = '?v=20260627-wechat-batch';
+      const storyHref = slug => `${WECHAT_STORY_BASE}${slug}-modern-rail.html${WECHAT_STORY_VERSION}`;
+
+      const CHINA_PROVINCE_STORIES = {
+        cn_heilongjiang: storyHref('harbin-marathon'),
+        cn_hubei: storyHref('wuhan-marathon-2018'),
+        cn_sichuan: storyHref('three-city-pilgrimage'),
+        cn_innermongolia: storyHref('steel-tank-story'),
+        cn_shanxi: storyHref('steel-tank-story'),
+        cn_hunan: storyHref('three-city-pilgrimage'),
+        cn_fujian: storyHref('xiamen-marathon'),
+        cn_gansu: storyHref('lanzhou-marathon'),
+        cn_jiangsu: storyHref('wuhan-wuxi-marathon-notes'),
+        cn_guizhou: storyHref('guiyang-marathon-climb'),
+        cn_shaanxi: storyHref('xian-city-wall-marathon'),
+        cn_zhejiang: storyHref('west-lake-half-marathon'),
+        cn_hainan: storyHref('haikou-marathon'),
+        cn_liaoning: storyHref('dalian-trail'),
+        cn_shanghai: storyHref('shanghai-vertical-marathon'),
+        cn_guangxi: storyHref('guilin-marathon'),
+        cn_hongkong: storyHref('hong-kong-marathon')
+      };
+
       const CHINA_CITY_DOTS = [
-        ['哈尔滨', 'cn_heilongjiang', 45.8038, 126.5350], ['鄂尔多斯', 'cn_innermongolia', 39.6086, 109.7813],
-        ['长治', 'cn_shanxi', 36.1954, 113.1163], ['武汉', 'cn_hubei', 30.5928, 114.3055],
-        ['宜昌', 'cn_hubei', 30.6919, 111.2865], ['襄阳', 'cn_hubei', 32.0090, 112.1224],
-        ['广安', 'cn_sichuan', 30.4564, 106.6332], ['长沙', 'cn_hunan', 28.2282, 112.9388],
-        ['厦门', 'cn_fujian', 24.4798, 118.0894], ['兰州', 'cn_gansu', 36.0611, 103.8343],
-        ['无锡', 'cn_jiangsu', 31.4912, 120.3119], ['贵阳', 'cn_guizhou', 26.6470, 106.6302],
-        ['西安', 'cn_shaanxi', 34.3416, 108.9398], ['杭州', 'cn_zhejiang', 30.2741, 120.1551],
-        ['宁波', 'cn_zhejiang', 29.8683, 121.5440], ['海口', 'cn_hainan', 20.0440, 110.1999],
-        ['大连', 'cn_liaoning', 38.9140, 121.6147], ['上海', 'cn_shanghai', 31.2304, 121.4737],
-        ['桂林', 'cn_guangxi', 25.2345, 110.1799], ['香港', 'cn_hongkong', 22.3193, 114.1694]
+        ['哈尔滨', 'cn_heilongjiang', 45.8038, 126.5350, storyHref('harbin-marathon')],
+        ['鄂尔多斯', 'cn_innermongolia', 39.6086, 109.7813, storyHref('steel-tank-story')],
+        ['长治', 'cn_shanxi', 36.1954, 113.1163, storyHref('steel-tank-story')],
+        ['武汉', 'cn_hubei', 30.5928, 114.3055, storyHref('wuhan-marathon-2018')],
+        ['宜昌', 'cn_hubei', 30.6919, 111.2865, storyHref('three-city-pilgrimage')],
+        ['襄阳', 'cn_hubei', 32.0090, 112.1224, storyHref('xiangyang-marathon')],
+        ['广安', 'cn_sichuan', 30.4564, 106.6332, storyHref('three-city-pilgrimage')],
+        ['长沙', 'cn_hunan', 28.2282, 112.9388, storyHref('three-city-pilgrimage')],
+        ['厦门', 'cn_fujian', 24.4798, 118.0894, storyHref('xiamen-marathon')],
+        ['兰州', 'cn_gansu', 36.0611, 103.8343, storyHref('lanzhou-marathon')],
+        ['无锡', 'cn_jiangsu', 31.4912, 120.3119, storyHref('wuhan-wuxi-marathon-notes')],
+        ['贵阳', 'cn_guizhou', 26.6470, 106.6302, storyHref('guiyang-marathon-climb')],
+        ['西安', 'cn_shaanxi', 34.3416, 108.9398, storyHref('xian-city-wall-marathon')],
+        ['杭州', 'cn_zhejiang', 30.2741, 120.1551, storyHref('west-lake-half-marathon')],
+        ['宁波', 'cn_zhejiang', 29.8683, 121.5440, storyHref('ningbo-dongqian-lake-marathon')],
+        ['海口', 'cn_hainan', 20.0440, 110.1999, storyHref('haikou-marathon')],
+        ['大连', 'cn_liaoning', 38.9140, 121.6147, storyHref('dalian-trail')],
+        ['上海', 'cn_shanghai', 31.2304, 121.4737, storyHref('shanghai-vertical-marathon')],
+        ['桂林', 'cn_guangxi', 25.2345, 110.1799, storyHref('guilin-marathon')],
+        ['香港', 'cn_hongkong', 22.3193, 114.1694, storyHref('hong-kong-marathon')]
       ];
 
       const CHINA_LABEL_OFFSETS = {
@@ -1818,6 +1852,39 @@
           text.appendChild(tspan);
         });
         layer.appendChild(text);
+      }
+
+      function addChinaContextContours(svg, ocean) {
+        const contourLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        contourLayer.setAttribute('id', 'mini-china-context-contours');
+        contourLayer.setAttribute('fill', 'none');
+        contourLayer.setAttribute('stroke-linecap', 'round');
+        contourLayer.setAttribute('stroke-linejoin', 'round');
+        contourLayer.style.pointerEvents = 'none';
+
+        [
+          ['M 600 18 C 654 82 684 154 691 224 C 700 314 657 400 682 510', '.34', 'rgba(199,214,232,.38)'],
+          ['M 735 54 C 784 128 806 210 800 286 C 793 374 746 432 768 548', '.25', 'rgba(199,214,232,.3)'],
+          ['M 410 548 C 484 500 558 488 632 510 C 688 526 730 515 792 470', '.23', 'rgba(199,214,232,.28)'],
+          ['M -22 72 C 54 128 83 196 57 272 C 28 360 78 439 156 500', '.19', 'rgba(199,214,232,.24)']
+        ].forEach(([d, opacity, stroke]) => {
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', d);
+          path.setAttribute('stroke', stroke);
+          path.setAttribute('stroke-width', '1.2');
+          path.setAttribute('vector-effect', 'non-scaling-stroke');
+          path.style.opacity = opacity;
+          contourLayer.appendChild(path);
+        });
+
+        svg.insertBefore(contourLayer, ocean.nextSibling);
+      }
+
+      function openMapStory(event, href) {
+        if (!href) return;
+        event.preventDefault();
+        event.stopPropagation();
+        window.location.href = href;
       }
 
       function projectUs(lat, lon) {
@@ -1995,6 +2062,7 @@
           fill: '#30384f'
         });
         svg.insertBefore(ocean, svg.firstChild);
+        addChinaContextContours(svg, ocean);
         svg.querySelectorAll('rect').forEach(rect => {
           rect.setAttribute('fill', '#30384f');
         });
@@ -2002,8 +2070,10 @@
           const id = path.id || '';
           if (!id.startsWith('cn_')) {
             path.setAttribute('fill', 'none');
-            path.setAttribute('stroke', 'none');
-            path.style.opacity = '0';
+            path.setAttribute('stroke', 'rgba(198,211,228,.38)');
+            path.setAttribute('stroke-width', '.72');
+            path.setAttribute('vector-effect', 'non-scaling-stroke');
+            path.style.opacity = '.36';
             path.style.pointerEvents = 'none';
             return;
           }
@@ -2028,6 +2098,7 @@
               path.style.opacity = '1';
               setStatus(status);
             });
+            path.addEventListener('click', event => openMapStory(event, CHINA_PROVINCE_STORIES[id]));
           }
         });
 
@@ -2043,7 +2114,7 @@
         const glowLayer = addSvgEl(svg, 'g', { id: 'mini-china-dot-glows' });
         const ringLayer = addSvgEl(svg, 'g', { id: 'mini-china-city-rings' });
         const dotLayer = addSvgEl(svg, 'g', { id: 'mini-china-city-dots' });
-        CHINA_CITY_DOTS.forEach(([city, provinceId, lat, lon]) => {
+        CHINA_CITY_DOTS.forEach(([city, provinceId, lat, lon, storyLink]) => {
           const p = projectChina(lat, lon);
           addSvgEl(glowLayer, 'circle', {
             cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '11',
@@ -2060,6 +2131,7 @@
           dot.style.cursor = 'pointer';
           dot.addEventListener('mouseenter', () => setStatus(status, `${city} · ${CHINA_PROVINCES[provinceId]?.[0] || 'RunCN'}`));
           dot.addEventListener('mouseleave', () => setStatus(status));
+          dot.addEventListener('click', event => openMapStory(event, storyLink));
         });
 
         const labelLayer = addSvgEl(svg, 'g', { id: 'mini-china-labels' });
