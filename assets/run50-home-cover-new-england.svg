@@ -1,40 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="NEW ENGLAND inlaid enamel plaque cover">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="NEW ENGLAND integrated enamel plaque cover">
   <defs>
-    <linearGradient id="scene" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#153224"/>
-      <stop offset="100%" stop-color="#334155"/>
-    </linearGradient>
-    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f8fafc"/>
-      <stop offset="35%" stop-color="#9ca3af"/>
-      <stop offset="70%" stop-color="#fff7d6"/>
-      <stop offset="100%" stop-color="#6b7280"/>
-    </linearGradient>
-    <clipPath id="sceneClip"><rect x="45" y="45" width="1110" height="540" rx="25"/></clipPath>
-    <filter id="titleShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="7" stdDeviation="4" flood-color="#020617" flood-opacity=".72"/>
-    </filter>
+    <linearGradient id="scene" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#153224"/><stop offset="100%" stop-color="#334155"/></linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f8fafc"/><stop offset="32%" stop-color="#9ca3af"/><stop offset="68%" stop-color="#fff7d6"/><stop offset="100%" stop-color="#5f6874"/></linearGradient>
+    <clipPath id="clip"><rect x="45" y="45" width="1110" height="540" rx="25"/></clipPath>
+    <filter id="press" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="3" flood-color="#020617" flood-opacity=".8"/></filter>
     <style>
-      .title { font-family: Georgia, 'Times New Roman', serif; font-weight: 900; paint-order: stroke; stroke: #15171d; stroke-width: 12px; stroke-linejoin: round; filter: url(#titleShadow); letter-spacing: 0; }
-      .rail { font-family: Impact, 'Arial Narrow', Arial, sans-serif; font-weight: 900; paint-order: stroke; stroke: #171923; stroke-width: 7px; stroke-linejoin: round; letter-spacing: 1px; }
-      .field { stroke: #f8e7ba; stroke-width: 8; stroke-linejoin: round; }
-      .soft { stroke-width: 0; }
-      .route { fill: none; stroke-width: 34; stroke-linecap: round; stroke-linejoin: round; }
+      .title{font-family:Georgia,'Times New Roman',serif;font-weight:900;paint-order:stroke;stroke:#12151c;stroke-width:12px;stroke-linejoin:round;filter:url(#press);letter-spacing:0}
+      .rail{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-weight:900;paint-order:stroke;stroke:#151923;stroke-width:7px;stroke-linejoin:round;letter-spacing:1px}
+      .field{stroke:#f8e7ba;stroke-width:8;stroke-linejoin:round}
+      .route{fill:none;stroke-width:34;stroke-linecap:round;stroke-linejoin:round}
+      .route-inner{fill:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;opacity:.74}
     </style>
   </defs>
-  <rect width="1200" height="750" fill="#080b12"/>
+  <rect width="1200" height="750" fill="#070a11"/>
   <rect x="18" y="18" width="1164" height="714" rx="44" fill="url(#metal)"/>
   <rect x="31" y="31" width="1138" height="688" rx="34" fill="#0a0d14"/>
   <rect x="45" y="45" width="1110" height="540" rx="25" fill="url(#scene)"/>
-  <g clip-path="url(#sceneClip)">
-      <path d="M45 470 C220 365 370 420 530 330 C705 232 870 260 1155 178 L1155 585 L45 585Z" fill="#050b13" opacity=".28"/>
-
-      <path class="field" d="M50 486 C180 385 330 438 474 348 C630 250 800 278 1150 178 L1150 586 L50 586Z" fill="#0c2f22" opacity=".46"/>
-      <path class="field" d="M770 458 H965 L920 245 H812Z" fill="#f8fafc" opacity=".82"/>
-      <path class="field" d="M818 245 H914 L890 170 H840Z" fill="#fde68a" opacity=".88"/>
-      <path d="M805 320 H932 M790 386 H950" stroke="#334155" stroke-width="16" opacity=".52"/>
-      <path class="field" d="M230 468 C302 352 430 382 505 285 C560 370 662 354 720 468Z" fill="#14532d" opacity=".82"/>
-      <path class="route" d="M150 512 C320 384 484 522 640 392 C770 288 910 336 1050 224" stroke="#f97316"/>
+  <g clip-path="url(#clip)">
+    <path d="M45 470 C220 365 370 420 530 330 C705 232 870 260 1155 178 L1155 585 L45 585Z" fill="#050b13" opacity=".26"/>
+    <path class="field" d="M90 485 C232 370 400 438 555 322 C724 198 880 242 1110 158 L1110 565 L90 565 Z" fill="#f97316" opacity=".42"/>
+    <path class="field" d="M250 465 C330 335 448 382 530 278 C592 365 710 352 775 465 Z M795 470 L990 470 L940 245 L835 245 Z" fill="#fde68a" opacity=".72"/>
+    <path class="route" d="M150 512 C315 392 482 512 638 390 C770 286 906 330 1050 226" stroke="#38bdf8"/>
+    <path class="route-inner" d="M150 512 C315 392 482 512 638 390 C770 286 906 330 1050 226" stroke="#fff1c7"/>
+    <path d="M45 565 H1155" stroke="#f8e7ba" stroke-width="8" opacity=".95"/>
   </g>
   <text class="title" x="76" y="150" font-size="76" fill="#fff0c2">NEW ENGLAND</text>
   <rect x="58" y="604" width="198" height="96" rx="22" fill="#7f1d1d" stroke="url(#metal)" stroke-width="10"/>

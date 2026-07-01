@@ -1,39 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="VIDEOS inlaid enamel plaque cover">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="VIDEOS integrated enamel plaque cover">
   <defs>
-    <linearGradient id="scene" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1f1018"/>
-      <stop offset="100%" stop-color="#7c2d12"/>
-    </linearGradient>
-    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f8fafc"/>
-      <stop offset="35%" stop-color="#9ca3af"/>
-      <stop offset="70%" stop-color="#fff7d6"/>
-      <stop offset="100%" stop-color="#6b7280"/>
-    </linearGradient>
-    <clipPath id="sceneClip"><rect x="45" y="45" width="1110" height="540" rx="25"/></clipPath>
-    <filter id="titleShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="7" stdDeviation="4" flood-color="#020617" flood-opacity=".72"/>
-    </filter>
+    <linearGradient id="scene" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1f1018"/><stop offset="100%" stop-color="#7c2d12"/></linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f8fafc"/><stop offset="32%" stop-color="#9ca3af"/><stop offset="68%" stop-color="#fff7d6"/><stop offset="100%" stop-color="#5f6874"/></linearGradient>
+    <clipPath id="clip"><rect x="45" y="45" width="1110" height="540" rx="25"/></clipPath>
+    <filter id="press" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="3" flood-color="#020617" flood-opacity=".8"/></filter>
     <style>
-      .title { font-family: Georgia, 'Times New Roman', serif; font-weight: 900; paint-order: stroke; stroke: #15171d; stroke-width: 12px; stroke-linejoin: round; filter: url(#titleShadow); letter-spacing: 0; }
-      .rail { font-family: Impact, 'Arial Narrow', Arial, sans-serif; font-weight: 900; paint-order: stroke; stroke: #171923; stroke-width: 7px; stroke-linejoin: round; letter-spacing: 1px; }
-      .field { stroke: #f8e7ba; stroke-width: 8; stroke-linejoin: round; }
-      .soft { stroke-width: 0; }
-      .route { fill: none; stroke-width: 34; stroke-linecap: round; stroke-linejoin: round; }
+      .title{font-family:Georgia,'Times New Roman',serif;font-weight:900;paint-order:stroke;stroke:#12151c;stroke-width:12px;stroke-linejoin:round;filter:url(#press);letter-spacing:0}
+      .rail{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-weight:900;paint-order:stroke;stroke:#151923;stroke-width:7px;stroke-linejoin:round;letter-spacing:1px}
+      .field{stroke:#f8e7ba;stroke-width:8;stroke-linejoin:round}
+      .route{fill:none;stroke-width:34;stroke-linecap:round;stroke-linejoin:round}
+      .route-inner{fill:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;opacity:.74}
     </style>
   </defs>
-  <rect width="1200" height="750" fill="#080b12"/>
+  <rect width="1200" height="750" fill="#070a11"/>
   <rect x="18" y="18" width="1164" height="714" rx="44" fill="url(#metal)"/>
   <rect x="31" y="31" width="1138" height="688" rx="34" fill="#0a0d14"/>
   <rect x="45" y="45" width="1110" height="540" rx="25" fill="url(#scene)"/>
-  <g clip-path="url(#sceneClip)">
-      <path d="M45 470 C220 365 370 420 530 330 C705 232 870 260 1155 178 L1155 585 L45 585Z" fill="#050b13" opacity=".28"/>
-
-      <path class="field" d="M50 420 C220 340 390 388 540 298 C705 200 852 220 1150 150 L1150 586 L50 586Z" fill="#3a1511" opacity=".42"/>
-      <path class="field" d="M535 165 H972 V455 H535Z" fill="#fff1c7" opacity=".82"/>
-      <path d="M696 238 L696 382 L818 310Z" fill="#ef4444" stroke="#f8e7ba" stroke-width="10" stroke-linejoin="round"/>
-      <circle cx="900" cy="180" r="95" fill="#facc15" opacity=".74" stroke="#f8e7ba" stroke-width="8"/>
-      <path class="route" d="M150 515 C312 390 470 520 624 392 C760 278 900 336 1050 225" stroke="#f97316"/>
+  <g clip-path="url(#clip)">
+    <path d="M45 470 C220 365 370 420 530 330 C705 232 870 260 1155 178 L1155 585 L45 585Z" fill="#050b13" opacity=".26"/>
+    <path class="field" d="M90 484 C238 376 390 430 548 320 C710 210 885 245 1110 158 L1110 565 L90 565 Z" fill="#f97316" opacity=".42"/>
+    <path class="field" d="M548 188 L1005 188 L1005 470 L548 470 Z M705 252 L705 407 L850 330 Z" fill="#facc15" opacity=".72"/>
+    <path class="route" d="M160 512 C320 396 492 510 642 390 C772 286 905 326 1050 224" stroke="#ef4444"/>
+    <path class="route-inner" d="M160 512 C320 396 492 510 642 390 C772 286 905 326 1050 224" stroke="#fff1c7"/>
+    <path d="M45 565 H1155" stroke="#f8e7ba" stroke-width="8" opacity=".95"/>
   </g>
   <text class="title" x="76" y="150" font-size="112" fill="#fff0c2">VIDEOS</text>
   <rect x="58" y="604" width="198" height="96" rx="22" fill="#7f1d1d" stroke="url(#metal)" stroke-width="10"/>

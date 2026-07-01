@@ -1,42 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="GLOBAL MAP inlaid enamel plaque cover">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="GLOBAL MAP integrated enamel plaque cover">
   <defs>
-    <linearGradient id="scene" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#08343c"/>
-      <stop offset="100%" stop-color="#0b5152"/>
-    </linearGradient>
-    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f8fafc"/>
-      <stop offset="35%" stop-color="#9ca3af"/>
-      <stop offset="70%" stop-color="#fff7d6"/>
-      <stop offset="100%" stop-color="#6b7280"/>
-    </linearGradient>
-    <clipPath id="sceneClip"><rect x="45" y="45" width="1110" height="540" rx="25"/></clipPath>
-    <filter id="titleShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="7" stdDeviation="4" flood-color="#020617" flood-opacity=".72"/>
-    </filter>
+    <linearGradient id="scene" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#073b3f"/><stop offset="100%" stop-color="#10675f"/></linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f8fafc"/><stop offset="32%" stop-color="#9ca3af"/><stop offset="68%" stop-color="#fff7d6"/><stop offset="100%" stop-color="#5f6874"/></linearGradient>
+    <clipPath id="clip"><rect x="45" y="45" width="1110" height="540" rx="25"/></clipPath>
+    <filter id="press" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="3" flood-color="#020617" flood-opacity=".8"/></filter>
     <style>
-      .title { font-family: Georgia, 'Times New Roman', serif; font-weight: 900; paint-order: stroke; stroke: #15171d; stroke-width: 12px; stroke-linejoin: round; filter: url(#titleShadow); letter-spacing: 0; }
-      .rail { font-family: Impact, 'Arial Narrow', Arial, sans-serif; font-weight: 900; paint-order: stroke; stroke: #171923; stroke-width: 7px; stroke-linejoin: round; letter-spacing: 1px; }
-      .field { stroke: #f8e7ba; stroke-width: 8; stroke-linejoin: round; }
-      .soft { stroke-width: 0; }
-      .route { fill: none; stroke-width: 34; stroke-linecap: round; stroke-linejoin: round; }
+      .title{font-family:Georgia,'Times New Roman',serif;font-weight:900;paint-order:stroke;stroke:#12151c;stroke-width:12px;stroke-linejoin:round;filter:url(#press);letter-spacing:0}
+      .rail{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-weight:900;paint-order:stroke;stroke:#151923;stroke-width:7px;stroke-linejoin:round;letter-spacing:1px}
+      .field{stroke:#f8e7ba;stroke-width:8;stroke-linejoin:round}
+      .route{fill:none;stroke-width:34;stroke-linecap:round;stroke-linejoin:round}
+      .route-inner{fill:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;opacity:.74}
     </style>
   </defs>
-  <rect width="1200" height="750" fill="#080b12"/>
+  <rect width="1200" height="750" fill="#070a11"/>
   <rect x="18" y="18" width="1164" height="714" rx="44" fill="url(#metal)"/>
   <rect x="31" y="31" width="1138" height="688" rx="34" fill="#0a0d14"/>
   <rect x="45" y="45" width="1110" height="540" rx="25" fill="url(#scene)"/>
-  <g clip-path="url(#sceneClip)">
-      <path d="M45 470 C220 365 370 420 530 330 C705 232 870 260 1155 178 L1155 585 L45 585Z" fill="#050b13" opacity=".28"/>
-
-      <path class="field soft" d="M50 395 C210 315 340 360 486 296 C644 226 780 250 1150 156 L1150 586 L50 586Z" fill="#14b8a6" opacity=".34"/>
-      <path class="field" d="M555 180 C674 132 824 148 952 214 C872 238 892 326 804 356 C710 388 632 326 548 374 C488 292 470 226 555 180Z" fill="#c7f9ef" opacity=".82"/>
-      <path class="field" d="M650 274 C724 214 796 244 852 284 C800 314 818 368 742 390 C674 366 638 332 650 274Z" fill="#14b8a6" opacity=".88"/>
-      <path class="route" d="M150 488 C280 410 410 492 540 405 C682 310 812 352 1050 214" stroke="#fb923c"/>
-      <path d="M155 488 C280 410 410 492 540 405 C682 310 812 352 1050 214" fill="none" stroke="#fff1c7" stroke-width="8" stroke-linecap="round" opacity=".75"/>
-      <g fill="#fb923c" stroke="#f8e7ba" stroke-width="7"><circle cx="212" cy="458" r="13"/><circle cx="330" cy="444" r="13"/><circle cx="472" cy="448" r="13"/><circle cx="628" cy="384" r="13"/><circle cx="816" cy="330" r="13"/></g>
+  <g clip-path="url(#clip)">
+    <path d="M45 470 C220 365 370 420 530 330 C705 232 870 260 1155 178 L1155 585 L45 585Z" fill="#050b13" opacity=".26"/>
+    <path class="field" d="M90 458 C245 380 410 432 562 330 C742 208 912 248 1110 150 L1110 565 L90 565 Z" fill="#1cb6a7" opacity=".42"/>
+    <path class="field" d="M605 198 C730 142 895 185 990 282 C870 332 748 304 642 382 C570 306 542 242 605 198" fill="#c5f1e4" opacity=".72"/>
+    <path class="route" d="M165 505 C315 422 470 498 626 390 C764 292 890 330 1040 230" stroke="#f97316"/>
+    <path class="route-inner" d="M165 505 C315 422 470 498 626 390 C764 292 890 330 1040 230" stroke="#fff1c7"/>
+    <path d="M45 565 H1155" stroke="#f8e7ba" stroke-width="8" opacity=".95"/>
   </g>
-  <text class="title" x="76" y="150" font-size="82" fill="#f7e3b2">GLOBAL MAP</text>
+  <text class="title" x="76" y="150" font-size="82" fill="#f8e6bd">GLOBAL MAP</text>
   <rect x="58" y="604" width="198" height="96" rx="22" fill="#7f1d1d" stroke="url(#metal)" stroke-width="10"/>
   <rect x="286" y="586" width="602" height="116" rx="27" fill="#111827" stroke="url(#metal)" stroke-width="10"/>
   <rect x="918" y="604" width="224" height="96" rx="22" fill="#111827" stroke="url(#metal)" stroke-width="10"/>
