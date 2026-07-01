@@ -1,38 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="21 DAYS minimalist enamel plaque cover">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="21 DAYS inlaid enamel plaque cover">
   <defs>
     <linearGradient id="scene" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#30124a"/>
-      <stop offset="100%" stop-color="#5b1e53"/>
+      <stop offset="0%" stop-color="#35114b"/>
+      <stop offset="100%" stop-color="#6d214f"/>
     </linearGradient>
     <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#f8fafc"/>
-      <stop offset="34%" stop-color="#9ca3af"/>
-      <stop offset="68%" stop-color="#fff7d6"/>
-      <stop offset="100%" stop-color="#5b6472"/>
+      <stop offset="35%" stop-color="#9ca3af"/>
+      <stop offset="70%" stop-color="#fff7d6"/>
+      <stop offset="100%" stop-color="#6b7280"/>
     </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity=".46"/>
+    <clipPath id="sceneClip"><rect x="45" y="45" width="1110" height="540" rx="25"/></clipPath>
+    <filter id="titleShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="7" stdDeviation="4" flood-color="#020617" flood-opacity=".72"/>
     </filter>
     <style>
-      .title { font-family: Georgia, 'Times New Roman', serif; font-weight: 900; paint-order: stroke; stroke: #1a1b20; stroke-width: 13px; stroke-linejoin: round; filter: url(#shadow); letter-spacing: 0; }
-      .rail { font-family: Impact, 'Arial Narrow', Arial, sans-serif; font-weight: 900; paint-order: stroke; stroke: #171923; stroke-width: 8px; stroke-linejoin: round; letter-spacing: 1px; }
-      .route { fill: none; stroke-linecap: round; stroke-linejoin: round; filter: url(#shadow); }
+      .title { font-family: Georgia, 'Times New Roman', serif; font-weight: 900; paint-order: stroke; stroke: #15171d; stroke-width: 12px; stroke-linejoin: round; filter: url(#titleShadow); letter-spacing: 0; }
+      .rail { font-family: Impact, 'Arial Narrow', Arial, sans-serif; font-weight: 900; paint-order: stroke; stroke: #171923; stroke-width: 7px; stroke-linejoin: round; letter-spacing: 1px; }
+      .field { stroke: #f8e7ba; stroke-width: 8; stroke-linejoin: round; }
+      .soft { stroke-width: 0; }
+      .route { fill: none; stroke-width: 34; stroke-linecap: round; stroke-linejoin: round; }
     </style>
   </defs>
   <rect width="1200" height="750" fill="#080b12"/>
   <rect x="18" y="18" width="1164" height="714" rx="44" fill="url(#metal)"/>
   <rect x="31" y="31" width="1138" height="688" rx="34" fill="#0a0d14"/>
   <rect x="45" y="45" width="1110" height="540" rx="25" fill="url(#scene)"/>
-  <circle cx="990" cy="115" r="180" fill="#f59e0b" opacity=".13"/>
-  <circle cx="215" cy="520" r="190" fill="#ec4899" opacity=".12"/>
-  <path d="M45 515 C210 440 310 590 480 500 C655 408 768 260 1155 325 L1155 585 L45 585Z" fill="#07111c" opacity=".36"/>
+  <g clip-path="url(#sceneClip)">
+      <path d="M45 470 C220 365 370 420 530 330 C705 232 870 260 1155 178 L1155 585 L45 585Z" fill="#050b13" opacity=".28"/>
 
-    <rect x="640" y="135" width="330" height="310" rx="34" fill="#fff2cf" opacity=".94"/>
-    <rect x="640" y="135" width="330" height="80" rx="34" fill="#ec4899"/>
-    <path d="M685 270 H925 M685 330 H925 M685 390 H925 M730 238 V428 M820 238 V428" stroke="#2b1f33" stroke-width="13" opacity=".35"/>
-    <circle cx="730" cy="330" r="34" fill="#f59e0b"/>
-    <circle cx="820" cy="390" r="34" fill="#38bdf8"/>
-    <path d="M155 480 C312 356 450 515 610 355 C704 262 800 308 1045 210" class="route" stroke="#f59e0b" stroke-width="34"/>
+      <path class="field" d="M585 145 H965 V480 H585Z" fill="#fff2cf" opacity=".82"/>
+      <path class="field" d="M585 145 H965 V230 H585Z" fill="#ec4899" opacity=".9"/>
+      <path d="M655 280 H895 M655 340 H895 M655 400 H895 M715 250 V455 M805 250 V455" stroke="#38213a" stroke-width="14" opacity=".34"/>
+      <rect x="700" y="318" width="72" height="72" rx="16" fill="#f59e0b" opacity=".9" stroke="#f8e7ba" stroke-width="7"/>
+      <rect x="802" y="378" width="72" height="72" rx="16" fill="#38bdf8" opacity=".88" stroke="#f8e7ba" stroke-width="7"/>
+      <path class="route" d="M135 500 C292 395 450 518 600 390 C704 300 828 326 1060 220" stroke="#f59e0b"/>
+      <path d="M135 500 C292 395 450 518 600 390 C704 300 828 326 1060 220" fill="none" stroke="#fff1c7" stroke-width="8" stroke-linecap="round" opacity=".78"/>
+  </g>
   <text class="title" x="76" y="150" font-size="108" fill="#fff0c2">21 DAYS</text>
   <rect x="58" y="604" width="198" height="96" rx="22" fill="#7f1d1d" stroke="url(#metal)" stroke-width="10"/>
   <rect x="286" y="586" width="602" height="116" rx="27" fill="#111827" stroke="url(#metal)" stroke-width="10"/>
