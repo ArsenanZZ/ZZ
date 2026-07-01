@@ -4,6 +4,13 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Run50 微信故事新版</title>
+  <script>
+    try {
+      if (localStorage.getItem('run50-wechat-theme') === 'light') {
+        document.documentElement.dataset.theme = 'light';
+      }
+    } catch (error) {}
+  </script>
   <style>
     :root {
       color-scheme: dark;
@@ -65,13 +72,32 @@
     }
 
     .menu-icon,
-    .gear {
+    .theme-toggle {
       width: 36px;
       height: 36px;
       display: grid;
       place-items: center;
       border-radius: 10px;
       color: var(--muted);
+    }
+
+    .theme-toggle {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, .08);
+      color: var(--text);
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
     }
 
     .mark {
@@ -689,6 +715,120 @@
       text-align: center;
     }
 
+    html[data-theme="light"] {
+      color-scheme: light;
+      --page: #eef3f8;
+      --chrome: #ffffff;
+      --panel: #ffffff;
+      --panel-soft: #f3f6fa;
+      --panel-strong: #e9eef5;
+      --line: rgba(25, 39, 62, .14);
+      --text: #172033;
+      --muted: #536178;
+      --soft: #748096;
+      --shadow: 0 14px 34px rgba(35, 49, 74, .1);
+    }
+
+    html[data-theme="light"] body {
+      background: linear-gradient(180deg, #f8fafc 0%, #eef3f8 48%, #e9eff5 100%);
+    }
+
+    html[data-theme="light"] .topbar {
+      background: rgba(255, 255, 255, .92);
+    }
+
+    html[data-theme="light"] .theme-toggle:hover {
+      background: #edf2f7;
+    }
+
+    html[data-theme="light"] .back {
+      background: #edf2f7;
+      color: #243149;
+    }
+
+    html[data-theme="light"] .pill {
+      background: rgba(255, 255, 255, .88);
+      color: #344158;
+    }
+
+    html[data-theme="light"] .pill.active {
+      background: #e4eaf2;
+      box-shadow: inset 0 0 0 1px rgba(25, 39, 62, .04);
+    }
+
+    html[data-theme="light"] .rail a {
+      color: #344158;
+    }
+
+    html[data-theme="light"] .rail a.active {
+      background: #e1e7ef;
+      color: #111a2b;
+    }
+
+    html[data-theme="light"] .rail a.active::before {
+      background: #176e57;
+    }
+
+    html[data-theme="light"] .scorecard,
+    html[data-theme="light"] .status-card,
+    html[data-theme="light"] .story-card,
+    html[data-theme="light"] .stat-card {
+      background: #ffffff;
+    }
+
+    html[data-theme="light"] .lead {
+      color: #44536b;
+    }
+
+    html[data-theme="light"] .series-chip,
+    html[data-theme="light"] .flag {
+      background: #f2f5f9;
+    }
+
+    html[data-theme="light"] .run-map-card {
+      color: #f5f7fb;
+    }
+
+    html[data-theme="light"] .run-map-card p,
+    html[data-theme="light"] .run-map-card .map-foot {
+      color: #b9c0d0;
+    }
+
+    html[data-theme="light"] .ticker-item small {
+      color: #aeb7c9;
+    }
+
+    html[data-theme="light"] .story-card:hover {
+      border-color: rgba(25, 126, 96, .38);
+      background: #ffffff;
+      box-shadow: 0 18px 38px rgba(35, 49, 74, .15);
+    }
+
+    html[data-theme="light"] .story-card img {
+      background: #edf1f5;
+      border-color: rgba(25, 39, 62, .12);
+    }
+
+    html[data-theme="light"] .story-body .eyebrow {
+      color: #137654;
+    }
+
+    html[data-theme="light"] .story-section.run-cn-zone .section-head .eyebrow {
+      color: #a9384b;
+    }
+
+    html[data-theme="light"] .story-section.run-world-zone .section-head .eyebrow {
+      color: #116f91;
+    }
+
+    html[data-theme="light"] .meta {
+      color: #56647a;
+    }
+
+    html[data-theme="light"] .open {
+      color: #8a5900;
+    }
+
     @media (max-width: 980px) {
       .topbar {
         padding: 0 18px;
@@ -810,7 +950,9 @@
       <div class="mark">R</div>
       <a class="back" href="https://zhennanzhang.com/run50/index.html">Back to Run50</a>
     </div>
-    <div class="gear">⚙</div>
+    <button class="theme-toggle" type="button" aria-label="切换到亮色模式" aria-pressed="false" title="切换明暗主题">
+      <span aria-hidden="true">☀</span>
+    </button>
   </header>
 
   <div class="shell">
@@ -1977,6 +2119,33 @@
       }, { passive: true });
       window.addEventListener('hashchange', updateRail);
       window.addEventListener('DOMContentLoaded', updateRail);
+    }());
+  </script>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const button = document.querySelector('.theme-toggle');
+      const icon = button.querySelector('span');
+
+      function syncThemeButton() {
+        const isLight = root.dataset.theme === 'light';
+        button.setAttribute('aria-pressed', String(isLight));
+        button.setAttribute('aria-label', isLight ? '切换到深色模式' : '切换到亮色模式');
+        icon.textContent = isLight ? '☾' : '☀';
+      }
+
+      button.addEventListener('click', () => {
+        const isLight = root.dataset.theme === 'light';
+        if (isLight) delete root.dataset.theme;
+        else root.dataset.theme = 'light';
+        try {
+          localStorage.setItem('run50-wechat-theme', isLight ? 'dark' : 'light');
+        } catch (error) {}
+        syncThemeButton();
+      });
+
+      syncThemeButton();
     }());
   </script>
 
