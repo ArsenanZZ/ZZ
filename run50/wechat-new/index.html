@@ -629,6 +629,29 @@
       background: linear-gradient(180deg, rgba(43, 50, 72, .98), rgba(34, 40, 58, .99));
     }
 
+    .story-card.map-card-flash {
+      animation: story-map-flash 1.55s ease both;
+      border-color: color-mix(in srgb, var(--map-flash-color, #ffcc00) 68%, white);
+      box-shadow: 0 18px 50px color-mix(in srgb, var(--map-flash-color, #ffcc00) 48%, transparent);
+    }
+
+    .story-card.map-card-flash img {
+      border-color: color-mix(in srgb, var(--map-flash-color, #ffcc00) 70%, white);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--map-flash-color, #ffcc00) 42%, transparent);
+    }
+
+    @keyframes story-map-flash {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      24%, 72% {
+        transform: translateY(-8px) scale(1.018);
+      }
+      48% {
+        transform: translateY(-3px) scale(1.008);
+      }
+    }
+
     .story-card img {
       width: calc(100% - 24px);
       margin: 12px 12px 0;
@@ -834,6 +857,10 @@
       border-color: rgba(255, 255, 255, .38);
       background: rgba(27, 34, 48, .82);
       color: #ffffff;
+    }
+
+    html[data-theme="light"] .story-card.map-card-flash {
+      box-shadow: 0 18px 52px color-mix(in srgb, var(--map-flash-color, #ffcc00) 34%, transparent);
     }
 
     html[data-theme="light"] .story-body .eyebrow {
@@ -1856,6 +1883,37 @@
       const WECHAT_STORY_VERSION = '?v=20260630-wechat-emphasis';
       const storyHref = slug => `${WECHAT_STORY_BASE}${slug}-modern-rail.html${WECHAT_STORY_VERSION}`;
 
+      const US_STATE_STORIES = {
+        AK: storyHref('anchorage-marathon'),
+        AL: storyHref('rocket-city-marathon'),
+        AR: storyHref('little-rock-marathon'),
+        AZ: storyHref('arizona-phoenix-marathon'),
+        CA: storyHref('san-francisco-marathon'),
+        CO: storyHref('denver-colfax-marathon'),
+        FL: storyHref('disney-marathon'),
+        GA: storyHref('atlanta-marathon'),
+        HI: storyHref('honolulu-marathon'),
+        IL: storyHref('chicago-marathon'),
+        IN: storyHref('indianapolis-monumental-marathon'),
+        KS: storyHref('hell-on-gravel-marathon'),
+        KY: storyHref('louisville-marathon'),
+        LA: storyHref('louisiana-marathon'),
+        MI: storyHref('michigan-meadows-marathon'),
+        MO: storyHref('st-joseph-marathon'),
+        NC: storyHref('north-carolina-oak-island-marathon'),
+        ND: storyHref('fargo-marathon'),
+        NH: storyHref('new-hampshire-clarence-demar-marathon'),
+        NY: storyHref('new-york-city-marathon'),
+        OH: storyHref('cleveland-marathon'),
+        PA: storyHref('pittsburgh-marathon'),
+        SC: storyHref('south-carolina-marathon'),
+        TN: storyHref('nashville-marathon'),
+        TX: storyHref('san-antonio-marathon'),
+        VA: storyHref('blue-ridge-marathon'),
+        VT: storyHref('mad-marathon'),
+        WV: storyHref('west-virginia-marathon')
+      };
+
       const CHINA_PROVINCE_STORIES = {
         cn_heilongjiang: storyHref('harbin-marathon'),
         cn_hubei: storyHref('wuhan-marathon-2018'),
@@ -1967,6 +2025,40 @@
         event.preventDefault();
         event.stopPropagation();
         window.location.href = href;
+      }
+
+      function storySlugFromHref(href) {
+        const file = (href || '').split('#')[0].split('?')[0].split('/').pop() || '';
+        return file.replace(/-modern-rail\.html$/, '');
+      }
+
+      function findStoryCard(href) {
+        const targetSlug = storySlugFromHref(href);
+        if (!targetSlug) return null;
+        return Array.from(document.querySelectorAll('.story-card[href]')).find(card => (
+          storySlugFromHref(card.getAttribute('href')) === targetSlug
+        ));
+      }
+
+      function flashStoryCard(card, color) {
+        card.style.setProperty('--map-flash-color', color || '#ffcc00');
+        card.classList.remove('map-card-flash');
+        void card.offsetWidth;
+        card.classList.add('map-card-flash');
+        window.setTimeout(() => card.classList.remove('map-card-flash'), 1700);
+      }
+
+      function focusMapStory(event, href, color, status, label) {
+        event.preventDefault();
+        event.stopPropagation();
+        const card = findStoryCard(href);
+        if (!card) {
+          setStatus(status, label ? `${label} · 下方故事待补` : '下方故事待补');
+          return;
+        }
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        flashStoryCard(card, color);
+        setStatus(status, label ? `${label} · 已定位到下方故事` : '已定位到下方故事');
       }
 
       function projectUs(lat, lon) {
@@ -2105,6 +2197,9 @@
               path.style.opacity = '1';
               setStatus(status);
             });
+            path.addEventListener('click', event => (
+              focusMapStory(event, US_STATE_STORIES[abbr], US_COLORS[abbr], status, `Run50 · ${US_NAMES[abbr]}`)
+            ));
           });
         });
 
@@ -2180,18 +2275,20 @@
               path.style.opacity = '1';
               setStatus(status);
             });
-            path.addEventListener('click', event => openMapStory(event, CHINA_PROVINCE_STORIES[id]));
+            path.addEventListener('click', event => (
+              focusMapStory(event, CHINA_PROVINCE_STORIES[id], province[1], status, `RunCN · ${province[0]}`)
+            ));
           }
         });
 
         const contextLayer = addSvgEl(svg, 'g', { id: 'mini-china-context-labels' });
-        addMapTextLabel(contextLayer, ['蒙古'], 382, 102, { size: 24, opacity: '.5', fill: '#d0d9e8', strokeWidth: 3.2 });
-        addMapTextLabel(contextLayer, ['韩国'], 708, 284, { size: 18, opacity: '.58', fill: '#d5deed', strokeWidth: 3 });
-        addMapTextLabel(contextLayer, ['日本'], 812, 318, { size: 18, opacity: '.44', rotate: -12, fill: '#c8d2e2', strokeWidth: 3 });
-        addMapTextLabel(contextLayer, ['渤海'], 626, 254, { size: 11, opacity: '.38', rotate: -10 });
-        addMapTextLabel(contextLayer, ['黄海'], 690, 332, { size: 13, opacity: '.42', rotate: -14 });
-        addMapTextLabel(contextLayer, ['东海'], 684, 431, { size: 13, opacity: '.44', rotate: -16 });
-        addMapTextLabel(contextLayer, ['南海'], 594, 526, { size: 13, opacity: '.44', rotate: -12 });
+        addMapTextLabel(contextLayer, ['蒙古'], 390, 86, { size: 22, opacity: '.46', fill: '#d0d9e8', strokeWidth: 3.1 });
+        addMapTextLabel(contextLayer, ['韩国'], 735, 314, { size: 15, opacity: '.5', fill: '#d5deed', strokeWidth: 2.8 });
+        addMapTextLabel(contextLayer, ['日本'], 826, 350, { size: 16, opacity: '.4', rotate: -12, fill: '#c8d2e2', strokeWidth: 2.8 });
+        addMapTextLabel(contextLayer, ['渤海'], 646, 266, { size: 10, opacity: '.32', rotate: -8 });
+        addMapTextLabel(contextLayer, ['黄海'], 718, 360, { size: 12, opacity: '.36', rotate: -14 });
+        addMapTextLabel(contextLayer, ['东海'], 752, 450, { size: 12, opacity: '.38', rotate: -16 });
+        addMapTextLabel(contextLayer, ['南海'], 624, 530, { size: 12, opacity: '.38', rotate: -12 });
 
         const glowLayer = addSvgEl(svg, 'g', { id: 'mini-china-dot-glows' });
         const ringLayer = addSvgEl(svg, 'g', { id: 'mini-china-city-rings' });
