@@ -1615,15 +1615,15 @@
       };
 
       const CHINA_PROVINCES = {
-        cn_heilongjiang: ['黑龙江', '#a95f55'], cn_hubei: ['湖北', '#6a9168'],
-        cn_sichuan: ['四川', '#b1844b'], cn_innermongolia: ['内蒙古', '#468791'],
-        cn_shanxi: ['山西', '#879b4b'], cn_hunan: ['湖南', '#81689a'],
-        cn_fujian: ['福建', '#468791'], cn_gansu: ['甘肃', '#a95f55'],
-        cn_jiangsu: ['江苏', '#879b4b'], cn_guizhou: ['贵州', '#6a9168'],
-        cn_shaanxi: ['陕西', '#b1844b'], cn_zhejiang: ['浙江', '#81689a'],
-        cn_hainan: ['海南', '#468791'], cn_liaoning: ['辽宁', '#a95f55'],
-        cn_shanghai: ['上海', '#6a9168'], cn_guangxi: ['广西', '#b1844b'],
-        cn_hongkong: ['香港', '#81689a']
+        cn_heilongjiang: ['黑龙江', '#c96f5d'], cn_hubei: ['湖北', '#78ad70'],
+        cn_sichuan: ['四川', '#cf964f'], cn_innermongolia: ['内蒙古', '#56a6b1'],
+        cn_shanxi: ['山西', '#a9b957'], cn_hunan: ['湖南', '#9b7ab5'],
+        cn_fujian: ['福建', '#56a6b1'], cn_gansu: ['甘肃', '#c96f5d'],
+        cn_jiangsu: ['江苏', '#a9b957'], cn_guizhou: ['贵州', '#78ad70'],
+        cn_shaanxi: ['陕西', '#cf964f'], cn_zhejiang: ['浙江', '#9b7ab5'],
+        cn_hainan: ['海南', '#56a6b1'], cn_liaoning: ['辽宁', '#c96f5d'],
+        cn_shanghai: ['上海', '#78ad70'], cn_guangxi: ['广西', '#cf964f'],
+        cn_hongkong: ['香港', '#9b7ab5']
       };
 
       const CHINA_CITY_DOTS = [
@@ -1873,9 +1873,9 @@
           const province = CHINA_PROVINCES[id];
           if (province) {
             path.setAttribute('fill', province[1]);
-            path.setAttribute('stroke', 'rgba(239,245,250,.62)');
-            path.setAttribute('stroke-width', '1.05');
-            path.style.opacity = '.98';
+            path.setAttribute('stroke', 'rgba(246,249,252,.82)');
+            path.setAttribute('stroke-width', '1.25');
+            path.style.opacity = '1';
             path.style.cursor = 'pointer';
             path.addEventListener('mouseenter', () => {
               path.style.opacity = '.82';
