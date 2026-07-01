@@ -561,6 +561,24 @@
       color: var(--muted);
     }
 
+    .story-section {
+      scroll-margin-top: 84px;
+    }
+
+    .story-section + .story-section {
+      margin-top: 54px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .story-section.run-cn-zone .section-head .eyebrow {
+      color: #ff8f8f;
+    }
+
+    .story-section.run-world-zone .section-head .eyebrow {
+      color: #79d6ff;
+    }
+
     .stories {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -797,9 +815,9 @@
 
   <div class="shell">
     <aside class="rail" aria-label="Run50 series">
-      <a class="active" href="#score"><span class="rail-icon">🏁</span><span class="rail-copy"><b>Run50</b><small>美国50州</small></span></a>
-      <a href="#runcn-map"><span class="rail-icon">CN</span><span class="rail-copy"><b>RunCN</b><small>中国马拉松</small></span></a>
-      <a href="#stories"><span class="rail-icon">🌍</span><span class="rail-copy"><b>RunWorld</b><small>世界跑旅</small></span></a>
+      <a class="active" href="#run50-series"><span class="rail-icon">🏁</span><span class="rail-copy"><b>Run50</b><small>美国50州</small></span></a>
+      <a href="#runcn-series"><span class="rail-icon">CN</span><span class="rail-copy"><b>RunCN</b><small>中国马拉松</small></span></a>
+      <a href="#runworld-series"><span class="rail-icon">🌍</span><span class="rail-copy"><b>RunWorld</b><small>世界跑旅</small></span></a>
       <a href="#stats"><span class="rail-icon">▤</span><span class="rail-copy"><b>Stats</b><small>文章与进度</small></span></a>
     </aside>
 
@@ -875,16 +893,16 @@
         </a>
       </section>
 
-      <section id="stories">
+      <section class="story-section run-50-zone" id="run50-series">
         <div class="section-head">
           <div>
-            <div class="eyebrow">Story Grid</div>
-            <h2>微信公众号故事</h2>
+            <div class="eyebrow">Run50 · 美国50州</div>
+            <h2>美国50州马拉松故事</h2>
           </div>
-          <p>已同步 Chinese Stories 全量 57 篇。</p>
+          <p>34 篇 · 按比赛时间线排列</p>
         </div>
 
-        <div class="stories">
+        <div class="stories" aria-label="Run50 美国50州微信公众号故事">
           <a class="story-card" href="https://zhennanzhang.com/run50/wechat/louisville-marathon-modern-rail.html?v=20260627-wechat-batch">
             <img src="../../assets/cover-medal-zh-louisville.jpg" alt="Run50 #第1州｜肯塔基：路易斯维尔马拉松｜北美的第一个全马封面">
             <div class="story-body">
@@ -1215,6 +1233,29 @@
               <div class="open">Open WeChat Edition →</div>
             </div>
           </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/arizona-phoenix-marathon-modern-rail.html?v=20260627-wechat-batch">
+            <img src="../../assets/cover-medal-zh-index-arizona-phoenix-cn-flat.jpg?v=20260630-round5-v1" alt="Run50 #第29州｜亚利桑那 Buckeye Marathon：沙漠清晨，机场终点，2026 第一跑破4封面">
+            <div class="story-body">
+              <div class="eyebrow">RUN50 DISPATCH · ARIZONA</div>
+              <h3>Run50 #第29州｜亚利桑那 Buckeye Marathon：沙漠清晨，机场终点，2026 第一跑破4</h3>
+              <div class="meta">亚利桑那巴克艾 · 2026.01.10</div>
+              <p class="desc">沙漠清晨、巨人柱、Buckeye 机场终点，还有二〇二六第一场意外破四。</p>
+              <div class="open">Open WeChat Edition →</div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="story-section run-cn-zone" id="runcn-series">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">RunCN · 中国站点</div>
+            <h2>中国马拉松系列</h2>
+          </div>
+          <p>19 篇 · 按站点与年份整理</p>
+        </div>
+
+        <div class="stories" aria-label="RunCN 中国马拉松微信公众号故事">
           <a class="story-card" href="https://zhennanzhang.com/run50/wechat/steel-tank-story-modern-rail.html?v=20260627-wechat-batch">
             <img src="../../assets/cover-medal-steel-tank-story.jpg" alt="RunCN #第1-6站｜钢铁战车的故事封面">
             <div class="story-body">
@@ -1405,6 +1446,19 @@
               <div class="open">Open WeChat Edition →</div>
             </div>
           </a>
+        </div>
+      </section>
+
+      <section class="story-section run-world-zone" id="runworld-series">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">RunWorld · 世界路线</div>
+            <h2>世界马拉松系列</h2>
+          </div>
+          <p>4 篇 · 美国和中国之外的跑旅</p>
+        </div>
+
+        <div class="stories" aria-label="RunWorld 世界马拉松微信公众号故事">
           <a class="story-card" href="https://zhennanzhang.com/run50/wechat/singapore-sundown-marathon-modern-rail.html?v=20260627-wechat-batch">
             <img src="../../assets/cover-medal-singapore-sundown-marathon.jpg" alt="RunWorld #第1站｜新加坡 Sundown Marathon：十年之约，归来仍是少年封面">
             <div class="story-body">
@@ -1442,16 +1496,6 @@
               <h3>RunWorld #第4站｜意大利：比萨马拉松｜在亚平宁上艺术课，在斜塔前锻炼身体</h3>
               <div class="meta">RunWorld · 世界跑马故事</div>
               <p class="desc">圣诞假期前的比萨马拉松，穿过斜塔、阿诺河、托斯卡纳乡村和利古里亚海，再一路把奖牌带去威尼斯、米兰、佛罗伦萨和罗马。</p>
-              <div class="open">Open WeChat Edition →</div>
-            </div>
-          </a>
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/arizona-phoenix-marathon-modern-rail.html?v=20260627-wechat-batch">
-            <img src="../../assets/cover-medal-zh-index-arizona-phoenix-cn-flat.jpg?v=20260630-round5-v1" alt="Run50 #第29州｜亚利桑那 Buckeye Marathon：沙漠清晨，机场终点，2026 第一跑破4封面">
-            <div class="story-body">
-              <div class="eyebrow">RUN50 DISPATCH · ARIZONA</div>
-              <h3>Run50 #第29州｜亚利桑那 Buckeye Marathon：沙漠清晨，机场终点，2026 第一跑破4</h3>
-              <div class="meta">亚利桑那巴克艾 · 2026.01.10</div>
-              <p class="desc">沙漠清晨、巨人柱、Buckeye 机场终点，还有二〇二六第一场意外破四。</p>
               <div class="open">Open WeChat Edition →</div>
             </div>
           </a>
@@ -1901,5 +1945,38 @@
     }());
   </script>
 
+  <script>
+    (function () {
+      const railLinks = Array.from(document.querySelectorAll('.rail a[href^="#"]'));
+      const sections = railLinks
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+      let ticking = false;
+
+      function updateRail() {
+        const marker = window.scrollY + 120;
+        let current = sections[0];
+        sections.forEach(section => {
+          if (section.offsetTop <= marker) current = section;
+        });
+        railLinks.forEach(link => {
+          const active = link.getAttribute('href') === `#${current.id}`;
+          link.classList.toggle('active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          ticking = true;
+          window.requestAnimationFrame(updateRail);
+        }
+      }, { passive: true });
+      window.addEventListener('hashchange', updateRail);
+      window.addEventListener('DOMContentLoaded', updateRail);
+    }());
+  </script>
 
 </body></html>
