@@ -1979,6 +1979,7 @@
         text.setAttribute('stroke-width', options.strokeWidth || 2.4);
         text.setAttribute('class', 'mini-map-context-label');
         text.style.opacity = options.opacity || '.58';
+        text.style.fontWeight = options.weight || 800;
         if (options.rotate) text.setAttribute('transform', `rotate(${options.rotate} ${x} ${y})`);
         lines.forEach((line, index) => {
           const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
@@ -2279,9 +2280,9 @@
         });
 
         const contextLayer = addSvgEl(svg, 'g', { id: 'mini-china-context-labels' });
-        addMapTextLabel(contextLayer, ['蒙古'], 390, 86, { size: 22, opacity: '.46', fill: '#d0d9e8', strokeWidth: 3.1 });
-        addMapTextLabel(contextLayer, ['韩国'], 735, 314, { size: 15, opacity: '.5', fill: '#d5deed', strokeWidth: 2.8 });
-        addMapTextLabel(contextLayer, ['日本'], 826, 350, { size: 16, opacity: '.4', rotate: -12, fill: '#c8d2e2', strokeWidth: 2.8 });
+        addMapTextLabel(contextLayer, ['蒙古'], 392, 124, { size: 21, opacity: '.42', fill: '#d0d9e8', strokeWidth: 2.1, weight: 400 });
+        addMapTextLabel(contextLayer, ['韩国'], 706, 292, { size: 14, opacity: '.46', fill: '#d5deed', strokeWidth: 1.8, weight: 400 });
+        addMapTextLabel(contextLayer, ['日本'], 806, 288, { size: 15, opacity: '.38', rotate: -12, fill: '#c8d2e2', strokeWidth: 1.8, weight: 400 });
         addMapTextLabel(contextLayer, ['渤海'], 646, 266, { size: 10, opacity: '.32', rotate: -8 });
         addMapTextLabel(contextLayer, ['黄海'], 718, 360, { size: 12, opacity: '.36', rotate: -14 });
         addMapTextLabel(contextLayer, ['东海'], 752, 450, { size: 12, opacity: '.38', rotate: -16 });
