@@ -71,11 +71,9 @@ SERIES_SECTION_RE = re.compile(
     r"(?=      <section class=\"story-section|      <section class=\"stats\")",
     flags=re.S,
 )
-CARD_OPEN_RE = re.compile(
-    r'(<a class="story-card" href="[^"]+">\s*)'
-    r'(?:<span class="story-number">.*?</span>\s*)?',
-    flags=re.S,
-)
+CARD_RE = re.compile(r'(<a class="story-card" href="[^"]+">)(.*?)(</a>)', flags=re.S)
+STORY_NUMBER_RE = re.compile(r'\s*<span class="story-number">.*?</span>\s*', flags=re.S)
+STORY_BODY_OPEN_RE = re.compile(r'(<div class="story-body">)\s*', flags=re.S)
 
 BLUE_PATTERNS = [
     re.compile(
@@ -131,10 +129,25 @@ def number_story_cards() -> None:
         def number_card(card_match: re.Match[str]) -> str:
             nonlocal counter
             counter += 1
-            badge = f'<span class="story-number">{labels[series_id]} · {counter:02d}</span>\n            '
-            return f"{card_match.group(1)}{badge}"
+            card = f"{card_match.group(1)}{card_match.group(2)}{card_match.group(3)}"
+            card = STORY_NUMBER_RE.sub("", card)
+            card = re.sub(
+                r'(<a class="story-card" href="[^"]+">)\s*(<img )',
+                r"\1\n            \2",
+                card,
+                count=1,
+            )
+            badge = f'<span class="story-number">{labels[series_id]} · {counter:02d}</span>'
+            card, replacements = STORY_BODY_OPEN_RE.subn(
+                lambda match: f"{match.group(1)}\n              {badge}\n              ",
+                card,
+                count=1,
+            )
+            if replacements != 1:
+                raise RuntimeError(f"Could not place story number in {labels[series_id]} card {counter:02d}")
+            return card
 
-        body = CARD_OPEN_RE.sub(number_card, match.group("body"))
+        body = CARD_RE.sub(number_card, match.group("body"))
         return f"{match.group(1)}{body}"
 
     numbered, section_count = SERIES_SECTION_RE.subn(number_section, html)
