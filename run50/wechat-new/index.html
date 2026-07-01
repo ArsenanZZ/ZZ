@@ -440,8 +440,9 @@
       position: relative;
       display: grid;
       place-items: center;
-      min-height: 260px;
-      height: 260px;
+      min-height: 0;
+      height: auto;
+      aspect-ratio: 1722 / 989;
       overflow: hidden;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, .16);
@@ -483,7 +484,8 @@
     }
 
     #runcn-china-map-mini {
-      background: #111827;
+      background: #30384f;
+      aspect-ratio: 934 / 556;
     }
 
     #runcn-china-map-mini .city-ring {
@@ -904,8 +906,8 @@
       }
 
       .map-window {
-        height: 230px;
-        min-height: 230px;
+        height: auto;
+        min-height: 0;
       }
 
       .status-card {
@@ -1757,15 +1759,15 @@
       };
 
       const CHINA_PROVINCES = {
-        cn_heilongjiang: ['黑龙江', '#c96f5d'], cn_hubei: ['湖北', '#78ad70'],
-        cn_sichuan: ['四川', '#cf964f'], cn_innermongolia: ['内蒙古', '#56a6b1'],
-        cn_shanxi: ['山西', '#a9b957'], cn_hunan: ['湖南', '#9b7ab5'],
-        cn_fujian: ['福建', '#56a6b1'], cn_gansu: ['甘肃', '#c96f5d'],
-        cn_jiangsu: ['江苏', '#a9b957'], cn_guizhou: ['贵州', '#78ad70'],
-        cn_shaanxi: ['陕西', '#cf964f'], cn_zhejiang: ['浙江', '#9b7ab5'],
-        cn_hainan: ['海南', '#56a6b1'], cn_liaoning: ['辽宁', '#c96f5d'],
-        cn_shanghai: ['上海', '#78ad70'], cn_guangxi: ['广西', '#cf964f'],
-        cn_hongkong: ['香港', '#9b7ab5']
+        cn_heilongjiang: ['黑龙江', '#f06a4f'], cn_hubei: ['湖北', '#5fc36f'],
+        cn_sichuan: ['四川', '#f4a83a'], cn_innermongolia: ['内蒙古', '#39abc0'],
+        cn_shanxi: ['山西', '#add64f'], cn_hunan: ['湖南', '#a678dc'],
+        cn_fujian: ['福建', '#39abc0'], cn_gansu: ['甘肃', '#f06a4f'],
+        cn_jiangsu: ['江苏', '#add64f'], cn_guizhou: ['贵州', '#5fc36f'],
+        cn_shaanxi: ['陕西', '#f4a83a'], cn_zhejiang: ['浙江', '#a678dc'],
+        cn_hainan: ['海南', '#39abc0'], cn_liaoning: ['辽宁', '#f06a4f'],
+        cn_shanghai: ['上海', '#5fc36f'], cn_guangxi: ['广西', '#f4a83a'],
+        cn_hongkong: ['香港', '#a678dc']
       };
 
       const CHINA_CITY_DOTS = [
@@ -1990,33 +1992,32 @@
         svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         const ocean = addSvgEl(svg, 'rect', {
           x: '-64', y: '6', width: '934', height: '556',
-          fill: '#688b9d'
+          fill: '#30384f'
         });
         svg.insertBefore(ocean, svg.firstChild);
         svg.querySelectorAll('rect').forEach(rect => {
-          rect.setAttribute('fill', '#688b9d');
+          rect.setAttribute('fill', '#30384f');
         });
         svg.querySelectorAll('path').forEach(path => {
           const id = path.id || '';
           if (!id.startsWith('cn_')) {
-            path.setAttribute('fill', '#4d6372');
-            path.setAttribute('stroke', 'rgba(194,214,227,.3)');
-            path.setAttribute('stroke-width', '.65');
-            path.style.opacity = '.94';
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', 'none');
+            path.style.opacity = '0';
             path.style.pointerEvents = 'none';
             return;
           }
 
-          path.setAttribute('fill', '#263247');
-          path.setAttribute('stroke', 'rgba(207,222,235,.46)');
-          path.setAttribute('stroke-width', '.8');
-          path.style.opacity = '.96';
+          path.setAttribute('fill', '#242b3f');
+          path.setAttribute('stroke', 'rgba(221,232,245,.48)');
+          path.setAttribute('stroke-width', '.95');
+          path.style.opacity = '.92';
 
           const province = CHINA_PROVINCES[id];
           if (province) {
             path.setAttribute('fill', province[1]);
-            path.setAttribute('stroke', 'rgba(246,249,252,.82)');
-            path.setAttribute('stroke-width', '1.25');
+            path.setAttribute('stroke', 'rgba(255,255,255,.58)');
+            path.setAttribute('stroke-width', '1.15');
             path.style.opacity = '1';
             path.style.cursor = 'pointer';
             path.addEventListener('mouseenter', () => {
