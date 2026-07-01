@@ -97,9 +97,9 @@
 
     .shell {
       display: grid;
-      grid-template-columns: 220px minmax(0, 1040px);
+      grid-template-columns: 220px minmax(0, 1fr);
       gap: 28px;
-      width: min(1220px, calc(100% - 48px));
+      width: min(1840px, calc(100% - 48px));
       margin: 0 auto;
       padding: 26px 0 70px;
     }
@@ -581,15 +581,15 @@
 
     .stories {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: clamp(14px, 1.2vw, 20px);
     }
 
     .story-card {
       display: flex;
       flex-direction: column;
       min-height: 100%;
-      border-radius: 20px;
+      border-radius: 8px;
       overflow: hidden;
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
@@ -607,7 +607,7 @@
       object-fit: cover;
       background: #171b28;
       border: 1px solid rgba(255, 255, 255, .1);
-      border-radius: 16px;
+      border-radius: 6px;
     }
 
     .story-body {
