@@ -1,34 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract wechat cover">
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="WECHAT minimalist enamel plaque cover">
   <defs>
-    <linearGradient id="bg-wechat" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#102821"/>
-      <stop offset="100%" stop-color="#1f4a3d"/>
+    <linearGradient id="scene" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f3d2e"/>
+      <stop offset="100%" stop-color="#166534"/>
     </linearGradient>
-    <radialGradient id="burst-wechat" cx="28%" cy="24%" r="72%">
-      <stop offset="0%" stop-color="#37d67a" stop-opacity="0.42"/>
-      <stop offset="54%" stop-color="#4fc3ff" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="soft-wechat" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#020617" flood-opacity="0.28"/>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="34%" stop-color="#9ca3af"/>
+      <stop offset="68%" stop-color="#fff7d6"/>
+      <stop offset="100%" stop-color="#5b6472"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity=".46"/>
     </filter>
+    <style>
+      .title { font-family: Georgia, 'Times New Roman', serif; font-weight: 900; paint-order: stroke; stroke: #1a1b20; stroke-width: 13px; stroke-linejoin: round; filter: url(#shadow); letter-spacing: 0; }
+      .rail { font-family: Impact, 'Arial Narrow', Arial, sans-serif; font-weight: 900; paint-order: stroke; stroke: #171923; stroke-width: 8px; stroke-linejoin: round; letter-spacing: 1px; }
+      .route { fill: none; stroke-linecap: round; stroke-linejoin: round; filter: url(#shadow); }
+    </style>
   </defs>
-  <rect width="1200" height="750" rx="0" fill="url(#bg-wechat)"/>
-  <rect width="1200" height="750" fill="url(#burst-wechat)"/>
-  <circle cx="1040" cy="104" r="210" fill="#37d67a" opacity="0.10"/>
-  <circle cx="90" cy="680" r="230" fill="#ffbe4a" opacity="0.12"/>
-  <path d="M-80 540 C170 420 280 680 520 555 S865 285 1280 360" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="58" stroke-linecap="round"/>
+  <rect width="1200" height="750" fill="#080b12"/>
+  <rect x="18" y="18" width="1164" height="714" rx="44" fill="url(#metal)"/>
+  <rect x="31" y="31" width="1138" height="688" rx="34" fill="#0a0d14"/>
+  <rect x="45" y="45" width="1110" height="540" rx="25" fill="url(#scene)"/>
+  <circle cx="990" cy="115" r="180" fill="#22c55e" opacity=".13"/>
+  <circle cx="215" cy="520" r="190" fill="#f97316" opacity=".12"/>
+  <path d="M45 515 C210 440 310 590 480 500 C655 408 768 260 1155 325 L1155 585 L45 585Z" fill="#07111c" opacity=".36"/>
 
-<text x="78" y="132" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#ffffff" opacity="0.94" letter-spacing="0">WX</text>
-
-  <g filter="url(#soft-wechat)">
-    <ellipse cx="478" cy="384" rx="278" ry="194" fill="#37d67a"/>
-    <ellipse cx="744" cy="314" rx="246" ry="172" fill="#ffffff"/>
-    <path d="M318 526 L242 628 L418 558Z" fill="#37d67a"/>
-    <path d="M850 448 L950 524 L884 408Z" fill="#ffffff"/>
-    <circle cx="388" cy="354" r="36" fill="#102821"/><circle cx="552" cy="354" r="36" fill="#102821"/>
-    <circle cx="672" cy="292" r="30" fill="#4fc3ff"/><circle cx="812" cy="292" r="30" fill="#ffbe4a"/>
-  </g>
-
+    <ellipse cx="760" cy="285" rx="210" ry="145" fill="#dcfce7" opacity=".95"/>
+    <path d="M645 398 L595 475 L710 420Z" fill="#dcfce7" opacity=".95"/>
+    <ellipse cx="505" cy="350" rx="160" ry="110" fill="#86efac" opacity=".86"/>
+    <path d="M586 440 L642 500 L610 410Z" fill="#86efac" opacity=".86"/>
+    <circle cx="690" cy="285" r="18" fill="#123524"/><circle cx="760" cy="285" r="18" fill="#123524"/><circle cx="830" cy="285" r="18" fill="#123524"/>
+    <path d="M190 505 C345 380 500 520 660 384 C768 292 875 335 1045 218" class="route" stroke="#f97316" stroke-width="32"/>
+  <text class="title" x="76" y="150" font-size="106" fill="#fff4c9">WECHAT</text>
+  <rect x="58" y="604" width="198" height="96" rx="22" fill="#7f1d1d" stroke="url(#metal)" stroke-width="10"/>
+  <rect x="286" y="586" width="602" height="116" rx="27" fill="#111827" stroke="url(#metal)" stroke-width="10"/>
+  <rect x="918" y="604" width="224" height="96" rx="22" fill="#111827" stroke="url(#metal)" stroke-width="10"/>
+  <text class="rail" x="157" y="670" font-size="48" text-anchor="middle" fill="#fff0c2">WX</text>
+  <text class="rail" x="587" y="666" font-size="66" text-anchor="middle" fill="#fff0c2">MAGAZINE</text>
+  <text class="rail" x="1030" y="668" font-size="46" text-anchor="middle" fill="#fff0c2">CN</text>
 </svg>

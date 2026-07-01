@@ -1,34 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract 21day cover">
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="21 DAYS minimalist enamel plaque cover">
   <defs>
-    <linearGradient id="bg-21day" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#172617"/>
-      <stop offset="100%" stop-color="#384515"/>
+    <linearGradient id="scene" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#30124a"/>
+      <stop offset="100%" stop-color="#5b1e53"/>
     </linearGradient>
-    <radialGradient id="burst-21day" cx="28%" cy="24%" r="72%">
-      <stop offset="0%" stop-color="#ffbe4a" stop-opacity="0.42"/>
-      <stop offset="54%" stop-color="#37d67a" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="soft-21day" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#020617" flood-opacity="0.28"/>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="34%" stop-color="#9ca3af"/>
+      <stop offset="68%" stop-color="#fff7d6"/>
+      <stop offset="100%" stop-color="#5b6472"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity=".46"/>
     </filter>
+    <style>
+      .title { font-family: Georgia, 'Times New Roman', serif; font-weight: 900; paint-order: stroke; stroke: #1a1b20; stroke-width: 13px; stroke-linejoin: round; filter: url(#shadow); letter-spacing: 0; }
+      .rail { font-family: Impact, 'Arial Narrow', Arial, sans-serif; font-weight: 900; paint-order: stroke; stroke: #171923; stroke-width: 8px; stroke-linejoin: round; letter-spacing: 1px; }
+      .route { fill: none; stroke-linecap: round; stroke-linejoin: round; filter: url(#shadow); }
+    </style>
   </defs>
-  <rect width="1200" height="750" rx="0" fill="url(#bg-21day)"/>
-  <rect width="1200" height="750" fill="url(#burst-21day)"/>
-  <circle cx="1040" cy="104" r="210" fill="#ffbe4a" opacity="0.10"/>
-  <circle cx="90" cy="680" r="230" fill="#f97316" opacity="0.12"/>
-  <path d="M-80 540 C170 420 280 680 520 555 S865 285 1280 360" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="58" stroke-linecap="round"/>
+  <rect width="1200" height="750" fill="#080b12"/>
+  <rect x="18" y="18" width="1164" height="714" rx="44" fill="url(#metal)"/>
+  <rect x="31" y="31" width="1138" height="688" rx="34" fill="#0a0d14"/>
+  <rect x="45" y="45" width="1110" height="540" rx="25" fill="url(#scene)"/>
+  <circle cx="990" cy="115" r="180" fill="#f59e0b" opacity=".13"/>
+  <circle cx="215" cy="520" r="190" fill="#ec4899" opacity=".12"/>
+  <path d="M45 515 C210 440 310 590 480 500 C655 408 768 260 1155 325 L1155 585 L45 585Z" fill="#07111c" opacity=".36"/>
 
-<text x="78" y="132" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#ffffff" opacity="0.94" letter-spacing="0">21</text>
-
-  <g filter="url(#soft-21day)">
-    <circle cx="610" cy="392" r="220" fill="#ffbe4a"/>
-    <circle cx="610" cy="392" r="164" fill="#18221a"/>
-    <path d="M610 392 L610 282" stroke="#fff" stroke-width="28" stroke-linecap="round"/>
-    <path d="M610 392 L724 446" stroke="#37d67a" stroke-width="28" stroke-linecap="round"/>
-    <path d="M410 164 L326 92 M808 164 L894 90" stroke="#ffbe4a" stroke-width="38" stroke-linecap="round"/>
-    <text x="610" y="458" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="154" font-weight="900" fill="#fff">21</text>
-  </g>
-
+    <rect x="640" y="135" width="330" height="310" rx="34" fill="#fff2cf" opacity=".94"/>
+    <rect x="640" y="135" width="330" height="80" rx="34" fill="#ec4899"/>
+    <path d="M685 270 H925 M685 330 H925 M685 390 H925 M730 238 V428 M820 238 V428" stroke="#2b1f33" stroke-width="13" opacity=".35"/>
+    <circle cx="730" cy="330" r="34" fill="#f59e0b"/>
+    <circle cx="820" cy="390" r="34" fill="#38bdf8"/>
+    <path d="M155 480 C312 356 450 515 610 355 C704 262 800 308 1045 210" class="route" stroke="#f59e0b" stroke-width="34"/>
+  <text class="title" x="76" y="150" font-size="108" fill="#fff0c2">21 DAYS</text>
+  <rect x="58" y="604" width="198" height="96" rx="22" fill="#7f1d1d" stroke="url(#metal)" stroke-width="10"/>
+  <rect x="286" y="586" width="602" height="116" rx="27" fill="#111827" stroke="url(#metal)" stroke-width="10"/>
+  <rect x="918" y="604" width="224" height="96" rx="22" fill="#111827" stroke="url(#metal)" stroke-width="10"/>
+  <text class="rail" x="157" y="670" font-size="48" text-anchor="middle" fill="#fff0c2">2026</text>
+  <text class="rail" x="587" y="666" font-size="66" text-anchor="middle" fill="#fff0c2">CHALLENGE</text>
+  <text class="rail" x="1030" y="668" font-size="46" text-anchor="middle" fill="#fff0c2">RUN</text>
 </svg>

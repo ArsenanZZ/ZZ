@@ -1,33 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="Abstract chinese cover">
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="CHINESE minimalist enamel plaque cover">
   <defs>
-    <linearGradient id="bg-chinese" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#321915"/>
-      <stop offset="100%" stop-color="#573022"/>
+    <linearGradient id="scene" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3b1115"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
     </linearGradient>
-    <radialGradient id="burst-chinese" cx="28%" cy="24%" r="72%">
-      <stop offset="0%" stop-color="#ffbe4a" stop-opacity="0.42"/>
-      <stop offset="54%" stop-color="#ff6f91" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="soft-chinese" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#020617" flood-opacity="0.28"/>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="34%" stop-color="#9ca3af"/>
+      <stop offset="68%" stop-color="#fff7d6"/>
+      <stop offset="100%" stop-color="#5b6472"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity=".46"/>
     </filter>
+    <style>
+      .title { font-family: Georgia, 'Times New Roman', serif; font-weight: 900; paint-order: stroke; stroke: #1a1b20; stroke-width: 13px; stroke-linejoin: round; filter: url(#shadow); letter-spacing: 0; }
+      .rail { font-family: Impact, 'Arial Narrow', Arial, sans-serif; font-weight: 900; paint-order: stroke; stroke: #171923; stroke-width: 8px; stroke-linejoin: round; letter-spacing: 1px; }
+      .route { fill: none; stroke-linecap: round; stroke-linejoin: round; filter: url(#shadow); }
+    </style>
   </defs>
-  <rect width="1200" height="750" rx="0" fill="url(#bg-chinese)"/>
-  <rect width="1200" height="750" fill="url(#burst-chinese)"/>
-  <circle cx="1040" cy="104" r="210" fill="#ffbe4a" opacity="0.10"/>
-  <circle cx="90" cy="680" r="230" fill="#37d67a" opacity="0.12"/>
-  <path d="M-80 540 C170 420 280 680 520 555 S865 285 1280 360" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="58" stroke-linecap="round"/>
+  <rect width="1200" height="750" fill="#080b12"/>
+  <rect x="18" y="18" width="1164" height="714" rx="44" fill="url(#metal)"/>
+  <rect x="31" y="31" width="1138" height="688" rx="34" fill="#0a0d14"/>
+  <rect x="45" y="45" width="1110" height="540" rx="25" fill="url(#scene)"/>
+  <circle cx="990" cy="115" r="180" fill="#ef4444" opacity=".13"/>
+  <circle cx="215" cy="520" r="190" fill="#f59e0b" opacity=".12"/>
+  <path d="M45 515 C210 440 310 590 480 500 C655 408 768 260 1155 325 L1155 585 L45 585Z" fill="#07111c" opacity=".36"/>
 
-<text x="78" y="132" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" fill="#ffffff" opacity="0.94" letter-spacing="0">CN</text>
-
-  <g filter="url(#soft-chinese)">
-    <circle cx="888" cy="226" r="126" fill="#ff6f91"/>
-    <path d="M256 504 C380 196 502 160 650 236 C790 308 770 470 610 558 C468 636 334 612 256 504Z" fill="#fff2de"/>
-    <path d="M328 504 C444 314 540 280 696 310" fill="none" stroke="#ffbe4a" stroke-width="76" stroke-linecap="round"/>
-    <path d="M430 570 C555 505 680 442 812 472" fill="none" stroke="#1b1110" stroke-width="44" stroke-linecap="round" opacity="0.82"/>
-    <rect x="196" y="182" width="140" height="140" rx="32" fill="#37d67a" opacity="0.86"/>
-  </g>
-
+    <circle cx="855" cy="205" r="140" fill="#f59e0b" opacity=".9"/>
+    <path d="M195 470 C290 365 392 390 492 328 C590 270 720 306 826 228 C922 158 1008 188 1075 128" class="route" stroke="#14b8a6" stroke-width="34"/>
+    <path d="M245 420 L350 370 L455 408 L560 345 L670 392 L790 320 L900 360" fill="none" stroke="#fff1c7" stroke-width="34" stroke-linejoin="round"/>
+    <path d="M245 420 L350 370 L455 408 L560 345 L670 392 L790 320 L900 360" fill="none" stroke="#321018" stroke-width="12" stroke-linejoin="round" opacity=".45"/>
+    <path d="M715 466 L910 466 L865 395 L760 410Z" fill="#ef4444" opacity=".78"/>
+  <text class="title" x="76" y="150" font-size="96" fill="#fff1c7">CHINESE</text>
+  <rect x="58" y="604" width="198" height="96" rx="22" fill="#7f1d1d" stroke="url(#metal)" stroke-width="10"/>
+  <rect x="286" y="586" width="602" height="116" rx="27" fill="#111827" stroke="url(#metal)" stroke-width="10"/>
+  <rect x="918" y="604" width="224" height="96" rx="22" fill="#111827" stroke="url(#metal)" stroke-width="10"/>
+  <text class="rail" x="157" y="670" font-size="48" text-anchor="middle" fill="#fff0c2">CN</text>
+  <text class="rail" x="587" y="666" font-size="66" text-anchor="middle" fill="#fff0c2">RUN CN</text>
+  <text class="rail" x="1030" y="668" font-size="46" text-anchor="middle" fill="#fff0c2">ZH</text>
 </svg>
