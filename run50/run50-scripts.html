@@ -3357,6 +3357,19 @@
                 groups.get(year).push(card);
             });
 
+            const cardSortValue = card => {
+                const dateText = (card.querySelector('.rc-date')?.textContent || '').trim();
+                const parts = dateText.match(/\d+/g) || [];
+                const year = Number(parts[0] || 0);
+                const month = Number(parts[1] || 0);
+                const day = Number(parts[2] || 0);
+                const dateValue = year * 10000 + month * 100 + day;
+                const numText = (card.querySelector('.rc-num')?.textContent || '').trim();
+                const nums = numText.match(/\d+/g) || [];
+                const numberValue = nums.length ? Number(nums[nums.length - 1]) : 0;
+                return dateValue * 1000 + numberValue;
+            };
+
             grid.innerHTML = '';
             Array.from(groups.keys())
                 .sort((a, b) => Number(b) - Number(a))
@@ -3366,7 +3379,9 @@
                     divider.id = `year-${year}`;
                     divider.textContent = year;
                     grid.appendChild(divider);
-                    groups.get(year).forEach(card => grid.appendChild(card));
+                    groups.get(year)
+                        .sort((a, b) => cardSortValue(b) - cardSortValue(a))
+                        .forEach(card => grid.appendChild(card));
                 });
 
             const initialYear = location.hash.match(/^#year-(\d{4})$/)?.[1];
@@ -3875,50 +3890,41 @@ function _hideCityTooltip() {
   if (hoverStatus) hoverStatus.textContent = '鼠标悬停在州或红点上查看比赛记录，点击跳转';
 }
 
+function _clearRaceCardHighlights() {
+  document.querySelectorAll('.card-highlight-active, .card-highlight-flash').forEach(card => {
+    card.classList.remove('card-highlight-active', 'card-highlight-flash');
+  });
+}
+
 function _focusRaceCard(card) {
   if (!card) return;
+  const welcome = document.getElementById('welcome');
+  if (welcome && card.closest('#welcome') && !welcome.classList.contains('active')) {
+    showWelcome();
+  }
   document.querySelectorAll('.card-highlight-active, .card-highlight-flash').forEach(activeCard => {
     if (activeCard !== card) activeCard.classList.remove('card-highlight-active', 'card-highlight-flash');
   });
-  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
   card.classList.remove('card-highlight-flash', 'card-highlight-active');
   void card.offsetWidth;
   card.classList.add('card-highlight-active');
+  requestAnimationFrame(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }));
 }
 
 // Click shapes or city dots
 function _handleStateClick(abbr) {
   _hideCityTooltip();
-  const completedMap = {
-    'KY': 'script-ky', 'WI': 'script-wi', 'MI': 'script-mi', 'FL': 'script-fl',
-    'NC': 'script-nc', 'AR': 'script-ar', 'SC': 'script-sc', 'PA': 'script-pa', 'NH': 'script-nh'
-  };
-  
-  if (completedMap[abbr]) {
-    switchScript(completedMap[abbr]);
-  } else {
-    // Scroll to the first race card of this state
-    const races = _STATE_RACES[abbr];
-    if (races && races.length > 0) {
-      const card = document.getElementById(races[0].cardId);
-      _focusRaceCard(card);
-    }
+  const races = _STATE_RACES[abbr];
+  if (races && races.length > 0) {
+    const card = document.getElementById(races[0].cardId);
+    _focusRaceCard(card);
   }
 }
 
 function _handleCityClick(r, abbr) {
   _hideCityTooltip();
-  const storyKey = `${abbr}-${r.city}`;
-  const storyFile = r.storyFile || _STORY_MAPPING[storyKey];
-  
-  if (storyFile) {
-    // If has Facebook article, open in new tab directly
-    window.open(`facebook/${storyFile}`, '_blank');
-  } else {
-    // Scroll to this specific race card
-    const card = document.getElementById(r.cardId);
-    _focusRaceCard(card);
-  }
+  const card = document.getElementById(r.cardId);
+  _focusRaceCard(card);
 }
 
 function _bindMapEventsOnce() {
@@ -3947,7 +3953,9 @@ function _bindMapEventsOnce() {
         });
         el.addEventListener('mousemove', _moveCityTooltip);
         el.addEventListener('mouseleave', _hideCityTooltip);
-        el.addEventListener('click', () => {
+        el.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
           if (document.getElementById('welcome').classList.contains('active')) {
             _handleStateClick(stateAbbr);
           }
@@ -4138,7 +4146,11 @@ function _injectWelcomeMap() {
         dot.addEventListener('mouseenter', (e) => _showCityTooltip(e, r, abbr));
         dot.addEventListener('mousemove', _moveCityTooltip);
         dot.addEventListener('mouseleave', _hideCityTooltip);
-        dot.addEventListener('click', () => _handleCityClick(r, abbr));
+        dot.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          _handleCityClick(r, abbr);
+        });
         
         dotGroup.appendChild(dot);
       }
@@ -4189,6 +4201,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     _injectWelcomeMap();
   }
   _injectChinaMap();
+  document.addEventListener('click', () => {
+    _clearRaceCardHighlights();
+  });
 });
 
 const _CHINA_ALL_PROVINCES = ['cn_xinjiang','cn_tibet','cn_innermongolia','cn_qinghai','cn_sichuan',
@@ -4407,7 +4422,7 @@ function _handleChinaProvinceClick(e, provinceId) {
   e.stopPropagation();
   const first = _chinaProvinceRaces(provinceId)[0];
   if (first) {
-    if (!_flashChinaStoryCard(first.slug)) window.location.href = _chinaStoryUrl(first, 'chinese');
+    _flashChinaStoryCard(first.slug);
     return;
   }
   _showChinaProvinceTooltip(e, provinceId);
@@ -4502,7 +4517,7 @@ function _injectChinaMap() {
     dot.addEventListener('click', e => {
       e.stopPropagation();
       const first = c.races[0];
-      if (first && !_flashChinaStoryCard(first.slug)) window.location.href = _chinaStoryUrl(first, 'chinese');
+      if (first) _flashChinaStoryCard(first.slug);
     });
     dotGroup.appendChild(dot);
 
@@ -4707,11 +4722,6 @@ function _voiceHighlightUsState(svg, abbr, status, interactive = true) {
     path.addEventListener('click', event => {
       event.preventDefault();
       event.stopPropagation();
-      const scriptId = _VOICE_SCRIPT_BY_STATE[abbr];
-      if (scriptId && document.getElementById(scriptId)) {
-        switchScript(scriptId);
-        return;
-      }
       _handleStateClick(abbr);
     });
   });
@@ -4741,11 +4751,6 @@ function _voiceDrawUsDots(svg, states, status, interactive = true) {
       dot.addEventListener('click', event => {
         event.preventDefault();
         event.stopPropagation();
-        const scriptId = _VOICE_SCRIPT_BY_STATE[abbr];
-        if (scriptId && document.getElementById(scriptId)) {
-          switchScript(scriptId);
-          return;
-        }
         _handleCityClick(r, abbr);
       });
     });
@@ -4888,7 +4893,7 @@ function _voiceDrawChinaMap(slot) {
         dot.addEventListener('click', event => {
           event.stopPropagation();
           const first = city.races[0];
-          if (first && !_flashChinaStoryCard(first.slug)) window.location.href = _chinaStoryUrl(first, 'chinese');
+          if (first) _flashChinaStoryCard(first.slug);
         });
       }
       (index === 0 ? glowLayer : index === 1 ? ringLayer : dotLayer).appendChild(dot);
@@ -4897,6 +4902,7 @@ function _voiceDrawChinaMap(slot) {
 
   const labelLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
   labelLayer.id = 'mini-china-labels';
+  labelLayer.style.pointerEvents = 'none';
   svg.appendChild(labelLayer);
   Object.entries(_VOICE_CHINA_PROVINCES_EN).forEach(([id, name]) => {
     if (typeof _CN_LABELS === 'undefined' || !_CN_LABELS[id]) return;
@@ -4912,6 +4918,7 @@ function _voiceDrawChinaMap(slot) {
     text.setAttribute('stroke', 'rgba(15,23,42,.72)');
     text.setAttribute('stroke-width', '3');
     text.setAttribute('class', 'mini-map-label');
+    text.setAttribute('pointer-events', 'none');
     text.textContent = name;
     labelLayer.appendChild(text);
   });
