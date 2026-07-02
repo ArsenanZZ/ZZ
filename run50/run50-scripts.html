@@ -1358,6 +1358,7 @@
             <a href="#year-2020" onclick="jumpToYear('2020'); return false;"><span class="rail-icon">2020</span><span class="rail-copy"><b>2020</b><small>Run50 start</small></span></a>
             <a href="#year-2019" onclick="jumpToYear('2019'); return false;"><span class="rail-icon">2019</span><span class="rail-copy"><b>2019</b><small>RunCN stories</small></span></a>
             <a href="#year-2018" onclick="jumpToYear('2018'); return false;"><span class="rail-icon">2018</span><span class="rail-copy"><b>2018</b><small>RunCN stories</small></span></a>
+            <a href="#year-2017" onclick="jumpToYear('2017'); return false;"><span class="rail-icon">2017</span><span class="rail-copy"><b>2017</b><small>RunCN stories</small></span></a>
         </aside>
 
     <!-- 内容区 -->
@@ -3319,7 +3320,9 @@
                 { slug:'wuhan-marathon-2018.html', href:'https://zhennanzhang.com/run50/wechat/wuhan-marathon-2018-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 12', emoji:'🌉', state:'湖北', stateEn:'Hubei', city:'武汉', cityEn:'Wuhan', race:'武汉马拉松', raceEn:'Wuhan Marathon', date:'2018.04.15', color:'#5ca860' },
                 { slug:'xian-city-wall-marathon.html', href:'https://zhennanzhang.com/run50/wechat/xian-city-wall-marathon-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 13', emoji:'🏯', state:'陕西', stateEn:'Shaanxi', city:'西安', cityEn:"Xi'an", race:'西安城墙马拉松', raceEn:"Xi'an City Wall Marathon", date:'2018.04.21', color:'#e89838' },
                 { slug:'lanzhou-marathon.html', href:'https://zhennanzhang.com/run50/wechat/lanzhou-marathon-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 14', emoji:'🍜', state:'甘肃', stateEn:'Gansu', city:'兰州', cityEn:'Lanzhou', race:'兰州马拉松', raceEn:'Lanzhou Marathon', date:'2018.06.10', color:'#d4614a' },
-                { slug:'guiyang-marathon-climb.html', href:'https://zhennanzhang.com/run50/wechat/guiyang-marathon-climb-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 15', emoji:'⛰️', state:'贵州', stateEn:'Guizhou', city:'贵阳', cityEn:'Guiyang', race:'贵阳马拉松', raceEn:'Guiyang Marathon', date:'2018.07.22', color:'#5ca860' }
+                { slug:'guiyang-marathon-climb.html', href:'https://zhennanzhang.com/run50/wechat/guiyang-marathon-climb-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 15', emoji:'⛰️', state:'贵州', stateEn:'Guizhou', city:'贵阳', cityEn:'Guiyang', race:'贵阳马拉松', raceEn:'Guiyang Marathon', date:'2018.07.22', color:'#5ca860' },
+                { slug:'steel-tank-story.html', href:'https://zhennanzhang.com/run50/wechat/steel-tank-story-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 1-6', emoji:'🚆', state:'中国', stateEn:'China', city:'六城', cityEn:'Six cities', race:'钢铁战车的故事', raceEn:'Steel Tank Story', date:'2017', color:'#3898a8' },
+                { slug:'three-city-pilgrimage.html', href:'https://zhennanzhang.com/run50/wechat/three-city-pilgrimage-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 7-9', emoji:'🔥', state:'川鄂湘', stateEn:'Sichuan / Hubei / Hunan', city:'广安 · 宜昌 · 长沙', cityEn:"Guang'an · Yichang · Changsha", race:'三座城的朝圣之旅', raceEn:'Three-City Pilgrimage', date:'2017.11.18', color:'#d4614a' }
             ];
 
             const addCell = (card, cls, text, en, color) => {
@@ -5124,7 +5127,7 @@ function _injectMap(scriptId) {
     setNodeText('.rail a[href="#year-2024"] small', t.railScripts);
     ['2023', '2022', '2021'].forEach(year => setNodeText(`.rail a[href="#year-${year}"] small`, t.railArchive));
     setNodeText('.rail a[href="#year-2020"] small', t.railStart);
-    ['2019', '2018'].forEach(year => setNodeText(`.rail a[href="#year-${year}"] small`, t.railStories));
+    ['2019', '2018', '2017'].forEach(year => setNodeText(`.rail a[href="#year-${year}"] small`, t.railStories));
     setNodeText('.rail a[href="#year-2026"] .rail-year-count', t.railLatest);
     setNodeText('.voiceover-map-board .run-map-card:nth-child(1) h2', t.usTitle);
     setNodeText('.voiceover-map-board .run-map-card:nth-child(1) p', t.usDesc);
