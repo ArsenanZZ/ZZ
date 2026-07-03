@@ -10,7 +10,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT / "run50" / "stories" / "chinese"
 OUT_DIR = ROOT / "run50" / "wechat"
-VERSION = "20260627-wechat-batch"
+VERSION = "20260703-wi-green-bay"
 
 
 @dataclass(frozen=True)
@@ -32,6 +32,18 @@ class StoryConfig:
 
 
 CONFIGS: list[StoryConfig] = [
+    StoryConfig(
+        "green-bay-marathon",
+        "WISCONSIN",
+        "第20州 · 威斯康辛 · 绿湾马拉松",
+        "威斯康辛绿湾 · 2024.05.20",
+        "Run50 #第20州｜威斯康辛：绿湾马拉松｜跑进兰博球场的最后一届",
+        "从风城和密歇根湖一路北上，在奶酪州的热浪里跑进 Green Bay Packers 的圣地兰博球场。",
+        "20", "GREEN BAY", "LAMBEAU",
+        "#166534",
+        "#d6a928",
+        cover_src="../../assets/cover-medal-zh-green-bay-marathon.jpg?v=20260703-wi-green-bay",
+    ),
     StoryConfig(
         "michigan-meadows-marathon",
         "MICHIGAN",
@@ -146,6 +158,12 @@ CONFIGS: list[StoryConfig] = [
 
 
 STORY_EXTRAS = {
+    "green-bay-marathon": {
+        "map_asset": "wechat-run50-map-wisconsin-20.png",
+        "map_caption": "第20州 · Wisconsin · Green Bay",
+        "finish": "热浪、奶酪头和兰博球场，把第20州跑成了一场带着橄榄球信仰的北境公路故事。",
+        "chat": "有些比赛会因为成绩被记住，有些则因为一座球场、一座小城和一路上的细节留在脑子里。绿湾属于后者。",
+    },
     "new-hampshire-clarence-demar-marathon": {
         "map_asset": "wechat-run50-map-new-hampshire-22.png",
         "map_caption": "第22州 · Keene",
@@ -238,7 +256,11 @@ class StoryParser(HTMLParser):
         if "dek" in cls.split() or "deck" in cls.split():
             self.in_dek = True
             self.dek_tag = tag
-        if not self.in_article and (tag == "article" or "article-body" in cls.split()):
+        if not self.in_article and (
+            tag == "article"
+            or "article-body" in cls.split()
+            or (tag == "main" and "article-shell" in cls.split())
+        ):
             self.in_article = True
             self.article_depth = 1
         elif self.in_article:
@@ -332,11 +354,16 @@ TAIL_MARKERS = (
     "\u7559\u8a00 / \u6d4f\u89c8",
     "\u7559\u8a00/\u6d4f\u89c8",
     "\u7559\u8a00\uff0f\u6d4f\u89c8",
+    "\u8bc4\u8bba / \u6d4f\u89c8",
+    "\u8bc4\u8bba/\u6d4f\u89c8",
+    "\u8bc4\u8bba\uff0f\u6d4f\u89c8",
     "\u7559\u8a00 / \u9605\u8bfb",
     "\u7559\u8a00/\u9605\u8bfb",
     "\u7559\u8a00\uff0f\u9605\u8bfb",
     "\u4e0d\u7528\u767b\u5f55",
+    "\u65e0\u9700\u8d26\u53f7\u5373\u53ef\u7559\u8a00",
     "\u7559\u8a00\u533a\u52a0\u8f7d\u4e2d",
+    "\u8bc4\u8bba\u52a0\u8f7d\u4e2d",
     "supabase",
 )
 
@@ -1376,6 +1403,7 @@ def wechat_new_cover_overrides(template: str) -> dict[str, str]:
 WECHAT_NEW_TICKER = [
     ("kentucky-derby-marathon", "第1州 · 2024.04.27", "肯塔基赛马节马拉松"),
     ("pittsburgh-marathon", "第19州 · 2024.05.05", "匹兹堡马拉松"),
+    ("green-bay-marathon", "第20州 · 2024.05.20", "绿湾马拉松"),
     ("fargo-marathon", "第25州 · 2025.05.31", "法戈马拉松"),
     ("arizona-phoenix-marathon", "第29州 · 2026.01.10", "亚利桑那 Buckeye"),
 ]
