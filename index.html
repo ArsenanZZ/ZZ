@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arsenan ZZ</title>
+<title>ZZ Feed - MSN Style Preview</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <style>
   :root {
@@ -24,6 +24,12 @@
   }
 
   * { box-sizing: border-box; }
+
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
 
   body {
     margin: 0;
@@ -126,20 +132,25 @@
   }
 
   .page {
-    width: calc(100% - clamp(24px, 3vw, 56px));
-    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    width: min(1960px, calc(100% - 40px));
     margin: 0 auto;
-    padding: 18px 28px 60px;
+    padding: 18px 0 60px;
   }
 
   .feed-toolbar {
+    grid-column: 1 / -1;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 12px;
-    margin: 0 0 16px;
+    margin: 0;
   }
 
   .tabs {
+    order: 1;
     flex: 1 1 auto;
     display: flex;
     gap: 8px;
@@ -153,6 +164,9 @@
 
   .tab {
     flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-height: 34px;
     padding: 0 14px;
     border: 1px solid var(--line);
@@ -161,6 +175,7 @@
     color: var(--ink);
     font-size: 13px;
     font-weight: 700;
+    text-decoration: none;
     cursor: pointer;
   }
 
@@ -169,7 +184,29 @@
     background: #404040;
   }
 
+  .more-tabs {
+    order: 3;
+    display: none;
+    flex: 1 0 100%;
+    gap: 8px;
+    overflow-x: auto;
+    min-width: 0;
+    padding: 0 0 3px;
+    scrollbar-width: none;
+  }
+
+  .more-tabs::-webkit-scrollbar { display: none; }
+
+  body.more-mode .more-tabs { display: flex; }
+
+  .more-tab {
+    min-height: 32px;
+    padding: 0 13px;
+    color: var(--muted);
+  }
+
   .zoom-tools {
+    order: 2;
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
@@ -211,21 +248,21 @@
 
   .lead-grid {
     display: grid;
-    grid-template-columns: minmax(620px, 2fr) minmax(520px, 1fr);
-    gap: 18px;
-    margin-bottom: 18px;
-  }
-
-  @media (min-width: 2400px) {
-    .lead-grid {
-      grid-template-columns: minmax(960px, 2fr) minmax(680px, 1fr);
-    }
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
   }
 
   .hero-carousel {
+    grid-column: 1 / 2;
+    width: 100%;
+    max-width: 100%;
+    contain: layout paint;
     position: relative;
+    min-width: 0;
     min-height: 0;
-    aspect-ratio: 16 / 10;
+    height: auto;
+    aspect-ratio: 8 / 5;
     overflow: hidden;
     border-radius: var(--radius);
     background: #111;
@@ -245,6 +282,10 @@
     pointer-events: auto;
   }
 
+  .slide:not(.active) .slide-content {
+    visibility: hidden;
+  }
+
   .slide img {
     width: 100%;
     height: 100%;
@@ -256,15 +297,15 @@
   .slide::after {
     content: "";
     position: absolute;
-    inset: 34% 0 0;
-    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .86));
+    inset: 28% 0 0;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .90));
   }
 
   .slide-content {
     position: absolute;
     left: 26px;
     right: 24px;
-    bottom: 52px;
+    bottom: 46px;
     z-index: 2;
   }
 
@@ -291,12 +332,60 @@
   }
 
   .slide h1 {
-    max-width: 940px;
+    max-width: min(760px, calc(100% - 40px));
     margin: 0;
-    font-size: clamp(31px, 3.1vw, 46px);
+    font-size: clamp(28px, 2.45vw, 40px);
     line-height: 1.18;
     letter-spacing: 0;
     text-shadow: 0 2px 14px rgba(0, 0, 0, .38);
+  }
+
+  body.more-mode .lead-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    gap: 22px;
+    align-items: stretch;
+  }
+
+  body.more-mode .hero-carousel {
+    aspect-ratio: 16 / 10;
+  }
+
+  body.more-mode .slide img {
+    object-fit: cover;
+    opacity: .78;
+  }
+
+  body.more-mode .slide::after {
+    inset: 38% 0 0;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .78) 46%, rgba(0, 0, 0, .94));
+  }
+
+  body.more-mode .slide-content {
+    left: 24px;
+    right: 24px;
+    bottom: 34px;
+    max-width: min(620px, calc(100% - 48px));
+  }
+
+  body.more-mode .source {
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+
+  body.more-mode .slide h1 {
+    max-width: 100%;
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: clamp(22px, 1.72vw, 30px);
+    line-height: 1.2;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  body.more-mode .dots {
+    bottom: 12px;
+    max-width: calc(100% - 140px);
+    opacity: .72;
   }
 
   .engagement {
@@ -337,12 +426,12 @@
   .dots {
     position: absolute;
     left: 50%;
-    bottom: 22px;
+    bottom: 18px;
     z-index: 5;
     display: flex;
     align-items: center;
     gap: 7px;
-    max-width: calc(100% - 220px);
+    max-width: calc(100% - 180px);
     overflow: hidden;
     padding: 7px 10px;
     border-radius: 999px;
@@ -352,8 +441,8 @@
 
   .slide-count {
     position: absolute;
-    right: 24px;
-    bottom: 20px;
+    right: 12px;
+    bottom: 16px;
     z-index: 5;
     min-width: 52px;
     padding: 6px 9px;
@@ -381,18 +470,46 @@
   }
 
   .side-stack {
+    grid-column: 2 / 4;
+    position: relative;
+    z-index: 2;
     display: grid;
-    gap: 16px;
+    align-content: stretch;
+    gap: 14px;
+    min-width: 0;
+    height: var(--lead-side-height, calc((min(1960px, 100vw - 40px) - 28px) * .3125));
+    overflow: hidden;
+  }
+
+  .side-stack > .widget:not(.rail-progress) {
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: none;
   }
 
   .widget {
+    min-width: 0;
     overflow: hidden;
     border-radius: var(--radius);
     background: var(--panel);
     box-shadow: var(--shadow);
   }
 
+  .rail-progress {
+    display: none;
+  }
+
   .widget-body { padding: 16px; }
+
+  .side-stack > .widget:not(.rail-progress) .widget-body {
+    height: 100%;
+    padding: 0;
+  }
+
+  .side-stack > .widget:not(.rail-progress) .widget-title {
+    display: none;
+  }
 
   .widget-title {
     display: flex;
@@ -510,16 +627,109 @@
 
   .progress-stat[data-tone="china"] { --tone: var(--accent-2); }
   .progress-stat[data-tone="world"] { --tone: var(--blue); }
+  .progress-stat[data-tone="water"],
+  .progress-card[data-tone="water"] { --tone: #55b7d8; }
+  .progress-stat[data-tone="ro"],
+  .progress-card[data-tone="ro"] { --tone: #7bd4b6; }
+  .progress-stat[data-tone="nsf"],
+  .progress-card[data-tone="nsf"] { --tone: #c5a3ff; }
+  .progress-stat[data-tone="reading"],
+  .progress-card[data-tone="reading"] { --tone: #f0b85e; }
+  .progress-stat[data-tone="engineering"],
+  .progress-card[data-tone="engineering"] { --tone: #ef8f8f; }
+
+  .knowledge-panel { display: none; }
+
+  body.more-mode .running-panel { display: none; }
+  body.more-mode .knowledge-panel { display: block; }
+
+  .side-stack > .knowledge-panel .widget-body {
+    height: 100%;
+    padding: 18px;
+  }
+
+  .side-stack > .knowledge-panel .widget-title {
+    display: flex;
+  }
+
+  .knowledge-link-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    height: calc(100% - 34px);
+  }
+
+  .knowledge-link {
+    position: relative;
+    min-height: 118px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #222;
+  }
+
+  .knowledge-link img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    display: block;
+    opacity: .78;
+  }
+
+  .knowledge-link::after {
+    content: "";
+    position: absolute;
+    inset: 36% 0 0;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .88));
+  }
+
+  .knowledge-link span {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 11px;
+    z-index: 2;
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 850;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .56);
+  }
 
   .map-preview-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    height: 100%;
+    align-items: stretch;
+    min-width: 0;
+  }
+
+  .map-combo-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #242424;
+  }
+
+  .map-combo-card:hover {
+    border-color: rgba(255, 255, 255, .24);
+    background: #2a2a2a;
   }
 
   .map-preview-card {
     position: relative;
+    display: flex;
+    flex-direction: column;
     min-width: 0;
+    min-height: 0;
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -534,14 +744,136 @@
   .mini-map-window {
     display: grid;
     place-items: center;
+    flex: 1 1 auto;
     aspect-ratio: 16 / 9;
-    min-height: 150px;
+    min-height: 0;
+    min-width: 0;
     overflow: hidden;
     background: radial-gradient(circle at 50% 42%, rgba(74, 163, 255, .20), transparent 64%), #1b222d;
   }
 
+  .world-summary-card,
+  .map-stack-card {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .world-map-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .world-map-panel .mini-map-window {
+    flex: 1 1 auto;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
+  .world-map-panel .map-preview-copy {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    z-index: 2;
+    padding: 0;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .72);
+    pointer-events: none;
+  }
+
+  .world-map-panel .map-preview-copy b {
+    font-size: clamp(16px, 1.4vw, 22px);
+  }
+
+  .world-map-panel .map-preview-copy span {
+    color: rgba(255, 255, 255, .76);
+    font-size: 12px;
+  }
+
+  .world-map-panel .map-preview-copy strong {
+    font-size: clamp(22px, 2vw, 32px);
+  }
+
+  .mini-map-window.world-map-window svg {
+    width: 100% !important;
+    height: 100% !important;
+    transform: none;
+    transform-origin: center center;
+  }
+
+  .map-stack-card {
+    gap: 0;
+    background: #222;
+  }
+
+  .map-stack-card .map-preview-card {
+    flex: none;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .map-stack-card .mini-map-window {
+    flex: 1 1 auto;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
+  .map-stack-card .map-preview-copy {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    z-index: 2;
+    padding: 0;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .74);
+    pointer-events: none;
+  }
+
+  .map-stack-card .map-preview-copy b {
+    font-size: clamp(15px, 1.25vw, 20px);
+  }
+
+  .map-stack-card .map-preview-copy span {
+    color: rgba(255, 255, 255, .76);
+    font-size: 11px;
+  }
+
+  .map-stack-card .map-preview-copy strong {
+    font-size: clamp(19px, 1.7vw, 28px);
+  }
+
+  .mini-map-window.us-map-window svg {
+    width: 100% !important;
+    height: 100% !important;
+    transform: none;
+    transform-origin: center center;
+  }
+
+  .mini-map-window.cn-map-window svg {
+    width: 100% !important;
+    height: 100% !important;
+    transform: none;
+    transform-origin: center center;
+  }
+
+  .map-stack-card .map-preview-card + .map-preview-card {
+    border-top: 1px solid var(--line);
+  }
+
+  .map-stack-card .map-preview-card:hover {
+    background: rgba(255, 255, 255, .025);
+  }
+
   .mini-map-window svg {
     display: block;
+    min-width: 0;
     width: 100% !important;
     height: 100% !important;
     max-width: none;
@@ -588,6 +920,7 @@
     grid-template-columns: 1fr auto;
     gap: 10px;
     align-items: center;
+    flex: 0 0 auto;
     padding: 10px 12px;
   }
 
@@ -607,6 +940,56 @@
   .map-preview-copy strong {
     color: #fff;
     font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .lead-stat-list {
+    display: grid;
+    gap: 8px;
+    flex: none;
+    min-height: 0;
+    align-content: center;
+    padding: 12px;
+    border-top: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .012));
+  }
+
+  .lead-stat-row {
+    --tone: var(--accent);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .lead-stat-row[data-tone="china"] { --tone: var(--accent-2); }
+  .lead-stat-row[data-tone="world"] { --tone: var(--blue); }
+
+  .lead-stat-row b {
+    display: block;
+    color: var(--tone);
+    font-size: 12px;
+    line-height: 1.1;
+  }
+
+  .lead-stat-row small {
+    display: block;
+    margin-top: 2px;
+    color: var(--soft);
+    font-size: 10px;
+    line-height: 1.15;
+  }
+
+  .lead-stat-row strong {
+    color: #fff;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  .lead-stat-row .progress-meter {
+    grid-column: 1 / -1;
+    height: 4px;
   }
 
   .profile-card {
@@ -636,11 +1019,18 @@
   }
 
   .feed-grid {
+    grid-column: 1 / -1;
+    grid-row: 3;
     display: grid;
     grid-auto-flow: dense;
     grid-template-columns: repeat(var(--feed-columns, 12), minmax(0, 1fr));
-    gap: 18px;
+    gap: 12px;
     align-items: stretch;
+    min-width: 0;
+  }
+
+  body.more-mode .feed-grid {
+    gap: 20px;
   }
 
   .card {
@@ -653,7 +1043,7 @@
     background: var(--panel);
     color: inherit;
     text-decoration: none;
-    box-shadow: var(--shadow);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .22);
     transition: transform .16s ease, background .16s ease;
   }
 
@@ -662,6 +1052,8 @@
     background: var(--panel-3);
   }
 
+  .layout-span-1 { grid-column: span 1; }
+  .layout-span-2 { grid-column: span 2; }
   .span-3,
   .layout-span-3 { grid-column: span 3; }
   .span-4,
@@ -677,6 +1069,8 @@
   .span-12,
   .layout-span-12 { grid-column: span 12; }
 
+  .feed-grid .layout-span-1 { grid-column: span 1 !important; }
+  .feed-grid .layout-span-2 { grid-column: span 2 !important; }
   .feed-grid .layout-span-3 { grid-column: span 3 !important; }
   .feed-grid .layout-span-4 { grid-column: span 4 !important; }
   .feed-grid .layout-span-5 { grid-column: span 5 !important; }
@@ -684,6 +1078,37 @@
   .feed-grid .layout-span-7 { grid-column: span 7 !important; }
   .feed-grid .layout-span-8 { grid-column: span 8 !important; }
   .feed-grid .layout-span-12 { grid-column: span 12 !important; }
+
+  .feed-grid .layout-span-1.overlay-card {
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: auto;
+  }
+
+  .feed-grid .layout-span-1.overlay-card img {
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .feed-grid .layout-span-1.overlay-card::after {
+    display: none;
+  }
+
+  .feed-grid .layout-span-1.overlay-card .card-copy {
+    position: static;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 14px 16px 16px;
+  }
+
+  .feed-grid .layout-span-1.overlay-card h3 {
+    font-size: clamp(17px, calc(18px * var(--feed-type-scale, 1)), 22px);
+    line-height: 1.32;
+    text-shadow: none;
+  }
 
   .image-top img {
     display: block;
@@ -698,15 +1123,45 @@
 
   .card-copy {
     display: block;
-    padding: 20px 26px 22px;
+    padding: 16px 18px 18px;
     min-width: 0;
   }
 
-  .compact .card-copy { padding: 18px 24px 20px; }
+  .compact .card-copy { padding: 14px 16px 16px; }
 
   .image-top:not(.overlay-card) {
     display: flex;
     flex-direction: column;
+  }
+
+  .feed-grid .layout-span-1.image-top:not(.overlay-card) {
+    min-height: 324px;
+  }
+
+  body.more-mode .feed-grid .layout-span-1.image-top:not(.overlay-card) {
+    min-height: 300px;
+  }
+
+  body.more-mode .feed-grid .layout-span-2.image-top:not(.overlay-card) {
+    min-height: 360px;
+  }
+
+  body.more-mode .card {
+    background: #2d2d2d;
+  }
+
+  body.more-mode .card h3 {
+    font-size: clamp(17px, calc(19px * var(--feed-type-scale, 1)), 24px);
+    line-height: 1.34;
+  }
+
+  body.more-mode .card-copy {
+    padding: 16px 18px 20px;
+  }
+
+  body.more-mode .story-meta {
+    margin-bottom: 11px;
+    font-size: 11px;
   }
 
   .image-top:not(.overlay-card) .card-copy {
@@ -722,24 +1177,29 @@
 
   .card h3 {
     margin: 0;
-    font-size: clamp(20px, 1.7vw, 30px);
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: clamp(18px, calc(20px * var(--feed-type-scale, 1)), 28px);
     line-height: 1.32;
     letter-spacing: 0;
     max-width: 100%;
     overflow-wrap: break-word;
     word-break: normal;
     white-space: normal;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 
   .compact h3 {
-    font-size: clamp(19px, 1.12vw, 22px);
-    line-height: 1.38;
+    font-size: clamp(17px, calc(18px * var(--feed-type-scale, 1)), 22px);
+    line-height: 1.32;
+    -webkit-line-clamp: 2;
   }
 
   .span-6 h3,
   .span-7 h3,
   .span-8 h3 {
-    font-size: clamp(22px, 2vw, 32px);
+    font-size: clamp(20px, calc(24px * var(--feed-type-scale, 1)), 31px);
   }
 
   .card p {
@@ -769,7 +1229,7 @@
   .overlay-card::after {
     content: "";
     position: absolute;
-    inset: 38% 0 0;
+    inset: 34% 0 0;
     display: block;
     background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .88));
   }
@@ -781,7 +1241,7 @@
     bottom: 0;
     z-index: 2;
     max-width: none;
-    padding: 26px 28px 24px;
+    padding: 22px 24px 22px;
   }
 
   .overlay-card .story-meta {
@@ -789,15 +1249,15 @@
   }
 
   .overlay-card h3 {
-    font-size: clamp(24px, 2vw, 34px);
+    font-size: clamp(20px, calc(24px * var(--feed-type-scale, 1)), 32px);
     line-height: 1.22;
     text-shadow: 0 2px 12px rgba(0, 0, 0, .45);
   }
 
-  .auto-overlay .card-copy { padding: 22px 24px 22px; }
+  .auto-overlay .card-copy { padding: 20px 22px 20px; }
 
   .auto-overlay h3 {
-    font-size: clamp(22px, 1.7vw, 30px);
+    font-size: clamp(20px, calc(24px * var(--feed-type-scale, 1)), 30px);
     line-height: 1.28;
   }
 
@@ -808,8 +1268,59 @@
     gap: 8px;
     margin-bottom: 12px;
     color: #fff;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 650;
+  }
+
+  .progress-card {
+    display: grid;
+    align-content: start;
+    min-height: 118px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--tone) 12%, transparent), transparent 46%),
+      var(--panel);
+  }
+
+  .progress-card[data-tone="run50"] { --tone: var(--accent); }
+  .progress-card[data-tone="china"] { --tone: var(--accent-2); }
+  .progress-card[data-tone="world"] { --tone: var(--blue); }
+
+  .progress-card .stat-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .progress-card i {
+    display: grid;
+    place-items: center;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--tone) 18%, transparent);
+    color: var(--tone);
+  }
+
+  .progress-card h3 {
+    color: var(--tone);
+    font-size: 18px;
+    -webkit-line-clamp: 2;
+  }
+
+  .progress-card small {
+    display: block;
+    margin-top: 3px;
+    color: var(--soft);
+    font-size: 12px;
+  }
+
+  .progress-card .stat-value {
+    margin-bottom: 10px;
+    font-size: 26px;
   }
 
   .metric-row {
@@ -969,7 +1480,9 @@
   }
 
   .text-module {
-    align-self: start;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
     height: auto;
     min-height: 0;
     padding: 20px;
@@ -978,7 +1491,18 @@
       var(--panel);
   }
 
-  .text-module .metric-row { margin-top: 18px; }
+  .text-module .metric-row {
+    margin-top: auto;
+    padding-top: 18px;
+  }
+
+  .feed-grid .layout-span-1.text-module {
+    min-height: 324px;
+  }
+
+  .feed-grid .layout-span-2.text-module {
+    min-height: 324px;
+  }
 
   .module-kicker {
     margin-bottom: 12px;
@@ -1051,7 +1575,23 @@
   .empty.show { display: grid; }
 
   @media (max-width: 1160px) {
-    .lead-grid { grid-template-columns: 1fr; }
+    .page {
+      display: block;
+      width: min(980px, calc(100% - 28px));
+    }
+    .feed-toolbar { margin-bottom: 14px; }
+    .lead-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .hero-carousel,
+    .side-stack,
+    .feed-grid {
+      grid-column: auto;
+      grid-row: auto;
+    }
     .side-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .span-3, .span-4 { grid-column: span 1; }
     .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: span 2; }
@@ -1069,15 +1609,152 @@
       grid-row: 2;
     }
 
-    .top-actions .action-pill:first-child { display: none; }
-    .page { padding: 14px 10px 38px; }
-    .feed-toolbar { align-items: flex-start; flex-direction: column; }
-    .zoom-tools { align-self: flex-end; }
-    .hero-carousel { min-height: 0; aspect-ratio: 16 / 10; }
-    .slide-content { left: 20px; right: 18px; bottom: 58px; }
-    .slide h1 { font-size: 29px; }
-    .dots { max-width: calc(100% - 90px); }
-    .side-stack { grid-template-columns: 1fr; }
+    .top-actions { display: none; }
+    .page {
+      width: auto;
+      max-width: none;
+      margin: 0 12px;
+      padding: 14px 0 38px;
+    }
+    .feed-toolbar {
+      align-items: flex-start;
+      flex-direction: column;
+      width: 100%;
+      max-width: 100%;
+      overflow: visible;
+    }
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      width: 100%;
+      max-width: 100%;
+      gap: 8px;
+      overflow: visible;
+    }
+    .tab {
+      width: 100%;
+      min-width: 0;
+      min-height: 36px;
+      padding: 0 7px;
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .zoom-tools { display: none; }
+    .hero-carousel {
+      min-height: 0;
+      height: clamp(324px, calc((100vw - 24px) * .96), 390px);
+      aspect-ratio: auto;
+    }
+    .lead-grid,
+    .hero-carousel,
+    .side-stack,
+    .widget,
+    .feed-grid,
+    .progress-stat,
+    .map-preview-card {
+      width: calc(100vw - 24px);
+      max-width: calc(100vw - 24px);
+    }
+    .slide::after { display: none; }
+    .slide img {
+      height: calc(100% - 116px);
+      object-position: center top;
+    }
+    .slide-content {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      min-height: 104px;
+      padding: 9px 12px 36px;
+      background: #111;
+    }
+    .source {
+      gap: 6px;
+      margin-bottom: 5px;
+      font-size: 11px;
+    }
+    .source-logo {
+      width: 22px;
+      height: 22px;
+      font-size: 10px;
+    }
+    .slide h1 {
+      display: -webkit-box;
+      max-width: 100%;
+      overflow: hidden;
+      font-size: 17px;
+      line-height: 1.2;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .engagement {
+      display: none;
+    }
+    .dots {
+      bottom: 9px;
+      max-width: calc(100% - 92px);
+      padding: 5px 8px;
+    }
+    .slide-count {
+      right: 8px;
+      bottom: 8px;
+      min-width: 46px;
+      padding: 5px 7px;
+      font-size: 11px;
+    }
+    .nav-arrow {
+      width: 32px;
+      height: 52px;
+    }
+    .side-stack {
+      grid-template-columns: 1fr;
+      height: auto !important;
+      overflow: visible;
+    }
+    .side-stack > .widget:not(.rail-progress) {
+      height: auto;
+      overflow: visible;
+    }
+    .side-stack > .widget:not(.rail-progress) .widget-body {
+      height: auto;
+    }
+    .progress-stats { grid-template-columns: 1fr; }
+    .map-preview-grid {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+    .world-summary-card,
+    .map-stack-card {
+      grid-template-rows: auto;
+    }
+    .world-map-panel .mini-map-window,
+    .map-stack-card .mini-map-window {
+      flex: none;
+      aspect-ratio: 16 / 9;
+    }
+    .world-summary-card {
+      min-height: 0;
+    }
+    .map-stack-card .map-preview-card {
+      min-height: 248px;
+    }
+    .map-status-badges {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      right: auto;
+    }
+    .map-preview-copy {
+      display: block;
+      padding-right: 16px;
+    }
+    .map-preview-copy strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 15px;
+    }
+    .mini-map-window svg { max-width: 100% !important; }
     .feed-grid { grid-template-columns: 1fr; gap: 14px; }
     .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: span 1; }
     .overlay-card .card-copy { max-width: none; }
@@ -1096,7 +1773,7 @@
     <span>Arsenan ZZ</span>
   </a>
   <form class="search" role="search">
-    <input id="searchInput" type="search" placeholder="Search Run50, RunCN, RunWorld stories" autocomplete="off">
+    <input id="searchInput" type="search" placeholder="Search stories" autocomplete="off">
     <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
   </form>
   <div class="top-actions">
@@ -1107,15 +1784,25 @@
 
 <main class="page">
   <div class="feed-toolbar">
-    <nav class="tabs" aria-label="Feed filters">
-      <button class="tab active" data-filter="all">All</button>
-      <button class="tab" data-filter="run50">Run50</button>
-      <button class="tab" data-filter="runcn">RunCN</button>
-      <button class="tab" data-filter="runworld">RunWorld</button>
-      <button class="tab" data-filter="english">English Stories</button>
-      <button class="tab" data-filter="facebook">Facebook</button>
-      <button class="tab" data-filter="trip">Trips</button>
-      <button class="tab" data-filter="other">More</button>
+    <nav class="tabs" aria-label="Site directories">
+      <a class="tab active" data-filter="all" href="https://zhennanzhang.com/">All</a>
+      <a class="tab" data-filter="run50" href="https://zhennanzhang.com/run50/">Run50</a>
+      <a class="tab" data-filter="runcn" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2018">RunCN</a>
+      <a class="tab" data-filter="runworld" href="https://zhennanzhang.com/run50/running-map.html">RunWorld</a>
+      <a class="tab" data-filter="english" href="https://zhennanzhang.com/run50/stories/english/">English Stories</a>
+      <a class="tab" data-filter="facebook" href="https://zhennanzhang.com/run50/facebook/">Facebook</a>
+      <a class="tab" data-filter="trip" href="https://zhennanzhang.com/run50/mainly-marathons-new-england-2026-guide.html">Trips</a>
+      <a class="tab" data-filter="other" href="https://zhennanzhang.com/#more">More</a>
+    </nav>
+    <nav class="more-tabs" aria-label="Knowledge directories">
+      <button class="tab more-tab active" type="button" data-more-filter="all">All</button>
+      <button class="tab more-tab" type="button" data-more-filter="water">Water</button>
+      <button class="tab more-tab" type="button" data-more-filter="ro">RO</button>
+      <button class="tab more-tab" type="button" data-more-filter="nsf">NSF</button>
+      <button class="tab more-tab" type="button" data-more-filter="reading">Reading Skill</button>
+      <button class="tab more-tab" type="button" data-more-filter="wqa">WQA</button>
+      <button class="tab more-tab" type="button" data-more-filter="softener">Softener</button>
+      <button class="tab more-tab" type="button" data-more-filter="about">Engineering</button>
     </nav>
     <div class="zoom-tools" aria-label="Card zoom controls">
       <button id="zoomOut" type="button" aria-label="Zoom out" title="Zoom out"><i class="bi bi-zoom-out"></i></button>
@@ -1237,7 +1924,7 @@
     </div>
 
     <aside class="side-stack">
-      <section class="widget">
+      <section class="widget rail-progress running-panel">
         <div class="widget-body">
           <div class="widget-title"><span>Running Progress</span><i class="bi bi-activity"></i></div>
           <div class="progress-stats" aria-label="Running progress by region">
@@ -1259,19 +1946,92 @@
           </div>
         </div>
       </section>
-      <section class="widget">
+      <section class="widget running-panel">
         <div class="widget-body">
           <div class="widget-title"><span>Interactive Maps</span><i class="bi bi-map"></i></div>
           <div class="map-preview-grid" aria-label="Run map previews">
-            <a class="map-preview-card" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2020">
-              <span class="map-status-badges"><span><i class="bi bi-check-circle-fill"></i>35 done</span><span><i class="bi bi-calendar2-check"></i>15 planned</span></span>
-              <div class="mini-map-window" id="usProgressMap" aria-label="Run50 United States map preview"></div>
-              <span class="map-preview-copy"><span><b>Run50 Map</b><span>Completed and planned states</span></span><strong>35/50</strong></span>
+            <a class="map-combo-card world-summary-card" href="https://zhennanzhang.com/run50/running-map.html">
+              <div class="world-map-panel">
+                <span class="map-status-badges"><span><i class="bi bi-check-circle-fill"></i>6 countries</span><span><i class="bi bi-geo-alt-fill"></i>64 city dots</span></span>
+                <div class="mini-map-window world-map-window" id="worldProgressMap" aria-label="RunWorld world map preview"></div>
+                <span class="map-preview-copy"><span><b>RunWorld</b><span>Countries and race cities</span></span><strong>6/195</strong></span>
+              </div>
+              <div class="lead-stat-list" aria-label="Running progress summary">
+                <span class="lead-stat-row" data-tone="run50">
+                  <span><b>Run50 Map</b><small>Completed and planned states</small></span><strong>35/50</strong>
+                  <span class="progress-meter" aria-hidden="true"><span style="width:70%"></span></span>
+                </span>
+                <span class="lead-stat-row" data-tone="china">
+                  <span><b>RunCN Map</b><small>Province-level regions incl. HK/MO/TW</small></span><strong>18/34</strong>
+                  <span class="progress-meter" aria-hidden="true"><span style="width:53%"></span></span>
+                </span>
+                <span class="lead-stat-row" data-tone="world">
+                  <span><b>RunWorld Map</b><small>Countries and race cities</small></span><strong>6/195</strong>
+                  <span class="progress-meter" aria-hidden="true"><span style="width:3%"></span></span>
+                </span>
+              </div>
             </a>
-            <a class="map-preview-card" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2018">
-              <span class="map-status-badges"><span><i class="bi bi-check-circle-fill"></i>18 done</span><span><i class="bi bi-calendar2-check"></i>16 planned</span></span>
-              <div class="mini-map-window" id="cnProgressMap" aria-label="RunCN China map preview"></div>
-              <span class="map-preview-copy"><span><b>RunCN Map</b><span>Province-level regions incl. HK/MO/TW</span></span><strong>18/34</strong></span>
+            <div class="map-combo-card map-stack-card" aria-label="Run50 and RunCN map previews">
+              <a class="map-preview-card" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2020">
+                <span class="map-status-badges"><span><i class="bi bi-check-circle-fill"></i>35 done</span><span><i class="bi bi-calendar2-check"></i>15 planned</span></span>
+                <div class="mini-map-window us-map-window" id="usProgressMap" aria-label="Run50 United States map preview"></div>
+                <span class="map-preview-copy"><span><b>Run50</b><span>Completed and planned states</span></span><strong>35/50</strong></span>
+              </a>
+              <a class="map-preview-card" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2018">
+                <span class="map-status-badges"><span><i class="bi bi-check-circle-fill"></i>18 done</span><span><i class="bi bi-calendar2-check"></i>16 planned</span></span>
+                <div class="mini-map-window cn-map-window" id="cnProgressMap" aria-label="RunCN China map preview"></div>
+                <span class="map-preview-copy"><span><b>RunCN</b><span>Province-level regions incl. HK/MO/TW</span></span><strong>18/34</strong></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="widget knowledge-panel">
+        <div class="widget-body">
+          <div class="widget-title"><span>Knowledge Pages</span><i class="bi bi-bookmarks"></i></div>
+          <div class="progress-stats" aria-label="Knowledge page groups">
+            <a class="progress-stat" data-tone="water" href="https://zhennanzhang.com/water/">
+              <span class="stat-head"><i class="bi bi-droplet"></i><span><b>Water</b><small>Water treatment hub</small></span></span>
+              <span class="stat-value">Hub</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+            <a class="progress-stat" data-tone="ro" href="https://zhennanzhang.com/ro/RO-Complete-Guide-EN.html">
+              <span class="stat-head"><i class="bi bi-funnel"></i><span><b>RO</b><small>Reverse osmosis guide</small></span></span>
+              <span class="stat-value">Guide</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+            <a class="progress-stat" data-tone="nsf" href="https://zhennanzhang.com/nsf/">
+              <span class="stat-head"><i class="bi bi-patch-check"></i><span><b>NSF</b><small>Standards and metrics</small></span></span>
+              <span class="stat-value">Library</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+            <a class="progress-stat" data-tone="reading" href="https://zhennanzhang.com/reading/">
+              <span class="stat-head"><i class="bi bi-journal-text"></i><span><b>Reading Skill</b><small>Books and study notes</small></span></span>
+              <span class="stat-value">Notes</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="widget knowledge-panel">
+        <div class="widget-body">
+          <div class="widget-title"><span>Featured Knowledge</span><i class="bi bi-grid-3x3-gap"></i></div>
+          <div class="knowledge-link-grid" aria-label="Featured knowledge pages">
+            <a class="knowledge-link" href="https://zhennanzhang.com/water-softener/">
+              <img src="https://zhennanzhang.com/assets/thumb-water-softener.jpg?v=20260626-medal-v2" alt="Water softener hub cover">
+              <span>Water Softener Hub</span>
+            </a>
+            <a class="knowledge-link" href="https://zhennanzhang.com/wqa/WQA_2026_Expo_Observation_Report_EN.html">
+              <img src="https://zhennanzhang.com/assets/thumb-wqa-expo.jpg?v=20260626-medal-v2" alt="WQA expo cover">
+              <span>WQA 2026 Expo</span>
+            </a>
+            <a class="knowledge-link" href="https://zhennanzhang.com/reading/nano-ic.html">
+              <img src="https://zhennanzhang.com/assets/thumb-nano-ic-reader.jpg?v=20260626-medal-v2" alt="Nano IC reader cover">
+              <span>Nano IC Reading</span>
+            </a>
+            <a class="knowledge-link" href="https://zhennanzhang.com/this-is-me/structural-design/">
+              <img src="https://zhennanzhang.com/assets/thumb-me-structural-design.jpg?v=20260627-me-clean-v4" alt="Structural design cover">
+              <span>Engineering Work</span>
             </a>
           </div>
         </div>
@@ -1281,6 +2041,137 @@
 
   <section class="feed-grid">
     <div class="section-label"><span id="feedTitle">Running front page</span><span id="visibleCount">19 items</span></div>
+
+    <a class="card progress-card" data-tone="run50" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2020" data-card data-tags="run50 progress stories">
+      <span>
+        <span class="stat-head"><i class="bi bi-flag"></i><span><h3>United States</h3><small>Run50 states</small></span></span>
+        <span class="stat-value">35<span>/ 50</span></span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:70%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="china" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2018" data-card data-tags="runcn progress stories">
+      <span>
+        <span class="stat-head"><i class="bi bi-compass"></i><span><h3>China</h3><small>incl. HK/MO/TW</small></span></span>
+        <span class="stat-value">18<span>/ 34</span></span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:53%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="world" href="https://zhennanzhang.com/run50/run50.html" data-card data-tags="runworld progress stories trip">
+      <span>
+        <span class="stat-head"><i class="bi bi-globe-americas"></i><span><h3>World</h3><small>country footprint</small></span></span>
+        <span class="stat-value">6<span>/ 195</span></span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:3%"></span></span>
+    </a>
+
+    <a class="card progress-card" data-tone="water" href="https://zhennanzhang.com/water/" data-card data-tags="water knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-droplet"></i><span><h3>Water</h3><small>Treatment and product notes</small></span></span>
+        <span class="stat-value">Hub</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="ro" href="https://zhennanzhang.com/ro/RO-Complete-Guide-EN.html" data-card data-tags="water ro knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-funnel"></i><span><h3>RO</h3><small>Reverse osmosis systems</small></span></span>
+        <span class="stat-value">Guide</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="nsf" href="https://zhennanzhang.com/nsf/" data-card data-tags="water nsf knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-patch-check"></i><span><h3>NSF</h3><small>Standards library</small></span></span>
+        <span class="stat-value">Index</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="reading" href="https://zhennanzhang.com/reading/" data-card data-tags="reading knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-journal-text"></i><span><h3>Reading Skill</h3><small>Books, notes, and study cards</small></span></span>
+        <span class="stat-value">Shelf</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water/" data-card data-tags="water knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-water-softener.jpg?v=20260626-medal-v2" alt="Water knowledge hub cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">W</span> Water Hub</span>
+        <h3>Water treatment notes, softener logic, RO systems, and product research</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/ro/ro-system-explained.html" data-card data-tags="water ro knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-ro-system.jpg?v=20260626-medal-v2" alt="RO system explained cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">RO</span> System Explained</span>
+        <h3>How a reverse osmosis system works from sediment filter to storage tank</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/nsf/nsf-water-guide-codex.html" data-card data-tags="water nsf knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-nsf-standards.jpg?v=20260626-medal-v2" alt="NSF water guide cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">NSF</span> Water Guide</span>
+        <h3>NSF/ANSI drinking water standards explained for consumer product decisions</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/" data-card data-tags="reading knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-reading-home.jpg?v=20260626-medal-v2" alt="Reading skill hub cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">R</span> Reading Skill</span>
+        <h3>Reading notes, study cards, and technical learning pages collected in one shelf</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/wqa/WQA_2026_Presentations_Summary-V2.html" data-card data-tags="water wqa knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-wqa-presentations.jpg?v=20260626-medal-v2" alt="WQA presentations cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WQA</span> Presentations</span>
+        <h3>WQA 2026 presentations summary for water treatment product research</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water-softener/" data-card data-tags="water softener knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-water-softener.jpg?v=20260626-medal-v2" alt="Water softener hub cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WS</span> Softener Hub</span>
+        <h3>Water softener product logic, sizing, resin, regeneration, and valve research</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/wqa/DROP_Research_Report_EN.html" data-card data-tags="water wqa knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-wqa-expo.jpg?v=20260626-medal-v2" alt="DROP research report cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WQA</span> DROP Report</span>
+        <h3>DROP Research Report for connected water treatment products</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/wqa/EZsalt_Research_Report_2_EN.html" data-card data-tags="water wqa softener knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-wqa-presentations.jpg?v=20260626-medal-v2" alt="EZsalt research report cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WQA</span> EZsalt</span>
+        <h3>EZsalt research notes for smart salt monitoring and softener maintenance</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/Softener-Water/" data-card data-tags="water softener knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-softener.jpg?v=20260626-medal-v2" alt="Softener calculator cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WS</span> Softener Tool</span>
+        <h3>Water softener calculation and product comparison workspace</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/mechanical-testing/" data-card data-tags="about engineering knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-me-mechanical-testing.jpg?v=20260627-me-clean-v4" alt="Mechanical testing cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">Me</span> Testing</span>
+        <h3>Mechanical testing projects, methods, and lab-centered engineering work</h3>
+      </span>
+    </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/facebook/little-rock-marathon.html" data-card data-tags="run50 facebook stories">
       <img src="https://zhennanzhang.com/assets/cover-medal-zh-little-rock.jpg?v=20260619-en" alt="Little Rock marathon cover">
@@ -1381,7 +2272,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water/nsf-standards.html" data-card data-tags="water">
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/nsf/" data-card data-tags="water nsf knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-nsf-standards.jpg?v=20260626-medal-v2" alt="NSF standards cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">NSF</span> Water · Library</span>
@@ -1389,7 +2280,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/atomic-habits-full-english.html" data-card data-tags="reading">
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/atomic-habits-full-english.html" data-card data-tags="reading knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-atomic-full.jpg?v=20260626-medal-v2" alt="Atomic Habits cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">R</span> Reading · Book</span>
@@ -1413,7 +2304,7 @@
       </a>
     </div>
 
-    <a class="card span-7 overlay-card" href="https://zhennanzhang.com/water/reverse-osmosis-complete-guide.html" data-card data-tags="water ro">
+    <a class="card span-7 overlay-card" href="https://zhennanzhang.com/ro/RO-Complete-Guide-EN.html" data-card data-tags="water ro knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-ro-guide.jpg?v=20260626-medal-v2" alt="Reverse osmosis guide cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">RO</span> Technical Guide</span>
@@ -1421,7 +2312,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top tall" href="https://zhennanzhang.com/this-is-me/publications/" data-card data-tags="about">
+    <a class="card span-4 image-top tall" href="https://zhennanzhang.com/this-is-me/publications/" data-card data-tags="about engineering knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-me-publications.jpg?v=20260627-me-clean-v4" alt="Publications cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">Me</span> Research</span>
@@ -1429,7 +2320,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top tall" href="https://zhennanzhang.com/reading/nano-ic-manufacturing-study-notes.html" data-card data-tags="reading">
+    <a class="card span-4 image-top tall" href="https://zhennanzhang.com/reading/nano-ic-manufacturing-study.html" data-card data-tags="reading semiconductor knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-nano-ic-prep.jpg?v=20260626-medal-v2" alt="Nano IC manufacturing study notes cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">IC</span> Semiconductor</span>
@@ -1651,7 +2542,7 @@
       <span class="metric-row"><span><i class="bi bi-arrow-repeat"></i>Auto refresh</span><span><i class="bi bi-shuffle"></i>Randomized</span></span>
     </a>
 
-    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/wqa/WQA_2026_Expo_Observation_Report_EN.html" data-card data-tags="water">
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/wqa/WQA_2026_Expo_Observation_Report_EN.html" data-card data-tags="water wqa knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-wqa-expo.jpg?v=20260626-medal-v2" alt="WQA 2026 Expo cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">W</span> WQA · Expo</span>
@@ -1659,7 +2550,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water-softener/softener-valve-analysis-en.html" data-card data-tags="water">
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water-softener/softener-valve-analysis-en.html" data-card data-tags="water softener knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-softener-valve-en.jpg?v=20260626-medal-v2" alt="Water softener valve analysis cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">W</span> Softener · Research</span>
@@ -1667,7 +2558,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/atomic-habits-bloom-cards.html" data-card data-tags="reading">
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/atomic-habits-bloom-cards.html" data-card data-tags="reading knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-atomic-cards.jpg?v=20260626-medal-v2" alt="Atomic Habits study cards cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">R</span> Reading · Cards</span>
@@ -1675,7 +2566,7 @@
       </span>
     </a>
 
-    <a class="card span-6 overlay-card" href="https://zhennanzhang.com/reading/nano-ic-manufacturing-detailed-handbook.html" data-card data-tags="reading">
+    <a class="card span-6 overlay-card" href="https://zhennanzhang.com/reading/nano-ic-manufacturing-handbook-detailed.html" data-card data-tags="reading semiconductor knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-nano-ic-handbook.jpg?v=20260626-medal-v2" alt="Nano IC handbook cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">IC</span> Semiconductor · Handbook</span>
@@ -1684,7 +2575,7 @@
       </span>
     </a>
 
-    <a class="card span-6 overlay-card" href="https://zhennanzhang.com/reading/nano-scale-equipment-illustrated-handbook-reader.html" data-card data-tags="reading">
+    <a class="card span-6 overlay-card" href="https://zhennanzhang.com/reading/nano-ic-pages/" data-card data-tags="reading semiconductor knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-nano-ic-reader.jpg?v=20260626-medal-v2" alt="Nano-scale equipment reader cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">IC</span> Illustrated Reader</span>
@@ -1701,7 +2592,7 @@
       </span>
     </a>
 
-    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/structural-design/" data-card data-tags="about">
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/structural-design/" data-card data-tags="about engineering knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-me-structural-design.jpg?v=20260627-me-clean-v4" alt="Structural design cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">Me</span> Engineering</span>
@@ -1709,7 +2600,7 @@
       </span>
     </a>
 
-    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/fea-simulation/" data-card data-tags="about">
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/fea-simulation/" data-card data-tags="about engineering knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-me-fea-simulation.jpg?v=20260627-me-clean-v4" alt="FEA simulation cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">Me</span> Simulation</span>
@@ -1717,7 +2608,7 @@
       </span>
     </a>
 
-    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/3d-printing/" data-card data-tags="about">
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/3d-printing/" data-card data-tags="about engineering knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-me-3d-printing.jpg?v=20260627-me-clean-v4" alt="3D printing cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">Me</span> Fabrication</span>
@@ -1747,13 +2638,16 @@
 
 <script src="https://zhennanzhang.com/run50/us-map-svg.js?v=20260625-chinese-map"></script>
 <script src="https://zhennanzhang.com/run50/china-map-svg.js"></script>
+<script src="https://zhennanzhang.com/run50/world-map-svg.js?v=20260627-flat-panzoom-details-tuned"></script>
 <script>
   let slides = Array.from(document.querySelectorAll('[data-slide]'));
   const dotsWrap = document.querySelector('.dots');
   const hero = document.querySelector('.hero-carousel');
+  const sideStack = document.querySelector('.side-stack');
   const prev = document.querySelector('.prev');
   const next = document.querySelector('.next');
-  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const primaryTabs = Array.from(document.querySelectorAll('.tabs .tab'));
+  const moreTabs = Array.from(document.querySelectorAll('.more-tab'));
   let cards = Array.from(document.querySelectorAll('.feed-grid [data-card]'));
   const searchInput = document.getElementById('searchInput');
   const visibleCount = document.getElementById('visibleCount');
@@ -1781,16 +2675,22 @@
   let randomizeTimer = null;
   let masonryFrame = null;
   let viewZoom = Number(localStorage.getItem('zz-msn-view-zoom') || 100);
+  let activeMoreFilter = 'all';
 
   const LIVE_STORY_INDEXES = [
     { path: '/run50/stories/english/', tag: 'english', label: 'English Stories' },
     { path: '/run50/facebook/', tag: 'facebook', label: 'Facebook' }
   ];
   const MAX_CAROUSEL_SLIDES = 36;
+  const MAX_KNOWLEDGE_CAROUSEL_SLIDES = 10;
   const CAROUSEL_ROTATE_MS = 5500;
   const CAROUSEL_RANDOMIZE_MS = 10 * 60 * 1000;
   const LIVE_REFRESH_MS = 60 * 60 * 1000;
-  const ZOOM_LEVELS = [80, 90, 100, 110, 120];
+  const ZOOM_LEVELS = [25, 50, 75, 100, 125];
+  const RUNNING_TAG_RE = /\b(run50|runcn|runworld|english|facebook|trip|stories|scripts|progress)\b/;
+  const KNOWLEDGE_TAG_RE = /\b(knowledge|water|reading|about|ro|nsf|wqa|softener|engineering|semiconductor)\b/;
+  const requestedZoom = Number(new URLSearchParams(location.search).get('zoom'));
+  if (ZOOM_LEVELS.includes(requestedZoom)) viewZoom = requestedZoom;
 
   function canUseLiveIndexes() {
     return /(^|\.)zhennanzhang\.com$/i.test(location.hostname);
@@ -1798,6 +2698,122 @@
 
   function refreshCardList() {
     cards = Array.from(document.querySelectorAll('.feed-grid [data-card]'));
+  }
+
+  function storyVariantKey(value) {
+    try {
+      const url = new URL(value, location.href);
+      const match = url.pathname.toLowerCase().match(/\/run50\/(?:facebook|stories\/english)\/([^\/]+)\.html$/);
+      return match ? match[1].replace(/-(?:marathon|challenge|story)$/g, '') : '';
+    } catch (error) {
+      return '';
+    }
+  }
+
+  function applyStoryVariantVisibility() {
+    const groups = new Map();
+    cards.forEach(card => {
+      const key = storyVariantKey(card.getAttribute('href') || '');
+      card.dataset.storyVariantHidden = 'false';
+      if (!key) return;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(card);
+    });
+    groups.forEach(group => {
+      if (group.length < 2) return;
+      const keep = group[Math.floor(Math.random() * group.length)];
+      group.forEach(card => {
+        card.dataset.storyVariantHidden = card === keep ? 'false' : 'true';
+      });
+    });
+  }
+
+  function isKnowledgeTagSet(tags) {
+    return KNOWLEDGE_TAG_RE.test(tags) && !RUNNING_TAG_RE.test(tags);
+  }
+
+  function isRunningTagSet(tags) {
+    return RUNNING_TAG_RE.test(tags) && !isKnowledgeTagSet(tags);
+  }
+
+  function cardMatchesFilter(card, query = '', { ignoreSearch = false } = {}) {
+    if (card.dataset.storyVariantHidden === 'true') return false;
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const text = card.textContent.toLowerCase();
+    const href = card.getAttribute('href') || card.querySelector('a[href]')?.getAttribute('href') || '';
+    const isKnowledge = isKnowledgeTagSet(tags);
+    const isRunning = isRunningTagSet(tags);
+    const matchesSearch = ignoreSearch || !query || tags.includes(query) || text.includes(query);
+    let matchesFilter = false;
+
+    if (activeFilter === 'all') {
+      matchesFilter = isRunning;
+    } else if (activeFilter === 'other') {
+      matchesFilter = isKnowledge && (activeMoreFilter === 'all' || tags.includes(activeMoreFilter));
+    } else {
+      matchesFilter = isRunning && tags.includes(activeFilter);
+    }
+
+    return matchesFilter && matchesSearch && (isKnowledge || !shouldSkipStoryUrl(href));
+  }
+
+  function itemSourceType(item) {
+    const tags = (item.dataset?.tags || item.tags || '').toLowerCase();
+    const href = (item.getAttribute?.('href') || item.href || '').toLowerCase();
+    if (tags.includes('english') || href.includes('/stories/english/')) return 'english';
+    if (tags.includes('facebook') || href.includes('/facebook/')) return 'facebook';
+    return 'other';
+  }
+
+  function interleaveStoryItems(items) {
+    const buckets = { facebook: [], english: [], other: [] };
+    items.forEach(item => buckets[itemSourceType(item)].push(item));
+    const pattern = ['facebook', 'english', 'facebook', 'other'];
+    const mixed = [];
+    Object.keys(buckets).forEach(key => {
+      for (let index = buckets[key].length - 1; index > 0; index -= 1) {
+        const swapIndex = Math.floor(Math.random() * (index + 1));
+        [buckets[key][index], buckets[key][swapIndex]] = [buckets[key][swapIndex], buckets[key][index]];
+      }
+    });
+    let patternIndex = Math.floor(Math.random() * pattern.length);
+    while (buckets.facebook.length || buckets.english.length || buckets.other.length) {
+      for (let step = 0; step < pattern.length; step += 1) {
+        const key = pattern[(patternIndex + step) % pattern.length];
+        if (!buckets[key].length) continue;
+        mixed.push(buckets[key].shift());
+        patternIndex = (patternIndex + step + 1) % pattern.length;
+        break;
+      }
+    }
+    return mixed;
+  }
+
+  function isRunningStoryImageCard(card) {
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const href = (card.getAttribute('href') || '').toLowerCase();
+    const isStory = RUNNING_TAG_RE.test(tags) || /\/run50\/(facebook|stories\/english)\//.test(href);
+    return !isKnowledgeTagSet(tags)
+      && isStory
+      && card.matches('.card[data-card]')
+      && card.querySelector(':scope > img')
+      && !card.classList.contains('text-module')
+      && !card.classList.contains('list-module')
+      && !card.classList.contains('progress-card');
+  }
+
+  function mixStoryCards() {
+    if (!feedGrid) return;
+    const storyCards = Array.from(feedGrid.querySelectorAll(':scope > .card[data-card]')).filter(isRunningStoryImageCard);
+    if (storyCards.length < 2) return;
+    const markers = storyCards.map(card => {
+      const marker = document.createComment('story-slot');
+      card.before(marker);
+      card.remove();
+      return marker;
+    });
+    interleaveStoryItems(storyCards).forEach((card, index) => markers[index].replaceWith(card));
+    refreshCardList();
   }
 
   function canonicalStoryKey(value) {
@@ -1817,15 +2833,55 @@
     return new URL(path, new URL(basePath, location.origin)).href;
   }
 
-  const US_PROGRESS_TOKENS = [
-    'Kentucky', 'Florida', 'North_Carolina', 'Arkansas', 'South_Carolina',
-    'Pensilvania', 'Pennsylvania', 'Wisconsin', 'Michigan', 'New_Hampshire',
-    'Louisiana', 'Virginia', 'North_Dakota', 'Kansas', 'Vermont', 'alabama',
-    'Alabama', 'Arizona', 'Delaware', 'Minnesotta', 'Minessota', 'Minnesota',
-    'Connecticut', 'Rhode_Island', 'Massachusets', 'Massachusetts', 'Maine',
-    'Ohio', 'New_York', 'California', 'Indiana', 'Hawaii', 'Georgia',
-    'Colorado', 'Alaska', 'Missouri', 'Mossouri', 'Illinois', 'Tennessee',
-    'West_Virginia', 'Texas'
+  const US_MAP_PATHS = {
+    IL: ['Illinois', 'Kentucky_1_'],
+    TN: ['Alabama'],
+    WV: ['West_Virginia', 'Virginia_1_'],
+    TX: ['Kansas_1_'],
+    FL: ['South_Carolina_1_'],
+    NC: ['Maryland'],
+    AR: ['Tennessee', 'Arkansas'],
+    SC: ['South_Carolina', 'Indiana_1_'],
+    KY: ['Georgia_1_', 'Kentucky'],
+    PA: ['Pensilvania', 'New_Jersey_1_'],
+    WI: ['Wisconsin', 'Illinois_1_'],
+    MI: ['Michigan', 'Ocean'],
+    NH: ['New_Hampshire', 'Maine_1_'],
+    LA: ['Arkansas_1_'],
+    VA: ['North_Carolina_1_', 'Virginia'],
+    ND: ['South_Dakota_1_', 'North_Dakota'],
+    KS: ['Kansas', 'North_Dakota_1_'],
+    VT: ['New_Hampshire_1_', 'Vermont'],
+    AL: ['alabama', 'Missispi'],
+    AZ: ['Arizona_1_', 'Utah'],
+    DE: ['Massachusets_1_'],
+    MN: ['Minnesotta', 'Wisconsin_1_'],
+    CT: ['New_York_2_', 'Connecticut'],
+    RI: ['Delaware', 'Rhode_Island'],
+    MA: ['Vermont_1_', 'Massachusets'],
+    ME: ['Michigan_1_', 'Maine'],
+    OH: ['Ohio', 'West_Virginia_1_'],
+    NY: ['Rhode_Island_1_', 'New_York'],
+    CA: ['Arizona'],
+    IN: ['Indiana', 'Ohio_1_'],
+    GA: ['Georgia', 'Florida_1_'],
+    CO: ['Texas_1_', 'Colorado'],
+    MO: ['Iowa_1_', 'Missouri'],
+    HI: ['ocean_2_'],
+    AK: ['ocean_3_']
+  };
+  const US_PROGRESS_STATES = [
+    'IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH',
+    'LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME',
+    'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO'
+  ];
+  const US_HOLLOW_PATHS = [
+    'South_Carolina_1_', 'Arizona', 'Michigan', 'Oklahoma_1_', 'Alabama', 'Maryland',
+    'ocean_3_', 'Kansas_1_', 'Arkansas_1_', 'Illinois', 'West_Virginia', 'South_Carolina',
+    'Pensilvania', 'Wisconsin', 'Vermont', 'New_Hampshire', 'Kansas', 'alabama',
+    'Arizona_1_', 'Minnesotta', 'Ohio', 'New_York', 'Indiana', 'Georgia', 'Alaska_1_',
+    'Idaho', 'Nebraska', 'Nevada_41_', 'Oklahoma', 'South_Dakota', 'Utah_1_',
+    'Pensilvania_1_'
   ];
   const CN_PROGRESS_IDS = new Set([
     'cn_heilongjiang', 'cn_hubei', 'cn_sichuan', 'cn_innermongolia', 'cn_shanxi',
@@ -1833,12 +2889,17 @@
     'cn_zhejiang', 'cn_hainan', 'cn_liaoning', 'cn_beijing', 'cn_shanghai',
     'cn_guangxi', 'cn_hongkong'
   ]);
+  const WORLD_PROGRESS_IDS = new Set([
+    'wm_usa', 'wm_chn', 'wm_hkg', 'wm_mex', 'wm_sgp', 'wm_tha', 'wm_ita'
+  ]);
 
   function renderProgressMaps() {
     const usSlot = document.getElementById('usProgressMap');
     const cnSlot = document.getElementById('cnProgressMap');
+    const worldSlot = document.getElementById('worldProgressMap');
     if (usSlot && typeof US_MAP_SVG !== 'undefined') renderUsProgressMap(usSlot);
     if (cnSlot && typeof CHINA_MAP_SVG !== 'undefined') renderChinaProgressMap(cnSlot);
+    if (worldSlot && typeof WORLD_MAP_SVG !== 'undefined') renderWorldProgressMap(worldSlot);
   }
 
   function renderUsProgressMap(slot) {
@@ -1848,16 +2909,76 @@
     svg.removeAttribute('width');
     svg.removeAttribute('height');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    removeUsContainedSubpaths(svg);
     svg.querySelectorAll('path').forEach(path => {
       const id = path.id || '';
-      const isBase = id === 'map_USA';
-      const isOcean = /ocean/i.test(id);
-      const isComplete = US_PROGRESS_TOKENS.some(token => id.toLowerCase().includes(token.toLowerCase()));
-      path.setAttribute('fill', isOcean ? '#161f29' : isComplete ? '#c88f3b' : isBase ? '#26313b' : '#3a434c');
-      path.setAttribute('stroke', isComplete ? 'rgba(255,231,182,.74)' : 'rgba(255,255,255,.18)');
-      path.setAttribute('stroke-width', isComplete ? '1.7' : '.9');
+      const baseId = id.replace(/^map_/, '');
+      const isFrame = id === 'map_USA' || id === 'map_White' || id === 'map_exterior_2_';
+      const isOcean = /ocean|atlantic|gulf|oceans/i.test(baseId);
+      path.classList.remove('run-state');
+      path.setAttribute('fill', isFrame ? '#26313b' : isOcean ? '#18232d' : '#2f3a45');
+      path.setAttribute('stroke', isFrame ? 'rgba(255,255,255,.12)' : 'rgba(255,255,255,.10)');
+      path.setAttribute('stroke-width', isFrame ? '.8' : '.55');
+      path.setAttribute('stroke-linejoin', 'round');
+      path.setAttribute('stroke-linecap', 'round');
       path.setAttribute('vector-effect', 'non-scaling-stroke');
-      path.style.opacity = isComplete ? '.96' : '.56';
+      path.style.paintOrder = 'stroke fill markers';
+      path.style.opacity = isFrame ? '1' : isOcean ? '.38' : '.54';
+      path.style.pointerEvents = 'none';
+    });
+    US_PROGRESS_STATES.forEach(abbr => {
+      (US_MAP_PATHS[abbr] || []).forEach(pathId => {
+        const path = svg.querySelector('#map_' + CSS.escape(pathId));
+        if (!path) return;
+        path.setAttribute('fill', '#c88f3b');
+        path.setAttribute('stroke', '#d9a44f');
+        path.setAttribute('stroke-width', '1.35');
+        path.style.opacity = '1';
+        path.style.pointerEvents = 'auto';
+        path.classList.add('run-state');
+        svg.appendChild(path);
+      });
+    });
+  }
+
+  function removeUsContainedSubpaths(svg) {
+    US_HOLLOW_PATHS.forEach(pathId => {
+      const path = svg.querySelector('#map_' + CSS.escape(pathId));
+      if (!path) return;
+      const d = path.getAttribute('d') || '';
+      const parts = [];
+      let last = 0;
+      for (let i = 1; i < d.length; i += 1) {
+        if (d[i] === 'M' && /[\s,]/.test(d[i - 1])) {
+          parts.push(d.slice(last, i).trim());
+          last = i;
+        }
+      }
+      parts.push(d.slice(last).trim());
+      if (parts.length < 2) return;
+      const boxes = parts.map(part => {
+        const coords = [...part.matchAll(/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g)];
+        if (!coords.length) return { xMin: 0, xMax: 0, yMin: 0, yMax: 0, area: 0 };
+        const xs = coords.map(match => parseFloat(match[1]));
+        const ys = coords.map(match => parseFloat(match[2]));
+        const xMin = Math.min(...xs);
+        const xMax = Math.max(...xs);
+        const yMin = Math.min(...ys);
+        const yMax = Math.max(...ys);
+        return { xMin, xMax, yMin, yMax, area: (xMax - xMin) * (yMax - yMin) };
+      });
+      const maxArea = Math.max(...boxes.map(box => box.area));
+      if (!Number.isFinite(maxArea) || maxArea <= 0) return;
+      path.removeAttribute('fill-rule');
+      path.setAttribute('d', parts.filter((_, index) => {
+        const box = boxes[index];
+        if (box.area < maxArea * 0.05) return true;
+        return !boxes.some((outer, outerIndex) => (
+          outerIndex !== index &&
+          box.xMin >= outer.xMin && box.xMax <= outer.xMax &&
+          box.yMin >= outer.yMin && box.yMax <= outer.yMax
+        ));
+      }).join(' '));
     });
   }
 
@@ -1879,6 +3000,26 @@
       path.setAttribute('stroke-width', isComplete ? '1.05' : '.7');
       path.setAttribute('vector-effect', 'non-scaling-stroke');
       path.style.opacity = !isRegion ? '.18' : isComplete ? '.96' : '.58';
+    });
+  }
+
+  function renderWorldProgressMap(slot) {
+    slot.innerHTML = WORLD_MAP_SVG;
+    const svg = slot.querySelector('svg');
+    if (!svg) return;
+    svg.removeAttribute('width');
+    svg.removeAttribute('height');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    svg.querySelectorAll('rect').forEach(rect => rect.setAttribute('fill', '#16202a'));
+    svg.querySelectorAll('path').forEach(path => {
+      const id = path.id || '';
+      const isCountry = id.startsWith('wm_');
+      const isComplete = WORLD_PROGRESS_IDS.has(id);
+      path.setAttribute('fill', !isCountry ? 'none' : isComplete ? '#4aa3ff' : '#33404d');
+      path.setAttribute('stroke', isComplete ? 'rgba(210,235,255,.82)' : 'rgba(255,255,255,.15)');
+      path.setAttribute('stroke-width', isComplete ? '1.05' : '.65');
+      path.setAttribute('vector-effect', 'non-scaling-stroke');
+      path.style.opacity = !isCountry ? '.12' : isComplete ? '.96' : '.42';
     });
   }
 
@@ -1971,10 +3112,10 @@
     if (!canUseLiveIndexes()) return false;
     const existingKeys = new Set(cards.map(card => canonicalStoryKey(card.getAttribute('href') || '')));
     const fetchedGroups = await Promise.allSettled(LIVE_STORY_INDEXES.map(fetchStoryIndex));
-    const freshStories = fetchedGroups
+    const freshStories = interleaveStoryItems(fetchedGroups
       .filter(result => result.status === 'fulfilled')
       .flatMap(result => result.value)
-      .filter(story => !existingKeys.has(canonicalStoryKey(story.href)));
+      .filter(story => !existingKeys.has(canonicalStoryKey(story.href))));
     if (!freshStories.length) return false;
 
     const feedGrid = document.querySelector('.feed-grid');
@@ -1991,12 +3132,12 @@
 
   function storyFromFeedCard(card) {
     const tags = (card.dataset.tags || '').toLowerCase();
-    const isOther = /\b(water|reading|about|ro)\b/.test(tags);
-    const isRunning = /\b(run50|runcn|runworld|english|facebook|trip|stories)\b/.test(tags) && !isOther;
+    const isKnowledge = isKnowledgeTagSet(tags);
+    const isRunning = isRunningTagSet(tags);
     const image = card.querySelector('img');
     const title = card.querySelector('h1,h2,h3,.card-title')?.textContent.trim();
     const href = card.getAttribute('href') || card.querySelector('a[href]')?.getAttribute('href');
-    if (!isRunning || !image || !title || !href || shouldSkipStoryUrl(href)) return null;
+    if (!cardMatchesFilter(card, '', { ignoreSearch: true }) || !image || !title || !href) return null;
 
     const sourceNode = card.querySelector('.story-meta');
     const fallbackSeries = tags.includes('runcn') ? 'runcn' : tags.includes('runworld') ? 'runworld' : 'run50';
@@ -2007,12 +3148,13 @@
 
     return {
       href,
-      img: image.currentSrc || image.src,
+      img: image.currentSrc || image.getAttribute('src') || image.src,
       title,
       source,
       logo,
-      likes: numberFromMetric(metrics[0]),
-      comments: numberFromMetric(metrics[1])
+      likes: isRunning ? numberFromMetric(metrics[0]) : null,
+      comments: isRunning ? numberFromMetric(metrics[1]) : null,
+      isKnowledge
     };
   }
 
@@ -2021,12 +3163,15 @@
     slide.className = `slide${index === 0 ? ' active' : ''}`;
     slide.href = story.href;
     slide.dataset.slide = '';
+    const engagement = story.likes === null
+      ? ''
+      : `<span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>${story.likes}</span><span><i class="bi bi-chat-square"></i>${story.comments}</span></span>`;
     slide.innerHTML = `
       <img src="${escapeHtml(story.img)}" alt="${escapeHtml(story.title)} cover">
       <span class="slide-content">
         <span class="source"><span class="source-logo">${escapeHtml(story.logo)}</span> ${escapeHtml(story.source)}</span>
         <h1>${escapeHtml(story.title)}</h1>
-        <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>${story.likes}</span><span><i class="bi bi-chat-square"></i>${story.comments}</span></span>
+        ${engagement}
       </span>
     `;
     return slide;
@@ -2053,6 +3198,36 @@
     slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === activeSlide));
     Array.from(dotsWrap.children).forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === activeSlide));
     slideCount.textContent = `${activeSlide + 1} / ${slides.length}`;
+    syncHeroAspect();
+  }
+
+  function syncHeroAspect() {
+    const image = slides[activeSlide]?.querySelector('img');
+    if (!image) return;
+    const apply = () => {
+      if (window.matchMedia('(max-width: 760px)').matches) {
+        hero.style.aspectRatio = '';
+        syncLeadSideHeight();
+        return;
+      }
+      if (image.naturalWidth && image.naturalHeight) {
+        hero.style.aspectRatio = `${image.naturalWidth} / ${image.naturalHeight}`;
+        syncLeadSideHeight();
+      }
+    };
+    if (image.complete) apply();
+    else image.addEventListener('load', apply, { once: true });
+  }
+
+  function syncLeadSideHeight() {
+    if (!hero || !sideStack) return;
+    const height = hero.getBoundingClientRect().height;
+    if (height > 0) sideStack.style.setProperty('--lead-side-height', `${height}px`);
+  }
+
+  if (window.ResizeObserver && hero) {
+    const leadResizeObserver = new ResizeObserver(syncLeadSideHeight);
+    leadResizeObserver.observe(hero);
   }
 
   function shuffledStories(stories) {
@@ -2066,7 +3241,8 @@
 
   function rebuildCarousel({ randomize = true } = {}) {
     const storyPool = cards.map(storyFromFeedCard).filter(Boolean);
-    const stories = (randomize ? shuffledStories(storyPool) : storyPool).slice(0, MAX_CAROUSEL_SLIDES);
+    const maxSlides = activeFilter === 'other' ? MAX_KNOWLEDGE_CAROUSEL_SLIDES : MAX_CAROUSEL_SLIDES;
+    const stories = (randomize ? shuffledStories(storyPool) : storyPool).slice(0, maxSlides);
     hero.querySelectorAll('[data-slide]').forEach(slide => slide.remove());
     stories.forEach((story, index) => hero.insertBefore(createSlide(story, index), prev));
     slides = Array.from(hero.querySelectorAll('[data-slide]'));
@@ -2080,55 +3256,23 @@
     const rows = [];
     let remaining = count;
     let cycle = 0;
-    const gridWidth = feedGrid?.clientWidth || window.innerWidth;
-    const effectiveWidth = gridWidth * (100 / viewZoom);
-    const columnUnits = effectiveWidth >= 2800 ? 24 : effectiveWidth >= 1900 ? 18 : 12;
+    const isNarrow = window.matchMedia('(max-width: 760px)').matches;
+    const isKnowledgeMode = activeFilter === 'other';
+    const columnUnits = isNarrow ? 1 : isKnowledgeMode ? 4 : viewZoom >= 125 ? 4 : 5;
     if (feedGrid) feedGrid.style.setProperty('--feed-columns', String(columnUnits));
-    const templates = columnUnits === 24
-      ? [[3, 3, 3, 3, 3, 3, 3, 3], [4, 4, 4, 4, 4, 4], [6, 6, 6, 6], [3, 3, 6, 3, 3, 6]]
-      : columnUnits === 18
-        ? [[3, 3, 3, 3, 3, 3], [3, 3, 6, 6], [6, 6, 6], [4, 4, 4, 6]]
-        : effectiveWidth < 820
-          ? [[6, 6], [12]]
-          : effectiveWidth < 1080
-            ? [[4, 4, 4], [6, 6]]
-            : viewZoom <= 90
-              ? [[3, 3, 3, 3], [3, 3, 6], [4, 4, 4]]
-              : viewZoom >= 110
-                ? [[4, 4, 4], [6, 6], [3, 3, 6]]
-                : [[3, 3, 6], [4, 4, 4], [3, 3, 3, 3], [6, 6]];
-    const fullSpan = columnUnits;
-    const halfSpan = columnUnits / 2;
-    const thirdSpan = columnUnits / 3;
-    const balancedRow = itemCount => {
-      const base = Math.floor(columnUnits / itemCount);
-      const extra = columnUnits - base * itemCount;
-      return Array.from({ length: itemCount }, (_, index) => base + (index < extra ? 1 : 0));
-    };
-    const tailSpans = itemCount => {
-      if (itemCount <= 3) return itemCount === 1 ? [fullSpan] : itemCount === 2 ? [halfSpan, halfSpan] : [thirdSpan, thirdSpan, thirdSpan];
-      if (columnUnits === 24 && itemCount <= 8) return balancedRow(itemCount);
-      if (columnUnits === 18 && itemCount <= 6) return balancedRow(itemCount);
-      if (columnUnits === 12) {
-        if (itemCount === 4) return [3, 3, 3, 3];
-        if (itemCount === 5) return [6, 6, 4, 4, 4];
-        if (itemCount === 6) return [4, 4, 4, 4, 4, 4];
-        if (itemCount === 7) return [3, 3, 3, 3, 4, 4, 4];
-        if (itemCount === 8) return [3, 3, 3, 3, 3, 3, 3, 3];
-      }
-      return null;
-    };
+    if (isNarrow) return Array.from({ length: count }, () => 1);
+
+    const templates = isKnowledgeMode
+      ? [[1, 1, 1, 1], [2, 2], [1, 2, 1], [2, 1, 1], [1, 1, 2]]
+      : columnUnits === 4
+      ? [[2, 1, 1], [1, 1, 1, 1], [2, 2], [1, 2, 1], [1, 1, 2]]
+      : [[2, 1, 1, 1], [1, 1, 1, 1, 1], [2, 2, 1], [1, 2, 1, 1], [1, 1, 2, 1], [2, 1, 2], [1, 2, 2]];
     while (remaining > 0) {
-      const tail = tailSpans(remaining);
-      if (tail) {
-        rows.push(...tail);
-        remaining = 0;
-      } else {
-        const next = templates[cycle % templates.length];
-        rows.push(...next);
-        remaining -= next.length;
-        cycle += 1;
-      }
+      const next = templates[cycle % templates.length];
+      const take = next.slice(0, remaining);
+      rows.push(...take);
+      remaining -= take.length;
+      cycle += 1;
     }
     return rows;
   }
@@ -2139,9 +3283,20 @@
     feedGrid.style.position = '';
     feedGrid.style.height = '';
     const visibleCards = cards.filter(card => getComputedStyle(card).display !== 'none');
-    const spans = spansForCount(visibleCards.length);
+    const flowCards = visibleCards.filter(card => !card.classList.contains('progress-card'));
+    const spans = spansForCount(flowCards.length);
+    let flowIndex = 0;
+    let progressIndex = 0;
+    const progressSpans = activeFilter === 'other' ? [1, 1, 1, 1] : viewZoom >= 125 ? [2, 1, 1] : [2, 2, 1];
     cards.forEach(card => {
-      if (card.classList.contains('auto-overlay')) {
+      const isImageStoryCard = card.querySelector(':scope > img')
+        && !card.classList.contains('progress-card')
+        && !card.classList.contains('text-module')
+        && !card.classList.contains('list-module');
+      if (isImageStoryCard) {
+        card.classList.add('image-top', 'compact');
+        card.classList.remove('auto-overlay', 'overlay-card');
+      } else if (card.classList.contains('auto-overlay')) {
         card.classList.remove('auto-overlay', 'overlay-card');
       }
       card.style.position = '';
@@ -2150,13 +3305,18 @@
       card.style.top = '';
       card.style.height = '';
       card.style.gridColumn = '';
-      card.classList.remove('layout-span-3', 'layout-span-4', 'layout-span-5', 'layout-span-6', 'layout-span-7', 'layout-span-8', 'layout-span-12');
+      card.classList.remove('layout-span-1', 'layout-span-2', 'layout-span-3', 'layout-span-4', 'layout-span-5', 'layout-span-6', 'layout-span-7', 'layout-span-8', 'layout-span-12');
     });
     visibleCards.forEach((card, index) => {
-      const span = window.innerWidth <= 760 ? 12 : spans[index] || 4;
-      card.style.gridColumn = `span ${span}`;
-      if ([3, 4, 5, 6, 7, 8, 12].includes(span)) card.classList.add(`layout-span-${span}`);
-      if (card.classList.contains('image-top') && (span >= 6 || !card.querySelector('.metric-row'))) {
+      const isNarrow = window.matchMedia('(max-width: 760px)').matches;
+      const span = isNarrow
+        ? 1
+        : card.classList.contains('progress-card')
+          ? progressSpans[progressIndex++] || 1
+          : spans[flowIndex++] || 1;
+      card.style.gridColumn = isNarrow ? '1 / -1' : `span ${span}`;
+      if ([1, 2, 3, 4, 5, 6, 7, 8, 12].includes(span)) card.classList.add(`layout-span-${span}`);
+      if (!isNarrow && card.classList.contains('image-top') && span >= 2) {
         card.classList.add('overlay-card', 'auto-overlay');
       }
     });
@@ -2173,8 +3333,9 @@
     const closest = ZOOM_LEVELS.includes(nextZoom)
       ? nextZoom
       : ZOOM_LEVELS.reduce((best, level) => Math.abs(level - nextZoom) < Math.abs(best - nextZoom) ? level : best, 100);
-    viewZoom = Math.min(120, Math.max(80, closest));
+    viewZoom = Math.min(ZOOM_LEVELS[ZOOM_LEVELS.length - 1], Math.max(ZOOM_LEVELS[0], closest));
     localStorage.setItem('zz-msn-view-zoom', String(viewZoom));
+    document.documentElement.style.setProperty('--feed-type-scale', (Math.min(1.12, Math.max(0.92, viewZoom / 100))).toFixed(2));
     if (zoomValue) zoomValue.textContent = `${viewZoom}%`;
     if (zoomOut) zoomOut.disabled = viewZoom <= ZOOM_LEVELS[0];
     if (zoomIn) zoomIn.disabled = viewZoom >= ZOOM_LEVELS[ZOOM_LEVELS.length - 1];
@@ -2185,25 +3346,19 @@
     const query = searchInput.value.trim().toLowerCase();
     let shown = 0;
     cards.forEach(card => {
-      const tags = (card.dataset.tags || '').toLowerCase();
-      const text = card.textContent.toLowerCase();
-      const href = card.getAttribute('href') || card.querySelector('a[href]')?.getAttribute('href') || '';
-      const isOther = /\b(water|reading|about|ro)\b/.test(tags);
-      const isRunning = /\b(run50|runcn|runworld|english|facebook|trip|stories)\b/.test(tags) && !isOther;
-      const matchesFilter = activeFilter === 'all'
-        ? isRunning
-        : activeFilter === 'other'
-          ? isOther
-          : tags.includes(activeFilter);
-      const matchesSearch = !query || tags.includes(query) || text.includes(query);
-      const visible = matchesFilter && matchesSearch && !shouldSkipStoryUrl(href);
+      const visible = cardMatchesFilter(card, query);
       card.style.display = visible ? '' : 'none';
       if (visible) shown += 1;
     });
-    feedTitle.textContent = activeFilter === 'other' ? 'More' : 'Running front page';
+    document.body.classList.toggle('more-mode', activeFilter === 'other');
+    feedTitle.textContent = activeFilter === 'other' ? 'Knowledge front page' : 'Running front page';
+    searchInput.placeholder = activeFilter === 'other'
+      ? 'Search projects'
+      : 'Search stories';
     if (moreLabel) moreLabel.style.display = 'none';
     visibleCount.textContent = `${shown} item${shown === 1 ? '' : 's'}`;
     emptyState.classList.toggle('show', shown === 0);
+    rebuildCarousel({ randomize: false });
     scheduleMasonry();
   }
 
@@ -2314,6 +3469,9 @@
     setInterval(async () => {
       const changed = await refreshFromLiveIndexes();
       if (!changed) return;
+      applyStoryVariantVisibility();
+      mixStoryCards();
+      refreshCardList();
       rebuildCarousel();
       setupReactions();
       applyFilters();
@@ -2328,22 +3486,56 @@
     }, CAROUSEL_RANDOMIZE_MS);
   }
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      activeFilter = tab.dataset.filter;
-      tabs.forEach(item => item.classList.toggle('active', item === tab));
+  primaryTabs.forEach(tab => {
+    tab.addEventListener('click', event => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (tab.dataset.filter !== 'other') return;
+      event.preventDefault();
+      activeFilter = 'other';
+      activeMoreFilter = 'all';
+      primaryTabs.forEach(item => item.classList.toggle('active', item === tab));
+      moreTabs.forEach(item => item.classList.toggle('active', item.dataset.moreFilter === activeMoreFilter));
+      history.replaceState(null, '', '#more');
       applyFilters();
     });
   });
+
+  moreTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      activeFilter = 'other';
+      activeMoreFilter = tab.dataset.moreFilter || 'all';
+      primaryTabs.forEach(item => item.classList.toggle('active', item.dataset.filter === 'other'));
+      moreTabs.forEach(item => item.classList.toggle('active', item === tab));
+      history.replaceState(null, '', '#more');
+      applyFilters();
+    });
+  });
+
+  function applyInitialRoute() {
+    if (location.hash !== '#more') return;
+    activeFilter = 'other';
+    activeMoreFilter = 'all';
+    primaryTabs.forEach(item => item.classList.toggle('active', item.dataset.filter === 'other'));
+    moreTabs.forEach(item => item.classList.toggle('active', item.dataset.moreFilter === activeMoreFilter));
+  }
 
   document.querySelector('.search').addEventListener('submit', event => {
     event.preventDefault();
     applyFilters();
   });
   searchInput.addEventListener('input', applyFilters);
-  window.addEventListener('resize', scheduleMasonry);
-  zoomOut?.addEventListener('click', () => applyViewZoom(viewZoom - 10));
-  zoomIn?.addEventListener('click', () => applyViewZoom(viewZoom + 10));
+  window.addEventListener('resize', () => {
+    syncLeadSideHeight();
+    scheduleMasonry();
+  });
+  zoomOut?.addEventListener('click', () => {
+    const index = ZOOM_LEVELS.indexOf(viewZoom);
+    applyViewZoom(ZOOM_LEVELS[Math.max(0, index - 1)] || ZOOM_LEVELS[0]);
+  });
+  zoomIn?.addEventListener('click', () => {
+    const index = ZOOM_LEVELS.indexOf(viewZoom);
+    applyViewZoom(ZOOM_LEVELS[Math.min(ZOOM_LEVELS.length - 1, index + 1)] || ZOOM_LEVELS[ZOOM_LEVELS.length - 1]);
+  });
   commentClose.addEventListener('click', closeComments);
   commentForm.addEventListener('submit', event => {
     event.preventDefault();
@@ -2361,8 +3553,12 @@
   });
 
   async function init() {
+    applyInitialRoute();
     refreshCardList();
     await refreshFromLiveIndexes();
+    applyStoryVariantVisibility();
+    mixStoryCards();
+    refreshCardList();
     renderProgressMaps();
     rebuildCarousel();
     setupReactions();
