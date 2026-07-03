@@ -116,6 +116,21 @@
     .primary:hover { background: var(--navy-2); }
     .form-message { min-height: 20px; margin: 9px 0 0; color: var(--red); font-size: 13px; }
     .privacy-note { margin-top: 16px; color: #7a858e; font-size: 12px; line-height: 1.55; }
+    .cloud-unlock {
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(128,145,157,.08);
+    }
+    .cloud-unlock summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .cloud-unlock .field:first-of-type { margin-top: 13px; }
+    .cloud-unlock .secondary { width: 100%; margin-top: 4px; }
     .lock-preferences {
       position: fixed;
       top: 18px;
@@ -221,7 +236,7 @@
     .progress-ring span { position: relative; z-index: 1; color: var(--ink); font-weight: 900; font-size: 14px; }
     .progress-bar { height: 9px; margin-top: 24px; overflow: hidden; border-radius: 99px; background: #e5e8e9; }
     .progress-bar i { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg,var(--blue),var(--orange)); transition: width .25s; }
-    .progress-caption { margin: 9px 0 0; color: var(--muted); font-size: 12px; }
+    .progress-caption { margin: 9px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
 
     .today-panel { margin-bottom: 18px; padding: clamp(20px, 4vw, 34px); border-radius: 24px; }
     .panel-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 15px; margin-bottom: 22px; }
@@ -271,21 +286,71 @@
       min-height: 27px; padding: 0 9px; border: 0; border-radius: 8px;
       color: #fff; background: var(--task-color); font-size: 11px; font-weight: 900;
     }
+    .pom-adjust {
+      min-height: 27px; padding: 0 9px; border: 1px solid var(--line); border-radius: 8px;
+      color: var(--task-color); background: rgba(128,145,157,.08); font-size: 11px; font-weight: 900;
+    }
+    .task-progress {
+      height: 7px;
+      margin-top: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(128,145,157,.18);
+    }
+    .task-progress i {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--task-color), var(--orange));
+      transition: width .25s ease;
+    }
+    .task-row.over-target .task-progress i {
+      background-image: repeating-linear-gradient(45deg, var(--task-color) 0 9px, var(--orange) 9px 18px);
+    }
     .completed-time { color: var(--green); font-size: 10px; font-weight: 700; }
     .delete-task { width: 31px; height: 31px; border: 0; border-radius: 9px; background: transparent; color: #9aa2a8; font-size: 18px; }
     .delete-task:hover { color: var(--red); background: #fff0ef; }
     .empty-tasks { padding: 22px; border: 1px dashed #ccd4d9; border-radius: 13px; color: var(--muted); text-align: center; }
     .timer-card {
-      display: flex; align-items: center; justify-content: space-between; gap: 14px;
-      margin: 12px 0 17px; padding: 14px 16px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      margin: 12px 0 17px; padding: 18px; border-radius: 18px;
       color: #fff; background: linear-gradient(135deg, var(--timer-color, var(--blue)), var(--navy));
       box-shadow: 0 9px 22px rgba(16,33,50,.16);
     }
     .timer-copy { min-width: 0; }
     .timer-copy small { display: block; margin-bottom: 3px; opacity: .74; font-size: 10px; font-weight: 900; letter-spacing: .12em; }
-    .timer-task { overflow: hidden; font-size: 13px; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
-    .timer-side { display: flex; align-items: center; gap: 10px; }
-    .timer-time { min-width: 62px; font-variant-numeric: tabular-nums; font-size: 23px; font-weight: 900; letter-spacing: -.03em; }
+    .timer-task { overflow: hidden; font-size: 16px; font-weight: 850; text-overflow: ellipsis; white-space: nowrap; }
+    .timer-side { display: flex; align-items: center; gap: 12px; }
+    .timer-ring {
+      --timer-progress: 0deg;
+      width: 132px;
+      height: 132px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: conic-gradient(#fff var(--timer-progress), rgba(255,255,255,.22) 0);
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.2);
+    }
+    .timer-ring::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,.2), rgba(16,33,50,.34));
+      backdrop-filter: blur(5px);
+    }
+    .timer-ring-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      line-height: 1.05;
+    }
+    .timer-time { font-variant-numeric: tabular-nums; font-size: 31px; font-weight: 950; letter-spacing: -.04em; }
+    .timer-percent { margin-top: 3px; opacity: .75; font-size: 11px; font-weight: 850; }
     .timer-cancel { width: 30px; height: 30px; border: 1px solid rgba(255,255,255,.4); border-radius: 9px; color: #fff; background: rgba(255,255,255,.1); }
     .notes-label { display: flex; justify-content: space-between; margin-bottom: 7px; color: #45525e; font-size: 13px; font-weight: 800; }
     .save-state { color: var(--green); font-weight: 500; }
@@ -320,6 +385,25 @@
     .day.filtered { display: none; }
 
     .footer-tools { display: flex; flex-wrap: wrap; gap: 9px; justify-content: center; margin-top: 22px; }
+    .sync-panel {
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(128,145,157,.08);
+    }
+    .sync-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .sync-head h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.02em; }
+    .sync-head p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .sync-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 10px; }
+    .sync-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 12px; }
+    .sync-status { margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.45; overflow-wrap: anywhere; }
     .secondary {
       min-height: 40px; padding: 0 14px; border: 1px solid #cbd3d8; border-radius: 10px;
       background: rgba(255,255,255,.8); color: #44515b; font-size: 12px; font-weight: 800;
@@ -386,6 +470,8 @@
     html[data-theme="dark"] .progress-ring::after { background: var(--paper); }
     html[data-theme="dark"] .progress-bar { background: #293a47; }
     html[data-theme="dark"] .daily-quote { background: #0f1b25; }
+    html[data-theme="dark"] .cloud-unlock,
+    html[data-theme="dark"] .sync-panel { background: rgba(128,145,157,.07); }
     html[data-theme="dark"] .color-button { border-color: #0f1b25; box-shadow: 0 0 0 1px #607482; }
     html[data-theme="dark"] .empty-tasks { border-color: #3a4c59; }
     html[data-theme="dark"] .delete-task:hover { background: #351f22; }
@@ -399,6 +485,9 @@
       .hero { grid-template-columns: 1fr; }
       .progress-card { min-height: 180px; }
       .days { grid-template-columns: repeat(4,minmax(0,1fr)); }
+      .sync-grid { grid-template-columns: 1fr; }
+      .timer-card { align-items: flex-start; flex-direction: column; }
+      .timer-side { width: 100%; justify-content: space-between; }
       .header-inner { width: min(100% - 22px,1180px); }
       main { width: min(100% - 20px,1180px); margin-top: 16px; }
       .icon-button .wide-label { display: none; }
@@ -409,6 +498,9 @@
       .task-composer { align-items: stretch; flex-direction: column; }
       .add-button { min-height: 44px; }
       .panel-heading { align-items: flex-start; flex-direction: column; }
+      .task-row { grid-template-columns: auto minmax(0,1fr) auto; align-items: flex-start; }
+      .timer-ring { width: 116px; height: 116px; }
+      .timer-time { font-size: 27px; }
       .day { min-height: 76px; }
       .lock-body { padding: 23px; }
     }
@@ -453,6 +545,23 @@
           <button class="primary" id="unlockButton" type="submit">Unlock planner</button>
           <div class="form-message" id="unlockMessage" role="alert"></div>
         </form>
+        <details class="cloud-unlock" id="cloudUnlock">
+          <summary id="cloudUnlockSummary">Load synced planner from GitHub Gist</summary>
+          <div class="field">
+            <label for="cloudToken" id="cloudTokenLabel">GitHub token</label>
+            <input id="cloudToken" type="password" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="cloudGist" id="cloudGistLabel">Gist id</label>
+            <input id="cloudGist" type="text" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="cloudPassword" id="cloudPasswordLabel">Page password</label>
+            <input id="cloudPassword" type="password" autocomplete="current-password">
+          </div>
+          <button class="secondary" id="cloudLoadButton" type="button">Load encrypted cloud copy</button>
+          <div class="form-message" id="cloudMessage" role="alert"></div>
+        </details>
         <div class="privacy-note" id="privacyNote">Tasks are AES-GCM encrypted in this browser and never uploaded. Export a backup before clearing browser data.</div>
       </div>
     </div>
@@ -516,7 +625,12 @@
             <div class="timer-task" id="timerTask"></div>
           </div>
           <div class="timer-side">
-            <span class="timer-time" id="timerTime">25:00</span>
+            <div class="timer-ring" id="timerRing">
+              <div class="timer-ring-inner">
+                <span class="timer-time" id="timerTime">25:00</span>
+                <span class="timer-percent" id="timerPercent">0%</span>
+              </div>
+            </div>
             <button class="timer-cancel" id="timerCancel" type="button" aria-label="Cancel timer">×</button>
           </div>
         </div>
@@ -541,6 +655,30 @@
           <button class="secondary" id="importButton" type="button">Import backup</button>
           <input class="file-input" id="fileInput" type="file" accept="application/json,.json">
         </div>
+        <section class="sync-panel" aria-labelledby="syncTitle">
+          <div class="sync-head">
+            <div>
+              <h3 id="syncTitle">Encrypted cloud sync</h3>
+              <p id="syncIntro">Create or connect a private GitHub Gist. Only encrypted task data is uploaded.</p>
+            </div>
+          </div>
+          <div class="sync-grid">
+            <div class="field">
+              <label for="syncToken" id="syncTokenLabel">GitHub token</label>
+              <input id="syncToken" type="password" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="syncGist" id="syncGistLabel">Gist id (optional for first push)</label>
+              <input id="syncGist" type="text" autocomplete="off">
+            </div>
+          </div>
+          <div class="sync-actions">
+            <button class="secondary" id="syncPushButton" type="button">Create / push encrypted copy</button>
+            <button class="secondary" id="syncPullButton" type="button">Pull latest cloud copy</button>
+            <button class="secondary" id="syncDisconnectButton" type="button">Forget sync settings</button>
+          </div>
+          <div class="sync-status" id="syncStatus"></div>
+        </section>
       </section>
     </main>
   </div>
@@ -552,14 +690,19 @@
     const STORAGE_KEY = "zz-2026-daily-tasks-encrypted-v1";
     const LANG_KEY = "zz-daily-tasks-lang";
     const THEME_KEY = "zz-daily-tasks-theme";
+    const SYNC_KEY = "zz-daily-tasks-sync-v1";
+    const SYNC_FILE = "2026-daily-tasks-encrypted.json";
     const START = "2026-07-03";
     const END = "2026-12-31";
+    const POMODORO_MS = 25 * 60 * 1000;
+    const MAX_POMODOROS = 48;
     const enc = new TextEncoder();
     const dec = new TextDecoder();
     const $ = (selector) => document.querySelector(selector);
     const $$ = (selector) => [...document.querySelectorAll(selector)];
     const state = {
-      key: null, vault: null, data: { days: {} }, selected: START, filter: "all", saveTimer: null, timerInterval: null,
+      key: null, vault: null, data: { days: {} }, selected: START, filter: "all", saveTimer: null, timerInterval: null, audio: null,
+      sync: readSyncConfig(),
       lang: localStorage.getItem(LANG_KEY) || "en",
       theme: localStorage.getItem(THEME_KEY) || "dark"
     };
@@ -570,20 +713,23 @@
         newPassword: "New password (8+ characters)", confirmPassword: "Confirm password", create: "Create private planner",
         unlockTitle: "Welcome back", unlockIntro: "Enter your password to open the daily task planner.",
         password: "Page password", unlock: "Unlock planner",
-        privacy: "Tasks are AES-GCM encrypted in this browser and never uploaded. Export a backup before clearing browser data.",
+        cloudUnlock: "Load synced planner from GitHub Gist", cloudToken: "GitHub token", cloudGist: "Gist id",
+        cloudPassword: "Page password", cloudLoad: "Load encrypted cloud copy",
+        privacy: "Tasks are AES-GCM encrypted before cloud sync. Keep your password safe: without it, neither this page nor GitHub can recover the content.",
         brand: "2026 Daily Tasks", brandDates: "July 3 — December 31", today: "Today", lock: "Lock",
         heroTitle: "A little done, every day.",
         heroCopy: "From today to year-end: 182 days. Write down what truly matters, finish it, cross it off, and give every ordinary day a clear landing place.",
-        progress: "Task progress", progressEmpty: "Write the first task to begin.",
-        progressStatus: (percent, left) => `${percent}% complete · ${left} ${left === 1 ? "task" : "tasks"} left.`,
+        progress: "Focus progress", progressEmpty: "Write the first task to begin.",
+        progressStatus: (percent, done, total, extra) => `${percent}% focus complete · ${done}/${total} planned Pomodoros${extra ? ` · +${extra} extra` : ""}.`,
         todayTasks: "Today's tasks", dateTasks: (month, day) => `${month}/${day} tasks`, quoteLabel: "DAILY THOUGHT · 每日一句",
         taskPlaceholder: "Write down something to finish…", addTask: "＋ Add task",
         emptyTasks: "No tasks yet. Write down the one thing that matters most.",
         completeTask: "Complete task", deleteTask: "Delete task",
         pomodoro: (done, target) => `${done}/${target} × 25 min`, fewer: "One fewer Pomodoro", more: "One more Pomodoro",
         startFocus: "▶ Start 25 min", running: "Running", changeColor: "Change task color",
+        overTarget: extra => `+${extra} extra`, matchTarget: "Make target match",
         completedAt: value => `Completed ${value}`, timerLabel: "FOCUSING NOW", cancelTimer: "Cancel timer",
-        pomodoroDone: "25 minutes complete — one Pomodoro recorded.",
+        timerProgress: percent => `${percent}% done`, pomodoroDone: "25 minutes complete — one Pomodoro recorded.",
         notes: "Daily reflection / notes", notesPlaceholder: "What got done? What should you remember tomorrow?",
         saving: "Saving…", saved: "Encrypted and saved", saveFailed: "Save failed",
         saveFailedToast: "Save failed. Export a backup and try again.",
@@ -592,6 +738,14 @@
         noPlan: "Unplanned", hasNotes: "Has notes", completedCount: count => `✓ ${count} completed`,
         progressCount: (done, total) => `${done}/${total} done`,
         export: "Export encrypted backup", import: "Import backup",
+        syncTitle: "Encrypted cloud sync", syncIntro: "Create or connect a private GitHub Gist. Only encrypted task data is uploaded.",
+        syncToken: "GitHub token", syncGist: "Gist id (optional for first push)",
+        syncPush: "Create / push encrypted copy", syncPull: "Pull latest cloud copy", syncDisconnect: "Forget sync settings",
+        syncNeedToken: "Add a GitHub token with gist permission.", syncNeedGist: "Add a Gist id first, or create one with Push.",
+        syncPushing: "Syncing encrypted copy to GitHub…", syncPulling: "Pulling encrypted cloud copy…",
+        syncPushed: id => `Encrypted cloud copy saved. Gist id: ${id}`,
+        syncPulled: "Cloud copy loaded and decrypted on this device.", syncForgotten: "Sync settings removed from this browser.",
+        syncInvalid: "Cloud copy is not a valid encrypted planner.", syncFailed: "GitHub sync failed. Check token, Gist id, and network.",
         exported: "Encrypted backup exported", imported: "Backup imported. Unlock it with the backup password.",
         invalidBackup: "This is not a valid task backup.",
         setupCreating: "Creating encrypted planner…", minPassword: "Password must be at least 8 characters.",
@@ -608,20 +762,23 @@
         newPassword: "新密码（至少 8 位）", confirmPassword: "再次输入", create: "创建私密计划",
         unlockTitle: "欢迎回来", unlockIntro: "输入密码，打开你的每日任务计划。",
         password: "页面密码", unlock: "解锁页面",
-        privacy: "任务内容使用 AES-GCM 加密后保存在当前浏览器，不上传服务器。清除浏览器数据前请先导出备份。",
+        cloudUnlock: "从 GitHub Gist 载入同步计划", cloudToken: "GitHub token", cloudGist: "Gist id",
+        cloudPassword: "页面密码", cloudLoad: "载入加密云端副本",
+        privacy: "任务内容会先用 AES-GCM 加密，再进行云端同步。请记住密码：没有密码，页面和 GitHub 都无法恢复内容。",
         brand: "2026 每日任务", brandDates: "7月3日 — 12月31日", today: "今天", lock: "锁定",
         heroTitle: "每天完成一点。",
         heroCopy: "从今天到年末，共 182 天。把真正重要的事写下来，做完，划掉；让每一个普通日子都有清楚的落点。",
-        progress: "任务完成进度", progressEmpty: "写下第一项任务，计划就开始了。",
-        progressStatus: (percent, left) => `${percent}% 已完成 · 还有 ${left} 项等待出发。`,
+        progress: "专注进度", progressEmpty: "写下第一项任务，计划就开始了。",
+        progressStatus: (percent, done, total, extra) => `${percent}% 专注完成 · ${done}/${total} 个计划番茄钟${extra ? ` · 额外 +${extra}` : ""}。`,
         todayTasks: "今天的任务", dateTasks: (month, day) => `${month}月${day}日的任务`, quoteLabel: "每日一句 · DAILY THOUGHT",
         taskPlaceholder: "写下一项要完成的事…", addTask: "＋ 添加任务",
         emptyTasks: "这一天还没有任务。写下最重要的一件事吧。",
         completeTask: "完成任务", deleteTask: "删除任务",
         pomodoro: (done, target) => `${done}/${target} × 25分钟`, fewer: "减少一个番茄钟", more: "增加一个番茄钟",
         startFocus: "▶ 开始25分钟", running: "计时中", changeColor: "切换任务颜色",
+        overTarget: extra => `额外 +${extra}`, matchTarget: "目标改成实际",
         completedAt: value => `完成于 ${value}`, timerLabel: "正在专注", cancelTimer: "取消计时",
-        pomodoroDone: "25分钟完成，已为这项任务记录一个番茄钟。",
+        timerProgress: percent => `已完成 ${percent}%`, pomodoroDone: "25分钟完成，已为这项任务记录一个番茄钟。",
         notes: "当天小结 / 备注", notesPlaceholder: "完成了什么？明天要记得什么？",
         saving: "保存中…", saved: "已加密保存", saveFailed: "保存失败",
         saveFailedToast: "保存失败，请导出备份后重试",
@@ -630,6 +787,14 @@
         noPlan: "未安排", hasNotes: "有小结", completedCount: count => `✓ ${count} 项已完成`,
         progressCount: (done, total) => `${done}/${total} 项完成`,
         export: "导出加密备份", import: "导入备份",
+        syncTitle: "加密云同步", syncIntro: "创建或连接一个 GitHub 私密 Gist。上传前仍然只保存加密后的任务数据。",
+        syncToken: "GitHub token", syncGist: "Gist id（第一次推送可留空）",
+        syncPush: "创建 / 推送加密副本", syncPull: "拉取最新云端副本", syncDisconnect: "忘记同步设置",
+        syncNeedToken: "请填写带 gist 权限的 GitHub token。", syncNeedGist: "请先填写 Gist id，或用推送创建一个。",
+        syncPushing: "正在同步加密副本到 GitHub…", syncPulling: "正在拉取加密云端副本…",
+        syncPushed: id => `加密云端副本已保存。Gist id：${id}`,
+        syncPulled: "云端副本已载入并在本设备解密。", syncForgotten: "已从这个浏览器移除同步设置。",
+        syncInvalid: "云端副本不是有效的加密计划。", syncFailed: "GitHub 同步失败，请检查 token、Gist id 和网络。",
         exported: "加密备份已导出", imported: "备份已导入，请用备份密码解锁",
         invalidBackup: "这不是有效的任务备份",
         setupCreating: "正在创建加密计划…", minPassword: "密码至少需要 8 位。",
@@ -696,6 +861,11 @@
       $("#unlockIntro").textContent = text.unlockIntro;
       $("#passwordLabel").textContent = text.password;
       $("#unlockButton").textContent = text.unlock;
+      $("#cloudUnlockSummary").textContent = text.cloudUnlock;
+      $("#cloudTokenLabel").textContent = text.cloudToken;
+      $("#cloudGistLabel").textContent = text.cloudGist;
+      $("#cloudPasswordLabel").textContent = text.cloudPassword;
+      $("#cloudLoadButton").textContent = text.cloudLoad;
       $("#privacyNote").textContent = text.privacy;
       $("#brandTitle").textContent = text.brand;
       $("#brandDates").textContent = text.brandDates;
@@ -716,6 +886,13 @@
       $$(".filter").forEach(button => button.textContent = text.filters[button.dataset.filter]);
       $("#exportButton").textContent = text.export;
       $("#importButton").textContent = text.import;
+      $("#syncTitle").textContent = text.syncTitle;
+      $("#syncIntro").textContent = text.syncIntro;
+      $("#syncTokenLabel").textContent = text.syncToken;
+      $("#syncGistLabel").textContent = text.syncGist;
+      $("#syncPushButton").textContent = text.syncPush;
+      $("#syncPullButton").textContent = text.syncPull;
+      $("#syncDisconnectButton").textContent = text.syncDisconnect;
       $$(".lang-toggle").forEach(button => button.textContent = text.langSwitch);
       $$(".theme-toggle").forEach(button => button.textContent = state.theme === "dark" ? text.themeLight : text.themeDark);
       if (rerender && !$("#app").hidden) {
@@ -769,6 +946,93 @@
     }
     function readVault() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (_) { return null; }
+    }
+    function readSyncConfig() {
+      try {
+        const config = JSON.parse(localStorage.getItem(SYNC_KEY));
+        return config && typeof config === "object" ? { token: config.token || "", gistId: config.gistId || "" } : { token: "", gistId: "" };
+      } catch (_) {
+        return { token: "", gistId: "" };
+      }
+    }
+    function saveSyncConfig() {
+      localStorage.setItem(SYNC_KEY, JSON.stringify(state.sync));
+    }
+    function syncHeaders(token) {
+      return {
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+        "X-GitHub-Api-Version": "2022-11-28"
+      };
+    }
+    function setSyncStatus(message) {
+      $("#syncStatus").textContent = message || "";
+    }
+    function hydrateSyncFields() {
+      $("#syncToken").value = state.sync.token || "";
+      $("#syncGist").value = state.sync.gistId || "";
+      $("#cloudToken").value = state.sync.token || "";
+      $("#cloudGist").value = state.sync.gistId || "";
+    }
+    function syncPayload() {
+      return JSON.stringify(state.vault, null, 2);
+    }
+    function validateVault(vault) {
+      return vault && vault.salt && vault.iv && vault.ciphertext;
+    }
+    async function readGistVault(token, gistId) {
+      const response = await fetch(`https://api.github.com/gists/${encodeURIComponent(gistId)}`, { headers: syncHeaders(token) });
+      if (!response.ok) throw new Error("gist");
+      const gist = await response.json();
+      let file = gist.files?.[SYNC_FILE] || Object.values(gist.files || {}).find(item => item.filename?.endsWith(".json"));
+      if (!file) throw new Error("file");
+      const content = file.truncated && file.raw_url ? await (await fetch(file.raw_url)).text() : file.content;
+      const vault = JSON.parse(content);
+      if (!validateVault(vault)) throw new Error("invalid");
+      return vault;
+    }
+    async function pushGistVault() {
+      const token = $("#syncToken").value.trim();
+      let gistId = $("#syncGist").value.trim();
+      if (!token) { setSyncStatus(t().syncNeedToken); return; }
+      await persist();
+      setSyncStatus(t().syncPushing);
+      const body = {
+        description: "2026 Daily Tasks encrypted cloud sync",
+        public: false,
+        files: { [SYNC_FILE]: { content: syncPayload() } }
+      };
+      const url = gistId ? `https://api.github.com/gists/${encodeURIComponent(gistId)}` : "https://api.github.com/gists";
+      const response = await fetch(url, { method: gistId ? "PATCH" : "POST", headers: syncHeaders(token), body: JSON.stringify(body) });
+      if (!response.ok) throw new Error("push");
+      const gist = await response.json();
+      gistId = gist.id;
+      state.sync = { token, gistId };
+      saveSyncConfig();
+      hydrateSyncFields();
+      setSyncStatus(t().syncPushed(gistId));
+      toast(t().syncPushed(gistId));
+    }
+    async function pullGistVault({ token, gistId, password } = {}) {
+      token ||= $("#syncToken").value.trim();
+      gistId ||= $("#syncGist").value.trim();
+      if (!token) { setSyncStatus(t().syncNeedToken); return; }
+      if (!gistId) { setSyncStatus(t().syncNeedGist); return; }
+      setSyncStatus(t().syncPulling);
+      const vault = await readGistVault(token, gistId);
+      const key = password ? await deriveKey(password, base64ToBytes(vault.salt)) : state.key;
+      const data = await decryptData(key, vault);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(vault));
+      state.key = key;
+      state.vault = vault;
+      state.data = data;
+      state.sync = { token, gistId };
+      saveSyncConfig();
+      hydrateSyncFields();
+      if ($("#app").hidden) openApp(); else { renderCalendar(); renderEditor(); updateProgress(); }
+      setSyncStatus(t().syncPulled);
+      toast(t().syncPulled);
     }
     async function persist() {
       if (!state.key || !state.vault) return;
@@ -824,6 +1088,7 @@
 
     function initGate() {
       const vault = readVault();
+      hydrateSyncFields();
       $("#setupForm").hidden = Boolean(vault);
       $("#unlockForm").hidden = !vault;
       (vault ? $("#password") : $("#newPassword")).focus();
@@ -864,6 +1129,8 @@
     });
     function openApp() {
       state.selected = todayInRange();
+      state.data.days ||= {};
+      hydrateSyncFields();
       $("#lockScreen").hidden = true;
       $("#app").hidden = false;
       renderCalendar();
@@ -880,15 +1147,47 @@
       $("#setupForm").hidden = true;
       $("#password").value = "";
       $("#unlockMessage").textContent = "";
+      $("#cloudPassword").value = "";
+      $("#cloudMessage").textContent = "";
       $("#password").focus();
     }
 
     function normalizeTask(task, index) {
       if (!TASK_COLORS.includes(task.color)) task.color = TASK_COLORS[index % TASK_COLORS.length];
-      task.pomodoroTarget = Math.min(12, Math.max(1, Number(task.pomodoroTarget) || 1));
+      task.pomodoroTarget = Math.min(MAX_POMODOROS, Math.max(1, Number(task.pomodoroTarget) || 1));
       task.pomodoroDone = Math.max(0, Number(task.pomodoroDone) || 0);
       if (!("completedAt" in task)) task.completedAt = null;
       return task;
+    }
+    function taskPomodoroRatio(task) {
+      return Math.min(1, task.pomodoroDone / Math.max(1, task.pomodoroTarget));
+    }
+    function initAudio() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        state.audio ||= new AudioContext();
+        if (state.audio.state === "suspended") state.audio.resume();
+      } catch (_) {}
+    }
+    function playDoneSound() {
+      try {
+        initAudio();
+        if (!state.audio) return;
+        const now = state.audio.currentTime;
+        [660, 880, 1046].forEach((frequency, index) => {
+          const oscillator = state.audio.createOscillator();
+          const gain = state.audio.createGain();
+          oscillator.type = "sine";
+          oscillator.frequency.value = frequency;
+          gain.gain.setValueAtTime(0.0001, now + index * 0.11);
+          gain.gain.exponentialRampToValueAtTime(0.18, now + index * 0.11 + 0.018);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.11 + 0.17);
+          oscillator.connect(gain).connect(state.audio.destination);
+          oscillator.start(now + index * 0.11);
+          oscillator.stop(now + index * 0.11 + 0.19);
+        });
+      } catch (_) {}
     }
     function formatCompletedTime(value) {
       if (!value) return "";
@@ -912,25 +1211,36 @@
       card.hidden = false;
       card.style.setProperty("--timer-color", task.color);
       $("#timerTask").textContent = task.text;
+      active.duration ||= POMODORO_MS;
+      active.startedAt ||= active.endsAt - active.duration;
       const tick = () => {
         const remaining = Math.max(0, active.endsAt - Date.now());
         const seconds = Math.ceil(remaining / 1000);
+        const elapsed = Math.min(active.duration, Math.max(0, Date.now() - active.startedAt));
+        const percent = Math.min(100, Math.round(elapsed / active.duration * 100));
         $("#timerTime").textContent = `${String(Math.floor(seconds / 60)).padStart(2,"0")}:${String(seconds % 60).padStart(2,"0")}`;
+        $("#timerPercent").textContent = t().timerProgress(percent);
+        $("#timerRing").style.setProperty("--timer-progress", `${percent * 3.6}deg`);
         if (remaining <= 0) {
           clearInterval(state.timerInterval);
           state.timerInterval = null;
           task.pomodoroDone += 1;
           state.data.activeTimer = null;
+          playDoneSound();
           persist().catch(showSaveError);
           toast(t().pomodoroDone);
           renderEditor();
+          renderCalendar();
+          updateProgress();
         }
       };
       tick();
       if (state.data.activeTimer) state.timerInterval = setInterval(tick, 1000);
     }
     function startPomodoro(date, taskId) {
-      state.data.activeTimer = { date, taskId, endsAt: Date.now() + 25 * 60 * 1000 };
+      initAudio();
+      const startedAt = Date.now();
+      state.data.activeTimer = { date, taskId, startedAt, duration: POMODORO_MS, endsAt: startedAt + POMODORO_MS };
       persist().catch(showSaveError);
       renderEditor();
     }
@@ -955,11 +1265,15 @@
           normalizeTask(task, index);
           const running = state.data.activeTimer?.date === state.selected && state.data.activeTimer?.taskId === task.id;
           const completed = task.completedAt ? `<span class="completed-time">${escapeHTML(t().completedAt(formatCompletedTime(task.completedAt)))}</span>` : "";
+          const ratio = Math.round(taskPomodoroRatio(task) * 100);
+          const extra = Math.max(0, task.pomodoroDone - task.pomodoroTarget);
+          const extraBadge = extra ? `<span class="completed-time">${escapeHTML(t().overTarget(extra))}</span><button class="pom-adjust" type="button">${escapeHTML(t().matchTarget)}</button>` : "";
           return `
-          <div class="task-row ${task.done ? "done" : ""}" data-id="${escapeHTML(task.id)}" style="--task-color:${task.color}">
+          <div class="task-row ${task.done ? "done" : ""} ${extra ? "over-target" : ""}" data-id="${escapeHTML(task.id)}" style="--task-color:${task.color}">
             <input type="checkbox" ${task.done ? "checked" : ""} aria-label="${t().completeTask}">
             <div class="task-main">
               <div class="task-text">${escapeHTML(task.text)}</div>
+              <div class="task-progress" aria-label="${ratio}%"><i style="width:${ratio}%"></i></div>
               <div class="task-meta">
                 <button class="color-button" type="button" aria-label="${t().changeColor}"></button>
                 <span class="pom-control">
@@ -968,6 +1282,7 @@
                   <button class="pom-plus" type="button" aria-label="${t().more}">＋</button>
                 </span>
                 <button class="pom-start" type="button" ${running ? "disabled" : ""}>${running ? t().running : t().startFocus}</button>
+                ${extraBadge}
                 ${completed}
               </div>
             </div>
@@ -992,12 +1307,17 @@
         row.querySelector(".pom-minus").addEventListener("click", () => {
           const task = findTask(state.selected, row.dataset.id);
           task.pomodoroTarget = Math.max(1, task.pomodoroTarget - 1);
-          renderEditor(); queuePersist();
+          renderEditor(); renderCalendar(); updateProgress(); queuePersist();
         });
         row.querySelector(".pom-plus").addEventListener("click", () => {
           const task = findTask(state.selected, row.dataset.id);
-          task.pomodoroTarget = Math.min(12, task.pomodoroTarget + 1);
-          renderEditor(); queuePersist();
+          task.pomodoroTarget = Math.min(MAX_POMODOROS, task.pomodoroTarget + 1);
+          renderEditor(); renderCalendar(); updateProgress(); queuePersist();
+        });
+        row.querySelector(".pom-adjust")?.addEventListener("click", () => {
+          const task = findTask(state.selected, row.dataset.id);
+          task.pomodoroTarget = Math.min(MAX_POMODOROS, Math.max(1, task.pomodoroDone));
+          renderEditor(); renderCalendar(); updateProgress(); queuePersist();
         });
         row.querySelector(".pom-start").addEventListener("click", () => startPomodoro(state.selected, row.dataset.id));
         row.querySelector(".delete-task").addEventListener("click", () => {
@@ -1074,15 +1394,18 @@
     }));
     function updateProgress() {
       const tasks = Object.values(state.data.days).flatMap(day => day.tasks || []);
-      const done = tasks.filter(task => task.done).length;
-      const percent = tasks.length ? Math.round(done / tasks.length * 100) : 0;
-      $("#doneCount").textContent = done;
-      $("#totalCount").textContent = ` / ${tasks.length}`;
+      tasks.forEach(normalizeTask);
+      const planned = tasks.reduce((sum, task) => sum + Math.max(1, task.pomodoroTarget), 0);
+      const doneUnits = tasks.reduce((sum, task) => sum + (task.done ? Math.max(1, task.pomodoroTarget) : Math.min(task.pomodoroDone, Math.max(1, task.pomodoroTarget))), 0);
+      const extraUnits = tasks.reduce((sum, task) => sum + Math.max(0, task.pomodoroDone - Math.max(1, task.pomodoroTarget)), 0);
+      const percent = planned ? Math.round(doneUnits / planned * 100) : 0;
+      $("#doneCount").textContent = doneUnits;
+      $("#totalCount").textContent = ` / ${planned}`;
       $("#progressPercent").textContent = `${percent}%`;
       $("#progressRing").style.setProperty("--progress", `${percent * 3.6}deg`);
       $("#progressBar").style.width = `${percent}%`;
-      $("#progressCaption").textContent = tasks.length
-        ? t().progressStatus(percent, tasks.length - done)
+      $("#progressCaption").textContent = planned
+        ? t().progressStatus(percent, doneUnits, planned, extraUnits)
         : t().progressEmpty;
     }
 
@@ -1123,6 +1446,38 @@
       } finally {
         event.target.value = "";
       }
+    });
+    $("#syncPushButton").addEventListener("click", () => pushGistVault().catch(error => {
+      console.warn(error);
+      setSyncStatus(t().syncFailed);
+      toast(t().syncFailed);
+    }));
+    $("#syncPullButton").addEventListener("click", () => pullGistVault().catch(error => {
+      console.warn(error);
+      setSyncStatus(error.message === "invalid" ? t().syncInvalid : t().syncFailed);
+      toast(error.message === "invalid" ? t().syncInvalid : t().syncFailed);
+    }));
+    $("#syncDisconnectButton").addEventListener("click", () => {
+      state.sync = { token: "", gistId: "" };
+      localStorage.removeItem(SYNC_KEY);
+      hydrateSyncFields();
+      setSyncStatus(t().syncForgotten);
+      toast(t().syncForgotten);
+    });
+    $("#cloudLoadButton").addEventListener("click", () => {
+      const message = $("#cloudMessage");
+      const token = $("#cloudToken").value.trim();
+      const gistId = $("#cloudGist").value.trim();
+      const password = $("#cloudPassword").value;
+      message.textContent = "";
+      if (!token) { message.textContent = t().syncNeedToken; return; }
+      if (!gistId) { message.textContent = t().syncNeedGist; return; }
+      if (!password) { message.textContent = t().password; return; }
+      message.textContent = t().syncPulling;
+      pullGistVault({ token, gistId, password }).catch(error => {
+        console.warn(error);
+        message.textContent = error.message === "invalid" ? t().syncInvalid : t().wrongPassword;
+      });
     });
     let toastTimer;
     function toast(message) {
