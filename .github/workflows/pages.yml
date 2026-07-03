@@ -43,57 +43,15 @@ jobs:
 
       - name: Optimize story images for artifact
         run: |
-          python -m pip install --disable-pip-version-check --quiet pillow
-          python - <<'PY'
-          from pathlib import Path
-          from PIL import Image, ImageOps
-
-          root = Path("_site/run50/stories/chinese")
-          if not root.exists():
-              print("No Chinese story image directory found.")
-              raise SystemExit(0)
-
-          max_side = 1600
-          min_bytes = 700 * 1024
-          patterns = ("*.jpg", "*.jpeg", "*.png", "*.webp")
-          files = []
-          for pattern in patterns:
-              files.extend(root.rglob(pattern))
-
-          before = sum(path.stat().st_size for path in files)
-          changed = 0
-          for path in files:
-              try:
-                  size = path.stat().st_size
-                  with Image.open(path) as image:
-                      image = ImageOps.exif_transpose(image)
-                      original_mode = image.mode
-                      needs_resize = max(image.size) > max_side
-                      if size < min_bytes and not needs_resize:
-                          continue
-                      image.thumbnail((max_side, max_side), Image.Resampling.LANCZOS)
-                      suffix = path.suffix.lower()
-                      save_kwargs = {"optimize": True}
-                      if suffix in (".jpg", ".jpeg"):
-                          if image.mode not in ("RGB", "L"):
-                              image = image.convert("RGB")
-                          save_kwargs.update(quality=70, progressive=True)
-                      elif suffix == ".webp":
-                          if image.mode == "P":
-                              image = image.convert("RGBA")
-                          save_kwargs.update(quality=70, method=6)
-                      elif suffix == ".png":
-                          if original_mode == "P":
-                              image = image.convert("P", palette=Image.Palette.ADAPTIVE)
-                      image.save(path, **save_kwargs)
-                      changed += 1
-              except Exception as error:
-                  print(f"Skipped {path}: {error}")
-
-          after = sum(path.stat().st_size for path in files)
-          print(f"Optimized {changed} story images.")
-          print(f"Story image bytes: {before} -> {after}")
-          PY
+          if ! command -v mogrify >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y imagemagick
+          fi
+          before=$(du -sb _site/run50/stories/chinese | cut -f1)
+          find _site/run50/stories/chinese -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -size +700k -print0 \
+            | xargs -0 -r -n 12 -P 4 mogrify -resize '1600x1600>' -quality 70 -strip
+          after=$(du -sb _site/run50/stories/chinese | cut -f1)
+          echo "Chinese story bytes: $before -> $after"
 
       - name: Archive site artifact
         run: tar --dereference --hard-dereference -C _site -cf "$RUNNER_TEMP/artifact.tar" .
