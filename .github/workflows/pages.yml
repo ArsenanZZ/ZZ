@@ -67,23 +67,23 @@ jobs:
 
           if [ -f _site/.converted-assets.tsv ]; then
             python3 - <<'PY'
-from pathlib import Path
+          from pathlib import Path
 
-mapping = []
-for line in Path("_site/.converted-assets.tsv").read_text(encoding="utf-8").splitlines():
-    if line.strip():
-        old, new = line.split("\t", 1)
-        mapping.append((old, new))
+          mapping = []
+          for line in Path("_site/.converted-assets.tsv").read_text(encoding="utf-8").splitlines():
+              if line.strip():
+                  old, new = line.split("\t", 1)
+                  mapping.append((old, new))
 
-for path in Path("_site").rglob("*"):
-    if path.is_file() and path.suffix.lower() in {".html", ".css", ".js", ".json", ".xml", ".svg"}:
-        text = path.read_text(encoding="utf-8", errors="ignore")
-        updated = text
-        for old, new in mapping:
-            updated = updated.replace(old, new)
-        if updated != text:
-            path.write_text(updated, encoding="utf-8")
-PY
+          for path in Path("_site").rglob("*"):
+              if path.is_file() and path.suffix.lower() in {".html", ".css", ".js", ".json", ".xml", ".svg"}:
+                  text = path.read_text(encoding="utf-8", errors="ignore")
+                  updated = text
+                  for old, new in mapping:
+                      updated = updated.replace(old, new)
+                  if updated != text:
+                      path.write_text(updated, encoding="utf-8")
+          PY
           fi
 
           story_after=$(du -sb _site/run50/stories/chinese | cut -f1)
