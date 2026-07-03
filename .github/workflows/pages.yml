@@ -41,17 +41,57 @@ jobs:
             --exclude='work/' \
             ./ _site/
 
-      - name: Optimize story images for artifact
+      - name: Optimize images for artifact
         run: |
           if ! command -v mogrify >/dev/null 2>&1; then
             sudo apt-get update
             sudo apt-get install -y imagemagick
           fi
-          before=$(du -sb _site/run50/stories/chinese | cut -f1)
-          find _site/run50/stories/chinese -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -size +700k -print0 \
-            | xargs -0 -r -n 12 -P 4 mogrify -resize '1600x1600>' -quality 70 -strip
-          after=$(du -sb _site/run50/stories/chinese | cut -f1)
-          echo "Chinese story bytes: $before -> $after"
+          before=$(du -sb _site | cut -f1)
+          story_before=$(du -sb _site/run50/stories/chinese | cut -f1)
+          assets_before=$(du -sb _site/assets | cut -f1)
+
+          find _site/run50/stories/chinese -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -size +90k -print0 \
+            | xargs -0 -r -n 12 -P 4 mogrify -resize '1800x1800>' -quality 68 -strip
+
+          find _site/assets -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) -size +250k -print0 \
+            | xargs -0 -r -n 12 -P 4 mogrify -resize '1400x1400>' -quality 72 -strip
+
+          find _site/assets -type f -iname '*.png' -size +500k -print0 \
+            | while IFS= read -r -d '' png; do
+                jpg="${png%.*}.jpg"
+                convert "$png" -resize '1400x1400>' -quality 76 -strip "$jpg"
+                rm "$png"
+                printf '%s\t%s\n' "$(basename "$png")" "$(basename "$jpg")" >> _site/.converted-assets.tsv
+              done
+
+          if [ -f _site/.converted-assets.tsv ]; then
+            python3 - <<'PY'
+from pathlib import Path
+
+mapping = []
+for line in Path("_site/.converted-assets.tsv").read_text(encoding="utf-8").splitlines():
+    if line.strip():
+        old, new = line.split("\t", 1)
+        mapping.append((old, new))
+
+for path in Path("_site").rglob("*"):
+    if path.is_file() and path.suffix.lower() in {".html", ".css", ".js", ".json", ".xml", ".svg"}:
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        updated = text
+        for old, new in mapping:
+            updated = updated.replace(old, new)
+        if updated != text:
+            path.write_text(updated, encoding="utf-8")
+PY
+          fi
+
+          story_after=$(du -sb _site/run50/stories/chinese | cut -f1)
+          assets_after=$(du -sb _site/assets | cut -f1)
+          after=$(du -sb _site | cut -f1)
+          echo "Chinese story bytes: $story_before -> $story_after"
+          echo "Assets bytes: $assets_before -> $assets_after"
+          echo "Site artifact bytes: $before -> $after"
 
       - name: Archive site artifact
         run: tar --dereference --hard-dereference -C _site -cf "$RUNNER_TEMP/artifact.tar" .
