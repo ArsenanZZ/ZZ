@@ -294,15 +294,6 @@
     display: block;
   }
 
-  .slide[data-tags*="run50"] img,
-  .slide[data-tags*="runcn"] img,
-  .slide[data-tags*="runworld"] img,
-  .slide.frameless-cover img {
-    object-fit: cover;
-    transform: scale(1.09);
-    transform-origin: center center;
-  }
-
   .slide::after {
     content: "";
     position: absolute;
@@ -1128,14 +1119,6 @@
     background: #151515;
   }
 
-  .frameless-cover > img,
-  .frameless-cover.image-top > img,
-  .feed-grid .layout-span-1.frameless-cover.overlay-card > img {
-    object-fit: cover;
-    transform: scale(1.09);
-    transform-origin: center center;
-  }
-
   .image-top.tall img { height: auto; }
 
   .card-copy {
@@ -1241,12 +1224,6 @@
     height: 100%;
     object-fit: contain;
     background: #151515;
-  }
-
-  .overlay-card.frameless-cover img {
-    object-fit: cover;
-    transform: scale(1.09);
-    transform-origin: center center;
   }
 
   .overlay-card::after {
@@ -1543,7 +1520,6 @@
     display: grid;
     grid-template-columns: 86px minmax(0, 1fr);
     gap: 12px;
-    overflow: hidden;
     padding: 12px 0;
     border-top: 1px solid var(--line);
   }
@@ -1555,11 +1531,6 @@
     height: 64px;
     border-radius: 6px;
     object-fit: cover;
-  }
-
-  .list-item img[src*="cover-medal"] {
-    transform: scale(1.09);
-    transform-origin: center center;
   }
 
   .list-item b {
@@ -3183,14 +3154,13 @@
       logo,
       likes: isRunning ? numberFromMetric(metrics[0]) : null,
       comments: isRunning ? numberFromMetric(metrics[1]) : null,
-      isRunning,
       isKnowledge
     };
   }
 
   function createSlide(story, index) {
     const slide = document.createElement('a');
-    slide.className = `slide${index === 0 ? ' active' : ''}${story.isRunning ? ' frameless-cover' : ''}`;
+    slide.className = `slide${index === 0 ? ' active' : ''}`;
     slide.href = story.href;
     slide.dataset.slide = '';
     const engagement = story.likes === null
@@ -3323,7 +3293,6 @@
         && !card.classList.contains('progress-card')
         && !card.classList.contains('text-module')
         && !card.classList.contains('list-module');
-      card.classList.toggle('frameless-cover', isRunningStoryImageCard(card));
       if (isImageStoryCard) {
         card.classList.add('image-top', 'compact');
         card.classList.remove('auto-overlay', 'overlay-card');
