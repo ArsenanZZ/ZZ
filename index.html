@@ -1792,7 +1792,7 @@
       <a class="tab" data-filter="english" href="https://zhennanzhang.com/run50/stories/english/">English Stories</a>
       <a class="tab" data-filter="facebook" href="https://zhennanzhang.com/run50/facebook/">Facebook</a>
       <a class="tab" data-filter="trip" href="https://zhennanzhang.com/run50/mainly-marathons-new-england-2026-guide.html">Trips</a>
-      <a class="tab" data-filter="other" href="https://zhennanzhang.com/reading/">More</a>
+      <a class="tab" data-filter="other" href="https://zhennanzhang.com/#more">More</a>
     </nav>
     <nav class="more-tabs" aria-label="Knowledge directories">
       <button class="tab more-tab active" type="button" data-more-filter="all">All</button>
@@ -3489,12 +3489,13 @@
   primaryTabs.forEach(tab => {
     tab.addEventListener('click', event => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (tab.dataset.filter !== 'other') return;
       event.preventDefault();
-      activeFilter = tab.dataset.filter;
-      if (activeFilter !== 'other') activeMoreFilter = 'all';
+      activeFilter = 'other';
+      activeMoreFilter = 'all';
       primaryTabs.forEach(item => item.classList.toggle('active', item === tab));
       moreTabs.forEach(item => item.classList.toggle('active', item.dataset.moreFilter === activeMoreFilter));
-      history.replaceState(null, '', activeFilter === 'other' ? '#more' : location.pathname + location.search);
+      history.replaceState(null, '', '#more');
       applyFilters();
     });
   });
