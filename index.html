@@ -575,6 +575,76 @@
 
   .progress-stat[data-tone="china"] { --tone: var(--accent-2); }
   .progress-stat[data-tone="world"] { --tone: var(--blue); }
+  .progress-stat[data-tone="water"],
+  .progress-card[data-tone="water"] { --tone: #55b7d8; }
+  .progress-stat[data-tone="ro"],
+  .progress-card[data-tone="ro"] { --tone: #7bd4b6; }
+  .progress-stat[data-tone="nsf"],
+  .progress-card[data-tone="nsf"] { --tone: #c5a3ff; }
+  .progress-stat[data-tone="reading"],
+  .progress-card[data-tone="reading"] { --tone: #f0b85e; }
+  .progress-stat[data-tone="engineering"],
+  .progress-card[data-tone="engineering"] { --tone: #ef8f8f; }
+
+  .knowledge-panel { display: none; }
+
+  body.more-mode .running-panel { display: none; }
+  body.more-mode .knowledge-panel { display: block; }
+
+  .side-stack > .knowledge-panel .widget-body {
+    height: 100%;
+    padding: 16px;
+  }
+
+  .side-stack > .knowledge-panel .widget-title {
+    display: flex;
+  }
+
+  .knowledge-link-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    height: calc(100% - 32px);
+  }
+
+  .knowledge-link {
+    position: relative;
+    min-height: 96px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #222;
+  }
+
+  .knowledge-link img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    display: block;
+    opacity: .86;
+  }
+
+  .knowledge-link::after {
+    content: "";
+    position: absolute;
+    inset: 36% 0 0;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .88));
+  }
+
+  .knowledge-link span {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 11px;
+    z-index: 2;
+    display: block;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 850;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .56);
+  }
 
   .map-preview-grid {
     display: grid;
@@ -694,6 +764,51 @@
     border: 0;
     border-radius: 0;
     background: transparent;
+  }
+
+  .map-stack-card .mini-map-window {
+    flex: 1 1 auto;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
+  .map-stack-card .map-preview-copy {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    z-index: 2;
+    padding: 0;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .74);
+    pointer-events: none;
+  }
+
+  .map-stack-card .map-preview-copy b {
+    font-size: clamp(15px, 1.25vw, 20px);
+  }
+
+  .map-stack-card .map-preview-copy span {
+    color: rgba(255, 255, 255, .76);
+    font-size: 11px;
+  }
+
+  .map-stack-card .map-preview-copy strong {
+    font-size: clamp(19px, 1.7vw, 28px);
+  }
+
+  .us-map-window svg {
+    width: 115% !important;
+    height: 115% !important;
+    transform: translateY(-1%) scale(1.02);
+    transform-origin: center center;
+  }
+
+  .cn-map-window svg {
+    width: 112% !important;
+    height: 112% !important;
+    transform: translateY(-1%) scale(1.02);
+    transform-origin: center center;
   }
 
   .map-stack-card .map-preview-card + .map-preview-card {
@@ -1501,6 +1616,16 @@
       <a class="tab" data-filter="trip" href="https://zhennanzhang.com/run50/mainly-marathons-new-england-2026-guide.html">Trips</a>
       <a class="tab" data-filter="other" href="https://zhennanzhang.com/reading/">More</a>
     </nav>
+    <nav class="more-tabs" aria-label="Knowledge directories">
+      <button class="tab more-tab active" type="button" data-more-filter="all">All</button>
+      <button class="tab more-tab" type="button" data-more-filter="water">Water</button>
+      <button class="tab more-tab" type="button" data-more-filter="ro">RO</button>
+      <button class="tab more-tab" type="button" data-more-filter="nsf">NSF</button>
+      <button class="tab more-tab" type="button" data-more-filter="reading">Reading Skill</button>
+      <button class="tab more-tab" type="button" data-more-filter="wqa">WQA</button>
+      <button class="tab more-tab" type="button" data-more-filter="softener">Softener</button>
+      <button class="tab more-tab" type="button" data-more-filter="about">Engineering</button>
+    </nav>
     <div class="zoom-tools" aria-label="Card zoom controls">
       <button id="zoomOut" type="button" aria-label="Zoom out" title="Zoom out"><i class="bi bi-zoom-out"></i></button>
       <span class="zoom-value" id="zoomValue">100%</span>
@@ -1621,7 +1746,7 @@
     </div>
 
     <aside class="side-stack">
-      <section class="widget rail-progress">
+      <section class="widget rail-progress running-panel">
         <div class="widget-body">
           <div class="widget-title"><span>Running Progress</span><i class="bi bi-activity"></i></div>
           <div class="progress-stats" aria-label="Running progress by region">
@@ -1643,7 +1768,7 @@
           </div>
         </div>
       </section>
-      <section class="widget">
+      <section class="widget running-panel">
         <div class="widget-body">
           <div class="widget-title"><span>Interactive Maps</span><i class="bi bi-map"></i></div>
           <div class="map-preview-grid" aria-label="Run map previews">
@@ -1683,6 +1808,56 @@
           </div>
         </div>
       </section>
+      <section class="widget knowledge-panel">
+        <div class="widget-body">
+          <div class="widget-title"><span>Knowledge Pages</span><i class="bi bi-bookmarks"></i></div>
+          <div class="progress-stats" aria-label="Knowledge page groups">
+            <a class="progress-stat" data-tone="water" href="https://zhennanzhang.com/water/">
+              <span class="stat-head"><i class="bi bi-droplet"></i><span><b>Water</b><small>Water treatment hub</small></span></span>
+              <span class="stat-value">Hub</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+            <a class="progress-stat" data-tone="ro" href="https://zhennanzhang.com/ro/RO-Complete-Guide-EN.html">
+              <span class="stat-head"><i class="bi bi-funnel"></i><span><b>RO</b><small>Reverse osmosis guide</small></span></span>
+              <span class="stat-value">Guide</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+            <a class="progress-stat" data-tone="nsf" href="https://zhennanzhang.com/nsf/">
+              <span class="stat-head"><i class="bi bi-patch-check"></i><span><b>NSF</b><small>Standards and metrics</small></span></span>
+              <span class="stat-value">Library</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+            <a class="progress-stat" data-tone="reading" href="https://zhennanzhang.com/reading/">
+              <span class="stat-head"><i class="bi bi-journal-text"></i><span><b>Reading Skill</b><small>Books and study notes</small></span></span>
+              <span class="stat-value">Notes</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="widget knowledge-panel">
+        <div class="widget-body">
+          <div class="widget-title"><span>Featured Knowledge</span><i class="bi bi-grid-3x3-gap"></i></div>
+          <div class="knowledge-link-grid" aria-label="Featured knowledge pages">
+            <a class="knowledge-link" href="https://zhennanzhang.com/water-softener/">
+              <img src="https://zhennanzhang.com/assets/thumb-water-softener.jpg?v=20260626-medal-v2" alt="Water softener hub cover">
+              <span>Water Softener Hub</span>
+            </a>
+            <a class="knowledge-link" href="https://zhennanzhang.com/wqa/WQA_2026_Expo_Observation_Report_EN.html">
+              <img src="https://zhennanzhang.com/assets/thumb-wqa-expo.jpg?v=20260626-medal-v2" alt="WQA expo cover">
+              <span>WQA 2026 Expo</span>
+            </a>
+            <a class="knowledge-link" href="https://zhennanzhang.com/reading/nano-ic.html">
+              <img src="https://zhennanzhang.com/assets/thumb-nano-ic-reader.jpg?v=20260626-medal-v2" alt="Nano IC reader cover">
+              <span>Nano IC Reading</span>
+            </a>
+            <a class="knowledge-link" href="https://zhennanzhang.com/this-is-me/structural-design/">
+              <img src="https://zhennanzhang.com/assets/thumb-me-structural-design.jpg?v=20260627-me-clean-v4" alt="Structural design cover">
+              <span>Engineering Work</span>
+            </a>
+          </div>
+        </div>
+      </section>
     </aside>
   </section>
 
@@ -1709,6 +1884,115 @@
         <span class="stat-value">6<span>/ 195</span></span>
       </span>
       <span class="progress-meter" aria-hidden="true"><span style="width:3%"></span></span>
+    </a>
+
+    <a class="card progress-card" data-tone="water" href="https://zhennanzhang.com/water/" data-card data-tags="water knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-droplet"></i><span><h3>Water</h3><small>Treatment and product notes</small></span></span>
+        <span class="stat-value">Hub</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="ro" href="https://zhennanzhang.com/ro/RO-Complete-Guide-EN.html" data-card data-tags="water ro knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-funnel"></i><span><h3>RO</h3><small>Reverse osmosis systems</small></span></span>
+        <span class="stat-value">Guide</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="nsf" href="https://zhennanzhang.com/nsf/" data-card data-tags="water nsf knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-patch-check"></i><span><h3>NSF</h3><small>Standards library</small></span></span>
+        <span class="stat-value">Index</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="reading" href="https://zhennanzhang.com/reading/" data-card data-tags="reading knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-journal-text"></i><span><h3>Reading Skill</h3><small>Books, notes, and study cards</small></span></span>
+        <span class="stat-value">Shelf</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water/" data-card data-tags="water knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-water-softener.jpg?v=20260626-medal-v2" alt="Water knowledge hub cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">W</span> Water Hub</span>
+        <h3>Water treatment notes, softener logic, RO systems, and product research</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/ro/ro-system-explained.html" data-card data-tags="water ro knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-ro-system.jpg?v=20260626-medal-v2" alt="RO system explained cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">RO</span> System Explained</span>
+        <h3>How a reverse osmosis system works from sediment filter to storage tank</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/nsf/nsf-water-guide-codex.html" data-card data-tags="water nsf knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-nsf-standards.jpg?v=20260626-medal-v2" alt="NSF water guide cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">NSF</span> Water Guide</span>
+        <h3>NSF/ANSI drinking water standards explained for consumer product decisions</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/" data-card data-tags="reading knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-reading-home.jpg?v=20260626-medal-v2" alt="Reading skill hub cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">R</span> Reading Skill</span>
+        <h3>Reading notes, study cards, and technical learning pages collected in one shelf</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/wqa/WQA_2026_Presentations_Summary-V2.html" data-card data-tags="water wqa knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-wqa-presentations.jpg?v=20260626-medal-v2" alt="WQA presentations cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WQA</span> Presentations</span>
+        <h3>WQA 2026 presentations summary for water treatment product research</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water-softener/" data-card data-tags="water softener knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-water-softener.jpg?v=20260626-medal-v2" alt="Water softener hub cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WS</span> Softener Hub</span>
+        <h3>Water softener product logic, sizing, resin, regeneration, and valve research</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/wqa/DROP_Research_Report_EN.html" data-card data-tags="water wqa knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-wqa-expo.jpg?v=20260626-medal-v2" alt="DROP research report cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WQA</span> DROP Report</span>
+        <h3>DROP Research Report for connected water treatment products</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/wqa/EZsalt_Research_Report_2_EN.html" data-card data-tags="water wqa softener knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-wqa-presentations.jpg?v=20260626-medal-v2" alt="EZsalt research report cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WQA</span> EZsalt</span>
+        <h3>EZsalt research notes for smart salt monitoring and softener maintenance</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/Softener-Water/" data-card data-tags="water softener knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-softener.jpg?v=20260626-medal-v2" alt="Softener calculator cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WS</span> Softener Tool</span>
+        <h3>Water softener calculation and product comparison workspace</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/mechanical-testing/" data-card data-tags="about engineering knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-me-mechanical-testing.jpg?v=20260627-me-clean-v4" alt="Mechanical testing cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">Me</span> Testing</span>
+        <h3>Mechanical testing projects, methods, and lab-centered engineering work</h3>
+      </span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/facebook/little-rock-marathon.html" data-card data-tags="run50 facebook stories">
@@ -1810,7 +2094,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water/nsf-standards.html" data-card data-tags="water">
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/nsf/" data-card data-tags="water nsf knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-nsf-standards.jpg?v=20260626-medal-v2" alt="NSF standards cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">NSF</span> Water · Library</span>
@@ -1818,7 +2102,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/atomic-habits-full-english.html" data-card data-tags="reading">
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/atomic-habits-full-english.html" data-card data-tags="reading knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-atomic-full.jpg?v=20260626-medal-v2" alt="Atomic Habits cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">R</span> Reading · Book</span>
@@ -1842,7 +2126,7 @@
       </a>
     </div>
 
-    <a class="card span-7 overlay-card" href="https://zhennanzhang.com/water/reverse-osmosis-complete-guide.html" data-card data-tags="water ro">
+    <a class="card span-7 overlay-card" href="https://zhennanzhang.com/ro/RO-Complete-Guide-EN.html" data-card data-tags="water ro knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-ro-guide.jpg?v=20260626-medal-v2" alt="Reverse osmosis guide cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">RO</span> Technical Guide</span>
@@ -1850,7 +2134,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top tall" href="https://zhennanzhang.com/this-is-me/publications/" data-card data-tags="about">
+    <a class="card span-4 image-top tall" href="https://zhennanzhang.com/this-is-me/publications/" data-card data-tags="about engineering knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-me-publications.jpg?v=20260627-me-clean-v4" alt="Publications cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">Me</span> Research</span>
@@ -1858,7 +2142,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top tall" href="https://zhennanzhang.com/reading/nano-ic-manufacturing-study-notes.html" data-card data-tags="reading">
+    <a class="card span-4 image-top tall" href="https://zhennanzhang.com/reading/nano-ic-manufacturing-study.html" data-card data-tags="reading semiconductor knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-nano-ic-prep.jpg?v=20260626-medal-v2" alt="Nano IC manufacturing study notes cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">IC</span> Semiconductor</span>
@@ -2080,7 +2364,7 @@
       <span class="metric-row"><span><i class="bi bi-arrow-repeat"></i>Auto refresh</span><span><i class="bi bi-shuffle"></i>Randomized</span></span>
     </a>
 
-    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/wqa/WQA_2026_Expo_Observation_Report_EN.html" data-card data-tags="water">
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/wqa/WQA_2026_Expo_Observation_Report_EN.html" data-card data-tags="water wqa knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-wqa-expo.jpg?v=20260626-medal-v2" alt="WQA 2026 Expo cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">W</span> WQA · Expo</span>
@@ -2088,7 +2372,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water-softener/softener-valve-analysis-en.html" data-card data-tags="water">
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water-softener/softener-valve-analysis-en.html" data-card data-tags="water softener knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-softener-valve-en.jpg?v=20260626-medal-v2" alt="Water softener valve analysis cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">W</span> Softener · Research</span>
@@ -2096,7 +2380,7 @@
       </span>
     </a>
 
-    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/atomic-habits-bloom-cards.html" data-card data-tags="reading">
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/atomic-habits-bloom-cards.html" data-card data-tags="reading knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-atomic-cards.jpg?v=20260626-medal-v2" alt="Atomic Habits study cards cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">R</span> Reading · Cards</span>
@@ -2104,7 +2388,7 @@
       </span>
     </a>
 
-    <a class="card span-6 overlay-card" href="https://zhennanzhang.com/reading/nano-ic-manufacturing-detailed-handbook.html" data-card data-tags="reading">
+    <a class="card span-6 overlay-card" href="https://zhennanzhang.com/reading/nano-ic-manufacturing-handbook-detailed.html" data-card data-tags="reading semiconductor knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-nano-ic-handbook.jpg?v=20260626-medal-v2" alt="Nano IC handbook cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">IC</span> Semiconductor · Handbook</span>
@@ -2113,7 +2397,7 @@
       </span>
     </a>
 
-    <a class="card span-6 overlay-card" href="https://zhennanzhang.com/reading/nano-scale-equipment-illustrated-handbook-reader.html" data-card data-tags="reading">
+    <a class="card span-6 overlay-card" href="https://zhennanzhang.com/reading/nano-ic-pages/" data-card data-tags="reading semiconductor knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-nano-ic-reader.jpg?v=20260626-medal-v2" alt="Nano-scale equipment reader cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">IC</span> Illustrated Reader</span>
@@ -2130,7 +2414,7 @@
       </span>
     </a>
 
-    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/structural-design/" data-card data-tags="about">
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/structural-design/" data-card data-tags="about engineering knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-me-structural-design.jpg?v=20260627-me-clean-v4" alt="Structural design cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">Me</span> Engineering</span>
@@ -2138,7 +2422,7 @@
       </span>
     </a>
 
-    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/fea-simulation/" data-card data-tags="about">
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/fea-simulation/" data-card data-tags="about engineering knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-me-fea-simulation.jpg?v=20260627-me-clean-v4" alt="FEA simulation cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">Me</span> Simulation</span>
@@ -2146,7 +2430,7 @@
       </span>
     </a>
 
-    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/3d-printing/" data-card data-tags="about">
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/3d-printing/" data-card data-tags="about engineering knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-me-3d-printing.jpg?v=20260627-me-clean-v4" alt="3D printing cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">Me</span> Fabrication</span>
@@ -2184,7 +2468,8 @@
   const sideStack = document.querySelector('.side-stack');
   const prev = document.querySelector('.prev');
   const next = document.querySelector('.next');
-  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const primaryTabs = Array.from(document.querySelectorAll('.tabs .tab'));
+  const moreTabs = Array.from(document.querySelectorAll('.more-tab'));
   let cards = Array.from(document.querySelectorAll('.feed-grid [data-card]'));
   const searchInput = document.getElementById('searchInput');
   const visibleCount = document.getElementById('visibleCount');
@@ -2212,6 +2497,7 @@
   let randomizeTimer = null;
   let masonryFrame = null;
   let viewZoom = Number(localStorage.getItem('zz-msn-view-zoom') || 100);
+  let activeMoreFilter = 'all';
 
   const LIVE_STORY_INDEXES = [
     { path: '/run50/stories/english/', tag: 'english', label: 'English Stories' },
@@ -2222,6 +2508,8 @@
   const CAROUSEL_RANDOMIZE_MS = 10 * 60 * 1000;
   const LIVE_REFRESH_MS = 60 * 60 * 1000;
   const ZOOM_LEVELS = [25, 50, 75, 100, 125];
+  const RUNNING_TAG_RE = /\b(run50|runcn|runworld|english|facebook|trip|stories|scripts|progress)\b/;
+  const KNOWLEDGE_TAG_RE = /\b(knowledge|water|reading|about|ro|nsf|wqa|softener|engineering|semiconductor)\b/;
   const requestedZoom = Number(new URLSearchParams(location.search).get('zoom'));
   if (ZOOM_LEVELS.includes(requestedZoom)) viewZoom = requestedZoom;
 
@@ -2231,6 +2519,34 @@
 
   function refreshCardList() {
     cards = Array.from(document.querySelectorAll('.feed-grid [data-card]'));
+  }
+
+  function isKnowledgeTagSet(tags) {
+    return KNOWLEDGE_TAG_RE.test(tags) && !RUNNING_TAG_RE.test(tags);
+  }
+
+  function isRunningTagSet(tags) {
+    return RUNNING_TAG_RE.test(tags) && !isKnowledgeTagSet(tags);
+  }
+
+  function cardMatchesFilter(card, query = '', { ignoreSearch = false } = {}) {
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const text = card.textContent.toLowerCase();
+    const href = card.getAttribute('href') || card.querySelector('a[href]')?.getAttribute('href') || '';
+    const isKnowledge = isKnowledgeTagSet(tags);
+    const isRunning = isRunningTagSet(tags);
+    const matchesSearch = ignoreSearch || !query || tags.includes(query) || text.includes(query);
+    let matchesFilter = false;
+
+    if (activeFilter === 'all') {
+      matchesFilter = isRunning;
+    } else if (activeFilter === 'other') {
+      matchesFilter = isKnowledge && (activeMoreFilter === 'all' || tags.includes(activeMoreFilter));
+    } else {
+      matchesFilter = isRunning && tags.includes(activeFilter);
+    }
+
+    return matchesFilter && matchesSearch && (isKnowledge || !shouldSkipStoryUrl(href));
   }
 
   function itemSourceType(item) {
@@ -2262,9 +2578,8 @@
   function isRunningStoryImageCard(card) {
     const tags = (card.dataset.tags || '').toLowerCase();
     const href = (card.getAttribute('href') || '').toLowerCase();
-    const isOther = /\b(water|reading|about|ro|progress|scripts)\b/.test(tags);
-    const isStory = /\b(run50|runcn|runworld|english|facebook|trip|stories)\b/.test(tags) || /\/run50\/(facebook|stories\/english)\//.test(href);
-    return !isOther
+    const isStory = RUNNING_TAG_RE.test(tags) || /\/run50\/(facebook|stories\/english)\//.test(href);
+    return !isKnowledgeTagSet(tags)
       && isStory
       && card.matches('.card[data-card]')
       && card.querySelector(':scope > img')
@@ -2506,12 +2821,12 @@
 
   function storyFromFeedCard(card) {
     const tags = (card.dataset.tags || '').toLowerCase();
-    const isOther = /\b(water|reading|about|ro)\b/.test(tags);
-    const isRunning = /\b(run50|runcn|runworld|english|facebook|trip|stories)\b/.test(tags) && !isOther;
+    const isKnowledge = isKnowledgeTagSet(tags);
+    const isRunning = isRunningTagSet(tags);
     const image = card.querySelector('img');
     const title = card.querySelector('h1,h2,h3,.card-title')?.textContent.trim();
     const href = card.getAttribute('href') || card.querySelector('a[href]')?.getAttribute('href');
-    if (!isRunning || !image || !title || !href || shouldSkipStoryUrl(href)) return null;
+    if (!cardMatchesFilter(card, '', { ignoreSearch: true }) || !image || !title || !href) return null;
 
     const sourceNode = card.querySelector('.story-meta');
     const fallbackSeries = tags.includes('runcn') ? 'runcn' : tags.includes('runworld') ? 'runworld' : 'run50';
@@ -2522,12 +2837,13 @@
 
     return {
       href,
-      img: image.currentSrc || image.src,
+      img: image.currentSrc || image.getAttribute('src') || image.src,
       title,
       source,
       logo,
-      likes: numberFromMetric(metrics[0]),
-      comments: numberFromMetric(metrics[1])
+      likes: isRunning ? numberFromMetric(metrics[0]) : null,
+      comments: isRunning ? numberFromMetric(metrics[1]) : null,
+      isKnowledge
     };
   }
 
@@ -2536,12 +2852,15 @@
     slide.className = `slide${index === 0 ? ' active' : ''}`;
     slide.href = story.href;
     slide.dataset.slide = '';
+    const engagement = story.likes === null
+      ? ''
+      : `<span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>${story.likes}</span><span><i class="bi bi-chat-square"></i>${story.comments}</span></span>`;
     slide.innerHTML = `
       <img src="${escapeHtml(story.img)}" alt="${escapeHtml(story.title)} cover">
       <span class="slide-content">
         <span class="source"><span class="source-logo">${escapeHtml(story.logo)}</span> ${escapeHtml(story.source)}</span>
         <h1>${escapeHtml(story.title)}</h1>
-        <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>${story.likes}</span><span><i class="bi bi-chat-square"></i>${story.comments}</span></span>
+        ${engagement}
       </span>
     `;
     return slide;
@@ -2707,25 +3026,19 @@
     const query = searchInput.value.trim().toLowerCase();
     let shown = 0;
     cards.forEach(card => {
-      const tags = (card.dataset.tags || '').toLowerCase();
-      const text = card.textContent.toLowerCase();
-      const href = card.getAttribute('href') || card.querySelector('a[href]')?.getAttribute('href') || '';
-      const isOther = /\b(water|reading|about|ro)\b/.test(tags);
-      const isRunning = /\b(run50|runcn|runworld|english|facebook|trip|stories)\b/.test(tags) && !isOther;
-      const matchesFilter = activeFilter === 'all'
-        ? isRunning
-        : activeFilter === 'other'
-          ? isOther
-          : tags.includes(activeFilter);
-      const matchesSearch = !query || tags.includes(query) || text.includes(query);
-      const visible = matchesFilter && matchesSearch && !shouldSkipStoryUrl(href);
+      const visible = cardMatchesFilter(card, query);
       card.style.display = visible ? '' : 'none';
       if (visible) shown += 1;
     });
-    feedTitle.textContent = activeFilter === 'other' ? 'More' : 'Running front page';
+    document.body.classList.toggle('more-mode', activeFilter === 'other');
+    feedTitle.textContent = activeFilter === 'other' ? 'Knowledge front page' : 'Running front page';
+    searchInput.placeholder = activeFilter === 'other'
+      ? 'Search water, RO, NSF, reading, engineering'
+      : 'Search Run50, RunCN, RunWorld stories';
     if (moreLabel) moreLabel.style.display = 'none';
     visibleCount.textContent = `${shown} item${shown === 1 ? '' : 's'}`;
     emptyState.classList.toggle('show', shown === 0);
+    rebuildCarousel({ randomize: false });
     scheduleMasonry();
   }
 
@@ -2851,11 +3164,24 @@
     }, CAROUSEL_RANDOMIZE_MS);
   }
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      if (tab.matches('a[href]')) return;
+  primaryTabs.forEach(tab => {
+    tab.addEventListener('click', event => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
       activeFilter = tab.dataset.filter;
-      tabs.forEach(item => item.classList.toggle('active', item === tab));
+      if (activeFilter !== 'other') activeMoreFilter = 'all';
+      primaryTabs.forEach(item => item.classList.toggle('active', item === tab));
+      moreTabs.forEach(item => item.classList.toggle('active', item.dataset.moreFilter === activeMoreFilter));
+      applyFilters();
+    });
+  });
+
+  moreTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      activeFilter = 'other';
+      activeMoreFilter = tab.dataset.moreFilter || 'all';
+      primaryTabs.forEach(item => item.classList.toggle('active', item.dataset.filter === 'other'));
+      moreTabs.forEach(item => item.classList.toggle('active', item === tab));
       applyFilters();
     });
   });
