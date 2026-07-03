@@ -35,16 +35,25 @@ jobs:
             --exclude='.git/' \
             --exclude='.github/' \
             --exclude='.claude/' \
+            --exclude='_site/' \
             --exclude='scratch/' \
             --exclude='tools/' \
             --exclude='work/' \
             ./ _site/
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Archive site artifact
+        run: tar --dereference --hard-dereference -C _site -cf "$RUNNER_TEMP/artifact.tar" .
+
+      - name: Upload Pages artifact
+        uses: actions/upload-artifact@v4
         with:
-          path: _site
+          name: zz-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: zz-pages
