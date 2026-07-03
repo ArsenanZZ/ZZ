@@ -142,8 +142,6 @@
   .tabs {
     flex: 1 1 auto;
     display: flex;
-    width: 100%;
-    max-width: 100%;
     gap: 8px;
     overflow-x: auto;
     min-width: 0;
@@ -639,7 +637,7 @@
 
   .feed-grid {
     display: grid;
-    grid-auto-flow: row;
+    grid-auto-flow: dense;
     grid-template-columns: repeat(var(--feed-columns, 12), minmax(0, 1fr));
     gap: 18px;
     align-items: stretch;
@@ -648,7 +646,6 @@
   .card {
     display: block;
     position: relative;
-    width: 100%;
     height: 100%;
     min-width: 0;
     overflow: hidden;
@@ -687,7 +684,6 @@
   .feed-grid .layout-span-7 { grid-column: span 7 !important; }
   .feed-grid .layout-span-8 { grid-column: span 8 !important; }
   .feed-grid .layout-span-12 { grid-column: span 12 !important; }
-  .feed-grid .layout-span-15 { grid-column: span 15 !important; }
 
   .image-top img {
     display: block;
@@ -1075,8 +1071,7 @@
 
     .top-actions .action-pill:first-child { display: none; }
     .page { padding: 14px 10px 38px; }
-    .feed-toolbar { align-items: flex-start; flex-direction: column; width: 100%; min-width: 0; }
-    .tabs { flex: 0 1 auto; }
+    .feed-toolbar { align-items: flex-start; flex-direction: column; }
     .zoom-tools { align-self: flex-end; }
     .hero-carousel { min-height: 0; aspect-ratio: 16 / 10; }
     .slide-content { left: 20px; right: 18px; bottom: 58px; }
@@ -2082,44 +2077,60 @@
   }
 
   function spansForCount(count) {
-    const spans = [];
+    const rows = [];
     let remaining = count;
     let cycle = 0;
     const gridWidth = feedGrid?.clientWidth || window.innerWidth;
     const effectiveWidth = gridWidth * (100 / viewZoom);
-    const columnUnits = effectiveWidth < 760 ? 1 : effectiveWidth < 1680 || viewZoom >= 110 ? 12 : 15;
+    const columnUnits = effectiveWidth >= 2800 ? 24 : effectiveWidth >= 1900 ? 18 : 12;
     if (feedGrid) feedGrid.style.setProperty('--feed-columns', String(columnUnits));
-    if (columnUnits === 1) return Array(count).fill(1);
-
-    const templates = columnUnits === 15
-      ? [
-          [3, 3, 6, 3],
-          [3, 3, 3, 3, 3],
-          [6, 3, 3, 3],
-          [3, 3, 3, 3, 3],
-          [3, 3, 3, 6],
-          [3, 3, 3, 3, 3]
-        ]
-      : [
-          [6, 3, 3],
-          [4, 4, 4],
-          [3, 3, 6],
-          [4, 4, 4]
-        ];
-    const tailSpans = itemCount => Array(itemCount).fill(columnUnits === 15 ? 3 : columnUnits === 12 ? 4 : 1);
-
+    const templates = columnUnits === 24
+      ? [[3, 3, 3, 3, 3, 3, 3, 3], [4, 4, 4, 4, 4, 4], [6, 6, 6, 6], [3, 3, 6, 3, 3, 6]]
+      : columnUnits === 18
+        ? [[3, 3, 3, 3, 3, 3], [3, 3, 6, 6], [6, 6, 6], [4, 4, 4, 6]]
+        : effectiveWidth < 820
+          ? [[6, 6], [12]]
+          : effectiveWidth < 1080
+            ? [[4, 4, 4], [6, 6]]
+            : viewZoom <= 90
+              ? [[3, 3, 3, 3], [3, 3, 6], [4, 4, 4]]
+              : viewZoom >= 110
+                ? [[4, 4, 4], [6, 6], [3, 3, 6]]
+                : [[3, 3, 6], [4, 4, 4], [3, 3, 3, 3], [6, 6]];
+    const fullSpan = columnUnits;
+    const halfSpan = columnUnits / 2;
+    const thirdSpan = columnUnits / 3;
+    const balancedRow = itemCount => {
+      const base = Math.floor(columnUnits / itemCount);
+      const extra = columnUnits - base * itemCount;
+      return Array.from({ length: itemCount }, (_, index) => base + (index < extra ? 1 : 0));
+    };
+    const tailSpans = itemCount => {
+      if (itemCount <= 3) return itemCount === 1 ? [fullSpan] : itemCount === 2 ? [halfSpan, halfSpan] : [thirdSpan, thirdSpan, thirdSpan];
+      if (columnUnits === 24 && itemCount <= 8) return balancedRow(itemCount);
+      if (columnUnits === 18 && itemCount <= 6) return balancedRow(itemCount);
+      if (columnUnits === 12) {
+        if (itemCount === 4) return [3, 3, 3, 3];
+        if (itemCount === 5) return [6, 6, 4, 4, 4];
+        if (itemCount === 6) return [4, 4, 4, 4, 4, 4];
+        if (itemCount === 7) return [3, 3, 3, 3, 4, 4, 4];
+        if (itemCount === 8) return [3, 3, 3, 3, 3, 3, 3, 3];
+      }
+      return null;
+    };
     while (remaining > 0) {
-      const next = templates[cycle % templates.length];
-      if (remaining < next.length) {
-        spans.push(...tailSpans(remaining));
+      const tail = tailSpans(remaining);
+      if (tail) {
+        rows.push(...tail);
         remaining = 0;
       } else {
-        spans.push(...next);
+        const next = templates[cycle % templates.length];
+        rows.push(...next);
         remaining -= next.length;
         cycle += 1;
       }
     }
-    return spans;
+    return rows;
   }
 
   function layoutMsnRows() {
@@ -2130,27 +2141,23 @@
     const visibleCards = cards.filter(card => getComputedStyle(card).display !== 'none');
     const spans = spansForCount(visibleCards.length);
     cards.forEach(card => {
-      if (card.classList.contains('auto-image-top')) {
-        card.classList.remove('auto-image-top', 'image-top', 'compact');
+      if (card.classList.contains('auto-overlay')) {
+        card.classList.remove('auto-overlay', 'overlay-card');
       }
-      card.classList.remove('auto-overlay', 'overlay-card');
       card.style.position = '';
       card.style.width = '';
       card.style.left = '';
       card.style.top = '';
       card.style.height = '';
       card.style.gridColumn = '';
-      card.classList.remove('layout-span-3', 'layout-span-4', 'layout-span-5', 'layout-span-6', 'layout-span-7', 'layout-span-8', 'layout-span-12', 'layout-span-15');
+      card.classList.remove('layout-span-3', 'layout-span-4', 'layout-span-5', 'layout-span-6', 'layout-span-7', 'layout-span-8', 'layout-span-12');
     });
     visibleCards.forEach((card, index) => {
-      const span = spans[index] || 1;
-      const hasImage = Boolean(card.querySelector('img'));
+      const span = window.innerWidth <= 760 ? 12 : spans[index] || 4;
       card.style.gridColumn = `span ${span}`;
-      if ([3, 4, 5, 6, 7, 8, 12, 15].includes(span)) card.classList.add(`layout-span-${span}`);
-      if (hasImage && span >= 6) {
+      if ([3, 4, 5, 6, 7, 8, 12].includes(span)) card.classList.add(`layout-span-${span}`);
+      if (card.classList.contains('image-top') && (span >= 6 || !card.querySelector('.metric-row'))) {
         card.classList.add('overlay-card', 'auto-overlay');
-      } else if (hasImage && !card.classList.contains('image-top')) {
-        card.classList.add('image-top', 'compact', 'auto-image-top');
       }
     });
   }
