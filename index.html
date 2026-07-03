@@ -3252,35 +3252,56 @@
     if (slides.length > 1) slideTimer = setInterval(() => showSlide(activeSlide + 1), CAROUSEL_ROTATE_MS);
   }
 
-  function spansForCount(count, leadingUnits = 0) {
-    const rows = [];
+  function feedColumnUnits() {
+    const isNarrow = window.matchMedia('(max-width: 760px)').matches;
+    const isKnowledgeMode = activeFilter === 'other';
+    const columnUnits = isNarrow ? 1 : isKnowledgeMode ? 4 : 5;
+    if (feedGrid) feedGrid.style.setProperty('--feed-columns', String(columnUnits));
+    return columnUnits;
+  }
+
+  function placementsForCount(count, leadingUnits = 0) {
+    const placements = [];
     let remaining = count;
     let cycle = 0;
     const isNarrow = window.matchMedia('(max-width: 760px)').matches;
     const isKnowledgeMode = activeFilter === 'other';
-    const columnUnits = isNarrow ? 1 : isKnowledgeMode ? 4 : viewZoom >= 125 ? 4 : 5;
-    if (feedGrid) feedGrid.style.setProperty('--feed-columns', String(columnUnits));
-    if (isNarrow) return Array.from({ length: count }, () => 1);
+    const columnUnits = feedColumnUnits();
+    if (isNarrow) return Array.from({ length: count }, () => ({ span: 1, start: 1 }));
 
     const templates = isKnowledgeMode
-      ? [[1, 1, 1, 1], [2, 2], [1, 2, 1], [2, 1, 1], [1, 1, 2]]
+      ? [
+          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 1, start: 3 }, { span: 1, start: 4 }],
+          [{ span: 2, start: 1 }, { span: 1, start: 3 }, { span: 1, start: 4 }],
+          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 2, start: 3 }],
+          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 1, start: 3 }, { span: 1, start: 4 }],
+        ]
       : columnUnits === 4
-      ? [[2, 1, 1], [1, 1, 2], [1, 1, 1, 1]]
-      : [[2, 1, 1, 1], [1, 1, 2, 1], [1, 1, 1, 1, 1]];
+      ? [
+          [{ span: 2, start: 1 }, { span: 1, start: 3 }, { span: 1, start: 4 }],
+          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 2, start: 3 }],
+          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 1, start: 3 }, { span: 1, start: 4 }],
+        ]
+      : [
+          [{ span: 2, start: 1 }, { span: 1, start: 3 }, { span: 1, start: 4 }, { span: 1, start: 5 }],
+          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 2, start: 3 }, { span: 1, start: 5 }],
+          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 1, start: 3 }, { span: 1, start: 4 }, { span: 1, start: 5 }],
+        ];
     const leadingFill = leadingUnits > 0 ? (columnUnits - (leadingUnits % columnUnits)) % columnUnits : 0;
     if (leadingFill > 0) {
       const take = Math.min(leadingFill, remaining);
-      rows.push(...Array.from({ length: take }, () => 1));
+      const firstStart = (leadingUnits % columnUnits) + 1;
+      placements.push(...Array.from({ length: take }, (_, index) => ({ span: 1, start: firstStart + index })));
       remaining -= take;
     }
     while (remaining > 0) {
       const next = templates[cycle % templates.length];
       const take = next.slice(0, remaining);
-      rows.push(...take);
+      placements.push(...take);
       remaining -= take.length;
       cycle += 1;
     }
-    return rows;
+    return placements;
   }
 
   function layoutMsnRows() {
@@ -3291,10 +3312,10 @@
     const visibleCards = cards.filter(card => getComputedStyle(card).display !== 'none');
     const flowCards = visibleCards.filter(card => !card.classList.contains('progress-card'));
     const progressCards = visibleCards.filter(card => card.classList.contains('progress-card'));
-    const spans = spansForCount(flowCards.length, progressCards.length);
+    const columnUnits = feedColumnUnits();
+    const placements = placementsForCount(flowCards.length, progressCards.length);
     let flowIndex = 0;
     let progressIndex = 0;
-    const progressSpans = [1, 1, 1, 1, 1];
     cards.forEach(card => {
       const isImageStoryCard = card.querySelector(':scope > img')
         && !card.classList.contains('progress-card')
@@ -3311,17 +3332,18 @@
       card.style.left = '';
       card.style.top = '';
       card.style.height = '';
-      card.style.gridColumn = '';
+      card.style.removeProperty('grid-column');
       card.classList.remove('layout-span-1', 'layout-span-2', 'layout-span-3', 'layout-span-4', 'layout-span-5', 'layout-span-6', 'layout-span-7', 'layout-span-8', 'layout-span-12');
     });
     visibleCards.forEach((card, index) => {
       const isNarrow = window.matchMedia('(max-width: 760px)').matches;
-      const span = isNarrow
-        ? 1
+      const placement = isNarrow
+        ? { span: 1, start: 1 }
         : card.classList.contains('progress-card')
-          ? progressSpans[progressIndex++] || 1
-          : spans[flowIndex++] || 1;
-      card.style.gridColumn = isNarrow ? '1 / -1' : `span ${span}`;
+          ? { span: 1, start: (progressIndex++ % columnUnits) + 1 }
+          : placements[flowIndex++] || { span: 1, start: 1 };
+      const span = placement.span;
+      card.style.setProperty('grid-column', isNarrow ? '1 / -1' : `${placement.start} / span ${span}`, 'important');
       if ([1, 2, 3, 4, 5, 6, 7, 8, 12].includes(span)) card.classList.add(`layout-span-${span}`);
       if (!isNarrow && card.classList.contains('image-top') && span >= 2) {
         card.classList.add('overlay-card', 'auto-overlay');
