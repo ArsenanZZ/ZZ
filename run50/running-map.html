@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Running Map | ArsenanZZ Run50</title>
   <meta name="description" content="ArsenanZZ global marathon footprint map across Run50, RunCN, and RunWorld.">
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem('run50-map-theme');
+        document.documentElement.dataset.run50MapTheme = savedTheme === 'light' ? 'light' : 'dark';
+      } catch (error) {
+        document.documentElement.dataset.run50MapTheme = 'dark';
+      }
+    })();
+  </script>
   <style>
     :root {
       --paper: #f4f6f7;
@@ -31,6 +41,144 @@
     }
 
     a { color: inherit; }
+
+    html[data-run50-map-theme="dark"] {
+      color-scheme: dark;
+      --paper: #090d13;
+      --surface: #111820;
+      --ink: #eef4fb;
+      --muted: #a8b3c2;
+      --line: #283442;
+      --brick: #ff8a70;
+    }
+
+    html[data-run50-map-theme="dark"] body {
+      background: linear-gradient(180deg, #101820 0, #090d13 340px);
+      color: var(--ink);
+    }
+
+    html[data-run50-map-theme="dark"] a {
+      color: #8fd3ff;
+    }
+
+    html[data-run50-map-theme="dark"] .intro,
+    html[data-run50-map-theme="dark"] .running-map-subhead {
+      color: #d6dee8;
+    }
+
+    html[data-run50-map-theme="dark"] .running-map-section {
+      background: #111820;
+      border-color: #283442;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .38);
+    }
+
+    html[data-run50-map-theme="dark"] .running-map-pill {
+      background: rgba(47, 133, 90, .22);
+      color: #8de0ad;
+    }
+
+    html[data-run50-map-theme="dark"] .running-map-stat {
+      background: #151f2a;
+      border-color: #2d3b4b;
+    }
+
+    html[data-run50-map-theme="dark"] .running-map-stat strong {
+      color: #f5f7fb;
+    }
+
+    html[data-run50-map-theme="dark"] .world-running-map-slot {
+      background: #132432;
+      border-color: #2d3b4b;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+    }
+
+    html[data-run50-map-theme="dark"] .world-running-map-slot.atlas-slot {
+      background: #1b1d1f;
+      border-color: #3d3325;
+      box-shadow: inset 0 0 0 7px rgba(215, 170, 90, .08);
+    }
+
+    html[data-run50-map-theme="dark"] .world-running-map-slot.globe-slot {
+      background:
+        radial-gradient(circle at 50% 48%, rgba(78, 126, 146, .46), rgba(20, 44, 58, .42) 48%, rgba(10, 18, 27, .92) 100%),
+        linear-gradient(135deg, #172434 0%, #0d1722 100%);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, .08),
+        inset 0 0 90px rgba(0, 0, 0, .36);
+    }
+
+    html[data-run50-map-theme="dark"] .world-running-map-slot svg,
+    html[data-run50-map-theme="dark"] .world-running-map-slot canvas {
+      filter: brightness(.78) saturate(.92) contrast(1.08);
+    }
+
+    html[data-run50-map-theme="dark"] .world-city-dot,
+    html[data-run50-map-theme="dark"] .world-city-glow {
+      filter: none;
+    }
+
+    html[data-run50-map-theme="dark"] .world-map-control,
+    html[data-run50-map-theme="dark"] .world-map-zoom-chip {
+      background: rgba(14, 21, 30, .84);
+      border-color: rgba(255, 255, 255, .16);
+      color: #e7edf4;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, .32);
+    }
+
+    html[data-run50-map-theme="dark"] .world-map-control:hover {
+      background: rgba(31, 43, 56, .94);
+      border-color: rgba(255, 255, 255, .28);
+    }
+
+    html[data-run50-map-theme="dark"] .running-map-legend i {
+      border-color: rgba(255, 255, 255, .22);
+    }
+
+    .run50-map-theme-toggle {
+      position: fixed;
+      z-index: 9999;
+      top: 14px;
+      right: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 0 13px;
+      border: 1px solid rgba(17, 24, 39, .18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .86);
+      color: #111827;
+      font: 700 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0;
+      box-shadow: 0 12px 34px rgba(15, 23, 42, .16);
+      backdrop-filter: blur(14px);
+      cursor: pointer;
+    }
+
+    .run50-map-theme-toggle::before {
+      content: "";
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #111827;
+      box-shadow: inset 5px -2px 0 #ffffff;
+    }
+
+    .run50-map-theme-toggle:hover {
+      transform: translateY(-1px);
+    }
+
+    html[data-run50-map-theme="dark"] .run50-map-theme-toggle {
+      border-color: rgba(255, 255, 255, .18);
+      background: rgba(14, 21, 30, .82);
+      color: #f5f7fb;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .34);
+    }
+
+    html[data-run50-map-theme="dark"] .run50-map-theme-toggle::before {
+      background: #f8d66d;
+      box-shadow: 0 0 0 4px rgba(248, 214, 109, .12);
+    }
 
     .shell {
       max-width: 980px;
@@ -413,10 +561,18 @@
       .world-running-map-slot.atlas-slot { aspect-ratio: 1516 / 760; }
       .world-running-map-slot.globe-slot { aspect-ratio: 1 / 1; }
       .world-running-map-tooltip { min-width: 210px; max-width: calc(100% - 24px); }
+      .run50-map-theme-toggle {
+        top: 10px;
+        right: 10px;
+        min-height: 34px;
+        padding: 0 11px;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 <body>
+  <button class="run50-map-theme-toggle" type="button" data-run50-map-theme-toggle aria-live="polite">Light</button>
   <main class="shell">
     <nav class="topline" aria-label="Page navigation">
       <a href="./index.html">&larr; Home</a>
@@ -493,6 +649,32 @@
 
   <script src="./world-map-svg.js?v=20260627-flat-panzoom-details-tuned"></script>
   <script src="./world-geo-data.js?v=20260627-flat-panzoom-details-tuned"></script>
+  <script>
+  (() => {
+    const button = document.querySelector('[data-run50-map-theme-toggle]');
+    if (!button) return;
+
+    function syncButton() {
+      const isDark = document.documentElement.dataset.run50MapTheme !== 'light';
+      button.textContent = isDark ? 'Light' : 'Dark';
+      button.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+    }
+
+    button.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.run50MapTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.dataset.run50MapTheme = nextTheme;
+      try {
+        localStorage.setItem('run50-map-theme', nextTheme);
+      } catch (error) {
+        return;
+      } finally {
+        syncButton();
+      }
+    });
+
+    syncButton();
+  })();
+  </script>
   <script>
   (() => {
     const slot = document.getElementById('world-running-map-slot');
