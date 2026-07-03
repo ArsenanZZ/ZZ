@@ -143,12 +143,14 @@
   .feed-toolbar {
     grid-column: 1 / -1;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 12px;
     margin: 0;
   }
 
   .tabs {
+    order: 1;
     flex: 1 1 auto;
     display: flex;
     gap: 8px;
@@ -182,7 +184,29 @@
     background: #404040;
   }
 
+  .more-tabs {
+    order: 3;
+    display: none;
+    flex: 1 0 100%;
+    gap: 8px;
+    overflow-x: auto;
+    min-width: 0;
+    padding: 0 0 3px;
+    scrollbar-width: none;
+  }
+
+  .more-tabs::-webkit-scrollbar { display: none; }
+
+  body.more-mode .more-tabs { display: flex; }
+
+  .more-tab {
+    min-height: 32px;
+    padding: 0 13px;
+    color: var(--muted);
+  }
+
   .zoom-tools {
+    order: 2;
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
@@ -625,6 +649,38 @@
     flex: 1 1 auto;
     min-height: 0;
     aspect-ratio: auto;
+  }
+
+  .world-map-panel .map-preview-copy {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    z-index: 2;
+    padding: 0;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .72);
+    pointer-events: none;
+  }
+
+  .world-map-panel .map-preview-copy b {
+    font-size: clamp(16px, 1.4vw, 22px);
+  }
+
+  .world-map-panel .map-preview-copy span {
+    color: rgba(255, 255, 255, .76);
+    font-size: 12px;
+  }
+
+  .world-map-panel .map-preview-copy strong {
+    font-size: clamp(22px, 2vw, 32px);
+  }
+
+  .world-map-window svg {
+    width: 128% !important;
+    height: 128% !important;
+    transform: translateY(-3%) scale(1.04);
+    transform-origin: center center;
   }
 
   .map-stack-card {
@@ -1595,7 +1651,7 @@
               <div class="world-map-panel">
                 <span class="map-status-badges"><span><i class="bi bi-check-circle-fill"></i>6 countries</span><span><i class="bi bi-geo-alt-fill"></i>64 city dots</span></span>
                 <div class="mini-map-window world-map-window" id="worldProgressMap" aria-label="RunWorld world map preview"></div>
-                <span class="map-preview-copy"><span><b>RunWorld Map</b><span>Countries and race cities</span></span><strong>6/195</strong></span>
+                <span class="map-preview-copy"><span><b>RunWorld</b><span>Countries and race cities</span></span><strong>6/195</strong></span>
               </div>
               <div class="lead-stat-list" aria-label="Running progress summary">
                 <span class="lead-stat-row" data-tone="run50">
@@ -2177,6 +2233,60 @@
     cards = Array.from(document.querySelectorAll('.feed-grid [data-card]'));
   }
 
+  function itemSourceType(item) {
+    const tags = (item.dataset?.tags || item.tags || '').toLowerCase();
+    const href = (item.getAttribute?.('href') || item.href || '').toLowerCase();
+    if (tags.includes('english') || href.includes('/stories/english/')) return 'english';
+    if (tags.includes('facebook') || href.includes('/facebook/')) return 'facebook';
+    return 'other';
+  }
+
+  function interleaveStoryItems(items) {
+    const buckets = { facebook: [], english: [], other: [] };
+    items.forEach(item => buckets[itemSourceType(item)].push(item));
+    const pattern = ['facebook', 'english', 'facebook', 'other'];
+    const mixed = [];
+    let patternIndex = 0;
+    while (buckets.facebook.length || buckets.english.length || buckets.other.length) {
+      for (let step = 0; step < pattern.length; step += 1) {
+        const key = pattern[(patternIndex + step) % pattern.length];
+        if (!buckets[key].length) continue;
+        mixed.push(buckets[key].shift());
+        patternIndex = (patternIndex + step + 1) % pattern.length;
+        break;
+      }
+    }
+    return mixed;
+  }
+
+  function isRunningStoryImageCard(card) {
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const href = (card.getAttribute('href') || '').toLowerCase();
+    const isOther = /\b(water|reading|about|ro|progress|scripts)\b/.test(tags);
+    const isStory = /\b(run50|runcn|runworld|english|facebook|trip|stories)\b/.test(tags) || /\/run50\/(facebook|stories\/english)\//.test(href);
+    return !isOther
+      && isStory
+      && card.matches('.card[data-card]')
+      && card.querySelector(':scope > img')
+      && !card.classList.contains('text-module')
+      && !card.classList.contains('list-module')
+      && !card.classList.contains('progress-card');
+  }
+
+  function mixStoryCards() {
+    if (!feedGrid) return;
+    const storyCards = Array.from(feedGrid.querySelectorAll(':scope > .card[data-card]')).filter(isRunningStoryImageCard);
+    if (storyCards.length < 2) return;
+    const markers = storyCards.map(card => {
+      const marker = document.createComment('story-slot');
+      card.before(marker);
+      card.remove();
+      return marker;
+    });
+    interleaveStoryItems(storyCards).forEach((card, index) => markers[index].replaceWith(card));
+    refreshCardList();
+  }
+
   function canonicalStoryKey(value) {
     try {
       const url = new URL(value, location.href);
@@ -2235,11 +2345,14 @@
       const isBase = id === 'map_USA';
       const isOcean = /ocean/i.test(id);
       const isComplete = US_PROGRESS_TOKENS.some(token => id.toLowerCase().includes(token.toLowerCase()));
-      path.setAttribute('fill', isOcean ? '#161f29' : isComplete ? '#c88f3b' : isBase ? '#26313b' : '#3a434c');
-      path.setAttribute('stroke', isComplete ? 'rgba(255,231,182,.74)' : 'rgba(255,255,255,.18)');
-      path.setAttribute('stroke-width', isComplete ? '1.7' : '.9');
+      path.setAttribute('fill', isOcean ? '#18232d' : isComplete ? '#c88f3b' : isBase ? '#26313b' : '#35414c');
+      path.setAttribute('stroke', isOcean ? 'rgba(255,255,255,.06)' : isComplete ? 'rgba(82,61,35,.52)' : 'rgba(255,255,255,.11)');
+      path.setAttribute('stroke-width', isComplete ? '.85' : '.55');
+      path.setAttribute('stroke-linejoin', 'round');
+      path.setAttribute('stroke-linecap', 'round');
       path.setAttribute('vector-effect', 'non-scaling-stroke');
-      path.style.opacity = isComplete ? '.96' : '.56';
+      path.style.paintOrder = 'stroke fill markers';
+      path.style.opacity = isComplete ? '1' : '.52';
     });
   }
 
@@ -2373,10 +2486,10 @@
     if (!canUseLiveIndexes()) return false;
     const existingKeys = new Set(cards.map(card => canonicalStoryKey(card.getAttribute('href') || '')));
     const fetchedGroups = await Promise.allSettled(LIVE_STORY_INDEXES.map(fetchStoryIndex));
-    const freshStories = fetchedGroups
+    const freshStories = interleaveStoryItems(fetchedGroups
       .filter(result => result.status === 'fulfilled')
       .flatMap(result => result.value)
-      .filter(story => !existingKeys.has(canonicalStoryKey(story.href)));
+      .filter(story => !existingKeys.has(canonicalStoryKey(story.href))));
     if (!freshStories.length) return false;
 
     const feedGrid = document.querySelector('.feed-grid');
@@ -2513,8 +2626,8 @@
     if (isNarrow) return Array.from({ length: count }, () => 1);
 
     const templates = columnUnits === 4
-      ? [[2, 1, 1], [1, 2, 1], [1, 1, 2]]
-      : [[2, 1, 1, 1], [1, 2, 1, 1], [1, 1, 2, 1], [1, 1, 1, 2]];
+      ? [[2, 1, 1], [1, 1, 1, 1], [2, 2], [1, 2, 1], [1, 1, 2]]
+      : [[2, 1, 1, 1], [1, 1, 1, 1, 1], [2, 2, 1], [1, 2, 1, 1], [1, 1, 2, 1], [2, 1, 2], [1, 2, 2]];
     while (remaining > 0) {
       const next = templates[cycle % templates.length];
       const take = next.slice(0, remaining);
@@ -2723,6 +2836,7 @@
     setInterval(async () => {
       const changed = await refreshFromLiveIndexes();
       if (!changed) return;
+      mixStoryCards();
       rebuildCarousel();
       setupReactions();
       applyFilters();
@@ -2782,6 +2896,7 @@
   async function init() {
     refreshCardList();
     await refreshFromLiveIndexes();
+    mixStoryCards();
     renderProgressMaps();
     rebuildCarousel();
     setupReactions();
