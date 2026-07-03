@@ -1022,7 +1022,7 @@
     grid-column: 1 / -1;
     grid-row: 3;
     display: grid;
-    grid-auto-flow: dense;
+    grid-auto-flow: row;
     grid-template-columns: repeat(var(--feed-columns, 12), minmax(0, 1fr));
     gap: 12px;
     align-items: stretch;
@@ -3252,7 +3252,7 @@
     if (slides.length > 1) slideTimer = setInterval(() => showSlide(activeSlide + 1), CAROUSEL_ROTATE_MS);
   }
 
-  function spansForCount(count) {
+  function spansForCount(count, leadingUnits = 0) {
     const rows = [];
     let remaining = count;
     let cycle = 0;
@@ -3265,8 +3265,14 @@
     const templates = isKnowledgeMode
       ? [[1, 1, 1, 1], [2, 2], [1, 2, 1], [2, 1, 1], [1, 1, 2]]
       : columnUnits === 4
-      ? [[2, 1, 1], [1, 1, 1, 1], [2, 2], [1, 2, 1], [1, 1, 2]]
-      : [[2, 1, 1, 1], [1, 1, 1, 1, 1], [2, 2, 1], [1, 2, 1, 1], [1, 1, 2, 1], [2, 1, 2], [1, 2, 2]];
+      ? [[2, 1, 1], [1, 1, 2], [1, 1, 1, 1]]
+      : [[2, 1, 1, 1], [1, 1, 2, 1], [1, 1, 1, 1, 1]];
+    const leadingFill = leadingUnits > 0 ? (columnUnits - (leadingUnits % columnUnits)) % columnUnits : 0;
+    if (leadingFill > 0) {
+      const take = Math.min(leadingFill, remaining);
+      rows.push(...Array.from({ length: take }, () => 1));
+      remaining -= take;
+    }
     while (remaining > 0) {
       const next = templates[cycle % templates.length];
       const take = next.slice(0, remaining);
@@ -3284,10 +3290,11 @@
     feedGrid.style.height = '';
     const visibleCards = cards.filter(card => getComputedStyle(card).display !== 'none');
     const flowCards = visibleCards.filter(card => !card.classList.contains('progress-card'));
-    const spans = spansForCount(flowCards.length);
+    const progressCards = visibleCards.filter(card => card.classList.contains('progress-card'));
+    const spans = spansForCount(flowCards.length, progressCards.length);
     let flowIndex = 0;
     let progressIndex = 0;
-    const progressSpans = activeFilter === 'other' ? [1, 1, 1, 1] : viewZoom >= 125 ? [2, 1, 1] : [2, 2, 1];
+    const progressSpans = [1, 1, 1, 1, 1];
     cards.forEach(card => {
       const isImageStoryCard = card.querySelector(':scope > img')
         && !card.classList.contains('progress-card')
