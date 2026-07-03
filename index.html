@@ -1621,17 +1621,31 @@
       flex-direction: column;
       width: 100%;
       max-width: 100%;
-      overflow: hidden;
+      overflow: visible;
     }
     .tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       width: 100%;
       max-width: 100%;
+      gap: 8px;
+      overflow: visible;
+    }
+    .tab {
+      width: 100%;
+      min-width: 0;
+      min-height: 36px;
+      padding: 0 7px;
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .zoom-tools { display: none; }
     .hero-carousel {
       min-height: 0;
-      height: auto;
-      aspect-ratio: 16 / 10;
+      height: clamp(324px, calc((100vw - 24px) * .96), 390px);
+      aspect-ratio: auto;
     }
     .lead-grid,
     .hero-carousel,
@@ -1645,14 +1659,15 @@
     }
     .slide::after { display: none; }
     .slide img {
-      height: calc(100% - 112px);
+      height: calc(100% - 116px);
+      object-position: center top;
     }
     .slide-content {
       left: 0;
       right: 0;
       bottom: 0;
-      min-height: 92px;
-      padding: 8px 12px 34px;
+      min-height: 104px;
+      padding: 9px 12px 36px;
       background: #111;
     }
     .source {
@@ -1758,7 +1773,7 @@
     <span>Arsenan ZZ</span>
   </a>
   <form class="search" role="search">
-    <input id="searchInput" type="search" placeholder="Search Run50, RunCN, RunWorld stories" autocomplete="off">
+    <input id="searchInput" type="search" placeholder="Search stories" autocomplete="off">
     <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
   </form>
   <div class="top-actions">
@@ -3191,7 +3206,7 @@
     if (!image) return;
     const apply = () => {
       if (window.matchMedia('(max-width: 760px)').matches) {
-        hero.style.aspectRatio = '4 / 3';
+        hero.style.aspectRatio = '';
         syncLeadSideHeight();
         return;
       }
@@ -3338,8 +3353,8 @@
     document.body.classList.toggle('more-mode', activeFilter === 'other');
     feedTitle.textContent = activeFilter === 'other' ? 'Knowledge front page' : 'Running front page';
     searchInput.placeholder = activeFilter === 'other'
-      ? 'Search water, RO, NSF, reading, engineering'
-      : 'Search Run50, RunCN, RunWorld stories';
+      ? 'Search projects'
+      : 'Search stories';
     if (moreLabel) moreLabel.style.display = 'none';
     visibleCount.textContent = `${shown} item${shown === 1 ? '' : 's'}`;
     emptyState.classList.toggle('show', shown === 0);
