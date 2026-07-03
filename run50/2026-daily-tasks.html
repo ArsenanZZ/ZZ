@@ -1,11 +1,21 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
-  <title>2026 每日任务 · 私密计划</title>
+  <title>2026 Daily Tasks · Private Planner</title>
+  <script>
+    (() => {
+      try {
+        const lang = localStorage.getItem("zz-daily-tasks-lang") || "en";
+        const theme = localStorage.getItem("zz-daily-tasks-theme") || "dark";
+        document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+        document.documentElement.dataset.theme = theme;
+      } catch (_) {}
+    })();
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -106,6 +116,26 @@
     .primary:hover { background: var(--navy-2); }
     .form-message { min-height: 20px; margin: 9px 0 0; color: var(--red); font-size: 13px; }
     .privacy-note { margin-top: 16px; color: #7a858e; font-size: 12px; line-height: 1.55; }
+    .lock-preferences {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 5;
+      display: flex;
+      gap: 8px;
+    }
+    .preference-button {
+      min-height: 38px;
+      padding: 0 12px;
+      border: 1px solid rgba(110,126,139,.32);
+      border-radius: 11px;
+      color: var(--ink);
+      background: rgba(255,253,248,.82);
+      font-weight: 800;
+      box-shadow: 0 6px 20px rgba(22,34,45,.08);
+      backdrop-filter: blur(12px);
+    }
+    .preference-button:hover { border-color: var(--blue); }
 
     .app-header {
       position: sticky;
@@ -198,6 +228,16 @@
     .panel-heading h2 { margin: 0; font-size: clamp(22px, 4vw, 31px); letter-spacing: -.035em; }
     .panel-heading p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
     .date-chip { padding: 9px 12px; border-radius: 99px; color: #fff; background: var(--blue); font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .daily-quote {
+      margin: -3px 0 20px;
+      padding: 17px 19px;
+      border-left: 4px solid var(--orange);
+      border-radius: 4px 14px 14px 4px;
+      background: #f4f7f9;
+    }
+    .quote-label { display: block; margin-bottom: 7px; color: var(--blue); font-size: 10px; font-weight: 900; letter-spacing: .15em; }
+    .quote-primary { margin: 0; font-size: 16px; font-weight: 750; line-height: 1.55; }
+    .quote-secondary { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
     .task-composer { display: flex; gap: 9px; }
     .task-input { height: 47px; padding: 0 14px; }
     .add-button {
@@ -208,14 +248,45 @@
     .task-list { display: grid; gap: 8px; margin: 17px 0 20px; }
     .task-row {
       display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px;
-      min-height: 48px; padding: 8px 9px 8px 13px; border: 1px solid var(--line); border-radius: 13px; background: #fff;
+      min-height: 58px; padding: 9px 9px 9px 12px; border: 1px solid var(--line); border-left: 5px solid var(--task-color);
+      border-radius: 13px; background: #fff;
     }
     .task-row input { width: 19px; height: 19px; accent-color: var(--green); }
     .task-row.done .task-text { color: #929ba2; text-decoration: line-through; }
+    .task-main { min-width: 0; }
     .task-text { min-width: 0; overflow-wrap: anywhere; }
+    .task-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 7px; }
+    .color-button {
+      width: 23px; height: 23px; padding: 0; border: 3px solid #fff; border-radius: 50%;
+      background: var(--task-color); box-shadow: 0 0 0 1px #aab5bc;
+    }
+    .pom-control {
+      display: inline-flex; align-items: center; overflow: hidden; border: 1px solid var(--line);
+      border-radius: 8px; background: rgba(128,145,157,.08);
+    }
+    .pom-control button { width: 27px; height: 25px; padding: 0; border: 0; color: inherit; background: transparent; font-weight: 900; }
+    .pom-control button:hover { background: rgba(128,145,157,.16); }
+    .pom-count { min-width: 78px; padding: 0 5px; color: var(--muted); text-align: center; font-size: 11px; font-weight: 800; }
+    .pom-start {
+      min-height: 27px; padding: 0 9px; border: 0; border-radius: 8px;
+      color: #fff; background: var(--task-color); font-size: 11px; font-weight: 900;
+    }
+    .completed-time { color: var(--green); font-size: 10px; font-weight: 700; }
     .delete-task { width: 31px; height: 31px; border: 0; border-radius: 9px; background: transparent; color: #9aa2a8; font-size: 18px; }
     .delete-task:hover { color: var(--red); background: #fff0ef; }
     .empty-tasks { padding: 22px; border: 1px dashed #ccd4d9; border-radius: 13px; color: var(--muted); text-align: center; }
+    .timer-card {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      margin: 12px 0 17px; padding: 14px 16px; border-radius: 14px;
+      color: #fff; background: linear-gradient(135deg, var(--timer-color, var(--blue)), var(--navy));
+      box-shadow: 0 9px 22px rgba(16,33,50,.16);
+    }
+    .timer-copy { min-width: 0; }
+    .timer-copy small { display: block; margin-bottom: 3px; opacity: .74; font-size: 10px; font-weight: 900; letter-spacing: .12em; }
+    .timer-task { overflow: hidden; font-size: 13px; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+    .timer-side { display: flex; align-items: center; gap: 10px; }
+    .timer-time { min-width: 62px; font-variant-numeric: tabular-nums; font-size: 23px; font-weight: 900; letter-spacing: -.03em; }
+    .timer-cancel { width: 30px; height: 30px; border: 1px solid rgba(255,255,255,.4); border-radius: 9px; color: #fff; background: rgba(255,255,255,.1); }
     .notes-label { display: flex; justify-content: space-between; margin-bottom: 7px; color: #45525e; font-size: 13px; font-weight: 800; }
     .save-state { color: var(--green); font-weight: 500; }
     .notes { min-height: 96px; padding: 12px 14px; resize: vertical; line-height: 1.55; }
@@ -262,6 +333,68 @@
     }
     .toast.show { transform: translate(-50%,0); opacity: 1; }
 
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cream: #0c141d;
+      --paper: #14212c;
+      --ink: #eef4f7;
+      --muted: #a5b2bc;
+      --line: #30414e;
+      --shadow: 0 18px 48px rgba(0,0,0,.35);
+    }
+    html[data-theme="dark"] body {
+      background:
+        radial-gradient(circle at 8% 2%, rgba(245,157,36,.10), transparent 25rem),
+        radial-gradient(circle at 92% 5%, rgba(11,103,194,.14), transparent 28rem),
+        linear-gradient(180deg, #09121a 0, #101b24 32rem);
+    }
+    html[data-theme="dark"] .lock-card,
+    html[data-theme="dark"] .hero-main,
+    html[data-theme="dark"] .progress-card,
+    html[data-theme="dark"] .today-panel,
+    html[data-theme="dark"] .calendar-panel {
+      border-color: rgba(125,153,174,.16);
+      background: rgba(20,33,44,.95);
+      box-shadow: var(--shadow);
+    }
+    html[data-theme="dark"] .lock-body > p,
+    html[data-theme="dark"] .privacy-note,
+    html[data-theme="dark"] .field label,
+    html[data-theme="dark"] .notes-label { color: #a9b6c0; }
+    html[data-theme="dark"] .field input,
+    html[data-theme="dark"] .task-input,
+    html[data-theme="dark"] .notes,
+    html[data-theme="dark"] .task-row,
+    html[data-theme="dark"] .day,
+    html[data-theme="dark"] .filter {
+      border-color: #344754;
+      background: #0f1b25;
+      color: var(--ink);
+    }
+    html[data-theme="dark"] .field input:focus,
+    html[data-theme="dark"] .task-input:focus,
+    html[data-theme="dark"] .notes:focus { border-color: #58a8f0; }
+    html[data-theme="dark"] .primary { background: var(--orange); color: #102132; }
+    html[data-theme="dark"] .primary:hover { background: #ffb347; }
+    html[data-theme="dark"] .preference-button {
+      border-color: rgba(169,190,205,.24);
+      color: #edf4f7;
+      background: rgba(16,30,41,.82);
+      box-shadow: 0 8px 24px rgba(0,0,0,.22);
+    }
+    html[data-theme="dark"] .progress-ring { background: conic-gradient(var(--orange) var(--progress), #293a47 0); }
+    html[data-theme="dark"] .progress-ring::after { background: var(--paper); }
+    html[data-theme="dark"] .progress-bar { background: #293a47; }
+    html[data-theme="dark"] .daily-quote { background: #0f1b25; }
+    html[data-theme="dark"] .color-button { border-color: #0f1b25; box-shadow: 0 0 0 1px #607482; }
+    html[data-theme="dark"] .empty-tasks { border-color: #3a4c59; }
+    html[data-theme="dark"] .delete-task:hover { background: #351f22; }
+    html[data-theme="dark"] .day:hover { border-color: #5597cc; box-shadow: 0 8px 18px rgba(0,0,0,.22); }
+    html[data-theme="dark"] .day.selected { background: #15344d; border-color: #58a8f0; }
+    html[data-theme="dark"] .day.complete { background: #17392e; border-color: #39795e; }
+    html[data-theme="dark"] .filter.active { border-color: var(--orange); color: #102132; background: var(--orange); }
+    html[data-theme="dark"] .secondary { border-color: #405461; color: #cbd7de; background: #12212c; }
+
     @media (max-width: 760px) {
       .hero { grid-template-columns: 1fr; }
       .progress-card { min-height: 180px; }
@@ -269,6 +402,7 @@
       .header-inner { width: min(100% - 22px,1180px); }
       main { width: min(100% - 20px,1180px); margin-top: 16px; }
       .icon-button .wide-label { display: none; }
+      .lock-preferences { top: 10px; right: 10px; }
     }
     @media (max-width: 460px) {
       .days { grid-template-columns: repeat(3,minmax(0,1fr)); }
@@ -282,40 +416,44 @@
 </head>
 <body>
   <section class="lock-screen" id="lockScreen">
+    <div class="lock-preferences" aria-label="Display preferences">
+      <button class="preference-button lang-toggle" type="button">中文</button>
+      <button class="preference-button theme-toggle" type="button">☀ Light</button>
+    </div>
     <div class="lock-card">
       <div class="lock-art">
         <div class="lock-mark" aria-hidden="true">✓</div>
         <div>
           <p>RUN50 · PRIVATE</p>
-          <h1>2026 每日任务</h1>
+          <h1 id="lockTitle">2026 Daily Tasks</h1>
         </div>
       </div>
       <div class="lock-body">
         <form id="setupForm" hidden>
-          <h2>设置你的页面密码</h2>
-          <p>第一次打开。密码只用于在这台设备上加密任务，请妥善记住。</p>
+          <h2 id="setupTitle">Create your page password</h2>
+          <p id="setupIntro">First visit. Your password encrypts tasks on this device, so keep it safe.</p>
           <div class="field">
-            <label for="newPassword">新密码（至少 8 位）</label>
+            <label for="newPassword" id="newPasswordLabel">New password (8+ characters)</label>
             <input id="newPassword" type="password" minlength="8" autocomplete="new-password" required>
           </div>
           <div class="field">
-            <label for="confirmPassword">再次输入</label>
+            <label for="confirmPassword" id="confirmPasswordLabel">Confirm password</label>
             <input id="confirmPassword" type="password" minlength="8" autocomplete="new-password" required>
           </div>
-          <button class="primary" type="submit">创建私密计划</button>
+          <button class="primary" id="createButton" type="submit">Create private planner</button>
           <div class="form-message" id="setupMessage" role="alert"></div>
         </form>
         <form id="unlockForm" hidden>
-          <h2>欢迎回来</h2>
-          <p>输入密码，打开你的每日任务计划。</p>
+          <h2 id="unlockTitle">Welcome back</h2>
+          <p id="unlockIntro">Enter your password to open the daily task planner.</p>
           <div class="field">
-            <label for="password">页面密码</label>
+            <label for="password" id="passwordLabel">Page password</label>
             <input id="password" type="password" autocomplete="current-password" required>
           </div>
-          <button class="primary" type="submit">解锁页面</button>
+          <button class="primary" id="unlockButton" type="submit">Unlock planner</button>
           <div class="form-message" id="unlockMessage" role="alert"></div>
         </form>
-        <div class="privacy-note">任务内容使用 AES-GCM 加密后保存在当前浏览器，不上传服务器。清除浏览器数据前请先导出备份。</div>
+        <div class="privacy-note" id="privacyNote">Tasks are AES-GCM encrypted in this browser and never uploaded. Export a backup before clearing browser data.</div>
       </div>
     </div>
   </section>
@@ -325,11 +463,13 @@
       <div class="header-inner">
         <div class="brand">
           <span class="brand-dot">✓</span>
-          <div><strong>2026 每日任务</strong><small>7月3日 — 12月31日</small></div>
+          <div><strong id="brandTitle">2026 Daily Tasks</strong><small id="brandDates">July 3 — December 31</small></div>
         </div>
         <div class="header-actions">
-          <button class="icon-button" id="todayButton" type="button">今天</button>
-          <button class="icon-button" id="lockButton" type="button">🔒 <span class="wide-label">锁定</span></button>
+          <button class="icon-button lang-toggle" type="button">中文</button>
+          <button class="icon-button theme-toggle" type="button">☀ Light</button>
+          <button class="icon-button" id="todayButton" type="button">Today</button>
+          <button class="icon-button" id="lockButton" type="button">🔒 <span class="wide-label" id="lockLabel">Lock</span></button>
         </div>
       </div>
     </header>
@@ -338,17 +478,17 @@
       <section class="hero">
         <div class="hero-main">
           <p class="eyebrow">ONE DAY · ONE STEP</p>
-          <h1>每天完成一点。</h1>
-          <p class="hero-copy">从今天到年末，共 182 天。把真正重要的事写下来，做完，划掉；让每一个普通日子都有清楚的落点。</p>
+          <h1 id="heroTitle">A little done, every day.</h1>
+          <p class="hero-copy" id="heroCopy">From today to year-end: 182 days. Write down what truly matters, finish it, cross it off, and give every ordinary day a clear landing place.</p>
         </div>
         <aside class="progress-card">
           <div class="progress-top">
-            <div><span>任务完成进度</span><br><strong id="doneCount">0</strong><span id="totalCount"> / 0</span></div>
+            <div><span id="progressLabel">Task progress</span><br><strong id="doneCount">0</strong><span id="totalCount"> / 0</span></div>
             <div class="progress-ring" id="progressRing"><span id="progressPercent">0%</span></div>
           </div>
           <div>
             <div class="progress-bar"><i id="progressBar"></i></div>
-            <p class="progress-caption" id="progressCaption">写下第一项任务，计划就开始了。</p>
+            <p class="progress-caption" id="progressCaption">Write the first task to begin.</p>
           </div>
         </aside>
       </section>
@@ -356,34 +496,49 @@
       <section class="today-panel" id="editorPanel">
         <div class="panel-heading">
           <div>
-            <h2 id="editorTitle">今天的任务</h2>
+            <h2 id="editorTitle">Today's tasks</h2>
             <p id="editorSubtitle"></p>
           </div>
           <span class="date-chip" id="dateChip"></span>
         </div>
+        <blockquote class="daily-quote">
+          <span class="quote-label" id="quoteLabel">DAILY THOUGHT · 每日一句</span>
+          <p class="quote-primary" id="quotePrimary"></p>
+          <p class="quote-secondary" id="quoteSecondary"></p>
+        </blockquote>
         <form class="task-composer" id="taskForm">
-          <input class="task-input" id="taskInput" maxlength="160" placeholder="写下一项要完成的事…" autocomplete="off" required>
-          <button class="add-button" type="submit">＋ 添加任务</button>
+          <input class="task-input" id="taskInput" maxlength="160" placeholder="Write down something to finish…" autocomplete="off" required>
+          <button class="add-button" id="addTaskButton" type="submit">＋ Add task</button>
         </form>
+        <div class="timer-card" id="timerCard" hidden>
+          <div class="timer-copy">
+            <small id="timerLabel">FOCUSING NOW</small>
+            <div class="timer-task" id="timerTask"></div>
+          </div>
+          <div class="timer-side">
+            <span class="timer-time" id="timerTime">25:00</span>
+            <button class="timer-cancel" id="timerCancel" type="button" aria-label="Cancel timer">×</button>
+          </div>
+        </div>
         <div class="task-list" id="taskList"></div>
-        <label class="notes-label" for="notes"><span>当天小结 / 备注</span><span class="save-state" id="saveState"></span></label>
-        <textarea class="notes" id="notes" maxlength="2000" placeholder="完成了什么？明天要记得什么？"></textarea>
+        <label class="notes-label" for="notes"><span id="notesLabel">Daily reflection / notes</span><span class="save-state" id="saveState"></span></label>
+        <textarea class="notes" id="notes" maxlength="2000" placeholder="What got done? What should you remember tomorrow?"></textarea>
       </section>
 
       <section class="calendar-panel">
         <div class="calendar-tools">
-          <h2>年末计划日历</h2>
-          <div class="filters" aria-label="任务筛选">
-            <button class="filter active" data-filter="all" type="button">全部日期</button>
-            <button class="filter" data-filter="open" type="button">待完成</button>
-            <button class="filter" data-filter="complete" type="button">已完成</button>
-            <button class="filter" data-filter="empty" type="button">未安排</button>
+          <h2 id="calendarTitle">Year-end planner</h2>
+          <div class="filters" id="filters" aria-label="Task filters">
+            <button class="filter active" data-filter="all" type="button">All dates</button>
+            <button class="filter" data-filter="open" type="button">To do</button>
+            <button class="filter" data-filter="complete" type="button">Completed</button>
+            <button class="filter" data-filter="empty" type="button">Unplanned</button>
           </div>
         </div>
         <div class="months" id="months"></div>
         <div class="footer-tools">
-          <button class="secondary" id="exportButton" type="button">导出加密备份</button>
-          <button class="secondary" id="importButton" type="button">导入备份</button>
+          <button class="secondary" id="exportButton" type="button">Export encrypted backup</button>
+          <button class="secondary" id="importButton" type="button">Import backup</button>
           <input class="file-input" id="fileInput" type="file" accept="application/json,.json">
         </div>
       </section>
@@ -395,15 +550,190 @@
   (() => {
     "use strict";
     const STORAGE_KEY = "zz-2026-daily-tasks-encrypted-v1";
+    const LANG_KEY = "zz-daily-tasks-lang";
+    const THEME_KEY = "zz-daily-tasks-theme";
     const START = "2026-07-03";
     const END = "2026-12-31";
     const enc = new TextEncoder();
     const dec = new TextDecoder();
     const $ = (selector) => document.querySelector(selector);
     const $$ = (selector) => [...document.querySelectorAll(selector)];
-    const state = { key: null, vault: null, data: { days: {} }, selected: START, filter: "all", saveTimer: null };
-    const weekdays = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
-    const monthNames = ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"];
+    const state = {
+      key: null, vault: null, data: { days: {} }, selected: START, filter: "all", saveTimer: null, timerInterval: null,
+      lang: localStorage.getItem(LANG_KEY) || "en",
+      theme: localStorage.getItem(THEME_KEY) || "dark"
+    };
+    const copy = {
+      en: {
+        pageTitle: "2026 Daily Tasks · Private Planner", lockTitle: "2026 Daily Tasks",
+        setupTitle: "Create your page password", setupIntro: "First visit. Your password encrypts tasks on this device, so keep it safe.",
+        newPassword: "New password (8+ characters)", confirmPassword: "Confirm password", create: "Create private planner",
+        unlockTitle: "Welcome back", unlockIntro: "Enter your password to open the daily task planner.",
+        password: "Page password", unlock: "Unlock planner",
+        privacy: "Tasks are AES-GCM encrypted in this browser and never uploaded. Export a backup before clearing browser data.",
+        brand: "2026 Daily Tasks", brandDates: "July 3 — December 31", today: "Today", lock: "Lock",
+        heroTitle: "A little done, every day.",
+        heroCopy: "From today to year-end: 182 days. Write down what truly matters, finish it, cross it off, and give every ordinary day a clear landing place.",
+        progress: "Task progress", progressEmpty: "Write the first task to begin.",
+        progressStatus: (percent, left) => `${percent}% complete · ${left} ${left === 1 ? "task" : "tasks"} left.`,
+        todayTasks: "Today's tasks", dateTasks: (month, day) => `${month}/${day} tasks`, quoteLabel: "DAILY THOUGHT · 每日一句",
+        taskPlaceholder: "Write down something to finish…", addTask: "＋ Add task",
+        emptyTasks: "No tasks yet. Write down the one thing that matters most.",
+        completeTask: "Complete task", deleteTask: "Delete task",
+        pomodoro: (done, target) => `${done}/${target} × 25 min`, fewer: "One fewer Pomodoro", more: "One more Pomodoro",
+        startFocus: "▶ Start 25 min", running: "Running", changeColor: "Change task color",
+        completedAt: value => `Completed ${value}`, timerLabel: "FOCUSING NOW", cancelTimer: "Cancel timer",
+        pomodoroDone: "25 minutes complete — one Pomodoro recorded.",
+        notes: "Daily reflection / notes", notesPlaceholder: "What got done? What should you remember tomorrow?",
+        saving: "Saving…", saved: "Encrypted and saved", saveFailed: "Save failed",
+        saveFailedToast: "Save failed. Export a backup and try again.",
+        calendar: "Year-end planner", filterLabel: "Task filters",
+        filters: { all: "All dates", open: "To do", complete: "Completed", empty: "Unplanned" },
+        noPlan: "Unplanned", hasNotes: "Has notes", completedCount: count => `✓ ${count} completed`,
+        progressCount: (done, total) => `${done}/${total} done`,
+        export: "Export encrypted backup", import: "Import backup",
+        exported: "Encrypted backup exported", imported: "Backup imported. Unlock it with the backup password.",
+        invalidBackup: "This is not a valid task backup.",
+        setupCreating: "Creating encrypted planner…", minPassword: "Password must be at least 8 characters.",
+        mismatch: "Passwords do not match.", cryptoError: "This browser cannot create the encrypted planner. Please use an up-to-date browser.",
+        unlocking: "Unlocking…", wrongPassword: "Incorrect password. Please try again.",
+        langSwitch: "中文", themeLight: "☀ Light", themeDark: "☾ Dark",
+        weekdays: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        weekdayShort: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+        months: ["January","February","March","April","May","June","July","August","September","October","November","December"]
+      },
+      zh: {
+        pageTitle: "2026 每日任务 · 私密计划", lockTitle: "2026 每日任务",
+        setupTitle: "设置你的页面密码", setupIntro: "第一次打开。密码只用于在这台设备上加密任务，请妥善记住。",
+        newPassword: "新密码（至少 8 位）", confirmPassword: "再次输入", create: "创建私密计划",
+        unlockTitle: "欢迎回来", unlockIntro: "输入密码，打开你的每日任务计划。",
+        password: "页面密码", unlock: "解锁页面",
+        privacy: "任务内容使用 AES-GCM 加密后保存在当前浏览器，不上传服务器。清除浏览器数据前请先导出备份。",
+        brand: "2026 每日任务", brandDates: "7月3日 — 12月31日", today: "今天", lock: "锁定",
+        heroTitle: "每天完成一点。",
+        heroCopy: "从今天到年末，共 182 天。把真正重要的事写下来，做完，划掉；让每一个普通日子都有清楚的落点。",
+        progress: "任务完成进度", progressEmpty: "写下第一项任务，计划就开始了。",
+        progressStatus: (percent, left) => `${percent}% 已完成 · 还有 ${left} 项等待出发。`,
+        todayTasks: "今天的任务", dateTasks: (month, day) => `${month}月${day}日的任务`, quoteLabel: "每日一句 · DAILY THOUGHT",
+        taskPlaceholder: "写下一项要完成的事…", addTask: "＋ 添加任务",
+        emptyTasks: "这一天还没有任务。写下最重要的一件事吧。",
+        completeTask: "完成任务", deleteTask: "删除任务",
+        pomodoro: (done, target) => `${done}/${target} × 25分钟`, fewer: "减少一个番茄钟", more: "增加一个番茄钟",
+        startFocus: "▶ 开始25分钟", running: "计时中", changeColor: "切换任务颜色",
+        completedAt: value => `完成于 ${value}`, timerLabel: "正在专注", cancelTimer: "取消计时",
+        pomodoroDone: "25分钟完成，已为这项任务记录一个番茄钟。",
+        notes: "当天小结 / 备注", notesPlaceholder: "完成了什么？明天要记得什么？",
+        saving: "保存中…", saved: "已加密保存", saveFailed: "保存失败",
+        saveFailedToast: "保存失败，请导出备份后重试",
+        calendar: "年末计划日历", filterLabel: "任务筛选",
+        filters: { all: "全部日期", open: "待完成", complete: "已完成", empty: "未安排" },
+        noPlan: "未安排", hasNotes: "有小结", completedCount: count => `✓ ${count} 项已完成`,
+        progressCount: (done, total) => `${done}/${total} 项完成`,
+        export: "导出加密备份", import: "导入备份",
+        exported: "加密备份已导出", imported: "备份已导入，请用备份密码解锁",
+        invalidBackup: "这不是有效的任务备份",
+        setupCreating: "正在创建加密计划…", minPassword: "密码至少需要 8 位。",
+        mismatch: "两次输入的密码不一致。", cryptoError: "浏览器无法创建加密计划，请换用最新版浏览器。",
+        unlocking: "正在解锁…", wrongPassword: "密码不正确，请再试一次。",
+        langSwitch: "EN", themeLight: "☀ 亮色", themeDark: "☾ 暗色",
+        weekdays: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+        weekdayShort: ["周日","周一","周二","周三","周四","周五","周六"],
+        months: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
+      }
+    };
+    const t = () => copy[state.lang];
+    const TASK_COLORS = ["#0b67c2", "#e07a28", "#2f855a", "#8b5bb5", "#c34f65", "#168a92", "#9a7b21", "#5c6ac4"];
+    const quoteStarts = [
+      { en: "Begin with what you can do now", zh: "从现在能做的事情开始" },
+      { en: "Protect one quiet hour", zh: "守住一段安静的时间" },
+      { en: "Finish the smallest useful step", zh: "完成最小但有用的一步" },
+      { en: "Keep today's promise to yourself", zh: "守住今天对自己的承诺" },
+      { en: "Choose progress over perfection", zh: "选择进步，不必苛求完美" },
+      { en: "Give your attention to one thing", zh: "把注意力交给一件事情" },
+      { en: "Make the next decision simple", zh: "让下一个决定简单一点" },
+      { en: "Turn intention into a visible action", zh: "把想法变成看得见的行动" },
+      { en: "Let yesterday teach, not lead", zh: "让昨天教会你，而不是牵着你" },
+      { en: "Start before you feel completely ready", zh: "不必等到完全准备好再出发" },
+      { en: "Measure the day by honest effort", zh: "用真诚的努力衡量这一天" },
+      { en: "Leave room for patience", zh: "给耐心留一点空间" },
+      { en: "Do the important thing first", zh: "先做真正重要的事情" },
+      { en: "Build momentum with a small win", zh: "用一次小小的完成积蓄力量" }
+    ];
+    const quoteEnds = [
+      { en: "direction becomes clearer through action.", zh: "方向会在行动中逐渐清楚。" },
+      { en: "consistency turns effort into identity.", zh: "坚持会让努力成为你的一部分。" },
+      { en: "a calm mind can carry a heavy goal.", zh: "平静的心也能托住很重的目标。" },
+      { en: "small completions create lasting confidence.", zh: "小小的完成会积累出长久的信心。" },
+      { en: "what you repeat quietly shapes your future.", zh: "你默默重复的事情正在塑造未来。" },
+      { en: "courage often arrives after the first step.", zh: "勇气常常在迈出第一步之后才到来。" },
+      { en: "focus gives ordinary minutes uncommon value.", zh: "专注会让普通的时间产生不普通的价值。" },
+      { en: "the path grows shorter when you keep moving.", zh: "只要继续向前，路就会一点点变短。" },
+      { en: "good work needs rhythm more than drama.", zh: "好成果更需要节奏，而不是声势。" },
+      { en: "today's discipline becomes tomorrow's freedom.", zh: "今天的自律会成为明天的自由。" },
+      { en: "steady steps can cross surprising distances.", zh: "稳定的脚步能够走过意想不到的距离。" },
+      { en: "clarity follows the work you are willing to begin.", zh: "当你愿意开始，清晰就会随之而来。" },
+      { en: "the life you want is built inside ordinary days.", zh: "你想要的生活，就建在一个个普通日子里。" }
+    ];
+    function quoteFor(iso) {
+      const index = Math.round((new Date(iso + "T12:00:00") - new Date(START + "T12:00:00")) / 86400000);
+      const start = quoteStarts[index % quoteStarts.length];
+      const end = quoteEnds[Math.floor(index / quoteStarts.length) % quoteEnds.length];
+      return { en: `${start.en} — ${end.en}`, zh: `${start.zh}——${end.zh}` };
+    }
+
+    function applyPreferences({ rerender = true } = {}) {
+      const text = t();
+      document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
+      document.documentElement.dataset.theme = state.theme;
+      document.title = text.pageTitle;
+      $("#lockTitle").textContent = text.lockTitle;
+      $("#setupTitle").textContent = text.setupTitle;
+      $("#setupIntro").textContent = text.setupIntro;
+      $("#newPasswordLabel").textContent = text.newPassword;
+      $("#confirmPasswordLabel").textContent = text.confirmPassword;
+      $("#createButton").textContent = text.create;
+      $("#unlockTitle").textContent = text.unlockTitle;
+      $("#unlockIntro").textContent = text.unlockIntro;
+      $("#passwordLabel").textContent = text.password;
+      $("#unlockButton").textContent = text.unlock;
+      $("#privacyNote").textContent = text.privacy;
+      $("#brandTitle").textContent = text.brand;
+      $("#brandDates").textContent = text.brandDates;
+      $("#todayButton").textContent = text.today;
+      $("#lockLabel").textContent = text.lock;
+      $("#heroTitle").textContent = text.heroTitle;
+      $("#heroCopy").textContent = text.heroCopy;
+      $("#progressLabel").textContent = text.progress;
+      $("#quoteLabel").textContent = text.quoteLabel;
+      $("#taskInput").placeholder = text.taskPlaceholder;
+      $("#addTaskButton").textContent = text.addTask;
+      $("#timerLabel").textContent = text.timerLabel;
+      $("#timerCancel").setAttribute("aria-label", text.cancelTimer);
+      $("#notesLabel").textContent = text.notes;
+      $("#notes").placeholder = text.notesPlaceholder;
+      $("#calendarTitle").textContent = text.calendar;
+      $("#filters").setAttribute("aria-label", text.filterLabel);
+      $$(".filter").forEach(button => button.textContent = text.filters[button.dataset.filter]);
+      $("#exportButton").textContent = text.export;
+      $("#importButton").textContent = text.import;
+      $$(".lang-toggle").forEach(button => button.textContent = text.langSwitch);
+      $$(".theme-toggle").forEach(button => button.textContent = state.theme === "dark" ? text.themeLight : text.themeDark);
+      if (rerender && !$("#app").hidden) {
+        renderEditor();
+        renderCalendar();
+        updateProgress();
+      }
+    }
+    $$(".lang-toggle").forEach(button => button.addEventListener("click", () => {
+      state.lang = state.lang === "en" ? "zh" : "en";
+      localStorage.setItem(LANG_KEY, state.lang);
+      applyPreferences();
+    }));
+    $$(".theme-toggle").forEach(button => button.addEventListener("click", () => {
+      state.theme = state.theme === "dark" ? "light" : "dark";
+      localStorage.setItem(THEME_KEY, state.theme);
+      applyPreferences({ rerender: false });
+    }));
 
     function bytesToBase64(bytes) {
       let binary = "";
@@ -445,18 +775,18 @@
       const encrypted = await encryptData(state.key, state.data);
       state.vault = { version: 1, salt: state.vault.salt, ...encrypted, updatedAt: new Date().toISOString() };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state.vault));
-      $("#saveState").textContent = "已加密保存";
+      $("#saveState").textContent = t().saved;
       clearTimeout(state.saveTimer);
       state.saveTimer = setTimeout(() => $("#saveState").textContent = "", 1400);
     }
     function queuePersist() {
       clearTimeout(state.saveTimer);
-      $("#saveState").textContent = "保存中…";
+      $("#saveState").textContent = t().saving;
       state.saveTimer = setTimeout(() => persist().catch(showSaveError), 300);
     }
     function showSaveError() {
-      $("#saveState").textContent = "保存失败";
-      toast("保存失败，请导出备份后重试");
+      $("#saveState").textContent = t().saveFailed;
+      toast(t().saveFailedToast);
     }
     function dayData(date) {
       if (!state.data.days[date]) state.data.days[date] = { tasks: [], notes: "" };
@@ -477,7 +807,9 @@
     }
     function displayDate(iso) {
       const date = new Date(iso + "T12:00:00");
-      return `${date.getMonth()+1}月${date.getDate()}日 · ${weekdays[date.getDay()]}`;
+      return state.lang === "zh"
+        ? `${date.getMonth()+1}月${date.getDate()}日 · ${t().weekdays[date.getDay()]}`
+        : `${t().months[date.getMonth()]} ${date.getDate()} · ${t().weekdays[date.getDay()]}`;
     }
     function todayInRange() {
       const today = toISO(new Date());
@@ -501,9 +833,9 @@
       const password = $("#newPassword").value;
       const confirm = $("#confirmPassword").value;
       const message = $("#setupMessage");
-      if (password.length < 8) { message.textContent = "密码至少需要 8 位。"; return; }
-      if (password !== confirm) { message.textContent = "两次输入的密码不一致。"; return; }
-      message.textContent = "正在创建加密计划…";
+      if (password.length < 8) { message.textContent = t().minPassword; return; }
+      if (password !== confirm) { message.textContent = t().mismatch; return; }
+      message.textContent = t().setupCreating;
       try {
         const salt = crypto.getRandomValues(new Uint8Array(16));
         state.key = await deriveKey(password, salt);
@@ -512,13 +844,13 @@
         await persist();
         openApp();
       } catch (_) {
-        message.textContent = "浏览器无法创建加密计划，请换用最新版浏览器。";
+        message.textContent = t().cryptoError;
       }
     });
     $("#unlockForm").addEventListener("submit", async event => {
       event.preventDefault();
       const message = $("#unlockMessage");
-      message.textContent = "正在解锁…";
+      message.textContent = t().unlocking;
       try {
         const vault = readVault();
         const key = await deriveKey($("#password").value, base64ToBytes(vault.salt));
@@ -526,7 +858,7 @@
         state.key = key; state.vault = vault; state.data = data;
         openApp();
       } catch (_) {
-        message.textContent = "密码不正确，请再试一次。";
+        message.textContent = t().wrongPassword;
         $("#password").select();
       }
     });
@@ -539,6 +871,8 @@
       updateProgress();
     }
     function lockApp() {
+      clearInterval(state.timerInterval);
+      state.timerInterval = null;
       state.key = null; state.vault = null; state.data = { days: {} };
       $("#app").hidden = true;
       $("#lockScreen").hidden = false;
@@ -549,42 +883,142 @@
       $("#password").focus();
     }
 
+    function normalizeTask(task, index) {
+      if (!TASK_COLORS.includes(task.color)) task.color = TASK_COLORS[index % TASK_COLORS.length];
+      task.pomodoroTarget = Math.min(12, Math.max(1, Number(task.pomodoroTarget) || 1));
+      task.pomodoroDone = Math.max(0, Number(task.pomodoroDone) || 0);
+      if (!("completedAt" in task)) task.completedAt = null;
+      return task;
+    }
+    function formatCompletedTime(value) {
+      if (!value) return "";
+      return new Date(value).toLocaleString(state.lang === "zh" ? "zh-CN" : "en-US", {
+        month: "short", day: "numeric", hour: "numeric", minute: "2-digit"
+      });
+    }
+    function findTask(date, id) {
+      return state.data.days[date]?.tasks?.find(task => task.id === id);
+    }
+    function renderTimer() {
+      clearInterval(state.timerInterval);
+      state.timerInterval = null;
+      const active = state.data.activeTimer;
+      const card = $("#timerCard");
+      if (!active || !findTask(active.date, active.taskId)) {
+        card.hidden = true;
+        return;
+      }
+      const task = findTask(active.date, active.taskId);
+      card.hidden = false;
+      card.style.setProperty("--timer-color", task.color);
+      $("#timerTask").textContent = task.text;
+      const tick = () => {
+        const remaining = Math.max(0, active.endsAt - Date.now());
+        const seconds = Math.ceil(remaining / 1000);
+        $("#timerTime").textContent = `${String(Math.floor(seconds / 60)).padStart(2,"0")}:${String(seconds % 60).padStart(2,"0")}`;
+        if (remaining <= 0) {
+          clearInterval(state.timerInterval);
+          state.timerInterval = null;
+          task.pomodoroDone += 1;
+          state.data.activeTimer = null;
+          persist().catch(showSaveError);
+          toast(t().pomodoroDone);
+          renderEditor();
+        }
+      };
+      tick();
+      if (state.data.activeTimer) state.timerInterval = setInterval(tick, 1000);
+    }
+    function startPomodoro(date, taskId) {
+      state.data.activeTimer = { date, taskId, endsAt: Date.now() + 25 * 60 * 1000 };
+      persist().catch(showSaveError);
+      renderEditor();
+    }
+
     function renderEditor() {
       const data = dayData(state.selected);
+      data.tasks.forEach(normalizeTask);
       const today = toISO(new Date());
-      $("#editorTitle").textContent = state.selected === today ? "今天的任务" : `${Number(state.selected.slice(5,7))}月${Number(state.selected.slice(8))}日的任务`;
+      const month = Number(state.selected.slice(5,7));
+      const day = Number(state.selected.slice(8));
+      $("#editorTitle").textContent = state.selected === today ? t().todayTasks : t().dateTasks(month, day);
       $("#editorSubtitle").textContent = displayDate(state.selected);
       $("#dateChip").textContent = state.selected;
+      const quote = quoteFor(state.selected);
+      $("#quotePrimary").textContent = quote[state.lang];
+      $("#quoteSecondary").textContent = quote[state.lang === "en" ? "zh" : "en"];
       $("#notes").value = data.notes || "";
       if (!data.tasks.length) {
-        $("#taskList").innerHTML = '<div class="empty-tasks">这一天还没有任务。写下最重要的一件事吧。</div>';
+        $("#taskList").innerHTML = `<div class="empty-tasks">${t().emptyTasks}</div>`;
       } else {
-        $("#taskList").innerHTML = data.tasks.map(task => `
-          <div class="task-row ${task.done ? "done" : ""}" data-id="${escapeHTML(task.id)}">
-            <input type="checkbox" ${task.done ? "checked" : ""} aria-label="完成任务">
-            <span class="task-text">${escapeHTML(task.text)}</span>
-            <button class="delete-task" type="button" aria-label="删除任务">×</button>
-          </div>`).join("");
+        $("#taskList").innerHTML = data.tasks.map((task, index) => {
+          normalizeTask(task, index);
+          const running = state.data.activeTimer?.date === state.selected && state.data.activeTimer?.taskId === task.id;
+          const completed = task.completedAt ? `<span class="completed-time">${escapeHTML(t().completedAt(formatCompletedTime(task.completedAt)))}</span>` : "";
+          return `
+          <div class="task-row ${task.done ? "done" : ""}" data-id="${escapeHTML(task.id)}" style="--task-color:${task.color}">
+            <input type="checkbox" ${task.done ? "checked" : ""} aria-label="${t().completeTask}">
+            <div class="task-main">
+              <div class="task-text">${escapeHTML(task.text)}</div>
+              <div class="task-meta">
+                <button class="color-button" type="button" aria-label="${t().changeColor}"></button>
+                <span class="pom-control">
+                  <button class="pom-minus" type="button" aria-label="${t().fewer}">−</button>
+                  <span class="pom-count">🍅 ${t().pomodoro(task.pomodoroDone, task.pomodoroTarget)}</span>
+                  <button class="pom-plus" type="button" aria-label="${t().more}">＋</button>
+                </span>
+                <button class="pom-start" type="button" ${running ? "disabled" : ""}>${running ? t().running : t().startFocus}</button>
+                ${completed}
+              </div>
+            </div>
+            <button class="delete-task" type="button" aria-label="${t().deleteTask}">×</button>
+          </div>`;
+        }).join("");
       }
       $$("#taskList .task-row").forEach(row => {
         row.querySelector("input").addEventListener("change", event => {
           const task = dayData(state.selected).tasks.find(item => item.id === row.dataset.id);
-          if (task) task.done = event.target.checked;
+          if (task) {
+            task.done = event.target.checked;
+            task.completedAt = task.done ? new Date().toISOString() : null;
+          }
           renderEditor(); renderCalendar(); updateProgress(); queuePersist();
         });
+        row.querySelector(".color-button").addEventListener("click", () => {
+          const task = findTask(state.selected, row.dataset.id);
+          task.color = TASK_COLORS[(TASK_COLORS.indexOf(task.color) + 1) % TASK_COLORS.length];
+          renderEditor(); queuePersist();
+        });
+        row.querySelector(".pom-minus").addEventListener("click", () => {
+          const task = findTask(state.selected, row.dataset.id);
+          task.pomodoroTarget = Math.max(1, task.pomodoroTarget - 1);
+          renderEditor(); queuePersist();
+        });
+        row.querySelector(".pom-plus").addEventListener("click", () => {
+          const task = findTask(state.selected, row.dataset.id);
+          task.pomodoroTarget = Math.min(12, task.pomodoroTarget + 1);
+          renderEditor(); queuePersist();
+        });
+        row.querySelector(".pom-start").addEventListener("click", () => startPomodoro(state.selected, row.dataset.id));
         row.querySelector(".delete-task").addEventListener("click", () => {
           const data = dayData(state.selected);
+          if (state.data.activeTimer?.taskId === row.dataset.id) state.data.activeTimer = null;
           data.tasks = data.tasks.filter(item => item.id !== row.dataset.id);
           renderEditor(); renderCalendar(); updateProgress(); queuePersist();
         });
       });
+      renderTimer();
     }
     $("#taskForm").addEventListener("submit", event => {
       event.preventDefault();
       const input = $("#taskInput");
       const text = input.value.trim();
       if (!text) return;
-      dayData(state.selected).tasks.push({ id: uid(), text, done: false });
+      const tasks = dayData(state.selected).tasks;
+      tasks.push({
+        id: uid(), text, done: false, completedAt: null,
+        color: TASK_COLORS[tasks.length % TASK_COLORS.length], pomodoroTarget: 1, pomodoroDone: 0
+      });
       input.value = "";
       renderEditor(); renderCalendar(); updateProgress(); queuePersist();
       input.focus();
@@ -602,7 +1036,7 @@
       });
       $("#months").innerHTML = Object.entries(groups).map(([month, dates]) => {
         const monthIndex = Number(month.slice(5)) - 1;
-        return `<section class="month"><h3 class="month-title">${monthNames[monthIndex]} <small>${month}</small></h3>
+        return `<section class="month"><h3 class="month-title">${t().months[monthIndex]} <small>${month}</small></h3>
           <div class="days">${dates.map(dayButton).join("")}</div></section>`;
       }).join("");
       $$(".day").forEach(button => button.addEventListener("click", () => {
@@ -622,14 +1056,14 @@
       if (state.filter === "complete") visible = complete;
       if (state.filter === "empty") visible = !hasContent;
       const date = new Date(iso + "T12:00:00");
-      const status = total ? (complete ? `✓ ${done} 项已完成` : `${done}/${total} 项完成`) : (data.notes ? "有小结" : "未安排");
+      const status = total ? (complete ? t().completedCount(done) : t().progressCount(done, total)) : (data.notes ? t().hasNotes : t().noPlan);
       const classes = [
         "day", iso === toISO(new Date()) ? "today" : "", iso === state.selected ? "selected" : "",
         complete ? "complete" : "", total ? "has-tasks" : "", visible ? "" : "filtered"
       ].filter(Boolean).join(" ");
       return `<button class="${classes}" data-date="${iso}" type="button">
         <span class="day-number">${date.getDate()}</span>
-        <span class="day-week">${weekdays[date.getDay()].replace("星期","周")}</span>
+        <span class="day-week">${t().weekdayShort[date.getDay()]}</span>
         <span class="day-status">${status}</span>
       </button>`;
     }
@@ -648,13 +1082,20 @@
       $("#progressRing").style.setProperty("--progress", `${percent * 3.6}deg`);
       $("#progressBar").style.width = `${percent}%`;
       $("#progressCaption").textContent = tasks.length
-        ? `${percent}% 已完成 · 还有 ${tasks.length - done} 项等待出发。`
-        : "写下第一项任务，计划就开始了。";
+        ? t().progressStatus(percent, tasks.length - done)
+        : t().progressEmpty;
     }
 
     $("#todayButton").addEventListener("click", () => {
       state.selected = todayInRange(); renderEditor(); renderCalendar();
       $("#editorPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    $("#timerCancel").addEventListener("click", () => {
+      state.data.activeTimer = null;
+      clearInterval(state.timerInterval);
+      state.timerInterval = null;
+      renderEditor();
+      queuePersist();
     });
     $("#lockButton").addEventListener("click", async () => { await persist(); lockApp(); });
     $("#exportButton").addEventListener("click", async () => {
@@ -665,7 +1106,7 @@
       link.download = `2026-daily-tasks-backup-${toISO(new Date())}.json`;
       link.click();
       URL.revokeObjectURL(link.href);
-      toast("加密备份已导出");
+      toast(t().exported);
     });
     $("#importButton").addEventListener("click", () => $("#fileInput").click());
     $("#fileInput").addEventListener("change", async event => {
@@ -675,10 +1116,10 @@
         const vault = JSON.parse(await file.text());
         if (!vault.salt || !vault.iv || !vault.ciphertext) throw new Error("invalid");
         localStorage.setItem(STORAGE_KEY, JSON.stringify(vault));
-        toast("备份已导入，请用备份密码解锁");
+        toast(t().imported);
         setTimeout(lockApp, 700);
       } catch (_) {
-        toast("这不是有效的任务备份");
+        toast(t().invalidBackup);
       } finally {
         event.target.value = "";
       }
@@ -690,6 +1131,7 @@
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => $("#toast").classList.remove("show"), 2200);
     }
+    applyPreferences({ rerender: false });
     initGate();
   })();
   </script>
