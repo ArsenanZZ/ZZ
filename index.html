@@ -799,9 +799,9 @@
   }
 
   .mini-map-window.world-map-window svg {
-    width: 128% !important;
-    height: 128% !important;
-    transform: translateY(-3%) scale(1.04);
+    width: 100% !important;
+    height: 100% !important;
+    transform: none;
     transform-origin: center center;
   }
 
@@ -850,16 +850,16 @@
   }
 
   .mini-map-window.us-map-window svg {
-    width: 115% !important;
-    height: 115% !important;
-    transform: translateY(-1%) scale(1.02);
+    width: 100% !important;
+    height: 100% !important;
+    transform: none;
     transform-origin: center center;
   }
 
   .mini-map-window.cn-map-window svg {
-    width: 112% !important;
-    height: 112% !important;
-    transform: translateY(-1%) scale(1.02);
+    width: 100% !important;
+    height: 100% !important;
+    transform: none;
     transform-origin: center center;
   }
 
@@ -1613,7 +1613,7 @@
     .page {
       width: auto;
       max-width: none;
-      margin: 0 28px;
+      margin: 0 12px;
       padding: 14px 0 38px;
     }
     .feed-toolbar {
@@ -1640,15 +1640,96 @@
     .feed-grid,
     .progress-stat,
     .map-preview-card {
-      width: calc(100vw - 56px);
-      max-width: calc(100vw - 56px);
+      width: calc(100vw - 24px);
+      max-width: calc(100vw - 24px);
     }
-    .slide-content { left: 16px; right: 16px; bottom: 46px; }
-    .slide h1 { font-size: 23px; }
-    .dots { max-width: calc(100% - 90px); }
-    .side-stack { grid-template-columns: 1fr; }
+    .slide::after { display: none; }
+    .slide img {
+      height: calc(100% - 112px);
+    }
+    .slide-content {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      min-height: 92px;
+      padding: 8px 12px 34px;
+      background: #111;
+    }
+    .source {
+      gap: 6px;
+      margin-bottom: 5px;
+      font-size: 11px;
+    }
+    .source-logo {
+      width: 22px;
+      height: 22px;
+      font-size: 10px;
+    }
+    .slide h1 {
+      display: -webkit-box;
+      max-width: 100%;
+      overflow: hidden;
+      font-size: 17px;
+      line-height: 1.2;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .engagement {
+      display: none;
+    }
+    .dots {
+      bottom: 9px;
+      max-width: calc(100% - 92px);
+      padding: 5px 8px;
+    }
+    .slide-count {
+      right: 8px;
+      bottom: 8px;
+      min-width: 46px;
+      padding: 5px 7px;
+      font-size: 11px;
+    }
+    .nav-arrow {
+      width: 32px;
+      height: 52px;
+    }
+    .side-stack {
+      grid-template-columns: 1fr;
+      height: auto !important;
+      overflow: visible;
+    }
+    .side-stack > .widget:not(.rail-progress) {
+      height: auto;
+      overflow: visible;
+    }
+    .side-stack > .widget:not(.rail-progress) .widget-body {
+      height: auto;
+    }
     .progress-stats { grid-template-columns: 1fr; }
-    .map-preview-grid { grid-template-columns: 1fr; }
+    .map-preview-grid {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+    .world-summary-card,
+    .map-stack-card {
+      grid-template-rows: auto;
+    }
+    .world-map-panel .mini-map-window,
+    .map-stack-card .mini-map-window {
+      flex: none;
+      aspect-ratio: 16 / 9;
+    }
+    .world-summary-card {
+      min-height: 0;
+    }
+    .map-stack-card .map-preview-card {
+      min-height: 248px;
+    }
+    .map-status-badges {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      right: auto;
+    }
     .map-preview-copy {
       display: block;
       padding-right: 16px;
@@ -2604,6 +2685,34 @@
     cards = Array.from(document.querySelectorAll('.feed-grid [data-card]'));
   }
 
+  function storyVariantKey(value) {
+    try {
+      const url = new URL(value, location.href);
+      const match = url.pathname.toLowerCase().match(/\/run50\/(?:facebook|stories\/english)\/([^\/]+)\.html$/);
+      return match ? match[1].replace(/-(?:marathon|challenge|story)$/g, '') : '';
+    } catch (error) {
+      return '';
+    }
+  }
+
+  function applyStoryVariantVisibility() {
+    const groups = new Map();
+    cards.forEach(card => {
+      const key = storyVariantKey(card.getAttribute('href') || '');
+      card.dataset.storyVariantHidden = 'false';
+      if (!key) return;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(card);
+    });
+    groups.forEach(group => {
+      if (group.length < 2) return;
+      const keep = group[Math.floor(Math.random() * group.length)];
+      group.forEach(card => {
+        card.dataset.storyVariantHidden = card === keep ? 'false' : 'true';
+      });
+    });
+  }
+
   function isKnowledgeTagSet(tags) {
     return KNOWLEDGE_TAG_RE.test(tags) && !RUNNING_TAG_RE.test(tags);
   }
@@ -2613,6 +2722,7 @@
   }
 
   function cardMatchesFilter(card, query = '', { ignoreSearch = false } = {}) {
+    if (card.dataset.storyVariantHidden === 'true') return false;
     const tags = (card.dataset.tags || '').toLowerCase();
     const text = card.textContent.toLowerCase();
     const href = card.getAttribute('href') || card.querySelector('a[href]')?.getAttribute('href') || '';
@@ -2708,15 +2818,55 @@
     return new URL(path, new URL(basePath, location.origin)).href;
   }
 
-  const US_PROGRESS_TOKENS = [
-    'Kentucky', 'Florida', 'North_Carolina', 'Arkansas', 'South_Carolina',
-    'Pensilvania', 'Pennsylvania', 'Wisconsin', 'Michigan', 'New_Hampshire',
-    'Louisiana', 'Virginia', 'North_Dakota', 'Kansas', 'Vermont', 'alabama',
-    'Alabama', 'Arizona', 'Delaware', 'Minnesotta', 'Minessota', 'Minnesota',
-    'Connecticut', 'Rhode_Island', 'Massachusets', 'Massachusetts', 'Maine',
-    'Ohio', 'New_York', 'California', 'Indiana', 'Hawaii', 'Georgia',
-    'Colorado', 'Alaska', 'Missouri', 'Mossouri', 'Illinois', 'Tennessee',
-    'West_Virginia', 'Texas'
+  const US_MAP_PATHS = {
+    IL: ['Illinois', 'Kentucky_1_'],
+    TN: ['Alabama'],
+    WV: ['West_Virginia', 'Virginia_1_'],
+    TX: ['Kansas_1_'],
+    FL: ['South_Carolina_1_'],
+    NC: ['Maryland'],
+    AR: ['Tennessee', 'Arkansas'],
+    SC: ['South_Carolina', 'Indiana_1_'],
+    KY: ['Georgia_1_', 'Kentucky'],
+    PA: ['Pensilvania', 'New_Jersey_1_'],
+    WI: ['Wisconsin', 'Illinois_1_'],
+    MI: ['Michigan', 'Ocean'],
+    NH: ['New_Hampshire', 'Maine_1_'],
+    LA: ['Arkansas_1_'],
+    VA: ['North_Carolina_1_', 'Virginia'],
+    ND: ['South_Dakota_1_', 'North_Dakota'],
+    KS: ['Kansas', 'North_Dakota_1_'],
+    VT: ['New_Hampshire_1_', 'Vermont'],
+    AL: ['alabama', 'Missispi'],
+    AZ: ['Arizona_1_', 'Utah'],
+    DE: ['Massachusets_1_'],
+    MN: ['Minnesotta', 'Wisconsin_1_'],
+    CT: ['New_York_2_', 'Connecticut'],
+    RI: ['Delaware', 'Rhode_Island'],
+    MA: ['Vermont_1_', 'Massachusets'],
+    ME: ['Michigan_1_', 'Maine'],
+    OH: ['Ohio', 'West_Virginia_1_'],
+    NY: ['Rhode_Island_1_', 'New_York'],
+    CA: ['Arizona'],
+    IN: ['Indiana', 'Ohio_1_'],
+    GA: ['Georgia', 'Florida_1_'],
+    CO: ['Texas_1_', 'Colorado'],
+    MO: ['Iowa_1_', 'Missouri'],
+    HI: ['ocean_2_'],
+    AK: ['ocean_3_']
+  };
+  const US_PROGRESS_STATES = [
+    'IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH',
+    'LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME',
+    'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO'
+  ];
+  const US_HOLLOW_PATHS = [
+    'South_Carolina_1_', 'Arizona', 'Michigan', 'Oklahoma_1_', 'Alabama', 'Maryland',
+    'ocean_3_', 'Kansas_1_', 'Arkansas_1_', 'Illinois', 'West_Virginia', 'South_Carolina',
+    'Pensilvania', 'Wisconsin', 'Vermont', 'New_Hampshire', 'Kansas', 'alabama',
+    'Arizona_1_', 'Minnesotta', 'Ohio', 'New_York', 'Indiana', 'Georgia', 'Alaska_1_',
+    'Idaho', 'Nebraska', 'Nevada_41_', 'Oklahoma', 'South_Dakota', 'Utah_1_',
+    'Pensilvania_1_'
   ];
   const CN_PROGRESS_IDS = new Set([
     'cn_heilongjiang', 'cn_hubei', 'cn_sichuan', 'cn_innermongolia', 'cn_shanxi',
@@ -2744,23 +2894,77 @@
     svg.removeAttribute('width');
     svg.removeAttribute('height');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-    const completedPaths = [];
+    removeUsContainedSubpaths(svg);
     svg.querySelectorAll('path').forEach(path => {
       const id = path.id || '';
-      const isBase = id === 'map_USA';
-      const isOcean = /ocean/i.test(id);
-      const isComplete = US_PROGRESS_TOKENS.some(token => id.toLowerCase().includes(token.toLowerCase()));
-      if (isComplete) completedPaths.push(path);
-      path.setAttribute('fill', isOcean ? '#18232d' : isComplete ? '#c88f3b' : isBase ? '#26313b' : '#35414c');
-      path.setAttribute('stroke', isOcean ? 'rgba(255,255,255,.05)' : isComplete ? '#d9a44f' : 'rgba(255,255,255,.09)');
-      path.setAttribute('stroke-width', isComplete ? '.35' : '.5');
+      const baseId = id.replace(/^map_/, '');
+      const isFrame = id === 'map_USA' || id === 'map_White' || id === 'map_exterior_2_';
+      const isOcean = /ocean|atlantic|gulf|oceans/i.test(baseId);
+      path.classList.remove('run-state');
+      path.setAttribute('fill', isFrame ? '#26313b' : isOcean ? '#18232d' : '#2f3a45');
+      path.setAttribute('stroke', isFrame ? 'rgba(255,255,255,.12)' : 'rgba(255,255,255,.10)');
+      path.setAttribute('stroke-width', isFrame ? '.8' : '.55');
       path.setAttribute('stroke-linejoin', 'round');
       path.setAttribute('stroke-linecap', 'round');
       path.setAttribute('vector-effect', 'non-scaling-stroke');
       path.style.paintOrder = 'stroke fill markers';
-      path.style.opacity = isComplete ? '1' : '.48';
+      path.style.opacity = isFrame ? '1' : isOcean ? '.38' : '.54';
+      path.style.pointerEvents = 'none';
     });
-    completedPaths.forEach(path => svg.appendChild(path));
+    US_PROGRESS_STATES.forEach(abbr => {
+      (US_MAP_PATHS[abbr] || []).forEach(pathId => {
+        const path = svg.querySelector('#map_' + CSS.escape(pathId));
+        if (!path) return;
+        path.setAttribute('fill', '#c88f3b');
+        path.setAttribute('stroke', '#d9a44f');
+        path.setAttribute('stroke-width', '1.35');
+        path.style.opacity = '1';
+        path.style.pointerEvents = 'auto';
+        path.classList.add('run-state');
+        svg.appendChild(path);
+      });
+    });
+  }
+
+  function removeUsContainedSubpaths(svg) {
+    US_HOLLOW_PATHS.forEach(pathId => {
+      const path = svg.querySelector('#map_' + CSS.escape(pathId));
+      if (!path) return;
+      const d = path.getAttribute('d') || '';
+      const parts = [];
+      let last = 0;
+      for (let i = 1; i < d.length; i += 1) {
+        if (d[i] === 'M' && /[\s,]/.test(d[i - 1])) {
+          parts.push(d.slice(last, i).trim());
+          last = i;
+        }
+      }
+      parts.push(d.slice(last).trim());
+      if (parts.length < 2) return;
+      const boxes = parts.map(part => {
+        const coords = [...part.matchAll(/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g)];
+        if (!coords.length) return { xMin: 0, xMax: 0, yMin: 0, yMax: 0, area: 0 };
+        const xs = coords.map(match => parseFloat(match[1]));
+        const ys = coords.map(match => parseFloat(match[2]));
+        const xMin = Math.min(...xs);
+        const xMax = Math.max(...xs);
+        const yMin = Math.min(...ys);
+        const yMax = Math.max(...ys);
+        return { xMin, xMax, yMin, yMax, area: (xMax - xMin) * (yMax - yMin) };
+      });
+      const maxArea = Math.max(...boxes.map(box => box.area));
+      if (!Number.isFinite(maxArea) || maxArea <= 0) return;
+      path.removeAttribute('fill-rule');
+      path.setAttribute('d', parts.filter((_, index) => {
+        const box = boxes[index];
+        if (box.area < maxArea * 0.05) return true;
+        return !boxes.some((outer, outerIndex) => (
+          outerIndex !== index &&
+          box.xMin >= outer.xMin && box.xMax <= outer.xMax &&
+          box.yMin >= outer.yMin && box.yMax <= outer.yMax
+        ));
+      }).join(' '));
+    });
   }
 
   function renderChinaProgressMap(slot) {
@@ -2790,7 +2994,7 @@
     if (!svg) return;
     svg.removeAttribute('width');
     svg.removeAttribute('height');
-    svg.setAttribute('preserveAspectRatio', 'xMidYMin meet');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     svg.querySelectorAll('rect').forEach(rect => rect.setAttribute('fill', '#16202a'));
     svg.querySelectorAll('path').forEach(path => {
       const id = path.id || '';
@@ -2986,6 +3190,11 @@
     const image = slides[activeSlide]?.querySelector('img');
     if (!image) return;
     const apply = () => {
+      if (window.matchMedia('(max-width: 760px)').matches) {
+        hero.style.aspectRatio = '4 / 3';
+        syncLeadSideHeight();
+        return;
+      }
       if (image.naturalWidth && image.naturalHeight) {
         hero.style.aspectRatio = `${image.naturalWidth} / ${image.naturalHeight}`;
         syncLeadSideHeight();
@@ -3245,7 +3454,9 @@
     setInterval(async () => {
       const changed = await refreshFromLiveIndexes();
       if (!changed) return;
+      applyStoryVariantVisibility();
       mixStoryCards();
+      refreshCardList();
       rebuildCarousel();
       setupReactions();
       applyFilters();
@@ -3263,6 +3474,7 @@
   primaryTabs.forEach(tab => {
     tab.addEventListener('click', event => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (tab.matches('a[href]')) return;
       event.preventDefault();
       activeFilter = tab.dataset.filter;
       if (activeFilter !== 'other') activeMoreFilter = 'all';
@@ -3318,7 +3530,9 @@
   async function init() {
     refreshCardList();
     await refreshFromLiveIndexes();
+    applyStoryVariantVisibility();
     mixStoryCards();
+    refreshCardList();
     renderProgressMaps();
     rebuildCarousel();
     setupReactions();
@@ -3339,6 +3553,5 @@
 
   init();
 </script>
-  <script src="./assets/zz-home-button.js?v=20260703-home" defer></script>
 </body>
 </html>

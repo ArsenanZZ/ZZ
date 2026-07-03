@@ -72,9 +72,11 @@
       "html[data-run50-theme='dark'] a{color:#8fd3ff!important;}",
       "html[data-run50-theme='dark'] .story-nav,html[data-run50-theme='dark'] .page-footer,html[data-run50-theme='dark'] .meta,html[data-run50-theme='dark'] .byline,html[data-run50-theme='dark'] .section-nav{color:#a8b3c2!important;}",
       "html[data-run50-theme='dark'] h1,html[data-run50-theme='dark'] h2,html[data-run50-theme='dark'] h3,html[data-run50-theme='dark'] .wordmark,html[data-run50-theme='dark'] .article-body h2,html[data-run50-theme='dark'] .article-body h3,html[data-run50-theme='dark'] .zz-engagement h2{color:#f5f7fb!important;}",
-      "html[data-run50-theme='dark'] .dek,html[data-run50-theme='dark'] .article-body p,html[data-run50-theme='dark'] .article-body li,html[data-run50-theme='dark'] .copy p,html[data-run50-theme='dark'] .copy li,html[data-run50-theme='dark'] .brief p{color:#d6dee8!important;}",
+      "html[data-run50-theme='dark'] .dek,html[data-run50-theme='dark'] .article-shell p,html[data-run50-theme='dark'] .article-shell li,html[data-run50-theme='dark'] .article-body p,html[data-run50-theme='dark'] .article-body li,html[data-run50-theme='dark'] .copy p,html[data-run50-theme='dark'] .copy li,html[data-run50-theme='dark'] .brief p{color:#d6dee8!important;}",
       "html[data-run50-theme='dark'] .article-shell,html[data-run50-theme='dark'] .site-head,html[data-run50-theme='dark'] .summary-box,html[data-run50-theme='dark'] .brief,html[data-run50-theme='dark'] .rail-card,html[data-run50-theme='dark'] .zz-engagement-card{background:#111820!important;border-color:#283442!important;box-shadow:0 24px 60px rgba(0,0,0,.38)!important;}",
-      "html[data-run50-theme='dark'] .hero,html[data-run50-theme='dark'] .copy figure,html[data-run50-theme='dark'] .zz-engagement-shell,html[data-run50-theme='dark'] .zz-comment-item{border-color:#283442!important;}",
+      "html[data-run50-theme='dark'] .hero,html[data-run50-theme='dark'] figure,html[data-run50-theme='dark'] .copy figure,html[data-run50-theme='dark'] .zz-engagement-shell,html[data-run50-theme='dark'] .zz-comment-item{background:#111820!important;border-color:#283442!important;}",
+      "html[data-run50-theme='dark'] .run50-global-tabs a{background:rgba(17,24,39,.78)!important;border-color:#344257!important;color:#e7edf4!important;box-shadow:none!important;}",
+      "html[data-run50-theme='dark'] .run50-global-tabs a.active,html[data-run50-theme='dark'] .run50-global-tabs a[aria-current='page']{background:#263241!important;color:#ffffff!important;}",
       "html[data-run50-theme='dark'] .meta span,html[data-run50-theme='dark'] .meta a,html[data-run50-theme='dark'] .zz-engagement-stat{background:#151f2a!important;border-color:#2d3b4b!important;color:#b8c3d0!important;}",
       "html[data-run50-theme='dark'] .article-body figure img,html[data-run50-theme='dark'] .copy figure img,html[data-run50-theme='dark'] .lead-media img,html[data-run50-theme='dark'] .cover{background:#16212d!important;box-shadow:0 18px 48px rgba(0,0,0,.42)!important;}",
       "html[data-run50-theme='dark'] figcaption,html[data-run50-theme='dark'] .caption-line,html[data-run50-theme='dark'] .zz-engagement-note,html[data-run50-theme='dark'] .zz-engagement-status,html[data-run50-theme='dark'] .zz-comments-actions span,html[data-run50-theme='dark'] .zz-comment-meta span{color:#9caabd!important;}",
@@ -82,12 +84,20 @@
       "html[data-run50-theme='dark'] .zz-comments-form label,html[data-run50-theme='dark'] .zz-comment-meta strong,html[data-run50-theme='dark'] .zz-comment-item p,html[data-run50-theme='dark'] .zz-comments-empty,html[data-run50-theme='dark'] .zz-engagement-stat strong{color:#e7edf4!important;}",
       "html[data-run50-theme='dark'] .zz-comments-form input,html[data-run50-theme='dark'] .zz-comments-form textarea{background:#0d141c!important;border-color:#2d3b4b!important;color:#e7edf4!important;}",
       "html[data-run50-theme='dark'] .site-head,html[data-run50-theme='dark'] .breaking{box-shadow:none!important;}",
+      ".run50-story-cover-figure{margin:0 0 26px!important;border-radius:18px;overflow:hidden;border:1px solid rgba(15,23,42,.1);background:#ffffff;box-shadow:0 22px 54px rgba(15,23,42,.12);}",
+      ".run50-story-cover-figure img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;background:#0b0f14;}",
+      ".run50-story-cover-figure figcaption{margin:0;padding:9px 12px;font:600 12px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#64748b;background:rgba(248,250,252,.96);}",
+      "html[data-run50-theme='dark'] .run50-story-cover-figure{background:#111820!important;border-color:#283442!important;box-shadow:0 24px 60px rgba(0,0,0,.38)!important;}",
+      "html[data-run50-theme='dark'] .run50-story-cover-figure figcaption{background:#0f1721!important;color:#9caabd!important;}",
       ".run50-theme-toggle{position:fixed;z-index:9999;top:14px;right:14px;display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:0 13px;border:1px solid rgba(17,24,39,.18);border-radius:999px;background:rgba(255,255,255,.86);color:#111827;font:700 13px/1 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;letter-spacing:0;box-shadow:0 12px 34px rgba(15,23,42,.16);backdrop-filter:blur(14px);cursor:pointer;}",
       ".run50-theme-toggle::before{content:'';width:15px;height:15px;border-radius:50%;background:#111827;box-shadow:inset 5px -2px 0 #ffffff;}",
       ".run50-theme-toggle:hover{transform:translateY(-1px);}",
       "html[data-run50-theme='dark'] .run50-theme-toggle{border-color:rgba(255,255,255,.18);background:rgba(14,21,30,.82);color:#f5f7fb;box-shadow:0 14px 34px rgba(0,0,0,.34);}",
       "html[data-run50-theme='dark'] .run50-theme-toggle::before{background:#f8d66d;box-shadow:0 0 0 4px rgba(248,214,109,.12);}",
-      "@media (max-width:640px){.run50-theme-toggle{top:10px;right:10px;min-height:34px;padding:0 11px;font-size:12px;}}"
+      ".run50-language-toggle{position:fixed;z-index:9999;top:58px;right:14px;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 12px;border:1px solid rgba(17,24,39,.18);border-radius:999px;background:rgba(255,255,255,.86);color:#111827!important;text-decoration:none!important;font:800 13px/1 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;letter-spacing:0;box-shadow:0 12px 34px rgba(15,23,42,.14);backdrop-filter:blur(14px);}",
+      ".run50-language-toggle:hover{transform:translateY(-1px);}",
+      "html[data-run50-theme='dark'] .run50-language-toggle{border-color:rgba(255,255,255,.18);background:rgba(14,21,30,.82);color:#f5f7fb!important;box-shadow:0 14px 34px rgba(0,0,0,.34);}",
+      "@media (max-width:640px){.run50-theme-toggle{top:10px;right:10px;min-height:34px;padding:0 11px;font-size:12px;}.run50-language-toggle{top:50px;right:10px;min-height:32px;padding:0 11px;font-size:12px;}.run50-story-cover-figure{border-radius:14px;}}"
     ].join("\n");
     document.head.appendChild(style);
   }
@@ -118,6 +128,105 @@
 
     syncButton();
     document.body.appendChild(button);
+  }
+
+  function absoluteUrl(value) {
+    if (!value) return "";
+    try {
+      return new URL(value, window.location.href).href;
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function equivalentImageUrl(first, second) {
+    var a = absoluteUrl(first);
+    var b = absoluteUrl(second);
+    if (!a || !b) return false;
+    try {
+      var left = new URL(a);
+      var right = new URL(b);
+      return left.pathname.replace(/\/+/g, "/") === right.pathname.replace(/\/+/g, "/");
+    } catch (error) {
+      return a.split("?")[0] === b.split("?")[0];
+    }
+  }
+
+  function getRun50StoryCoverUrl() {
+    var meta = document.querySelector("meta[property='og:image'],meta[name='twitter:image']");
+    return meta ? absoluteUrl(meta.getAttribute("content")) : "";
+  }
+
+  function findStoryContentRoot() {
+    return document.querySelector(".article-shell") ||
+      document.querySelector("article") ||
+      document.querySelector(".article-body") ||
+      document.querySelector(".copy") ||
+      document.querySelector("main");
+  }
+
+  function insertRun50StoryCover() {
+    if (!isRun50StoryPage()) return;
+    if (document.querySelector("[data-run50-auto-cover]")) return;
+
+    var coverUrl = getRun50StoryCoverUrl();
+    var root = findStoryContentRoot();
+    if (!coverUrl || !root) return;
+
+    var firstImage = root.querySelector("img");
+    if (firstImage && equivalentImageUrl(firstImage.currentSrc || firstImage.src, coverUrl)) return;
+
+    var figure = document.createElement("figure");
+    figure.className = "run50-story-cover-figure";
+    figure.dataset.run50AutoCover = "true";
+
+    var image = document.createElement("img");
+    image.className = "run50-story-cover";
+    image.src = coverUrl;
+    image.alt = document.querySelector("h1") ? document.querySelector("h1").textContent.trim() : "Run50 story cover";
+    image.loading = "eager";
+    image.decoding = "async";
+
+    var caption = document.createElement("figcaption");
+    caption.textContent = "Cover";
+
+    figure.appendChild(image);
+    figure.appendChild(caption);
+    root.insertBefore(figure, root.firstElementChild || root.firstChild);
+  }
+
+  function getRun50LanguageTarget() {
+    var path = window.location.pathname;
+    var lower = path.toLowerCase();
+    var marker = lower.indexOf("/run50/");
+    if (marker < 0) return null;
+
+    var prefix = path.slice(0, marker);
+    var englishMatch = lower.match(/\/run50\/stories\/english\/([^\/]+\.html)$/);
+    var facebookMatch = lower.match(/\/run50\/facebook\/([^\/]+\.html)$/);
+    var slug = englishMatch ? englishMatch[1] : (facebookMatch ? facebookMatch[1] : "");
+    if (!slug) return null;
+
+    return {
+      href: prefix + "/run50/stories/chinese/" + slug,
+      label: "中文"
+    };
+  }
+
+  function initRun50LanguageToggle() {
+    if (!isRun50StoryPage()) return;
+    if (document.querySelector("[data-run50-language-toggle]")) return;
+
+    var target = getRun50LanguageTarget();
+    if (!target) return;
+
+    var link = document.createElement("a");
+    link.className = "run50-language-toggle";
+    link.dataset.run50LanguageToggle = "true";
+    link.href = target.href;
+    link.textContent = target.label;
+    link.setAttribute("aria-label", "Open Chinese version");
+    document.body.appendChild(link);
   }
 
   function localeText(section, zh, en) {
@@ -321,6 +430,8 @@
 
   ready(function () {
     initRun50StoryThemeToggle();
+    insertRun50StoryCover();
+    initRun50LanguageToggle();
 
     var sections = Array.prototype.slice.call(document.querySelectorAll("[data-zz-engagement]"));
     if (!sections.length) return;
