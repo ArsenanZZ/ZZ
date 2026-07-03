@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>2026 每日任务 · 私密计划</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #102132;
+      --navy-2: #1a3248;
+      --blue: #0b67c2;
+      --orange: #f59d24;
+      --cream: #f5f1e8;
+      --paper: #fffdf8;
+      --ink: #17212b;
+      --muted: #687581;
+      --line: #dce2e6;
+      --green: #247a55;
+      --red: #b74646;
+      --shadow: 0 18px 48px rgba(22, 34, 45, .12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 2%, rgba(245,157,36,.16), transparent 24rem),
+        linear-gradient(180deg, #edf2f5 0, var(--cream) 30rem);
+      font-family: "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+    }
+    button, input, textarea { font: inherit; }
+    button { cursor: pointer; }
+    [hidden] { display: none !important; }
+
+    .lock-screen {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .lock-card {
+      width: min(460px, 100%);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 26px;
+      background: rgba(255,253,248,.94);
+      box-shadow: var(--shadow);
+    }
+    .lock-art {
+      min-height: 190px;
+      padding: 28px;
+      color: #fff;
+      background:
+        linear-gradient(145deg, rgba(16,33,50,.1), rgba(16,33,50,.78)),
+        repeating-linear-gradient(115deg, transparent 0 35px, rgba(255,255,255,.08) 36px 37px),
+        linear-gradient(135deg, #0b67c2, #17354c 62%, #f59d24);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .lock-mark {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      font-size: 23px;
+    }
+    .lock-art p { margin: 0 0 5px; font-size: 13px; letter-spacing: .16em; opacity: .78; }
+    .lock-art h1 { margin: 0; font-size: clamp(30px, 8vw, 42px); letter-spacing: -.04em; }
+    .lock-body { padding: 28px; }
+    .lock-body h2 { margin: 0 0 7px; font-size: 20px; }
+    .lock-body > p { margin: 0 0 20px; color: var(--muted); line-height: 1.6; font-size: 14px; }
+    .field { display: grid; gap: 7px; margin-bottom: 12px; }
+    .field label { color: #45525e; font-size: 13px; font-weight: 700; }
+    .field input, .task-input, .notes {
+      width: 100%;
+      border: 1px solid #cdd5da;
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .field input { height: 48px; padding: 0 14px; }
+    .field input:focus, .task-input:focus, .notes:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(11,103,194,.12);
+    }
+    .primary {
+      width: 100%;
+      min-height: 48px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--navy);
+      color: #fff;
+      font-weight: 800;
+    }
+    .primary:hover { background: var(--navy-2); }
+    .form-message { min-height: 20px; margin: 9px 0 0; color: var(--red); font-size: 13px; }
+    .privacy-note { margin-top: 16px; color: #7a858e; font-size: 12px; line-height: 1.55; }
+
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(16,33,50,.96);
+      color: #fff;
+      box-shadow: 0 4px 22px rgba(0,0,0,.14);
+      backdrop-filter: blur(14px);
+    }
+    .header-inner {
+      width: min(1180px, calc(100% - 32px));
+      min-height: 68px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand { display: flex; align-items: center; gap: 11px; }
+    .brand-dot {
+      width: 34px; height: 34px; display: grid; place-items: center;
+      border-radius: 10px; background: var(--orange); color: var(--navy); font-weight: 900;
+    }
+    .brand strong { display: block; font-size: 16px; }
+    .brand small { display: block; margin-top: 1px; color: #b8c3cc; font-size: 11px; }
+    .header-actions { display: flex; gap: 8px; }
+    .icon-button {
+      min-height: 38px;
+      padding: 0 12px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 10px;
+      background: rgba(255,255,255,.06);
+      color: #fff;
+    }
+    .icon-button:hover { background: rgba(255,255,255,.14); }
+
+    main { width: min(1180px, calc(100% - 32px)); margin: 28px auto 70px; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .hero-main, .progress-card, .today-panel, .calendar-panel {
+      border: 1px solid rgba(255,255,255,.8);
+      background: rgba(255,253,248,.94);
+      box-shadow: 0 12px 34px rgba(22,34,45,.08);
+    }
+    .hero-main {
+      min-height: 218px;
+      padding: clamp(26px, 5vw, 48px);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-main::after {
+      content: "2026";
+      position: absolute;
+      right: -15px;
+      bottom: -40px;
+      color: rgba(11,103,194,.07);
+      font-size: clamp(100px, 17vw, 185px);
+      font-weight: 900;
+      letter-spacing: -.08em;
+      pointer-events: none;
+    }
+    .eyebrow { margin: 0 0 12px; color: var(--blue); font-size: 12px; font-weight: 900; letter-spacing: .17em; }
+    .hero h1 { position: relative; z-index: 1; margin: 0; font-size: clamp(36px, 6vw, 68px); letter-spacing: -.065em; line-height: 1; }
+    .hero-copy { position: relative; z-index: 1; max-width: 580px; margin: 18px 0 0; color: var(--muted); line-height: 1.7; }
+    .progress-card { padding: 26px; border-radius: 24px; display: flex; flex-direction: column; justify-content: space-between; }
+    .progress-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .progress-top span { color: var(--muted); font-size: 13px; }
+    .progress-top strong { font-size: 34px; letter-spacing: -.04em; }
+    .progress-ring {
+      --progress: 0deg;
+      width: 88px; height: 88px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: conic-gradient(var(--orange) var(--progress), #e5e8e9 0);
+      position: relative;
+    }
+    .progress-ring::after { content:""; position:absolute; inset:10px; border-radius:50%; background:var(--paper); }
+    .progress-ring span { position: relative; z-index: 1; color: var(--ink); font-weight: 900; font-size: 14px; }
+    .progress-bar { height: 9px; margin-top: 24px; overflow: hidden; border-radius: 99px; background: #e5e8e9; }
+    .progress-bar i { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg,var(--blue),var(--orange)); transition: width .25s; }
+    .progress-caption { margin: 9px 0 0; color: var(--muted); font-size: 12px; }
+
+    .today-panel { margin-bottom: 18px; padding: clamp(20px, 4vw, 34px); border-radius: 24px; }
+    .panel-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 15px; margin-bottom: 22px; }
+    .panel-heading h2 { margin: 0; font-size: clamp(22px, 4vw, 31px); letter-spacing: -.035em; }
+    .panel-heading p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+    .date-chip { padding: 9px 12px; border-radius: 99px; color: #fff; background: var(--blue); font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .task-composer { display: flex; gap: 9px; }
+    .task-input { height: 47px; padding: 0 14px; }
+    .add-button {
+      flex: 0 0 auto; min-width: 96px; border: 0; border-radius: 12px;
+      background: var(--orange); color: var(--navy); font-weight: 900;
+    }
+    .add-button:hover { filter: brightness(.96); }
+    .task-list { display: grid; gap: 8px; margin: 17px 0 20px; }
+    .task-row {
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px;
+      min-height: 48px; padding: 8px 9px 8px 13px; border: 1px solid var(--line); border-radius: 13px; background: #fff;
+    }
+    .task-row input { width: 19px; height: 19px; accent-color: var(--green); }
+    .task-row.done .task-text { color: #929ba2; text-decoration: line-through; }
+    .task-text { min-width: 0; overflow-wrap: anywhere; }
+    .delete-task { width: 31px; height: 31px; border: 0; border-radius: 9px; background: transparent; color: #9aa2a8; font-size: 18px; }
+    .delete-task:hover { color: var(--red); background: #fff0ef; }
+    .empty-tasks { padding: 22px; border: 1px dashed #ccd4d9; border-radius: 13px; color: var(--muted); text-align: center; }
+    .notes-label { display: flex; justify-content: space-between; margin-bottom: 7px; color: #45525e; font-size: 13px; font-weight: 800; }
+    .save-state { color: var(--green); font-weight: 500; }
+    .notes { min-height: 96px; padding: 12px 14px; resize: vertical; line-height: 1.55; }
+
+    .calendar-panel { padding: clamp(18px, 4vw, 30px); border-radius: 24px; }
+    .calendar-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 21px; }
+    .calendar-tools h2 { margin: 0; font-size: 25px; letter-spacing: -.03em; }
+    .filters { display: flex; flex-wrap: wrap; gap: 7px; }
+    .filter {
+      min-height: 36px; padding: 0 13px; border: 1px solid var(--line); border-radius: 99px;
+      color: #52606b; background: #fff; font-size: 12px; font-weight: 800;
+    }
+    .filter.active { border-color: var(--navy); color: #fff; background: var(--navy); }
+    .months { display: grid; gap: 25px; }
+    .month-title { display: flex; align-items: center; gap: 11px; margin: 0 0 11px; font-size: 17px; }
+    .month-title::after { content:""; height:1px; flex:1; background:var(--line); }
+    .days { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: 7px; }
+    .day {
+      min-height: 82px; padding: 10px; border: 1px solid var(--line); border-radius: 13px;
+      color: var(--ink); background: #fff; text-align: left; transition: transform .12s, border-color .12s, box-shadow .12s;
+    }
+    .day:hover { transform: translateY(-2px); border-color: #95b8d7; box-shadow: 0 8px 18px rgba(20,50,75,.09); }
+    .day.today { border: 2px solid var(--blue); }
+    .day.selected { background: #edf6ff; border-color: var(--blue); }
+    .day.complete { background: #edf8f2; border-color: #a8d4bd; }
+    .day.has-tasks:not(.complete) { border-left: 4px solid var(--orange); }
+    .day-number { display: block; font-size: 18px; font-weight: 900; }
+    .day-week { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; }
+    .day-status { display: block; margin-top: 9px; color: var(--muted); font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .day.complete .day-status { color: var(--green); }
+    .day.filtered { display: none; }
+
+    .footer-tools { display: flex; flex-wrap: wrap; gap: 9px; justify-content: center; margin-top: 22px; }
+    .secondary {
+      min-height: 40px; padding: 0 14px; border: 1px solid #cbd3d8; border-radius: 10px;
+      background: rgba(255,255,255,.8); color: #44515b; font-size: 12px; font-weight: 800;
+    }
+    .secondary:hover { border-color: #8093a1; }
+    .file-input { display: none; }
+    .toast {
+      position: fixed; left: 50%; bottom: 22px; z-index: 50; transform: translate(-50%, 16px);
+      padding: 11px 16px; border-radius: 11px; color: #fff; background: var(--navy);
+      box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: .2s;
+    }
+    .toast.show { transform: translate(-50%,0); opacity: 1; }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; }
+      .progress-card { min-height: 180px; }
+      .days { grid-template-columns: repeat(4,minmax(0,1fr)); }
+      .header-inner { width: min(100% - 22px,1180px); }
+      main { width: min(100% - 20px,1180px); margin-top: 16px; }
+      .icon-button .wide-label { display: none; }
+    }
+    @media (max-width: 460px) {
+      .days { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .task-composer { align-items: stretch; flex-direction: column; }
+      .add-button { min-height: 44px; }
+      .panel-heading { align-items: flex-start; flex-direction: column; }
+      .day { min-height: 76px; }
+      .lock-body { padding: 23px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="lock-screen" id="lockScreen">
+    <div class="lock-card">
+      <div class="lock-art">
+        <div class="lock-mark" aria-hidden="true">✓</div>
+        <div>
+          <p>RUN50 · PRIVATE</p>
+          <h1>2026 每日任务</h1>
+        </div>
+      </div>
+      <div class="lock-body">
+        <form id="setupForm" hidden>
+          <h2>设置你的页面密码</h2>
+          <p>第一次打开。密码只用于在这台设备上加密任务，请妥善记住。</p>
+          <div class="field">
+            <label for="newPassword">新密码（至少 8 位）</label>
+            <input id="newPassword" type="password" minlength="8" autocomplete="new-password" required>
+          </div>
+          <div class="field">
+            <label for="confirmPassword">再次输入</label>
+            <input id="confirmPassword" type="password" minlength="8" autocomplete="new-password" required>
+          </div>
+          <button class="primary" type="submit">创建私密计划</button>
+          <div class="form-message" id="setupMessage" role="alert"></div>
+        </form>
+        <form id="unlockForm" hidden>
+          <h2>欢迎回来</h2>
+          <p>输入密码，打开你的每日任务计划。</p>
+          <div class="field">
+            <label for="password">页面密码</label>
+            <input id="password" type="password" autocomplete="current-password" required>
+          </div>
+          <button class="primary" type="submit">解锁页面</button>
+          <div class="form-message" id="unlockMessage" role="alert"></div>
+        </form>
+        <div class="privacy-note">任务内容使用 AES-GCM 加密后保存在当前浏览器，不上传服务器。清除浏览器数据前请先导出备份。</div>
+      </div>
+    </div>
+  </section>
+
+  <div id="app" hidden>
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand">
+          <span class="brand-dot">✓</span>
+          <div><strong>2026 每日任务</strong><small>7月3日 — 12月31日</small></div>
+        </div>
+        <div class="header-actions">
+          <button class="icon-button" id="todayButton" type="button">今天</button>
+          <button class="icon-button" id="lockButton" type="button">🔒 <span class="wide-label">锁定</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-main">
+          <p class="eyebrow">ONE DAY · ONE STEP</p>
+          <h1>每天完成一点。</h1>
+          <p class="hero-copy">从今天到年末，共 182 天。把真正重要的事写下来，做完，划掉；让每一个普通日子都有清楚的落点。</p>
+        </div>
+        <aside class="progress-card">
+          <div class="progress-top">
+            <div><span>任务完成进度</span><br><strong id="doneCount">0</strong><span id="totalCount"> / 0</span></div>
+            <div class="progress-ring" id="progressRing"><span id="progressPercent">0%</span></div>
+          </div>
+          <div>
+            <div class="progress-bar"><i id="progressBar"></i></div>
+            <p class="progress-caption" id="progressCaption">写下第一项任务，计划就开始了。</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="today-panel" id="editorPanel">
+        <div class="panel-heading">
+          <div>
+            <h2 id="editorTitle">今天的任务</h2>
+            <p id="editorSubtitle"></p>
+          </div>
+          <span class="date-chip" id="dateChip"></span>
+        </div>
+        <form class="task-composer" id="taskForm">
+          <input class="task-input" id="taskInput" maxlength="160" placeholder="写下一项要完成的事…" autocomplete="off" required>
+          <button class="add-button" type="submit">＋ 添加任务</button>
+        </form>
+        <div class="task-list" id="taskList"></div>
+        <label class="notes-label" for="notes"><span>当天小结 / 备注</span><span class="save-state" id="saveState"></span></label>
+        <textarea class="notes" id="notes" maxlength="2000" placeholder="完成了什么？明天要记得什么？"></textarea>
+      </section>
+
+      <section class="calendar-panel">
+        <div class="calendar-tools">
+          <h2>年末计划日历</h2>
+          <div class="filters" aria-label="任务筛选">
+            <button class="filter active" data-filter="all" type="button">全部日期</button>
+            <button class="filter" data-filter="open" type="button">待完成</button>
+            <button class="filter" data-filter="complete" type="button">已完成</button>
+            <button class="filter" data-filter="empty" type="button">未安排</button>
+          </div>
+        </div>
+        <div class="months" id="months"></div>
+        <div class="footer-tools">
+          <button class="secondary" id="exportButton" type="button">导出加密备份</button>
+          <button class="secondary" id="importButton" type="button">导入备份</button>
+          <input class="file-input" id="fileInput" type="file" accept="application/json,.json">
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+  (() => {
+    "use strict";
+    const STORAGE_KEY = "zz-2026-daily-tasks-encrypted-v1";
+    const START = "2026-07-03";
+    const END = "2026-12-31";
+    const enc = new TextEncoder();
+    const dec = new TextDecoder();
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => [...document.querySelectorAll(selector)];
+    const state = { key: null, vault: null, data: { days: {} }, selected: START, filter: "all", saveTimer: null };
+    const weekdays = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+    const monthNames = ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"];
+
+    function bytesToBase64(bytes) {
+      let binary = "";
+      bytes.forEach(byte => binary += String.fromCharCode(byte));
+      return btoa(binary);
+    }
+    function base64ToBytes(value) {
+      const binary = atob(value);
+      return Uint8Array.from(binary, char => char.charCodeAt(0));
+    }
+    async function deriveKey(password, salt) {
+      const material = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
+      return crypto.subtle.deriveKey(
+        { name: "PBKDF2", salt, iterations: 250000, hash: "SHA-256" },
+        material,
+        { name: "AES-GCM", length: 256 },
+        false,
+        ["encrypt", "decrypt"]
+      );
+    }
+    async function encryptData(key, data) {
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, enc.encode(JSON.stringify(data)));
+      return { iv: bytesToBase64(iv), ciphertext: bytesToBase64(new Uint8Array(ciphertext)) };
+    }
+    async function decryptData(key, vault) {
+      const plain = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: base64ToBytes(vault.iv) },
+        key,
+        base64ToBytes(vault.ciphertext)
+      );
+      return JSON.parse(dec.decode(plain));
+    }
+    function readVault() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (_) { return null; }
+    }
+    async function persist() {
+      if (!state.key || !state.vault) return;
+      const encrypted = await encryptData(state.key, state.data);
+      state.vault = { version: 1, salt: state.vault.salt, ...encrypted, updatedAt: new Date().toISOString() };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.vault));
+      $("#saveState").textContent = "已加密保存";
+      clearTimeout(state.saveTimer);
+      state.saveTimer = setTimeout(() => $("#saveState").textContent = "", 1400);
+    }
+    function queuePersist() {
+      clearTimeout(state.saveTimer);
+      $("#saveState").textContent = "保存中…";
+      state.saveTimer = setTimeout(() => persist().catch(showSaveError), 300);
+    }
+    function showSaveError() {
+      $("#saveState").textContent = "保存失败";
+      toast("保存失败，请导出备份后重试");
+    }
+    function dayData(date) {
+      if (!state.data.days[date]) state.data.days[date] = { tasks: [], notes: "" };
+      return state.data.days[date];
+    }
+    function dateRange() {
+      const dates = [];
+      const cursor = new Date(START + "T12:00:00");
+      const end = new Date(END + "T12:00:00");
+      while (cursor <= end) {
+        dates.push(toISO(cursor));
+        cursor.setDate(cursor.getDate() + 1);
+      }
+      return dates;
+    }
+    function toISO(date) {
+      return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
+    }
+    function displayDate(iso) {
+      const date = new Date(iso + "T12:00:00");
+      return `${date.getMonth()+1}月${date.getDate()}日 · ${weekdays[date.getDay()]}`;
+    }
+    function todayInRange() {
+      const today = toISO(new Date());
+      return today < START ? START : today > END ? END : today;
+    }
+    function uid() {
+      return crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    }
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[char]);
+    }
+
+    function initGate() {
+      const vault = readVault();
+      $("#setupForm").hidden = Boolean(vault);
+      $("#unlockForm").hidden = !vault;
+      (vault ? $("#password") : $("#newPassword")).focus();
+    }
+    $("#setupForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      const password = $("#newPassword").value;
+      const confirm = $("#confirmPassword").value;
+      const message = $("#setupMessage");
+      if (password.length < 8) { message.textContent = "密码至少需要 8 位。"; return; }
+      if (password !== confirm) { message.textContent = "两次输入的密码不一致。"; return; }
+      message.textContent = "正在创建加密计划…";
+      try {
+        const salt = crypto.getRandomValues(new Uint8Array(16));
+        state.key = await deriveKey(password, salt);
+        state.vault = { version: 1, salt: bytesToBase64(salt) };
+        state.data = { days: {}, createdAt: new Date().toISOString() };
+        await persist();
+        openApp();
+      } catch (_) {
+        message.textContent = "浏览器无法创建加密计划，请换用最新版浏览器。";
+      }
+    });
+    $("#unlockForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      const message = $("#unlockMessage");
+      message.textContent = "正在解锁…";
+      try {
+        const vault = readVault();
+        const key = await deriveKey($("#password").value, base64ToBytes(vault.salt));
+        const data = await decryptData(key, vault);
+        state.key = key; state.vault = vault; state.data = data;
+        openApp();
+      } catch (_) {
+        message.textContent = "密码不正确，请再试一次。";
+        $("#password").select();
+      }
+    });
+    function openApp() {
+      state.selected = todayInRange();
+      $("#lockScreen").hidden = true;
+      $("#app").hidden = false;
+      renderCalendar();
+      renderEditor();
+      updateProgress();
+    }
+    function lockApp() {
+      state.key = null; state.vault = null; state.data = { days: {} };
+      $("#app").hidden = true;
+      $("#lockScreen").hidden = false;
+      $("#unlockForm").hidden = false;
+      $("#setupForm").hidden = true;
+      $("#password").value = "";
+      $("#unlockMessage").textContent = "";
+      $("#password").focus();
+    }
+
+    function renderEditor() {
+      const data = dayData(state.selected);
+      const today = toISO(new Date());
+      $("#editorTitle").textContent = state.selected === today ? "今天的任务" : `${Number(state.selected.slice(5,7))}月${Number(state.selected.slice(8))}日的任务`;
+      $("#editorSubtitle").textContent = displayDate(state.selected);
+      $("#dateChip").textContent = state.selected;
+      $("#notes").value = data.notes || "";
+      if (!data.tasks.length) {
+        $("#taskList").innerHTML = '<div class="empty-tasks">这一天还没有任务。写下最重要的一件事吧。</div>';
+      } else {
+        $("#taskList").innerHTML = data.tasks.map(task => `
+          <div class="task-row ${task.done ? "done" : ""}" data-id="${escapeHTML(task.id)}">
+            <input type="checkbox" ${task.done ? "checked" : ""} aria-label="完成任务">
+            <span class="task-text">${escapeHTML(task.text)}</span>
+            <button class="delete-task" type="button" aria-label="删除任务">×</button>
+          </div>`).join("");
+      }
+      $$("#taskList .task-row").forEach(row => {
+        row.querySelector("input").addEventListener("change", event => {
+          const task = dayData(state.selected).tasks.find(item => item.id === row.dataset.id);
+          if (task) task.done = event.target.checked;
+          renderEditor(); renderCalendar(); updateProgress(); queuePersist();
+        });
+        row.querySelector(".delete-task").addEventListener("click", () => {
+          const data = dayData(state.selected);
+          data.tasks = data.tasks.filter(item => item.id !== row.dataset.id);
+          renderEditor(); renderCalendar(); updateProgress(); queuePersist();
+        });
+      });
+    }
+    $("#taskForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const input = $("#taskInput");
+      const text = input.value.trim();
+      if (!text) return;
+      dayData(state.selected).tasks.push({ id: uid(), text, done: false });
+      input.value = "";
+      renderEditor(); renderCalendar(); updateProgress(); queuePersist();
+      input.focus();
+    });
+    $("#notes").addEventListener("input", event => {
+      dayData(state.selected).notes = event.target.value;
+      renderCalendar(); queuePersist();
+    });
+
+    function renderCalendar() {
+      const groups = {};
+      dateRange().forEach(iso => {
+        const month = iso.slice(0,7);
+        (groups[month] ||= []).push(iso);
+      });
+      $("#months").innerHTML = Object.entries(groups).map(([month, dates]) => {
+        const monthIndex = Number(month.slice(5)) - 1;
+        return `<section class="month"><h3 class="month-title">${monthNames[monthIndex]} <small>${month}</small></h3>
+          <div class="days">${dates.map(dayButton).join("")}</div></section>`;
+      }).join("");
+      $$(".day").forEach(button => button.addEventListener("click", () => {
+        state.selected = button.dataset.date;
+        renderEditor(); renderCalendar();
+        $("#editorPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+      }));
+    }
+    function dayButton(iso) {
+      const data = state.data.days[iso] || { tasks: [], notes: "" };
+      const total = data.tasks.length;
+      const done = data.tasks.filter(task => task.done).length;
+      const complete = total > 0 && done === total;
+      const hasContent = total > 0 || Boolean(data.notes);
+      let visible = true;
+      if (state.filter === "open") visible = total > done;
+      if (state.filter === "complete") visible = complete;
+      if (state.filter === "empty") visible = !hasContent;
+      const date = new Date(iso + "T12:00:00");
+      const status = total ? (complete ? `✓ ${done} 项已完成` : `${done}/${total} 项完成`) : (data.notes ? "有小结" : "未安排");
+      const classes = [
+        "day", iso === toISO(new Date()) ? "today" : "", iso === state.selected ? "selected" : "",
+        complete ? "complete" : "", total ? "has-tasks" : "", visible ? "" : "filtered"
+      ].filter(Boolean).join(" ");
+      return `<button class="${classes}" data-date="${iso}" type="button">
+        <span class="day-number">${date.getDate()}</span>
+        <span class="day-week">${weekdays[date.getDay()].replace("星期","周")}</span>
+        <span class="day-status">${status}</span>
+      </button>`;
+    }
+    $$(".filter").forEach(button => button.addEventListener("click", () => {
+      state.filter = button.dataset.filter;
+      $$(".filter").forEach(item => item.classList.toggle("active", item === button));
+      renderCalendar();
+    }));
+    function updateProgress() {
+      const tasks = Object.values(state.data.days).flatMap(day => day.tasks || []);
+      const done = tasks.filter(task => task.done).length;
+      const percent = tasks.length ? Math.round(done / tasks.length * 100) : 0;
+      $("#doneCount").textContent = done;
+      $("#totalCount").textContent = ` / ${tasks.length}`;
+      $("#progressPercent").textContent = `${percent}%`;
+      $("#progressRing").style.setProperty("--progress", `${percent * 3.6}deg`);
+      $("#progressBar").style.width = `${percent}%`;
+      $("#progressCaption").textContent = tasks.length
+        ? `${percent}% 已完成 · 还有 ${tasks.length - done} 项等待出发。`
+        : "写下第一项任务，计划就开始了。";
+    }
+
+    $("#todayButton").addEventListener("click", () => {
+      state.selected = todayInRange(); renderEditor(); renderCalendar();
+      $("#editorPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    $("#lockButton").addEventListener("click", async () => { await persist(); lockApp(); });
+    $("#exportButton").addEventListener("click", async () => {
+      await persist();
+      const blob = new Blob([JSON.stringify(state.vault, null, 2)], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `2026-daily-tasks-backup-${toISO(new Date())}.json`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+      toast("加密备份已导出");
+    });
+    $("#importButton").addEventListener("click", () => $("#fileInput").click());
+    $("#fileInput").addEventListener("change", async event => {
+      const file = event.target.files[0];
+      if (!file) return;
+      try {
+        const vault = JSON.parse(await file.text());
+        if (!vault.salt || !vault.iv || !vault.ciphertext) throw new Error("invalid");
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(vault));
+        toast("备份已导入，请用备份密码解锁");
+        setTimeout(lockApp, 700);
+      } catch (_) {
+        toast("这不是有效的任务备份");
+      } finally {
+        event.target.value = "";
+      }
+    });
+    let toastTimer;
+    function toast(message) {
+      $("#toast").textContent = message;
+      $("#toast").classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => $("#toast").classList.remove("show"), 2200);
+    }
+    initGate();
+  })();
+  </script>
+</body>
+</html>
