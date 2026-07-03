@@ -746,7 +746,7 @@
     font-size: clamp(22px, 2vw, 32px);
   }
 
-  .world-map-window svg {
+  .mini-map-window.world-map-window svg {
     width: 128% !important;
     height: 128% !important;
     transform: translateY(-3%) scale(1.04);
@@ -797,14 +797,14 @@
     font-size: clamp(19px, 1.7vw, 28px);
   }
 
-  .us-map-window svg {
+  .mini-map-window.us-map-window svg {
     width: 115% !important;
     height: 115% !important;
     transform: translateY(-1%) scale(1.02);
     transform-origin: center center;
   }
 
-  .cn-map-window svg {
+  .mini-map-window.cn-map-window svg {
     width: 112% !important;
     height: 112% !important;
     transform: translateY(-1%) scale(1.02);
@@ -1796,13 +1796,13 @@
             <div class="map-combo-card map-stack-card" aria-label="Run50 and RunCN map previews">
               <a class="map-preview-card" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2020">
                 <span class="map-status-badges"><span><i class="bi bi-check-circle-fill"></i>35 done</span><span><i class="bi bi-calendar2-check"></i>15 planned</span></span>
-                <div class="mini-map-window" id="usProgressMap" aria-label="Run50 United States map preview"></div>
-                <span class="map-preview-copy"><span><b>Run50 Map</b><span>Completed and planned states</span></span><strong>35/50</strong></span>
+                <div class="mini-map-window us-map-window" id="usProgressMap" aria-label="Run50 United States map preview"></div>
+                <span class="map-preview-copy"><span><b>Run50</b><span>Completed and planned states</span></span><strong>35/50</strong></span>
               </a>
               <a class="map-preview-card" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2018">
                 <span class="map-status-badges"><span><i class="bi bi-check-circle-fill"></i>18 done</span><span><i class="bi bi-calendar2-check"></i>16 planned</span></span>
-                <div class="mini-map-window" id="cnProgressMap" aria-label="RunCN China map preview"></div>
-                <span class="map-preview-copy"><span><b>RunCN Map</b><span>Province-level regions incl. HK/MO/TW</span></span><strong>18/34</strong></span>
+                <div class="mini-map-window cn-map-window" id="cnProgressMap" aria-label="RunCN China map preview"></div>
+                <span class="map-preview-copy"><span><b>RunCN</b><span>Province-level regions incl. HK/MO/TW</span></span><strong>18/34</strong></span>
               </a>
             </div>
           </div>
@@ -2562,7 +2562,13 @@
     items.forEach(item => buckets[itemSourceType(item)].push(item));
     const pattern = ['facebook', 'english', 'facebook', 'other'];
     const mixed = [];
-    let patternIndex = 0;
+    Object.keys(buckets).forEach(key => {
+      for (let index = buckets[key].length - 1; index > 0; index -= 1) {
+        const swapIndex = Math.floor(Math.random() * (index + 1));
+        [buckets[key][index], buckets[key][swapIndex]] = [buckets[key][swapIndex], buckets[key][index]];
+      }
+    });
+    let patternIndex = Math.floor(Math.random() * pattern.length);
     while (buckets.facebook.length || buckets.english.length || buckets.other.length) {
       for (let step = 0; step < pattern.length; step += 1) {
         const key = pattern[(patternIndex + step) % pattern.length];
@@ -2655,20 +2661,23 @@
     svg.removeAttribute('width');
     svg.removeAttribute('height');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    const completedPaths = [];
     svg.querySelectorAll('path').forEach(path => {
       const id = path.id || '';
       const isBase = id === 'map_USA';
       const isOcean = /ocean/i.test(id);
       const isComplete = US_PROGRESS_TOKENS.some(token => id.toLowerCase().includes(token.toLowerCase()));
+      if (isComplete) completedPaths.push(path);
       path.setAttribute('fill', isOcean ? '#18232d' : isComplete ? '#c88f3b' : isBase ? '#26313b' : '#35414c');
-      path.setAttribute('stroke', isOcean ? 'rgba(255,255,255,.06)' : isComplete ? 'rgba(82,61,35,.52)' : 'rgba(255,255,255,.11)');
-      path.setAttribute('stroke-width', isComplete ? '.85' : '.55');
+      path.setAttribute('stroke', isOcean ? 'rgba(255,255,255,.05)' : isComplete ? '#d9a44f' : 'rgba(255,255,255,.09)');
+      path.setAttribute('stroke-width', isComplete ? '.35' : '.5');
       path.setAttribute('stroke-linejoin', 'round');
       path.setAttribute('stroke-linecap', 'round');
       path.setAttribute('vector-effect', 'non-scaling-stroke');
       path.style.paintOrder = 'stroke fill markers';
-      path.style.opacity = isComplete ? '1' : '.52';
+      path.style.opacity = isComplete ? '1' : '.48';
     });
+    completedPaths.forEach(path => svg.appendChild(path));
   }
 
   function renderChinaProgressMap(slot) {
