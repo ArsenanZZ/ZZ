@@ -73,6 +73,10 @@ create table if not exists public.story_comments (
       'run50-indianapolis-monumental-marathon-en',
       'run50-indianapolis-monumental-marathon-facebook-en',
       'run50-indianapolis-monumental-marathon-zh',
+      'run50-kentucky-derby-marathon-2023-en',
+      'run50-kentucky-derby-marathon-2023-facebook-en',
+      'run50-kentucky-derby-marathon-2023-zh',
+
       'run50-kentucky-derby-marathon-2025-en',
       'run50-kentucky-derby-marathon-2025-facebook-en',
       'run50-kentucky-derby-marathon-2025-zh',
@@ -238,6 +242,10 @@ add constraint story_comments_page_whitelist check (
       'run50-indianapolis-monumental-marathon-en',
       'run50-indianapolis-monumental-marathon-facebook-en',
       'run50-indianapolis-monumental-marathon-zh',
+      'run50-kentucky-derby-marathon-2023-en',
+      'run50-kentucky-derby-marathon-2023-facebook-en',
+      'run50-kentucky-derby-marathon-2023-zh',
+
       'run50-kentucky-derby-marathon-2025-en',
       'run50-kentucky-derby-marathon-2025-facebook-en',
       'run50-kentucky-derby-marathon-2025-zh',
@@ -407,6 +415,10 @@ with check (
       'run50-indianapolis-monumental-marathon-en',
       'run50-indianapolis-monumental-marathon-facebook-en',
       'run50-indianapolis-monumental-marathon-zh',
+      'run50-kentucky-derby-marathon-2023-en',
+      'run50-kentucky-derby-marathon-2023-facebook-en',
+      'run50-kentucky-derby-marathon-2023-zh',
+
       'run50-kentucky-derby-marathon-2025-en',
       'run50-kentucky-derby-marathon-2025-facebook-en',
       'run50-kentucky-derby-marathon-2025-zh',

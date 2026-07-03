@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750">
+  <rect width="1200" height="750" rx="34" fill="#edf3f7"/>
+  <rect x="38" y="34" width="1124" height="682" rx="38" fill="#f7fbfd" stroke="#20242b" stroke-width="7"/>
+  <text x="70" y="110" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">LOUISVILLE</text>
+  <text x="72" y="158" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">DERBY CITY · TWIN SPIRES</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #1</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="900" fill="#0b67c2">KENTUCKY</text>
+  <path d="M105 510 C250 430 360 550 500 480 S745 575 980 470" fill="none" stroke="#d12c2c" stroke-width="20" stroke-linecap="round"/>
+  <path d="M105 510 C250 430 360 550 500 480 S745 575 980 470" fill="none" stroke="#ffd36e" stroke-width="7" stroke-linecap="round"/>
+  <rect x="855" y="320" width="52" height="125" fill="#203044"/>
+  <rect x="945" y="320" width="52" height="125" fill="#203044"/>
+  <polygon points="845,320 881,238 917,320" fill="#caa15a"/>
+  <polygon points="935,320 971,238 1007,320" fill="#caa15a"/>
+  <rect x="150" y="600" width="900" height="82" rx="18" fill="#146b4a" stroke="#20242b" stroke-width="5"/>
+  <text x="600" y="655" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#fff7df">KENTUCKY DERBY MARATHON</text>
+</svg>
