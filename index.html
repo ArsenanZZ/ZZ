@@ -162,6 +162,9 @@
 
   .tab {
     flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-height: 34px;
     padding: 0 14px;
     border: 1px solid var(--line);
@@ -170,6 +173,7 @@
     color: var(--ink);
     font-size: 13px;
     font-weight: 700;
+    text-decoration: none;
     cursor: pointer;
   }
 
@@ -1431,15 +1435,15 @@
 
 <main class="page">
   <div class="feed-toolbar">
-    <nav class="tabs" aria-label="Feed filters">
-      <button class="tab active" data-filter="all">All</button>
-      <button class="tab" data-filter="run50">Run50</button>
-      <button class="tab" data-filter="runcn">RunCN</button>
-      <button class="tab" data-filter="runworld">RunWorld</button>
-      <button class="tab" data-filter="english">English Stories</button>
-      <button class="tab" data-filter="facebook">Facebook</button>
-      <button class="tab" data-filter="trip">Trips</button>
-      <button class="tab" data-filter="other">More</button>
+    <nav class="tabs" aria-label="Site directories">
+      <a class="tab active" data-filter="all" href="https://zhennanzhang.com/">All</a>
+      <a class="tab" data-filter="run50" href="https://zhennanzhang.com/run50/">Run50</a>
+      <a class="tab" data-filter="runcn" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2018">RunCN</a>
+      <a class="tab" data-filter="runworld" href="https://zhennanzhang.com/run50/running-map.html">RunWorld</a>
+      <a class="tab" data-filter="english" href="https://zhennanzhang.com/run50/stories/english/">English Stories</a>
+      <a class="tab" data-filter="facebook" href="https://zhennanzhang.com/run50/facebook/">Facebook</a>
+      <a class="tab" data-filter="trip" href="https://zhennanzhang.com/run50/mainly-marathons-new-england-2026-guide.html">Trips</a>
+      <a class="tab" data-filter="other" href="https://zhennanzhang.com/reading/">More</a>
     </nav>
     <div class="zoom-tools" aria-label="Card zoom controls">
       <button id="zoomOut" type="button" aria-label="Zoom out" title="Zoom out"><i class="bi bi-zoom-out"></i></button>
@@ -2735,6 +2739,7 @@
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
+      if (tab.matches('a[href]')) return;
       activeFilter = tab.dataset.filter;
       tabs.forEach(item => item.classList.toggle('active', item === tab));
       applyFilters();
