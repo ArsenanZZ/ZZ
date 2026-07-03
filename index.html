@@ -3474,12 +3474,12 @@
   primaryTabs.forEach(tab => {
     tab.addEventListener('click', event => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      if (tab.matches('a[href]')) return;
       event.preventDefault();
       activeFilter = tab.dataset.filter;
       if (activeFilter !== 'other') activeMoreFilter = 'all';
       primaryTabs.forEach(item => item.classList.toggle('active', item === tab));
       moreTabs.forEach(item => item.classList.toggle('active', item.dataset.moreFilter === activeMoreFilter));
+      history.replaceState(null, '', activeFilter === 'other' ? '#more' : location.pathname + location.search);
       applyFilters();
     });
   });
@@ -3490,9 +3490,18 @@
       activeMoreFilter = tab.dataset.moreFilter || 'all';
       primaryTabs.forEach(item => item.classList.toggle('active', item.dataset.filter === 'other'));
       moreTabs.forEach(item => item.classList.toggle('active', item === tab));
+      history.replaceState(null, '', '#more');
       applyFilters();
     });
   });
+
+  function applyInitialRoute() {
+    if (location.hash !== '#more') return;
+    activeFilter = 'other';
+    activeMoreFilter = 'all';
+    primaryTabs.forEach(item => item.classList.toggle('active', item.dataset.filter === 'other'));
+    moreTabs.forEach(item => item.classList.toggle('active', item.dataset.moreFilter === activeMoreFilter));
+  }
 
   document.querySelector('.search').addEventListener('submit', event => {
     event.preventDefault();
@@ -3528,6 +3537,7 @@
   });
 
   async function init() {
+    applyInitialRoute();
     refreshCardList();
     await refreshFromLiveIndexes();
     applyStoryVariantVisibility();
