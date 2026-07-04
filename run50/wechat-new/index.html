@@ -1078,7 +1078,7 @@
               <p>把中国跑马故事集中到一张地图里，用城市红点和省份高亮进入每一段路书。</p>
             </div>
             <div class="map-window" id="runcn-china-map-mini" aria-label="RunCN 中国地图"></div>
-            <div class="map-foot"><span id="cn-map-mini-status">点击打开完整互动地图</span><b>17 Regions</b></div>
+            <div class="map-foot"><span id="cn-map-mini-status">点击打开完整互动地图</span><b>18 Regions</b></div>
           </a>
         </div>
       </section>
@@ -1099,10 +1099,6 @@
         <a class="ticker-item" href="https://zhennanzhang.com/run50/wechat/fargo-marathon-modern-rail.html?v=20260630-wechat-emphasis">
           <small>第25州 · 2025.05.31</small>
           <b>法戈马拉松</b>
-        </a>
-        <a class="ticker-item" href="https://zhennanzhang.com/run50/wechat/arizona-phoenix-marathon-modern-rail.html?v=20260630-wechat-emphasis">
-          <small>第29州 · 2026.01.10</small>
-          <b>亚利桑那 Buckeye</b>
         </a>
       </section>
 
@@ -1900,7 +1896,8 @@
         ['AK', 'Anchorage', 61.2181, -149.9003], ['MO', 'St. Joseph', 39.7675, -94.8467],
         ['IL', 'Chicago', 41.8781, -87.6298], ['TN', 'Nashville', 36.1627, -86.7816],
         ['WV', 'Huntington', 38.4192, -82.4452], ['TX', 'San Antonio', 29.4241, -98.4936],
-        ['FL', 'Miami', 25.7617, -80.1918], ['NC', 'Oak Island', 33.9166, -78.1611],
+        ['FL', 'Orlando', 28.5383, -81.3792], ['FL', 'Key West', 24.5551, -81.7800],
+        ['NC', 'Oak Island', 33.9166, -78.1611],
         ['AR', 'Little Rock', 34.7465, -92.2896], ['SC', 'Greer', 34.9387, -82.2271],
         ['PA', 'Pittsburgh', 40.4406, -79.9959], ['WI', 'Green Bay', 44.5133, -88.0133],
         ['MI', 'Grand Rapids', 42.9634, -85.6681], ['NH', 'Keene', 42.9337, -72.2781],
@@ -1927,7 +1924,7 @@
         cn_shaanxi: ['陕西', '#f4a83a'], cn_zhejiang: ['浙江', '#a678dc'],
         cn_hainan: ['海南', '#39abc0'], cn_liaoning: ['辽宁', '#f06a4f'],
         cn_shanghai: ['上海', '#5fc36f'], cn_guangxi: ['广西', '#f4a83a'],
-        cn_hongkong: ['香港', '#a678dc']
+        cn_hongkong: ['香港', '#a678dc'], cn_beijing: ['北京', '#e89838']
       };
 
       const WECHAT_STORY_BASE = 'https://zhennanzhang.com/run50/wechat/';
@@ -1982,7 +1979,8 @@
         cn_liaoning: storyHref('dalian-trail'),
         cn_shanghai: storyHref('shanghai-vertical-marathon'),
         cn_guangxi: storyHref('guilin-marathon'),
-        cn_hongkong: storyHref('hong-kong-marathon')
+        cn_hongkong: storyHref('hong-kong-marathon'),
+        cn_beijing: storyHref('wuhan-graduation')
       };
 
       const CHINA_CITY_DOTS = [
@@ -2005,14 +2003,16 @@
         ['大连', 'cn_liaoning', 38.9140, 121.6147, storyHref('dalian-trail')],
         ['上海', 'cn_shanghai', 31.2304, 121.4737, storyHref('shanghai-vertical-marathon')],
         ['桂林', 'cn_guangxi', 25.2345, 110.1799, storyHref('guilin-marathon')],
-        ['香港', 'cn_hongkong', 22.3193, 114.1694, storyHref('hong-kong-marathon')]
+        ['香港', 'cn_hongkong', 22.3193, 114.1694, storyHref('hong-kong-marathon')],
+        ['北京', 'cn_beijing', 40.0799, 116.2100, storyHref('wuhan-graduation')]
       ];
 
       const CHINA_LABEL_OFFSETS = {
         cn_heilongjiang: [0, 2, 12], cn_innermongolia: [-20, -2, 11], cn_hubei: [0, 1, 10],
         cn_sichuan: [-2, 0, 11], cn_fujian: [0, 0, 10], cn_gansu: [0, -5, 10],
         cn_guizhou: [0, 2, 10], cn_hainan: [0, 2, 9], cn_hongkong: [8, -6, 8],
-        cn_shanghai: [9, -4, 8], cn_zhejiang: [0, 7, 9], cn_jiangsu: [5, -7, 9]
+        cn_shanghai: [9, -4, 8], cn_zhejiang: [0, 7, 9], cn_jiangsu: [5, -7, 9],
+        cn_beijing: [0, -5, 8]
       };
 
       function addSvgEl(svg, tag, attrs) {
