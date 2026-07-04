@@ -462,6 +462,10 @@
       max-height: 100%;
     }
 
+    .map-window svg path {
+      transition: fill .18s ease, opacity .18s ease, stroke .18s ease, filter .18s ease;
+    }
+
     .map-window .city-dot {
       fill: #ff3b30;
       stroke: #fff;
@@ -477,6 +481,14 @@
       fill: rgba(255, 59, 48, .28);
       animation: map-dot-pulse 2.1s ease-in-out infinite;
       pointer-events: none;
+    }
+
+    .map-window .city-ring {
+      fill: none;
+      stroke: rgba(255, 214, 102, .86);
+      stroke-width: 1.2;
+      pointer-events: none;
+      animation: map-ring-pulse 2.4s ease-in-out infinite;
     }
 
     #runcn-china-map-mini .city-dot-glow {
@@ -2158,13 +2170,49 @@
       }
 
       function cleanupUsMap(svg) {
-        removeContainedUsPathParts(svg);
+        const cleanupIds = new Set([...US_SOURCE_PATHS, ...US_HOLLOW_PATHS, ...Object.values(US_PATHS).flat()]);
+        cleanupIds.forEach(stateId => {
+          const el = svg.querySelector('#map_' + stateId);
+          if (!el) return;
+          const parts = splitUsPath(el.getAttribute('d') || '');
+          if (parts.length < 2) return;
+          const bboxes = parts.map(pathPartBox);
+          const maxArea = Math.max(...bboxes.map(box => box.area));
+          if (!maxArea) return;
+          el.removeAttribute('fill-rule');
+          el.setAttribute('d', parts.filter((_, index) => {
+            const box = bboxes[index];
+            if (box.area < maxArea * 0.05) return true;
+            return !bboxes.some((outer, outerIndex) => (
+              outerIndex !== index &&
+              box.xMin >= outer.xMin &&
+              box.xMax <= outer.xMax &&
+              box.yMin >= outer.yMin &&
+              box.yMax <= outer.yMax
+            ));
+          }).join(' '));
+        });
         const hawaiiFrame = svg.querySelector('#map_hawaii_1_');
         const alaskaFrame = svg.querySelector('#map_exterior_2_');
         if (alaskaFrame && hawaiiFrame) alaskaFrame.style.fill = hawaiiFrame.style.fill || hawaiiFrame.getAttribute('fill') || '';
+        raiseUsLabels(svg);
+      }
+
+      function raiseUsLabels(svg) {
         US_LABEL_PATHS.forEach(labelId => {
           const label = svg.querySelector('#map_' + labelId);
-          if (label) svg.appendChild(label);
+          if (!label) return;
+          const isOceanLabel = labelId === 'ATLANTIC_OCEAN' || labelId === 'gulf_of_mexico' || labelId === 'OCEANS';
+          label.setAttribute('fill', isOceanLabel ? '#9aa5b8' : '#f8fbff');
+          label.setAttribute('stroke', isOceanLabel ? 'none' : 'rgba(255,255,255,.24)');
+          label.setAttribute('stroke-width', isOceanLabel ? '0' : '.45');
+          label.setAttribute('paint-order', 'stroke fill');
+          label.style.opacity = isOceanLabel ? '.34' : '.98';
+          label.style.fill = isOceanLabel ? '#9aa5b8' : '#f8fbff';
+          label.style.stroke = isOceanLabel ? 'none' : 'rgba(255,255,255,.24)';
+          label.style.strokeWidth = isOceanLabel ? '0' : '.45';
+          label.style.pointerEvents = 'none';
+          svg.appendChild(label);
         });
       }
 
@@ -2174,6 +2222,89 @@
 
       function setStatus(status, text) {
         if (status) status.textContent = text || '点击打开完整互动地图';
+      }
+
+      function lightenHex(hex, amount = 0.18) {
+        const value = String(hex || '').replace('#', '');
+        if (!/^[0-9a-f]{6}$/i.test(value)) return hex;
+        const parts = [0, 2, 4].map(index => parseInt(value.slice(index, index + 2), 16));
+        return '#' + parts.map(channel => {
+          const next = Math.round(channel + (255 - channel) * amount);
+          return next.toString(16).padStart(2, '0');
+        }).join('');
+      }
+
+      function usStateGroup(svg, ids) {
+        return ids.map(id => svg.querySelector('#map_' + id)).filter(Boolean);
+      }
+
+      function usPathBox(path) {
+        const pairs = (path.getAttribute('d') || '').match(/-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?/g) || [];
+        if (!pairs.length) return { xMin: 0, xMax: 0, yMin: 0, yMax: 0, area: 0 };
+        const xs = pairs.map(pair => parseFloat(pair));
+        const ys = pairs.map(pair => parseFloat(pair.split(',')[1]));
+        const xMin = Math.min(...xs), xMax = Math.max(...xs);
+        const yMin = Math.min(...ys), yMax = Math.max(...ys);
+        return { xMin, xMax, yMin, yMax, area: (xMax - xMin) * (yMax - yMin) };
+      }
+
+      function containsUsBox(outer, inner) {
+        return (
+          outer.area > inner.area * 1.08 &&
+          inner.xMin >= outer.xMin - 2 &&
+          inner.xMax <= outer.xMax + 2 &&
+          inner.yMin >= outer.yMin - 2 &&
+          inner.yMax <= outer.yMax + 2
+        );
+      }
+
+      function usBoxOverlapRatio(outer, inner) {
+        const width = Math.max(0, Math.min(outer.xMax, inner.xMax) - Math.max(outer.xMin, inner.xMin));
+        const height = Math.max(0, Math.min(outer.yMax, inner.yMax) - Math.max(outer.yMin, inner.yMin));
+        const overlap = width * height;
+        return inner.area ? overlap / inner.area : 0;
+      }
+
+      function visibleUsStatePaths(paths) {
+        const boxed = paths.map(path => ({ path, box: usPathBox(path) }));
+        return boxed
+          .filter(item => !boxed.some(other => other.path !== item.path && containsUsBox(other.box, item.box)))
+          .map(item => item.path);
+      }
+
+      function visibleUsBoundaryPaths(paths) {
+        const boxed = paths.map(path => ({ path, box: usPathBox(path) }));
+        return boxed
+          .filter(item => item.box.area > 18)
+          .filter(item => !boxed.some(other => (
+            other.path !== item.path &&
+            (
+              containsUsBox(other.box, item.box) ||
+              (other.box.area > item.box.area * 1.05 && usBoxOverlapRatio(other.box, item.box) > 0.55)
+            )
+          )))
+          .map(item => item.path);
+      }
+
+      function addUsBoundaryLayer(svg, statePaths) {
+        const old = svg.querySelector('#mini-us-state-boundaries');
+        if (old) old.remove();
+        const layer = addSvgEl(svg, 'g', { id: 'mini-us-state-boundaries' });
+        layer.style.pointerEvents = 'none';
+        visibleUsBoundaryPaths(statePaths).forEach(path => {
+          const outline = path.cloneNode(false);
+          outline.removeAttribute('id');
+          outline.setAttribute('fill', 'none');
+          outline.setAttribute('stroke', 'rgba(255,255,255,.58)');
+          outline.setAttribute('stroke-width', '1.05');
+          outline.setAttribute('stroke-linejoin', 'round');
+          outline.setAttribute('stroke-linecap', 'round');
+          outline.setAttribute('vector-effect', 'non-scaling-stroke');
+          outline.style.opacity = '.86';
+          outline.style.pointerEvents = 'none';
+          layer.appendChild(outline);
+        });
+        raiseUsLabels(svg);
       }
 
       function paintUsMap() {
@@ -2213,52 +2344,77 @@
             return;
           }
           path.setAttribute('fill', isFrame ? '#323a52' : '#242b3f');
-          path.setAttribute('stroke', isFrame ? 'rgba(207,218,232,.28)' : 'rgba(207,218,232,.22)');
-          path.setAttribute('stroke-width', isFrame ? '.8' : '.75');
+          path.setAttribute('stroke', isFrame ? 'rgba(207,218,232,.28)' : 'none');
+          path.setAttribute('stroke-width', isFrame ? '.8' : '0');
           path.style.opacity = isFrame ? '1' : '.78';
           path.style.pointerEvents = 'none';
         });
 
+        const boundaryPaths = [];
         Object.entries(US_PATHS).forEach(([abbr, ids]) => {
-          ids.forEach(id => {
-            const path = svg.querySelector('#map_' + id);
-            if (!path) return;
+          const paths = usStateGroup(svg, ids);
+          boundaryPaths.push(...visibleUsStatePaths(paths));
+          const baseColor = US_COLORS[abbr];
+          const hoverColor = lightenHex(baseColor, 0.2);
+          const showHover = () => {
+            paths.forEach(path => {
+              path.setAttribute('fill', hoverColor);
+              path.setAttribute('stroke', 'none');
+              path.setAttribute('stroke-width', '0');
+              path.style.opacity = '1';
+              path.style.filter = 'brightness(1.08)';
+            });
+            setStatus(status, `Run50 · ${US_NAMES[abbr]}`);
+          };
+          const hideHover = () => {
+            paths.forEach(path => {
+              path.setAttribute('fill', baseColor);
+              path.setAttribute('stroke', 'none');
+              path.setAttribute('stroke-width', '0');
+              path.style.opacity = '1';
+              path.style.filter = '';
+            });
+            setStatus(status);
+          };
+          paths.forEach(path => {
             path.setAttribute('fill', US_COLORS[abbr]);
-            path.setAttribute('stroke', 'rgba(255,255,255,.48)');
-            path.setAttribute('stroke-width', '1');
+            path.setAttribute('stroke', 'none');
+            path.setAttribute('stroke-width', '0');
             path.style.opacity = '1';
             path.style.pointerEvents = 'auto';
             path.style.cursor = 'pointer';
-            path.addEventListener('mouseenter', () => {
-              path.style.opacity = '.86';
-              setStatus(status, `Run50 · ${US_NAMES[abbr]}`);
-            });
-            path.addEventListener('mouseleave', () => {
-              path.style.opacity = '1';
-              setStatus(status);
-            });
+            path.addEventListener('mouseenter', showHover);
+            path.addEventListener('mouseleave', hideHover);
             path.addEventListener('click', event => (
               focusMapStory(event, US_STATE_STORIES[abbr], US_COLORS[abbr], status, `Run50 · ${US_NAMES[abbr]}`)
             ));
           });
         });
+        addUsBoundaryLayer(svg, boundaryPaths);
 
+        const glowLayer = addSvgEl(svg, 'g', { id: 'mini-us-dot-glows' });
+        const ringLayer = addSvgEl(svg, 'g', { id: 'mini-us-city-rings' });
         const dotLayer = addSvgEl(svg, 'g', { id: 'mini-us-city-dots' });
         US_CITY_DOTS.forEach(([abbr, city, lat, lon]) => {
           const special = SPECIAL_US_DOTS[`${abbr}:${city}`];
           const p = special ? { x: special[0], y: special[1] } : projectUs(lat, lon);
-          addSvgEl(dotLayer, 'circle', {
-            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '11',
+          addSvgEl(glowLayer, 'circle', {
+            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '20.2',
             class: 'city-dot-glow'
           });
+          addSvgEl(ringLayer, 'circle', {
+            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '12.5',
+            class: 'city-ring'
+          });
           const dot = addSvgEl(dotLayer, 'circle', {
-            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '4.6',
+            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '8.8',
             class: 'city-dot'
           });
           dot.style.cursor = 'pointer';
           dot.addEventListener('mouseenter', () => setStatus(status, `${city} · ${US_NAMES[abbr]}`));
           dot.addEventListener('mouseleave', () => setStatus(status));
         });
+        raiseUsLabels(svg);
       }
 
       function paintChinaMap() {
