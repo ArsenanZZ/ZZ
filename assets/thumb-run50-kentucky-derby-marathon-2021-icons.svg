@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <rect width="1200" height="750" fill="#edf3f7"/>
+  <path d="M0 392 C250 320 420 340 600 300 C780 260 940 295 1200 235 L1200 750 L0 750Z" fill="#77aa64"/>
+  <path d="M0 470 C220 430 395 450 615 410 C835 370 1040 365 1200 330 L1200 540 L0 590Z" fill="#d99637"/>
+  <rect y="552" width="1200" height="198" fill="#1f7a78"/>
+  <rect y="618" width="1200" height="132" fill="#f4efe5"/>
+  <text x="70" y="104" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="900" fill="#20242b">LOUISVILLE</text>
+  <text x="72" y="150" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#667085">DERBY · RAIN · REOPENING</text>
+  <rect x="758" y="62" width="364" height="166" rx="22" fill="#ffffff" stroke="#20242b" stroke-width="8"/>
+  <text x="790" y="122" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="900" fill="#20242b">Run50 #1</text>
+  <text x="790" y="182" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="900" fill="#0b67c2">STORY 2</text>
+  <g stroke="#314453" stroke-width="9" fill="none">
+    <path d="M82 480 L170 388 L258 480 M258 480 L346 388 L434 480 M434 480 L522 388 L610 480 M610 480 L698 388 L786 480 M786 480 L874 388 L962 480 M962 480 L1050 388 L1138 480"/>
+    <path d="M72 480 H1140" stroke-width="13"/>
+  </g>
+  <path d="M124 650 C278 588 410 582 550 626 C710 676 892 610 1088 572" fill="none" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/>
+  <path d="M124 650 C278 588 410 582 550 626 C710 676 892 610 1088 572" fill="none" stroke="#0b67c2" stroke-width="6" stroke-linecap="round"/>
+  <path d="M450 404 C455 590 720 590 724 404" fill="none" stroke="#c96e30" stroke-width="28" stroke-linecap="round"/>
+  <circle cx="588" cy="548" r="70" fill="#f2d88a" stroke="#8a5a21" stroke-width="14"/>
+  <circle cx="588" cy="548" r="32" fill="#ffffff" stroke="#d4b056" stroke-width="6"/>
+  <g stroke="#5f8795" stroke-width="5">
+    <path d="M130 240 l-18 42"/><path d="M218 228 l-18 42"/><path d="M306 236 l-18 42"/><path d="M394 224 l-18 42"/><path d="M482 232 l-18 42"/><path d="M570 220 l-18 42"/><path d="M658 230 l-18 42"/><path d="M746 222 l-18 42"/><path d="M834 238 l-18 42"/><path d="M922 226 l-18 42"/><path d="M1010 234 l-18 42"/>
+  </g>
+</svg>
