@@ -116,6 +116,16 @@
     .primary:hover { background: var(--navy-2); }
     .form-message { min-height: 20px; margin: 9px 0 0; color: var(--red); font-size: 13px; }
     .privacy-note { margin-top: 16px; color: #7a858e; font-size: 12px; line-height: 1.55; }
+    .remember-device {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 4px 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+    .remember-device input { width: 16px; height: 16px; accent-color: var(--orange); }
     .cloud-unlock {
       margin-top: 18px;
       padding: 14px;
@@ -270,6 +280,26 @@
     .task-row.done .task-text { color: #929ba2; text-decoration: line-through; }
     .task-main { min-width: 0; }
     .task-text { min-width: 0; overflow-wrap: anywhere; }
+    .task-edit-form { display: flex; flex-wrap: wrap; gap: 7px; }
+    .task-edit-input {
+      min-width: min(100%, 320px);
+      flex: 1 1 220px;
+      height: 34px;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    .task-save, .task-cancel {
+      min-height: 34px;
+      padding: 0 10px;
+      border-radius: 9px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .task-save { border: 0; color: #fff; background: var(--task-color); }
+    .task-cancel { border: 1px solid var(--line); color: var(--muted); background: transparent; }
     .task-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 7px; }
     .color-button {
       width: 23px; height: 23px; padding: 0; border: 3px solid #fff; border-radius: 50%;
@@ -285,6 +315,10 @@
     .pom-start {
       min-height: 27px; padding: 0 9px; border: 0; border-radius: 8px;
       color: #fff; background: var(--task-color); font-size: 11px; font-weight: 900;
+    }
+    .task-edit {
+      min-height: 27px; padding: 0 9px; border: 1px solid var(--line); border-radius: 8px;
+      color: var(--ink); background: rgba(128,145,157,.08); font-size: 11px; font-weight: 900;
     }
     .pom-adjust {
       min-height: 27px; padding: 0 9px; border: 1px solid var(--line); border-radius: 8px;
@@ -309,35 +343,66 @@
       background-image: repeating-linear-gradient(45deg, var(--task-color) 0 9px, var(--orange) 9px 18px);
     }
     .completed-time { color: var(--green); font-size: 10px; font-weight: 700; }
+    .focus-time { color: var(--muted); font-size: 10px; font-weight: 800; }
     .delete-task { width: 31px; height: 31px; border: 0; border-radius: 9px; background: transparent; color: #9aa2a8; font-size: 18px; }
     .delete-task:hover { color: var(--red); background: #fff0ef; }
     .empty-tasks { padding: 22px; border: 1px dashed #ccd4d9; border-radius: 13px; color: var(--muted); text-align: center; }
     .timer-card {
-      display: flex; align-items: center; justify-content: space-between; gap: 18px;
-      margin: 12px 0 17px; padding: 18px; border-radius: 18px;
-      color: #fff; background: linear-gradient(135deg, var(--timer-color, var(--blue)), var(--navy));
-      box-shadow: 0 9px 22px rgba(16,33,50,.16);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: clamp(18px, 4vw, 40px);
+      margin: 18px auto 22px;
+      padding: clamp(24px, 5vw, 42px);
+      border-radius: 30px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(255,255,255,.24), transparent 18rem),
+        radial-gradient(circle at 80% 18%, rgba(245,157,36,.35), transparent 20rem),
+        linear-gradient(135deg, var(--timer-color, var(--blue)), #111827 58%, #07111d);
+      box-shadow: 0 24px 60px rgba(16,33,50,.28);
+      position: relative;
+      overflow: hidden;
     }
+    .timer-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: conic-gradient(from 90deg, transparent, rgba(255,255,255,.16), transparent 28%);
+      animation: timerSweep 7s linear infinite;
+      pointer-events: none;
+    }
+    .timer-card.overtime {
+      background:
+        radial-gradient(circle at 25% 20%, rgba(255,255,255,.24), transparent 18rem),
+        radial-gradient(circle at 78% 20%, rgba(245,157,36,.44), transparent 18rem),
+        linear-gradient(135deg, #8b5bb5, var(--timer-color, var(--blue)) 48%, #07111d);
+    }
+    @keyframes timerSweep { to { transform: rotate(360deg); } }
+    .timer-card > * { position: relative; z-index: 1; }
+    .timer-card.overtime .timer-ring { animation: timerPulse 1.7s ease-in-out infinite; }
+    @keyframes timerPulse { 50% { transform: scale(1.025); } }
     .timer-copy { min-width: 0; }
-    .timer-copy small { display: block; margin-bottom: 3px; opacity: .74; font-size: 10px; font-weight: 900; letter-spacing: .12em; }
-    .timer-task { overflow: hidden; font-size: 16px; font-weight: 850; text-overflow: ellipsis; white-space: nowrap; }
+    .timer-copy small { display: block; margin-bottom: 8px; opacity: .78; font-size: 11px; font-weight: 900; letter-spacing: .16em; }
+    .timer-task { overflow: hidden; font-size: clamp(22px, 4vw, 38px); font-weight: 900; letter-spacing: -.04em; text-overflow: ellipsis; white-space: nowrap; }
+    .timer-subline { margin-top: 10px; opacity: .82; font-size: 13px; font-weight: 800; }
     .timer-side { display: flex; align-items: center; gap: 12px; }
     .timer-ring {
       --timer-progress: 0deg;
-      width: 132px;
-      height: 132px;
+      width: clamp(190px, 24vw, 260px);
+      height: clamp(190px, 24vw, 260px);
       flex: 0 0 auto;
       display: grid;
       place-items: center;
       border-radius: 50%;
-      background: conic-gradient(#fff var(--timer-progress), rgba(255,255,255,.22) 0);
+      background: conic-gradient(#fff 0deg, #ffe3a3 var(--timer-progress), rgba(255,255,255,.18) 0);
       position: relative;
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.2);
     }
     .timer-ring::after {
       content: "";
       position: absolute;
-      inset: 12px;
+      inset: 15px;
       border-radius: 50%;
       background: linear-gradient(135deg, rgba(255,255,255,.2), rgba(16,33,50,.34));
       backdrop-filter: blur(5px);
@@ -349,9 +414,12 @@
       place-items: center;
       line-height: 1.05;
     }
-    .timer-time { font-variant-numeric: tabular-nums; font-size: 31px; font-weight: 950; letter-spacing: -.04em; }
-    .timer-percent { margin-top: 3px; opacity: .75; font-size: 11px; font-weight: 850; }
-    .timer-cancel { width: 30px; height: 30px; border: 1px solid rgba(255,255,255,.4); border-radius: 9px; color: #fff; background: rgba(255,255,255,.1); }
+    .timer-time { font-variant-numeric: tabular-nums; font-size: clamp(42px, 7vw, 64px); font-weight: 950; letter-spacing: -.06em; }
+    .timer-percent { margin-top: 6px; opacity: .78; font-size: 13px; font-weight: 850; }
+    .timer-cancel {
+      min-height: 42px; padding: 0 14px; border: 1px solid rgba(255,255,255,.46);
+      border-radius: 999px; color: #fff; background: rgba(255,255,255,.12); font-size: 12px; font-weight: 900;
+    }
     .notes-label { display: flex; justify-content: space-between; margin-bottom: 7px; color: #45525e; font-size: 13px; font-weight: 800; }
     .save-state { color: var(--green); font-weight: 500; }
     .notes { min-height: 96px; padding: 12px 14px; resize: vertical; line-height: 1.55; }
@@ -403,6 +471,8 @@
     .sync-head p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
     .sync-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 10px; }
     .sync-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 12px; }
+    .sync-option { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; font-weight: 800; }
+    .sync-option input { accent-color: var(--orange); }
     .sync-status { margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.45; overflow-wrap: anywhere; }
     .secondary {
       min-height: 40px; padding: 0 14px; border: 1px solid #cbd3d8; border-radius: 10px;
@@ -486,7 +556,7 @@
       .progress-card { min-height: 180px; }
       .days { grid-template-columns: repeat(4,minmax(0,1fr)); }
       .sync-grid { grid-template-columns: 1fr; }
-      .timer-card { align-items: flex-start; flex-direction: column; }
+      .timer-card { grid-template-columns: 1fr; justify-items: center; text-align: center; }
       .timer-side { width: 100%; justify-content: space-between; }
       .header-inner { width: min(100% - 22px,1180px); }
       main { width: min(100% - 20px,1180px); margin-top: 16px; }
@@ -499,8 +569,7 @@
       .add-button { min-height: 44px; }
       .panel-heading { align-items: flex-start; flex-direction: column; }
       .task-row { grid-template-columns: auto minmax(0,1fr) auto; align-items: flex-start; }
-      .timer-ring { width: 116px; height: 116px; }
-      .timer-time { font-size: 27px; }
+      .timer-ring { width: min(74vw, 260px); height: min(74vw, 260px); }
       .day { min-height: 76px; }
       .lock-body { padding: 23px; }
     }
@@ -532,6 +601,7 @@
             <label for="confirmPassword" id="confirmPasswordLabel">Confirm password</label>
             <input id="confirmPassword" type="password" minlength="8" autocomplete="new-password" required>
           </div>
+          <label class="remember-device"><input id="rememberOnCreate" type="checkbox" checked> <span id="rememberCreateLabel">Remember this device</span></label>
           <button class="primary" id="createButton" type="submit">Create private planner</button>
           <div class="form-message" id="setupMessage" role="alert"></div>
         </form>
@@ -542,6 +612,7 @@
             <label for="password" id="passwordLabel">Page password</label>
             <input id="password" type="password" autocomplete="current-password" required>
           </div>
+          <label class="remember-device"><input id="rememberOnUnlock" type="checkbox" checked> <span id="rememberUnlockLabel">Remember this device</span></label>
           <button class="primary" id="unlockButton" type="submit">Unlock planner</button>
           <div class="form-message" id="unlockMessage" role="alert"></div>
         </form>
@@ -559,6 +630,7 @@
             <label for="cloudPassword" id="cloudPasswordLabel">Page password</label>
             <input id="cloudPassword" type="password" autocomplete="current-password">
           </div>
+          <label class="remember-device"><input id="rememberOnCloud" type="checkbox" checked> <span id="rememberCloudLabel">Remember this device</span></label>
           <button class="secondary" id="cloudLoadButton" type="button">Load encrypted cloud copy</button>
           <div class="form-message" id="cloudMessage" role="alert"></div>
         </details>
@@ -623,6 +695,7 @@
           <div class="timer-copy">
             <small id="timerLabel">FOCUSING NOW</small>
             <div class="timer-task" id="timerTask"></div>
+            <div class="timer-subline" id="timerSubline"></div>
           </div>
           <div class="timer-side">
             <div class="timer-ring" id="timerRing">
@@ -676,7 +749,9 @@
             <button class="secondary" id="syncPushButton" type="button">Create / push encrypted copy</button>
             <button class="secondary" id="syncPullButton" type="button">Pull latest cloud copy</button>
             <button class="secondary" id="syncDisconnectButton" type="button">Forget sync settings</button>
+            <button class="secondary" id="forgetDeviceButton" type="button">Forget this device</button>
           </div>
+          <label class="sync-option"><input id="syncAuto" type="checkbox" checked> <span id="syncAutoLabel">Auto sync on this device</span></label>
           <div class="sync-status" id="syncStatus"></div>
         </section>
       </section>
@@ -692,9 +767,13 @@
     const THEME_KEY = "zz-daily-tasks-theme";
     const SYNC_KEY = "zz-daily-tasks-sync-v1";
     const SYNC_FILE = "2026-daily-tasks-encrypted.json";
+    const DEVICE_DB = "zz-daily-tasks-device-key-v1";
+    const DEVICE_STORE = "keys";
+    const DEVICE_KEY_ID = "planner";
     const START = "2026-07-03";
     const END = "2026-12-31";
     const POMODORO_MS = 25 * 60 * 1000;
+    const MAX_FOCUS_SESSION_MS = 4 * 60 * 60 * 1000;
     const MAX_POMODOROS = 48;
     const enc = new TextEncoder();
     const dec = new TextDecoder();
@@ -702,6 +781,7 @@
     const $$ = (selector) => [...document.querySelectorAll(selector)];
     const state = {
       key: null, vault: null, data: { days: {} }, selected: START, filter: "all", saveTimer: null, timerInterval: null, audio: null,
+      autoSyncTimer: null, syncBusy: false,
       sync: readSyncConfig(),
       lang: localStorage.getItem(LANG_KEY) || "en",
       theme: localStorage.getItem(THEME_KEY) || "dark"
@@ -711,6 +791,7 @@
         pageTitle: "2026 Daily Tasks · Private Planner", lockTitle: "2026 Daily Tasks",
         setupTitle: "Create your page password", setupIntro: "First visit. Your password encrypts tasks on this device, so keep it safe.",
         newPassword: "New password (8+ characters)", confirmPassword: "Confirm password", create: "Create private planner",
+        rememberDevice: "Remember this device",
         unlockTitle: "Welcome back", unlockIntro: "Enter your password to open the daily task planner.",
         password: "Page password", unlock: "Unlock planner",
         cloudUnlock: "Load synced planner from GitHub Gist", cloudToken: "GitHub token", cloudGist: "Gist id",
@@ -724,12 +805,14 @@
         todayTasks: "Today's tasks", dateTasks: (month, day) => `${month}/${day} tasks`, quoteLabel: "DAILY THOUGHT · 每日一句",
         taskPlaceholder: "Write down something to finish…", addTask: "＋ Add task",
         emptyTasks: "No tasks yet. Write down the one thing that matters most.",
-        completeTask: "Complete task", deleteTask: "Delete task",
+        completeTask: "Complete task", deleteTask: "Delete task", editTask: "Edit", editPrompt: "Edit this task",
+        saveEdit: "Save", cancelEdit: "Cancel",
         pomodoro: (done, target) => `${done}/${target} × 25 min`, fewer: "One fewer Pomodoro", more: "One more Pomodoro",
         startFocus: "▶ Start 25 min", running: "Running", changeColor: "Change task color",
         overTarget: extra => `+${extra} extra`, matchTarget: "Make target match",
         completedAt: value => `Completed ${value}`, timerLabel: "FOCUSING NOW", cancelTimer: "Cancel timer",
-        timerProgress: percent => `${percent}% done`, pomodoroDone: "25 minutes complete — one Pomodoro recorded.",
+        endFocus: "End & record", timerProgress: percent => `${percent}% done`, overtime: value => `Overtime +${value}`,
+        focusElapsed: value => `Elapsed ${value}`, focusTotal: value => `Focus ${value}`, pomodoroDone: "Focus session recorded.",
         notes: "Daily reflection / notes", notesPlaceholder: "What got done? What should you remember tomorrow?",
         saving: "Saving…", saved: "Encrypted and saved", saveFailed: "Save failed",
         saveFailedToast: "Save failed. Export a backup and try again.",
@@ -741,6 +824,8 @@
         syncTitle: "Encrypted cloud sync", syncIntro: "Create or connect a private GitHub Gist. Only encrypted task data is uploaded.",
         syncToken: "GitHub token", syncGist: "Gist id (optional for first push)",
         syncPush: "Create / push encrypted copy", syncPull: "Pull latest cloud copy", syncDisconnect: "Forget sync settings",
+        forgetDevice: "Forget this device", deviceForgotten: "Remembered device key removed.",
+        syncAuto: "Auto sync on this device", syncAutoReady: "Auto sync is on. This device will pull on open and push after edits.",
         syncNeedToken: "Add a GitHub token with gist permission.", syncNeedGist: "Add a Gist id first, or create one with Push.",
         syncPushing: "Syncing encrypted copy to GitHub…", syncPulling: "Pulling encrypted cloud copy…",
         syncPushed: id => `Encrypted cloud copy saved. Gist id: ${id}`,
@@ -760,6 +845,7 @@
         pageTitle: "2026 每日任务 · 私密计划", lockTitle: "2026 每日任务",
         setupTitle: "设置你的页面密码", setupIntro: "第一次打开。密码只用于在这台设备上加密任务，请妥善记住。",
         newPassword: "新密码（至少 8 位）", confirmPassword: "再次输入", create: "创建私密计划",
+        rememberDevice: "记住这台设备",
         unlockTitle: "欢迎回来", unlockIntro: "输入密码，打开你的每日任务计划。",
         password: "页面密码", unlock: "解锁页面",
         cloudUnlock: "从 GitHub Gist 载入同步计划", cloudToken: "GitHub token", cloudGist: "Gist id",
@@ -773,12 +859,14 @@
         todayTasks: "今天的任务", dateTasks: (month, day) => `${month}月${day}日的任务`, quoteLabel: "每日一句 · DAILY THOUGHT",
         taskPlaceholder: "写下一项要完成的事…", addTask: "＋ 添加任务",
         emptyTasks: "这一天还没有任务。写下最重要的一件事吧。",
-        completeTask: "完成任务", deleteTask: "删除任务",
+        completeTask: "完成任务", deleteTask: "删除任务", editTask: "编辑", editPrompt: "编辑这个任务",
+        saveEdit: "保存", cancelEdit: "取消",
         pomodoro: (done, target) => `${done}/${target} × 25分钟`, fewer: "减少一个番茄钟", more: "增加一个番茄钟",
         startFocus: "▶ 开始25分钟", running: "计时中", changeColor: "切换任务颜色",
         overTarget: extra => `额外 +${extra}`, matchTarget: "目标改成实际",
         completedAt: value => `完成于 ${value}`, timerLabel: "正在专注", cancelTimer: "取消计时",
-        timerProgress: percent => `已完成 ${percent}%`, pomodoroDone: "25分钟完成，已为这项任务记录一个番茄钟。",
+        endFocus: "结束并记录", timerProgress: percent => `已完成 ${percent}%`, overtime: value => `超时 +${value}`,
+        focusElapsed: value => `已专注 ${value}`, focusTotal: value => `专注 ${value}`, pomodoroDone: "专注时间已记录。",
         notes: "当天小结 / 备注", notesPlaceholder: "完成了什么？明天要记得什么？",
         saving: "保存中…", saved: "已加密保存", saveFailed: "保存失败",
         saveFailedToast: "保存失败，请导出备份后重试",
@@ -790,6 +878,8 @@
         syncTitle: "加密云同步", syncIntro: "创建或连接一个 GitHub 私密 Gist。上传前仍然只保存加密后的任务数据。",
         syncToken: "GitHub token", syncGist: "Gist id（第一次推送可留空）",
         syncPush: "创建 / 推送加密副本", syncPull: "拉取最新云端副本", syncDisconnect: "忘记同步设置",
+        forgetDevice: "忘记这台设备", deviceForgotten: "已移除这台设备保存的解锁密钥。",
+        syncAuto: "这台设备自动同步", syncAutoReady: "自动同步已开启。本设备会打开时拉取，编辑后自动推送。",
         syncNeedToken: "请填写带 gist 权限的 GitHub token。", syncNeedGist: "请先填写 Gist id，或用推送创建一个。",
         syncPushing: "正在同步加密副本到 GitHub…", syncPulling: "正在拉取加密云端副本…",
         syncPushed: id => `加密云端副本已保存。Gist id：${id}`,
@@ -856,6 +946,9 @@
       $("#setupIntro").textContent = text.setupIntro;
       $("#newPasswordLabel").textContent = text.newPassword;
       $("#confirmPasswordLabel").textContent = text.confirmPassword;
+      $("#rememberCreateLabel").textContent = text.rememberDevice;
+      $("#rememberUnlockLabel").textContent = text.rememberDevice;
+      $("#rememberCloudLabel").textContent = text.rememberDevice;
       $("#createButton").textContent = text.create;
       $("#unlockTitle").textContent = text.unlockTitle;
       $("#unlockIntro").textContent = text.unlockIntro;
@@ -878,7 +971,8 @@
       $("#taskInput").placeholder = text.taskPlaceholder;
       $("#addTaskButton").textContent = text.addTask;
       $("#timerLabel").textContent = text.timerLabel;
-      $("#timerCancel").setAttribute("aria-label", text.cancelTimer);
+      $("#timerCancel").textContent = text.endFocus;
+      $("#timerCancel").setAttribute("aria-label", text.endFocus);
       $("#notesLabel").textContent = text.notes;
       $("#notes").placeholder = text.notesPlaceholder;
       $("#calendarTitle").textContent = text.calendar;
@@ -893,6 +987,8 @@
       $("#syncPushButton").textContent = text.syncPush;
       $("#syncPullButton").textContent = text.syncPull;
       $("#syncDisconnectButton").textContent = text.syncDisconnect;
+      $("#forgetDeviceButton").textContent = text.forgetDevice;
+      $("#syncAutoLabel").textContent = text.syncAuto;
       $$(".lang-toggle").forEach(button => button.textContent = text.langSwitch);
       $$(".theme-toggle").forEach(button => button.textContent = state.theme === "dark" ? text.themeLight : text.themeDark);
       if (rerender && !$("#app").hidden) {
@@ -944,15 +1040,48 @@
       );
       return JSON.parse(dec.decode(plain));
     }
+    function openDeviceDb() {
+      return new Promise((resolve, reject) => {
+        if (!("indexedDB" in window)) return reject(new Error("indexeddb"));
+        const request = indexedDB.open(DEVICE_DB, 1);
+        request.onupgradeneeded = () => request.result.createObjectStore(DEVICE_STORE, { keyPath: "id" });
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error || new Error("indexeddb"));
+      });
+    }
+    async function deviceStore(mode, callback) {
+      const db = await openDeviceDb();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(DEVICE_STORE, mode);
+        const store = tx.objectStore(DEVICE_STORE);
+        const request = callback(store);
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error || new Error("device-store"));
+        tx.oncomplete = () => db.close();
+        tx.onerror = () => { db.close(); reject(tx.error || new Error("device-store")); };
+      });
+    }
+    async function rememberDeviceKey(key, salt) {
+      await deviceStore("readwrite", store => store.put({ id: DEVICE_KEY_ID, key, salt, savedAt: new Date().toISOString() }));
+    }
+    async function readDeviceKey(salt) {
+      const record = await deviceStore("readonly", store => store.get(DEVICE_KEY_ID)).catch(() => null);
+      return record?.salt === salt ? record.key : null;
+    }
+    async function forgetDeviceKey() {
+      await deviceStore("readwrite", store => store.delete(DEVICE_KEY_ID)).catch(() => {});
+    }
     function readVault() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (_) { return null; }
     }
     function readSyncConfig() {
       try {
         const config = JSON.parse(localStorage.getItem(SYNC_KEY));
-        return config && typeof config === "object" ? { token: config.token || "", gistId: config.gistId || "" } : { token: "", gistId: "" };
+        return config && typeof config === "object"
+          ? { token: config.token || "", gistId: config.gistId || "", auto: config.auto !== false }
+          : { token: "", gistId: "", auto: true };
       } catch (_) {
-        return { token: "", gistId: "" };
+        return { token: "", gistId: "", auto: true };
       }
     }
     function saveSyncConfig() {
@@ -974,9 +1103,16 @@
       $("#syncGist").value = state.sync.gistId || "";
       $("#cloudToken").value = state.sync.token || "";
       $("#cloudGist").value = state.sync.gistId || "";
+      $("#syncAuto").checked = state.sync.auto !== false;
     }
     function syncPayload() {
       return JSON.stringify(state.vault, null, 2);
+    }
+    function canAutoSync() {
+      return state.sync.auto !== false && Boolean(state.sync.token && state.sync.gistId);
+    }
+    function vaultTime(vault) {
+      return Date.parse(vault?.updatedAt || vault?.createdAt || 0) || 0;
     }
     function validateVault(vault) {
       return vault && vault.salt && vault.iv && vault.ciphertext;
@@ -992,49 +1128,80 @@
       if (!validateVault(vault)) throw new Error("invalid");
       return vault;
     }
-    async function pushGistVault() {
-      const token = $("#syncToken").value.trim();
-      let gistId = $("#syncGist").value.trim();
+    async function pushGistVault({ silent = false, useFields = true } = {}) {
+      if (state.syncBusy) return;
+      const token = useFields ? $("#syncToken").value.trim() : state.sync.token;
+      let gistId = useFields ? $("#syncGist").value.trim() : state.sync.gistId;
       if (!token) { setSyncStatus(t().syncNeedToken); return; }
-      await persist();
-      setSyncStatus(t().syncPushing);
-      const body = {
-        description: "2026 Daily Tasks encrypted cloud sync",
-        public: false,
-        files: { [SYNC_FILE]: { content: syncPayload() } }
-      };
-      const url = gistId ? `https://api.github.com/gists/${encodeURIComponent(gistId)}` : "https://api.github.com/gists";
-      const response = await fetch(url, { method: gistId ? "PATCH" : "POST", headers: syncHeaders(token), body: JSON.stringify(body) });
-      if (!response.ok) throw new Error("push");
-      const gist = await response.json();
-      gistId = gist.id;
-      state.sync = { token, gistId };
-      saveSyncConfig();
-      hydrateSyncFields();
-      setSyncStatus(t().syncPushed(gistId));
-      toast(t().syncPushed(gistId));
+      state.syncBusy = true;
+      try {
+        await persist({ autoSync: false });
+        if (!silent) setSyncStatus(t().syncPushing);
+        const body = {
+          description: "2026 Daily Tasks encrypted cloud sync",
+          public: false,
+          files: { [SYNC_FILE]: { content: syncPayload() } }
+        };
+        const url = gistId ? `https://api.github.com/gists/${encodeURIComponent(gistId)}` : "https://api.github.com/gists";
+        const response = await fetch(url, { method: gistId ? "PATCH" : "POST", headers: syncHeaders(token), body: JSON.stringify(body) });
+        if (!response.ok) throw new Error("push");
+        const gist = await response.json();
+        gistId = gist.id;
+        state.sync = { token, gistId, auto: $("#syncAuto").checked };
+        saveSyncConfig();
+        hydrateSyncFields();
+        setSyncStatus(silent ? t().syncAutoReady : t().syncPushed(gistId));
+        if (!silent) toast(t().syncPushed(gistId));
+      } finally {
+        state.syncBusy = false;
+      }
     }
-    async function pullGistVault({ token, gistId, password } = {}) {
+    async function pullGistVault({ token, gistId, password, remember = false, silent = false } = {}) {
+      if (state.syncBusy) return;
       token ||= $("#syncToken").value.trim();
       gistId ||= $("#syncGist").value.trim();
       if (!token) { setSyncStatus(t().syncNeedToken); return; }
       if (!gistId) { setSyncStatus(t().syncNeedGist); return; }
-      setSyncStatus(t().syncPulling);
-      const vault = await readGistVault(token, gistId);
-      const key = password ? await deriveKey(password, base64ToBytes(vault.salt)) : state.key;
-      const data = await decryptData(key, vault);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(vault));
-      state.key = key;
-      state.vault = vault;
-      state.data = data;
-      state.sync = { token, gistId };
-      saveSyncConfig();
-      hydrateSyncFields();
-      if ($("#app").hidden) openApp(); else { renderCalendar(); renderEditor(); updateProgress(); }
-      setSyncStatus(t().syncPulled);
-      toast(t().syncPulled);
+      state.syncBusy = true;
+      try {
+        if (!silent) setSyncStatus(t().syncPulling);
+        const vault = await readGistVault(token, gistId);
+        const key = password ? await deriveKey(password, base64ToBytes(vault.salt)) : state.key;
+        const data = await decryptData(key, vault);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(vault));
+        state.key = key;
+        state.vault = vault;
+        state.data = data;
+        if (remember) await rememberDeviceKey(key, vault.salt).catch(() => {});
+        state.sync = { token, gistId, auto: $("#syncAuto").checked };
+        saveSyncConfig();
+        hydrateSyncFields();
+        if ($("#app").hidden) openApp(); else { renderCalendar(); renderEditor(); updateProgress(); }
+        setSyncStatus(silent ? t().syncAutoReady : t().syncPulled);
+        if (!silent) toast(t().syncPulled);
+      } finally {
+        state.syncBusy = false;
+      }
     }
-    async function persist() {
+    async function autoPullLatest() {
+      if (!canAutoSync() || !state.key || !state.vault || state.syncBusy) return;
+      try {
+        const cloud = await readGistVault(state.sync.token, state.sync.gistId);
+        if (vaultTime(cloud) > vaultTime(state.vault)) {
+          await pullGistVault({ token: state.sync.token, gistId: state.sync.gistId, silent: true });
+        } else {
+          setSyncStatus(t().syncAutoReady);
+        }
+      } catch (_) {}
+    }
+    function scheduleAutoPush() {
+      if (!canAutoSync()) return;
+      clearTimeout(state.autoSyncTimer);
+      state.autoSyncTimer = setTimeout(() => {
+        pushGistVault({ silent: true, useFields: false }).catch(() => {});
+      }, 1200);
+    }
+    async function persist({ autoSync = true } = {}) {
       if (!state.key || !state.vault) return;
       const encrypted = await encryptData(state.key, state.data);
       state.vault = { version: 1, salt: state.vault.salt, ...encrypted, updatedAt: new Date().toISOString() };
@@ -1042,6 +1209,7 @@
       $("#saveState").textContent = t().saved;
       clearTimeout(state.saveTimer);
       state.saveTimer = setTimeout(() => $("#saveState").textContent = "", 1400);
+      if (autoSync) scheduleAutoPush();
     }
     function queuePersist() {
       clearTimeout(state.saveTimer);
@@ -1086,11 +1254,24 @@
       return String(value).replace(/[&<>"']/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[char]);
     }
 
-    function initGate() {
+    async function initGate() {
       const vault = readVault();
       hydrateSyncFields();
       $("#setupForm").hidden = Boolean(vault);
       $("#unlockForm").hidden = !vault;
+      if (vault) {
+        const remembered = await readDeviceKey(vault.salt);
+        if (remembered) {
+          try {
+            const data = await decryptData(remembered, vault);
+            state.key = remembered; state.vault = vault; state.data = data;
+            openApp();
+            return;
+          } catch (_) {
+            await forgetDeviceKey();
+          }
+        }
+      }
       (vault ? $("#password") : $("#newPassword")).focus();
     }
     $("#setupForm").addEventListener("submit", async event => {
@@ -1107,6 +1288,7 @@
         state.vault = { version: 1, salt: bytesToBase64(salt) };
         state.data = { days: {}, createdAt: new Date().toISOString() };
         await persist();
+        if ($("#rememberOnCreate").checked) await rememberDeviceKey(state.key, state.vault.salt).catch(() => {});
         openApp();
       } catch (_) {
         message.textContent = t().cryptoError;
@@ -1121,6 +1303,7 @@
         const key = await deriveKey($("#password").value, base64ToBytes(vault.salt));
         const data = await decryptData(key, vault);
         state.key = key; state.vault = vault; state.data = data;
+        if ($("#rememberOnUnlock").checked) await rememberDeviceKey(key, vault.salt).catch(() => {});
         openApp();
       } catch (_) {
         message.textContent = t().wrongPassword;
@@ -1136,6 +1319,10 @@
       renderCalendar();
       renderEditor();
       updateProgress();
+      if (canAutoSync()) {
+        setSyncStatus(t().syncAutoReady);
+        autoPullLatest();
+      }
     }
     function lockApp() {
       clearInterval(state.timerInterval);
@@ -1156,11 +1343,27 @@
       if (!TASK_COLORS.includes(task.color)) task.color = TASK_COLORS[index % TASK_COLORS.length];
       task.pomodoroTarget = Math.min(MAX_POMODOROS, Math.max(1, Number(task.pomodoroTarget) || 1));
       task.pomodoroDone = Math.max(0, Number(task.pomodoroDone) || 0);
+      task.focusMs = Math.max(Number(task.focusMs) || 0, task.pomodoroDone * POMODORO_MS);
       if (!("completedAt" in task)) task.completedAt = null;
       return task;
     }
     function taskPomodoroRatio(task) {
-      return Math.min(1, task.pomodoroDone / Math.max(1, task.pomodoroTarget));
+      return Math.min(1, task.focusMs / (Math.max(1, task.pomodoroTarget) * POMODORO_MS));
+    }
+    function formatDuration(ms) {
+      const total = Math.max(0, Math.round(ms / 1000));
+      const hours = Math.floor(total / 3600);
+      const minutes = Math.floor((total % 3600) / 60);
+      const seconds = total % 60;
+      if (hours) return `${hours}:${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+      return `${minutes}:${String(seconds).padStart(2,"0")}`;
+    }
+    function formatFocusTotal(ms) {
+      const minutes = Math.round(ms / 60000);
+      if (minutes < 60) return `${minutes}m`;
+      const hours = Math.floor(minutes / 60);
+      const rest = minutes % 60;
+      return rest ? `${hours}h ${rest}m` : `${hours}h`;
     }
     function initAudio() {
       try {
@@ -1198,6 +1401,23 @@
     function findTask(date, id) {
       return state.data.days[date]?.tasks?.find(task => task.id === id);
     }
+    function activeElapsed(active) {
+      return Math.min(MAX_FOCUS_SESSION_MS, Math.max(0, Date.now() - active.startedAt));
+    }
+    function recordActiveTimer() {
+      const active = state.data.activeTimer;
+      if (!active) return false;
+      const task = findTask(active.date, active.taskId);
+      if (!task) { state.data.activeTimer = null; return false; }
+      normalizeTask(task, 0);
+      const elapsed = activeElapsed(active);
+      task.focusMs += elapsed;
+      task.pomodoroDone = Math.max(task.pomodoroDone, Math.floor(task.focusMs / POMODORO_MS));
+      state.data.activeTimer = null;
+      playDoneSound();
+      toast(t().pomodoroDone);
+      return true;
+    }
     function renderTimer() {
       clearInterval(state.timerInterval);
       state.timerInterval = null;
@@ -1205,6 +1425,7 @@
       const card = $("#timerCard");
       if (!active || !findTask(active.date, active.taskId)) {
         card.hidden = true;
+        card.classList.remove("overtime");
         return;
       }
       const task = findTask(active.date, active.taskId);
@@ -1214,31 +1435,22 @@
       active.duration ||= POMODORO_MS;
       active.startedAt ||= active.endsAt - active.duration;
       const tick = () => {
-        const remaining = Math.max(0, active.endsAt - Date.now());
-        const seconds = Math.ceil(remaining / 1000);
-        const elapsed = Math.min(active.duration, Math.max(0, Date.now() - active.startedAt));
-        const percent = Math.min(100, Math.round(elapsed / active.duration * 100));
-        $("#timerTime").textContent = `${String(Math.floor(seconds / 60)).padStart(2,"0")}:${String(seconds % 60).padStart(2,"0")}`;
-        $("#timerPercent").textContent = t().timerProgress(percent);
+        const elapsed = activeElapsed(active);
+        const remaining = Math.max(0, active.duration - elapsed);
+        const overtime = Math.max(0, elapsed - active.duration);
+        const percent = Math.min(100, Math.round(Math.min(elapsed, active.duration) / active.duration * 100));
+        card.classList.toggle("overtime", overtime > 0);
+        $("#timerTime").textContent = overtime ? `+${formatDuration(overtime)}` : formatDuration(remaining);
+        $("#timerPercent").textContent = overtime ? t().overtime(formatDuration(overtime)) : t().timerProgress(percent);
+        $("#timerSubline").textContent = t().focusElapsed(formatDuration(elapsed));
         $("#timerRing").style.setProperty("--timer-progress", `${percent * 3.6}deg`);
-        if (remaining <= 0) {
-          clearInterval(state.timerInterval);
-          state.timerInterval = null;
-          task.pomodoroDone += 1;
-          state.data.activeTimer = null;
-          playDoneSound();
-          persist().catch(showSaveError);
-          toast(t().pomodoroDone);
-          renderEditor();
-          renderCalendar();
-          updateProgress();
-        }
       };
       tick();
       if (state.data.activeTimer) state.timerInterval = setInterval(tick, 1000);
     }
     function startPomodoro(date, taskId) {
       initAudio();
+      if (state.data.activeTimer) recordActiveTimer();
       const startedAt = Date.now();
       state.data.activeTimer = { date, taskId, startedAt, duration: POMODORO_MS, endsAt: startedAt + POMODORO_MS };
       persist().catch(showSaveError);
@@ -1268,6 +1480,7 @@
           const ratio = Math.round(taskPomodoroRatio(task) * 100);
           const extra = Math.max(0, task.pomodoroDone - task.pomodoroTarget);
           const extraBadge = extra ? `<span class="completed-time">${escapeHTML(t().overTarget(extra))}</span><button class="pom-adjust" type="button">${escapeHTML(t().matchTarget)}</button>` : "";
+          const focusTotal = task.focusMs ? `<span class="focus-time">${escapeHTML(t().focusTotal(formatFocusTotal(task.focusMs)))}</span>` : "";
           return `
           <div class="task-row ${task.done ? "done" : ""} ${extra ? "over-target" : ""}" data-id="${escapeHTML(task.id)}" style="--task-color:${task.color}">
             <input type="checkbox" ${task.done ? "checked" : ""} aria-label="${t().completeTask}">
@@ -1282,7 +1495,9 @@
                   <button class="pom-plus" type="button" aria-label="${t().more}">＋</button>
                 </span>
                 <button class="pom-start" type="button" ${running ? "disabled" : ""}>${running ? t().running : t().startFocus}</button>
+                <button class="task-edit" type="button">${escapeHTML(t().editTask)}</button>
                 ${extraBadge}
+                ${focusTotal}
                 ${completed}
               </div>
             </div>
@@ -1319,6 +1534,43 @@
           task.pomodoroTarget = Math.min(MAX_POMODOROS, Math.max(1, task.pomodoroDone));
           renderEditor(); renderCalendar(); updateProgress(); queuePersist();
         });
+        row.querySelector(".task-edit").addEventListener("click", () => {
+          const task = findTask(state.selected, row.dataset.id);
+          if (!task || row.classList.contains("editing")) return;
+          row.classList.add("editing");
+          const textEl = row.querySelector(".task-text");
+          textEl.textContent = "";
+          const form = document.createElement("div");
+          form.className = "task-edit-form";
+          const input = document.createElement("input");
+          input.className = "task-edit-input";
+          input.value = task.text;
+          input.maxLength = 160;
+          input.setAttribute("aria-label", t().editPrompt);
+          const save = document.createElement("button");
+          save.type = "button";
+          save.className = "task-save";
+          save.textContent = t().saveEdit;
+          const cancel = document.createElement("button");
+          cancel.type = "button";
+          cancel.className = "task-cancel";
+          cancel.textContent = t().cancelEdit;
+          form.append(input, save, cancel);
+          textEl.append(form);
+          input.focus();
+          input.select();
+          const commit = () => {
+            const trimmed = input.value.trim();
+            if (trimmed) task.text = trimmed.slice(0, 160);
+            renderEditor(); renderCalendar(); queuePersist();
+          };
+          save.addEventListener("click", commit);
+          cancel.addEventListener("click", () => renderEditor());
+          input.addEventListener("keydown", event => {
+            if (event.key === "Enter") commit();
+            if (event.key === "Escape") renderEditor();
+          });
+        });
         row.querySelector(".pom-start").addEventListener("click", () => startPomodoro(state.selected, row.dataset.id));
         row.querySelector(".delete-task").addEventListener("click", () => {
           const data = dayData(state.selected);
@@ -1337,7 +1589,7 @@
       const tasks = dayData(state.selected).tasks;
       tasks.push({
         id: uid(), text, done: false, completedAt: null,
-        color: TASK_COLORS[tasks.length % TASK_COLORS.length], pomodoroTarget: 1, pomodoroDone: 0
+        color: TASK_COLORS[tasks.length % TASK_COLORS.length], pomodoroTarget: 1, pomodoroDone: 0, focusMs: 0
       });
       input.value = "";
       renderEditor(); renderCalendar(); updateProgress(); queuePersist();
@@ -1396,7 +1648,10 @@
       const tasks = Object.values(state.data.days).flatMap(day => day.tasks || []);
       tasks.forEach(normalizeTask);
       const planned = tasks.reduce((sum, task) => sum + Math.max(1, task.pomodoroTarget), 0);
-      const doneUnits = tasks.reduce((sum, task) => sum + (task.done ? Math.max(1, task.pomodoroTarget) : Math.min(task.pomodoroDone, Math.max(1, task.pomodoroTarget))), 0);
+      const doneUnits = tasks.reduce((sum, task) => {
+        const target = Math.max(1, task.pomodoroTarget);
+        return sum + (task.done ? target : Math.min(Math.floor(task.focusMs / POMODORO_MS), target));
+      }, 0);
       const extraUnits = tasks.reduce((sum, task) => sum + Math.max(0, task.pomodoroDone - Math.max(1, task.pomodoroTarget)), 0);
       const percent = planned ? Math.round(doneUnits / planned * 100) : 0;
       $("#doneCount").textContent = doneUnits;
@@ -1414,10 +1669,12 @@
       $("#editorPanel").scrollIntoView({ behavior: "smooth", block: "start" });
     });
     $("#timerCancel").addEventListener("click", () => {
-      state.data.activeTimer = null;
       clearInterval(state.timerInterval);
       state.timerInterval = null;
+      recordActiveTimer();
       renderEditor();
+      renderCalendar();
+      updateProgress();
       queuePersist();
     });
     $("#lockButton").addEventListener("click", async () => { await persist(); lockApp(); });
@@ -1458,11 +1715,34 @@
       toast(error.message === "invalid" ? t().syncInvalid : t().syncFailed);
     }));
     $("#syncDisconnectButton").addEventListener("click", () => {
-      state.sync = { token: "", gistId: "" };
+      state.sync = { token: "", gistId: "", auto: true };
       localStorage.removeItem(SYNC_KEY);
       hydrateSyncFields();
       setSyncStatus(t().syncForgotten);
       toast(t().syncForgotten);
+    });
+    $("#forgetDeviceButton").addEventListener("click", async () => {
+      await forgetDeviceKey();
+      toast(t().deviceForgotten);
+    });
+    $("#syncAuto").addEventListener("change", () => {
+      state.sync.auto = $("#syncAuto").checked;
+      state.sync.token = $("#syncToken").value.trim();
+      state.sync.gistId = $("#syncGist").value.trim();
+      saveSyncConfig();
+      setSyncStatus(state.sync.auto && state.sync.token && state.sync.gistId ? t().syncAutoReady : "");
+    });
+    $("#syncToken").addEventListener("change", () => {
+      state.sync.token = $("#syncToken").value.trim();
+      state.sync.gistId = $("#syncGist").value.trim();
+      state.sync.auto = $("#syncAuto").checked;
+      saveSyncConfig();
+    });
+    $("#syncGist").addEventListener("change", () => {
+      state.sync.token = $("#syncToken").value.trim();
+      state.sync.gistId = $("#syncGist").value.trim();
+      state.sync.auto = $("#syncAuto").checked;
+      saveSyncConfig();
     });
     $("#cloudLoadButton").addEventListener("click", () => {
       const message = $("#cloudMessage");
@@ -1474,7 +1754,7 @@
       if (!gistId) { message.textContent = t().syncNeedGist; return; }
       if (!password) { message.textContent = t().password; return; }
       message.textContent = t().syncPulling;
-      pullGistVault({ token, gistId, password }).catch(error => {
+      pullGistVault({ token, gistId, password, remember: $("#rememberOnCloud").checked }).catch(error => {
         console.warn(error);
         message.textContent = error.message === "invalid" ? t().syncInvalid : t().wrongPassword;
       });
@@ -1487,7 +1767,7 @@
       toastTimer = setTimeout(() => $("#toast").classList.remove("show"), 2200);
     }
     applyPreferences({ rerender: false });
-    initGate();
+    initGate().catch(() => {});
   })();
   </script>
 </body>
