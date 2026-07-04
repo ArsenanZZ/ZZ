@@ -3260,46 +3260,53 @@
     return columnUnits;
   }
 
-  function placementsForCount(count, leadingUnits = 0) {
-    const placements = [];
-    let remaining = count;
-    let cycle = 0;
+  function canUseWideFeedSlot(card) {
+    return card.querySelector(':scope > img')
+      && !card.classList.contains('progress-card')
+      && !card.classList.contains('text-module')
+      && !card.classList.contains('list-module');
+  }
+
+  function placementsForCards(cardList) {
+    const placements = new Map();
     const isNarrow = window.matchMedia('(max-width: 760px)').matches;
     const isKnowledgeMode = activeFilter === 'other';
     const columnUnits = feedColumnUnits();
-    if (isNarrow) return Array.from({ length: count }, () => ({ span: 1, start: 1 }));
+    if (isNarrow) {
+      cardList.forEach(card => placements.set(card, { span: 1, start: 1 }));
+      return placements;
+    }
 
-    const templates = isKnowledgeMode
+    const groups = isKnowledgeMode || columnUnits === 4
       ? [
-          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 1, start: 3 }, { span: 1, start: 4 }],
-          [{ span: 2, start: 1 }, { span: 1, start: 3 }, { span: 1, start: 4 }],
-          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 2, start: 3 }],
-          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 1, start: 3 }, { span: 1, start: 4 }],
-        ]
-      : columnUnits === 4
-      ? [
-          [{ span: 2, start: 1 }, { span: 1, start: 3 }, { span: 1, start: 4 }],
-          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 2, start: 3 }],
-          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 1, start: 3 }, { span: 1, start: 4 }],
+          { start: 1, size: 2 },
+          { start: 3, size: 2 },
         ]
       : [
-          [{ span: 2, start: 1 }, { span: 1, start: 3 }, { span: 1, start: 4 }, { span: 1, start: 5 }],
-          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 2, start: 3 }, { span: 1, start: 5 }],
-          [{ span: 1, start: 1 }, { span: 1, start: 2 }, { span: 1, start: 3 }, { span: 1, start: 4 }, { span: 1, start: 5 }],
+          { start: 1, size: 2 },
+          { start: 3, size: 2 },
+          { start: 5, size: 1 },
         ];
-    const leadingFill = leadingUnits > 0 ? (columnUnits - (leadingUnits % columnUnits)) % columnUnits : 0;
-    if (leadingFill > 0) {
-      const take = Math.min(leadingFill, remaining);
-      const firstStart = (leadingUnits % columnUnits) + 1;
-      placements.push(...Array.from({ length: take }, (_, index) => ({ span: 1, start: firstStart + index })));
-      remaining -= take;
-    }
-    while (remaining > 0) {
-      const next = templates[cycle % templates.length];
-      const take = next.slice(0, remaining);
-      placements.push(...take);
-      remaining -= take.length;
-      cycle += 1;
+    const widePattern = isKnowledgeMode || columnUnits === 4 ? [1, 3, 0] : [1, 3, 0];
+    let cardIndex = 0;
+    let rowIndex = 0;
+
+    while (cardIndex < cardList.length) {
+      const preferredWideStart = widePattern[rowIndex % widePattern.length];
+      groups.forEach(group => {
+        if (cardIndex >= cardList.length) return;
+        const currentCard = cardList[cardIndex];
+        if (group.size === 2 && preferredWideStart === group.start && canUseWideFeedSlot(currentCard)) {
+          placements.set(currentCard, { span: 2, start: group.start });
+          cardIndex += 1;
+          return;
+        }
+        for (let offset = 0; offset < group.size && cardIndex < cardList.length; offset += 1) {
+          placements.set(cardList[cardIndex], { span: 1, start: group.start + offset });
+          cardIndex += 1;
+        }
+      });
+      rowIndex += 1;
     }
     return placements;
   }
@@ -3310,12 +3317,7 @@
     feedGrid.style.position = '';
     feedGrid.style.height = '';
     const visibleCards = cards.filter(card => getComputedStyle(card).display !== 'none');
-    const flowCards = visibleCards.filter(card => !card.classList.contains('progress-card'));
-    const progressCards = visibleCards.filter(card => card.classList.contains('progress-card'));
-    const columnUnits = feedColumnUnits();
-    const placements = placementsForCount(flowCards.length, progressCards.length);
-    let flowIndex = 0;
-    let progressIndex = 0;
+    const placements = placementsForCards(visibleCards);
     cards.forEach(card => {
       const isImageStoryCard = card.querySelector(':scope > img')
         && !card.classList.contains('progress-card')
@@ -3337,11 +3339,7 @@
     });
     visibleCards.forEach((card, index) => {
       const isNarrow = window.matchMedia('(max-width: 760px)').matches;
-      const placement = isNarrow
-        ? { span: 1, start: 1 }
-        : card.classList.contains('progress-card')
-          ? { span: 1, start: (progressIndex++ % columnUnits) + 1 }
-          : placements[flowIndex++] || { span: 1, start: 1 };
+      const placement = isNarrow ? { span: 1, start: 1 } : placements.get(card) || { span: 1, start: 1 };
       const span = placement.span;
       card.style.setProperty('grid-column', isNarrow ? '1 / -1' : `${placement.start} / span ${span}`, 'important');
       if ([1, 2, 3, 4, 5, 6, 7, 8, 12].includes(span)) card.classList.add(`layout-span-${span}`);
