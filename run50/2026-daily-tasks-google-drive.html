@@ -348,74 +348,172 @@
     .delete-task:hover { color: var(--red); background: #fff0ef; }
     .empty-tasks { padding: 22px; border: 1px dashed #ccd4d9; border-radius: 13px; color: var(--muted); text-align: center; }
     .timer-card {
+      --timer-progress: 0deg;
+      --timer-accent: #20b26b;
+      --timer-accent-2: #65d69b;
+      --timer-bg: #07111d;
+      --timer-bg-2: #12352a;
+      --timer-glow: rgba(32,178,107,.34);
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: center;
-      gap: clamp(18px, 4vw, 40px);
-      margin: 18px auto 22px;
-      padding: clamp(24px, 5vw, 42px);
-      border-radius: 30px;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      align-items: stretch;
+      gap: 26px;
+      margin: 20px auto 26px;
+      min-height: 360px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 28px;
       color: #fff;
       background:
-        radial-gradient(circle at 25% 20%, rgba(255,255,255,.24), transparent 18rem),
-        radial-gradient(circle at 80% 18%, rgba(245,157,36,.35), transparent 20rem),
-        linear-gradient(135deg, var(--timer-color, var(--blue)), #111827 58%, #07111d);
-      box-shadow: 0 24px 60px rgba(16,33,50,.28);
+        radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--timer-accent) 36%, transparent), transparent 20rem),
+        linear-gradient(135deg, var(--timer-bg-2), var(--timer-bg) 62%);
+      box-shadow: 0 30px 72px rgba(16,33,50,.34), 0 0 0 1px rgba(255,255,255,.06) inset;
       position: relative;
       overflow: hidden;
+      transition: background .35s ease, box-shadow .35s ease, border-color .35s ease;
     }
     .timer-card::before {
       content: "";
       position: absolute;
-      inset: -40%;
-      background: conic-gradient(from 90deg, transparent, rgba(255,255,255,.16), transparent 28%);
-      animation: timerSweep 7s linear infinite;
+      inset: -30%;
+      background:
+        linear-gradient(115deg, transparent 0 36%, rgba(255,255,255,.14) 42%, transparent 49%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px 28px);
+      opacity: .38;
+      transform: rotate(-8deg);
       pointer-events: none;
     }
-    .timer-card.overtime {
-      background:
-        radial-gradient(circle at 25% 20%, rgba(255,255,255,.24), transparent 18rem),
-        radial-gradient(circle at 78% 20%, rgba(245,157,36,.44), transparent 18rem),
-        linear-gradient(135deg, #8b5bb5, var(--timer-color, var(--blue)) 48%, #07111d);
+    .timer-card::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--timer-accent), var(--timer-accent-2)) 0 / var(--timer-bar, 0%) 100% no-repeat, rgba(255,255,255,.15);
+      box-shadow: 0 0 24px var(--timer-glow);
+      pointer-events: none;
     }
-    @keyframes timerSweep { to { transform: rotate(360deg); } }
+    .timer-card.timer-calm {
+      --timer-accent: #20b26b;
+      --timer-accent-2: #9cf2c5;
+      --timer-bg: #071b1a;
+      --timer-bg-2: #123d32;
+      --timer-glow: rgba(32,178,107,.38);
+    }
+    .timer-card.timer-warn {
+      --timer-accent: #f59d24;
+      --timer-accent-2: #ffd26f;
+      --timer-bg: #211507;
+      --timer-bg-2: #61400f;
+      --timer-glow: rgba(245,157,36,.48);
+      border-color: rgba(255,210,111,.38);
+    }
+    .timer-card.timer-danger {
+      --timer-accent: #ef4444;
+      --timer-accent-2: #ff9a8c;
+      --timer-bg: #210809;
+      --timer-bg-2: #661719;
+      --timer-glow: rgba(239,68,68,.48);
+      border-color: rgba(255,154,140,.42);
+    }
+    .timer-card.overtime {
+      --timer-accent: #a855f7;
+      --timer-accent-2: #f0abfc;
+      --timer-bg: #170a28;
+      --timer-bg-2: #4c1d95;
+      --timer-glow: rgba(168,85,247,.55);
+      animation: timerStagePulse 1.6s ease-in-out infinite;
+    }
+    @keyframes timerStagePulse { 50% { box-shadow: 0 34px 86px rgba(76,29,149,.42), 0 0 0 1px rgba(255,255,255,.1) inset; } }
     .timer-card > * { position: relative; z-index: 1; }
-    .timer-card.overtime .timer-ring { animation: timerPulse 1.7s ease-in-out infinite; }
-    @keyframes timerPulse { 50% { transform: scale(1.025); } }
-    .timer-copy { min-width: 0; }
-    .timer-copy small { display: block; margin-bottom: 8px; opacity: .78; font-size: 11px; font-weight: 900; letter-spacing: .16em; }
-    .timer-task { overflow: hidden; font-size: clamp(22px, 4vw, 38px); font-weight: 900; letter-spacing: -.04em; text-overflow: ellipsis; white-space: nowrap; }
-    .timer-subline { margin-top: 10px; opacity: .82; font-size: 13px; font-weight: 800; }
-    .timer-side { display: flex; align-items: center; gap: 12px; }
+    .timer-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 34px 34px 46px;
+    }
+    .timer-copy small {
+      width: max-content;
+      max-width: 100%;
+      display: block;
+      margin-bottom: 16px;
+      padding: 7px 11px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.82);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .16em;
+    }
+    .timer-task {
+      max-width: 760px;
+      overflow-wrap: anywhere;
+      font-size: 38px;
+      line-height: 1.08;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+    .timer-subline {
+      margin-top: 18px;
+      color: rgba(255,255,255,.78);
+      font-size: 16px;
+      font-weight: 850;
+    }
+    .timer-side {
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 16px;
+      padding: 18px 18px 44px;
+      border-left: 1px solid rgba(255,255,255,.14);
+    }
     .timer-ring {
-      --timer-progress: 0deg;
-      width: clamp(190px, 24vw, 260px);
-      height: clamp(190px, 24vw, 260px);
+      width: 330px;
+      height: 330px;
       flex: 0 0 auto;
       display: grid;
       place-items: center;
       border-radius: 50%;
-      background: conic-gradient(#fff 0deg, #ffe3a3 var(--timer-progress), rgba(255,255,255,.18) 0);
+      background:
+        radial-gradient(circle, rgba(255,255,255,.15) 0 56%, transparent 57%),
+        conic-gradient(var(--timer-accent) 0deg, var(--timer-accent-2) var(--timer-progress), rgba(255,255,255,.16) 0);
       position: relative;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.2);
+      box-shadow: 0 0 52px var(--timer-glow), inset 0 0 0 1px rgba(255,255,255,.18);
+      transition: background .35s ease, box-shadow .35s ease;
     }
     .timer-ring::after {
       content: "";
       position: absolute;
-      inset: 15px;
+      inset: 22px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba(255,255,255,.2), rgba(16,33,50,.34));
-      backdrop-filter: blur(5px);
+      background: rgba(7,17,29,.72);
+      box-shadow: inset 0 0 42px rgba(0,0,0,.24);
+      backdrop-filter: blur(6px);
     }
     .timer-ring-inner {
       position: relative;
       z-index: 1;
       display: grid;
       place-items: center;
-      line-height: 1.05;
+      line-height: .98;
     }
-    .timer-time { font-variant-numeric: tabular-nums; font-size: clamp(42px, 7vw, 64px); font-weight: 950; letter-spacing: -.06em; }
-    .timer-percent { margin-top: 6px; opacity: .78; font-size: 13px; font-weight: 850; }
+    .timer-time {
+      font-variant-numeric: tabular-nums;
+      font-size: 82px;
+      font-weight: 950;
+      letter-spacing: 0;
+      text-shadow: 0 8px 34px rgba(0,0,0,.28);
+    }
+    .timer-percent {
+      margin-top: 10px;
+      color: color-mix(in srgb, var(--timer-accent-2) 78%, #fff);
+      font-size: 16px;
+      font-weight: 900;
+    }
     .timer-cancel {
       min-height: 42px; padding: 0 14px; border: 1px solid rgba(255,255,255,.46);
       border-radius: 999px; color: #fff; background: rgba(255,255,255,.12); font-size: 12px; font-weight: 900;
@@ -556,8 +654,23 @@
       .progress-card { min-height: 180px; }
       .days { grid-template-columns: repeat(4,minmax(0,1fr)); }
       .sync-grid { grid-template-columns: 1fr; }
-      .timer-card { grid-template-columns: 1fr; justify-items: center; text-align: center; }
-      .timer-side { width: 100%; justify-content: space-between; }
+      .timer-card {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        min-height: 0;
+        padding: 14px;
+        text-align: center;
+      }
+      .timer-copy { align-items: center; width: 100%; padding: 26px 24px 8px; }
+      .timer-task { font-size: 34px; }
+      .timer-side {
+        width: 100%;
+        padding: 18px 18px 46px;
+        border-top: 1px solid rgba(255,255,255,.14);
+        border-left: 0;
+      }
+      .timer-ring { width: 292px; height: 292px; }
+      .timer-time { font-size: 70px; }
       .header-inner { width: min(100% - 22px,1180px); }
       main { width: min(100% - 20px,1180px); margin-top: 16px; }
       .icon-button .wide-label { display: none; }
@@ -569,7 +682,14 @@
       .add-button { min-height: 44px; }
       .panel-heading { align-items: flex-start; flex-direction: column; }
       .task-row { grid-template-columns: auto minmax(0,1fr) auto; align-items: flex-start; }
-      .timer-ring { width: min(74vw, 260px); height: min(74vw, 260px); }
+      .timer-card { border-radius: 22px; }
+      .timer-card::after { left: 14px; right: 14px; bottom: 14px; height: 10px; }
+      .timer-copy { padding: 22px 18px 6px; }
+      .timer-task { font-size: 30px; }
+      .timer-ring { width: min(100%, 250px); height: auto; aspect-ratio: 1; }
+      .timer-ring::after { inset: 18px; }
+      .timer-time { font-size: 54px; }
+      .timer-percent { font-size: 14px; }
       .day { min-height: 76px; }
       .lock-body { padding: 23px; }
     }
@@ -836,7 +956,8 @@
         brand: "2026 Daily Tasks", brandDates: "July 3 — December 31", today: "Today", lock: "Lock",
         heroTitle: "A little done, every day.",
         heroCopy: "From today to year-end: 182 days. Write down what truly matters, finish it, cross it off, and give every ordinary day a clear landing place.",
-        progress: "Focus progress", progressEmpty: "Write the first task to begin.",
+        progress: "Focus progress", progressToday: "Today's focus", progressDate: (month, day) => `${month}/${day} focus`,
+        progressEmpty: "Write the first task to begin.",
         progressStatus: (percent, done, total, extra) => `${percent}% focus complete · ${done}/${total} planned Pomodoros${extra ? ` · +${extra} extra` : ""}.`,
         todayTasks: "Today's tasks", dateTasks: (month, day) => `${month}/${day} tasks`, quoteLabel: "DAILY THOUGHT · 每日一句",
         taskPlaceholder: "Write down something to finish…", addTask: "＋ Add task",
@@ -846,7 +967,9 @@
         pomodoro: (done, target) => `${done}/${target} × 25 min`, fewer: "One fewer Pomodoro", more: "One more Pomodoro",
         startFocus: "▶ Start 25 min", running: "Running", changeColor: "Change task color",
         overTarget: extra => `+${extra} extra`, matchTarget: "Make target match",
-        completedAt: value => `Completed ${value}`, timerLabel: "FOCUSING NOW", cancelTimer: "Cancel timer",
+        completedAt: value => `Completed ${value}`, timerLabel: "FOCUSING NOW",
+        timerPhaseCalm: "FOCUSING NOW", timerPhaseWarn: "STAY SHARP", timerPhaseDanger: "FINAL PUSH", timerPhaseOvertime: "OVERTIME",
+        cancelTimer: "Cancel timer",
         endFocus: "End & record", timerProgress: percent => `${percent}% done`, overtime: value => `Overtime +${value}`,
         focusElapsed: value => `Elapsed ${value}`, focusTotal: value => `Focus ${value}`, pomodoroDone: "Focus session recorded.",
         notes: "Daily reflection / notes", notesPlaceholder: "What got done? What should you remember tomorrow?",
@@ -899,7 +1022,8 @@
         brand: "2026 每日任务", brandDates: "7月3日 — 12月31日", today: "今天", lock: "锁定",
         heroTitle: "每天完成一点。",
         heroCopy: "从今天到年末，共 182 天。把真正重要的事写下来，做完，划掉；让每一个普通日子都有清楚的落点。",
-        progress: "专注进度", progressEmpty: "写下第一项任务，计划就开始了。",
+        progress: "专注进度", progressToday: "今天专注", progressDate: (month, day) => `${month}月${day}日专注`,
+        progressEmpty: "写下第一项任务，计划就开始了。",
         progressStatus: (percent, done, total, extra) => `${percent}% 专注完成 · ${done}/${total} 个计划番茄钟${extra ? ` · 额外 +${extra}` : ""}。`,
         todayTasks: "今天的任务", dateTasks: (month, day) => `${month}月${day}日的任务`, quoteLabel: "每日一句 · DAILY THOUGHT",
         taskPlaceholder: "写下一项要完成的事…", addTask: "＋ 添加任务",
@@ -909,7 +1033,9 @@
         pomodoro: (done, target) => `${done}/${target} × 25分钟`, fewer: "减少一个番茄钟", more: "增加一个番茄钟",
         startFocus: "▶ 开始25分钟", running: "计时中", changeColor: "切换任务颜色",
         overTarget: extra => `额外 +${extra}`, matchTarget: "目标改成实际",
-        completedAt: value => `完成于 ${value}`, timerLabel: "正在专注", cancelTimer: "取消计时",
+        completedAt: value => `完成于 ${value}`, timerLabel: "正在专注",
+        timerPhaseCalm: "正在专注", timerPhaseWarn: "保持节奏", timerPhaseDanger: "最后冲刺", timerPhaseOvertime: "已超时",
+        cancelTimer: "取消计时",
         endFocus: "结束并记录", timerProgress: percent => `已完成 ${percent}%`, overtime: value => `超时 +${value}`,
         focusElapsed: value => `已专注 ${value}`, focusTotal: value => `专注 ${value}`, pomodoroDone: "专注时间已记录。",
         notes: "当天小结 / 备注", notesPlaceholder: "完成了什么？明天要记得什么？",
@@ -1647,7 +1773,8 @@
       const card = $("#timerCard");
       if (!active || !findTask(active.date, active.taskId)) {
         card.hidden = true;
-        card.classList.remove("overtime");
+        card.classList.remove("timer-calm", "timer-warn", "timer-danger", "overtime");
+        card.style.setProperty("--timer-bar", "0%");
         return;
       }
       const task = findTask(active.date, active.taskId);
@@ -1661,11 +1788,20 @@
         const remaining = Math.max(0, active.duration - elapsed);
         const overtime = Math.max(0, elapsed - active.duration);
         const percent = Math.min(100, Math.round(Math.min(elapsed, active.duration) / active.duration * 100));
-        card.classList.toggle("overtime", overtime > 0);
+        const remainingRatio = remaining / active.duration;
+        const phase = overtime ? "overtime" : remainingRatio <= 0.2 ? "timer-danger" : remainingRatio <= 0.45 ? "timer-warn" : "timer-calm";
+        card.classList.remove("timer-calm", "timer-warn", "timer-danger", "overtime");
+        card.classList.add(phase);
+        $("#timerLabel").textContent = overtime
+          ? t().timerPhaseOvertime
+          : remainingRatio <= 0.2 ? t().timerPhaseDanger
+          : remainingRatio <= 0.45 ? t().timerPhaseWarn
+          : t().timerPhaseCalm;
         $("#timerTime").textContent = overtime ? `+${formatDuration(overtime)}` : formatDuration(remaining);
         $("#timerPercent").textContent = overtime ? t().overtime(formatDuration(overtime)) : t().timerProgress(percent);
         $("#timerSubline").textContent = t().focusElapsed(formatDuration(elapsed));
         $("#timerRing").style.setProperty("--timer-progress", `${percent * 3.6}deg`);
+        card.style.setProperty("--timer-bar", `${percent}%`);
       };
       tick();
       if (state.data.activeTimer) state.timerInterval = setInterval(tick, 1000);
@@ -1802,6 +1938,7 @@
         });
       });
       renderTimer();
+      updateProgress();
     }
     $("#taskForm").addEventListener("submit", event => {
       event.preventDefault();
@@ -1835,7 +1972,7 @@
       }).join("");
       $$(".day").forEach(button => button.addEventListener("click", () => {
         state.selected = button.dataset.date;
-        renderEditor(); renderCalendar();
+        renderEditor(); renderCalendar(); updateProgress();
         $("#editorPanel").scrollIntoView({ behavior: "smooth", block: "start" });
       }));
     }
@@ -1867,8 +2004,12 @@
       renderCalendar();
     }));
     function updateProgress() {
-      const tasks = Object.values(state.data.days).flatMap(day => day.tasks || []);
+      const tasks = dayData(state.selected).tasks || [];
       tasks.forEach(normalizeTask);
+      const today = toISO(new Date());
+      const month = Number(state.selected.slice(5,7));
+      const day = Number(state.selected.slice(8));
+      $("#progressLabel").textContent = state.selected === today ? t().progressToday : t().progressDate(month, day);
       const planned = tasks.reduce((sum, task) => sum + Math.max(1, task.pomodoroTarget), 0);
       const doneUnits = tasks.reduce((sum, task) => {
         const target = Math.max(1, task.pomodoroTarget);
@@ -1887,7 +2028,7 @@
     }
 
     $("#todayButton").addEventListener("click", () => {
-      state.selected = todayInRange(); renderEditor(); renderCalendar();
+      state.selected = todayInRange(); renderEditor(); renderCalendar(); updateProgress();
       $("#editorPanel").scrollIntoView({ behavior: "smooth", block: "start" });
     });
     $("#timerCancel").addEventListener("click", () => {
