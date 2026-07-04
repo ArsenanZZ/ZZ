@@ -653,16 +653,18 @@
     }
 
     .story-card img {
-      width: calc(100% - 24px);
-      margin: 12px 12px 0;
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
       aspect-ratio: 16 / 10;
       box-sizing: border-box;
       object-fit: contain;
       object-position: center;
-      padding: 6px;
-      background: #171b28;
-      border: 1px solid rgba(255, 255, 255, .1);
-      border-radius: 6px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
     }
 
     .story-number {
@@ -849,8 +851,7 @@
     }
 
     html[data-theme="light"] .story-card img {
-      background: #edf1f5;
-      border-color: rgba(25, 39, 62, .12);
+      background: transparent;
     }
 
     html[data-theme="light"] .story-number {
