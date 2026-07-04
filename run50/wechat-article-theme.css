@@ -29,15 +29,49 @@ html[data-theme="dark"] body > section {
   background: #0b1020 !important;
 }
 
+html[data-theme="dark"] main,
+html[data-theme="dark"] article,
+html[data-theme="dark"] .page {
+  background: #0b1020 !important;
+  color: #dbe7f6 !important;
+}
+
+html[data-theme="dark"] .cover {
+  background: #10192c !important;
+  border-color: rgba(125, 211, 252, .22) !important;
+}
+
 html[data-theme="dark"] body > section {
   box-shadow: 0 0 0 1px rgba(255,255,255,.05), 0 24px 70px rgba(0,0,0,.28) !important;
+}
+
+html[data-theme="dark"] section[style*="background: #fff"],
+html[data-theme="dark"] section[style*="background:#fff"],
+html[data-theme="dark"] section[style*="background: #f8"],
+html[data-theme="dark"] section[style*="background:#f8"],
+html[data-theme="dark"] section[style*="background: #f4"],
+html[data-theme="dark"] section[style*="background:#f4"],
+html[data-theme="dark"] section[style*="background: #edf"],
+html[data-theme="dark"] section[style*="background:#edf"],
+html[data-theme="dark"] div[style*="background: #fff"],
+html[data-theme="dark"] div[style*="background:#fff"],
+html[data-theme="dark"] div[style*="background: #f8"],
+html[data-theme="dark"] div[style*="background:#f8"],
+html[data-theme="dark"] div[style*="background: #f4"],
+html[data-theme="dark"] div[style*="background:#f4"],
+html[data-theme="dark"] div[style*="background: #edf"],
+html[data-theme="dark"] div[style*="background:#edf"] {
+  background: #10192c !important;
+  border-color: rgba(125, 211, 252, .22) !important;
 }
 
 html[data-theme="dark"] p,
 html[data-theme="dark"] h1,
 html[data-theme="dark"] h2,
 html[data-theme="dark"] h3,
-html[data-theme="dark"] li {
+html[data-theme="dark"] li,
+html[data-theme="dark"] figcaption,
+html[data-theme="dark"] .dek {
   color: #dbe7f6 !important;
 }
 
@@ -49,10 +83,31 @@ html[data-theme="dark"] p[style*="color: #8a9bad"] {
 
 html[data-theme="dark"] section[style*="background: #edf5f8"],
 html[data-theme="dark"] section[style*="background: #f7f3ea"],
-html[data-theme="dark"] p[style*="background: #f4f8fb"],
-html[data-theme="dark"] p[style*="background: #f8f5ef"] {
+html[data-theme="dark"] section[style*="background:#edf5f8"],
+html[data-theme="dark"] section[style*="background:#f7f3ea"] {
   background: #131d31 !important;
   border-color: rgba(248, 220, 138, .55) !important;
+}
+
+p[style*="background: #f4f8fb"],
+p[style*="background:#f4f8fb"],
+p[style*="background: #f8f5ef"],
+p[style*="background:#f8f5ef"] {
+  background: transparent !important;
+  border-left: 3px solid #d4a669 !important;
+  border-radius: 0 !important;
+  margin: 10px 0 16px !important;
+  padding: 2px 0 2px 13px !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  color: #876633 !important;
+}
+
+html[data-theme="dark"] p[style*="background: #f4f8fb"],
+html[data-theme="dark"] p[style*="background:#f4f8fb"],
+html[data-theme="dark"] p[style*="background: #f8f5ef"],
+html[data-theme="dark"] p[style*="background:#f8f5ef"] {
+  color: #f8dc8a !important;
 }
 
 html[data-theme="dark"] section[style*="border-top"],
@@ -88,6 +143,19 @@ strong.auto-emphasis.accent-2 { --emphasis-color: #c4f08a; --emphasis-light: #43
 strong.auto-emphasis.accent-3 { --emphasis-color: #f0a6ca; --emphasis-light: #9b2f62; }
 strong.auto-emphasis.accent-4 { --emphasis-color: #a7f3d0; --emphasis-light: #087857; }
 
+a,
+a:hover,
+a:focus,
+strong,
+em,
+i,
+.auto-emphasis,
+.auto-english {
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+  background-image: none !important;
+}
+
 em,
 i,
 .auto-english,
@@ -106,7 +174,107 @@ html[data-theme="dark"] p[style*="font-family: Optima"] {
   color: #f8dc8a !important;
 }
 
+.auto-caption {
+  margin: 9px 0 20px !important;
+  padding-left: 10px !important;
+  border-left: 3px solid #b98735 !important;
+  font: italic 12px/1.65 Optima-Regular, "PingFang SC", serif !important;
+  letter-spacing: .2px !important;
+  color: #6f7d89 !important;
+}
+
+html[data-theme="dark"] .auto-caption {
+  color: #b6c5d8 !important;
+}
+
+.article-map-panel {
+  margin: 12px 0 30px;
+}
+
+.article-map-window {
+  overflow: hidden;
+  border: 5px solid rgba(255,255,255,.88);
+  border-radius: 8px;
+  background: #a8d4e8;
+  box-shadow: 0 12px 30px rgba(15,23,42,.14);
+}
+
+html[data-theme="dark"] .article-map-window {
+  border-color: rgba(255,255,255,.86);
+  background: #1b2943;
+  box-shadow: 0 18px 42px rgba(0,0,0,.34);
+}
+
+.article-map-window svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.article-map-window .article-map-highlight {
+  fill: #f06a4f !important;
+  stroke: #fff8da !important;
+  stroke-width: 5 !important;
+  filter: drop-shadow(0 0 8px rgba(255, 209, 102, .8));
+}
+
+.article-map-window .article-map-marker {
+  fill: #ff4f43;
+  stroke: #fff8da;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 7px rgba(255, 209, 102, .75));
+}
+
+.article-map-window .article-map-label {
+  fill: #0f172a;
+  stroke: #fff8da;
+  stroke-width: 6;
+  paint-order: stroke;
+  font: 900 44px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.article-map-caption {
+  margin: 9px 0 0;
+  padding-left: 10px;
+  border-left: 3px solid #b98735;
+  color: #6f7d89;
+  font: italic 12px/1.65 Optima-Regular, "PingFang SC", serif;
+  letter-spacing: .2px;
+}
+
+html[data-theme="dark"] .article-map-caption {
+  color: #b6c5d8;
+}
+
+.article-map-world {
+  padding: 22px 24px;
+  border: 1px solid rgba(125,211,252,.24);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(125,211,252,.16), rgba(248,220,138,.08)),
+    #10192c;
+  color: #dbe7f6;
+}
+
+.article-map-world b {
+  display: block;
+  margin-bottom: 6px;
+  color: #f8dc8a;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.article-map-world span {
+  display: block;
+  font-size: 19px;
+  line-height: 1.5;
+  font-weight: 900;
+}
+
 @media (max-width: 640px) {
   .article-theme-toggle { right: 10px; top: 10px; padding: 7px 10px; }
   body > section { padding-top: 54px !important; }
+  .article-map-window { border-width: 4px; }
+  .article-map-world { padding: 18px; }
 }
