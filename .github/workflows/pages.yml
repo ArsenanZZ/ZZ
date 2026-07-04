@@ -52,7 +52,7 @@ jobs:
           assets_before=$(du -sb _site/assets | cut -f1)
 
           find _site/run50/stories/chinese -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -size +90k -print0 \
-            | xargs -0 -r -n 12 -P 4 mogrify -resize '1800x1800>' -quality 68 -strip
+            | xargs -0 -r -n 12 -P 4 mogrify -resize '1400x1400>' -quality 62 -strip
 
           find _site/assets -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) -size +250k -print0 \
             | xargs -0 -r -n 12 -P 4 mogrify -resize '1400x1400>' -quality 72 -strip
