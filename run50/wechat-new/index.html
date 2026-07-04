@@ -625,6 +625,12 @@
       gap: clamp(14px, 1.2vw, 20px);
     }
 
+    @media (min-width: 1280px) {
+      .story-section.run-world-zone .stories {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+    }
+
     .story-card {
       position: relative;
       display: flex;

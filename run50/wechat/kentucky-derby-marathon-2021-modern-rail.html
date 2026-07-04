@@ -19,9 +19,25 @@
     figcaption { margin-top:8px; text-align:center; color:#667085; font-size:13px; }
     .end-mark,.credit-line { text-align:center; color:#8a5b22; font-weight:800; }
     </style>
+
+  <!-- Run50 article theme and emphasis layer -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('run50-wechat-article-theme');
+        document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
+      } catch (error) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../wechat-article-theme.css?v=20260704-article-theme">
 </head>
 <body>
-  <main class="page">
+<button class="article-theme-toggle" type="button" aria-label="Toggle theme">Light</button>
+<script src="../wechat-article-theme.js?v=20260704-article-theme"></script>
+
+<main class="page">
     <figure class="cover"><img src="../../assets/cover-medal-zh-index-kentucky-derby-2021-cn-flat.jpg?v=20260704-ky21-louisville" alt="Run50 #第1州｜肯塔基第二篇：Derby 全马｜“传奇跑者”的半年流水账封面"></figure>
     <p class="meta">RUN50 DISPATCH · KENTUCKY · STORY 2</p>
     <h1>Run50 #第1州｜肯塔基第二篇：Derby 全马｜“传奇跑者”的半年流水账</h1>

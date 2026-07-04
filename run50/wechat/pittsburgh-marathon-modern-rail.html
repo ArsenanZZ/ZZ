@@ -33,8 +33,24 @@
       }
     }
   </style>
+
+  <!-- Run50 article theme and emphasis layer -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('run50-wechat-article-theme');
+        document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
+      } catch (error) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../wechat-article-theme.css?v=20260704-article-theme">
 </head>
 <body style="margin:0; padding:0; background:#ffffff;">
+<button class="article-theme-toggle" type="button" aria-label="Toggle theme">Light</button>
+<script src="../wechat-article-theme.js?v=20260704-article-theme"></script>
+
 <main style="max-width: 677px; margin: 0 auto; padding: 28px 18px 42px; box-sizing: border-box; color: #26343f;">
 <section style="margin: 0 0 22px; padding-bottom: 18px; border-bottom: 4px solid #a33a2b;">
   <p style="margin: 0 0 8px; font-size: 12px; line-height: 1.4; letter-spacing: 2px; color: #a33a2b; font-weight: 800;">RUN50 DISPATCH · PENNSYLVANIA</p>
