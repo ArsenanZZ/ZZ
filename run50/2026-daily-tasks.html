@@ -364,24 +364,13 @@
       position: relative;
       overflow: hidden;
     }
-    .timer-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: conic-gradient(from 90deg, transparent, rgba(255,255,255,.16), transparent 28%);
-      animation: timerSweep 7s linear infinite;
-      pointer-events: none;
-    }
     .timer-card.overtime {
       background:
         radial-gradient(circle at 25% 20%, rgba(255,255,255,.24), transparent 18rem),
         radial-gradient(circle at 78% 20%, rgba(245,157,36,.44), transparent 18rem),
         linear-gradient(135deg, #8b5bb5, var(--timer-color, var(--blue)) 48%, #07111d);
     }
-    @keyframes timerSweep { to { transform: rotate(360deg); } }
     .timer-card > * { position: relative; z-index: 1; }
-    .timer-card.overtime .timer-ring { animation: timerPulse 1.7s ease-in-out infinite; }
-    @keyframes timerPulse { 50% { transform: scale(1.025); } }
     .timer-copy { min-width: 0; }
     .timer-copy small { display: block; margin-bottom: 8px; opacity: .78; font-size: 11px; font-weight: 900; letter-spacing: .16em; }
     .timer-task { overflow: hidden; font-size: clamp(22px, 4vw, 38px); font-weight: 900; letter-spacing: -.04em; text-overflow: ellipsis; white-space: nowrap; }
