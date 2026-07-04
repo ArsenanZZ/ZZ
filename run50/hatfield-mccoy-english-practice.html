@@ -18,6 +18,8 @@
   .stats{display:flex;flex-wrap:wrap;gap:10px;padding:0 18px;margin:16px 0 4px} .stat{flex:1;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:center} .stat .v{font-weight:800;color:var(--green);font-size:16px} .stat .t{font-size:11px;color:var(--muted);margin-top:2px}
   .list{padding:8px 18px} .row{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 14px 14px 16px;margin:12px 0;display:flex;gap:12px;align-items:flex-start;transition:.15s;position:relative;border-left:4px solid transparent} .row.active{border-left-color:var(--gold);box-shadow:0 4px 16px rgba(18,70,52,.12);background:#fcfffe} .row .num{font-size:11px;color:#fff;background:var(--green);border-radius:5px;padding:2px 7px;font-weight:800;white-space:nowrap;margin-top:3px} .row .body{flex:1;min-width:0} .row .cue{font-size:11px;color:var(--muted);margin-bottom:4px} .row .en{font-size:18px;line-height:1.55;color:var(--ink)} .row.active .en{color:var(--green)} .row .zh{font-size:13.5px;color:var(--muted);margin-top:6px;display:none} .row.show-zh .zh{display:block} .row .tip{font-size:12.5px;color:#7a5a00;background:#fff8e1;border:1px dashed #e7c66b;border-radius:8px;padding:6px 10px;margin-top:8px;line-height:1.7;display:none} .row.show-tip .tip{display:block} .row .ops{display:flex;flex-direction:column;gap:6px;align-items:center} .iconbtn{width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;background:#eef4f1;color:var(--green)} .iconbtn:hover{background:var(--green);color:#fff} .iconbtn.on{background:var(--gold);color:var(--green)}
   .rec{background:#fff;border:1px solid var(--line);border-radius:12px;margin:18px;padding:16px} .rec h3{margin:0 0 4px;color:var(--green);font-size:16px} .rec p{margin:0 0 12px;font-size:13px;color:var(--muted)} .rec .recrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center} .dot{width:10px;height:10px;border-radius:50%;background:#cdd;display:inline-block;margin-right:6px} .dot.live{background:#e23;animation:pulse 1s infinite} @keyframes pulse{50%{opacity:.3}} audio{height:34px} .foot{text-align:center;color:var(--muted);font-size:12px;padding:24px} @media(max-width:600px){.banner h1{font-size:20px}.row .en{font-size:16px}.controls{gap:8px 10px}}
+  .scorepill{font-size:11px;line-height:1;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:#f7faf8;padding:5px 7px;white-space:nowrap}.scorepill.saved{border-color:#b9d5c5;color:#1f6d3a;background:#edf8f1}.scorepill.good{border-color:#e0c271;color:#7a5a00;background:#fff8df}.scorebox{border:1px solid var(--line);border-radius:10px;background:#f8fbf9;padding:12px;margin:12px 0;display:grid;grid-template-columns:92px 1fr;gap:12px;align-items:center}.scoremain{border-right:1px solid var(--line);text-align:center;padding-right:12px}.scoremain span{display:block;color:var(--green);font-size:28px;font-weight:900;line-height:1}.scoremain small{font-size:11px;color:var(--muted)}.scoredetail{font-size:13px;color:var(--muted);line-height:1.6}.scoredetail b{color:var(--ink)}.recnote{font-size:12px;color:var(--muted);margin-top:8px}.transcript{margin-top:4px;color:var(--ink)}@media(max-width:600px){.scorebox{grid-template-columns:1fr}.scoremain{border-right:none;border-bottom:1px solid var(--line);padding:0 0 10px}}
+  .cloudgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}.field{display:flex;flex-direction:column;gap:4px}.field label{font-size:12px;color:var(--muted);font-weight:700}.field input{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;font-size:13px}.checkline{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0 12px;color:var(--muted);font-size:13px}.checkline label{display:inline-flex;align-items:center;gap:6px}.cloudstatus{border:1px solid var(--line);background:#f8fbf9;border-radius:10px;padding:10px 12px;color:var(--muted);font-size:13px;margin-top:10px}.cloudstatus b{color:var(--ink)}@media(max-width:700px){.cloudgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -34,13 +36,15 @@
     <div class="grp"><label>备用发音</label><select id="voice"></select></div>
     <div class="grp"><button class="btn ghost" id="toggleTip">🗣 发音提示</button><button class="btn ghost" id="toggleZh">显示中文</button></div>
   </div>
-  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；点 <b>🔁</b> 循环跟读。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
+  <div class="hint"><b>🔊 使用提示：</b>点每句右边的 <b>▶</b> 听多音色自然人声音频；全文连读时点 <b>🔁</b> 会暂停全文并循环当前句，再点一次会从下一句继续。缺少对应 mp3 时才会临时回退到浏览器备用发音。</div>
   <div class="hint"><b>🎧 人声音频模式：</b>音频文件位于 <code>run50/audio/hatfield-mccoy-english-practice/01.mp3</code> 起，逐句对应本页文本。</div>
   <div class="stats"><div class="stat"><div class="v">Kentucky</div><div class="t">State</div></div><div class="stat"><div class="v">Williamson</div><div class="t">Town</div></div><div class="stat"><div class="v">4h20m</div><div class="t">Finish time</div></div><div class="stat"><div class="v">25th | Feud</div><div class="t">Race note</div></div></div>
   <div class="list" id="list"></div>
-  <div class="rec"><h3>🎙️ 录音对比练习</h3><p>先选上面任意一句，再录下自己的发音，对比原句。</p><div class="recrow"><button class="btn" id="recBtn"><span class="dot" id="recDot"></span>开始录音</button><button class="btn ghost" id="playOrig" disabled>▶ 听原句</button><button class="btn ghost" id="playMine" disabled>▶ 听我的录音</button><button class="btn ghost" id="playCompare" disabled>⇄ 原句→我的 对比</button></div><p id="recStatus" style="margin-top:10px">当前选中：<b id="selText">（未选择，点上面任意一句）</b></p><audio id="myAudio" controls style="display:none;width:100%;margin-top:6px"></audio></div>
+  <div class="rec" id="recPanel"><h3>🎙️ 逐句录音打分</h3><p>先选任意一句，再录下自己的发音。录音会按句保存到本机浏览器；需要换电脑时，导出录音包再到另一台电脑导入。</p><div class="recrow"><button class="btn" id="recBtn"><span class="dot" id="recDot"></span>开始录音</button><button class="btn ghost" id="playOrig" disabled>▶ 听原句</button><button class="btn ghost" id="playMine" disabled>▶ 听我的录音</button><button class="btn ghost" id="playCompare" disabled>⇄ 原句→我的 对比</button><button class="btn ghost" id="downloadMine" disabled>下载本句</button><button class="btn ghost" id="deleteMine" disabled>删除本句</button><button class="btn ghost" id="exportAll">导出全部录音包</button><button class="btn ghost" id="importAll">导入录音包</button><input type="file" id="importFile" accept="application/json,.json" style="display:none"></div><div class="scorebox" id="scoreBox"><div class="scoremain"><span id="scoreNum">--</span><small>本句得分</small></div><div class="scoredetail"><div id="scoreFeedback">选择一句后开始录音。Chrome/Edge 会尝试识别你的英文并给文本相似度评分；识别不可用时先给节奏分。</div><div class="transcript" id="scoreTranscript"></div></div></div><p id="recStatus" style="margin-top:10px">当前选中：<b id="selText">（未选择，点上面任意一句）</b></p><audio id="myAudio" controls style="display:none;width:100%;margin-top:6px"></audio><div class="recnote">提示：导出的录音包可以放到网盘、U 盘或发给自己；另一台电脑导入后会恢复到本页面。</div></div>
+  <div class="rec" id="cloudPanel"><h3>☁️ Google Drive 云同步</h3><p>Google 负责登录授权；练习密码只用来加密录音包。同步文件会存到 Google Drive 的隐藏应用数据区。</p><div class="cloudgrid"><div class="field"><label for="googleClientId">Google Client ID</label><input id="googleClientId" placeholder="xxxxx.apps.googleusercontent.com" autocomplete="off"></div><div class="field"><label for="practicePass">练习密码</label><input id="practicePass" type="password" placeholder="用于加密和解密录音" autocomplete="current-password"></div></div><div class="checkline"><label><input type="checkbox" id="rememberClient">记住 Client ID</label><label><input type="checkbox" id="rememberPass">记住这台设备的练习密码</label><label><input type="checkbox" id="autoSync">录音后自动同步</label></div><div class="recrow"><button class="btn" id="googleSignIn">使用 Google 授权</button><button class="btn ghost" id="cloudUpload">同步到 Google Drive</button><button class="btn ghost" id="cloudDownload">从 Google Drive 恢复</button></div><div class="cloudstatus" id="cloudStatus">状态：尚未连接 Google Drive。</div><div class="recnote">已配置 Google Cloud 项目和 OAuth Client ID；本地测试与 zhennanzhang.com 域名都已加入授权来源。</div></div>
   <div class="foot">© Run50 · English Read-Along · 愿每一双跑鞋都不被辜负</div>
 </div>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
 const DATA = [
   {
@@ -302,12 +306,13 @@ DATA.forEach((d) => {
   const idx = rows.length;
   const row = document.createElement('div');
   row.className = 'row';
-  row.innerHTML = '<div class="num">'+(idx+1)+'</div><div class="body"><div class="cue">'+d.cue+'</div><div class="en">'+d.en+'</div>'+(d.tip ? '<div class="tip">🗣 '+d.tip+'</div>' : '')+'<div class="zh">'+d.zh+'</div></div><div class="ops"><button class="iconbtn play" title="朗读这一句">▶</button><button class="iconbtn loop" title="循环这一句">🔁</button></div>';
+  row.innerHTML = '<div class="num">'+(idx+1)+'</div><div class="body"><div class="cue">'+d.cue+'</div><div class="en">'+d.en+'</div>'+(d.tip ? '<div class="tip">🗣 '+d.tip+'</div>' : '')+'<div class="zh">'+d.zh+'</div></div><div class="ops"><span class="scorepill" data-score>未录</span><button class="iconbtn play" title="朗读这一句">▶</button><button class="iconbtn loop" title="循环这一句">🔁</button><button class="iconbtn record" title="录这一句">🎙️</button></div>';
   listEl.appendChild(row);
   const rec = {el:row, idx:idx, data:d};
   rows.push(rec);
-  row.querySelector('.play').addEventListener('click', e=>{ e.stopPropagation(); selectRow(idx); speakOne(idx); });
+  row.querySelector('.play').addEventListener('click', e=>{ e.stopPropagation(); if(playingAll) pauseAllAfter(idx); selectRow(idx); speakOne(idx); });
   row.querySelector('.loop').addEventListener('click', e=>{ e.stopPropagation(); toggleLoop(idx, e.currentTarget); });
+  row.querySelector('.record').addEventListener('click', e=>{ e.stopPropagation(); selectRow(idx); document.getElementById('recPanel').scrollIntoView({behavior:'smooth', block:'center'}); if(!recording) startRecording(); });
   row.addEventListener('click', ()=> selectRow(idx));
 });
 const synth = window.speechSynthesis;
@@ -315,9 +320,12 @@ const voiceSel = document.getElementById('voice');
 const rateEl = document.getElementById('rate');
 const ratevalEl = document.getElementById('rateval');
 const humanAudio = new Audio();
-const HUMAN_AUDIO_BASE = 'audio/hatfield-mccoy-english-practice';
+const HUMAN_AUDIO_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:')
+  ? 'https://zhennanzhang.com/run50/audio/hatfield-mccoy-english-practice'
+  : 'audio/hatfield-mccoy-english-practice';
 const HUMAN_AUDIO_VERSION = '20260630-multivoice-v2';
-let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0;
+const playAllBtn = document.getElementById('playAll');
+let voices = [], chosenVoice = null, loopIdx = -1, playingAll = false, selected = -1, playToken = 0, allIndex = 0, resumeAllFrom = -1, resumeAfterLoop = -1;
 rateEl.addEventListener('input', ()=> ratevalEl.textContent = (+rateEl.value).toFixed(2)+'x');
 function isUS(v){ return /en[-_]US/i.test(v.lang) || /English.*United States/i.test(v.name); }
 function isEN(v){ return /^en/i.test(v.lang) || /\bEnglish\b/i.test(v.name); }
@@ -326,17 +334,442 @@ voiceSel.addEventListener('change', ()=> chosenVoice = voices[+voiceSel.value]);
 function makeUtter(text){ const u = new SpeechSynthesisUtterance(text); if(chosenVoice) u.voice = chosenVoice; u.lang = (chosenVoice && chosenVoice.lang) || 'en-US'; u.rate = +rateEl.value; return u; }
 function humanAudioSrc(idx){ return HUMAN_AUDIO_BASE + '/' + String(idx + 1).padStart(2, '0') + '.mp3?v=' + HUMAN_AUDIO_VERSION; }
 function stopCurrentVoice(){ playToken++; synth.cancel(); humanAudio.pause(); humanAudio.removeAttribute('src'); humanAudio.load(); }
-function selectRow(idx){ selected = idx; rows.forEach((r,i)=> r.el.classList.toggle('active', i===idx)); document.getElementById('selText').textContent = rows[idx].data.en; document.getElementById('playOrig').disabled = false; refreshCompareBtns(); }
+function selectRow(idx){ selected = idx; rows.forEach((r,i)=> r.el.classList.toggle('active', i===idx)); document.getElementById('selText').textContent = rows[idx].data.en; document.getElementById('playOrig').disabled = false; showSavedRecording(idx); refreshCompareBtns(); }
 function speakOne(idx, after){ const token = ++playToken; synth.cancel(); humanAudio.pause(); const done = ()=>{ if(token !== playToken) return; if(loopIdx===idx){ setTimeout(()=>{ if(loopIdx===idx) speakOne(idx); }, 500); return; } if(after) after(); }; const fallbackToTts = ()=>{ if(token !== playToken) return; humanAudio.onerror = null; const u = makeUtter(rows[idx].data.en); u.onend = done; synth.speak(u); }; let fellBack = false; const fallbackOnce = ()=>{ if(fellBack) return; fellBack = true; fallbackToTts(); }; humanAudio.onended = done; humanAudio.onerror = fallbackOnce; humanAudio.src = humanAudioSrc(idx); humanAudio.currentTime = 0; humanAudio.playbackRate = +rateEl.value; humanAudio.play().catch(fallbackOnce); }
-function toggleLoop(idx, btn){ document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on')); if(loopIdx===idx){ loopIdx=-1; stopCurrentVoice(); return; } loopIdx = idx; btn.classList.add('on'); playingAll = false; selectRow(idx); speakOne(idx); }
-document.getElementById('playAll').addEventListener('click', ()=>{ loopIdx = -1; document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on')); stopCurrentVoice(); playingAll = true; let i = 0; const step = ()=>{ if(!playingAll || i>=rows.length){ playingAll=false; rows.forEach(r=>r.el.classList.remove('active')); return; } selectRow(i); rows[i].el.scrollIntoView({behavior:'smooth', block:'center'}); speakOne(i, ()=>{ i++; step(); }); }; step(); });
-document.getElementById('stopBtn').addEventListener('click', ()=>{ playingAll=false; loopIdx=-1; document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on')); stopCurrentVoice(); });
+function updatePlayAllLabel(){ playAllBtn.textContent = playingAll ? '▶ 全文连读中' : (resumeAllFrom >= 0 ? '▶ 继续全文' : '▶ 全文连读'); }
+function clearLoopButtons(){ document.querySelectorAll('.iconbtn.loop').forEach(b=>b.classList.remove('on')); }
+function pauseAllAfter(idx){ playingAll = false; resumeAllFrom = Math.min(idx + 1, rows.length); updatePlayAllLabel(); }
+function startAllFrom(idx){ loopIdx = -1; resumeAfterLoop = -1; clearLoopButtons(); stopCurrentVoice(); playingAll = true; resumeAllFrom = -1; allIndex = Math.max(0, Math.min(idx, rows.length)); updatePlayAllLabel(); stepAll(); }
+function stepAll(){ if(!playingAll || allIndex>=rows.length){ playingAll=false; resumeAllFrom=-1; rows.forEach(r=>r.el.classList.remove('active')); updatePlayAllLabel(); return; } const idx = allIndex; selectRow(idx); rows[idx].el.scrollIntoView({behavior:'smooth', block:'center'}); speakOne(idx, ()=>{ if(!playingAll) return; allIndex = idx + 1; stepAll(); }); }
+function toggleLoop(idx, btn){ if(loopIdx===idx){ loopIdx=-1; clearLoopButtons(); stopCurrentVoice(); const next = resumeAfterLoop; resumeAfterLoop = -1; if(next >= 0 && next < rows.length){ startAllFrom(next); } else { updatePlayAllLabel(); } return; } clearLoopButtons(); const wasPlayingAll = playingAll; if(wasPlayingAll) pauseAllAfter(idx); resumeAfterLoop = wasPlayingAll ? Math.min(idx + 1, rows.length) : -1; loopIdx = idx; btn.classList.add('on'); selectRow(idx); speakOne(idx); }
+playAllBtn.addEventListener('click', ()=> startAllFrom(resumeAllFrom >= 0 ? resumeAllFrom : 0));
+document.getElementById('stopBtn').addEventListener('click', ()=>{ playingAll=false; resumeAllFrom=-1; resumeAfterLoop=-1; loopIdx=-1; clearLoopButtons(); stopCurrentVoice(); updatePlayAllLabel(); });
 let showTip = false; document.getElementById('toggleTip').addEventListener('click', e=>{ showTip=!showTip; rows.forEach(r=>r.el.classList.toggle('show-tip', showTip)); e.currentTarget.textContent = showTip ? '🗣 隐藏提示' : '🗣 发音提示'; });
 let showZh = false; document.getElementById('toggleZh').addEventListener('click', e=>{ showZh=!showZh; rows.forEach(r=>r.el.classList.toggle('show-zh', showZh)); e.currentTarget.textContent = showZh ? '隐藏中文' : '显示中文'; });
-let mediaRec=null, chunks=[], myURL=null, recording=false; const recBtn=document.getElementById('recBtn'), recDot=document.getElementById('recDot'), myAudio=document.getElementById('myAudio');
-function refreshCompareBtns(){ const has=!!myURL, sel=selected>=0; document.getElementById('playMine').disabled=!has; document.getElementById('playCompare').disabled=!(has&&sel); }
-recBtn.addEventListener('click', async ()=>{ if(recording){ mediaRec.stop(); return; } try{ const stream=await navigator.mediaDevices.getUserMedia({audio:true}); mediaRec=new MediaRecorder(stream); chunks=[]; mediaRec.ondataavailable=e=>chunks.push(e.data); mediaRec.onstop=()=>{ const blob=new Blob(chunks, {type:'audio/webm'}); if(myURL) URL.revokeObjectURL(myURL); myURL=URL.createObjectURL(blob); myAudio.src=myURL; myAudio.style.display='block'; recording=false; recDot.classList.remove('live'); recBtn.lastChild.textContent='重新录音'; stream.getTracks().forEach(t=>t.stop()); refreshCompareBtns(); }; mediaRec.start(); recording=true; recDot.classList.add('live'); recBtn.lastChild.textContent='停止录音'; }catch(err){ alert('无法访问麦克风：'+err.message+'\n请在浏览器允许麦克风权限后重试。'); } });
-document.getElementById('playOrig').addEventListener('click', ()=>{ if(selected>=0) speakOne(selected); }); document.getElementById('playMine').addEventListener('click', ()=>{ if(myURL){ myAudio.currentTime=0; myAudio.play(); } }); document.getElementById('playCompare').addEventListener('click', ()=>{ if(selected<0 || !myURL) return; stopCurrentVoice(); speakOne(selected, ()=> setTimeout(()=>{ myAudio.currentTime=0; myAudio.play(); }, 400)); }); window.addEventListener('beforeunload', ()=> stopCurrentVoice());
+let mediaRec=null, chunks=[], myURL=null, recording=false, recordStart=0, recStream=null, recognition=null, recognitionText='';
+const recBtn=document.getElementById('recBtn'), recDot=document.getElementById('recDot'), myAudio=document.getElementById('myAudio');
+const playMineBtn=document.getElementById('playMine'), compareBtn=document.getElementById('playCompare'), downloadBtn=document.getElementById('downloadMine'), deleteBtn=document.getElementById('deleteMine');
+const exportAllBtn=document.getElementById('exportAll'), importAllBtn=document.getElementById('importAll'), importFile=document.getElementById('importFile');
+const googleClientIdEl=document.getElementById('googleClientId'), practicePassEl=document.getElementById('practicePass'), rememberClientEl=document.getElementById('rememberClient'), rememberPassEl=document.getElementById('rememberPass'), autoSyncEl=document.getElementById('autoSync');
+const googleSignInBtn=document.getElementById('googleSignIn'), cloudUploadBtn=document.getElementById('cloudUpload'), cloudDownloadBtn=document.getElementById('cloudDownload'), cloudStatusEl=document.getElementById('cloudStatus');
+const scoreNum=document.getElementById('scoreNum'), scoreFeedback=document.getElementById('scoreFeedback'), scoreTranscript=document.getElementById('scoreTranscript');
+const savedRecordings = new Map();
+let dbPromise = null;
+let googleAccessToken = '', googleTokenClient = null;
+const DEFAULT_GOOGLE_CLIENT_ID = '1066666343261-7f4g0pi06fbcba021tu434s123gh56ge.apps.googleusercontent.com';
+const CLOUD_FILE_NAME = 'run50-hatfield-mccoy-recordings.enc.json';
+const DRIVE_SCOPE = 'https://www.googleapis.com/auth/drive.appdata';
+
+function openPracticeDB(){
+  if(!('indexedDB' in window)) return Promise.resolve(null);
+  if(dbPromise) return dbPromise;
+  dbPromise = new Promise(resolve=>{
+    const req = indexedDB.open('run50-hatfield-mccoy-practice', 1);
+    req.onupgradeneeded = () => {
+      const db = req.result;
+      if(!db.objectStoreNames.contains('recordings')) db.createObjectStore('recordings', {keyPath:'idx'});
+    };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => resolve(null);
+  });
+  return dbPromise;
+}
+async function dbPut(entry){
+  const db = await openPracticeDB();
+  if(!db) return;
+  return new Promise(resolve=>{
+    const tx = db.transaction('recordings', 'readwrite');
+    tx.objectStore('recordings').put(entry);
+    tx.oncomplete = resolve;
+    tx.onerror = resolve;
+  });
+}
+async function dbDelete(idx){
+  const db = await openPracticeDB();
+  if(!db) return;
+  return new Promise(resolve=>{
+    const tx = db.transaction('recordings', 'readwrite');
+    tx.objectStore('recordings').delete(idx);
+    tx.oncomplete = resolve;
+    tx.onerror = resolve;
+  });
+}
+async function loadSavedRecordings(){
+  const db = await openPracticeDB();
+  if(!db) return;
+  const tx = db.transaction('recordings', 'readonly');
+  const req = tx.objectStore('recordings').openCursor();
+  req.onsuccess = () => {
+    const cursor = req.result;
+    if(!cursor) return;
+    savedRecordings.set(cursor.value.idx, cursor.value);
+    updateRowRecordingState(cursor.value.idx);
+    cursor.continue();
+  };
+}
+function normalizeWords(text){
+  return (text || '').toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]+/g, ' ').trim().split(/\s+/).filter(Boolean);
+}
+function wordDistance(a, b){
+  const dp = Array.from({length:a.length+1}, (_,i)=>Array(b.length+1).fill(0));
+  for(let i=0;i<=a.length;i++) dp[i][0]=i;
+  for(let j=0;j<=b.length;j++) dp[0][j]=j;
+  for(let i=1;i<=a.length;i++){
+    for(let j=1;j<=b.length;j++){
+      dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1;
+    }
+  }
+  return dp[a.length][b.length];
+}
+function scoreRecording(target, transcript, seconds){
+  const targetWords = normalizeWords(target);
+  const spokenWords = normalizeWords(transcript);
+  const targetSeconds = Math.max(1.4, targetWords.length / 2.45);
+  const durationScore = Math.max(0, 1 - Math.abs(seconds - targetSeconds) / Math.max(targetSeconds, 1));
+  if(spokenWords.length){
+    const distance = wordDistance(targetWords, spokenWords);
+    const textScore = Math.max(0, 1 - distance / Math.max(targetWords.length, spokenWords.length, 1));
+    const score = Math.round(textScore * 78 + durationScore * 22);
+    return {score, mode:'文本+节奏', feedback:'文本相似度 '+Math.round(textScore*100)+'%，节奏匹配 '+Math.round(durationScore*100)+'%。'};
+  }
+  const score = Math.round(durationScore * 100);
+  return {score, mode:'节奏', feedback:'浏览器没有识别到英文文本，先按录音时长和目标句节奏给分。'};
+}
+function updateRowRecordingState(idx){
+  const pill = rows[idx].el.querySelector('[data-score]');
+  const entry = savedRecordings.get(idx);
+  if(!entry){ pill.textContent='未录'; pill.className='scorepill'; return; }
+  pill.textContent = entry.score != null ? entry.score + '分' : '已录';
+  pill.className = 'scorepill saved' + (entry.score >= 85 ? ' good' : '');
+}
+function setAudioFromEntry(entry){
+  if(myURL) URL.revokeObjectURL(myURL);
+  myURL = entry ? URL.createObjectURL(entry.blob) : null;
+  if(myURL){ myAudio.src = myURL; myAudio.style.display='block'; }
+  else { myAudio.removeAttribute('src'); myAudio.style.display='none'; }
+}
+function showSavedRecording(idx){
+  const entry = savedRecordings.get(idx);
+  setAudioFromEntry(entry);
+  if(entry){
+    scoreNum.textContent = entry.score != null ? entry.score : '--';
+    scoreFeedback.innerHTML = '<b>'+entry.mode+'评分：</b>'+entry.feedback+' <span style="white-space:nowrap">录音 '+entry.duration.toFixed(1)+' 秒</span>';
+    scoreTranscript.textContent = entry.transcript ? '识别结果：'+entry.transcript : '识别结果：未识别到文本';
+    recBtn.lastChild.textContent = '重新录音';
+  } else {
+    scoreNum.textContent = '--';
+    scoreFeedback.textContent = '这一句还没有录音。点“开始录音”，或点句子右侧麦克风。';
+    scoreTranscript.textContent = '';
+    recBtn.lastChild.textContent = '开始录音';
+  }
+}
+function refreshCompareBtns(){
+  const has = selected >= 0 && savedRecordings.has(selected);
+  playMineBtn.disabled = !has;
+  compareBtn.disabled = !has;
+  downloadBtn.disabled = !has;
+  deleteBtn.disabled = !has;
+}
+function blobToDataURL(blob){
+  return new Promise((resolve, reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+function dataURLToBlob(dataURL){
+  const parts = String(dataURL).split(',');
+  const meta = parts[0] || '';
+  const mime = (meta.match(/data:(.*?);base64/) || [])[1] || 'audio/webm';
+  const binary = atob(parts[1] || '');
+  const bytes = new Uint8Array(binary.length);
+  for(let i=0; i<binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], {type:mime});
+}
+async function createRecordingPack(){
+  const recordings = [];
+  for(const entry of [...savedRecordings.values()].sort((a,b)=>a.idx-b.idx)){
+    recordings.push({
+      idx: entry.idx,
+      sentence: rows[entry.idx] ? rows[entry.idx].data.en : '',
+      mimeType: entry.mimeType || entry.blob.type || 'audio/webm',
+      createdAt: entry.createdAt,
+      duration: entry.duration,
+      transcript: entry.transcript || '',
+      score: entry.score,
+      mode: entry.mode || '',
+      feedback: entry.feedback || '',
+      audioData: await blobToDataURL(entry.blob)
+    });
+  }
+  return {type:'run50-recording-pack', page:'hatfield-mccoy-english-practice', version:1, exportedAt:Date.now(), recordings};
+}
+async function exportRecordingPack(){
+  if(!savedRecordings.size){ alert('现在还没有可导出的录音。'); return; }
+  const pack = await createRecordingPack();
+  const blob = new Blob([JSON.stringify(pack)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'hatfield-mccoy-recordings-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+async function applyRecordingPack(pack){
+  if(!pack || pack.type !== 'run50-recording-pack' || !Array.isArray(pack.recordings)){ alert('这个录音包格式不对。'); return 0; }
+  let count = 0;
+  for(const item of pack.recordings){
+    if(!Number.isInteger(item.idx) || item.idx < 0 || item.idx >= rows.length || !item.audioData) continue;
+    const blob = dataURLToBlob(item.audioData);
+    const entry = {
+      idx:item.idx,
+      blob,
+      mimeType:item.mimeType || blob.type,
+      createdAt:item.createdAt || Date.now(),
+      duration:+item.duration || 0,
+      transcript:item.transcript || '',
+      score:Number.isFinite(+item.score) ? +item.score : null,
+      mode:item.mode || '导入',
+      feedback:item.feedback || '从录音包导入。'
+    };
+    savedRecordings.set(entry.idx, entry);
+    await dbPut(entry);
+    updateRowRecordingState(entry.idx);
+    count++;
+  }
+  if(selected >= 0) showSavedRecording(selected);
+  refreshCompareBtns();
+  return count;
+}
+async function importRecordingPack(file){
+  const text = await file.text();
+  let pack;
+  try{ pack = JSON.parse(text); }catch(err){ alert('这个文件不是有效的录音包。'); return; }
+  const count = await applyRecordingPack(pack);
+  alert('已导入 '+count+' 条录音。');
+}
+function setCloudStatus(text, strong){
+  cloudStatusEl.innerHTML = '状态：' + (strong ? '<b>'+strong+'</b> ' : '') + text;
+}
+function initCloudPrefs(){
+  googleClientIdEl.value = localStorage.getItem('run50GoogleClientId') || DEFAULT_GOOGLE_CLIENT_ID;
+  practicePassEl.value = localStorage.getItem('run50PracticePass') || '';
+  rememberClientEl.checked = true;
+  rememberPassEl.checked = !!practicePassEl.value;
+  autoSyncEl.checked = localStorage.getItem('run50AutoSync') === '1';
+}
+function saveCloudPrefs(){
+  if(rememberClientEl.checked) localStorage.setItem('run50GoogleClientId', googleClientIdEl.value.trim());
+  else localStorage.removeItem('run50GoogleClientId');
+  if(rememberPassEl.checked) localStorage.setItem('run50PracticePass', practicePassEl.value);
+  else localStorage.removeItem('run50PracticePass');
+  localStorage.setItem('run50AutoSync', autoSyncEl.checked ? '1' : '0');
+}
+function waitForGoogleIdentity(){
+  return new Promise((resolve, reject)=>{
+    let tries = 0;
+    const tick = () => {
+      if(window.google && google.accounts && google.accounts.oauth2){ resolve(); return; }
+      tries++;
+      if(tries > 80){ reject(new Error('Google Identity Services 没有加载成功，请检查网络或广告拦截插件。')); return; }
+      setTimeout(tick, 150);
+    };
+    tick();
+  });
+}
+async function getGoogleAccessToken(){
+  saveCloudPrefs();
+  const clientId = googleClientIdEl.value.trim();
+  if(!clientId){ alert('请先填 Google Client ID。'); throw new Error('missing client id'); }
+  await waitForGoogleIdentity();
+  return new Promise((resolve, reject)=>{
+    googleTokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: clientId,
+      scope: DRIVE_SCOPE,
+      callback: response => {
+        if(response.error){ reject(new Error(response.error)); return; }
+        googleAccessToken = response.access_token;
+        setCloudStatus('已获得 Drive 同步授权。', '已连接');
+        resolve(googleAccessToken);
+      }
+    });
+    googleTokenClient.requestAccessToken({prompt: googleAccessToken ? '' : 'consent'});
+  });
+}
+async function driveFetch(url, options){
+  const token = googleAccessToken || await getGoogleAccessToken();
+  const headers = new Headers(options && options.headers ? options.headers : {});
+  headers.set('Authorization', 'Bearer '+token);
+  const res = await fetch(url, {...options, headers});
+  if(res.status === 401){
+    googleAccessToken = '';
+    const retryToken = await getGoogleAccessToken();
+    headers.set('Authorization', 'Bearer '+retryToken);
+    return fetch(url, {...options, headers});
+  }
+  return res;
+}
+async function findCloudFile(){
+  const q = encodeURIComponent("name='"+CLOUD_FILE_NAME+"' and trashed=false");
+  const url = 'https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q='+q+'&fields=files(id,name,modifiedTime,size)';
+  const res = await driveFetch(url);
+  if(!res.ok) throw new Error('查找云端文件失败：'+await res.text());
+  const data = await res.json();
+  return data.files && data.files[0] ? data.files[0] : null;
+}
+function base64FromBytes(bytes){
+  let binary = '';
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary);
+}
+function bytesFromBase64(base64){
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for(let i=0; i<binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes;
+}
+async function deriveCloudKey(passphrase, salt){
+  const baseKey = await crypto.subtle.importKey('raw', new TextEncoder().encode(passphrase), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2', salt, iterations:150000, hash:'SHA-256'}, baseKey, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']);
+}
+async function encryptPack(pack, passphrase){
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await deriveCloudKey(passphrase, salt);
+  const encoded = new TextEncoder().encode(JSON.stringify(pack));
+  const cipher = new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, encoded));
+  return {type:'run50-encrypted-recording-pack', page:'hatfield-mccoy-english-practice', version:1, exportedAt:Date.now(), crypto:{name:'AES-GCM', kdf:'PBKDF2-SHA256', iterations:150000, salt:base64FromBytes(salt), iv:base64FromBytes(iv), ciphertext:base64FromBytes(cipher)}};
+}
+async function decryptPack(wrapper, passphrase){
+  if(!wrapper || wrapper.type !== 'run50-encrypted-recording-pack' || !wrapper.crypto) throw new Error('云端文件格式不对。');
+  const salt = bytesFromBase64(wrapper.crypto.salt);
+  const iv = bytesFromBase64(wrapper.crypto.iv);
+  const cipher = bytesFromBase64(wrapper.crypto.ciphertext);
+  const key = await deriveCloudKey(passphrase, salt);
+  const plain = await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, cipher);
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+async function uploadToGoogleDrive(){
+  if(!savedRecordings.size){ alert('现在还没有录音可同步。'); return; }
+  const passphrase = practicePassEl.value;
+  if(!passphrase){ alert('请先输入练习密码，用来加密云端录音包。'); return; }
+  saveCloudPrefs();
+  setCloudStatus('正在加密并上传录音包...');
+  const pack = await createRecordingPack();
+  const encrypted = await encryptPack(pack, passphrase);
+  const body = JSON.stringify(encrypted);
+  const existing = await findCloudFile();
+  let res;
+  if(existing){
+    res = await driveFetch('https://www.googleapis.com/upload/drive/v3/files/'+existing.id+'?uploadType=media&fields=id,modifiedTime', {method:'PATCH', headers:{'Content-Type':'application/json'}, body});
+  } else {
+    const metadata = {name:CLOUD_FILE_NAME, parents:['appDataFolder'], mimeType:'application/json'};
+    const boundary = 'run50_'+Date.now();
+    const multipartBody = '--'+boundary+'\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'+JSON.stringify(metadata)+'\r\n--'+boundary+'\r\nContent-Type: application/json\r\n\r\n'+body+'\r\n--'+boundary+'--';
+    res = await driveFetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,modifiedTime', {method:'POST', headers:{'Content-Type':'multipart/related; boundary='+boundary}, body:multipartBody});
+  }
+  if(!res.ok) throw new Error('上传失败：'+await res.text());
+  const result = await res.json();
+  setCloudStatus('已同步 '+pack.recordings.length+' 条录音。'+(result.modifiedTime ? ' 更新时间：'+new Date(result.modifiedTime).toLocaleString() : ''), '完成');
+}
+async function downloadFromGoogleDrive(){
+  const passphrase = practicePassEl.value;
+  if(!passphrase){ alert('请输入当时同步时使用的练习密码。'); return; }
+  saveCloudPrefs();
+  setCloudStatus('正在从 Google Drive 查找录音包...');
+  const file = await findCloudFile();
+  if(!file){ alert('Google Drive 里还没有这个页面的录音包。'); setCloudStatus('没有找到云端录音包。'); return; }
+  const res = await driveFetch('https://www.googleapis.com/drive/v3/files/'+file.id+'?alt=media');
+  if(!res.ok) throw new Error('下载失败：'+await res.text());
+  const wrapper = await res.json();
+  let pack;
+  try{ pack = await decryptPack(wrapper, passphrase); }
+  catch(err){ alert('解密失败。请确认练习密码是否正确。'); setCloudStatus('解密失败，练习密码可能不对。'); return; }
+  const count = await applyRecordingPack(pack);
+  setCloudStatus('已从云端恢复 '+count+' 条录音。', '完成');
+}
+function scheduleCloudAutoSync(){
+  if(!autoSyncEl.checked || !googleAccessToken || !practicePassEl.value) return;
+  clearTimeout(scheduleCloudAutoSync.timer);
+  scheduleCloudAutoSync.timer = setTimeout(()=> uploadToGoogleDrive().catch(err=>setCloudStatus(err.message, '自动同步失败')), 1000);
+}
+function startSpeechRecognition(){
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognitionText = '';
+  if(!SpeechRecognition) return null;
+  const rec = new SpeechRecognition();
+  rec.lang = 'en-US';
+  rec.continuous = true;
+  rec.interimResults = true;
+  rec.onresult = e => {
+    let text = '';
+    for(let i=0; i<e.results.length; i++) text += e.results[i][0].transcript + ' ';
+    recognitionText = text.trim();
+  };
+  rec.onerror = () => {};
+  try{ rec.start(); return rec; }catch(err){ return null; }
+}
+async function startRecording(){
+  if(selected < 0){ alert('请先选择一句再录音。'); return; }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ alert('当前浏览器不支持录音，请用 Chrome 或 Edge 打开。'); return; }
+  try{
+    stopCurrentVoice();
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    recStream = stream;
+    mediaRec=new MediaRecorder(stream);
+    chunks=[];
+    recordStart = performance.now();
+    recognition = startSpeechRecognition();
+    mediaRec.ondataavailable=e=>{ if(e.data && e.data.size) chunks.push(e.data); };
+    mediaRec.onstop=async ()=>{
+      if(recognition){ try{ recognition.stop(); }catch(err){} recognition = null; }
+      const blob=new Blob(chunks, {type:mediaRec.mimeType || 'audio/webm'});
+      const duration = Math.max(0.1, (performance.now() - recordStart) / 1000);
+      const result = scoreRecording(rows[selected].data.en, recognitionText, duration);
+      const entry = {idx:selected, blob, mimeType:blob.type, createdAt:Date.now(), duration, transcript:recognitionText, score:result.score, mode:result.mode, feedback:result.feedback};
+      savedRecordings.set(selected, entry);
+      await dbPut(entry);
+      setAudioFromEntry(entry);
+      updateRowRecordingState(selected);
+      showSavedRecording(selected);
+      recording=false;
+      recDot.classList.remove('live');
+      recBtn.lastChild.textContent='重新录音';
+      if(recStream){ recStream.getTracks().forEach(t=>t.stop()); recStream = null; }
+      refreshCompareBtns();
+      scheduleCloudAutoSync();
+    };
+    mediaRec.start();
+    recording=true;
+    recDot.classList.add('live');
+    recBtn.lastChild.textContent='停止录音';
+    scoreNum.textContent = '--';
+    scoreFeedback.textContent = '正在录音，读完后再点一次“停止录音”。';
+    scoreTranscript.textContent = '';
+  }catch(err){
+    alert('无法访问麦克风：'+err.message+'\n请在浏览器允许麦克风权限后重试。');
+  }
+}
+recBtn.addEventListener('click', ()=>{ if(recording && mediaRec){ mediaRec.stop(); return; } startRecording(); });
+document.getElementById('playOrig').addEventListener('click', ()=>{ if(selected>=0) speakOne(selected); });
+playMineBtn.addEventListener('click', ()=>{ if(myURL){ myAudio.currentTime=0; myAudio.play(); } });
+compareBtn.addEventListener('click', ()=>{ if(selected<0 || !myURL) return; stopCurrentVoice(); speakOne(selected, ()=> setTimeout(()=>{ myAudio.currentTime=0; myAudio.play(); }, 400)); });
+downloadBtn.addEventListener('click', ()=>{ if(selected<0 || !myURL) return; const a=document.createElement('a'); a.href=myURL; a.download='hatfield-mccoy-sentence-'+String(selected+1).padStart(2,'0')+'.webm'; document.body.appendChild(a); a.click(); a.remove(); });
+deleteBtn.addEventListener('click', async ()=>{ if(selected<0) return; savedRecordings.delete(selected); await dbDelete(selected); updateRowRecordingState(selected); showSavedRecording(selected); refreshCompareBtns(); scheduleCloudAutoSync(); });
+exportAllBtn.addEventListener('click', exportRecordingPack);
+importAllBtn.addEventListener('click', ()=> importFile.click());
+importFile.addEventListener('change', async ()=>{ const file = importFile.files && importFile.files[0]; if(file){ await importRecordingPack(file); scheduleCloudAutoSync(); } importFile.value=''; });
+googleSignInBtn.addEventListener('click', ()=> getGoogleAccessToken().catch(err=>setCloudStatus(err.message, '授权失败')));
+cloudUploadBtn.addEventListener('click', ()=> uploadToGoogleDrive().catch(err=>setCloudStatus(err.message, '同步失败')));
+cloudDownloadBtn.addEventListener('click', ()=> downloadFromGoogleDrive().catch(err=>setCloudStatus(err.message, '恢复失败')));
+[googleClientIdEl, practicePassEl, rememberClientEl, rememberPassEl, autoSyncEl].forEach(el=> el.addEventListener('change', saveCloudPrefs));
+initCloudPrefs();
+loadSavedRecordings();
+updatePlayAllLabel();
+window.addEventListener('beforeunload', ()=>{ stopCurrentVoice(); if(myURL) URL.revokeObjectURL(myURL); if(recStream) recStream.getTracks().forEach(t=>t.stop()); });
 </script>
   <script src="../assets/zz-home-button.js?v=20260703-home" defer></script>
 </body>
