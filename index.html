@@ -3287,17 +3287,18 @@
           { start: 3, size: 2 },
           { start: 5, size: 1 },
         ];
-    const widePattern = isKnowledgeMode || columnUnits === 4 ? [1, 3, 0] : [1, 3, 0];
     let cardIndex = 0;
     let rowIndex = 0;
+    let lastWideStart = 3;
 
     while (cardIndex < cardList.length) {
-      const preferredWideStart = widePattern[rowIndex % widePattern.length];
+      const preferredWideStart = rowIndex % 3 === 2 ? 0 : (lastWideStart === 1 ? 3 : 1);
       groups.forEach(group => {
         if (cardIndex >= cardList.length) return;
         const currentCard = cardList[cardIndex];
         if (group.size === 2 && preferredWideStart === group.start && canUseWideFeedSlot(currentCard)) {
           placements.set(currentCard, { span: 2, start: group.start });
+          lastWideStart = group.start;
           cardIndex += 1;
           return;
         }
