@@ -262,8 +262,8 @@
       outline.removeAttribute('id');
       outline.setAttribute('class', progressMode ? 'article-map-current-state article-map-progress-current-outline' : 'article-map-current-state');
       outline.setAttribute('fill', 'none');
-      outline.setAttribute('stroke', progressMode ? '#fff7df' : '#10151f');
-      outline.setAttribute('stroke-width', progressMode ? '7.2' : '5.8');
+      outline.setAttribute('stroke', progressMode ? '#ffd166' : '#10151f');
+      outline.setAttribute('stroke-width', progressMode ? '2.4' : '5.8');
       outline.setAttribute('stroke-linejoin', 'round');
       outline.setAttribute('stroke-linecap', 'round');
       outline.setAttribute('vector-effect', 'non-scaling-stroke');
