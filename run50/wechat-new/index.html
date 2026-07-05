@@ -2194,6 +2194,29 @@
         return { xMin, xMax, yMin, yMax, area: (xMax - xMin) * (yMax - yMin) };
       }
 
+      function samePathBox(a, b) {
+        const epsilon = 0.01;
+        return Math.abs(a.xMin - b.xMin) < epsilon &&
+          Math.abs(a.xMax - b.xMax) < epsilon &&
+          Math.abs(a.yMin - b.yMin) < epsilon &&
+          Math.abs(a.yMax - b.yMax) < epsilon;
+      }
+
+      function isContainedPathBox(box, bboxes, index) {
+        return bboxes.some((outer, outerIndex) => (
+          outerIndex !== index &&
+          !samePathBox(box, outer) &&
+          box.xMin >= outer.xMin &&
+          box.xMax <= outer.xMax &&
+          box.yMin >= outer.yMin &&
+          box.yMax <= outer.yMax
+        ));
+      }
+
+      function isAlaskaPanhandleGap(stateId, box) {
+        return stateId === 'ocean_3_' && box.xMin > 340 && box.yMin > 950;
+      }
+
       function removeContainedUsPathParts(svg) {
         US_HOLLOW_PATHS.forEach(stateId => {
           const el = svg.querySelector('#map_' + stateId);
@@ -2206,14 +2229,10 @@
           el.removeAttribute('fill-rule');
           el.setAttribute('d', parts.filter((_, index) => {
             const box = bboxes[index];
+            const isContained = isContainedPathBox(box, bboxes, index);
+            if (isAlaskaPanhandleGap(stateId, box) && isContained) return false;
             if (box.area < maxArea * 0.05) return true;
-            return !bboxes.some((outer, outerIndex) => (
-              outerIndex !== index &&
-              box.xMin >= outer.xMin &&
-              box.xMax <= outer.xMax &&
-              box.yMin >= outer.yMin &&
-              box.yMax <= outer.yMax
-            ));
+            return !isContained;
           }).join(' '));
         });
       }
@@ -2242,14 +2261,10 @@
           el.removeAttribute('fill-rule');
           el.setAttribute('d', parts.filter((_, index) => {
             const box = bboxes[index];
+            const isContained = isContainedPathBox(box, bboxes, index);
+            if (isAlaskaPanhandleGap(stateId, box) && isContained) return false;
             if (box.area < maxArea * 0.05) return true;
-            return !bboxes.some((outer, outerIndex) => (
-              outerIndex !== index &&
-              box.xMin >= outer.xMin &&
-              box.xMax <= outer.xMax &&
-              box.yMin >= outer.yMin &&
-              box.yMax <= outer.yMax
-            ));
+            return !isContained;
           }).join(' '));
         });
         trimMichiganOverlay(svg);
