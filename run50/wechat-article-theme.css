@@ -218,6 +218,23 @@ html[data-theme="dark"] .article-map-window {
   filter: drop-shadow(0 0 8px rgba(255, 209, 102, .8));
 }
 
+.article-map-window .article-map-current-state {
+  stroke: #10151f !important;
+  stroke-width: 5.8 !important;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, .55));
+}
+
+.article-map-window .article-map-marker-glow {
+  fill: rgba(255, 83, 64, .24);
+  stroke: none;
+}
+
+.article-map-window .article-map-marker-ring {
+  fill: none;
+  stroke: #fff8da;
+  stroke-width: 3.2;
+}
+
 .article-map-window .article-map-marker {
   fill: #ff4f43;
   stroke: #fff8da;
