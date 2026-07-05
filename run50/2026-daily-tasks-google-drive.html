@@ -2299,8 +2299,8 @@
           const extraBadge = extra ? `<span class="completed-time">${escapeHTML(t().overTarget(extra))}</span><button class="pom-adjust" type="button">${escapeHTML(t().matchTarget)}</button>` : "";
           const focusTotal = task.focusMs ? `<span class="focus-time">${escapeHTML(t().focusTotal(formatFocusTotal(task.focusMs)))}</span>` : "";
           return `
-          <div class="task-row ${task.done ? "done" : ""} ${extra ? "over-target" : ""}" data-id="${escapeHTML(task.id)}" draggable="true" style="--task-color:${task.color}">
-            <button class="drag-handle" type="button" aria-label="${t().dragTask}" title="${t().dragTask}">↕</button>
+          <div class="task-row ${task.done ? "done" : ""} ${extra ? "over-target" : ""}" data-id="${escapeHTML(task.id)}" style="--task-color:${task.color}">
+            <button class="drag-handle" type="button" draggable="true" aria-label="${t().dragTask}" title="${t().dragTask}">↕</button>
             <input type="checkbox" ${task.done ? "checked" : ""} aria-label="${t().completeTask}">
             <div class="task-main">
               <div class="task-text">${renderTaskText(task)}</div>
@@ -2382,6 +2382,8 @@
           task.pomodoroTarget = Math.min(MAX_POMODOROS, Math.max(1, task.pomodoroDone));
           renderEditor(); renderCalendar(); updateProgress(); queuePersist();
         });
+        row.querySelector(".task-text").addEventListener("mousedown", event => event.stopPropagation());
+        row.querySelector(".task-text").addEventListener("touchstart", event => event.stopPropagation(), { passive: true });
         row.querySelector(".task-text").addEventListener("mouseup", () => rememberTaskSelection(row));
         row.querySelector(".task-text").addEventListener("touchend", () => setTimeout(() => rememberTaskSelection(row), 0));
         row.querySelector(".highlight-color").addEventListener("input", event => {
