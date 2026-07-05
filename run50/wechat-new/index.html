@@ -2659,6 +2659,14 @@
           const storyLink = US_STATE_STORIES[abbr];
           const storyLabel = `Run50 · ${US_NAMES[abbr]}`;
           const storyLinks = mapStoryLinks(storyLink, US_STATE_STORY_GROUPS[abbr]);
+          const showVisualHover = () => paths.forEach(path => {
+            path.style.filter = 'brightness(1.14)';
+            path.style.opacity = '1';
+          });
+          const hideVisualHover = () => paths.forEach(path => {
+            path.style.filter = '';
+            path.style.opacity = '1';
+          });
           paths.forEach(path => {
             path.setAttribute('fill', US_COLORS[abbr]);
             path.setAttribute('stroke', 'none');
@@ -2666,6 +2674,8 @@
             path.style.opacity = '1';
             path.style.pointerEvents = 'auto';
             path.style.cursor = 'pointer';
+            path.addEventListener('mouseenter', showVisualHover);
+            path.addEventListener('mouseleave', hideVisualHover);
             path.addEventListener('click', event => (
               chooseOrFocusMapStory(event, slot, storyLinks, storyLink, US_COLORS[abbr], status, storyLabel)
             ));
@@ -2774,6 +2784,14 @@
             path.setAttribute('stroke-width', lightMode ? '1.7' : '1.15');
             path.style.opacity = '1';
             path.style.cursor = 'pointer';
+            path.addEventListener('mouseenter', () => {
+              path.style.filter = 'brightness(1.12)';
+              path.style.opacity = '1';
+            });
+            path.addEventListener('mouseleave', () => {
+              path.style.filter = '';
+              path.style.opacity = '1';
+            });
             path.addEventListener('click', event => (
               chooseOrFocusMapStory(event, slot, storyLinks, storyLink, province[1], status, storyLabel)
             ));
