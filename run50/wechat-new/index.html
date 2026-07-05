@@ -1866,7 +1866,7 @@
         MD: ['Pensilvania_1_', 'Oregon_1_'], WA: ['Oklahoma_1_']
       };
 
-      const US_BOUNDARY_EXCLUDES = new Set(['Michigan', 'Ocean']);
+      const US_BOUNDARY_EXCLUDES = new Set();
 
       const US_SOURCE_PATHS = new Set([
         'Illinois', 'Alabama', 'West_Virginia', 'Kansas_1_', 'South_Carolina_1_', 'Maryland',
@@ -1949,7 +1949,7 @@
       ];
 
       const SPECIAL_US_DOTS = {
-        'KY:Louisville': [1167, 509], 'HI:Honolulu': [570, 933], 'AK:Anchorage': [275, 917], 'VT:Warren': [1466, 270],
+        'KY:Louisville': [1185, 514], 'HI:Honolulu': [570, 933], 'AK:Anchorage': [275, 917], 'VT:Warren': [1466, 270],
         'NH:Keene': [1502, 310], 'CT:Simsbury': [1503, 362], 'RI:Woonsocket': [1488, 376]
       };
 
@@ -2218,6 +2218,17 @@
         });
       }
 
+      function trimMichiganOverlay(svg) {
+        const michigan = svg.querySelector('#map_Michigan');
+        if (!michigan) return;
+        const parts = splitUsPath(michigan.getAttribute('d') || '');
+        if (parts.length < 2) return;
+        michigan.setAttribute('d', parts.filter(part => {
+          const box = pathPartBox(part);
+          return !(box.area > 1000 && box.xMin > 1150 && box.yMin > 295);
+        }).join(' '));
+      }
+
       function cleanupUsMap(svg, lightMode) {
         const cleanupIds = new Set([...US_SOURCE_PATHS, ...US_HOLLOW_PATHS, ...Object.values(US_PATHS).flat()]);
         cleanupIds.forEach(stateId => {
@@ -2241,6 +2252,7 @@
             ));
           }).join(' '));
         });
+        trimMichiganOverlay(svg);
         const hawaiiFrame = svg.querySelector('#map_hawaii_1_');
         const alaskaFrame = svg.querySelector('#map_exterior_2_');
         if (alaskaFrame && hawaiiFrame) alaskaFrame.style.fill = hawaiiFrame.style.fill || hawaiiFrame.getAttribute('fill') || '';
@@ -2253,13 +2265,13 @@
           if (!label) return;
           const isOceanLabel = labelId === 'ATLANTIC_OCEAN' || labelId === 'gulf_of_mexico' || labelId === 'OCEANS';
           const fill = lightMode
-            ? (isOceanLabel ? '#1f2a33' : '#151a22')
+            ? (isOceanLabel ? '#1f2a33' : (labelId === 'NV' ? '#0f172a' : '#151a22'))
             : (isOceanLabel ? '#9aa5b8' : '#f8fbff');
           const stroke = lightMode
-            ? 'none'
+            ? (labelId === 'NV' ? '#0f172a' : 'none')
             : (isOceanLabel ? 'none' : 'rgba(255,255,255,.24)');
           const strokeWidth = lightMode
-            ? '0'
+            ? (labelId === 'NV' ? '.55' : '0')
             : (isOceanLabel ? '0' : '.45');
           label.setAttribute('fill', fill);
           label.setAttribute('stroke', stroke);
@@ -2441,8 +2453,8 @@
           const hideHover = () => {
             paths.forEach(path => {
               path.setAttribute('fill', baseColor);
-              path.setAttribute('stroke', lightMode && abbr === 'MI' ? 'rgba(255,255,255,.7)' : 'none');
-              path.setAttribute('stroke-width', lightMode && abbr === 'MI' ? '.8' : '0');
+              path.setAttribute('stroke', 'none');
+              path.setAttribute('stroke-width', '0');
               path.style.opacity = '1';
               path.style.filter = '';
             });
@@ -2450,8 +2462,8 @@
           };
           paths.forEach(path => {
             path.setAttribute('fill', US_COLORS[abbr]);
-            path.setAttribute('stroke', lightMode && abbr === 'MI' ? 'rgba(255,255,255,.7)' : 'none');
-            path.setAttribute('stroke-width', lightMode && abbr === 'MI' ? '.8' : '0');
+            path.setAttribute('stroke', 'none');
+            path.setAttribute('stroke-width', '0');
             path.style.opacity = '1';
             path.style.pointerEvents = 'auto';
             path.style.cursor = 'pointer';
@@ -2482,7 +2494,7 @@
           const special = SPECIAL_US_DOTS[`${abbr}:${city}`];
           const p = special ? { x: special[0], y: special[1] } : projectUs(lat, lon);
           addSvgEl(glowLayer, 'circle', {
-            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '10' : '20.2',
+            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '18' : '20.2',
             class: 'city-dot-glow'
           });
           if (ringLayer) {
@@ -2492,7 +2504,7 @@
             });
           }
           const dot = addSvgEl(dotLayer, 'circle', {
-            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '5' : '8.8',
+            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '8.8' : '8.8',
             class: 'city-dot'
           });
           dot.style.cursor = 'pointer';
