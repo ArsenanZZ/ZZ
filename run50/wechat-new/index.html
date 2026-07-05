@@ -2291,7 +2291,7 @@
         popover.onmouseenter = () => window.clearTimeout(slot._mapStoryHideTimer);
         popover.onmouseleave = () => hideMapStoryPopover(slot);
         const heading = document.createElement('strong');
-        heading.textContent = `${label} · ${rows.length || 0} 篇故事`;
+        heading.textContent = `${label} · ${rows.length || 0} 篇故事 · 点击选择`;
         popover.appendChild(heading);
         if (rows.length) {
           rows.slice(0, 7).forEach(({ href, title }) => {
@@ -2311,12 +2311,12 @@
         popover.classList.add('is-visible');
       }
 
-      function hideMapStoryPopover(slot) {
+      function hideMapStoryPopover(slot, delay = 1200) {
         window.clearTimeout(slot._mapStoryHideTimer);
         slot._mapStoryHideTimer = window.setTimeout(() => {
           const popover = slot.querySelector('.map-story-popover');
           if (popover) popover.classList.remove('is-visible');
-        }, 180);
+        }, delay);
       }
 
       function flashStoryCard(card, color) {
@@ -2339,6 +2339,17 @@
         flashStoryCard(card, color);
         const title = storyCardTitle(card);
         setStatus(status, title ? `${label} · 已定位：${title}` : `${label} · 已定位到下方故事`);
+      }
+
+      function chooseOrFocusMapStory(event, slot, links, href, color, status, label) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (links.length > 1) {
+          showMapStoryPopover(slot, label, links, { color, status });
+          setStatus(status, `${label} · 请选择下方故事`);
+          return;
+        }
+        focusMapStory(event, href, color, status, label);
       }
 
       function projectUs(lat, lon) {
@@ -2682,7 +2693,7 @@
             path.addEventListener('mouseenter', showHover);
             path.addEventListener('mouseleave', hideHover);
             path.addEventListener('click', event => (
-              focusMapStory(event, storyLink, US_COLORS[abbr], status, storyLabel)
+              chooseOrFocusMapStory(event, slot, storyLinks, storyLink, US_COLORS[abbr], status, storyLabel)
             ));
           });
         });
@@ -2709,12 +2720,11 @@
           const storyLabel = `${city} · ${US_NAMES[abbr]}`;
           const storyLinks = mapStoryLinks(storyLink);
           const showCityStory = () => {
+            hideMapStoryPopover(slot, 0);
             setStatus(status, describeMapStory(storyLabel, storyLink));
-            showMapStoryPopover(slot, storyLabel, storyLinks, { color: US_COLORS[abbr], status });
           };
           const hideCityStory = () => {
             setStatus(status);
-            hideMapStoryPopover(slot);
           };
           const focusCityStory = event => (
             focusMapStory(event, storyLink, US_COLORS[abbr], status, storyLabel)
@@ -2810,7 +2820,7 @@
               hideMapStoryPopover(slot);
             });
             path.addEventListener('click', event => (
-              focusMapStory(event, storyLink, province[1], status, storyLabel)
+              chooseOrFocusMapStory(event, slot, storyLinks, storyLink, province[1], status, storyLabel)
             ));
           }
         });
@@ -2863,12 +2873,11 @@
           const storyLabel = `${city} · ${province?.[0] || 'RunCN'}`;
           const storyLinks = mapStoryLinks(storyLink);
           const showCityStory = () => {
+            hideMapStoryPopover(slot, 0);
             setStatus(status, describeMapStory(storyLabel, storyLink));
-            showMapStoryPopover(slot, storyLabel, storyLinks, { color: province?.[1], status });
           };
           const hideCityStory = () => {
             setStatus(status);
-            hideMapStoryPopover(slot);
           };
           const focusCityStory = event => (
             focusMapStory(event, storyLink, province?.[1], status, storyLabel)
