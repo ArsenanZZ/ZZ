@@ -9,8 +9,8 @@
     AZ: ['Arizona_1_', 'Utah'], DE: ['Massachusets_1_'], MN: ['Minnesotta', 'Wisconsin_1_'],
     CT: ['New_York_2_', 'Connecticut'], RI: ['Delaware', 'Rhode_Island'], MA: ['Vermont_1_', 'Massachusets'],
     ME: ['Michigan_1_', 'Maine'], OH: ['Ohio', 'West_Virginia_1_'], NY: ['Rhode_Island_1_', 'New_York'],
-    CA: ['Arizona'], IN: ['Indiana', 'Ohio_1_'], HI: ['ocean_2_', 'Hawaii_1_'], GA: ['Georgia', 'Florida_1_'],
-    CO: ['Texas_1_', 'Colorado'], AK: ['ocean_3_', 'Alaska_1_'], MO: ['Iowa_1_', 'Missouri']
+    CA: ['Arizona'], IN: ['Indiana', 'Ohio_1_'], HI: ['ocean_2_'], GA: ['Georgia', 'Florida_1_'],
+    CO: ['Texas_1_', 'Colorado'], AK: ['ocean_3_'], MO: ['Iowa_1_', 'Missouri']
   };
 
   var US_SOURCE_PATHS = [
