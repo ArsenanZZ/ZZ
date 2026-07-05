@@ -2339,6 +2339,11 @@
         }).join('');
       }
 
+      function preventMapCardNavigation(slot) {
+        const card = slot?.closest('a.run-map-card');
+        if (card) card.onclick = event => event.preventDefault();
+      }
+
       function usStateGroup(svg, ids) {
         return ids.map(id => svg.querySelector('#map_' + id)).filter(Boolean);
       }
@@ -2428,6 +2433,8 @@
       function paintUsMap() {
         const slot = document.getElementById('run50-us-map-mini');
         if (!slot) return;
+        preventMapCardNavigation(slot);
+        slot.onclick = event => event.preventDefault();
         const lightMode = isLightMapTheme();
         if (typeof US_MAP_SVG !== 'undefined') {
           slot.innerHTML = US_MAP_SVG;
@@ -2563,6 +2570,8 @@
       function paintChinaMap() {
         const slot = document.getElementById('runcn-china-map-mini');
         if (!slot) return;
+        preventMapCardNavigation(slot);
+        slot.onclick = event => event.preventDefault();
         const lightMode = isLightMapTheme();
         if (typeof CHINA_MAP_SVG !== 'undefined') {
           slot.innerHTML = CHINA_MAP_SVG;
