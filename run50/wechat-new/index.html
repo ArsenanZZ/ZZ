@@ -2528,7 +2528,23 @@
         });
 
         if (lightMode) {
-          svg.querySelectorAll('path[id^="cn_"]').forEach(path => svg.appendChild(path));
+          const chinaPaths = Array.from(svg.querySelectorAll('path[id^="cn_"]'));
+          const borderLayer = addSvgEl(svg, 'g', { id: 'mini-china-national-border' });
+          borderLayer.style.pointerEvents = 'none';
+          chinaPaths.forEach(path => {
+            const outline = path.cloneNode(false);
+            outline.removeAttribute('id');
+            outline.setAttribute('fill', 'none');
+            outline.setAttribute('stroke', 'rgba(34,40,38,.62)');
+            outline.setAttribute('stroke-width', '2.7');
+            outline.setAttribute('stroke-linejoin', 'round');
+            outline.setAttribute('stroke-linecap', 'round');
+            outline.setAttribute('vector-effect', 'non-scaling-stroke');
+            outline.style.opacity = '.82';
+            outline.style.pointerEvents = 'none';
+            borderLayer.appendChild(outline);
+          });
+          chinaPaths.forEach(path => svg.appendChild(path));
         }
 
         const contextLayer = addSvgEl(svg, 'g', { id: 'mini-china-context-labels' });
