@@ -2656,31 +2656,9 @@
         const boundaryPaths = collectUsBoundaryPaths(svg);
         Object.entries(US_PATHS).forEach(([abbr, ids]) => {
           const paths = usStateGroup(svg, ids);
-          const baseColor = US_COLORS[abbr];
-          const hoverColor = lightenHex(baseColor, 0.2);
           const storyLink = US_STATE_STORIES[abbr];
           const storyLabel = `Run50 · ${US_NAMES[abbr]}`;
           const storyLinks = mapStoryLinks(storyLink, US_STATE_STORY_GROUPS[abbr]);
-          const showHover = () => {
-            paths.forEach(path => {
-              path.setAttribute('fill', hoverColor);
-              path.setAttribute('stroke', lightMode ? '#fff' : 'none');
-              path.setAttribute('stroke-width', lightMode ? '1.4' : '0');
-              path.style.opacity = '1';
-              path.style.filter = 'brightness(1.08)';
-            });
-            setStatus(status, describeMapStory(storyLabel, storyLink));
-          };
-          const hideHover = () => {
-            paths.forEach(path => {
-              path.setAttribute('fill', baseColor);
-              path.setAttribute('stroke', 'none');
-              path.setAttribute('stroke-width', '0');
-              path.style.opacity = '1';
-              path.style.filter = '';
-            });
-            setStatus(status);
-          };
           paths.forEach(path => {
             path.setAttribute('fill', US_COLORS[abbr]);
             path.setAttribute('stroke', 'none');
@@ -2688,8 +2666,6 @@
             path.style.opacity = '1';
             path.style.pointerEvents = 'auto';
             path.style.cursor = 'pointer';
-            path.addEventListener('mouseenter', showHover);
-            path.addEventListener('mouseleave', hideHover);
             path.addEventListener('click', event => (
               chooseOrFocusMapStory(event, slot, storyLinks, storyLink, US_COLORS[abbr], status, storyLabel)
             ));
@@ -2798,14 +2774,6 @@
             path.setAttribute('stroke-width', lightMode ? '1.7' : '1.15');
             path.style.opacity = '1';
             path.style.cursor = 'pointer';
-            path.addEventListener('mouseenter', () => {
-              path.style.opacity = '.82';
-              setStatus(status, describeMapStory(storyLabel, storyLink));
-            });
-            path.addEventListener('mouseleave', () => {
-              path.style.opacity = '1';
-              setStatus(status);
-            });
             path.addEventListener('click', event => (
               chooseOrFocusMapStory(event, slot, storyLinks, storyLink, province[1], status, storyLabel)
             ));
