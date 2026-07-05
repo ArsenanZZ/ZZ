@@ -268,6 +268,20 @@
     .panel-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 15px; margin-bottom: 22px; }
     .panel-heading h2 { margin: 0; font-size: clamp(22px, 4vw, 31px); letter-spacing: -.035em; }
     .panel-heading p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+    .panel-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 9px; }
+    .copy-tomorrow {
+      min-height: 36px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--blue);
+      background: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .copy-tomorrow:hover { border-color: var(--blue); background: #eef7ff; }
+    .copy-tomorrow:disabled { cursor: not-allowed; opacity: .48; }
     .date-chip { padding: 9px 12px; border-radius: 99px; color: #fff; background: var(--blue); font-size: 12px; font-weight: 800; white-space: nowrap; }
     .daily-quote {
       margin: -3px 0 20px;
@@ -288,10 +302,26 @@
     .add-button:hover { filter: brightness(.96); }
     .task-list { display: grid; gap: 8px; margin: 17px 0 20px; }
     .task-row {
-      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px;
+      display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 10px;
       min-height: 58px; padding: 9px 9px 9px 12px; border: 1px solid var(--line); border-left: 5px solid var(--task-color);
       border-radius: 13px; background: #fff;
+      transition: transform .12s, border-color .12s, box-shadow .12s, opacity .12s;
     }
+    .task-row.dragging { opacity: .55; transform: scale(.995); }
+    .task-row.drag-over { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(11,103,194,.12); }
+    .drag-handle {
+      width: 28px;
+      height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      color: var(--muted);
+      background: rgba(128,145,157,.08);
+      font-size: 16px;
+      font-weight: 900;
+      cursor: grab;
+      touch-action: none;
+    }
+    .drag-handle:active { cursor: grabbing; }
     .task-row input { width: 19px; height: 19px; accent-color: var(--green); }
     .task-row.done .task-text { color: #929ba2; text-decoration: line-through; }
     .task-main { min-width: 0; }
@@ -335,6 +365,18 @@
     .task-edit {
       min-height: 27px; padding: 0 9px; border: 1px solid var(--line); border-radius: 8px;
       color: var(--ink); background: rgba(128,145,157,.08); font-size: 11px; font-weight: 900;
+    }
+    .task-move-up,
+    .task-move-down {
+      min-height: 27px;
+      min-width: 30px;
+      padding: 0 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: rgba(128,145,157,.08);
+      font-size: 12px;
+      font-weight: 900;
     }
     .pom-adjust {
       min-height: 27px; padding: 0 9px; border: 1px solid var(--line); border-radius: 8px;
@@ -573,8 +615,26 @@
     }
     .filter.active { border-color: var(--navy); color: #fff; background: var(--navy); }
     .months { display: grid; gap: 25px; }
-    .month-title { display: flex; align-items: center; gap: 11px; margin: 0 0 11px; font-size: 17px; }
-    .month-title::after { content:""; height:1px; flex:1; background:var(--line); }
+    .month-title { margin: 0 0 11px; }
+    .month-title-button {
+      width: 100%;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 0;
+      border: 0;
+      color: var(--ink);
+      background: transparent;
+      font: inherit;
+      font-size: 17px;
+      font-weight: 900;
+      text-align: left;
+    }
+    .month-title-button::after { content:""; height:1px; flex:1; background:var(--line); }
+    .month-title-button small { color: var(--muted); font-size: 12px; font-weight: 800; }
+    .month-chevron { width: 20px; color: var(--muted); font-size: 13px; }
+    .month.collapsed .days { display: none; }
     .days { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: 7px; }
     .day {
       min-height: 82px; padding: 10px; border: 1px solid var(--line); border-radius: 13px;
@@ -695,8 +755,14 @@
     html[data-theme="dark"] .day.complete { background: #17392e; border-color: #39795e; }
     html[data-theme="dark"] .filter.active { border-color: var(--orange); color: #102132; background: var(--orange); }
     html[data-theme="dark"] .secondary { border-color: #405461; color: #cbd7de; background: #12212c; }
+    html[data-theme="dark"] .copy-tomorrow,
     html[data-theme="dark"] .summary-button { border-color: #405461; color: #cce8ff; background: #12212c; }
+    html[data-theme="dark"] .copy-tomorrow:hover,
     html[data-theme="dark"] .summary-button:hover { border-color: #58a8f0; background: #15344d; }
+    html[data-theme="dark"] .drag-handle,
+    html[data-theme="dark"] .task-move-up,
+    html[data-theme="dark"] .task-move-down { border-color: #405461; color: #cbd7de; background: #12212c; }
+    html[data-theme="dark"] .month-title-button { color: var(--ink); }
 
     @media (max-width: 760px) {
       .hero { grid-template-columns: 1fr; }
@@ -732,7 +798,8 @@
       .task-composer { align-items: stretch; flex-direction: column; }
       .add-button { min-height: 44px; }
       .panel-heading { align-items: flex-start; flex-direction: column; }
-      .task-row { grid-template-columns: auto minmax(0,1fr) auto; align-items: flex-start; }
+      .panel-actions { justify-content: flex-start; }
+      .task-row { grid-template-columns: auto auto minmax(0,1fr) auto; align-items: flex-start; }
       .progress-top { align-items: center; }
       .progress-ring { width: 104px; height: 104px; }
       .progress-ring span { font-size: 20px; }
@@ -871,7 +938,10 @@
             <h2 id="editorTitle">Today's tasks</h2>
             <p id="editorSubtitle"></p>
           </div>
-          <span class="date-chip" id="dateChip"></span>
+          <div class="panel-actions">
+            <button class="copy-tomorrow" id="copyTomorrowButton" type="button">Copy to next day</button>
+            <span class="date-chip" id="dateChip"></span>
+          </div>
         </div>
         <blockquote class="daily-quote">
           <span class="quote-label" id="quoteLabel">DAILY THOUGHT · 每日一句</span>
@@ -1005,6 +1075,7 @@
     const state = {
       key: null, vault: null, data: { days: {} }, selected: START, filter: "all", saveTimer: null, timerInterval: null, audio: null,
       wakeLock: null, keepAwake: localStorage.getItem(WAKE_LOCK_KEY) === "1",
+      openMonths: new Set([START.slice(0, 7)]), draggedTaskId: null,
       autoSyncTimer: null, syncBusy: false,
       sync: readSyncConfig(),
       driveAutoTimer: null, driveBusy: false, driveAccessToken: "", driveTokenClient: null,
@@ -1032,10 +1103,11 @@
         progressEmpty: "Write the first task to begin.",
         progressStatus: (percent, done, total, extra) => `${percent}% focus complete · ${done}/${total} planned Pomodoros${extra ? ` · +${extra} extra` : ""}.`,
         todayTasks: "Today's tasks", dateTasks: (month, day) => `${month}/${day} tasks`, quoteLabel: "DAILY THOUGHT · 每日一句",
+        copyTomorrow: "Copy to next day", copyTomorrowDone: count => `${count} task${count === 1 ? "" : "s"} copied to the next day.`, copyTomorrowEmpty: "No tasks to copy.", copyTomorrowEnd: "This is the last day in the planner.",
         taskPlaceholder: "Write down something to finish…", addTask: "＋ Add task",
         emptyTasks: "No tasks yet. Write down the one thing that matters most.",
         completeTask: "Complete task", deleteTask: "Delete task", editTask: "Edit", editPrompt: "Edit this task",
-        saveEdit: "Save", cancelEdit: "Cancel",
+        saveEdit: "Save", cancelEdit: "Cancel", dragTask: "Drag to reorder", moveUp: "Move up", moveDown: "Move down",
         pomodoro: (done, target) => `${done}/${target} × 25 min`, fewer: "One fewer Pomodoro", more: "One more Pomodoro",
         startFocus: "▶ Start 25 min", running: "Running", changeColor: "Change task color",
         overTarget: extra => `+${extra} extra`, matchTarget: "Make target match",
@@ -1056,7 +1128,7 @@
         reviewColors: list => `Color focus: ${list}`,
         saving: "Saving…", saved: "Encrypted and saved", saveFailed: "Save failed",
         saveFailedToast: "Save failed. Export a backup and try again.",
-        calendar: "Year-end planner", filterLabel: "Task filters",
+        calendar: "Year-end planner", filterLabel: "Task filters", expandMonth: "Expand month", collapseMonth: "Collapse month",
         filters: { all: "All dates", open: "To do", complete: "Completed", empty: "Unplanned" },
         noPlan: "Unplanned", hasNotes: "Has notes", completedCount: count => `✓ ${count} completed`,
         progressCount: (done, total) => `${done}/${total} done`,
@@ -1107,10 +1179,11 @@
         progressEmpty: "写下第一项任务，计划就开始了。",
         progressStatus: (percent, done, total, extra) => `${percent}% 专注完成 · ${done}/${total} 个计划番茄钟${extra ? ` · 额外 +${extra}` : ""}。`,
         todayTasks: "今天的任务", dateTasks: (month, day) => `${month}月${day}日的任务`, quoteLabel: "每日一句 · DAILY THOUGHT",
+        copyTomorrow: "加入后一天", copyTomorrowDone: count => `已加入后一天：${count} 项任务。`, copyTomorrowEmpty: "这一天没有任务可加入。", copyTomorrowEnd: "已经是计划里的最后一天。",
         taskPlaceholder: "写下一项要完成的事…", addTask: "＋ 添加任务",
         emptyTasks: "这一天还没有任务。写下最重要的一件事吧。",
         completeTask: "完成任务", deleteTask: "删除任务", editTask: "编辑", editPrompt: "编辑这个任务",
-        saveEdit: "保存", cancelEdit: "取消",
+        saveEdit: "保存", cancelEdit: "取消", dragTask: "拖动排序", moveUp: "上移", moveDown: "下移",
         pomodoro: (done, target) => `${done}/${target} × 25分钟`, fewer: "减少一个番茄钟", more: "增加一个番茄钟",
         startFocus: "▶ 开始25分钟", running: "计时中", changeColor: "切换任务颜色",
         overTarget: extra => `额外 +${extra}`, matchTarget: "目标改成实际",
@@ -1131,7 +1204,7 @@
         reviewColors: list => `颜色分布：${list}`,
         saving: "保存中…", saved: "已加密保存", saveFailed: "保存失败",
         saveFailedToast: "保存失败，请导出备份后重试",
-        calendar: "年末计划日历", filterLabel: "任务筛选",
+        calendar: "年末计划日历", filterLabel: "任务筛选", expandMonth: "展开月份", collapseMonth: "收起月份",
         filters: { all: "全部日期", open: "待完成", complete: "已完成", empty: "未安排" },
         noPlan: "未安排", hasNotes: "有小结", completedCount: count => `✓ ${count} 项已完成`,
         progressCount: (done, total) => `${done}/${total} 项完成`,
@@ -1241,6 +1314,7 @@
       $("#heroCopy").textContent = text.heroCopy;
       $("#progressLabel").textContent = text.progress;
       $("#quoteLabel").textContent = text.quoteLabel;
+      $("#copyTomorrowButton").textContent = text.copyTomorrow;
       $("#taskInput").placeholder = text.taskPlaceholder;
       $("#addTaskButton").textContent = text.addTask;
       $("#timerLabel").textContent = text.timerLabel;
@@ -1671,6 +1745,11 @@
     function toISO(date) {
       return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
     }
+    function addDays(iso, days) {
+      const date = new Date(iso + "T12:00:00");
+      date.setDate(date.getDate() + days);
+      return toISO(date);
+    }
     function displayDate(iso) {
       const date = new Date(iso + "T12:00:00");
       return state.lang === "zh"
@@ -1746,6 +1825,7 @@
     });
     function openApp() {
       state.selected = todayInRange();
+      state.openMonths.add(state.selected.slice(0, 7));
       state.data.days ||= {};
       hydrateSyncFields();
       $("#lockScreen").hidden = true;
@@ -1924,6 +2004,65 @@
     function findTask(date, id) {
       return state.data.days[date]?.tasks?.find(task => task.id === id);
     }
+    function copyTasksToNextDay() {
+      const next = addDays(state.selected, 1);
+      if (next > END) {
+        toast(t().copyTomorrowEnd);
+        return;
+      }
+      const source = dayData(state.selected);
+      const tasks = source.tasks || [];
+      if (!tasks.length) {
+        toast(t().copyTomorrowEmpty);
+        return;
+      }
+      const target = dayData(next);
+      const copied = tasks.map((task, index) => {
+        normalizeTask(task, index);
+        return {
+          id: uid(),
+          text: task.text,
+          done: false,
+          completedAt: null,
+          color: task.color,
+          pomodoroTarget: Math.max(1, task.pomodoroTarget),
+          pomodoroDone: 0,
+          focusMs: 0
+        };
+      });
+      target.tasks.push(...copied);
+      state.openMonths.add(next.slice(0, 7));
+      renderCalendar();
+      updateProgress();
+      queuePersist();
+      toast(t().copyTomorrowDone(copied.length));
+    }
+    function moveTaskInSelected(taskId, delta) {
+      const tasks = dayData(state.selected).tasks;
+      const index = tasks.findIndex(task => task.id === taskId);
+      if (index < 0) return;
+      const nextIndex = Math.max(0, Math.min(tasks.length - 1, index + delta));
+      if (nextIndex === index) return;
+      const [task] = tasks.splice(index, 1);
+      tasks.splice(nextIndex, 0, task);
+      renderEditor();
+      renderCalendar();
+      queuePersist();
+    }
+    function moveTaskNear(taskId, targetId, after = false) {
+      if (!taskId || taskId === targetId) return;
+      const tasks = dayData(state.selected).tasks;
+      const from = tasks.findIndex(task => task.id === taskId);
+      const to = tasks.findIndex(task => task.id === targetId);
+      if (from < 0 || to < 0 || from === to) return;
+      const [task] = tasks.splice(from, 1);
+      let insertAt = from < to ? to - 1 : to;
+      if (after) insertAt += 1;
+      tasks.splice(insertAt, 0, task);
+      renderEditor();
+      renderCalendar();
+      queuePersist();
+    }
     function activeElapsed(active) {
       return Math.min(MAX_FOCUS_SESSION_MS, Math.max(0, Date.now() - active.startedAt));
     }
@@ -2003,6 +2142,7 @@
       $("#editorTitle").textContent = state.selected === today ? t().todayTasks : t().dateTasks(month, day);
       $("#editorSubtitle").textContent = displayDate(state.selected);
       $("#dateChip").textContent = state.selected;
+      $("#copyTomorrowButton").disabled = state.selected >= END || !data.tasks.length;
       const quote = quoteFor(state.selected);
       $("#quotePrimary").textContent = quote[state.lang];
       $("#quoteSecondary").textContent = quote[state.lang === "en" ? "zh" : "en"];
@@ -2019,7 +2159,8 @@
           const extraBadge = extra ? `<span class="completed-time">${escapeHTML(t().overTarget(extra))}</span><button class="pom-adjust" type="button">${escapeHTML(t().matchTarget)}</button>` : "";
           const focusTotal = task.focusMs ? `<span class="focus-time">${escapeHTML(t().focusTotal(formatFocusTotal(task.focusMs)))}</span>` : "";
           return `
-          <div class="task-row ${task.done ? "done" : ""} ${extra ? "over-target" : ""}" data-id="${escapeHTML(task.id)}" style="--task-color:${task.color}">
+          <div class="task-row ${task.done ? "done" : ""} ${extra ? "over-target" : ""}" data-id="${escapeHTML(task.id)}" draggable="true" style="--task-color:${task.color}">
+            <button class="drag-handle" type="button" aria-label="${t().dragTask}" title="${t().dragTask}">↕</button>
             <input type="checkbox" ${task.done ? "checked" : ""} aria-label="${t().completeTask}">
             <div class="task-main">
               <div class="task-text">${escapeHTML(task.text)}</div>
@@ -2033,6 +2174,8 @@
                 </span>
                 <button class="pom-start" type="button" ${running ? "disabled" : ""}>${running ? t().running : t().startFocus}</button>
                 <button class="task-edit" type="button">${escapeHTML(t().editTask)}</button>
+                <button class="task-move-up" type="button" aria-label="${t().moveUp}" title="${t().moveUp}">↑</button>
+                <button class="task-move-down" type="button" aria-label="${t().moveDown}" title="${t().moveDown}">↓</button>
                 ${extraBadge}
                 ${focusTotal}
                 ${completed}
@@ -2043,6 +2186,30 @@
         }).join("");
       }
       $$("#taskList .task-row").forEach(row => {
+        row.addEventListener("dragstart", event => {
+          state.draggedTaskId = row.dataset.id;
+          row.classList.add("dragging");
+          event.dataTransfer.effectAllowed = "move";
+          event.dataTransfer.setData("text/plain", row.dataset.id);
+        });
+        row.addEventListener("dragend", () => {
+          state.draggedTaskId = null;
+          $$("#taskList .task-row").forEach(item => item.classList.remove("dragging", "drag-over"));
+        });
+        row.addEventListener("dragover", event => {
+          if (!state.draggedTaskId || state.draggedTaskId === row.dataset.id) return;
+          event.preventDefault();
+          row.classList.add("drag-over");
+          event.dataTransfer.dropEffect = "move";
+        });
+        row.addEventListener("dragleave", () => row.classList.remove("drag-over"));
+        row.addEventListener("drop", event => {
+          event.preventDefault();
+          row.classList.remove("drag-over");
+          const rect = row.getBoundingClientRect();
+          const after = event.clientY > rect.top + rect.height / 2;
+          moveTaskNear(state.draggedTaskId || event.dataTransfer.getData("text/plain"), row.dataset.id, after);
+        });
         row.querySelector("input").addEventListener("change", event => {
           const task = dayData(state.selected).tasks.find(item => item.id === row.dataset.id);
           if (task) {
@@ -2108,6 +2275,8 @@
             if (event.key === "Escape") renderEditor();
           });
         });
+        row.querySelector(".task-move-up").addEventListener("click", () => moveTaskInSelected(row.dataset.id, -1));
+        row.querySelector(".task-move-down").addEventListener("click", () => moveTaskInSelected(row.dataset.id, 1));
         row.querySelector(".pom-start").addEventListener("click", () => startPomodoro(state.selected, row.dataset.id));
         row.querySelector(".delete-task").addEventListener("click", () => {
           const data = dayData(state.selected);
@@ -2130,9 +2299,11 @@
         color: TASK_COLORS[tasks.length % TASK_COLORS.length], pomodoroTarget: 1, pomodoroDone: 0, focusMs: 0
       });
       input.value = "";
+      state.openMonths.add(state.selected.slice(0, 7));
       renderEditor(); renderCalendar(); updateProgress(); queuePersist();
       input.focus();
     });
+    $("#copyTomorrowButton").addEventListener("click", copyTasksToNextDay);
     $("#notes").addEventListener("input", event => {
       dayData(state.selected).notes = event.target.value;
       renderCalendar(); queuePersist();
@@ -2167,11 +2338,26 @@
       });
       $("#months").innerHTML = Object.entries(groups).map(([month, dates]) => {
         const monthIndex = Number(month.slice(5)) - 1;
-        return `<section class="month"><h3 class="month-title">${t().months[monthIndex]} <small>${month}</small></h3>
+        const open = state.openMonths.has(month);
+        return `<section class="month ${open ? "" : "collapsed"}">
+          <h3 class="month-title">
+            <button class="month-title-button" data-month="${month}" type="button" aria-expanded="${open}" aria-label="${open ? t().collapseMonth : t().expandMonth}">
+              <span class="month-chevron">${open ? "▼" : "▶"}</span>
+              <span>${t().months[monthIndex]}</span>
+              <small>${month}</small>
+            </button>
+          </h3>
           <div class="days">${dates.map(dayButton).join("")}</div></section>`;
       }).join("");
+      $$(".month-title-button").forEach(button => button.addEventListener("click", () => {
+        const month = button.dataset.month;
+        if (state.openMonths.has(month)) state.openMonths.delete(month);
+        else state.openMonths.add(month);
+        renderCalendar();
+      }));
       $$(".day").forEach(button => button.addEventListener("click", () => {
         state.selected = button.dataset.date;
+        state.openMonths.add(state.selected.slice(0, 7));
         renderEditor(); renderCalendar(); updateProgress();
         $("#editorPanel").scrollIntoView({ behavior: "smooth", block: "start" });
       }));
@@ -2248,7 +2434,9 @@
     }
 
     $("#todayButton").addEventListener("click", () => {
-      state.selected = todayInRange(); renderEditor(); renderCalendar(); updateProgress();
+      state.selected = todayInRange();
+      state.openMonths.add(state.selected.slice(0, 7));
+      renderEditor(); renderCalendar(); updateProgress();
       $("#editorPanel").scrollIntoView({ behavior: "smooth", block: "start" });
     });
     $("#timerCancel").addEventListener("click", () => {
