@@ -850,12 +850,31 @@
     }
 
     html[data-theme="light"] .run-map-card {
-      color: #f5f7fb;
+      color: #172033;
+      background: rgba(255, 255, 255, .82);
+      border-color: rgba(25, 39, 62, .14);
+      box-shadow: 0 18px 44px rgba(15, 23, 42, .08);
     }
 
     html[data-theme="light"] .run-map-card p,
     html[data-theme="light"] .run-map-card .map-foot {
-      color: #b9c0d0;
+      color: #536178;
+    }
+
+    html[data-theme="light"] .map-window {
+      border-color: rgba(25, 39, 62, .14);
+      background: #f4f6f7;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, .6),
+        0 12px 26px rgba(15, 23, 42, .08);
+    }
+
+    html[data-theme="light"] #runcn-china-map-mini {
+      background: #f4f6f7;
+    }
+
+    html[data-theme="light"] .map-window .city-dot-glow {
+      fill: rgba(255, 59, 48, .35);
     }
 
     html[data-theme="light"] .ticker-item small {
@@ -2052,7 +2071,11 @@
         layer.appendChild(text);
       }
 
-      function addChinaContextContours(svg, ocean) {
+      function isLightMapTheme() {
+        return document.documentElement.dataset.theme === 'light';
+      }
+
+      function addChinaContextContours(svg, ocean, lightMode) {
         const contourLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
         contourLayer.setAttribute('id', 'mini-china-context-contours');
         contourLayer.setAttribute('fill', 'none');
@@ -2060,12 +2083,19 @@
         contourLayer.setAttribute('stroke-linejoin', 'round');
         contourLayer.style.pointerEvents = 'none';
 
-        [
+        const contours = lightMode ? [
+          ['M 600 18 C 654 82 684 154 691 224 C 700 314 657 400 682 510', '.24', 'rgba(74,122,155,.34)'],
+          ['M 735 54 C 784 128 806 210 800 286 C 793 374 746 432 768 548', '.18', 'rgba(74,122,155,.26)'],
+          ['M 410 548 C 484 500 558 488 632 510 C 688 526 730 515 792 470', '.16', 'rgba(74,122,155,.24)'],
+          ['M -22 72 C 54 128 83 196 57 272 C 28 360 78 439 156 500', '.14', 'rgba(74,122,155,.2)']
+        ] : [
           ['M 600 18 C 654 82 684 154 691 224 C 700 314 657 400 682 510', '.34', 'rgba(199,214,232,.38)'],
           ['M 735 54 C 784 128 806 210 800 286 C 793 374 746 432 768 548', '.25', 'rgba(199,214,232,.3)'],
           ['M 410 548 C 484 500 558 488 632 510 C 688 526 730 515 792 470', '.23', 'rgba(199,214,232,.28)'],
           ['M -22 72 C 54 128 83 196 57 272 C 28 360 78 439 156 500', '.19', 'rgba(199,214,232,.24)']
-        ].forEach(([d, opacity, stroke]) => {
+        ];
+
+        contours.forEach(([d, opacity, stroke]) => {
           const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
           path.setAttribute('d', d);
           path.setAttribute('stroke', stroke);
@@ -2175,7 +2205,7 @@
         });
       }
 
-      function cleanupUsMap(svg) {
+      function cleanupUsMap(svg, lightMode) {
         const cleanupIds = new Set([...US_SOURCE_PATHS, ...US_HOLLOW_PATHS, ...Object.values(US_PATHS).flat()]);
         cleanupIds.forEach(stateId => {
           const el = svg.querySelector('#map_' + stateId);
@@ -2201,22 +2231,31 @@
         const hawaiiFrame = svg.querySelector('#map_hawaii_1_');
         const alaskaFrame = svg.querySelector('#map_exterior_2_');
         if (alaskaFrame && hawaiiFrame) alaskaFrame.style.fill = hawaiiFrame.style.fill || hawaiiFrame.getAttribute('fill') || '';
-        raiseUsLabels(svg);
+        raiseUsLabels(svg, lightMode);
       }
 
-      function raiseUsLabels(svg) {
+      function raiseUsLabels(svg, lightMode = isLightMapTheme()) {
         US_LABEL_PATHS.forEach(labelId => {
           const label = svg.querySelector('#map_' + labelId);
           if (!label) return;
           const isOceanLabel = labelId === 'ATLANTIC_OCEAN' || labelId === 'gulf_of_mexico' || labelId === 'OCEANS';
-          label.setAttribute('fill', isOceanLabel ? '#9aa5b8' : '#f8fbff');
-          label.setAttribute('stroke', isOceanLabel ? 'none' : 'rgba(255,255,255,.24)');
-          label.setAttribute('stroke-width', isOceanLabel ? '0' : '.45');
+          const fill = lightMode
+            ? (isOceanLabel ? '#356276' : '#2f3742')
+            : (isOceanLabel ? '#9aa5b8' : '#f8fbff');
+          const stroke = lightMode
+            ? (isOceanLabel ? 'none' : 'rgba(255,255,255,.72)')
+            : (isOceanLabel ? 'none' : 'rgba(255,255,255,.24)');
+          const strokeWidth = lightMode
+            ? (isOceanLabel ? '0' : '1.4')
+            : (isOceanLabel ? '0' : '.45');
+          label.setAttribute('fill', fill);
+          label.setAttribute('stroke', stroke);
+          label.setAttribute('stroke-width', strokeWidth);
           label.setAttribute('paint-order', 'stroke fill');
-          label.style.opacity = isOceanLabel ? '.34' : '.98';
-          label.style.fill = isOceanLabel ? '#9aa5b8' : '#f8fbff';
-          label.style.stroke = isOceanLabel ? 'none' : 'rgba(255,255,255,.24)';
-          label.style.strokeWidth = isOceanLabel ? '0' : '.45';
+          label.style.opacity = isOceanLabel ? (lightMode ? '.58' : '.34') : '.98';
+          label.style.fill = fill;
+          label.style.stroke = stroke;
+          label.style.strokeWidth = strokeWidth;
           label.style.pointerEvents = 'none';
           svg.appendChild(label);
         });
@@ -2292,7 +2331,7 @@
           .map(item => item.path);
       }
 
-      function addUsBoundaryLayer(svg, statePaths) {
+      function addUsBoundaryLayer(svg, statePaths, lightMode = isLightMapTheme()) {
         const old = svg.querySelector('#mini-us-state-boundaries');
         if (old) old.remove();
         const layer = addSvgEl(svg, 'g', { id: 'mini-us-state-boundaries' });
@@ -2301,21 +2340,22 @@
           const outline = path.cloneNode(false);
           outline.removeAttribute('id');
           outline.setAttribute('fill', 'none');
-          outline.setAttribute('stroke', 'rgba(255,255,255,.58)');
-          outline.setAttribute('stroke-width', '1.05');
+          outline.setAttribute('stroke', lightMode ? 'rgba(255,255,255,.78)' : 'rgba(255,255,255,.58)');
+          outline.setAttribute('stroke-width', lightMode ? '.95' : '1.05');
           outline.setAttribute('stroke-linejoin', 'round');
           outline.setAttribute('stroke-linecap', 'round');
           outline.setAttribute('vector-effect', 'non-scaling-stroke');
-          outline.style.opacity = '.86';
+          outline.style.opacity = lightMode ? '.9' : '.86';
           outline.style.pointerEvents = 'none';
           layer.appendChild(outline);
         });
-        raiseUsLabels(svg);
+        raiseUsLabels(svg, lightMode);
       }
 
       function paintUsMap() {
         const slot = document.getElementById('run50-us-map-mini');
         if (!slot) return;
+        const lightMode = isLightMapTheme();
         if (typeof US_MAP_SVG !== 'undefined') {
           slot.innerHTML = US_MAP_SVG;
         }
@@ -2325,7 +2365,7 @@
         svg.removeAttribute('width');
         svg.removeAttribute('height');
         svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-        cleanupUsMap(svg);
+        cleanupUsMap(svg, lightMode);
         svg.querySelectorAll('path').forEach(path => {
           const id = path.id || '';
           const sourceId = id.replace('map_', '');
@@ -2334,25 +2374,25 @@
           if (!isFrame && !isStateGeometry) {
             if (US_LABEL_PATHS.has(sourceId)) {
               const isOceanLabel = sourceId === 'ATLANTIC_OCEAN' || sourceId === 'gulf_of_mexico' || sourceId === 'OCEANS';
-              path.setAttribute('fill', isOceanLabel ? '#9aa5b8' : '#f3f6ff');
-              path.setAttribute('stroke', isOceanLabel ? 'none' : 'rgba(15,23,42,.42)');
-              path.setAttribute('stroke-width', isOceanLabel ? '0' : '.7');
+              path.setAttribute('fill', lightMode ? (isOceanLabel ? '#356276' : '#2f3742') : (isOceanLabel ? '#9aa5b8' : '#f3f6ff'));
+              path.setAttribute('stroke', lightMode ? (isOceanLabel ? 'none' : 'rgba(255,255,255,.72)') : (isOceanLabel ? 'none' : 'rgba(15,23,42,.42)'));
+              path.setAttribute('stroke-width', lightMode ? (isOceanLabel ? '0' : '1.4') : (isOceanLabel ? '0' : '.7'));
               path.setAttribute('paint-order', 'stroke fill');
-              path.style.opacity = isOceanLabel ? '.34' : '.96';
+              path.style.opacity = isOceanLabel ? (lightMode ? '.58' : '.34') : '.96';
               path.style.pointerEvents = 'none';
               return;
             }
             path.setAttribute('fill', 'none');
-            path.setAttribute('stroke', 'rgba(207,218,232,.18)');
-            path.setAttribute('stroke-width', '.55');
-            path.style.opacity = '.32';
+            path.setAttribute('stroke', lightMode ? 'rgba(50,60,72,.34)' : 'rgba(207,218,232,.18)');
+            path.setAttribute('stroke-width', lightMode ? '.72' : '.55');
+            path.style.opacity = lightMode ? '.42' : '.32';
             path.style.pointerEvents = 'none';
             return;
           }
-          path.setAttribute('fill', isFrame ? '#323a52' : '#242b3f');
-          path.setAttribute('stroke', isFrame ? 'rgba(207,218,232,.28)' : 'none');
-          path.setAttribute('stroke-width', isFrame ? '.8' : '0');
-          path.style.opacity = isFrame ? '1' : '.78';
+          path.setAttribute('fill', isFrame ? (lightMode ? '#a9d8f0' : '#323a52') : (lightMode ? '#dedad3' : '#242b3f'));
+          path.setAttribute('stroke', isFrame ? (lightMode ? 'rgba(42,54,68,.42)' : 'rgba(207,218,232,.28)') : (lightMode ? 'rgba(65,72,82,.32)' : 'none'));
+          path.setAttribute('stroke-width', isFrame ? (lightMode ? '.7' : '.8') : (lightMode ? '.65' : '0'));
+          path.style.opacity = isFrame ? '1' : (lightMode ? '1' : '.78');
           path.style.pointerEvents = 'none';
         });
 
@@ -2365,8 +2405,8 @@
           const showHover = () => {
             paths.forEach(path => {
               path.setAttribute('fill', hoverColor);
-              path.setAttribute('stroke', 'none');
-              path.setAttribute('stroke-width', '0');
+              path.setAttribute('stroke', lightMode ? '#fff' : 'none');
+              path.setAttribute('stroke-width', lightMode ? '1.4' : '0');
               path.style.opacity = '1';
               path.style.filter = 'brightness(1.08)';
             });
@@ -2375,8 +2415,8 @@
           const hideHover = () => {
             paths.forEach(path => {
               path.setAttribute('fill', baseColor);
-              path.setAttribute('stroke', 'none');
-              path.setAttribute('stroke-width', '0');
+              path.setAttribute('stroke', lightMode ? 'rgba(255,255,255,.72)' : 'none');
+              path.setAttribute('stroke-width', lightMode ? '1.05' : '0');
               path.style.opacity = '1';
               path.style.filter = '';
             });
@@ -2384,8 +2424,8 @@
           };
           paths.forEach(path => {
             path.setAttribute('fill', US_COLORS[abbr]);
-            path.setAttribute('stroke', 'none');
-            path.setAttribute('stroke-width', '0');
+            path.setAttribute('stroke', lightMode ? 'rgba(255,255,255,.72)' : 'none');
+            path.setAttribute('stroke-width', lightMode ? '1.05' : '0');
             path.style.opacity = '1';
             path.style.pointerEvents = 'auto';
             path.style.cursor = 'pointer';
@@ -2396,36 +2436,39 @@
             ));
           });
         });
-        addUsBoundaryLayer(svg, boundaryPaths);
+        addUsBoundaryLayer(svg, boundaryPaths, lightMode);
 
         const glowLayer = addSvgEl(svg, 'g', { id: 'mini-us-dot-glows' });
-        const ringLayer = addSvgEl(svg, 'g', { id: 'mini-us-city-rings' });
+        const ringLayer = lightMode ? null : addSvgEl(svg, 'g', { id: 'mini-us-city-rings' });
         const dotLayer = addSvgEl(svg, 'g', { id: 'mini-us-city-dots' });
         US_CITY_DOTS.forEach(([abbr, city, lat, lon]) => {
           const special = SPECIAL_US_DOTS[`${abbr}:${city}`];
           const p = special ? { x: special[0], y: special[1] } : projectUs(lat, lon);
           addSvgEl(glowLayer, 'circle', {
-            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '20.2',
+            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '11' : '20.2',
             class: 'city-dot-glow'
           });
-          addSvgEl(ringLayer, 'circle', {
-            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '12.5',
-            class: 'city-ring'
-          });
+          if (ringLayer) {
+            addSvgEl(ringLayer, 'circle', {
+              cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '12.5',
+              class: 'city-ring'
+            });
+          }
           const dot = addSvgEl(dotLayer, 'circle', {
-            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '8.8',
+            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '4.5' : '8.8',
             class: 'city-dot'
           });
           dot.style.cursor = 'pointer';
           dot.addEventListener('mouseenter', () => setStatus(status, `${city} · ${US_NAMES[abbr]}`));
           dot.addEventListener('mouseleave', () => setStatus(status));
         });
-        raiseUsLabels(svg);
+        raiseUsLabels(svg, lightMode);
       }
 
       function paintChinaMap() {
         const slot = document.getElementById('runcn-china-map-mini');
         if (!slot) return;
+        const lightMode = isLightMapTheme();
         if (typeof CHINA_MAP_SVG !== 'undefined') {
           slot.innerHTML = CHINA_MAP_SVG;
         }
@@ -2438,35 +2481,35 @@
         svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         const ocean = addSvgEl(svg, 'rect', {
           x: '-64', y: '6', width: '934', height: '556',
-          fill: '#30384f'
+          fill: lightMode ? '#f4f6f7' : '#30384f'
         });
         svg.insertBefore(ocean, svg.firstChild);
-        addChinaContextContours(svg, ocean);
+        addChinaContextContours(svg, ocean, lightMode);
         svg.querySelectorAll('rect').forEach(rect => {
-          rect.setAttribute('fill', '#30384f');
+          rect.setAttribute('fill', lightMode ? '#f4f6f7' : '#30384f');
         });
         svg.querySelectorAll('path').forEach(path => {
           const id = path.id || '';
           if (!id.startsWith('cn_')) {
             path.setAttribute('fill', 'none');
-            path.setAttribute('stroke', 'rgba(198,211,228,.38)');
-            path.setAttribute('stroke-width', '.72');
+            path.setAttribute('stroke', lightMode ? 'rgba(76,91,108,.38)' : 'rgba(198,211,228,.38)');
+            path.setAttribute('stroke-width', lightMode ? '.68' : '.72');
             path.setAttribute('vector-effect', 'non-scaling-stroke');
-            path.style.opacity = '.36';
+            path.style.opacity = lightMode ? '.32' : '.36';
             path.style.pointerEvents = 'none';
             return;
           }
 
-          path.setAttribute('fill', '#242b3f');
-          path.setAttribute('stroke', 'rgba(221,232,245,.48)');
-          path.setAttribute('stroke-width', '.95');
-          path.style.opacity = '.92';
+          path.setAttribute('fill', lightMode ? '#d8e0d4' : '#242b3f');
+          path.setAttribute('stroke', lightMode ? '#ffffff' : 'rgba(221,232,245,.48)');
+          path.setAttribute('stroke-width', lightMode ? '.9' : '.95');
+          path.style.opacity = lightMode ? '1' : '.92';
 
           const province = CHINA_PROVINCES[id];
           if (province) {
             path.setAttribute('fill', province[1]);
-            path.setAttribute('stroke', 'rgba(255,255,255,.58)');
-            path.setAttribute('stroke-width', '1.15');
+            path.setAttribute('stroke', lightMode ? '#ffffff' : 'rgba(255,255,255,.58)');
+            path.setAttribute('stroke-width', lightMode ? '1.5' : '1.15');
             path.style.opacity = '1';
             path.style.cursor = 'pointer';
             path.addEventListener('mouseenter', () => {
@@ -2492,21 +2535,33 @@
         addMapTextLabel(contextLayer, ['东海'], 752, 450, { size: 12, opacity: '.38', rotate: -16 });
         addMapTextLabel(contextLayer, ['南海'], 624, 530, { size: 12, opacity: '.38', rotate: -12 });
 
+        if (lightMode) {
+          contextLayer.querySelectorAll('text').forEach(text => {
+            const size = parseFloat(text.getAttribute('font-size') || '0');
+            const isCountry = size >= 14;
+            text.setAttribute('fill', isCountry ? '#607084' : '#4a7a9b');
+            text.setAttribute('stroke-width', isCountry ? '1.2' : '1');
+            text.style.opacity = isCountry ? '.3' : '.48';
+          });
+        }
+
         const glowLayer = addSvgEl(svg, 'g', { id: 'mini-china-dot-glows' });
-        const ringLayer = addSvgEl(svg, 'g', { id: 'mini-china-city-rings' });
+        const ringLayer = lightMode ? null : addSvgEl(svg, 'g', { id: 'mini-china-city-rings' });
         const dotLayer = addSvgEl(svg, 'g', { id: 'mini-china-city-dots' });
         CHINA_CITY_DOTS.forEach(([city, provinceId, lat, lon, storyLink]) => {
           const p = projectChina(lat, lon);
           addSvgEl(glowLayer, 'circle', {
-            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '11',
+            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '10' : '11',
             class: 'city-dot-glow'
           });
-          addSvgEl(ringLayer, 'circle', {
-            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '6.8',
-            class: 'city-ring'
-          });
+          if (ringLayer) {
+            addSvgEl(ringLayer, 'circle', {
+              cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '6.8',
+              class: 'city-ring'
+            });
+          }
           const dot = addSvgEl(dotLayer, 'circle', {
-            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '4.8',
+            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '5' : '4.8',
             class: 'city-dot'
           });
           dot.style.cursor = 'pointer';
@@ -2526,19 +2581,22 @@
           text.setAttribute('y', (y + dy).toFixed(1));
           text.setAttribute('text-anchor', 'middle');
           text.setAttribute('font-size', fs || 9);
-          text.setAttribute('fill', '#f8fbff');
-          text.setAttribute('stroke', 'rgba(15,23,42,.72)');
-          text.setAttribute('stroke-width', '3');
+          text.setAttribute('fill', lightMode ? '#243642' : '#f8fbff');
+          text.setAttribute('stroke', lightMode ? '#f7faf7' : 'rgba(15,23,42,.72)');
+          text.setAttribute('stroke-width', lightMode ? '3.5' : '3');
+          text.setAttribute('stroke-linejoin', 'round');
           text.setAttribute('class', 'mini-map-label');
           text.textContent = name;
           labelLayer.appendChild(text);
         });
       }
 
-      window.addEventListener('DOMContentLoaded', () => {
+      window.repaintWechatNewMaps = () => {
         paintUsMap();
         paintChinaMap();
-      });
+      };
+
+      window.addEventListener('DOMContentLoaded', window.repaintWechatNewMaps);
     }());
   </script>
 
@@ -2597,6 +2655,7 @@
           localStorage.setItem('run50-wechat-theme', isLight ? 'dark' : 'light');
         } catch (error) {}
         syncThemeButton();
+        if (window.repaintWechatNewMaps) window.repaintWechatNewMaps();
       });
 
       syncThemeButton();
