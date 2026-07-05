@@ -466,6 +466,11 @@
       transition: fill .18s ease, opacity .18s ease, stroke .18s ease, filter .18s ease;
     }
 
+    .map-window .run-map-region:hover {
+      filter: brightness(1.2) saturate(1.08);
+      opacity: 1;
+    }
+
     .map-window .city-dot {
       fill: #ff3b30;
       stroke: #fff;
@@ -2273,6 +2278,14 @@
         return title ? `${label} · ${title}` : `${label} · 点击定位到下方故事`;
       }
 
+      function describeMapStories(label, links) {
+        const titles = storyRowsFromLinks(links)
+          .map(row => row.title.replace(/^Run(?:50|CN)\s*#?[^｜|]*[｜|]/, ''))
+          .filter(Boolean);
+        if (!titles.length) return `${label} · 下方故事待补`;
+        return `${label} · ${titles.length}篇：${titles.slice(0, 3).join(' / ')}${titles.length > 3 ? ' / ...' : ''}`;
+      }
+
       function ensureMapStoryPopover(slot) {
         let popover = slot.querySelector('.map-story-popover');
         if (!popover) {
@@ -2346,7 +2359,7 @@
         event.stopPropagation();
         if (links.length > 1) {
           showMapStoryPopover(slot, label, links, { color, status });
-          setStatus(status, `${label} · 请选择下方故事`);
+          setStatus(status, describeMapStories(label, links));
           return;
         }
         focusMapStory(event, href, color, status, label);
@@ -2660,7 +2673,7 @@
           const storyLabel = `Run50 · ${US_NAMES[abbr]}`;
           const storyLinks = mapStoryLinks(storyLink, US_STATE_STORY_GROUPS[abbr]);
           const showVisualHover = () => paths.forEach(path => {
-            path.style.filter = 'brightness(1.14)';
+            path.style.filter = 'brightness(1.2) saturate(1.08)';
             path.style.opacity = '1';
           });
           const hideVisualHover = () => paths.forEach(path => {
@@ -2671,6 +2684,7 @@
             path.setAttribute('fill', US_COLORS[abbr]);
             path.setAttribute('stroke', 'none');
             path.setAttribute('stroke-width', '0');
+            path.classList.add('run-map-region');
             path.style.opacity = '1';
             path.style.pointerEvents = 'auto';
             path.style.cursor = 'pointer';
@@ -2782,10 +2796,11 @@
             path.setAttribute('fill', province[1]);
             path.setAttribute('stroke', lightMode ? '#ffffff' : 'rgba(255,255,255,.58)');
             path.setAttribute('stroke-width', lightMode ? '1.7' : '1.15');
+            path.classList.add('run-map-region');
             path.style.opacity = '1';
             path.style.cursor = 'pointer';
             path.addEventListener('mouseenter', () => {
-              path.style.filter = 'brightness(1.12)';
+              path.style.filter = 'brightness(1.2) saturate(1.08)';
               path.style.opacity = '1';
             });
             path.addEventListener('mouseleave', () => {
