@@ -2084,10 +2084,10 @@
         contourLayer.style.pointerEvents = 'none';
 
         const contours = lightMode ? [
-          ['M 600 18 C 654 82 684 154 691 224 C 700 314 657 400 682 510', '.24', 'rgba(74,122,155,.34)'],
-          ['M 735 54 C 784 128 806 210 800 286 C 793 374 746 432 768 548', '.18', 'rgba(74,122,155,.26)'],
-          ['M 410 548 C 484 500 558 488 632 510 C 688 526 730 515 792 470', '.16', 'rgba(74,122,155,.24)'],
-          ['M -22 72 C 54 128 83 196 57 272 C 28 360 78 439 156 500', '.14', 'rgba(74,122,155,.2)']
+          ['M 600 18 C 654 82 684 154 691 224 C 700 314 657 400 682 510', '.28', 'rgba(74,122,155,.38)'],
+          ['M 735 54 C 784 128 806 210 800 286 C 793 374 746 432 768 548', '.22', 'rgba(74,122,155,.32)'],
+          ['M 410 548 C 484 500 558 488 632 510 C 688 526 730 515 792 470', '.2', 'rgba(74,122,155,.3)'],
+          ['M -22 72 C 54 128 83 196 57 272 C 28 360 78 439 156 500', '.18', 'rgba(74,122,155,.26)']
         ] : [
           ['M 600 18 C 654 82 684 154 691 224 C 700 314 657 400 682 510', '.34', 'rgba(199,214,232,.38)'],
           ['M 735 54 C 784 128 806 210 800 286 C 793 374 746 432 768 548', '.25', 'rgba(199,214,232,.3)'],
@@ -2240,19 +2240,19 @@
           if (!label) return;
           const isOceanLabel = labelId === 'ATLANTIC_OCEAN' || labelId === 'gulf_of_mexico' || labelId === 'OCEANS';
           const fill = lightMode
-            ? (isOceanLabel ? '#356276' : '#2f3742')
+            ? (isOceanLabel ? '#1f2a33' : '#20242b')
             : (isOceanLabel ? '#9aa5b8' : '#f8fbff');
           const stroke = lightMode
-            ? (isOceanLabel ? 'none' : 'rgba(255,255,255,.72)')
+            ? (isOceanLabel ? 'none' : 'rgba(255,255,255,.42)')
             : (isOceanLabel ? 'none' : 'rgba(255,255,255,.24)');
           const strokeWidth = lightMode
-            ? (isOceanLabel ? '0' : '1.4')
+            ? (isOceanLabel ? '0' : '.7')
             : (isOceanLabel ? '0' : '.45');
           label.setAttribute('fill', fill);
           label.setAttribute('stroke', stroke);
           label.setAttribute('stroke-width', strokeWidth);
           label.setAttribute('paint-order', 'stroke fill');
-          label.style.opacity = isOceanLabel ? (lightMode ? '.58' : '.34') : '.98';
+          label.style.opacity = isOceanLabel ? (lightMode ? '.72' : '.34') : '.98';
           label.style.fill = fill;
           label.style.stroke = stroke;
           label.style.strokeWidth = strokeWidth;
@@ -2340,12 +2340,13 @@
           const outline = path.cloneNode(false);
           outline.removeAttribute('id');
           outline.setAttribute('fill', 'none');
-          outline.setAttribute('stroke', lightMode ? 'rgba(255,255,255,.78)' : 'rgba(255,255,255,.58)');
-          outline.setAttribute('stroke-width', lightMode ? '.95' : '1.05');
+          outline.setAttribute('stroke', lightMode ? 'rgba(18,24,31,.72)' : 'rgba(255,255,255,.58)');
+          outline.setAttribute('stroke-width', lightMode ? '.72' : '1.05');
           outline.setAttribute('stroke-linejoin', 'round');
           outline.setAttribute('stroke-linecap', 'round');
           outline.setAttribute('vector-effect', 'non-scaling-stroke');
-          outline.style.opacity = lightMode ? '.9' : '.86';
+          if (lightMode) outline.setAttribute('stroke-dasharray', '5 4');
+          outline.style.opacity = lightMode ? '.78' : '.86';
           outline.style.pointerEvents = 'none';
           layer.appendChild(outline);
         });
@@ -2374,24 +2375,24 @@
           if (!isFrame && !isStateGeometry) {
             if (US_LABEL_PATHS.has(sourceId)) {
               const isOceanLabel = sourceId === 'ATLANTIC_OCEAN' || sourceId === 'gulf_of_mexico' || sourceId === 'OCEANS';
-              path.setAttribute('fill', lightMode ? (isOceanLabel ? '#356276' : '#2f3742') : (isOceanLabel ? '#9aa5b8' : '#f3f6ff'));
-              path.setAttribute('stroke', lightMode ? (isOceanLabel ? 'none' : 'rgba(255,255,255,.72)') : (isOceanLabel ? 'none' : 'rgba(15,23,42,.42)'));
-              path.setAttribute('stroke-width', lightMode ? (isOceanLabel ? '0' : '1.4') : (isOceanLabel ? '0' : '.7'));
+              path.setAttribute('fill', lightMode ? (isOceanLabel ? '#1f2a33' : '#20242b') : (isOceanLabel ? '#9aa5b8' : '#f3f6ff'));
+              path.setAttribute('stroke', lightMode ? (isOceanLabel ? 'none' : 'rgba(255,255,255,.42)') : (isOceanLabel ? 'none' : 'rgba(15,23,42,.42)'));
+              path.setAttribute('stroke-width', lightMode ? (isOceanLabel ? '0' : '.7') : (isOceanLabel ? '0' : '.7'));
               path.setAttribute('paint-order', 'stroke fill');
-              path.style.opacity = isOceanLabel ? (lightMode ? '.58' : '.34') : '.96';
+              path.style.opacity = isOceanLabel ? (lightMode ? '.72' : '.34') : '.96';
               path.style.pointerEvents = 'none';
               return;
             }
             path.setAttribute('fill', 'none');
-            path.setAttribute('stroke', lightMode ? 'rgba(50,60,72,.34)' : 'rgba(207,218,232,.18)');
-            path.setAttribute('stroke-width', lightMode ? '.72' : '.55');
-            path.style.opacity = lightMode ? '.42' : '.32';
+            path.setAttribute('stroke', lightMode ? 'rgba(18,24,31,.44)' : 'rgba(207,218,232,.18)');
+            path.setAttribute('stroke-width', lightMode ? '.62' : '.55');
+            path.style.opacity = lightMode ? '.5' : '.32';
             path.style.pointerEvents = 'none';
             return;
           }
           path.setAttribute('fill', isFrame ? (lightMode ? '#a9d8f0' : '#323a52') : (lightMode ? '#dedad3' : '#242b3f'));
-          path.setAttribute('stroke', isFrame ? (lightMode ? 'rgba(42,54,68,.42)' : 'rgba(207,218,232,.28)') : (lightMode ? 'rgba(65,72,82,.32)' : 'none'));
-          path.setAttribute('stroke-width', isFrame ? (lightMode ? '.7' : '.8') : (lightMode ? '.65' : '0'));
+          path.setAttribute('stroke', isFrame ? (lightMode ? 'rgba(18,24,31,.62)' : 'rgba(207,218,232,.28)') : (lightMode ? 'rgba(18,24,31,.66)' : 'none'));
+          path.setAttribute('stroke-width', isFrame ? (lightMode ? '.78' : '.8') : (lightMode ? '.58' : '0'));
           path.style.opacity = isFrame ? '1' : (lightMode ? '1' : '.78');
           path.style.pointerEvents = 'none';
         });
@@ -2415,8 +2416,8 @@
           const hideHover = () => {
             paths.forEach(path => {
               path.setAttribute('fill', baseColor);
-              path.setAttribute('stroke', lightMode ? 'rgba(255,255,255,.72)' : 'none');
-              path.setAttribute('stroke-width', lightMode ? '1.05' : '0');
+              path.setAttribute('stroke', lightMode ? 'rgba(18,24,31,.72)' : 'none');
+              path.setAttribute('stroke-width', lightMode ? '.72' : '0');
               path.style.opacity = '1';
               path.style.filter = '';
             });
@@ -2424,8 +2425,8 @@
           };
           paths.forEach(path => {
             path.setAttribute('fill', US_COLORS[abbr]);
-            path.setAttribute('stroke', lightMode ? 'rgba(255,255,255,.72)' : 'none');
-            path.setAttribute('stroke-width', lightMode ? '1.05' : '0');
+            path.setAttribute('stroke', lightMode ? 'rgba(18,24,31,.72)' : 'none');
+            path.setAttribute('stroke-width', lightMode ? '.72' : '0');
             path.style.opacity = '1';
             path.style.pointerEvents = 'auto';
             path.style.cursor = 'pointer';
@@ -2481,35 +2482,35 @@
         svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         const ocean = addSvgEl(svg, 'rect', {
           x: '-64', y: '6', width: '934', height: '556',
-          fill: lightMode ? '#f4f6f7' : '#30384f'
+          fill: lightMode ? '#a8d4e8' : '#30384f'
         });
         svg.insertBefore(ocean, svg.firstChild);
         addChinaContextContours(svg, ocean, lightMode);
         svg.querySelectorAll('rect').forEach(rect => {
-          rect.setAttribute('fill', lightMode ? '#f4f6f7' : '#30384f');
+          rect.setAttribute('fill', lightMode ? '#a8d4e8' : '#30384f');
         });
         svg.querySelectorAll('path').forEach(path => {
           const id = path.id || '';
           if (!id.startsWith('cn_')) {
-            path.setAttribute('fill', 'none');
-            path.setAttribute('stroke', lightMode ? 'rgba(76,91,108,.38)' : 'rgba(198,211,228,.38)');
-            path.setAttribute('stroke-width', lightMode ? '.68' : '.72');
+            path.setAttribute('fill', lightMode ? '#dedad3' : 'none');
+            path.setAttribute('stroke', lightMode ? 'rgba(83,78,68,.38)' : 'rgba(198,211,228,.38)');
+            path.setAttribute('stroke-width', lightMode ? '.74' : '.72');
             path.setAttribute('vector-effect', 'non-scaling-stroke');
-            path.style.opacity = lightMode ? '.32' : '.36';
+            path.style.opacity = lightMode ? '1' : '.36';
             path.style.pointerEvents = 'none';
             return;
           }
 
           path.setAttribute('fill', lightMode ? '#d8e0d4' : '#242b3f');
-          path.setAttribute('stroke', lightMode ? '#ffffff' : 'rgba(221,232,245,.48)');
-          path.setAttribute('stroke-width', lightMode ? '.9' : '.95');
+          path.setAttribute('stroke', lightMode ? 'rgba(255,255,255,.92)' : 'rgba(221,232,245,.48)');
+          path.setAttribute('stroke-width', lightMode ? '1.05' : '.95');
           path.style.opacity = lightMode ? '1' : '.92';
 
           const province = CHINA_PROVINCES[id];
           if (province) {
             path.setAttribute('fill', province[1]);
             path.setAttribute('stroke', lightMode ? '#ffffff' : 'rgba(255,255,255,.58)');
-            path.setAttribute('stroke-width', lightMode ? '1.5' : '1.15');
+            path.setAttribute('stroke-width', lightMode ? '1.7' : '1.15');
             path.style.opacity = '1';
             path.style.cursor = 'pointer';
             path.addEventListener('mouseenter', () => {
@@ -2526,6 +2527,10 @@
           }
         });
 
+        if (lightMode) {
+          svg.querySelectorAll('path[id^="cn_"]').forEach(path => svg.appendChild(path));
+        }
+
         const contextLayer = addSvgEl(svg, 'g', { id: 'mini-china-context-labels' });
         addMapTextLabel(contextLayer, ['蒙古'], 392, 124, { size: 21, opacity: '.42', fill: '#d0d9e8', strokeWidth: 2.1, weight: 400 });
         addMapTextLabel(contextLayer, ['韩国'], 706, 292, { size: 14, opacity: '.46', fill: '#d5deed', strokeWidth: 1.8, weight: 400 });
@@ -2539,9 +2544,9 @@
           contextLayer.querySelectorAll('text').forEach(text => {
             const size = parseFloat(text.getAttribute('font-size') || '0');
             const isCountry = size >= 14;
-            text.setAttribute('fill', isCountry ? '#607084' : '#4a7a9b');
-            text.setAttribute('stroke-width', isCountry ? '1.2' : '1');
-            text.style.opacity = isCountry ? '.3' : '.48';
+            text.setAttribute('fill', isCountry ? '#69727d' : '#4a7a9b');
+            text.setAttribute('stroke-width', isCountry ? '1.4' : '1');
+            text.style.opacity = isCountry ? '.42' : '.58';
           });
         }
 
