@@ -605,7 +605,8 @@
       border-radius: 999px; color: #fff; background: rgba(255,255,255,.12); font-size: 12px; font-weight: 900;
     }
     .timer-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
-    .wake-toggle {
+    .wake-toggle,
+    .pip-toggle {
       min-height: 42px;
       padding: 0 14px;
       border: 1px solid rgba(255,255,255,.46);
@@ -615,8 +616,10 @@
       font-size: 12px;
       font-weight: 900;
     }
-    .wake-toggle.active { border-color: color-mix(in srgb, var(--timer-accent-2) 70%, #fff); background: color-mix(in srgb, var(--timer-accent) 48%, rgba(255,255,255,.14)); }
+    .wake-toggle.active,
+    .pip-toggle.active { border-color: color-mix(in srgb, var(--timer-accent-2) 70%, #fff); background: color-mix(in srgb, var(--timer-accent) 48%, rgba(255,255,255,.14)); }
     .wake-status { min-height: 16px; color: rgba(255,255,255,.7); font-size: 11px; font-weight: 800; text-align: center; }
+    .pip-video { position: fixed; width: 1px; height: 1px; left: -10px; bottom: -10px; opacity: .01; pointer-events: none; }
     .notes-label { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 7px; color: #45525e; font-size: 13px; font-weight: 800; }
     .notes-tools { display: flex; align-items: center; gap: 9px; }
     .summary-button {
@@ -998,6 +1001,7 @@
               </div>
             </div>
             <div class="timer-actions">
+              <button class="pip-toggle" id="pipButton" type="button">PiP Timer</button>
               <button class="wake-toggle" id="wakeToggle" type="button">Keep screen on</button>
               <button class="timer-cancel" id="timerCancel" type="button" aria-label="Cancel timer">×</button>
             </div>
@@ -1107,6 +1111,7 @@
     const state = {
       key: null, vault: null, data: { days: {} }, selected: START, filter: "all", saveTimer: null, timerInterval: null, audio: null,
       wakeLock: null, keepAwake: localStorage.getItem(WAKE_LOCK_KEY) === "1",
+      pipCanvas: null, pipContext: null, pipVideo: null, pipStream: null, pipInterval: null, pipActive: false,
       openMonths: new Set([START.slice(0, 7)]), draggedTaskId: null, highlightSelection: null,
       autoSyncTimer: null, syncBusy: false,
       sync: readSyncConfig(),
@@ -1155,6 +1160,7 @@
         focusElapsed: value => `Elapsed ${value}`, focusTotal: value => `Focus ${value}`, pomodoroDone: "Focus session recorded.",
         notes: "Daily reflection / notes", notesPlaceholder: "What got done? What should you remember tomorrow?",
         wakeKeep: "Keep screen on", wakeOn: "Screen stays awake while the timer runs.", wakeOff: "Screen wake is off.", wakeUnsupported: "This browser does not support screen wake lock.", wakeError: "Tap again if the browser blocks wake lock.",
+        pipTimer: "PiP Timer", pipNeedTimer: "Start a focus timer first.", pipUnsupported: "This browser does not support timer floating window.", pipOpened: "Floating timer opened.", pipClosed: "Floating timer closed.",
         summaryButton: "Generate review", summaryInserted: "Daily review added.",
         reviewNoTasks: "No tasks yet. Add tasks first, then generate a useful review.",
         reviewTitle: date => `Daily review · ${date}`,
@@ -1236,6 +1242,7 @@
         focusElapsed: value => `已专注 ${value}`, focusTotal: value => `专注 ${value}`, pomodoroDone: "专注时间已记录。",
         notes: "当天小结 / 备注", notesPlaceholder: "完成了什么？明天要记得什么？",
         wakeKeep: "计时常亮", wakeOn: "计时运行时屏幕保持常亮。", wakeOff: "屏幕常亮已关闭。", wakeUnsupported: "这个浏览器不支持屏幕常亮。", wakeError: "如果浏览器拦截，请再点一次常亮按钮。",
+        pipTimer: "浮窗计时", pipNeedTimer: "请先开始一个计时。", pipUnsupported: "这个浏览器不支持计时浮窗。", pipOpened: "计时浮窗已打开。", pipClosed: "计时浮窗已关闭。",
         summaryButton: "生成总结", summaryInserted: "已添加当天总结。",
         reviewNoTasks: "这一天还没有任务。先添加任务，再生成有用的总结。",
         reviewTitle: date => `当天总结 · ${date}`,
@@ -1361,6 +1368,7 @@
       $("#taskInput").placeholder = text.taskPlaceholder;
       $("#addTaskButton").textContent = text.addTask;
       $("#timerLabel").textContent = text.timerLabel;
+      $("#pipButton").textContent = text.pipTimer;
       $("#timerCancel").textContent = text.endFocus;
       $("#timerCancel").setAttribute("aria-label", text.endFocus);
       $("#notesLabel").textContent = text.notes;
@@ -1390,6 +1398,7 @@
       $$(".lang-toggle").forEach(button => button.textContent = text.langSwitch);
       $$(".theme-toggle").forEach(button => button.textContent = state.theme === "dark" ? text.themeLight : text.themeDark);
       setWakeUI();
+      setPipUI();
       if (rerender && !$("#app").hidden) {
         renderEditor();
         renderCalendar();
@@ -1979,6 +1988,7 @@
       clearInterval(state.timerInterval);
       state.timerInterval = null;
       releaseWakeLock();
+      stopPipTimer({ exit: true });
       state.key = null; state.vault = null; state.data = { days: {} };
       $("#app").hidden = true;
       $("#lockScreen").hidden = false;
@@ -2130,6 +2140,179 @@
       if (shouldKeepAwake) requestWakeLock({ silent });
       else releaseWakeLock();
     }
+    function setPipUI() {
+      const button = $("#pipButton");
+      if (!button) return;
+      button.textContent = t().pipTimer;
+      button.classList.toggle("active", state.pipActive);
+    }
+    function activeTimerInfo() {
+      const active = state.data.activeTimer;
+      if (!active) return null;
+      const task = findTask(active.date, active.taskId);
+      if (!task) return null;
+      active.duration ||= POMODORO_MS;
+      active.startedAt ||= active.endsAt - active.duration;
+      const elapsed = activeElapsed(active);
+      const remaining = Math.max(0, active.duration - elapsed);
+      const overtime = Math.max(0, elapsed - active.duration);
+      const percent = Math.min(100, Math.round(Math.min(elapsed, active.duration) / active.duration * 100));
+      const remainingRatio = remaining / active.duration;
+      const phase = overtime ? "overtime" : remainingRatio <= 0.2 ? "danger" : remainingRatio <= 0.45 ? "warn" : "calm";
+      const accent = phase === "overtime" ? "#a855f7" : phase === "danger" ? "#ef4444" : phase === "warn" ? "#f59d24" : "#20b26b";
+      const accent2 = phase === "overtime" ? "#f0abfc" : phase === "danger" ? "#ff9a8c" : phase === "warn" ? "#ffd26f" : "#9cf2c5";
+      return {
+        task,
+        phase,
+        accent,
+        accent2,
+        percent,
+        time: overtime ? `+${formatDuration(overtime)}` : formatDuration(remaining),
+        status: overtime ? t().timerPhaseOvertime : phase === "danger" ? t().timerPhaseDanger : phase === "warn" ? t().timerPhaseWarn : t().timerPhaseCalm,
+        subline: t().focusElapsed(formatDuration(elapsed))
+      };
+    }
+    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+      const raw = String(text || "");
+      const characterMode = !/\s/.test(raw);
+      const words = characterMode ? [...raw] : raw.split(/\s+/);
+      const lines = [];
+      let line = "";
+      words.forEach(word => {
+        const test = line ? `${line}${characterMode ? "" : " "}${word}` : word;
+        if (ctx.measureText(test).width <= maxWidth) line = test;
+        else {
+          if (line) lines.push(line);
+          line = word;
+        }
+      });
+      if (line) lines.push(line);
+      lines.slice(0, maxLines).forEach((item, index) => {
+        const output = index === maxLines - 1 && lines.length > maxLines ? `${item.slice(0, 38)}...` : item;
+        ctx.fillText(output, x, y + index * lineHeight);
+      });
+    }
+    function drawPipFrame() {
+      if (!state.pipCanvas || !state.pipContext) return;
+      const ctx = state.pipContext;
+      const { width, height } = state.pipCanvas;
+      const info = activeTimerInfo();
+      const gradient = ctx.createLinearGradient(0, 0, width, height);
+      gradient.addColorStop(0, "#07111d");
+      gradient.addColorStop(1, "#13283a");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+      ctx.fillStyle = "rgba(255,255,255,.06)";
+      for (let x = 0; x < width; x += 36) ctx.fillRect(x, 0, 1, height);
+      if (!info) {
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "800 34px Arial, sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(t().pipNeedTimer, width / 2, height / 2);
+        return;
+      }
+      ctx.save();
+      ctx.translate(185, 180);
+      ctx.lineWidth = 24;
+      ctx.strokeStyle = "rgba(255,255,255,.15)";
+      ctx.beginPath();
+      ctx.arc(0, 0, 104, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.strokeStyle = info.accent;
+      ctx.shadowColor = info.accent;
+      ctx.shadowBlur = 22;
+      ctx.beginPath();
+      ctx.arc(0, 0, 104, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * (info.percent / 100));
+      ctx.stroke();
+      ctx.restore();
+      ctx.shadowBlur = 0;
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "950 66px Arial, sans-serif";
+      ctx.fillText(info.time, 185, 194);
+      ctx.fillStyle = info.accent2;
+      ctx.font = "900 22px Arial, sans-serif";
+      ctx.fillText(`${info.percent}%`, 185, 236);
+      ctx.textAlign = "left";
+      ctx.fillStyle = info.accent2;
+      ctx.font = "900 22px Arial, sans-serif";
+      ctx.fillText(info.status, 335, 98);
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "900 30px Arial, sans-serif";
+      wrapCanvasText(ctx, info.task.text, 335, 145, 260, 36, 3);
+      ctx.fillStyle = "rgba(255,255,255,.72)";
+      ctx.font = "800 20px Arial, sans-serif";
+      ctx.fillText(info.subline, 335, 292);
+    }
+    async function ensurePipVideo() {
+      if (state.pipVideo) return state.pipVideo;
+      const canvas = document.createElement("canvas");
+      canvas.width = 640;
+      canvas.height = 360;
+      const context = canvas.getContext("2d");
+      if (!context || !canvas.captureStream) throw new Error("pip-unsupported");
+      const stream = canvas.captureStream(1);
+      const video = document.createElement("video");
+      video.className = "pip-video";
+      video.muted = true;
+      video.playsInline = true;
+      video.srcObject = stream;
+      video.addEventListener("leavepictureinpicture", () => stopPipTimer({ exit: false }));
+      document.body.appendChild(video);
+      state.pipCanvas = canvas;
+      state.pipContext = context;
+      state.pipStream = stream;
+      state.pipVideo = video;
+      drawPipFrame();
+      await video.play();
+      return video;
+    }
+    function startPipDrawing() {
+      clearInterval(state.pipInterval);
+      drawPipFrame();
+      state.pipInterval = setInterval(drawPipFrame, 1000);
+    }
+    async function stopPipTimer({ exit = true, silent = true } = {}) {
+      clearInterval(state.pipInterval);
+      state.pipInterval = null;
+      const video = state.pipVideo;
+      try {
+        if (exit && document.pictureInPictureElement === video) await document.exitPictureInPicture();
+        if (exit && video?.webkitSetPresentationMode && video.webkitPresentationMode === "picture-in-picture") {
+          video.webkitSetPresentationMode("inline");
+        }
+      } catch (_) {}
+      state.pipActive = false;
+      setPipUI();
+      if (!silent) toast(t().pipClosed);
+    }
+    async function togglePipTimer() {
+      if (state.pipActive) {
+        await stopPipTimer({ silent: false });
+        return;
+      }
+      if (!activeTimerInfo()) {
+        toast(t().pipNeedTimer);
+        return;
+      }
+      try {
+        const video = await ensurePipVideo();
+        startPipDrawing();
+        if (video.requestPictureInPicture && document.pictureInPictureEnabled !== false) {
+          await video.requestPictureInPicture();
+        } else if (video.webkitSetPresentationMode && video.webkitSupportsPresentationMode?.("picture-in-picture")) {
+          video.webkitSetPresentationMode("picture-in-picture");
+        } else {
+          throw new Error("pip-unsupported");
+        }
+        state.pipActive = true;
+        setPipUI();
+        toast(t().pipOpened);
+      } catch (_) {
+        await stopPipTimer({ exit: false });
+        toast(t().pipUnsupported);
+      }
+    }
     function formatCompletedTime(value) {
       if (!value) return "";
       return new Date(value).toLocaleString(state.lang === "zh" ? "zh-CN" : "en-US", {
@@ -2230,6 +2413,7 @@
         card.classList.remove("timer-calm", "timer-warn", "timer-danger", "overtime");
         card.style.setProperty("--timer-bar", "0%");
         syncWakeLock();
+        stopPipTimer({ exit: true });
         return;
       }
       const task = findTask(active.date, active.taskId);
@@ -2609,11 +2793,13 @@
       clearInterval(state.timerInterval);
       state.timerInterval = null;
       recordActiveTimer();
+      stopPipTimer({ exit: true });
       renderEditor();
       renderCalendar();
       updateProgress();
       queuePersist();
     });
+    $("#pipButton").addEventListener("click", () => togglePipTimer());
     $("#lockButton").addEventListener("click", async () => { await persist(); lockApp(); });
     $("#exportButton").addEventListener("click", async () => {
       await persist();
