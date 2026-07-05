@@ -1897,7 +1897,7 @@
       ];
 
       const US_LABEL_PATHS = new Set([
-        'NV', 'UT', 'ID', 'MT', 'ND', 'MN', 'IA', 'WI', 'IL', 'MO', 'AR', 'LA',
+        'line_13_', 'NV', 'UT', 'ID', 'MT', 'ND', 'MN', 'IA', 'WI', 'IL', 'MO', 'AR', 'LA',
         'MS', 'AL', 'TN', 'KY', 'IN', 'MI', 'OH', 'WV', 'VA', 'SC', 'NC', 'PA',
         'NY', 'ME', 'GA', 'FL', 'SD', 'NE', 'KS', 'OK', 'WY', 'CO', 'OR', 'WA',
         'CA', 'HI', 'AZ', 'AK', 'NM', 'TX', 'VT_1_', 'NH_1_', 'MD', 'DE_1_',
@@ -2264,15 +2264,14 @@
           const label = svg.querySelector('#map_' + labelId);
           if (!label) return;
           const isOceanLabel = labelId === 'ATLANTIC_OCEAN' || labelId === 'gulf_of_mexico' || labelId === 'OCEANS';
-          const fill = lightMode
-            ? (isOceanLabel ? '#1f2a33' : (labelId === 'NV' ? '#0f172a' : '#151a22'))
-            : (isOceanLabel ? '#9aa5b8' : '#f8fbff');
-          const stroke = lightMode
-            ? (labelId === 'NV' ? '#0f172a' : 'none')
-            : (isOceanLabel ? 'none' : 'rgba(255,255,255,.24)');
-          const strokeWidth = lightMode
-            ? (labelId === 'NV' ? '.55' : '0')
-            : (isOceanLabel ? '0' : '.45');
+          const isNevadaLabel = labelId === 'NV' || labelId === 'line_13_';
+          const fill = isNevadaLabel
+            ? '#ffffff'
+            : (lightMode ? (isOceanLabel ? '#1f2a33' : '#151a22') : (isOceanLabel ? '#9aa5b8' : '#f8fbff'));
+          const stroke = isNevadaLabel
+            ? 'rgba(2,6,23,.95)'
+            : (lightMode ? 'none' : (isOceanLabel ? 'none' : 'rgba(255,255,255,.24)'));
+          const strokeWidth = isNevadaLabel ? '2.4' : (lightMode ? '0' : (isOceanLabel ? '0' : '.45'));
           label.setAttribute('fill', fill);
           label.setAttribute('stroke', stroke);
           label.setAttribute('stroke-width', strokeWidth);
@@ -2281,6 +2280,7 @@
           label.style.fill = fill;
           label.style.stroke = stroke;
           label.style.strokeWidth = strokeWidth;
+          label.style.filter = isNevadaLabel ? 'drop-shadow(0 1px 1px rgba(0,0,0,.7))' : '';
           label.style.pointerEvents = 'none';
           svg.appendChild(label);
         });
@@ -2412,11 +2412,13 @@
           if (!isFrame && !isStateGeometry) {
             if (US_LABEL_PATHS.has(sourceId)) {
               const isOceanLabel = sourceId === 'ATLANTIC_OCEAN' || sourceId === 'gulf_of_mexico' || sourceId === 'OCEANS';
-              path.setAttribute('fill', lightMode ? (isOceanLabel ? '#1f2a33' : '#151a22') : (isOceanLabel ? '#9aa5b8' : '#f3f6ff'));
-              path.setAttribute('stroke', lightMode ? 'none' : (isOceanLabel ? 'none' : 'rgba(15,23,42,.42)'));
-              path.setAttribute('stroke-width', lightMode ? '0' : (isOceanLabel ? '0' : '.7'));
+              const isNevadaLabel = sourceId === 'NV' || sourceId === 'line_13_';
+              path.setAttribute('fill', isNevadaLabel ? '#ffffff' : (lightMode ? (isOceanLabel ? '#1f2a33' : '#151a22') : (isOceanLabel ? '#9aa5b8' : '#f3f6ff')));
+              path.setAttribute('stroke', isNevadaLabel ? 'rgba(2,6,23,.95)' : (lightMode ? 'none' : (isOceanLabel ? 'none' : 'rgba(15,23,42,.42)')));
+              path.setAttribute('stroke-width', isNevadaLabel ? '2.4' : (lightMode ? '0' : (isOceanLabel ? '0' : '.7')));
               path.setAttribute('paint-order', 'stroke fill');
               path.style.opacity = isOceanLabel ? (lightMode ? '.72' : '.34') : (lightMode ? '1' : '.96');
+              path.style.filter = isNevadaLabel ? 'drop-shadow(0 1px 1px rgba(0,0,0,.7))' : '';
               path.style.pointerEvents = 'none';
               return;
             }
