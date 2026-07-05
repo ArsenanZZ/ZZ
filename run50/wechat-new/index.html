@@ -477,6 +477,13 @@
       fill: #ffcc00;
     }
 
+    .map-window .city-hit {
+      fill: transparent;
+      stroke: none;
+      pointer-events: all;
+      cursor: pointer;
+    }
+
     .map-window .city-dot-glow {
       fill: rgba(255, 59, 48, .28);
       animation: map-dot-pulse 2.1s ease-in-out infinite;
@@ -493,8 +500,8 @@
 
     .map-story-popover {
       position: absolute;
-      right: 12px;
-      top: 12px;
+      left: 12px;
+      bottom: 12px;
       z-index: 5;
       width: min(300px, calc(100% - 24px));
       max-height: calc(100% - 24px);
@@ -505,7 +512,7 @@
       background: rgba(18, 25, 41, .92);
       box-shadow: 0 14px 34px rgba(0, 0, 0, .24);
       color: #f7fbff;
-      pointer-events: none;
+      pointer-events: auto;
       opacity: 0;
       transform: translateY(-4px);
       transition: opacity .16s ease, transform .16s ease;
@@ -525,14 +532,29 @@
       color: #f8dc8a;
     }
 
+    .map-story-popover button,
     .map-story-popover span {
       display: block;
+      width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      border: 0;
+      padding: 2px 0;
+      background: transparent;
       font-size: 12px;
       line-height: 1.45;
+      text-align: left;
       color: #edf3ff;
+      font: inherit;
+    }
+
+    .map-story-popover button {
+      cursor: pointer;
+    }
+
+    .map-story-popover button:hover {
+      color: #ffdc72;
     }
 
     #runcn-china-map-mini .city-dot-glow {
@@ -1980,6 +2002,7 @@
 
       const US_CITY_DOTS = [
         ['KY', 'Louisville', 38.2527, -85.7585], ['OH', 'Cleveland', 41.4993, -81.6944],
+        ['OH', 'Cincinnati', 39.1031, -84.5120],
         ['NY', 'New York City', 40.7128, -74.0060], ['CA', 'San Francisco', 37.7749, -122.4194],
         ['IN', 'Indianapolis', 39.7684, -86.1581], ['HI', 'Honolulu', 21.3069, -157.8583],
         ['GA', 'Atlanta', 33.7490, -84.3880], ['CO', 'Denver', 39.7392, -104.9903],
@@ -2054,6 +2077,7 @@
       };
 
       const US_CITY_STORIES = {
+        'OH:Cincinnati': storyHref('cincinnati-flying-pig-marathon'),
         'FL:Miami': storyHref('miami-marathon')
       };
 
@@ -2225,10 +2249,10 @@
         return (card?.querySelector('h3')?.textContent || '').replace(/\s+/g, ' ').trim();
       }
 
-      function storyTitlesFromLinks(links) {
+      function storyRowsFromLinks(links) {
         return links.map(href => {
           const card = findStoryCard(href);
-          return storyCardTitle(card);
+          return { href, title: storyCardTitle(card) };
         }).filter(Boolean);
       }
 
@@ -2259,17 +2283,24 @@
         return popover;
       }
 
-      function showMapStoryPopover(slot, label, links) {
-        const titles = storyTitlesFromLinks(links);
+      function showMapStoryPopover(slot, label, links, options = {}) {
+        window.clearTimeout(slot._mapStoryHideTimer);
+        const rows = storyRowsFromLinks(links).filter(row => row.title);
         const popover = ensureMapStoryPopover(slot);
         popover.innerHTML = '';
+        popover.onmouseenter = () => window.clearTimeout(slot._mapStoryHideTimer);
+        popover.onmouseleave = () => hideMapStoryPopover(slot);
         const heading = document.createElement('strong');
-        heading.textContent = `${label} · ${titles.length || 0} Stories`;
+        heading.textContent = `${label} · ${rows.length || 0} 篇故事`;
         popover.appendChild(heading);
-        if (titles.length) {
-          titles.slice(0, 7).forEach(title => {
-            const row = document.createElement('span');
+        if (rows.length) {
+          rows.slice(0, 7).forEach(({ href, title }) => {
+            const row = document.createElement('button');
+            row.type = 'button';
             row.textContent = title;
+            row.addEventListener('click', event => (
+              focusMapStory(event, href, options.color, options.status, label)
+            ));
             popover.appendChild(row);
           });
         } else {
@@ -2281,8 +2312,11 @@
       }
 
       function hideMapStoryPopover(slot) {
-        const popover = slot.querySelector('.map-story-popover');
-        if (popover) popover.classList.remove('is-visible');
+        window.clearTimeout(slot._mapStoryHideTimer);
+        slot._mapStoryHideTimer = window.setTimeout(() => {
+          const popover = slot.querySelector('.map-story-popover');
+          if (popover) popover.classList.remove('is-visible');
+        }, 180);
       }
 
       function flashStoryCard(card, color) {
@@ -2625,7 +2659,7 @@
               path.style.filter = 'brightness(1.08)';
             });
             setStatus(status, describeMapStory(storyLabel, storyLink));
-            showMapStoryPopover(slot, storyLabel, storyLinks);
+            showMapStoryPopover(slot, storyLabel, storyLinks, { color: US_COLORS[abbr], status });
           };
           const hideHover = () => {
             paths.forEach(path => {
@@ -2674,6 +2708,17 @@
           const storyLink = US_CITY_STORIES[`${abbr}:${city}`] || US_STATE_STORIES[abbr];
           const storyLabel = `${city} · ${US_NAMES[abbr]}`;
           const storyLinks = mapStoryLinks(storyLink);
+          const showCityStory = () => {
+            setStatus(status, describeMapStory(storyLabel, storyLink));
+            showMapStoryPopover(slot, storyLabel, storyLinks, { color: US_COLORS[abbr], status });
+          };
+          const hideCityStory = () => {
+            setStatus(status);
+            hideMapStoryPopover(slot);
+          };
+          const focusCityStory = event => (
+            focusMapStory(event, storyLink, US_COLORS[abbr], status, storyLabel)
+          );
           addSvgEl(glowLayer, 'circle', {
             cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '18' : '20.2',
             class: 'city-dot-glow'
@@ -2684,22 +2729,20 @@
               class: 'city-ring'
             });
           }
+          const hit = addSvgEl(dotLayer, 'circle', {
+            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '10.5',
+            class: 'city-hit'
+          });
           const dot = addSvgEl(dotLayer, 'circle', {
             cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '8.8' : '8.8',
             class: 'city-dot'
           });
-          dot.style.cursor = 'pointer';
-          dot.addEventListener('mouseenter', () => {
-            setStatus(status, describeMapStory(storyLabel, storyLink));
-            showMapStoryPopover(slot, storyLabel, storyLinks);
+          [hit, dot].forEach(el => {
+            el.style.cursor = 'pointer';
+            el.addEventListener('mouseenter', showCityStory);
+            el.addEventListener('mouseleave', hideCityStory);
+            el.addEventListener('click', focusCityStory);
           });
-          dot.addEventListener('mouseleave', () => {
-            setStatus(status);
-            hideMapStoryPopover(slot);
-          });
-          dot.addEventListener('click', event => (
-            focusMapStory(event, storyLink, US_COLORS[abbr], status, storyLabel)
-          ));
         });
         raiseUsLabels(svg, lightMode);
       }
@@ -2759,7 +2802,7 @@
             path.addEventListener('mouseenter', () => {
               path.style.opacity = '.82';
               setStatus(status, describeMapStory(storyLabel, storyLink));
-              showMapStoryPopover(slot, storyLabel, storyLinks);
+              showMapStoryPopover(slot, storyLabel, storyLinks, { color: province[1], status });
             });
             path.addEventListener('mouseleave', () => {
               path.style.opacity = '1';
@@ -2819,6 +2862,17 @@
           const province = CHINA_PROVINCES[provinceId];
           const storyLabel = `${city} · ${province?.[0] || 'RunCN'}`;
           const storyLinks = mapStoryLinks(storyLink);
+          const showCityStory = () => {
+            setStatus(status, describeMapStory(storyLabel, storyLink));
+            showMapStoryPopover(slot, storyLabel, storyLinks, { color: province?.[1], status });
+          };
+          const hideCityStory = () => {
+            setStatus(status);
+            hideMapStoryPopover(slot);
+          };
+          const focusCityStory = event => (
+            focusMapStory(event, storyLink, province?.[1], status, storyLabel)
+          );
           addSvgEl(glowLayer, 'circle', {
             cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '10' : '11',
             class: 'city-dot-glow'
@@ -2829,22 +2883,20 @@
               class: 'city-ring'
             });
           }
+          const hit = addSvgEl(dotLayer, 'circle', {
+            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '11',
+            class: 'city-hit'
+          });
           const dot = addSvgEl(dotLayer, 'circle', {
             cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '5' : '4.8',
             class: 'city-dot'
           });
-          dot.style.cursor = 'pointer';
-          dot.addEventListener('mouseenter', () => {
-            setStatus(status, describeMapStory(storyLabel, storyLink));
-            showMapStoryPopover(slot, storyLabel, storyLinks);
+          [hit, dot].forEach(el => {
+            el.style.cursor = 'pointer';
+            el.addEventListener('mouseenter', showCityStory);
+            el.addEventListener('mouseleave', hideCityStory);
+            el.addEventListener('click', focusCityStory);
           });
-          dot.addEventListener('mouseleave', () => {
-            setStatus(status);
-            hideMapStoryPopover(slot);
-          });
-          dot.addEventListener('click', event => (
-            focusMapStory(event, storyLink, province?.[1], status, storyLabel)
-          ));
         });
 
         const labelLayer = addSvgEl(svg, 'g', { id: 'mini-china-labels' });
