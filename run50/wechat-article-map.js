@@ -107,6 +107,11 @@
     'NH:Keene': [1502, 310]
   };
 
+  var US_PROGRESS_EXPERIMENT = {
+    KY: ['KY'],
+    OH: ['KY', 'OH']
+  };
+
   function addSvgEl(parent, tag, attrs) {
     var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
     Object.keys(attrs || {}).forEach(function (key) { el.setAttribute(key, attrs[key]); });
@@ -232,15 +237,15 @@
       .map(function (item) { return item.path; });
   }
 
-  function addBoundaryLayer(svg, statePaths) {
+  function addBoundaryLayer(svg, statePaths, progressMode) {
     var layer = addSvgEl(svg, 'g', { class: 'article-map-state-boundaries' });
     layer.style.pointerEvents = 'none';
     visibleBoundaryPaths(statePaths).forEach(function (path) {
       var outline = path.cloneNode(false);
       outline.removeAttribute('id');
       outline.setAttribute('fill', 'none');
-      outline.setAttribute('stroke', 'rgba(31,41,55,.58)');
-      outline.setAttribute('stroke-width', '1.05');
+      outline.setAttribute('stroke', progressMode ? 'rgba(255,255,255,.20)' : 'rgba(31,41,55,.58)');
+      outline.setAttribute('stroke-width', progressMode ? '1.25' : '1.05');
       outline.setAttribute('stroke-linejoin', 'round');
       outline.setAttribute('stroke-linecap', 'round');
       outline.setAttribute('vector-effect', 'non-scaling-stroke');
@@ -249,16 +254,16 @@
     });
   }
 
-  function addCurrentOutline(svg, elements) {
+  function addCurrentOutline(svg, elements, progressMode) {
     var layer = addSvgEl(svg, 'g', { class: 'article-map-current-layer' });
     layer.style.pointerEvents = 'none';
     visibleBoundaryPaths(elements).forEach(function (path) {
       var outline = path.cloneNode(false);
       outline.removeAttribute('id');
-      outline.setAttribute('class', 'article-map-current-state');
+      outline.setAttribute('class', progressMode ? 'article-map-current-state article-map-progress-current-outline' : 'article-map-current-state');
       outline.setAttribute('fill', 'none');
-      outline.setAttribute('stroke', '#10151f');
-      outline.setAttribute('stroke-width', '5.8');
+      outline.setAttribute('stroke', progressMode ? '#fff7df' : '#10151f');
+      outline.setAttribute('stroke-width', progressMode ? '7.2' : '5.8');
       outline.setAttribute('stroke-linejoin', 'round');
       outline.setAttribute('stroke-linecap', 'round');
       outline.setAttribute('vector-effect', 'non-scaling-stroke');
@@ -266,26 +271,28 @@
     });
   }
 
-  function raiseLabels(svg) {
+  function raiseLabels(svg, progressMode) {
     US_LABEL_PATHS.forEach(function (labelId) {
       var label = svg.querySelector('#map_' + labelId);
       if (!label) return;
       var ocean = labelId === 'ATLANTIC_OCEAN' || labelId === 'gulf_of_mexico' || labelId === 'OCEANS';
-      label.setAttribute('fill', ocean ? '#526072' : '#1f2937');
-      label.setAttribute('stroke', ocean ? 'none' : 'rgba(255,255,255,.48)');
-      label.setAttribute('stroke-width', ocean ? '0' : '.65');
+      label.setAttribute('fill', ocean ? (progressMode ? '#7b8498' : '#526072') : (progressMode ? '#f4f7ff' : '#1f2937'));
+      label.setAttribute('stroke', ocean ? 'none' : (progressMode ? 'rgba(25,32,48,.36)' : 'rgba(255,255,255,.48)'));
+      label.setAttribute('stroke-width', ocean ? '0' : (progressMode ? '1.2' : '.65'));
       label.setAttribute('paint-order', 'stroke fill');
-      label.style.opacity = ocean ? '.42' : '.92';
+      label.style.opacity = ocean ? (progressMode ? '.38' : '.42') : (progressMode ? '.94' : '.92');
       label.style.pointerEvents = 'none';
       svg.appendChild(label);
     });
   }
 
-  function paintBaseMap(svg) {
+  function paintBaseMap(svg, progressCodes) {
     removeContainedPathParts(svg);
     svg.removeAttribute('width');
     svg.removeAttribute('height');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    var progressMode = Array.isArray(progressCodes) && progressCodes.length > 0;
+    var currentCode = progressMode ? progressCodes[progressCodes.length - 1] : '';
 
     var stateIds = unique(US_SOURCE_PATHS.concat(Object.keys(US_PATHS).reduce(function (all, code) {
       return all.concat(US_PATHS[code]);
@@ -300,12 +307,12 @@
 
       if (isState) {
         path.classList.add('article-map-state-base');
-        path.setAttribute('fill', '#dedad3');
-        path.setAttribute('stroke', 'rgba(31,41,55,.64)');
-        path.setAttribute('stroke-width', '.9');
+        path.setAttribute('fill', progressMode ? '#242b3f' : '#dedad3');
+        path.setAttribute('stroke', progressMode ? 'rgba(255,255,255,.07)' : 'rgba(31,41,55,.64)');
+        path.setAttribute('stroke-width', progressMode ? '.7' : '.9');
         path.setAttribute('stroke-linejoin', 'round');
         path.setAttribute('vector-effect', 'non-scaling-stroke');
-        path.style.opacity = '1';
+        path.style.opacity = progressMode ? '.82' : '1';
         path.style.pointerEvents = 'none';
         allStatePaths.push(path);
         return;
@@ -317,31 +324,34 @@
       }
 
       if (isFrame) {
-        path.setAttribute('fill', '#a8d4e8');
-        path.setAttribute('stroke', 'rgba(31,41,55,.35)');
-        path.setAttribute('stroke-width', '.6');
-        path.style.opacity = id === 'States' ? '.18' : '1';
+        path.setAttribute('fill', progressMode ? '#333b52' : '#a8d4e8');
+        path.setAttribute('stroke', progressMode ? 'rgba(255,255,255,.18)' : 'rgba(31,41,55,.35)');
+        path.setAttribute('stroke-width', progressMode ? '.75' : '.6');
+        path.style.opacity = id === 'States' ? (progressMode ? '.14' : '.18') : '1';
         path.style.pointerEvents = 'none';
         return;
       }
 
       path.setAttribute('fill', 'none');
-      path.setAttribute('stroke', 'rgba(31,41,55,.16)');
-      path.setAttribute('stroke-width', '.45');
-      path.style.opacity = '.18';
+      path.setAttribute('stroke', progressMode ? 'rgba(255,255,255,.12)' : 'rgba(31,41,55,.16)');
+      path.setAttribute('stroke-width', progressMode ? '.55' : '.45');
+      path.style.opacity = progressMode ? '.24' : '.18';
       path.style.pointerEvents = 'none';
     });
 
-    Object.keys(US_COLORS).forEach(function (code) {
+    var coloredCodes = progressMode ? progressCodes : Object.keys(US_COLORS);
+    coloredCodes.forEach(function (code) {
       usStateGroup(svg, code).forEach(function (path) {
         path.classList.add('article-map-run-state');
+        if (progressMode) path.classList.add(code === currentCode ? 'article-map-progress-current' : 'article-map-progress-previous');
         path.setAttribute('fill', US_COLORS[code]);
-        path.setAttribute('stroke', 'rgba(31,41,55,.72)');
-        path.setAttribute('stroke-width', '1');
+        path.setAttribute('stroke', progressMode ? 'rgba(255,255,255,.30)' : 'rgba(31,41,55,.72)');
+        path.setAttribute('stroke-width', progressMode ? '1.15' : '1');
+        path.style.opacity = progressMode && code !== currentCode ? '.46' : '1';
       });
     });
 
-    addBoundaryLayer(svg, allStatePaths);
+    addBoundaryLayer(svg, allStatePaths, progressMode);
     return allStatePaths;
   }
 
@@ -386,14 +396,17 @@
     slot.innerHTML = US_MAP_SVG;
     var svg = slot.querySelector('svg');
     if (!svg) return false;
-    paintBaseMap(svg);
     var code = (slot.dataset.region || '').toUpperCase();
+    var progressCodes = US_PROGRESS_EXPERIMENT[code] || null;
+    var progressMode = !!progressCodes;
+    if (progressMode) slot.classList.add('article-map-progress-experiment');
+    paintBaseMap(svg, progressCodes);
     var elements = usStateGroup(svg, code);
     if (elements.length) {
-      addCurrentOutline(svg, elements);
+      addCurrentOutline(svg, elements, progressMode);
       addCityMarker(svg, slot, code, elements);
     }
-    raiseLabels(svg);
+    raiseLabels(svg, progressMode);
     return true;
   }
 

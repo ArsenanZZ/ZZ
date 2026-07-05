@@ -205,6 +205,12 @@ html[data-theme="dark"] .article-map-window {
   box-shadow: 0 18px 42px rgba(0,0,0,.34);
 }
 
+.article-map-window.article-map-progress-experiment {
+  border-color: rgba(255,255,255,.82);
+  background: #333b52;
+  box-shadow: 0 18px 42px rgba(0,0,0,.34);
+}
+
 .article-map-window svg {
   display: block;
   width: 100%;
@@ -222,6 +228,12 @@ html[data-theme="dark"] .article-map-window {
   stroke: #10151f !important;
   stroke-width: 5.8 !important;
   filter: drop-shadow(0 0 4px rgba(255, 255, 255, .55));
+}
+
+.article-map-window.article-map-progress-experiment .article-map-current-state {
+  stroke: #fff7df !important;
+  stroke-width: 7.2 !important;
+  filter: drop-shadow(0 0 5px rgba(255, 209, 102, .38));
 }
 
 .article-map-window .article-map-marker-glow {
@@ -248,6 +260,12 @@ html[data-theme="dark"] .article-map-window {
   stroke-width: 6;
   paint-order: stroke;
   font: 900 44px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.article-map-window.article-map-progress-experiment .article-map-label {
+  fill: #f8fbff;
+  stroke: rgba(19, 27, 43, .72);
+  stroke-width: 6.5;
 }
 
 .article-map-caption {
