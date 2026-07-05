@@ -2392,8 +2392,8 @@
           }
           path.setAttribute('fill', isFrame ? (lightMode ? '#a9d8f0' : '#323a52') : (lightMode ? '#dedad3' : '#242b3f'));
           const lightFrameStroke = id === 'map_USA' ? 'none' : 'rgba(18,24,31,.28)';
-          path.setAttribute('stroke', isFrame ? (lightMode ? lightFrameStroke : 'rgba(207,218,232,.28)') : (lightMode ? 'rgba(18,24,31,.66)' : 'none'));
-          path.setAttribute('stroke-width', isFrame ? (lightMode ? (id === 'map_USA' ? '0' : '.52') : '.8') : (lightMode ? '.58' : '0'));
+          path.setAttribute('stroke', isFrame ? (lightMode ? lightFrameStroke : 'rgba(207,218,232,.28)') : 'none');
+          path.setAttribute('stroke-width', isFrame ? (lightMode ? (id === 'map_USA' ? '0' : '.52') : '.8') : '0');
           path.style.opacity = isFrame ? '1' : (lightMode ? '1' : '.78');
           path.style.pointerEvents = 'none';
         });
@@ -2417,8 +2417,8 @@
           const hideHover = () => {
             paths.forEach(path => {
               path.setAttribute('fill', baseColor);
-              path.setAttribute('stroke', lightMode ? 'rgba(18,24,31,.72)' : 'none');
-              path.setAttribute('stroke-width', lightMode ? '.72' : '0');
+              path.setAttribute('stroke', 'none');
+              path.setAttribute('stroke-width', '0');
               path.style.opacity = '1';
               path.style.filter = '';
             });
@@ -2426,8 +2426,8 @@
           };
           paths.forEach(path => {
             path.setAttribute('fill', US_COLORS[abbr]);
-            path.setAttribute('stroke', lightMode ? 'rgba(18,24,31,.72)' : 'none');
-            path.setAttribute('stroke-width', lightMode ? '.72' : '0');
+            path.setAttribute('stroke', 'none');
+            path.setAttribute('stroke-width', '0');
             path.style.opacity = '1';
             path.style.pointerEvents = 'auto';
             path.style.cursor = 'pointer';
