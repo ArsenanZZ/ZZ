@@ -1866,7 +1866,7 @@
         MD: ['Pensilvania_1_', 'Oregon_1_'], WA: ['Oklahoma_1_']
       };
 
-      const US_BOUNDARY_EXCLUDES = new Set(['Ocean']);
+      const US_BOUNDARY_EXCLUDES = new Set(['Michigan', 'Ocean']);
 
       const US_SOURCE_PATHS = new Set([
         'Illinois', 'Alabama', 'West_Virginia', 'Kansas_1_', 'South_Carolina_1_', 'Maryland',
@@ -1949,7 +1949,7 @@
       ];
 
       const SPECIAL_US_DOTS = {
-        'KY:Louisville': [1165, 523], 'HI:Honolulu': [570, 933], 'AK:Anchorage': [275, 917], 'VT:Warren': [1466, 270],
+        'KY:Louisville': [1167, 509], 'HI:Honolulu': [570, 933], 'AK:Anchorage': [275, 917], 'VT:Warren': [1466, 270],
         'NH:Keene': [1502, 310], 'CT:Simsbury': [1503, 362], 'RI:Woonsocket': [1488, 376]
       };
 
@@ -2253,19 +2253,19 @@
           if (!label) return;
           const isOceanLabel = labelId === 'ATLANTIC_OCEAN' || labelId === 'gulf_of_mexico' || labelId === 'OCEANS';
           const fill = lightMode
-            ? (isOceanLabel ? '#1f2a33' : '#20242b')
+            ? (isOceanLabel ? '#1f2a33' : '#151a22')
             : (isOceanLabel ? '#9aa5b8' : '#f8fbff');
           const stroke = lightMode
-            ? (isOceanLabel ? 'none' : 'rgba(255,255,255,.42)')
+            ? 'none'
             : (isOceanLabel ? 'none' : 'rgba(255,255,255,.24)');
           const strokeWidth = lightMode
-            ? (isOceanLabel ? '0' : '.7')
+            ? '0'
             : (isOceanLabel ? '0' : '.45');
           label.setAttribute('fill', fill);
           label.setAttribute('stroke', stroke);
           label.setAttribute('stroke-width', strokeWidth);
           label.setAttribute('paint-order', 'stroke fill');
-          label.style.opacity = isOceanLabel ? (lightMode ? '.72' : '.34') : '.98';
+          label.style.opacity = isOceanLabel ? (lightMode ? '.72' : '.34') : (lightMode ? '1' : '.98');
           label.style.fill = fill;
           label.style.stroke = stroke;
           label.style.strokeWidth = strokeWidth;
@@ -2400,11 +2400,11 @@
           if (!isFrame && !isStateGeometry) {
             if (US_LABEL_PATHS.has(sourceId)) {
               const isOceanLabel = sourceId === 'ATLANTIC_OCEAN' || sourceId === 'gulf_of_mexico' || sourceId === 'OCEANS';
-              path.setAttribute('fill', lightMode ? (isOceanLabel ? '#1f2a33' : '#20242b') : (isOceanLabel ? '#9aa5b8' : '#f3f6ff'));
-              path.setAttribute('stroke', lightMode ? (isOceanLabel ? 'none' : 'rgba(255,255,255,.42)') : (isOceanLabel ? 'none' : 'rgba(15,23,42,.42)'));
-              path.setAttribute('stroke-width', lightMode ? (isOceanLabel ? '0' : '.7') : (isOceanLabel ? '0' : '.7'));
+              path.setAttribute('fill', lightMode ? (isOceanLabel ? '#1f2a33' : '#151a22') : (isOceanLabel ? '#9aa5b8' : '#f3f6ff'));
+              path.setAttribute('stroke', lightMode ? 'none' : (isOceanLabel ? 'none' : 'rgba(15,23,42,.42)'));
+              path.setAttribute('stroke-width', lightMode ? '0' : (isOceanLabel ? '0' : '.7'));
               path.setAttribute('paint-order', 'stroke fill');
-              path.style.opacity = isOceanLabel ? (lightMode ? '.72' : '.34') : '.96';
+              path.style.opacity = isOceanLabel ? (lightMode ? '.72' : '.34') : (lightMode ? '1' : '.96');
               path.style.pointerEvents = 'none';
               return;
             }
@@ -2441,8 +2441,8 @@
           const hideHover = () => {
             paths.forEach(path => {
               path.setAttribute('fill', baseColor);
-              path.setAttribute('stroke', 'none');
-              path.setAttribute('stroke-width', '0');
+              path.setAttribute('stroke', lightMode && abbr === 'MI' ? 'rgba(255,255,255,.7)' : 'none');
+              path.setAttribute('stroke-width', lightMode && abbr === 'MI' ? '.8' : '0');
               path.style.opacity = '1';
               path.style.filter = '';
             });
@@ -2450,8 +2450,8 @@
           };
           paths.forEach(path => {
             path.setAttribute('fill', US_COLORS[abbr]);
-            path.setAttribute('stroke', 'none');
-            path.setAttribute('stroke-width', '0');
+            path.setAttribute('stroke', lightMode && abbr === 'MI' ? 'rgba(255,255,255,.7)' : 'none');
+            path.setAttribute('stroke-width', lightMode && abbr === 'MI' ? '.8' : '0');
             path.style.opacity = '1';
             path.style.pointerEvents = 'auto';
             path.style.cursor = 'pointer';
