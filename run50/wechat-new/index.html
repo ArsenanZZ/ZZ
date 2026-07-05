@@ -491,6 +491,50 @@
       animation: map-ring-pulse 2.4s ease-in-out infinite;
     }
 
+    .map-story-popover {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      z-index: 5;
+      width: min(300px, calc(100% - 24px));
+      max-height: calc(100% - 24px);
+      overflow: hidden;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 8px;
+      background: rgba(18, 25, 41, .92);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .24);
+      color: #f7fbff;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity .16s ease, transform .16s ease;
+    }
+
+    .map-story-popover.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .map-story-popover strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #f8dc8a;
+    }
+
+    .map-story-popover span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #edf3ff;
+    }
+
     #runcn-china-map-mini .city-dot-glow {
       fill: rgba(255, 59, 48, .22);
     }
@@ -2013,6 +2057,23 @@
         'FL:Miami': storyHref('miami-marathon')
       };
 
+      const US_STATE_STORY_GROUPS = {
+        KY: [
+          'louisville-marathon',
+          'kentucky-derby-marathon-2021',
+          'kentucky-derby-marathon-2023',
+          'kentucky-derby-marathon',
+          'hatfield-mccoy-marathon',
+          'louisville-marathon-2024',
+          'kentucky-derby-marathon-2025'
+        ],
+        OH: ['cleveland-marathon', 'cincinnati-flying-pig-marathon'],
+        FL: ['disney-marathon', 'miami-marathon']
+      };
+      Object.keys(US_STATE_STORY_GROUPS).forEach(state => {
+        US_STATE_STORY_GROUPS[state] = US_STATE_STORY_GROUPS[state].map(storyHref);
+      });
+
       const CHINA_PROVINCE_STORIES = {
         cn_heilongjiang: storyHref('harbin-marathon'),
         cn_hubei: storyHref('wuhan-marathon-2018'),
@@ -2033,6 +2094,19 @@
         cn_hongkong: storyHref('hong-kong-marathon'),
         cn_beijing: storyHref('wuhan-graduation')
       };
+
+      const CHINA_PROVINCE_STORY_GROUPS = {
+        cn_hubei: [
+          'wuhan-marathon-2018',
+          'three-city-pilgrimage',
+          'xiangyang-marathon',
+          'wuhan-han-marathon'
+        ],
+        cn_zhejiang: ['west-lake-half-marathon', 'ningbo-dongqian-lake-marathon']
+      };
+      Object.keys(CHINA_PROVINCE_STORY_GROUPS).forEach(province => {
+        CHINA_PROVINCE_STORY_GROUPS[province] = CHINA_PROVINCE_STORY_GROUPS[province].map(storyHref);
+      });
 
       const CHINA_CITY_DOTS = [
         ['哈尔滨', 'cn_heilongjiang', 45.8038, 126.5350, storyHref('harbin-marathon')],
@@ -2151,11 +2225,64 @@
         return (card?.querySelector('h3')?.textContent || '').replace(/\s+/g, ' ').trim();
       }
 
+      function storyTitlesFromLinks(links) {
+        return links.map(href => {
+          const card = findStoryCard(href);
+          return storyCardTitle(card);
+        }).filter(Boolean);
+      }
+
+      function mapStoryLinks(primaryHref, group = []) {
+        const seen = new Set();
+        return [primaryHref, ...group].filter(Boolean).filter(href => {
+          const slug = storySlugFromHref(href);
+          if (!slug || seen.has(slug)) return false;
+          seen.add(slug);
+          return true;
+        });
+      }
+
       function describeMapStory(label, href) {
         const card = findStoryCard(href);
         const title = storyCardTitle(card);
         if (!card) return label ? `${label} · 下方故事待补` : '下方故事待补';
         return title ? `${label} · ${title}` : `${label} · 点击定位到下方故事`;
+      }
+
+      function ensureMapStoryPopover(slot) {
+        let popover = slot.querySelector('.map-story-popover');
+        if (!popover) {
+          popover = document.createElement('div');
+          popover.className = 'map-story-popover';
+          slot.appendChild(popover);
+        }
+        return popover;
+      }
+
+      function showMapStoryPopover(slot, label, links) {
+        const titles = storyTitlesFromLinks(links);
+        const popover = ensureMapStoryPopover(slot);
+        popover.innerHTML = '';
+        const heading = document.createElement('strong');
+        heading.textContent = `${label} · ${titles.length || 0} Stories`;
+        popover.appendChild(heading);
+        if (titles.length) {
+          titles.slice(0, 7).forEach(title => {
+            const row = document.createElement('span');
+            row.textContent = title;
+            popover.appendChild(row);
+          });
+        } else {
+          const row = document.createElement('span');
+          row.textContent = '下方故事待补';
+          popover.appendChild(row);
+        }
+        popover.classList.add('is-visible');
+      }
+
+      function hideMapStoryPopover(slot) {
+        const popover = slot.querySelector('.map-story-popover');
+        if (popover) popover.classList.remove('is-visible');
       }
 
       function flashStoryCard(card, color) {
@@ -2488,6 +2615,7 @@
           const hoverColor = lightenHex(baseColor, 0.2);
           const storyLink = US_STATE_STORIES[abbr];
           const storyLabel = `Run50 · ${US_NAMES[abbr]}`;
+          const storyLinks = mapStoryLinks(storyLink, US_STATE_STORY_GROUPS[abbr]);
           const showHover = () => {
             paths.forEach(path => {
               path.setAttribute('fill', hoverColor);
@@ -2497,6 +2625,7 @@
               path.style.filter = 'brightness(1.08)';
             });
             setStatus(status, describeMapStory(storyLabel, storyLink));
+            showMapStoryPopover(slot, storyLabel, storyLinks);
           };
           const hideHover = () => {
             paths.forEach(path => {
@@ -2507,6 +2636,7 @@
               path.style.filter = '';
             });
             setStatus(status);
+            hideMapStoryPopover(slot);
           };
           paths.forEach(path => {
             path.setAttribute('fill', US_COLORS[abbr]);
@@ -2543,6 +2673,7 @@
           const p = special ? { x: special[0], y: special[1] } : projectUs(lat, lon);
           const storyLink = US_CITY_STORIES[`${abbr}:${city}`] || US_STATE_STORIES[abbr];
           const storyLabel = `${city} · ${US_NAMES[abbr]}`;
+          const storyLinks = mapStoryLinks(storyLink);
           addSvgEl(glowLayer, 'circle', {
             cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '18' : '20.2',
             class: 'city-dot-glow'
@@ -2558,8 +2689,14 @@
             class: 'city-dot'
           });
           dot.style.cursor = 'pointer';
-          dot.addEventListener('mouseenter', () => setStatus(status, describeMapStory(storyLabel, storyLink)));
-          dot.addEventListener('mouseleave', () => setStatus(status));
+          dot.addEventListener('mouseenter', () => {
+            setStatus(status, describeMapStory(storyLabel, storyLink));
+            showMapStoryPopover(slot, storyLabel, storyLinks);
+          });
+          dot.addEventListener('mouseleave', () => {
+            setStatus(status);
+            hideMapStoryPopover(slot);
+          });
           dot.addEventListener('click', event => (
             focusMapStory(event, storyLink, US_COLORS[abbr], status, storyLabel)
           ));
@@ -2613,6 +2750,7 @@
           if (province) {
             const storyLink = CHINA_PROVINCE_STORIES[id];
             const storyLabel = `RunCN · ${province[0]}`;
+            const storyLinks = mapStoryLinks(storyLink, CHINA_PROVINCE_STORY_GROUPS[id]);
             path.setAttribute('fill', province[1]);
             path.setAttribute('stroke', lightMode ? '#ffffff' : 'rgba(255,255,255,.58)');
             path.setAttribute('stroke-width', lightMode ? '1.7' : '1.15');
@@ -2621,10 +2759,12 @@
             path.addEventListener('mouseenter', () => {
               path.style.opacity = '.82';
               setStatus(status, describeMapStory(storyLabel, storyLink));
+              showMapStoryPopover(slot, storyLabel, storyLinks);
             });
             path.addEventListener('mouseleave', () => {
               path.style.opacity = '1';
               setStatus(status);
+              hideMapStoryPopover(slot);
             });
             path.addEventListener('click', event => (
               focusMapStory(event, storyLink, province[1], status, storyLabel)
@@ -2678,6 +2818,7 @@
           const p = projectChina(lat, lon);
           const province = CHINA_PROVINCES[provinceId];
           const storyLabel = `${city} · ${province?.[0] || 'RunCN'}`;
+          const storyLinks = mapStoryLinks(storyLink);
           addSvgEl(glowLayer, 'circle', {
             cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '10' : '11',
             class: 'city-dot-glow'
@@ -2693,8 +2834,14 @@
             class: 'city-dot'
           });
           dot.style.cursor = 'pointer';
-          dot.addEventListener('mouseenter', () => setStatus(status, describeMapStory(storyLabel, storyLink)));
-          dot.addEventListener('mouseleave', () => setStatus(status));
+          dot.addEventListener('mouseenter', () => {
+            setStatus(status, describeMapStory(storyLabel, storyLink));
+            showMapStoryPopover(slot, storyLabel, storyLinks);
+          });
+          dot.addEventListener('mouseleave', () => {
+            setStatus(status);
+            hideMapStoryPopover(slot);
+          });
           dot.addEventListener('click', event => (
             focusMapStory(event, storyLink, province?.[1], status, storyLabel)
           ));
