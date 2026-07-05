@@ -367,7 +367,8 @@
       color: var(--ink); background: rgba(128,145,157,.08); font-size: 11px; font-weight: 900;
     }
     .task-move-up,
-    .task-move-down {
+    .task-move-down,
+    .task-carry {
       min-height: 27px;
       min-width: 30px;
       padding: 0 8px;
@@ -378,6 +379,7 @@
       font-size: 12px;
       font-weight: 900;
     }
+    .task-carry:disabled { cursor: not-allowed; opacity: .48; }
     .pom-adjust {
       min-height: 27px; padding: 0 9px; border: 1px solid var(--line); border-radius: 8px;
       color: var(--task-color); background: rgba(128,145,157,.08); font-size: 11px; font-weight: 900;
@@ -761,7 +763,8 @@
     html[data-theme="dark"] .summary-button:hover { border-color: #58a8f0; background: #15344d; }
     html[data-theme="dark"] .drag-handle,
     html[data-theme="dark"] .task-move-up,
-    html[data-theme="dark"] .task-move-down { border-color: #405461; color: #cbd7de; background: #12212c; }
+    html[data-theme="dark"] .task-move-down,
+    html[data-theme="dark"] .task-carry { border-color: #405461; color: #cbd7de; background: #12212c; }
     html[data-theme="dark"] .month-title-button { color: var(--ink); }
 
     @media (max-width: 760px) {
@@ -1103,7 +1106,10 @@
         progressEmpty: "Write the first task to begin.",
         progressStatus: (percent, done, total, extra) => `${percent}% focus complete · ${done}/${total} planned Pomodoros${extra ? ` · +${extra} extra` : ""}.`,
         todayTasks: "Today's tasks", dateTasks: (month, day) => `${month}/${day} tasks`, quoteLabel: "DAILY THOUGHT · 每日一句",
-        copyTomorrow: "Copy to next day", copyTomorrowDone: count => `${count} task${count === 1 ? "" : "s"} copied to the next day.`, copyTomorrowEmpty: "No tasks to copy.", copyTomorrowEnd: "This is the last day in the planner.",
+        copyTomorrow: "Move open tasks to next day", copyTaskTomorrow: "Tomorrow",
+        copyTomorrowDone: count => `${count} task${count === 1 ? "" : "s"} copied to the next day.`,
+        copyTomorrowEmpty: "No open tasks to copy.", copyTaskMissing: "This task cannot be copied.",
+        copyTomorrowEnd: "This is the last day in the planner.",
         taskPlaceholder: "Write down something to finish…", addTask: "＋ Add task",
         emptyTasks: "No tasks yet. Write down the one thing that matters most.",
         completeTask: "Complete task", deleteTask: "Delete task", editTask: "Edit", editPrompt: "Edit this task",
@@ -1179,7 +1185,10 @@
         progressEmpty: "写下第一项任务，计划就开始了。",
         progressStatus: (percent, done, total, extra) => `${percent}% 专注完成 · ${done}/${total} 个计划番茄钟${extra ? ` · 额外 +${extra}` : ""}。`,
         todayTasks: "今天的任务", dateTasks: (month, day) => `${month}月${day}日的任务`, quoteLabel: "每日一句 · DAILY THOUGHT",
-        copyTomorrow: "加入后一天", copyTomorrowDone: count => `已加入后一天：${count} 项任务。`, copyTomorrowEmpty: "这一天没有任务可加入。", copyTomorrowEnd: "已经是计划里的最后一天。",
+        copyTomorrow: "未完成加入后一天", copyTaskTomorrow: "明天",
+        copyTomorrowDone: count => `已加入后一天：${count} 项任务。`,
+        copyTomorrowEmpty: "这一天没有未完成任务可加入。", copyTaskMissing: "这个任务不能加入后一天。",
+        copyTomorrowEnd: "已经是计划里的最后一天。",
         taskPlaceholder: "写下一项要完成的事…", addTask: "＋ 添加任务",
         emptyTasks: "这一天还没有任务。写下最重要的一件事吧。",
         completeTask: "完成任务", deleteTask: "删除任务", editTask: "编辑", editPrompt: "编辑这个任务",
@@ -2004,32 +2013,35 @@
     function findTask(date, id) {
       return state.data.days[date]?.tasks?.find(task => task.id === id);
     }
-    function copyTasksToNextDay() {
+    function taskCarryCopy(task, index) {
+      normalizeTask(task, index);
+      return {
+        id: uid(),
+        text: task.text,
+        done: false,
+        completedAt: null,
+        color: task.color,
+        pomodoroTarget: Math.max(1, task.pomodoroTarget),
+        pomodoroDone: 0,
+        focusMs: 0
+      };
+    }
+    function copyTasksToNextDay({ taskId = null, onlyOpen = true } = {}) {
       const next = addDays(state.selected, 1);
       if (next > END) {
         toast(t().copyTomorrowEnd);
         return;
       }
       const source = dayData(state.selected);
-      const tasks = source.tasks || [];
+      let tasks = source.tasks || [];
+      if (taskId) tasks = tasks.filter(task => task.id === taskId);
+      else if (onlyOpen) tasks = tasks.filter(task => !task.done);
       if (!tasks.length) {
-        toast(t().copyTomorrowEmpty);
+        toast(taskId ? t().copyTaskMissing : t().copyTomorrowEmpty);
         return;
       }
       const target = dayData(next);
-      const copied = tasks.map((task, index) => {
-        normalizeTask(task, index);
-        return {
-          id: uid(),
-          text: task.text,
-          done: false,
-          completedAt: null,
-          color: task.color,
-          pomodoroTarget: Math.max(1, task.pomodoroTarget),
-          pomodoroDone: 0,
-          focusMs: 0
-        };
-      });
+      const copied = tasks.map(taskCarryCopy);
       target.tasks.push(...copied);
       state.openMonths.add(next.slice(0, 7));
       renderCalendar();
@@ -2142,7 +2154,7 @@
       $("#editorTitle").textContent = state.selected === today ? t().todayTasks : t().dateTasks(month, day);
       $("#editorSubtitle").textContent = displayDate(state.selected);
       $("#dateChip").textContent = state.selected;
-      $("#copyTomorrowButton").disabled = state.selected >= END || !data.tasks.length;
+      $("#copyTomorrowButton").disabled = state.selected >= END || !data.tasks.some(task => !task.done);
       const quote = quoteFor(state.selected);
       $("#quotePrimary").textContent = quote[state.lang];
       $("#quoteSecondary").textContent = quote[state.lang === "en" ? "zh" : "en"];
@@ -2174,6 +2186,7 @@
                 </span>
                 <button class="pom-start" type="button" ${running ? "disabled" : ""}>${running ? t().running : t().startFocus}</button>
                 <button class="task-edit" type="button">${escapeHTML(t().editTask)}</button>
+                <button class="task-carry" type="button" ${state.selected >= END ? "disabled" : ""}>${escapeHTML(t().copyTaskTomorrow)}</button>
                 <button class="task-move-up" type="button" aria-label="${t().moveUp}" title="${t().moveUp}">↑</button>
                 <button class="task-move-down" type="button" aria-label="${t().moveDown}" title="${t().moveDown}">↓</button>
                 ${extraBadge}
@@ -2275,6 +2288,7 @@
             if (event.key === "Escape") renderEditor();
           });
         });
+        row.querySelector(".task-carry").addEventListener("click", () => copyTasksToNextDay({ taskId: row.dataset.id, onlyOpen: false }));
         row.querySelector(".task-move-up").addEventListener("click", () => moveTaskInSelected(row.dataset.id, -1));
         row.querySelector(".task-move-down").addEventListener("click", () => moveTaskInSelected(row.dataset.id, 1));
         row.querySelector(".pom-start").addEventListener("click", () => startPomodoro(state.selected, row.dataset.id));
