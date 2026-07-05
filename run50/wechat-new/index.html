@@ -2391,8 +2391,9 @@
             return;
           }
           path.setAttribute('fill', isFrame ? (lightMode ? '#a9d8f0' : '#323a52') : (lightMode ? '#dedad3' : '#242b3f'));
-          path.setAttribute('stroke', isFrame ? (lightMode ? 'rgba(18,24,31,.62)' : 'rgba(207,218,232,.28)') : (lightMode ? 'rgba(18,24,31,.66)' : 'none'));
-          path.setAttribute('stroke-width', isFrame ? (lightMode ? '.78' : '.8') : (lightMode ? '.58' : '0'));
+          const lightFrameStroke = id === 'map_USA' ? 'none' : 'rgba(18,24,31,.28)';
+          path.setAttribute('stroke', isFrame ? (lightMode ? lightFrameStroke : 'rgba(207,218,232,.28)') : (lightMode ? 'rgba(18,24,31,.66)' : 'none'));
+          path.setAttribute('stroke-width', isFrame ? (lightMode ? (id === 'map_USA' ? '0' : '.52') : '.8') : (lightMode ? '.58' : '0'));
           path.style.opacity = isFrame ? '1' : (lightMode ? '1' : '.78');
           path.style.pointerEvents = 'none';
         });
