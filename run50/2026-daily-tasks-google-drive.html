@@ -325,7 +325,14 @@
     .task-row input { width: 19px; height: 19px; accent-color: var(--green); }
     .task-row.done .task-text { color: #929ba2; text-decoration: line-through; }
     .task-main { min-width: 0; }
-    .task-text { min-width: 0; overflow-wrap: anywhere; }
+    .task-text { min-width: 0; overflow-wrap: anywhere; user-select: text; }
+    .text-highlight {
+      padding: 1px 3px;
+      border-radius: 5px;
+      color: #18202a;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
     .task-edit-form { display: flex; flex-wrap: wrap; gap: 7px; }
     .task-edit-input {
       min-width: min(100%, 320px);
@@ -365,6 +372,25 @@
     .task-edit {
       min-height: 27px; padding: 0 9px; border: 1px solid var(--line); border-radius: 8px;
       color: var(--ink); background: rgba(128,145,157,.08); font-size: 11px; font-weight: 900;
+    }
+    .highlight-color {
+      width: 31px;
+      height: 27px;
+      padding: 2px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(128,145,157,.08);
+    }
+    .task-highlight-apply,
+    .task-highlight-clear {
+      min-height: 27px;
+      padding: 0 9px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: rgba(128,145,157,.08);
+      font-size: 11px;
+      font-weight: 900;
     }
     .task-move-up,
     .task-move-down,
@@ -762,6 +788,9 @@
     html[data-theme="dark"] .copy-tomorrow:hover,
     html[data-theme="dark"] .summary-button:hover { border-color: #58a8f0; background: #15344d; }
     html[data-theme="dark"] .drag-handle,
+    html[data-theme="dark"] .highlight-color,
+    html[data-theme="dark"] .task-highlight-apply,
+    html[data-theme="dark"] .task-highlight-clear,
     html[data-theme="dark"] .task-move-up,
     html[data-theme="dark"] .task-move-down,
     html[data-theme="dark"] .task-carry { border-color: #405461; color: #cbd7de; background: #12212c; }
@@ -1078,7 +1107,7 @@
     const state = {
       key: null, vault: null, data: { days: {} }, selected: START, filter: "all", saveTimer: null, timerInterval: null, audio: null,
       wakeLock: null, keepAwake: localStorage.getItem(WAKE_LOCK_KEY) === "1",
-      openMonths: new Set([START.slice(0, 7)]), draggedTaskId: null,
+      openMonths: new Set([START.slice(0, 7)]), draggedTaskId: null, highlightSelection: null,
       autoSyncTimer: null, syncBusy: false,
       sync: readSyncConfig(),
       driveAutoTimer: null, driveBusy: false, driveAccessToken: "", driveTokenClient: null,
@@ -1114,6 +1143,8 @@
         emptyTasks: "No tasks yet. Write down the one thing that matters most.",
         completeTask: "Complete task", deleteTask: "Delete task", editTask: "Edit", editPrompt: "Edit this task",
         saveEdit: "Save", cancelEdit: "Cancel", dragTask: "Drag to reorder", moveUp: "Move up", moveDown: "Move down",
+        highlightColor: "Highlight color", highlightApply: "Highlight", highlightClear: "Clear color",
+        highlightSelectFirst: "Select part of the task text first.", highlightApplied: "Text highlight saved.", highlightCleared: "Text highlight cleared.",
         pomodoro: (done, target) => `${done}/${target} × 25 min`, fewer: "One fewer Pomodoro", more: "One more Pomodoro",
         startFocus: "▶ Start 25 min", running: "Running", changeColor: "Change task color",
         overTarget: extra => `+${extra} extra`, matchTarget: "Make target match",
@@ -1193,6 +1224,8 @@
         emptyTasks: "这一天还没有任务。写下最重要的一件事吧。",
         completeTask: "完成任务", deleteTask: "删除任务", editTask: "编辑", editPrompt: "编辑这个任务",
         saveEdit: "保存", cancelEdit: "取消", dragTask: "拖动排序", moveUp: "上移", moveDown: "下移",
+        highlightColor: "涂色颜色", highlightApply: "涂色", highlightClear: "清除涂色",
+        highlightSelectFirst: "请先选中任务文字的一部分。", highlightApplied: "文字涂色已保存。", highlightCleared: "文字涂色已清除。",
         pomodoro: (done, target) => `${done}/${target} × 25分钟`, fewer: "减少一个番茄钟", more: "增加一个番茄钟",
         startFocus: "▶ 开始25分钟", running: "计时中", changeColor: "切换任务颜色",
         overTarget: extra => `额外 +${extra}`, matchTarget: "目标改成实际",
@@ -1248,6 +1281,7 @@
     };
     const t = () => copy[state.lang];
     const TASK_COLORS = ["#0b67c2", "#e07a28", "#2f855a", "#8b5bb5", "#c34f65", "#168a92", "#9a7b21", "#5c6ac4"];
+    const HIGHLIGHT_COLORS = ["#fff176", "#ffcc80", "#a5d6a7", "#90caf9", "#ce93d8", "#f8bbd0", "#80cbc4", "#ef9a9a"];
     const quoteStarts = [
       { en: "Begin with what you can do now", zh: "从现在能做的事情开始" },
       { en: "Protect one quiet hour", zh: "守住一段安静的时间" },
@@ -1775,6 +1809,96 @@
     function escapeHTML(value) {
       return String(value).replace(/[&<>"']/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[char]);
     }
+    function isHexColor(value) {
+      return /^#[0-9a-f]{6}$/i.test(String(value || ""));
+    }
+    function normalizeTaskHighlights(task) {
+      const length = task.text.length;
+      const marks = Array.isArray(task.highlights) ? task.highlights : [];
+      task.highlights = marks
+        .map(mark => ({
+          start: Math.max(0, Math.min(length, Number(mark.start) || 0)),
+          end: Math.max(0, Math.min(length, Number(mark.end) || 0)),
+          color: isHexColor(mark.color) ? mark.color : HIGHLIGHT_COLORS[0]
+        }))
+        .filter(mark => mark.end > mark.start)
+        .sort((a, b) => a.start - b.start || a.end - b.end)
+        .reduce((clean, mark) => {
+          const previous = clean[clean.length - 1];
+          if (previous && mark.start < previous.end) return clean;
+          clean.push(mark);
+          return clean;
+        }, []);
+      if (!isHexColor(task.highlightColor)) task.highlightColor = HIGHLIGHT_COLORS[0];
+    }
+    function renderTaskText(task) {
+      normalizeTaskHighlights(task);
+      if (!task.highlights.length) return escapeHTML(task.text);
+      let cursor = 0;
+      let html = "";
+      task.highlights.forEach(mark => {
+        html += escapeHTML(task.text.slice(cursor, mark.start));
+        html += `<span class="text-highlight" style="background:${mark.color}">${escapeHTML(task.text.slice(mark.start, mark.end))}</span>`;
+        cursor = mark.end;
+      });
+      html += escapeHTML(task.text.slice(cursor));
+      return html;
+    }
+    function selectionOffsetsWithin(element) {
+      const selection = window.getSelection();
+      if (!selection || !selection.rangeCount || selection.isCollapsed) return null;
+      const range = selection.getRangeAt(0);
+      if (!element.contains(range.commonAncestorContainer)) return null;
+      const startRange = document.createRange();
+      startRange.selectNodeContents(element);
+      startRange.setEnd(range.startContainer, range.startOffset);
+      const endRange = document.createRange();
+      endRange.selectNodeContents(element);
+      endRange.setEnd(range.endContainer, range.endOffset);
+      const start = startRange.toString().length;
+      const end = endRange.toString().length;
+      const low = Math.min(start, end);
+      const high = Math.max(start, end);
+      return high > low ? { start: low, end: high } : null;
+    }
+    function rememberTaskSelection(row) {
+      const textEl = row.querySelector(".task-text");
+      const offsets = selectionOffsetsWithin(textEl);
+      if (!offsets) return;
+      state.highlightSelection = { taskId: row.dataset.id, ...offsets };
+    }
+    function applyTaskHighlight(taskId, color) {
+      const selection = state.highlightSelection;
+      if (!selection || selection.taskId !== taskId || selection.end <= selection.start) {
+        toast(t().highlightSelectFirst);
+        return;
+      }
+      const task = findTask(state.selected, taskId);
+      if (!task) return;
+      normalizeTask(task, 0);
+      const highlightColor = isHexColor(color) ? color : HIGHLIGHT_COLORS[0];
+      task.highlightColor = highlightColor;
+      task.highlights = task.highlights.filter(mark => mark.end <= selection.start || mark.start >= selection.end);
+      task.highlights.push({ start: selection.start, end: selection.end, color: highlightColor });
+      normalizeTaskHighlights(task);
+      renderEditor();
+      queuePersist();
+      toast(t().highlightApplied);
+    }
+    function clearTaskHighlight(taskId) {
+      const task = findTask(state.selected, taskId);
+      if (!task) return;
+      normalizeTask(task, 0);
+      const selection = state.highlightSelection;
+      if (selection && selection.taskId === taskId && selection.end > selection.start) {
+        task.highlights = task.highlights.filter(mark => mark.end <= selection.start || mark.start >= selection.end);
+      } else {
+        task.highlights = [];
+      }
+      renderEditor();
+      queuePersist();
+      toast(t().highlightCleared);
+    }
 
     async function initGate() {
       const vault = readVault();
@@ -1870,11 +1994,13 @@
     }
 
     function normalizeTask(task, index) {
+      task.text = String(task.text || "");
       if (!TASK_COLORS.includes(task.color)) task.color = TASK_COLORS[index % TASK_COLORS.length];
       task.pomodoroTarget = Math.min(MAX_POMODOROS, Math.max(1, Number(task.pomodoroTarget) || 1));
       task.pomodoroDone = Math.max(0, Number(task.pomodoroDone) || 0);
       task.focusMs = Math.max(Number(task.focusMs) || 0, task.pomodoroDone * POMODORO_MS);
       if (!("completedAt" in task)) task.completedAt = null;
+      normalizeTaskHighlights(task);
       return task;
     }
     function taskPomodoroRatio(task) {
@@ -2019,9 +2145,11 @@
         id: uid(),
         text: task.text,
         done: false,
-        completedAt: null,
-        color: task.color,
-        pomodoroTarget: Math.max(1, task.pomodoroTarget),
+          completedAt: null,
+          color: task.color,
+          highlightColor: task.highlightColor,
+          highlights: task.highlights.map(mark => ({ ...mark })),
+          pomodoroTarget: Math.max(1, task.pomodoroTarget),
         pomodoroDone: 0,
         focusMs: 0
       };
@@ -2175,7 +2303,7 @@
             <button class="drag-handle" type="button" aria-label="${t().dragTask}" title="${t().dragTask}">↕</button>
             <input type="checkbox" ${task.done ? "checked" : ""} aria-label="${t().completeTask}">
             <div class="task-main">
-              <div class="task-text">${escapeHTML(task.text)}</div>
+              <div class="task-text">${renderTaskText(task)}</div>
               <div class="task-progress" aria-label="${ratio}%"><i style="width:${ratio}%"></i></div>
               <div class="task-meta">
                 <button class="color-button" type="button" aria-label="${t().changeColor}"></button>
@@ -2186,6 +2314,9 @@
                 </span>
                 <button class="pom-start" type="button" ${running ? "disabled" : ""}>${running ? t().running : t().startFocus}</button>
                 <button class="task-edit" type="button">${escapeHTML(t().editTask)}</button>
+                <input class="highlight-color" type="color" value="${escapeHTML(task.highlightColor)}" aria-label="${t().highlightColor}" title="${t().highlightColor}">
+                <button class="task-highlight-apply" type="button">${escapeHTML(t().highlightApply)}</button>
+                <button class="task-highlight-clear" type="button">${escapeHTML(t().highlightClear)}</button>
                 <button class="task-carry" type="button" ${state.selected >= END ? "disabled" : ""}>${escapeHTML(t().copyTaskTomorrow)}</button>
                 <button class="task-move-up" type="button" aria-label="${t().moveUp}" title="${t().moveUp}">↑</button>
                 <button class="task-move-down" type="button" aria-label="${t().moveDown}" title="${t().moveDown}">↓</button>
@@ -2251,6 +2382,19 @@
           task.pomodoroTarget = Math.min(MAX_POMODOROS, Math.max(1, task.pomodoroDone));
           renderEditor(); renderCalendar(); updateProgress(); queuePersist();
         });
+        row.querySelector(".task-text").addEventListener("mouseup", () => rememberTaskSelection(row));
+        row.querySelector(".task-text").addEventListener("touchend", () => setTimeout(() => rememberTaskSelection(row), 0));
+        row.querySelector(".highlight-color").addEventListener("input", event => {
+          const task = findTask(state.selected, row.dataset.id);
+          if (task) task.highlightColor = event.target.value;
+          queuePersist();
+        });
+        row.querySelector(".task-highlight-apply").addEventListener("mousedown", event => event.preventDefault());
+        row.querySelector(".task-highlight-apply").addEventListener("click", () => {
+          applyTaskHighlight(row.dataset.id, row.querySelector(".highlight-color").value);
+        });
+        row.querySelector(".task-highlight-clear").addEventListener("mousedown", event => event.preventDefault());
+        row.querySelector(".task-highlight-clear").addEventListener("click", () => clearTaskHighlight(row.dataset.id));
         row.querySelector(".task-edit").addEventListener("click", () => {
           const task = findTask(state.selected, row.dataset.id);
           if (!task || row.classList.contains("editing")) return;
@@ -2278,7 +2422,10 @@
           input.select();
           const commit = () => {
             const trimmed = input.value.trim();
-            if (trimmed) task.text = trimmed.slice(0, 160);
+            if (trimmed && trimmed.slice(0, 160) !== task.text) {
+              task.text = trimmed.slice(0, 160);
+              task.highlights = [];
+            }
             renderEditor(); renderCalendar(); queuePersist();
           };
           save.addEventListener("click", commit);
@@ -2310,7 +2457,10 @@
       const tasks = dayData(state.selected).tasks;
       tasks.push({
         id: uid(), text, done: false, completedAt: null,
-        color: TASK_COLORS[tasks.length % TASK_COLORS.length], pomodoroTarget: 1, pomodoroDone: 0, focusMs: 0
+        color: TASK_COLORS[tasks.length % TASK_COLORS.length],
+        highlightColor: HIGHLIGHT_COLORS[0],
+        highlights: [],
+        pomodoroTarget: 1, pomodoroDone: 0, focusMs: 0
       });
       input.value = "";
       state.openMonths.add(state.selected.slice(0, 7));
