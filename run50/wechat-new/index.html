@@ -2670,7 +2670,6 @@
               path.style.filter = 'brightness(1.08)';
             });
             setStatus(status, describeMapStory(storyLabel, storyLink));
-            showMapStoryPopover(slot, storyLabel, storyLinks, { color: US_COLORS[abbr], status });
           };
           const hideHover = () => {
             paths.forEach(path => {
@@ -2681,7 +2680,6 @@
               path.style.filter = '';
             });
             setStatus(status);
-            hideMapStoryPopover(slot);
           };
           paths.forEach(path => {
             path.setAttribute('fill', US_COLORS[abbr]);
@@ -2803,12 +2801,10 @@
             path.addEventListener('mouseenter', () => {
               path.style.opacity = '.82';
               setStatus(status, describeMapStory(storyLabel, storyLink));
-              showMapStoryPopover(slot, storyLabel, storyLinks, { color: province[1], status });
             });
             path.addEventListener('mouseleave', () => {
               path.style.opacity = '1';
               setStatus(status);
-              hideMapStoryPopover(slot);
             });
             path.addEventListener('click', event => (
               chooseOrFocusMapStory(event, slot, storyLinks, storyLink, province[1], status, storyLabel)
