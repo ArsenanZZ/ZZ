@@ -2719,13 +2719,6 @@
           const storyLink = US_CITY_STORIES[`${abbr}:${city}`] || US_STATE_STORIES[abbr];
           const storyLabel = `${city} · ${US_NAMES[abbr]}`;
           const storyLinks = mapStoryLinks(storyLink);
-          const showCityStory = () => {
-            hideMapStoryPopover(slot, 0);
-            setStatus(status, describeMapStory(storyLabel, storyLink));
-          };
-          const hideCityStory = () => {
-            setStatus(status);
-          };
           const focusCityStory = event => (
             focusMapStory(event, storyLink, US_COLORS[abbr], status, storyLabel)
           );
@@ -2749,8 +2742,6 @@
           });
           [hit, dot].forEach(el => {
             el.style.cursor = 'pointer';
-            el.addEventListener('mouseenter', showCityStory);
-            el.addEventListener('mouseleave', hideCityStory);
             el.addEventListener('click', focusCityStory);
           });
         });
@@ -2872,13 +2863,6 @@
           const province = CHINA_PROVINCES[provinceId];
           const storyLabel = `${city} · ${province?.[0] || 'RunCN'}`;
           const storyLinks = mapStoryLinks(storyLink);
-          const showCityStory = () => {
-            hideMapStoryPopover(slot, 0);
-            setStatus(status, describeMapStory(storyLabel, storyLink));
-          };
-          const hideCityStory = () => {
-            setStatus(status);
-          };
           const focusCityStory = event => (
             focusMapStory(event, storyLink, province?.[1], status, storyLabel)
           );
@@ -2902,8 +2886,6 @@
           });
           [hit, dot].forEach(el => {
             el.style.cursor = 'pointer';
-            el.addEventListener('mouseenter', showCityStory);
-            el.addEventListener('mouseleave', hideCityStory);
             el.addEventListener('click', focusCityStory);
           });
         });
