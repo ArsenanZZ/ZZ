@@ -51,6 +51,7 @@ SKIP_EXACT = {
     "出发去纽约",
     "漫长的等待",
     "第一个大满贯",
+    "0/0",
 }
 
 SKIP_CONTAINS = (
@@ -210,9 +211,13 @@ def figure(block: Block) -> str:
 </section>"""
 
 
-def render_blocks(blocks: list[Block], section_plan: list[tuple[str, str, str]]) -> str:
+def render_blocks(
+    blocks: list[Block],
+    section_plan: list[tuple[str, str, str]],
+    start_number: int = 1,
+) -> tuple[str, int]:
     rendered: list[str] = []
-    section_index = 0
+    section_index = start_number - 1
     active_title = ""
 
     def add_heading(title: str, label: str) -> None:
@@ -238,7 +243,7 @@ def render_blocks(blocks: list[Block], section_plan: list[tuple[str, str, str]])
             rendered.append(paragraph(block.text))
         elif block.kind == "figure":
             rendered.append(figure(block))
-    return "\n".join(rendered)
+    return "\n".join(rendered), section_index + 1
 
 
 def vlog_opening() -> str:
@@ -247,8 +252,8 @@ def vlog_opening() -> str:
   <section class="wechat-vlog-frame" style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 8px; overflow: hidden; background: #12384a; border: 1px solid #d5e4eb; box-shadow: 0 16px 36px rgba(20, 52, 68, 0.16);">
     <section class="wechat-vlog-panel" style="position: absolute; inset: 0; padding: 24px 26px; box-sizing: border-box; background: linear-gradient(135deg, #12384a 0%, #2f855a 58%, #0f2634 100%); color: #ffffff;">
       <p style="margin: 0 0 10px; font-size: 12px; line-height: 1.3; letter-spacing: 2.2px; font-weight: 900; color: #ffdd75;">RUN50 VLOG · NEW YORK</p>
-      <p class="wechat-vlog-title" style="margin: 0; max-width: 430px; font-size: 28px; line-height: 1.25; font-weight: 900; letter-spacing: 0;">先看一段纽约</p>
-      <p class="wechat-vlog-summary" style="margin: 10px 0 0; max-width: 460px; font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.86);">城市篇与比赛篇合并：赛博朋克纽约、法拉盛、时代广场、哈德逊河夜航，再跑进50周年纽约马拉松的五个城区。</p>
+      <p class="wechat-vlog-title" style="margin: 0; max-width: 430px; font-size: 28px; line-height: 1.25; font-weight: 900; letter-spacing: 0;">先跑一场纽约</p>
+      <p class="wechat-vlog-summary" style="margin: 10px 0 0; max-width: 460px; font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.86);">从50周年纽约马拉松的起跑、五区奔跑和中央公园冲线写起，再回到法拉盛、时代广场、哈德逊河夜航，补全这座赛博朋克城市的底色。</p>
       <section class="wechat-vlog-meta" style="position: absolute; left: 26px; bottom: 22px; display: inline-block; padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.9); font-size: 12px; line-height: 1.4; letter-spacing: 0.5px;">New York · 2021.11.07 · 16:9 Vlog</section>
       <section class="wechat-vlog-play" style="position: absolute; right: 30px; bottom: 26px; width: 64px; height: 64px; border-radius: 50%; background: #ffcc00; box-shadow: 0 10px 24px rgba(0,0,0,0.22);">
         <span class="wechat-vlog-play-icon" style="position: absolute; left: 25px; top: 18px; width: 0; height: 0; border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-left: 22px solid #12384a;"></span>
@@ -260,8 +265,8 @@ def vlog_opening() -> str:
 
 
 def opening_panels() -> str:
-    note = "这篇把两篇旧文并成一条纽约长线：先写城市的混乱、漂亮和赛博朋克，再写50周年纽约马拉松从领物、等起跑到冲线的完整一天。"
-    summary = "法拉盛、时代广场、中央公园、哈德逊河夜航，是纽约的城市底色；Verrazano Bridge、布鲁克林、皇后区、曼哈顿和中央公园，则把这座城市变成一条42.195公里的赛道。"
+    note = "这篇把两篇旧文并成一条纽约长线：先写50周年纽约马拉松从领物、等起跑到五区奔跑和中央公园冲线，再把法拉盛、时代广场、哈德逊河夜航这些城市切片放回赛后，像给比赛补上一层纽约的底色。"
+    summary = "Verrazano Bridge、布鲁克林、皇后区、曼哈顿和中央公园，先把这座城市变成一条42.195公里的赛道；法拉盛、时代广场、哈德逊河夜航，再解释为什么纽约始终混乱、漂亮，又有一点赛博朋克。"
     return f"""
 <section style="margin: 0 0 28px; padding: 16px 18px; background: #edf5f8; border-radius: 6px;"><p style="margin: 0 0 6px; font-size: 12px; line-height: 1.5; letter-spacing: 1px; color: #2f855a; font-weight: 800;">OPENING NOTE</p><p style="margin: 0; font-size: 15px; line-height: 1.9; color: #26343f; text-align: justify;">{accent_inline(note)}</p></section>
 <section style="margin: 0 0 28px; display: block;"><p style="margin: 0 0 8px; font-size: 14px; line-height: 1.8; color: #b98735; font-weight: 800;">本文速记</p><p style="margin: 0; font-size: 14px; line-height: 1.9; color: #53616f;">{accent_inline(summary)}</p></section>
@@ -271,8 +276,10 @@ def opening_panels() -> str:
   <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid #b98735; font-size: 12px; line-height: 1.65; letter-spacing: 0.2px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">奖牌质感封面｜New York</p>
 </section>
 <section class="article-map-panel" aria-label="Article map">
-  <div class="article-map-window" data-map-kind="us" data-region="NY" data-short-label="NY" data-label="Run50 Map - New York"></div>
-  <p class="article-map-caption">Run50 Map - New York @Arsenan</p>
+  <div class="article-map-window article-map-snapshot article-map-snapshot-dark" data-map-kind="us" data-map-theme="dark" data-region="NY" data-short-label="NY" data-label="Run50 Map - New York"></div>
+  <p class="article-map-caption">Run50 Map - New York · Dark @Arsenan</p>
+  <div class="article-map-window article-map-snapshot article-map-snapshot-light" data-map-kind="us" data-map-theme="light" data-region="NY" data-short-label="NY" data-label="Run50 Map - New York"></div>
+  <p class="article-map-caption">Run50 Map - New York · Light @Arsenan</p>
 </section>"""
 
 
@@ -281,7 +288,7 @@ def finish_card() -> str:
 <section style="margin: 46px 0 0; padding: 22px 18px 20px; border-radius: 8px; background: linear-gradient(135deg, #132535 0%, #205f87 58%, #d1a35f 100%); color: #ffffff; box-shadow: 0 14px 32px rgba(19, 37, 53, 0.18);">
   <p style="margin: 0 0 10px; font-size: 11px; line-height: 1.4; letter-spacing: 2.2px; font-weight: 900; color: rgba(255,255,255,0.78);">RUN50 FINISH LINE</p>
   <h2 style="margin: 0 0 12px; font-size: 24px; line-height: 1.35; font-weight: 900; color: #ffffff; letter-spacing: 0;">第3州，纽约点亮。</h2>
-  <p style="margin: 0; font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.92); text-align: justify;">从赛博朋克式的城市漫游，到50周年纽约马拉松的五区奔跑，这一站不像只是完成一场比赛，更像把纽约从地下铁、游船、街区、桥梁和中央公园里重新走读了一遍。</p>
+  <p style="margin: 0; font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.92); text-align: justify;">从50周年纽约马拉松的五区奔跑，到赛后再回看地下铁、游船、街区、桥梁和中央公园，这一站不像只是完成一场比赛，更像先用双脚穿过纽约，再慢慢读懂纽约。</p>
   <section style="margin: 18px 0 0; display: table; width: 100%; border-collapse: collapse;">
     <section style="display: table-cell; width: 33.33%; padding: 10px 6px; border-right: 1px solid rgba(255,255,255,0.18); text-align: center;">
       <p style="margin: 0; font-size: 18px; line-height: 1.2; font-weight: 900; color: #ffffff;">3</p>
@@ -349,14 +356,14 @@ def page_shell(content: str) -> str:
       }}
     }})();
   </script>
-  <link rel="stylesheet" href="../wechat-article-theme.css?v=20260705-ny-merge">
+  <link rel="stylesheet" href="../wechat-article-theme.css?v=20260705-ny-current-border">
 </head>
 <body style="margin: 0; padding: 0; background: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;">
 <button class="article-theme-toggle" type="button" aria-label="Toggle theme">Light</button>
-  <script src="../us-map-svg.js?v=20260705-ny-merge"></script>
-  <script src="../china-map-svg.js?v=20260705-ny-merge"></script>
-  <script src="../wechat-article-map.js?v=20260705-ny-merge"></script>
-  <script src="../wechat-article-theme.js?v=20260705-ny-merge"></script>
+  <script src="../us-map-svg.js?v=20260705-ny-current-border"></script>
+  <script src="../china-map-svg.js?v=20260705-ny-current-border"></script>
+  <script src="../wechat-article-map.js?v=20260705-ny-current-border"></script>
+  <script src="../wechat-article-theme.js?v=20260705-ny-current-border"></script>
 
 <section style="max-width: 677px; width: 100%; box-sizing: border-box; margin: 0 auto; padding: 28px 18px 58px; background: #ffffff;">
 <section style="margin: 0 0 22px; padding: 16px 0 18px; border-top: 4px solid #2f855a; border-bottom: 1px solid #dfe9ef;">
@@ -400,13 +407,16 @@ def build() -> None:
         ("纽约的故事还远没有结束", "赛后纽约", "Postscript"),
     ]
 
+    race_html, next_section = render_blocks(race_blocks, race_sections)
+    city_html, _ = render_blocks(city_blocks, city_sections, next_section)
+
     content = "\n".join(
         [
             vlog_opening(),
             opening_panels(),
-            render_blocks(city_blocks, city_sections),
-            '<section style="margin: 42px 0 24px; padding: 16px 18px; border-radius: 7px; background: #fff7e7; border-left: 4px solid #d1a35f;"><p style="margin: 0; font-size: 14px; line-height: 1.9; color: #5e4a2b; text-align: justify;">城市的底色铺好之后，故事转到这次纽约之行真正的主线：50周年纽约马拉松。</p></section>',
-            render_blocks(race_blocks, race_sections),
+            race_html,
+            '<section style="margin: 42px 0 24px; padding: 16px 18px; border-radius: 7px; background: #fff7e7; border-left: 4px solid #d1a35f;"><p style="margin: 0; font-size: 14px; line-height: 1.9; color: #5e4a2b; text-align: justify;">跑完这场50周年纽约马拉松之后，城市不再只是背景。那些赛前赛后的街区、灯光、地铁和游船，像把赛道之外的纽约慢慢补齐。</p></section>',
+            city_html,
             finish_card(),
         ]
     )

@@ -42,7 +42,7 @@
   ];
 
   var US_LABEL_PATHS = [
-    'NV', 'UT', 'ID', 'MT', 'ND', 'MN', 'IA', 'WI', 'IL', 'MO', 'AR', 'LA',
+    'line_13_', 'NV', 'UT', 'ID', 'MT', 'ND', 'MN', 'IA', 'WI', 'IL', 'MO', 'AR', 'LA',
     'MS', 'AL', 'TN', 'KY', 'IN', 'MI', 'OH', 'WV', 'VA', 'SC', 'NC', 'PA',
     'NY', 'ME', 'GA', 'FL', 'SD', 'NE', 'KS', 'OK', 'WY', 'CO', 'OR', 'WA',
     'CA', 'HI', 'AZ', 'AK', 'NM', 'TX', 'VT_1_', 'NH_1_', 'MD', 'DE_1_',
@@ -109,7 +109,14 @@
 
   var US_PROGRESS_EXPERIMENT = {
     KY: ['KY'],
-    OH: ['KY', 'OH']
+    OH: ['KY', 'OH'],
+    NY: ['KY', 'OH', 'NY']
+  };
+
+  var US_PROGRESS_CITY_DOTS = {
+    KY: ['KY', 'Louisville', 38.2527, -85.7585],
+    OH: ['OH', 'Cleveland', 41.4993, -81.6944],
+    NY: ['NY', 'New York City', 40.7128, -74.0060]
   };
 
   function addSvgEl(parent, tag, attrs) {
@@ -121,6 +128,16 @@
 
   function unique(items) {
     return items.filter(function (item, index) { return items.indexOf(item) === index; });
+  }
+
+  function lightenHex(hex, amount) {
+    var value = String(hex || '').replace('#', '');
+    if (!/^[0-9a-f]{6}$/i.test(value)) return hex;
+    return '#' + [0, 2, 4].map(function (index) {
+      var channel = parseInt(value.slice(index, index + 2), 16);
+      var next = Math.round(channel + (255 - channel) * amount);
+      return next.toString(16).padStart(2, '0');
+    }).join('');
   }
 
   function splitUsPath(d) {
@@ -154,14 +171,10 @@
       el.removeAttribute('fill-rule');
       el.setAttribute('d', parts.filter(function (_, index) {
         var box = boxes[index];
+        var isContained = isContainedPathBox(box, boxes, index);
+        if (isAlaskaPanhandleGap(stateId, box) && isContained) return false;
         if (box.area < maxArea * 0.05) return true;
-        return !boxes.some(function (outer, outerIndex) {
-          return outerIndex !== index &&
-            box.xMin >= outer.xMin &&
-            box.xMax <= outer.xMax &&
-            box.yMin >= outer.yMin &&
-            box.yMax <= outer.yMax;
-        });
+        return !isContained;
       }).join(' '));
     });
   }
@@ -225,6 +238,16 @@
       inner.yMax <= outer.yMax + 2;
   }
 
+  function isContainedPathBox(box, boxes, index) {
+    return boxes.some(function (outer, outerIndex) {
+      return outerIndex !== index && containsUsBox(outer, box);
+    });
+  }
+
+  function isAlaskaPanhandleGap(stateId, box) {
+    return stateId === 'ocean_3_' && box.xMin > 340 && box.yMin > 950;
+  }
+
   function visibleBoundaryPaths(paths) {
     var boxed = paths.map(function (path) { return { path: path, box: usPathBox(path) }; });
     return boxed
@@ -237,24 +260,28 @@
       .map(function (item) { return item.path; });
   }
 
-  function addBoundaryLayer(svg, statePaths, progressMode) {
+  function addBoundaryLayer(svg, statePaths, progressMode, mapTheme) {
+    var lightMode = mapTheme === 'light';
     var layer = addSvgEl(svg, 'g', { class: 'article-map-state-boundaries' });
     layer.style.pointerEvents = 'none';
     visibleBoundaryPaths(statePaths).forEach(function (path) {
       var outline = path.cloneNode(false);
       outline.removeAttribute('id');
       outline.setAttribute('fill', 'none');
-      outline.setAttribute('stroke', progressMode ? 'rgba(255,255,255,.20)' : 'rgba(31,41,55,.58)');
-      outline.setAttribute('stroke-width', progressMode ? '1.25' : '1.05');
+      outline.setAttribute('stroke', progressMode ? (lightMode ? 'rgba(18,24,31,.66)' : 'rgba(255,255,255,.58)') : 'rgba(31,41,55,.58)');
+      outline.setAttribute('stroke-width', progressMode ? (lightMode ? '.64' : '1.05') : '1.05');
       outline.setAttribute('stroke-linejoin', 'round');
       outline.setAttribute('stroke-linecap', 'round');
       outline.setAttribute('vector-effect', 'non-scaling-stroke');
+      if (progressMode && lightMode) outline.setAttribute('stroke-dasharray', '5 4');
+      outline.style.opacity = progressMode ? (lightMode ? '.78' : '.86') : '1';
       outline.style.pointerEvents = 'none';
       layer.appendChild(outline);
     });
   }
 
-  function addCurrentOutline(svg, elements, progressMode) {
+  function addCurrentOutline(svg, elements, progressMode, mapTheme) {
+    var lightMode = mapTheme === 'light';
     var layer = addSvgEl(svg, 'g', { class: 'article-map-current-layer' });
     layer.style.pointerEvents = 'none';
     visibleBoundaryPaths(elements).forEach(function (path) {
@@ -262,8 +289,8 @@
       outline.removeAttribute('id');
       outline.setAttribute('class', progressMode ? 'article-map-current-state article-map-progress-current-outline' : 'article-map-current-state');
       outline.setAttribute('fill', 'none');
-      outline.setAttribute('stroke', progressMode ? '#ffd166' : '#10151f');
-      outline.setAttribute('stroke-width', progressMode ? '2.4' : '5.8');
+      outline.setAttribute('stroke', progressMode ? (lightMode ? '#17202b' : '#ffd166') : '#10151f');
+      outline.setAttribute('stroke-width', progressMode ? (lightMode ? '1.55' : '1.7') : '5.8');
       outline.setAttribute('stroke-linejoin', 'round');
       outline.setAttribute('stroke-linecap', 'round');
       outline.setAttribute('vector-effect', 'non-scaling-stroke');
@@ -271,28 +298,53 @@
     });
   }
 
-  function raiseLabels(svg, progressMode) {
+  function raiseLabels(svg, progressMode, mapTheme) {
+    var lightMode = mapTheme === 'light';
     US_LABEL_PATHS.forEach(function (labelId) {
       var label = svg.querySelector('#map_' + labelId);
       if (!label) return;
       var ocean = labelId === 'ATLANTIC_OCEAN' || labelId === 'gulf_of_mexico' || labelId === 'OCEANS';
-      label.setAttribute('fill', ocean ? (progressMode ? '#7b8498' : '#526072') : (progressMode ? '#f4f7ff' : '#1f2937'));
-      label.setAttribute('stroke', ocean ? 'none' : (progressMode ? 'rgba(25,32,48,.36)' : 'rgba(255,255,255,.48)'));
-      label.setAttribute('stroke-width', ocean ? '0' : (progressMode ? '1.2' : '.65'));
+      var nevada = labelId === 'NV' || labelId === 'line_13_';
+      var fill = ocean ? (progressMode ? (lightMode ? '#1f2a33' : '#9aa5b8') : '#526072') : (nevada ? (lightMode ? '#0f172a' : '#ffffff') : (progressMode ? (lightMode ? '#151a22' : '#f8fbff') : '#1f2937'));
+      var stroke = ocean ? 'none' : (nevada ? (lightMode ? 'rgba(255,255,255,.92)' : 'rgba(2,6,23,.95)') : (progressMode ? (lightMode ? 'none' : 'rgba(255,255,255,.24)') : 'rgba(255,255,255,.48)'));
+      var strokeWidth = ocean ? '0' : (nevada ? '2.4' : (progressMode ? (lightMode ? '0' : '.45') : '.65'));
+      label.setAttribute('fill', fill);
+      label.setAttribute('stroke', stroke);
+      label.setAttribute('stroke-width', strokeWidth);
       label.setAttribute('paint-order', 'stroke fill');
-      label.style.opacity = ocean ? (progressMode ? '.38' : '.42') : (progressMode ? '.94' : '.92');
+      label.style.opacity = ocean ? (progressMode ? (lightMode ? '.72' : '.34') : '.42') : (nevada ? '1' : (progressMode ? (lightMode ? '1' : '.98') : '.92'));
+      label.style.fill = fill;
+      label.style.stroke = stroke;
+      label.style.strokeWidth = strokeWidth;
+      label.style.filter = nevada ? (lightMode ? 'drop-shadow(0 1px 1px rgba(255,255,255,.9))' : 'drop-shadow(0 1px 1px rgba(0,0,0,.7))') : '';
       label.style.pointerEvents = 'none';
       svg.appendChild(label);
     });
   }
 
-  function paintBaseMap(svg, progressCodes) {
+  function restoreInsetLand(svg, mapTheme) {
+    var lightMode = mapTheme === 'light';
+    var fill = lightMode ? '#dedad3' : '#242b3f';
+    var stroke = lightMode ? 'none' : 'none';
+    ['map_outer_borders', 'map_hawaii_1_'].forEach(function (id) {
+      var el = svg.querySelector('#' + id);
+      if (!el) return;
+      el.setAttribute('fill', fill);
+      el.setAttribute('stroke', stroke);
+      el.setAttribute('stroke-width', '0');
+      el.style.opacity = '1';
+      el.style.pointerEvents = 'none';
+    });
+  }
+
+  function paintBaseMap(svg, progressCodes, mapTheme) {
     removeContainedPathParts(svg);
     svg.removeAttribute('width');
     svg.removeAttribute('height');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     var progressMode = Array.isArray(progressCodes) && progressCodes.length > 0;
     var currentCode = progressMode ? progressCodes[progressCodes.length - 1] : '';
+    var lightMode = mapTheme === 'light';
 
     var stateIds = unique(US_SOURCE_PATHS.concat(Object.keys(US_PATHS).reduce(function (all, code) {
       return all.concat(US_PATHS[code]);
@@ -306,13 +358,14 @@
       var isFrame = id === 'USA' || id === 'White' || id === 'exterior_2_' || id === 'Color' || id === 'States';
 
       if (isState) {
+        var baseFill = progressMode ? (lightMode ? '#dedad3' : '#242b3f') : '#dedad3';
         path.classList.add('article-map-state-base');
-        path.setAttribute('fill', progressMode ? '#242b3f' : '#dedad3');
-        path.setAttribute('stroke', progressMode ? 'rgba(255,255,255,.07)' : 'rgba(31,41,55,.64)');
-        path.setAttribute('stroke-width', progressMode ? '.7' : '.9');
+        path.setAttribute('fill', baseFill);
+        path.setAttribute('stroke', progressMode ? 'none' : 'rgba(31,41,55,.64)');
+        path.setAttribute('stroke-width', progressMode ? '0' : '.9');
         path.setAttribute('stroke-linejoin', 'round');
         path.setAttribute('vector-effect', 'non-scaling-stroke');
-        path.style.opacity = progressMode ? '.82' : '1';
+        path.style.opacity = progressMode ? (lightMode ? '1' : '.78') : '1';
         path.style.pointerEvents = 'none';
         allStatePaths.push(path);
         return;
@@ -324,34 +377,43 @@
       }
 
       if (isFrame) {
-        path.setAttribute('fill', progressMode ? '#333b52' : '#a8d4e8');
-        path.setAttribute('stroke', progressMode ? 'rgba(255,255,255,.18)' : 'rgba(31,41,55,.35)');
-        path.setAttribute('stroke-width', progressMode ? '.75' : '.6');
-        path.style.opacity = id === 'States' ? (progressMode ? '.14' : '.18') : '1';
+        path.setAttribute('fill', progressMode ? (lightMode ? '#a9d8f0' : '#323a52') : '#a8d4e8');
+        path.setAttribute('stroke', progressMode ? (lightMode ? (id === 'USA' ? 'none' : 'rgba(18,24,31,.28)') : 'rgba(207,218,232,.28)') : 'rgba(31,41,55,.35)');
+        path.setAttribute('stroke-width', progressMode ? (lightMode ? (id === 'USA' ? '0' : '.52') : '.8') : '.6');
+        path.style.opacity = '1';
         path.style.pointerEvents = 'none';
         return;
       }
 
       path.setAttribute('fill', 'none');
-      path.setAttribute('stroke', progressMode ? 'rgba(255,255,255,.12)' : 'rgba(31,41,55,.16)');
-      path.setAttribute('stroke-width', progressMode ? '.55' : '.45');
-      path.style.opacity = progressMode ? '.24' : '.18';
+      path.setAttribute('stroke', progressMode ? (lightMode ? 'rgba(18,24,31,.44)' : 'rgba(207,218,232,.18)') : 'rgba(31,41,55,.16)');
+      path.setAttribute('stroke-width', progressMode ? (lightMode ? '.62' : '.55') : '.45');
+      path.style.opacity = progressMode ? (lightMode ? '.5' : '.32') : '.18';
       path.style.pointerEvents = 'none';
     });
+
+    if (progressMode) restoreInsetLand(svg, mapTheme);
 
     var coloredCodes = progressMode ? progressCodes : Object.keys(US_COLORS);
     coloredCodes.forEach(function (code) {
       usStateGroup(svg, code).forEach(function (path) {
         path.classList.add('article-map-run-state');
         if (progressMode) path.classList.add(code === currentCode ? 'article-map-progress-current' : 'article-map-progress-previous');
-        path.setAttribute('fill', US_COLORS[code]);
-        path.setAttribute('stroke', progressMode ? 'rgba(255,255,255,.30)' : 'rgba(31,41,55,.72)');
-        path.setAttribute('stroke-width', progressMode ? '1.15' : '1');
-        path.style.opacity = progressMode && code !== currentCode ? '.46' : '1';
+        var isCurrent = progressMode && code === currentCode;
+        var runColor = isCurrent ? lightenHex(US_COLORS[code], 0.12) : US_COLORS[code];
+        path.setAttribute('fill', runColor);
+        path.style.fill = runColor;
+        path.setAttribute('stroke', progressMode ? (isCurrent ? (lightMode ? 'rgba(255,255,255,.96)' : '#ffe08a') : 'none') : 'rgba(31,41,55,.72)');
+        path.setAttribute('stroke-width', progressMode ? (isCurrent ? '1.35' : '0') : '1');
+        path.setAttribute('stroke-linejoin', 'round');
+        path.setAttribute('stroke-linecap', 'round');
+        path.setAttribute('vector-effect', 'non-scaling-stroke');
+        path.style.opacity = progressMode && code !== currentCode ? '1' : '1';
+        path.style.filter = '';
       });
     });
 
-    addBoundaryLayer(svg, allStatePaths, progressMode);
+    addBoundaryLayer(svg, allStatePaths, progressMode, mapTheme);
     return allStatePaths;
   }
 
@@ -380,6 +442,29 @@
     text.textContent = label;
   }
 
+  function addProgressCityDots(svg, progressCodes, currentCode, mapTheme) {
+    var lightMode = mapTheme === 'light';
+    var glowLayer = addSvgEl(svg, 'g', { class: 'article-map-progress-dot-glows' });
+    var dotLayer = addSvgEl(svg, 'g', { class: 'article-map-progress-dots' });
+    progressCodes.forEach(function (code) {
+      var race = US_PROGRESS_CITY_DOTS[code];
+      if (!race) return;
+      var p = projectCity(race[0], race[1], race[2], race[3]);
+      addSvgEl(glowLayer, 'circle', {
+        class: 'article-map-progress-dot-glow',
+        cx: p.x.toFixed(1),
+        cy: p.y.toFixed(1),
+        r: lightMode ? '18' : '20.2'
+      });
+      addSvgEl(dotLayer, 'circle', {
+        class: code === currentCode ? 'article-map-progress-dot article-map-progress-dot-current' : 'article-map-progress-dot',
+        cx: p.x.toFixed(1),
+        cy: p.y.toFixed(1),
+        r: lightMode ? '8.8' : '8.8'
+      });
+    });
+  }
+
   function markChinaSvg(svg, elements, label) {
     elements.forEach(function (el) { el.classList.add('article-map-highlight'); });
     var box = unionBox(elements);
@@ -399,14 +484,20 @@
     var code = (slot.dataset.region || '').toUpperCase();
     var progressCodes = US_PROGRESS_EXPERIMENT[code] || null;
     var progressMode = !!progressCodes;
+    var mapTheme = slot.dataset.mapTheme === 'light' ? 'light' : 'dark';
     if (progressMode) slot.classList.add('article-map-progress-experiment');
-    paintBaseMap(svg, progressCodes);
+    slot.classList.add(mapTheme === 'light' ? 'article-map-force-light' : 'article-map-force-dark');
+    paintBaseMap(svg, progressCodes, mapTheme);
     var elements = usStateGroup(svg, code);
     if (elements.length) {
-      addCurrentOutline(svg, elements, progressMode);
-      addCityMarker(svg, slot, code, elements);
+      if (!progressMode) addCurrentOutline(svg, elements, progressMode, mapTheme);
+      if (progressMode) {
+        addProgressCityDots(svg, progressCodes, code, mapTheme);
+      } else {
+        addCityMarker(svg, slot, code, elements);
+      }
     }
-    raiseLabels(svg, progressMode);
+    raiseLabels(svg, progressMode, mapTheme);
     return true;
   }
 
