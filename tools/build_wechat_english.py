@@ -520,12 +520,249 @@ def render_card(card: Card) -> str:
       </a>"""
 
 
+def story_number(card: Card, fallback: int) -> str:
+    meta = card.meta or ""
+    match = re.search(r"(Run(?:50|CN|World)\s*#?\s*[0-9A-Z+\-]+)", meta, re.I)
+    if match:
+        value = match.group(1)
+        value = re.sub(r"RunCN\s*#?", "RunCN · ", value, flags=re.I)
+        value = re.sub(r"RunWorld\s*#?", "RunWorld · ", value, flags=re.I)
+        value = re.sub(r"Run50\s*#?", "Run50 · ", value, flags=re.I)
+        return value.replace("  ", " ")
+    if card.series_class == "run-cn":
+        return f"RunCN · {fallback:02d}"
+    if card.series_class == "run-world":
+        return f"RunWorld · {fallback:02d}"
+    return f"Run50 · {fallback:02d}"
+
+
+def render_wechat_new_card(card: Card, index: int) -> str:
+    image = normalize_asset_path(card.image)
+    href = f"https://zhennanzhang.com/run50/wechat-en/{card.slug}-modern-rail.html?v={VERSION}"
+    series_label = SERIES_LABEL.get(card.series_class, SERIES_LABEL["run-50"])[0]
+    region = ""
+    if card.series_class == "run-50":
+        region = STATE_BY_SLUG.get(card.slug, ("", "", ""))[0].upper()
+    elif card.series_class == "run-cn":
+        region = (card.meta.split("·")[0] if card.meta else "CHINA").strip().upper()
+    else:
+        region = (card.meta.split("·")[0] if card.meta else "WORLD").strip().upper()
+    return f"""
+          <a class="story-card" href="{html.escape(href)}">
+            <img src="{html.escape(image)}" alt="{html.escape(card.image_alt or card.title)}">
+            <div class="story-body">
+              <span class="story-number">{html.escape(story_number(card, index))}</span>
+              <div class="eyebrow">{html.escape(series_label)} · {html.escape(region)}</div>
+              <h3>{html.escape(card.title)}</h3>
+              <div class="meta">{html.escape(card.meta or series_label)}</div>
+              <p class="desc">{html.escape(card.desc)}</p>
+              <div class="open">Open WeChat English →</div>
+            </div>
+          </a>"""
+
+
+def render_wechat_new_section(cards: list[Card], key: str, title: str, eyebrow: str, count_label: str) -> str:
+    body = "\n".join(render_wechat_new_card(card, i + 1) for i, card in enumerate(cards))
+    zone = "run-50-zone" if key == "run50" else "run-cn-zone" if key == "runcn" else "run-world-zone"
+    aria = {
+        "run50": "Run50 U.S. marathon WeChat English stories",
+        "runcn": "RunCN China marathon WeChat English stories",
+        "runworld": "RunWorld global marathon WeChat English stories",
+    }[key]
+    return f"""      <section class="story-section {zone}" id="{key}-series">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">{eyebrow}</div>
+            <h2>{title}</h2>
+          </div>
+          <p>{count_label}</p>
+        </div>
+
+        <div class="stories" aria-label="{aria}">{body}
+        </div>
+      </section>
+
+"""
+
+
+def translate_wechat_new_script_text(page: str) -> str:
+    replacements = {
+        "下方故事待补": "Story pending below",
+        "点击定位到下方故事": "Click to jump to the story below",
+        "点击选择": "click to choose",
+        "待补": "pending",
+        "篇故事": " stories",
+        " 篇": " stories",
+        "篇：": " stories: ",
+        "点击打开完整互动地图": "Click to open the full interactive map",
+        "请在下方故事中选择": "choose from the stories below",
+    }
+    for old, new in replacements.items():
+        page = page.replace(old, new)
+    page = re.sub(r"<footer>.*?</footer>", "<footer>WeChat English follows the same layout as the Chinese WeChat New edition.</footer>", page, flags=re.S)
+    page = page.replace("切换到亮色模式", "Switch to light mode")
+    page = page.replace("切换到暗色模式", "Switch to dark mode")
+    page = page.replace("切换明暗主题", "Toggle theme")
+    return page
+
+
+def english_mini_map_localizer_script() -> str:
+    return """  <script>
+    (() => {
+      const labelMap = {
+        '南海': 'South China Sea',
+        '蒙古': 'Mongolia',
+        '韩国': 'South Korea',
+        '日本': 'Japan',
+        '渤海': 'Bohai Sea',
+        '黄海': 'Yellow Sea',
+        '东海': 'East China Sea',
+        '黑龙江': 'Heilongjiang',
+        '湖北': 'Hubei',
+        '四川': 'Sichuan',
+        '内蒙古': 'Inner Mongolia',
+        '山西': 'Shanxi',
+        '湖南': 'Hunan',
+        '福建': 'Fujian',
+        '甘肃': 'Gansu',
+        '江苏': 'Jiangsu',
+        '贵州': 'Guizhou',
+        '陕西': 'Shaanxi',
+        '浙江': 'Zhejiang',
+        '海南': 'Hainan',
+        '辽宁': 'Liaoning',
+        '广西': 'Guangxi',
+        '香港': 'Hong Kong',
+        '北京': 'Beijing'
+      };
+      function localizeMiniChinaMap() {
+        document.querySelectorAll('#runcn-china-map-mini text').forEach((text) => {
+          const value = (text.textContent || '').trim();
+          if (labelMap[value]) text.textContent = labelMap[value];
+          else if (/[\u4e00-\u9fff]/.test(value)) text.textContent = '';
+        });
+      }
+      localizeMiniChinaMap();
+      const target = document.getElementById('runcn-china-map-mini');
+      if (target) new MutationObserver(localizeMiniChinaMap).observe(target, { childList: true, subtree: true });
+    })();
+  </script>
+"""
+
+
 def index_page(cards: list[Card]) -> str:
+    base = read(WECHAT_NEW / "index.html")
     buckets = {
         "run50": [c for c in cards if c.section == "run50"],
         "runcn": [c for c in cards if c.section == "runcn"],
         "runworld": [c for c in cards if c.section == "runworld"],
     }
+    sections = (
+        render_wechat_new_section(
+            buckets["run50"],
+            "run50",
+            "U.S. Marathon Stories",
+            "Run50 · U.S. States",
+            f"{len(buckets['run50'])} stories · ordered by race timeline",
+        )
+        + render_wechat_new_section(
+            buckets["runcn"],
+            "runcn",
+            "China Marathon Stories",
+            "RunCN · China Routes",
+            f"{len(buckets['runcn'])} stories · cities, regions, and race years",
+        )
+        + render_wechat_new_section(
+            buckets["runworld"],
+            "runworld",
+            "World Marathon Stories",
+            "RunWorld · Global Routes",
+            f"{len(buckets['runworld'])} stories · outside the U.S. and China",
+        )
+    )
+    hero_and_ticker = f"""      <section class="hero hero-board" id="score">
+        <div class="scorecard intro-card">
+          <div class="eyebrow">Run50 Coverage</div>
+          <h1>WeChat English Edition</h1>
+          <p class="lead">A WeChat-style English edition for American friends: race day first, travel notes after, natural marathon language, and the same browsing rhythm as the Chinese WeChat New index.</p>
+          <div class="series-strip" aria-label="Run50 story families">
+            <div class="series-chip">
+              <strong>Run50</strong>
+              <span>U.S. state-by-state marathon stories, organized by race and place.</span>
+            </div>
+            <div class="series-chip">
+              <strong>RunCN</strong>
+              <span>China marathon travel stories, connected through region maps and city dots.</span>
+            </div>
+            <div class="series-chip">
+              <strong>RunWorld</strong>
+              <span>Global marathon routes outside the U.S. and mainland China.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-board" aria-label="Run50 and RunCN maps">
+          <a class="run-map-card" href="#run50-series">
+            <div>
+              <div class="eyebrow">Interactive Map</div>
+              <h2>Run50 · U.S. 50 States Map</h2>
+              <p>The same U.S. story map from the Chinese edition, with completed states, city dots, and English story links in one place.</p>
+            </div>
+            <div class="map-window" id="run50-us-map-mini" aria-label="Run50 U.S. map"></div>
+            <div class="map-foot"><span id="us-map-mini-status">Click a state or city dot to choose a story</span><b>35 States</b></div>
+          </a>
+
+          <a class="run-map-card" id="runcn-map" href="#runcn-series">
+            <div>
+              <div class="eyebrow">Interactive Map</div>
+              <h2>RunCN · China Marathon Map</h2>
+              <p>China marathon stories collected on one map, with highlighted provinces, regions, and city markers.</p>
+            </div>
+            <div class="map-window" id="runcn-china-map-mini" aria-label="RunCN China map" data-map-locale="en"></div>
+            <div class="map-foot"><span id="cn-map-mini-status">Click a region or city dot to choose a story</span><b>18 Regions</b></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="ticker" id="featured" aria-label="Featured Run50 stories">
+        {''.join(f'<a class="ticker-item" href="https://zhennanzhang.com/run50/wechat-en/{card.slug}-modern-rail.html?v={VERSION}"><small>{html.escape(story_number(card, i + 1))}</small><b>{html.escape(card.title)}</b></a>' for i, card in enumerate((buckets["run50"][:1] + buckets["run50"][18:20] + buckets["run50"][24:25])[:4]))}
+      </section>
+
+"""
+    stats = f"""      <section class="stats" id="stats" aria-label="Run50 statistics">
+        <div class="stat-card"><b>{len(cards)}</b><span>Total stories</span></div>
+        <div class="stat-card"><b>{len(buckets['run50'])}</b><span>Run50 stories</span></div>
+        <div class="stat-card"><b>{len(buckets['runcn'])}</b><span>RunCN stories</span></div>
+        <div class="stat-card"><b>{len(buckets['runworld'])}</b><span>RunWorld stories</span></div>
+      </section>
+"""
+    start = base.find('      <section class="hero hero-board" id="score">')
+    end = base.find('      <section class="stats" id="stats"', start)
+    stats_end = base.find('  <footer>', end)
+    if start >= 0 and end >= 0 and stats_end >= 0:
+        base = base[:start] + hero_and_ticker + sections + stats + base[stats_end:]
+    base = re.sub(r'<html lang="zh-CN">', '<html lang="en">', base, count=1)
+    base = re.sub(r"<title>.*?</title>", "<title>Run50 WeChat English</title>", base, count=1, flags=re.S)
+    base = base.replace("Run50 微信故事新版", "Run50 WeChat English")
+    base = base.replace("微信公众号版", "WeChat English")
+    base = base.replace("美国50州", "U.S. States")
+    base = base.replace("中国马拉松", "China Marathons")
+    base = base.replace("世界跑旅", "Global Routes")
+    base = base.replace("文章与进度", "Stories & Progress")
+    base = base.replace('href="https://zhennanzhang.com/run50/wechat/">WeChat</a>', 'href="https://zhennanzhang.com/run50/wechat/">Chinese WeChat</a>')
+    base = base.replace('href="https://zhennanzhang.com/run50/wechat-new/"><span class="dot"></span>微信故事新版</a>', f'href="https://zhennanzhang.com/run50/wechat-en/?v={VERSION}"><span class="dot"></span>WeChat English</a>')
+    base = base.replace("Chinese Stories", "Chinese Stories")
+    base = base.replace("English Stories", "English Stories")
+    base = base.replace("Facebook", "Facebook")
+    base = base.replace("../us-map-svg.js?v=20260630-mini-maps", f"../us-map-svg.js?v={VERSION}")
+    base = base.replace("../china-map-svg.js?v=20260630-mini-maps", f"../china-map-svg.js?v={VERSION}")
+    base = base.replace('<!-- saved from url=(0055)#score -->\n', "")
+    base = translate_wechat_new_script_text(base)
+    base = base.replace("</body>", english_mini_map_localizer_script() + "</body>")
+    return "\n".join(line.rstrip() for line in base.splitlines()) + "\n"
+
+    # Legacy standalone English layout kept below as reference. The function
+    # returns earlier so the public page uses the WeChat New layout exactly.
     def section(key: str, kicker: str, title: str, intro: str) -> str:
         body = "\n".join(render_card(c) for c in buckets[key])
         return f"""
