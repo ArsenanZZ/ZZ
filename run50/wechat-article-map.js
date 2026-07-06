@@ -186,6 +186,65 @@
     cn_zhejiang: ['ZJ', 30.2741, 120.1551]
   };
 
+  var CHINA_PROVINCES = {
+    cn_heilongjiang: ['Heilongjiang', '#f06a4f'],
+    cn_hubei: ['Hubei', '#5fc36f'],
+    cn_sichuan: ['Sichuan', '#f4a83a'],
+    cn_innermongolia: ['Inner Mongolia', '#39abc0'],
+    cn_shanxi: ['Shanxi', '#add64f'],
+    cn_hunan: ['Hunan', '#a678dc'],
+    cn_fujian: ['Fujian', '#39abc0'],
+    cn_gansu: ['Gansu', '#f06a4f'],
+    cn_jiangsu: ['Jiangsu', '#add64f'],
+    cn_guizhou: ['Guizhou', '#5fc36f'],
+    cn_shaanxi: ['Shaanxi', '#f4a83a'],
+    cn_zhejiang: ['Zhejiang', '#a678dc'],
+    cn_hainan: ['Hainan', '#39abc0'],
+    cn_liaoning: ['Liaoning', '#f06a4f'],
+    cn_shanghai: ['Shanghai', '#5fc36f'],
+    cn_guangxi: ['Guangxi', '#f4a83a'],
+    cn_hongkong: ['Hong Kong', '#a678dc'],
+    cn_beijing: ['Beijing', '#e89838']
+  };
+
+  var CHINA_PROGRESS_EVENTS = [
+    {
+      file: 'steel-tank-story-modern-rail.html',
+      provinces: ['cn_heilongjiang', 'cn_innermongolia', 'cn_shanxi'],
+      cities: [
+        ['HLJ', 'Harbin', 'cn_heilongjiang', 45.8038, 126.5350],
+        ['IM', 'Ordos', 'cn_innermongolia', 39.6086, 109.7813],
+        ['SX', 'Changzhi', 'cn_shanxi', 36.1954, 113.1163]
+      ]
+    },
+    {
+      file: 'three-city-pilgrimage-modern-rail.html',
+      provinces: ['cn_hubei', 'cn_sichuan', 'cn_hunan'],
+      cities: [
+        ['HB', 'Yichang', 'cn_hubei', 30.6919, 111.2865],
+        ['SC', 'Guang an', 'cn_sichuan', 30.4564, 106.6332],
+        ['HN', 'Changsha', 'cn_hunan', 28.2282, 112.9388]
+      ]
+    },
+    { file: 'xiamen-marathon-modern-rail.html', provinces: ['cn_fujian'], cities: [['FJ', 'Xiamen', 'cn_fujian', 24.4798, 118.0894]] },
+    { file: 'wuhan-wuxi-marathon-notes-modern-rail.html', provinces: ['cn_jiangsu'], cities: [['JS', 'Wuxi', 'cn_jiangsu', 31.4912, 120.3119]] },
+    { file: 'wuhan-marathon-2018-modern-rail.html', provinces: ['cn_hubei'], cities: [['HB', 'Wuhan', 'cn_hubei', 30.5928, 114.3055]] },
+    { file: 'xian-city-wall-marathon-modern-rail.html', provinces: ['cn_shaanxi'], cities: [['SN', 'Xi an', 'cn_shaanxi', 34.3416, 108.9398]] },
+    { file: 'lanzhou-marathon-modern-rail.html', provinces: ['cn_gansu'], cities: [['GS', 'Lanzhou', 'cn_gansu', 36.0611, 103.8343]] },
+    { file: 'guiyang-marathon-climb-modern-rail.html', provinces: ['cn_guizhou'], cities: [['GZ', 'Guiyang', 'cn_guizhou', 26.6470, 106.6302]] },
+    { file: 'haikou-marathon-modern-rail.html', provinces: ['cn_hainan'], cities: [['HN', 'Haikou', 'cn_hainan', 20.0440, 110.1999]] },
+    { file: 'wuhan-han-marathon-modern-rail.html', provinces: ['cn_hubei'], cities: [['HB', 'Wuhan', 'cn_hubei', 30.5928, 114.3055]] },
+    { file: 'dalian-trail-modern-rail.html', provinces: ['cn_liaoning'], cities: [['LN', 'Dalian', 'cn_liaoning', 38.9140, 121.6147]] },
+    { file: 'wuhan-graduation-modern-rail.html', provinces: ['cn_beijing'], cities: [['BJ', 'Beijing', 'cn_beijing', 40.0799, 116.2100]] },
+    { file: 'harbin-marathon-modern-rail.html', provinces: ['cn_heilongjiang'], cities: [['HLJ', 'Harbin', 'cn_heilongjiang', 45.8038, 126.5350]] },
+    { file: 'west-lake-half-marathon-modern-rail.html', provinces: ['cn_zhejiang'], cities: [['ZJ', 'Hangzhou', 'cn_zhejiang', 30.2741, 120.1551]] },
+    { file: 'shanghai-vertical-marathon-modern-rail.html', provinces: ['cn_shanghai'], cities: [['SH', 'Shanghai', 'cn_shanghai', 31.2304, 121.4737]] },
+    { file: 'ningbo-dongqian-lake-marathon-modern-rail.html', provinces: ['cn_zhejiang'], cities: [['ZJ', 'Ningbo', 'cn_zhejiang', 29.8683, 121.5440]] },
+    { file: 'xiangyang-marathon-modern-rail.html', provinces: ['cn_hubei'], cities: [['HB', 'Xiangyang', 'cn_hubei', 32.0090, 112.1224]] },
+    { file: 'guilin-marathon-modern-rail.html', provinces: ['cn_guangxi'], cities: [['GX', 'Guilin', 'cn_guangxi', 25.2345, 110.1799]] },
+    { file: 'hong-kong-marathon-modern-rail.html', provinces: ['cn_hongkong'], cities: [['HK', 'Hong Kong', 'cn_hongkong', 22.3193, 114.1694]] }
+  ];
+
   var WORLD_RUN_COLORS = {
     usa: '#5baad0', chn: '#d4614a', twn: '#d4614a', hkg: '#9068c0',
     sgp: '#5ca860', tha: '#c490d0', mex: '#e89838', ita: '#f4a09a'
@@ -590,6 +649,148 @@
     text.textContent = label;
   }
 
+  function chinaProgressForSlot(slot) {
+    var file = currentFileName();
+    var index = CHINA_PROGRESS_EVENTS.findIndex(function (event) { return event.file === file; });
+    var region = slot.dataset.region || '';
+    if (index < 0) {
+      index = CHINA_PROGRESS_EVENTS.findIndex(function (event) {
+        return event.provinces.indexOf(region) >= 0;
+      });
+    }
+    if (index < 0) index = 0;
+    return {
+      index: index,
+      events: CHINA_PROGRESS_EVENTS.slice(0, index + 1),
+      current: CHINA_PROGRESS_EVENTS[index]
+    };
+  }
+
+  function uniqueChinaProgressProvinces(events) {
+    return unique(events.reduce(function (all, event) {
+      return all.concat(event.provinces || []);
+    }, []));
+  }
+
+  function uniqueChinaProgressCities(events) {
+    var seen = {};
+    var cities = [];
+    events.forEach(function (event) {
+      (event.cities || []).forEach(function (city) {
+        var key = city[2] + ':' + city[1];
+        if (seen[key]) return;
+        seen[key] = true;
+        cities.push(city);
+      });
+    });
+    return cities;
+  }
+
+  function addChinaCurrentOutline(svg, elements, mapTheme) {
+    var layer = addSvgEl(svg, 'g', { class: 'article-map-current-layer' });
+    layer.style.pointerEvents = 'none';
+    elements.forEach(function (path) {
+      var outline = path.cloneNode(false);
+      outline.removeAttribute('id');
+      outline.setAttribute('class', 'article-map-current-state article-map-progress-current-outline');
+      outline.setAttribute('fill', 'none');
+      outline.setAttribute('stroke', mapTheme === 'light' ? '#17202b' : '#ffd166');
+      outline.setAttribute('stroke-width', mapTheme === 'light' ? '1.55' : '1.7');
+      outline.setAttribute('stroke-linejoin', 'round');
+      outline.setAttribute('stroke-linecap', 'round');
+      outline.setAttribute('vector-effect', 'non-scaling-stroke');
+      layer.appendChild(outline);
+    });
+  }
+
+  function addChinaProgressCityDots(svg, events, currentEvent, mapTheme) {
+    var lightMode = mapTheme === 'light';
+    var currentKeys = {};
+    (currentEvent.cities || []).forEach(function (city) { currentKeys[city[2] + ':' + city[1]] = true; });
+    var glowLayer = addSvgEl(svg, 'g', { class: 'article-map-progress-dot-glows' });
+    var ringLayer = addSvgEl(svg, 'g', { class: 'article-map-city-rings' });
+    var dotLayer = addSvgEl(svg, 'g', { class: 'article-map-progress-dots' });
+    uniqueChinaProgressCities(events).forEach(function (city) {
+      var p = projectChinaCity(city[3], city[4]);
+      var isCurrent = !!currentKeys[city[2] + ':' + city[1]];
+      addSvgEl(glowLayer, 'circle', {
+        class: 'article-map-progress-dot-glow',
+        cx: p.x.toFixed(1),
+        cy: p.y.toFixed(1),
+        r: isCurrent ? (lightMode ? '17' : '19') : (lightMode ? '11' : '12.5')
+      });
+      if (isCurrent && !lightMode) {
+        addSvgEl(ringLayer, 'circle', {
+          class: 'article-map-marker-ring',
+          cx: p.x.toFixed(1),
+          cy: p.y.toFixed(1),
+          r: '7.8'
+        });
+      }
+      addSvgEl(dotLayer, 'circle', {
+        class: isCurrent ? 'article-map-progress-dot article-map-progress-dot-current' : 'article-map-progress-dot',
+        cx: p.x.toFixed(1),
+        cy: p.y.toFixed(1),
+        r: isCurrent ? '6.2' : '4.7'
+      });
+      if (isCurrent) {
+        var text = addSvgEl(dotLayer, 'text', {
+          class: 'article-map-small-label',
+          x: (p.x + 12).toFixed(1),
+          y: (p.y - 9).toFixed(1)
+        });
+        text.textContent = city[0];
+      }
+    });
+  }
+
+  function paintChinaProgressMap(svg, slot, mapTheme) {
+    svg.removeAttribute('width');
+    svg.removeAttribute('height');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    var lightMode = mapTheme === 'light';
+    var progress = chinaProgressForSlot(slot);
+    var progressProvinces = uniqueChinaProgressProvinces(progress.events);
+    var currentProvinces = progress.current.provinces || [];
+    var allProvincePaths = [];
+
+    Array.prototype.forEach.call(svg.querySelectorAll('rect'), function (rect) {
+      rect.setAttribute('fill', lightMode ? '#a8d4e8' : '#30384f');
+    });
+
+    Array.prototype.forEach.call(svg.querySelectorAll('path'), function (path) {
+      var id = path.id || '';
+      path.setAttribute('vector-effect', 'non-scaling-stroke');
+      path.style.pointerEvents = 'none';
+      if (id.indexOf('cn_') !== 0) {
+        path.setAttribute('fill', lightMode ? '#dedad3' : 'none');
+        path.setAttribute('stroke', lightMode ? 'rgba(83,78,68,.38)' : 'rgba(198,211,228,.34)');
+        path.setAttribute('stroke-width', lightMode ? '.74' : '.72');
+        path.style.opacity = lightMode ? '1' : '.32';
+        return;
+      }
+
+      allProvincePaths.push(path);
+      var province = CHINA_PROVINCES[id];
+      var isProgress = progressProvinces.indexOf(id) >= 0;
+      var isCurrent = currentProvinces.indexOf(id) >= 0;
+      var baseFill = lightMode ? '#d8e0d4' : '#242b3f';
+      path.setAttribute('fill', isProgress && province ? (isCurrent ? lightenHex(province[1], 0.1) : province[1]) : baseFill);
+      path.setAttribute('stroke', lightMode ? 'rgba(255,255,255,.92)' : 'rgba(221,232,245,.48)');
+      path.setAttribute('stroke-width', lightMode ? '1.05' : '.95');
+      path.setAttribute('stroke-linejoin', 'round');
+      path.style.opacity = isProgress ? '1' : (lightMode ? '.92' : '.78');
+      path.classList.add(isProgress ? 'article-map-run-state' : 'article-map-state-base');
+      if (isCurrent) path.classList.add('article-map-progress-current');
+    });
+
+    allProvincePaths.forEach(function (path) { svg.appendChild(path); });
+    addChinaCurrentOutline(svg, currentProvinces.map(function (id) {
+      return svg.querySelector('#' + id);
+    }).filter(Boolean), mapTheme);
+    addChinaProgressCityDots(svg, progress.events, progress.current, mapTheme);
+  }
+
   function renderUs(slot) {
     if (typeof US_MAP_SVG === 'undefined') return false;
     slot.innerHTML = US_MAP_SVG;
@@ -620,10 +821,10 @@
     slot.innerHTML = CHINA_MAP_SVG;
     var svg = slot.querySelector('svg');
     if (!svg) return false;
-    slot.classList.add(slot.dataset.mapTheme === 'light' ? 'article-map-force-light' : 'article-map-force-dark');
-    var id = slot.dataset.region || '';
-    var el = svg.querySelector('#' + id);
-    if (el) markChinaSvg(svg, [el], id, slot.dataset.shortLabel || id.replace(/^cn_/, '').toUpperCase());
+    var mapTheme = slot.dataset.mapTheme === 'light' ? 'light' : 'dark';
+    slot.classList.add('article-map-progress-experiment');
+    slot.classList.add(mapTheme === 'light' ? 'article-map-force-light' : 'article-map-force-dark');
+    paintChinaProgressMap(svg, slot, mapTheme);
     return true;
   }
 
