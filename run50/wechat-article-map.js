@@ -791,6 +791,20 @@
     addChinaProgressCityDots(svg, progress.events, progress.current, mapTheme);
   }
 
+  function localizeChinaMapText(svg, slot) {
+    var locale = String(slot.dataset.mapLocale || '').toLowerCase();
+    if (locale !== 'en' && !slot.closest('.wechat-en-page')) return;
+    Array.prototype.forEach.call(svg.querySelectorAll('text'), function (text) {
+      var value = (text.textContent || '').trim();
+      if (!/[\u4e00-\u9fff]/.test(value)) return;
+      if (value === '南海') {
+        text.textContent = 'South China Sea';
+      } else {
+        text.textContent = '';
+      }
+    });
+  }
+
   function renderUs(slot) {
     if (typeof US_MAP_SVG === 'undefined') return false;
     slot.innerHTML = US_MAP_SVG;
@@ -825,6 +839,7 @@
     slot.classList.add('article-map-progress-experiment');
     slot.classList.add(mapTheme === 'light' ? 'article-map-force-light' : 'article-map-force-dark');
     paintChinaProgressMap(svg, slot, mapTheme);
+    localizeChinaMapText(svg, slot);
     return true;
   }
 
