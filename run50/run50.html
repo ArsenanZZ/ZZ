@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Run50 Running Records & Guide</title>
+    <title>Run50 · 口播脚本库</title>
     <style>
         /* 全局重置与基础样式 */
         *, *::before, *::after {
@@ -328,6 +328,7 @@
             padding:10px 4px 2px;
             border-top:1px solid #e8edf2;
             margin-top:4px;
+            scroll-margin-top: 94px;
         }
 
         /* ── Map ── */
@@ -407,8 +408,24 @@
             50% { transform: scale(1.04); box-shadow: 0 0 15px rgba(255,182,18,0.7); border-color: #ffb612; }
             100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,182,18,0); }
         }
+        @keyframes card-glow-loop {
+            0%, 100% {
+                transform: translateY(0);
+                box-shadow: 0 14px 32px rgba(0, 0, 0, .18), 0 0 0 rgba(255, 182, 18, 0);
+            }
+            50% {
+                transform: translateY(-2px);
+                box-shadow: 0 22px 46px rgba(0, 0, 0, .28), 0 0 24px rgba(255, 182, 18, .78);
+            }
+        }
         .card-highlight-flash {
             animation: card-flash 1.5s ease 2;
+        }
+        .card-highlight-active {
+            animation: card-glow-loop 1.8s ease-in-out infinite;
+            border-color: #ffb612 !important;
+            position: relative;
+            z-index: 3;
         }
 
         /* Floating Tooltip */
@@ -472,13 +489,838 @@
             background: #ffffff;
             color: #1a252f;
         }
+
+        /* WeChat-new shell and dark card treatment for the voiceover library. */
+        :root {
+            color-scheme: dark;
+            --page: #10131d;
+            --chrome: #1a1c22;
+            --panel: #202536;
+            --panel-soft: #252b3f;
+            --panel-strong: #2b3248;
+            --line: rgba(255, 255, 255, .11);
+            --text: #f5f7fb;
+            --muted: #b9c0d0;
+            --soft: #8f98ad;
+            --green: #37d67a;
+            --amber: #ffbe4a;
+            --cyan: #4fc3ff;
+            --rose: #ff6f91;
+            --shadow: 0 18px 50px rgba(0, 0, 0, .24);
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 18% 0%, rgba(55, 214, 122, .13), transparent 28rem),
+                radial-gradient(circle at 88% 8%, rgba(79, 195, 255, .12), transparent 26rem),
+                linear-gradient(180deg, #10131d 0%, #111524 45%, #0e111a 100%);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            min-height: 68px;
+            display: grid;
+            grid-template-columns: auto minmax(260px, 1fr) auto;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 28px;
+            background: rgba(26, 28, 34, .94);
+            border-bottom: 1px solid var(--line);
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .menu-icon {
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            color: var(--muted);
+        }
+
+        .mark {
+            width: 31px;
+            height: 31px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--green), var(--cyan) 52%, var(--rose));
+            font-weight: 800;
+            color: #081018;
+        }
+
+        .back,
+        .topbar-link {
+            min-height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 12px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #30364f;
+            color: #f4f7ff;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .topbar-link:hover,
+        .back:hover {
+            background: #37405e;
+        }
+
+        .control-button {
+            border: 1px solid var(--line);
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .theme-button {
+            width: 42px;
+            padding: 0;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .lang-switch {
+            width: 82px;
+            gap: 0;
+            padding: 3px;
+            justify-content: space-between;
+        }
+
+        .lang-switch span {
+            width: 36px;
+            height: 28px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            color: rgba(244, 247, 255, .62);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        html[data-lang="en"] .lang-switch .lang-en,
+        html[data-lang="zh"] .lang-switch .lang-zh {
+            background: rgba(255, 255, 255, .16);
+            color: #fff;
+        }
+
+        .script-picker {
+            min-width: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .topbar select {
+            width: 100%;
+            min-height: 40px;
+            background-color: rgba(37, 43, 63, .94);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 12px;
+            padding: 0 38px 0 14px;
+            font-weight: 700;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .03);
+        }
+
+        .topbar select:focus {
+            border-color: var(--cyan);
+            outline: none;
+        }
+
+        .top-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            min-width: 0;
+            position: static;
+            z-index: 4;
+        }
+
+        .top-links a {
+            display: none;
+        }
+
+        .topbar-link,
+        .topbar select {
+            position: relative;
+            z-index: 4;
+        }
+
+        .top-links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .shell {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            gap: 28px;
+            width: min(1840px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 26px 0 70px;
+        }
+
+        .rail {
+            position: sticky;
+            top: 98px;
+            align-self: start;
+            padding-top: 128px;
+        }
+
+        .rail a {
+            display: grid;
+            grid-template-columns: 54px minmax(0, 1fr);
+            align-items: center;
+            gap: 14px;
+            min-height: 54px;
+            margin: 10px 0;
+            padding: 8px 14px;
+            border-radius: 10px;
+            color: #d6dbea;
+            font-weight: 600;
+        }
+
+        .rail a:hover,
+        .rail a.active {
+            background: rgba(255, 255, 255, .09);
+        }
+
+        .rail-icon {
+            width: 54px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            font-size: 17px;
+            line-height: 1;
+            font-weight: 800;
+        }
+
+        .rail-copy {
+            display: grid;
+            gap: 1px;
+            min-width: 0;
+        }
+
+        .rail a b {
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        .rail a small {
+            color: var(--soft);
+            font-size: 12px;
+        }
+
+        .rail-year-count {
+            color: rgba(214, 219, 234, .62);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .02em;
+        }
+
+        .main-content {
+            min-width: 0;
+            padding: 0;
+            background: transparent;
+        }
+
+        .welcome-screen,
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            background: transparent;
+            color: var(--text);
+        }
+
+        .welcome-header {
+            text-align: left;
+            padding: 44px 32px 34px;
+            margin-bottom: 18px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 22px;
+            background: rgba(37, 43, 63, .88);
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-title {
+            margin: 0 0 8px;
+            color: var(--text);
+            font-size: clamp(34px, 5vw, 60px);
+            line-height: .98;
+            letter-spacing: 0;
+        }
+
+        .welcome-sub {
+            color: #dbe4f5;
+            font-size: 18px;
+        }
+
+        .welcome-map-container,
+        #china-map-container {
+            max-width: none !important;
+            background: rgba(37, 43, 63, .88) !important;
+            border: 1px solid rgba(255, 255, 255, .12) !important;
+            border-radius: 8px !important;
+            box-shadow: var(--shadow) !important;
+        }
+
+        .welcome-map-container > div:first-child,
+        #china-map-container > div:first-child {
+            color: var(--text) !important;
+        }
+
+        .welcome-map-container > div:last-child,
+        #china-map-container > div:last-child {
+            color: var(--muted) !important;
+            border-top-color: rgba(255, 255, 255, .11) !important;
+        }
+
+        #map-hover-status,
+        #china-map-hover-status {
+            color: var(--muted) !important;
+        }
+
+        .welcome-map-slot,
+        #cn-map-slot {
+            background: #30384f !important;
+            border-color: rgba(255, 255, 255, .13) !important;
+        }
+
+        .race-grid {
+            max-width: none;
+            gap: 16px;
+        }
+
+        .year-divider {
+            color: #9eb4d4;
+            border-color: rgba(255, 255, 255, .12);
+            scroll-margin-top: 94px;
+        }
+
+        .race-card {
+            min-height: 176px;
+            background: rgba(37, 43, 63, .92);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 8px;
+            color: var(--text);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, .18);
+        }
+
+        .race-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 42px rgba(0, 0, 0, .26);
+            background: rgba(43, 50, 72, .98);
+        }
+
+        .race-card.placeholder {
+            opacity: .72;
+            background: rgba(32, 37, 54, .72);
+        }
+
+        .map-board {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin: 18px 0 24px;
+        }
+
+        .run-map-card {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 430px;
+            padding: 18px;
+            border-radius: 8px;
+            background:
+                linear-gradient(180deg, rgba(46, 52, 76, .98), rgba(23, 30, 48, .99)),
+                #171e30;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .run-map-card h2 {
+            margin: 0;
+            color: var(--text);
+            font-size: 24px;
+            line-height: 1.25;
+        }
+
+        .run-map-card p {
+            margin: 7px 0 14px;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .map-window,
+        .script-mini-map-window {
+            position: relative;
+            display: grid;
+            place-items: center;
+            min-height: 0;
+            height: auto;
+            aspect-ratio: 1722 / 989;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, .16);
+            background:
+                radial-gradient(circle at 50% 45%, rgba(116, 172, 192, .24), transparent 58%),
+                #111827;
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, .04),
+                inset 0 -28px 60px rgba(2, 6, 23, .24);
+        }
+
+        .map-window svg,
+        .script-mini-map-window svg {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #runcn-china-map-mini {
+            background: #30384f;
+            aspect-ratio: 934 / 556;
+        }
+
+        .map-window .city-dot,
+        .script-mini-map-window .city-dot {
+            fill: #ff3b30;
+            stroke: #fff;
+            stroke-width: 1.5;
+            transition: r .18s ease, fill .18s ease, opacity .18s ease;
+        }
+
+        .map-window .city-dot:hover,
+        .script-mini-map-window .city-dot:hover {
+            fill: #ffcc00;
+        }
+
+        .map-window .city-dot-glow,
+        .script-mini-map-window .city-dot-glow {
+            fill: rgba(255, 59, 48, .28);
+            animation: map-dot-pulse 2.1s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        #runcn-china-map-mini .city-dot-glow {
+            fill: rgba(255, 59, 48, .22);
+        }
+
+        #runcn-china-map-mini .city-ring {
+            fill: none;
+            stroke: rgba(255, 214, 102, .9);
+            stroke-width: 1.35;
+            pointer-events: none;
+            animation: map-ring-pulse 2.4s ease-in-out infinite;
+        }
+
+        .mini-map-label,
+        .mini-map-context-label {
+            pointer-events: none;
+            paint-order: stroke;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        @keyframes map-dot-pulse {
+            0%, 100% { opacity: .24; }
+            50% { opacity: .62; }
+        }
+
+        @keyframes map-ring-pulse {
+            0%, 100% { opacity: .48; }
+            50% { opacity: .92; }
+        }
+
+        .map-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .map-foot b {
+            color: #fff0a8;
+            white-space: nowrap;
+        }
+
+        .map-section {
+            padding: 12px 20px 2px;
+        }
+
+        .map-section .script-mini-map-window {
+            width: 100%;
+        }
+
+        html[data-theme="light"] {
+            color-scheme: light;
+            --page: #f4f7fb;
+            --chrome: #ffffff;
+            --panel: #ffffff;
+            --panel-soft: #f7f9fd;
+            --panel-strong: #edf2f8;
+            --line: rgba(15, 23, 42, .12);
+            --text: #101827;
+            --muted: #516073;
+            --soft: #66758a;
+            --shadow: 0 18px 46px rgba(15, 23, 42, .12);
+        }
+
+        html[data-theme="light"] body {
+            background:
+                radial-gradient(circle at 18% 0%, rgba(55, 214, 122, .13), transparent 28rem),
+                radial-gradient(circle at 88% 8%, rgba(79, 195, 255, .12), transparent 26rem),
+                linear-gradient(180deg, #f7fafc 0%, #eef4fb 55%, #f8fbff 100%);
+            color: var(--text);
+        }
+
+        html[data-theme="light"] .topbar {
+            background: rgba(255, 255, 255, .92);
+            border-bottom-color: rgba(15, 23, 42, .12);
+        }
+
+        html[data-theme="light"] .back,
+        html[data-theme="light"] .topbar-link {
+            background: #f2f5fb;
+            color: #172033;
+            border-color: rgba(15, 23, 42, .12);
+        }
+
+        html[data-theme="light"] .topbar select {
+            background-color: #ffffff;
+            color: #172033;
+            -webkit-text-fill-color: #172033;
+            border-color: rgba(15, 23, 42, .14);
+        }
+
+        html[data-theme="light"] .topbar select option {
+            background: #ffffff;
+            color: #172033;
+        }
+
+        html[data-theme="light"] .control-button,
+        html[data-theme="light"] .theme-button {
+            color: #172033;
+            -webkit-text-fill-color: #172033;
+        }
+
+        html[data-theme="light"] .lang-switch span {
+            color: #516073;
+            -webkit-text-fill-color: #516073;
+        }
+
+        html[data-theme="light"][data-lang="en"] .lang-switch .lang-en,
+        html[data-theme="light"][data-lang="zh"] .lang-switch .lang-zh {
+            background: #dfe7f2;
+            color: #172033;
+            -webkit-text-fill-color: #172033;
+        }
+
+        html[data-theme="light"] .rail a {
+            color: #243044;
+        }
+
+        html[data-theme="light"] .rail a:hover,
+        html[data-theme="light"] .rail a.active {
+            background: rgba(15, 23, 42, .07);
+        }
+
+        html[data-theme="light"] .welcome-header,
+        html[data-theme="light"] .run-map-card,
+        html[data-theme="light"] .race-card,
+        html[data-theme="light"] .container {
+            background: rgba(255, 255, 255, .92);
+            color: var(--text);
+            border-color: rgba(15, 23, 42, .12);
+            box-shadow: var(--shadow);
+        }
+
+        html[data-theme="light"] .run-map-card {
+            background: linear-gradient(180deg, #ffffff, #f5f8fc);
+        }
+
+        html[data-theme="light"] .race-card.placeholder {
+            background: rgba(247, 249, 253, .86);
+        }
+
+        html[data-theme="light"] .run-map-card h2,
+        html[data-theme="light"] .welcome-title,
+        html[data-theme="light"] .rc-state,
+        html[data-theme="light"] .rc-race,
+        html[data-theme="light"] .section-title {
+            color: var(--text);
+        }
+
+        html[data-theme="light"] .welcome-sub,
+        html[data-theme="light"] .run-map-card p,
+        html[data-theme="light"] .rc-city,
+        html[data-theme="light"] .rc-date,
+        html[data-theme="light"] .rc-soon,
+        html[data-theme="light"] .map-foot,
+        html[data-theme="light"] .rail a small,
+        html[data-theme="light"] .rail-year-count {
+            color: var(--muted) !important;
+        }
+
+        html[data-theme="light"] .dashboard-section,
+        html[data-theme="light"] .content-body {
+            background: transparent;
+        }
+
+        html[data-theme="light"] .stats-cell,
+        html[data-theme="light"] .info-callout {
+            background: rgba(247, 249, 253, .92) !important;
+            border-color: rgba(15, 23, 42, .12);
+        }
+
+        html[data-theme="light"] .script-text {
+            color: #1f2937;
+        }
+
+        .rc-state,
+        .rc-race {
+            color: #f5f7fb;
+        }
+
+        .rc-city,
+        .rc-date,
+        .rc-soon {
+            color: var(--muted) !important;
+        }
+
+        .container {
+            max-width: 980px;
+            background: rgba(37, 43, 63, .9);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .header-banner {
+            padding: 42px 38px;
+            border-bottom-width: 1px !important;
+            border-bottom-color: rgba(255, 255, 255, .16) !important;
+        }
+
+        .header-banner h1 {
+            color: #fff;
+            font-size: clamp(28px, 4vw, 44px);
+            letter-spacing: 0;
+        }
+
+        .dashboard-section,
+        .content-body {
+            background: transparent;
+        }
+
+        .dashboard-section {
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .stats-cell {
+            background: rgba(16, 19, 29, .34);
+            border-color: rgba(255, 255, 255, .11);
+            color: var(--text);
+        }
+
+        .stats-title,
+        .progress-label,
+        .info-callout,
+        .map-label {
+            color: var(--muted);
+        }
+
+        .script-text {
+            color: #eef3ff;
+        }
+
+        .section-title {
+            color: var(--text);
+            border-bottom-color: rgba(255, 255, 255, .16);
+        }
+
+        .info-callout {
+            background: rgba(16, 19, 29, .34) !important;
+        }
+
+        .footer {
+            background: rgba(16, 19, 29, .38);
+            color: var(--muted);
+            border-top: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        @media (max-width: 1100px) {
+            .topbar {
+                grid-template-columns: auto minmax(180px, 1fr) auto;
+                align-items: center;
+                padding: 10px 16px;
+            }
+
+            .top-links {
+                justify-content: flex-end;
+                position: static;
+            }
+
+            .shell {
+                grid-template-columns: 1fr;
+            }
+
+            .map-board {
+                grid-template-columns: 1fr;
+            }
+
+            .rail {
+                position: static;
+                display: flex;
+                gap: 10px;
+                padding-top: 0;
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+
+            .rail::-webkit-scrollbar {
+                display: none;
+            }
+
+            .rail a {
+                min-width: max-content;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .back {
+                display: none;
+            }
+
+            .brand {
+                gap: 6px;
+            }
+
+            .mark {
+                width: 28px;
+                height: 28px;
+                border-radius: 8px;
+                font-size: 13px;
+            }
+
+            .menu-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .shell {
+                width: min(100% - 24px, 520px);
+                padding-top: 18px;
+            }
+
+            .topbar {
+                grid-template-columns: auto minmax(0, 1fr) auto;
+                gap: 8px;
+                padding: 10px 12px;
+            }
+
+            .top-links {
+                position: static;
+            }
+
+            .topbar-link {
+                min-height: 34px;
+            }
+
+            .theme-button {
+                width: 36px;
+                font-size: 16px;
+            }
+
+            .lang-switch {
+                width: 68px;
+                padding: 2px;
+            }
+
+            .lang-switch span {
+                width: 31px;
+                height: 26px;
+                font-size: 11px;
+            }
+
+            .topbar select {
+                min-height: 36px;
+                padding-left: 11px;
+                padding-right: 30px;
+                font-size: 12px;
+            }
+
+            .welcome-header {
+                padding: 28px 20px;
+            }
+
+            .welcome-title {
+                font-size: 38px;
+            }
+
+            .race-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-table,
+            .stats-cell,
+            .script-row,
+            .cue-tag,
+            .script-text {
+                display: block;
+                width: 100%;
+            }
+
+            .script-text {
+                padding-left: 0;
+                padding-top: 10px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <!-- 顶部导航栏 -->
-    <div class="topbar">
-        <div class="topbar-title">RUN50</div>
+    <header class="topbar">
+        <div class="brand">
+            <div class="menu-icon">☰</div>
+            <div class="mark">R</div>
+            <a class="back" href="run50.html">Back to Run50</a>
+        </div>
+        <div class="script-picker">
         <select id="scriptSelect" onchange="switchScript(this.value)">
             <option value="welcome">— 选择州别口播稿 —</option>
             <option value="script-ky">⛰️ #01 肯塔基 · 威廉姆森（哈特菲尔德-麦考伊）</option>
@@ -493,177 +1335,127 @@
             <option value="script-mi">🏃 #21 密歇根 · 大急流城</option>
             <option value="script-nh">🍂 #22 新罕布什尔 · 基恩</option>
         </select>
-        <a class="topbar-link" href="./stories/chinese/">中文故事</a>
-        <a class="topbar-link" href="./stories/english/">English Stories</a>
-        <a class="topbar-link" href="./facebook/">Facebook</a>
-    </div>
+        </div>
+        <nav class="top-links" aria-label="Run50 channels">
+            <button class="topbar-link control-button theme-button" id="themeToggle" type="button" aria-label="Switch to bright mode" title="Switch theme">☀</button>
+            <button class="topbar-link control-button lang-switch" id="langToggle" type="button" aria-label="Switch language" title="Switch language"><span class="lang-en">EN</span><span class="lang-zh">中</span></button>
+            <a class="topbar-link" href="run50.html">新版首页</a>
+            <a class="topbar-link" href="https://zhennanzhang.com/run50/stories/chinese/">中文故事</a>
+            <a class="topbar-link" href="https://zhennanzhang.com/run50/stories/english/">English Stories</a>
+            <a class="topbar-link" href="https://zhennanzhang.com/run50/facebook/">Facebook</a>
+        </nav>
+    </header>
+
+    <div class="shell">
+        <aside class="rail" aria-label="Run50 year timeline">
+            <a class="active" href="#welcome" onclick="jumpToYear('top'); return false;"><span class="rail-icon">↥</span><span class="rail-copy"><b>Timeline</b><small>All years</small></span></a>
+            <a href="#year-2026" onclick="jumpToYear('2026'); return false;"><span class="rail-icon">2026</span><span class="rail-copy"><b>2026</b><small>Run50 / RunCN / RunWorld</small><span class="rail-year-count">latest</span></span></a>
+            <a href="#year-2025" onclick="jumpToYear('2025'); return false;"><span class="rail-icon">2025</span><span class="rail-copy"><b>2025</b><small>Run50 / RunCN / RunWorld</small></span></a>
+            <a href="#year-2024" onclick="jumpToYear('2024'); return false;"><span class="rail-icon">2024</span><span class="rail-copy"><b>2024</b><small>Run50 scripts</small></span></a>
+            <a href="#year-2023" onclick="jumpToYear('2023'); return false;"><span class="rail-icon">2023</span><span class="rail-copy"><b>2023</b><small>Run50 archive</small></span></a>
+            <a href="#year-2022" onclick="jumpToYear('2022'); return false;"><span class="rail-icon">2022</span><span class="rail-copy"><b>2022</b><small>Run50 archive</small></span></a>
+            <a href="#year-2021" onclick="jumpToYear('2021'); return false;"><span class="rail-icon">2021</span><span class="rail-copy"><b>2021</b><small>Run50 archive</small></span></a>
+            <a href="#year-2020" onclick="jumpToYear('2020'); return false;"><span class="rail-icon">2020</span><span class="rail-copy"><b>2020</b><small>Run50 start</small></span></a>
+            <a href="#year-2019" onclick="jumpToYear('2019'); return false;"><span class="rail-icon">2019</span><span class="rail-copy"><b>2019</b><small>RunCN stories</small></span></a>
+            <a href="#year-2018" onclick="jumpToYear('2018'); return false;"><span class="rail-icon">2018</span><span class="rail-copy"><b>2018</b><small>RunCN stories</small></span></a>
+            <a href="#year-2017" onclick="jumpToYear('2017'); return false;"><span class="rail-icon">2017</span><span class="rail-copy"><b>2017</b><small>RunCN stories</small></span></a>
+        </aside>
 
     <!-- 内容区 -->
-    <div class="main-content">
+    <main class="main-content">
         
         <!-- 欢迎/默认页面 -->
         <div id="welcome" class="welcome-screen active">
             <div class="welcome-header">
-                <div class="welcome-title">🏃 Run50 · 2024 口播脚本库</div>
+                <div class="welcome-title">🏃 Run50 · 口播脚本库</div>
                 <div class="welcome-sub">选择一个州，开始录制</div>
             </div>
 
-            <!-- 跑马足迹互动地图 -->
-            <div class="welcome-map-container" style="max-width:980px; margin: 0 auto 24px; background:#fff; border-radius:12px; border:1px solid #e2e8f0; padding:20px; box-shadow: 0 18px 44px rgba(15,23,42,.08); position:relative;">
-                <div style="font-size:16px; font-weight:700; color:#1a2a3a; margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
-                    <div style="display:flex; align-items:center; gap:8px;">
-                        <span>🗺️ Run50 马拉松跑旅足迹 (Interactive Map)</span>
-                        <span style="font-size:12px; font-weight:normal; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px; font-weight:bold;">已跑过 35 州</span>
-                    </div>
-                    <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:#888; transition:color 0.2s;">鼠标悬停在州或红点上查看比赛记录，点击跳转</span>
+            <div class="map-board voiceover-map-board" aria-label="Run50 and RunCN maps">
+              <a class="run-map-card" href="#welcome" onclick="return false;">
+                <div>
+                  <div class="eyebrow">Interactive Map</div>
+                  <h2>Run50 · 美国50州地图</h2>
+                  <p>沿用微信新版的地图视觉，把已跑足迹、城市红点和口播入口放在同一张地图里。</p>
                 </div>
-                
-                <div class="welcome-map-slot" id="welcome-map-slot" style="position:relative; width:100%; aspect-ratio:1722/989; background:#f4f6f7; border-radius:8px; overflow:hidden; border:1px solid #eef2f5;">
-                    <!-- SVG Map will be dynamically appended here -->
-                </div>
-                
-                <!-- 地图图例 -->
-                    <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:#555; border-top:1px solid #f0f0f0; padding-top:10px; flex-wrap:wrap;">
-                        <div style="display:flex; align-items:center; gap:6px;">
-                            <span style="display:inline-block; width:12px; height:12px; background:linear-gradient(135deg,#d4614a 0 25%,#e89838 25% 50%,#5ca860 50% 75%,#3898a8 75%); border-radius:3px;"></span>
-                            <span>彩色州 = 跑过的州 (35州)</span>
-                        </div>
-                    <div style="display:flex; align-items:center; gap:6px;">
-                        <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
-                        <span>跑马城市 (红点点亮)</span>
-                    </div>
-                </div>
-            </div>
+                <div class="map-window" id="run50-us-map-mini" aria-label="Run50 美国地图"></div>
+                <div class="map-foot"><span id="us-map-mini-status">点击州或城市查看口播/故事</span><b>35 States</b></div>
+              </a>
 
-            <!-- 中国足迹互动地图 -->
-            <div id="china-map-container" style="max-width:850px; margin: 0 auto 24px; background:#fff; border-radius:12px; border:1px solid #e2e8f0; padding:20px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-              <div style="font-size:16px; font-weight:700; color:#1a2a3a; margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
-                <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-                  <span>🗺️ 中国马拉松跑旅足迹 (Interactive Map)</span>
-                  <span style="font-size:12px; font-weight:bold; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px;">已跑过 17 个省级区域</span>
+              <a class="run-map-card" href="#welcome" onclick="return false;">
+                <div>
+                  <div class="eyebrow">Interactive Map</div>
+                  <h2>RunCN · China Marathon Map</h2>
+                  <p>中国跑马足迹使用微信新版的英文地图标签、城市红点和区域高亮。</p>
                 </div>
-                <span id="china-map-hover-status" style="font-size:13px; font-weight:normal; color:#888; transition:color 0.2s;">鼠标悬停在省份或红点上查看故事，点击可跳转</span>
-              </div>
-              <div id="cn-map-slot" style="position:relative; width:100%; aspect-ratio: 800 / 720; background:#f4f6f4; border-radius:8px; overflow:hidden; border:1px solid #eef2f5;">
-              </div>
-              <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:#555; border-top:1px solid #f0f0f0; padding-top:10px; flex-wrap:wrap;">
-                <div style="display:flex; align-items:center; gap:6px;">
-                  <span style="display:inline-block; width:12px; height:12px; background:#5bb87c; border-radius:3px;"></span>
-                  <span>有颜色 = 跑过马拉松的省份/地区</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:6px;">
-                  <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
-                  <span>红点 = 跑马城市</span>
-                </div>
-              </div>
+                <div class="map-window" id="runcn-china-map-mini" aria-label="RunCN China map"></div>
+                <div class="map-foot"><span id="cn-map-mini-status">Click a region or city</span><b>18 Regions</b></div>
+              </a>
             </div>
 
             <div class="race-grid">
-            <div class="year-divider">2024</div>
-            <div class="race-card placeholder" onclick="switchScript('script-fl-d-run')" style="border-top:3px solid #1B4B8A;cursor:pointer">
-                <div class="rc-num" style="color:#1B4B8A">#15</div>
-                <div class="rc-emoji">🏰</div>
-                <div class="rc-state">佛罗里达</div>
-                <div class="rc-city">奥兰多</div>
-                <div class="rc-race">Run Disney Marathon</div>
-                <div class="rc-date" style="color:#1B4B8A">2024.01.04</div>
+            <div class="year-divider">2026</div>
+            <div class="race-card" onclick="switchScript('script-az')" style="border-top:3px solid #8B2500;cursor:pointer">
+                <div class="rc-num" style="color:#8B2500">#29</div>
+                <div class="rc-emoji">🌵</div>
+                <a class="rc-state" href="https://zhennanzhang.com/run50/stories/chinese/arizona-phoenix-marathon.html">亚利桑那</a>
+                <div class="rc-city">巴基</div>
+                <div class="rc-race">Buckeye Marathon</div>
+                <div class="rc-date" style="color:#8B2500">2026.01.10</div>
                 <div class="rc-soon">口播待更新</div>
             </div>
-            <div class="race-card" onclick="switchScript('script-fl')" style="border-top:3px solid #006272;cursor:pointer">
-                <div class="rc-num" style="color:#006272">#15</div>
-                <div class="rc-emoji">☀️</div>
-                <div class="rc-state">佛罗里达</div>
-                <div class="rc-city">迈阿密</div>
-                <div class="rc-race">迈阿密马拉松</div>
-                <div class="rc-date" style="color:#006272">2024.01.28</div>
+            <div class="race-card placeholder" onclick="switchScript('script-de')" style="border-top:3px solid #003087;cursor:pointer">
+                <div class="rc-num" style="color:#003087">#30</div>
+                <div class="rc-emoji">🦅</div>
+                <div class="rc-state">特拉华</div>
+                <div class="rc-city">威明顿</div>
+                <div class="rc-race">Delaware Marathon Festival</div>
+                <div class="rc-date" style="color:#003087">2026.04.20</div>
+                <div class="rc-soon">口播待更新</div>
             </div>
-            <div class="race-card" onclick="switchScript('script-nc')" style="border-top:3px solid #13294B;cursor:pointer">
-                <div class="rc-num" style="color:#13294B">#16</div>
+            <div class="race-card placeholder" onclick="switchScript('script-mn')" style="border-top:3px solid #4A0080;cursor:pointer">
+                <div class="rc-num" style="color:#4A0080">#31</div>
                 <div class="rc-emoji">🌊</div>
-                <div class="rc-state">北卡</div>
-                <div class="rc-city">橡树岛</div>
-                <div class="rc-race">橡树岛马拉松</div>
-                <div class="rc-date" style="color:#13294B">2024.02.18</div>
+                <div class="rc-state">明尼苏达</div>
+                <div class="rc-city">罗彻斯特</div>
+                <div class="rc-race">Med City Marathon</div>
+                <div class="rc-date" style="color:#4A0080">2026.05.16</div>
+                <div class="rc-soon">口播待更新</div>
             </div>
-            <div class="race-card" onclick="switchScript('script-ar')" style="border-top:3px solid #9D2235;cursor:pointer">
-                <div class="rc-num" style="color:#9D2235">#17</div>
-                <div class="rc-emoji">🦕</div>
-                <div class="rc-state">阿肯色</div>
-                <div class="rc-city">小石城</div>
-                <div class="rc-race">小石城马拉松</div>
-                <div class="rc-date" style="color:#9D2235">2024.03.03</div>
+            <div class="race-card placeholder" onclick="switchScript('script-mm-ct')" style="border-top:3px solid #002868;cursor:pointer">
+                <div class="rc-num" style="color:#002868">#32</div>
+                <div class="rc-emoji">🏛️</div>
+                <div class="rc-state">康涅狄格</div>
+                <div class="rc-city">辛斯伯里</div>
+                <div class="rc-race">Connecticut Marathon</div>
+                <div class="rc-date" style="color:#002868">2026.06.08</div>
+                <div class="rc-soon">口播待更新</div>
             </div>
-            <div class="race-card" onclick="switchScript('script-sc')" style="border-top:3px solid #003087;cursor:pointer">
-                <div class="rc-num" style="color:#003087">#18</div>
-                <div class="rc-emoji">🐢</div>
-                <div class="rc-state">南卡</div>
-                <div class="rc-city">Greer</div>
-                <div class="rc-race">2Slow4Boston</div>
-                <div class="rc-date" style="color:#003087">2024.04.14</div>
+            <div class="race-card placeholder" onclick="switchScript('script-mm-ri')" style="border-top:3px solid #002147;cursor:pointer">
+                <div class="rc-num" style="color:#002147">#33</div>
+                <div class="rc-emoji">⚓</div>
+                <div class="rc-state">罗德岛</div>
+                <div class="rc-city">伍恩索克特</div>
+                <div class="rc-race">Rhode Island Marathon</div>
+                <div class="rc-date" style="color:#002147">2026.06.09</div>
+                <div class="rc-soon">口播待更新</div>
             </div>
-            <div class="race-card" onclick="switchScript('script-ky-derby')" style="border-top:3px solid #8B2027;cursor:pointer">
-                <div class="rc-num" style="color:#8B2027">#01+</div>
-                <div class="rc-emoji">🏇</div>
-                <div class="rc-state">肯塔基</div>
-                <div class="rc-city">路易斯维尔</div>
-                <div class="rc-race">德比马拉松</div>
-                <div class="rc-date" style="color:#8B2027">2024.04.27</div>
+            <div class="race-card placeholder" onclick="switchScript('script-mm-ma')" style="border-top:3px solid #003087;cursor:pointer">
+                <div class="rc-num" style="color:#003087">#34</div>
+                <div class="rc-emoji">🦞</div>
+                <div class="rc-state">马萨诸塞</div>
+                <div class="rc-city">霍利奥克</div>
+                <div class="rc-race">Massachusetts Marathon</div>
+                <div class="rc-date" style="color:#003087">2026.06.10</div>
+                <div class="rc-soon">口播待更新</div>
             </div>
-            <div class="race-card" onclick="switchScript('script-pa')" style="border-top:3px solid #1C2951;cursor:pointer">
-                <div class="rc-num" style="color:#1C2951">#19</div>
-                <div class="rc-emoji">🌉</div>
-                <div class="rc-state">宾夕法尼亚</div>
-                <div class="rc-city">匹兹堡</div>
-                <div class="rc-race">匹兹堡马拉松</div>
-                <div class="rc-date" style="color:#1C2951">2024.05.04</div>
-            </div>
-            <div class="race-card" onclick="switchScript('script-wi')" style="border-top:3px solid #124634;cursor:pointer">
-                <div class="rc-num" style="color:#124634">#20</div>
-                <div class="rc-emoji">🧀</div>
-                <div class="rc-state">威斯康辛</div>
-                <div class="rc-city">绿湾</div>
-                <div class="rc-race">绿湾马拉松</div>
-                <div class="rc-date" style="color:#124634">2024.05.20</div>
-            </div>
-            <div class="race-card" onclick="switchScript('script-ky')" style="border-top:3px solid #1a2a3a;cursor:pointer">
-                <div class="rc-num" style="color:#1a2a3a">#01</div>
-                <div class="rc-emoji">⛰️</div>
-                <div class="rc-state">肯塔基</div>
-                <div class="rc-city">威廉姆森</div>
-                <div class="rc-race">哈特菲尔德-麦考伊</div>
-                <div class="rc-date" style="color:#1a2a3a">2024.06.08</div>
-            </div>
-            <div class="race-card" onclick="switchScript('script-mi')" style="border-top:3px solid #00274C;cursor:pointer">
-                <div class="rc-num" style="color:#00274C">#21</div>
-                <div class="rc-emoji">🏃</div>
-                <div class="rc-state">密歇根</div>
-                <div class="rc-city">大急流城</div>
-                <div class="rc-race">大急流城马拉松</div>
-                <div class="rc-date" style="color:#00274C">2024.08.25</div>
-            </div>
-            <div class="race-card" data-story-file="new-hampshire-clarence-demar-marathon.html" onclick="switchScript('script-nh')" style="border-top:3px solid #1B3A2D;cursor:pointer">
-                <div class="rc-num" style="color:#1B3A2D">#22</div>
-                <div class="rc-emoji">🍂</div>
-                <div class="rc-state">新罕布什尔</div>
-                <div class="rc-city">基恩</div>
-                <div class="rc-race">克拉伦斯·德马尔</div>
-                <div class="rc-date" style="color:#1B3A2D">2024.09.28</div>
-            </div>
-            <div class="race-card" data-story-file="louisville-marathon-2024.html" onclick="switchScript('script-ky-grad')" style="border-top:3px solid #1C4A2A;cursor:pointer">
-                <div class="rc-num" style="color:#1C4A2A">#01++</div>
-                <div class="rc-emoji">🎓</div>
-                <div class="rc-state">肯塔基</div>
-                <div class="rc-city">路易斯维尔</div>
-                <div class="rc-race">路易斯维尔马拉松（博士收官）</div>
-                <div class="rc-date" style="color:#1C4A2A">2024.11.03</div>
-            </div>
-            <div class="race-card placeholder" onclick="switchScript('script-fl-disney')" style="border-top:3px solid #1B4B8A;cursor:pointer">
-                <div class="rc-num" style="color:#1B4B8A">#FL+</div>
-                <div class="rc-emoji">🏰</div>
-                <div class="rc-state">佛罗里达</div>
-                <div class="rc-city">奥兰多</div>
-                <div class="rc-race">Disney Marathon</div>
-                <div class="rc-date" style="color:#1B4B8A">2024.01.07</div>
+            <div class="race-card placeholder" onclick="switchScript('script-mm-me')" style="border-top:3px solid #1A3A1A;cursor:pointer">
+                <div class="rc-num" style="color:#1A3A1A">#35</div>
+                <div class="rc-emoji">🦞</div>
+                <div class="rc-state">缅因</div>
+                <div class="rc-city">桑福德</div>
+                <div class="rc-race">Maine Marathon</div>
+                <div class="rc-date" style="color:#1A3A1A">2026.06.13</div>
                 <div class="rc-soon">口播待更新</div>
             </div>
             <div class="year-divider">2025</div>
@@ -775,93 +1567,114 @@
                 <div class="rc-date" style="color:#8B6914">2025.12.21</div>
                 <div class="rc-soon">口播待更新</div>
             </div>
-            <div class="year-divider">2026</div>
-            <div class="race-card" onclick="switchScript('script-az')" style="border-top:3px solid #8B2500;cursor:pointer">
-                <div class="rc-num" style="color:#8B2500">#29</div>
-                <div class="rc-emoji">🌵</div>
-                <a class="rc-state" href="./stories/chinese/arizona-phoenix-marathon.html">亚利桑那</a>
-                <div class="rc-city">巴基</div>
-                <div class="rc-race">Buckeye Marathon</div>
-                <div class="rc-date" style="color:#8B2500">2026.01.10</div>
+            <div class="year-divider">2024</div>
+            <div class="race-card placeholder" onclick="switchScript('script-fl-d-run')" style="border-top:3px solid #1B4B8A;cursor:pointer">
+                <div class="rc-num" style="color:#1B4B8A">#15</div>
+                <div class="rc-emoji">🏰</div>
+                <div class="rc-state">佛罗里达</div>
+                <div class="rc-city">奥兰多</div>
+                <div class="rc-race">Run Disney Marathon</div>
+                <div class="rc-date" style="color:#1B4B8A">2024.01.04</div>
                 <div class="rc-soon">口播待更新</div>
             </div>
-            <div class="race-card placeholder" onclick="switchScript('script-de')" style="border-top:3px solid #003087;cursor:pointer">
-                <div class="rc-num" style="color:#003087">#30</div>
-                <div class="rc-emoji">🦅</div>
-                <div class="rc-state">特拉华</div>
-                <div class="rc-city">威明顿</div>
-                <div class="rc-race">Delaware Marathon Festival</div>
-                <div class="rc-date" style="color:#003087">2026.04.20</div>
-                <div class="rc-soon">口播待更新</div>
+            <div class="race-card" onclick="switchScript('script-fl')" style="border-top:3px solid #006272;cursor:pointer">
+                <div class="rc-num" style="color:#006272">#15</div>
+                <div class="rc-emoji">☀️</div>
+                <div class="rc-state">佛罗里达</div>
+                <div class="rc-city">迈阿密</div>
+                <div class="rc-race">迈阿密马拉松</div>
+                <div class="rc-date" style="color:#006272">2024.01.28</div>
             </div>
-            <div class="race-card placeholder" onclick="switchScript('script-mn')" style="border-top:3px solid #4A0080;cursor:pointer">
-                <div class="rc-num" style="color:#4A0080">#31</div>
+            <div class="race-card" onclick="switchScript('script-nc')" style="border-top:3px solid #13294B;cursor:pointer">
+                <div class="rc-num" style="color:#13294B">#16</div>
                 <div class="rc-emoji">🌊</div>
-                <div class="rc-state">明尼苏达</div>
-                <div class="rc-city">罗彻斯特</div>
-                <div class="rc-race">Med City Marathon</div>
-                <div class="rc-date" style="color:#4A0080">2026.05.16</div>
-                <div class="rc-soon">口播待更新</div>
+                <div class="rc-state">北卡</div>
+                <div class="rc-city">橡树岛</div>
+                <div class="rc-race">橡树岛马拉松</div>
+                <div class="rc-date" style="color:#13294B">2024.02.18</div>
             </div>
-            <div style="grid-column:1/-1;background:#f0f4ff;border-radius:8px;padding:10px 14px;border-left:4px solid #4060b0;margin:4px 0">
-                <div style="font-size:11px;font-weight:700;color:#4060b0;letter-spacing:1px">📅 MAINLY MARATHONS · NEW ENGLAND SERIES</div>
-                <div style="font-size:10px;color:#888;margin-top:2px">2026.06.08–13 &nbsp;·&nbsp; 6天6州6场马拉松</div>
+            <div class="race-card" onclick="switchScript('script-ar')" style="border-top:3px solid #9D2235;cursor:pointer">
+                <div class="rc-num" style="color:#9D2235">#17</div>
+                <div class="rc-emoji">🦕</div>
+                <div class="rc-state">阿肯色</div>
+                <div class="rc-city">小石城</div>
+                <div class="rc-race">小石城马拉松</div>
+                <div class="rc-date" style="color:#9D2235">2024.03.03</div>
             </div>
-            <div class="race-card placeholder" onclick="switchScript('script-mm-ct')" style="border-top:3px solid #002868;cursor:pointer">
-                <div class="rc-num" style="color:#002868">#32</div>
-                <div class="rc-emoji">🏛️</div>
-                <div class="rc-state">康涅狄格</div>
-                <div class="rc-city">辛斯伯里</div>
-                <div class="rc-race">Mainly Marathons NE · Day 1</div>
-                <div class="rc-date" style="color:#002868">2026.06.08</div>
-                <div class="rc-soon">口播待更新</div>
+            <div class="race-card" onclick="switchScript('script-sc')" style="border-top:3px solid #003087;cursor:pointer">
+                <div class="rc-num" style="color:#003087">#18</div>
+                <div class="rc-emoji">🐢</div>
+                <div class="rc-state">南卡</div>
+                <div class="rc-city">Greer</div>
+                <div class="rc-race">2Slow4Boston</div>
+                <div class="rc-date" style="color:#003087">2024.04.14</div>
             </div>
-            <div class="race-card placeholder" onclick="switchScript('script-mm-ri')" style="border-top:3px solid #002147;cursor:pointer">
-                <div class="rc-num" style="color:#002147">#33</div>
-                <div class="rc-emoji">⚓</div>
-                <div class="rc-state">罗德岛</div>
-                <div class="rc-city">伍恩索克特</div>
-                <div class="rc-race">Mainly Marathons NE · Day 2</div>
-                <div class="rc-date" style="color:#002147">2026.06.09</div>
-                <div class="rc-soon">口播待更新</div>
+            <div class="race-card" onclick="switchScript('script-ky-derby')" style="border-top:3px solid #8B2027;cursor:pointer">
+                <div class="rc-num" style="color:#8B2027">#01+</div>
+                <div class="rc-emoji">🏇</div>
+                <div class="rc-state">肯塔基</div>
+                <div class="rc-city">路易斯维尔</div>
+                <div class="rc-race">德比马拉松</div>
+                <div class="rc-date" style="color:#8B2027">2024.04.27</div>
             </div>
-            <div class="race-card placeholder" onclick="switchScript('script-mm-ma')" style="border-top:3px solid #003087;cursor:pointer">
-                <div class="rc-num" style="color:#003087">#34</div>
-                <div class="rc-emoji">🦞</div>
-                <div class="rc-state">马萨诸塞</div>
-                <div class="rc-city">霍利奥克</div>
-                <div class="rc-race">Mainly Marathons NE · Day 3</div>
-                <div class="rc-date" style="color:#003087">2026.06.10</div>
-                <div class="rc-soon">口播待更新</div>
+            <div class="race-card" onclick="switchScript('script-pa')" style="border-top:3px solid #1C2951;cursor:pointer">
+                <div class="rc-num" style="color:#1C2951">#19</div>
+                <div class="rc-emoji">🌉</div>
+                <div class="rc-state">宾夕法尼亚</div>
+                <div class="rc-city">匹兹堡</div>
+                <div class="rc-race">匹兹堡马拉松</div>
+                <div class="rc-date" style="color:#1C2951">2024.05.04</div>
             </div>
-            <div class="race-card placeholder" onclick="switchScript('script-mm-vt')" style="border-top:3px solid #2D6A2D;cursor:pointer">
-                <div class="rc-num" style="color:#2D6A2D">#27+</div>
-                <div class="rc-emoji">🍁</div>
-                <div class="rc-state">佛蒙特</div>
-                <div class="rc-city">斯普林菲尔德</div>
-                <div class="rc-race">Mainly Marathons NE · Day 4 5K</div>
-                <div class="rc-date" style="color:#2D6A2D">2026.06.11</div>
-                <div class="rc-soon">口播待更新</div>
+            <div class="race-card" onclick="switchScript('script-wi')" style="border-top:3px solid #124634;cursor:pointer">
+                <div class="rc-num" style="color:#124634">#20</div>
+                <div class="rc-emoji">🧀</div>
+                <div class="rc-state">威斯康辛</div>
+                <div class="rc-city">绿湾</div>
+                <div class="rc-race">绿湾马拉松</div>
+                <div class="rc-date" style="color:#124634">2024.05.20</div>
             </div>
-            <div class="race-card placeholder" onclick="switchScript('script-mm-nh')" style="border-top:3px solid #1B3A2D;cursor:pointer">
-                <div class="rc-num" style="color:#1B3A2D">#22+</div>
-                <div class="rc-emoji">🏔️</div>
+            <div class="race-card" onclick="switchScript('script-ky')" style="border-top:3px solid #1a2a3a;cursor:pointer">
+                <div class="rc-num" style="color:#1a2a3a">#01</div>
+                <div class="rc-emoji">⛰️</div>
+                <div class="rc-state">肯塔基</div>
+                <div class="rc-city">威廉姆森</div>
+                <div class="rc-race">哈特菲尔德-麦考伊</div>
+                <div class="rc-date" style="color:#1a2a3a">2024.06.08</div>
+            </div>
+            <div class="race-card" onclick="switchScript('script-mi')" style="border-top:3px solid #00274C;cursor:pointer">
+                <div class="rc-num" style="color:#00274C">#21</div>
+                <div class="rc-emoji">🏃</div>
+                <div class="rc-state">密歇根</div>
+                <div class="rc-city">大急流城</div>
+                <div class="rc-race">大急流城马拉松</div>
+                <div class="rc-date" style="color:#00274C">2024.08.25</div>
+            </div>
+            <div class="race-card" data-story-file="new-hampshire-clarence-demar-marathon.html" onclick="switchScript('script-nh')" style="border-top:3px solid #1B3A2D;cursor:pointer">
+                <div class="rc-num" style="color:#1B3A2D">#22</div>
+                <div class="rc-emoji">🍂</div>
                 <div class="rc-state">新罕布什尔</div>
-                <div class="rc-city">克拉蒙特</div>
-                <div class="rc-race">Mainly Marathons NE · Day 5 5K</div>
-                <div class="rc-date" style="color:#1B3A2D">2026.06.12</div>
+                <div class="rc-city">基恩</div>
+                <div class="rc-race">克拉伦斯·德马尔</div>
+                <div class="rc-date" style="color:#1B3A2D">2024.09.28</div>
+            </div>
+            <div class="race-card" data-story-file="louisville-marathon-2024.html" onclick="switchScript('script-ky-grad')" style="border-top:3px solid #1C4A2A;cursor:pointer">
+                <div class="rc-num" style="color:#1C4A2A">#01++</div>
+                <div class="rc-emoji">🎓</div>
+                <div class="rc-state">肯塔基</div>
+                <div class="rc-city">路易斯维尔</div>
+                <div class="rc-race">路易斯维尔马拉松（博士收官）</div>
+                <div class="rc-date" style="color:#1C4A2A">2024.11.03</div>
+            </div>
+            <div class="race-card placeholder" onclick="switchScript('script-fl-disney')" style="border-top:3px solid #1B4B8A;cursor:pointer">
+                <div class="rc-num" style="color:#1B4B8A">#FL+</div>
+                <div class="rc-emoji">🏰</div>
+                <div class="rc-state">佛罗里达</div>
+                <div class="rc-city">奥兰多</div>
+                <div class="rc-race">Disney Marathon</div>
+                <div class="rc-date" style="color:#1B4B8A">2024.01.07</div>
                 <div class="rc-soon">口播待更新</div>
             </div>
-            <div class="race-card placeholder" onclick="switchScript('script-mm-me')" style="border-top:3px solid #1A3A1A;cursor:pointer">
-                <div class="rc-num" style="color:#1A3A1A">#35</div>
-                <div class="rc-emoji">🦞</div>
-                <div class="rc-state">缅因</div>
-                <div class="rc-city">桑福德</div>
-                <div class="rc-race">Mainly Marathons NE · Day 6</div>
-                <div class="rc-date" style="color:#1A3A1A">2026.06.13</div>
-                <div class="rc-soon">口播待更新</div>
-            </div>
-            <div class="year-divider" style="color:#aaa;border-top-color:#ddd;font-size:10px;letter-spacing:4px">📚 2020–2023 历史马拉松</div>
+            <div class="year-divider">2020</div>
             <div class="race-card placeholder" onclick="switchScript('script-ky-2020')" style="border-top:3px solid #1a2a3a;cursor:pointer">
                 <div class="rc-num" style="color:#1a2a3a">#01</div>
                 <div class="rc-emoji">🏆</div>
@@ -2457,6 +3270,29 @@
             }
         }
 
+        function setActiveRail(target) {
+            document.querySelectorAll('.rail a').forEach(link => {
+                const href = (link.getAttribute('href') || '').replace('#', '');
+                link.classList.toggle('active', href === target || (target === 'welcome' && href === 'welcome'));
+            });
+        }
+
+        function jumpToYear(year) {
+            if (typeof showWelcome === 'function') showWelcome();
+            else {
+                document.querySelectorAll('.main-content .container').forEach(script => script.classList.remove('active'));
+                document.getElementById('welcome')?.classList.add('active');
+            }
+
+            const target = year === 'top' ? document.getElementById('welcome') : document.getElementById(`year-${year}`);
+            if (!target) return;
+            setActiveRail(year === 'top' ? 'welcome' : `year-${year}`);
+            requestAnimationFrame(() => {
+                target.scrollIntoView({ behavior: 'smooth', block: year === 'top' ? 'start' : 'start' });
+                history.replaceState(null, '', year === 'top' ? '#welcome' : `#year-${year}`);
+            });
+        }
+
         // 页面加载时读取 hash，直接跳转到对应卡片
         (function() {
             const h = location.hash.slice(1);
@@ -2464,6 +3300,95 @@
             if (target && target.classList.contains('container')) {
                 switchScript(h);
             }
+        })();
+
+        (function buildYearTimeline() {
+            const grid = document.querySelector('#welcome .race-grid');
+            if (!grid) return;
+
+            const chinaStories = [
+                { slug:'haikou-marathon.html', href:'https://zhennanzhang.com/run50/wechat/haikou-marathon-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 16', emoji:'🌊', state:'海南', stateEn:'Hainan', city:'海口', cityEn:'Haikou', race:'海口马拉松', raceEn:'Haikou Marathon', date:'2019.03.03', color:'#3898a8' },
+                { slug:'wuhan-han-marathon.html', href:'https://zhennanzhang.com/run50/wechat/wuhan-han-marathon-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 17', emoji:'🌉', state:'湖北', stateEn:'Hubei', city:'武汉', cityEn:'Wuhan', race:'武汉汉马', raceEn:'Wuhan Han Marathon', date:'2019.04.14', color:'#5ca860' },
+                { slug:'dalian-trail.html', href:'https://zhennanzhang.com/run50/wechat/dalian-trail-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 18', emoji:'⛰️', state:'辽宁', stateEn:'Liaoning', city:'大连', cityEn:'Dalian', race:'大连越野', raceEn:'Dalian Trail', date:'2019.06.09', color:'#d4614a' },
+                { slug:'wuhan-graduation.html', href:'https://zhennanzhang.com/run50/wechat/wuhan-graduation-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 19', emoji:'🎓', state:'北京', stateEn:'Beijing', city:'北京', cityEn:'Beijing', race:'凤凰岭夜跑', raceEn:'Phoenix Ridge Night Run', date:'2019', color:'#e89838' },
+                { slug:'harbin-marathon.html', href:'https://zhennanzhang.com/run50/wechat/harbin-marathon-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 20', emoji:'❄️', state:'黑龙江', stateEn:'Heilongjiang', city:'哈尔滨', cityEn:'Harbin', race:'哈尔滨马拉松', raceEn:'Harbin Marathon', date:'2019.08.25', color:'#d4614a' },
+                { slug:'west-lake-half-marathon.html', href:'https://zhennanzhang.com/run50/wechat/west-lake-half-marathon-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 21', emoji:'🌿', state:'浙江', stateEn:'Zhejiang', city:'杭州', cityEn:'Hangzhou', race:'西湖半马', raceEn:'West Lake Half Marathon', date:'2019.11.10', color:'#9068c0' },
+                { slug:'shanghai-vertical-marathon.html', href:'https://zhennanzhang.com/run50/wechat/shanghai-vertical-marathon-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 22', emoji:'🏙️', state:'上海', stateEn:'Shanghai', city:'上海', cityEn:'Shanghai', race:'上海中心垂直马拉松', raceEn:'Shanghai Tower Vertical Marathon', date:'2019.11.24', color:'#5ca860' },
+                { slug:'ningbo-dongqian-lake-marathon.html', href:'https://zhennanzhang.com/run50/wechat/ningbo-dongqian-lake-marathon-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 23', emoji:'🚲', state:'浙江', stateEn:'Zhejiang', city:'宁波', cityEn:'Ningbo', race:'宁波东钱湖马拉松', raceEn:'Ningbo Dongqian Lake Marathon', date:'2019.12', color:'#9068c0' },
+                { slug:'xiamen-marathon.html', href:'https://zhennanzhang.com/run50/wechat/xiamen-marathon-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 10', emoji:'🌧️', state:'福建', stateEn:'Fujian', city:'厦门', cityEn:'Xiamen', race:'厦门马拉松', raceEn:'Xiamen Marathon', date:'2018.01.07', color:'#3898a8' },
+                { slug:'wuhan-wuxi-marathon-notes.html', href:'https://zhennanzhang.com/run50/wechat/wuhan-wuxi-marathon-notes-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 11', emoji:'🌸', state:'江苏', stateEn:'Jiangsu', city:'无锡', cityEn:'Wuxi', race:'无锡马拉松笔记', raceEn:'Wuxi Marathon Notes', date:'2018.03.25', color:'#98c038' },
+                { slug:'wuhan-marathon-2018.html', href:'https://zhennanzhang.com/run50/wechat/wuhan-marathon-2018-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 12', emoji:'🌉', state:'湖北', stateEn:'Hubei', city:'武汉', cityEn:'Wuhan', race:'武汉马拉松', raceEn:'Wuhan Marathon', date:'2018.04.15', color:'#5ca860' },
+                { slug:'xian-city-wall-marathon.html', href:'https://zhennanzhang.com/run50/wechat/xian-city-wall-marathon-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 13', emoji:'🏯', state:'陕西', stateEn:'Shaanxi', city:'西安', cityEn:"Xi'an", race:'西安城墙马拉松', raceEn:"Xi'an City Wall Marathon", date:'2018.04.21', color:'#e89838' },
+                { slug:'lanzhou-marathon.html', href:'https://zhennanzhang.com/run50/wechat/lanzhou-marathon-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 14', emoji:'🍜', state:'甘肃', stateEn:'Gansu', city:'兰州', cityEn:'Lanzhou', race:'兰州马拉松', raceEn:'Lanzhou Marathon', date:'2018.06.10', color:'#d4614a' },
+                { slug:'guiyang-marathon-climb.html', href:'https://zhennanzhang.com/run50/wechat/guiyang-marathon-climb-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 15', emoji:'⛰️', state:'贵州', stateEn:'Guizhou', city:'贵阳', cityEn:'Guiyang', race:'贵阳马拉松', raceEn:'Guiyang Marathon', date:'2018.07.22', color:'#5ca860' },
+                { slug:'steel-tank-story.html', href:'https://zhennanzhang.com/run50/wechat/steel-tank-story-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 1-6', emoji:'🚆', state:'中国', stateEn:'China', city:'六城', cityEn:'Six cities', race:'钢铁战车的故事', raceEn:'Steel Tank Story', date:'2017', color:'#3898a8' },
+                { slug:'three-city-pilgrimage.html', href:'https://zhennanzhang.com/run50/wechat/three-city-pilgrimage-modern-rail.html?v=20260630-wechat-emphasis', num:'RunCN 7-9', emoji:'🔥', state:'川鄂湘', stateEn:'Sichuan / Hubei / Hunan', city:'广安 · 宜昌 · 长沙', cityEn:"Guang'an · Yichang · Changsha", race:'三座城的朝圣之旅', raceEn:'Three-City Pilgrimage', date:'2017.11.18', color:'#d4614a' }
+            ];
+
+            const addCell = (card, cls, text, en, color) => {
+                const el = document.createElement('div');
+                el.className = cls;
+                el.textContent = text;
+                if (en) el.dataset.en = en;
+                if (color) el.style.color = color;
+                card.appendChild(el);
+            };
+
+            chinaStories.forEach(story => {
+                const exists = Array.from(grid.querySelectorAll('.race-card')).some(card => card.dataset.storyFile === story.slug);
+                if (exists) return;
+                const card = document.createElement('div');
+                card.className = 'race-card placeholder runcn-story-card';
+                card.dataset.storyFile = story.slug;
+                card.style.cssText = `border-top:3px solid ${story.color};cursor:pointer`;
+                card.addEventListener('click', () => { window.location.href = story.href; });
+                addCell(card, 'rc-num', story.num, story.num, story.color);
+                addCell(card, 'rc-emoji', story.emoji);
+                addCell(card, 'rc-state', story.state, story.stateEn);
+                addCell(card, 'rc-city', story.city, story.cityEn);
+                addCell(card, 'rc-race', story.race, story.raceEn);
+                addCell(card, 'rc-date', story.date, story.date, story.color);
+                addCell(card, 'rc-soon', '微信故事', 'WeChat story');
+                grid.appendChild(card);
+            });
+
+            const cards = Array.from(grid.querySelectorAll('.race-card'));
+            const groups = new Map();
+            cards.forEach(card => {
+                const year = (card.querySelector('.rc-date')?.textContent || '').match(/\d{4}/)?.[0] || 'Other';
+                if (!groups.has(year)) groups.set(year, []);
+                groups.get(year).push(card);
+            });
+
+            const cardSortValue = card => {
+                const dateText = (card.querySelector('.rc-date')?.textContent || '').trim();
+                const parts = dateText.match(/\d+/g) || [];
+                const year = Number(parts[0] || 0);
+                const month = Number(parts[1] || 0);
+                const day = Number(parts[2] || 0);
+                const dateValue = year * 10000 + month * 100 + day;
+                const numText = (card.querySelector('.rc-num')?.textContent || '').trim();
+                const nums = numText.match(/\d+/g) || [];
+                const numberValue = nums.length ? Number(nums[nums.length - 1]) : 0;
+                return dateValue * 1000 + numberValue;
+            };
+
+            grid.innerHTML = '';
+            Array.from(groups.keys())
+                .sort((a, b) => Number(b) - Number(a))
+                .forEach(year => {
+                    const divider = document.createElement('div');
+                    divider.className = 'year-divider';
+                    divider.id = `year-${year}`;
+                    divider.textContent = year;
+                    grid.appendChild(divider);
+                    groups.get(year)
+                        .sort((a, b) => cardSortValue(b) - cardSortValue(a))
+                        .forEach(card => grid.appendChild(card));
+                });
+
+            const initialYear = location.hash.match(/^#year-(\d{4})$/)?.[1];
+            if (initialYear) requestAnimationFrame(() => jumpToYear(initialYear));
         })();
     </script>
 
@@ -2631,7 +3556,7 @@
 <path id="map_OCEANS" fill="#000000" d="M1499.0,916.4 C1498.7,909.6 1498.7,904.4 1499.0,900.8 C1499.1,900.3 1499.3,899.9 1499.8,899.8 C1500.2,899.6 1500.7,899.6 1501.1,899.9 C1501.5,900.1 1501.7,900.5 1501.6,901.1 C1501.3,904.5 1501.3,909.6 1501.6,916.3 C1501.9,923.9 1502.0,929.0 1501.8,931.9 C1501.7,934.3 1501.8,936.1 1502.2,937.3 C1502.4,938.1 1502.8,938.6 1503.2,938.9 C1503.6,939.1 1504.2,939.2 1505.1,939.0 C1506.0,938.9 1506.7,938.5 1507.3,937.9 C1507.9,937.3 1508.3,936.3 1508.7,934.9 C1509.1,933.7 1509.3,932.1 1509.3,930.2 L1509.3,927.4 C1509.3,926.6 1509.3,925.8 1509.3,924.9 C1509.3,923.9 1509.3,921.1 1509.5,916.6 C1509.5,912.5 1509.5,910.3 1509.5,909.9 C1509.5,909.5 1509.3,907.9 1509.1,905.0 C1509.0,903.6 1508.9,902.4 1508.9,901.3 C1508.9,901.0 1509.0,900.7 1509.3,900.4 C1509.5,900.1 1509.8,900.0 1510.2,900.0 C1510.5,900.0 1510.8,900.1 1511.1,900.4 C1511.4,900.7 1511.5,901.0 1511.5,901.3 C1511.5,902.2 1511.6,903.3 1511.7,904.8 C1512.0,907.2 1512.1,908.9 1512.1,909.7 C1512.1,910.5 1512.1,912.8 1512.1,916.6 C1512.0,921.1 1511.9,923.9 1511.9,924.9 C1511.9,925.6 1511.9,926.5 1512.0,927.3 L1512.0,930.2 C1512.0,932.4 1511.7,934.2 1511.2,935.7 C1510.7,937.5 1510.0,938.8 1509.1,939.8 C1508.3,940.8 1507.0,941.4 1505.5,941.7 C1502.5,942.1 1500.5,940.9 1499.7,938.1 C1499.2,936.8 1499.1,934.7 1499.2,931.8 C1499.3,929.2 1499.3,924.1 1499.0,916.4 Z M1515.8,932.0 C1515.8,930.4 1515.8,927.4 1516.0,922.9 C1516.2,918.3 1516.2,915.4 1516.2,914.1 C1516.2,913.5 1516.3,912.1 1516.4,909.7 C1516.5,907.3 1516.6,905.8 1516.6,905.2 L1516.6,902.0 C1516.2,901.0 1516.4,900.2 1517.2,899.8 C1517.5,899.6 1517.8,899.6 1518.3,899.7 C1519.2,900.0 1519.7,900.6 1519.7,901.8 C1519.7,901.8 1519.7,901.9 1519.7,901.9 C1519.7,902.0 1519.8,902.3 1520.0,902.8 C1520.1,903.1 1520.3,903.9 1520.8,905.2 C1521.2,906.5 1521.5,907.3 1521.5,907.6 C1522.3,911.0 1523.0,913.6 1523.4,915.5 C1523.8,917.4 1524.3,919.5 1525.0,921.9 C1525.6,924.3 1526.1,926.2 1526.5,927.7 C1527.1,929.3 1527.5,930.2 1527.9,930.6 L1527.9,929.6 C1527.9,928.0 1527.9,925.0 1527.7,920.7 C1527.5,912.1 1527.7,905.4 1528.3,900.6 C1528.4,900.1 1528.6,899.8 1529.1,899.6 C1529.5,899.4 1530.0,899.5 1530.4,899.8 C1530.8,900.0 1531.0,900.4 1531.0,901.0 C1530.3,905.6 1530.1,912.2 1530.4,920.6 C1530.5,924.7 1530.5,927.7 1530.5,929.6 L1530.5,934.8 C1530.5,935.0 1530.5,935.5 1530.5,936.0 C1530.5,936.6 1530.5,937.0 1530.5,937.3 C1530.4,937.6 1530.4,937.9 1530.3,938.3 C1530.3,938.7 1530.1,939.0 1530.0,939.2 C1529.8,939.5 1529.6,939.6 1529.3,939.8 C1528.8,940.0 1528.3,939.9 1527.8,939.6 C1527.7,939.5 1527.5,939.0 1527.1,938.0 C1526.8,937.3 1526.0,934.8 1524.6,930.4 C1523.7,927.8 1522.7,924.1 1521.6,919.3 C1521.0,916.8 1520.6,914.9 1520.2,913.5 L1519.0,909.7 C1518.9,912.3 1518.9,913.7 1518.9,914.1 C1518.9,915.1 1518.8,918.0 1518.6,922.8 C1518.5,927.5 1518.4,930.4 1518.4,931.4 C1518.4,933.5 1518.5,936.2 1518.9,939.4 C1518.9,940.0 1518.7,940.4 1518.3,940.7 C1517.9,941.0 1517.4,941.0 1517.0,940.9 C1516.5,940.7 1516.3,940.4 1516.2,939.8 C1515.9,937.7 1515.8,935.1 1515.8,932.0 Z M1536.6,922.6 C1537.0,912.5 1537.0,905.2 1536.9,900.9 C1536.9,900.5 1537.0,900.2 1537.2,899.9 C1537.5,899.6 1537.8,899.5 1538.1,899.5 C1538.5,899.5 1538.8,899.6 1539.1,899.9 C1539.3,900.1 1539.5,900.4 1539.5,900.7 C1539.7,906.4 1539.6,913.7 1539.2,922.8 C1539.1,925.4 1539.2,928.3 1539.4,931.4 C1539.6,936.4 1539.7,939.4 1539.7,940.2 C1539.7,940.6 1539.5,940.9 1539.3,941.1 C1539.0,941.4 1538.7,941.5 1538.4,941.5 C1538.0,941.5 1537.7,941.4 1537.5,941.1 C1537.2,940.9 1537.1,940.6 1537.1,940.2 C1537.1,939.5 1537.0,936.6 1536.7,931.5 C1536.5,928.3 1536.5,925.4 1536.6,922.6 Z M1543.6,900.0 C1544.4,899.9 1546.8,899.9 1550.9,900.0 C1554.9,900.0 1557.3,900.1 1558.0,900.0 C1558.4,900.0 1558.7,900.1 1559.0,900.4 C1559.2,900.6 1559.4,900.9 1559.4,901.3 C1559.4,901.6 1559.3,901.9 1559.0,902.2 C1558.8,902.5 1558.5,902.6 1558.2,902.6 C1556.9,902.7 1555.1,902.7 1552.7,902.6 C1552.2,902.6 1551.9,902.7 1551.7,902.9 C1551.5,903.2 1551.4,903.5 1551.4,904.0 C1551.6,905.5 1551.6,907.2 1551.6,908.9 C1551.5,909.8 1551.5,910.7 1551.5,911.5 C1551.5,913.3 1551.4,916.1 1551.3,919.9 C1551.0,928.1 1551.1,934.2 1551.7,938.2 C1551.8,938.5 1551.7,938.9 1551.4,939.2 C1551.2,939.5 1550.9,939.7 1550.6,939.7 C1550.2,939.8 1549.9,939.7 1549.6,939.4 C1549.3,939.2 1549.1,938.9 1549.1,938.6 C1548.5,934.4 1548.3,928.1 1548.7,919.7 C1548.8,915.9 1548.9,913.1 1548.9,911.5 C1548.9,910.5 1548.9,909.5 1549.0,908.6 C1549.0,908.2 1549.0,907.7 1549.0,907.0 C1549.0,906.4 1549.0,906.0 1549.0,905.8 C1549.0,906.6 1549.0,906.6 1548.8,905.6 L1548.6,903.8 C1548.6,903.0 1548.2,902.5 1547.3,902.5 C1545.6,902.5 1544.5,902.6 1543.8,902.6 C1543.3,902.7 1542.9,902.5 1542.6,902.1 C1542.4,901.7 1542.3,901.2 1542.5,900.8 C1542.7,900.3 1543.0,900.1 1543.6,900.0 Z M1564.2,902.0 C1564.4,900.9 1564.6,900.1 1564.9,899.5 C1565.3,898.9 1565.9,898.6 1566.8,898.4 L1571.1,898.4 C1574.3,898.6 1576.0,898.6 1576.2,898.6 C1576.8,898.5 1577.2,898.8 1577.5,899.3 C1577.8,899.8 1577.8,900.3 1577.4,900.7 C1577.2,901.0 1576.9,901.1 1576.5,901.2 C1576.2,901.2 1574.4,901.2 1571.0,901.1 L1568.2,901.1 C1567.5,901.1 1567.1,901.1 1567.1,901.1 C1567.0,901.4 1566.9,901.8 1566.8,902.3 C1566.6,904.1 1566.7,906.8 1567.1,910.4 C1567.2,912.0 1567.3,913.0 1567.3,913.4 L1567.3,915.7 C1567.2,916.6 1567.6,917.0 1568.5,917.0 C1569.3,917.0 1569.9,917.0 1570.2,917.0 C1570.6,917.0 1570.9,917.1 1571.2,917.3 C1571.5,917.6 1571.6,917.9 1571.6,918.2 C1571.6,918.6 1571.5,918.9 1571.2,919.2 C1571.0,919.5 1570.7,919.6 1570.4,919.6 C1570.0,919.6 1569.4,919.7 1568.4,919.7 C1567.6,919.7 1567.1,920.1 1567.0,921.0 C1566.8,928.2 1566.8,933.1 1567.0,935.7 C1567.0,937.0 1567.2,937.8 1567.3,938.3 C1567.3,938.4 1567.3,938.5 1567.3,938.5 C1567.3,938.7 1567.7,938.9 1568.4,939.0 C1569.0,939.1 1570.3,939.0 1572.1,938.9 C1573.9,938.8 1575.0,938.7 1575.5,938.7 C1575.8,938.7 1576.2,938.9 1576.4,939.1 C1576.7,939.4 1576.8,939.7 1576.8,940.0 C1576.8,940.4 1576.7,940.7 1576.4,941.0 C1576.2,941.2 1575.8,941.4 1575.5,941.4 C1575.2,941.4 1574.5,941.4 1573.2,941.5 C1571.9,941.6 1571.2,941.6 1571.0,941.6 C1568.9,941.7 1567.2,941.5 1566.1,941.0 C1565.4,940.8 1564.9,940.0 1564.7,938.9 C1564.5,938.1 1564.4,937.1 1564.3,935.9 C1564.1,932.3 1564.2,925.8 1564.6,916.4 C1564.6,915.4 1564.7,914.4 1564.7,913.4 C1564.7,913.2 1564.6,912.2 1564.5,910.7 C1564.1,906.8 1564.0,903.9 1564.2,902.0 Z M1582.3,920.1 C1582.5,911.1 1582.6,904.8 1582.6,901.2 L1582.6,901.1 C1582.6,900.7 1582.7,900.4 1583.0,900.2 C1583.2,899.9 1583.5,899.8 1583.9,899.8 L1584.0,899.8 C1585.4,899.9 1586.6,900.3 1587.6,900.9 C1588.7,901.6 1589.8,902.6 1590.9,904.0 C1594.9,908.8 1596.2,915.0 1594.7,922.6 C1593.4,928.9 1590.6,934.7 1586.3,939.8 C1586.0,940.1 1585.8,940.2 1585.6,940.3 L1584.1,940.4 C1583.5,940.4 1583.1,940.1 1582.9,939.5 C1582.9,939.5 1582.9,939.4 1582.9,939.4 L1582.8,939.2 C1582.4,934.1 1582.2,927.7 1582.3,920.1 Z M1585.1,934.0 C1585.1,934.7 1585.4,935.0 1585.8,935.2 C1586.2,935.3 1586.6,935.1 1586.9,934.5 C1589.0,931.4 1590.5,928.2 1591.5,924.8 C1592.6,921.4 1592.9,918.0 1592.5,914.6 C1592.2,911.1 1591.0,908.2 1588.9,905.7 C1588.0,904.6 1587.2,903.9 1586.7,903.6 C1586.3,903.3 1586.0,903.2 1585.7,903.4 C1585.4,903.6 1585.2,904.0 1585.2,904.5 C1585.2,906.2 1585.1,909.7 1585.0,915.0 C1584.9,920.3 1584.8,923.5 1584.8,924.7 C1584.9,925.8 1585.0,928.9 1585.1,934.0 Z M1620.0,908.0 C1620.4,905.5 1621.5,903.4 1623.3,901.8 C1625.1,900.2 1627.1,899.5 1629.3,899.5 C1631.8,899.5 1633.6,900.5 1634.8,902.5 C1636.0,904.4 1636.3,906.9 1635.7,910.0 C1635.5,910.8 1634.9,911.1 1634.1,911.0 C1633.3,910.8 1633.0,910.3 1633.0,909.5 C1633.6,907.1 1633.5,905.3 1632.7,904.0 C1632.0,902.8 1630.8,902.1 1629.3,902.1 C1627.7,902.1 1626.3,902.6 1625.0,903.8 C1623.7,905.0 1622.9,906.5 1622.7,908.4 C1622.4,910.2 1622.7,911.8 1623.5,913.2 C1624.3,914.5 1625.9,916.3 1628.2,918.4 C1630.4,920.4 1632.1,922.2 1633.3,923.7 C1635.1,925.9 1636.2,928.5 1636.5,931.5 C1636.9,934.7 1636.3,937.2 1634.8,939.1 C1633.3,941.0 1631.3,941.8 1628.9,941.6 C1626.5,941.4 1624.5,940.2 1622.9,938.0 C1621.3,935.8 1620.6,933.0 1620.6,929.6 C1620.6,929.2 1620.7,928.9 1621.0,928.7 C1621.2,928.4 1621.5,928.3 1621.9,928.3 C1622.2,928.3 1622.5,928.4 1622.8,928.7 C1623.1,928.9 1623.2,929.2 1623.2,929.6 C1623.2,932.4 1623.8,934.6 1624.9,936.3 C1626.1,938.0 1627.5,938.9 1629.2,939.0 C1630.7,939.1 1631.9,938.5 1632.9,937.3 C1633.8,936.0 1634.2,934.2 1633.9,931.8 C1633.6,929.3 1632.7,927.1 1631.2,925.2 C1630.0,923.7 1628.4,922.1 1626.5,920.3 C1624.5,918.6 1622.9,916.9 1621.8,915.3 C1620.3,913.2 1619.7,910.8 1620.0,908.0 Z M1640.5,900.0 C1641.3,899.9 1643.7,899.9 1647.8,900.0 C1651.8,900.0 1654.2,900.1 1654.9,900.0 C1655.3,900.0 1655.6,900.1 1655.9,900.4 C1656.2,900.6 1656.3,900.9 1656.3,901.3 C1656.3,901.6 1656.2,901.9 1655.9,902.2 C1655.7,902.5 1655.4,902.6 1655.0,902.6 C1653.8,902.7 1652.0,902.7 1649.6,902.6 C1649.2,902.6 1648.8,902.7 1648.6,902.9 C1648.4,903.2 1648.3,903.5 1648.3,904.0 C1648.5,905.5 1648.5,907.2 1648.5,908.9 C1648.4,909.8 1648.4,910.7 1648.4,911.5 C1648.4,913.3 1648.3,916.1 1648.2,919.9 C1647.9,928.1 1648.0,934.2 1648.6,938.2 C1648.7,938.5 1648.6,938.9 1648.3,939.2 C1648.1,939.5 1647.8,939.7 1647.5,939.7 C1647.2,939.8 1646.8,939.7 1646.5,939.4 C1646.2,939.2 1646.0,938.9 1646.0,938.6 C1645.4,934.4 1645.2,928.1 1645.6,919.7 C1645.7,915.9 1645.8,913.1 1645.8,911.5 C1645.8,910.5 1645.8,909.5 1645.9,908.6 C1645.9,908.2 1645.9,907.7 1645.9,907.0 C1645.9,906.4 1645.9,906.0 1645.9,905.8 C1645.9,906.6 1645.9,906.6 1645.7,905.6 L1645.5,903.8 C1645.5,903.0 1645.1,902.5 1644.2,902.5 C1642.5,902.5 1641.4,902.6 1640.7,902.6 C1640.2,902.7 1639.8,902.5 1639.5,902.1 C1639.3,901.7 1639.2,901.2 1639.4,900.8 C1639.6,900.3 1639.9,900.1 1640.5,900.0 Z M1659.4,939.7 C1659.5,938.4 1659.8,935.6 1660.1,931.4 C1661.1,919.2 1662.0,911.0 1662.7,906.9 C1663.6,902.9 1664.6,900.6 1665.9,900.0 C1667.4,899.3 1668.6,899.3 1669.5,900.0 C1670.4,900.6 1671.1,901.6 1671.5,903.2 C1671.8,904.5 1672.1,906.0 1672.3,907.8 L1672.5,909.2 C1674.0,919.6 1674.7,929.9 1674.7,940.0 C1674.7,940.4 1674.6,940.7 1674.3,941.0 C1674.0,941.2 1673.7,941.4 1673.4,941.4 C1673.0,941.4 1672.7,941.2 1672.5,941.0 C1672.2,940.7 1672.1,940.4 1672.1,940.0 C1672.1,933.8 1671.8,927.6 1671.3,921.3 C1671.2,920.5 1670.8,920.1 1669.9,920.0 C1668.8,919.9 1667.2,919.8 1665.0,919.7 C1664.1,919.6 1663.7,920.0 1663.6,920.9 C1663.5,921.3 1663.4,922.8 1663.2,925.2 C1663.0,927.8 1662.9,929.9 1662.7,931.6 C1662.4,936.4 1662.2,939.2 1662.0,940.1 C1662.0,940.5 1661.8,940.7 1661.5,941.0 C1661.2,941.2 1660.9,941.3 1660.5,941.2 C1660.2,941.2 1659.9,941.0 1659.7,940.7 C1659.4,940.4 1659.3,940.0 1659.4,939.7 Z M1664.1,915.7 C1664.1,916.6 1664.5,917.1 1665.4,917.1 C1666.2,917.1 1667.5,917.1 1669.4,917.2 C1670.4,917.3 1670.8,916.9 1670.8,915.9 C1670.4,913.1 1670.1,911.0 1669.9,909.6 C1669.9,908.9 1669.8,907.6 1669.5,905.8 C1669.2,904.6 1668.9,903.6 1668.6,902.8 C1668.2,902.2 1667.8,902.0 1667.4,902.1 C1667.0,902.4 1666.7,902.8 1666.3,903.6 C1665.5,905.9 1664.8,909.9 1664.1,915.7 Z M1678.6,900.0 C1679.4,899.9 1681.8,899.9 1685.9,900.0 C1690.0,900.0 1692.3,900.1 1693.0,900.0 C1693.4,900.0 1693.7,900.1 1694.0,900.4 C1694.3,900.6 1694.4,900.9 1694.4,901.3 C1694.4,901.6 1694.3,901.9 1694.0,902.2 C1693.8,902.5 1693.5,902.6 1693.2,902.6 C1691.9,902.7 1690.1,902.7 1687.7,902.6 C1687.3,902.6 1686.9,902.7 1686.7,902.9 C1686.5,903.2 1686.4,903.5 1686.5,904.0 C1686.6,905.5 1686.6,907.2 1686.6,908.9 C1686.5,909.8 1686.5,910.7 1686.5,911.5 C1686.5,913.3 1686.5,916.1 1686.3,919.9 C1686.0,928.1 1686.1,934.2 1686.7,938.2 C1686.8,938.5 1686.7,938.9 1686.5,939.2 C1686.2,939.5 1686.0,939.7 1685.6,939.7 C1685.2,939.8 1684.9,939.7 1684.6,939.4 C1684.3,939.2 1684.1,938.9 1684.1,938.6 C1683.5,934.4 1683.3,928.1 1683.7,919.7 C1683.8,915.9 1683.9,913.1 1683.9,911.5 C1683.9,910.5 1683.9,909.5 1684.0,908.6 C1684.0,908.2 1684.0,907.7 1684.0,907.0 C1684.0,906.4 1684.0,906.0 1684.0,905.8 C1684.0,906.6 1684.0,906.6 1683.8,905.6 L1683.6,903.8 C1683.6,903.0 1683.2,902.5 1682.3,902.5 C1680.7,902.5 1679.5,902.6 1678.8,902.6 C1678.3,902.7 1677.9,902.5 1677.7,902.1 C1677.4,901.7 1677.3,901.2 1677.5,900.8 C1677.7,900.3 1678.0,900.1 1678.6,900.0 Z M1699.2,902.0 C1699.4,900.9 1699.6,900.1 1700.0,899.5 C1700.3,898.9 1700.9,898.6 1701.8,898.4 L1706.1,898.4 C1709.3,898.6 1711.0,898.6 1711.2,898.6 C1711.8,898.5 1712.2,898.8 1712.5,899.3 C1712.8,899.8 1712.8,900.3 1712.4,900.7 C1712.2,901.0 1711.9,901.1 1711.5,901.2 C1711.2,901.2 1709.4,901.2 1706.0,901.1 L1703.2,901.1 C1702.5,901.1 1702.1,901.1 1702.1,901.1 C1702.0,901.4 1701.9,901.8 1701.8,902.3 C1701.7,904.1 1701.7,906.8 1702.1,910.4 C1702.2,912.0 1702.3,913.0 1702.3,913.4 L1702.3,915.7 C1702.2,916.6 1702.6,917.0 1703.5,917.0 C1704.3,917.0 1704.9,917.0 1705.2,917.0 C1705.6,917.0 1705.9,917.1 1706.2,917.3 C1706.5,917.6 1706.6,917.9 1706.6,918.2 C1706.6,918.6 1706.5,918.9 1706.3,919.2 C1706.0,919.5 1705.7,919.6 1705.4,919.6 C1705.0,919.6 1704.4,919.7 1703.4,919.7 C1702.6,919.7 1702.1,920.1 1702.0,921.0 C1701.8,928.2 1701.8,933.1 1702.0,935.7 C1702.0,937.0 1702.2,937.8 1702.3,938.3 C1702.3,938.4 1702.4,938.5 1702.4,938.5 C1702.4,938.7 1702.7,938.9 1703.4,939.0 C1704.1,939.1 1705.3,939.0 1707.1,938.9 C1708.9,938.8 1710.1,938.7 1710.5,938.7 C1710.8,938.7 1711.2,938.9 1711.4,939.1 C1711.7,939.4 1711.8,939.7 1711.8,940.0 C1711.8,940.4 1711.7,940.7 1711.4,941.0 C1711.2,941.2 1710.8,941.4 1710.5,941.4 C1710.2,941.4 1709.5,941.4 1708.2,941.5 C1706.9,941.6 1706.2,941.6 1706.0,941.6 C1703.9,941.7 1702.2,941.5 1701.1,941.0 C1700.4,940.8 1700.0,940.0 1699.7,938.9 C1699.5,938.1 1699.4,937.1 1699.3,935.9 C1699.1,932.3 1699.2,925.8 1699.6,916.4 C1699.6,915.4 1699.7,914.4 1699.7,913.4 C1699.7,913.2 1699.6,912.2 1699.5,910.7 C1699.1,906.8 1699.0,903.9 1699.2,902.0 Z M1716.1,908.0 C1716.4,905.5 1717.5,903.4 1719.3,901.8 C1721.2,900.2 1723.2,899.5 1725.3,899.5 C1727.8,899.5 1729.6,900.5 1730.9,902.5 C1732.1,904.4 1732.4,906.9 1731.7,910.0 C1731.5,910.8 1731.0,911.1 1730.2,911.0 C1729.4,910.8 1729.0,910.3 1729.1,909.5 C1729.6,907.1 1729.5,905.3 1728.8,904.0 C1728.0,902.8 1726.9,902.1 1725.3,902.1 C1723.8,902.1 1722.3,902.6 1721.0,903.8 C1719.8,905.0 1719.0,906.5 1718.7,908.4 C1718.5,910.2 1718.7,911.8 1719.6,913.2 C1720.4,914.5 1722.0,916.3 1724.3,918.4 C1726.5,920.4 1728.1,922.2 1729.4,923.7 C1731.2,925.9 1732.2,928.5 1732.6,931.5 C1732.9,934.7 1732.3,937.2 1730.8,939.1 C1729.3,941.0 1727.4,941.8 1725.0,941.6 C1722.5,941.4 1720.6,940.2 1719.0,938.0 C1717.4,935.8 1716.6,933.0 1716.6,929.6 C1716.6,929.2 1716.8,928.9 1717.0,928.7 C1717.3,928.4 1717.6,928.3 1717.9,928.3 C1718.3,928.3 1718.6,928.4 1718.8,928.7 C1719.1,928.9 1719.2,929.2 1719.2,929.6 C1719.2,932.4 1719.8,934.6 1721.0,936.3 C1722.1,938.0 1723.6,938.9 1725.2,939.0 C1726.8,939.1 1728.0,938.5 1728.9,937.3 C1729.9,936.0 1730.2,934.2 1730.0,931.8 C1729.7,929.3 1728.8,927.1 1727.3,925.2 C1726.0,923.7 1724.5,922.1 1722.5,920.3 C1720.5,918.6 1719.0,916.9 1717.9,915.3 C1716.3,913.2 1715.7,910.8 1716.1,908.0 Z M1526.4,967.9 C1526.9,967.0 1527.7,966.1 1528.7,965.2 C1529.6,964.4 1530.6,963.9 1531.6,963.7 C1534.8,963.0 1537.1,964.6 1538.4,968.3 C1539.1,970.3 1539.4,973.4 1539.4,977.4 C1539.8,988.1 1539.4,995.4 1538.2,999.4 C1537.5,1002.3 1536.4,1004.2 1534.8,1005.2 C1532.7,1006.5 1530.9,1006.2 1529.2,1004.3 C1528.2,1003.1 1527.3,1001.1 1526.5,998.3 C1525.8,995.7 1525.2,992.8 1524.7,989.6 C1524.2,986.4 1524.0,982.6 1524.2,978.3 C1524.3,974.0 1525.1,970.5 1526.4,967.9 Z M1528.8,969.1 C1527.6,971.4 1526.9,974.6 1526.8,978.6 C1526.7,982.6 1526.8,986.2 1527.3,989.3 C1527.8,992.4 1528.3,995.2 1529.0,997.5 C1529.7,1000.0 1530.4,1001.6 1531.2,1002.6 C1531.9,1003.3 1532.6,1003.4 1533.4,1003.0 C1535.3,1001.7 1536.4,997.6 1536.8,990.8 C1536.9,989.0 1536.9,986.0 1536.9,981.5 C1536.8,977.1 1536.8,974.7 1536.7,974.3 C1536.7,973.2 1536.6,972.2 1536.4,971.3 C1536.3,970.4 1536.0,969.5 1535.7,968.6 C1535.3,967.8 1534.8,967.1 1534.2,966.7 C1533.6,966.2 1532.9,966.1 1532.1,966.3 C1531.5,966.4 1530.9,966.7 1530.2,967.3 C1529.6,967.8 1529.1,968.4 1528.8,969.1 Z M1544.4,991.5 L1544.7,984.5 C1545.0,980.8 1545.1,978.6 1545.1,978.2 C1545.1,977.7 1545.0,975.8 1545.0,972.2 C1545.0,971.6 1545.0,970.9 1545.0,970.1 C1545.0,969.4 1544.9,968.8 1544.9,968.4 C1544.9,968.0 1544.9,967.6 1544.9,967.1 C1544.9,966.7 1544.9,966.4 1544.9,966.2 C1544.9,965.8 1545.0,965.3 1545.4,964.9 C1545.7,964.4 1546.1,964.2 1546.6,964.3 C1547.9,964.4 1549.7,964.5 1552.0,964.4 C1554.5,964.4 1556.4,964.5 1557.7,964.6 C1558.2,964.7 1558.6,964.9 1558.7,965.4 C1558.9,965.8 1558.9,966.3 1558.6,966.7 C1558.3,967.1 1558.0,967.3 1557.4,967.2 C1556.2,967.1 1554.4,967.0 1552.0,967.0 C1551.7,967.0 1551.3,967.0 1550.9,967.0 C1550.5,967.0 1550.1,967.0 1549.7,967.0 C1549.3,967.0 1549.1,967.0 1548.9,967.0 C1548.0,967.0 1547.5,967.5 1547.5,968.4 C1547.8,971.9 1547.8,975.2 1547.7,978.2 C1547.7,978.5 1547.6,979.1 1547.6,979.8 C1547.6,980.2 1547.7,980.6 1548.1,980.8 C1548.4,981.1 1548.7,981.2 1549.0,981.1 L1549.1,981.1 C1549.6,981.1 1550.2,981.0 1550.8,981.0 C1551.2,981.0 1551.5,981.2 1551.8,981.4 C1552.1,981.6 1552.2,982.0 1552.2,982.3 C1552.2,982.6 1552.1,983.0 1551.9,983.2 C1551.6,983.5 1551.3,983.7 1551.0,983.7 C1550.5,983.7 1549.8,983.7 1548.6,983.8 C1547.9,983.9 1547.5,984.3 1547.4,985.2 C1546.9,994.0 1546.9,1000.4 1547.3,1004.3 C1547.3,1004.8 1547.2,1005.2 1546.8,1005.5 C1546.3,1005.8 1545.9,1005.8 1545.4,1005.6 C1545.0,1005.5 1544.7,1005.1 1544.7,1004.6 C1544.3,999.6 1544.2,995.2 1544.4,991.5 Z M1583.3,1004.7 C1583.4,1003.4 1583.7,1000.6 1584.0,996.4 C1585.0,984.2 1585.9,976.0 1586.7,971.9 C1587.5,967.9 1588.5,965.6 1589.8,965.0 C1591.3,964.3 1592.5,964.3 1593.4,965.0 C1594.3,965.6 1595.0,966.6 1595.5,968.2 C1595.8,969.5 1596.0,971.0 1596.2,972.8 L1596.5,974.2 C1597.9,984.6 1598.6,994.9 1598.6,1005.0 C1598.6,1005.4 1598.5,1005.7 1598.2,1006.0 C1598.0,1006.2 1597.7,1006.4 1597.3,1006.4 C1597.0,1006.4 1596.7,1006.2 1596.4,1006.0 C1596.1,1005.7 1596.0,1005.4 1596.0,1005.0 C1596.0,998.8 1595.7,992.6 1595.2,986.3 C1595.2,985.5 1594.7,985.1 1593.8,985.0 C1592.7,984.9 1591.1,984.8 1588.9,984.7 C1588.1,984.6 1587.6,985.0 1587.5,985.9 C1587.5,986.3 1587.3,987.8 1587.2,990.2 C1587.0,992.8 1586.8,994.9 1586.7,996.6 C1586.3,1001.4 1586.1,1004.2 1585.9,1005.1 C1585.9,1005.5 1585.7,1005.7 1585.4,1006.0 C1585.1,1006.2 1584.8,1006.3 1584.4,1006.2 C1584.1,1006.2 1583.8,1006.0 1583.6,1005.7 C1583.3,1005.4 1583.3,1005.0 1583.3,1004.7 Z M1588.0,980.7 C1588.0,981.6 1588.4,982.1 1589.3,982.1 C1590.1,982.1 1591.5,982.1 1593.3,982.2 C1594.3,982.3 1594.8,981.9 1594.7,980.9 C1594.3,978.1 1594.0,976.0 1593.8,974.6 C1593.8,973.9 1593.7,972.6 1593.4,970.8 C1593.2,969.6 1592.9,968.6 1592.5,967.8 C1592.1,967.2 1591.7,967.0 1591.3,967.1 C1590.9,967.4 1590.6,967.8 1590.3,968.6 C1589.4,970.9 1588.7,974.9 1588.0,980.7 Z M1602.7,967.7 L1602.7,966.8 C1602.7,966.6 1602.7,966.4 1602.8,966.1 C1603.0,965.5 1603.4,965.2 1604.0,965.2 C1604.7,965.2 1605.2,965.4 1605.7,965.9 C1605.7,966.0 1605.8,966.1 1605.8,966.1 C1605.9,966.0 1605.9,966.0 1605.8,965.9 C1606.0,966.3 1606.3,966.7 1606.6,967.2 C1607.8,968.8 1609.1,971.0 1610.4,973.8 L1612.0,976.9 C1612.2,977.2 1612.4,977.6 1612.5,978.0 C1612.8,978.5 1613.1,978.4 1613.5,977.7 C1613.6,977.5 1613.7,977.2 1613.8,976.9 L1614.1,976.1 C1615.5,971.5 1616.7,968.2 1617.6,966.4 C1617.6,966.4 1617.6,966.3 1617.7,966.1 C1617.7,965.8 1617.8,965.5 1618.1,965.2 C1618.5,964.8 1619.0,964.6 1619.5,964.6 C1620.0,964.7 1620.4,965.0 1620.7,965.5 C1620.8,965.8 1620.9,966.1 1621.0,966.5 C1621.0,966.9 1621.1,967.2 1621.2,967.5 C1621.2,967.8 1621.2,968.2 1621.3,968.7 C1621.3,969.2 1621.4,969.6 1621.4,969.9 C1621.4,970.2 1621.4,970.7 1621.4,971.4 C1621.4,972.0 1621.4,972.5 1621.4,972.8 C1621.4,973.0 1621.4,973.6 1621.4,974.4 C1621.4,975.2 1621.4,975.8 1621.4,976.1 L1621.4,986.0 C1621.4,993.2 1621.7,999.6 1622.1,1005.2 C1622.2,1005.8 1622.0,1006.1 1621.6,1006.4 C1621.2,1006.7 1620.7,1006.7 1620.3,1006.5 C1619.8,1006.4 1619.5,1006.0 1619.5,1005.5 C1619.0,999.7 1618.8,993.2 1618.8,986.0 L1618.8,976.1 C1618.8,975.8 1618.8,975.4 1618.8,974.7 C1618.7,974.1 1618.7,973.7 1618.7,973.4 C1618.7,971.1 1618.2,971.6 1617.2,974.8 C1616.9,976.0 1616.6,976.6 1616.5,976.9 L1615.1,981.5 C1614.9,982.3 1614.7,982.8 1614.7,983.0 C1614.6,983.1 1614.6,983.2 1614.6,983.2 C1614.6,983.3 1614.5,983.4 1614.5,983.5 C1614.4,983.6 1614.3,983.7 1614.3,983.8 C1614.2,984.0 1614.0,984.2 1613.7,984.3 C1613.4,984.4 1613.1,984.4 1612.8,984.3 C1612.5,984.2 1612.3,984.1 1612.2,983.8 L1612.0,983.7 L1611.9,983.4 C1611.8,983.4 1611.8,983.2 1611.7,983.0 L1611.2,981.4 C1610.6,980.1 1610.1,979.0 1609.7,978.0 C1608.8,976.4 1608.2,975.1 1607.7,974.1 C1607.2,973.2 1606.8,972.5 1606.6,972.2 C1606.5,972.1 1606.4,971.8 1606.2,971.5 C1606.0,971.2 1605.8,970.8 1605.5,970.3 C1605.5,970.7 1605.5,971.7 1605.6,973.4 C1605.7,975.0 1605.7,976.0 1605.7,976.3 C1605.8,977.9 1605.8,982.6 1605.7,990.5 C1605.6,998.5 1605.7,1003.2 1605.8,1004.8 C1605.8,1005.1 1605.7,1005.4 1605.4,1005.7 C1605.2,1006.0 1604.9,1006.1 1604.5,1006.1 C1604.3,1006.1 1604.1,1006.1 1603.9,1006.0 C1603.7,1005.9 1603.5,1005.7 1603.3,1005.5 C1603.2,1005.3 1603.2,1005.1 1603.2,1004.9 C1603.0,1003.3 1603.0,998.5 1603.1,990.7 C1603.2,982.8 1603.2,978.1 1603.1,976.5 C1603.1,975.7 1603.0,974.1 1602.9,971.8 C1602.8,969.4 1602.7,968.1 1602.7,967.7 Z M1626.9,967.0 C1627.1,965.9 1627.4,965.1 1627.7,964.5 C1628.0,963.9 1628.6,963.6 1629.6,963.4 L1633.8,963.4 C1637.1,963.6 1638.8,963.6 1639.0,963.6 C1639.5,963.5 1640.0,963.8 1640.2,964.3 C1640.5,964.8 1640.5,965.3 1640.1,965.7 C1639.9,966.0 1639.6,966.1 1639.2,966.2 C1639.0,966.2 1637.1,966.2 1633.8,966.1 L1630.9,966.1 C1630.2,966.1 1629.8,966.1 1629.8,966.1 C1629.7,966.4 1629.7,966.8 1629.6,967.3 C1629.4,969.1 1629.5,971.8 1629.8,975.4 C1630.0,977.0 1630.0,978.0 1630.0,978.4 L1630.0,980.7 C1629.9,981.6 1630.3,982.0 1631.3,982.0 C1632.1,982.0 1632.6,982.0 1633.0,982.0 C1633.3,982.0 1633.7,982.1 1633.9,982.3 C1634.2,982.6 1634.4,982.9 1634.4,983.2 C1634.4,983.6 1634.2,983.9 1634.0,984.2 C1633.8,984.5 1633.5,984.6 1633.1,984.6 C1632.8,984.6 1632.1,984.7 1631.1,984.7 C1630.3,984.7 1629.8,985.1 1629.8,986.0 C1629.5,993.2 1629.5,998.1 1629.7,1000.7 C1629.8,1002.0 1629.9,1002.8 1630.0,1003.3 C1630.1,1003.4 1630.1,1003.5 1630.1,1003.5 C1630.1,1003.7 1630.4,1003.9 1631.1,1004.0 C1631.8,1004.1 1633.0,1004.0 1634.8,1003.9 C1636.7,1003.8 1637.8,1003.7 1638.2,1003.7 C1638.6,1003.7 1638.9,1003.9 1639.2,1004.1 C1639.4,1004.4 1639.5,1004.7 1639.5,1005.0 C1639.5,1005.4 1639.4,1005.7 1639.2,1006.0 C1638.9,1006.2 1638.6,1006.4 1638.2,1006.4 C1638.0,1006.4 1637.2,1006.4 1635.9,1006.5 C1634.7,1006.6 1633.9,1006.6 1633.8,1006.6 C1631.6,1006.7 1630.0,1006.5 1628.8,1006.0 C1628.1,1005.8 1627.7,1005.0 1627.5,1003.9 C1627.2,1003.1 1627.1,1002.1 1627.1,1000.9 C1626.8,997.3 1626.9,990.8 1627.3,981.4 C1627.4,980.4 1627.4,979.4 1627.4,978.4 C1627.4,978.2 1627.3,977.2 1627.2,975.7 C1626.8,971.8 1626.8,968.9 1626.9,967.0 Z M1645.5,997.3 L1645.7,993.7 C1645.7,993.3 1645.7,992.8 1645.7,992.3 C1645.7,991.8 1645.7,991.4 1645.8,991.2 C1645.8,990.9 1645.8,990.7 1645.8,990.5 C1646.2,981.0 1646.1,973.0 1645.5,966.4 C1645.0,965.3 1645.2,964.6 1646.2,964.4 C1651.6,963.0 1655.5,964.2 1658.1,967.8 C1659.3,969.3 1659.8,971.2 1659.7,973.4 C1659.5,975.5 1658.7,977.6 1657.3,979.4 C1655.8,981.3 1654.0,982.9 1652.0,983.9 C1651.2,984.3 1651.0,984.9 1651.4,985.7 C1652.4,987.4 1653.3,989.4 1654.3,991.8 C1654.5,992.1 1655.3,994.0 1656.6,997.5 C1657.5,999.7 1658.2,1001.5 1659.0,1002.9 C1659.3,1003.4 1659.3,1003.8 1659.0,1004.2 C1658.7,1004.6 1658.4,1004.8 1657.9,1004.8 C1657.5,1004.8 1657.1,1004.6 1656.8,1004.2 C1656.0,1002.8 1655.1,1000.9 1654.1,998.5 C1652.5,994.1 1651.2,990.9 1650.1,988.7 C1649.5,987.6 1649.1,987.0 1648.9,987.0 C1648.6,987.1 1648.5,987.8 1648.5,989.1 C1648.5,989.3 1648.5,989.6 1648.5,989.9 C1648.4,990.3 1648.4,990.5 1648.4,990.6 C1648.4,990.8 1648.4,991.0 1648.4,991.3 C1648.4,991.6 1648.3,992.0 1648.3,992.5 C1648.3,993.0 1648.3,993.5 1648.3,993.9 C1648.1,998.8 1648.0,1002.1 1648.2,1003.8 C1648.3,1004.3 1648.1,1004.7 1647.7,1005.0 C1647.2,1005.2 1646.8,1005.3 1646.3,1005.1 C1645.9,1004.9 1645.6,1004.6 1645.6,1004.0 C1645.4,1002.0 1645.4,999.8 1645.5,997.3 Z M1648.2,967.8 C1648.5,971.5 1648.6,975.8 1648.6,980.8 C1648.6,981.5 1648.7,982.0 1648.8,982.2 C1649.4,982.2 1650.0,982.0 1650.5,981.8 C1652.3,980.9 1653.9,979.6 1655.1,977.9 C1656.3,976.3 1657.0,974.7 1657.1,973.2 C1657.2,971.5 1656.8,970.2 1656.0,969.3 C1654.5,967.3 1652.4,966.3 1649.5,966.5 C1648.6,966.5 1648.2,966.9 1648.2,967.8 Z M1665.3,987.6 C1665.7,977.5 1665.7,970.2 1665.6,965.9 C1665.6,965.5 1665.7,965.2 1665.9,964.9 C1666.2,964.6 1666.5,964.5 1666.8,964.5 C1667.2,964.5 1667.5,964.6 1667.8,964.9 C1668.0,965.1 1668.2,965.4 1668.2,965.7 C1668.4,971.4 1668.3,978.7 1667.9,987.8 C1667.8,990.4 1667.9,993.3 1668.1,996.4 C1668.3,1001.4 1668.4,1004.4 1668.4,1005.2 C1668.4,1005.6 1668.3,1005.9 1668.0,1006.1 C1667.7,1006.4 1667.4,1006.5 1667.1,1006.5 C1666.7,1006.5 1666.4,1006.4 1666.2,1006.1 C1665.9,1005.9 1665.8,1005.6 1665.8,1005.2 C1665.8,1004.5 1665.7,1001.6 1665.4,996.5 C1665.3,993.3 1665.2,990.4 1665.3,987.6 Z M1673.3,975.7 C1673.5,973.8 1673.9,972.0 1674.7,970.4 C1675.4,968.7 1676.3,967.4 1677.3,966.2 C1678.4,965.1 1679.5,964.4 1680.7,964.0 C1682.1,963.6 1683.4,963.8 1684.5,964.4 C1685.6,965.0 1686.4,966.1 1687.0,967.8 C1687.7,969.4 1688.0,971.3 1688.0,973.6 C1688.0,974.0 1687.8,974.3 1687.6,974.5 C1687.3,974.8 1687.0,974.9 1686.7,974.9 C1686.3,974.9 1686.0,974.8 1685.7,974.5 C1685.5,974.3 1685.3,974.0 1685.3,973.6 C1685.3,970.7 1684.9,968.6 1683.9,967.4 C1683.2,966.5 1682.4,966.3 1681.5,966.6 C1680.2,967.0 1679.0,968.0 1678.0,969.8 C1676.9,971.5 1676.2,973.6 1675.9,976.0 C1674.6,988.4 1674.7,996.3 1676.1,999.7 C1676.9,1001.5 1677.8,1002.6 1679.0,1003.2 C1680.1,1003.8 1681.2,1003.6 1682.1,1002.8 C1683.1,1002.0 1683.7,1000.6 1684.0,998.7 C1684.1,998.3 1684.2,998.0 1684.5,997.8 C1684.9,997.6 1685.2,997.5 1685.5,997.5 C1685.9,997.6 1686.2,997.8 1686.4,998.1 C1686.6,998.4 1686.7,998.7 1686.7,999.0 C1686.3,1001.0 1685.7,1002.6 1684.7,1003.9 C1683.7,1005.1 1682.5,1005.9 1681.0,1006.1 C1679.6,1006.3 1678.2,1005.9 1676.9,1005.0 C1675.5,1004.0 1674.5,1002.6 1673.8,1000.8 C1672.1,996.8 1672.0,988.4 1673.3,975.7 Z M1691.1,1004.7 C1691.2,1003.4 1691.4,1000.6 1691.8,996.4 C1692.7,984.2 1693.6,976.0 1694.4,971.9 C1695.2,967.9 1696.3,965.6 1697.6,965.0 C1699.0,964.3 1700.2,964.3 1701.1,965.0 C1702.0,965.6 1702.7,966.6 1703.2,968.2 C1703.5,969.5 1703.8,971.0 1704.0,972.8 L1704.2,974.2 C1705.6,984.6 1706.4,994.9 1706.4,1005.0 C1706.4,1005.4 1706.2,1005.7 1706.0,1006.0 C1705.7,1006.2 1705.4,1006.4 1705.0,1006.4 C1704.7,1006.4 1704.4,1006.2 1704.1,1006.0 C1703.9,1005.7 1703.7,1005.4 1703.7,1005.0 C1703.7,998.8 1703.5,992.6 1703.0,986.3 C1702.9,985.5 1702.4,985.1 1701.6,985.0 C1700.5,984.9 1698.8,984.8 1696.6,984.7 C1695.8,984.6 1695.3,985.0 1695.3,985.9 C1695.2,986.3 1695.1,987.8 1694.9,990.2 C1694.7,992.8 1694.5,994.9 1694.4,996.6 C1694.1,1001.4 1693.9,1004.2 1693.7,1005.1 C1693.6,1005.5 1693.5,1005.7 1693.2,1006.0 C1692.8,1006.2 1692.5,1006.3 1692.2,1006.2 C1691.8,1006.2 1691.5,1006.0 1691.3,1005.7 C1691.1,1005.4 1691.0,1005.0 1691.1,1004.7 Z M1695.8,980.7 C1695.7,981.6 1696.2,982.1 1697.0,982.1 C1697.9,982.1 1699.2,982.1 1701.0,982.2 C1702.0,982.3 1702.5,981.9 1702.4,980.9 C1702.1,978.1 1701.8,976.0 1701.6,974.6 C1701.6,973.9 1701.4,972.6 1701.2,970.8 C1700.9,969.6 1700.6,968.6 1700.2,967.8 C1699.9,967.2 1699.5,967.0 1699.1,967.1 C1698.7,967.4 1698.3,967.8 1698.0,968.6 C1697.2,970.9 1696.4,974.9 1695.8,980.7 Z"/>
 </svg>
 </div>
-<script src="./us-map-svg.js?v=20260625-chinese-map"></script>
+<script src="https://zhennanzhang.com/run50/us-map-svg.js?v=20260625-chinese-map"></script>
 <script>
 const _HM={
   "IL": ["Illinois", "Kentucky_1_"],
@@ -2893,9 +3818,9 @@ function _showStateTooltip(e, abbr) {
       const storyFile = r.storyFile || _STORY_MAPPING[storyKey];
       if (storyFile) {
         html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
-          <a href="facebook/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size: 11px;">Facebook ↗</a>
-          <a href="stories/chinese/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#8d3f3f; color:#fff; font-size: 11px;">中文故事 ↗</a>
-          <a href="stories/english/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#1f6f5b; color:#fff; font-size: 11px;">English ↗</a>
+          <a href="https://zhennanzhang.com/run50/facebook/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size: 11px;">Facebook ↗</a>
+          <a href="https://zhennanzhang.com/run50/stories/chinese/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#8d3f3f; color:#fff; font-size: 11px;">中文故事 ↗</a>
+          <a href="https://zhennanzhang.com/run50/stories/english/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#1f6f5b; color:#fff; font-size: 11px;">English ↗</a>
         </div>`;
       } else if (!r.isPlaceholder) {
         // If has oral script but no written files
@@ -2932,9 +3857,9 @@ function _showCityTooltip(e, r, abbr) {
   const storyFile = r.storyFile || _STORY_MAPPING[storyKey];
   if (storyFile) {
     html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
-      <a href="facebook/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size: 11px;">Facebook ↗</a>
-      <a href="stories/chinese/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#8d3f3f; color:#fff; font-size: 11px;">中文故事 ↗</a>
-      <a href="stories/english/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#1f6f5b; color:#fff; font-size: 11px;">English ↗</a>
+      <a href="https://zhennanzhang.com/run50/facebook/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size: 11px;">Facebook ↗</a>
+      <a href="https://zhennanzhang.com/run50/stories/chinese/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#8d3f3f; color:#fff; font-size: 11px;">中文故事 ↗</a>
+      <a href="https://zhennanzhang.com/run50/stories/english/${storyFile}" target="_blank" class="map-tooltip-link" style="background:#1f6f5b; color:#fff; font-size: 11px;">English ↗</a>
     </div>`;
   } else if (!r.isPlaceholder) {
     const completedMap = {
@@ -2968,47 +3893,41 @@ function _hideCityTooltip() {
   if (hoverStatus) hoverStatus.textContent = '鼠标悬停在州或红点上查看比赛记录，点击跳转';
 }
 
+function _clearRaceCardHighlights() {
+  document.querySelectorAll('.card-highlight-active, .card-highlight-flash').forEach(card => {
+    card.classList.remove('card-highlight-active', 'card-highlight-flash');
+  });
+}
+
+function _focusRaceCard(card) {
+  if (!card) return;
+  const welcome = document.getElementById('welcome');
+  if (welcome && card.closest('#welcome') && !welcome.classList.contains('active')) {
+    showWelcome();
+  }
+  document.querySelectorAll('.card-highlight-active, .card-highlight-flash').forEach(activeCard => {
+    if (activeCard !== card) activeCard.classList.remove('card-highlight-active', 'card-highlight-flash');
+  });
+  card.classList.remove('card-highlight-flash', 'card-highlight-active');
+  void card.offsetWidth;
+  card.classList.add('card-highlight-active');
+  requestAnimationFrame(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+}
+
 // Click shapes or city dots
 function _handleStateClick(abbr) {
   _hideCityTooltip();
-  const completedMap = {
-    'KY': 'script-ky', 'WI': 'script-wi', 'MI': 'script-mi', 'FL': 'script-fl',
-    'NC': 'script-nc', 'AR': 'script-ar', 'SC': 'script-sc', 'PA': 'script-pa', 'NH': 'script-nh'
-  };
-  
-  if (completedMap[abbr]) {
-    switchScript(completedMap[abbr]);
-  } else {
-    // Scroll to the first race card of this state
-    const races = _STATE_RACES[abbr];
-    if (races && races.length > 0) {
-      const card = document.getElementById(races[0].cardId);
-      if (card) {
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        card.classList.add('card-highlight-flash');
-        setTimeout(() => card.classList.remove('card-highlight-flash'), 3500);
-      }
-    }
+  const races = _STATE_RACES[abbr];
+  if (races && races.length > 0) {
+    const card = document.getElementById(races[0].cardId);
+    _focusRaceCard(card);
   }
 }
 
 function _handleCityClick(r, abbr) {
   _hideCityTooltip();
-  const storyKey = `${abbr}-${r.city}`;
-  const storyFile = r.storyFile || _STORY_MAPPING[storyKey];
-  
-  if (storyFile) {
-    // If has Facebook article, open in new tab directly
-    window.open(`facebook/${storyFile}`, '_blank');
-  } else {
-    // Scroll to this specific race card
-    const card = document.getElementById(r.cardId);
-    if (card) {
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      card.classList.add('card-highlight-flash');
-      setTimeout(() => card.classList.remove('card-highlight-flash'), 3500);
-    }
-  }
+  const card = document.getElementById(r.cardId);
+  _focusRaceCard(card);
 }
 
 function _bindMapEventsOnce() {
@@ -3037,7 +3956,9 @@ function _bindMapEventsOnce() {
         });
         el.addEventListener('mousemove', _moveCityTooltip);
         el.addEventListener('mouseleave', _hideCityTooltip);
-        el.addEventListener('click', () => {
+        el.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
           if (document.getElementById('welcome').classList.contains('active')) {
             _handleStateClick(stateAbbr);
           }
@@ -3228,7 +4149,11 @@ function _injectWelcomeMap() {
         dot.addEventListener('mouseenter', (e) => _showCityTooltip(e, r, abbr));
         dot.addEventListener('mousemove', _moveCityTooltip);
         dot.addEventListener('mouseleave', _hideCityTooltip);
-        dot.addEventListener('click', () => _handleCityClick(r, abbr));
+        dot.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          _handleCityClick(r, abbr);
+        });
         
         dotGroup.appendChild(dot);
       }
@@ -3279,6 +4204,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     _injectWelcomeMap();
   }
   _injectChinaMap();
+  document.addEventListener('click', () => {
+    _clearRaceCardHighlights();
+  });
 });
 
 const _CHINA_ALL_PROVINCES = ['cn_xinjiang','cn_tibet','cn_innermongolia','cn_qinghai','cn_sichuan',
@@ -3318,6 +4246,7 @@ const _CHINA_RUN_PROVINCES = {
   cn_hunan:{ color:'#9068c0' }, cn_fujian:{ color:'#3898a8' }, cn_gansu:{ color:'#d4614a' },
   cn_jiangsu:{ color:'#98c038' }, cn_guizhou:{ color:'#5ca860' }, cn_shaanxi:{ color:'#e89838' },
   cn_zhejiang:{ color:'#9068c0' }, cn_hainan:{ color:'#3898a8' }, cn_liaoning:{ color:'#d4614a' },
+  cn_beijing:{ color:'#e89838' },
   cn_shanghai:{ color:'#5ca860' }, cn_guangxi:{ color:'#e89838' }, cn_hongkong:{ color:'#9068c0' }
 };
 
@@ -3366,8 +4295,14 @@ const _CHINA_CITY_DOTS = [
   { name:'杭州', province:'cn_zhejiang', lat:30.2741, lon:120.1551, races:[
     { title:'RunCN #第21站｜西湖半马', date:'2019.11.10', slug:'west-lake-half-marathon.html' }
   ]},
+  { name:'宁波', province:'cn_zhejiang', lat:29.8683, lon:121.5440, races:[
+    { title:'RunCN #第23站｜宁波东钱湖马拉松', date:'2019.12', slug:'ningbo-dongqian-lake-marathon.html' }
+  ]},
   { name:'海口', province:'cn_hainan', lat:20.0440, lon:110.1999, races:[
     { title:'RunCN #第16站｜海口马拉松', date:'2019.03.03', slug:'haikou-marathon.html' }
+  ]},
+  { name:'北京', province:'cn_beijing', lat:39.9042, lon:116.4074, races:[
+    { title:'RunCN #第19站｜北京凤凰岭夜跑', date:'2019', slug:'wuhan-graduation.html' }
   ]},
   { name:'大连', province:'cn_liaoning', lat:38.9140, lon:121.6147, races:[
     { title:'RunCN #第18站｜大连越野', date:'2019.06.09', slug:'dalian-trail.html' }
@@ -3412,19 +4347,20 @@ function _flashChinaStoryCard(slug) {
   if (!city) return false;
   let card = null;
   document.querySelectorAll('.race-grid .race-card').forEach(el => {
-    if ((el.querySelector('.rc-city')?.textContent || '').trim() === city.name) card = el;
+    if (el.dataset.storyFile === slug) card = el;
+  });
+  document.querySelectorAll('.race-grid .race-card').forEach(el => {
+    if (!card && (el.querySelector('.rc-city')?.textContent || '').trim() === city.name) card = el;
   });
   if (!card) return false;
-  card.scrollIntoView({ behavior:'smooth', block:'center' });
-  card.classList.add('card-highlight-flash');
-  setTimeout(() => card.classList.remove('card-highlight-flash'), 3000);
+  _focusRaceCard(card);
   return true;
 }
 
 function _chinaRaceLinks(r) {
   return `<div class="story-links" style="margin-top:6px; display:flex; gap:6px; flex-wrap:wrap;">
     <a href="${_chinaStoryUrl(r, 'chinese')}" class="map-tooltip-link" style="background:#8d3f3f; color:#fff; font-size:11px;">中文故事 ↗</a>
-    <a href="facebook/${r.slug}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size:11px;">Facebook ↗</a>
+    <a href="https://zhennanzhang.com/run50/facebook/${r.slug}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size:11px;">Facebook ↗</a>
     <a href="${_chinaStoryUrl(r, 'english')}" target="_blank" class="map-tooltip-link" style="background:#1f6f5b; color:#fff; font-size:11px;">English ↗</a>
   </div>`;
 }
@@ -3489,7 +4425,7 @@ function _handleChinaProvinceClick(e, provinceId) {
   e.stopPropagation();
   const first = _chinaProvinceRaces(provinceId)[0];
   if (first) {
-    if (!_flashChinaStoryCard(first.slug)) window.location.href = _chinaStoryUrl(first, 'chinese');
+    _flashChinaStoryCard(first.slug);
     return;
   }
   _showChinaProvinceTooltip(e, provinceId);
@@ -3584,7 +4520,7 @@ function _injectChinaMap() {
     dot.addEventListener('click', e => {
       e.stopPropagation();
       const first = c.races[0];
-      if (first && !_flashChinaStoryCard(first.slug)) window.location.href = _chinaStoryUrl(first, 'chinese');
+      if (first) _flashChinaStoryCard(first.slug);
     });
     dotGroup.appendChild(dot);
 
@@ -3607,7 +4543,647 @@ function _injectChinaMap() {
   });
 }
 </script>
-<script src="./china-map-svg.js"></script>
+<script src="https://zhennanzhang.com/run50/china-map-svg.js"></script>
+<script>
+const _VOICE_US_COLORS = {
+  AK: '#d4614a', AL: '#98c038', AR: '#5ca860', AZ: '#e89838', CA: '#d4614a',
+  CO: '#9068c0', CT: '#9068c0', DE: '#e89838', FL: '#d4614a', GA: '#e89838',
+  HI: '#9068c0', IL: '#9068c0', IN: '#e89838', KS: '#3898a8', KY: '#98c038',
+  LA: '#98c038', MA: '#3898a8', ME: '#d4614a', MI: '#3898a8', MN: '#e89838',
+  MO: '#e89838', NC: '#98c038', ND: '#5ca860', NH: '#e89838', NY: '#e89838',
+  OH: '#5ca860', PA: '#d4614a', RI: '#d4614a', SC: '#9068c0', TN: '#3898a8',
+  TX: '#9068c0', VA: '#5ca860', VT: '#98c038', WI: '#5ca860', WV: '#e89838'
+};
+
+const _VOICE_US_LABEL_PATHS = new Set([
+  'NV', 'UT', 'ID', 'MT', 'ND', 'MN', 'IA', 'WI', 'IL', 'MO', 'AR', 'LA',
+  'MS', 'AL', 'TN', 'KY', 'IN', 'MI', 'OH', 'WV', 'VA', 'SC', 'NC', 'PA',
+  'NY', 'ME', 'GA', 'FL', 'SD', 'NE', 'KS', 'OK', 'WY', 'CO', 'OR', 'WA',
+  'CA', 'HI', 'AZ', 'AK', 'NM', 'TX', 'VT_1_', 'NH_1_', 'MD', 'DE_1_',
+  'NJ_1_', 'CT_1_', 'RI_1_', 'STATES', 'ATLANTIC_OCEAN', 'gulf_of_mexico',
+  'OCEANS'
+]);
+
+const _VOICE_SPECIAL_US_DOTS = {
+  'HI:Honolulu': [570, 933], 'AK:Anchorage': [275, 917], 'VT:Warren': [1466, 270],
+  'NH:Keene': [1502, 310], 'CT:Simsbury': [1503, 362], 'RI:Woonsocket': [1488, 376]
+};
+
+const _VOICE_HOLLOW_US_PATHS = [
+  'South_Carolina_1_', 'Arizona', 'Michigan', 'Oklahoma_1_', 'Alabama', 'Maryland',
+  'ocean_3_', 'Kansas_1_', 'Arkansas_1_', 'Illinois', 'West_Virginia', 'South_Carolina',
+  'Pensilvania', 'Wisconsin', 'Vermont', 'New_Hampshire', 'Kansas', 'alabama',
+  'Arizona_1_', 'Minnesotta', 'Ohio', 'New_York', 'Indiana', 'Georgia', 'Alaska_1_',
+  'Idaho', 'Nebraska', 'Nevada_41_', 'Oklahoma', 'South_Dakota', 'Utah_1_', 'Pensilvania_1_'
+];
+
+const _VOICE_SCRIPT_BY_STATE = {
+  KY: 'script-ky', WI: 'script-wi', MI: 'script-mi', FL: 'script-fl',
+  NC: 'script-nc', AR: 'script-ar', SC: 'script-sc', PA: 'script-pa', NH: 'script-nh'
+};
+
+const _VOICE_CHINA_PROVINCES_EN = {
+  cn_heilongjiang: 'Heilongjiang', cn_hubei: 'Hubei', cn_sichuan: 'Sichuan',
+  cn_innermongolia: 'Inner Mongolia', cn_shanxi: 'Shanxi', cn_hunan: 'Hunan',
+  cn_fujian: 'Fujian', cn_gansu: 'Gansu', cn_jiangsu: 'Jiangsu',
+  cn_guizhou: 'Guizhou', cn_shaanxi: 'Shaanxi', cn_zhejiang: 'Zhejiang',
+  cn_hainan: 'Hainan', cn_liaoning: 'Liaoning', cn_shanghai: 'Shanghai',
+  cn_guangxi: 'Guangxi', cn_hongkong: 'Hong Kong'
+};
+
+const _VOICE_CHINA_CITY_EN = {
+  '哈尔滨': 'Harbin', '鄂尔多斯': 'Ordos', '长治': 'Changzhi', '武汉': 'Wuhan',
+  '宜昌': 'Yichang', '襄阳': 'Xiangyang', '广安': "Guang'an", '长沙': 'Changsha',
+  '厦门': 'Xiamen', '兰州': 'Lanzhou', '无锡': 'Wuxi', '贵阳': 'Guiyang',
+  '西安': "Xi'an", '杭州': 'Hangzhou', '宁波': 'Ningbo', '海口': 'Haikou',
+  '北京': 'Beijing', '大连': 'Dalian', '上海': 'Shanghai', '桂林': 'Guilin', '香港': 'Hong Kong'
+};
+
+const _VOICE_CHINA_LABEL_OFFSETS = {
+  cn_heilongjiang: [0, 2, 12], cn_innermongolia: [-20, -2, 11], cn_hubei: [0, 1, 10],
+  cn_sichuan: [-2, 0, 11], cn_fujian: [0, 0, 10], cn_gansu: [0, -5, 10],
+  cn_guizhou: [0, 2, 10], cn_hainan: [0, 2, 9], cn_hongkong: [8, -6, 8],
+  cn_shanghai: [9, -4, 8], cn_zhejiang: [0, 7, 9], cn_jiangsu: [5, -7, 9]
+};
+
+function _voiceFindPath(svg, id) {
+  return svg.querySelector(`[id="map_${id}"]`);
+}
+
+function _voiceRemoveContainedSubpaths(svg) {
+  _VOICE_HOLLOW_US_PATHS.forEach(stateId => {
+    const el = _voiceFindPath(svg, stateId);
+    if (!el) return;
+    const d = el.getAttribute('d') || '';
+    const parts = [];
+    let last = 0;
+    for (let i = 1; i < d.length; i++) {
+      if (d[i] === 'M' && /\s/.test(d[i - 1])) {
+        parts.push(d.slice(last, i).trim());
+        last = i;
+      }
+    }
+    parts.push(d.slice(last).trim());
+    if (parts.length < 2) return;
+
+    const bboxes = parts.map(part => {
+      const coords = [...part.matchAll(/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g)];
+      if (!coords.length) return { xMin: 0, xMax: 0, yMin: 0, yMax: 0, area: 0 };
+      const xs = coords.map(match => parseFloat(match[1]));
+      const ys = coords.map(match => parseFloat(match[2]));
+      const xMin = Math.min(...xs), xMax = Math.max(...xs), yMin = Math.min(...ys), yMax = Math.max(...ys);
+      return { xMin, xMax, yMin, yMax, area: (xMax - xMin) * (yMax - yMin) };
+    });
+    const maxArea = Math.max(...bboxes.map(box => box.area));
+    if (!Number.isFinite(maxArea) || maxArea <= 0) return;
+    el.removeAttribute('fill-rule');
+    el.setAttribute('d', parts.filter((_, index) => {
+      const box = bboxes[index];
+      if (box.area < maxArea * 0.05) return true;
+      return !bboxes.some((outer, outerIndex) => (
+        outerIndex !== index &&
+        box.xMin >= outer.xMin && box.xMax <= outer.xMax &&
+        box.yMin >= outer.yMin && box.yMax <= outer.yMax
+      ));
+    }).join(' '));
+  });
+}
+
+function _voiceAddSvgEl(svg, tag, attrs) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+  svg.appendChild(el);
+  return el;
+}
+
+function _voiceSetStatus(status, text) {
+  if (!status) return;
+  status.textContent = text || (status.id === 'cn-map-mini-status' ? 'Click a region or city' : '点击州或城市查看口播/故事');
+}
+
+function _voiceStyleUsBase(svg) {
+  svg.removeAttribute('width');
+  svg.removeAttribute('height');
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+  svg.querySelectorAll('path').forEach(path => {
+    const id = (path.id || '').replace('map_', '');
+    const isFrame = path.id === 'map_USA' || path.id === 'map_White' || path.id === 'map_exterior_2_';
+    if (_SF.includes(id) || isFrame) {
+      path.setAttribute('fill', isFrame ? '#323a52' : '#252d43');
+      path.setAttribute('stroke', isFrame ? 'rgba(207,218,232,.24)' : '#252d43');
+      path.setAttribute('stroke-width', isFrame ? '.8' : '1.15');
+      path.setAttribute('stroke-linejoin', 'round');
+      path.setAttribute('stroke-linecap', 'round');
+      path.setAttribute('paint-order', 'stroke fill');
+      path.style.opacity = isFrame ? '1' : '.78';
+      path.style.pointerEvents = 'none';
+      return;
+    }
+
+    if (_VOICE_US_LABEL_PATHS.has(id)) {
+      const isOceanLabel = id === 'ATLANTIC_OCEAN' || id === 'gulf_of_mexico' || id === 'OCEANS';
+      path.setAttribute('fill', isOceanLabel ? '#9aa5b8' : '#f3f6ff');
+      path.setAttribute('stroke', isOceanLabel ? 'none' : 'rgba(15,23,42,.42)');
+      path.setAttribute('stroke-width', isOceanLabel ? '0' : '.7');
+      path.setAttribute('paint-order', 'stroke fill');
+      path.style.opacity = isOceanLabel ? '.34' : '.96';
+      path.style.pointerEvents = 'none';
+      return;
+    }
+
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', 'rgba(207,218,232,.18)');
+    path.setAttribute('stroke-width', '.55');
+    path.style.opacity = '.32';
+    path.style.pointerEvents = 'none';
+  });
+}
+
+function _voiceHighlightUsState(svg, abbr, status, interactive = true) {
+  const fill = _VOICE_US_COLORS[abbr] || '#5ca860';
+  (_HM[abbr] || []).forEach(id => {
+    const path = _voiceFindPath(svg, id);
+    if (!path) return;
+    path.setAttribute('fill', fill);
+    path.setAttribute('stroke', fill);
+    path.setAttribute('stroke-width', '2.2');
+    path.setAttribute('stroke-linejoin', 'round');
+    path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('paint-order', 'stroke fill');
+    path.style.opacity = '1';
+    if (!interactive) return;
+    path.style.pointerEvents = 'auto';
+    path.style.cursor = 'pointer';
+    path.addEventListener('mouseenter', () => {
+      path.style.opacity = '.84';
+      _voiceSetStatus(status, `Run50 · ${_STATE_NAMES[abbr] || abbr}`);
+    });
+    path.addEventListener('mouseleave', () => {
+      path.style.opacity = '1';
+      _voiceSetStatus(status);
+    });
+    path.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      _handleStateClick(abbr);
+    });
+  });
+}
+
+function _voiceDrawUsDots(svg, states, status, interactive = true) {
+  const layer = _voiceAddSvgEl(svg, 'g', { id: 'voice-us-city-dots' });
+  states.forEach(abbr => {
+    (_STATE_RACES[abbr] || []).forEach(r => {
+      if (/5\s*[kK]/i.test(r.raceName)) return;
+      const coords = _CITY_LAT_LON[r.city];
+      if (!coords) return;
+      const special = _VOICE_SPECIAL_US_DOTS[`${abbr}:${r.city}`];
+      const p = special ? { x: special[0], y: special[1] } : _projectAlbers(coords.lat, coords.lon);
+      _voiceAddSvgEl(layer, 'circle', {
+        cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '11',
+        class: 'city-dot-glow'
+      });
+      const dot = _voiceAddSvgEl(layer, 'circle', {
+        cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: interactive ? '4.8' : '5.2',
+        class: 'city-dot'
+      });
+      if (!interactive) return;
+      dot.style.cursor = 'pointer';
+      dot.addEventListener('mouseenter', () => _voiceSetStatus(status, `${r.city} · ${_STATE_NAMES[abbr] || abbr}`));
+      dot.addEventListener('mouseleave', () => _voiceSetStatus(status));
+      dot.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        _handleCityClick(r, abbr);
+      });
+    });
+  });
+}
+
+function _voiceDrawUsMap(slot, options = {}) {
+  if (!slot || typeof US_MAP_SVG === 'undefined') return;
+  _parseGridRaces();
+  slot.innerHTML = US_MAP_SVG;
+  const svg = slot.querySelector('svg');
+  if (!svg) return;
+  _voiceRemoveContainedSubpaths(svg);
+  _voiceStyleUsBase(svg);
+  const states = options.state ? [options.state] : Object.keys(_STATE_RACES);
+  states.forEach(abbr => _voiceHighlightUsState(svg, abbr, options.status, !options.readonly));
+  _voiceDrawUsDots(svg, states, options.status, !options.readonly);
+}
+
+function _voiceAddMapTextLabel(layer, lines, x, y, options = {}) {
+  const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  text.setAttribute('x', x);
+  text.setAttribute('y', y);
+  text.setAttribute('text-anchor', options.anchor || 'middle');
+  text.setAttribute('font-size', options.size || 14);
+  text.setAttribute('fill', options.fill || '#8f9bb2');
+  text.setAttribute('stroke', options.stroke || 'rgba(15,23,42,.54)');
+  text.setAttribute('stroke-width', options.strokeWidth || 2.4);
+  text.setAttribute('class', 'mini-map-context-label');
+  text.style.opacity = options.opacity || '.58';
+  text.style.fontWeight = options.weight || 800;
+  if (options.rotate) text.setAttribute('transform', `rotate(${options.rotate} ${x} ${y})`);
+  lines.forEach((line, index) => {
+    const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+    tspan.setAttribute('x', x);
+    tspan.setAttribute('dy', index === 0 ? 0 : (options.lineGap || 14));
+    tspan.setAttribute('font-size', index === 0 ? (options.size || 14) : (options.subSize || 8));
+    tspan.textContent = line;
+    text.appendChild(tspan);
+  });
+  layer.appendChild(text);
+}
+
+function _voiceProjectChina(lat, lon) {
+  return { x: (lon - 70) * 11.8, y: (55 - lat) * 15.0 };
+}
+
+function _voiceDrawChinaMap(slot) {
+  if (!slot || typeof CHINA_MAP_SVG === 'undefined') return;
+  slot.innerHTML = CHINA_MAP_SVG;
+  const svg = slot.querySelector('svg');
+  const status = document.getElementById('cn-map-mini-status');
+  if (!svg) return;
+  svg.removeAttribute('width');
+  svg.removeAttribute('height');
+  svg.setAttribute('viewBox', '-64 6 934 556');
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+  const ocean = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  ocean.setAttribute('x', '-64');
+  ocean.setAttribute('y', '6');
+  ocean.setAttribute('width', '934');
+  ocean.setAttribute('height', '556');
+  ocean.setAttribute('fill', '#30384f');
+  svg.insertBefore(ocean, svg.firstChild);
+
+  const contextLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  contextLayer.setAttribute('id', 'mini-china-context-labels');
+  svg.appendChild(contextLayer);
+  _voiceAddMapTextLabel(contextLayer, ['Mongolia'], 392, 124, { size: 18, opacity: '.42', fill: '#d0d9e8', strokeWidth: 2.1, weight: 400 });
+  _voiceAddMapTextLabel(contextLayer, ['South Korea'], 706, 292, { size: 11, opacity: '.46', fill: '#d5deed', strokeWidth: 1.8, weight: 400 });
+  _voiceAddMapTextLabel(contextLayer, ['Japan'], 806, 288, { size: 14, opacity: '.38', rotate: -12, fill: '#c8d2e2', strokeWidth: 1.8, weight: 400 });
+  _voiceAddMapTextLabel(contextLayer, ['Bohai Sea'], 646, 266, { size: 8, opacity: '.32', rotate: -8 });
+  _voiceAddMapTextLabel(contextLayer, ['Yellow Sea'], 718, 360, { size: 9, opacity: '.36', rotate: -14 });
+  _voiceAddMapTextLabel(contextLayer, ['East China Sea'], 752, 450, { size: 8, opacity: '.38', rotate: -16 });
+  _voiceAddMapTextLabel(contextLayer, ['South China Sea'], 624, 530, { size: 8, opacity: '.38', rotate: -12 });
+
+  svg.querySelectorAll('rect').forEach(rect => rect.setAttribute('fill', '#30384f'));
+  svg.querySelectorAll('path').forEach(path => {
+    const id = path.id || '';
+    if (!id.startsWith('cn_')) {
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', 'rgba(198,211,228,.38)');
+      path.setAttribute('stroke-width', '.72');
+      path.setAttribute('vector-effect', 'non-scaling-stroke');
+      path.style.opacity = '.36';
+      path.style.pointerEvents = 'none';
+      return;
+    }
+
+    path.setAttribute('fill', '#242b3f');
+    path.setAttribute('stroke', 'rgba(221,232,245,.48)');
+    path.setAttribute('stroke-width', '.95');
+    path.style.opacity = '.92';
+
+    const runInfo = _CHINA_RUN_PROVINCES[id];
+    if (!runInfo) return;
+    path.setAttribute('fill', runInfo.color);
+    path.setAttribute('stroke', 'rgba(255,255,255,.58)');
+    path.setAttribute('stroke-width', '1.15');
+    path.style.opacity = '1';
+    path.style.cursor = 'pointer';
+    path.style.pointerEvents = 'auto';
+    path.addEventListener('mouseenter', () => {
+      path.style.opacity = '.82';
+      _voiceSetStatus(status, `RunCN · ${_VOICE_CHINA_PROVINCES_EN[id] || id}`);
+    });
+    path.addEventListener('mouseleave', () => {
+      path.style.opacity = '1';
+      _voiceSetStatus(status);
+    });
+    path.addEventListener('click', event => _handleChinaProvinceClick(event, id));
+  });
+
+  const glowLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  const ringLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  const dotLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  glowLayer.id = 'mini-china-dot-glows';
+  ringLayer.id = 'mini-china-city-rings';
+  dotLayer.id = 'mini-china-city-dots';
+  svg.appendChild(glowLayer);
+  svg.appendChild(ringLayer);
+  svg.appendChild(dotLayer);
+
+  _CHINA_CITY_DOTS.forEach(city => {
+    const p = _voiceProjectChina(city.lat, city.lon);
+    const englishName = _VOICE_CHINA_CITY_EN[city.name] || city.name;
+    ['city-dot-glow', 'city-ring', 'city-dot'].forEach((cls, index) => {
+      const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      dot.setAttribute('cx', p.x.toFixed(1));
+      dot.setAttribute('cy', p.y.toFixed(1));
+      dot.setAttribute('r', index === 0 ? '11' : index === 1 ? '6.8' : '4.8');
+      dot.setAttribute('class', cls);
+      if (index < 2) {
+        dot.style.pointerEvents = 'none';
+      } else {
+        dot.style.cursor = 'pointer';
+        dot.addEventListener('mouseenter', () => _voiceSetStatus(status, `${englishName} · ${_VOICE_CHINA_PROVINCES_EN[city.province] || 'RunCN'}`));
+        dot.addEventListener('mouseleave', () => _voiceSetStatus(status));
+        dot.addEventListener('click', event => {
+          event.stopPropagation();
+          const first = city.races[0];
+          if (first) _flashChinaStoryCard(first.slug);
+        });
+      }
+      (index === 0 ? glowLayer : index === 1 ? ringLayer : dotLayer).appendChild(dot);
+    });
+  });
+
+  const labelLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  labelLayer.id = 'mini-china-labels';
+  labelLayer.style.pointerEvents = 'none';
+  svg.appendChild(labelLayer);
+  Object.entries(_VOICE_CHINA_PROVINCES_EN).forEach(([id, name]) => {
+    if (typeof _CN_LABELS === 'undefined' || !_CN_LABELS[id]) return;
+    const [x, y, size] = _CN_LABELS[id];
+    if (!size && id !== 'cn_hongkong') return;
+    const [dx, dy, fs] = _VOICE_CHINA_LABEL_OFFSETS[id] || [0, 0, Math.max(8, size - 1)];
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', (x + dx).toFixed(1));
+    text.setAttribute('y', (y + dy).toFixed(1));
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('font-size', fs || 9);
+    text.setAttribute('fill', '#f8fbff');
+    text.setAttribute('stroke', 'rgba(15,23,42,.72)');
+    text.setAttribute('stroke-width', '3');
+    text.setAttribute('class', 'mini-map-label');
+    text.setAttribute('pointer-events', 'none');
+    text.textContent = name;
+    labelLayer.appendChild(text);
+  });
+}
+
+function _injectWelcomeMap() {
+  _voiceDrawUsMap(document.getElementById('run50-us-map-mini'), {
+    status: document.getElementById('us-map-mini-status')
+  });
+}
+
+function _injectChinaMap() {
+  _voiceDrawChinaMap(document.getElementById('runcn-china-map-mini'));
+}
+
+function _injectMap(scriptId) {
+  const card = document.getElementById(scriptId);
+  if (!card) return;
+  const slot = card.querySelector('[data-map-slot]');
+  if (!slot) return;
+  const info = _SC_STATE[scriptId];
+  slot.innerHTML = '';
+  const mapWindow = document.createElement('div');
+  mapWindow.className = 'script-mini-map-window';
+  slot.appendChild(mapWindow);
+  _voiceDrawUsMap(mapWindow, {
+    state: info && info.s,
+    readonly: true
+  });
+  const label = document.createElement('div');
+  label.className = 'map-label';
+  label.textContent = info ? `📍 ${_STATE_NAMES[info.s] || info.s}` : '';
+  slot.appendChild(label);
+}
+</script>
+<script>
+(function () {
+  const stateEn = {
+    '亚利桑那': 'Arizona', '特拉华': 'Delaware', '明尼苏达': 'Minnesota',
+    '康涅狄格': 'Connecticut', '罗德岛': 'Rhode Island', '马萨诸塞': 'Massachusetts',
+    '缅因': 'Maine', '路易斯安那': 'Louisiana', '弗吉尼亚': 'Virginia',
+    '肯塔基': 'Kentucky', '北达科他': 'North Dakota', '堪萨斯': 'Kansas',
+    '佛蒙特': 'Vermont', '墨西哥': 'Mexico', '湖北': 'Hubei', '广西': 'Guangxi',
+    '香港': 'Hong Kong', '阿拉巴马': 'Alabama', '意大利': 'Italy',
+    '佛罗里达': 'Florida', '北卡': 'North Carolina', '阿肯色': 'Arkansas',
+    '南卡': 'South Carolina', '宾夕法尼亚': 'Pennsylvania', '威斯康辛': 'Wisconsin',
+    '密歇根': 'Michigan', '新罕布什尔': 'New Hampshire', '俄亥俄': 'Ohio',
+    '纽约': 'New York', '加利福尼亚': 'California', '印第安纳': 'Indiana',
+    '夏威夷': 'Hawaii', '佐治亚': 'Georgia', '科罗拉多': 'Colorado',
+    '阿拉斯加': 'Alaska', '密苏里': 'Missouri', '伊利诺伊': 'Illinois',
+    '田纳西': 'Tennessee', '西弗吉尼亚': 'West Virginia', '德克萨斯': 'Texas'
+  };
+
+  const cityEn = {
+    '巴基': 'Buckeye', '威明顿': 'Wilmington', '罗彻斯特': 'Rochester',
+    '辛斯伯里': 'Simsbury', '伍恩索克特': 'Woonsocket', '霍利奥克': 'Holyoke',
+    '桑福德': 'Sanford', '巴吞鲁日': 'Baton Rouge', '罗阿诺克': 'Roanoke',
+    '路易斯维尔': 'Louisville', '法戈': 'Fargo', '沃伦': 'Warren',
+    '墨西哥城': 'Mexico City', '襄阳': 'Xiangyang', '桂林': 'Guilin',
+    '亨茨维尔': 'Huntsville', '比萨': 'Pisa', '奥兰多': 'Orlando',
+    '迈阿密': 'Miami', '橡树岛': 'Oak Island', '小石城': 'Little Rock',
+    '匹兹堡': 'Pittsburgh', '绿湾': 'Green Bay', '威廉姆森': 'Williamson',
+    '大急流城': 'Grand Rapids', '基恩': 'Keene', '克利夫兰': 'Cleveland',
+    '纽约市': 'New York City', '旧金山': 'San Francisco', '印第安纳波利斯': 'Indianapolis',
+    '火奴鲁鲁': 'Honolulu', '亚特兰大': 'Atlanta', '辛辛那提': 'Cincinnati',
+    '丹佛': 'Denver', '安克雷奇': 'Anchorage', '圣约瑟夫': 'St. Joseph',
+    '芝加哥': 'Chicago', '纳什维尔': 'Nashville', '亨廷顿': 'Huntington',
+    '圣安东尼奥': 'San Antonio'
+  };
+
+  const raceEn = {
+    '德比马拉松': 'Kentucky Derby Marathon',
+    '路易斯维尔马拉松（博士收官）': 'Louisville Marathon (PhD Finale)',
+    '路易斯安那马拉松': 'Louisiana Marathon',
+    '德比·第50马拉松': 'Derby Marathon · 50th Marathon',
+    '襄阳马拉松': 'Xiangyang Marathon',
+    '桂林马拉松': 'Guilin Marathon',
+    '香港马拉松': 'Hong Kong Marathon',
+    '迈阿密马拉松': 'Miami Marathon',
+    '橡树岛马拉松': 'Oak Island Marathon',
+    '小石城马拉松': 'Little Rock Marathon',
+    '匹兹堡马拉松': 'Pittsburgh Marathon',
+    '绿湾马拉松': 'Green Bay Marathon',
+    '哈特菲尔德-麦考伊': 'Hatfield-McCoy Marathon',
+    '大急流城马拉松': 'Grand Rapids Marathon',
+    '克拉伦斯·德马尔': 'Clarence DeMar Marathon'
+  };
+
+  const selectEn = {
+    welcome: '— Select a voiceover script —',
+    'script-ky': '#01 Kentucky · Williamson (Hatfield-McCoy)',
+    'script-ky-derby': '#01+ Kentucky · Louisville Derby',
+    'script-ky-grad': '#01++ Kentucky · Louisville Marathon (PhD Finale)',
+    'script-fl': '#15 Florida · Miami',
+    'script-nc': '#16 North Carolina · Oak Island',
+    'script-ar': '#17 Arkansas · Little Rock',
+    'script-sc': '#18 South Carolina · Greer',
+    'script-pa': '#19 Pennsylvania · Pittsburgh',
+    'script-wi': '#20 Wisconsin · Green Bay',
+    'script-mi': '#21 Michigan · Grand Rapids',
+    'script-nh': '#22 New Hampshire · Keene'
+  };
+
+  const staticText = {
+    en: {
+      title: 'Run50 · Voiceover Script Library',
+      subtitle: 'Choose a state and start recording',
+      home: 'Home',
+      chineseStories: 'Chinese Stories',
+      englishStories: 'English Stories',
+      railHome: 'Timeline',
+      railHomeSmall: 'All years',
+      railMixed: 'Run50 / RunCN / RunWorld',
+      railScripts: 'Run50 scripts',
+      railArchive: 'Run50 archive',
+      railStart: 'Run50 start',
+      railStories: 'RunCN stories',
+      railLatest: 'latest',
+      usTitle: 'Run50 · U.S. 50 States Map',
+      usDesc: 'The WeChat-new map style brings completed states, city dots, and voiceover entries into one map.',
+      usStatus: 'Click a state or city for scripts/stories',
+      cnTitle: 'RunCN · China Marathon Map',
+      cnDesc: 'China running footprints use the WeChat-new English map labels, city dots, and region highlights.',
+      cnStatus: 'Click a region or city',
+      pending: 'Script pending',
+      wechatStory: 'WeChat story'
+    },
+    zh: {
+      title: '🏃 Run50 · 口播脚本库',
+      subtitle: '选择一个州，开始录制',
+      home: '新版首页',
+      chineseStories: '中文故事',
+      englishStories: 'English Stories',
+      railHome: '年份目录',
+      railHomeSmall: '全部年份',
+      railMixed: 'Run50 / RunCN / RunWorld',
+      railScripts: 'Run50 口播',
+      railArchive: 'Run50 归档',
+      railStart: 'Run50 起点',
+      railStories: 'RunCN 故事',
+      railLatest: '最新',
+      usTitle: 'Run50 · 美国50州地图',
+      usDesc: '沿用微信新版的地图视觉，把已跑足迹、城市红点和口播入口放在同一张地图里。',
+      usStatus: '点击州或城市查看口播/故事',
+      cnTitle: 'RunCN · China Marathon Map',
+      cnDesc: '中国跑马足迹使用微信新版的英文地图标签、城市红点和区域高亮。',
+      cnStatus: 'Click a region or city',
+      pending: '口播待更新',
+      wechatStory: '微信故事'
+    }
+  };
+
+  function rememberOriginal(el) {
+    if (!el || el.dataset.zhOriginal) return;
+    el.dataset.zhOriginal = el.textContent.trim();
+  }
+
+  function setNodeText(selector, text) {
+    const el = document.querySelector(selector);
+    if (el) el.textContent = text;
+  }
+
+  function translateCardText(lang) {
+    document.querySelectorAll('.race-card .rc-state, .race-card .rc-city, .race-card .rc-race, .race-card .rc-soon').forEach(el => {
+      rememberOriginal(el);
+      const original = el.dataset.zhOriginal;
+      if (lang === 'zh') {
+        el.textContent = original;
+        return;
+      }
+      if (el.dataset.en) {
+        el.textContent = el.dataset.en;
+        return;
+      }
+      const map = el.classList.contains('rc-state') ? stateEn :
+        el.classList.contains('rc-city') ? cityEn :
+        el.classList.contains('rc-race') ? raceEn :
+        { '口播待更新': staticText.en.pending, '微信故事': staticText.en.wechatStory };
+      el.textContent = map[original] || original;
+    });
+  }
+
+  function translateSelect(lang) {
+    document.querySelectorAll('#scriptSelect option').forEach(option => {
+      if (!option.dataset.zhOriginal) option.dataset.zhOriginal = option.textContent.trim();
+      option.textContent = lang === 'en' ? (selectEn[option.value] || option.dataset.zhOriginal) : option.dataset.zhOriginal;
+    });
+  }
+
+  function applyLanguage(lang) {
+    document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+    document.documentElement.dataset.lang = lang;
+    const t = staticText[lang];
+    document.title = t.title.replace(/^🏃\s*/, '');
+    setNodeText('.welcome-title', t.title);
+    setNodeText('.welcome-sub', t.subtitle);
+    setNodeText('.top-links a[href="run50.html"]', t.home);
+    setNodeText('.top-links a[href*="/stories/chinese/"]', t.chineseStories);
+    setNodeText('.top-links a[href*="/stories/english/"]', t.englishStories);
+    setNodeText('.rail a[href="#welcome"] b', t.railHome);
+    setNodeText('.rail a[href="#welcome"] small', t.railHomeSmall);
+    ['2026', '2025'].forEach(year => setNodeText(`.rail a[href="#year-${year}"] small`, t.railMixed));
+    setNodeText('.rail a[href="#year-2024"] small', t.railScripts);
+    ['2023', '2022', '2021'].forEach(year => setNodeText(`.rail a[href="#year-${year}"] small`, t.railArchive));
+    setNodeText('.rail a[href="#year-2020"] small', t.railStart);
+    ['2019', '2018', '2017'].forEach(year => setNodeText(`.rail a[href="#year-${year}"] small`, t.railStories));
+    setNodeText('.rail a[href="#year-2026"] .rail-year-count', t.railLatest);
+    setNodeText('.voiceover-map-board .run-map-card:nth-child(1) h2', t.usTitle);
+    setNodeText('.voiceover-map-board .run-map-card:nth-child(1) p', t.usDesc);
+    setNodeText('#us-map-mini-status', t.usStatus);
+    setNodeText('.voiceover-map-board .run-map-card:nth-child(2) h2', t.cnTitle);
+    setNodeText('.voiceover-map-board .run-map-card:nth-child(2) p', t.cnDesc);
+    setNodeText('#cn-map-mini-status', t.cnStatus);
+    translateCardText(lang);
+    translateSelect(lang);
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+      langToggle.setAttribute('aria-label', lang === 'en' ? 'Switch language to Chinese' : '切换到英文');
+      langToggle.title = lang === 'en' ? 'Switch to Chinese' : 'Switch to English';
+    }
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    const button = document.getElementById('themeToggle');
+    if (button) {
+      button.textContent = theme === 'light' ? '☾' : '☀';
+      button.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to bright mode');
+      button.title = theme === 'light' ? 'Switch to dark mode' : 'Switch to bright mode';
+    }
+  }
+
+  const previousVoiceSetStatus = window._voiceSetStatus;
+  window._voiceSetStatus = function (status, text) {
+    if (!status) return;
+    if (text) {
+      status.textContent = text;
+      return;
+    }
+    const lang = document.documentElement.dataset.lang || 'en';
+    status.textContent = status.id === 'cn-map-mini-status' ? staticText[lang].cnStatus : staticText[lang].usStatus;
+  };
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('run50-scripts-theme') || 'dark';
+    const savedLang = 'en';
+    applyTheme(savedTheme);
+    applyLanguage(savedLang);
+    applyTheme(savedTheme);
+    document.getElementById('themeToggle')?.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('run50-scripts-theme', next);
+      applyTheme(next);
+    });
+    document.getElementById('langToggle')?.addEventListener('click', () => {
+      const next = document.documentElement.dataset.lang === 'en' ? 'zh' : 'en';
+      applyLanguage(next);
+      applyTheme(document.documentElement.dataset.theme || 'dark');
+    });
+  });
+}());
+</script>
 
         <!-- ========================================== -->
         <!-- 脚本：第 1 州 肯塔基 · 路易斯维尔马拉松（博士收官） -->
@@ -3752,10 +5328,12 @@ function _injectChinaMap() {
         </div>
 
 
+    </main>
+    </div>
 
-<link rel="stylesheet" href="../assets/zz-comments.css">
+<link rel="stylesheet" href="https://zhennanzhang.com/assets/zz-comments.css">
 <section data-zz-comments></section>
-<script src="../assets/zz-comments.js"></script>
+<script src="https://zhennanzhang.com/assets/zz-comments.js"></script>
   <script src="../assets/zz-home-button.js?v=20260703-home" defer></script>
 </body>
 </html>
