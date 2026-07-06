@@ -16,6 +16,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
+from PIL import Image
+
 
 ROOT = Path(__file__).resolve().parents[1]
 RUN50 = ROOT / "run50"
@@ -105,19 +107,40 @@ def read(path: Path) -> str:
 
 def write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    text = "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
     path.write_text(text, encoding="utf-8", newline="\n")
+
+
+def clean_text_artifacts(value: str) -> str:
+    replacements = {
+        "\u00c2\u00b7": "\u00b7",
+        "\u00c2": "",
+        "\u00e2\u20ac\u2122": "'",
+        "\u00e2\u20ac\u02dc": "'",
+        "\u00e2\u20ac\u0153": '"',
+        "\u00e2\u20ac\ufffd": '"',
+        "\u00e2\u20ac\u009d": '"',
+        "\u00e2\u20ac\u201d": "-",
+        "\u00e2\u20ac\u201c": "-",
+        "\u00e2\u20ac\u00a6": "...",
+        "\u00ef\u00bd\u0153": "|",
+        "\ufffd": "",
+    }
+    for old, new in replacements.items():
+        value = value.replace(old, new)
+    return value
 
 
 def strip_tags(value: str) -> str:
     value = re.sub(r"<script\b.*?</script>", "", value, flags=re.I | re.S)
     value = re.sub(r"<style\b.*?</style>", "", value, flags=re.I | re.S)
     value = re.sub(r"<[^>]+>", " ", value)
-    return re.sub(r"\s+", " ", html.unescape(value)).strip()
+    return clean_text_artifacts(re.sub(r"\s+", " ", html.unescape(value)).strip())
 
 
 def attr(block: str, name: str) -> str:
     match = re.search(rf"\b{name}\s*=\s*(['\"])(.*?)\1", block, flags=re.I | re.S)
-    return html.unescape(match.group(2).strip()) if match else ""
+    return clean_text_artifacts(html.unescape(match.group(2).strip())) if match else ""
 
 
 def slug_from_href(href: str) -> str | None:
@@ -214,9 +237,11 @@ def extract_article_body(path: Path) -> str:
     body = re.sub(r"<p>\s*(Words|Photos|Design)\s*\|\s*Arsenan\s*</p>", "", body, flags=re.I)
     body = re.sub(r"<h2>\s*Chapter\s+(\d+)\s*\|\s*(.*?)</h2>", r"<h2>\2</h2>", body, flags=re.I | re.S)
     body = normalize_relative_paths(body)
+    body = remove_decorative_figures(body)
     body = polish_html_copy(body)
     body = transform_h2_to_field_notes(body)
-    return body.strip()
+    body = add_wechat_emphasis(body)
+    return clean_text_artifacts(body).strip()
 
 
 def normalize_relative_paths(body: str) -> str:
@@ -226,6 +251,43 @@ def normalize_relative_paths(body: str) -> str:
     body = body.replace('src="../../../assets/', 'src="../../assets/')
     body = body.replace("src='../../../assets/", "src='../../assets/")
     return body
+
+
+def local_image_path(src: str) -> Path | None:
+    clean = html.unescape(src or "").split("#")[0].split("?")[0].strip()
+    if not clean or clean.startswith(("http://", "https://", "data:")):
+        return None
+    return (OUT / clean).resolve()
+
+
+def is_decorative_image(src: str) -> bool:
+    path = local_image_path(src)
+    if not path or not path.exists():
+        return False
+    try:
+        with Image.open(path) as image:
+            width, height = image.size
+    except Exception:
+        return False
+    # The old WeChat exports include thin divider strips, tiny icon tiles, and
+    # low-resolution map/watermark fragments. In English articles they become
+    # full-width blurry blocks, so keep only real photo-scale images.
+    if width < 320 or height < 140:
+        return True
+    if width / max(height, 1) > 4.2:
+        return True
+    return False
+
+
+def remove_decorative_figures(body: str) -> str:
+    def replace_figure(match: re.Match[str]) -> str:
+        figure = match.group(0)
+        image = re.search(r"<img\b[^>]*>", figure, flags=re.I | re.S)
+        src = attr(image.group(0), "src") if image else ""
+        return "" if is_decorative_image(src) else figure
+
+    body = re.sub(r"<figure\b[^>]*>\s*<img\b[^>]*>\s*(?:<figcaption\b[^>]*>.*?</figcaption>\s*)?</figure>", replace_figure, body, flags=re.I | re.S)
+    return re.sub(r"\n{3,}", "\n\n", body)
 
 
 def polish_html_copy(body: str) -> str:
@@ -271,6 +333,54 @@ def transform_h2_to_field_notes(body: str) -> str:
         )
 
     return re.sub(r"<h2[^>]*>(.*?)</h2>", repl, body, flags=re.I | re.S)
+
+
+def add_wechat_emphasis(body: str) -> str:
+    keywords = [
+        "Run50", "RunCN", "RunWorld", "marathon", "half marathon", "finish line",
+        "race day", "course", "runner", "runners", "Boston", "Chicago", "New York",
+        "NYC Marathon", "Central Park", "Times Square", "Flushing", "Hudson River",
+        "Kentucky", "Louisville", "Derby", "Churchill Downs", "Florida", "Disney",
+        "Miami", "Arizona", "Phoenix", "Hawaii", "Honolulu", "China", "Wuhan",
+        "Guang'an", "Guangan", "Yichang", "Changsha", "Hubei", "Sichuan", "Hunan",
+        "Hong Kong", "Singapore", "Bangkok", "Mexico City", "Pisa",
+    ]
+    keyword_pattern = re.compile(
+        r"(?<![\w-])(" + "|".join(re.escape(k) for k in sorted(keywords, key=len, reverse=True)) + r")(?![\w-])",
+        re.I,
+    )
+    number_pattern = re.compile(r"\b(\d+(?:\.\d+)?(?:K| miles?| hours?| minutes?|:\d{2}|-\d+)?|\d{4})\b", re.I)
+
+    def emphasize_text(text: str, limit: int = 2) -> str:
+        if "<" in text or "&lt;" in text:
+            return text
+        used = 0
+
+        def repl_keyword(match: re.Match[str]) -> str:
+            nonlocal used
+            if used >= limit:
+                return match.group(0)
+            used += 1
+            return f'<strong class="auto-emphasis accent-{(used - 1) % 5}">{match.group(0)}</strong>'
+
+        text = keyword_pattern.sub(repl_keyword, text, count=limit)
+        if used < limit:
+            def repl_number(match: re.Match[str]) -> str:
+                nonlocal used
+                if used >= limit:
+                    return match.group(0)
+                used += 1
+                return f'<strong class="auto-emphasis accent-{(used - 1) % 5}">{match.group(0)}</strong>'
+            text = number_pattern.sub(repl_number, text, count=limit - used)
+        return text
+
+    def repl_paragraph(match: re.Match[str]) -> str:
+        attrs, inner = match.group(1), match.group(2)
+        if "auto-caption" in attrs or "note-label" in attrs or "<strong" in inner or "<img" in inner:
+            return match.group(0)
+        return f"<p{attrs}>{emphasize_text(inner)}</p>"
+
+    return re.sub(r"<p([^>]*)>(.*?)</p>", repl_paragraph, body, flags=re.I | re.S)
 
 
 def extract_practice_article(slug: str, file_name: str) -> tuple[dict[str, str], str]:
@@ -340,7 +450,11 @@ def extract_map_panel(slug: str) -> str:
             if match:
                 panel = match.group(0)
                 panel = re.sub(r"v=20\d+[-\w]*", f"v={VERSION}", panel)
-                panel = re.sub(r'(<div class="article-map-window\b(?![^>]*\bdata-map-locale=))', r'\1 data-map-locale="en"', panel)
+                panel = re.sub(
+                    r'(<div\b(?![^>]*\bdata-map-locale=)(?=[^>]*\bclass="[^"]*\barticle-map-window\b))',
+                    r'\1 data-map-locale="en"',
+                    panel,
+                )
                 return panel
     return ""
 
@@ -416,8 +530,8 @@ def article_page(card: Card) -> str:
     map_panel = extract_map_panel(card.slug)
     state_name, state_abbr, place = STATE_BY_SLUG.get(card.slug, ("", "", ""))
     series_title = SERIES_LABEL.get(card.series_class, SERIES_LABEL["run-50"])[0]
-    section_line = card.meta or f"{series_title} · {state_name or 'Marathon'}"
-    page_key = f"run50-wechat-en-{card.slug}"
+    section_line = clean_text_artifacts(card.meta or f"{series_title} \u00b7 {state_name or 'Marathon'}")
+    finish_region = place or state_name or card.meta or "Run50"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -480,25 +594,18 @@ def article_page(card: Card) -> str:
       <p>Design · Arsenan</p>
     </section>
   </article>
-  <section class="zz-engagement" data-zz-engagement data-locale="en" data-page-key="{page_key}">
-    <div class="zz-engagement-shell">
-      <div>
-        <p class="zz-engagement-kicker">Comments / Views</p>
-        <h2>Say something after the run</h2>
-        <p class="zz-engagement-note">No account is needed to submit a comment. New comments appear right away.</p>
-        <div class="zz-engagement-stats">
-          <span class="zz-engagement-stat" id="busuanzi_container_page_pv"><span>Views</span><strong id="busuanzi_value_page_pv" data-zz-view-count>--</strong></span>
-        </div>
-      </div>
-      <div class="zz-engagement-card">
-        <div id="supabase-comments-{card.slug}-wechat-en" data-zz-supabase-comments></div>
-        <p class="zz-engagement-status" data-zz-engagement-status>Loading comments...</p>
-      </div>
+  <section class="wechat-finish-line" aria-label="Run50 finish line">
+    <p class="finish-kicker">RUN50 FINISH LINE</p>
+    <h2>One more mile saved for the story.</h2>
+    <div class="finish-chips">
+      <span>{html.escape(series_title)}</span>
+      <span>{html.escape(finish_region)}</span>
+      <span>WeChat English</span>
     </div>
+    <p>This edition keeps the running up front, then lets the city, the food, the weather, and the small human details settle in around it.</p>
+    <p class="finish-note">Thanks for reading. The Chinese WeChat edition carries the original voice; this English version keeps the same route, just in a language that feels natural to American friends.</p>
   </section>
 </main>
-<script src="../../assets/zz-engagement-config.js?v=20260616"></script>
-<script src="../../assets/zz-engagement.js?v=20260703-theme"></script>
 <script src="../../assets/zz-home-button.js?v=20260703-home" defer></script>
 </body>
 </html>
@@ -596,13 +703,69 @@ def translate_wechat_new_script_text(page: str) -> str:
         "篇：": " stories: ",
         "点击打开完整互动地图": "Click to open the full interactive map",
         "请在下方故事中选择": "choose from the stories below",
+        "已定位：": "selected: ",
+        "已定位到下方故事": "selected the story below",
     }
     for old, new in replacements.items():
+        page = page.replace(old, new)
+    china_label_replacements = {
+        "黑龙江": "Heilongjiang",
+        "湖北": "Hubei",
+        "四川": "Sichuan",
+        "内蒙古": "Inner Mongolia",
+        "山西": "Shanxi",
+        "湖南": "Hunan",
+        "福建": "Fujian",
+        "甘肃": "Gansu",
+        "江苏": "Jiangsu",
+        "贵州": "Guizhou",
+        "陕西": "Shaanxi",
+        "浙江": "Zhejiang",
+        "海南": "Hainan",
+        "辽宁": "Liaoning",
+        "上海": "Shanghai",
+        "广西": "Guangxi",
+        "香港": "Hong Kong",
+        "北京": "Beijing",
+        "哈尔滨": "Harbin",
+        "鄂尔多斯": "Ordos",
+        "长治": "Changzhi",
+        "武汉": "Wuhan",
+        "宜昌": "Yichang",
+        "襄阳": "Xiangyang",
+        "广安": "Guangan",
+        "长沙": "Changsha",
+        "厦门": "Xiamen",
+        "兰州": "Lanzhou",
+        "无锡": "Wuxi",
+        "贵阳": "Guiyang",
+        "西安": "Xian",
+        "杭州": "Hangzhou",
+        "海口": "Haikou",
+        "大连": "Dalian",
+        "宁波": "Ningbo",
+        "桂林": "Guilin",
+    }
+    for old, new in china_label_replacements.items():
         page = page.replace(old, new)
     page = re.sub(r"<footer>.*?</footer>", "<footer>WeChat English follows the same layout as the Chinese WeChat New edition.</footer>", page, flags=re.S)
     page = page.replace("切换到亮色模式", "Switch to light mode")
     page = page.replace("切换到暗色模式", "Switch to dark mode")
     page = page.replace("切换明暗主题", "Toggle theme")
+    page = page.replace("https://zhennanzhang.com/run50/wechat/';", "https://zhennanzhang.com/run50/wechat-en/';")
+    page = page.replace("?v=20260630-wechat-emphasis';", f"?v={VERSION}';")
+    page = page.replace(
+        "return `${label} · ${titles.length} stories: ${titles.slice(0, 3).join(' / ')}${titles.length > 3 ? ' / ...' : ''}`;",
+        "return `${label} · ${titles.length === 1 ? '1 story' : `${titles.length} stories`}: ${titles.slice(0, 3).join(' / ')}${titles.length > 3 ? ' / ...' : ''}`;",
+    )
+    page = page.replace(
+        "heading.textContent = `${label} · ${rows.length || 0}  stories · click to choose`;",
+        "heading.textContent = `${label} · ${rows.length === 1 ? '1 story' : `${rows.length || 0} stories`} · click to choose`;",
+    )
+    page = page.replace(
+        "count.textContent = rows.length ? `${rows.length} stories` : 'pending';",
+        "count.textContent = rows.length ? (rows.length === 1 ? '1 story' : `${rows.length} stories`) : 'pending';",
+    )
     return page
 
 
@@ -836,12 +999,39 @@ def css_text() -> str:
     return """*{box-sizing:border-box}html{color-scheme:dark}html[data-theme=light]{color-scheme:light}body{margin:0;background:#0b1020;color:#dbe7f6;font-family:Inter,"Segoe UI",Arial,sans-serif;line-height:1.72;letter-spacing:0}a{color:inherit}.theme-toggle{position:fixed;right:16px;top:14px;z-index:20;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 12px;background:rgba(15,23,42,.82);color:#f8fbff;font-weight:850;font-size:12px;box-shadow:0 10px 28px rgba(0,0,0,.28);cursor:pointer}.masthead{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:28px 0 38px}.top-nav{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;margin:0 0 38px}.top-nav a,.quick-links a,.wechat-en-nav a{border:1px solid rgba(148,163,184,.28);border-radius:999px;padding:8px 12px;text-decoration:none;color:#c9d7eb;background:rgba(255,255,255,.05);font-size:13px;font-weight:800}.brand,.section-kicker,.kicker,.note-label{margin:0 0 10px;color:#7dd3fc;font-size:13px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}.masthead h1{max-width:900px;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,7vw,88px);line-height:.95;letter-spacing:0}.intro{max-width:780px;margin:20px 0 0;color:#b6c5d8;font-size:20px}.quick-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.shell{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:0 0 80px}.story-section{margin-top:58px}.story-section:first-child{margin-top:0}.section-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:end;margin:0 0 22px;padding:0 0 18px;border-bottom:1px solid rgba(148,163,184,.22)}.section-head h2{grid-column:1;margin:0;color:#f8fbff;font-size:clamp(26px,4vw,42px);line-height:1.05}.section-head p:last-child{grid-column:1/-1;max-width:760px;margin:0;color:#a8b7cc}.story-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:24px;align-items:stretch}.story-card{display:grid;grid-template-rows:auto 1fr;overflow:hidden;min-height:100%;border:1px solid rgba(148,163,184,.22);border-radius:8px;background:#1b2437;text-decoration:none;box-shadow:0 18px 44px rgba(0,0,0,.22);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}.story-card:hover{transform:translateY(-3px);border-color:rgba(248,220,138,.7);box-shadow:0 24px 60px rgba(0,0,0,.32)}.story-card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#10192c}.story-card-body{padding:18px 18px 20px;display:grid;align-content:start}.story-meta{margin:0 0 8px;color:#9ddfbd;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.story-title{margin:0;color:#f8fbff;font-size:20px;line-height:1.28}.story-desc{margin:12px 0 0;color:#b6c5d8;font-size:15px;line-height:1.62}.story-foot{margin:18px 0 0;color:#f8dc8a;font-weight:900}.run-cn .story-meta{color:#a7f3d0}.run-world .story-meta{color:#7dd3fc}html[data-theme=light] body{background:#f5f7fb;color:#17212b}html[data-theme=light] .masthead h1,html[data-theme=light] .section-head h2,html[data-theme=light] .story-title{color:#101828}html[data-theme=light] .intro,html[data-theme=light] .section-head p:last-child,html[data-theme=light] .story-desc{color:#526170}html[data-theme=light] .story-card{background:#fff;border-color:#d9e2ec;box-shadow:0 18px 44px rgba(15,23,42,.08)}html[data-theme=light] .top-nav a,html[data-theme=light] .quick-links a,html[data-theme=light] .wechat-en-nav a{color:#344054;background:#fff;border-color:#d9e2ec}.wechat-en-page{width:min(677px,100%);margin:0 auto;padding:28px 18px 58px;background:#0b1020}.wechat-en-nav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}.wechat-en-header{padding:16px 0 18px;border-top:4px solid #2f855a;border-bottom:1px solid rgba(125,211,252,.34)}.wechat-en-header h1{margin:0;color:#f8fbff;font-size:clamp(30px,7vw,46px);line-height:1.12;letter-spacing:0}.dek{margin:14px 0 0;color:#b6c5d8;font-size:16px;line-height:1.7}.meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.meta-row span{border:1px solid rgba(125,211,252,.26);border-radius:999px;padding:6px 10px;color:#a8b7cc;font-size:12px;font-weight:800}.opening-note{margin:24px 0 28px;padding:16px 18px;border:1px solid rgba(248,220,138,.42);border-radius:6px;background:#131d31}.opening-note p:last-child{margin:0;color:#dbe7f6}.cover-block{margin:24px 0 30px}.cover-block img,.wechat-en-article figure img{display:block;width:100%;height:auto;border-radius:7px}.wechat-en-article{background:transparent;color:#dbe7f6}.wechat-en-article p{margin:0 0 18px;font-size:16px;line-height:1.95;text-align:left}.wechat-en-article figure{margin:28px 0 30px}.wechat-en-article figcaption{margin:9px 0 0;padding-left:10px;border-left:3px solid #d4a669;color:#a8b7cc;font:italic 12px/1.65 Optima,Georgia,serif}.field-note-head{margin:44px 0 18px;padding:0 0 0 14px;border-left:5px solid #2f855a}.field-note-head p{margin:0 0 5px!important;color:#8a9bad!important;font-size:11px!important;line-height:1.4!important;letter-spacing:1.6px;font-weight:900;text-align:left}.field-note-head h2{margin:0;color:#f8fbff;font-size:22px;line-height:1.35;letter-spacing:0}.wechat-en-credits{margin:34px 0 0;text-align:center}.wechat-en-credits p{margin:10px 0!important;text-align:center!important;color:#c8d5e7!important;font-weight:800}.zz-engagement{margin:32px 0 0}.zz-engagement-shell{border:1px solid rgba(148,163,184,.25);border-radius:8px;background:#10192c;padding:18px}.zz-engagement-kicker{margin:0 0 6px;color:#7dd3fc;font-weight:900}.zz-engagement h2{margin:0 0 8px}.zz-engagement-note{color:#a8b7cc}.zz-engagement-stats{display:flex;gap:10px;flex-wrap:wrap}.zz-engagement-stat{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(148,163,184,.25);border-radius:999px;padding:7px 11px;color:#c8d5e7}html[data-theme=light] .wechat-en-page{background:#fff}html[data-theme=light] .wechat-en-header h1,html[data-theme=light] .field-note-head h2{color:#162636}html[data-theme=light] .dek,html[data-theme=light] .meta-row span,html[data-theme=light] .wechat-en-article p{color:#26343f}html[data-theme=light] .opening-note{background:#edf5f8;border-color:#d8e6ee}html[data-theme=light] .opening-note p:last-child{color:#26343f}html[data-theme=light] .zz-engagement-shell{background:#fff;border-color:#d9e2ec}@media(max-width:700px){.section-head{grid-template-columns:1fr}.story-grid{grid-template-columns:1fr}.masthead{padding-top:22px}.top-nav{justify-content:flex-start;margin-bottom:26px}.wechat-en-page{padding-inline:16px}.wechat-en-article p{font-size:16px;line-height:1.86}}"""
 
 
+def article_extra_css() -> str:
+    return """
+.wechat-en-article strong.auto-emphasis{font-weight:900;padding:0 .05em;border-radius:4px;text-shadow:0 0 16px color-mix(in srgb,var(--emphasis-color,#f8dc8a) 24%,transparent)}
+.wechat-en-article strong.auto-emphasis.accent-0{--emphasis-color:#7dd3fc;color:#7dd3fc}
+.wechat-en-article strong.auto-emphasis.accent-1{--emphasis-color:#f8dc8a;color:#f8dc8a}
+.wechat-en-article strong.auto-emphasis.accent-2{--emphasis-color:#a7f3d0;color:#a7f3d0}
+.wechat-en-article strong.auto-emphasis.accent-3{--emphasis-color:#f0a6ca;color:#f0a6ca}
+.wechat-en-article strong.auto-emphasis.accent-4{--emphasis-color:#c4f08a;color:#c4f08a}
+html[data-theme=light] .wechat-en-article strong.auto-emphasis.accent-0{color:#0b67c2}
+html[data-theme=light] .wechat-en-article strong.auto-emphasis.accent-1{color:#8a5a00}
+html[data-theme=light] .wechat-en-article strong.auto-emphasis.accent-2{color:#087857}
+html[data-theme=light] .wechat-en-article strong.auto-emphasis.accent-3{color:#9b2f62}
+html[data-theme=light] .wechat-en-article strong.auto-emphasis.accent-4{color:#437314}
+.wechat-finish-line{margin:36px 0 0;padding:20px 18px 22px;border:1px solid rgba(248,220,138,.35);border-radius:8px;background:linear-gradient(135deg,#10192c 0,#16233a 62%,#10192c 100%);box-shadow:0 18px 44px rgba(0,0,0,.22)}
+.finish-kicker{margin:0 0 8px;color:#f8dc8a;font-size:12px;font-weight:950;letter-spacing:.12em;text-transform:uppercase}
+.wechat-finish-line h2{margin:0;color:#f8fbff;font-size:24px;line-height:1.25}
+.finish-chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.finish-chips span{border:1px solid rgba(125,211,252,.24);border-radius:999px;padding:6px 10px;color:#b6c5d8;font-size:12px;font-weight:850}
+.wechat-finish-line p{margin:12px 0 0;color:#dbe7f6;line-height:1.75}
+.wechat-finish-line .finish-note{color:#a8b7cc;font-style:italic}
+html[data-theme=light] .wechat-finish-line{background:#edf5f8;border-color:#d8e6ee;box-shadow:0 18px 44px rgba(15,23,42,.08)}
+html[data-theme=light] .wechat-finish-line h2{color:#162636}
+html[data-theme=light] .wechat-finish-line p{color:#26343f}
+html[data-theme=light] .finish-chips span{color:#526170;border-color:#d0dbe8}
+"""
+
+
 def main() -> None:
     cards = build_cards()
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
-    write(OUT / "wechat-en.css", css_text())
+    write(OUT / "wechat-en.css", css_text() + article_extra_css())
     write(OUT / "index.html", index_page(cards))
     for card in cards:
         write(OUT / f"{card.slug}-modern-rail.html", article_page(card))
