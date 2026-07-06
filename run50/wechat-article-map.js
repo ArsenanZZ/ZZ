@@ -110,13 +110,15 @@
   var US_PROGRESS_EXPERIMENT = {
     KY: ['KY'],
     OH: ['KY', 'OH'],
-    NY: ['KY', 'OH', 'NY']
+    NY: ['KY', 'OH', 'NY'],
+    FL: ['KY', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'IL', 'TN', 'WV', 'TX', 'FL']
   };
 
   var US_PROGRESS_CITY_DOTS = {
     KY: ['KY', 'Louisville', 38.2527, -85.7585],
     OH: ['OH', 'Cleveland', 41.4993, -81.6944],
-    NY: ['NY', 'New York City', 40.7128, -74.0060]
+    NY: ['NY', 'New York City', 40.7128, -74.0060],
+    FL: ['FL', 'Orlando', 28.5383, -81.3792]
   };
 
   function addSvgEl(parent, tag, attrs) {
