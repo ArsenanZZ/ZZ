@@ -100,6 +100,44 @@
     'west-virginia-marathon-modern-rail.html': ['WV', 'Huntington', 38.4192, -82.4452]
   };
 
+  var US_CITY_BY_STATE = {
+    AK: ['AK', 'Anchorage', 61.2181, -149.9003],
+    AL: ['AL', 'Huntsville', 34.7304, -86.5861],
+    AR: ['AR', 'Little Rock', 34.7465, -92.2896],
+    AZ: ['AZ', 'Buckeye', 33.3703, -112.5838],
+    CA: ['CA', 'San Francisco', 37.7749, -122.4194],
+    CO: ['CO', 'Denver', 39.7392, -104.9903],
+    CT: ['CT', 'Simsbury', 41.8759, -72.8018],
+    DE: ['DE', 'Wilmington', 39.7458, -75.5466],
+    FL: ['FL', 'Orlando', 28.5383, -81.3792],
+    GA: ['GA', 'Atlanta', 33.7490, -84.3880],
+    HI: ['HI', 'Honolulu', 21.3069, -157.8583],
+    IL: ['IL', 'Chicago', 41.8781, -87.6298],
+    IN: ['IN', 'Indianapolis', 39.7684, -86.1581],
+    KS: ['KS', 'El Dorado', 37.8172, -96.8623],
+    KY: ['KY', 'Louisville', 38.2527, -85.7585],
+    LA: ['LA', 'Baton Rouge', 30.4515, -91.1871],
+    MA: ['MA', 'Holyoke', 42.2043, -72.6162],
+    ME: ['ME', 'Sanford', 43.4393, -70.7742],
+    MI: ['MI', 'Grand Rapids', 42.9634, -85.6681],
+    MN: ['MN', 'Rochester', 44.0234, -92.4629],
+    MO: ['MO', 'St. Joseph', 39.7675, -94.8467],
+    NC: ['NC', 'Oak Island', 33.9166, -78.1611],
+    ND: ['ND', 'Fargo', 46.8772, -96.7898],
+    NH: ['NH', 'Keene', 42.9337, -72.2781],
+    NY: ['NY', 'New York City', 40.7128, -74.0060],
+    OH: ['OH', 'Cleveland', 41.4993, -81.6944],
+    PA: ['PA', 'Pittsburgh', 40.4406, -79.9959],
+    RI: ['RI', 'Woonsocket', 42.0084, -71.5148],
+    SC: ['SC', 'Greer', 34.9387, -82.2271],
+    TN: ['TN', 'Nashville', 36.1627, -86.7816],
+    TX: ['TX', 'San Antonio', 29.4241, -98.4936],
+    VA: ['VA', 'Roanoke', 37.2710, -79.9414],
+    VT: ['VT', 'Warren', 44.1206, -72.8512],
+    WI: ['WI', 'Green Bay', 44.5133, -88.0133],
+    WV: ['WV', 'Huntington', 38.4192, -82.4452]
+  };
+
   var SPECIAL_US_DOTS = {
     'AK:Anchorage': [275, 917],
     'HI:Honolulu': [570, 933],
@@ -107,13 +145,16 @@
     'NH:Keene': [1502, 310]
   };
 
-  var US_PROGRESS_EXPERIMENT = {
-    KY: ['KY'],
-    OH: ['KY', 'OH'],
-    NY: ['KY', 'OH', 'NY'],
-    HI: ['KY', 'OH', 'NY', 'CA', 'IN', 'HI'],
-    FL: ['KY', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'IL', 'TN', 'WV', 'TX', 'FL']
-  };
+  var US_PROGRESS_ORDER = [
+    'KY', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'IL', 'TN',
+    'WV', 'TX', 'FL', 'NC', 'AR', 'SC', 'PA', 'WI', 'MI', 'NH', 'LA', 'VA',
+    'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME'
+  ];
+
+  var US_PROGRESS_EXPERIMENT = US_PROGRESS_ORDER.reduce(function (memo, code, index) {
+    memo[code] = US_PROGRESS_ORDER.slice(0, index + 1);
+    return memo;
+  }, {});
 
   var US_PROGRESS_CITY_DOTS = {
     KY: ['KY', 'Louisville', 38.2527, -85.7585],
@@ -121,6 +162,40 @@
     NY: ['NY', 'New York City', 40.7128, -74.0060],
     HI: ['HI', 'Honolulu', 21.3069, -157.8583],
     FL: ['FL', 'Orlando', 28.5383, -81.3792]
+  };
+
+  US_PROGRESS_ORDER.forEach(function (code) {
+    if (!US_PROGRESS_CITY_DOTS[code] && US_CITY_BY_STATE[code]) US_PROGRESS_CITY_DOTS[code] = US_CITY_BY_STATE[code];
+  });
+
+  var CHINA_CITY_BY_REGION = {
+    cn_beijing: ['BJ', 39.9042, 116.4074],
+    cn_fujian: ['FJ', 24.4798, 118.0894],
+    cn_gansu: ['GS', 36.0611, 103.8343],
+    cn_guangxi: ['GX', 25.2345, 110.1799],
+    cn_guizhou: ['GZ', 26.6470, 106.6302],
+    cn_hainan: ['HN', 20.0440, 110.1999],
+    cn_heilongjiang: ['HLJ', 45.8038, 126.5350],
+    cn_hongkong: ['HK', 22.3193, 114.1694],
+    cn_hubei: ['HB', 30.5928, 114.3055],
+    cn_innermongolia: ['IM', 39.6086, 109.7813],
+    cn_jiangsu: ['JS', 31.4912, 120.3119],
+    cn_liaoning: ['LN', 38.9140, 121.6147],
+    cn_shaanxi: ['SN', 34.3416, 108.9398],
+    cn_shanghai: ['SH', 31.2304, 121.4737],
+    cn_zhejiang: ['ZJ', 30.2741, 120.1551]
+  };
+
+  var WORLD_RUN_COLORS = {
+    usa: '#5baad0', chn: '#d4614a', twn: '#d4614a', hkg: '#9068c0',
+    sgp: '#5ca860', tha: '#c490d0', mex: '#e89838', ita: '#f4a09a'
+  };
+
+  var WORLD_COUNTRIES = {
+    singapore: { id: 'sgp', label: 'SG', city: ['Singapore', 1.3521, 103.8198] },
+    thailand: { id: 'tha', label: 'TH', city: ['Bangkok', 13.7563, 100.5018] },
+    mexico: { id: 'mex', label: 'MX', city: ['Mexico City', 19.4326, -99.1332] },
+    italy: { id: 'ita', label: 'IT', city: ['Pisa', 43.7228, 10.4017] }
   };
 
   function addSvgEl(parent, tag, attrs) {
@@ -205,6 +280,36 @@
     var special = SPECIAL_US_DOTS[abbr + ':' + city];
     if (special) return { x: special[0], y: special[1] };
     return projectUs(lat, lon);
+  }
+
+  function projectChinaCity(lat, lon) {
+    return {
+      x: (lon - 70) * 11.8,
+      y: (55 - lat) * 15.0
+    };
+  }
+
+  function projectWorld(lat, lon) {
+    var scale = 1516 / (Math.PI * 2);
+    var lambda = lon * Math.PI / 180;
+    var phi = Math.max(-84, Math.min(84, lat)) * Math.PI / 180;
+    return {
+      x: lambda * scale + 758,
+      y: -Math.log(Math.tan(Math.PI / 4 + phi / 2)) * scale + 516.5
+    };
+  }
+
+  function worldRingToPath(ring) {
+    return ring.map(function (point, index) {
+      var p = projectWorld(point[1], point[0]);
+      return (index ? 'L' : 'M') + p.x.toFixed(1) + ' ' + p.y.toFixed(1);
+    }).join(' ') + 'Z';
+  }
+
+  function worldFeaturePath(feature) {
+    return (feature.polygons || []).map(function (polygon) {
+      return polygon.map(worldRingToPath).join(' ');
+    }).join(' ');
   }
 
   function usStateGroup(svg, code) {
@@ -426,7 +531,7 @@
   }
 
   function addCityMarker(svg, slot, code, elements) {
-    var race = US_CITY_BY_FILE[currentFileName()];
+    var race = US_CITY_BY_STATE[code] || US_CITY_BY_FILE[currentFileName()];
     var p;
     var label = slot.dataset.shortLabel || code;
     if (race) {
@@ -469,14 +574,19 @@
     });
   }
 
-  function markChinaSvg(svg, elements, label) {
+  function markChinaSvg(svg, elements, regionId, fallbackLabel) {
     elements.forEach(function (el) { el.classList.add('article-map-highlight'); });
+    var city = CHINA_CITY_BY_REGION[regionId];
     var box = unionBox(elements);
-    if (!box) return;
-    var cx = (box.x + box.x2) / 2;
-    var cy = (box.y + box.y2) / 2;
-    addSvgEl(svg, 'circle', { class: 'article-map-marker', cx: cx, cy: cy, r: 10 });
-    var text = addSvgEl(svg, 'text', { class: 'article-map-label', x: cx + 16, y: cy - 14 });
+    var p = city ? projectChinaCity(city[1], city[2]) : null;
+    if (!p && box) p = { x: (box.x + box.x2) / 2, y: (box.y + box.y2) / 2 };
+    if (!p) return;
+    var label = city ? city[0] : fallbackLabel;
+    var group = addSvgEl(svg, 'g', { class: 'article-map-city-marker' });
+    addSvgEl(group, 'circle', { class: 'article-map-marker-glow', cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '20' });
+    addSvgEl(group, 'circle', { class: 'article-map-marker-ring', cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '12' });
+    addSvgEl(group, 'circle', { class: 'article-map-marker', cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: '8.5' });
+    var text = addSvgEl(group, 'text', { class: 'article-map-small-label', x: (p.x + 17).toFixed(1), y: (p.y - 12).toFixed(1) });
     text.textContent = label;
   }
 
@@ -510,14 +620,59 @@
     slot.innerHTML = CHINA_MAP_SVG;
     var svg = slot.querySelector('svg');
     if (!svg) return false;
+    slot.classList.add(slot.dataset.mapTheme === 'light' ? 'article-map-force-light' : 'article-map-force-dark');
     var id = slot.dataset.region || '';
     var el = svg.querySelector('#' + id);
-    if (el) markChinaSvg(svg, [el], slot.dataset.shortLabel || id.replace(/^cn_/, '').toUpperCase());
+    if (el) markChinaSvg(svg, [el], id, slot.dataset.shortLabel || id.replace(/^cn_/, '').toUpperCase());
     return true;
   }
 
   function renderWorld(slot) {
-    slot.innerHTML = '<div class="article-map-world"><b>RunWorld Map</b><span>' + (slot.dataset.label || 'RunWorld') + '</span></div>';
+    if (typeof WORLD_GEO_FEATURES === 'undefined') {
+      slot.innerHTML = '<div class="article-map-world"><b>RunWorld Map</b><span>' + (slot.dataset.label || 'RunWorld') + '</span></div>';
+      return true;
+    }
+    var mapTheme = slot.dataset.mapTheme === 'light' ? 'light' : 'dark';
+    var current = WORLD_COUNTRIES[String(slot.dataset.region || '').toLowerCase()];
+    slot.classList.add(mapTheme === 'light' ? 'article-map-force-light' : 'article-map-force-dark');
+    slot.innerHTML = '<svg viewBox="0 0 1516 1033" preserveAspectRatio="xMidYMid meet" role="img" aria-label="' + (slot.dataset.label || 'RunWorld Map') + '"></svg>';
+    var svg = slot.querySelector('svg');
+    var oceanFill = mapTheme === 'light' ? '#bddde7' : '#132432';
+    var landFill = mapTheme === 'light' ? '#dce7cc' : '#273348';
+    var borderStroke = mapTheme === 'light' ? 'rgba(70,82,77,.62)' : 'rgba(212,226,232,.34)';
+    addSvgEl(svg, 'rect', { x: '0', y: '0', width: '1516', height: '1033', fill: oceanFill });
+    var land = addSvgEl(svg, 'g', { class: 'article-world-land' });
+    (WORLD_GEO_FEATURES || []).forEach(function (feature) {
+      var id = String(feature.id || '').toLowerCase();
+      var color = WORLD_RUN_COLORS[id];
+      var path = addSvgEl(land, 'path', {
+        d: worldFeaturePath(feature),
+        fill: color || landFill,
+        stroke: borderStroke,
+        'stroke-width': color ? '1.05' : '.58',
+        'stroke-linejoin': 'round',
+        'fill-rule': 'evenodd',
+        'vector-effect': 'non-scaling-stroke'
+      });
+      if (color) path.classList.add('article-world-run-country');
+      if (current && id === current.id) {
+        path.classList.add('article-world-current-country');
+        path.setAttribute('stroke', mapTheme === 'light' ? '#17202b' : '#ffd166');
+        path.setAttribute('stroke-width', '2.2');
+      }
+    });
+
+    Object.keys(WORLD_COUNTRIES).forEach(function (key) {
+      var info = WORLD_COUNTRIES[key];
+      var p = projectWorld(info.city[1], info.city[2]);
+      var active = current && info.id === current.id;
+      addSvgEl(svg, 'circle', { class: 'article-map-progress-dot-glow', cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: active ? '24' : '18' });
+      addSvgEl(svg, 'circle', { class: active ? 'article-map-progress-dot article-map-progress-dot-current' : 'article-map-progress-dot', cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: active ? '9.8' : '7.6' });
+      if (active) {
+        var text = addSvgEl(svg, 'text', { class: 'article-map-small-label', x: (p.x + 18).toFixed(1), y: (p.y - 12).toFixed(1) });
+        text.textContent = info.label;
+      }
+    });
     return true;
   }
 

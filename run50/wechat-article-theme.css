@@ -312,10 +312,33 @@ html[data-theme="dark"] .article-map-window.article-map-force-light {
   font: 900 44px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+.article-map-window .article-map-small-label {
+  fill: #0f172a;
+  stroke: #fff8da;
+  stroke-width: 4;
+  paint-order: stroke;
+  font: 900 24px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: .2px;
+}
+
 .article-map-window.article-map-progress-experiment .article-map-label {
   fill: #f8fbff;
   stroke: rgba(19, 27, 43, .72);
   stroke-width: 6.5;
+}
+
+.article-map-window.article-map-force-dark .article-map-small-label {
+  fill: #f8fbff;
+  stroke: rgba(19, 27, 43, .82);
+  stroke-width: 4.6;
+}
+
+.article-map-window .article-world-land path {
+  transition: fill .2s ease, opacity .2s ease, stroke .2s ease;
+}
+
+.article-map-window .article-world-current-country {
+  filter: drop-shadow(0 0 5px rgba(255, 209, 102, .62));
 }
 
 .article-map-caption {
