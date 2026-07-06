@@ -805,7 +805,7 @@
     paintBaseMap(svg, progressCodes, mapTheme);
     var elements = usStateGroup(svg, code);
     if (elements.length) {
-      if (!progressMode) addCurrentOutline(svg, elements, progressMode, mapTheme);
+      addCurrentOutline(svg, elements, progressMode, mapTheme);
       if (progressMode) {
         addProgressCityDots(svg, progressCodes, code, mapTheme);
       } else {
