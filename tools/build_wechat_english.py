@@ -335,10 +335,21 @@ def transform_h2_to_field_notes(body: str) -> str:
     return re.sub(r"<h2[^>]*>(.*?)</h2>", repl, body, flags=re.I | re.S)
 
 
+def renumber_field_notes(body: str) -> str:
+    counter = 0
+
+    def repl(match: re.Match[str]) -> str:
+        nonlocal counter
+        counter += 1
+        return f"FIELD NOTE {counter:02d}"
+
+    return re.sub(r"FIELD NOTE\s+\d{2}", repl, body)
+
+
 def add_wechat_emphasis(body: str) -> str:
     keywords = [
         "Run50", "RunCN", "RunWorld", "marathon", "half marathon", "finish line",
-        "race day", "course", "runner", "runners", "Boston", "Chicago", "New York",
+        "race day", "course", "runner", "runners", "Boston", "Chicago", "Cleveland", "Ohio", "Lake Erie",
         "NYC Marathon", "Central Park", "Times Square", "Flushing", "Hudson River",
         "Kentucky", "Louisville", "Derby", "Churchill Downs", "Florida", "Disney",
         "Miami", "Arizona", "Phoenix", "Hawaii", "Honolulu", "China", "Wuhan",
@@ -364,23 +375,130 @@ def add_wechat_emphasis(body: str) -> str:
             return f'<strong class="auto-emphasis accent-{(used - 1) % 5}">{match.group(0)}</strong>'
 
         text = keyword_pattern.sub(repl_keyword, text, count=limit)
-        if used < limit:
+        if used == 0:
             def repl_number(match: re.Match[str]) -> str:
                 nonlocal used
                 if used >= limit:
                     return match.group(0)
                 used += 1
                 return f'<strong class="auto-emphasis accent-{(used - 1) % 5}">{match.group(0)}</strong>'
-            text = number_pattern.sub(repl_number, text, count=limit - used)
+            text = number_pattern.sub(repl_number, text, count=limit)
         return text
 
     def repl_paragraph(match: re.Match[str]) -> str:
         attrs, inner = match.group(1), match.group(2)
+        if strip_tags(inner).upper().startswith("FIELD NOTE"):
+            return match.group(0)
         if "auto-caption" in attrs or "note-label" in attrs or "<strong" in inner or "<img" in inner:
             return match.group(0)
         return f"<p{attrs}>{emphasize_text(inner)}</p>"
 
     return re.sub(r"<p([^>]*)>(.*?)</p>", repl_paragraph, body, flags=re.I | re.S)
+
+
+def cleveland_race_body() -> str:
+    def fig(number: int, caption: str = "") -> str:
+        cap = f"<figcaption>{html.escape(caption)}</figcaption>" if caption else ""
+        return (
+            f'<figure><img src="../stories/chinese/Run50-Cleveland-Marathon-clean_files/img-{number:03d}.webp" '
+            f'alt="Cleveland Marathon photo {number:03d}" loading="lazy" decoding="async">{cap}</figure>'
+        )
+
+    raw = f"""
+<p>Run first. Then the city can explain itself.</p>
+<h2>Why Cleveland still happened</h2>
+<p>The 2021 Cleveland Marathon was supposed to be in May, but COVID pushed it into October. I was still deciding whether to go when I saw that the Wuhan Marathon was scheduled for the same day. The idea of running a marathon at the same time as old friends back in Wuhan suddenly made the trip feel necessary.</p>
+<p>Then the plot twisted. Wuhan was canceled the day before race day. Cleveland still happened. It lost a little of the long-distance ritual I had imagined, but the run itself turned out to be deeply satisfying.</p>
+{fig(30, "Course map @ Google")}
+<h2>A start line in the dark</h2>
+<p>The start was near Tower City Center. I walked out before dawn, still in the dark, and the red tower above the start area looked unexpectedly dramatic.</p>
+{fig(31, "Start area @ Arsenan")}
+<p>Cleveland at daybreak was cold enough to make everyone shiver. Starting in darkness was not new to me. Singapore and Bangkok had done that too, but those races run from midnight into humid morning air. Cleveland was different: the sun simply rose late, and the cold was several levels sharper.</p>
+{fig(32)}
+<p>I wore a thin long-sleeve shirt and thought I would peel it off once I warmed up. Then the race started, and I realized I was not taking it off at all.</p>
+{fig(33, "Starting out @ Arsenan")}
+<p>After the gun, everyone began moving with real urgency, partly because standing still was miserable. We headed southwest along Detroit Road, legs finally doing what they were supposed to do.</p>
+{fig(34, "Out on the course @ Arsenan")}
+<p>Only later did I learn Cleveland has not just Detroit Road but also a Detroit Shoreway. Cleveland and Detroit, two Great Lakes Rust Belt cities, seem to have found a strange kind of warmth in each other's industrial afterlife. But that morning, none of that mattered much. I was there to run.</p>
+{fig(35, "Into the city @ Arsenan")}
+{fig(36)}
+<h2>The hard-looking miles back downtown</h2>
+<p>After 25th Street, 48th Street, and a loop through Franklin Boulevard, we returned to Detroit Road, this time pointed back toward downtown.</p>
+{fig(37)}
+{fig(38)}
+<p>The sky was still not fully bright. In the distance, the towers stood firm against the morning clouds. That stretch had a tough, industrial beauty to it. Of the whole weekend, it is one of the parts I remember most clearly.</p>
+{fig(39, "Veterans Memorial Bridge @ Arsenan")}
+{fig(40)}
+<p>We crossed the Veterans Memorial Bridge and a hard concrete stretch downtown, then turned toward the long elevated road by Lake Erie.</p>
+{fig(41, "Right side @ Arsenan")}
+{fig(42, "Left side @ Arsenan")}
+<h2>Lake Erie, sunrise, and the quarter turn</h2>
+<p>On the right, a train moved along Lake Erie, with blue water and pink clouds layered together. On the left, the sun was just coming up, and the city skyline sharpened in the morning light.</p>
+{fig(43, "Cleveland skyline @ Arsenan")}
+{fig(44)}
+{fig(45, "Runners @ Photographer")}
+<p>After the elevated section, we reached the waterfront park. By then daylight had arrived, I felt good, and the race was giving out enough gels to keep me calm.</p>
+{fig(46, "Coming off the elevated road @ Arsenan")}
+<p>Past the park, the course moved through a lakeside neighborhood. Adults and kids came out to cheer, and there were unofficial aid tables too. The road was narrow, which made the neighborhood feel close and warm.</p>
+{fig(47, "Quarter turnaround @ Arsenan")}
+<p>At the end of that neighborhood, the course turned back. Roughly a quarter of the marathon was done.</p>
+{fig(48, "Return tunnel @ Arsenan")}
+<h2>The view only a marathon gives you</h2>
+<p>The way back was similar to the way out, so the novelty faded a little. But once I returned to the blue bridge by the lake and saw downtown from a different angle, the city changed completely.</p>
+{fig(49, "Blue bridge @ Arsenan")}
+{fig(50, "Back toward downtown @ Arsenan")}
+<p>The hard lines of the city and its industrial character were all there at once. In front of the buildings, the Cuyahoga River moved slowly, looking as if it had already washed away some of its old industrial scars.</p>
+{fig(51, "Cleveland @ Arsenan")}
+{fig(52)}
+<p>If not for the marathon, I probably never would have seen Cleveland from that angle. We crossed back toward the city, turned again, and the second half began.</p>
+{fig(53, "Near 20K @ Arsenan")}
+<h2>Gels, a banana, and getting through it</h2>
+<p>There were noticeably fewer runners in the second half, and the scenery repeated enough that I stopped thinking about photos and settled into the work of running.</p>
+{fig(54, "Return miles @ Arsenan")}
+<p>Downtown, I grabbed a pile of gels. My thinking was simple: gels in hand, panic out of mind. It worked. I took one at nearly every aid station, and at least delayed the wall.</p>
+{fig(55)}
+<p>Later, back in the neighborhood, I grabbed a banana and finally got through the roughest patch. After that, the race hurt less. I could actually enjoy the final miles.</p>
+{fig(56, "Return miles @ Photographer")}
+<h2>Finish, medal, Public Square</h2>
+<p>I finished Cleveland in under five hours, which was my best recent result at the time. Since moving to the U.S., I had become embarrassingly rusty, so this one felt good.</p>
+{fig(57, "Finish @ Photographer")}
+{fig(58, "Finish @ Arsenan")}
+<p>47 had been waiting at the finish for quite a while and caught the moment after I crossed the line.</p>
+{fig(59, "Finish @ 47")}
+{fig(60, "Medal @ Arsenan")}
+<p>The Cleveland medal was genuinely beautiful: openwork design, metallic weight, and a very industrial feel. Very Cleveland.</p>
+{fig(61)}
+{fig(62)}
+<p>With the medal on, I took a lot of photos around Public Square. In the dark before the start I had not really seen the place. After the race, I finally realized how polished it was.</p>
+{fig(63)}
+{fig(64)}
+{fig(65, "Public Square @ Arsenan")}
+<h2>Back through Ohio</h2>
+<p>After the race I showered at Planet Fitness. That national gym chain is honestly useful, and compared with Chicago, the Cleveland location felt much better.</p>
+<p>Refreshed, we started the drive back to Louisville, nearly six hours away. On the way, we crossed an Ohio rainstorm, then stopped in Cincinnati after the weather cleared for a Chinese buffet before getting home.</p>
+<p>Looking back, it was a dusty, hurried weekend by car across Ohio. But those 42.195 kilometers gave me a kind of satisfaction that made the whole trip worth it.</p>
+"""
+    return add_wechat_emphasis(transform_h2_to_field_notes(raw)).strip()
+
+
+def cleveland_article_body(source_path: Path) -> tuple[dict[str, str], str]:
+    meta = {
+        "title": "Run50 #2 | Ohio: Cleveland Marathon, From Night to Daylight",
+        "desc": "A complete two-part Cleveland story: the cold dawn marathon first, then Rock Hall, Cavaliers, Lake Erie, and the Rust Belt city around it.",
+        "image": "../../assets/cover-medal-en-index-cleveland.png?v=20260702-en-index-v1",
+    }
+    city = extract_article_body(source_path)
+    city_start = city.find("<h2>Melancholy Cleveland</h2>")
+    if city_start >= 0:
+        section_start = city.rfind('<section class="field-note-head">', 0, city_start)
+        if section_start >= 0:
+            city = city[section_start:]
+    intro = """
+<section class="field-note-head"><p>FIELD NOTE 00</p><h2>After the race, the city</h2></section>
+<p>Once the marathon was in the body, Cleveland made more sense: Lake Erie, old industry, rock and roll, basketball, and a city still carrying itself with stubborn pride.</p>
+"""
+    body = cleveland_race_body() + "\n" + add_wechat_emphasis(intro).strip() + "\n" + city
+    return meta, renumber_field_notes(body)
 
 
 def extract_practice_article(slug: str, file_name: str) -> tuple[dict[str, str], str]:
@@ -520,6 +638,8 @@ def article_page(card: Card) -> str:
         body = "<p>Story copy is being prepared.</p>"
     elif source_path.name.endswith("-english-practice.html"):
         meta, body = extract_practice_article(card.slug, source_path.name)
+    elif card.slug == "cleveland-marathon":
+        meta, body = cleveland_article_body(source_path)
     else:
         meta = parse_meta_from_article(source_path)
         body = extract_article_body(source_path)
