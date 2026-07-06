@@ -769,6 +769,10 @@
       gap: clamp(14px, 1.2vw, 20px);
     }
 
+    .story-section.run-world-zone .stories {
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    }
+
     .story-card {
       position: relative;
       display: flex;
@@ -1105,6 +1109,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .story-section.run-world-zone .stories {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .stats {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1164,6 +1172,10 @@
       }
 
       .stories {
+        grid-template-columns: 1fr;
+      }
+
+      .story-section.run-world-zone .stories {
         grid-template-columns: 1fr;
       }
 
