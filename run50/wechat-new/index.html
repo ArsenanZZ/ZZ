@@ -412,6 +412,7 @@
 
     .run-map-card {
       display: grid;
+      grid-template-columns: minmax(0, 1fr);
       grid-template-rows: auto 1fr auto;
       min-height: 430px;
       padding: 18px;
@@ -559,6 +560,70 @@
     }
 
     .map-story-popover button:hover {
+      color: #ffdc72;
+    }
+
+    .map-tooltip {
+      position: absolute;
+      z-index: 1000;
+      display: none;
+      min-width: 260px;
+      max-width: min(340px, calc(100vw - 24px));
+      max-height: min(360px, calc(100vh - 24px));
+      overflow: auto;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(18, 25, 41, .94);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .28);
+      color: #f7fbff;
+      font-size: 12px;
+      line-height: 1.45;
+      pointer-events: auto;
+      backdrop-filter: blur(8px);
+    }
+
+    .map-tooltip h4 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 0 0 8px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid rgba(255, 255, 255, .15);
+      color: #ffdc72;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .map-tooltip h4 span {
+      color: rgba(236, 242, 255, .72);
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .map-tooltip button,
+    .map-tooltip .map-tooltip-empty {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      border: 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, .1);
+      padding: 5px 0;
+      background: transparent;
+      color: #edf3ff;
+      font: inherit;
+      text-align: left;
+    }
+
+    .map-tooltip button {
+      cursor: pointer;
+    }
+
+    .map-tooltip button:hover {
       color: #ffdc72;
     }
 
@@ -2298,8 +2363,11 @@
 
       function showMapStoryPopover(slot, label, links, options = {}) {
         window.clearTimeout(slot._mapStoryHideTimer);
+        slot._mapStoryPinned = true;
         const rows = storyRowsFromLinks(links).filter(row => row.title);
         const popover = ensureMapStoryPopover(slot);
+        const tooltip = document.getElementById(`${slot.id}-tooltip`);
+        if (tooltip) tooltip.style.display = 'none';
         popover.innerHTML = '';
         popover.onmouseenter = () => window.clearTimeout(slot._mapStoryHideTimer);
         popover.onmouseleave = () => hideMapStoryPopover(slot);
@@ -2311,9 +2379,11 @@
             const row = document.createElement('button');
             row.type = 'button';
             row.textContent = title;
-            row.addEventListener('click', event => (
-              focusMapStory(event, href, options.color, options.status, label)
-            ));
+            row.addEventListener('click', event => {
+              slot._mapStoryPinned = false;
+              hideMapStoryPopover(slot, 0, true);
+              focusMapStory(event, href, options.color, options.status, label);
+            });
             popover.appendChild(row);
           });
         } else {
@@ -2324,9 +2394,153 @@
         popover.classList.add('is-visible');
       }
 
-      function hideMapStoryPopover(slot, delay = 1200) {
+      function ensureMapTooltip(slot) {
+        const tooltipId = `${slot.id}-tooltip`;
+        let tooltip = document.getElementById(tooltipId);
+        if (!tooltip) {
+          tooltip = document.createElement('div');
+          tooltip.id = tooltipId;
+          tooltip.className = 'map-tooltip';
+          tooltip.addEventListener('mouseenter', () => window.clearTimeout(slot._mapTooltipHideTimer));
+          tooltip.addEventListener('mouseleave', () => hideMapTooltip(slot));
+          document.body.appendChild(tooltip);
+        }
+        return tooltip;
+      }
+
+      function moveMapTooltip(slot, event) {
+        const tooltip = ensureMapTooltip(slot);
+        const gap = 15;
+        const margin = 12;
+        tooltip.style.left = `${event.pageX + gap}px`;
+        tooltip.style.top = `${event.pageY + gap}px`;
+        const rect = tooltip.getBoundingClientRect();
+        const left = Math.min(
+          Math.max(margin, event.clientX + gap),
+          Math.max(margin, window.innerWidth - rect.width - margin)
+        );
+        const top = Math.min(
+          Math.max(margin, event.clientY + gap),
+          Math.max(margin, window.innerHeight - rect.height - margin)
+        );
+        tooltip.style.left = `${left + window.scrollX}px`;
+        tooltip.style.top = `${top + window.scrollY}px`;
+      }
+
+      function showMapTooltip(slot, event, label, links, options = {}) {
+        window.clearTimeout(slot._mapTooltipHideTimer);
+        const oldPopover = slot.querySelector('.map-story-popover');
+        if (oldPopover && !slot._mapStoryPinned) oldPopover.classList.remove('is-visible');
+        const rows = storyRowsFromLinks(links).filter(row => row.title);
+        const tooltip = ensureMapTooltip(slot);
+        tooltip.innerHTML = '';
+        const heading = document.createElement('h4');
+        heading.textContent = label;
+        const count = document.createElement('span');
+        count.textContent = rows.length ? `${rows.length} 篇` : '待补';
+        heading.appendChild(count);
+        tooltip.appendChild(heading);
+        if (rows.length) {
+          rows.slice(0, 8).forEach(({ href, title }) => {
+            const row = document.createElement('button');
+            row.type = 'button';
+            row.textContent = title;
+            row.addEventListener('mouseenter', () => window.clearTimeout(slot._mapTooltipHideTimer));
+            row.addEventListener('mouseleave', () => hideMapTooltip(slot));
+            row.addEventListener('click', clickEvent => (
+              focusMapStory(clickEvent, href, options.color, options.status, label)
+            ));
+            tooltip.appendChild(row);
+          });
+        } else {
+          const empty = document.createElement('span');
+          empty.className = 'map-tooltip-empty';
+          empty.textContent = '下方故事待补';
+          tooltip.appendChild(empty);
+        }
+        tooltip.style.display = 'block';
+        moveMapTooltip(slot, event);
+        if (options.status) {
+          setStatus(options.status, rows.length ? describeMapStories(label, links) : `${label} · 下方故事待补`);
+        }
+      }
+
+      function hideMapTooltip(slot, delay = 520) {
+        window.clearTimeout(slot._mapTooltipHideTimer);
+        slot._mapTooltipHideTimer = window.setTimeout(() => {
+          const tooltip = document.getElementById(`${slot.id}-tooltip`);
+          if (tooltip) tooltip.style.display = 'none';
+        }, delay);
+      }
+
+      function resetMapHover(slot) {
+        if (slot._activeMapHoverPaths) {
+          slot._activeMapHoverPaths.forEach(path => {
+            path.style.filter = '';
+            path.style.opacity = '1';
+          });
+        }
+        slot._activeMapHoverPaths = null;
+        slot._activeMapHoverKey = '';
+      }
+
+      function nearestMapHoverData(stories, event) {
+        let best = null;
+        stories.forEach((data, key) => {
+          (data.paths || []).forEach(path => {
+            const rect = path.getBoundingClientRect();
+            const pad = Math.max(8, Math.min(18, Math.max(rect.width, rect.height) * .25));
+            if (
+              event.clientX >= rect.left - pad &&
+              event.clientX <= rect.right + pad &&
+              event.clientY >= rect.top - pad &&
+              event.clientY <= rect.bottom + pad
+            ) {
+              const area = Math.max(1, rect.width * rect.height);
+              if (!best || area < best.area) best = { key, data, area };
+            }
+          });
+        });
+        return best;
+      }
+
+      function mapHoverDataFromEvent(slot, stories, event, regionDataset, regionPrefix) {
+        const target = document.elementsFromPoint(event.clientX, event.clientY)
+          .find(el => slot.contains(el) && (el.dataset?.mapCity || el.dataset?.[regionDataset]));
+        if (target) {
+          const key = target.dataset.mapCity
+            ? `city:${target.dataset.mapCity}`
+            : `${regionPrefix}:${target.dataset[regionDataset]}`;
+          const data = stories.get(key);
+          if (data) return { key, data };
+        }
+        let bestCity = null;
+        slot.querySelectorAll('[data-map-city]').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          const pad = Math.max(10, Math.max(rect.width, rect.height));
+          if (
+            event.clientX < rect.left - pad || event.clientX > rect.right + pad ||
+            event.clientY < rect.top - pad || event.clientY > rect.bottom + pad
+          ) return;
+          const dx = event.clientX - (rect.left + rect.width / 2);
+          const dy = event.clientY - (rect.top + rect.height / 2);
+          const dist = dx * dx + dy * dy;
+          if (!bestCity || dist < bestCity.dist) bestCity = { el, dist };
+        });
+        if (bestCity) {
+          const cityKey = `city:${bestCity.el.dataset.mapCity}`;
+          const cityData = stories.get(cityKey);
+          if (cityData) return { key: cityKey, data: cityData };
+        }
+        const nearest = nearestMapHoverData(stories, event);
+        return nearest ? { key: nearest.key, data: nearest.data } : null;
+      }
+
+      function hideMapStoryPopover(slot, delay = 1200, force = false) {
+        if (slot._mapStoryPinned && !force) return;
         window.clearTimeout(slot._mapStoryHideTimer);
         slot._mapStoryHideTimer = window.setTimeout(() => {
+          slot._mapStoryPinned = false;
           const popover = slot.querySelector('.map-story-popover');
           if (popover) popover.classList.remove('is-visible');
         }, delay);
@@ -2667,29 +2881,28 @@
         });
 
         const boundaryPaths = collectUsBoundaryPaths(svg);
+        const usHoverStories = new Map();
         Object.entries(US_PATHS).forEach(([abbr, ids]) => {
           const paths = usStateGroup(svg, ids);
           const storyLink = US_STATE_STORIES[abbr];
           const storyLabel = `Run50 · ${US_NAMES[abbr]}`;
           const storyLinks = mapStoryLinks(storyLink, US_STATE_STORY_GROUPS[abbr]);
-          const showVisualHover = () => paths.forEach(path => {
-            path.style.filter = 'brightness(1.2) saturate(1.08)';
-            path.style.opacity = '1';
-          });
-          const hideVisualHover = () => paths.forEach(path => {
-            path.style.filter = '';
-            path.style.opacity = '1';
+          usHoverStories.set(`state:${abbr}`, {
+            label: storyLabel,
+            links: storyLinks,
+            color: US_COLORS[abbr],
+            status,
+            paths
           });
           paths.forEach(path => {
             path.setAttribute('fill', US_COLORS[abbr]);
             path.setAttribute('stroke', 'none');
             path.setAttribute('stroke-width', '0');
             path.classList.add('run-map-region');
+            path.dataset.mapRegion = abbr;
             path.style.opacity = '1';
             path.style.pointerEvents = 'auto';
             path.style.cursor = 'pointer';
-            path.addEventListener('mouseenter', showVisualHover);
-            path.addEventListener('mouseleave', hideVisualHover);
             path.addEventListener('click', event => (
               chooseOrFocusMapStory(event, slot, storyLinks, storyLink, US_COLORS[abbr], status, storyLabel)
             ));
@@ -2714,11 +2927,24 @@
         US_CITY_DOTS.forEach(([abbr, city, lat, lon]) => {
           const special = SPECIAL_US_DOTS[`${abbr}:${city}`];
           const p = special ? { x: special[0], y: special[1] } : projectUs(lat, lon);
-          const storyLink = US_CITY_STORIES[`${abbr}:${city}`] || US_STATE_STORIES[abbr];
-          const storyLabel = `${city} · ${US_NAMES[abbr]}`;
-          const storyLinks = mapStoryLinks(storyLink);
+          const cityStoryLink = US_CITY_STORIES[`${abbr}:${city}`];
+          const storyLink = cityStoryLink || US_STATE_STORIES[abbr];
+          const storyLabel = cityStoryLink ? `${city} · ${US_NAMES[abbr]}` : `Run50 · ${US_NAMES[abbr]}`;
+          const storyLinks = cityStoryLink ? mapStoryLinks(storyLink) : mapStoryLinks(storyLink, US_STATE_STORY_GROUPS[abbr]);
+          const cityKey = `${abbr}:${city}`;
+          if (cityStoryLink) {
+            usHoverStories.set(`city:${cityKey}`, {
+              label: storyLabel,
+              links: storyLinks,
+              color: US_COLORS[abbr],
+              status,
+              paths: []
+            });
+          }
           const focusCityStory = event => (
-            focusMapStory(event, storyLink, US_COLORS[abbr], status, storyLabel)
+            storyLinks.length > 1
+              ? chooseOrFocusMapStory(event, slot, storyLinks, storyLink, US_COLORS[abbr], status, storyLabel)
+              : focusMapStory(event, storyLink, US_COLORS[abbr], status, storyLabel)
           );
           addSvgEl(glowLayer, 'circle', {
             cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '18' : '20.2',
@@ -2738,11 +2964,51 @@
             cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '8.8' : '8.8',
             class: 'city-dot'
           });
+          if (cityStoryLink) {
+            usHoverStories.get(`city:${cityKey}`).paths = [hit, dot];
+          }
           [hit, dot].forEach(el => {
             el.style.cursor = 'pointer';
+            if (cityStoryLink) {
+              el.dataset.mapCity = cityKey;
+            } else {
+              el.dataset.mapRegion = abbr;
+            }
             el.addEventListener('click', focusCityStory);
           });
         });
+        slot.onmousemove = event => {
+          const tooltip = document.getElementById(`${slot.id}-tooltip`);
+          if (tooltip && tooltip.contains(event.target)) return;
+          const popover = slot.querySelector('.map-story-popover.is-visible');
+          if (slot._mapStoryPinned && popover) return;
+          const hover = mapHoverDataFromEvent(slot, usHoverStories, event, 'mapRegion', 'state');
+          if (!hover) {
+            resetMapHover(slot);
+            hideMapTooltip(slot);
+            return;
+          }
+          const { key, data } = hover;
+          if (slot._activeMapHoverKey !== key) {
+            resetMapHover(slot);
+            slot._activeMapHoverKey = key;
+            slot._activeMapHoverPaths = data.paths || [];
+            slot._activeMapHoverPaths.forEach(path => {
+              path.style.filter = 'brightness(1.2) saturate(1.08)';
+              path.style.opacity = '1';
+            });
+            showMapTooltip(slot, event, data.label, data.links, {
+              color: data.color,
+              status: data.status
+            });
+          } else {
+            moveMapTooltip(slot, event);
+          }
+        };
+        slot.onmouseleave = () => {
+          resetMapHover(slot);
+          hideMapTooltip(slot);
+        };
         raiseUsLabels(svg, lightMode);
       }
 
@@ -2771,6 +3037,7 @@
         svg.querySelectorAll('rect').forEach(rect => {
           rect.setAttribute('fill', lightMode ? '#a8d4e8' : '#30384f');
         });
+        const cnHoverStories = new Map();
         svg.querySelectorAll('path').forEach(path => {
           const id = path.id || '';
           if (!id.startsWith('cn_')) {
@@ -2793,20 +3060,20 @@
             const storyLink = CHINA_PROVINCE_STORIES[id];
             const storyLabel = `RunCN · ${province[0]}`;
             const storyLinks = mapStoryLinks(storyLink, CHINA_PROVINCE_STORY_GROUPS[id]);
+            cnHoverStories.set(`province:${id}`, {
+              label: storyLabel,
+              links: storyLinks,
+              color: province[1],
+              status,
+              paths: [path]
+            });
             path.setAttribute('fill', province[1]);
             path.setAttribute('stroke', lightMode ? '#ffffff' : 'rgba(255,255,255,.58)');
             path.setAttribute('stroke-width', lightMode ? '1.7' : '1.15');
             path.classList.add('run-map-region');
+            path.dataset.mapProvince = id;
             path.style.opacity = '1';
             path.style.cursor = 'pointer';
-            path.addEventListener('mouseenter', () => {
-              path.style.filter = 'brightness(1.2) saturate(1.08)';
-              path.style.opacity = '1';
-            });
-            path.addEventListener('mouseleave', () => {
-              path.style.filter = '';
-              path.style.opacity = '1';
-            });
             path.addEventListener('click', event => (
               chooseOrFocusMapStory(event, slot, storyLinks, storyLink, province[1], status, storyLabel)
             ));
@@ -2859,9 +3126,19 @@
           const p = projectChina(lat, lon);
           const province = CHINA_PROVINCES[provinceId];
           const storyLabel = `${city} · ${province?.[0] || 'RunCN'}`;
-          const storyLinks = mapStoryLinks(storyLink);
+          const storyLinks = mapStoryLinks(storyLink, CHINA_PROVINCE_STORY_GROUPS[provinceId]);
+          const cityKey = `${provinceId}:${city}`;
+          cnHoverStories.set(`city:${cityKey}`, {
+            label: storyLabel,
+            links: storyLinks,
+            color: province?.[1],
+            status,
+            paths: []
+          });
           const focusCityStory = event => (
-            focusMapStory(event, storyLink, province?.[1], status, storyLabel)
+            storyLinks.length > 1
+              ? chooseOrFocusMapStory(event, slot, storyLinks, storyLink, province?.[1], status, storyLabel)
+              : focusMapStory(event, storyLink, province?.[1], status, storyLabel)
           );
           addSvgEl(glowLayer, 'circle', {
             cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '10' : '11',
@@ -2881,11 +3158,45 @@
             cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: lightMode ? '5' : '4.8',
             class: 'city-dot'
           });
+          cnHoverStories.get(`city:${cityKey}`).paths = [hit, dot];
           [hit, dot].forEach(el => {
             el.style.cursor = 'pointer';
+            el.dataset.mapCity = cityKey;
             el.addEventListener('click', focusCityStory);
           });
         });
+        slot.onmousemove = event => {
+          const tooltip = document.getElementById(`${slot.id}-tooltip`);
+          if (tooltip && tooltip.contains(event.target)) return;
+          const popover = slot.querySelector('.map-story-popover.is-visible');
+          if (slot._mapStoryPinned && popover) return;
+          const hover = mapHoverDataFromEvent(slot, cnHoverStories, event, 'mapProvince', 'province');
+          if (!hover) {
+            resetMapHover(slot);
+            hideMapTooltip(slot);
+            return;
+          }
+          const { key, data } = hover;
+          if (slot._activeMapHoverKey !== key) {
+            resetMapHover(slot);
+            slot._activeMapHoverKey = key;
+            slot._activeMapHoverPaths = data.paths || [];
+            slot._activeMapHoverPaths.forEach(path => {
+              path.style.filter = 'brightness(1.2) saturate(1.08)';
+              path.style.opacity = '1';
+            });
+            showMapTooltip(slot, event, data.label, data.links, {
+              color: data.color,
+              status: data.status
+            });
+          } else {
+            moveMapTooltip(slot, event);
+          }
+        };
+        slot.onmouseleave = () => {
+          resetMapHover(slot);
+          hideMapTooltip(slot);
+        };
 
         const labelLayer = addSvgEl(svg, 'g', { id: 'mini-china-labels' });
         Object.entries(CHINA_PROVINCES).forEach(([id, [name]]) => {
