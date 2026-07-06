@@ -111,6 +111,7 @@
     KY: ['KY'],
     OH: ['KY', 'OH'],
     NY: ['KY', 'OH', 'NY'],
+    HI: ['KY', 'OH', 'NY', 'CA', 'IN', 'HI'],
     FL: ['KY', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO', 'IL', 'TN', 'WV', 'TX', 'FL']
   };
 
@@ -118,6 +119,7 @@
     KY: ['KY', 'Louisville', 38.2527, -85.7585],
     OH: ['OH', 'Cleveland', 41.4993, -81.6944],
     NY: ['NY', 'New York City', 40.7128, -74.0060],
+    HI: ['HI', 'Honolulu', 21.3069, -157.8583],
     FL: ['FL', 'Orlando', 28.5383, -81.3792]
   };
 
