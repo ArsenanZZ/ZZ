@@ -7,13 +7,19 @@
   <title>Run50 Chinese Stories</title>
   <script>
     try {
-      const embedMode = new URLSearchParams(window.location.search).get('embed');
+      const params = new URLSearchParams(window.location.search);
+      const embedMode = params.get('embed');
       if (embedMode === 'us-map' || embedMode === 'cn-map') {
         document.documentElement.dataset.mapEmbed = embedMode === 'us-map' ? 'us' : 'cn';
       }
-      if (localStorage.getItem('run50-wechat-theme') === 'light') {
+      const requestedTheme = params.get('theme');
+      if (requestedTheme === 'light') {
+        document.documentElement.dataset.theme = 'light';
+      } else if (requestedTheme !== 'dark' && localStorage.getItem('run50-wechat-theme') === 'light') {
         document.documentElement.dataset.theme = 'light';
       }
+      const requestedLang = params.get('lang');
+      document.documentElement.dataset.mapLang = requestedLang === 'zh' ? 'zh' : (requestedLang === 'en' || embedMode ? 'en' : 'zh');
     } catch (error) {}
   </script>
   <style>
@@ -2142,6 +2148,17 @@
         VT: 'Vermont', WI: 'Wisconsin', WV: 'West Virginia'
       };
 
+      const US_NAMES_ZH = {
+        AK: '阿拉斯加', AL: '阿拉巴马', AR: '阿肯色', AZ: '亚利桑那', CA: '加利福尼亚',
+        CO: '科罗拉多', CT: '康涅狄格', DE: '特拉华', FL: '佛罗里达', GA: '佐治亚',
+        HI: '夏威夷', IL: '伊利诺伊', IN: '印第安纳', KS: '堪萨斯', KY: '肯塔基',
+        LA: '路易斯安那', MA: '马萨诸塞', ME: '缅因', MI: '密歇根', MN: '明尼苏达',
+        MO: '密苏里', NC: '北卡罗来纳', ND: '北达科他', NH: '新罕布什尔',
+        NY: '纽约', OH: '俄亥俄', PA: '宾夕法尼亚', RI: '罗得岛',
+        SC: '南卡罗来纳', TN: '田纳西', TX: '得克萨斯', VA: '弗吉尼亚',
+        VT: '佛蒙特', WI: '威斯康星', WV: '西弗吉尼亚'
+      };
+
       const US_CITY_DOTS = [
         ['KY', 'Louisville', 38.2527, -85.7585], ['OH', 'Cleveland', 41.4993, -81.6944],
         ['OH', 'Cincinnati', 39.1031, -84.5120],
@@ -2182,9 +2199,51 @@
         cn_hongkong: ['香港', '#a678dc'], cn_beijing: ['北京', '#e89838']
       };
 
+      const CHINA_NAMES_EN = {
+        cn_heilongjiang: 'Heilongjiang', cn_hubei: 'Hubei', cn_sichuan: 'Sichuan',
+        cn_innermongolia: 'Inner Mongolia', cn_shanxi: 'Shanxi', cn_hunan: 'Hunan',
+        cn_fujian: 'Fujian', cn_gansu: 'Gansu', cn_jiangsu: 'Jiangsu', cn_guizhou: 'Guizhou',
+        cn_shaanxi: 'Shaanxi', cn_zhejiang: 'Zhejiang', cn_hainan: 'Hainan',
+        cn_liaoning: 'Liaoning', cn_shanghai: 'Shanghai', cn_guangxi: 'Guangxi',
+        cn_hongkong: 'Hong Kong', cn_beijing: 'Beijing'
+      };
+
+      const CHINA_CITY_NAMES_EN_BY_SLUG = {
+        'harbin-marathon': 'Harbin',
+        'steel-tank-story': 'Ordos / Changzhi',
+        'wuhan-marathon-2018': 'Wuhan',
+        'three-city-pilgrimage': 'Yichang / Guang\'an / Changsha',
+        'xiangyang-marathon': 'Xiangyang',
+        'xiamen-marathon': 'Xiamen',
+        'lanzhou-marathon': 'Lanzhou',
+        'wuhan-wuxi-marathon-notes': 'Wuxi',
+        'guiyang-marathon-climb': 'Guiyang',
+        'xian-city-wall-marathon': 'Xi\'an',
+        'west-lake-half-marathon': 'Hangzhou',
+        'ningbo-dongqian-lake-marathon': 'Ningbo',
+        'haikou-marathon': 'Haikou',
+        'dalian-trail': 'Dalian',
+        'shanghai-vertical-marathon': 'Shanghai',
+        'guilin-marathon': 'Guilin',
+        'hong-kong-marathon': 'Hong Kong',
+        'wuhan-graduation': 'Beijing'
+      };
+
       const WECHAT_STORY_BASE = 'https://zhennanzhang.com/run50/wechat/';
+      const WECHAT_EN_STORY_BASE = 'https://zhennanzhang.com/run50/wechat-en/';
       const WECHAT_STORY_VERSION = '?v=20260630-wechat-emphasis';
-      const storyHref = slug => `${WECHAT_STORY_BASE}${slug}-modern-rail.html${WECHAT_STORY_VERSION}`;
+      const WECHAT_EN_STORY_VERSION = '?v=20260706-wechat-en';
+      function mapLanguage() {
+        return document.documentElement.dataset.mapLang === 'zh' ? 'zh' : 'en';
+      }
+      function isEnglishMap() {
+        return mapLanguage() === 'en';
+      }
+      function storyHref(slug) {
+        const base = isEnglishMap() ? WECHAT_EN_STORY_BASE : WECHAT_STORY_BASE;
+        const version = isEnglishMap() ? WECHAT_EN_STORY_VERSION : WECHAT_STORY_VERSION;
+        return `${base}${slug}-modern-rail.html${version}`;
+      }
 
       const US_STATE_STORIES = {
         AK: storyHref('anchorage-marathon'),
@@ -2341,6 +2400,73 @@
         return document.documentElement.dataset.theme === 'light';
       }
 
+      function usStateName(abbr) {
+        return isEnglishMap() ? US_NAMES[abbr] : (US_NAMES_ZH[abbr] || US_NAMES[abbr]);
+      }
+
+      function chinaProvinceName(id) {
+        const province = CHINA_PROVINCES[id];
+        if (!province) return 'RunCN';
+        return isEnglishMap() ? (CHINA_NAMES_EN[id] || province[0]) : province[0];
+      }
+
+      function englishTitleFromSlug(slug) {
+        return (slug || '')
+          .split('-')
+          .filter(Boolean)
+          .map(word => word === 'cn' ? 'CN' : word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+      }
+
+      function fallbackStoryTitle(href) {
+        const slug = storySlugFromHref(href);
+        return isEnglishMap() ? englishTitleFromSlug(slug) : '';
+      }
+
+      function cityNameForStory(city, href) {
+        if (!isEnglishMap()) return city;
+        return CHINA_CITY_NAMES_EN_BY_SLUG[storySlugFromHref(href)] || city;
+      }
+
+      function syncEmbedMapCopy() {
+        const isEnglish = isEnglishMap();
+        const usCard = document.getElementById('run50-us-card');
+        const cnCard = document.getElementById('runcn-map');
+        const usStatus = document.getElementById('us-map-mini-status');
+        const cnStatus = document.getElementById('cn-map-mini-status');
+        [usStatus, cnStatus].forEach(status => {
+          if (status && !status.dataset.zhDefault) status.dataset.zhDefault = status.textContent;
+        });
+        if (usCard) {
+          const title = usCard.querySelector('h2');
+          const copy = usCard.querySelector('p');
+          const count = usCard.querySelector('b');
+          if (title) title.textContent = isEnglish ? 'Run50 · U.S. 50 States Map' : 'Run50 · 美国50州地图';
+          if (copy) copy.textContent = isEnglish
+            ? 'Completed states, race-city dots, and story links on one map.'
+            : '沿用 Chinese Stories 里的美国交互地图，把跑过的州、城市红点和长文入口放在同一张地图里。';
+          if (count) count.textContent = isEnglish ? '35 States' : '35 个州';
+        }
+        if (cnCard) {
+          const title = cnCard.querySelector('h2');
+          const copy = cnCard.querySelector('p');
+          const count = cnCard.querySelector('b');
+          if (title) title.textContent = isEnglish ? 'RunCN · China Marathon Map' : 'RunCN · 中国马拉松地图';
+          if (copy) copy.textContent = isEnglish
+            ? 'Completed provinces and regions, race-city dots, and RunCN story links.'
+            : '把中国跑过的省份、城市红点和 RunCN 长文入口放在同一张地图里。';
+          if (count) count.textContent = isEnglish ? '18 Regions' : '18 个地区';
+        }
+        if (usStatus) {
+          usStatus.dataset.defaultText = isEnglish ? 'Click to open the full interactive map' : usStatus.dataset.zhDefault;
+          usStatus.textContent = usStatus.dataset.defaultText;
+        }
+        if (cnStatus) {
+          cnStatus.dataset.defaultText = isEnglish ? 'Click to open the full interactive map' : cnStatus.dataset.zhDefault;
+          cnStatus.textContent = cnStatus.dataset.defaultText;
+        }
+      }
+
       function addChinaContextContours(svg, ocean, lightMode) {
         const contourLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
         contourLayer.setAttribute('id', 'mini-china-context-contours');
@@ -2393,8 +2519,8 @@
 
       function storyRowsFromLinks(links) {
         return links.map(href => {
-          const card = findStoryCard(href);
-          return { href, title: storyCardTitle(card) };
+          const card = isEnglishMap() ? null : findStoryCard(href);
+          return { href, title: fallbackStoryTitle(href) || storyCardTitle(card) };
         }).filter(Boolean);
       }
 
@@ -2409,18 +2535,20 @@
       }
 
       function describeMapStory(label, href) {
-        const card = findStoryCard(href);
-        const title = storyCardTitle(card);
-        if (!card) return label ? `${label} · 下方故事待补` : '下方故事待补';
-        return title ? `${label} · ${title}` : `${label} · 点击定位到下方故事`;
+        const card = isEnglishMap() ? null : findStoryCard(href);
+        const title = fallbackStoryTitle(href) || storyCardTitle(card);
+        if (!card && !title) return label ? `${label} - story coming soon` : 'Story coming soon';
+        if (title) return `${label} - ${title}`;
+        return `${label} - click to open story`;
       }
 
       function describeMapStories(label, links) {
         const titles = storyRowsFromLinks(links)
-          .map(row => row.title.replace(/^Run(?:50|CN)\s*#?[^｜|]*[｜|]/, ''))
+          .map(row => row.title.replace(/^Run(?:50|CN)\s*#?[^|]*[|]/, ''))
           .filter(Boolean);
-        if (!titles.length) return `${label} · 下方故事待补`;
-        return `${label} · ${titles.length}篇：${titles.slice(0, 3).join(' / ')}${titles.length > 3 ? ' / ...' : ''}`;
+        if (!titles.length) return `${label} - story coming soon`;
+        const unit = titles.length === 1 ? 'story' : 'stories';
+        return `${label} - ${titles.length} ${unit}: ${titles.slice(0, 3).join(' / ')}${titles.length > 3 ? ' / ...' : ''}`;
       }
 
       function ensureMapStoryPopover(slot) {
@@ -2443,8 +2571,9 @@
         popover.innerHTML = '';
         popover.onmouseenter = () => window.clearTimeout(slot._mapStoryHideTimer);
         popover.onmouseleave = () => hideMapStoryPopover(slot);
+        const unit = rows.length === 1 ? 'story' : 'stories';
         const heading = document.createElement('strong');
-        heading.textContent = `${label} · ${rows.length || 0} 篇故事 · 点击选择`;
+        heading.textContent = `${label} - ${rows.length || 0} ${unit} - click to choose`;
         popover.appendChild(heading);
         if (rows.length) {
           rows.slice(0, 7).forEach(({ href, title }) => {
@@ -2460,7 +2589,7 @@
           });
         } else {
           const row = document.createElement('span');
-          row.textContent = '下方故事待补';
+          row.textContent = 'Story coming soon';
           popover.appendChild(row);
         }
         popover.classList.add('is-visible');
@@ -2509,7 +2638,8 @@
         const heading = document.createElement('h4');
         heading.textContent = label;
         const count = document.createElement('span');
-        count.textContent = rows.length ? `${rows.length} 篇` : '待补';
+        const unit = rows.length === 1 ? 'story' : 'stories';
+        count.textContent = rows.length ? `${rows.length} ${unit}` : 'Coming soon';
         heading.appendChild(count);
         tooltip.appendChild(heading);
         if (rows.length) {
@@ -2527,13 +2657,13 @@
         } else {
           const empty = document.createElement('span');
           empty.className = 'map-tooltip-empty';
-          empty.textContent = '下方故事待补';
+          empty.textContent = 'Story coming soon';
           tooltip.appendChild(empty);
         }
         tooltip.style.display = 'block';
         moveMapTooltip(slot, event);
         if (options.status) {
-          setStatus(options.status, rows.length ? describeMapStories(label, links) : `${label} · 下方故事待补`);
+          setStatus(options.status, rows.length ? describeMapStories(label, links) : `${label} - story coming soon`);
         }
       }
 
@@ -2626,18 +2756,27 @@
         window.setTimeout(() => card.classList.remove('map-card-flash'), 2300);
       }
 
+      function navigateToMapStory(href) {
+        if (document.documentElement.dataset.mapEmbed && window.top && window.top !== window) {
+          window.top.location.href = href;
+        } else {
+          window.location.href = href;
+        }
+      }
+
       function focusMapStory(event, href, color, status, label) {
         event.preventDefault();
         event.stopPropagation();
         const card = findStoryCard(href);
-        if (!card) {
+        if (!card || document.documentElement.dataset.mapEmbed) {
           setStatus(status, describeMapStory(label, href));
+          navigateToMapStory(href);
           return;
         }
         card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         flashStoryCard(card, color);
         const title = storyCardTitle(card);
-        setStatus(status, title ? `${label} · 已定位：${title}` : `${label} · 已定位到下方故事`);
+        setStatus(status, title ? `${label} - ${title}` : `${label} - story selected`);
       }
 
       function chooseOrFocusMapStory(event, slot, links, href, color, status, label) {
@@ -2797,7 +2936,7 @@
       }
 
       function setStatus(status, text) {
-        if (status) status.textContent = text || '点击打开完整互动地图';
+        if (status) status.textContent = text || status.dataset.defaultText || 'Click to open the full interactive map';
       }
 
       function lightenHex(hex, amount = 0.18) {
@@ -2957,7 +3096,7 @@
         Object.entries(US_PATHS).forEach(([abbr, ids]) => {
           const paths = usStateGroup(svg, ids);
           const storyLink = US_STATE_STORIES[abbr];
-          const storyLabel = `Run50 · ${US_NAMES[abbr]}`;
+          const storyLabel = `Run50 - ${usStateName(abbr)}`;
           const storyLinks = mapStoryLinks(storyLink, US_STATE_STORY_GROUPS[abbr]);
           usHoverStories.set(`state:${abbr}`, {
             label: storyLabel,
@@ -3001,7 +3140,7 @@
           const p = special ? { x: special[0], y: special[1] } : projectUs(lat, lon);
           const cityStoryLink = US_CITY_STORIES[`${abbr}:${city}`];
           const storyLink = cityStoryLink || US_STATE_STORIES[abbr];
-          const storyLabel = cityStoryLink ? `${city} · ${US_NAMES[abbr]}` : `Run50 · ${US_NAMES[abbr]}`;
+          const storyLabel = cityStoryLink ? `${city} - ${usStateName(abbr)}` : `Run50 - ${usStateName(abbr)}`;
           const storyLinks = cityStoryLink ? mapStoryLinks(storyLink) : mapStoryLinks(storyLink, US_STATE_STORY_GROUPS[abbr]);
           const cityKey = `${abbr}:${city}`;
           if (cityStoryLink) {
@@ -3130,7 +3269,7 @@
           const province = CHINA_PROVINCES[id];
           if (province) {
             const storyLink = CHINA_PROVINCE_STORIES[id];
-            const storyLabel = `RunCN · ${province[0]}`;
+            const storyLabel = `RunCN - ${chinaProvinceName(id)}`;
             const storyLinks = mapStoryLinks(storyLink, CHINA_PROVINCE_STORY_GROUPS[id]);
             cnHoverStories.set(`province:${id}`, {
               label: storyLabel,
@@ -3191,13 +3330,21 @@
           });
         }
 
+        if (isEnglishMap()) {
+          ['Mongolia', 'South Korea', 'Japan', 'Bohai Sea', 'Yellow Sea', 'East China Sea', 'South China Sea']
+            .forEach((label, index) => {
+              const span = contextLayer.querySelectorAll('text')[index]?.querySelector('tspan');
+              if (span) span.textContent = label;
+            });
+        }
+
         const glowLayer = addSvgEl(svg, 'g', { id: 'mini-china-dot-glows' });
         const ringLayer = lightMode ? null : addSvgEl(svg, 'g', { id: 'mini-china-city-rings' });
         const dotLayer = addSvgEl(svg, 'g', { id: 'mini-china-city-dots' });
         CHINA_CITY_DOTS.forEach(([city, provinceId, lat, lon, storyLink]) => {
           const p = projectChina(lat, lon);
           const province = CHINA_PROVINCES[provinceId];
-          const storyLabel = `${city} · ${province?.[0] || 'RunCN'}`;
+          const storyLabel = `${cityNameForStory(city, storyLink)} - ${chinaProvinceName(provinceId)}`;
           const storyLinks = mapStoryLinks(storyLink, CHINA_PROVINCE_STORY_GROUPS[provinceId]);
           const cityKey = `${provinceId}:${city}`;
           cnHoverStories.set(`city:${cityKey}`, {
@@ -3271,7 +3418,7 @@
         };
 
         const labelLayer = addSvgEl(svg, 'g', { id: 'mini-china-labels' });
-        Object.entries(CHINA_PROVINCES).forEach(([id, [name]]) => {
+        Object.entries(CHINA_PROVINCES).forEach(([id]) => {
           if (typeof _CN_LABELS === 'undefined' || !_CN_LABELS[id]) return;
           const [x, y, size] = _CN_LABELS[id];
           if (!size && id !== 'cn_hongkong') return;
@@ -3286,12 +3433,13 @@
           text.setAttribute('stroke-width', lightMode ? '3.5' : '3');
           text.setAttribute('stroke-linejoin', 'round');
           text.setAttribute('class', 'mini-map-label');
-          text.textContent = name;
+          text.textContent = chinaProvinceName(id);
           labelLayer.appendChild(text);
         });
       }
 
       window.repaintWechatNewMaps = () => {
+        syncEmbedMapCopy();
         paintUsMap();
         paintChinaMap();
       };
