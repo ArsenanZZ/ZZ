@@ -8,10 +8,15 @@
   <script>
     (() => {
       try {
-        if (localStorage.getItem('run50-story-index-theme') === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        }
-      } catch (error) {}
+        const params = new URLSearchParams(window.location.search);
+        const savedTheme = localStorage.getItem('run50-story-index-theme');
+        const theme = params.get('theme') || savedTheme || 'dark';
+        if (theme !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.dataset.indexLang = params.get('lang') === 'zh' ? 'zh' : 'en';
+      } catch (error) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.dataset.indexLang = 'en';
+      }
     })();
   </script>
   <style>
@@ -414,7 +419,7 @@
       margin: 0 auto;
       padding: 18px 22px 0;
       display: grid !important;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       align-items: center;
       color: #53647c;
@@ -430,7 +435,7 @@
       padding: 4px 0;
     }
     .run50-global-tabs a:first-child { text-align: left; }
-    .run50-global-tabs a:nth-child(4) { text-align: right; }
+    .run50-global-tabs a:last-child { text-align: right; }
     .run50-global-tabs a:hover { border-color: currentColor; }
     .theme-toggle {
       appearance: none;
@@ -467,6 +472,55 @@
     }
     html[data-theme="dark"] .run50-global-tabs .theme-toggle:hover,
     html[data-theme="dark"] .run50-global-tabs .theme-toggle:focus-visible { background: #263449 !important; }
+    .story-index-controls {
+      position: fixed;
+      z-index: 10000;
+      top: 14px;
+      right: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .story-index-controls .theme-toggle,
+    .story-index-controls .lang-toggle {
+      appearance: none;
+      -webkit-appearance: none;
+      color-scheme: light;
+      forced-color-adjust: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 0 13px;
+      border: 1px solid rgba(83, 100, 124, .35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .72);
+      color: #162033;
+      font: 800 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, .14);
+      backdrop-filter: blur(14px);
+    }
+    .story-index-controls .theme-toggle:hover,
+    .story-index-controls .lang-toggle:hover { transform: translateY(-1px); }
+    html[data-theme="dark"] .story-index-controls .theme-toggle,
+    html[data-theme="dark"] .story-index-controls .lang-toggle {
+      border-color: rgba(199, 211, 226, .34);
+      background: rgba(30, 41, 59, .88);
+      color: #e8eef6;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .34);
+    }
+    .zh-index-frame {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+      border: 0;
+      background: transparent;
+    }
+    html[data-index-lang="zh"] .run50-global-tabs,
+    html[data-index-lang="zh"] main.shell { display: none !important; }
+    html[data-index-lang="zh"] .zh-index-frame { display: block; }
 
     @media (max-width: 640px) {
       .run50-global-tabs {
@@ -484,7 +538,9 @@
 
 </head>
 <body>
-  <nav class="run50-global-tabs" aria-label="Run50 story sections"><a href="../../index.html">&larr; Run50</a><a href="./">English Stories</a><a href="../chinese/?v=20260618-addddd">Chinese</a><a href="../../facebook/">Facebook</a><a href="#theme" role="button" class="theme-toggle" data-theme-toggle aria-pressed="false"><span data-theme-label>Dark</span></a></nav>
+  <nav class="run50-global-tabs" aria-label="Run50 story sections"><a href="../../index.html">&larr; Run50</a><a href="./">English Stories</a><a href="../../facebook/">Facebook</a></nav>
+  <div class="story-index-controls" aria-label="Story index controls"><button class="lang-toggle" type="button" data-lang-toggle>&#20013;&#25991;</button><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="true"><span data-theme-label>Light</span></button></div>
+  <iframe class="zh-index-frame" id="zh-index-frame" title="Run50 Chinese Stories"></iframe>
   <main class="shell">
 
     <section class="hero">
@@ -2075,29 +2131,86 @@
     (function () {
       const key = 'run50-story-index-theme';
       const root = document.documentElement;
+      const frame = document.getElementById('zh-index-frame');
+
+      function currentTheme() {
+        return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      }
+
+      function currentLang() {
+        return root.dataset.indexLang === 'zh' ? 'zh' : 'en';
+      }
+
+      function updateUrl(lang) {
+        const url = new URL(window.location.href);
+        if (lang === 'zh') url.searchParams.set('lang', 'zh');
+        else url.searchParams.delete('lang');
+        window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+      }
+
+      function syncChineseFrame() {
+        if (!frame || currentLang() !== 'zh') return;
+        const nextSrc = '../chinese/index.html?embedded=1&theme=' + encodeURIComponent(currentTheme()) + '&v=20260618-addddd';
+        if (frame.getAttribute('src') !== nextSrc) frame.setAttribute('src', nextSrc);
+      }
+
+      function resizeChineseFrame() {
+        if (!frame || currentLang() !== 'zh') return;
+        try {
+          const doc = frame.contentDocument;
+          const height = Math.max(900, doc.documentElement.scrollHeight, doc.body.scrollHeight);
+          frame.style.height = height + 'px';
+        } catch (error) {
+          frame.style.height = '100vh';
+        }
+      }
+
       function applyTheme(theme) {
-        const isDark = theme === 'dark';
+        const isDark = theme !== 'light';
         if (isDark) root.setAttribute('data-theme', 'dark');
         else root.removeAttribute('data-theme');
         const button = document.querySelector('[data-theme-toggle]');
         const label = document.querySelector('[data-theme-label]');
         if (button) button.setAttribute('aria-pressed', String(isDark));
         if (label) label.textContent = isDark ? 'Light' : 'Dark';
+        syncChineseFrame();
       }
-      applyTheme(localStorage.getItem(key) || 'light');
+
+      function applyLang(lang) {
+        const nextLang = lang === 'zh' ? 'zh' : 'en';
+        root.dataset.indexLang = nextLang;
+        document.documentElement.lang = nextLang === 'zh' ? 'zh-CN' : 'en';
+        document.title = nextLang === 'zh' ? 'Run50 Chinese Stories | Arsenan' : 'Run50 English Stories | Arsenan';
+        const button = document.querySelector('[data-lang-toggle]');
+        if (button) button.textContent = nextLang === 'zh' ? 'EN' : '\u4e2d\u6587';
+        updateUrl(nextLang);
+        syncChineseFrame();
+        window.setTimeout(resizeChineseFrame, 350);
+      }
+
+      applyTheme(currentTheme());
+      applyLang(currentLang());
+
       document.addEventListener('DOMContentLoaded', function () {
-        const button = document.querySelector('[data-theme-toggle]');
-        if (!button) return;
-        function toggleTheme(event) {
-          if (event) event.preventDefault();
-          const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-          localStorage.setItem(key, nextTheme);
-          applyTheme(nextTheme);
+        const themeButton = document.querySelector('[data-theme-toggle]');
+        const langButton = document.querySelector('[data-lang-toggle]');
+        if (themeButton) {
+          themeButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            const nextTheme = currentTheme() === 'dark' ? 'light' : 'dark';
+            localStorage.setItem(key, nextTheme);
+            applyTheme(nextTheme);
+          });
         }
-        button.addEventListener('click', toggleTheme);
-        button.addEventListener('keydown', function (event) {
-          if (event.key === ' ' || event.key === 'Enter') toggleTheme(event);
-        });
+        if (langButton) {
+          langButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            applyLang(currentLang() === 'zh' ? 'en' : 'zh');
+          });
+        }
+        if (frame) frame.addEventListener('load', resizeChineseFrame);
+        window.addEventListener('resize', resizeChineseFrame);
+        window.setInterval(resizeChineseFrame, 1200);
       });
     }());
   </script>

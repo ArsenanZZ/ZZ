@@ -8,7 +8,18 @@
   <script>
     (() => {
       try {
-        if (localStorage.getItem('run50-story-index-theme') === 'dark') {
+        const params = new URLSearchParams(window.location.search);
+        const embedded = params.get('embedded') === '1';
+        if (!embedded) {
+          const target = new URL('../english/', window.location.href);
+          target.searchParams.set('lang', 'zh');
+          target.searchParams.set('v', params.get('v') || '20260618-addddd');
+          window.location.replace(target.href);
+        }
+        document.documentElement.dataset.embeddedIndex = embedded ? '1' : '0';
+        const requestedTheme = params.get('theme');
+        const savedTheme = localStorage.getItem('run50-story-index-theme');
+        if ((requestedTheme || savedTheme) === 'dark') {
           document.documentElement.setAttribute('data-theme', 'dark');
         }
       } catch (error) {}
@@ -567,6 +578,10 @@
     html[data-theme="dark"] .run50-global-tabs .theme-toggle:focus-visible {
       background: #263449 !important;
     }
+    html[data-embedded-index="1"] .run50-global-tabs,
+    html[data-embedded-index="1"] .zz-home-button { display: none !important; }
+    html[data-embedded-index="1"] .shell { padding-top: 36px; }
+
     @media (max-width: 640px) {
       .run50-global-tabs {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -2305,8 +2320,9 @@
         if (label) label.textContent = isDark ? '浅色' : '深色';
       }
 
+      const requestedTheme = new URLSearchParams(window.location.search).get('theme');
       const savedTheme = localStorage.getItem(key);
-      applyTheme(savedTheme || 'light');
+      applyTheme(requestedTheme || savedTheme || 'light');
 
       document.addEventListener('DOMContentLoaded', function () {
         const button = document.querySelector('[data-theme-toggle]');
