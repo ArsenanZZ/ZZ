@@ -70,6 +70,45 @@
       min-width: 0;
     }
 
+    .top-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(37, 43, 63, .78);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+    }
+
+    .language-switch a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .language-switch a.active {
+      color: #07111a;
+      background: linear-gradient(135deg, var(--green), var(--cyan));
+    }
+
+    .language-switch a span[aria-hidden="true"] {
+      display: none;
+    }
+
     .menu-icon,
     .theme-toggle {
       width: 36px;
@@ -946,6 +985,18 @@
       background: #edf2f7;
     }
 
+    html[data-theme="light"] .language-switch {
+      background: rgba(255, 255, 255, .88);
+    }
+
+    html[data-theme="light"] .language-switch a {
+      color: #536178;
+    }
+
+    html[data-theme="light"] .language-switch a.active {
+      color: #07111a;
+    }
+
     html[data-theme="light"] .back {
       background: #edf2f7;
       color: #243149;
@@ -1118,8 +1169,42 @@
     }
 
     @media (max-width: 620px) {
+      .topbar {
+        gap: 10px;
+        padding: 0 12px;
+        width: 100vw;
+        max-width: 100vw;
+        box-sizing: border-box;
+      }
+
       .back {
         display: none;
+      }
+
+      .top-actions {
+        gap: 8px;
+        position: fixed;
+        top: 17px;
+        right: 12px;
+        z-index: 30;
+      }
+
+      .top-actions .theme-toggle {
+        display: none;
+      }
+
+      .language-switch a {
+        min-height: 28px;
+        padding: 0 10px;
+        font-size: 12px;
+      }
+
+      .language-switch a .wide-label {
+        display: none;
+      }
+
+      .language-switch a span[aria-hidden="true"] {
+        display: inline;
       }
 
       .shell {
@@ -1191,9 +1276,15 @@
       <div class="mark">R</div>
       <a class="back" href="https://zhennanzhang.com/run50/index.html">Back to Run50</a>
     </div>
-    <button class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" title="Toggle theme">
-      <span aria-hidden="true">☀</span>
-    </button>
+    <div class="top-actions">
+      <nav class="language-switch" aria-label="Language switch">
+        <a class="active" href="https://zhennanzhang.com/run50/wechat-en/?v=20260707-running-blog" aria-current="page">EN</a>
+        <a href="https://zhennanzhang.com/run50/wechat-new/?v=20260630-rail-align"><span class="wide-label">中文</span><span aria-hidden="true">中</span></a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" title="Toggle theme">
+        <span aria-hidden="true">☀</span>
+      </button>
+    </div>
   </header>
 
   <div class="shell">
@@ -1206,8 +1297,6 @@
 
     <main class="main">
       <nav class="league-row" aria-label="Run50 channels">
-        <a class="pill active" href="https://zhennanzhang.com/run50/wechat-en/?v=20260707-running-blog"><span class="dot"></span>English</a>
-        <a class="pill" href="https://zhennanzhang.com/run50/wechat-new/?v=20260630-rail-align">中文</a>
         <a class="pill" href="https://zhennanzhang.com/run50/stories/chinese/">Chinese Stories</a>
         <a class="pill" href="https://zhennanzhang.com/run50/stories/english/">English Stories</a>
         <a class="pill" href="https://zhennanzhang.com/run50/facebook/">Facebook</a>
