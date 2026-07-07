@@ -538,6 +538,32 @@
       border-radius: 3px !important;
     }
 
+
+    .story-map-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .story-map-frame {
+      width: 100%;
+      height: 560px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .story-map-grid { grid-template-columns: 1fr; }
+      .story-map-frame { height: 520px; }
+    }
+
+    @media (max-width: 640px) {
+      .story-map-frame { height: 430px; }
+    }
+
     .running-map-note {
       color: var(--muted);
       font-size: 12px;
@@ -643,6 +669,28 @@
           <canvas id="world-globe-canvas"></canvas>
         </div>
         <div class="world-running-map-tooltip" id="world-globe-map-tooltip" role="tooltip"></div>
+      </div>
+    </section>
+
+
+    <section class="running-map-section" id="run50-story-maps" aria-labelledby="run50-story-maps-title">
+      <div class="running-map-card-head">
+        <div class="running-map-card-title">
+          <span id="run50-story-maps-title">Chinese Stories Maps</span>
+          <span class="running-map-pill">Run50 / RunCN</span>
+        </div>
+        <span class="running-map-status">The old Chinese Stories U.S. and China maps now live here.</span>
+      </div>
+      <div class="running-map-subhead">
+        <div>
+          <h2>U.S. and China story maps</h2>
+          <p>Colored completed states and provinces, red race-city dots, and story links from the Chinese story index.</p>
+        </div>
+        <a class="running-map-note" href="./wechat-new/?v=20260630-rail-align">Open Chinese Stories</a>
+      </div>
+      <div class="story-map-grid">
+        <iframe class="story-map-frame" src="./wechat-new/index.html?v=20260630-rail-align&embed=us-map" title="Run50 U.S. story map" loading="lazy"></iframe>
+        <iframe class="story-map-frame" src="./wechat-new/index.html?v=20260630-rail-align&embed=cn-map" title="RunCN China story map" loading="lazy"></iframe>
       </div>
     </section>
   </main>
