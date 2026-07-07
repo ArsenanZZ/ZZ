@@ -18,8 +18,7 @@
         }
         document.documentElement.dataset.embeddedIndex = embedded ? '1' : '0';
         const requestedTheme = params.get('theme');
-        const savedTheme = localStorage.getItem('run50-story-index-theme');
-        if ((requestedTheme || savedTheme) === 'dark') {
+        if ((requestedTheme || 'dark') === 'dark') {
           document.documentElement.setAttribute('data-theme', 'dark');
         }
       } catch (error) {}
@@ -2304,7 +2303,6 @@
   </script>
   <script>
     (function () {
-      const key = 'run50-story-index-theme';
       const root = document.documentElement;
 
       function applyTheme(theme) {
@@ -2321,8 +2319,7 @@
       }
 
       const requestedTheme = new URLSearchParams(window.location.search).get('theme');
-      const savedTheme = localStorage.getItem(key);
-      applyTheme(requestedTheme || savedTheme || 'light');
+      applyTheme(requestedTheme || 'dark');
 
       document.addEventListener('DOMContentLoaded', function () {
         const button = document.querySelector('[data-theme-toggle]');
@@ -2330,7 +2327,6 @@
         function toggleTheme(event) {
           if (event) event.preventDefault();
           const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-          localStorage.setItem(key, nextTheme);
           applyTheme(nextTheme);
         }
         button.addEventListener('click', toggleTheme);

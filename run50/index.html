@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1034,6 +1034,21 @@
     border-color: rgba(79, 195, 255, .42);
     box-shadow: 0 18px 50px rgba(0, 0, 0, .24);
   }
+  .products[data-sortable-products] .product {
+    cursor: grab;
+  }
+  .products[data-sortable-products] .product:active {
+    cursor: grabbing;
+  }
+  .products[data-sortable-products] .product.is-dragging {
+    opacity: .55;
+    transform: scale(.985);
+    border-color: rgba(248, 220, 138, .72);
+  }
+  .products[data-sortable-products].is-reordering {
+    outline: 1px dashed rgba(248, 220, 138, .42);
+    outline-offset: 10px;
+  }
   .product-thumb {
     height: auto;
     aspect-ratio: 16 / 10;
@@ -1188,7 +1203,7 @@
       <div class="hl-main">My Profile</div>
     </a>
     <a href="./run50.html" class="header-link">
-      <div class="hl-small">22 / 50 States</div>
+      <div class="hl-small">35 / 50 States</div>
       <div class="hl-main">Run50</div>
     </a>
   </div>
@@ -1211,24 +1226,24 @@
 <div class="hero">
   <div class="hero-title">Arsenan<span>ZZ</span></div>
   <div class="hero-sub">Running &middot; Reading &middot; Building</div>
-  <p class="hero-copy">Run50 是我的跑步故事总入口：美国50州、中国马拉松、世界跑旅、公众号版、英文版和 Facebook 版，都从这里进入。</p>
+  <p class="hero-copy">Run50 is my running-story front door: 35 completed U.S. states, marathon stories across China, world race trips, Chinese editions, English editions, videos, and maps all start here.</p>
   <div class="hero-badges">
-    <span class="hero-badge">&#127939; 22 / 50 States Completed</span>
+    <span class="hero-badge">&#127939; 35 / 50 States Completed</span>
     <span class="hero-badge-outline">2024 &ndash; 2026</span>
     <a href="./videos.html" class="hero-badge-outline">&#9654; Watch Running Videos</a>
   </div>
   <div class="series-strip" aria-label="Run50 story families">
     <div class="series-chip">
       <strong>Run50</strong>
-      <span>美国50州马拉松时间线，按州、城市和比赛故事进入。</span>
+      <span>U.S. marathon timeline by state, city, race, and story. Thirty-five states are already on the map.</span>
     </div>
     <div class="series-chip">
       <strong>RunCN</strong>
-      <span>中国马拉松跑旅，武汉、哈尔滨、桂林、兰州等故事入口。</span>
+      <span>China marathon travels, from Wuhan, Harbin, Guilin, Lanzhou, Hong Kong, and more.</span>
     </div>
     <div class="series-chip">
       <strong>RunWorld</strong>
-      <span>美国和中国之外的世界路线，用地图连接每一站。</span>
+      <span>World race routes beyond the U.S. and China, connected through maps and city stories.</span>
     </div>
   </div>
 </div>
@@ -1241,7 +1256,7 @@
     <a href="https://zhennanzhang.bio" target="_blank" class="section-see-all">See all &rsaquo;</a>
   </div>
 
-  <div class="products">
+  <div class="products" data-sortable-products>
 
     <!-- Running Map -->
     <a href="./running-map.html" class="product" id="running-map">
@@ -1263,27 +1278,6 @@
       <span class="btn-view">Open Running Map &rarr;</span>
     </a>
 
-    <!-- 2026 Daily Tasks -->
-    <a href="./2026-daily-tasks.html?v=20260703-sync-pomodoro" class="product">
-      <div class="product-thumb" style="background:#0f1724;font-size:44px;font-weight:900;color:#f59d24;">
-        <img class="product-cover" src="../assets/run50-home-cover-daily-tasks-ai.png?v=20260703-sync-pomodoro" alt="Abstract private daily task planner cover">
-        ✓
-        <span class="badge-status">Private</span>
-      </div>
-      <div class="product-body">
-        <div class="product-category">Planner &middot; 2026</div>
-        <div class="product-title">2026 Daily Tasks</div>
-        <div class="product-subtitle">每日任务 · 番茄钟 · 加密同步</div>
-        <div>
-          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span class="stars-count"> 182 days</span>
-        </div>
-        <div class="product-desc">A private year-end daily task planner with bilingual mode, dark/light themes, motivational quotes, Pomodoro progress, and encrypted GitHub Gist sync.</div>
-        <div class="product-stat"><strong>Jul 3</strong> to Dec 31 &middot; password protected</div>
-      </div>
-      <span class="btn-view">Open Private Planner &rarr;</span>
-    </a>
-
     <!-- 2026 Daily Tasks · Google Drive Sync -->
     <a href="./2026-daily-tasks-google-drive.html?v=20260704-daily-timer" class="product">
       <div class="product-thumb" style="background:#07111d;font-size:44px;font-weight:900;color:#65d69b;">
@@ -1293,7 +1287,7 @@
       <div class="product-body">
         <div class="product-category">Planner &middot; Google Drive</div>
         <div class="product-title">2026 Daily Tasks · Drive Sync</div>
-        <div class="product-subtitle">每日任务 · 大倒计时 · Google Drive 云同步</div>
+        <div class="product-subtitle">Daily tasks &middot; focus countdown &middot; Google Drive cloud sync</div>
         <div>
           <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <span class="stars-count"> cloud variant</span>
@@ -1304,25 +1298,25 @@
       <span class="btn-view">Open Drive Planner &rarr;</span>
     </a>
 
-    <!-- 21天计划 -->
+    <!-- 21-day challenge -->
     <a href="./21day.html" class="product">
       <div class="product-thumb" style="background:#163f2b;font-size:52px;">
         <img class="product-cover" src="../assets/run50-home-cover-21day-ai.png?v=20260702-content-cover-ai-v1" alt="Abstract 21 day challenge cover">
         ⏰
-        <span class="badge-status">进行中</span>
+        <span class="badge-status">Active</span>
       </div>
       <div class="product-body">
         <div class="product-category">Challenge &middot; 2026</div>
-        <div class="product-title">4点起床 · 21天</div>
-        <div class="product-subtitle">每天凌晨4点起床，持续21天</div>
+        <div class="product-title">4 AM Wake-up &middot; 21 Days</div>
+        <div class="product-subtitle">A 21-day early-morning reset</div>
         <div>
           <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <span class="stars-count"> Day 3 / 21</span>
         </div>
-        <div class="product-desc">6月22日起床，7月12日收官。每天一条口播记录，一张照片，留下21个早晨。</div>
-        <div class="product-stat"><strong>3</strong> / 21 天完成 &middot; 2026.06.22</div>
+        <div class="product-desc">A June-to-July challenge with one short voice note and one photo from each early morning.</div>
+        <div class="product-stat"><strong>3</strong> / 21 days &middot; started 2026.06.22</div>
       </div>
-      <span class="btn-view">查看计划 &rarr;</span>
+      <span class="btn-view">View Challenge &rarr;</span>
     </a>
 
     <!-- Run50 -->
@@ -1334,15 +1328,15 @@
         <span class="badge-prime">prime</span>
       </div>
       <div class="product-body">
-        <div class="product-category">Project &middot; &#36827;&#34892;&#20013;</div>
+        <div class="product-category">Project &middot; In Progress</div>
         <div class="product-title">Run50</div>
-        <div class="product-subtitle">&#32654;&#22269;50&#24030;&#39532;&#25289;&#26494;&#25313;&#25112;</div>
+        <div class="product-subtitle">A marathon project across all 50 U.S. states</div>
         <div>
           <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span class="stars-count"> 22 ratings</span>
+          <span class="stars-count"> 35 states</span>
         </div>
-        <div class="product-desc">&#36305;&#36941;&#32654;&#22269;50&#20491;&#24030;&#65292;&#29992;&#21452;&#33073;&#20026;&#37327;&#36825;&#29255;&#22303;&#22320;&#12290;&#27599;&#19968;&#20491;&#24030;&#65292;&#37117;&#26377;&#19968;&#27573;&#25925;&#20107;&#12290;</div>
-        <div class="product-stat"><strong>22</strong> / 50 &#24030;&#23436;&#25104; &middot; 2024&ndash;2026</div>
+        <div class="product-desc">Running one marathon in every U.S. state, with each state turning into a race story, a city memory, and a map pin.</div>
+        <div class="product-stat"><strong>35</strong> / 50 states completed &middot; 2024&ndash;2026</div>
       </div>
       <span class="btn-view">View Project &rarr;</span>
     </a>
@@ -1351,7 +1345,7 @@
     <a href="./wechat-new/?v=20260630-rail-align" class="product">
       <div class="product-thumb" style="font-size:56px;font-family:'Noto Serif SC',serif;font-weight:600;color:#333;">
         <img class="product-cover" src="../assets/run50-home-cover-chinese-ai.png?v=20260702-content-cover-ai-v1" alt="Chinese Stories cover">
-        &#25991;
+        CN
         <span class="badge-prime">prime</span>
       </div>
       <div class="product-body">
@@ -1460,12 +1454,12 @@
       <div class="product-body">
         <div class="product-category">Trip &middot; 2026</div>
         <div class="product-title">New England Series</div>
-        <div class="product-subtitle">Mainly Marathons &#20845;&#26085;&#36187;&#25915;&#30053;</div>
+        <div class="product-subtitle">Mainly Marathons six-day race guide</div>
         <div>
           <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <span class="stars-count"> 6 races</span>
         </div>
-        <div class="product-desc">2026 &#24180;&#26032;&#33521;&#26684;&#20848;&#20845;&#24030;&#36830;&#32493;&#36187;&#26097;&#34892;&#20316;&#25112;&#25163;&#20876;&#65292;&#25972;&#21512;&#36187;&#31243;&#12289;&#20住;&#23663;&#12289;&#36716;&#22580;&#21644;&#24674;&#22797;&#31574;&#30053;&#12290;</div>
+        <div class="product-desc">A practical 2026 New England six-state race-trip guide with schedule, lodging, transfers, and recovery strategy.</div>
         <div class="product-stat"><strong>6</strong> days &middot; 6 states &middot; race trip</div>
       </div>
       <span class="btn-view">View Guide &rarr;</span>
@@ -1509,6 +1503,91 @@
 
 <link rel="stylesheet" href="../assets/zz-comments.css">
 <section data-zz-comments></section>
+<script>
+(() => {
+  const grid = document.querySelector('[data-sortable-products]');
+  if (!grid) return;
+  const storageKey = 'arsenanzz-run50-home-card-order';
+  const cards = () => Array.from(grid.querySelectorAll(':scope > .product'));
+  const cardId = card => card.dataset.cardId || card.getAttribute('href') || card.querySelector('.product-title')?.textContent?.trim() || '';
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+    if (Array.isArray(saved) && saved.length) {
+      const byId = new Map(cards().map(card => [cardId(card), card]));
+      saved.forEach(id => {
+        const card = byId.get(id);
+        if (card) grid.appendChild(card);
+      });
+      cards().forEach(card => {
+        if (!saved.includes(cardId(card))) grid.appendChild(card);
+      });
+    }
+  } catch (error) {
+    localStorage.removeItem(storageKey);
+  }
+
+  let dragging = null;
+  let moved = false;
+
+  function saveOrder() {
+    localStorage.setItem(storageKey, JSON.stringify(cards().map(cardId)));
+  }
+
+  function insertionTarget(x, y) {
+    return cards()
+      .filter(card => card !== dragging)
+      .reduce((closest, card) => {
+        const box = card.getBoundingClientRect();
+        const beforeY = y < box.top + box.height / 2;
+        const beforeX = y < box.bottom && y > box.top && x < box.left + box.width / 2;
+        if (!beforeY && !beforeX) return closest;
+        const distance = Math.hypot(x - (box.left + box.width / 2), y - (box.top + box.height / 2));
+        return distance < closest.distance ? { distance, card } : closest;
+      }, { distance: Infinity, card: null }).card;
+  }
+
+  cards().forEach(card => {
+    card.draggable = true;
+    card.addEventListener('dragstart', event => {
+      dragging = card;
+      moved = false;
+      grid.classList.add('is-reordering');
+      event.dataTransfer.effectAllowed = 'move';
+      event.dataTransfer.setData('text/plain', cardId(card));
+      requestAnimationFrame(() => card.classList.add('is-dragging'));
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('is-dragging');
+      grid.classList.remove('is-reordering');
+      saveOrder();
+      dragging = null;
+      setTimeout(() => { moved = false; }, 0);
+    });
+  });
+
+  grid.addEventListener('dragover', event => {
+    if (!dragging) return;
+    event.preventDefault();
+    const target = insertionTarget(event.clientX, event.clientY);
+    if (target) grid.insertBefore(dragging, target);
+    else grid.appendChild(dragging);
+    moved = true;
+  });
+
+  grid.addEventListener('drop', event => {
+    if (!dragging) return;
+    event.preventDefault();
+    saveOrder();
+  });
+
+  grid.addEventListener('click', event => {
+    if (!moved) return;
+    event.preventDefault();
+    event.stopPropagation();
+  }, true);
+})();
+</script>
 <script id="global-running-map-renderer">
 (() => {
   const slot = document.getElementById('world-running-map-slot');

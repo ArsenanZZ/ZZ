@@ -9,8 +9,7 @@
     (() => {
       try {
         const params = new URLSearchParams(window.location.search);
-        const savedTheme = localStorage.getItem('run50-story-index-theme');
-        const theme = params.get('theme') || savedTheme || 'dark';
+        const theme = params.get('theme') || 'dark';
         if (theme !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
         document.documentElement.dataset.indexLang = params.get('lang') === 'zh' ? 'zh' : 'en';
       } catch (error) {
@@ -2129,7 +2128,6 @@
 
   <script>
     (function () {
-      const key = 'run50-story-index-theme';
       const root = document.documentElement;
       const frame = document.getElementById('zh-index-frame');
 
@@ -2198,7 +2196,6 @@
           themeButton.addEventListener('click', function (event) {
             event.preventDefault();
             const nextTheme = currentTheme() === 'dark' ? 'light' : 'dark';
-            localStorage.setItem(key, nextTheme);
             applyTheme(nextTheme);
           });
         }
