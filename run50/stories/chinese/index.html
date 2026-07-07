@@ -3,23 +3,2328 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=../../wechat-new/?v=20260630-rail-align">
-  <link rel="canonical" href="https://zhennanzhang.com/run50/wechat-new/">
-  <title>Run50 Chinese Stories</title>
+  <title>Run50 中文故事 | Arsenan</title>
+  <meta name="description" content="Arsenan 的 Run50、RunCN 和 RunWorld 中文马拉松长文索引。">
+  <script>
+    (() => {
+      try {
+        if (localStorage.getItem('run50-story-index-theme') === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (error) {}
+    })();
+  </script>
   <style>
-    :root { color-scheme: dark; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #10131d; color: #f5f7fb; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
-    main { width: min(560px, calc(100vw - 40px)); padding: 30px 28px 32px; border: 1px solid rgba(255,255,255,.14); border-radius: 8px; background: #202536; box-shadow: 0 24px 70px rgba(0,0,0,.32); }
-    h1 { margin: 0 0 12px; font-size: 24px; line-height: 1.3; }
-    p { margin: 0; color: #b9c0d0; font-size: 15px; line-height: 1.75; }
-    a { color: #ffe08a; font-weight: 800; text-decoration: none; border-bottom: 1px solid currentColor; }
+    :root {
+      --paper: #f3f7f8;
+      --surface: #ffffff;
+      --ink: #20242b;
+      --muted: #667085;
+      --line: #dde5ec;
+      --river: #4a6c36;
+      --brick: #a33a2b;
+      --gold: #7c4125;
+      --run50: #0b67c2;
+      --runcn: #cc0000;
+      --runworld: #2f855a;
+      --plate-blue: #eaf3f7;
+      --plate-peach: #faf0ea;
+      --plate-sage: #eef6ef;
+      --shadow: 0 22px 58px rgba(20, 36, 55, .12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, #eaf4f6 0, #f7f3ed 420px, var(--paper) 960px),
+        var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+    }
+    a { color: inherit; }
+    .shell {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 42px 22px 64px;
+    }
+    .topline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .topline a {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .topline a:hover { border-color: currentColor; }
+    .hero {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+    .kicker {
+      margin: 0 0 12px;
+      color: var(--run50);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 7vw, 66px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .intro {
+      margin: 18px 0 0;
+      color: #344054;
+      font-size: 17px;
+      max-width: 680px;
+    }
+
+    .series-nav {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0 0 38px;
+    }
+    .series-nav a {
+      min-height: 78px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--run50);
+      border-radius: 8px;
+      background: rgba(255,255,255,.78);
+      text-decoration: none;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, .06);
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .series-nav a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(15, 23, 42, .09);
+    }
+    .series-nav a:nth-child(2) { border-left-color: var(--runcn); }
+    .series-nav a:nth-child(3) { border-left-color: var(--runworld); }
+    .series-nav span {
+      color: #111827;
+      font-size: 16px;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+    .series-nav small {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .map-deck {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin: 0 0 52px;
+      align-items: start;
+    }
+    #stories-map-container,
+    #china-map-container {
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 18px !important;
+      border-radius: 8px !important;
+      background: rgba(255,255,255,.82) !important;
+      box-shadow: 0 18px 44px rgba(15, 23, 42, .08) !important;
+    }
+    .story-section {
+      margin-top: 56px;
+      scroll-margin-top: 22px;
+    }
+    .series-nav + .story-section { margin-top: 0; }
+    .story-section + .story-section { margin-top: 62px; }
+    .section-head {
+      margin: 0 0 18px;
+      padding: 0 0 0 18px;
+      border-left: 6px solid var(--run50);
+    }
+    .run-cn-zone .section-head { border-left-color: var(--runcn); }
+    .run-world-zone .section-head { border-left-color: var(--runworld); }
+    .section-kicker {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+    .section-head h2 {
+      margin: 0;
+      color: #111827;
+      font-size: clamp(24px, 4vw, 36px);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+    .section-head p:last-child {
+      margin: 8px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .story-section .story-grid { margin-top: 0; }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .story-card {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 100%;
+      overflow: hidden;
+      border: 1px solid #cfe0ea;
+      border-radius: 8px;
+      background: var(--surface);
+      color: inherit;
+      text-decoration: none;
+      box-shadow: 0 18px 44px rgba(15, 23, 42, .08);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .story-card.run-cn {
+      background: var(--plate-peach);
+      border-color: #ebdcd6;
+    }
+    .story-card.run-50 {
+      background: var(--plate-blue);
+      border-color: #d0dfe8;
+    }
+    .story-card.run-world {
+      background: var(--plate-sage);
+      border-color: #cfdcc8;
+    }
+    .story-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 54px rgba(15, 23, 42, .12);
+    }
+    .story-card.run-cn:hover {
+      border-color: #dfbeaf;
+    }
+    .story-card.run-50:hover {
+      border-color: #acc4d3;
+    }
+    .story-card.run-world:hover {
+      border-color: #a9c1a2;
+    }
+    .story-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: #e8edf1;
+    }
+    .story-copy,
+    .story-card-body {
+      display: flex;
+      flex-direction: column;
+      min-height: 254px;
+      padding: 20px 20px 18px;
+    }
+    .story-meta {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .story-tag {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .story-title {
+      margin: 0;
+      color: #111827;
+      font-size: 22px;
+      line-height: 1.35;
+      font-weight: 850;
+      letter-spacing: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .story-desc {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .story-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: auto;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+    .story-card-body .story-meta {
+      order: 4;
+      margin: auto 0 0;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    @media (max-width: 1180px) {
+      .shell { padding: 34px 24px 68px; }
+      .map-deck { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+      .story-title { font-size: 22px; }
+      .story-desc { font-size: 15px; }
+      .story-meta,
+      .story-tag,
+      .story-foot,
+      .story-card-body .story-meta { font-size: 13px; }
+    }
+    @media (max-width: 760px) {
+      .shell { padding: 28px 18px 46px; }
+      h1 { font-size: 42px; line-height: 1.08; }
+      .intro { font-size: 16px; }
+      .series-nav { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: 1fr; }
+      .story-copy,
+      .story-card-body {
+        min-height: 260px;
+        padding: 22px 22px 20px;
+      }
+      .story-title { font-size: 22px; }
+      .story-desc { font-size: 15px; -webkit-line-clamp: 5; }
+      .story-foot { font-size: 15px; }
+      #stories-map-container,
+      #china-map-container { padding: 14px !important; }
+    }
+
+    /* ── INTERACTIVE MAP STYLES ── */
+    #us-map-master {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1722 / 989; /* match viewBox so Safari sizes it correctly */
+        display: block;
+    }
+    #us-map-master path {
+        transition: fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease;
+    }
+    #us-map-master path.run-state {
+        cursor: pointer;
+    }
+    #us-map-master path.run-state:hover {
+        opacity: 0.85;
+        stroke: #fff;
+        stroke-width: 2px;
+    }
+    #cn-map-master {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 800 / 720;
+        display: block;
+    }
+    #cn-map-master path {
+        transition: fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease;
+    }
+    #cn-map-master path.cn-province {
+        cursor: pointer;
+    }
+    #cn-map-master path.cn-province:hover {
+        opacity: 0.9;
+        stroke: #fff;
+        stroke-width: 1.8px;
+    }
+    #cn-map-master path.cn-run-province:hover {
+        opacity: 0.86;
+        stroke: #fff;
+        stroke-width: 2px;
+    }
+
+    /* City Dot styling */
+    .city-dot {
+        transition: r 0.2s ease, fill 0.2s ease;
+    }
+    .city-dot:hover {
+        r: 7px;
+        fill: #ffcc00;
+    }
+    .city-dot-glow {
+        animation: pulse-glow 2s infinite alternate;
+    }
+    @keyframes pulse-glow {
+        0% { r: 9px; opacity: 0.25; }
+        100% { r: 16px; opacity: 0.65; }
+    }
+
+    /* Flashing card highlight style */
+    @keyframes card-flash {
+        0% { transform: scale(1); box-shadow: 0 18px 44px rgba(15, 23, 42, .08); }
+        50% { transform: scale(1.03); box-shadow: 0 0 15px rgba(183,137,47,0.7); border-color: var(--gold); }
+        100% { transform: scale(1); box-shadow: 0 18px 44px rgba(15, 23, 42, .08); }
+    }
+    .card-highlight-flash {
+        animation: card-flash 1.5s ease 2;
+    }
+
+    /* Floating Tooltip */
+    .map-tooltip {
+        position: absolute;
+        z-index: 1000;
+        background: rgba(26, 37, 47, 0.95);
+        color: #fff;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        line-height: 1.5;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+        pointer-events: auto; /* Enable hover/clicking inside tooltip */
+        display: none;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(8px);
+        min-width: 260px;
+        max-width: 320px;
+        transition: opacity 0.15s ease;
+    }
+    .map-tooltip h4 {
+        margin: 0 0 8px 0;
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffb612;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        padding-bottom: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .map-tooltip-race {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+    .map-tooltip-race:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+    .map-tooltip-meta {
+        font-size: 11px;
+        color: #b0c4de;
+        margin-top: 2px;
+    }
+    .map-tooltip-link {
+        display: inline-block;
+        font-size: 11px;
+        color: #1a252f;
+        background: #ffb612;
+        text-decoration: none;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-top: 6px;
+        font-weight: bold;
+        transition: background 0.2s;
+    }
+    .map-tooltip-link:hover {
+        background: #ffffff;
+        color: #1a252f;
+    }
+    html[data-theme="dark"] {
+      --paper: #0e1117;
+      --surface: #161d27;
+      --ink: #e8eef6;
+      --muted: #b8c3d2;
+      --line: #334155;
+      --gold: #f0b071;
+      --plate-blue: #152638;
+      --plate-peach: #2b201d;
+      --plate-sage: #17281d;
+      --shadow: 0 22px 58px rgba(0, 0, 0, .34);
+    }
+    html[data-theme="dark"] body {
+      background:
+        linear-gradient(180deg, #101925 0, #171819 420px, var(--paper) 960px),
+        var(--paper);
+    }
+    html[data-theme="dark"] h1,
+    html[data-theme="dark"] .section-head h2,
+    html[data-theme="dark"] .story-title,
+    html[data-theme="dark"] .series-nav span {
+      color: #f5f7fb;
+    }
+    html[data-theme="dark"] .intro,
+    html[data-theme="dark"] .section-head p:last-child,
+    html[data-theme="dark"] .series-nav small,
+    html[data-theme="dark"] .story-desc,
+    html[data-theme="dark"] .story-foot,
+    html[data-theme="dark"] .story-card-body .story-meta {
+      color: var(--muted);
+    }
+    html[data-theme="dark"] .series-nav a,
+    html[data-theme="dark"] .story-card {
+      border-color: var(--line);
+      box-shadow: var(--shadow);
+    }
+    html[data-theme="dark"] .series-nav a {
+      background: rgba(22, 29, 39, .92);
+    }
+    html[data-theme="dark"] #stories-map-container,
+    html[data-theme="dark"] #china-map-container {
+      background: rgba(20, 27, 36, .92) !important;
+      border-color: var(--line) !important;
+      box-shadow: var(--shadow) !important;
+    }
+    html[data-theme="dark"] #welcome-map-slot,
+    html[data-theme="dark"] #cn-map-slot {
+      background: #111827 !important;
+      border-color: var(--line) !important;
+    }
+    html[data-theme="dark"] .story-card.run-cn { border-color: #4b342d; }
+    html[data-theme="dark"] .story-card.run-50 { border-color: #2e4a63; }
+    html[data-theme="dark"] .story-card.run-world { border-color: #2d4f35; }
   </style>
-  <script>window.location.replace('../../wechat-new/?v=20260630-rail-align');</script>
+
+  <style id="run50-global-tabs-style">
+    .run50-global-tabs {
+      max-width: 1880px;
+      margin: 0 auto;
+      padding: 18px 32px 0;
+      display: grid !important;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      align-items: center;
+      color: #53647c;
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+    .run50-global-tabs a,
+    .theme-toggle {
+      color: inherit;
+      text-decoration: none;
+      text-align: center;
+      border-bottom: 1px solid transparent;
+      padding: 4px 0;
+    }
+    .run50-global-tabs a:first-child { text-align: left; }
+    .run50-global-tabs a:nth-child(4) { text-align: right; }
+    .run50-global-tabs a:hover { border-color: currentColor; }
+    .theme-toggle {
+      appearance: none;
+      -webkit-appearance: none;
+      color-scheme: light;
+      forced-color-adjust: none;
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 32px;
+      padding: 4px 12px;
+      border: 1px solid rgba(83, 100, 124, .35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .58);
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .18s ease, border-color .18s ease, color .18s ease;
+    }
+    .theme-toggle:hover,
+    .theme-toggle:focus-visible {
+      border-color: currentColor;
+      background: rgba(255, 255, 255, .82);
+      outline: none;
+    }
+    html[data-theme="dark"] .run50-global-tabs {
+      color: #c7d3e2;
+    }
+    html[data-theme="dark"] .run50-global-tabs .theme-toggle {
+      border-color: rgba(199, 211, 226, .34) !important;
+      background: #1e293b !important;
+      color: #e8eef6 !important;
+    }
+    html[data-theme="dark"] .run50-global-tabs .theme-toggle:hover,
+    html[data-theme="dark"] .run50-global-tabs .theme-toggle:focus-visible {
+      background: #263449 !important;
+    }
+    @media (max-width: 640px) {
+      .run50-global-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        padding: 14px 18px 0;
+        row-gap: 8px;
+      }
+      .run50-global-tabs a,
+      .run50-global-tabs a:first-child,
+      .run50-global-tabs a:nth-child(4) {
+        text-align: left;
+      }
+      .theme-toggle { justify-self: start; }
+    }
+  </style>
+
 </head>
 <body>
-  <main>
-    <h1>Chinese Stories has moved</h1>
-    <p>There is now one Chinese Stories entry. If this page does not redirect automatically, open <a href="../../wechat-new/?v=20260630-rail-align">Chinese Stories</a>.</p>
+  <nav class="run50-global-tabs" aria-label="Run50 story sections"><a href="../../index.html">← Run50</a><a href="../english/">英文故事</a><a href="./">中文故事</a><a href="../../facebook/">Facebook</a><a href="#theme" role="button" class="theme-toggle" data-theme-toggle aria-pressed="false"><span aria-hidden="true">◐</span><span data-theme-label>深色</span></a></nav>
+  <main class="shell">
+
+    <section class="hero">
+      <p class="kicker">Run50 · 中文长文档案</p>
+      <h1>跑过的州、城市和世界</h1>
+      <p class="intro">这里整理 Run50、RunCN 和 RunWorld 的中文长文。每张卡片保留一张车牌 / 奖牌式封面，下面是比赛地点、时间、故事标题和一段跑旅记忆。</p>
+    </section>
+
+    <nav class="series-nav" aria-label="中文故事系列导航">
+      <a href="#run50-series"><span>美国50州</span><small>Run50 时间线，按比赛日期排列。</small></a>
+      <a href="#runcn-series"><span>中国马拉松</span><small>RunCN 站点，保留国内跑旅原始记忆。</small></a>
+      <a href="#runworld-series"><span>世界马拉松</span><small>RunWorld 故事，美国和中国之外的路线。</small></a>
+    </nav>
+
+    <!-- 跑马足迹互动地图 (Interactive Map) -->
+    <section class="map-deck" aria-label="跑马足迹地图">
+    <div id="stories-map-container" style="max-width:980px; margin: 0 auto 34px; background:#fff; border-radius:12px; border:1px solid var(--line); padding:24px; box-shadow: 0 18px 44px rgba(15, 23, 42, .08);">
+      <div style="font-size:16px; font-weight:700; color:var(--ink); margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span>Run50 马拉松跑旅地图</span>
+          <span style="font-size:12px; background:#e2f0d9; color:#2d6a4f; padding:2px 8px; border-radius:12px; font-weight:bold;">已跑过 35 州</span>
+        </div>
+        <span id="map-hover-status" style="font-size:13px; font-weight:normal; color:var(--muted); transition:color 0.2s;">鼠标悬停在州或红点上查看长文，点击卡片跳转</span>
+      </div>
+
+      <div class="welcome-map-slot" id="welcome-map-slot" style="position:relative; width:100%; aspect-ratio: 1722 / 989; background:#f4f6f7; border-radius:8px; overflow:hidden; border:1px solid var(--line);">
+        <!-- SVG Map will be dynamically appended here from US_MAP_SVG -->
+      </div>
+
+      <!-- 地图图例 -->
+      <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:10px; flex-wrap:wrap;">
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span style="display:inline-block; width:12px; height:12px; background:linear-gradient(135deg,#d4614a 0 25%,#e89838 25% 50%,#5ca860 50% 75%,#3898a8 75%); border-radius:3px;"></span>
+          <span>所有彩色州都是我跑过的州（35州）</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
+          <span>跑马城市 (红点点亮)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 中国足迹互动地图 -->
+    <div id="china-map-container" style="max-width:980px; margin: 0 auto 34px; background:#fff; border-radius:12px; border:1px solid var(--line); padding:24px; box-shadow: 0 18px 44px rgba(15, 23, 42, .08);">
+      <div style="font-size:16px; font-weight:700; color:var(--ink); margin-bottom:15px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span>中国马拉松跑旅地图</span>
+          <span style="font-size:12px; background:#fff2e8; color:#cc0000; padding:2px 8px; border-radius:12px; font-weight:bold;">已跑过 17 个省级区域</span>
+        </div>
+        <span id="china-map-hover-status" style="font-size:13px; font-weight:normal; color:var(--muted); transition:color 0.2s;">鼠标悬停在省份或红点上查看故事，点击可跳转到对应卡片</span>
+      </div>
+      <div id="cn-map-slot" style="position:relative; width:100%; aspect-ratio: 800 / 720; background:#f4f6f7; border-radius:8px; overflow:hidden; border:1px solid var(--line);">
+      </div>
+      <div style="display:flex; align-items:center; gap:15px; margin-top:12px; font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:10px; flex-wrap:wrap;">
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span style="display:inline-block; width:12px; height:12px; background:linear-gradient(135deg,#d4614a 0 25%,#e89838 25% 50%,#5ca860 50% 75%,#3898a8 75%); border-radius:3px;"></span>
+          <span>彩色省份/地区：已跑过或有 RunCN 参赛故事</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span style="display:inline-block; width:6px; height:6px; background:#ff3b30; border-radius:50%; border:1px solid #fff; box-shadow:0 0 4px rgba(255,0,0,0.5)"></span>
+          <span>跑马城市 / 比赛城市</span>
+        </div>
+      </div>
+    </div>
+    </section>
+
+    <section class="story-section run-50-zone" id="run50-series" aria-labelledby="run50-series-title">
+      <div class="section-head">
+        <p class="section-kicker">Run50 · 美国50州</p>
+        <h2 id="run50-series-title">美国50州马拉松故事</h2>
+        <p>按比赛日期从早到晚排列，保留 Run50 州序编号；番外和重跑按实际年份归入时间线。</p>
+      </div>
+      <div class="story-grid" aria-label="美国50州马拉松故事">
+
+        <a class="story-card run-50" href="./louisville-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-louisville-cn-flat.jpg?v=20260704-ky20-cyber-cn" alt="路易斯维尔马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">肯塔基路易斯维尔 · 2020.11.08</p>
+                  <h2 class="story-title">Run50 #第1州｜路易斯维尔马拉松</h2>
+                  <p class="story-desc">疫情中的间隔起跑、六英尺社交距离、Beckley Creek Park的秋日折返，以及我在北美完成的第一个全马。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
+
+<a class="story-card run-50" href="./kentucky-derby-marathon-2021.html">
+  <img src="../../../assets/cover-medal-zh-index-kentucky-derby-2021-cn-flat.jpg?v=20260704-ky21-louisville" alt="肯塔基 Derby 2021 传奇跑者半年流水账奖牌封面" loading="lazy" decoding="async">
+  <div class="story-copy">
+    <p class="story-meta">肯塔基路易斯维尔 · 2021.04.24</p>
+    <h2 class="story-title">肯塔基第二篇：Derby 全马｜“传奇跑者”的半年流水账</h2>
+    <p class="story-desc">搬家、Waverly 半马、阴雨里的 Derby 全马、疫苗和驾照，把 2021 上半年重新跑开。</p>
+    <div class="story-foot"><span>Run50 · 第1州</span><span>阅读 →</span></div>
+  </div>
+</a>
+
+        <a class="story-card run-50" href="./cleveland-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-cleveland-cn-flat.jpg?v=20260629-cn-flat-v4" alt="克利夫兰马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">俄亥俄克利夫兰 · 2021.10.24</p>
+                  <h2 class="story-title">Run50 #第2州｜克利夫兰马拉松</h2>
+                  <p class="story-desc">城市篇与比赛篇合并：摇滚名人堂、骑士主场、伊利湖晨光、工业风高架和从黑夜跑到白昼的42.195公里。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./new-york-city-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-new-york-cn-flat.jpg?v=20260629-cn-flat-v3" alt="纽约马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">纽约纽约市 · 2021.11.07</p>
+                  <h2 class="story-title">Run50 #第3州｜纽约马拉松</h2>
+                  <p class="story-desc">城市篇与比赛篇合并：赛博朋克纽约、法拉盛、时代广场、哈德逊河游船，以及50周年纽约马拉松的五区奔跑。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./san-francisco-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-san-francisco-cn-flat.jpg?v=20260629-cn-flat-v2" alt="旧金山马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">加州旧金山 · 2022.07.24</p>
+                  <h2 class="story-title">Run50 #第4州｜旧金山马拉松</h2>
+                  <p class="story-desc">城市篇与比赛篇合并：流雾Karl、联合广场、金门大桥、唐人街、单车游城，以及45届旧金山马拉松的桥风、山坡和湾区阳光。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./indianapolis-monumental-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-indianapolis-cn-flat.jpg?v=20260630-round5-v1" alt="印第安纳波利斯纪念碑马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">印第安纳印第安纳波利斯 · 2022.11.05</p>
+                  <h2 class="story-title">Run50 #第5州｜印第安纳波利斯纪念碑马拉松</h2>
+                  <p class="story-desc">一日狂飙去印城跑“牦牛”马：凌晨出发、秋雨开跑、纪念碑广场、430和445兔子、跑走策略，以及4小时55分12秒的回归。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./honolulu-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-honolulu-cn-flat.jpg?v=20260629-cn-flat-v3" alt="火奴鲁鲁马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">夏威夷火奴鲁鲁 · 2022.12.11</p>
+                  <h2 class="story-title">Run50 #第6州｜火奴鲁鲁马拉松</h2>
+                  <p class="story-desc">两篇合并：火奴鲁鲁白日梦、威基基晨光、钻石头和彩虹船，以及50周年火奴鲁鲁马拉松，47的第一个全马。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./atlanta-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-atlanta-cn-flat.jpg?v=20260630-round4-v1" alt="亚特兰大马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">佐治亚亚特兰大 · 2023.02.26</p>
+                  <h2 class="story-title">Run50 #第7州｜亚特兰大马拉松</h2>
+                  <p class="story-desc">为了点亮佐治亚，自驾16小时往返亚特兰大：96奥运之城、CNN、可口可乐、城市坡道，以及26.2和13.1的周末。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
+        <a class="story-card run-50" href="./kentucky-derby-marathon-2023.html">
+          <img src="../../../assets/cover-medal-zh-kentucky-derby-marathon-2023.jpg?v=20260704-ky23-user-pick" alt="肯塔基德比马拉松奖牌封面" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">肯塔基路易斯维尔 · 2023.04.29</p>
+            <h2 class="story-title">Run50 #第1州番外｜肯塔基德比马拉松</h2>
+            <p class="story-desc">回到自己的城市，把肯塔基德比马拉松补成一篇：赛马季、Twin Spires、市中心、朋友们，还有路城最大的跑步 Party。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+
+        <a class="story-card run-50" href="./cincinnati-flying-pig-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-cincinnati-cn-flat.jpg?v=20260701-stylemix-v1" alt="辛辛那提飞猪马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">俄亥俄辛辛那提 · 2023.05.07</p>
+                  <h2 class="story-title">Run50 #第2州番外｜辛辛那提飞猪马拉松</h2>
+                  <p class="story-desc">在皇后城再跑一次俄亥俄：飞猪、俄亥俄河、城市坡道和一场湿透的比赛，让 Flying Pig 变成了 Flying Fish。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./denver-colfax-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-denver-cn-flat.jpg?v=20260630-round4-v1" alt="丹佛 Colfax 马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">科罗拉多丹佛 · 2023.05.21</p>
+                  <h2 class="story-title">Run50 #第8州｜丹佛 Colfax 马拉松</h2>
+                  <p class="story-desc">生日后的周末去里高城点亮科罗拉多：老同学请饭、丹佛阳光、雪山远景、球场草地和高海拔的26.2英里。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./anchorage-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-anchorage-cn-flat.jpg?v=20260630-rebalance-v1" alt="安克雷奇马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">阿拉斯加安克雷奇 · 2023.06.17</p>
+                  <h2 class="story-title">Run50 #第9州｜安克雷奇马拉松</h2>
+                  <p class="story-desc">去没有极光的阿拉斯加，跑一次安克雷奇马拉松：雪山、海湾、野性、长日照，以及一次把地图拉得更远的旅行。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./st-joseph-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-st-joseph-cn-flat.jpg?v=20260701-ky-mo-v1" alt="圣约瑟夫马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">密苏里圣约瑟夫 · 2023.09.23</p>
+                  <h2 class="story-title">Run50 #第10州｜圣约瑟夫马拉松</h2>
+                  <p class="story-desc">穿越密苏里去跑第一届圣约瑟夫马拉松：公园道路、坡、热浪、婚礼，以及芝加哥前的一次长距离训练。</p>
+                  <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./chicago-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-chicago-cn-flat.jpg?v=20260630-round3-v1" alt="芝加哥马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">伊利诺伊芝加哥 · 2023.10.08</p>
+                  <h2 class="story-title">Run50 #第11州｜芝加哥马拉松</h2>
+                  <p class="story-desc">45周年芝加哥马拉松，也是我的第二个世界大满贯。错过早班飞机、唐人街补给、格兰特公园起跑、见证基普图姆世界纪录诞生，再陪Siqi七小时冲线。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./nashville-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-nashville-cn-flat.jpg?v=20260629-badgefix-v1" alt="纳什维尔马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">田纳西纳什维尔 · 2023.10.28</p>
+                  <h2 class="story-title">Run50 #第12州｜纳什维尔马拉松</h2>
+                  <p class="story-desc">十月底的音乐之都纳什维尔，在万圣节前夕跑过坎伯兰河与行人天桥，在极其炎热与暴晒的艳阳下，跑出了本年最慢的PW成绩，并在纳什维尔之音棒球场冲线！</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./west-virginia-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-west-virginia-cn-flat.jpg?v=20260630-round4-v1" alt="西弗吉尼亚马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">西弗吉尼亚亨廷顿 · 2023.11.05</p>
+                  <h2 class="story-title">Run50 #第13州｜西弗吉尼亚马拉松</h2>
+                  <p class="story-desc">十一月初的西弗吉尼亚亨廷顿，在秋高气爽的马歇尔大学校园，将一朵花送给1970年空难的离世队员们；在终点抱着橄榄球“达阵”冲线，成功破4！</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./san-antonio-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-san-antonio-cn-flat.jpg?v=20260701-artfix-v1" alt="圣安东尼奥马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">德克萨斯圣安东尼奥 · 2023.12.03</p>
+                  <h2 class="story-title">Run50 #第14州｜圣安东尼奥摇滚马拉松</h2>
+                  <p class="story-desc">因为马刺和文班亚马来到圣安东尼奥，结果球没看成，却跑完了2023收官马。阿拉莫、River Walk、Fort Sam Houston、墨西哥风情和4小时12分的德州热坡。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./disney-marathon.html">
+          <img src="../../../assets/cover-medal-zh-index-disney-cn-flat.jpg?v=20260701-artfix-v1" alt="Run50 #第15州｜佛罗里达：基韦斯特、奥兰多与迪士尼马拉松封面" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">佛罗里达基韦斯特 / 奥兰多 · 2024.01.04</p>
+            <h2 class="story-title">Run50 #第15州｜佛罗里达：基韦斯特、奥兰多与迪士尼马拉松</h2>
+            <p class="story-desc">佛罗里达第15州完整篇：基韦斯特跨年、奥兰多速通、环球影城和迪士尼马拉松。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./miami-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-miami-cn-flat.jpg?v=20260629-badgefix-v1" alt="迈阿密马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">佛罗里达迈阿密 · 2024.01.28</p>
+                  <h2 class="story-title">Run50 #第15州｜迈阿密马拉松</h2>
+                  <p class="story-desc">一张买错日期的机票，让我们意外重返迈阿密。身披C罗战袍，在梅西的主场迎着热浪跑完26.2英里。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./north-carolina-oak-island-marathon.html">
+          <img src="../../../assets/cover-medal-zh-index-oak-island-cn-flat.jpg?v=20260630-round4-v1" alt="Run50 #第16州｜北卡罗莱纳：橡树岛马拉松封面" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">北卡罗莱纳橡树岛 · 2024.02.18</p>
+            <h2 class="story-title">Run50 #第16州｜北卡罗莱纳：橡树岛马拉松</h2>
+            <p class="story-desc">北卡橡树岛的海边全马：深冬训练、海风、大西洋和一块比脸还大的奖牌。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./little-rock-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-little-rock-cn-flat.jpg?v=20260629-cn-flat-v4" alt="小石城马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">阿肯色小石城 · 2024.03.03</p>
+                  <h2 class="story-title">Run50 #第17州｜小石城马拉松</h2>
+                  <p class="story-desc">三月初的小石城马拉松，为了那块巨大的绿色暴龙奖牌驱车向南。跑过市中心、达索公司和奥索普森林公园，冲线克林顿总统的故乡。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-50" href="./south-carolina-marathon.html">
+                <img src="../../../assets/cover-medal-zh-index-south-carolina-cn-flat.jpg?v=20260701-stylemix-v1" alt="南卡罗莱纳马拉松奖牌封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">南卡罗莱纳Greer · 2024.04.14</p>
+                  <h2 class="story-title">Run50 #第18州｜南卡罗莱纳马拉松</h2>
+                  <p class="story-desc">南卡罗莱纳小镇Greer的2Slow4Boston马拉松，一个专为跑不进波马的人准备的反向比赛。在宁静的小区里绕圈20次，收获一块骡子拉大叔的奇特奖牌。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+        <a class="story-card run-50" href="./kentucky-derby-marathon.html">
+          <img src="../../../assets/cover-medal-zh-index-kentucky-derby-cn-flat.jpg?v=20260704-ky24-01ppp-imagegen" alt="肯塔基德比马拉松奖牌封面" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">肯塔基路易斯维尔 · 2024.04.27</p>
+            <h2 class="story-title">肯塔基：赛马节马拉松｜四刷主场，蓝草州终破4！</h2>
+            <p class="story-desc">第四次跑 Louisville Derby Marathon，从赛马节和 Churchill Downs 到 Iroquois Park，终于在主场破四。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="../../wechat/pittsburgh-marathon-modern-rail.html">
+          <img src="../../../assets/cover-medal-zh-index-pittsburgh-cn-flat.jpg?v=20260701-stylemix-v2" alt="宾夕法尼亚匹兹堡马拉松奖牌封面" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">宾夕法尼亚匹兹堡 · 2024.05.05</p>
+            <h2 class="story-title">Run50 #第19州｜宾夕法尼亚：匹兹堡马拉松｜钢铁之心，拿下摇摆州！</h2>
+            <p class="story-desc">从蓝草州开到钢铁城，在雨后的桥、坡、三河和黑黄人潮里，收下 Run50 第19州。</p>
+            <div class="story-foot"><span>微信长文</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./green-bay-marathon.html">
+          <img src="../../../assets/cover-medal-zh-green-bay-marathon.jpg?v=20260703-wi-green-bay" alt="威斯康辛绿湾马拉松赛博朋克奖牌封面" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">威斯康辛绿湾 · 2024.05.20</p>
+            <h2 class="story-title">Run50 #第20州｜威斯康辛：绿湾马拉松｜跑进兰博球场的最后一届</h2>
+            <p class="story-desc">从风城和密歇根湖一路北上，在奶酪州的热浪里跑进 Green Bay Packers 的圣地兰博球场。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+        <a class="story-card run-50" href="../../wechat/hatfield-mccoy-marathon-modern-rail.html">
+          <img src="../../../assets/cover-medal-zh-index-williamson-cn-flat.jpg?v=20260704-williamson-bright-2x2pp" alt="肯塔基哈特菲尔德麦考伊马拉松奖牌封面" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">肯塔基 / 西弗吉尼亚边境 · 2024.06.08</p>
+            <h2 class="story-title">Run50 #第1州｜肯塔基#2：哈特菲尔德-麦考伊马拉松｜阿巴拉契亚山谷的脚步声与枪声</h2>
+            <p class="story-desc">一场穿过阿巴拉契亚山谷的小镇马拉松：木屋、雾山、手写英里牌、吊桥、Lucky Duck 和赛后披萨。</p>
+            <div class="story-foot"><span>微信长文</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./michigan-meadows-marathon.html">
+          <img src="../../../assets/cover-medal-zh-index-michigan-meadows-cn-flat.jpg?v=20260630-round4-v1" alt="密歇根大急流城梅多马拉松奖牌封面" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">密歇根大急流城 · 2024.08.25</p>
+            <h2 class="story-title">Run50 #第21州｜密歇根梅多马拉松</h2>
+            <p class="story-desc">在大急流城千禧公园跑六圈全马：Parkrun 开头、车祸小插曲、Grand River 日出、六道轮回和 4 小时 44 分的三味真火。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+<!-- BEGIN RUN50 2024-2025 POLISHED STORIES -->
+
+        <a class="story-card run-50" href="./new-hampshire-clarence-demar-marathon.html">
+          <img src="../../../assets/cover-medal-zh-index-new-hampshire-cn-flat.jpg?v=20260630-round5-v1" alt="Run50 #第22州｜新罕布什尔：克拉伦斯·德马尔马拉松｜跑进新英格兰小镇，穿越秋色森林与墓地！ cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">新罕布什尔基恩 · 2024.09.28</p>
+            <h2 class="story-title">Run50 #第22州｜新罕布什尔：克拉伦斯·德马尔马拉松｜跑进新英格兰小镇，穿越秋色森林与墓地！</h2>
+            <p class="story-desc">从尼亚加拉瀑布一路开进新英格兰秋色，在基恩的小镇清晨、山林赛道和校园终点里完成第22州。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./louisville-marathon-2024.html">
+          <img src="../../../assets/cover-medal-zh-index-louisville-2024-cn-flat.jpg?v=20260704-ky24-louisville-01ppppp-imagegen" alt="Run50 #第1州番外｜肯塔基#3：路易斯维尔马拉松｜博士收官战，送我一朵小红花 cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">肯塔基路易斯维尔 · 2024.11.03</p>
+            <h2 class="story-title">Run50 #第1州番外｜肯塔基#3：路易斯维尔马拉松｜博士收官战，送我一朵小红花</h2>
+            <p class="story-desc">回到美国跑马起点，在 Floyds Fork 的秋色里把博士生涯跑成一个完整的 loop。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./louisiana-marathon.html">
+          <img src="../../../assets/cover-medal-zh-index-louisiana-cn-flat.jpg?v=20260701-stylemix-v1" alt="Run50 #第23州｜路易斯安那：巴吞鲁日马拉松｜法兰西底色，2025 第一跑 cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">路易斯安那巴吞鲁日 · 2025.01.19</p>
+            <h2 class="story-title">Run50 #第23州｜路易斯安那：巴吞鲁日马拉松｜法兰西底色，2025 第一跑</h2>
+            <p class="story-desc">新年第一跑，从达拉斯转机到新奥尔良，再开进巴吞鲁日，把南方湿地、LSU 紫金色和 Finish Fest 串在一起。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./blue-ridge-marathon.html">
+          <img src="../../../assets/cover-medal-zh-index-blue-ridge-cn-flat.jpg?v=20260701-artfix-v1" alt="Run50 #第24州｜弗吉尼亚：蓝岭山马拉松｜全美最虐赛道，3,564英尺的暴力美学 cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">弗吉尼亚罗阿诺克 · 2025.04.12</p>
+            <h2 class="story-title">Run50 #第24州｜弗吉尼亚：蓝岭山马拉松｜全美最虐赛道，3,564英尺的暴力美学</h2>
+            <p class="story-desc">America&#x27;s Toughest Road Marathon，把马拉松跑成登山赛，也把蓝岭山脉的硬派风光跑进腿里。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./kentucky-derby-marathon-2025.html">
+          <img src="../../../assets/cover-medal-zh-index-kentucky-derby-2025-cn-flat.jpg?v=20260704-ky25-ali-01pppppp-imagegen" alt="Run50 #第1州番外｜肯塔基#4：德比马拉松｜三个奖牌，一块蛋糕，我的第50场马拉松！ cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">肯塔基路易斯维尔 · 2025.04.26</p>
+            <h2 class="story-title">Run50 #第1州番外｜肯塔基#4：德比马拉松｜三个奖牌，一块蛋糕，我的第50场马拉松！</h2>
+            <p class="story-desc">工作后的第一场德比马拉松，也是个人第50场全马：周五 5K、周六全马、三块奖牌和一块蛋糕。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./fargo-marathon.html">
+          <img src="../../../assets/cover-medal-zh-index-fargo-cn-flat.jpg?v=20260630-rebalance-v1" alt="Run50 #第25州｜北达科他州：法戈马拉松｜跑进美剧小镇，踏上50州跑马的“半程分水岭”！ cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">北达科他法戈 · 2025.05.31</p>
+            <h2 class="story-title">Run50 #第25州｜北达科他州：法戈马拉松｜跑进美剧小镇，踏上50州跑马的“半程分水岭”！</h2>
+            <p class="story-desc">从蓝草州一路开到大平原，在粉色天空、玉米地、热浪和破4里完成 Run50 半程分水岭。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./hell-on-gravel-marathon.html">
+          <img src="../../../assets/cover-medal-zh-index-hell-on-gravel-cn-flat.jpg?v=20260630-rebalance-v1" alt="Run50 #第26州｜堪萨斯：地狱砂石马拉松｜冠军就是冠军，哪怕全马只有十个人！ cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">堪萨斯埃尔多拉多 · 2025.06.28</p>
+            <h2 class="story-title">Run50 #第26州｜堪萨斯：地狱砂石马拉松｜冠军就是冠军，哪怕全马只有十个人！</h2>
+            <p class="story-desc">风、牛群、麦田和砂石路，把一场小到只有十个人的全马跑成了冠军故事。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./mad-marathon.html">
+          <img src="../../../assets/cover-medal-zh-index-mad-marathon-cn-flat.jpg?v=20260701-artfix-v1" alt="Run50 #第27州｜佛蒙特：疯河谷马拉松｜绿山之州的夏天，跑进乡村油画里 cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">佛蒙特沃伦 · 2025.07.17</p>
+            <h2 class="story-title">Run50 #第27州｜佛蒙特：疯河谷马拉松｜绿山之州的夏天，跑进乡村油画里</h2>
+            <p class="story-desc">开进新英格兰腹地，在绿山、谷仓、国旗和乡村小路中，跑进一幅夏天的油画。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-50" href="./rocket-city-marathon.html">
+          <img src="../../../assets/cover-medal-zh-index-rocket-city-cn-flat.jpg?v=20260630-abstract-v2" alt="Run50 #第28州｜阿拉巴马：火箭城马拉松｜寒流来袭，南方跑马也得穿秋裤 cover" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">阿拉巴马亨茨维尔 · 2025.12.12</p>
+            <h2 class="story-title">Run50 #第28州｜阿拉巴马：火箭城马拉松｜寒流来袭，南方跑马也得穿秋裤</h2>
+            <p class="story-desc">在寒流里的火箭城起跑，把南方州、航天工业、大火箭和路村朋友们一起跑进 2025 收官。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <!-- END RUN50 2024-2025 POLISHED STORIES -->
+      </div>
+    </section>
+
+    <section class="story-section run-cn-zone" id="runcn-series" aria-labelledby="runcn-series-title">
+      <div class="section-head">
+        <p class="section-kicker">RunCN · 中国站点</p>
+        <h2 id="runcn-series-title">中国马拉松系列</h2>
+        <p>回国前后的中国跑步故事，按年份时间整理，全马站点编号独立标注。</p>
+      </div>
+      <div class="story-grid" aria-label="中国马拉松系列">
+
+        <a class="story-card run-cn" href="./steel-tank-story.html">
+          <img src="../../../assets/cover-medal-steel-tank-story.jpg?v=20260628-steel-v3" alt="RunCN #第1-6站｜钢铁战车的故事" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">哈尔滨 / 武汉 · 2017</p>
+            <h2 class="story-title">RunCN #第1-6站｜钢铁战车的故事</h2>
+            <p class="story-desc">从足球场上的钢铁战车，到哈尔滨马拉松终点线上的骄傲儿子。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./three-city-pilgrimage.html">
+          <img src="../../../assets/cover-medal-three-city-pilgrimage.jpg?v=20260628-threecity-v4" alt="RunCN #第7-9站｜鲜衣怒马，烈焰红花：三座城的朝圣之旅" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">广安 / 宜昌 / 长沙 · 2017.10.15-11.18</p>
+            <h2 class="story-title">RunCN #第7-9站｜鲜衣怒马，烈焰红花：三座城的朝圣之旅</h2>
+            <p class="story-desc">广安马、宜昌半马、长沙马拉松，以及邓小平、导师、毛主席三条线索串起的跑马朝圣。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./xiamen-marathon.html">
+          <img src="../../../assets/cover-medal-xiamen-marathon.jpg?v=20260628-xiamen-fujian-v5" alt="RunCN #第10站｜厦门马拉松：以最难忘的出场，享拥每一句赞扬" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">福建厦门 · 2018.01.07</p>
+            <h2 class="story-title">RunCN #第10站｜厦门马拉松：以最难忘的出场，享拥每一句赞扬</h2>
+            <p class="story-desc">厦门雨战、曾厝垵、跑友重逢，以及2018年开年的第一场全马。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./wuhan-wuxi-marathon-notes.html">
+          <img src="../../../assets/cover-medal-wuhan-wuxi-marathon-notes.jpg?v=20260628-gpd-v1-lanzhou-wuxi" alt="RunCN #第11站｜无锡马拉松笔记：樱花树下绽放" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">江苏无锡 · 2018.03.25</p>
+            <h2 class="story-title">RunCN #第11站｜无锡马拉松笔记：樱花树下绽放</h2>
+            <p class="story-desc">武汉、无锡、樱花、大学生马拉松和三场春天里的跑步笔记。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./wuhan-marathon-2018.html">
+          <img src="../../../assets/cover-medal-wuhan-marathon-2018.jpg?v=20260628-hubei-abstract" alt="RunCN #第12站｜武汉马拉松：连接百年的奔跑" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">湖北武汉 · 2018.04.15</p>
+            <h2 class="story-title">RunCN #第12站｜武汉马拉松：连接百年的奔跑</h2>
+            <p class="story-desc">辛亥、东湖、汉马志愿者和燃到炸的大武汉。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./xian-city-wall-marathon.html">
+          <img src="../../../assets/cover-medal-xian-city-wall-marathon.jpg?v=20260628-xian-dalian-clean-a" alt="RunCN #第13站｜西安城墙马拉松：风雨城墙路" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">陕西西安 · 2018.04.21</p>
+            <h2 class="story-title">RunCN #第13站｜西安城墙马拉松：风雨城墙路</h2>
+            <p class="story-desc">风雨城墙路、八百里秦川、兵马俑、华山与壶口瀑布，写成一篇厚重的长安行记。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./lanzhou-marathon.html">
+          <img src="../../../assets/cover-medal-lanzhou-marathon.jpg?v=20260628-gpd-v1-lanzhou-wuxi" alt="RunCN #第14站｜兰州马拉松：河西走廊东边的野望与奔腾" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">甘肃兰州 · 2018.06.10</p>
+            <h2 class="story-title">RunCN #第14站｜兰州马拉松：河西走廊东边的野望与奔腾</h2>
+            <p class="story-desc">黄河、牛肉面、中山桥、皋兰山和热情到炸的兰州马拉松。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./guiyang-marathon-climb.html">
+          <img src="../../../assets/cover-medal-guiyang-marathon-climb.jpg?v=20260628-guiyang-v9" alt="RunCN #第15站｜贵阳马拉松：夜郎漫行，此心光明" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">贵州贵阳 · 2018.07.22</p>
+            <h2 class="story-title">RunCN #第15站｜贵阳马拉松：夜郎漫行，此心光明</h2>
+            <p class="story-desc">贵阳马拉松的高温爬升、青岩古镇、夜郎谷、阳明洞和梵净山，写成一堂西南修行课。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./haikou-marathon.html">
+          <img src="../../../assets/cover-medal-haikou-marathon.jpg?v=20260628-runcn-haikou-v2" alt="RunCN #第16站｜海口：诗和远方与星沉大海" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">海南海口 · 2019.03.03</p>
+            <h2 class="story-title">RunCN #第16站｜海口：诗和远方与星沉大海</h2>
+            <p class="story-desc">海口骑楼、海南海风、未完赛的遗憾和一篇仍要留下的城市故事。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./wuhan-han-marathon.html">
+          <img src="../../../assets/cover-medal-wuhan-han-marathon.jpg?v=20260628-hubei-abstract" alt="RunCN #第17站｜武汉汉马：独家记忆" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">湖北武汉 · 2019.04.14</p>
+            <h2 class="story-title">RunCN #第17站｜武汉汉马：独家记忆</h2>
+            <p class="story-desc">汉马、武大、江城、毕业前的乡愁和一场属于武汉的独家记忆。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./dalian-trail.html">
+          <img src="../../../assets/cover-medal-dalian-trail.jpg?v=20260628-xian-dalian-clean-a" alt="RunCN #第18站｜大连越野：越过山丘，在大连" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">辽宁大连 · 2019.06.09</p>
+            <h2 class="story-title">RunCN #第18站｜大连越野：越过山丘，在大连</h2>
+            <p class="story-desc">大连西海岸、黄渤海分界线、越野赛和一篇写给东北的山丘故事。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./wuhan-graduation.html">
+          <img src="../../../assets/cover-medal-wuhan-graduation.jpg?v=20260628-beijing-abstract" alt="RunCN #第19站｜北京凤凰岭夜跑：毕业图话，迟到了两年" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">北京凤凰岭 / 武汉毕业 · 2019.06.29</p>
+            <h2 class="story-title">RunCN #第19站｜北京凤凰岭夜跑：毕业图话，迟到了两年</h2>
+            <p class="story-desc">武大毕业、爸妈来武汉、东湖和一组迟到两年的照片回忆。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./harbin-marathon.html">
+          <img src="../../../assets/cover-medal-harbin-marathon.jpg?v=20260628-runcn-harbin-confident-v1" alt="RunCN #第20站｜哈尔滨马拉松：那年，我在东北老家跑哈马" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">黑龙江哈尔滨 · 2019.08.25</p>
+            <h2 class="story-title">RunCN #第20站｜哈尔滨马拉松：那年，我在东北老家跑哈马</h2>
+            <p class="story-desc">松花江、黑土地、东北老家和一次迟来的哈马回忆。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./west-lake-half-marathon.html">
+          <img src="../../../assets/cover-medal-west-lake-half-marathon.jpg?v=20260628-runcn-distinct-v1" alt="RunCN #第21站｜西湖半马：我去西湖跑半马，偶遇跑者施一公" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">浙江杭州 · 2019.11.10</p>
+            <h2 class="story-title">RunCN #第21站｜西湖半马：我去西湖跑半马，偶遇跑者施一公</h2>
+            <p class="story-desc">西湖、青芝坞、西湖大学和一场重新找回状态的半马。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./shanghai-vertical-marathon.html">
+                <img src="../../../assets/cover-medal-shanghai-vertical-marathon.jpg?v=20260628-runcn-shanghai-ratio-v2" alt="RunCN #第22站｜上海中心垂直马拉松" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">上海 · 2019.11.24</p>
+                  <h2 class="story-title">RunCN #第22站｜上海中心垂直马拉松</h2>
+                  <p class="story-desc">攀登中国第一高楼的119层、3399级台阶，在2019年的深秋完成这趟直入云端的垂直攀爬之旅。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-cn" href="./ningbo-dongqian-lake-marathon.html">
+          <img src="../../../assets/cover-medal-ningbo-dongqian-lake-marathon.jpg?v=20260628-runcn-distinct-v1" alt="RunCN #第23站｜宁波东钱湖马拉松：宁波，东钱湖边的聚会" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">浙江宁波 · 2019.12.08</p>
+            <h2 class="story-title">RunCN #第23站｜宁波东钱湖马拉松：宁波，东钱湖边的聚会</h2>
+            <p class="story-desc">2019 年岁末，在浙江最大的天然湖泊东钱湖边，骑行、跑马、见老友，也走进奉化的历史深处。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-cn" href="./xiangyang-marathon.html">
+                <img src="../../../assets/cover-medal-xiangyang.jpg?v=20260628-hubei-abstract" alt="RunCN #第24站｜襄阳马拉松" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">湖北襄阳 · 2025.10.19</p>
+                  <h2 class="story-title">RunCN #第24站｜襄阳马拉松</h2>
+                  <p class="story-desc">从珞珈山到汉江边，回国第一跑意外跑进四小时。婚礼、武汉、襄阳古城 and 一条节奏友好的赛道。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-cn" href="./guilin-marathon.html">
+                <img src="../../../assets/cover-medal-guilin.jpg?v=20260628-runcn-distinct-v1" alt="RunCN #第25站｜桂林马拉松" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">广西桂林 · 2025.11.16</p>
+                  <h2 class="story-title">RunCN #第25站｜桂林马拉松</h2>
+                  <p class="story-desc">热浪滚滚的一场桂林马拉松。漓江、穿山、七星、象鼻山，还有爸妈 and 姨妈在终点等我。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-cn" href="./hong-kong-marathon.html">
+                <img src="../../../assets/cover-medal-hk.jpg?v=20260628-runcn-hk-ratio-v2" alt="RunCN #第26站｜香港嘉里街道马拉松" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">中国香港 · 2025.11.23</p>
+                  <h2 class="story-title">RunCN #第26站｜香港嘉里街道马拉松</h2>
+                  <p class="story-desc">凌晨五点开跑，穿过隧道、高架、海风 and 将军澳跨湾大桥，给两个半月的中国行画上收尾的一站。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+      </div>
+    </section>
+
+    <section class="story-section run-world-zone" id="runworld-series" aria-labelledby="runworld-series-title">
+      <div class="section-head">
+        <p class="section-kicker">RunWorld · 世界路线</p>
+        <h2 id="runworld-series-title">世界马拉松系列</h2>
+        <p>美国和中国之外的跑旅故事，按 RunWorld 站点顺序展示。</p>
+      </div>
+      <div class="story-grid" aria-label="世界马拉松系列">
+
+        <a class="story-card run-world" href="./singapore-sundown-marathon.html">
+          <img src="../../../assets/cover-medal-singapore-sundown-marathon.jpg?v=20260628-cn-abstract" alt="RunWorld #第1站｜新加坡 Sundown Marathon：十年之约，归来仍是少年封面" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">新加坡 · 2018</p>
+            <h2 class="story-title">RunWorld #第1站｜新加坡 Sundown Marathon：十年之约，归来仍是少年</h2>
+            <p class="story-desc">新加坡十年之约、校园朝圣、滨海湾夜色和一场从午夜跑到天亮的 Sundown Marathon。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-world" href="./bangkok-marathon.html">
+          <img src="../../../assets/cover-medal-bangkok-marathon.jpg?v=20260628-cn-abstract" alt="RunWorld #第2站｜曼谷马拉松：昼夜不停封面" loading="lazy" decoding="async">
+          <div class="story-copy">
+            <p class="story-meta">泰国曼谷 · 2019</p>
+            <h2 class="story-title">RunWorld #第2站｜曼谷马拉松：昼夜不停</h2>
+            <p class="story-desc">曼谷跑马、寺庙夜色、四面佛许愿和微笑国度的热烈周末。</p>
+            <div class="story-foot"><span>长文图记</span><span>阅读 →</span></div>
+          </div>
+        </a>
+
+        <a class="story-card run-world" href="./mexico-marathon.html">
+                <img src="../../../assets/cover-medal-mexico.jpg?v=20260628-runworld-mexico-pisa-v1" alt="RunWorld #第3站｜墨西哥城马拉松封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">墨西哥城 · 2025.08.31</p>
+                  <h2 class="story-title">RunWorld #第3站｜墨西哥城马拉松</h2>
+                  <p class="story-desc">在2,240米的高原跑过改革大道，终点冲进宪法广场。赛后金字塔的奇妙之旅，与一车热情好客的墨西哥人的偶遇。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+
+        <a class="story-card run-world" href="./pisa-marathon.html">
+                <img src="../../../assets/cover-medal-pisa.jpg?v=20260628-runworld-mexico-pisa-v1" alt="RunWorld #第4站｜意大利：比萨马拉松封面" loading="lazy" decoding="async">
+                <div class="story-copy">
+                  <p class="story-meta">意大利比萨 · 2025.12.21</p>
+                  <h2 class="story-title">RunWorld #第4站｜意大利：比萨马拉松</h2>
+                  <p class="story-desc">从斜塔旁起跑，穿过阿诺河、托斯卡纳乡村和利古里亚海，再把奖牌一路带去威尼斯、米兰、佛罗伦萨和罗马。</p>
+                  <div class="story-foot">
+                    <span>长文图记</span>
+                    <span>阅读 →</span>
+                  </div>
+                </div>
+              </a>
+      </div>
+    </section>
   </main>
+
+  <!-- 引入 US SVG 地图数据 -->
+  <script src="../../us-map-svg.js?v=20260605-2"></script>
+  <script>
+    // _HM, _SF, _CITY_LAT_LON, _STORY_MAPPING variables similar to run50.html
+    const _HM = {
+      "IL": ["Illinois", "Kentucky_1_"],
+      "TN": ["Alabama"],
+      "WV": ["West_Virginia", "Virginia_1_"],
+      "TX": ["Kansas_1_"],
+      "FL": ["South_Carolina_1_"],
+      "NC": ["Maryland"],
+      "AR": ["Tennessee", "Arkansas"],
+      "SC": ["South_Carolina", "Indiana_1_"],
+      "KY": ["Georgia_1_", "Kentucky"],
+      "PA": ["Pensilvania", "New_Jersey_1_"],
+      "WI": ["Wisconsin", "Illinois_1_"],
+      "MI": ["Michigan", "Ocean"],
+      "NH": ["New_Hampshire", "Maine_1_"],
+      "LA": ["Arkansas_1_"],
+      "VA": ["North_Carolina_1_", "Virginia"],
+      "ND": ["South_Dakota_1_", "North_Dakota"],
+      "KS": ["Kansas", "North_Dakota_1_"],
+      "VT": ["New_Hampshire_1_", "Vermont"],
+      "AL": ["alabama", "Missispi"],
+      "AZ": ["Arizona_1_", "Utah"],
+      "DE": ["Massachusets_1_"],
+      "MN": ["Minnesotta", "Wisconsin_1_"],
+      "CT": ["New_York_2_", "Connecticut"],
+      "RI": ["Delaware", "Rhode_Island"],
+      "MA": ["Vermont_1_", "Massachusets"],
+      "ME": ["Michigan_1_", "Maine"],
+      "OH": ["Ohio", "West_Virginia_1_"],
+      "NY": ["Rhode_Island_1_", "New_York"],
+      "CA": ["Arizona"],
+      "IN": ["Indiana", "Ohio_1_"],
+      "GA": ["Georgia", "Florida_1_"],
+      "CO": ["Texas_1_", "Colorado"],
+      "MO": ["Iowa_1_", "Missouri"],
+      "HI": ["ocean_2_"],
+      "AK": ["ocean_3_"],
+      "ID": ["Idaho", "Wyoming"],
+      "IA": ["Minessota", "Iowa"],
+      "MS": ["Mossouri", "Missisppi"],
+      "MT": ["Washington_1_", "Montana"],
+      "NE": ["Nebraska", "Louisiana_1_"],
+      "NV": ["Nevada_41_", "California"],
+      "NJ": ["New_Jersey", "Connecticut_1_"],
+      "NM": ["Idaho_1_", "New_Mexico_1_"],
+      "OK": ["Oklahoma", "Colorado_1_"],
+      "OR": ["Nevada_1_", "Oregon_41_"],
+      "SD": ["South_Dakota", "Nebraska_1_"],
+      "UT": ["Utah_1_", "New_Mexico"],
+      "WY": ["Montana_1_", "Wyoming_1_"],
+      "MD": ["Pensilvania_1_", "Oregon_1_"],
+      "WA": ["Oklahoma_1_"]
+    };
+    const _STATE_NAMES = {
+      "IL": "伊利诺伊", "TN": "田纳西", "WV": "西弗吉尼亚", "TX": "德克萨斯",
+      "FL": "佛罗里达", "NC": "北卡罗莱纳", "AR": "阿肯色", "SC": "南卡罗莱纳",
+      "KY": "肯塔基", "PA": "宾夕法尼亚", "WI": "威斯康辛", "MI": "密歇根",
+      "NH": "新罕布什尔", "LA": "路易斯安那", "VA": "弗吉尼亚", "ND": "北达科他",
+      "KS": "堪萨斯", "VT": "佛蒙特", "AL": "阿拉巴马", "AZ": "亚利桑那", "DE": "特拉华",
+      "MN": "明尼苏达", "CT": "康涅狄格", "RI": "罗德岛", "MA": "马萨诸塞",
+      "ME": "缅因", "OH": "俄亥俄", "NY": "纽约", "CA": "加利福尼亚", "IN": "印第安纳",
+      "GA": "佐治亚", "CO": "科罗拉多", "MO": "密苏里", "HI": "夏威夷", "AK": "阿拉斯加",
+      "ID": "爱达荷", "IA": "艾奥瓦", "MS": "密西西比", "MT": "蒙大拿", "NE": "内布拉斯加",
+      "NV": "内华达", "NJ": "新泽西", "NM": "新墨西哥", "OK": "俄克拉荷马",
+      "OR": "俄勒冈", "SD": "南达科他", "UT": "犹他", "WY": "怀俄明", "MD": "马里兰", "WA": "华盛顿"
+    };
+    const _SF = ["Illinois", "Alabama", "West_Virginia", "Kansas_1_", "South_Carolina_1_", "Maryland", "Tennessee", "South_Carolina", "Georgia_1_", "Pensilvania", "Wisconsin", "Michigan", "Ocean", "Vermont", "New_Hampshire", "Arkansas_1_", "North_Carolina_1_", "South_Dakota_1_", "Kansas", "New_Hampshire_1_", "alabama", "Arizona_1_", "Massachusets_1_", "Minnesotta", "New_York_2_", "Connecticut", "Vermont_1_", "Michigan_1_", "Ohio", "New_York", "Arizona", "Indiana", "Georgia", "Texas_1_", "Iowa_1_", "Idaho", "Minessota", "Mossouri", "Washington_1_", "Nebraska", "Nevada_41_", "New_Jersey", "Idaho_1_", "Oklahoma", "Nevada_1_", "South_Dakota", "Utah_1_", "Montana_1_", "Pensilvania_1_", "ocean_2_", "Oklahoma_1_", "ocean_3_", "Kentucky", "Arkansas", "North_Dakota", "North_Dakota_1_", "Colorado", "Montana", "Wyoming_1_", "New_Mexico_1_", "New_Mexico", "Oregon_41_", "West_Virginia_1_", "Ohio_1_", "Indiana_1_", "Florida_1_", "Kentucky_1_", "Colorado_1_", "Maine", "Maine_1_", "New_Jersey_1_", "Iowa", "Missouri", "Missisppi", "Missispi", "Louisiana_1_", "Utah", "California", "Connecticut_1_", "Nebraska_1_", "Illinois_1_", "Massachusets", "Wisconsin_1_", "Wyoming", "Oregon_1_", "Virginia", "Virginia_1_", "Rhode_Island_1_", "Rhode_Island", "Delaware"];
+    const _MUTED = '#dedad3';
+
+    const _CITY_LAT_LON = {
+      '迈阿密': {lat: 25.7617, lon: -80.1918},
+      '奥兰多': {lat: 28.5383, lon: -81.3792},
+      '橡树岛': {lat: 33.9174, lon: -78.1575},
+      '小石城': {lat: 34.7465, lon: -92.2896},
+      'Greer': {lat: 34.9387, lon: -82.2271},
+      '路易斯维尔': {lat: 38.2527, lon: -85.7585},
+      '威廉姆森': {lat: 37.6740, lon: -82.2776},
+      '匹兹堡': {lat: 40.4406, lon: -79.9959},
+      '绿湾': {lat: 44.5133, lon: -88.0133},
+      '大急流城': {lat: 42.9634, lon: -85.6681},
+      '基恩': {lat: 42.9337, lon: -72.2781},
+      '克拉蒙特': {lat: 43.3767, lon: -72.3473},
+      '巴吞鲁日': {lat: 30.4515, lon: -91.1871},
+      '罗阿诺克': {lat: 37.2710, lon: -79.9414},
+      '法戈': {lat: 46.8772, lon: -96.7898},
+      'Gravel': {lat: 39.0473, lon: -95.6752},
+      '沃伦': {lat: 44.1112, lon: -72.8573},
+      '斯普林菲尔德': {lat: 43.2995, lon: -72.4876},
+      '阻击性市': {lat: 34.7304, lon: -86.5861},
+      '力学城': {lat: 34.7304, lon: -86.5861},
+      '亨茨维尔': {lat: 34.7304, lon: -86.5861},
+      '巴基': {lat: 33.3703, lon: -112.5838},
+      '威明顿': {lat: 39.7458, lon: -75.5466},
+      '罗彻斯特': {lat: 44.0234, lon: -92.4629},
+      '辛斯伯里': {lat: 41.8759, lon: -72.8018},
+      '伍恩索克特': {lat: 42.0084, lon: -71.5148},
+      '霍利奥克': {lat: 42.2043, lon: -72.6162},
+      '桑福德': {lat: 43.4393, lon: -70.7742},
+      '克利夫兰': {lat: 41.4993, lon: -81.6944},
+      '辛Cincinnati': {lat: 39.1031, lon: -84.5120},
+      '纽约市': {lat: 40.7128, lon: -74.0060},
+      '旧金山': {lat: 37.7749, lon: -122.4194},
+      '印第安纳波利斯': {lat: 39.7684, lon: -86.1581},
+      '火奴鲁鲁': {lat: 21.3069, lon: -157.8583},
+      '亚特兰大': {lat: 33.7490, lon: -84.3880},
+      '丹佛': {lat: 39.7392, lon: -104.9903},
+      '安克雷奇': {lat: 61.2181, lon: -149.9003},
+      '圣约瑟夫': {lat: 39.7675, lon: -94.8466},
+      '芝加哥': {lat: 41.8781, lon: -87.6298},
+      '纳什维尔': {lat: 36.1627, lon: -86.7816},
+      '西弗吉尼亚': {lat: 38.4192, lon: -82.4453},
+      '亨廷顿': {lat: 38.4192, lon: -82.4453},
+      '圣安东尼奥': {lat: 29.4241, lon: -98.4936}
+    };
+
+    const _STORY_MAPPING = {
+      'IL-芝加哥': 'chicago-marathon.html',
+      'AR-小石城': 'little-rock-marathon.html',
+      'FL-迈阿密': 'miami-marathon.html',
+      'TN-纳什维尔': 'nashville-marathon.html',
+      'TX-圣安东尼奥': 'san-antonio-marathon.html',
+      'SC-Greer': 'south-carolina-marathon.html',
+      'WI-绿湾': 'green-bay-marathon.html',
+      'WI-绿湾': 'green-bay-marathon.html',
+      'WI-绿湾': 'green-bay-marathon.html',
+      'MI-大急流城': 'michigan-meadows-marathon.html',
+      'WV-亨廷顿': 'west-virginia-marathon.html',
+      'OH-克利夫兰': 'cleveland-marathon.html',
+      'NY-纽约市': 'new-york-city-marathon.html',
+      'CA-旧金山': 'san-francisco-marathon.html',
+      'IN-印第安纳波利斯': 'indianapolis-monumental-marathon.html',
+      'HI-火奴鲁鲁': 'honolulu-marathon.html',
+    };
+
+    const _STATE_RACES = {};
+    let _MAP_BOUND_EVENTS = false;
+
+    function _projectAlbers(lat, lon) {
+      const lat0 = 37.5 * Math.PI / 180;
+      const lon0 = -96 * Math.PI / 180;
+      const lat1 = 29.5 * Math.PI / 180;
+      const lat2 = 45.5 * Math.PI / 180;
+
+      const n = 0.5 * (Math.sin(lat1) + Math.sin(lat2));
+      const C = Math.cos(lat1) * Math.cos(lat1) + 2 * n * Math.sin(lat1);
+      const rho0 = Math.sqrt(C - 2 * n * Math.sin(lat0)) / n;
+
+      const latRad = lat * Math.PI / 180;
+      const lonRad = lon * Math.PI / 180;
+
+      const theta = n * (lonRad - lon0);
+      const rho = Math.sqrt(C - 2 * n * Math.sin(latRad)) / n;
+
+      const xProj = rho * Math.sin(theta);
+      const yProj = rho0 - rho * Math.cos(theta);
+
+      const xSvg = 1798.50 * xProj + 935.11;
+      const ySvg = -1851.29 * yProj + 579.07;
+
+      return { x: xSvg, y: ySvg };
+    }
+
+    function _parseGridRaces() {
+      if (Object.keys(_STATE_RACES).length > 0) return;
+
+      const stateNameMap = {
+        '肯塔基': 'KY', '佛罗里达': 'FL', '北卡': 'NC', '阿肯色': 'AR', '南卡': 'SC',
+        '宾夕法尼亚': 'PA', '威斯康辛': 'WI', '密歇根': 'MI', '新罕布什尔': 'NH',
+        '路易斯安那': 'LA', '弗吉尼亚': 'VA', '北达科他': 'ND', '堪萨斯': 'KS',
+        '佛蒙特': 'VT', '阿拉巴马': 'AL', '亚利桑那': 'AZ', '特拉华': 'DE',
+        '明尼苏达': 'MN', '康涅狄格': 'CT', '罗德岛': 'RI', '马萨诸塞': 'MA',
+        '缅因': 'ME', '俄亥俄': 'OH', '纽约': 'NY', '加利福尼亚': 'CA',
+        '印第安纳': 'IN', '夏威夷': 'HI', '佐治亚': 'GA', '科罗拉多': 'CO',
+        '阿拉斯加': 'AK', '密苏里': 'MO', '伊利诺伊': 'IL', '田纳西': 'TN',
+        '西弗吉尼亚': 'WV', '德克萨斯': 'TX'
+      };
+
+      document.querySelectorAll('.story-grid .story-card, .hero .story-card').forEach((card, idx) => {
+        const metaText = card.querySelector('.story-meta')?.textContent || '';
+        let stateName = '';
+        let city = '';
+        let date = '';
+        const dotIndex = metaText.indexOf('·');
+        if (dotIndex > 0) {
+          const loc = metaText.substring(0, dotIndex).trim();
+          date = metaText.substring(dotIndex + 1).trim();
+
+          for (const key in stateNameMap) {
+            if (loc.startsWith(key)) {
+              stateName = key;
+              city = loc.replace(key, '').trim();
+              break;
+            }
+          }
+        }
+
+        const title = card.querySelector('.story-title')?.textContent || '';
+        const href = card.getAttribute('href') || '';
+
+        if (!card.id) card.id = `story-card-idx-${idx}`;
+
+        const abbr = stateNameMap[stateName];
+        if (abbr) {
+          if (!_STATE_RACES[abbr]) _STATE_RACES[abbr] = [];
+
+          const exists = _STATE_RACES[abbr].some(r => r.city === city && r.date === date);
+          if (!exists) {
+            _STATE_RACES[abbr].push({
+              city,
+              raceName: title.replace(/Run50\s*(#\S+\s*｜)?/, ''),
+              date,
+              emoji: '🏃',
+              num: '',
+              isPlaceholder: false,
+              cardId: card.id,
+              storyFile: href.replace('./', '')
+            });
+          }
+        }
+      });
+
+      const masterRaces = {
+        'FL': [{city: '迈阿密', raceName: '迈阿密马拉松', date: '2024.01.28', emoji: '☀️', num: '#15', isPlaceholder: false}, {city: '奥兰多', raceName: 'Run Disney Marathon', date: '2024.01.04', emoji: '🏰', num: '#15', isPlaceholder: true}],
+        'NC': [{city: '橡树岛', raceName: '橡树岛马拉松', date: '2024.02.18', emoji: '🌊', num: '#16', isPlaceholder: false}],
+        'AR': [{city: '小石城', raceName: '小石城马拉松', date: '2024.03.03', emoji: '🦕', num: '#17', isPlaceholder: false}],
+        'SC': [{city: 'Greer', raceName: '2Slow4Boston', date: '2024.04.14', emoji: '🐢', num: '#18', isPlaceholder: false}],
+        'KY': [{city: '路易斯维尔', raceName: '德比马拉松', date: '2024.04.27', emoji: '🏇', num: '#01+', isPlaceholder: false}, {city: '威廉姆森', raceName: '哈特菲尔德-麦考伊', date: '2024.06.08', emoji: '⛰️', num: '#01', isPlaceholder: false}, {city: '路易斯维尔', raceName: '路易斯维尔马拉松（博士收官）', date: '2024.11.03', emoji: '🎓', num: '#01++', isPlaceholder: false}],
+        'PA': [{city: '匹兹堡', raceName: '匹兹堡马拉松', date: '2024.05.04', emoji: '🌉', num: '#19', isPlaceholder: false}],
+        'WI': [{city: '绿湾', raceName: '绿湾马拉松', date: '2024.05.20', emoji: '🧀', num: '#20', isPlaceholder: false}],
+        'MI': [{city: '大急流城', raceName: '大急流城马拉松', date: '2024.08.25', emoji: '🏃', num: '#21', isPlaceholder: false}],
+        'NH': [{city: '基恩', raceName: '克拉伦斯·德马尔', date: '2024.09.28', emoji: '🍂', num: '#22', isPlaceholder: false}],
+        'LA': [{city: '巴吞鲁日', raceName: '路易斯安那马拉松', date: '2025.01.19', emoji: '🎷', num: '#23', isPlaceholder: true}],
+        'VA': [{city: '罗阿诺克', raceName: 'Blue Ridge Marathon', date: '2025.04.12', emoji: '🏔️', num: '#24', isPlaceholder: true}],
+        'ND': [{city: '法戈', raceName: 'Fargo Marathon', date: '2025.05.29', emoji: '🌾', num: '#25', isPlaceholder: true}],
+        'KS': [{city: 'Gravel', raceName: 'Gravel on the Hell', date: '2025.06.28', emoji: '🪨', num: '#26', isPlaceholder: true}],
+        'VT': [{city: '沃伦', raceName: 'Mad Marathon', date: '2025.07.17', emoji: '🍁', num: '#27', isPlaceholder: true}, {city: '斯普林菲尔德', raceName: 'Mainly Marathons NE', date: '2026.06.11', emoji: '🍁', num: '#27+', isPlaceholder: true}],
+        'AL': [{city: '亨茨维尔', raceName: 'Rocket City Marathon', date: '2025.12.12', emoji: '🚀', num: '#28', isPlaceholder: true}],
+        'AZ': [{city: '巴基', raceName: 'Buckeye Marathon', date: '2026.01.10', emoji: '🌵', num: '#29', url: './arizona-phoenix-marathon.html'}],
+        'DE': [{city: '威明顿', raceName: 'Delaware Marathon Festival', date: '2026.04.20', emoji: '🦅', num: '#30', isPlaceholder: true}],
+        'MN': [{city: '罗彻斯特', raceName: 'Med City Marathon', date: '2026.05.16', emoji: '🌊', num: '#31', isPlaceholder: true}],
+        'CT': [{city: '辛斯伯里', raceName: 'Mainly Marathons NE', date: '2026.06.08', emoji: '🏛️', num: '#32', isPlaceholder: true}],
+        'RI': [{city: '伍恩索克特', raceName: 'Mainly Marathons NE', date: '2026.06.09', emoji: '⚓', num: '#33', isPlaceholder: true}],
+        'MA': [{city: '霍利奥克', raceName: 'Mainly Marathons NE', date: '2026.06.10', emoji: '🦞', num: '#34', isPlaceholder: true}],
+        'HI': [{city: '火奴鲁鲁', raceName: '50th Honolulu Marathon', date: '2022.12.11', emoji: '🌺', num: '#06', isPlaceholder: false}],
+        'AK': [{city: '安克雷奇', raceName: '安克雷奇马拉松', date: '2023.06.17', emoji: '🏔️', num: '#09', isPlaceholder: false}],
+        'IL': [{city: '芝加哥', raceName: '芝加哥马拉松', date: '2023.10.08', emoji: '🏙️', num: '#11', isPlaceholder: false}],
+        'TN': [{city: '纳什维尔', raceName: '纳什维尔马拉松', date: '2023.10.28', emoji: '🎸', num: '#12', isPlaceholder: false}],
+        'WV': [{city: '亨廷顿', raceName: '西弗吉尼亚马拉松', date: '2023.11.05', emoji: '🏈', num: '#13', isPlaceholder: false}],
+        'TX': [{city: '圣安东尼奥', raceName: '圣安东尼奥摇滚马拉松', date: '2023.12.03', emoji: '🎸', num: '#14', isPlaceholder: false}]
+      };
+
+      for (const abbr in masterRaces) {
+        if (!_STATE_RACES[abbr]) _STATE_RACES[abbr] = [];
+        masterRaces[abbr].forEach(mr => {
+          const exists = _STATE_RACES[abbr].some(r => r.city === mr.city && r.date === mr.date);
+          if (!exists) {
+            let cardId = null;
+            let storyFile = _STORY_MAPPING[`${abbr}-${mr.city}`] || null;
+
+            const parsedList = _STATE_RACES[abbr];
+            if (parsedList && parsedList.length > 0) {
+              const match = parsedList.find(p => p.city === mr.city && p.date === mr.date);
+              if (match) {
+                cardId = match.cardId;
+                storyFile = match.storyFile;
+              }
+            }
+
+            _STATE_RACES[abbr].push({
+              city: mr.city,
+              raceName: mr.raceName,
+              date: mr.date,
+              emoji: mr.emoji,
+              num: mr.num,
+              isPlaceholder: mr.isPlaceholder,
+              cardId: cardId,
+              storyFile: storyFile
+            });
+          }
+        });
+      }
+    }
+
+    function _muteAll(){
+      _SF.forEach(id=>{const el=document.getElementById('map_'+id);if(el)el.style.fill=_MUTED;});
+    }
+
+    function _getTooltip() {
+      let tooltip = document.getElementById('map-floating-tooltip');
+      if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.id = 'map-floating-tooltip';
+        tooltip.className = 'map-tooltip';
+        document.body.appendChild(tooltip);
+      }
+      return tooltip;
+    }
+
+    function _showStateTooltip(e, abbr) {
+      const races = _STATE_RACES[abbr];
+      const tooltip = _getTooltip();
+      const hoverStatus = document.getElementById('map-hover-status');
+
+      if (!races || races.length === 0) {
+        tooltip.innerHTML = `<h4>${abbr}</h4><div style="color:#aaa;">没有在此州的跑马记录</div>`;
+        if (hoverStatus) hoverStatus.textContent = `${abbr}: 无跑马记录`;
+      } else {
+        const cleanStateName = _STATE_NAMES[abbr] || abbr;
+
+        let html = `<h4>📍 ${cleanStateName} (${races.length} 场完赛)</h4>`;
+        races.forEach(r => {
+          html += `<div class="map-tooltip-race">
+            <strong>${r.emoji} ${r.city}</strong><br>
+            <span style="font-size:12px;color:#eee;">${r.raceName}</span>
+            <div class="map-tooltip-meta">${r.date}</div>`;
+
+          if (r.storyFile) {
+            html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
+              <a href="${r.storyFile}" class="map-tooltip-link" style="background:#8d3f3f; color:#fff; font-size: 11px;">阅读中文故事 ↗</a>
+              <a href="../../facebook/${r.storyFile}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size: 11px;">Facebook ↗</a>
+            </div>`;
+          } else if (!r.isPlaceholder) {
+            const completedScripts = {
+              'KY': 'script-ky', 'WI': 'script-wi', 'MI': 'script-mi', 'FL': 'script-fl',
+              'NC': 'script-nc', 'AR': 'script-ar', 'SC': 'script-sc', 'PA': 'script-pa', 'NH': 'script-nh'
+            };
+            if (completedScripts[abbr]) {
+              html += `<a href="../../run50.html?script=${completedScripts[abbr]}" target="_blank" class="map-tooltip-link">查看口播剧本 ↗</a>`;
+            }
+          }
+          html += `</div>`;
+        });
+
+        tooltip.innerHTML = html;
+        if (hoverStatus) hoverStatus.textContent = `${cleanStateName}: 共有 ${races.length} 场记录`;
+      }
+
+      tooltip.style.display = 'block';
+      _moveCityTooltip(e);
+    }
+
+    function _showCityTooltip(e, r, abbr) {
+      const tooltip = _getTooltip();
+      const hoverStatus = document.getElementById('map-hover-status');
+
+      let html = `<h4>📍 ${r.emoji} ${r.city}</h4>`;
+      html += `<div class="map-tooltip-race">
+        <strong>${r.raceName}</strong><br>
+        <div class="map-tooltip-meta">日期: ${r.date}</div>`;
+
+      if (r.storyFile) {
+        html += `<div class="story-links" style="margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap;">
+          <a href="${r.storyFile}" class="map-tooltip-link" style="background:#8d3f3f; color:#fff; font-size: 11px;">阅读中文故事 ↗</a>
+          <a href="../../facebook/${r.storyFile}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size: 11px;">Facebook ↗</a>
+        </div>`;
+      } else if (!r.isPlaceholder) {
+        const completedScripts = {
+          'KY': 'script-ky', 'WI': 'script-wi', 'MI': 'script-mi', 'FL': 'script-fl',
+          'NC': 'script-nc', 'AR': 'script-ar', 'SC': 'script-sc', 'PA': 'script-pa', 'NH': 'script-nh'
+        };
+        if (completedScripts[abbr]) {
+          html += `<a href="../../run50.html?script=${completedScripts[abbr]}" target="_blank" class="map-tooltip-link">查看口播剧本 ↗</a>`;
+        }
+      }
+      html += `</div>`;
+
+      tooltip.innerHTML = html;
+      if (hoverStatus) hoverStatus.textContent = `${r.city}: ${r.raceName}`;
+      tooltip.style.display = 'block';
+      _moveCityTooltip(e);
+    }
+
+    function _moveCityTooltip(e) {
+      const tooltip = _getTooltip();
+      if (tooltip.style.display === 'block') {
+        tooltip.style.left = (e.pageX + 15) + 'px';
+        tooltip.style.top = (e.pageY + 15) + 'px';
+      }
+    }
+
+    function _hideCityTooltip() {
+      const tooltip = _getTooltip();
+      tooltip.style.display = 'none';
+      const hoverStatus = document.getElementById('map-hover-status');
+      if (hoverStatus) hoverStatus.textContent = '鼠标悬停在州或红点上查看长文，点击卡片跳转';
+    }
+
+    function _handleStateClick(e, abbr) {
+      const races = _STATE_RACES[abbr];
+      if (races && races.length > 0) {
+        const storyRace = races.find(r => r.cardId);
+        if (storyRace) {
+          _hideCityTooltip();
+          const card = document.getElementById(storyRace.cardId);
+          if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            card.classList.add('card-highlight-flash');
+            setTimeout(() => card.classList.remove('card-highlight-flash'), 3000);
+            return;
+          }
+        }
+
+        const fileRace = races.find(r => r.storyFile);
+        if (fileRace) {
+          _hideCityTooltip();
+          window.location.href = fileRace.storyFile;
+          return;
+        }
+      }
+      _showStateTooltip(e, abbr);
+    }
+
+    function _handleCityClick(e, r, abbr) {
+      if (r.cardId) {
+        _hideCityTooltip();
+        const card = document.getElementById(r.cardId);
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.classList.add('card-highlight-flash');
+          setTimeout(() => card.classList.remove('card-highlight-flash'), 3000);
+        }
+      } else if (r.storyFile) {
+        _hideCityTooltip();
+        window.location.href = r.storyFile;
+        return;
+      } else {
+        _showCityTooltip(e, r, abbr);
+      }
+    }
+
+    function _bindMapEventsOnce() {
+      if (_MAP_BOUND_EVENTS) return;
+      _MAP_BOUND_EVENTS = true;
+
+      _SF.forEach(id => {
+        const el = document.getElementById('map_' + id);
+        if (el) {
+          el.style.transition = 'fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease';
+
+          let stateAbbr = null;
+          for (const key in _HM) {
+            if (_HM[key].includes(id)) {
+              stateAbbr = key;
+              break;
+            }
+          }
+
+          if (stateAbbr) {
+            el.addEventListener('mouseenter', (e) => _showStateTooltip(e, stateAbbr));
+            el.addEventListener('mousemove', _moveCityTooltip);
+            el.addEventListener('mouseleave', _hideCityTooltip);
+            el.addEventListener('click', (e) => _handleStateClick(e, stateAbbr));
+          }
+        }
+      });
+    }
+
+    function _injectMap() {
+      const slot = document.getElementById('welcome-map-slot');
+      if (!slot) return;
+
+      slot.innerHTML = US_MAP_SVG;
+      const master = document.getElementById('us-map-master');
+      if (!master) return;
+
+      // Set pointer-events: none on all decorative paths; also make LIGHT/MEDIUM-coloured
+      // state-overlay paths transparent. Dark fills (lum < 60) are state labels and borders — keep them.
+      master.querySelectorAll('path').forEach(path => {
+        const id = path.id.replace('map_', '');
+        if (!_SF.includes(id)) {
+          path.style.pointerEvents = 'none';
+          if (id !== 'USA' && id !== 'White' && id !== 'exterior_2_') {
+            const svgFill = path.getAttribute('fill') || '';
+            if (/^#[0-9a-fA-F]{6}$/.test(svgFill)) {
+              const r=parseInt(svgFill.slice(1,3),16), g=parseInt(svgFill.slice(3,5),16), b=parseInt(svgFill.slice(5,7),16);
+              if (r*0.299 + g*0.587 + b*0.114 >= 60) path.style.fill = 'none';
+            }
+          }
+        }
+      });
+      // FL (South_Carolina_1_) has multiple nested inner boundary sub-paths creating donut holes.
+      (function() {
+        const el = document.getElementById('map_South_Carolina_1_');
+        if (!el) return;
+        const d = el.getAttribute('d');
+        const parts = [];
+        let last = 0;
+        for (let i = 1; i < d.length; i++) {
+          if (d[i] === 'M' && /\s/.test(d[i - 1])) { parts.push(d.slice(last, i).trim()); last = i; }
+        }
+        parts.push(d.slice(last).trim());
+        const bboxes = parts.map(sp => {
+          const cs = sp.match(/([\d.]+),([\d.]+)/g) || [];
+          if (!cs.length) return {xMin:0,xMax:0,yMin:0,yMax:0,area:0};
+          const xs = cs.map(c => parseFloat(c)), ys = cs.map(c => parseFloat(c.split(',')[1]));
+          const xMin=Math.min(...xs),xMax=Math.max(...xs),yMin=Math.min(...ys),yMax=Math.max(...ys);
+          return {xMin,xMax,yMin,yMax,area:(xMax-xMin)*(yMax-yMin)};
+        });
+        const maxArea = Math.max(...bboxes.map(b => b.area));
+        const outerIdx = bboxes.findIndex(b => b.area === maxArea);
+        const o = bboxes[outerIdx];
+        el.setAttribute('d', parts.filter((_, i) => {
+          const b = bboxes[i];
+          const nested = b.xMin>=o.xMin && b.xMax<=o.xMax && b.yMin>=o.yMin && b.yMax<=o.yMax;
+          return i === outerIdx || !nested || b.area < maxArea * 0.05;
+        }).join(' '));
+      })();
+
+      // All hollow states share concentric sub-paths; remove inner sub-paths bbox-contained in outer.
+      ['Arizona', 'Michigan', 'Oklahoma_1_', 'Alabama', 'Maryland', 'ocean_3_', 'Kansas_1_', 'Arkansas_1_',
+       'Illinois', 'West_Virginia', 'South_Carolina', 'Pensilvania', 'Wisconsin', 'Vermont', 'New_Hampshire',
+       'Kansas', 'alabama', 'Arizona_1_', 'Minnesotta', 'Ohio', 'New_York', 'Indiana', 'Georgia',
+       'Alaska_1_','Idaho', 'Nebraska', 'Nevada_41_', 'Oklahoma', 'South_Dakota',
+       'Utah_1_', 'Pensilvania_1_'].forEach(stateId => { (function() {
+        const el = document.getElementById('map_' + stateId);
+        if (!el) return;
+        const d = el.getAttribute('d');
+        const parts = [];
+        let last = 0;
+        for (let i = 1; i < d.length; i++) {
+          if (d[i] === 'M' && /\s/.test(d[i - 1])) { parts.push(d.slice(last, i).trim()); last = i; }
+        }
+        parts.push(d.slice(last).trim());
+        const bboxes = parts.map(sp => {
+          const cs = sp.match(/([\d.]+),([\d.]+)/g) || [];
+          if (!cs.length) return {xMin:0,xMax:0,yMin:0,yMax:0,area:0};
+          const xs = cs.map(c => parseFloat(c)), ys = cs.map(c => parseFloat(c.split(',')[1]));
+          const xMin=Math.min(...xs),xMax=Math.max(...xs),yMin=Math.min(...ys),yMax=Math.max(...ys);
+          return {xMin,xMax,yMin,yMax,area:(xMax-xMin)*(yMax-yMin)};
+        });
+        const maxArea = Math.max(...bboxes.map(b => b.area));
+        el.removeAttribute('fill-rule');
+        el.setAttribute('d', parts.filter((_, i) => {
+          const b = bboxes[i];
+          if (b.area < maxArea * 0.05) return true;
+          return !bboxes.some((o, j) => j !== i && b.xMin>=o.xMin && b.xMax<=o.xMax && b.yMin>=o.yMin && b.yMax<=o.yMax);
+        }).join(' '));
+      })(); });
+
+      _parseGridRaces();
+      _muteAll();
+      _bindMapEventsOnce();
+
+      const alaskaFrame = document.getElementById('map_exterior_2_');
+      const hawaiiFrame = document.getElementById('map_hawaii_1_');
+      if (alaskaFrame && hawaiiFrame) {
+        alaskaFrame.style.fill = getComputedStyle(hawaiiFrame).fill;
+      }
+
+      const _CM = {
+        'AK':'#d4614a','AL':'#98c038','AR':'#5ca860','AZ':'#e89838','CA':'#d4614a',
+        'CO':'#9068c0','CT':'#9068c0','DE':'#e89838','FL':'#d4614a','GA':'#e89838',
+        'HI':'#9068c0','IA':'#98c038','ID':'#d4614a','IL':'#9068c0','IN':'#e89838',
+        'KS':'#3898a8','KY':'#98c038','LA':'#98c038','MA':'#3898a8','MD':'#98c038',
+        'ME':'#d4614a','MI':'#3898a8','MN':'#e89838','MO':'#e89838','MS':'#e89838',
+        'MT':'#98c038','NC':'#98c038','ND':'#5ca860','NE':'#5ca860','NH':'#e89838',
+        'NJ':'#98c038','NM':'#5ca860','NV':'#5ca860','NY':'#e89838','OH':'#5ca860',
+        'OK':'#98c038','OR':'#e89838','PA':'#d4614a','RI':'#d4614a','SC':'#9068c0',
+        'SD':'#3898a8','TN':'#3898a8','TX':'#9068c0','UT':'#98c038','VA':'#5ca860',
+        'VT':'#98c038','WA':'#98c038','WI':'#5ca860','WV':'#e89838','WY':'#e89838'
+      };
+      const storyStates = ['IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH'];
+      storyStates.forEach(abbr => {
+        (_HM[abbr] || []).forEach(id => {
+          const el = document.getElementById('map_' + id);
+          if (el) {
+            el.style.fill = _CM[abbr];
+            el.classList.add('run-state');
+          }
+        });
+      });
+
+      const otherRunStates = ['LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME', 'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO'];
+      otherRunStates.forEach(abbr => {
+        (_HM[abbr] || []).forEach(id => {
+          const el = document.getElementById('map_' + id);
+          if (el) {
+            el.style.fill = _CM[abbr];
+            el.classList.add('run-state');
+          }
+        });
+      });
+      let dotGroup = master.querySelector('#city-dots-group');
+      if (!dotGroup) {
+        dotGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        dotGroup.id = 'city-dots-group';
+        master.appendChild(dotGroup);
+      }
+      dotGroup.innerHTML = '';
+
+      for (const abbr in _STATE_RACES) {
+        _STATE_RACES[abbr].forEach(r => {
+          const cityCoords = _CITY_LAT_LON[r.city];
+          if (cityCoords) {
+            let x, y;
+            if (abbr === 'HI') {
+              x = 570.0; y = 933.0;
+            } else if (abbr === 'AK') {
+              x = 275.0; y = 917.0;
+            } else if (abbr === 'VT' && r.city === '沃伦') {
+              x = 1466.0; y = 270.0;
+            } else if (abbr === 'VT' && r.city === '斯普林菲尔德') {
+              x = 1477.0; y = 270.0;
+            } else if (abbr === 'NH' && r.city === '基恩') {
+              x = 1502.0; y = 310.0;
+            } else if (abbr === 'CT' && r.city === '辛斯伯里') {
+              x = 1503.0; y = 362.0;
+            } else if (abbr === 'RI' && r.city === '伍恩索克特') {
+              x = 1488.0; y = 376.0;
+            } else {
+              const coords = _projectAlbers(cityCoords.lat, cityCoords.lon);
+              x = coords.x;
+              y = coords.y;
+            }
+
+            const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            glow.setAttribute('cx', x);
+            glow.setAttribute('cy', y);
+            glow.setAttribute('r', 11);
+            glow.setAttribute('fill', 'rgba(255, 59, 48, 0.35)');
+            glow.setAttribute('class', 'city-dot-glow');
+            glow.style.pointerEvents = 'none';
+            dotGroup.appendChild(glow);
+
+            const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            dot.setAttribute('cx', x);
+            dot.setAttribute('cy', y);
+            dot.setAttribute('r', 4.5);
+            dot.setAttribute('fill', '#ff3b30');
+            dot.setAttribute('stroke', '#ffffff');
+            dot.setAttribute('stroke-width', '1.5');
+            dot.setAttribute('class', 'city-dot');
+            dot.style.cursor = 'pointer';
+
+            dot.addEventListener('mouseenter', (e) => _showCityTooltip(e, r, abbr));
+            dot.addEventListener('mousemove', _moveCityTooltip);
+            dot.addEventListener('mouseleave', _hideCityTooltip);
+            dot.addEventListener('click', (e) => _handleCityClick(e, r, abbr));
+
+            dotGroup.appendChild(dot);
+          }
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', _injectMap);
+
+    const _CHINA_ALL_PROVINCES = ['cn_xinjiang','cn_tibet','cn_innermongolia','cn_qinghai','cn_sichuan',
+      'cn_heilongjiang','cn_gansu','cn_yunnan','cn_guangxi','cn_hunan','cn_shaanxi',
+      'cn_guangdong','cn_jilin','cn_hebei','cn_hubei','cn_guizhou','cn_shandong',
+      'cn_jiangxi','cn_henan','cn_liaoning','cn_shanxi','cn_anhui','cn_fujian',
+      'cn_zhejiang','cn_jiangsu','cn_chongqing','cn_ningxia','cn_hainan','cn_taiwan',
+      'cn_beijing','cn_tianjin','cn_shanghai','cn_hongkong','cn_macao'];
+
+    const _CHINA_PROVINCE_NAMES = {
+      cn_xinjiang:'新疆', cn_tibet:'西藏', cn_innermongolia:'内蒙古', cn_qinghai:'青海', cn_sichuan:'四川',
+      cn_heilongjiang:'黑龙江', cn_gansu:'甘肃', cn_yunnan:'云南', cn_guangxi:'广西', cn_hunan:'湖南',
+      cn_shaanxi:'陕西', cn_guangdong:'广东', cn_jilin:'吉林', cn_hebei:'河北', cn_hubei:'湖北',
+      cn_guizhou:'贵州', cn_shandong:'山东', cn_jiangxi:'江西', cn_henan:'河南', cn_liaoning:'辽宁',
+      cn_shanxi:'山西', cn_anhui:'安徽', cn_fujian:'福建', cn_zhejiang:'浙江', cn_jiangsu:'江苏',
+      cn_chongqing:'重庆', cn_ningxia:'宁夏', cn_hainan:'海南', cn_taiwan:'台湾', cn_beijing:'北京',
+      cn_tianjin:'天津', cn_shanghai:'上海', cn_hongkong:'香港', cn_macao:'澳门'
+    };
+
+    const _CHINA_LABEL_OVERRIDES = {
+      cn_xinjiang:[202,220,13], cn_tibet:[222,360,13], cn_qinghai:[310,300,12],
+      cn_innermongolia:[520,190,11], cn_heilongjiang:[684,112,10], cn_jilin:[665,174,10],
+      cn_liaoning:[622,216,9], cn_gansu:[362,268,10], cn_ningxia:[425,273,8],
+      cn_shanxi:[500,264,9], cn_shaanxi:[456,300,9], cn_hebei:[542,266,8],
+      cn_shandong:[574,284,9], cn_henan:[518,320,8], cn_anhui:[557,350,8],
+      cn_jiangsu:[590,336,8], cn_hubei:[500,368,9], cn_chongqing:[447,380,8],
+      cn_sichuan:[386,374,10], cn_guizhou:[434,446,9], cn_hunan:[492,416,9],
+      cn_jiangxi:[540,414,8], cn_zhejiang:[590,390,8], cn_fujian:[566,436,8],
+      cn_guangxi:[456,472,9], cn_yunnan:[373,452,10], cn_guangdong:[510,478,9],
+      cn_hainan:[470,540,8], cn_taiwan:[602,470,8], cn_beijing:[548,219,8],
+      cn_tianjin:[565,244,7]
+    };
+
+    const _CHINA_RUN_PROVINCES = {
+      cn_heilongjiang:{ color:'#d4614a' }, cn_hubei:{ color:'#5ca860' }, cn_sichuan:{ color:'#e89838' },
+      cn_innermongolia:{ color:'#3898a8' }, cn_shanxi:{ color:'#98c038' },
+      cn_hunan:{ color:'#9068c0' }, cn_fujian:{ color:'#3898a8' }, cn_gansu:{ color:'#d4614a' },
+      cn_jiangsu:{ color:'#98c038' }, cn_guizhou:{ color:'#5ca860' }, cn_shaanxi:{ color:'#e89838' },
+      cn_zhejiang:{ color:'#9068c0' }, cn_hainan:{ color:'#3898a8' }, cn_liaoning:{ color:'#d4614a' },
+      cn_shanghai:{ color:'#5ca860' }, cn_guangxi:{ color:'#e89838' }, cn_hongkong:{ color:'#9068c0' }
+    };
+
+    const _CHINA_CITY_DOTS = [
+      { name:'哈尔滨', province:'cn_heilongjiang', lat:45.8038, lon:126.5350, races:[
+        { title:'RunCN #第1-6站｜钢铁战车的故事', date:'2017', url:'./steel-tank-story.html' },
+        { title:'RunCN #第20站｜哈尔滨马拉松：那年，我在东北老家跑哈马', date:'2019.08.25', url:'./harbin-marathon.html' }
+      ]},
+      { name:'鄂尔多斯', province:'cn_innermongolia', lat:39.6086, lon:109.7813, races:[
+        { title:'RunCN #第1-6站｜钢铁战车的故事', date:'2017', url:'./steel-tank-story.html' }
+      ]},
+      { name:'长治', province:'cn_shanxi', lat:36.1954, lon:113.1163, races:[
+        { title:'RunCN #第1-6站｜钢铁战车的故事', date:'2017', url:'./steel-tank-story.html' }
+      ]},
+      { name:'武汉', province:'cn_hubei', lat:30.5928, lon:114.3055, races:[
+        { title:'RunCN #第12站｜武汉马拉松：连接百年的奔跑', date:'2018.04.15', url:'./wuhan-marathon-2018.html' },
+        { title:'RunCN #第17站｜武汉汉马：独家记忆', date:'2019.04.14', url:'./wuhan-han-marathon.html' }
+      ]},
+      { name:'宜昌', province:'cn_hubei', lat:30.6919, lon:111.2865, races:[
+        { title:'RunCN #第7-9站｜鲜衣怒马，烈焰红花：三座城的朝圣之旅', date:'2017.10.15-11.18', url:'./three-city-pilgrimage.html' }
+      ]},
+      { name:'襄阳', province:'cn_hubei', lat:32.0090, lon:112.1224, races:[
+        { title:'RunCN #第24站｜襄阳马拉松', date:'2025.10.19', url:'./xiangyang-marathon.html' }
+      ]},
+      { name:'广安', province:'cn_sichuan', lat:30.4564, lon:106.6332, races:[
+        { title:'RunCN #第7-9站｜鲜衣怒马，烈焰红花：三座城的朝圣之旅', date:'2017.10.15-11.18', url:'./three-city-pilgrimage.html' }
+      ]},
+      { name:'长沙', province:'cn_hunan', lat:28.2282, lon:112.9388, races:[
+        { title:'RunCN #第7-9站｜鲜衣怒马，烈焰红花：三座城的朝圣之旅', date:'2017.10.15-11.18', url:'./three-city-pilgrimage.html' }
+      ]},
+      { name:'厦门', province:'cn_fujian', lat:24.4798, lon:118.0894, races:[
+        { title:'RunCN #第10站｜厦门马拉松：以最难忘的出场，享拥每一句赞扬', date:'2018.01.07', url:'./xiamen-marathon.html' }
+      ]},
+      { name:'兰州', province:'cn_gansu', lat:36.0611, lon:103.8343, races:[
+        { title:'RunCN #第14站｜兰州马拉松：河西走廊东边的野望与奔腾', date:'2018.06.10', url:'./lanzhou-marathon.html' }
+      ]},
+      { name:'无锡', province:'cn_jiangsu', lat:31.4912, lon:120.3119, races:[
+        { title:'RunCN #第11站｜无锡马拉松笔记：樱花树下绽放', date:'2018.03.25', url:'./wuhan-wuxi-marathon-notes.html' }
+      ]},
+      { name:'贵阳', province:'cn_guizhou', lat:26.6470, lon:106.6302, races:[
+        { title:'RunCN #第15站｜贵阳马拉松：夜郎漫行，此心光明', date:'2018.07.22', url:'./guiyang-marathon-climb.html' }
+      ]},
+      { name:'西安', province:'cn_shaanxi', lat:34.3416, lon:108.9398, races:[
+        { title:'RunCN #第13站｜西安城墙马拉松：风雨城墙路', date:'2018.04.21', url:'./xian-city-wall-marathon.html' }
+      ]},
+      { name:'杭州', province:'cn_zhejiang', lat:30.2741, lon:120.1551, races:[
+        { title:'RunCN #第21站｜西湖半马：我去西湖跑半马，偶遇跑者施一公', date:'2019.11.10', url:'./west-lake-half-marathon.html' }
+      ]},
+      { name:'宁波', province:'cn_zhejiang', lat:29.8683, lon:121.5440, races:[
+        { title:'RunCN #第23站｜宁波东钱湖马拉松：宁波，东钱湖边的聚会', date:'2019.12.08', url:'./ningbo-dongqian-lake-marathon.html' }
+      ]},
+      { name:'海口', province:'cn_hainan', lat:20.0440, lon:110.1999, races:[
+        { title:'RunCN #第16站｜海口：诗和远方与星沉大海', date:'2019.03.03', url:'./haikou-marathon.html' }
+      ]},
+      { name:'大连', province:'cn_liaoning', lat:38.9140, lon:121.6147, races:[
+        { title:'RunCN #第18站｜大连越野：越过山丘，在大连', date:'2019.06.09', url:'./dalian-trail.html' }
+      ]},
+      { name:'上海', province:'cn_shanghai', lat:31.2304, lon:121.4737, races:[
+        { title:'RunCN #第22站｜上海中心垂直马拉松', date:'2019.11.24', url:'./shanghai-vertical-marathon.html' }
+      ]},
+      { name:'桂林', province:'cn_guangxi', lat:25.2345, lon:110.1799, races:[
+        { title:'RunCN #第25站｜桂林马拉松', date:'2025.11.16', url:'./guilin-marathon.html' }
+      ]},
+      { name:'香港', province:'cn_hongkong', lat:22.3193, lon:114.1694, races:[
+        { title:'RunCN #第26站｜香港嘉里街道马拉松', date:'2025.11.23', url:'./hong-kong-marathon.html' }
+      ]}
+    ];
+
+    function _chinaProject(lat, lon) {
+      // Same simple projection used by china-map-svg.js.
+      return {
+        x: (lon - 70) * 11.8,
+        y: (55 - lat) * 15.0
+      };
+    }
+
+    function _setChinaStatus(text) {
+      const status = document.getElementById('china-map-hover-status');
+      if (status) status.textContent = text || '鼠标悬停在省份或红点上查看故事，点击可跳转到对应卡片';
+    }
+
+    function _chinaProvinceRaces(provinceId) {
+      return _CHINA_CITY_DOTS
+        .filter(c => c.province === provinceId)
+        .flatMap(c => c.races.map(r => ({...r, city:c.name})));
+    }
+
+    function _flashChinaStoryCard(url) {
+      if (!url) return false;
+      let card = null;
+      document.querySelectorAll('a.story-card').forEach(a => {
+        if (a.getAttribute('href') === url) card = a;
+      });
+      if (!card) return false;
+      card.scrollIntoView({ behavior:'smooth', block:'center' });
+      card.classList.add('card-highlight-flash');
+      setTimeout(() => card.classList.remove('card-highlight-flash'), 3000);
+      return true;
+    }
+
+    function _chinaRaceLinks(r) {
+      const slug = (r.url || '').replace('./','');
+      return `<div class="story-links" style="margin-top:6px; display:flex; gap:6px; flex-wrap:wrap;">
+        <a href="${r.url}" class="map-tooltip-link" style="background:#cc0000; color:#fff; font-size:11px;">中文故事 ↗</a>
+        <a href="../../facebook/${slug}" target="_blank" class="map-tooltip-link" style="background:#3b5998; color:#fff; font-size:11px;">Facebook ↗</a>
+      </div>`;
+    }
+
+    function _shortChinaTitle(title) {
+      const bar = '｜';
+      return title
+        .replace(/^RunCN\s+/, '')
+        .replace(new RegExp('^#.*?' + bar), '')
+        .replace(new RegExp('^归档' + bar), '')
+        .replace(new RegExp('^半马' + bar), '')
+        .replace(new RegExp('^' + bar), '');
+    }
+
+    function _showChinaProvinceTooltip(e, provinceId) {
+      const tooltip = _getTooltip();
+      const name = _CHINA_PROVINCE_NAMES[provinceId] || provinceId;
+      const races = _chinaProvinceRaces(provinceId);
+      let html = '';
+      if (races.length === 0) {
+        html = `<h4>📍 ${name}</h4><div style="color:#aaa;">暂无 RunCN 跑马记录</div>`;
+      } else {
+        html = `<h4>📍 ${name}（${races.length} 条 RunCN 记录）</h4>`;
+        races.forEach(r => {
+          html += `<div class="map-tooltip-race">
+            <strong>${r.city}</strong><br>
+            <span style="font-size:12px;color:#eee;">${r.title}</span>
+            <div class="map-tooltip-meta">${r.date}</div>
+            ${_chinaRaceLinks(r)}
+          </div>`;
+        });
+      }
+      tooltip.innerHTML = html;
+      tooltip.style.display = 'block';
+      _setChinaStatus(races.length ? `${name}: ${races.map(r => r.city).join(' / ')}` : `${name}: 暂无 RunCN 跑马记录`);
+      _moveCityTooltip(e);
+    }
+
+    function _showChinaCityTooltip(e, city) {
+      const tooltip = _getTooltip();
+      let html = `<h4>📍 ${city.name}</h4>`;
+      city.races.forEach(r => {
+        html += `<div class="map-tooltip-race">
+          <strong>${r.title}</strong><br>
+          <div class="map-tooltip-meta">${r.date}</div>
+          ${_chinaRaceLinks(r)}
+        </div>`;
+      });
+      tooltip.innerHTML = html;
+      tooltip.style.display = 'block';
+      _setChinaStatus(`${city.name}: ${city.races.map(r => _shortChinaTitle(r.title)).join(' / ')}`);
+      _moveCityTooltip(e);
+    }
+
+    function _hideChinaTooltip() {
+      const tooltip = _getTooltip();
+      tooltip.style.display = 'none';
+      _setChinaStatus();
+    }
+
+    function _handleChinaProvinceClick(e, provinceId) {
+      e.stopPropagation();
+      const first = _chinaProvinceRaces(provinceId)[0];
+      if (first && !_flashChinaStoryCard(first.url)) {
+        window.location.href = first.url;
+        return;
+      }
+      _showChinaProvinceTooltip(e, provinceId);
+    }
+
+    function _injectChinaMap() {
+      const slot = document.getElementById('cn-map-slot');
+      if (!slot || typeof CHINA_MAP_SVG === 'undefined') return;
+      slot.innerHTML = CHINA_MAP_SVG;
+      const svg = document.getElementById('cn-map-master');
+      if (!svg) return;
+      svg.style.width = '100%'; svg.style.height = 'auto'; svg.style.display = 'block';
+
+      // Remove base-map ocean labels so the China page uses one clean label system.
+      svg.querySelectorAll('text').forEach(t => {
+        const label = (t.textContent || '').trim();
+        if (label === 'South China Sea' || label === '南海') t.remove();
+      });
+
+      _CHINA_ALL_PROVINCES.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.setAttribute('fill', '#d8e0d4');
+        el.setAttribute('stroke', '#ffffff');
+        el.setAttribute('stroke-width', '0.9');
+        el.style.transition = 'fill 0.2s ease, opacity 0.2s ease, stroke 0.2s ease';
+        el.classList.add('cn-province');
+        el.addEventListener('mouseenter', e => _showChinaProvinceTooltip(e, id));
+        el.addEventListener('mousemove', _moveCityTooltip);
+        el.addEventListener('mouseleave', _hideChinaTooltip);
+        el.addEventListener('click', e => _handleChinaProvinceClick(e, id));
+        const runInfo = _CHINA_RUN_PROVINCES[id];
+        if (runInfo) {
+          el.setAttribute('fill', runInfo.color);
+          el.setAttribute('stroke-width', '1.5');
+          el.classList.add('cn-run-province');
+        }
+      });
+
+      // The base China SVG has a compressed regional projection; external country labels
+      // can visually drift into China. Keep the map clean and show details via province/city tooltip.
+
+      const dotGlowGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
+      dotGlowGroup.id = 'china-city-dot-glows-group';
+      svg.appendChild(dotGlowGroup);
+      _CHINA_CITY_DOTS.forEach(c => {
+        const p = _chinaProject(c.lat, c.lon);
+        const glow = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        glow.setAttribute('cx',p.x.toFixed(1)); glow.setAttribute('cy',p.y.toFixed(1)); glow.setAttribute('r',10);
+        glow.setAttribute('fill','rgba(255,59,48,0.24)');
+        glow.setAttribute('class','city-dot-glow');
+        glow.style.pointerEvents='none';
+        dotGlowGroup.appendChild(glow);
+      });
+
+      if (typeof _CN_LABELS !== 'undefined') {
+        for (const [id, [lx, ly, fs]] of Object.entries(_CN_LABELS)) {
+          const name = _CHINA_PROVINCE_NAMES[id];
+          const override = _CHINA_LABEL_OVERRIDES[id] || [];
+          if (!name || (fs === 0 && !override[2])) continue;
+          const labelX = override[0] || lx;
+          const labelY = override[1] || ly;
+          const labelSize = override[2] || (_CHINA_RUN_PROVINCES[id] ? fs : Math.max(8, fs - 1));
+          const txt = document.createElementNS('http://www.w3.org/2000/svg','text');
+          txt.setAttribute('x',labelX); txt.setAttribute('y',labelY);
+          txt.setAttribute('text-anchor','middle'); txt.setAttribute('font-size',labelSize);
+          txt.setAttribute('fill','#243642');
+          txt.setAttribute('stroke','#f7faf7');
+          txt.setAttribute('stroke-width','3.5');
+          txt.setAttribute('stroke-linejoin','round');
+          txt.setAttribute('paint-order','stroke');
+          txt.setAttribute('font-family','-apple-system,"PingFang SC","Microsoft YaHei",sans-serif');
+          txt.setAttribute('font-weight', _CHINA_RUN_PROVINCES[id] ? '800' : '600');
+          txt.setAttribute('pointer-events','none');
+          txt.textContent = name;
+          svg.appendChild(txt);
+        }
+      }
+
+      const dotGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
+      dotGroup.id = 'china-city-dots-group';
+      svg.appendChild(dotGroup);
+      _CHINA_CITY_DOTS.forEach(c => {
+        const p = _chinaProject(c.lat, c.lon);
+        const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        dot.setAttribute('cx',p.x.toFixed(1)); dot.setAttribute('cy',p.y.toFixed(1)); dot.setAttribute('r',5);
+        dot.setAttribute('fill','#ff3b30'); dot.setAttribute('stroke','#fff'); dot.setAttribute('stroke-width','1.5');
+        dot.setAttribute('class','city-dot');
+        dot.style.cursor='pointer';
+        dot.addEventListener('mouseenter', e => _showChinaCityTooltip(e, c));
+        dot.addEventListener('mousemove', _moveCityTooltip);
+        dot.addEventListener('mouseleave', _hideChinaTooltip);
+        dot.addEventListener('click', e => {
+          e.stopPropagation();
+          const first = c.races[0];
+          if (first && !_flashChinaStoryCard(first.url)) window.location.href = first.url;
+        });
+        dotGroup.appendChild(dot);
+
+        // City names live in the tooltip. Keeping only dots prevents dense east/central China label overlap.
+      });
+
+      const oceans = [
+        { name:'黄海', x:638, y:300, size:8 },
+        { name:'东海', x:680, y:410, size:9 },
+        { name:'南海', x:575, y:565, size:9 },
+      ];
+      oceans.forEach(o => {
+        const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+        t.setAttribute('x',o.x); t.setAttribute('y',o.y);
+        t.setAttribute('text-anchor','middle'); t.setAttribute('font-size',o.size);
+        t.setAttribute('fill','#4a7a9b'); t.setAttribute('font-family','-apple-system,sans-serif');
+        t.setAttribute('font-style','italic'); t.setAttribute('pointer-events','none');
+        t.textContent = o.name;
+        svg.appendChild(t);
+      });
+    }
+    document.addEventListener('DOMContentLoaded', _injectChinaMap);
+  </script>
+  <script>
+    (function () {
+      const key = 'run50-story-index-theme';
+      const root = document.documentElement;
+
+      function applyTheme(theme) {
+        const isDark = theme === 'dark';
+        if (isDark) {
+          root.setAttribute('data-theme', 'dark');
+        } else {
+          root.removeAttribute('data-theme');
+        }
+        const button = document.querySelector('[data-theme-toggle]');
+        const label = document.querySelector('[data-theme-label]');
+        if (button) button.setAttribute('aria-pressed', String(isDark));
+        if (label) label.textContent = isDark ? '浅色' : '深色';
+      }
+
+      const savedTheme = localStorage.getItem(key);
+      applyTheme(savedTheme || 'light');
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const button = document.querySelector('[data-theme-toggle]');
+        if (!button) return;
+        function toggleTheme(event) {
+          if (event) event.preventDefault();
+          const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(key, nextTheme);
+          applyTheme(nextTheme);
+        }
+        button.addEventListener('click', toggleTheme);
+        button.addEventListener('keydown', function (event) {
+          if (event.key === ' ' || event.key === 'Enter') toggleTheme(event);
+        });
+      });
+    }());
+  </script>
+  <script src="../../china-map-svg.js"></script>
+  <script src="../../../assets/zz-home-button.js?v=20260703-home" defer></script>
 </body>
 </html>
