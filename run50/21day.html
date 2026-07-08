@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4点起床 · 21天计划 · ZZ</title>
     <style>
         *, *::before, *::after { box-sizing: border-box; }
+
+        :root { color-scheme: dark; }
 
         body {
             margin: 0; padding: 0;
@@ -21,7 +23,7 @@
             position: sticky; top: 0; z-index: 100;
             background-color: #1a252f;
             padding: 12px 16px;
-            display: flex; align-items: center; gap: 12px;
+            display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         .topbar-title {
@@ -44,6 +46,47 @@
             padding: 7px 10px; font-size: 13px; font-weight: 700; white-space: nowrap;
         }
         .topbar-link:hover { background: rgba(74,222,128,0.12); }
+        .topbar-actions {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-left: auto; white-space: nowrap;
+        }
+        .switch-control {
+            position: relative; display: inline-flex; align-items: center;
+            cursor: pointer; user-select: none;
+        }
+        .switch-control input {
+            position: absolute; opacity: 0; width: 1px; height: 1px;
+            pointer-events: none;
+        }
+        .switch-pill {
+            position: relative; display: grid; grid-template-columns: 1fr 1fr;
+            align-items: center; width: 72px; height: 34px; padding: 3px;
+            border-radius: 999px; border: 1px solid rgba(74,222,128,0.42);
+            background: rgba(44,62,80,0.92); color: #d1fae5;
+            font-size: 12px; font-weight: 800; line-height: 1;
+            transition: border-color 0.18s, background 0.18s, color 0.18s;
+        }
+        .switch-thumb {
+            position: absolute; top: 3px; left: 3px; z-index: 0;
+            width: 32px; height: 28px; border-radius: 999px;
+            background: #4ade80; box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            transition: transform 0.18s ease, background 0.18s;
+        }
+        .switch-copy {
+            position: relative; z-index: 1; text-align: center;
+            color: rgba(209,250,229,0.78);
+        }
+        .switch-control input:not(:checked) + .switch-pill .switch-copy:first-of-type,
+        .switch-control input:checked + .switch-pill .switch-copy:last-of-type {
+            color: #163f2b;
+        }
+        .switch-control input:checked + .switch-pill .switch-thumb { transform: translateX(34px); }
+        .switch-control input:focus-visible + .switch-pill {
+            outline: 2px solid #86efac; outline-offset: 2px;
+        }
+        .lang-switch .switch-pill { width: 76px; }
+        .lang-switch .switch-thumb { width: 34px; }
+        .lang-switch input:checked + .switch-pill .switch-thumb { transform: translateX(36px); }
 
         /* ── MAIN ── */
         .main-content { padding: 20px 16px; background-color: #f4f6f4; }
@@ -227,8 +270,92 @@
         .day-cell.status-upcoming { opacity: 0.55; }
         .day-cell.status-upcoming:hover { opacity: 1; }
 
+        /* ── DARK MODE ── */
+        body[data-theme="dark"] {
+            color: #d9e7df;
+            background-color: #0f1714;
+        }
+        body[data-theme="dark"] .main-content { background-color: #0f1714; }
+        body[data-theme="dark"] .container,
+        body[data-theme="dark"] .overall-box,
+        body[data-theme="dark"] .day-cell,
+        body[data-theme="dark"] .stat-cell {
+            background: #16201d; border-color: #2c4037;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.24);
+        }
+        body[data-theme="dark"] .dash-section,
+        body[data-theme="dark"] .footer-card,
+        body[data-theme="dark"] .photo-caption {
+            background-color: #121c18; border-color: #2c4037;
+        }
+        body[data-theme="dark"] .theme-21 .header-banner {
+            background-color: #0f2a1d; border-bottom-color: #4ade80;
+        }
+        body[data-theme="dark"] .theme-21 .header-sub { color: #bbf7d0; }
+        body[data-theme="dark"] .theme-21 .stats-val,
+        body[data-theme="dark"] .theme-21 .prog-label span,
+        body[data-theme="dark"] .theme-21 .highlight,
+        body[data-theme="dark"] .welcome-title { color: #86efac; }
+        body[data-theme="dark"] .theme-21 .callout {
+            background-color: #132a1e; border-left-color: #4ade80; color: #bbf7d0;
+        }
+        body[data-theme="dark"] .script-text,
+        body[data-theme="dark"] .op-title { color: #dde7e1; }
+        body[data-theme="dark"] .script-text.empty { color: #72847b; }
+        body[data-theme="dark"] .prog-label,
+        body[data-theme="dark"] .fn-btn,
+        body[data-theme="dark"] .dc-date { color: #b7c8bf; }
+        body[data-theme="dark"] .stats-label,
+        body[data-theme="dark"] .section-heading,
+        body[data-theme="dark"] .footer-meta,
+        body[data-theme="dark"] .grid-head-cell,
+        body[data-theme="dark"] .week-label,
+        body[data-theme="dark"] .welcome-sub,
+        body[data-theme="dark"] .op-count,
+        body[data-theme="dark"] .op-legend,
+        body[data-theme="dark"] .dc-num,
+        body[data-theme="dark"] .photo-caption { color: #8fa299; }
+        body[data-theme="dark"] .prog-bg,
+        body[data-theme="dark"] .op-bar-bg,
+        body[data-theme="dark"] .break-line::before {
+            background-color: #263730;
+        }
+        body[data-theme="dark"] .section-heading,
+        body[data-theme="dark"] .footer-card,
+        body[data-theme="dark"] .photo-section { border-color: #2c4037; }
+        body[data-theme="dark"] .break-text { background: #16201d; color: #8fa299; }
+        body[data-theme="dark"] .fn-btn {
+            background: #1c2924; border-color: #345247;
+        }
+        body[data-theme="dark"] .fn-btn:hover {
+            background: #223a2e; border-color: #4ade80; color: #86efac;
+        }
+        body[data-theme="dark"] .fn-btn.home {
+            border-color: #4ade80; color: #86efac; background: #132a1e;
+        }
+        body[data-theme="dark"] .day-cell:hover {
+            box-shadow: 0 4px 14px rgba(0,0,0,0.34); border-color: #4ade80;
+        }
+        body[data-theme="dark"] .day-cell.status-done {
+            background: #12311f; border-color: #3f8f5a;
+        }
+        body[data-theme="dark"] .day-cell.status-done .dc-num,
+        body[data-theme="dark"] .day-cell.status-done .dc-date { color: #86efac; }
+        body[data-theme="dark"] .day-cell.status-done .dc-tag {
+            background: #1f5132; color: #bbf7d0;
+        }
+        body[data-theme="dark"] .day-cell.status-active {
+            background: #0f2a1d; border-color: #4ade80;
+        }
+        body[data-theme="dark"] .day-cell.status-upcoming { opacity: 0.62; }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 640px) {
+            .topbar { gap: 8px; }
+            .topbar-title { font-size: 15px; }
+            .topbar select { order: 3; flex: 1 0 100%; }
+            .topbar-link { margin-left: auto; }
+            .topbar-actions { margin-left: 0; }
             .grid-head-row, .week-row { grid-template-columns: 30px repeat(7, 1fr); gap: 5px; }
             .week-label, .grid-head-cell { font-size: 9px; }
             .day-cell { min-height: 62px; padding: 6px 4px 5px; }
@@ -243,15 +370,33 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
 
 <!-- ── TOPBAR ── -->
 <div class="topbar">
-    <div class="topbar-title">⏰ 4点起床</div>
+    <div id="topbarTitle" class="topbar-title">⏰ 4点起床</div>
     <select id="daySelect">
         <option value="">— 选择日期 —</option>
     </select>
-    <a class="topbar-link" href="./index.html">← 主页</a>
+    <a id="homeLink" class="topbar-link" href="./index.html">← 主页</a>
+    <div id="topbarActions" class="topbar-actions" aria-label="页面设置">
+        <label class="switch-control theme-switch" title="深浅色">
+            <input id="themeSwitch" type="checkbox" aria-label="切换深浅色">
+            <span class="switch-pill" aria-hidden="true">
+                <span id="themeLightText" class="switch-copy">浅</span>
+                <span class="switch-thumb"></span>
+                <span id="themeDarkText" class="switch-copy">深</span>
+            </span>
+        </label>
+        <label class="switch-control lang-switch" title="中文 / English">
+            <input id="langSwitch" type="checkbox" aria-label="切换中文英文">
+            <span class="switch-pill" aria-hidden="true">
+                <span class="switch-copy">中</span>
+                <span class="switch-thumb"></span>
+                <span class="switch-copy">EN</span>
+            </span>
+        </label>
+    </div>
 </div>
 
 <!-- ── MAIN CONTENT ── -->
@@ -260,8 +405,8 @@
     <!-- Welcome / index screen -->
     <div id="welcome" class="welcome-screen active">
         <div class="welcome-header">
-            <div class="welcome-title">⏰ 4点起床 · 21天计划</div>
-            <div class="welcome-sub">2026.06.22 — 2026.07.12 · 每天凌晨 04:00 起床 · 口播脚本库</div>
+            <div id="welcomeTitle" class="welcome-title">⏰ 4点起床 · 21天计划</div>
+            <div id="welcomeSub" class="welcome-sub">2026.06.22 — 2026.07.12 · 每天凌晨 04:00 起床 · 口播脚本库</div>
         </div>
         <div id="overallBox" class="overall-box"></div>
         <div id="planGrid" class="plan-grid"></div>
@@ -285,37 +430,166 @@
 const START = new Date(2026, 5, 22); // 2026-06-22
 
 const META = [
-    { num:  1, emoji: "🌱", note: "出发",      title: "", photo: "", caption: "", script: [] },
+    { num:  1, emoji: "🌱", note: "出发", noteEn: "Start",      title: "", photo: "", caption: "", script: [] },
     { num:  2, emoji: "🏃", note: "",           title: "", photo: "", caption: "", script: [] },
     { num:  3, emoji: "💧", note: "",           title: "", photo: "", caption: "", script: [] },
     { num:  4, emoji: "🌿", note: "",           title: "", photo: "", caption: "", script: [] },
     { num:  5, emoji: "⚡", note: "",           title: "", photo: "", caption: "", script: [] },
     { num:  6, emoji: "🌟", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num:  7, emoji: "🔥", note: "第1周结束",  title: "", photo: "", caption: "", script: [] },
+    { num:  7, emoji: "🔥", note: "第1周结束", noteEn: "Week 1 complete",  title: "", photo: "", caption: "", script: [] },
     { num:  8, emoji: "💪", note: "",           title: "", photo: "", caption: "", script: [] },
     { num:  9, emoji: "🎯", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num: 10, emoji: "🌊", note: "半程",       title: "", photo: "", caption: "", script: [] },
+    { num: 10, emoji: "🌊", note: "半程", noteEn: "Halfway",       title: "", photo: "", caption: "", script: [] },
     { num: 11, emoji: "💡", note: "",           title: "", photo: "", caption: "", script: [] },
     { num: 12, emoji: "🏋️", note: "",          title: "", photo: "", caption: "", script: [] },
-    { num: 13, emoji: "🇺🇸", note: "7.4独立日", title: "", photo: "", caption: "", script: [] },
-    { num: 14, emoji: "🌈", note: "第2周结束",  title: "", photo: "", caption: "", script: [] },
+    { num: 13, emoji: "🇺🇸", note: "7.4独立日", noteEn: "July 4", title: "", photo: "", caption: "", script: [] },
+    { num: 14, emoji: "🌈", note: "第2周结束", noteEn: "Week 2 complete",  title: "", photo: "", caption: "", script: [] },
     { num: 15, emoji: "🚀", note: "",           title: "", photo: "", caption: "", script: [] },
     { num: 16, emoji: "⭐", note: "",           title: "", photo: "", caption: "", script: [] },
     { num: 17, emoji: "💎", note: "",           title: "", photo: "", caption: "", script: [] },
     { num: 18, emoji: "🎖️", note: "",          title: "", photo: "", caption: "", script: [] },
     { num: 19, emoji: "🌺", note: "",           title: "", photo: "", caption: "", script: [] },
     { num: 20, emoji: "🏅", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num: 21, emoji: "🎉", note: "收官",       title: "", photo: "", caption: "", script: [] },
+    { num: 21, emoji: "🎉", note: "收官", noteEn: "Finish",       title: "", photo: "", caption: "", script: [] },
 ];
 
 const DOW_CN  = ["周日","周一","周二","周三","周四","周五","周六"];
 const DOW_EN  = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+const DOW_GRID = {
+    zh: ["周一","周二","周三","周四","周五","周六","周日"],
+    en: ["MON","TUE","WED","THU","FRI","SAT","SUN"]
+};
+
+const I18N = {
+    zh: {
+        pageTitle: "4点起床 · 21天计划 · ZZ",
+        topbarTitle: "⏰ 4点起床",
+        selectPlaceholder: "— 选择日期 —",
+        homeLink: "← 主页",
+        settingsLabel: "页面设置",
+        themeTitle: "深浅色",
+        themeAria: "切换深浅色",
+        themeLight: "浅",
+        themeDark: "深",
+        langAria: "切换中文英文",
+        welcomeTitle: "⏰ 4点起床 · 21天计划",
+        welcomeSub: "2026.06.22 — 2026.07.12 · 每天凌晨 04:00 起床 · 口播脚本库",
+        progressTitle: "⏰ 4点起床 · 21天计划进度",
+        progressCount: (done, pct) => `已完成 <b>${done}</b> / 21 天（${pct}%）`,
+        legendDone: done => `已完成 ${done} 天`,
+        legendActive: active => `进行中 ${active} 天`,
+        legendUpcoming: count => `待完成 ${count} 天`,
+        tagDone: "✓ 完成",
+        tagActive: "今天",
+        optionText: (mark, m, date) => `${mark}第${pad(m.num)}天 · ${fmtShort(date)} (${DOW_CN[date.getDay()]}) ${m.emoji}`,
+        statusDone: "✓ 已完成",
+        statusActive: "▶ 进行中",
+        statusUpcoming: "○ 待完成",
+        dayLabel: n => `第${pad(n)}天`,
+        dateLine: date => `${fmtFull(date)} · ${DOW_CN[date.getDay()]}`,
+        headerSub: (wk, wkDay) => `⏰ 04:00 起床 · 第 ${wk} 周 第 ${wkDay} 天 · 21天计划（2026.06.22 — 2026.07.12）`,
+        overallProgress: "整体进度",
+        statDay: "今天第几天",
+        statTime: "执行时间",
+        statRemaining: "剩余天数",
+        statProgress: "完成进度",
+        calloutLead: "起床",
+        editHint: num => `✍️ title / photo / caption / script 均在 META[${num - 1}] 里填写`,
+        photoAlt: n => `第${n}天照片`,
+        photoPrefix: "📷",
+        placeholders: [
+            ["00:00 开场", "（开场白 · 待填写）"],
+            ["00:30 主题", "（今日主题内容 · 待填写）"],
+            ["01:00 展开", "（详细展开 / 故事 / 数据 · 待填写）"],
+            ["01:30 亮点", "（今日金句 / 亮点 · 待填写）"],
+            ["02:00 互动", "（互动话题 / 提问 · 待填写）"],
+            ["02:30 收尾", "（总结收尾 · 待填写）"],
+        ],
+        blockOpening: "开场白",
+        blockBody: "主体内容",
+        blockEnding: "互动 &amp; 结尾",
+        breakBody: "进入主体内容",
+        breakEnding: "互动收尾",
+        allDates: "📅 所有日期",
+        prevDay: n => `← 第${pad(n)}天`,
+        nextDay: n => `第${pad(n)}天 →`,
+        footerMeta: (m, date) => `第${m.num}天 · ⏰ 04:00 起床 · ${fmtFull(date)} · 21天计划`,
+        documentDayTitle: n => `第${pad(n)}天 · 4点起床 · ZZ`
+    },
+    en: {
+        pageTitle: "4 AM Wake-Up · 21-Day Plan · ZZ",
+        topbarTitle: "⏰ 4 AM Wake-Up",
+        selectPlaceholder: "— Select Day —",
+        homeLink: "← Home",
+        settingsLabel: "Page settings",
+        themeTitle: "Light / Dark",
+        themeAria: "Toggle light and dark mode",
+        themeLight: "L",
+        themeDark: "D",
+        langAria: "Switch Chinese and English",
+        welcomeTitle: "⏰ 4 AM Wake-Up · 21-Day Plan",
+        welcomeSub: "2026.06.22 — 2026.07.12 · Wake up at 04:00 every day · Script library",
+        progressTitle: "⏰ 4 AM Wake-Up · 21-Day Progress",
+        progressCount: (done, pct) => `Completed <b>${done}</b> / 21 days (${pct}%)`,
+        legendDone: done => `Completed ${done} days`,
+        legendActive: active => `Active ${active} day`,
+        legendUpcoming: count => `${count} days left`,
+        tagDone: "✓ Done",
+        tagActive: "Today",
+        optionText: (mark, m, date) => `${mark}Day ${pad(m.num)} · ${fmtShort(date)} (${DOW_EN[date.getDay()]}) ${m.emoji}`,
+        statusDone: "✓ Done",
+        statusActive: "▶ Active",
+        statusUpcoming: "○ Upcoming",
+        dayLabel: n => `Day ${pad(n)}`,
+        dateLine: date => `${fmtFull(date)} · ${DOW_EN[date.getDay()]}`,
+        headerSub: (wk, wkDay) => `⏰ 04:00 wake-up · Week ${wk}, Day ${wkDay} · 21-day plan (2026.06.22 — 2026.07.12)`,
+        overallProgress: "Overall progress",
+        statDay: "Plan day",
+        statTime: "Wake time",
+        statRemaining: "Days left",
+        statProgress: "Progress",
+        calloutLead: "wake-up",
+        editHint: num => `✍️ Fill title / photo / caption / script in META[${num - 1}]`,
+        photoAlt: n => `Day ${n} photo`,
+        photoPrefix: "📷",
+        placeholders: [
+            ["00:00 Opening", "(Opening line · pending)"],
+            ["00:30 Topic", "(Today's topic · pending)"],
+            ["01:00 Build", "(Details / story / data · pending)"],
+            ["01:30 Highlight", "(Quote / highlight · pending)"],
+            ["02:00 Engage", "(Question / prompt · pending)"],
+            ["02:30 Close", "(Closing summary · pending)"],
+        ],
+        blockOpening: "Opening",
+        blockBody: "Main Content",
+        blockEnding: "Engagement &amp; Close",
+        breakBody: "Main content",
+        breakEnding: "Engagement close",
+        allDates: "📅 All Dates",
+        prevDay: n => `← Day ${pad(n)}`,
+        nextDay: n => `Day ${pad(n)} →`,
+        footerMeta: (m, date) => `Day ${m.num} · ⏰ 04:00 wake-up · ${fmtFull(date)} · 21-day plan`,
+        documentDayTitle: n => `Day ${pad(n)} · 4 AM Wake-Up · ZZ`
+    }
+};
+
+let currentLang = localStorage.getItem("zz21-lang") || "en";
+currentLang = currentLang === "zh" ? "zh" : "en";
+let currentTheme = localStorage.getItem("zz21-theme") || "dark";
+currentTheme = currentTheme === "light" ? "light" : "dark";
 
 /* helpers */
 function pad(n)       { return n < 10 ? "0" + n : "" + n; }
 function dayDate(num) { const d = new Date(START); d.setDate(START.getDate() + num - 1); return d; }
 function fmtShort(d)  { return `${d.getMonth()+1}/${d.getDate()}`; }
 function fmtFull(d)   { return `${d.getFullYear()}.${pad(d.getMonth()+1)}.${pad(d.getDate())}`; }
+function tx(key)      { return I18N[currentLang][key]; }
+function metaNote(m)  { return currentLang === "en" ? (m.noteEn || m.note) : m.note; }
+function metaTitle(m) { return currentLang === "en" ? (m.titleEn || m.title) : m.title; }
+function metaCaption(m) { return currentLang === "en" ? (m.captionEn || m.caption) : m.caption; }
+function metaScript(m) {
+    return currentLang === "en" && Array.isArray(m.scriptEn) && m.scriptEn.length ? m.scriptEn : m.script;
+}
 
 function status(d) {
     const today = new Date(); today.setHours(0,0,0,0);
@@ -325,6 +599,39 @@ function status(d) {
     return "upcoming";
 }
 
+function updateStaticText() {
+    document.documentElement.lang = currentLang === "en" ? "en" : "zh-CN";
+    document.getElementById("langSwitch").checked = currentLang === "en";
+    document.getElementById("topbarTitle").textContent = tx("topbarTitle");
+    document.getElementById("homeLink").textContent = tx("homeLink");
+    document.getElementById("topbarActions").setAttribute("aria-label", tx("settingsLabel"));
+    document.querySelector(".theme-switch").title = tx("themeTitle");
+    document.getElementById("themeSwitch").setAttribute("aria-label", tx("themeAria"));
+    document.getElementById("themeLightText").textContent = tx("themeLight");
+    document.getElementById("themeDarkText").textContent = tx("themeDark");
+    document.getElementById("langSwitch").setAttribute("aria-label", tx("langAria"));
+    document.getElementById("welcomeTitle").textContent = tx("welcomeTitle");
+    document.getElementById("welcomeSub").textContent = tx("welcomeSub");
+}
+
+function applyTheme(theme, persist = true) {
+    currentTheme = theme === "dark" ? "dark" : "light";
+    document.body.dataset.theme = currentTheme;
+    document.documentElement.style.colorScheme = currentTheme;
+    document.getElementById("themeSwitch").checked = currentTheme === "dark";
+    if (persist) localStorage.setItem("zz21-theme", currentTheme);
+}
+
+function applyLanguage(lang, persist = true) {
+    currentLang = lang === "en" ? "en" : "zh";
+    document.getElementById("langSwitch").checked = currentLang === "en";
+    updateStaticText();
+    buildSelect();
+    const d = getURLDay();
+    d ? renderDay(+d, false) : renderWelcome(false);
+    if (persist) localStorage.setItem("zz21-lang", currentLang);
+}
+
 /* ── BUILD: overall progress box ── */
 function buildProgress() {
     const done   = META.filter(m => status(dayDate(m.num)) === "done").length;
@@ -332,23 +639,22 @@ function buildProgress() {
     const pct    = Math.round(done / 21 * 100);
     document.getElementById("overallBox").innerHTML = `
         <div class="op-header">
-            <span class="op-title">⏰ 4点起床 · 21天计划进度</span>
-            <span class="op-count">已完成 <b>${done}</b> / 21 天（${pct}%）</span>
+            <span class="op-title">${tx("progressTitle")}</span>
+            <span class="op-count">${tx("progressCount")(done, pct)}</span>
         </div>
         <div class="op-bar-bg"><div class="op-bar-fill" style="width:${pct}%"></div></div>
         <div class="op-legend">
-            <span><span class="op-dot done"></span>已完成 ${done} 天</span>
-            <span><span class="op-dot active"></span>进行中 ${active} 天</span>
-            <span><span class="op-dot upcoming"></span>待完成 ${21 - done - active} 天</span>
+            <span><span class="op-dot done"></span>${tx("legendDone")(done)}</span>
+            <span><span class="op-dot active"></span>${tx("legendActive")(active)}</span>
+            <span><span class="op-dot upcoming"></span>${tx("legendUpcoming")(21 - done - active)}</span>
         </div>`;
 }
 
 /* ── BUILD: calendar grid ── */
 function buildGrid() {
-    const DOW_GRID = ["MON","TUE","WED","THU","FRI","SAT","SUN"];
     let html = `<div class="grid-head-row">
         <div class="grid-head-cell"></div>
-        ${DOW_GRID.map(d => `<div class="grid-head-cell">${d}</div>`).join("")}
+        ${DOW_GRID[currentLang].map(d => `<div class="grid-head-cell">${d}</div>`).join("")}
     </div>`;
 
     for (let w = 1; w <= 3; w++) {
@@ -358,9 +664,9 @@ function buildGrid() {
             const m    = META[n - 1];
             const date = dayDate(n);
             const st   = status(date);
-            const tag  = st === "done"   ? "✓ 完成"
-                       : st === "active" ? "今天"
-                       : m.note || "";
+            const tag  = st === "done"   ? tx("tagDone")
+                       : st === "active" ? tx("tagActive")
+                       : metaNote(m) || "";
             html += `<div class="day-cell status-${st}" onclick="goDay(${n})">
                 <div class="dc-num">D${pad(n)}</div>
                 <div class="dc-emoji">${m.emoji}</div>
@@ -376,15 +682,22 @@ function buildGrid() {
 /* ── BUILD: select options ── */
 function buildSelect() {
     const sel = document.getElementById("daySelect");
+    const selected = sel.value;
+    sel.innerHTML = "";
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = tx("selectPlaceholder");
+    sel.appendChild(placeholder);
     META.forEach(m => {
         const date = dayDate(m.num);
         const st   = status(date);
         const mark = st === "done" ? "✓ " : st === "active" ? "▶ " : "";
         const opt  = document.createElement("option");
         opt.value  = pad(m.num);                    // "01"~"21"，对应 ?d=01
-        opt.textContent = `${mark}第${pad(m.num)}天 · ${fmtShort(date)} (${DOW_CN[date.getDay()]}) ${m.emoji}`;
+        opt.textContent = tx("optionText")(mark, m, date);
         sel.appendChild(opt);
     });
+    sel.value = selected;
 }
 
 /* ── BUILD: single day HTML ── */
@@ -397,27 +710,24 @@ function buildDayHTML(m) {
     const prev  = m.num > 1  ? m.num - 1 : null;
     const next  = m.num < 21 ? m.num + 1 : null;
 
-    const stLabel = st === "done"   ? "✓ 已完成"
-                  : st === "active" ? "▶ 进行中"
-                  : "○ 待完成";
+    const stLabel = st === "done"   ? tx("statusDone")
+                  : st === "active" ? tx("statusActive")
+                  : tx("statusUpcoming");
+    const title = metaTitle(m);
+    const caption = metaCaption(m);
+    const script = metaScript(m);
+    const note = metaNote(m);
 
     /* script rows */
     let scriptHtml;
-    if (m.script.length > 0) {
-        scriptHtml = m.script.map(row => `
+    if (script.length > 0) {
+        scriptHtml = script.map(row => `
             <div class="script-row">
                 <div class="cue-tag">${row.cue}</div>
                 <div class="script-text">${row.text}</div>
             </div>`).join("");
     } else {
-        const ph = [
-            ["00:00 开场", "（开场白 · 待填写）"],
-            ["00:30 主题", "（今日主题内容 · 待填写）"],
-            ["01:00 展开", "（详细展开 / 故事 / 数据 · 待填写）"],
-            ["01:30 亮点", "（今日金句 / 亮点 · 待填写）"],
-            ["02:00 互动", "（互动话题 / 提问 · 待填写）"],
-            ["02:30 收尾", "（总结收尾 · 待填写）"],
-        ];
+        const ph = tx("placeholders");
         const makeBlock = (label, items) => `
             <div class="section-block">
                 <div class="section-heading">${label}</div>
@@ -427,60 +737,60 @@ function buildDayHTML(m) {
                     <div class="script-text empty">${txt}</div>
                 </div>`).join("")}
             </div>`;
-        scriptHtml = makeBlock("开场白", ph.slice(0, 2))
-            + `<div class="break-line"><span class="break-text">进入主体内容</span></div>`
-            + makeBlock("主体内容", ph.slice(2, 4))
-            + `<div class="break-line"><span class="break-text">互动收尾</span></div>`
-            + makeBlock("互动 &amp; 结尾", ph.slice(4));
+        scriptHtml = makeBlock(tx("blockOpening"), ph.slice(0, 2))
+            + `<div class="break-line"><span class="break-text">${tx("breakBody")}</span></div>`
+            + makeBlock(tx("blockBody"), ph.slice(2, 4))
+            + `<div class="break-line"><span class="break-text">${tx("breakEnding")}</span></div>`
+            + makeBlock(tx("blockEnding"), ph.slice(4));
     }
 
     const photoHtml = m.photo ? `
         <div class="photo-section">
-            <img class="day-photo" src="${m.photo}" alt="第${m.num}天照片"
+            <img class="day-photo" src="${m.photo}" alt="${tx("photoAlt")(m.num)}"
                  onclick="this.style.maxHeight=this.style.maxHeight?'':'none'">
-            ${m.caption ? `<div class="photo-caption">📷 ${m.caption}</div>` : ""}
+            ${caption ? `<div class="photo-caption">${tx("photoPrefix")} ${caption}</div>` : ""}
         </div>` : "";
 
     return `
     <div class="container theme-21 active">
         <div class="header-banner">
-            <div class="header-tag">${m.emoji} 第${pad(m.num)}天 · ${stLabel}</div>
-            ${m.title
-                ? `<h1 class="day-title-main">${m.title}</h1>
-                   <p class="day-title-date">${fmtFull(date)} · ${DOW_CN[date.getDay()]}</p>`
-                : `<h1>${fmtFull(date)} · ${DOW_CN[date.getDay()]}</h1>`}
-            <p class="header-sub">⏰ 04:00 起床 · 第 ${wk} 周 第 ${wkDay} 天 · 21天计划（2026.06.22 — 2026.07.12）</p>
+            <div class="header-tag">${m.emoji} ${tx("dayLabel")(m.num)} · ${stLabel}</div>
+            ${title
+                ? `<h1 class="day-title-main">${title}</h1>
+                   <p class="day-title-date">${tx("dateLine")(date)}</p>`
+                : `<h1>${tx("dateLine")(date)}</h1>`}
+            <p class="header-sub">${tx("headerSub")(wk, wkDay)}</p>
         </div>
         ${photoHtml}
         <div class="dash-section">
             <div class="prog-container">
-                <div class="prog-label">整体进度 <span>${pct}%</span></div>
+                <div class="prog-label">${tx("overallProgress")} <span>${pct}%</span></div>
                 <div class="prog-bg"><div class="prog-fill" style="width:${pct}%"></div></div>
             </div>
             <div class="stats-row">
-                <div class="stat-cell"><div class="stats-val">${pad(m.num)}</div><div class="stats-label">今天第几天</div></div>
-                <div class="stat-cell"><div class="stats-val" style="letter-spacing:2px">04:00</div><div class="stats-label">执行时间</div></div>
-                <div class="stat-cell"><div class="stats-val">${21 - m.num}</div><div class="stats-label">剩余天数</div></div>
-                <div class="stat-cell"><div class="stats-val">${pct}%</div><div class="stats-label">完成进度</div></div>
+                <div class="stat-cell"><div class="stats-val">${pad(m.num)}</div><div class="stats-label">${tx("statDay")}</div></div>
+                <div class="stat-cell"><div class="stats-val" style="letter-spacing:2px">04:00</div><div class="stats-label">${tx("statTime")}</div></div>
+                <div class="stat-cell"><div class="stats-val">${21 - m.num}</div><div class="stats-label">${tx("statRemaining")}</div></div>
+                <div class="stat-cell"><div class="stats-val">${pct}%</div><div class="stats-label">${tx("statProgress")}</div></div>
             </div>
         </div>
         <div class="content-body">
             <div class="callout">
-                ⏰ <b>04:00 起床</b> · 第${m.num}天 · ${fmtFull(date)}${m.note ? "  ·  " + m.note : ""}
-                ${m.title ? `<br><b style="font-size:15px">${m.title}</b>` : ""}
+                ⏰ <b>04:00 ${tx("calloutLead")}</b> · ${tx("dayLabel")(m.num)} · ${fmtFull(date)}${note ? "  ·  " + note : ""}
+                ${title ? `<br><b style="font-size:15px">${title}</b>` : ""}
                 <span style="color:#7eb88a;font-size:12px;margin-top:6px;display:block;">
-                    ✍️ title / photo / caption / script 均在 META[${m.num - 1}] 里填写
+                    ${tx("editHint")(m.num)}
                 </span>
             </div>
             ${scriptHtml}
         </div>
         <div class="footer-card">
             <div class="footer-nav">
-                <button class="fn-btn" ${prev ? `onclick="goDay(${prev})"` : "disabled"}>← 第${prev ? pad(prev) : "01"}天</button>
-                <button class="fn-btn home" onclick="goWelcome()">📅 所有日期</button>
-                <button class="fn-btn" ${next ? `onclick="goDay(${next})"` : "disabled"}>第${next ? pad(next) : "21"}天 →</button>
+                <button class="fn-btn" ${prev ? `onclick="goDay(${prev})"` : "disabled"}>${tx("prevDay")(prev || 1)}</button>
+                <button class="fn-btn home" onclick="goWelcome()">${tx("allDates")}</button>
+                <button class="fn-btn" ${next ? `onclick="goDay(${next})"` : "disabled"}>${tx("nextDay")(next || 21)}</button>
             </div>
-            <div class="footer-meta">第${m.num}天 · ⏰ 04:00 起床 · ${fmtFull(date)} · 21天计划</div>
+            <div class="footer-meta">${tx("footerMeta")(m, date)}</div>
         </div>
     </div>`;
 }
@@ -501,24 +811,24 @@ function goWelcome() {
     renderWelcome();
 }
 
-function renderDay(num) {
+function renderDay(num, shouldScroll = true) {
     const m = META[num - 1];
     if (!m) { renderWelcome(); return; }
     document.getElementById("welcome").classList.remove("active");
     document.getElementById("dayView").innerHTML = buildDayHTML(m);
     document.getElementById("daySelect").value = pad(num);
-    window.scrollTo({ top: 0 });
-    document.title = `第${pad(num)}天 · 4点起床 · ZZ`;
+    if (shouldScroll) window.scrollTo({ top: 0 });
+    document.title = tx("documentDayTitle")(num);
 }
 
-function renderWelcome() {
+function renderWelcome(shouldScroll = true) {
     document.getElementById("welcome").classList.add("active");
     document.getElementById("dayView").innerHTML = "";
     document.getElementById("daySelect").value = "";
     buildProgress();
     buildGrid();
-    window.scrollTo({ top: 0 });
-    document.title = "4点起床 · 21天计划 · ZZ";
+    if (shouldScroll) window.scrollTo({ top: 0 });
+    document.title = tx("pageTitle");
 }
 
 /* browser back / forward */
@@ -533,7 +843,17 @@ document.getElementById("daySelect").addEventListener("change", function() {
     v ? goDay(+v) : goWelcome();
 });
 
+document.getElementById("themeSwitch").addEventListener("change", function() {
+    applyTheme(this.checked ? "dark" : "light");
+});
+
+document.getElementById("langSwitch").addEventListener("change", function() {
+    applyLanguage(this.checked ? "en" : "zh");
+});
+
 /* ── INIT ── */
+applyTheme(currentTheme, false);
+updateStaticText();
 buildSelect();
 const initDay = getURLDay();
 if (initDay) {
