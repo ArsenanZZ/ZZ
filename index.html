@@ -2584,7 +2584,7 @@
       </span>
     </a>
 
-    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/marathon/" data-card data-tags="about run50">
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/marathon/" data-card data-tags="about knowledge">
       <img src="https://zhennanzhang.com/assets/thumb-me-marathon.jpg?v=20260627-me-clean-v4" alt="Marathon profile cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">Me</span> Marathon</span>
@@ -2678,10 +2678,9 @@
   let activeMoreFilter = 'all';
 
   const LIVE_STORY_INDEXES = [
-    { path: '/run50/stories/english/', tag: 'english', label: 'English Stories' },
-    { path: '/run50/facebook/', tag: 'facebook', label: 'Facebook' }
+    { path: '/run50/wechat-en/', tag: 'english', label: 'Running Blog', source: 'wechat-en' }
   ];
-  const MAX_CAROUSEL_SLIDES = 36;
+  const MAX_CAROUSEL_SLIDES = 60;
   const MAX_KNOWLEDGE_CAROUSEL_SLIDES = 10;
   const CAROUSEL_ROTATE_MS = 5500;
   const CAROUSEL_RANDOMIZE_MS = 10 * 60 * 1000;
@@ -2693,7 +2692,8 @@
   if (ZOOM_LEVELS.includes(requestedZoom)) viewZoom = requestedZoom;
 
   function canUseLiveIndexes() {
-    return /(^|\.)zhennanzhang\.com$/i.test(location.hostname);
+    return /(^|\.)zhennanzhang\.com$/i.test(location.hostname)
+      || /^(localhost|127\.0\.0\.1)$/i.test(location.hostname);
   }
 
   function refreshCardList() {
@@ -2754,7 +2754,8 @@
       matchesFilter = isRunning && tags.includes(activeFilter);
     }
 
-    return matchesFilter && matchesSearch && (isKnowledge || !shouldSkipStoryUrl(href));
+    const isCanonicalRunningBlog = card.dataset.storySource === 'wechat-en';
+    return matchesFilter && matchesSearch && (isKnowledge || isCanonicalRunningBlog || !shouldSkipStoryUrl(href));
   }
 
   function itemSourceType(item) {
@@ -2792,7 +2793,7 @@
   function isRunningStoryImageCard(card) {
     const tags = (card.dataset.tags || '').toLowerCase();
     const href = (card.getAttribute('href') || '').toLowerCase();
-    const isStory = RUNNING_TAG_RE.test(tags) || /\/run50\/(facebook|stories\/english)\//.test(href);
+    const isStory = RUNNING_TAG_RE.test(tags) || /\/run50\/(facebook|stories\/english|wechat-en)\//.test(href);
     return !isKnowledgeTagSet(tags)
       && isStory
       && card.matches('.card[data-card]')
@@ -2806,6 +2807,7 @@
     if (!feedGrid) return;
     const storyCards = Array.from(feedGrid.querySelectorAll(':scope > .card[data-card]')).filter(isRunningStoryImageCard);
     if (storyCards.length < 2) return;
+    if (storyCards.every(card => card.dataset.storySource === 'wechat-en')) return;
     const markers = storyCards.map(card => {
       const marker = document.createComment('story-slot');
       card.before(marker);
@@ -3138,9 +3140,13 @@
   }
 
   function seriesFromClass(card) {
-    const className = card.className || '';
-    if (className.includes('run-cn')) return 'runcn';
-    if (className.includes('run-world')) return 'runworld';
+    const seriesText = [
+      card.className || '',
+      card.querySelector('.story-number')?.textContent || '',
+      card.querySelector('.eyebrow')?.textContent || ''
+    ].join(' ').toLowerCase();
+    if (/\bruncn\b/.test(seriesText) || seriesText.includes('run-cn')) return 'runcn';
+    if (/\brunworld\b/.test(seriesText) || seriesText.includes('run-world')) return 'runworld';
     return 'run50';
   }
 
@@ -3163,16 +3169,20 @@
     const link = card.getAttribute('href');
     const image = card.querySelector('img');
     const title = card.querySelector('.story-title,h2,h3')?.textContent.trim();
-    if (!link || shouldSkipStoryUrl(link) || !image || !title) return null;
+    if (!link || !image || !title) return null;
     const series = seriesFromClass(card);
-    const meta = card.querySelector('.story-meta')?.textContent.trim() || labelForSeries(series, source.label);
+    const storyNumber = card.querySelector('.story-number')?.textContent.trim() || labelForSeries(series, source.label);
+    const meta = card.querySelector('.story-meta,.meta')?.textContent.trim() || storyNumber;
+    const description = card.querySelector('.desc')?.textContent.trim() || '';
     return {
       href: absoluteFrom(link, source.path),
       img: absoluteFrom(image.getAttribute('src'), source.path),
       title,
-      source: `${labelForSeries(series, source.label)} / ${meta}`,
+      source: `${storyNumber} · ${meta}`,
       logo: logoFromMeta(meta, series),
       tags: `${series} ${source.tag} stories trip`,
+      description,
+      storySource: source.source || '',
       likes: 0,
       comments: 0
     };
@@ -3186,8 +3196,7 @@
     const doc = new DOMParser().parseFromString(html, 'text/html');
     return Array.from(doc.querySelectorAll('.story-card'))
       .map(card => storyFromIndexCard(card, source))
-      .filter(Boolean)
-      .reverse();
+      .filter(Boolean);
   }
 
   function createLiveCard(story, index) {
@@ -3196,11 +3205,16 @@
     card.href = story.href;
     card.dataset.card = '';
     card.dataset.tags = story.tags;
+    card.dataset.storySource = story.storySource;
+    const description = story.description
+      ? `<p class="story-summary">${escapeHtml(story.description)}</p>`
+      : '';
     card.innerHTML = `
       <img src="${escapeHtml(story.img)}" alt="${escapeHtml(story.title)} cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">${escapeHtml(story.logo)}</span> ${escapeHtml(story.source)}</span>
         <h3>${escapeHtml(story.title)}</h3>
+        ${description}
         <span class="metric-row"><span><i class="bi bi-hand-thumbs-up"></i>${story.likes}</span><span><i class="bi bi-chat-square"></i>${story.comments}</span></span>
       </span>
     `;
