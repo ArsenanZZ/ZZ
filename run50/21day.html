@@ -349,111 +349,6 @@
         }
         body[data-theme="dark"] .day-cell.status-upcoming { opacity: 0.62; }
 
-        /* ── JOURNAL & TABS ── */
-        .view-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin: 20px 35px 0;
-            padding: 4px;
-            background: #e2e8f0;
-            border-radius: 8px;
-        }
-        body[data-theme="dark"] .view-tabs {
-            background: #1a2522;
-        }
-        .tab-btn {
-            flex: 1;
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 700;
-            color: #4a5568;
-            background: transparent;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-align: center;
-        }
-        body[data-theme="dark"] .tab-btn {
-            color: #8fa299;
-        }
-        .tab-btn:hover {
-            color: #163f2b;
-        }
-        body[data-theme="dark"] .tab-btn:hover {
-            color: #86efac;
-        }
-        .tab-btn.active {
-            background: #fff;
-            color: #163f2b;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        }
-        body[data-theme="dark"] .tab-btn.active {
-            background: #253730;
-            color: #86efac;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        .tab-content.active {
-            display: block;
-        }
-
-        .journal-para {
-            font-size: 16.5px;
-            line-height: 1.85;
-            color: #2d3748;
-            margin: 0 0 24px 0;
-            text-align: justify;
-        }
-        body[data-theme="dark"] .journal-para {
-            color: #dde7e1;
-        }
-        .journal-photo-group {
-            margin: 24px 0 36px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .journal-figure {
-            margin: 0;
-            padding: 0;
-            background: #fafbfc;
-            border: 1px solid #eef2f5;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        body[data-theme="dark"] .journal-figure {
-            background: #16201d;
-            border-color: #2c4037;
-        }
-        .journal-img {
-            width: 100%;
-            display: block;
-            max-height: 480px;
-            object-fit: cover;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        .journal-img:hover {
-            opacity: 0.95;
-        }
-        .journal-caption {
-            padding: 10px 16px;
-            font-size: 13px;
-            color: #718096;
-            font-style: italic;
-            border-top: 1px solid #eef2f5;
-        }
-        body[data-theme="dark"] .journal-caption {
-            color: #8fa299;
-            border-color: #2c4037;
-        }
-
         /* ── RESPONSIVE ── */
         @media (max-width: 640px) {
             .topbar { gap: 8px; }
@@ -473,9 +368,392 @@
             .footer-card   { padding: 16px 18px; }
             .stats-row     { gap: 8px; }
         }
+        /* ── LOCK SCREEN ── */
+        .lock-screen {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 99999;
+            background: rgba(15, 23, 20, 0.88);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        body[data-theme="light"] .lock-screen {
+            background: rgba(247, 250, 248, 0.88);
+        }
+        .lock-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .lock-card {
+            background: #16201d;
+            border: 1px solid #2c4037;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: lockFadeIn 0.4s ease;
+        }
+        body[data-theme="light"] .lock-card {
+            background: #ffffff;
+            border-color: #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        @keyframes lockFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .lock-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .lock-card h2 {
+            color: #4ade80;
+            margin: 0 0 10px 0;
+            font-size: 22px;
+        }
+        body[data-theme="light"] .lock-card h2 {
+            color: #163f2b;
+        }
+        .lock-card p {
+            color: #8fa299;
+            font-size: 14px;
+            margin: 0 0 24px 0;
+        }
+        body[data-theme="light"] .lock-card p {
+            color: #718096;
+        }
+        .input-group {
+            display: flex;
+            gap: 8px;
+        }
+        .lock-card input {
+            flex: 1;
+            background: #0f1714;
+            border: 1px solid #2c4037;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        body[data-theme="light"] .lock-card input {
+            background: #fafbfc;
+            border-color: #cbd5e0;
+            color: #2d3748;
+        }
+        .lock-card input:focus {
+            border-color: #4ade80;
+        }
+        body[data-theme="light"] .lock-card input:focus {
+            border-color: #163f2b;
+        }
+        .lock-card button {
+            background: #4ade80;
+            color: #163f2b;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        body[data-theme="light"] .lock-card button {
+            background: #163f2b;
+            color: #fff;
+        }
+        .lock-card button:hover {
+            background: #34c06f;
+        }
+        body[data-theme="light"] .lock-card button:hover {
+            background: #255a40;
+        }
+        .password-error {
+        /* ── LOCK SCREEN ── */
+        .lock-screen {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 99999;
+            background: rgba(15, 23, 20, 0.88);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        body[data-theme="light"] .lock-screen {
+            background: rgba(247, 250, 248, 0.88);
+        }
+        .lock-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .lock-card {
+            background: #16201d;
+            border: 1px solid #2c4037;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: lockFadeIn 0.4s ease;
+        }
+        body[data-theme="light"] .lock-card {
+            background: #ffffff;
+            border-color: #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        @keyframes lockFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .lock-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .lock-card h2 {
+            color: #4ade80;
+            margin: 0 0 10px 0;
+            font-size: 22px;
+        }
+        body[data-theme="light"] .lock-card h2 {
+            color: #163f2b;
+        }
+        .lock-card p {
+            color: #8fa299;
+            font-size: 14px;
+            margin: 0 0 24px 0;
+        }
+        body[data-theme="light"] .lock-card p {
+            color: #718096;
+        }
+        .input-group {
+            display: flex;
+            gap: 8px;
+        }
+        .lock-card input {
+            flex: 1;
+            background: #0f1714;
+            border: 1px solid #2c4037;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        body[data-theme="light"] .lock-card input {
+            background: #fafbfc;
+            border-color: #cbd5e0;
+            color: #2d3748;
+        }
+        .lock-card input:focus {
+            border-color: #4ade80;
+        }
+        body[data-theme="light"] .lock-card input:focus {
+            border-color: #163f2b;
+        }
+        .lock-card button {
+            background: #4ade80;
+            color: #163f2b;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        body[data-theme="light"] .lock-card button {
+            background: #163f2b;
+            color: #fff;
+        }
+        .lock-card button:hover {
+            background: #34c06f;
+        }
+        body[data-theme="light"] .lock-card button:hover {
+            background: #255a40;
+        }
+        .password-error {
+            color: #ef4444;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 12px;
+            min-height: 18px;
+        }
+        .lock-card.shake {
+            animation: lockShake 0.4s ease;
+        }
+        @keyframes lockShake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        /* ── EDITOR MODE ── */
+        .topbar-btn {
+            background: transparent;
+            border: 1px solid #2c4037;
+            color: #4ade80;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        body[data-theme="light"] .topbar-btn {
+            border-color: #cbd5e0;
+            color: #163f2b;
+        }
+        .topbar-btn:hover {
+            background: rgba(74, 222, 128, 0.1);
+        }
+        body[data-theme="light"] .topbar-btn:hover {
+            background: rgba(22, 63, 43, 0.05);
+        }
+        .topbar-btn.active {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: #fff;
+        }
+        .topbar-btn.hidden {
+            display: none !important;
+        }
+        .edit-photo-container {
+            position: relative;
+            width: 100%;
+        }
+        .delete-photo-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(239, 68, 68, 0.95);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            transition: background 0.2s;
+            z-index: 10;
+        }
+        .delete-photo-btn:hover {
+            background: #dc2626;
+        }
+        .journal-para[contenteditable="true"] {
+            border: 1px dashed #4ade80;
+            padding: 8px;
+            border-radius: 6px;
+            background: rgba(74, 222, 128, 0.03);
+            outline: none;
+        }
+        body[data-theme="light"] .journal-para[contenteditable="true"] {
+            border-color: #163f2b;
+            background: rgba(22, 63, 43, 0.02);
+        }
+        .journal-caption[contenteditable="true"] {
+            border: 1px dashed #4ade80;
+            padding: 6px;
+            border-radius: 4px;
+            background: rgba(74, 222, 128, 0.03);
+            outline: none;
+        }
+        body[data-theme="light"] .journal-caption[contenteditable="true"] {
+            border-color: #163f2b;
+            background: rgba(22, 63, 43, 0.02);
+        }
+        .script-row div[contenteditable="true"] {
+            border: 1px dashed #4ade80;
+            padding: 4px;
+            border-radius: 4px;
+            background: rgba(74, 222, 128, 0.03);
+            outline: none;
+        }
+        body[data-theme="light"] .script-row div[contenteditable="true"] {
+            border-color: #163f2b;
+            background: rgba(22, 63, 43, 0.02);
+        }
+        .save-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #4ade80;
+            color: #163f2b;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 14px 24px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(74, 222, 128, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10000;
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        body[data-theme="light"] .save-fab {
+            background: #163f2b;
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(22, 63, 43, 0.3);
+        }
+        .save-fab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(74, 222, 128, 0.5);
+        }
+        .save-fab.hidden {
+            display: none !important;
+        }
+        @keyframes popUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body data-theme="dark">
+
+<div id="lockScreen" class="lock-screen">
+    <div class="lock-card">
+        <div class="lock-icon">🔒</div>
+        <h2>Password Protected</h2>
+        <p>Please enter the password to view this page.</p>
+        <div class="input-group">
+            <input id="passwordInput" type="password" placeholder="Enter password" autocomplete="current-password">
+            <button id="passwordBtn" onclick="checkPassword()">Submit</button>
+        </div>
+        <div id="passwordError" class="password-error"></div>
+    </div>
+</div>
+
+<script>
+    if (sessionStorage.getItem("zz21-auth") === "true") {
+        document.write('<style>#lockScreen { display: none !important; }</style>');
+        window.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("editorModeBtn").classList.remove("hidden");
+        });
+    }
+</script>
 
 <!-- ── TOPBAR ── -->
 <div class="topbar">
@@ -484,6 +762,7 @@
         <option value="">— Select Day —</option>
     </select>
     <a id="homeLink" class="topbar-link" href="./index.html">← Home</a>
+    <button id="editorModeBtn" class="topbar-btn hidden" onclick="toggleEditorMode()">✏️ Edit</button>
     <div id="topbarActions" class="topbar-actions" aria-label="Page settings">
         <label class="switch-control theme-switch" title="Light / Dark">
             <input id="themeSwitch" type="checkbox" aria-label="Toggle light and dark mode">
@@ -594,20 +873,7 @@ const META = [
                        "../assets/21day/day01/img-004.jpg",
                        "../assets/21day/day01/img-005.jpg",
                        "../assets/21day/day01/img-006.jpg",
-                       "../assets/21day/day01/img-007.jpg",
-                       "../assets/21day/day01/img-008.jpg",
-                       "../assets/21day/day01/img-009.jpg",
-                       "../assets/21day/day01/img-010.jpg",
-                       "../assets/21day/day01/img-011.jpg",
-                       "../assets/21day/day01/img-012.jpg",
-                       "../assets/21day/day01/img-013.jpg",
-                       "../assets/21day/day01/img-014.jpg",
-                       "../assets/21day/day01/img-015.jpg",
-                       "../assets/21day/day01/img-016.jpg",
-                       "../assets/21day/day01/img-017.jpg",
-                       "../assets/21day/day01/img-018.jpg",
-                       "../assets/21day/day01/img-019.jpg",
-                       "../assets/21day/day01/img-020.jpg"
+                       "../assets/21day/day01/img-007.jpg"
                    ]
     },
     {
@@ -677,9 +943,7 @@ const META = [
                        "../assets/21day/day02/img-015.jpg",
                        "../assets/21day/day02/img-016.jpg",
                        "../assets/21day/day02/img-017.jpg",
-                       "../assets/21day/day02/img-018.jpg",
-                       "../assets/21day/day02/img-019.jpg",
-                       "../assets/21day/day02/img-020.jpg"
+                       "../assets/21day/day02/img-018.jpg"
                    ]
     },
     {
@@ -813,16 +1077,9 @@ const META = [
                        "../assets/21day/day04/img-008.jpg",
                        "../assets/21day/day04/img-009.jpg",
                        "../assets/21day/day04/img-010.jpg",
-                       "../assets/21day/day04/img-011.jpg",
+                       "../assets/21day/day04/img-011.png",
                        "../assets/21day/day04/img-012.jpg",
-                       "../assets/21day/day04/img-013.jpg",
-                       "../assets/21day/day04/img-014.jpg",
-                       "../assets/21day/day04/img-015.jpg",
-                       "../assets/21day/day04/img-016.jpg",
-                       "../assets/21day/day04/img-017.jpg",
-                       "../assets/21day/day04/img-018.jpg",
-                       "../assets/21day/day04/img-019.jpg",
-                       "../assets/21day/day04/img-020.jpg"
+                       "../assets/21day/day04/img-013.png"
                    ]
     },
     {
@@ -1063,15 +1320,7 @@ const META = [
         "photos":  [
                        "../assets/21day/day08/img-001.jpg",
                        "../assets/21day/day08/img-002.jpg",
-                       "../assets/21day/day08/img-003.jpg",
-                       "../assets/21day/day08/img-004.jpg",
-                       "../assets/21day/day08/img-005.jpg",
-                       "../assets/21day/day08/img-006.jpg",
-                       "../assets/21day/day08/img-007.jpg",
-                       "../assets/21day/day08/img-008.jpg",
-                       "../assets/21day/day08/img-009.jpg",
-                       "../assets/21day/day08/img-010.jpg",
-                       "../assets/21day/day08/img-011.jpg"
+                       "../assets/21day/day08/img-003.jpg"
                    ]
     },
     {
@@ -1230,15 +1479,7 @@ const META = [
                        "../assets/21day/day11/img-003.jpg",
                        "../assets/21day/day11/img-004.jpg",
                        "../assets/21day/day11/img-005.jpg",
-                       "../assets/21day/day11/img-006.jpg",
-                       "../assets/21day/day11/img-007.jpg",
-                       "../assets/21day/day11/img-008.jpg",
-                       "../assets/21day/day11/img-009.jpg",
-                       "../assets/21day/day11/img-010.jpg",
-                       "../assets/21day/day11/img-011.jpg",
-                       "../assets/21day/day11/img-012.jpg",
-                       "../assets/21day/day11/img-013.jpg",
-                       "../assets/21day/day11/img-014.jpg"
+                       "../assets/21day/day11/img-006.jpg"
                    ]
     },
     {
@@ -1814,19 +2055,35 @@ function buildDayHTML(m) {
         let photosPerPara = totalPhotos > 0 ? Math.ceil(totalPhotos / totalParas) : 0;
         
         m.diary.forEach((para, idx) => {
-            diaryHtml += `<p class="journal-para">${para}</p>`;
+            if (editorMode) {
+                diaryHtml += `<p class="journal-para" contenteditable="true" onblur="updateParaText(${m.num}, ${idx}, this.innerText)">${para}</p>`;
+            } else {
+                diaryHtml += `<p class="journal-para">${para}</p>`;
+            }
+            
             if (totalPhotos > 0) {
                 let startIdx = idx * photosPerPara;
                 let endIdx = Math.min(startIdx + photosPerPara, totalPhotos);
                 if (startIdx < totalPhotos) {
                     diaryHtml += `<div class="journal-photo-group">`;
                     for (let i = startIdx; i < endIdx; i++) {
-                        diaryHtml += `
-                            <figure class="journal-figure">
-                                <img class="journal-img" src="${m.photos[i]}" alt="Day ${m.num} photo ${i+1}"
-                                     onclick="this.style.maxHeight=this.style.maxHeight?'':'none'">
-                                ${caption ? `<figcaption class="journal-caption">${tx("photoPrefix")} ${caption} (${i+1}/${totalPhotos})</figcaption>` : ""}
-                            </figure>`;
+                        if (editorMode) {
+                            diaryHtml += `
+                                <figure class="journal-figure">
+                                    <div class="edit-photo-container">
+                                        <img class="journal-img" src="${m.photos[i]}" alt="Day ${m.num} photo ${i+1}">
+                                        <button class="delete-photo-btn" onclick="deletePhoto(${m.num}, ${i}, event)">✕</button>
+                                    </div>
+                                    <figcaption class="journal-caption" contenteditable="true" onblur="updateCaption(${m.num}, this.innerText)">${caption || "Image Caption"} (${i+1}/${totalPhotos})</figcaption>
+                                </figure>`;
+                        } else {
+                            diaryHtml += `
+                                <figure class="journal-figure">
+                                    <img class="journal-img" src="${m.photos[i]}" alt="Day ${m.num} photo ${i+1}"
+                                         onclick="this.style.maxHeight=this.style.maxHeight?'':'none'">
+                                    ${caption ? `<figcaption class="journal-caption">${tx("photoPrefix")} ${caption} (${i+1}/${totalPhotos})</figcaption>` : ""}
+                                </figure>`;
+                        }
                     }
                     diaryHtml += `</div>`;
                 }
@@ -1839,11 +2096,21 @@ function buildDayHTML(m) {
     /* script rows */
     let scriptHtml;
     if (script.length > 0) {
-        scriptHtml = script.map(row => `
-            <div class="script-row">
-                <div class="cue-tag">${row.cue}</div>
-                <div class="script-text">${row.text}</div>
-            </div>`).join("");
+        scriptHtml = script.map((row, rowIdx) => {
+            if (editorMode) {
+                return `
+                    <div class="script-row">
+                        <div class="cue-tag" contenteditable="true" onblur="updateScriptCue(${m.num}, ${rowIdx}, this.innerText)">${row.cue}</div>
+                        <div class="script-text" contenteditable="true" onblur="updateScriptText(${m.num}, ${rowIdx}, this.innerText)">${row.text}</div>
+                    </div>`;
+            } else {
+                return `
+                    <div class="script-row">
+                        <div class="cue-tag">${row.cue}</div>
+                        <div class="script-text">${row.text}</div>
+                    </div>`;
+            }
+        }).join("");
     } else {
         const ph = tx("placeholders");
         const makeBlock = (label, items) => `
@@ -1878,9 +2145,9 @@ function buildDayHTML(m) {
         <div class="header-banner">
             <div class="header-tag">${m.emoji} ${tx("dayLabel")(m.num)} · ${stLabel}</div>
             ${title
-                ? `<h1 class="day-title-main">${title}</h1>
+                ? `<h1 class="day-title-main" ${editorMode ? 'contenteditable="true" onblur="updateTitle(' + m.num + ', this.innerText)"' : ''}>${title}</h1>
                    <p class="day-title-date">${tx("dateLine")(date)}</p>`
-                : `<h1>${tx("dateLine")(date)}</h1>`}
+                : `<h1 ${editorMode ? 'contenteditable="true" onblur="updateTitle(' + m.num + ', this.innerText)"' : ''}>${tx("dateLine")(date)}</h1>`}
             <p class="header-sub">${tx("headerSub")(wk, wkDay)}</p>
         </div>
         ${photoHtml}
@@ -1946,14 +2213,6 @@ function goWelcome() {
     renderWelcome();
 }
 
-function switchTab(tabName) {
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-    
-    document.getElementById(tabName + 'TabBtn').classList.add('active');
-    document.getElementById(tabName + 'TabContent').classList.add('active');
-}
-
 function renderDay(num, shouldScroll = true) {
     const m = META[num - 1];
     if (!m) { renderWelcome(); return; }
@@ -1994,6 +2253,172 @@ document.getElementById("langSwitch").addEventListener("change", function() {
     applyLanguage(this.checked ? "en" : "zh");
 });
 
+// Target SHA-256 hash for the password "20260622"
+const AUTH_HASH = "b2b6556e1a83512fed0d4d1ff24c996e44494cd552132dd887058a8df77f3c03";
+
+let editorMode = false;
+
+// Load local edits if present
+let localMeta = localStorage.getItem("zz21-meta-edits");
+if (localMeta) {
+    try {
+        const parsed = JSON.parse(localMeta);
+        parsed.forEach(item => {
+            META[item.num - 1] = item;
+        });
+    } catch(e) {}
+}
+
+async function sha256(str) {
+    const buf = new TextEncoder().encode(str);
+    const hash = await crypto.subtle.digest("SHA-256", buf);
+    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+    const errorDiv = document.getElementById("passwordError");
+    const card = document.querySelector(".lock-card");
+    
+    errorDiv.textContent = "";
+    card.classList.remove("shake");
+    
+    const inputHash = await sha256(input);
+    if (inputHash === AUTH_HASH) {
+        sessionStorage.setItem("zz21-auth", "true");
+        document.getElementById("lockScreen").classList.add("hidden");
+        document.getElementById("editorModeBtn").classList.remove("hidden");
+    } else {
+        setTimeout(() => {
+            card.classList.add("shake");
+            errorDiv.textContent = currentLang === "zh" ? "密码错误，请重试！" : "Incorrect password. Please try again!";
+        }, 50);
+    }
+}
+
+function toggleEditorMode() {
+    editorMode = !editorMode;
+    const btn = document.getElementById("editorModeBtn");
+    if (editorMode) {
+        btn.classList.add("active");
+        btn.textContent = currentLang === "zh" ? "退出编辑" : "Exit Edit";
+    } else {
+        btn.classList.remove("active");
+        btn.textContent = currentLang === "zh" ? "✏️ 编辑" : "✏️ Edit";
+    }
+    const currentDay = getURLDay();
+    if (currentDay) {
+        renderDay(+currentDay, false);
+    } else {
+        renderWelcome(false);
+    }
+}
+
+function deletePhoto(dayNum, photoIdx, event) {
+    event.stopPropagation();
+    const m = META[dayNum - 1];
+    if (m && m.photos) {
+        m.photos.splice(photoIdx, 1);
+        saveEditsToLocal();
+        renderDay(dayNum, false);
+    }
+}
+
+function updateParaText(dayNum, paraIdx, text) {
+    const m = META[dayNum - 1];
+    if (m && m.diary) {
+        m.diary[paraIdx] = text.trim();
+        saveEditsToLocal();
+    }
+}
+
+function updateCaption(dayNum, text) {
+    const m = META[dayNum - 1];
+    if (m) {
+        const cleanText = text.replace(/\s*\(\d+\/\d+\)\s*$/, "").trim();
+        m.caption = cleanText;
+        saveEditsToLocal();
+    }
+}
+
+function updateTitle(dayNum, text) {
+    const m = META[dayNum - 1];
+    if (m) {
+        m.title = text.trim();
+        saveEditsToLocal();
+    }
+}
+
+function updateScriptCue(dayNum, rowIdx, text) {
+    const m = META[dayNum - 1];
+    if (m && m.script && m.script[rowIdx]) {
+        m.script[rowIdx].cue = text.trim();
+        saveEditsToLocal();
+    }
+}
+
+function updateScriptText(dayNum, rowIdx, text) {
+    const m = META[dayNum - 1];
+    if (m && m.script && m.script[rowIdx]) {
+        m.script[rowIdx].text = text.trim();
+        saveEditsToLocal();
+    }
+}
+
+function saveEditsToLocal() {
+    localStorage.setItem("zz21-meta-edits", JSON.stringify(META));
+    document.getElementById("saveFAB").classList.remove("hidden");
+}
+
+async function exportUpdatedHTML() {
+    let html = "";
+    try {
+        const response = await fetch(location.href);
+        html = await response.text();
+    } catch (e) {
+        alert(currentLang === "zh" ? "在本地文件模式下无法直接获取网页模版，请在部署后的在线网站上使用导出功能，或者复制以下 JSON 数据覆盖代码中的 META。" : "Unable to fetch page template on local file mode. Please use this export function on your live deployed website, or copy the updated JSON data.");
+        console.log(JSON.stringify(META));
+        return;
+    }
+    
+    const json = JSON.stringify(META, null, 4);
+    const regex = /(const\s+META\s*=\s*)\[[\s\S]*?\];/;
+    const newHtml = html.replace(regex, `$1${json};`);
+    
+    const blob = new Blob([newHtml], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "21day.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    document.getElementById("saveFAB").classList.add("hidden");
+}
+
+function switchTab(tabName) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    
+    document.getElementById(tabName + 'TabBtn').classList.add('active');
+    document.getElementById(tabName + 'TabContent').classList.add('active');
+}
+
+// Allow Enter key to submit and focus input
+window.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("passwordInput");
+    if (input) {
+        input.focus();
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                checkPassword();
+            }
+        });
+    }
+});
+
 /* ── INIT ── */
 applyTheme(currentTheme, false);
 updateStaticText();
@@ -2007,6 +2432,10 @@ if (initDay) {
     document.getElementById("welcome").classList.add("active");
 }
 </script>
+
+<div id="saveFAB" class="save-fab hidden" onclick="exportUpdatedHTML()">
+    <span>💾 Save & Export HTML</span>
+</div>
 
   <script src="../assets/zz-home-button.js?v=20260703-home" defer></script>
 </body>
