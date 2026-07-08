@@ -349,6 +349,111 @@
         }
         body[data-theme="dark"] .day-cell.status-upcoming { opacity: 0.62; }
 
+        /* ── JOURNAL & TABS ── */
+        .view-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 35px 0;
+            padding: 4px;
+            background: #e2e8f0;
+            border-radius: 8px;
+        }
+        body[data-theme="dark"] .view-tabs {
+            background: #1a2522;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #4a5568;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        body[data-theme="dark"] .tab-btn {
+            color: #8fa299;
+        }
+        .tab-btn:hover {
+            color: #163f2b;
+        }
+        body[data-theme="dark"] .tab-btn:hover {
+            color: #86efac;
+        }
+        .tab-btn.active {
+            background: #fff;
+            color: #163f2b;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        body[data-theme="dark"] .tab-btn.active {
+            background: #253730;
+            color: #86efac;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        .journal-para {
+            font-size: 16.5px;
+            line-height: 1.85;
+            color: #2d3748;
+            margin: 0 0 24px 0;
+            text-align: justify;
+        }
+        body[data-theme="dark"] .journal-para {
+            color: #dde7e1;
+        }
+        .journal-photo-group {
+            margin: 24px 0 36px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .journal-figure {
+            margin: 0;
+            padding: 0;
+            background: #fafbfc;
+            border: 1px solid #eef2f5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        body[data-theme="dark"] .journal-figure {
+            background: #16201d;
+            border-color: #2c4037;
+        }
+        .journal-img {
+            width: 100%;
+            display: block;
+            max-height: 480px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .journal-img:hover {
+            opacity: 0.95;
+        }
+        .journal-caption {
+            padding: 10px 16px;
+            font-size: 13px;
+            color: #718096;
+            font-style: italic;
+            border-top: 1px solid #eef2f5;
+        }
+        body[data-theme="dark"] .journal-caption {
+            color: #8fa299;
+            border-color: #2c4037;
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 640px) {
             .topbar { gap: 8px; }
@@ -430,27 +535,1006 @@
 const START = new Date(2026, 5, 22); // 2026-06-22
 
 const META = [
-    { num:  1, emoji: "🌱", note: "出发", noteEn: "Start",      title: "", photo: "", caption: "", script: [] },
-    { num:  2, emoji: "🏃", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num:  3, emoji: "💧", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num:  4, emoji: "🌿", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num:  5, emoji: "⚡", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num:  6, emoji: "🌟", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num:  7, emoji: "🔥", note: "第1周结束", noteEn: "Week 1 complete",  title: "", photo: "", caption: "", script: [] },
-    { num:  8, emoji: "💪", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num:  9, emoji: "🎯", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num: 10, emoji: "🌊", note: "半程", noteEn: "Halfway",       title: "", photo: "", caption: "", script: [] },
-    { num: 11, emoji: "💡", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num: 12, emoji: "🏋️", note: "",          title: "", photo: "", caption: "", script: [] },
-    { num: 13, emoji: "🇺🇸", note: "7.4独立日", noteEn: "July 4", title: "", photo: "", caption: "", script: [] },
-    { num: 14, emoji: "🌈", note: "第2周结束", noteEn: "Week 2 complete",  title: "", photo: "", caption: "", script: [] },
-    { num: 15, emoji: "🚀", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num: 16, emoji: "⭐", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num: 17, emoji: "💎", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num: 18, emoji: "🎖️", note: "",          title: "", photo: "", caption: "", script: [] },
-    { num: 19, emoji: "🌺", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num: 20, emoji: "🏅", note: "",           title: "", photo: "", caption: "", script: [] },
-    { num: 21, emoji: "🎉", note: "收官", noteEn: "Finish",       title: "", photo: "", caption: "", script: [] },
+    {
+        "num":  1,
+        "emoji":  "🌱",
+        "note":  "出发",
+        "noteEn":  "Start",
+        "title":  "第一天，4点起来了",
+        "photo":  "../assets/21day/day01/img-001.jpg",
+        "caption":  "4点起床计划第一天：室内单车唤醒早晨，中午去 Planet Fitness 做力量训练。",
+        "diary":  [
+                      "之前做了一个21天每天锻炼身体的计划，感觉神清气爽。最近又有一些懈怠，周末去找张博源吃了个饭，中国未来篮球之星的体格真的又高又壮，又自律，所以决定我也得行动起来，做个21天4点起床计划，坚持锻炼和做笔记，生活应该会更好吧。",
+                      "第一天4点起来了！其实这会儿刚起来，热情起床没啥难度。我买了个会叫的垫子闹钟，踩上去闹钟才会停，然后我把这个垫子放到了另一个房间，所以必须跑几步踩上几秒才能停，也算是起床神器了。",
+                      "4点起来，我先自己工作了一会，在我炫酷的电脑间，早晨起来效率拉满。为什么早晨时间这么有效率？可以聊一聊。",
+                      "第一天我先骑了个室内单车，唤醒了我的早晨。早晨骑单车好吗？可以解释一下这个对减肥的用处以及对心情的帮助。",
+                      "然后就去工作了。早晨骑车唤醒身体后，感觉神清气爽，还要喝水、吃燕麦，浇灌一下身体，一点不困。为什么运动了反而不困了，反而有时候睡得多反而很累？可以解释一下。",
+                      "上午工作效率很不错。中午决定去健身房做做力量训练，先在跑步机上热热身，然后做了一下器械训练。第一天嘛，总是很有热情，希望不是三分钟热情。",
+                      "这个是 Planet Fitness 做胳膊的器械，可以介绍一下么？自己怎么练习比较好。",
+                      "第一天单车加健身房，4点起来，很舒服，这种感觉很棒。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第一天，4点起来了。之前我做过一个21天每天锻炼身体的计划，那段时间整个人都神清气爽。最近又有点懈怠，周末和张博源吃饭，看到中国未来篮球之星那种又高又壮、又自律的状态，我一下子觉得，不能光羡慕，自己也得行动起来。"
+                       },
+                       {
+                           "cue":  "00:30 为什么开始",
+                           "text":  "所以我决定做一个21天4点起床计划。每天早起、锻炼、做笔记，看看生活会不会变得更好一点。第一天其实不难，因为刚开始总是很有热情，真正的挑战应该在后面。"
+                       },
+                       {
+                           "cue":  "01:00 起床神器",
+                           "text":  "我还买了一个会叫的垫子闹钟，必须踩上去几秒钟才会停。我把它放到另一个房间，所以闹钟一响，我必须跑几步过去踩住它。这个设计有点狠，但确实好用，算是我的起床神器。"
+                       },
+                       {
+                           "cue":  "01:30 早晨工作",
+                           "text":  "4点起来之后，我先在电脑间工作了一会儿。早晨这段时间真的很神奇，安静、没有打扰，脑子也比较清楚，效率直接拉满。为什么早晨时间这么好用，我后面可以专门聊聊。"
+                       },
+                       {
+                           "cue":  "02:00 室内单车",
+                           "text":  "第一天的运动，我先骑了室内单车，把身体唤醒。早晨骑车对减脂和情绪都有帮助，强度不用一上来太猛，重点是让心率起来、身体热起来，也给大脑一个信号：今天已经开始了。"
+                       },
+                       {
+                           "cue":  "02:30 运动后为什么更清醒",
+                           "text":  "骑完车之后，我喝水、吃燕麦，整个人一点都不困。很有意思，运动之后反而更清醒；有时候睡很久却还是累。这个可能和血液循环、身体节律、睡眠质量都有关系，后面也可以展开讲。"
+                       },
+                       {
+                           "cue":  "03:00 中午力量训练",
+                           "text":  "上午工作效率不错，中午又去 Planet Fitness 做了一点力量训练。先在跑步机上热身，然后做器械。第一天总是很有热情，希望不是三分钟热情。"
+                       },
+                       {
+                           "cue":  "03:30 收尾",
+                           "text":  "今天是单车加健身房，再加4点起床。第一天的感觉很舒服，很棒。先不说大话，继续记录，明天再来。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day01/img-001.jpg",
+                       "../assets/21day/day01/img-002.jpg",
+                       "../assets/21day/day01/img-003.jpg",
+                       "../assets/21day/day01/img-004.jpg",
+                       "../assets/21day/day01/img-005.jpg",
+                       "../assets/21day/day01/img-006.jpg",
+                       "../assets/21day/day01/img-007.jpg",
+                       "../assets/21day/day01/img-008.jpg",
+                       "../assets/21day/day01/img-009.jpg",
+                       "../assets/21day/day01/img-010.jpg",
+                       "../assets/21day/day01/img-011.jpg",
+                       "../assets/21day/day01/img-012.jpg",
+                       "../assets/21day/day01/img-013.jpg",
+                       "../assets/21day/day01/img-014.jpg",
+                       "../assets/21day/day01/img-015.jpg",
+                       "../assets/21day/day01/img-016.jpg",
+                       "../assets/21day/day01/img-017.jpg",
+                       "../assets/21day/day01/img-018.jpg",
+                       "../assets/21day/day01/img-019.jpg",
+                       "../assets/21day/day01/img-020.jpg"
+                   ]
+    },
+    {
+        "num":  2,
+        "emoji":  "🏃",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "小区晨跑，无人机和新的 Planet Fitness",
+        "photo":  "../assets/21day/day02/img-001.jpg",
+        "caption":  "4点顺利起床，早晨在小区和家旁边的教堂附近跑步，还飞了无人机；晚上换了一家更大的 Planet Fitness 继续跑步和器械训练。",
+        "diary":  [
+                      "第二天，6月23号，4点顺利起床。电脑前玩了一会 AI agent。最近在做一个大计划，每天烧 token，4点起来给了我时间来做一些自我提升和喜欢的事。",
+                      "早晨起来我想，昨天室内运动很多，今天就出去家里小区跑个步吧。6点多的室外很舒服，人也不多，还跑到了家旁边的教堂和小区。",
+                      "这个小区挺好，一圈不到一公里，还是个方框形状。我还拿无人机飞了飞。",
+                      "白天工作挺好。中午去吃了个自助餐，美国福建自助到处都是，味道很正常，吃多了都一个味道。",
+                      "晚上我觉得还是去健身房搞一搞。今天换了个健身房，也是 Planet Fitness，这个更大更豪华，就是稍微远了一点点。跑了一下，然后做做器械，又是很棒的一天。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第二天，6月23号，4点顺利起床。第一天靠热情，第二天还能起来，就感觉这个计划有一点点进入节奏了。"
+                       },
+                       {
+                           "cue":  "00:30 早起给自己的时间",
+                           "text":  "起来之后，我在电脑前玩了一会 AI agent。最近在做一个大计划，每天都在烧 token。4点起床最大的好处，就是它真的给了我一段属于自己的时间，可以做自我提升，也可以做一些自己喜欢、但平时总被挤掉的事。"
+                       },
+                       {
+                           "cue":  "01:00 小区晨跑",
+                           "text":  "昨天室内运动比较多，所以今天早晨我想，出去小区跑一跑吧。6点多的室外很舒服，人不多，空气也安静。我一路跑到家旁边的教堂，又绕着小区跑。"
+                       },
+                       {
+                           "cue":  "01:30 小区路线",
+                           "text":  "我们这个小区还挺适合跑步，一圈不到一公里，而且路线像一个方框，跑起来很好记。早晨不用开车去哪里，出门就能动起来，这一点很重要。"
+                       },
+                       {
+                           "cue":  "02:00 无人机视角",
+                           "text":  "跑完我还拿无人机飞了飞。用无人机看自己住的地方，感觉会变得不太一样，平时熟悉的小区、路、教堂，从上面看会突然有一种完整的地图感。"
+                       },
+                       {
+                           "cue":  "02:30 白天和午饭",
+                           "text":  "白天工作状态还不错。中午去吃了个自助餐，美国这边福建自助到处都是，味道也都差不多，很正常，吃多了感觉都一个味道。"
+                       },
+                       {
+                           "cue":  "03:00 晚上继续健身房",
+                           "text":  "晚上我觉得还是去健身房搞一搞。今天换了一家 Planet Fitness，这家更大、更豪华，就是稍微远了一点。先跑一下，再做做器械。"
+                       },
+                       {
+                           "cue":  "03:30 收尾",
+                           "text":  "第二天，4点起床，小区晨跑，无人机，晚上健身房。又是很棒的一天。现在重点不是一天多猛，而是每天都能接上。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day02/img-001.jpg",
+                       "../assets/21day/day02/img-002.jpg",
+                       "../assets/21day/day02/img-003.jpg",
+                       "../assets/21day/day02/img-004.jpg",
+                       "../assets/21day/day02/img-005.jpg",
+                       "../assets/21day/day02/img-006.jpg",
+                       "../assets/21day/day02/img-007.jpg",
+                       "../assets/21day/day02/img-008.jpg",
+                       "../assets/21day/day02/img-009.jpg",
+                       "../assets/21day/day02/img-010.jpg",
+                       "../assets/21day/day02/img-011.jpg",
+                       "../assets/21day/day02/img-012.jpg",
+                       "../assets/21day/day02/img-013.jpg",
+                       "../assets/21day/day02/img-014.jpg",
+                       "../assets/21day/day02/img-015.jpg",
+                       "../assets/21day/day02/img-016.jpg",
+                       "../assets/21day/day02/img-017.jpg",
+                       "../assets/21day/day02/img-018.jpg",
+                       "../assets/21day/day02/img-019.jpg",
+                       "../assets/21day/day02/img-020.jpg"
+                   ]
+    },
+    {
+        "num":  3,
+        "emoji":  "💧",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "老兵纪念公园晨跑，C罗球衣和无人机",
+        "photo":  "../assets/21day/day03/img-001.jpg",
+        "caption":  "4点起床后的升级时间，6点多去 Jeffersontown Veterans Memorial Park 晨跑，看 Huey 直升机、M-60A 坦克、小桥小河，还穿着 C罗球衣飞了无人机。",
+        "diary":  [
+                      "第三天，6月24号，还是想每天新鲜一下。4点起来了，电脑前又是提升的升级时刻。",
+                      "然后我6点多去了一个路过很多次但是没有去过的老兵纪念公园。这里面还有飞机和坦克。这个应该是路易斯维尔 Jeffersontown 的 Veterans Memorial Park。",
+                      "公园里不仅有直升机、坦克，还有小桥小河。我穿了足球老兵 C罗的球衣在这里跑了跑，还放了无人机拍照，很舒服。",
+                      "然后我又去了昨天的健身房，这次只是洗澡。8点不到，我就到了公司，又是神清气爽的一天。",
+                      "晚上去超市给老婆买了几束花，又入了几袋樱桃，不错的一天。",
+                      "这天去的公园大概率是 Jeffersontown Veterans Memorial Park，位于 Louisville 都会区的 Jeffersontown。",
+                      "根据 Jeffersontown 官方设施页面，公园里有 Veterans Walk，步道两侧有 Huey 直升机、M-60A 坦克、海军炮和 60 英尺青铜旗杆。官方页面也提到这里有沿 Chenoweth Creek 的自然步道，带有类似林地的小径、野餐点和烤架，所以你看到的小桥、小河、纪念设施和跑步环境都能对上。",
+                      "可引用资料：",
+                      "- Jeffersontown 官方页面：`https://www.jeffersontownky.com/facilities.aspx?Page=detail&RID=10`",
+                      "- Tripadvisor 页面也提到该公园有 Walk of Veterans、坦克、Huey 直升机、torpedo 和 navy gun：`https://www.tripadvisor.com/Attraction_Review-g39545-d14006190-Reviews-Jeffersontown_Veterans_Memorial_Park-Jeffersontown_Kentucky.html`"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第三天，6月24号。今天我还是想让每天都新鲜一点，不要只是机械重复。4点起来以后，先在电脑前做了一会儿自己的升级时刻。"
+                       },
+                       {
+                           "cue":  "00:30 早起的意义",
+                           "text":  "这个计划最明显的变化，就是4点起床以后，我真的多出一段属于自己的时间。没有消息，没有打扰，可以做 AI agent，可以做大计划，也可以做一点长期积累的东西。"
+                       },
+                       {
+                           "cue":  "01:00 老兵纪念公园",
+                           "text":  "6点多，我去了一个路过很多次、但一直没有进去过的老兵纪念公园。这个地方应该是 Jeffersontown Veterans Memorial Park，在路易斯维尔都会区。之前只是路过，今天终于把它变成了我的晨跑路线。"
+                       },
+                       {
+                           "cue":  "01:30 直升机、坦克和纪念步道",
+                           "text":  "这个公园很特别，不只是普通绿地。里面有 Veterans Walk，还有 Huey 直升机、M-60A 坦克、海军炮和高高的旗杆。跑在这种地方，会有一种很不一样的感觉，像是日常生活突然和历史、纪念、力量感连在一起。"
+                       },
+                       {
+                           "cue":  "02:00 小桥小河和无人机",
+                           "text":  "公园里也不是只有硬朗的军事展示，还有小桥、小河、林地步道。我穿着 C罗球衣在这里跑了跑，也放了无人机拍照。C罗也算足球老兵了，自律这个主题突然又连上了。"
+                       },
+                       {
+                           "cue":  "02:30 洗澡后去公司",
+                           "text":  "跑完之后，我又去了昨天那家 Planet Fitness，不过这次主要是洗澡。8点不到就到了公司，整个人还是神清气爽。早晨先把身体和脑子叫醒，后面一天会顺很多。"
+                       },
+                       {
+                           "cue":  "03:00 晚上小确幸",
+                           "text":  "晚上去超市，给老婆买了几束花，又买了几袋樱桃。早起、跑步、工作、花和樱桃，这一天没有什么大事件，但就是觉得不错。"
+                       },
+                       {
+                           "cue":  "03:30 收尾",
+                           "text":  "第三天完成。今天的关键词是新鲜感：一个没去过的公园，一条新的晨跑路线，一次无人机视角，还有一点生活里的小礼物。继续。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day03/img-001.jpg",
+                       "../assets/21day/day03/img-002.jpg",
+                       "../assets/21day/day03/img-003.jpg",
+                       "../assets/21day/day03/img-004.jpg",
+                       "../assets/21day/day03/img-005.jpg",
+                       "../assets/21day/day03/img-006.jpg",
+                       "../assets/21day/day03/img-007.jpg",
+                       "../assets/21day/day03/img-008.jpg",
+                       "../assets/21day/day03/img-009.jpg",
+                       "../assets/21day/day03/img-010.jpg",
+                       "../assets/21day/day03/img-011.jpg",
+                       "../assets/21day/day03/img-012.jpg",
+                       "../assets/21day/day03/img-013.jpg",
+                       "../assets/21day/day03/img-014.jpg",
+                       "../assets/21day/day03/img-015.jpg",
+                       "../assets/21day/day03/img-016.jpg",
+                       "../assets/21day/day03/img-017.jpg",
+                       "../assets/21day/day03/img-018.jpg",
+                       "../assets/21day/day03/img-019.jpg",
+                       "../assets/21day/day03/img-020.jpg"
+                   ]
+    },
+    {
+        "num":  4,
+        "emoji":  "🌿",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "Fiture 哑铃训练和俄亥俄河游艇团建",
+        "photo":  "../assets/21day/day04/img-001.jpg",
+        "caption":  "第四天4点准时起床，早晨试了 Fiture 体感健身设备和哑铃训练；公司团建包了俄亥俄河上的游艇，像一个移动酒吧。",
+        "diary":  [
+                      "第四天，6月25号，又是4点准时起来。",
+                      "早晨我做了点不一样的。前一阵买了个 Fiture 的健身体感设备，可以跟着里面做一些课程，还能检测体态，很高级。今天试试，我做了个哑铃的训练。对我来说挺费劲的，我力量太差了。",
+                      "今天是公司组内的聚餐团建，三个组包了一个游艇，真高级，类似一个俄亥俄河的移动酒吧。大家团建，还有自助餐。我想这个应该不便宜。美国人是真爱喝酒，我也破戒吃了半块巧克力蛋糕。下午3点多就回家了，正好可以看世界杯，挺好。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第四天，6月25号，又是4点准时起来。前几天跑步、单车、健身房比较多，今天早晨我想换点不一样的。"
+                       },
+                       {
+                           "cue":  "00:30 Fiture 体感健身",
+                           "text":  "前一阵我买了一个 Fiture 的健身体感设备。它有点像家里的智能健身镜，可以跟着里面的课程练，还能检测动作和体态，感觉很高级。今天终于拿出来认真试了一下。"
+                       },
+                       {
+                           "cue":  "01:00 哑铃训练",
+                           "text":  "我选了一个哑铃训练。说实话，对我来说挺费劲的。跑步和骑车还好，到了力量训练就发现短板很明显，尤其是上肢力量，确实太差了。"
+                       },
+                       {
+                           "cue":  "01:30 发现弱项",
+                           "text":  "不过这也挺好，至少知道自己该补什么。早起计划不只是为了早起，而是给自己一个固定窗口，把身体、脑子、生活习惯都一点点补起来。"
+                       },
+                       {
+                           "cue":  "02:00 公司游艇团建",
+                           "text":  "今天还是公司组内聚餐团建。三个组一起包了一个游艇，真的挺高级，感觉像俄亥俄河上的移动酒吧。船在河上慢慢开，大家聊天、吃自助餐、喝酒。"
+                       },
+                       {
+                           "cue":  "02:30 美国人和酒",
+                           "text":  "我心里一直在想，这个应该不便宜。美国人也是真爱喝酒，团建一到这种场景，气氛马上就起来了。我倒是比较克制，不过还是破戒吃了半块巧克力蛋糕。"
+                       },
+                       {
+                           "cue":  "03:00 收尾",
+                           "text":  "下午3点多就回家了，正好可以看世界杯，挺好。第四天完成。早晨是 Fiture 哑铃训练，白天是公司游艇团建，下午是回家看球。一个是自律，一个是生活。能把这几件事放在同一天，也挺有意思。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day04/img-001.jpg",
+                       "../assets/21day/day04/img-002.jpg",
+                       "../assets/21day/day04/img-003.jpg",
+                       "../assets/21day/day04/img-004.jpg",
+                       "../assets/21day/day04/img-005.jpg",
+                       "../assets/21day/day04/img-006.jpg",
+                       "../assets/21day/day04/img-007.jpg",
+                       "../assets/21day/day04/img-008.jpg",
+                       "../assets/21day/day04/img-009.jpg",
+                       "../assets/21day/day04/img-010.jpg",
+                       "../assets/21day/day04/img-011.jpg",
+                       "../assets/21day/day04/img-012.jpg",
+                       "../assets/21day/day04/img-013.jpg",
+                       "../assets/21day/day04/img-014.jpg",
+                       "../assets/21day/day04/img-015.jpg",
+                       "../assets/21day/day04/img-016.jpg",
+                       "../assets/21day/day04/img-017.jpg",
+                       "../assets/21day/day04/img-018.jpg",
+                       "../assets/21day/day04/img-019.jpg",
+                       "../assets/21day/day04/img-020.jpg"
+                   ]
+    },
+    {
+        "num":  5,
+        "emoji":  "⚡",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "热血少了一点，但还是起来了",
+        "photo":  "../assets/21day/day05/img-001.jpg",
+        "caption":  "第五天4点起床，早晨骑了室内单车。没有第一天那么热血，但计划还在继续。",
+        "diary":  [
+                      "第五天早晨4点起来，骑了个单车。不论怎么说，起来了。不过感觉没有第一天那么热血了，计划还在继续。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第五天，早晨4点起来了。今天没有太多花哨的安排，就是起来，然后骑了个单车。"
+                       },
+                       {
+                           "cue":  "00:30 热血开始下降",
+                           "text":  "很明显，已经没有第一天那么热血了。第一天靠新鲜感和兴奋感，做什么都觉得很有劲。到了第五天，情绪开始回到正常水平，计划也开始进入真正的考验。"
+                       },
+                       {
+                           "cue":  "01:00 起来就是完成一半",
+                           "text":  "但不论怎么说，今天还是起来了。很多时候，习惯不是每天都要很燃，而是在不那么燃的时候，也能把最基本的动作做完。"
+                       },
+                       {
+                           "cue":  "01:30 单车续上节奏",
+                           "text":  "今天骑了室内单车，不一定多猛，但它把节奏接住了。身体动起来，计划就没有断。"
+                       },
+                       {
+                           "cue":  "02:00 收尾",
+                           "text":  "第五天完成。热血少了一点，但计划还在继续。这可能才是坚持真正开始的地方。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day05/img-001.jpg",
+                       "../assets/21day/day05/img-002.jpg",
+                       "../assets/21day/day05/img-003.jpg",
+                       "../assets/21day/day05/img-004.jpg",
+                       "../assets/21day/day05/img-005.jpg",
+                       "../assets/21day/day05/img-006.jpg",
+                       "../assets/21day/day05/img-007.jpg",
+                       "../assets/21day/day05/img-008.jpg",
+                       "../assets/21day/day05/img-009.jpg",
+                       "../assets/21day/day05/img-010.jpg",
+                       "../assets/21day/day05/img-011.jpg",
+                       "../assets/21day/day05/img-012.jpg",
+                       "../assets/21day/day05/img-013.jpg",
+                       "../assets/21day/day05/img-014.jpg",
+                       "../assets/21day/day05/img-015.jpg",
+                       "../assets/21day/day05/img-016.jpg",
+                       "../assets/21day/day05/img-017.jpg",
+                       "../assets/21day/day05/img-018.jpg",
+                       "../assets/21day/day05/img-019.jpg",
+                       "../assets/21day/day05/img-020.jpg"
+                   ]
+    },
+    {
+        "num":  6,
+        "emoji":  "🌟",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "雨天去学校，健身房没开门，跑回 Old Louisville",
+        "photo":  "../assets/21day/day06/img-001.jpg",
+        "caption":  "周末第六天4点继续起床，冒雨去学校健身房，结果11点才开门，于是跑到 Old Louisville、中央公园、大涂鸦墙和学校操场。",
+        "diary":  [
+                      "第6天，6月27号，周末来了，4点起继续。",
+                      "我觉得怎么也得搞个大计划。我想到学校的健身卡这是最后一天，不用真的浪费，总共也没去几次。为了均分单价看上去好看些，我决定还是得去用一下。",
+                      "不过这天居然下雨了，还挺大。我先是给车充了个电，然后8点多我就直奔健身房。一看，11点才开门。",
+                      "中国有句老话，来都来了。开回去还得20多分钟，那我就跑个步吧。雨这会也小了一些，我就跑到了 Old Louisville，这是我之前在学校读书住的地方。前面还有个中央公园，路易斯威尔的 Central Park，夏天还会有莎士比亚话剧。",
+                      "然后我就跑回学校，路过大涂鸦墙，放了个无人机，还跑到了学校的操场。飞得挺好的，不过不知道是雨水还是磕碰，飞机回家就罢工了。",
+                      "周末还能4点起挺不容易，感觉挺充实。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第6天，6月27号，周末来了，但4点起床继续。说实话，周末还能4点起来，已经挺不容易了。"
+                       },
+                       {
+                           "cue":  "00:30 学校健身卡最后一天",
+                           "text":  "今天我想，怎么也得搞个大计划。突然想到学校的健身卡这是最后一天，不去用一下真的有点浪费。总共也没去几次，为了让均分单价看上去好看一点，我决定还是得去。"
+                       },
+                       {
+                           "cue":  "01:00 雨天出门",
+                           "text":  "结果这天居然下雨了，而且还挺大。我先给车充了个电，8点多就直奔学校健身房。到了以后发现，健身房11点才开门。"
+                       },
+                       {
+                           "cue":  "01:30 来都来了",
+                           "text":  "这个时候就只能用一句老话安慰自己：来都来了。开回去还得20多分钟，那就跑个步吧。雨也小了一点，于是我临时把健身房计划改成了雨天跑步。"
+                       },
+                       {
+                           "cue":  "02:00 跑到 Old Louisville",
+                           "text":  "我跑到了 Old Louisville，这是我之前在学校读书时住过的地方。那一片有老房子、树、街道，还有一种很特别的城市气质。前面还有 Louisville 的 Central Park，夏天会有莎士比亚话剧。"
+                       },
+                       {
+                           "cue":  "02:30 回到学校",
+                           "text":  "然后我又跑回学校，路过大涂鸦墙，放了无人机，还跑到了学校操场。无人机飞得挺好，雨后的学校和城市从空中看起来也很有感觉。"
+                       },
+                       {
+                           "cue":  "03:00 无人机罢工",
+                           "text":  "不过不知道是雨水还是磕碰，飞机回家以后就罢工了。今天的代价有点大，但素材应该也挺值。"
+                       },
+                       {
+                           "cue":  "03:30 收尾",
+                           "text":  "第6天完成。周末、下雨、健身房没开门，结果反而跑出了一条 Old Louisville 和学校回忆路线。感觉挺充实。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day06/img-001.jpg",
+                       "../assets/21day/day06/img-002.jpg",
+                       "../assets/21day/day06/img-003.jpg",
+                       "../assets/21day/day06/img-004.jpg",
+                       "../assets/21day/day06/img-005.jpg",
+                       "../assets/21day/day06/img-006.jpg",
+                       "../assets/21day/day06/img-007.jpg",
+                       "../assets/21day/day06/img-008.jpg",
+                       "../assets/21day/day06/img-009.jpg",
+                       "../assets/21day/day06/img-010.jpg",
+                       "../assets/21day/day06/img-011.jpg",
+                       "../assets/21day/day06/img-012.jpg",
+                       "../assets/21day/day06/img-013.jpg",
+                       "../assets/21day/day06/img-014.jpg",
+                       "../assets/21day/day06/img-015.jpg",
+                       "../assets/21day/day06/img-016.jpg",
+                       "../assets/21day/day06/img-017.jpg",
+                       "../assets/21day/day06/img-018.jpg",
+                       "../assets/21day/day06/img-019.jpg",
+                       "../assets/21day/day06/img-020.jpg"
+                   ]
+    },
+    {
+        "num":  7,
+        "emoji":  "🔥",
+        "note":  "第1周结束",
+        "noteEn":  "Week 1 complete",
+        "title":  "第一周收官：打卡、AI agent 和聪明地坚持",
+        "photo":  "../assets/21day/day07/img-001.jpg",
+        "caption":  "周天不想起，但还是4点起来打卡，把任务交给 Codex 和 Claude Code 后继续睡。下午和老婆去 Kroger 买西瓜，第一周结束。",
+        "diary":  [
+                      "6月28号，周天。感觉周天就是不想起，4点起床计划有点强弩之末了。不过我还是4点起来打卡个卡，然后把一堆任务交给 AI agent、Codex 和 Claude Code，然后我就继续睡觉了，也算心安理得。",
+                      "周天没起来也不想动，人懒了很多。感觉越运动越想运动，越懒越不想动，其实启动是最难的。之前听姜饼资说，人做每件事都是要消耗意志力的。所以根据《原子习惯》，能形成习惯、少消耗意志力的事，才是21天这个计划的意义。",
+                      "所以我4点起来打卡还是很必要的，要有延续性，但是也要聪明。",
+                      "没运动。下午和老婆去购物，买了个大西瓜，家旁边的 Kroger 超市，还有马的涂鸦。",
+                      "周天结束，第一周4点起床计划结束。总体来说我还挺满意的，第一周热情满满，第二周呢？"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第7天，6月28号，周天。说实话，周天是真的不想起。4点起床计划到这里，已经有点强弩之末的感觉了。"
+                       },
+                       {
+                           "cue":  "00:30 起来打卡，然后继续睡",
+                           "text":  "但我还是4点起来了，至少打了个卡。然后把一堆任务交给 AI agent、Codex 和 Claude Code，让它们先跑起来。安排完之后，我就继续睡觉了，也算心安理得。"
+                       },
+                       {
+                           "cue":  "01:00 没运动的一天",
+                           "text":  "今天没有运动。周天一懒下来，就会发现人真的很容易顺着惯性往下滑。越运动越想运动，越懒越不想动，最难的永远是启动。"
+                       },
+                       {
+                           "cue":  "01:30 意志力和习惯",
+                           "text":  "之前听姜饼资说，人做每件事都是要消耗意志力的。这一点和《原子习惯》里讲的东西很像：真正稳定的习惯，应该是让你少消耗意志力，而不是每天靠硬扛。"
+                       },
+                       {
+                           "cue":  "02:00 延续性，但也要聪明",
+                           "text":  "所以今天虽然没有完整执行，但4点起来打卡还是有意义的。这个动作保住了延续性。坚持不是每天都把自己拉满，也要聪明一点。"
+                       },
+                       {
+                           "cue":  "02:30 下午购物",
+                           "text":  "下午和老婆去购物，去了家旁边的 Kroger，买了一个大西瓜，还看到了马的涂鸦。周天没有很燃，但也有一点生活的松弛感。"
+                       },
+                       {
+                           "cue":  "03:00 第一周总结",
+                           "text":  "第一周4点起床计划结束。总体来说，我还挺满意的。第一周靠热情满满撑过来了，第二周才是真正要看的地方。"
+                       },
+                       {
+                           "cue":  "03:30 收尾",
+                           "text":  "第7天完成。今天不是完美的一天，但链条没有断。第一周结束，第二周见。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day07/img-001.jpg",
+                       "../assets/21day/day07/img-002.jpg",
+                       "../assets/21day/day07/img-003.jpg",
+                       "../assets/21day/day07/img-004.jpg",
+                       "../assets/21day/day07/img-005.jpg",
+                       "../assets/21day/day07/img-006.jpg",
+                       "../assets/21day/day07/img-007.jpg",
+                       "../assets/21day/day07/img-008.jpg",
+                       "../assets/21day/day07/img-009.jpg",
+                       "../assets/21day/day07/img-010.jpg",
+                       "../assets/21day/day07/img-011.jpg",
+                       "../assets/21day/day07/img-012.jpg",
+                       "../assets/21day/day07/img-013.jpg",
+                       "../assets/21day/day07/img-014.jpg",
+                       "../assets/21day/day07/img-015.jpg",
+                       "../assets/21day/day07/img-016.jpg",
+                       "../assets/21day/day07/img-017.jpg",
+                       "../assets/21day/day07/img-018.jpg",
+                       "../assets/21day/day07/img-019.jpg",
+                       "../assets/21day/day07/img-020.jpg"
+                   ]
+    },
+    {
+        "num":  8,
+        "emoji":  "💪",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "第二周开始，Egg Lawn 热天跑一下",
+        "photo":  "../assets/21day/day08/img-001.jpg",
+        "caption":  "第二周第一天，4点起床继续。早晨没运动，中午在公司旁边 Egg Lawn 简单跑了一下，天气很热，夏天真的来了。",
+        "diary":  [
+                      "第二周开始了，6月29号，4点起床继续。周一总是给人期待的。",
+                      "早晨没运动，我中午去公司旁边 Egg Lawn 简单跑了一下，也算打卡成功。天气好热，夏天真的来了。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第8天，6月29号，第二周开始了。4点起床继续。周一总是有一种重新开始的期待感，好像一周又可以重新安排一次。"
+                       },
+                       {
+                           "cue":  "00:30 早晨保住节奏",
+                           "text":  "今天早晨没有运动，但起床这个动作还是保住了。进入第二周以后，我感觉重点已经不是每天都很猛，而是不要让计划断掉。"
+                       },
+                       {
+                           "cue":  "01:00 中午 Egg Lawn",
+                           "text":  "中午我去了公司旁边的 Egg Lawn，简单跑了一下。虽然不长，但也算把今天的运动打卡补上了。"
+                       },
+                       {
+                           "cue":  "01:30 夏天来了",
+                           "text":  "天气是真的热，跑起来马上就能感觉到夏天来了。这个季节运动要更注意补水，也不能一上来太拼。"
+                       },
+                       {
+                           "cue":  "02:00 收尾",
+                           "text":  "第二周第一天完成。早晨起床，中午跑步，计划继续往前走。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day08/img-001.jpg",
+                       "../assets/21day/day08/img-002.jpg",
+                       "../assets/21day/day08/img-003.jpg",
+                       "../assets/21day/day08/img-004.jpg",
+                       "../assets/21day/day08/img-005.jpg",
+                       "../assets/21day/day08/img-006.jpg",
+                       "../assets/21day/day08/img-007.jpg",
+                       "../assets/21day/day08/img-008.jpg",
+                       "../assets/21day/day08/img-009.jpg",
+                       "../assets/21day/day08/img-010.jpg",
+                       "../assets/21day/day08/img-011.jpg"
+                   ]
+    },
+    {
+        "num":  9,
+        "emoji":  "🎯",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "4点还是能起来，工作忙的一天",
+        "photo":  "../assets/21day/day09/img-001.jpg",
+        "caption":  "第九天4点仍然能起来，但没有运动，工作比较忙。计划保住了起床这条线。",
+        "diary":  [
+                      "6月30号，4点还是能起来，不过没运动，工作比较忙。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第9天，6月30号。今天4点还是能起来，这一点先记下来。"
+                       },
+                       {
+                           "cue":  "00:30 工作忙",
+                           "text":  "不过今天没有运动，工作比较忙。第二周开始之后，计划明显进入更真实的生活节奏，不是每天都有完整的运动和故事。"
+                       },
+                       {
+                           "cue":  "01:00 起床线还在",
+                           "text":  "但至少起床这条线还在。对这个21天计划来说，有些日子是推进，有些日子是保底。今天就是保底的一天。"
+                       },
+                       {
+                           "cue":  "01:30 收尾",
+                           "text":  "第9天完成。没运动，但4点起来了，计划继续。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day09/img-001.jpg",
+                       "../assets/21day/day09/img-002.jpg",
+                       "../assets/21day/day09/img-003.jpg",
+                       "../assets/21day/day09/img-004.jpg",
+                       "../assets/21day/day09/img-005.jpg",
+                       "../assets/21day/day09/img-006.jpg",
+                       "../assets/21day/day09/img-007.jpg",
+                       "../assets/21day/day09/img-008.jpg",
+                       "../assets/21day/day09/img-009.jpg",
+                       "../assets/21day/day09/img-010.jpg",
+                       "../assets/21day/day09/img-011.jpg",
+                       "../assets/21day/day09/img-012.jpg",
+                       "../assets/21day/day09/img-013.jpg",
+                       "../assets/21day/day09/img-014.jpg",
+                       "../assets/21day/day09/img-015.jpg",
+                       "../assets/21day/day09/img-016.jpg",
+                       "../assets/21day/day09/img-017.jpg",
+                       "../assets/21day/day09/img-018.jpg",
+                       "../assets/21day/day09/img-019.jpg",
+                       "../assets/21day/day09/img-020.jpg"
+                   ]
+    },
+    {
+        "num":  10,
+        "emoji":  "🌊",
+        "note":  "半程",
+        "noteEn":  "Halfway",
+        "title":  "7月第一天，Egg Lawn 试新机器",
+        "photo":  "../assets/21day/day10/img-001.jpg",
+        "caption":  "第十天，周三4点继续起床。中午公司华人同事一起聚餐，下班后去 Egg Lawn 跑了跑，顺便试白色影石 Luna。",
+        "diary":  [
+                      "这个周三是7月1日，公司中午的华人一起聚餐了。4点还是起来了，大热天不太想动。",
+                      "本来每个月的第一天应该是最有动力的。后来想起来，7月1号我还是跑步了，因为拖国内同事给我带了个白色的影石 Luna。这个有国补，比美国便宜，而且美国还没有白色版本。下午下班我确实去 Egg Lawn 跑了跑，正好可以试试新机器。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第10天，7月1号，周三。今天4点还是起来了。"
+                       },
+                       {
+                           "cue":  "00:30 工作日节奏",
+                           "text":  "今天是7月1日，也是一个月的第一天。按理说，每个月第一天应该是最有动力的时候，好像什么都可以重新开始。"
+                       },
+                       {
+                           "cue":  "01:00 中午聚餐",
+                           "text":  "中午公司里的华人同事一起聚餐，算是工作日里一点轻松的社交时间。"
+                       },
+                       {
+                           "cue":  "01:30 高温阻力",
+                           "text":  "不过天气是真的热，大热天就不太想动。第二周以后，计划开始遇到很多现实阻力：忙、热、累、没那么兴奋。"
+                       },
+                       {
+                           "cue":  "02:00 下班后 Egg Lawn",
+                           "text":  "后来还是动了。因为拖国内同事给我带了个白色的影石 Luna。这个有国补，比美国便宜，而且美国还没有白色版本。下午下班以后，我就去了 Egg Lawn 跑了跑。刚好可以试试新机器，也给这一天补上了运动。"
+                       },
+                       {
+                           "cue":  "02:30 起床线还在",
+                           "text":  "今天4点起床这条线还在，下午也跑了。不是每天都很热血，但有时候一个新设备、一点新鲜感，就能把人重新带出去动一动。"
+                       },
+                       {
+                           "cue":  "03:00 收尾",
+                           "text":  "第10天完成。7月第一天，4点起来了，中午聚餐，下班后 Egg Lawn 跑步，顺便试白色影石 Luna。还行，这个月开头没有浪费。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day10/img-001.jpg",
+                       "../assets/21day/day10/img-002.jpg",
+                       "../assets/21day/day10/img-003.jpg",
+                       "../assets/21day/day10/img-004.jpg",
+                       "../assets/21day/day10/img-005.jpg",
+                       "../assets/21day/day10/img-006.jpg",
+                       "../assets/21day/day10/img-007.jpg",
+                       "../assets/21day/day10/img-008.jpg",
+                       "../assets/21day/day10/img-009.jpg",
+                       "../assets/21day/day10/img-010.jpg",
+                       "../assets/21day/day10/img-011.jpg",
+                       "../assets/21day/day10/img-012.jpg",
+                       "../assets/21day/day10/img-013.jpg",
+                       "../assets/21day/day10/img-014.jpg",
+                       "../assets/21day/day10/img-015.jpg",
+                       "../assets/21day/day10/img-016.jpg",
+                       "../assets/21day/day10/img-017.jpg",
+                       "../assets/21day/day10/img-018.jpg",
+                       "../assets/21day/day10/img-019.jpg",
+                       "../assets/21day/day10/img-020.jpg"
+                   ]
+    },
+    {
+        "num":  11,
+        "emoji":  "💡",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "没运动，但葡萄牙赢了",
+        "photo":  "../assets/21day/day11/img-001.jpg",
+        "caption":  "第十一天4点还是起来了，晚上本来想运动，但看了葡萄牙和克罗地亚比赛。C罗进了一个点球，葡萄牙赢了，很开心。",
+        "diary":  [
+                      "7月2号，4点还是起来了，但是确实没动。晚上本来想动一下，但是有葡萄牙和克罗地亚比赛，就看比赛了。一个好理由。我罗赢了，还进了一个点球，挺开心。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第11天，7月2号。今天4点还是起来了，这一点继续保住。"
+                       },
+                       {
+                           "cue":  "00:30 确实没动",
+                           "text":  "但是今天确实没运动。晚上本来想动一下，结果有葡萄牙和克罗地亚的比赛。"
+                       },
+                       {
+                           "cue":  "01:00 一个好理由",
+                           "text":  "所以我就看比赛了。严格说这不是运动计划里的标准答案，但也算一个好理由。毕竟有些比赛就是想看，尤其是有我罗。"
+                       },
+                       {
+                           "cue":  "01:30 C罗进点球",
+                           "text":  "最后葡萄牙赢了，C罗还进了一个点球。看到这个结果还是挺开心的。今天虽然身体没动，但情绪值补上了。"
+                       },
+                       {
+                           "cue":  "02:00 收尾",
+                           "text":  "第11天完成。4点起床继续，运动暂停一天，晚上留给葡萄牙和 C罗。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day11/img-001.jpg",
+                       "../assets/21day/day11/img-002.jpg",
+                       "../assets/21day/day11/img-003.jpg",
+                       "../assets/21day/day11/img-004.jpg",
+                       "../assets/21day/day11/img-005.jpg",
+                       "../assets/21day/day11/img-006.jpg",
+                       "../assets/21day/day11/img-007.jpg",
+                       "../assets/21day/day11/img-008.jpg",
+                       "../assets/21day/day11/img-009.jpg",
+                       "../assets/21day/day11/img-010.jpg",
+                       "../assets/21day/day11/img-011.jpg",
+                       "../assets/21day/day11/img-012.jpg",
+                       "../assets/21day/day11/img-013.jpg",
+                       "../assets/21day/day11/img-014.jpg"
+                   ]
+    },
+    {
+        "num":  12,
+        "emoji":  "🏋️",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "放假没起来，晚上去 Cindy 家看阿根廷",
+        "photo":  "../assets/21day/day12/img-001.jpg",
+        "caption":  "7月3日周五，放假了所以没4点起来。晚上去 Cindy 家做客，一起看阿根廷，吃了饭，挺开心；佛得角也值得尊敬。",
+        "diary":  [
+                      "7月3号周五，没运动也没起来。因为放假了，整个人有点松懈。",
+                      "晚上去 Cindy 家做客，一起看阿根廷，还吃了饭，挺开心。不过佛得角值得尊敬。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第12天，7月3号，周五。今天算是这个21天计划里第一次比较明确的断档：没起来，也没运动。"
+                       },
+                       {
+                           "cue":  "00:30 累和熬夜",
+                           "text":  "今天放假了，整个人明显松了一口气。前面几天4点起床还能撑住，但一到假期，惯性就变了。"
+                       },
+                       {
+                           "cue":  "01:00 假期里的松懈",
+                           "text":  "放假本来应该有更多时间运动，但也更容易变成“今天就算了吧”。没有上班节奏托着，反而更考验自觉。"
+                       },
+                       {
+                           "cue":  "01:30 不粉饰",
+                           "text":  "所以今天就不粉饰了。没起来就是没起来，没运动就是没运动。记录这个也很重要，因为计划真正的样子不是每天都完美，而是会有这种掉下来的时刻。"
+                       },
+                       {
+                           "cue":  "02:00 Cindy 家看球",
+                           "text":  "晚上去了 Cindy 家做客，大家一起看阿根廷，还吃了饭，挺开心。虽然今天运动没做，但生活这部分是满的。"
+                       },
+                       {
+                           "cue":  "02:30 佛得角值得尊敬",
+                           "text":  "比赛里佛得角也值得尊敬。能站到这个舞台上，本身就不容易，认真踢、认真拼，就很让人有好感。"
+                       },
+                       {
+                           "cue":  "03:00 收尾",
+                           "text":  "第12天，断了一下。原因很简单：放假了，人松了。晚上看球吃饭很开心，明天看能不能拉回来。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day12/img-001.jpg",
+                       "../assets/21day/day12/img-002.jpg",
+                       "../assets/21day/day12/img-003.jpg",
+                       "../assets/21day/day12/img-004.jpg",
+                       "../assets/21day/day12/img-005.jpg",
+                       "../assets/21day/day12/img-006.jpg",
+                       "../assets/21day/day12/img-007.jpg",
+                       "../assets/21day/day12/img-008.jpg",
+                       "../assets/21day/day12/img-009.jpg",
+                       "../assets/21day/day12/img-010.jpg",
+                       "../assets/21day/day12/img-011.jpg",
+                       "../assets/21day/day12/img-012.jpg",
+                       "../assets/21day/day12/img-013.jpg",
+                       "../assets/21day/day12/img-014.jpg",
+                       "../assets/21day/day12/img-015.jpg",
+                       "../assets/21day/day12/img-016.jpg",
+                       "../assets/21day/day12/img-017.jpg",
+                       "../assets/21day/day12/img-018.jpg",
+                       "../assets/21day/day12/img-019.jpg",
+                       "../assets/21day/day12/img-020.jpg"
+                   ]
+    },
+    {
+        "num":  13,
+        "emoji":  "🇺🇸",
+        "note":  "7.4独立日",
+        "noteEn":  "July 4",
+        "title":  "独立日假期，4点起床不存在",
+        "photo":  "../assets/21day/day13/img-001.jpg",
+        "caption":  "7月4日周六，美国独立日，也是建国250周年。假期晚睡晚起，4点起床不存在；Cindy 请我们看了斯皮尔伯格的外星人电影《揭秘日》，全程不瞌睡。",
+        "diary":  [
+                      "7月4号周六，美国独立日，建国250周年。4点起床不存在，假期就该晚睡晚起。说起来还挺惭愧，不过每天都有热情还是挺难的。",
+                      "晚睡成了假期常态，都怪世界杯。",
+                      "今天 Cindy 请我们看了电影《揭秘日》，讲外星人的，我挺喜欢。斯皮尔伯格的电影，我相信有外星人和 UFO 的，所以看得全程不瞌睡。",
+                      "晚上我们去奥特莱斯买了点衣服和帽子。因为我和 Siqi 要回国一阵子，所以也买了点小礼物。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第13天，7月4号，周六，美国独立日，也是美国建国250周年。今天先诚实一点：4点起床不存在。"
+                       },
+                       {
+                           "cue":  "00:30 假期模式",
+                           "text":  "假期就该晚睡晚起，这话说出来很舒服，但放在4点起床计划里，又有点惭愧。每天都保持热情，确实挺难的。"
+                       },
+                       {
+                           "cue":  "01:00 世界杯背锅",
+                           "text":  "这几天晚睡已经成了假期常态。原因也很简单，都怪世界杯。看球这件事一旦开始，作息就很容易被带跑。"
+                       },
+                       {
+                           "cue":  "01:30 Cindy 请看电影",
+                           "text":  "今天 Cindy 请我们看了电影《揭秘日》，讲外星人的。我还挺喜欢这类题材，尤其是斯皮尔伯格的电影，很会把未知拍得既神秘又有人味。"
+                       },
+                       {
+                           "cue":  "02:00 外星人和 UFO",
+                           "text":  "我自己是相信有外星人和 UFO 的。宇宙这么大，如果只有地球有生命，反而有点浪费。所以这类电影我看得很投入，全程不瞌睡。"
+                       },
+                       {
+                           "cue":  "02:30 收尾",
+                           "text":  "晚上我们又去了奥特莱斯，买了点衣服和帽子。因为我和 Siqi 要回国一阵子，也顺便买了点小礼物。"
+                       },
+                       {
+                           "cue":  "03:00 收尾",
+                           "text":  "第13天，没有4点起床，也没有运动。假期把计划冲散了一点，但这也是生活。独立日、世界杯、外星人电影，还有回国前的小采购，今天就这样记下来。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day13/img-001.jpg",
+                       "../assets/21day/day13/img-002.jpg",
+                       "../assets/21day/day13/img-003.jpg",
+                       "../assets/21day/day13/img-004.jpg"
+                   ]
+    },
+    {
+        "num":  14,
+        "emoji":  "🌈",
+        "note":  "第2周结束",
+        "noteEn":  "Week 2 complete",
+        "title":  "教会里的希望，第二周收官",
+        "photo":  "../assets/21day/day14/img-001.jpg",
+        "caption":  "周天去了 Cindy 和 Jim 的教会。虽然我们不是基督徒，但也感兴趣去听一听；Jim 做了关于希望的演讲，分享他在埃塞俄比亚给当地人做 training 和建立友谊的故事。",
+        "diary":  [
+                      "周天去了 Cindy 和 Jim 的教会。我们虽然不是基督徒，但是也感兴趣去听一下。特别今天 Jim 做演讲，关于希望的。",
+                      "他分享了他在非洲埃塞俄比亚的故事，讲述了他在那边给当地人做 training 的故事，以及和当地人的友谊，很有意思。",
+                      "4点还是没起来，也没运动。假期里，适当放缓这个计划，生活张弛有度，也算一种节奏。"
+                  ],
+        "script":  [
+                       {
+                           "cue":  "00:00 开场",
+                           "text":  "第14天，周天。今天4点还是没起来，也没运动。假期里，计划明显放缓了。"
+                       },
+                       {
+                           "cue":  "00:30 去 Cindy 和 Jim 的教会",
+                           "text":  "今天我们去了 Cindy 和 Jim 的教会。我们虽然不是基督徒，但也挺感兴趣去听一听。不同的生活方式、信仰和社区，本身就很值得观察。"
+                       },
+                       {
+                           "cue":  "01:00 Jim 关于希望的演讲",
+                           "text":  "特别是今天 Jim 做演讲，主题是希望。他分享了自己在非洲埃塞俄比亚的故事，讲他在那边给当地人做 training 的经历。"
+                       },
+                       {
+                           "cue":  "01:30 埃塞俄比亚和友谊",
+                           "text":  "让我觉得有意思的是，他讲的不只是工作，也讲了和当地人的友谊。一个人去到很远的地方，教别人一些东西，同时也和那里的人建立连接，这种故事很有人味。"
+                       },
+                       {
+                           "cue":  "02:00 计划放缓",
+                           "text":  "这几天4点起床计划确实放缓了。假期、晚睡、看球、出门，节奏都变了。但我也觉得，生活不是只有紧绷，适当放慢也有意义。"
+                       },
+                       {
+                           "cue":  "02:30 第二周收尾",
+                           "text":  "第二周到这里结束。第一周更多是热情，第二周开始出现松动、现实、假期和社交。生活张弛有度，也算一种节奏。"
+                       },
+                       {
+                           "cue":  "03:00 收尾",
+                           "text":  "第14天完成。没起床，没运动，但听了一场关于希望的分享，也算给这一周一个安静的结尾。"
+                       }
+                   ],
+        "photos":  [
+                       "../assets/21day/day14/img-001.jpg",
+                       "../assets/21day/day14/img-002.jpg",
+                       "../assets/21day/day14/img-003.jpg",
+                       "../assets/21day/day14/img-004.jpg",
+                       "../assets/21day/day14/img-005.jpg",
+                       "../assets/21day/day14/img-006.png"
+                   ]
+    },
+    {
+        "num":  15,
+        "emoji":  "🚀",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "",
+        "photo":  "",
+        "caption":  "",
+        "diary":  [
+
+                  ],
+        "script":  [
+
+                   ],
+        "photos":  [
+
+                   ]
+    },
+    {
+        "num":  16,
+        "emoji":  "⭐",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "",
+        "photo":  "",
+        "caption":  "",
+        "diary":  [
+
+                  ],
+        "script":  [
+
+                   ],
+        "photos":  [
+
+                   ]
+    },
+    {
+        "num":  17,
+        "emoji":  "💎",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "",
+        "photo":  "",
+        "caption":  "",
+        "diary":  [
+
+                  ],
+        "script":  [
+
+                   ],
+        "photos":  [
+
+                   ]
+    },
+    {
+        "num":  18,
+        "emoji":  "🎖️",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "",
+        "photo":  "",
+        "caption":  "",
+        "diary":  [
+
+                  ],
+        "script":  [
+
+                   ],
+        "photos":  [
+
+                   ]
+    },
+    {
+        "num":  19,
+        "emoji":  "🌺",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "",
+        "photo":  "",
+        "caption":  "",
+        "diary":  [
+
+                  ],
+        "script":  [
+
+                   ],
+        "photos":  [
+
+                   ]
+    },
+    {
+        "num":  20,
+        "emoji":  "🏅",
+        "note":  "",
+        "noteEn":  "",
+        "title":  "",
+        "photo":  "",
+        "caption":  "",
+        "diary":  [
+
+                  ],
+        "script":  [
+
+                   ],
+        "photos":  [
+
+                   ]
+    },
+    {
+        "num":  21,
+        "emoji":  "🎉",
+        "note":  "收官",
+        "noteEn":  "Finish",
+        "title":  "",
+        "photo":  "",
+        "caption":  "",
+        "diary":  [
+
+                  ],
+        "script":  [
+
+                   ],
+        "photos":  [
+
+                   ]
+    }
 ];
 
 const DOW_CN  = ["周日","周一","周二","周三","周四","周五","周六"];
@@ -514,7 +1598,9 @@ const I18N = {
         prevDay: n => `← 第${pad(n)}天`,
         nextDay: n => `第${pad(n)}天 →`,
         footerMeta: (m, date) => `第${m.num}天 · ⏰ 04:00 起床 · ${fmtFull(date)} · 21天计划`,
-        documentDayTitle: n => `第${pad(n)}天 · 4点起床 · ZZ`
+        documentDayTitle: n => `第${pad(n)}天 · 4点起床 · ZZ`,
+        tabJournal: "图文日记",
+        tabScript: "口播脚本"
     },
     en: {
         pageTitle: "4 AM Wake-Up · 21-Day Plan · ZZ",
@@ -569,7 +1655,9 @@ const I18N = {
         prevDay: n => `← Day ${pad(n)}`,
         nextDay: n => `Day ${pad(n)} →`,
         footerMeta: (m, date) => `Day ${m.num} · ⏰ 04:00 wake-up · ${fmtFull(date)} · 21-day plan`,
-        documentDayTitle: n => `Day ${pad(n)} · 4 AM Wake-Up · ZZ`
+        documentDayTitle: n => `Day ${pad(n)} · 4 AM Wake-Up · ZZ`,
+        tabJournal: "Photo Journal",
+        tabScript: "Video Script"
     }
 };
 
@@ -718,6 +1806,36 @@ function buildDayHTML(m) {
     const script = metaScript(m);
     const note = metaNote(m);
 
+    /* diary/journal HTML */
+    let diaryHtml = "";
+    if (m.diary && m.diary.length) {
+        let totalParas = m.diary.length;
+        let totalPhotos = m.photos ? m.photos.length : 0;
+        let photosPerPara = totalPhotos > 0 ? Math.ceil(totalPhotos / totalParas) : 0;
+        
+        m.diary.forEach((para, idx) => {
+            diaryHtml += `<p class="journal-para">${para}</p>`;
+            if (totalPhotos > 0) {
+                let startIdx = idx * photosPerPara;
+                let endIdx = Math.min(startIdx + photosPerPara, totalPhotos);
+                if (startIdx < totalPhotos) {
+                    diaryHtml += `<div class="journal-photo-group">`;
+                    for (let i = startIdx; i < endIdx; i++) {
+                        diaryHtml += `
+                            <figure class="journal-figure">
+                                <img class="journal-img" src="${m.photos[i]}" alt="Day ${m.num} photo ${i+1}"
+                                     onclick="this.style.maxHeight=this.style.maxHeight?'':'none'">
+                                ${caption ? `<figcaption class="journal-caption">${tx("photoPrefix")} ${caption} (${i+1}/${totalPhotos})</figcaption>` : ""}
+                            </figure>`;
+                    }
+                    diaryHtml += `</div>`;
+                }
+            }
+        });
+    } else {
+        diaryHtml = `<div style="color:#72847b; font-style:italic; text-align:center; padding: 40px 0;">(No photo journal entries for this day yet)</div>`;
+    }
+
     /* script rows */
     let scriptHtml;
     if (script.length > 0) {
@@ -751,6 +1869,10 @@ function buildDayHTML(m) {
             ${caption ? `<div class="photo-caption">${tx("photoPrefix")} ${caption}</div>` : ""}
         </div>` : "";
 
+    const hasDiary = m.diary && m.diary.length > 0;
+    const journalActive = hasDiary ? "active" : "";
+    const scriptActive = hasDiary ? "" : "active";
+
     return `
     <div class="container theme-21 active">
         <div class="header-banner">
@@ -774,15 +1896,28 @@ function buildDayHTML(m) {
                 <div class="stat-cell"><div class="stats-val">${pct}%</div><div class="stats-label">${tx("statProgress")}</div></div>
             </div>
         </div>
-        <div class="content-body">
-            <div class="callout">
-                ⏰ <b>04:00 ${tx("calloutLead")}</b> · ${tx("dayLabel")(m.num)} · ${fmtFull(date)}${note ? "  ·  " + note : ""}
-                ${title ? `<br><b style="font-size:15px">${title}</b>` : ""}
-                <span style="color:#7eb88a;font-size:12px;margin-top:6px;display:block;">
-                    ${tx("editHint")(m.num)}
-                </span>
+        <div class="content-body" style="padding: 36px 0 0 0;">
+            <div style="padding: 0 35px 20px 35px;">
+                <div class="callout">
+                    ⏰ <b>04:00 ${tx("calloutLead")}</b> · ${tx("dayLabel")(m.num)} · ${fmtFull(date)}${note ? "  ·  " + note : ""}
+                    ${title ? `<br><b style="font-size:15px">${title}</b>` : ""}
+                    <span style="color:#7eb88a;font-size:12px;margin-top:6px;display:block;">
+                        ${tx("editHint")(m.num)}
+                    </span>
+                </div>
             </div>
-            ${scriptHtml}
+            <div class="view-tabs" style="margin: 0 35px;">
+                <button id="journalTabBtn" class="tab-btn ${journalActive}" onclick="switchTab('journal')">${tx("tabJournal")}</button>
+                <button id="scriptTabBtn" class="tab-btn ${scriptActive}" onclick="switchTab('script')">${tx("tabScript")}</button>
+            </div>
+            <div style="padding: 24px 35px 36px;">
+                <div id="journalTabContent" class="tab-content ${journalActive}">
+                    ${diaryHtml}
+                </div>
+                <div id="scriptTabContent" class="tab-content ${scriptActive}">
+                    ${scriptHtml}
+                </div>
+            </div>
         </div>
         <div class="footer-card">
             <div class="footer-nav">
@@ -809,6 +1944,14 @@ function goDay(num) {
 function goWelcome() {
     history.pushState(null, "", location.pathname);
     renderWelcome();
+}
+
+function switchTab(tabName) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    
+    document.getElementById(tabName + 'TabBtn').classList.add('active');
+    document.getElementById(tabName + 'TabContent').classList.add('active');
 }
 
 function renderDay(num, shouldScroll = true) {
@@ -868,3 +2011,4 @@ if (initDay) {
   <script src="../assets/zz-home-button.js?v=20260703-home" defer></script>
 </body>
 </html>
+
