@@ -1179,99 +1179,7 @@
     .running-map-section { padding: 16px; }
   }
 
-  /* Compact projects-first home layout */
-  header,
-  .nav-bar,
-  .hero,
-  footer,
-  body > [data-zz-comments],
-  .zz-home-button {
-    display: none !important;
-  }
-
-  body {
-    background: #0e1220;
-  }
-
-  .content {
-    width: min(940px, calc(100% - 32px));
-    padding: 42px 0 54px;
-  }
-
-  .section-header {
-    margin: 0 0 14px;
-    padding-top: 14px;
-    border-top: 2px solid rgba(255, 255, 255, .18);
-  }
-
-  .section-title {
-    font-size: 18px;
-  }
-
-  .section-see-all {
-    font-size: 12px;
-    color: #f0c85a;
-  }
-
-  .products {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-    margin-bottom: 0;
-  }
-
-  .product {
-    box-shadow: none;
-  }
-
-  .product:hover {
-    transform: translateY(-2px);
-  }
-
-  .product-thumb {
-    aspect-ratio: 16 / 9.7;
-  }
-
-  .product-body {
-    padding: 13px 14px 11px;
-    gap: 6px;
-  }
-
-  .product-category {
-    font-size: 9px;
-  }
-
-  .product-title {
-    font-size: 15px;
-  }
-
-  .product-subtitle,
-  .stars-count {
-    font-size: 11px;
-  }
-
-  .stars {
-    font-size: 12px;
-  }
-
-  .product-desc {
-    font-size: 11px;
-    line-height: 1.55;
-  }
-
-  .product-stat {
-    padding-top: 7px;
-    font-size: 10px;
-  }
-
-  .product-stat strong {
-    font-size: 12px;
-  }
-
-  .btn-view {
-    margin: auto 14px 13px;
-    font-size: 11px;
-  }
-
+  /* Fixed card order from the approved home layout */
   .product[href="./running-map.html"] { order: 1; }
   .product[href="./run50.html"] { order: 2; }
   .product[href^="./wechat-en/"] { order: 3; }
@@ -1282,24 +1190,6 @@
   .product[href="./mainly-marathons-new-england-2026-guide.html"] { order: 8; }
   .product[href="./21day.html"] { order: 9; }
   .product[href^="./facebook/"] { order: 10; }
-
-  @media (max-width: 760px) {
-    .content {
-      width: min(100% - 24px, 600px);
-      padding-top: 24px;
-    }
-
-    .products {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .products {
-      grid-template-columns: 1fr;
-    }
-  }
 </style>
 </head>
 <body>
