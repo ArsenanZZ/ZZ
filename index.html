@@ -2870,6 +2870,24 @@
     HI: ['ocean_2_'],
     AK: ['ocean_3_']
   };
+  const US_BOUNDARY_PATHS = {
+    ...US_MAP_PATHS,
+    ID: ['Idaho', 'Wyoming'],
+    IA: ['Minessota', 'Iowa'],
+    MS: ['Mossouri', 'Missisppi'],
+    MT: ['Washington_1_', 'Montana'],
+    NE: ['Nebraska', 'Louisiana_1_'],
+    NV: ['Nevada_41_', 'California'],
+    NJ: ['New_Jersey', 'Connecticut_1_'],
+    NM: ['Idaho_1_', 'New_Mexico_1_'],
+    OK: ['Oklahoma', 'Colorado_1_'],
+    OR: ['Nevada_1_', 'Oregon_41_'],
+    SD: ['South_Dakota', 'Nebraska_1_'],
+    UT: ['Utah_1_', 'New_Mexico'],
+    WY: ['Montana_1_', 'Wyoming_1_'],
+    MD: ['Pensilvania_1_', 'Oregon_1_'],
+    WA: ['Oklahoma_1_']
+  };
   const US_PROGRESS_STATES = [
     'IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH',
     'LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME',
@@ -2910,6 +2928,7 @@
     svg.removeAttribute('height');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     removeUsContainedSubpaths(svg);
+    const boundaryPaths = collectUsBoundaryPaths(svg);
     svg.querySelectorAll('path').forEach(path => {
       const id = path.id || '';
       const baseId = id.replace(/^map_/, '');
@@ -2917,8 +2936,8 @@
       const isOcean = /ocean|atlantic|gulf|oceans/i.test(baseId);
       path.classList.remove('run-state');
       path.setAttribute('fill', isFrame ? '#26313b' : isOcean ? '#18232d' : '#2f3a45');
-      path.setAttribute('stroke', isFrame ? 'rgba(255,255,255,.12)' : 'rgba(255,255,255,.10)');
-      path.setAttribute('stroke-width', isFrame ? '.8' : '.55');
+      path.setAttribute('stroke', isFrame ? 'rgba(255,255,255,.12)' : 'none');
+      path.setAttribute('stroke-width', isFrame ? '.8' : '0');
       path.setAttribute('stroke-linejoin', 'round');
       path.setAttribute('stroke-linecap', 'round');
       path.setAttribute('vector-effect', 'non-scaling-stroke');
@@ -2931,14 +2950,94 @@
         const path = svg.querySelector('#map_' + CSS.escape(pathId));
         if (!path) return;
         path.setAttribute('fill', '#c88f3b');
-        path.setAttribute('stroke', '#d9a44f');
-        path.setAttribute('stroke-width', '1.35');
+        path.setAttribute('stroke', 'none');
+        path.setAttribute('stroke-width', '0');
         path.style.opacity = '1';
         path.style.pointerEvents = 'auto';
         path.classList.add('run-state');
         svg.appendChild(path);
       });
     });
+    addUsBoundaryLayer(svg, boundaryPaths);
+  }
+
+  function usPathBox(path) {
+    const pairs = (path.getAttribute('d') || '').match(/-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?/g) || [];
+    if (!pairs.length) return { xMin: 0, xMax: 0, yMin: 0, yMax: 0, area: 0 };
+    const xs = pairs.map(pair => parseFloat(pair));
+    const ys = pairs.map(pair => parseFloat(pair.split(',')[1]));
+    const xMin = Math.min(...xs);
+    const xMax = Math.max(...xs);
+    const yMin = Math.min(...ys);
+    const yMax = Math.max(...ys);
+    return { xMin, xMax, yMin, yMax, area: (xMax - xMin) * (yMax - yMin) };
+  }
+
+  function containsUsBox(outer, inner) {
+    return (
+      outer.area > inner.area * 1.08 &&
+      inner.xMin >= outer.xMin - 2 &&
+      inner.xMax <= outer.xMax + 2 &&
+      inner.yMin >= outer.yMin - 2 &&
+      inner.yMax <= outer.yMax + 2
+    );
+  }
+
+  function usBoxOverlapRatio(outer, inner) {
+    const width = Math.max(0, Math.min(outer.xMax, inner.xMax) - Math.max(outer.xMin, inner.xMin));
+    const height = Math.max(0, Math.min(outer.yMax, inner.yMax) - Math.max(outer.yMin, inner.yMin));
+    return inner.area ? (width * height) / inner.area : 0;
+  }
+
+  function visibleUsBoundaryPaths(paths) {
+    const boxed = paths.map(path => ({ path, box: usPathBox(path) }));
+    return boxed
+      .filter(item => item.box.area > 18)
+      .filter(item => !boxed.some(other => (
+        other.path !== item.path &&
+        (
+          containsUsBox(other.box, item.box) ||
+          (other.box.area > item.box.area * 1.05 && usBoxOverlapRatio(other.box, item.box) > 0.55)
+        )
+      )))
+      .map(item => item.path);
+  }
+
+  function collectUsBoundaryPaths(svg) {
+    const seen = new Set();
+    const paths = [];
+    Object.values(US_BOUNDARY_PATHS).flat().forEach(pathId => {
+      if (seen.has(pathId)) return;
+      seen.add(pathId);
+      const path = svg.querySelector('#map_' + CSS.escape(pathId));
+      if (path) paths.push(path);
+    });
+    return paths;
+  }
+
+  function addUsBoundaryLayer(svg, paths) {
+    const oldLayer = svg.querySelector('#home-us-state-boundaries');
+    if (oldLayer) oldLayer.remove();
+    const layer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    const completedIds = new Set(US_PROGRESS_STATES.flatMap(abbr => US_MAP_PATHS[abbr] || []));
+    layer.id = 'home-us-state-boundaries';
+    layer.style.pointerEvents = 'none';
+    visibleUsBoundaryPaths(paths).forEach(path => {
+      const outline = path.cloneNode(false);
+      const pathId = (path.id || '').replace(/^map_/, '');
+      const isComplete = completedIds.has(pathId);
+      outline.removeAttribute('id');
+      outline.setAttribute('fill', 'none');
+      outline.setAttribute('stroke', isComplete ? 'rgba(255,238,205,.72)' : 'rgba(255,255,255,.20)');
+      outline.setAttribute('stroke-width', isComplete ? '1.05' : '.7');
+      outline.setAttribute('stroke-linejoin', 'round');
+      outline.setAttribute('stroke-linecap', 'round');
+      outline.setAttribute('vector-effect', 'non-scaling-stroke');
+      outline.style.opacity = '1';
+      outline.style.pointerEvents = 'none';
+      layer.appendChild(outline);
+    });
+    svg.appendChild(layer);
   }
 
   function removeUsContainedSubpaths(svg) {
