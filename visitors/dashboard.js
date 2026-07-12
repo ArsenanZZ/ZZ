@@ -49,25 +49,67 @@ function styleMap(slot, type) {
   return true;
 }
 
+async function renderUsMap(slot, stateSelector) {
+  setMapState(stateSelector, "Loading map");
+  try {
+    const modules = await Promise.all([
+      import("https://cdn.jsdelivr.net/npm/d3-geo@3/+esm"),
+      import("https://cdn.jsdelivr.net/npm/topojson-client@3/+esm")
+    ]);
+    const geo = modules[0];
+    const topojson = modules[1];
+    const response = await fetch("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json");
+    if (!response.ok) throw new Error("Could not load state boundaries");
+    const topology = await response.json();
+    const states = topojson.feature(topology, topology.objects.states);
+    const projection = geo.geoAlbersUsa().fitExtent([[24, 20], [776, 480]], states);
+    const path = geo.geoPath(projection);
+    const svgNamespace = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNamespace, "svg");
+    svg.setAttribute("viewBox", "0 0 800 500");
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    svg.setAttribute("aria-hidden", "true");
+
+    states.features.forEach(function (feature) {
+      const shape = document.createElementNS(svgNamespace, "path");
+      shape.setAttribute("d", path(feature));
+      shape.setAttribute("data-state-id", feature.id);
+      shape.setAttribute("fill", "#27373b");
+      shape.setAttribute("stroke", "rgba(220, 241, 236, .26)");
+      shape.setAttribute("stroke-width", ".7");
+      shape.setAttribute("vector-effect", "non-scaling-stroke");
+      svg.appendChild(shape);
+    });
+
+    const borders = document.createElementNS(svgNamespace, "path");
+    borders.setAttribute("d", path(topojson.mesh(topology, topology.objects.states, function (a, b) { return a !== b; })));
+    borders.setAttribute("fill", "none");
+    borders.setAttribute("stroke", "rgba(220, 241, 236, .42)");
+    borders.setAttribute("stroke-width", ".75");
+    borders.setAttribute("vector-effect", "non-scaling-stroke");
+    svg.appendChild(borders);
+    slot.replaceChildren(svg);
+    setMapState(stateSelector, "Awaiting location data");
+  } catch (error) {
+    setMapState(stateSelector, "Map unavailable");
+  }
+}
+
 function renderLocationMaps() {
   const mapDefinitions = [
     { type: "world", slot: document.querySelector("[data-world-map]"), state: "[data-world-map-state]", markup: typeof WORLD_MAP_SVG === "undefined" ? null : WORLD_MAP_SVG },
-    { type: "us", slot: document.querySelector("[data-us-map]"), state: "[data-us-map-state]", image: "/assets/visitor-us-map-ai.png" },
     { type: "china", slot: document.querySelector("[data-china-map]"), state: "[data-china-map-state]", markup: typeof CHINA_MAP_SVG === "undefined" ? null : CHINA_MAP_SVG }
   ];
   mapDefinitions.forEach(function (map) {
-    if (!map.slot || (!map.markup && !map.image)) {
+    if (!map.slot || !map.markup) {
       setMapState(map.state, "Map unavailable");
-      return;
-    }
-    if (map.image) {
-      map.slot.innerHTML = '<img class="map-image" src="' + map.image + '" alt="United States map with state boundaries">';
-      setMapState(map.state, "Awaiting location data");
       return;
     }
     map.slot.innerHTML = map.markup;
     setMapState(map.state, styleMap(map.slot, map.type) ? "Awaiting location data" : "Map unavailable");
   });
+  const usSlot = document.querySelector("[data-us-map]");
+  if (usSlot) renderUsMap(usSlot, "[data-us-map-state]");
 }
 
 function formatDate(value) {
