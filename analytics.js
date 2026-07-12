@@ -1,11 +1,11 @@
 (function () {
   var firebaseConfig = {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    appId: ""
+    apiKey: "AIzaSyDn4ot0prM_xLajgH4vNE1ejN_Ir4cNBsM",
+    authDomain: "zhennan-website-comments.firebaseapp.com",
+    projectId: "zhennan-website-comments",
+    appId: "1:1019165954961:web:6abb4bb8fb21d507edc030"
   };
-  var tagManagerContainerId = "GTM-N8V3FBNM";
+  var googleAnalyticsMeasurementId = "G-12XZM1FG8C";
 
   function hasFirebaseConfig() {
     return Boolean(
@@ -20,17 +20,18 @@
     return /^(localhost|127\.0\.0\.1)$/i.test(location.hostname);
   }
 
-  function setupGoogleTagManager() {
-    if (!tagManagerContainerId) return;
+  function setupGoogleAnalytics() {
+    if (!googleAnalyticsMeasurementId) return;
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      "gtm.start": new Date().getTime(),
-      event: "gtm.js"
-    });
+    window.gtag = window.gtag || function () {
+      window.dataLayer.push(arguments);
+    };
+    window.gtag("js", new Date());
+    window.gtag("config", googleAnalyticsMeasurementId);
 
     var script = document.createElement("script");
     script.async = true;
-    script.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(tagManagerContainerId);
+    script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(googleAnalyticsMeasurementId);
     document.head.appendChild(script);
   }
 
@@ -215,6 +216,10 @@
           };
         });
       },
+      async getCommentCount() {
+        var snapshot = await firestoreModule.getCountFromServer(commentsRef);
+        return snapshot.data().count || 0;
+      },
       async addComment(comment) {
         await firestoreModule.addDoc(commentsRef, {
           name: comment.name,
@@ -223,10 +228,6 @@
           pageTitle: articleTitle(),
           pagePath: location.pathname
         });
-        await firestoreModule.setDoc(statsRef, {
-          comments: firestoreModule.increment(1),
-          updatedAt: firestoreModule.serverTimestamp()
-        }, { merge: true });
         return this.getComments();
       }
     };
@@ -279,8 +280,9 @@
     async function refresh() {
       var stats = await store.incrementView();
       var comments = await store.getComments();
+      var commentCount = store.getCommentCount ? await store.getCommentCount() : comments.length;
       viewsNode.textContent = formatNumber(stats.views || 0);
-      commentCountNode.textContent = formatNumber(stats.comments || comments.length || 0);
+      commentCountNode.textContent = formatNumber(commentCount);
       renderComments(listNode, comments);
     }
 
@@ -300,8 +302,9 @@
         form.reset();
         renderComments(listNode, comments);
         var stats = await store.getStats();
+        var commentCount = store.getCommentCount ? await store.getCommentCount() : comments.length;
         viewsNode.textContent = formatNumber(stats.views || 0);
-        commentCountNode.textContent = formatNumber(stats.comments || comments.length || 0);
+        commentCountNode.textContent = formatNumber(commentCount);
         status.textContent = "Posted. Thank you.";
       } catch (error) {
         status.textContent = "Could not post right now. Please try again later.";
@@ -320,7 +323,7 @@
     }
   }
 
-  setupGoogleTagManager();
+  setupGoogleAnalytics();
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", setupEngagement);
   } else {
