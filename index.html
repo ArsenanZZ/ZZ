@@ -1019,13 +1019,14 @@
   }
 
   .feed-grid {
+    --feed-columns: 5;
     grid-column: 1 / -1;
     grid-row: 3;
     display: grid;
     grid-auto-flow: row;
-    grid-template-columns: repeat(var(--feed-columns, 12), minmax(0, 1fr));
+    grid-template-columns: repeat(var(--feed-columns), minmax(0, 1fr));
     gap: 12px;
-    align-items: stretch;
+    align-items: start;
     min-width: 0;
   }
 
@@ -1036,7 +1037,7 @@
   .card {
     display: block;
     position: relative;
-    height: 100%;
+    height: auto;
     min-width: 0;
     overflow: hidden;
     border-radius: var(--radius);
@@ -1045,6 +1046,10 @@
     text-decoration: none;
     box-shadow: 0 6px 18px rgba(0, 0, 0, .22);
     transition: transform .16s ease, background .16s ease;
+  }
+
+  .feed-grid .card {
+    align-self: start;
   }
 
   .card:hover {
@@ -1135,15 +1140,15 @@
   }
 
   .feed-grid .layout-span-1.image-top:not(.overlay-card) {
-    min-height: 324px;
+    min-height: 0;
   }
 
   body.more-mode .feed-grid .layout-span-1.image-top:not(.overlay-card) {
-    min-height: 300px;
+    min-height: 0;
   }
 
   body.more-mode .feed-grid .layout-span-2.image-top:not(.overlay-card) {
-    min-height: 360px;
+    min-height: 0;
   }
 
   body.more-mode .card {
@@ -1574,11 +1579,16 @@
 
   .empty.show { display: grid; }
 
+  @media (max-width: 1500px) {
+    .feed-grid { --feed-columns: 4; }
+  }
+
   @media (max-width: 1160px) {
     .page {
       display: block;
       width: min(980px, calc(100% - 28px));
     }
+    .feed-grid { --feed-columns: 3; }
     .feed-toolbar { margin-bottom: 14px; }
     .lead-grid {
       display: grid;
@@ -1592,9 +1602,22 @@
       grid-column: auto;
       grid-row: auto;
     }
-    .side-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .side-stack {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      height: auto !important;
+      overflow: visible;
+    }
+    .side-stack > .widget:not(.rail-progress),
+    .side-stack > .widget:not(.rail-progress) .widget-body {
+      height: auto;
+      overflow: visible;
+    }
     .span-3, .span-4 { grid-column: span 1; }
     .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: span 2; }
+  }
+
+  @media (max-width: 860px) {
+    .feed-grid { --feed-columns: 2; }
   }
 
   @media (max-width: 760px) {
@@ -1755,7 +1778,11 @@
       font-size: 15px;
     }
     .mini-map-window svg { max-width: 100% !important; }
-    .feed-grid { grid-template-columns: 1fr; gap: 14px; }
+    .feed-grid {
+      --feed-columns: 1;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
     .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: span 1; }
     .overlay-card .card-copy { max-width: none; }
     .image-top img, .image-top.tall img { height: auto; }
@@ -3366,9 +3393,14 @@
   }
 
   function feedColumnUnits() {
-    const isNarrow = window.matchMedia('(max-width: 760px)').matches;
+    const width = feedGrid?.clientWidth || window.innerWidth;
+    const isNarrow = width <= 760;
     const isKnowledgeMode = activeFilter === 'other';
-    const columnUnits = isNarrow ? 1 : isKnowledgeMode ? 4 : 5;
+    let columnUnits = 5;
+    if (isNarrow) columnUnits = 1;
+    else if (width < 860) columnUnits = 2;
+    else if (width < 1180) columnUnits = 3;
+    else if (width < 1500 || isKnowledgeMode) columnUnits = 4;
     if (feedGrid) feedGrid.style.setProperty('--feed-columns', String(columnUnits));
     return columnUnits;
   }
@@ -3383,23 +3415,18 @@
   function placementsForCards(cardList) {
     const placements = new Map();
     const isNarrow = window.matchMedia('(max-width: 760px)').matches;
-    const isKnowledgeMode = activeFilter === 'other';
     const columnUnits = feedColumnUnits();
     if (isNarrow) {
       cardList.forEach(card => placements.set(card, { span: 1, start: 1 }));
       return placements;
     }
 
-    const groups = isKnowledgeMode || columnUnits === 4
-      ? [
-          { start: 1, size: 2 },
-          { start: 3, size: 2 },
-        ]
-      : [
-          { start: 1, size: 2 },
-          { start: 3, size: 2 },
-          { start: 5, size: 1 },
-        ];
+    const groups = [];
+    for (let start = 1; start <= columnUnits;) {
+      const size = columnUnits - start + 1 >= 2 ? 2 : 1;
+      groups.push({ start, size });
+      start += size;
+    }
     let cardIndex = 0;
     let rowIndex = 0;
     let lastWideStart = 3;
