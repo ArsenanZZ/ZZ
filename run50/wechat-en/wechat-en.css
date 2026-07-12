@@ -21,3 +21,17 @@ html[data-theme=light] .wechat-finish-line{background:#edf5f8;border-color:#d8e6
 html[data-theme=light] .wechat-finish-line h2{color:#162636}
 html[data-theme=light] .wechat-finish-line p{color:#26343f}
 html[data-theme=light] .finish-chips span{color:#526170;border-color:#d0dbe8}
+
+@media (min-width:701px){
+  .wechat-en-page{
+    width:min(1320px,calc(100% - 48px));
+    padding-left:0;
+    padding-right:0;
+  }
+}
+
+@media (max-width:700px){
+  .wechat-en-page{
+    width:100%;
+  }
+}
