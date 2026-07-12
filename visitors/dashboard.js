@@ -33,9 +33,12 @@ function styleMap(slot, type) {
   svg.querySelectorAll("rect").forEach(function (rect) {
     rect.setAttribute("fill", "#101619");
   });
+  svg.querySelectorAll("text, image").forEach(function (node) {
+    node.style.display = "none";
+  });
   svg.querySelectorAll("path").forEach(function (path) {
     const id = path.id || "";
-    const isRegion = type === "world" ? id.startsWith("wm_") : type === "china" ? id.startsWith("cn_") : !/ocean|water|frame|exterior/i.test(id);
+    const isRegion = type === "world" ? id.startsWith("wm_") : id.startsWith("cn_");
     path.setAttribute("fill", isRegion ? "#27373b" : "none");
     path.setAttribute("stroke", isRegion ? "rgba(220, 241, 236, .26)" : "rgba(220, 241, 236, .12)");
     path.setAttribute("stroke-width", ".7");
@@ -49,12 +52,17 @@ function styleMap(slot, type) {
 function renderLocationMaps() {
   const mapDefinitions = [
     { type: "world", slot: document.querySelector("[data-world-map]"), state: "[data-world-map-state]", markup: typeof WORLD_MAP_SVG === "undefined" ? null : WORLD_MAP_SVG },
-    { type: "us", slot: document.querySelector("[data-us-map]"), state: "[data-us-map-state]", markup: typeof US_MAP_SVG === "undefined" ? null : US_MAP_SVG },
+    { type: "us", slot: document.querySelector("[data-us-map]"), state: "[data-us-map-state]", image: "/assets/visitor-us-map-ai.png" },
     { type: "china", slot: document.querySelector("[data-china-map]"), state: "[data-china-map-state]", markup: typeof CHINA_MAP_SVG === "undefined" ? null : CHINA_MAP_SVG }
   ];
   mapDefinitions.forEach(function (map) {
-    if (!map.slot || !map.markup) {
+    if (!map.slot || (!map.markup && !map.image)) {
       setMapState(map.state, "Map unavailable");
+      return;
+    }
+    if (map.image) {
+      map.slot.innerHTML = '<img class="map-image" src="' + map.image + '" alt="United States map with state boundaries">';
+      setMapState(map.state, "Awaiting location data");
       return;
     }
     map.slot.innerHTML = map.markup;
