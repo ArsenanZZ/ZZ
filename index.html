@@ -1021,11 +1021,15 @@
   .feed-grid {
     grid-column: 1 / -1;
     grid-row: 3;
+    --feed-columns: 5;
+    --feed-row-height: clamp(360px, 25vw, 520px);
     display: grid;
     grid-auto-flow: row;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    grid-auto-rows: var(--feed-row-height);
+    grid-template-columns: repeat(var(--feed-columns), minmax(0, 1fr));
+    grid-template-rows: auto;
     gap: 12px;
-    align-items: start;
+    align-items: stretch;
     min-width: 0;
   }
 
@@ -1036,7 +1040,7 @@
   .card {
     display: block;
     position: relative;
-    height: auto;
+    height: 100%;
     min-width: 0;
     overflow: hidden;
     border-radius: var(--radius);
@@ -1048,7 +1052,7 @@
   }
 
   .feed-grid .card {
-    align-self: start;
+    align-self: stretch;
   }
 
   .card:hover {
@@ -1082,12 +1086,6 @@
   .feed-grid .layout-span-7 { grid-column: span 7 !important; }
   .feed-grid .layout-span-8 { grid-column: span 8 !important; }
   .feed-grid .layout-span-12 { grid-column: span 12 !important; }
-
-  .feed-grid > .card,
-  .feed-grid > .section-label,
-  .feed-grid > .empty {
-    grid-column: auto !important;
-  }
 
   .feed-grid > .section-label,
   .feed-grid > .empty {
@@ -1229,6 +1227,11 @@
     position: relative;
     aspect-ratio: 16 / 10;
     min-height: 0;
+  }
+
+  .feed-grid .overlay-card {
+    aspect-ratio: auto;
+    height: 100%;
   }
 
   .overlay-card img {
@@ -1790,9 +1793,11 @@
     .mini-map-window svg { max-width: 100% !important; }
     .feed-grid {
       --feed-columns: 1;
+      grid-auto-rows: auto;
       grid-template-columns: 1fr;
       gap: 14px;
     }
+    .feed-grid .card { height: auto; }
     .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: span 1; }
     .overlay-card .card-copy { max-width: none; }
     .image-top img, .image-top.tall img { height: auto; }
@@ -3422,48 +3427,53 @@
       && !card.classList.contains('list-module');
   }
 
+  function syncFeedRowHeight() {
+    if (!feedGrid) return;
+    const columnUnits = feedColumnUnits();
+    if (columnUnits <= 1) {
+      feedGrid.style.setProperty('--feed-row-height', 'auto');
+      return;
+    }
+    const styles = window.getComputedStyle(feedGrid);
+    const columnGap = Number.parseFloat(styles.columnGap) || 12;
+    const availableWidth = feedGrid.clientWidth - columnGap * (columnUnits - 1);
+    const unitWidth = Math.max(0, availableWidth / columnUnits);
+    const rowHeight = Math.max(320, Math.min(560, unitWidth * 2 * 0.625));
+    feedGrid.style.setProperty('--feed-row-height', `${Math.round(rowHeight)}px`);
+  }
+
   function placementsForCards(cardList) {
     const placements = new Map();
     const isNarrow = window.matchMedia('(max-width: 760px)').matches;
     const columnUnits = feedColumnUnits();
-    if (isNarrow) {
+    if (isNarrow || columnUnits <= 1) {
       cardList.forEach(card => placements.set(card, { span: 1, start: 1 }));
       return placements;
     }
 
-    const groups = [];
-    for (let start = 1; start <= columnUnits;) {
-      const size = columnUnits - start + 1 >= 2 ? 2 : 1;
-      groups.push({ start, size });
-      start += size;
-    }
     let cardIndex = 0;
-    let rowIndex = 0;
-    let lastWideStart = 3;
 
     while (cardIndex < cardList.length) {
-      const preferredWideStart = rowIndex % 3 === 2 ? 0 : (lastWideStart === 1 ? 3 : 1);
-      groups.forEach(group => {
-        if (cardIndex >= cardList.length) return;
-        const currentCard = cardList[cardIndex];
-        if (group.size === 2 && preferredWideStart === group.start && canUseWideFeedSlot(currentCard)) {
-          placements.set(currentCard, { span: 2, start: group.start });
-          lastWideStart = group.start;
-          cardIndex += 1;
-          return;
-        }
-        for (let offset = 0; offset < group.size && cardIndex < cardList.length; offset += 1) {
-          placements.set(cardList[cardIndex], { span: 1, start: group.start + offset });
-          cardIndex += 1;
-        }
+      const cardsInRow = Math.min(columnUnits - 1, cardList.length - cardIndex);
+      const rowCards = cardList.slice(cardIndex, cardIndex + cardsInRow);
+      let wideIndex = rowCards.findIndex(canUseWideFeedSlot);
+      if (wideIndex < 0) wideIndex = 0;
+      let start = 1;
+
+      rowCards.forEach((card, rowIndex) => {
+        const span = rowIndex === wideIndex ? 2 : 1;
+        placements.set(card, { span, start });
+        start += span;
       });
-      rowIndex += 1;
+      cardIndex += cardsInRow;
     }
     return placements;
   }
 
   function layoutMsnRows() {
     if (!feedGrid) return;
+    const isNarrow = window.matchMedia('(max-width: 760px)').matches;
+    syncFeedRowHeight();
     feedGrid.style.display = '';
     feedGrid.style.position = '';
     feedGrid.style.height = '';
@@ -3474,9 +3484,7 @@
         && !card.classList.contains('list-module');
       if (isImageStoryCard) {
         card.classList.add('image-top', 'compact');
-        if (card.classList.contains('auto-overlay')) {
-          card.classList.remove('auto-overlay', 'overlay-card');
-        }
+        card.classList.remove('auto-overlay', 'overlay-card');
       } else if (card.classList.contains('auto-overlay')) {
         card.classList.remove('auto-overlay', 'overlay-card');
       }
@@ -3488,12 +3496,24 @@
       card.style.removeProperty('grid-column');
       card.classList.remove('layout-span-1', 'layout-span-2', 'layout-span-3', 'layout-span-4', 'layout-span-5', 'layout-span-6', 'layout-span-7', 'layout-span-8', 'layout-span-12');
     });
+    const visibleCards = cards.filter(card => card.style.display !== 'none');
+    const placements = placementsForCards(visibleCards);
+    visibleCards.forEach(card => {
+      const placement = placements.get(card) || { span: 1, start: 1 };
+      const span = isNarrow ? 1 : placement.span;
+      card.classList.add(`layout-span-${span}`);
+      card.style.setProperty('grid-column', isNarrow ? '1 / -1' : `${placement.start} / span ${span}`, 'important');
+      if (!isNarrow && span >= 2 && canUseWideFeedSlot(card)) {
+        card.classList.add('overlay-card', 'auto-overlay');
+      }
+    });
   }
 
   function scheduleMasonry() {
     if (masonryFrame) cancelAnimationFrame(masonryFrame);
     masonryFrame = requestAnimationFrame(() => {
-      masonryFrame = requestAnimationFrame(layoutMsnRows);
+      masonryFrame = null;
+      layoutMsnRows();
     });
   }
 
@@ -3527,6 +3547,7 @@
     visibleCount.textContent = `${shown} item${shown === 1 ? '' : 's'}`;
     emptyState.classList.toggle('show', shown === 0);
     rebuildCarousel({ randomize: false });
+    layoutMsnRows();
     scheduleMasonry();
   }
 
@@ -3723,7 +3744,6 @@
   async function init() {
     applyInitialRoute();
     refreshCardList();
-    await refreshFromLiveIndexes();
     applyStoryVariantVisibility();
     mixStoryCards();
     refreshCardList();
@@ -3732,6 +3752,16 @@
     setupReactions();
     applyViewZoom(viewZoom);
     applyFilters();
+    const liveIndexChanged = await refreshFromLiveIndexes();
+    if (liveIndexChanged) {
+      applyStoryVariantVisibility();
+      mixStoryCards();
+      refreshCardList();
+      renderProgressMaps();
+      rebuildCarousel();
+      setupReactions();
+      applyFilters();
+    }
     document.querySelectorAll('.feed-grid img').forEach(image => {
       if (image.complete) return;
       image.addEventListener('load', scheduleMasonry, { once: true });
