@@ -30,6 +30,12 @@ function styleMap(slot, type) {
   svg.removeAttribute("width");
   svg.removeAttribute("height");
   svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  if (type === "china") {
+    svg.setAttribute("viewBox", "25 20 750 545");
+    svg.querySelectorAll("circle").forEach(function (circle) {
+      circle.style.display = "none";
+    });
+  }
   svg.querySelectorAll("rect").forEach(function (rect) {
     rect.setAttribute("fill", "#101619");
   });
