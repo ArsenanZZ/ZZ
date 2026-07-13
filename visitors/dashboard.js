@@ -18,6 +18,7 @@ const rankings = document.querySelector("[data-rankings]");
 const activity = document.querySelector("[data-activity]");
 const emptyRankings = document.querySelector("[data-empty-rankings]");
 const emptyActivity = document.querySelector("[data-empty-activity]");
+let locationRecords = [];
 
 function setMapState(selector, message) {
   const state = document.querySelector(selector);
@@ -53,6 +54,119 @@ function styleMap(slot, type) {
     path.style.pointerEvents = "none";
   });
   return true;
+}
+
+function svgViewBox(svg) {
+  const values = (svg.getAttribute("viewBox") || "0 0 800 500").split(/\s+/).map(Number);
+  return { x: values[0], y: values[1], width: values[2], height: values[3] };
+}
+
+function heatColor(views, maxViews) {
+  const strength = Math.max(0, Math.min(1, views / Math.max(maxViews, 1)));
+  const red = Math.round(95 + strength * 160);
+  const green = Math.round(210 - strength * 105);
+  return "rgb(" + red + "," + green + ",82)";
+}
+
+function renderHeatPoints(slot, points) {
+  const svg = slot?.querySelector("svg");
+  if (!svg) return false;
+  svg.querySelector("[data-heat-layer]")?.remove();
+  if (!points.length) return true;
+
+  const namespace = "http://www.w3.org/2000/svg";
+  const layer = document.createElementNS(namespace, "g");
+  const maxViews = Math.max.apply(null, points.map(function (point) { return point.views; }));
+  layer.setAttribute("data-heat-layer", "true");
+  layer.setAttribute("pointer-events", "none");
+  points.forEach(function (point) {
+    const radius = 4 + Math.min(13, Math.sqrt(point.views || 1) * 3);
+    const halo = document.createElementNS(namespace, "circle");
+    halo.setAttribute("cx", point.x.toFixed(2));
+    halo.setAttribute("cy", point.y.toFixed(2));
+    halo.setAttribute("r", String(radius * 1.8));
+    halo.setAttribute("fill", heatColor(point.views, maxViews));
+    halo.setAttribute("fill-opacity", ".16");
+    layer.appendChild(halo);
+
+    const marker = document.createElementNS(namespace, "circle");
+    marker.setAttribute("cx", point.x.toFixed(2));
+    marker.setAttribute("cy", point.y.toFixed(2));
+    marker.setAttribute("r", String(radius));
+    marker.setAttribute("fill", heatColor(point.views, maxViews));
+    marker.setAttribute("fill-opacity", ".88");
+    marker.setAttribute("stroke", "rgba(255,255,255,.78)");
+    marker.setAttribute("stroke-width", ".8");
+    const label = document.createElementNS(namespace, "title");
+    label.textContent = point.label + ": " + formatter.format(point.views) + " visits";
+    marker.appendChild(label);
+    layer.appendChild(marker);
+  });
+  svg.appendChild(layer);
+  return true;
+}
+
+function setHeatState(selector, points) {
+  if (!points.length) {
+    setMapState(selector, "Awaiting location data");
+    return;
+  }
+  const visits = points.reduce(function (sum, point) { return sum + point.views; }, 0);
+  setMapState(selector, points.length + " locations | " + formatter.format(visits) + " visits");
+}
+
+function renderWorldHeat(records) {
+  const slot = document.querySelector("[data-world-map]");
+  const svg = slot?.querySelector("svg");
+  if (!svg) return;
+  const viewBox = svgViewBox(svg);
+  const points = records.map(function (record) {
+    return {
+      x: viewBox.x + ((record.longitude + 180) / 360) * viewBox.width,
+      y: viewBox.y + ((90 - record.latitude) / 180) * viewBox.height,
+      views: record.views,
+      label: [record.city, record.region, record.country].filter(Boolean).join(", ")
+    };
+  });
+  renderHeatPoints(slot, points);
+  setHeatState("[data-world-map-state]", points);
+}
+
+function renderChinaHeat(records) {
+  const slot = document.querySelector("[data-china-map]");
+  const points = records.filter(function (record) { return record.countryCode === "CN"; }).map(function (record) {
+    return {
+      x: (record.longitude - 70) * 11.8,
+      y: (55 - record.latitude) * 15,
+      views: record.views,
+      label: [record.city, record.region, "China"].filter(Boolean).join(", ")
+    };
+  });
+  if (!renderHeatPoints(slot, points)) return;
+  setHeatState("[data-china-map-state]", points);
+}
+
+function renderUsHeat(records) {
+  const slot = document.querySelector("[data-us-map]");
+  if (!slot?._locationProjection) return;
+  const points = records.filter(function (record) { return record.countryCode === "US"; }).map(function (record) {
+    const projected = slot._locationProjection([record.longitude, record.latitude]);
+    if (!projected) return null;
+    return {
+      x: projected[0],
+      y: projected[1],
+      views: record.views,
+      label: [record.city, record.region, "United States"].filter(Boolean).join(", ")
+    };
+  }).filter(Boolean);
+  renderHeatPoints(slot, points);
+  setHeatState("[data-us-map-state]", points);
+}
+
+function renderHeatMaps(records) {
+  renderWorldHeat(records);
+  renderChinaHeat(records);
+  renderUsHeat(records);
 }
 
 async function renderUsMap(slot, stateSelector) {
@@ -94,8 +208,9 @@ async function renderUsMap(slot, stateSelector) {
     borders.setAttribute("stroke-width", ".75");
     borders.setAttribute("vector-effect", "non-scaling-stroke");
     svg.appendChild(borders);
+    slot._locationProjection = projection;
     slot.replaceChildren(svg);
-    setMapState(stateSelector, "Awaiting location data");
+    renderHeatMaps(locationRecords);
   } catch (error) {
     setMapState(stateSelector, "Map unavailable");
   }
@@ -116,6 +231,7 @@ function renderLocationMaps() {
   });
   const usSlot = document.querySelector("[data-us-map]");
   if (usSlot) renderUsMap(usSlot, "[data-us-map-state]");
+  renderHeatMaps(locationRecords);
 }
 
 function formatDate(value) {
@@ -204,5 +320,26 @@ window.addEventListener("load", function () {
     totalDetail.textContent = "Activity is temporarily unavailable.";
     emptyRankings.classList.remove("hidden");
     emptyActivity.classList.remove("hidden");
+  });
+  onSnapshot(collection(db, "zzVisitorLocations"), function (snapshot) {
+    locationRecords = snapshot.docs.map(function (doc) {
+      const data = doc.data();
+      return {
+        country: data.country || "",
+        countryCode: data.countryCode || "",
+        region: data.region || "",
+        city: data.city || "",
+        latitude: Number(data.latitude),
+        longitude: Number(data.longitude),
+        views: Number(data.views || 0)
+      };
+    }).filter(function (record) {
+      return Number.isFinite(record.latitude) && Number.isFinite(record.longitude) && record.views > 0;
+    });
+    renderHeatMaps(locationRecords);
+  }, function () {
+    setMapState("[data-world-map-state]", "Location data unavailable");
+    setMapState("[data-us-map-state]", "Location data unavailable");
+    setMapState("[data-china-map-state]", "Location data unavailable");
   });
 }, { once: true });

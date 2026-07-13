@@ -60,6 +60,37 @@
     ).trim();
   }
 
+  function cleanLocationText(value, maxLength) {
+    return String(value || "").trim().replace(/\s+/g, " ").slice(0, maxLength);
+  }
+
+  function locationDocumentId(location) {
+    return [location.countryCode, location.region || "unknown", location.city || "unknown"]
+      .join("-")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, 120);
+  }
+
+  async function locateVisitor() {
+    var response = await fetch("https://ipwho.is/", { cache: "no-store" });
+    if (!response.ok) return null;
+    var data = await response.json();
+    var latitude = Number(data.latitude);
+    var longitude = Number(data.longitude);
+    var countryCode = cleanLocationText(data.country_code, 2).toUpperCase();
+    if (!data.success || !/^[A-Z]{2}$/.test(countryCode) || !Number.isFinite(latitude) || !Number.isFinite(longitude)) return null;
+    return {
+      country: cleanLocationText(data.country, 80) || countryCode,
+      countryCode: countryCode,
+      region: cleanLocationText(data.region, 100),
+      city: cleanLocationText(data.city, 100),
+      latitude: Math.max(-90, Math.min(90, latitude)),
+      longitude: Math.max(-180, Math.min(180, longitude))
+    };
+  }
+
   function formatNumber(value) {
     return new Intl.NumberFormat("en-US").format(Number(value || 0));
   }
@@ -200,6 +231,28 @@
         }
         return this.getStats();
       },
+      async recordLocationVisit() {
+        var viewedKey = "zz-location-viewed-session:" + articleKey;
+        if (sessionStorage.getItem(viewedKey)) return;
+        try {
+          var location = await locateVisitor();
+          if (!location) return;
+          var locationRef = firestoreModule.doc(db, "zzVisitorLocations", locationDocumentId(location));
+          await firestoreModule.setDoc(locationRef, {
+            country: location.country,
+            countryCode: location.countryCode,
+            region: location.region,
+            city: location.city,
+            latitude: location.latitude,
+            longitude: location.longitude,
+            views: firestoreModule.increment(1),
+            updatedAt: firestoreModule.serverTimestamp()
+          }, { merge: true });
+          sessionStorage.setItem(viewedKey, "1");
+        } catch (error) {
+          // Location statistics are optional and must never interrupt reading.
+        }
+      },
       async getStats() {
         var snapshot = await firestoreModule.getDoc(statsRef);
         return snapshot.exists() ? snapshot.data() : { views: 0 };
@@ -279,6 +332,7 @@
 
     async function refresh() {
       var stats = await store.incrementView();
+      if (store.recordLocationVisit) store.recordLocationVisit();
       var comments = await store.getComments();
       var commentCount = store.getCommentCount ? await store.getCommentCount() : comments.length;
       viewsNode.textContent = formatNumber(stats.views || 0);
