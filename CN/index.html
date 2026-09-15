@@ -1,13 +1,26 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<!-- saved from url=(0055)#score -->
+<html lang="zh-CN"><head>
+<script src="/analytics.js" defer></script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Run50 Running Blog</title>
+  <link rel="canonical" href="https://zhennanzhang.com/CN/">
+  <title>Run50 Chinese Stories</title>
   <script>
     try {
-      if (localStorage.getItem('run50-wechat-theme') === 'light') {
+      const params = new URLSearchParams(window.location.search);
+      const embedMode = params.get('embed');
+      if (embedMode === 'us-map' || embedMode === 'cn-map') {
+        document.documentElement.dataset.mapEmbed = embedMode === 'us-map' ? 'us' : 'cn';
+      }
+      const requestedTheme = params.get('theme');
+      if (requestedTheme === 'light') {
+        document.documentElement.dataset.theme = 'light';
+      } else if (requestedTheme !== 'dark' && localStorage.getItem('run50-wechat-theme') === 'light') {
         document.documentElement.dataset.theme = 'light';
       }
+      const requestedLang = params.get('lang');
+      document.documentElement.dataset.mapLang = requestedLang === 'zh' ? 'zh' : (requestedLang === 'en' || embedMode ? 'en' : 'zh');
     } catch (error) {}
   </script>
   <style>
@@ -23,7 +36,7 @@
       --muted: #b9c0d0;
       --soft: #8f98ad;
       --green: #37d67a;
-      --amber: #9ee7c0;
+      --amber: #ffbe4a;
       --cyan: #4fc3ff;
       --rose: #ff6f91;
       --shadow: 0 18px 50px rgba(0, 0, 0, .24);
@@ -68,45 +81,6 @@
       align-items: center;
       gap: 14px;
       min-width: 0;
-    }
-
-    .top-actions {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .language-switch {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(37, 43, 63, .78);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
-    }
-
-    .language-switch a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 30px;
-      padding: 0 12px;
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .language-switch a.active {
-      color: #07111a;
-      background: linear-gradient(135deg, var(--green), var(--cyan));
-    }
-
-    .language-switch a span[aria-hidden="true"] {
-      display: none;
     }
 
     .menu-icon,
@@ -419,6 +393,69 @@
       overflow: hidden;
     }
 
+
+    html[data-map-embed] body {
+      background: transparent;
+      min-height: 0;
+    }
+
+    html[data-map-embed] .topbar,
+    html[data-map-embed] .rail,
+    html[data-map-embed] .league-row,
+    html[data-map-embed] .ticker,
+    html[data-map-embed] .story-section,
+    html[data-map-embed] .stats,
+    html[data-map-embed] .stats-grid,
+    html[data-map-embed] footer,
+    html[data-map-embed] .zz-home-button {
+      display: none !important;
+    }
+
+    html[data-map-embed] .shell,
+    html[data-map-embed] .main {
+      display: block;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    html[data-map-embed] .hero {
+      display: block;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    html[data-map-embed] .intro-card {
+      display: none !important;
+    }
+
+    html[data-map-embed] .map-board {
+      display: block;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    html[data-map-embed] .run-map-card {
+      display: block;
+      margin: 0;
+      border-radius: 8px;
+      box-shadow: none;
+    }
+
+    html[data-map-embed="us"] #runcn-map,
+    html[data-map-embed="cn"] #run50-us-card {
+      display: none !important;
+    }
+
+    html[data-map-embed] .run-map-card header {
+      padding-bottom: 12px;
+    }
+
     .feature-img {
       display: block;
       width: 100%;
@@ -573,7 +610,7 @@
       font-size: 12px;
       letter-spacing: .06em;
       text-transform: uppercase;
-      color: #9ee7c0;
+      color: #f8dc8a;
     }
 
     .map-story-popover button,
@@ -598,7 +635,7 @@
     }
 
     .map-story-popover button:hover {
-      color: #9ee7c0;
+      color: #ffdc72;
     }
 
     .map-tooltip {
@@ -629,7 +666,7 @@
       margin: 0 0 8px;
       padding-bottom: 7px;
       border-bottom: 1px solid rgba(255, 255, 255, .15);
-      color: #9ee7c0;
+      color: #ffdc72;
       font-size: 13px;
       line-height: 1.35;
     }
@@ -662,7 +699,7 @@
     }
 
     .map-tooltip button:hover {
-      color: #9ee7c0;
+      color: #ffdc72;
     }
 
     #runcn-china-map-mini .city-dot-glow {
@@ -729,7 +766,7 @@
 
     .map-foot b {
       flex: 0 0 auto;
-      color: #9ee7c0;
+      color: #f8dc8a;
     }
 
     .ticker {
@@ -922,7 +959,7 @@
 
     .open {
       margin-top: auto;
-      color: #9ee7c0;
+      color: #f8dc8a;
       font-weight: 750;
       font-size: 14px;
     }
@@ -983,18 +1020,6 @@
 
     html[data-theme="light"] .theme-toggle:hover {
       background: #edf2f7;
-    }
-
-    html[data-theme="light"] .language-switch {
-      background: rgba(255, 255, 255, .88);
-    }
-
-    html[data-theme="light"] .language-switch a {
-      color: #536178;
-    }
-
-    html[data-theme="light"] .language-switch a.active {
-      color: #07111a;
     }
 
     html[data-theme="light"] .back {
@@ -1110,7 +1135,7 @@
     }
 
     html[data-theme="light"] .open {
-      color: #137654;
+      color: #8a5900;
     }
 
     @media (max-width: 980px) {
@@ -1169,42 +1194,8 @@
     }
 
     @media (max-width: 620px) {
-      .topbar {
-        gap: 10px;
-        padding: 0 12px;
-        width: 100vw;
-        max-width: 100vw;
-        box-sizing: border-box;
-      }
-
       .back {
         display: none;
-      }
-
-      .top-actions {
-        gap: 8px;
-        position: fixed;
-        top: 17px;
-        right: 12px;
-        z-index: 30;
-      }
-
-      .top-actions .theme-toggle {
-        display: none;
-      }
-
-      .language-switch a {
-        min-height: 28px;
-        padding: 0 10px;
-        font-size: 12px;
-      }
-
-      .language-switch a .wide-label {
-        display: none;
-      }
-
-      .language-switch a span[aria-hidden="true"] {
-        display: inline;
       }
 
       .shell {
@@ -1276,28 +1267,22 @@
       <div class="mark">R</div>
       <a class="back" href="https://zhennanzhang.com/run50/index.html">Back to Run50</a>
     </div>
-    <div class="top-actions">
-      <nav class="language-switch" aria-label="Language switch">
-        <a class="active" href="https://zhennanzhang.com/run50/wechat-en/?v=20260707-running-blog" aria-current="page">EN</a>
-        <a href="/CN/"><span class="wide-label">中文</span><span aria-hidden="true">中</span></a>
-      </nav>
-      <button class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" title="Toggle theme">
-        <span aria-hidden="true">☀</span>
-      </button>
-    </div>
+    <button class="theme-toggle" type="button" aria-label="切换到亮色模式" aria-pressed="false" title="切换明暗主题">
+      <span aria-hidden="true">☀</span>
+    </button>
   </header>
 
   <div class="shell">
     <aside class="rail" aria-label="Run50 series">
-      <a class="active" href="#run50-series"><span class="rail-icon">🏁</span><span class="rail-copy"><b>Run50</b><small>U.S. States</small></span></a>
-      <a href="#runcn-series"><span class="rail-icon">CN</span><span class="rail-copy"><b>RunCN</b><small>China Marathons</small></span></a>
-      <a href="#runworld-series"><span class="rail-icon">🌍</span><span class="rail-copy"><b>RunWorld</b><small>Global Routes</small></span></a>
-      <a href="#stats"><span class="rail-icon">▤</span><span class="rail-copy"><b>Stats</b><small>Stories & Progress</small></span></a>
+      <a class="active" href="#run50-series"><span class="rail-icon">🏁</span><span class="rail-copy"><b>Run50</b><small>美国50州</small></span></a>
+      <a href="#runcn-series"><span class="rail-icon">CN</span><span class="rail-copy"><b>RunCN</b><small>中国马拉松</small></span></a>
+      <a href="#runworld-series"><span class="rail-icon">🌍</span><span class="rail-copy"><b>RunWorld</b><small>世界跑旅</small></span></a>
+      <a href="#stats"><span class="rail-icon">▤</span><span class="rail-copy"><b>Stats</b><small>文章与进度</small></span></a>
     </aside>
 
     <main class="main">
       <nav class="league-row" aria-label="Run50 channels">
-        <a class="pill" href="https://zhennanzhang.com/run50/stories/chinese/">Chinese Stories</a>
+        <a class="pill active" href="https://zhennanzhang.com/CN/"><span class="dot"></span>Chinese Stories</a>
         <a class="pill" href="https://zhennanzhang.com/run50/stories/english/">English Stories</a>
         <a class="pill" href="https://zhennanzhang.com/run50/facebook/">Facebook</a>
       </nav>
@@ -1305,526 +1290,504 @@
       <section class="hero hero-board" id="score">
         <div class="scorecard intro-card">
           <div class="eyebrow">Run50 Coverage</div>
-          <h1>Running Blog</h1>
-          <p class="lead">A bilingual running story hub for American friends and Chinese readers: English marathon stories here, with a direct switch to the Chinese story index using the same Run50 / RunCN / RunWorld structure.</p>
+          <h1>Chinese Stories</h1>
+          <p class="lead">Run50, RunCN, and RunWorld stories in one Chinese story hub: race cards, maps, covers, captions, and mobile-ready article links.</p>
           <div class="series-strip" aria-label="Run50 story families">
             <div class="series-chip">
               <strong>Run50</strong>
-              <span>U.S. state-by-state marathon stories, organized by race and place.</span>
+              <span>美国50州马拉松时间线，按州和比赛故事进入。</span>
             </div>
             <div class="series-chip">
               <strong>RunCN</strong>
-              <span>China marathon travel stories, connected through region maps and city dots.</span>
+              <span>中国马拉松跑旅，适合用中国地图做入口。</span>
             </div>
             <div class="series-chip">
               <strong>RunWorld</strong>
-              <span>Global marathon routes outside the U.S. and mainland China.</span>
+              <span>美国和中国之外的世界路线，后续可扩成世界地图。</span>
             </div>
           </div>
         </div>
 
         <div class="map-board" aria-label="Run50 and RunCN maps">
-          <a class="run-map-card" href="#run50-series">
+          <a class="run-map-card" id="run50-us-card" href="https://zhennanzhang.com/run50/running-map.html#run50-story-maps">
             <div>
               <div class="eyebrow">Interactive Map</div>
-              <h2>Run50 · U.S. 50 States Map</h2>
-              <p>The same U.S. story map from the Chinese edition, with completed states, city dots, and English story links in one place.</p>
+              <h2>Run50 · 美国50州地图</h2>
+              <p>沿用 Chinese Stories 里的美国交互地图，把跑过的州、城市红点和长文入口放在同一张地图里。</p>
             </div>
-            <div class="map-window" id="run50-us-map-mini" aria-label="Run50 U.S. map"></div>
-            <div class="map-foot"><span id="us-map-mini-status">Click a state or city dot to choose a story</span><b>35 States</b></div>
+            <div class="map-window" id="run50-us-map-mini" aria-label="Run50 美国地图"></div>
+            <div class="map-foot"><span id="us-map-mini-status">点击打开完整互动地图</span><b>35 States</b></div>
           </a>
 
-          <a class="run-map-card" id="runcn-map" href="#runcn-series">
+          <a class="run-map-card" id="runcn-map" href="https://zhennanzhang.com/run50/running-map.html#run50-story-maps">
             <div>
               <div class="eyebrow">Interactive Map</div>
-              <h2>RunCN · China Marathon Map</h2>
-              <p>China marathon stories collected on one map, with highlighted provinces, regions, and city markers.</p>
+              <h2>RunCN · 中国马拉松地图</h2>
+              <p>把中国跑马故事集中到一张地图里，用城市红点和省份高亮进入每一段路书。</p>
             </div>
-            <div class="map-window" id="runcn-china-map-mini" aria-label="RunCN China map" data-map-locale="en"></div>
-            <div class="map-foot"><span id="cn-map-mini-status">Click a region or city dot to choose a story</span><b>18 Regions</b></div>
+            <div class="map-window" id="runcn-china-map-mini" aria-label="RunCN 中国地图"></div>
+            <div class="map-foot"><span id="cn-map-mini-status">点击打开完整互动地图</span><b>18 Regions</b></div>
           </a>
         </div>
       </section>
 
       <section class="ticker" id="featured" aria-label="Featured Run50 stories">
-        <a class="ticker-item" href="https://zhennanzhang.com/run50/wechat-en/louisville-marathon-modern-rail.html?v=20260706-wechat-en"><small>Run50 · 1</small><b>Kentucky gave me my first marathon in North America</b></a><a class="ticker-item" href="https://zhennanzhang.com/run50/wechat-en/miami-marathon-modern-rail.html?v=20260706-wechat-en"><small>Run50 · 02</small><b>Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi&#x27;s backyard</b></a><a class="ticker-item" href="https://zhennanzhang.com/run50/wechat-en/north-carolina-oak-island-marathon-modern-rail.html?v=20260706-wechat-en"><small>Run50 · 16</small><b>Oak Island sent Run50 toward the Atlantic with a medal bigger than my face</b></a><a class="ticker-item" href="https://zhennanzhang.com/run50/wechat-en/green-bay-marathon-modern-rail.html?v=20260706-wechat-en"><small>Run50 · 04</small><b>The Green Bay Marathon ended inside football&#x27;s small-town cathedral</b></a>
+        <a class="ticker-item" href="https://zhennanzhang.com/run50/wechat/kentucky-derby-marathon-modern-rail.html?v=20260706-us-current-outline">
+          <small>第1州 · 2024.04.27</small>
+          <b>肯塔基赛马节马拉松</b>
+        </a>
+        <a class="ticker-item" href="https://zhennanzhang.com/run50/wechat/pittsburgh-marathon-modern-rail.html?v=20260706-us-current-outline">
+          <small>第19州 · 2024.05.05</small>
+          <b>匹兹堡马拉松</b>
+        </a>
+        <a class="ticker-item" href="https://zhennanzhang.com/run50/wechat/green-bay-marathon-modern-rail.html?v=20260706-us-current-outline">
+          <small>第20州 · 2024.05.20</small>
+          <b>绿湾马拉松</b>
+        </a>
+        <a class="ticker-item" href="https://zhennanzhang.com/run50/wechat/fargo-marathon-modern-rail.html?v=20260706-us-current-outline">
+          <small>第25州 · 2025.05.31</small>
+          <b>法戈马拉松</b>
+        </a>
       </section>
 
       <section class="story-section run-50-zone" id="run50-series">
         <div class="section-head">
           <div>
-            <div class="eyebrow">Run50 · U.S. States</div>
-            <h2>U.S. Marathon Stories</h2>
+            <div class="eyebrow">Run50 · 美国50州</div>
+            <h2>美国50州马拉松故事</h2>
           </div>
-          <p>37 stories · ordered by race timeline</p>
+          <p>37 篇 · 按比赛时间线排列</p>
         </div>
 
-        <div class="stories" aria-label="Run50 U.S. marathon Running Blog stories">
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/louisville-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-louisville.png?v=20260702-en-index-v1" alt="Louisville Marathon English medal cover">
+        <div class="stories" aria-label="Run50 美国50州微信公众号故事">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/louisville-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-louisville-cn-flat.jpg?v=20260704-ky20-cyber-cn" alt="Run50 #第1州｜肯塔基：路易斯维尔马拉松｜北美的第一个全马封面">
             <div class="story-body">
-              <span class="story-number">Run50 · 1</span>
+              <span class="story-number">Run50 · 01</span>
               <div class="eyebrow">RUN50 DISPATCH · KENTUCKY</div>
-              <h3>Kentucky gave me my first marathon in North America</h3>
-              <div class="meta">Louisville, KY · Run50 #1</div>
-              <p class="desc">Race date: November 8, 2020. A socially distanced Louisville Marathon moved into Beckley Creek Park, with staggered starts, a quiet forest course, and a hard final 12 kilometers.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第1州｜肯塔基：路易斯维尔马拉松｜北美的第一个全马</h3>
+              <div class="meta">Run50 · 50州跑马故事</div>
+              <p class="desc">2020年11月8日，疫情中的路易斯维尔马拉松搬到Beckley Creek Park。间隔起跑、六英尺社交距离、正午高温，以及我在北美完成的第一个全马。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
 
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/kentucky-derby-marathon-2021-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-kentucky-derby-2021-v2.png?v=20260706-wechat-en" alt="Kentucky Derby Marathon 2021 Facebook cover">
+<a class="story-card" href="https://zhennanzhang.com/run50/wechat/kentucky-derby-marathon-2021-modern-rail.html?v=20260706-us-current-outline">
+  <img src="/assets/cover-medal-zh-index-kentucky-derby-2021-cn-flat.jpg?v=20260704-ky21-louisville" alt="Run50 #第1州｜肯塔基第二篇：Derby 全马｜“传奇跑者”的半年流水账封面">
+  <div class="story-body">
+    <span class="story-number">Run50 · 01+</span>
+    <div class="eyebrow">RUN50 DISPATCH · KENTUCKY</div>
+    <h3>Run50 #第1州｜肯塔基第二篇：Derby 全马｜“传奇跑者”的半年流水账</h3>
+    <div class="meta">肯塔基路易斯维尔 · 2021.04.24</div>
+    <p class="desc">Derby 是这篇半年流水账里最硬的一段：疫情分散起跑、阴雨大风、冷清补给，以及重新找回跑步状态的开头。</p>
+    <span class="story-cta">Open Chinese Story</span>
+  </div>
+</a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/cleveland-marathon-modern-rail.html?v=20260706-cleveland-zh-complete">
+            <img src="/assets/cover-medal-zh-index-cleveland-cn-flat.jpg?v=20260629-cn-flat-v4" alt="Run50 #第2州｜俄亥俄：克利夫兰马拉松｜从黑夜跑到白昼封面">
             <div class="story-body">
               <span class="story-number">Run50 · 02</span>
-              <div class="eyebrow">RUN50 DISPATCH · KENTUCKY</div>
-              <h3>A rainy Derby Marathon, then a city opening back up</h3>
-              <div class="meta">Louisville · Kentucky · Facebook</div>
-              <p class="desc">Race day comes first, then the half-year journal: moving, Waverly, vaccines, local runs, and a less locked-down America.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/cleveland-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-cleveland.png?v=20260702-en-index-v1" alt="Cleveland Marathon English medal cover">
-            <div class="story-body">
-              <span class="story-number">Run50 · 2</span>
               <div class="eyebrow">RUN50 DISPATCH · OHIO</div>
-              <h3>Cleveland gave me a cold 26.2-mile run from night into daylight</h3>
-              <div class="meta">Cleveland, OH · Run50 #2</div>
-              <p class="desc">Race date: October 24, 2021. State 2 of Run50 started in the dark near Tower City, crossed Lake Erie light and industrial bridges, and ended with a medal that looked exactly like Cleveland felt.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第2州｜俄亥俄：克利夫兰马拉松｜从黑夜跑到白昼</h3>
+              <div class="meta">克利夫兰 · 俄亥俄 · 2021.10.24</div>
+              <p class="desc">城市篇与比赛篇合并：摇滚名人堂、骑士主场、伊利湖和清晨冷风中的克利夫兰马拉松。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/new-york-city-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-new-york.png?v=20260702-en-index-v1" alt="New York City Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/new-york-city-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-new-york-cn-flat.jpg?v=20260629-cn-flat-v3" alt="Run50 #第3州｜纽约：纽约马拉松｜50周年打卡封面">
             <div class="story-body">
-              <span class="story-number">Run50 · 3</span>
+              <span class="story-number">Run50 · 03</span>
               <div class="eyebrow">RUN50 DISPATCH · NEW YORK</div>
-              <h3>New York turned 26.2 miles into one enormous five-borough street party</h3>
-              <div class="meta">New York City, NY · Run50 #3</div>
-              <p class="desc">Race date: November 7, 2021. State 3 of Run50 and my first World Marathon Major: Staten Island, the Verrazzano Bridge, Brooklyn, Queens, Manhattan, and Central Park.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第3州｜纽约：纽约马拉松｜50周年打卡</h3>
+              <div class="meta">纽约 · 纽约州 · 2021.11.07</div>
+              <p class="desc">城市篇与比赛篇合并：赛博朋克纽约、法拉盛、时代广场、哈德逊河游船，以及50周年纽约马拉松的五区奔跑。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/san-francisco-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-san-francisco.png?v=20260702-en-index-v1" alt="San Francisco Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/san-francisco-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-san-francisco-cn-flat.jpg?v=20260629-cn-flat-v2" alt="Run50 #第4州｜加州：旧金山马拉松｜流雾之下的金门大桥封面">
             <div class="story-body">
-              <span class="story-number">Run50 · 4</span>
+              <span class="story-number">Run50 · 04</span>
               <div class="eyebrow">RUN50 DISPATCH · CALIFORNIA</div>
-              <h3>San Francisco turned 26.2 miles into fog, bridge wind, hills and bay light</h3>
-              <div class="meta">San Francisco, CA · Run50 #4</div>
-              <p class="desc">Race date: July 24, 2022. State 4 of Run50 crossed the Golden Gate Bridge, ran through fog and sudden sun, and ended with a medal beside the bay.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第4州｜加州：旧金山马拉松｜流雾之下的金门大桥</h3>
+              <div class="meta">旧金山，加州 · 2022.07.24</div>
+              <p class="desc">Run50第4州加州旧金山：流雾、联合广场、金门大桥、唐人街、单车游城，以及2022年7月24日第45届旧金山马拉松。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/indianapolis-monumental-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-indianapolis.png?v=20260702-en-index-v1" alt="Indianapolis Monumental Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/indianapolis-monumental-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-indianapolis-cn-flat.jpg?v=20260630-round5-v1" alt="Run50 #第5州｜印第安纳：印第安纳波利斯纪念碑马拉松｜一日狂飙封面">
             <div class="story-body">
-              <span class="story-number">Run50 · 5</span>
+              <span class="story-number">Run50 · 05</span>
               <div class="eyebrow">RUN50 DISPATCH · INDIANA</div>
-              <h3>Indianapolis turned a rainy one-day marathon into a way back to running</h3>
-              <div class="meta">Indianapolis, IN · Run50 #5</div>
-              <p class="desc">Race date: November 5, 2022. Run50 State 5 at the 15th Indianapolis Monumental Marathon: autumn rain, Monument Circle, run-walk intervals, and a 4:55:12 finish.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第5州｜印第安纳：印第安纳波利斯纪念碑马拉松｜一日狂飙</h3>
+              <div class="meta">印第安纳波利斯，印第安纳 · 2022.11.05</div>
+              <p class="desc">Run50第5州印第安纳：2022年11月5日印第安纳波利斯纪念碑马拉松，一场清晨出发、秋雨开跑、最终4小时55分12秒完赛的单日跑马旅程。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/honolulu-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-honolulu.png?v=20260702-en-index-v1" alt="Honolulu Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/honolulu-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-honolulu-cn-flat.jpg?v=20260629-cn-flat-v3" alt="Run50 #第6州｜夏威夷：火奴鲁鲁马拉松｜50周年海岛白日梦封面">
             <div class="story-body">
-              <span class="story-number">Run50 · 6</span>
+              <span class="story-number">Run50 · 06</span>
               <div class="eyebrow">RUN50 DISPATCH · HAWAII</div>
-              <h3>Honolulu made a first marathon feel like an all-day island celebration</h3>
-              <div class="meta">Honolulu, HI · Run50 #6</div>
-              <p class="desc">Race date: December 11, 2022. State 6 of Run50 at the 50th Honolulu Marathon: fireworks, Waikiki, Diamond Head, no cutoff, and 47&#x27;s first marathon finish.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第6州｜夏威夷：火奴鲁鲁马拉松｜50周年海岛白日梦</h3>
+              <div class="meta">Honolulu, Hawaii · Dec 11, 2022</div>
+              <p class="desc">Run50第6州夏威夷：火奴鲁鲁白日梦、威基基、钻石头山、彩虹船、自驾西海岸，以及2022年12月11日第50届火奴鲁鲁马拉松，47的第一个全马。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/atlanta-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-atlanta.png?v=20260702-en-index-v1" alt="Publix Atlanta Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/atlanta-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-atlanta-cn-flat.jpg?v=20260630-round4-v1" alt="Run50 #第7州｜佐治亚：亚特兰大马拉松｜跑过奥运五环封面">
             <div class="story-body">
               <span class="story-number">Run50 · 07</span>
               <div class="eyebrow">RUN50 DISPATCH · GEORGIA</div>
-              <h3>Atlanta made 26.2 miles feel like an Olympic city walk</h3>
-              <div class="meta">Atlanta, GA · Run50 #07</div>
-              <p class="desc">Race date: February 26, 2023. State 7 of Run50 in Atlanta: Olympic rings, Coca-Cola, CNN, hills, and a long road-trip weekend.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第7州｜佐治亚：亚特兰大马拉松｜跑过奥运五环</h3>
+              <div class="meta">Atlanta, Georgia · Feb 26, 2023</div>
+              <p class="desc">Run50 第7州来到亚特兰大：96奥运、可口可乐、CNN、城市坡道，以及我和47各自的26.2与13.1。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/kentucky-derby-marathon-2023-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-fb-kentucky-derby-marathon-2023.jpg?v=20260703-ky23" alt="Kentucky Derby Marathon medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-new/kentucky-derby-marathon-2023-modern-rail.html?v=20260704-ky23-user-pick">
+            <img src="/assets/cover-medal-zh-kentucky-derby-marathon-2023.jpg?v=20260704-ky23-user-pick" alt="Run50 #第1州番外｜肯塔基：德比马拉松｜赛马城最大的跑步 Party 封面">
             <div class="story-body">
-              <span class="story-number">Run50 · 09</span>
+              <span class="story-number">Run50 · 01++</span>
               <div class="eyebrow">RUN50 DISPATCH · KENTUCKY</div>
-              <h3>Louisville turned Derby season into the city&#x27;s biggest running party</h3>
-              <div class="meta">Louisville, KY · Run50</div>
-              <p class="desc">Race date: April 29, 2023. A hometown Derby-season marathon with Churchill Downs energy, city streets, and running friends.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第1州番外｜肯塔基：德比马拉松｜赛马城最大的跑步 Party</h3>
+              <div class="meta">路易斯维尔，肯塔基 · 2023.04.29</div>
+              <p class="desc">回到自己的城市，把肯塔基德比马拉松补成一篇：赛马季、Twin Spires、市中心、朋友们，还有路城最大的跑步 Party。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/cincinnati-flying-pig-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-cincinnati.png?v=20260702-en-index-v1" alt="Flying Pig Marathon English medal cover">
-            <div class="story-body">
-              <span class="story-number">Run50 · 02+</span>
-              <div class="eyebrow">RUN50 DISPATCH · OHIO</div>
-              <h3>Cincinnati&#x27;s Flying Pig turned into a Flying Fish in the rain</h3>
-              <div class="meta">Cincinnati, OH · Run50 #02+</div>
-              <p class="desc">Race date: May 7, 2023. Cincinnati&#x27;s Flying Pig Marathon brought bridges, hills, rain and a full Queen City tour.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/denver-colfax-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-denver.png?v=20260702-en-index-v1" alt="Denver Colfax Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/cincinnati-flying-pig-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-cincinnati-cn-flat.jpg?v=20260701-stylemix-v1" alt="Run50 #第2州番外｜俄亥俄：辛辛那提飞猪马拉松｜飞猪变飞鱼封面">
             <div class="story-body">
               <span class="story-number">Run50 · 08</span>
-              <div class="eyebrow">RUN50 DISPATCH · COLORADO</div>
-              <h3>Denver gave me 26.2 Mile High miles, stadium grass and mountain light</h3>
-              <div class="meta">Denver, CO · Run50 #08</div>
-              <p class="desc">Race date: May 21, 2023. State 8 of Run50 in Denver: Colfax, stadium grass, mountain light and Mile High air.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · OHIO</div>
+              <h3>Run50 #第2州番外｜俄亥俄：辛辛那提飞猪马拉松｜飞猪变飞鱼</h3>
+              <div class="meta">Cincinnati, Ohio · May 7, 2023</div>
+              <p class="desc">第二次在俄亥俄跑全马，这次来到皇后城辛辛那提：桥、河、坡、雨水，以及从 Flying Pig 变成 Flying Fish 的一天。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/anchorage-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-anchorage.png?v=20260702-en-index-v1" alt="Anchorage Mayor&#x27;s Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/denver-colfax-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-denver-cn-flat.jpg?v=20260630-round4-v1" alt="Run50 #第8州｜科罗拉多：丹佛 Colfax 马拉松｜里高城的26.2英里封面">
             <div class="story-body">
               <span class="story-number">Run50 · 09</span>
-              <div class="eyebrow">RUN50 DISPATCH · ALASKA</div>
-              <h3>Alaska had no aurora, but Anchorage still gave me a wild 26.2 miles</h3>
-              <div class="meta">Anchorage, AK · Run50 #09</div>
-              <p class="desc">Race date: June 17, 2023. State 9 of Run50 in Anchorage: no aurora, but Alaska mountains, coastal trails and summer-solstice light.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · COLORADO</div>
+              <h3>Run50 #第8州｜科罗拉多：丹佛 Colfax 马拉松｜里高城的26.2英里</h3>
+              <div class="meta">Denver, Colorado · May 21, 2023</div>
+              <p class="desc">生日后的第一个周末，去丹佛点亮科罗拉多：老同学、阳光、雪山、球场，以及里高城的26.2英里。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/st-joseph-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-st-joseph.png?v=20260702-en-index-v1" alt="St. Joseph Missouri Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/anchorage-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-anchorage-cn-flat.jpg?v=20260630-rebalance-v1" alt="Run50 #第9州｜阿拉斯加：安克雷奇马拉松｜去没有极光的阿拉斯加封面">
             <div class="story-body">
               <span class="story-number">Run50 · 10</span>
-              <div class="eyebrow">RUN50 DISPATCH · MISSOURI</div>
-              <h3>St. Joseph made Missouri feel like a first-edition marathon road trip</h3>
-              <div class="meta">St. Joseph, MO · Run50 #10</div>
-              <p class="desc">Race date: September 23, 2023. State 10 of Run50 at the inaugural St. Joseph Missouri Marathon: parkways, heat, hills and a wedding weekend.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · ALASKA</div>
+              <h3>Run50 #第9州｜阿拉斯加：安克雷奇马拉松｜去没有极光的阿拉斯加</h3>
+              <div class="meta">Anchorage, Alaska · Jun 17, 2023</div>
+              <p class="desc">Run50 第9州飞到阿拉斯加：没有极光，却有雪山、海湾、野性、夏至前后的长日照和安克雷奇的26.2英里。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/chicago-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-chicago.png?v=20260702-en-index-v1" alt="Chicago Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/st-joseph-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-st-joseph-cn-flat.jpg?v=20260701-ky-mo-v1" alt="Run50 #第10州｜密苏里：圣约瑟夫马拉松｜第一届，不一般封面">
             <div class="story-body">
               <span class="story-number">Run50 · 11</span>
-              <div class="eyebrow">RUN50 DISPATCH · ILLINOIS</div>
-              <h3>Chicago gave me my second World Marathon Major and State 11 of Run50</h3>
-              <div class="meta">Chicago, IL · Run50 #11</div>
-              <p class="desc">Race date: October 8, 2023. The 45th Chicago Marathon: Grant Park, the L, Chinatown, roaring crowds, Kelvin Kiptum&#x27;s world record day, and a second finish beside Siqi.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · MISSOURI</div>
+              <h3>Run50 #第10州｜密苏里：圣约瑟夫马拉松｜第一届，不一般</h3>
+              <div class="meta">St. Joseph, Missouri · Sep 23, 2023</div>
+              <p class="desc">穿越密苏里，来到西北角的圣约瑟夫：第一届赛事、公园道路、坡、热浪、婚礼，以及芝加哥前的一次长距离训练。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/nashville-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-nashville.png?v=20260702-en-index-v1" alt="Nashville Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/chicago-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-chicago-cn-flat.jpg?v=20260630-round3-v1" alt="Run50 #第11州｜伊利诺伊：芝加哥马拉松｜45周年打卡，我们的第二个大满贯封面">
+            <div class="story-body">
+              <span class="story-number">Run50 · 12</span>
+              <div class="eyebrow">RUN50 DISPATCH · ILLINOIS</div>
+              <h3>Run50 #第11州｜伊利诺伊：芝加哥马拉松｜45周年打卡，我们的第二个大满贯</h3>
+              <div class="meta">Run50 · 50州跑马故事</div>
+              <p class="desc">2023年10月8日的第45届芝加哥马拉松：第二个世界大满贯、Run50第11州、基普图姆世界纪录诞生的一天，以及Siqi的第一个大满贯完赛。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/nashville-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-nashville-cn-flat.jpg?v=20260629-badgefix-v1" alt="Run50 #第12州｜田纳西：纳什维尔马拉松｜音乐之城的慢悠跑者，十月艳阳下的最慢跑封面">
+            <div class="story-body">
+              <span class="story-number">Run50 · 13</span>
+              <div class="eyebrow">RUN50 DISPATCH · TENNESSEE</div>
+              <h3>Run50 #第12州｜田纳西：纳什维尔马拉松｜音乐之城的慢悠跑者，十月艳阳下的最慢跑</h3>
+              <div class="meta">Run50 · 50州跑马故事</div>
+              <p class="desc">十月底的音乐之都纳什维尔，在万圣节前夕跑过坎伯兰河与行人天桥，在极其炎热与暴晒的艳阳下，跑出了本年最慢的PW成绩，并在纳什维尔之音棒球场冲线！</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/west-virginia-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-west-virginia-cn-flat.jpg?v=20260630-round4-v1" alt="Run50 #第13州｜西弗吉尼亚：马歇尔大学马拉松｜抱着橄榄球达阵，在乡村路跑进四小时！封面">
+            <div class="story-body">
+              <span class="story-number">Run50 · 14</span>
+              <div class="eyebrow">RUN50 DISPATCH · WEST VIRGINIA</div>
+              <h3>Run50 #第13州｜西弗吉尼亚：马歇尔大学马拉松｜抱着橄榄球达阵，在乡村路跑进四小时！</h3>
+              <div class="meta">Run50 · 50州跑马故事</div>
+              <p class="desc">十一月初的西弗吉尼亚亨廷顿，在秋高气爽的马歇尔大学校园，将一朵花送给1970年空难的离世队员们；在终点抱着橄榄球“达阵”冲线，成功破4！</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/san-antonio-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-san-antonio-cn-flat.jpg?v=20260701-artfix-v1" alt="Run50 #第14州｜德克萨斯：圣安东尼奥摇滚马拉松｜没有马刺，也没有文班亚马封面">
             <div class="story-body">
               <span class="story-number">Run50 · 15</span>
-              <div class="eyebrow">RUN50 DISPATCH · TENNESSEE</div>
-              <h3>Scorching October sun gave me my slowest marathon of the year in Music City</h3>
-              <div class="meta">Nashville, TN · slowest run survived</div>
-              <p class="desc">Race date: October 28, 2023. Running U.S. State 12 at Nashville, TN. A hot city greenway run with a minor league baseball stadium finish, crossing the Cumberland River, and surviving a PW.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · TEXAS</div>
+              <h3>Run50 #第14州｜德克萨斯：圣安东尼奥摇滚马拉松｜没有马刺，也没有文班亚马</h3>
+              <div class="meta">Run50 · 50州跑马故事</div>
+              <p class="desc">这是 Run50 的第14州，也是2023年的收官马拉松：从马刺和文班亚马的念头出发，最后在圣安东尼奥跑过阿拉莫、河畔步道、Fort Sam Houston、绿道和一段德州。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/west-virginia-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-west-virginia.png?v=20260702-en-index-v1" alt="West Virginia Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/disney-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-disney-cn-flat.jpg?v=20260701-artfix-v1" alt="Run50 #第15州｜佛罗里达：基韦斯特、奥兰多与迪士尼马拉松封面">
             <div class="story-body">
               <span class="story-number">Run50 · 16</span>
-              <div class="eyebrow">RUN50 DISPATCH · WEST VIRGINIA</div>
-              <h3>West Virginia gave me a touchdown stadium finish to break 4 hours</h3>
-              <div class="meta">Huntington, WV · touchdown secured</div>
-              <p class="desc">Race date: November 5, 2023. Running U.S. State 13 at Marshall University in Huntington, WV. A beautiful autumn loop race with a football stadium finish, placing a flower on the 1970 team plane crash memorial, and a PR.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · FLORIDA</div>
+              <h3>Run50 #第15州｜佛罗里达：基韦斯特、奥兰多与迪士尼马拉松</h3>
+              <div class="meta">Run50 · 50州跑马故事</div>
+              <p class="desc">把基韦斯特跨年、奥兰多乐园速通和迪士尼马拉松合成一篇完整的佛州第15州故事。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/san-antonio-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-san-antonio.png?v=20260702-en-index-v1" alt="San Antonio Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/miami-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-miami-cn-flat.jpg?v=20260629-badgefix-v1" alt="Run50 #第15州｜佛罗里达#2：迈阿密马拉松｜穿C罗战袍，跑在梅西的主场！封面">
             <div class="story-body">
               <span class="story-number">Run50 · 17</span>
-              <div class="eyebrow">RUN50 DISPATCH · TEXAS</div>
-              <h3>San Antonio turned a Spurs trip into my Texas marathon story</h3>
-              <div class="meta">San Antonio, Texas · 4:12 finish</div>
-              <p class="desc">Race date: December 3, 2023. State 14 of Run50, from the Alamo and River Walk to Fort Sam Houston, greenway miles, one late Texas hill and a 4:12 finish.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/disney-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-disney.png?v=20260702-en-index-v1" alt="Disney Marathon English medal cover">
-            <div class="story-body">
-              <span class="story-number">Run50 · 15</span>
               <div class="eyebrow">RUN50 DISPATCH · FLORIDA</div>
-              <h3>A Florida week from Key West beaches to Disney Marathon</h3>
-              <div class="meta">Key West / Orlando, Florida · Run50 #15</div>
-              <p class="desc">Run50 State 15 as one Florida arc: Key West New Year, Orlando speedrun, Universal, and Disney Marathon.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第15州｜佛罗里达#2：迈阿密马拉松｜穿C罗战袍，跑在梅西的主场！</h3>
+              <div class="meta">Run50 · 50州跑马故事</div>
+              <p class="desc">一张买错日期的机票，让我们意外重返迈阿密。身披C罗战袍，在梅西的主场迎着热浪跑完26.2英里。佛罗里达，第15州全马二刷，50州征程继续推进。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/miami-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-miami.png?v=20260702-en-index-v1" alt="Miami Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/north-carolina-oak-island-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-oak-island-cn-flat.jpg?v=20260630-round4-v1" alt="Run50 #第16州｜北卡罗莱纳：橡树岛马拉松封面">
+            <div class="story-body">
+              <span class="story-number">Run50 · 18</span>
+              <div class="eyebrow">RUN50 DISPATCH · NORTH CAROLINA</div>
+              <h3>Run50 #第16州｜北卡罗莱纳：橡树岛马拉松</h3>
+              <div class="meta">Run50 · 50州跑马故事</div>
+              <p class="desc">从深冬训练出发，奔向北卡海岸线和大西洋，把第16州签收在一块大得离谱的奖牌里。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/little-rock-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-little-rock-cn-flat.jpg?v=20260629-cn-flat-v4" alt="Run50 #第17州｜阿肯色：小石城马拉松｜奖牌第一大，克林顿老家也没那么荒！封面">
             <div class="story-body">
               <span class="story-number">Run50 · 19</span>
-              <div class="eyebrow">RUN50 DISPATCH · FLORIDA</div>
-              <h3>Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi&#x27;s backyard</h3>
-              <div class="meta">Miami, Florida · 4:23 finish</div>
-              <p class="desc">Race date: January 28, 2024. A wrong-date plane ticket turned a finished state into an accidental double-run, complete with construction zones, heat-stroke miles, and a Portuguese connection.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/north-carolina-oak-island-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-oak-island.png?v=20260702-en-index-v1" alt="Oak Island Marathon English medal cover">
-            <div class="story-body">
-              <span class="story-number">Run50 · 16</span>
-              <div class="eyebrow">RUN50 DISPATCH · NORTH CAROLINA</div>
-              <h3>Oak Island sent Run50 toward the Atlantic with a medal bigger than my face</h3>
-              <div class="meta">Oak Island, North Carolina · Run50 #16</div>
-              <p class="desc">A North Carolina coast marathon with winter legs, ocean wind, Atlantic light, and a medal that refused to be subtle.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/little-rock-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-little-rock.png?v=20260702-en-index-v1" alt="Little Rock Marathon English medal cover">
-            <div class="story-body">
-              <span class="story-number">Run50 · 21</span>
               <div class="eyebrow">RUN50 DISPATCH · ARKANSAS</div>
-              <h3>Little Rock gave me a 26.2-mile run with the massive dinosaur medal</h3>
-              <div class="meta">Little Rock, AR · Dinosaur Medal secured</div>
-              <p class="desc">Race date: March 3, 2024. A Southern weekend road trip down to Arkansas for the legendary dinosaur medal, looping the aviation giants and wooded forest parks.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第17州｜阿肯色：小石城马拉松｜奖牌第一大，克林顿老家也没那么荒！</h3>
+              <div class="meta">Run50 · 50州跑马故事</div>
+              <p class="desc">三月初的小石城马拉松，为了那块巨大的绿色暴龙奖牌驱车向南。跑过市中心、达索公司和奥索普森林公园，冲线克林顿总统的故乡。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/south-carolina-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-south-carolina.png?v=20260702-en-index-v1" alt="South Carolina Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/south-carolina-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-south-carolina-cn-flat.jpg?v=20260701-stylemix-v1" alt="Run50 #第18州｜南卡罗莱纳：反“波士顿”马拉松｜小区绕圈20，世界上最无聊42公里？封面">
+            <div class="story-body">
+              <span class="story-number">Run50 · 20</span>
+              <div class="eyebrow">RUN50 DISPATCH · SOUTH CAROLINA</div>
+              <h3>Run50 #第18州｜南卡罗莱纳：反“波士顿”马拉松｜小区绕圈20，世界上最无聊42公里？</h3>
+              <div class="meta">Run50 · 50州跑马故事</div>
+              <p class="desc">南卡罗莱纳小镇Greer的2Slow4Boston马拉松，一个专为跑不进波马的人准备的反向比赛。在宁静的小区里绕圈20次，收获一块骡子拉大叔的奇特奖牌。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/kentucky-derby-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-kentucky-derby-cn-flat.jpg?v=20260704-ky24-01ppp-imagegen" alt="Run50 #第1州｜肯塔基：赛马节马拉松｜四刷主场，蓝草州终破4！封面">
+            <div class="story-body">
+              <span class="story-number">Run50 · 01+++</span>
+              <div class="eyebrow">RUN50 DISPATCH · KENTUCKY</div>
+              <h3>Run50 #第1州｜肯塔基：赛马节马拉松｜四刷主场，蓝草州终破4！</h3>
+              <div class="meta">路易斯维尔，肯塔基 · 2024.04.27</div>
+              <p class="desc">第四次回到 Louisville Derby Marathon，从赛马节、热气球、Old Louisville、Churchill Downs 到 Iroquois Par。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/pittsburgh-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-pittsburgh-cn-flat.jpg?v=20260701-stylemix-v2" alt="匹兹堡马拉松封面">
             <div class="story-body">
               <span class="story-number">Run50 · 22</span>
-              <div class="eyebrow">RUN50 DISPATCH · SOUTH CAROLINA</div>
-              <h3>Too Slow for Boston gave me a 26.2-mile run with the stubborn mule medal</h3>
-              <div class="meta">Greer, SC · Stubborn Mule secured</div>
-              <p class="desc">Race date: April 14, 2024. A neighborhood loop road race designed for those who can&#x27;t qualify for Boston—featuring trailer RV camping, a clicker lap-counting system, and a trophy for the slowest.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/kentucky-derby-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-kentucky-derby.png?v=20260702-en-index-v1" alt="Kentucky Derby Marathon English medal cover">
-            <div class="story-body">
-              <span class="story-number">Run50 · 23</span>
-              <div class="eyebrow">RUN50 DISPATCH · KENTUCKY</div>
-              <h3>Louisville turned my fourth Derby Marathon into a hometown sub-four</h3>
-              <div class="meta">Louisville · Kentucky · Run50</div>
-              <p class="desc">Derby season, familiar streets, friends all over the course, and one fourth try that finally broke four hours at home.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/pittsburgh-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-pittsburgh.png?v=20260702-en-index-v2" alt="Pittsburgh Marathon">
-            <div class="story-body">
-              <span class="story-number">Run50 · DISPATCH</span>
               <div class="eyebrow">RUN50 DISPATCH · PENNSYLVANIA</div>
-              <h3>Pittsburgh Marathon</h3>
-              <div class="meta">RUN50 DISPATCH · Pennsylvania</div>
-              <p class="desc">A conversational English edition prepared from the Run50 read-along script.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第19州｜宾夕法尼亚：匹兹堡马拉松｜钢铁之心，拿下摇摆州！</h3>
+              <div class="meta">Run50 · WeChat Edition</div>
+              <p class="desc">Run50 #第19州｜宾夕法尼亚：匹兹堡马拉松｜钢铁之心，拿下摇摆州！</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/green-bay-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-green-bay-wechat.png?v=20260706-wechat-en" alt="Green Bay Marathon Facebook cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/green-bay-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-green-bay-marathon.jpg?v=20260703-wi-green-bay" alt="Run50 第20州威斯康辛绿湾马拉松赛博朋克封面">
+            <div class="story-body">
+              <span class="story-number">Run50 · WI</span>
+              <div class="eyebrow">RUN50 DISPATCH · WISCONSIN</div>
+              <h3>Run50 #第20州｜威斯康辛：绿湾马拉松｜跑进兰博球场的最后一届</h3>
+              <div class="meta">威斯康辛绿湾 · 2024.05.20</div>
+              <p class="desc">从风城和密歇根湖一路北上，在奶酪州的热浪里跑进 Green Bay Packers 的圣地兰博球场。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/hatfield-mccoy-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-williamson-cn-flat.jpg?v=20260704-williamson-bright-2x2pp" alt="Run50 #第1州｜肯塔基#2：哈特菲尔德–麦考伊马拉松｜阿巴拉契亚山谷的脚步声与枪声封面">
+            <div class="story-body">
+              <span class="story-number">Run50 · 01++++</span>
+              <div class="eyebrow">RUN50 DISPATCH · KENTUCKY</div>
+              <h3>Run50 #第1州｜肯塔基#2：哈特菲尔德–麦考伊马拉松｜阿巴拉契亚山谷的脚步声与枪声</h3>
+              <div class="meta">Run50 · WeChat Edition</div>
+              <p class="desc">Run50 #第1州｜肯塔基#2：哈特菲尔德–麦考伊马拉松｜阿巴拉契亚山谷的脚步声与枪声</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/michigan-meadows-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-michigan-meadows-cn-flat.jpg?v=20260630-round4-v1" alt="Run50 #第21州 密歇根 梅多马拉松 在大急流城数圈，6次穿越千禧公园！封面">
+            <div class="story-body">
+              <span class="story-number">Run50 · 24</span>
+              <div class="eyebrow">RUN50 DISPATCH · MICHIGAN</div>
+              <h3>Run50 #第21州 密歇根 梅多马拉松 在大急流城数圈，6次穿越千禧公园！</h3>
+              <div class="meta">密歇根大急流城 · 2024.08.25</div>
+              <p class="desc">在大急流城千禧公园跑六圈全马：Parkrun 开头、车祸小插曲、Grand River 日出、六道轮回和 4 小时 44 分的三味真火。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/new-hampshire-clarence-demar-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-new-hampshire-cn-flat.jpg?v=20260630-round5-v1" alt="Run50 #第22州｜新罕布什尔：克拉伦斯·德马尔马拉松｜跑进新英格兰小镇，穿越秋色森林与墓地！封面">
             <div class="story-body">
               <span class="story-number">Run50 · 25</span>
-              <div class="eyebrow">RUN50 DISPATCH · WISCONSIN</div>
-              <h3>The Green Bay Marathon ended inside football&#x27;s small-town cathedral</h3>
-              <div class="meta">Green Bay, WI · Lambeau finish</div>
-              <p class="desc">Run50 State 20: cheese-state pride, unexpected heat, and the final Cellcom Green Bay Marathon finishing through Lambeau Field.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · NEW HAMPSHIRE</div>
+              <h3>Run50 #第22州｜新罕布什尔：克拉伦斯·德马尔马拉松｜跑进新英格兰小镇，穿越秋色森林与墓地！</h3>
+              <div class="meta">新罕布什尔基恩 · 2024.09.28</div>
+              <p class="desc">从尼亚加拉瀑布一路开进新英格兰秋色，在基恩的小镇清晨、山林赛道和校园终点里完成第22州。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/hatfield-mccoy-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-williamson.png?v=20260702-en-index-v3" alt="Hatfield-McCoy Marathon">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/louisville-marathon-2024-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-louisville-2024-cn-flat.jpg?v=20260704-ky24-louisville-01ppppp-imagegen" alt="Run50 #第1州番外｜肯塔基#3：路易斯维尔马拉松｜博士收官战，送我一朵小红花封面">
             <div class="story-body">
-              <span class="story-number">Run50 · DISPATCH</span>
+              <span class="story-number">Run50 · 01+++++</span>
               <div class="eyebrow">RUN50 DISPATCH · KENTUCKY</div>
-              <h3>Hatfield-McCoy Marathon</h3>
-              <div class="meta">RUN50 DISPATCH · Kentucky</div>
-              <p class="desc">A conversational English edition prepared from the Run50 read-along script.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第1州番外｜肯塔基#3：路易斯维尔马拉松｜博士收官战，送我一朵小红花</h3>
+              <div class="meta">肯塔基路易斯维尔 · 2024.11.03</div>
+              <p class="desc">回到美国跑马起点，在 Floyds Fork 的秋色里把博士生涯跑成一个完整的 loop。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/michigan-meadows-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-michigan.png?v=20260702-en-index-v1" alt="Grand Rapids Millennium Meadows Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/louisiana-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-louisiana-cn-flat.jpg?v=20260701-stylemix-v1" alt="Run50 #第23州｜路易斯安那：巴吞鲁日马拉松｜法兰西底色，2025 第一跑封面">
             <div class="story-body">
               <span class="story-number">Run50 · 27</span>
-              <div class="eyebrow">RUN50 DISPATCH · MICHIGAN</div>
-              <h3>Michigan turned six meadow loops into a trial by fire</h3>
-              <div class="meta">Grand Rapids, MI · six loops secured</div>
-              <p class="desc">Run50 State 21 at Millennium Meadows Marathon: a river sunrise, a hot park course, and a 4:44 finish that became a lucky sign.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · LOUISIANA</div>
+              <h3>Run50 #第23州｜路易斯安那：巴吞鲁日马拉松｜法兰西底色，2025 第一跑</h3>
+              <div class="meta">路易斯安那巴吞鲁日 · 2025.01.19</div>
+              <p class="desc">新年第一跑，从达拉斯转机到新奥尔良，再开进巴吞鲁日，把南方湿地、LSU 紫金色和 Finish Fest 串在一起。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/new-hampshire-clarence-demar-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-new-hampshire.png?v=20260702-en-index-v1" alt="New Hampshire Clarence DeMar Marathon English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/blue-ridge-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-blue-ridge-cn-flat.jpg?v=20260701-artfix-v1" alt="Run50 #第24州｜弗吉尼亚：蓝岭山马拉松｜全美最虐赛道，3,564英尺的暴力美学封面">
             <div class="story-body">
               <span class="story-number">Run50 · 28</span>
-              <div class="eyebrow">RUN50 DISPATCH · NEW HAMPSHIRE</div>
-              <h3>Run50 State #22 | New Hampshire: Clarence DeMar Marathon</h3>
-              <div class="meta">Keene, New Hampshire · 2024.09.28</div>
-              <p class="desc">From Niagara Falls into New England foliage, this was a small-town marathon through Keene, quiet roads, autumn forests, and a campus finish.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · VIRGINIA</div>
+              <h3>Run50 #第24州｜弗吉尼亚：蓝岭山马拉松｜全美最虐赛道，3,564英尺的暴力美学</h3>
+              <div class="meta">弗吉尼亚罗阿诺克 · 2025.04.12</div>
+              <p class="desc">America&#x27;s Toughest Road Marathon，把马拉松跑成登山赛，也把蓝岭山脉的硬派风光跑进腿里。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/louisville-marathon-2024-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-louisville-2024.png?v=20260702-en-index-v2" alt="Louisville Marathon 2024 Kentucky English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/kentucky-derby-marathon-2025-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-kentucky-derby-2025-cn-flat.jpg?v=20260704-ky25-ali-01pppppp-imagegen" alt="Run50 #第1州番外｜肯塔基#4：德比马拉松｜三个奖牌，一块蛋糕，我的第50场马拉松！封面">
             <div class="story-body">
-              <span class="story-number">Run50 · 29</span>
+              <span class="story-number">Run50 · 01++++++</span>
               <div class="eyebrow">RUN50 DISPATCH · KENTUCKY</div>
-              <h3>Run50 Kentucky Extra | Louisville Marathon 2024: A Doctoral Finish Line</h3>
-              <div class="meta">Louisville, Kentucky · 2024.11.03</div>
-              <p class="desc">Four years after my first U.S. marathon, I returned to Floyds Fork for a hometown loop that closed the PhD chapter.</p>
-              <div class="open">Open Running Blog →</div>
+              <h3>Run50 #第1州番外｜肯塔基#4：德比马拉松｜三个奖牌，一块蛋糕，我的第50场马拉松！</h3>
+              <div class="meta">肯塔基路易斯维尔 · 2025.04.26</div>
+              <p class="desc">工作后的第一场德比马拉松，也是个人第50场全马：周五 5K、周六全马、三块奖牌和一块蛋糕。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/louisiana-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-louisiana.png?v=20260702-en-index-v1" alt="Louisiana Marathon Baton Rouge English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/fargo-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-fargo-cn-flat.jpg?v=20260630-rebalance-v1" alt="Run50 #第25州｜北达科他州：法戈马拉松｜跑进美剧小镇，踏上50州跑马的“半程分水岭”！封面">
             <div class="story-body">
               <span class="story-number">Run50 · 30</span>
-              <div class="eyebrow">RUN50 DISPATCH · LOUISIANA</div>
-              <h3>Run50 State #23 | Louisiana Marathon: Baton Rouge and the French South</h3>
-              <div class="meta">Baton Rouge, Louisiana · 2025.01.19</div>
-              <p class="desc">The first race of 2025 stitched together a Dallas layover, New Orleans, Baton Rouge, LSU purple-and-gold, and a warm Finish Fest.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · NORTH DAKOTA</div>
+              <h3>Run50 #第25州｜北达科他州：法戈马拉松｜跑进美剧小镇，踏上50州跑马的“半程分水岭”！</h3>
+              <div class="meta">北达科他法戈 · 2025.05.31</div>
+              <p class="desc">从蓝草州一路开到大平原，在粉色天空、玉米地、热浪和破4里完成 Run50 半程分水岭。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/blue-ridge-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-blue-ridge.png?v=20260702-en-index-v1" alt="Blue Ridge Marathon Virginia English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/hell-on-gravel-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-hell-on-gravel-cn-flat.jpg?v=20260630-rebalance-v1" alt="Run50 #第26州｜堪萨斯：地狱砂石马拉松｜冠军就是冠军，哪怕全马只有十个人！封面">
             <div class="story-body">
               <span class="story-number">Run50 · 31</span>
-              <div class="eyebrow">RUN50 DISPATCH · VIRGINIA</div>
-              <h3>Run50 State #24 | Virginia: Blue Ridge Marathon</h3>
-              <div class="meta">Roanoke, Virginia · 2025.04.12</div>
-              <p class="desc">America&#x27;s Toughest Road Marathon turned 26.2 miles into a mountain fight through Roanoke and the Blue Ridge.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · KANSAS</div>
+              <h3>Run50 #第26州｜堪萨斯：地狱砂石马拉松｜冠军就是冠军，哪怕全马只有十个人！</h3>
+              <div class="meta">堪萨斯埃尔多拉多 · 2025.06.28</div>
+              <p class="desc">风、牛群、麦田和砂石路，把一场小到只有十个人的全马跑成了冠军故事。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/kentucky-derby-marathon-2025-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-kentucky-derby-2025.png?v=20260702-en-index-v2" alt="Kentucky Derby Marathon 2025 English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/mad-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-mad-marathon-cn-flat.jpg?v=20260701-artfix-v1" alt="Run50 #第27州｜佛蒙特：疯河谷马拉松｜绿山之州的夏天，跑进乡村油画里封面">
             <div class="story-body">
               <span class="story-number">Run50 · 32</span>
-              <div class="eyebrow">RUN50 DISPATCH · KENTUCKY</div>
-              <h3>Run50 Kentucky Extra | Derby Marathon 2025: My 50th Marathon</h3>
-              <div class="meta">Louisville, Kentucky · 2025.04.26</div>
-              <p class="desc">A hometown Derby weekend with a Friday 5K, Saturday marathon, three medals, one cake, and my 50th marathon finish.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · VERMONT</div>
+              <h3>Run50 #第27州｜佛蒙特：疯河谷马拉松｜绿山之州的夏天，跑进乡村油画里</h3>
+              <div class="meta">佛蒙特沃伦 · 2025.07.17</div>
+              <p class="desc">开进新英格兰腹地，在绿山、谷仓、国旗和乡村小路中，跑进一幅夏天的油画。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/fargo-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-fargo.png?v=20260702-en-index-v1" alt="Fargo Marathon North Dakota English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/rocket-city-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-rocket-city-cn-flat.jpg?v=20260630-abstract-v2" alt="Run50 #第28州｜阿拉巴马：火箭城马拉松｜寒流来袭，南方跑马也得穿秋裤封面">
             <div class="story-body">
               <span class="story-number">Run50 · 33</span>
-              <div class="eyebrow">RUN50 DISPATCH · NORTH DAKOTA</div>
-              <h3>Run50 State #25 | North Dakota: Fargo Marathon</h3>
-              <div class="meta">Fargo, North Dakota · 2025.05.31</div>
-              <p class="desc">A long drive to the northern plains, a pink-sky start, cornfields, heat, and the halfway mark of the Run50 quest.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · ALABAMA</div>
+              <h3>Run50 #第28州｜阿拉巴马：火箭城马拉松｜寒流来袭，南方跑马也得穿秋裤</h3>
+              <div class="meta">阿拉巴马亨茨维尔 · 2025.12.12</div>
+              <p class="desc">在寒流里的火箭城起跑，把南方州、航天工业、大火箭和路村朋友们一起跑进 2025 收官。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/hell-on-gravel-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-hell-on-gravel.png?v=20260702-en-index-v2" alt="Hell on Gravel Marathon Kansas English medal cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/arizona-phoenix-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-zh-index-arizona-phoenix-cn-flat.jpg?v=20260701-stylemix-v1" alt="Run50 #第29州｜亚利桑那 Buckeye Marathon：沙漠清晨，机场终点，2026 第一跑破4封面">
             <div class="story-body">
               <span class="story-number">Run50 · 34</span>
-              <div class="eyebrow">RUN50 DISPATCH · KANSAS</div>
-              <h3>Run50 State #26 | Kansas: Hell on Gravel Marathon</h3>
-              <div class="meta">El Dorado, Kansas · 2025.06.28</div>
-              <p class="desc">Wind, cattle, wheat fields, and gravel roads turned a tiny ten-runner marathon into a champion&#x27;s story.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · ARIZONA</div>
+              <h3>Run50 #第29州｜亚利桑那 Buckeye Marathon：沙漠清晨，机场终点，2026 第一跑破4</h3>
+              <div class="meta">亚利桑那巴克艾 · 2026.01.10</div>
+              <p class="desc">沙漠清晨、巨人柱、Buckeye 机场终点，还有二〇二六第一场意外破四。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/mad-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-mad-marathon.png?v=20260702-en-index-v1" alt="Mad Marathon Vermont English medal cover">
+          <a class="story-card" href="/run50/wechat-new/delaware-marathon-modern-rail.html?v=20260713">
+            <img src="/run50/wechat-new/media/delaware/cover-imagegen-v2.webp?v=20260716" alt="Run50 第30州｜特拉华·威尔明顿第一州抽象珐琅封面" loading="lazy">
             <div class="story-body">
               <span class="story-number">Run50 · 35</span>
-              <div class="eyebrow">RUN50 DISPATCH · VERMONT</div>
-              <h3>Run50 State #27 | Vermont: Mad Marathon</h3>
-              <div class="meta">Warren, Vermont · 2025.07.17</div>
-              <p class="desc">A drive into Vermont&#x27;s Green Mountains for a summer race of barns, flags, village roads, and rolling countryside.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · DELAWARE</div>
+              <h3>Run50 #第30州｜特拉华马拉松：一半爬坡，一半穿林</h3>
+              <div class="meta">特拉华州威尔明顿 · 2026.04.19</div>
+              <p class="desc">从肯塔基一路开到“第一州”，前半程在城市公园反复爬坡，后半程沿林间步道直奔 New Castle。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/rocket-city-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-rocket-city.png?v=20260702-en-index-v1" alt="Rocket City Marathon Alabama English medal cover">
+          <a class="story-card" href="/run50/wechat-new/minnesota-med-city-marathon-modern-rail.html?v=20260713">
+            <img src="/run50/wechat-new/media/minnesota/cover-imagegen-v2.webp?v=20260716" alt="Run50 第31州｜明尼苏达·罗切斯特北境医疗之城珐琅封面" loading="lazy">
             <div class="story-body">
               <span class="story-number">Run50 · 36</span>
-              <div class="eyebrow">RUN50 DISPATCH · ALABAMA</div>
-              <h3>Run50 State #28 | Alabama: Rocket City Marathon</h3>
-              <div class="meta">Huntsville, Alabama · 2025.12.12</div>
-              <p class="desc">A cold-weather Rocket City run through Huntsville, aerospace history, a giant rocket, and a year-end reunion with friends.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/arizona-phoenix-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-index-arizona-phoenix.png?v=20260702-en-index-v3" alt="Buckeye Marathon Arizona English medal cover">
-            <div class="story-body">
-              <span class="story-number">Run50 · 29</span>
-              <div class="eyebrow">RUN50 DISPATCH · ARIZONA</div>
-              <h3>Arizona turned a cold desert runway race into my first sub-four of 2026</h3>
-              <div class="meta">Buckeye / Phoenix, Arizona · Run50 #29</div>
-              <p class="desc">Buckeye Marathon started in the Phoenix desert and ended beside a runway, with saguaros, dry air, and a finish time I did not see coming.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/delaware-marathon-modern-rail.html?v=20260716-en-states">
-            <img src="../wechat-new/media/delaware/cover-imagegen-en-v2.webp?v=20260716" alt="Delaware Marathon Festival Wilmington English embossed cover">
-            <div class="story-body">
-              <span class="story-number">Run50 &middot; 30</span>
-              <div class="eyebrow">RUN50 DISPATCH &middot; DELAWARE</div>
-              <h3>Delaware split State 30 between punchy hills and quiet woods</h3>
-              <div class="meta">Wilmington, Delaware &middot; 2026.04.19</div>
-              <p class="desc">A two-day drive from Kentucky, then 26.2 miles of park rollers, a dead-straight forest trail, hot pork buns, and the trip home.</p>
-              <div class="open">Open Running Blog &rarr;</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/minnesota-med-city-marathon-modern-rail.html?v=20260716-en-states">
-            <img src="../wechat-new/media/minnesota/cover-imagegen-en-v2.webp?v=20260716" alt="Minnesota Med City Marathon Rochester English embossed cover">
-            <div class="story-body">
-              <span class="story-number">Run50 &middot; 31</span>
-              <div class="eyebrow">RUN50 DISPATCH &middot; MINNESOTA</div>
-              <h3>Minnesota made State 31 a run through the Medical City</h3>
-              <div class="meta">Rochester, Minnesota &middot; 2026.05.17</div>
-              <p class="desc">Farm roads, forest shade, rivers, wooden bridges, Mayo Clinic in the distance, and another sub-four finish.</p>
-              <div class="open">Open Running Blog &rarr;</div>
+              <div class="eyebrow">RUN50 DISPATCH · MINNESOTA</div>
+              <h3>Run50 #第31州｜明尼苏达 Med City Marathon：跑进医疗之城</h3>
+              <div class="meta">明尼苏达州罗切斯特 · 2026.05.17</div>
+              <p class="desc">从机场旁的农田起跑，穿过树林、河边和木桥，远远看见梅奥诊所，也跑懂了“医疗之城”的名字。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
         </div>
@@ -1833,238 +1796,220 @@
       <section class="story-section run-cn-zone" id="runcn-series">
         <div class="section-head">
           <div>
-            <div class="eyebrow">RunCN · China Routes</div>
-            <h2>China Marathon Stories</h2>
+            <div class="eyebrow">RunCN · 中国站点</div>
+            <h2>中国马拉松系列</h2>
           </div>
-          <p>19 stories · cities, regions, and race years</p>
+          <p>19 篇 · 按站点与年份整理</p>
         </div>
 
-        <div class="stories" aria-label="RunCN China marathon Running Blog stories">
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/steel-tank-story-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-steel-tank-story.jpg?v=20260628-en-runcn-covers-v1" alt="Harbin / Wuhan cover">
+        <div class="stories" aria-label="RunCN 中国马拉松微信公众号故事">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/steel-tank-story-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-steel-tank-story.jpg?v=20260628-steel-v3" alt="RunCN #第1-6站｜钢铁战车的故事封面">
             <div class="story-body">
-              <span class="story-number">RunCN · 1-6</span>
-              <div class="eyebrow">RUNCN DISPATCH · HARBIN / WUHAN</div>
-              <h3>The steel tank story: how a heavy football kid found marathons</h3>
-              <div class="meta">Harbin / Wuhan · RunCN #1-6</div>
-              <p class="desc">From the steel tank on the football field to a proud son at the Harbin Marathon finish.</p>
-              <div class="open">Open Running Blog →</div>
+              <span class="story-number">RunCN · 01</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第1-6站｜钢铁战车的故事</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">半年，6座城，3半马，3全马。从胖纸、足球后腰到跑马的人，钢铁战车的起点在这里。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/three-city-pilgrimage-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-three-city-pilgrimage.jpg?v=20260628-en-runcn-covers-v1" alt="Guang&#x27;an / Yichang / Changsha cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/three-city-pilgrimage-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-three-city-pilgrimage.jpg?v=20260628-threecity-v4" alt="RunCN #第7-9站｜鲜衣怒马，烈焰红花：三座城的朝圣之旅封面">
             <div class="story-body">
-              <span class="story-number">RunCN · 7-9</span>
-              <div class="eyebrow">RUNCN DISPATCH · GUANG&#x27;AN / YICHANG / CHANGSHA</div>
-              <h3>Three 2017 races became a pilgrimage through Guang&#x27;an, Yichang, and Changsha</h3>
-              <div class="meta">Guang&#x27;an / Yichang / Changsha · RunCN #7-9</div>
-              <p class="desc">Guang&#x27;an Marathon, Yichang Half, Changsha Marathon, and a pilgrimage threaded through Deng Xiaoping, a mentor, and Mao.</p>
-              <div class="open">Open Running Blog →</div>
+              <span class="story-number">RunCN · 02</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第7-9站｜鲜衣怒马，烈焰红花：三座城的朝圣之旅</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">广安、宜昌、长沙，三座城，三场跑，一路红花，把科研间隙里的热血和朝圣都写进 2017。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/xiamen-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-xiamen-marathon.jpg?v=20260628-en-runcn-covers-v1" alt="Xiamen, Fujian cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/xiamen-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-xiamen-marathon.jpg?v=20260628-xiamen-fujian-v5" alt="RunCN #第10站｜厦门马拉松：以最难忘的出场，享拥每一句赞扬封面">
+            <div class="story-body">
+              <span class="story-number">RunCN · 03</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第10站｜厦门马拉松：以最难忘的出场，享拥每一句赞扬</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">2018年的首马，在厦门的雨里开场：曾厝垵、兄弟重逢、赛道掌声和一个惊艳自己的开局。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/wuhan-wuxi-marathon-notes-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-wuhan-wuxi-marathon-notes.jpg?v=20260628-gpd-v1-lanzhou-wuxi" alt="RunCN #第11站｜无锡马拉松笔记：樱花树下绽放封面">
+            <div class="story-body">
+              <span class="story-number">RunCN · 04</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第11站｜无锡马拉松笔记：樱花树下绽放</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">三月，奔跑与樱花不期而遇。东湖岸边、蠡湖水畔，三场比赛写成一篇真实的跑马笔记。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/wuhan-marathon-2018-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-wuhan-marathon-2018.jpg?v=20260628-hubei-abstract" alt="RunCN #第12站｜武汉马拉松：连接百年的奔跑封面">
+            <div class="story-body">
+              <span class="story-number">RunCN · 05</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第12站｜武汉马拉松：连接百年的奔跑</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">想读懂汉马，先读懂武汉。从辛亥、东湖到赛道热浪，把江城的体育基因写进一场马拉松。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/xian-city-wall-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-xian-city-wall-marathon.jpg?v=20260628-xian-dalian-clean-a" alt="RunCN #第13站｜西安城墙马拉松：风雨城墙路封面">
+            <div class="story-body">
+              <span class="story-number">RunCN · 06</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第13站｜西安城墙马拉松：风雨城墙路</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">一场西安城墙马，把兵马俑、华清池、大雁塔、华山、壶口瀑布和千年长安都串进风雨里。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/lanzhou-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-lanzhou-marathon.jpg?v=20260628-gpd-v1-lanzhou-wuxi" alt="RunCN #第14站｜兰州马拉松：河西走廊东边的野望与奔腾封面">
+            <div class="story-body">
+              <span class="story-number">RunCN · 07</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第14站｜兰州马拉松：河西走廊东边的野望与奔腾</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">一碗面、一条河、一本书、一座城，把兰马写进河西走廊东边的风与奔腾。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/guiyang-marathon-climb-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-guiyang-marathon-climb.jpg?v=20260628-guiyang-v9" alt="RunCN #第15站｜贵阳马拉松：夜郎漫行，此心光明封面">
+            <div class="story-body">
+              <span class="story-number">RunCN · 08</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第15站｜贵阳马拉松：夜郎漫行，此心光明</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">从青岩古镇、花溪夜郎谷到贵阳马拉松和梵净山，在“Climb”的爬升里，把身体和心都带去贵州修行。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/haikou-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-haikou-marathon.jpg?v=20260628-runcn-haikou-v2" alt="RunCN #第16站｜海口：诗和远方与星沉大海封面">
+            <div class="story-body">
+              <span class="story-number">RunCN · 09</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第16站｜海口：诗和远方与星沉大海</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">错过三亚，又跑丢海口，但骑楼老街、海风、芳华小院和2019的开篇仍然值得留下。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/wuhan-han-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-wuhan-han-marathon.jpg?v=20260628-hubei-abstract" alt="RunCN #第17站｜武汉汉马：独家记忆封面">
             <div class="story-body">
               <span class="story-number">RunCN · 10</span>
-              <div class="eyebrow">RUNCN DISPATCH · XIAMEN, FUJIAN</div>
-              <h3>Xiamen gave my 2018 season a rain-soaked, unforgettable opening</h3>
-              <div class="meta">Xiamen, Fujian · RunCN #10</div>
-              <p class="desc">A rainy Xiamen Marathon, a Zengcuo&#x27;an reunion, and the first full-marathon chapter of 2018.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第17站｜武汉汉马：独家记忆</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">即将离开武汉的人，也会有乡愁。汉马、武大和江城三年的断片，被拼成一篇独家记忆。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/wuhan-wuxi-marathon-notes-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-wuhan-wuxi-marathon-notes.jpg?v=20260628-en-runcn-covers-v1" alt="Wuhan / Wuxi cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/dalian-trail-modern-rail.html?v=20260706-dalian-blackfix">
+            <img src="/assets/cover-medal-dalian-trail.jpg?v=20260628-xian-dalian-clean-a" alt="RunCN #第18站｜大连越野：越过山丘，在大连封面">
             <div class="story-body">
               <span class="story-number">RunCN · 11</span>
-              <div class="eyebrow">RUNCN DISPATCH · WUHAN / WUXI</div>
-              <h3>Three spring races bloomed under cherry trees in Wuhan and Wuxi</h3>
-              <div class="meta">Wuhan / Wuxi · RunCN #11</div>
-              <p class="desc">Wuhan, Wuxi, cherry blossoms, a college marathon, and three spring race notes.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第18站｜大连越野：越过山丘，在大连</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">第一场真正意义上的越野赛，去大连西海岸，越过山丘，也看见东北的自由与斑驳。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/wuhan-marathon-2018-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-wuhan-marathon-2018.jpg?v=20260628-en-runcn-covers-v1" alt="Wuhan, Hubei cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/wuhan-graduation-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-wuhan-graduation.jpg?v=20260628-beijing-abstract" alt="RunCN #第19站｜北京凤凰岭夜跑：毕业图话，迟到了两年封面">
             <div class="story-body">
               <span class="story-number">RunCN · 12</span>
-              <div class="eyebrow">RUNCN DISPATCH · WUHAN, HUBEI</div>
-              <h3>Wuhan Marathon connected a century of city fire and running energy</h3>
-              <div class="meta">Wuhan, Hubei · RunCN #12</div>
-              <p class="desc">1911 memory, East Lake, Han Marathon volunteers, and Wuhan at full volume.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第19站｜北京凤凰岭夜跑：毕业图话，迟到了两年</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">迟到两年的毕业图话，把爸妈、武大、东湖、毕业典礼和那段武汉时光收进同一篇回忆。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/xian-city-wall-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-xian-city-wall-marathon.jpg?v=20260628-en-runcn-covers-v1" alt="Xi&#x27;an, Shaanxi cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/harbin-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-harbin-marathon.jpg?v=20260628-runcn-harbin-confident-v1" alt="RunCN #第20站｜哈尔滨马拉松：那年，我在东北老家跑哈马封面">
             <div class="story-body">
               <span class="story-number">RunCN · 13</span>
-              <div class="eyebrow">RUNCN DISPATCH · XI&#x27;AN, SHAANXI</div>
-              <h3>Xi&#x27;an turned a city-wall race into a walk through three thousand years of China</h3>
-              <div class="meta">Xi&#x27;an, Shaanxi · RunCN #13</div>
-              <p class="desc">Rain on the wall, the Qin plain, Terracotta Warriors, Huashan, and Hukou Falls in one heavy Chang&#x27;an travelogue.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第20站｜哈尔滨马拉松：那年，我在东北老家跑哈马</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">因为 check 多跑了一次哈马。松花江、黑土地、老家和疫情前那些快活的流浪日子，都在这篇里。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/lanzhou-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-lanzhou-marathon.jpg?v=20260628-en-runcn-covers-v1" alt="Lanzhou, Gansu cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/west-lake-half-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-west-lake-half-marathon.jpg?v=20260628-runcn-distinct-v1" alt="RunCN #第21站｜西湖半马：我去西湖跑半马，偶遇跑者施一公封面">
             <div class="story-body">
               <span class="story-number">RunCN · 14</span>
-              <div class="eyebrow">RUNCN DISPATCH · LANZHOU, GANSU</div>
-              <h3>Lanzhou Strong: a marathon at the edge of the Yellow River and the Hexi dream</h3>
-              <div class="meta">Lanzhou, Gansu · RunCN #14</div>
-              <p class="desc">The Yellow River, beef noodles, Zhongshan Bridge, Gaolan Mountain, and a Lanzhou Marathon with roaring local energy.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第21站｜西湖半马：我去西湖跑半马，偶遇跑者施一公</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">从上海到杭州，去西湖边甩肉，跑一场半马，也偶遇了跑者施一公。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/guiyang-marathon-climb-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-guiyang-marathon-climb.jpg?v=20260628-en-runcn-covers-v1" alt="Guiyang, Guizhou cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/shanghai-vertical-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-shanghai-vertical-marathon.jpg?v=20260628-runcn-shanghai-ratio-v2" alt="RunCN #第22站｜上海中心垂直马拉松封面">
             <div class="story-body">
               <span class="story-number">RunCN · 15</span>
-              <div class="eyebrow">RUNCN DISPATCH · GUIYANG, GUIZHOU</div>
-              <h3>Guiyang turned a brutal climb into a journey through Yelang, Wang Yangming, and Fanjing Mountain</h3>
-              <div class="meta">Guiyang, Guizhou · RunCN #15</div>
-              <p class="desc">Guiyang Marathon heat and climbing, Qingyan, Yelang Valley, Yangming Cave, and Fanjing Mountain as one southwestern lesson.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第22站｜上海中心垂直马拉松</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">在签证等待的特殊时期，爬上119层、3398级台阶，在632米高处俯瞰浦江两岸。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/haikou-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-haikou-marathon.jpg?v=20260628-en-runcn-covers-v2" alt="Haikou, Hainan cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/ningbo-dongqian-lake-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-ningbo-dongqian-lake-marathon.jpg?v=20260628-runcn-distinct-v1" alt="RunCN #第23站｜宁波东钱湖马拉松：宁波，东钱湖边的聚会封面">
             <div class="story-body">
               <span class="story-number">RunCN · 16</span>
-              <div class="eyebrow">RUNCN DISPATCH · HAIKOU, HAINAN</div>
-              <h3>Haikou became an unfinished running story by the sea</h3>
-              <div class="meta">Haikou, Hainan · RunCN #16</div>
-              <p class="desc">Haikou arcades, Hainan sea wind, an unfinished race, and a city story still worth keeping.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第23站｜宁波东钱湖马拉松：宁波，东钱湖边的聚会</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">2019 年岁末，在浙江最大的天然湖泊东钱湖边，骑行、跑马、见老友，也走进奉化的历史深处。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/wuhan-han-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-fb-wuhan-han-marathon.jpg?v=20260628-en-runcn-17-24-v1" alt="Wuhan, Hubei cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/xiangyang-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-xiangyang.jpg?v=20260628-hubei-abstract" alt="RunCN #第24站｜襄阳马拉松封面">
             <div class="story-body">
               <span class="story-number">RunCN · 17</span>
-              <div class="eyebrow">RUNCN DISPATCH · WUHAN, HUBEI</div>
-              <h3>Wuhan and the Han Marathon became my private memory of leaving home</h3>
-              <div class="meta">Wuhan, Hubei · RunCN #17</div>
-              <p class="desc">Han Marathon, Wuhan University, River City, pre-graduation homesickness, and a private Wuhan memory.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第24站｜襄阳马拉松</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">RunCN 第 1 站来到湖北襄阳。古城、城墙、汉江、大桥与街区被一条马拉松赛道串联起来，历史感和生活气并存。襄阳马拉松规模不大但口碑稳定，补给密集、志愿者热情，赛道节奏友。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/dalian-trail-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-fb-dalian-trail.jpg?v=20260628-en-runcn-17-24-v1" alt="Dalian, Liaoning cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/guilin-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-guilin.jpg?v=20260628-runcn-distinct-v1" alt="RunCN #第25站｜桂林马拉松封面">
             <div class="story-body">
               <span class="story-number">RunCN · 18</span>
-              <div class="eyebrow">RUNCN DISPATCH · DALIAN, LIAONING</div>
-              <h3>Dalian turned my first real trail race into a Northeastern coming-of-age story</h3>
-              <div class="meta">Dalian, Liaoning · RunCN #18</div>
-              <p class="desc">Dalian&#x27;s west coast, the Yellow Sea and Bohai Sea divide, a trail race, and a hill story for the Northeast.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第25站｜桂林马拉松</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">这是我跑中国的第二站，广西桂林马拉松。比赛从中心广场出发，赛道贴着漓江，一路跑进穿山和七星一带。前半程风景很好，后半程暴晒明显，爸妈和大娘也在终点等我。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/wuhan-graduation-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-fb-wuhan-graduation.jpg?v=20260628-en-runcn-17-24-v1" alt="Beijing graduation night run cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/hong-kong-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-hk.jpg?v=20260628-runcn-hk-ratio-v2" alt="RunCN #第26站｜香港嘉里街道马拉松封面">
             <div class="story-body">
               <span class="story-number">RunCN · 19</span>
-              <div class="eyebrow">RUNCN DISPATCH · BEIJING FENGHUANGLING / WUHAN</div>
-              <h3>A delayed Wuhan graduation album became a time capsule</h3>
-              <div class="meta">Beijing Fenghuangling / Wuhan · RunCN #19</div>
-              <p class="desc">Wuhan University graduation, family visiting Wuhan, East Lake, and a photo album that arrived two years late.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/harbin-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-fb-harbin-marathon.jpg?v=20260628-en-runcn-20-22-v1" alt="Harbin, Heilongjiang cover">
-            <div class="story-body">
-              <span class="story-number">RunCN · 20</span>
-              <div class="eyebrow">RUNCN DISPATCH · HARBIN, HEILONGJIANG</div>
-              <h3>Harbin Marathon brought me back to the black soil and Songhua River</h3>
-              <div class="meta">Harbin, Heilongjiang · RunCN #20</div>
-              <p class="desc">Songhua River, black soil, Northeastern home, and a delayed Harbin Marathon memory.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/west-lake-half-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-fb-west-lake-half-marathon.jpg?v=20260628-en-runcn-20-22-v1" alt="Hangzhou, Zhejiang cover">
-            <div class="story-body">
-              <span class="story-number">RunCN · 21</span>
-              <div class="eyebrow">RUNCN DISPATCH · HANGZHOU, ZHEJIANG</div>
-              <h3>A West Lake half marathon turned into a lakeside reset and an unexpected encounter</h3>
-              <div class="meta">Hangzhou, Zhejiang · RunCN #21</div>
-              <p class="desc">West Lake, Qingzhiwu, Westlake University, and a half marathon that helped me restart.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/shanghai-vertical-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-fb-shanghai-vertical-marathon.jpg?v=20260628-en-runcn-20-22-v1" alt="Shanghai, China cover">
-            <div class="story-body">
-              <span class="story-number">RunCN · 22</span>
-              <div class="eyebrow">RUNCN DISPATCH · SHANGHAI, CHINA</div>
-              <h3>Climbing 3,398 steps to the top of China&#x27;s tallest skyscraper</h3>
-              <div class="meta">Shanghai, China · RunCN #22</div>
-              <p class="desc">Race date: November 24, 2019. Scaling 119 floors and 3,398 steps of the Shanghai Tower to reach 632m height during a stressful visa waiting period.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/ningbo-dongqian-lake-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-fb-ningbo-dongqian-lake-marathon.jpg?v=20260628-en-runcn-23-26-v1" alt="Ningbo, Zhejiang cover">
-            <div class="story-body">
-              <span class="story-number">RunCN · 23</span>
-              <div class="eyebrow">RUNCN DISPATCH · NINGBO, ZHEJIANG</div>
-              <h3>Ningbo turned a lakeside marathon into a warm farewell</h3>
-              <div class="meta">Ningbo, Zhejiang · RunCN #23</div>
-              <p class="desc">Dongqian Lake cycling, a 4:08 full marathon, curry with an old friend, and a post-race walk into Fenghua history.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/xiangyang-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-fb-xiangyang.jpg?v=20260628-en-runcn-17-24-v1" alt="Xiangyang, Hubei cover">
-            <div class="story-body">
-              <span class="story-number">RunCN · 24</span>
-              <div class="eyebrow">RUNCN DISPATCH · XIANGYANG, HUBEI</div>
-              <h3>Xiangyang gave me a marathon with a finish I did not see coming</h3>
-              <div class="meta">Xiangyang, Hubei · RunCN #24</div>
-              <p class="desc">Race date: October 19, 2025. A Three Kingdoms city, the Han River, old city walls, Tang-style palaces and an unexpected 3:57 finish.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/guilin-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-fb-guilin.jpg?v=20260628-en-runcn-23-26-v1" alt="Guilin, Guangxi cover">
-            <div class="story-body">
-              <span class="story-number">RunCN · 25</span>
-              <div class="eyebrow">RUNCN DISPATCH · GUILIN, GUANGXI</div>
-              <h3>Guilin turned a beautiful marathon into a full-sun test</h3>
-              <div class="meta">Guilin, Guangxi · RunCN #25</div>
-              <p class="desc">Race date: November 16, 2025. Li River views, karst hills, spray trucks, a Messi jersey chase, and my family waiting at the finish.</p>
-              <div class="open">Open Running Blog →</div>
-            </div>
-          </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/hong-kong-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-fb-hk.jpg?v=20260628-en-runcn-23-26-v1" alt="Hong Kong, China cover">
-            <div class="story-body">
-              <span class="story-number">RunCN · 26</span>
-              <div class="eyebrow">RUNCN DISPATCH · HONG KONG, CHINA</div>
-              <h3>Hong Kong turned a marathon into a tunnel-and-bridge city tour</h3>
-              <div class="meta">Hong Kong, China · RunCN #26</div>
-              <p class="desc">Race date: November 23, 2025. A 5 a.m. start, expressway tunnels, Victoria Harbour wind, Tseung Kwan O Bridge, and one last uphill punch.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · RUNCN</div>
+              <h3>RunCN #第26站｜香港嘉里街道马拉松</h3>
+              <div class="meta">RunCN · 中国跑马故事</div>
+              <p class="desc">这是我跑中国的第三站，香港嘉里街道马拉松。凌晨五点从东岸公园出发，穿过中环湾仔绕道、东隧、将军澳跨湾大桥和中九龙干线隧道，在高架、海风和城市街区里完成这趟收尾跑。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
         </div>
@@ -2073,72 +2018,72 @@
       <section class="story-section run-world-zone" id="runworld-series">
         <div class="section-head">
           <div>
-            <div class="eyebrow">RunWorld · Global Routes</div>
-            <h2>World Marathon Stories</h2>
+            <div class="eyebrow">RunWorld · 世界路线</div>
+            <h2>世界马拉松系列</h2>
           </div>
-          <p>4 stories · outside the U.S. and China</p>
+          <p>4 篇 · 美国和中国之外的跑旅</p>
         </div>
 
-        <div class="stories" aria-label="RunWorld global marathon Running Blog stories">
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/singapore-sundown-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-singapore-sundown-marathon.jpg?v=20260628-en-abstract" alt="Singapore Sundown Marathon cover">
+        <div class="stories" aria-label="RunWorld 世界马拉松微信公众号故事">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/singapore-sundown-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-singapore-sundown-marathon.jpg?v=20260628-cn-abstract" alt="RunWorld #第1站｜新加坡 Sundown Marathon：十年之约，归来仍是少年封面">
             <div class="story-body">
-              <span class="story-number">RunWorld · 1</span>
-              <div class="eyebrow">RUNWORLD DISPATCH · SINGAPORE</div>
-              <h3>Singapore brought me back to a ten-year promise and a midnight marathon</h3>
-              <div class="meta">Singapore · RunWorld #1</div>
-              <p class="desc">A ten-year Singapore promise, campus pilgrimage, Marina Bay night, and a Sundown Marathon from midnight into morning.</p>
-              <div class="open">Open Running Blog →</div>
+              <span class="story-number">RunWorld · 01</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNWORLD</div>
+              <h3>RunWorld #第1站｜新加坡 Sundown Marathon：十年之约，归来仍是少年</h3>
+              <div class="meta">RunWorld · 世界跑马故事</div>
+              <p class="desc">十年之后，再下南洋：从樟宜、南洋理工到 Sundown Marathon，在新加坡的夜与晨之间，确认自己仍然可以热血。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/bangkok-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-bangkok-marathon.jpg?v=20260628-en-abstract" alt="Bangkok Marathon cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/bangkok-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-bangkok-marathon.jpg?v=20260628-cn-abstract" alt="RunWorld #第2站｜曼谷马拉松：昼夜不停封面">
             <div class="story-body">
-              <span class="story-number">RunWorld · 2</span>
-              <div class="eyebrow">RUNWORLD DISPATCH · BANGKOK, THAILAND</div>
-              <h3>Bangkok kept moving from temple light to marathon night</h3>
-              <div class="meta">Bangkok, Thailand · RunWorld #2</div>
-              <p class="desc">A Bangkok running weekend through temple light, night streets, the Erawan Shrine, and the warmth of Thailand.</p>
-              <div class="open">Open Running Blog →</div>
+              <span class="story-number">RunWorld · 02</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNWORLD</div>
+              <h3>RunWorld #第2站｜曼谷马拉松：昼夜不停</h3>
+              <div class="meta">RunWorld · 世界跑马故事</div>
+              <p class="desc">去泰国跑马，不囧，反而意犹未尽：寺庙、夜色、四面佛和一个昼夜不停的曼谷。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/mexico-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-mexico.jpg?v=20260628-en-abstract" alt="Mexico City, Mexico cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/mexico-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-mexico.jpg?v=20260628-runworld-mexico-pisa-v1" alt="RunWorld #第3站｜墨西哥：墨西哥城马拉松｜阿兹特克高原42公里，金字塔外一场奇遇封面">
             <div class="story-body">
               <span class="story-number">RunWorld · 03</span>
-              <div class="eyebrow">RUNWORLD DISPATCH · MEXICO CITY, MEXICO</div>
-              <h3>Mexico City gave me a 26.2-mile high-altitude plateau challenge</h3>
-              <div class="meta">Mexico City, Mexico · Pyramids &amp; Locals</div>
-              <p class="desc">Race date: August 31, 2025. 2,240m altitude down Reforma to the Zócalo, followed by sun-drenched pyramids and a ride home with a carful of friendly locals.</p>
-              <div class="open">Open Running Blog →</div>
+              <div class="eyebrow">RUN50 DISPATCH · RUNWORLD</div>
+              <h3>RunWorld #第3站｜墨西哥：墨西哥城马拉松｜阿兹特克高原42公里，金字塔外一场奇遇</h3>
+              <div class="meta">RunWorld · 世界跑马故事</div>
+              <p class="desc">这是我跑世界的第五站，墨西哥城马拉松。趁 Labor Day 三天小长假，从美国飞墨城，在 2,240 米高原跑过城市主轴、改革大道、终点冲进宪法广场；赛后还有金字塔、洞穴。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-
-          <a class="story-card" href="https://zhennanzhang.com/run50/wechat-en/pisa-marathon-modern-rail.html?v=20260706-wechat-en">
-            <img src="../../assets/cover-medal-en-pisa.jpg?v=20260628-en-abstract" alt="Pisa, Italy cover">
+          <a class="story-card" href="https://zhennanzhang.com/run50/wechat/pisa-marathon-modern-rail.html?v=20260706-us-current-outline">
+            <img src="/assets/cover-medal-pisa.jpg?v=20260628-runworld-mexico-pisa-v1" alt="RunWorld #第4站｜意大利：比萨马拉松｜在亚平宁上艺术课，在斜塔前锻炼身体封面">
             <div class="story-body">
-              <span class="story-number">RunWorld · 4</span>
-              <div class="eyebrow">RUNWORLD DISPATCH · PISA, ITALY</div>
-              <h3>Pisa turned a marathon into a Tuscan art-school road trip</h3>
-              <div class="meta">Pisa, Italy · RunWorld #4</div>
-              <p class="desc">Race date: December 21, 2025. The Leaning Tower, Arno River, Tuscan villages, Ligurian Sea, and an Italy trip through Venice, Milan, Florence and Rome.</p>
-              <div class="open">Open Running Blog →</div>
+              <span class="story-number">RunWorld · 04</span>
+              <div class="eyebrow">RUN50 DISPATCH · RUNWORLD</div>
+              <h3>RunWorld #第4站｜意大利：比萨马拉松｜在亚平宁上艺术课，在斜塔前锻炼身体</h3>
+              <div class="meta">RunWorld · 世界跑马故事</div>
+              <p class="desc">圣诞假期前的比萨马拉松，穿过斜塔、阿诺河、托斯卡纳乡村和利古里亚海，再一路把奖牌带去威尼斯、米兰、佛罗伦萨和罗马。</p>
+              <div class="open">Open Chinese Story →</div>
             </div>
           </a>
         </div>
       </section>
 
       <section class="stats" id="stats" aria-label="Run50 statistics">
-        <div class="stat-card"><b>60</b><span>Total stories</span></div>
-        <div class="stat-card"><b>37</b><span>Run50 stories</span></div>
-        <div class="stat-card"><b>19</b><span>RunCN stories</span></div>
-        <div class="stat-card"><b>4</b><span>RunWorld stories</span></div>
+        <div class="stat-card"><b>58</b><span>公众号版文章</span></div>
+        <div class="stat-card"><b>35</b><span>Run50 故事</span></div>
+        <div class="stat-card"><b>19</b><span>RunCN 故事</span></div>
+        <div class="stat-card"><b>4</b><span>RunWorld 故事</span></div>
       </section>
-  <footer>Running Blog follows the same layout as the Chinese story edition.</footer>
-  <script src="../us-map-svg.js?v=20260706-wechat-en"></script>
-  <script src="../china-map-svg.js?v=20260706-wechat-en"></script>
+    </main>
+  </div>
+
+  <footer>Chinese Stories: one home for Run50, RunCN, and RunWorld Chinese articles.</footer>
+  <script src="/run50/us-map-svg.js?v=20260630-mini-maps"></script>
+  <script src="/run50/china-map-svg.js?v=20260630-mini-maps"></script>
   <script>
     (function () {
       const US_PATHS = {
@@ -2226,6 +2171,17 @@
         VT: 'Vermont', WI: 'Wisconsin', WV: 'West Virginia'
       };
 
+      const US_NAMES_ZH = {
+        AK: '阿拉斯加', AL: '阿拉巴马', AR: '阿肯色', AZ: '亚利桑那', CA: '加利福尼亚',
+        CO: '科罗拉多', CT: '康涅狄格', DE: '特拉华', FL: '佛罗里达', GA: '佐治亚',
+        HI: '夏威夷', IL: '伊利诺伊', IN: '印第安纳', KS: '堪萨斯', KY: '肯塔基',
+        LA: '路易斯安那', MA: '马萨诸塞', ME: '缅因', MI: '密歇根', MN: '明尼苏达',
+        MO: '密苏里', NC: '北卡罗来纳', ND: '北达科他', NH: '新罕布什尔',
+        NY: '纽约', OH: '俄亥俄', PA: '宾夕法尼亚', RI: '罗得岛',
+        SC: '南卡罗来纳', TN: '田纳西', TX: '得克萨斯', VA: '弗吉尼亚',
+        VT: '佛蒙特', WI: '威斯康星', WV: '西弗吉尼亚'
+      };
+
       const US_CITY_DOTS = [
         ['KY', 'Louisville', 38.2527, -85.7585], ['OH', 'Cleveland', 41.4993, -81.6944],
         ['OH', 'Cincinnati', 39.1031, -84.5120],
@@ -2255,20 +2211,62 @@
       };
 
       const CHINA_PROVINCES = {
-        cn_heilongjiang: ['Heilongjiang', '#f06a4f'], cn_hubei: ['Hubei', '#5fc36f'],
-        cn_sichuan: ['Sichuan', '#f4a83a'], cn_innermongolia: ['Inner Mongolia', '#39abc0'],
-        cn_shanxi: ['Shanxi', '#add64f'], cn_hunan: ['Hunan', '#a678dc'],
-        cn_fujian: ['Fujian', '#39abc0'], cn_gansu: ['Gansu', '#f06a4f'],
-        cn_jiangsu: ['Jiangsu', '#add64f'], cn_guizhou: ['Guizhou', '#5fc36f'],
-        cn_shaanxi: ['Shaanxi', '#f4a83a'], cn_zhejiang: ['Zhejiang', '#a678dc'],
-        cn_hainan: ['Hainan', '#39abc0'], cn_liaoning: ['Liaoning', '#f06a4f'],
-        cn_shanghai: ['Shanghai', '#5fc36f'], cn_guangxi: ['Guangxi', '#f4a83a'],
-        cn_hongkong: ['Hong Kong', '#a678dc'], cn_beijing: ['Beijing', '#e89838']
+        cn_heilongjiang: ['黑龙江', '#f06a4f'], cn_hubei: ['湖北', '#5fc36f'],
+        cn_sichuan: ['四川', '#f4a83a'], cn_innermongolia: ['内蒙古', '#39abc0'],
+        cn_shanxi: ['山西', '#add64f'], cn_hunan: ['湖南', '#a678dc'],
+        cn_fujian: ['福建', '#39abc0'], cn_gansu: ['甘肃', '#f06a4f'],
+        cn_jiangsu: ['江苏', '#add64f'], cn_guizhou: ['贵州', '#5fc36f'],
+        cn_shaanxi: ['陕西', '#f4a83a'], cn_zhejiang: ['浙江', '#a678dc'],
+        cn_hainan: ['海南', '#39abc0'], cn_liaoning: ['辽宁', '#f06a4f'],
+        cn_shanghai: ['上海', '#5fc36f'], cn_guangxi: ['广西', '#f4a83a'],
+        cn_hongkong: ['香港', '#a678dc'], cn_beijing: ['北京', '#e89838']
       };
 
-      const WECHAT_STORY_BASE = 'https://zhennanzhang.com/run50/wechat-en/';
-      const WECHAT_STORY_VERSION = '?v=20260706-wechat-en';
-      const storyHref = slug => `${WECHAT_STORY_BASE}${slug}-modern-rail.html${WECHAT_STORY_VERSION}`;
+      const CHINA_NAMES_EN = {
+        cn_heilongjiang: 'Heilongjiang', cn_hubei: 'Hubei', cn_sichuan: 'Sichuan',
+        cn_innermongolia: 'Inner Mongolia', cn_shanxi: 'Shanxi', cn_hunan: 'Hunan',
+        cn_fujian: 'Fujian', cn_gansu: 'Gansu', cn_jiangsu: 'Jiangsu', cn_guizhou: 'Guizhou',
+        cn_shaanxi: 'Shaanxi', cn_zhejiang: 'Zhejiang', cn_hainan: 'Hainan',
+        cn_liaoning: 'Liaoning', cn_shanghai: 'Shanghai', cn_guangxi: 'Guangxi',
+        cn_hongkong: 'Hong Kong', cn_beijing: 'Beijing'
+      };
+
+      const CHINA_CITY_NAMES_EN_BY_SLUG = {
+        'harbin-marathon': 'Harbin',
+        'steel-tank-story': 'Ordos / Changzhi',
+        'wuhan-marathon-2018': 'Wuhan',
+        'three-city-pilgrimage': 'Yichang / Guang\'an / Changsha',
+        'xiangyang-marathon': 'Xiangyang',
+        'xiamen-marathon': 'Xiamen',
+        'lanzhou-marathon': 'Lanzhou',
+        'wuhan-wuxi-marathon-notes': 'Wuxi',
+        'guiyang-marathon-climb': 'Guiyang',
+        'xian-city-wall-marathon': 'Xi\'an',
+        'west-lake-half-marathon': 'Hangzhou',
+        'ningbo-dongqian-lake-marathon': 'Ningbo',
+        'haikou-marathon': 'Haikou',
+        'dalian-trail': 'Dalian',
+        'shanghai-vertical-marathon': 'Shanghai',
+        'guilin-marathon': 'Guilin',
+        'hong-kong-marathon': 'Hong Kong',
+        'wuhan-graduation': 'Beijing'
+      };
+
+      const WECHAT_STORY_BASE = 'https://zhennanzhang.com/run50/wechat/';
+      const WECHAT_EN_STORY_BASE = 'https://zhennanzhang.com/run50/wechat-en/';
+      const WECHAT_STORY_VERSION = '?v=20260630-wechat-emphasis';
+      const WECHAT_EN_STORY_VERSION = '?v=20260706-wechat-en';
+      function mapLanguage() {
+        return document.documentElement.dataset.mapLang === 'zh' ? 'zh' : 'en';
+      }
+      function isEnglishMap() {
+        return mapLanguage() === 'en';
+      }
+      function storyHref(slug) {
+        const base = isEnglishMap() ? WECHAT_EN_STORY_BASE : WECHAT_STORY_BASE;
+        const version = isEnglishMap() ? WECHAT_EN_STORY_VERSION : WECHAT_STORY_VERSION;
+        return `${base}${slug}-modern-rail.html${version}`;
+      }
 
       const US_STATE_STORIES = {
         AK: storyHref('anchorage-marathon'),
@@ -2277,7 +2275,7 @@
         AZ: storyHref('arizona-phoenix-marathon'),
         CA: storyHref('san-francisco-marathon'),
         CO: storyHref('denver-colfax-marathon'),
-        DE: storyHref('delaware-marathon'),
+        DE: new URL('/run50/wechat-new/delaware-marathon-modern-rail.html?v=20260713', window.location.href).href,
         FL: storyHref('disney-marathon'),
         GA: storyHref('atlanta-marathon'),
         HI: storyHref('honolulu-marathon'),
@@ -2287,7 +2285,7 @@
         KY: storyHref('louisville-marathon'),
         LA: storyHref('louisiana-marathon'),
         MI: storyHref('michigan-meadows-marathon'),
-        MN: storyHref('minnesota-med-city-marathon'),
+        MN: new URL('/run50/wechat-new/minnesota-med-city-marathon-modern-rail.html?v=20260713', window.location.href).href,
         MO: storyHref('st-joseph-marathon'),
         NC: storyHref('north-carolina-oak-island-marathon'),
         ND: storyHref('fargo-marathon'),
@@ -2361,27 +2359,27 @@
       });
 
       const CHINA_CITY_DOTS = [
-        ['Harbin', 'cn_heilongjiang', 45.8038, 126.5350, storyHref('harbin-marathon')],
-        ['Ordos', 'cn_innermongolia', 39.6086, 109.7813, storyHref('steel-tank-story')],
-        ['Changzhi', 'cn_shanxi', 36.1954, 113.1163, storyHref('steel-tank-story')],
-        ['Wuhan', 'cn_hubei', 30.5928, 114.3055, storyHref('wuhan-marathon-2018')],
-        ['Yichang', 'cn_hubei', 30.6919, 111.2865, storyHref('three-city-pilgrimage')],
-        ['Xiangyang', 'cn_hubei', 32.0090, 112.1224, storyHref('xiangyang-marathon')],
-        ['Guangan', 'cn_sichuan', 30.4564, 106.6332, storyHref('three-city-pilgrimage')],
-        ['Changsha', 'cn_hunan', 28.2282, 112.9388, storyHref('three-city-pilgrimage')],
-        ['Xiamen', 'cn_fujian', 24.4798, 118.0894, storyHref('xiamen-marathon')],
-        ['Lanzhou', 'cn_gansu', 36.0611, 103.8343, storyHref('lanzhou-marathon')],
-        ['Wuxi', 'cn_jiangsu', 31.4912, 120.3119, storyHref('wuhan-wuxi-marathon-notes')],
-        ['Guiyang', 'cn_guizhou', 26.6470, 106.6302, storyHref('guiyang-marathon-climb')],
-        ['Xian', 'cn_shaanxi', 34.3416, 108.9398, storyHref('xian-city-wall-marathon')],
-        ['Hangzhou', 'cn_zhejiang', 30.2741, 120.1551, storyHref('west-lake-half-marathon')],
-        ['Ningbo', 'cn_zhejiang', 29.8683, 121.5440, storyHref('ningbo-dongqian-lake-marathon')],
-        ['Haikou', 'cn_hainan', 20.0440, 110.1999, storyHref('haikou-marathon')],
-        ['Dalian', 'cn_liaoning', 38.9140, 121.6147, storyHref('dalian-trail')],
-        ['Shanghai', 'cn_shanghai', 31.2304, 121.4737, storyHref('shanghai-vertical-marathon')],
-        ['Guilin', 'cn_guangxi', 25.2345, 110.1799, storyHref('guilin-marathon')],
-        ['Hong Kong', 'cn_hongkong', 22.3193, 114.1694, storyHref('hong-kong-marathon')],
-        ['Beijing', 'cn_beijing', 40.0799, 116.2100, storyHref('wuhan-graduation')]
+        ['哈尔滨', 'cn_heilongjiang', 45.8038, 126.5350, storyHref('harbin-marathon')],
+        ['鄂尔多斯', 'cn_innermongolia', 39.6086, 109.7813, storyHref('steel-tank-story')],
+        ['长治', 'cn_shanxi', 36.1954, 113.1163, storyHref('steel-tank-story')],
+        ['武汉', 'cn_hubei', 30.5928, 114.3055, storyHref('wuhan-marathon-2018')],
+        ['宜昌', 'cn_hubei', 30.6919, 111.2865, storyHref('three-city-pilgrimage')],
+        ['襄阳', 'cn_hubei', 32.0090, 112.1224, storyHref('xiangyang-marathon')],
+        ['广安', 'cn_sichuan', 30.4564, 106.6332, storyHref('three-city-pilgrimage')],
+        ['长沙', 'cn_hunan', 28.2282, 112.9388, storyHref('three-city-pilgrimage')],
+        ['厦门', 'cn_fujian', 24.4798, 118.0894, storyHref('xiamen-marathon')],
+        ['兰州', 'cn_gansu', 36.0611, 103.8343, storyHref('lanzhou-marathon')],
+        ['无锡', 'cn_jiangsu', 31.4912, 120.3119, storyHref('wuhan-wuxi-marathon-notes')],
+        ['贵阳', 'cn_guizhou', 26.6470, 106.6302, storyHref('guiyang-marathon-climb')],
+        ['西安', 'cn_shaanxi', 34.3416, 108.9398, storyHref('xian-city-wall-marathon')],
+        ['杭州', 'cn_zhejiang', 30.2741, 120.1551, storyHref('west-lake-half-marathon')],
+        ['宁波', 'cn_zhejiang', 29.8683, 121.5440, storyHref('ningbo-dongqian-lake-marathon')],
+        ['海口', 'cn_hainan', 20.0440, 110.1999, storyHref('haikou-marathon')],
+        ['大连', 'cn_liaoning', 38.9140, 121.6147, storyHref('dalian-trail')],
+        ['上海', 'cn_shanghai', 31.2304, 121.4737, storyHref('shanghai-vertical-marathon')],
+        ['桂林', 'cn_guangxi', 25.2345, 110.1799, storyHref('guilin-marathon')],
+        ['香港', 'cn_hongkong', 22.3193, 114.1694, storyHref('hong-kong-marathon')],
+        ['北京', 'cn_beijing', 40.0799, 116.2100, storyHref('wuhan-graduation')]
       ];
 
       const CHINA_LABEL_OFFSETS = {
@@ -2425,6 +2423,73 @@
 
       function isLightMapTheme() {
         return document.documentElement.dataset.theme === 'light';
+      }
+
+      function usStateName(abbr) {
+        return isEnglishMap() ? US_NAMES[abbr] : (US_NAMES_ZH[abbr] || US_NAMES[abbr]);
+      }
+
+      function chinaProvinceName(id) {
+        const province = CHINA_PROVINCES[id];
+        if (!province) return 'RunCN';
+        return isEnglishMap() ? (CHINA_NAMES_EN[id] || province[0]) : province[0];
+      }
+
+      function englishTitleFromSlug(slug) {
+        return (slug || '')
+          .split('-')
+          .filter(Boolean)
+          .map(word => word === 'cn' ? 'CN' : word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+      }
+
+      function fallbackStoryTitle(href) {
+        const slug = storySlugFromHref(href);
+        return isEnglishMap() ? englishTitleFromSlug(slug) : '';
+      }
+
+      function cityNameForStory(city, href) {
+        if (!isEnglishMap()) return city;
+        return CHINA_CITY_NAMES_EN_BY_SLUG[storySlugFromHref(href)] || city;
+      }
+
+      function syncEmbedMapCopy() {
+        const isEnglish = isEnglishMap();
+        const usCard = document.getElementById('run50-us-card');
+        const cnCard = document.getElementById('runcn-map');
+        const usStatus = document.getElementById('us-map-mini-status');
+        const cnStatus = document.getElementById('cn-map-mini-status');
+        [usStatus, cnStatus].forEach(status => {
+          if (status && !status.dataset.zhDefault) status.dataset.zhDefault = status.textContent;
+        });
+        if (usCard) {
+          const title = usCard.querySelector('h2');
+          const copy = usCard.querySelector('p');
+          const count = usCard.querySelector('b');
+          if (title) title.textContent = isEnglish ? 'Run50 · U.S. 50 States Map' : 'Run50 · 美国50州地图';
+          if (copy) copy.textContent = isEnglish
+            ? 'Completed states, race-city dots, and story links on one map.'
+            : '沿用 Chinese Stories 里的美国交互地图，把跑过的州、城市红点和长文入口放在同一张地图里。';
+          if (count) count.textContent = isEnglish ? '35 States' : '35 个州';
+        }
+        if (cnCard) {
+          const title = cnCard.querySelector('h2');
+          const copy = cnCard.querySelector('p');
+          const count = cnCard.querySelector('b');
+          if (title) title.textContent = isEnglish ? 'RunCN · China Marathon Map' : 'RunCN · 中国马拉松地图';
+          if (copy) copy.textContent = isEnglish
+            ? 'Completed provinces and regions, race-city dots, and RunCN story links.'
+            : '把中国跑过的省份、城市红点和 RunCN 长文入口放在同一张地图里。';
+          if (count) count.textContent = isEnglish ? '18 Regions' : '18 个地区';
+        }
+        if (usStatus) {
+          usStatus.dataset.defaultText = isEnglish ? 'Click to open the full interactive map' : usStatus.dataset.zhDefault;
+          usStatus.textContent = usStatus.dataset.defaultText;
+        }
+        if (cnStatus) {
+          cnStatus.dataset.defaultText = isEnglish ? 'Click to open the full interactive map' : cnStatus.dataset.zhDefault;
+          cnStatus.textContent = cnStatus.dataset.defaultText;
+        }
       }
 
       function addChinaContextContours(svg, ocean, lightMode) {
@@ -2479,8 +2544,8 @@
 
       function storyRowsFromLinks(links) {
         return links.map(href => {
-          const card = findStoryCard(href);
-          return { href, title: storyCardTitle(card) };
+          const card = isEnglishMap() ? null : findStoryCard(href);
+          return { href, title: fallbackStoryTitle(href) || storyCardTitle(card) };
         }).filter(Boolean);
       }
 
@@ -2495,18 +2560,20 @@
       }
 
       function describeMapStory(label, href) {
-        const card = findStoryCard(href);
-        const title = storyCardTitle(card);
-        if (!card) return label ? `${label} · Story pending below` : 'Story pending below';
-        return title ? `${label} · ${title}` : `${label} · Click to jump to the story below`;
+        const card = isEnglishMap() ? null : findStoryCard(href);
+        const title = fallbackStoryTitle(href) || storyCardTitle(card);
+        if (!card && !title) return label ? `${label} - story coming soon` : 'Story coming soon';
+        if (title) return `${label} - ${title}`;
+        return `${label} - click to open story`;
       }
 
       function describeMapStories(label, links) {
         const titles = storyRowsFromLinks(links)
-          .map(row => row.title.replace(/^Run(?:50|CN)\s*#?[^｜|]*[｜|]/, ''))
+          .map(row => row.title.replace(/^Run(?:50|CN)\s*#?[^|]*[|]/, ''))
           .filter(Boolean);
-        if (!titles.length) return `${label} · Story pending below`;
-        return `${label} · ${titles.length === 1 ? '1 story' : `${titles.length} stories`}: ${titles.slice(0, 3).join(' / ')}${titles.length > 3 ? ' / ...' : ''}`;
+        if (!titles.length) return `${label} - story coming soon`;
+        const unit = titles.length === 1 ? 'story' : 'stories';
+        return `${label} - ${titles.length} ${unit}: ${titles.slice(0, 3).join(' / ')}${titles.length > 3 ? ' / ...' : ''}`;
       }
 
       function ensureMapStoryPopover(slot) {
@@ -2529,8 +2596,9 @@
         popover.innerHTML = '';
         popover.onmouseenter = () => window.clearTimeout(slot._mapStoryHideTimer);
         popover.onmouseleave = () => hideMapStoryPopover(slot);
+        const unit = rows.length === 1 ? 'story' : 'stories';
         const heading = document.createElement('strong');
-        heading.textContent = `${label} · ${rows.length === 1 ? '1 story' : `${rows.length || 0} stories`} · click to choose`;
+        heading.textContent = `${label} - ${rows.length || 0} ${unit} - click to choose`;
         popover.appendChild(heading);
         if (rows.length) {
           rows.slice(0, 7).forEach(({ href, title }) => {
@@ -2546,7 +2614,7 @@
           });
         } else {
           const row = document.createElement('span');
-          row.textContent = 'Story pending below';
+          row.textContent = 'Story coming soon';
           popover.appendChild(row);
         }
         popover.classList.add('is-visible');
@@ -2595,7 +2663,8 @@
         const heading = document.createElement('h4');
         heading.textContent = label;
         const count = document.createElement('span');
-        count.textContent = rows.length ? (rows.length === 1 ? '1 story' : `${rows.length} stories`) : 'pending';
+        const unit = rows.length === 1 ? 'story' : 'stories';
+        count.textContent = rows.length ? `${rows.length} ${unit}` : 'Coming soon';
         heading.appendChild(count);
         tooltip.appendChild(heading);
         if (rows.length) {
@@ -2613,13 +2682,13 @@
         } else {
           const empty = document.createElement('span');
           empty.className = 'map-tooltip-empty';
-          empty.textContent = 'Story pending below';
+          empty.textContent = 'Story coming soon';
           tooltip.appendChild(empty);
         }
         tooltip.style.display = 'block';
         moveMapTooltip(slot, event);
         if (options.status) {
-          setStatus(options.status, rows.length ? describeMapStories(label, links) : `${label} · Story pending below`);
+          setStatus(options.status, rows.length ? describeMapStories(label, links) : `${label} - story coming soon`);
         }
       }
 
@@ -2712,18 +2781,27 @@
         window.setTimeout(() => card.classList.remove('map-card-flash'), 2300);
       }
 
+      function navigateToMapStory(href) {
+        if (document.documentElement.dataset.mapEmbed && window.top && window.top !== window) {
+          window.top.location.href = href;
+        } else {
+          window.location.href = href;
+        }
+      }
+
       function focusMapStory(event, href, color, status, label) {
         event.preventDefault();
         event.stopPropagation();
         const card = findStoryCard(href);
-        if (!card) {
+        if (!card || document.documentElement.dataset.mapEmbed) {
           setStatus(status, describeMapStory(label, href));
+          navigateToMapStory(href);
           return;
         }
         card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         flashStoryCard(card, color);
         const title = storyCardTitle(card);
-        setStatus(status, title ? `${label} · selected: ${title}` : `${label} · selected the story below`);
+        setStatus(status, title ? `${label} - ${title}` : `${label} - story selected`);
       }
 
       function chooseOrFocusMapStory(event, slot, links, href, color, status, label) {
@@ -2883,7 +2961,7 @@
       }
 
       function setStatus(status, text) {
-        if (status) status.textContent = text || 'Click to open the full interactive map';
+        if (status) status.textContent = text || status.dataset.defaultText || 'Click to open the full interactive map';
       }
 
       function lightenHex(hex, amount = 0.18) {
@@ -3043,7 +3121,7 @@
         Object.entries(US_PATHS).forEach(([abbr, ids]) => {
           const paths = usStateGroup(svg, ids);
           const storyLink = US_STATE_STORIES[abbr];
-          const storyLabel = `Run50 · ${US_NAMES[abbr]}`;
+          const storyLabel = `Run50 - ${usStateName(abbr)}`;
           const storyLinks = mapStoryLinks(storyLink, US_STATE_STORY_GROUPS[abbr]);
           usHoverStories.set(`state:${abbr}`, {
             label: storyLabel,
@@ -3087,7 +3165,7 @@
           const p = special ? { x: special[0], y: special[1] } : projectUs(lat, lon);
           const cityStoryLink = US_CITY_STORIES[`${abbr}:${city}`];
           const storyLink = cityStoryLink || US_STATE_STORIES[abbr];
-          const storyLabel = cityStoryLink ? `${city} · ${US_NAMES[abbr]}` : `Run50 · ${US_NAMES[abbr]}`;
+          const storyLabel = cityStoryLink ? `${city} - ${usStateName(abbr)}` : `Run50 - ${usStateName(abbr)}`;
           const storyLinks = cityStoryLink ? mapStoryLinks(storyLink) : mapStoryLinks(storyLink, US_STATE_STORY_GROUPS[abbr]);
           const cityKey = `${abbr}:${city}`;
           if (cityStoryLink) {
@@ -3216,7 +3294,7 @@
           const province = CHINA_PROVINCES[id];
           if (province) {
             const storyLink = CHINA_PROVINCE_STORIES[id];
-            const storyLabel = `RunCN · ${province[0]}`;
+            const storyLabel = `RunCN - ${chinaProvinceName(id)}`;
             const storyLinks = mapStoryLinks(storyLink, CHINA_PROVINCE_STORY_GROUPS[id]);
             cnHoverStories.set(`province:${id}`, {
               label: storyLabel,
@@ -3277,13 +3355,21 @@
           });
         }
 
+        if (isEnglishMap()) {
+          ['Mongolia', 'South Korea', 'Japan', 'Bohai Sea', 'Yellow Sea', 'East China Sea', 'South China Sea']
+            .forEach((label, index) => {
+              const span = contextLayer.querySelectorAll('text')[index]?.querySelector('tspan');
+              if (span) span.textContent = label;
+            });
+        }
+
         const glowLayer = addSvgEl(svg, 'g', { id: 'mini-china-dot-glows' });
         const ringLayer = lightMode ? null : addSvgEl(svg, 'g', { id: 'mini-china-city-rings' });
         const dotLayer = addSvgEl(svg, 'g', { id: 'mini-china-city-dots' });
         CHINA_CITY_DOTS.forEach(([city, provinceId, lat, lon, storyLink]) => {
           const p = projectChina(lat, lon);
           const province = CHINA_PROVINCES[provinceId];
-          const storyLabel = `${city} · ${province?.[0] || 'RunCN'}`;
+          const storyLabel = `${cityNameForStory(city, storyLink)} - ${chinaProvinceName(provinceId)}`;
           const storyLinks = mapStoryLinks(storyLink, CHINA_PROVINCE_STORY_GROUPS[provinceId]);
           const cityKey = `${provinceId}:${city}`;
           cnHoverStories.set(`city:${cityKey}`, {
@@ -3357,7 +3443,7 @@
         };
 
         const labelLayer = addSvgEl(svg, 'g', { id: 'mini-china-labels' });
-        Object.entries(CHINA_PROVINCES).forEach(([id, [name]]) => {
+        Object.entries(CHINA_PROVINCES).forEach(([id]) => {
           if (typeof _CN_LABELS === 'undefined' || !_CN_LABELS[id]) return;
           const [x, y, size] = _CN_LABELS[id];
           if (!size && id !== 'cn_hongkong') return;
@@ -3372,12 +3458,13 @@
           text.setAttribute('stroke-width', lightMode ? '3.5' : '3');
           text.setAttribute('stroke-linejoin', 'round');
           text.setAttribute('class', 'mini-map-label');
-          text.textContent = name;
+          text.textContent = chinaProvinceName(id);
           labelLayer.appendChild(text);
         });
       }
 
       window.repaintWechatNewMaps = () => {
+        syncEmbedMapCopy();
         paintUsMap();
         paintChinaMap();
       };
@@ -3429,7 +3516,7 @@
       function syncThemeButton() {
         const isLight = root.dataset.theme === 'light';
         button.setAttribute('aria-pressed', String(isLight));
-        button.setAttribute('aria-label', isLight ? '切换到深色模式' : 'Switch to light mode');
+        button.setAttribute('aria-label', isLight ? '切换到深色模式' : '切换到亮色模式');
         icon.textContent = isLight ? '☾' : '☀';
       }
 
@@ -3448,45 +3535,5 @@
     }());
   </script>
 
-  <script src="../../assets/zz-home-button.js?v=20260703-home" defer></script>
-  <script>
-    (() => {
-      const labelMap = {
-        '南海': 'South China Sea',
-        '蒙古': 'Mongolia',
-        '韩国': 'South Korea',
-        '日本': 'Japan',
-        '渤海': 'Bohai Sea',
-        '黄海': 'Yellow Sea',
-        '东海': 'East China Sea',
-        '黑龙江': 'Heilongjiang',
-        '湖北': 'Hubei',
-        '四川': 'Sichuan',
-        '内蒙古': 'Inner Mongolia',
-        '山西': 'Shanxi',
-        '湖南': 'Hunan',
-        '福建': 'Fujian',
-        '甘肃': 'Gansu',
-        '江苏': 'Jiangsu',
-        '贵州': 'Guizhou',
-        '陕西': 'Shaanxi',
-        '浙江': 'Zhejiang',
-        '海南': 'Hainan',
-        '辽宁': 'Liaoning',
-        '广西': 'Guangxi',
-        '香港': 'Hong Kong',
-        '北京': 'Beijing'
-      };
-      function localizeMiniChinaMap() {
-        document.querySelectorAll('#runcn-china-map-mini text').forEach((text) => {
-          const value = (text.textContent || '').trim();
-          if (labelMap[value]) text.textContent = labelMap[value];
-          else if (/[一-鿿]/.test(value)) text.textContent = '';
-        });
-      }
-      localizeMiniChinaMap();
-      const target = document.getElementById('runcn-china-map-mini');
-      if (target) new MutationObserver(localizeMiniChinaMap).observe(target, { childList: true, subtree: true });
-    })();
-  </script>
+  <script src="/assets/zz-home-button.js?v=20260703-home" defer></script>
 </body></html>
