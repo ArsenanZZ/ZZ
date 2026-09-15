@@ -1806,6 +1806,18 @@
       width: auto;
     }
   }
+
+  .list-item img[src*="/home-running-16x9/"] { height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
+  /* Preserve the complete 16:9 running artwork, including its title and border. */
+  .feed-grid .card.home-running-story > img {
+    position: static;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
 </style>
 </head>
 <body>
@@ -1856,7 +1868,7 @@
   <section class="lead-grid">
     <div class="hero-carousel" aria-label="Featured story carousel">
       <a class="slide active" href="https://zhennanzhang.com/run50/wechat-en/miami-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 facebook stories">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-miami.png?v=20260702-en-index-v1" alt="Miami marathon story cover">
+        <img src="/assets/home-running-16x9/miami-marathon.webp" alt="Miami marathon story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">50</span> Run50 · Miami</span>
           <h1>Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi&#x27;s backyard</h1>
@@ -1864,7 +1876,7 @@
         </span>
       </a>
       <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/louisville-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-louisville.png?v=20260702-en-index-v1" alt="Louisville Marathon English story cover">
+        <img src="/assets/home-running-16x9/louisville-marathon.webp" alt="Louisville Marathon English story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">KY</span> Run50 · Louisville</span>
           <h1>Kentucky gave me my first marathon in North America</h1>
@@ -1872,7 +1884,7 @@
         </span>
       </a>
       <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/south-carolina-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 facebook stories">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-south-carolina.png?v=20260702-en-index-v1" alt="South Carolina marathon story cover">
+        <img src="/assets/home-running-16x9/south-carolina-marathon.webp" alt="South Carolina marathon story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">SC</span> Run50 · Greer</span>
           <h1>Too Slow for Boston gave me a 26.2-mile run with the stubborn mule medal</h1>
@@ -1880,7 +1892,7 @@
         </span>
       </a>
       <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/little-rock-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 facebook stories">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-little-rock.png?v=20260702-en-index-v1" alt="Little Rock marathon story cover">
+        <img src="/assets/home-running-16x9/little-rock-marathon.webp" alt="Little Rock marathon story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">AR</span> Run50 · Little Rock</span>
           <h1>Little Rock gave me a 26.2-mile run with the massive dinosaur medal</h1>
@@ -1896,7 +1908,7 @@
         </span>
       </a>
       <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/pisa-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="runworld facebook stories trip">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-pisa.jpg?v=20260628-en-abstract" alt="Pisa marathon story cover">
+        <img src="/assets/home-running-16x9/pisa-marathon.webp" alt="Pisa marathon story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">IT</span> RunWorld · Pisa</span>
           <h1>Pisa turned a marathon into a Tuscan art-school road trip</h1>
@@ -1904,7 +1916,7 @@
         </span>
       </a>
       <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/mexico-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="runworld facebook stories trip">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-mexico.jpg?v=20260628-en-abstract" alt="Mexico City marathon story cover">
+        <img src="/assets/home-running-16x9/mexico-marathon.webp" alt="Mexico City marathon story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">MX</span> RunWorld · Mexico City</span>
           <h1>Mexico City gave me a 26.2-mile high-altitude plateau challenge</h1>
@@ -1912,7 +1924,7 @@
         </span>
       </a>
       <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/cleveland-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-cleveland.png?v=20260702-en-index-v1" alt="Cleveland Marathon English story cover">
+        <img src="/assets/home-running-16x9/cleveland-marathon.webp" alt="Cleveland Marathon English story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">OH</span> Run50 · Cleveland</span>
           <h1>Cleveland gave me a cold 26.2-mile run from night into daylight</h1>
@@ -1920,7 +1932,7 @@
         </span>
       </a>
       <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/new-york-city-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-new-york.png?v=20260702-en-index-v1" alt="New York City Marathon English story cover">
+        <img src="/assets/home-running-16x9/new-york-city-marathon.webp" alt="New York City Marathon English story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">NY</span> Run50 · New York City</span>
           <h1>New York turned 26.2 miles into one enormous five-borough street party</h1>
@@ -1928,7 +1940,7 @@
         </span>
       </a>
       <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/honolulu-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-honolulu.png?v=20260702-en-index-v1" alt="Honolulu Marathon English story cover">
+        <img src="/assets/home-running-16x9/honolulu-marathon.webp" alt="Honolulu Marathon English story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">HI</span> Run50 · Honolulu</span>
           <h1>Honolulu made a first marathon feel like an all-day island celebration</h1>
@@ -1936,7 +1948,7 @@
         </span>
       </a>
       <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/denver-colfax-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-denver.png?v=20260702-en-index-v1" alt="Denver Marathon English story cover">
+        <img src="/assets/home-running-16x9/denver-colfax-marathon.webp" alt="Denver Marathon English story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">CO</span> Run50 · Denver</span>
           <h1>Denver gave me 26.2 Mile High miles, stadium grass and mountain light</h1>
@@ -1944,7 +1956,7 @@
         </span>
       </a>
       <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/anchorage-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-anchorage.png?v=20260702-en-index-v1" alt="Anchorage Marathon English story cover">
+        <img src="/assets/home-running-16x9/anchorage-marathon.webp" alt="Anchorage Marathon English story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">AK</span> Run50 · Anchorage</span>
           <h1>Alaska had no aurora, but Anchorage still gave me a wild 26.2 miles</h1>
@@ -1952,7 +1964,7 @@
         </span>
       </a>
       <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/san-francisco-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-san-francisco.png?v=20260702-en-index-v1" alt="San Francisco Marathon English story cover">
+        <img src="/assets/home-running-16x9/san-francisco-marathon.webp" alt="San Francisco Marathon English story cover">
         <span class="slide-content">
           <span class="source"><span class="source-logo">CA</span> Run50 · San Francisco</span>
           <h1>San Francisco turned 26.2 miles into fog, bridge wind, hills and bay light</h1>
@@ -2216,7 +2228,7 @@
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/little-rock-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-little-rock.png?v=20260702-en-index-v1" alt="Little Rock marathon cover">
+      <img src="/assets/home-running-16x9/little-rock-marathon.webp" alt="Little Rock marathon cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">AR</span> Run50 · Little Rock</span>
         <h3>Little Rock gave me a 26.2-mile run with the massive dinosaur medal</h3>
@@ -2234,7 +2246,7 @@
     </a>
 
     <a class="card span-6 overlay-card" href="https://zhennanzhang.com/run50/wechat-en/pisa-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runworld facebook stories trip">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-pisa.jpg?v=20260628-en-abstract" alt="Pisa marathon cover">
+      <img src="/assets/home-running-16x9/pisa-marathon.webp" alt="Pisa marathon cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">IT</span> RunWorld · Pisa</span>
         <h3>Pisa turned a marathon into a Tuscan art-school road trip</h3>
@@ -2259,7 +2271,7 @@
     </a>
 
     <a class="card span-4 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/louisville-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-louisville.png?v=20260702-en-index-v1" alt="Louisville Marathon English story cover">
+      <img src="/assets/home-running-16x9/louisville-marathon.webp" alt="Louisville Marathon English story cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">KY</span> Run50 · Louisville</span>
         <h3>Kentucky gave me my first marathon in North America</h3>
@@ -2267,7 +2279,7 @@
     </a>
 
     <a class="card span-4 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/cleveland-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-cleveland.png?v=20260702-en-index-v1" alt="Cleveland Marathon English story cover">
+      <img src="/assets/home-running-16x9/cleveland-marathon.webp" alt="Cleveland Marathon English story cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">OH</span> Run50 · Cleveland</span>
         <h3>Cleveland gave me a cold 26.2-mile run from night into daylight</h3>
@@ -2275,7 +2287,7 @@
     </a>
 
     <a class="card span-4 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/new-york-city-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-new-york.png?v=20260702-en-index-v1" alt="New York City Marathon English story cover">
+      <img src="/assets/home-running-16x9/new-york-city-marathon.webp" alt="New York City Marathon English story cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">NY</span> Run50 · New York City</span>
         <h3>New York turned 26.2 miles into one enormous five-borough street party</h3>
@@ -2283,7 +2295,7 @@
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/san-francisco-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-san-francisco.png?v=20260702-en-index-v1" alt="San Francisco Marathon English story cover">
+      <img src="/assets/home-running-16x9/san-francisco-marathon.webp" alt="San Francisco Marathon English story cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">CA</span> Run50 · San Francisco</span>
         <h3>San Francisco turned 26.2 miles into fog, bridge wind, hills and bay light</h3>
@@ -2291,7 +2303,7 @@
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/honolulu-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-honolulu.png?v=20260702-en-index-v1" alt="Honolulu Marathon English story cover">
+      <img src="/assets/home-running-16x9/honolulu-marathon.webp" alt="Honolulu Marathon English story cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">HI</span> Run50 · Honolulu</span>
         <h3>Honolulu made a first marathon feel like an all-day island celebration</h3>
@@ -2299,7 +2311,7 @@
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/denver-colfax-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-denver.png?v=20260702-en-index-v1" alt="Denver Marathon English story cover">
+      <img src="/assets/home-running-16x9/denver-colfax-marathon.webp" alt="Denver Marathon English story cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">CO</span> Run50 · Denver</span>
         <h3>Denver gave me 26.2 Mile High miles, stadium grass and mountain light</h3>
@@ -2307,7 +2319,7 @@
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/anchorage-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-anchorage.png?v=20260702-en-index-v1" alt="Anchorage Marathon English story cover">
+      <img src="/assets/home-running-16x9/anchorage-marathon.webp" alt="Anchorage Marathon English story cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">AK</span> Run50 · Anchorage</span>
         <h3>Alaska had no aurora, but Anchorage still gave me a wild 26.2 miles</h3>
@@ -2333,15 +2345,15 @@
     <div class="card span-5 list-module" data-card data-tags="run50 stories">
       <div class="widget-title"><span>Run50 Latest</span><i class="bi bi-list-ul"></i></div>
       <a class="list-item" href="https://zhennanzhang.com/run50/wechat-en/san-antonio-marathon-modern-rail.html?v=20260706-wechat-en">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-san-antonio.png?v=20260702-en-index-v1" alt="San Antonio marathon cover">
+        <img src="/assets/home-running-16x9/san-antonio-marathon.webp" alt="San Antonio marathon cover">
         <span><b>San Antonio turned a Spurs trip into my Texas marathon story</b><span>San Antonio · December 2023</span></span>
       </a>
       <a class="list-item" href="https://zhennanzhang.com/run50/wechat-en/west-virginia-marathon-modern-rail.html?v=20260706-wechat-en">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-west-virginia.png?v=20260702-en-index-v1" alt="West Virginia marathon cover">
+        <img src="/assets/home-running-16x9/west-virginia-marathon.webp" alt="West Virginia marathon cover">
         <span><b>West Virginia gave me a touchdown stadium finish to break 4 hours</b><span>Huntington · November 2023</span></span>
       </a>
       <a class="list-item" href="https://zhennanzhang.com/run50/wechat-en/nashville-marathon-modern-rail.html?v=20260706-wechat-en">
-        <img src="https://zhennanzhang.com/assets/cover-medal-en-index-nashville.png?v=20260702-en-index-v1" alt="Nashville marathon cover">
+        <img src="/assets/home-running-16x9/nashville-marathon.webp" alt="Nashville marathon cover">
         <span><b>Scorching October sun gave me my slowest marathon of the year in Music City</b><span>Nashville · October 2023</span></span>
       </a>
     </div>
@@ -2378,7 +2390,7 @@
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/san-antonio-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-san-antonio.png?v=20260702-en-index-v1" alt="San Antonio marathon cover">
+      <img src="/assets/home-running-16x9/san-antonio-marathon.webp" alt="San Antonio marathon cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">50</span> Run50 · San Antonio</span>
         <h3>San Antonio turned a Spurs trip into my Texas marathon story</h3>
@@ -2387,7 +2399,7 @@
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/west-virginia-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-west-virginia.png?v=20260702-en-index-v1" alt="West Virginia marathon cover">
+      <img src="/assets/home-running-16x9/west-virginia-marathon.webp" alt="West Virginia marathon cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">WV</span> Run50 · Huntington</span>
         <h3>West Virginia gave me a touchdown stadium finish to break 4 hours</h3>
@@ -2396,7 +2408,7 @@
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/nashville-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-nashville.png?v=20260702-en-index-v1" alt="Nashville marathon cover">
+      <img src="/assets/home-running-16x9/nashville-marathon.webp" alt="Nashville marathon cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">TN</span> Run50 · Nashville</span>
         <h3>Scorching October sun gave me my slowest marathon of the year in Music City</h3>
@@ -2405,7 +2417,7 @@
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/mexico-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runworld facebook stories trip">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-mexico.jpg?v=20260628-en-abstract" alt="Mexico City marathon cover">
+      <img src="/assets/home-running-16x9/mexico-marathon.webp" alt="Mexico City marathon cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">MX</span> RunWorld · Mexico City</span>
         <h3>Mexico City gave me a 26.2-mile high-altitude plateau challenge</h3>
@@ -2416,7 +2428,7 @@
     <div class="section-label secondary-label" data-more-label><span>More modules</span><span>English Stories · Facebook · More</span></div>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/south-carolina-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-south-carolina.png?v=20260702-en-index-v1" alt="South Carolina marathon cover">
+      <img src="/assets/home-running-16x9/south-carolina-marathon.webp" alt="South Carolina marathon cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">SC</span> Run50 · Greer</span>
         <h3>Too Slow for Boston gave me a 26.2-mile run with the stubborn mule medal</h3>
@@ -2425,7 +2437,7 @@
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/miami-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-miami.png?v=20260702-en-index-v1" alt="Miami marathon cover">
+      <img src="/assets/home-running-16x9/miami-marathon.webp" alt="Miami marathon cover">
       <span class="card-copy">
         <span class="story-meta"><span class="source-logo">50</span> Run50 · Miami</span>
         <h3>Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi&#x27;s backyard</h3>
@@ -2449,117 +2461,117 @@
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/indianapolis-monumental-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-indianapolis.png?v=20260702-en-index-v1" alt="Indianapolis marathon cover">
+      <img src="/assets/home-running-16x9/indianapolis-monumental-marathon.webp" alt="Indianapolis marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">IN</span> Run50 · Indianapolis</span><h3>Indianapolis turned a rainy one-day marathon into a way back to running</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/atlanta-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-atlanta.png?v=20260702-en-index-v1" alt="Atlanta marathon cover">
+      <img src="/assets/home-running-16x9/atlanta-marathon.webp" alt="Atlanta marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">GA</span> Run50 · Atlanta</span><h3>Atlanta made 26.2 miles feel like an Olympic city walk</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/kentucky-derby-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-kentucky-derby.png?v=20260702-en-index-v1" alt="Kentucky Derby marathon cover">
+      <img src="/assets/home-running-16x9/kentucky-derby-marathon.webp" alt="Kentucky Derby marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Louisville</span><h3>Louisville turned my fourth Derby Marathon into a hometown sub-four</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/cincinnati-flying-pig-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-cincinnati.png?v=20260702-en-index-v1" alt="Cincinnati Flying Pig cover">
+      <img src="/assets/home-running-16x9/cincinnati-flying-pig-marathon.webp" alt="Cincinnati Flying Pig cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">OH</span> Run50 · Cincinnati</span><h3>Cincinnati&#x27;s Flying Pig turned into a Flying Fish in the rain</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/st-joseph-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-st-joseph.png?v=20260702-en-index-v1" alt="St. Joseph marathon cover">
+      <img src="/assets/home-running-16x9/st-joseph-marathon.webp" alt="St. Joseph marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">St</span> Run50 · St. Joseph</span><h3>St. Joseph made Missouri feel like a first-edition marathon road trip</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/disney-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories trip">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-disney.png?v=20260702-en-index-v1" alt="Disney Marathon cover">
+      <img src="/assets/home-running-16x9/disney-marathon.webp" alt="Disney Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Key West / Orlando</span><h3>A Florida week from Key West beaches to Disney Marathon</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/north-carolina-oak-island-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-oak-island.png?v=20260702-en-index-v1" alt="Oak Island marathon cover">
+      <img src="/assets/home-running-16x9/north-carolina-oak-island-marathon.webp" alt="Oak Island marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Oak Island</span><h3>Oak Island sent Run50 toward the Atlantic with a medal bigger than my face</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/green-bay-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-green-bay-wechat.png?v=20260706-wechat-en" alt="Green Bay marathon cover">
+      <img src="/assets/home-running-16x9/green-bay-marathon.webp" alt="Green Bay marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">WI</span> Run50 · Green Bay</span><h3>The Green Bay Marathon ended inside football&#x27;s small-town cathedral</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/michigan-meadows-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-michigan.png?v=20260702-en-index-v1" alt="Michigan Meadows marathon cover">
+      <img src="/assets/home-running-16x9/michigan-meadows-marathon.webp" alt="Michigan Meadows marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">MI</span> Run50 · Grand Rapids</span><h3>Michigan turned six meadow loops into a trial by fire</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/new-hampshire-clarence-demar-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-new-hampshire.png?v=20260702-en-index-v1" alt="New Hampshire marathon cover">
+      <img src="/assets/home-running-16x9/new-hampshire-clarence-demar-marathon.webp" alt="New Hampshire marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Keene</span><h3>Run50 State #22 | New Hampshire: Clarence DeMar Marathon</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/louisiana-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-louisiana.png?v=20260702-en-index-v1" alt="Louisiana Marathon cover">
+      <img src="/assets/home-running-16x9/louisiana-marathon.webp" alt="Louisiana Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Baton Rouge</span><h3>Run50 State #23 | Louisiana Marathon: Baton Rouge and the French South</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/blue-ridge-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-blue-ridge.png?v=20260702-en-index-v1" alt="Blue Ridge Marathon cover">
+      <img src="/assets/home-running-16x9/blue-ridge-marathon.webp" alt="Blue Ridge Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Roanoke</span><h3>Run50 State #24 | Virginia: Blue Ridge Marathon</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/fargo-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-fargo.png?v=20260702-en-index-v1" alt="Fargo Marathon cover">
+      <img src="/assets/home-running-16x9/fargo-marathon.webp" alt="Fargo Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Fargo</span><h3>Run50 State #25 | North Dakota: Fargo Marathon</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/hell-on-gravel-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-hell-on-gravel.png?v=20260702-en-index-v2" alt="Hell on Gravel Marathon cover">
+      <img src="/assets/home-running-16x9/hell-on-gravel-marathon.webp" alt="Hell on Gravel Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">El</span> Run50 · El Dorado</span><h3>Run50 State #26 | Kansas: Hell on Gravel Marathon</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/mad-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-mad-marathon.png?v=20260702-en-index-v1" alt="Mad Marathon cover">
+      <img src="/assets/home-running-16x9/mad-marathon.webp" alt="Mad Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Warren</span><h3>Run50 State #27 | Vermont: Mad Marathon</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/arizona-phoenix-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-index-arizona-phoenix.png?v=20260702-en-index-v3" alt="Arizona Phoenix Marathon cover">
+      <img src="/assets/home-running-16x9/arizona-phoenix-marathon.webp" alt="Arizona Phoenix Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Buckeye / Phoenix</span><h3>Arizona turned a cold desert runway race into my first sub-four of 2026</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/steel-tank-story-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-steel-tank-story.jpg?v=20260628-en-runcn-covers-v1" alt="Steel tank story cover">
+      <img src="/assets/home-running-16x9/steel-tank-story.webp" alt="Steel tank story cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">CN</span> RunCN · Harbin / Wuhan</span><h3>The steel tank story: how a heavy football kid found marathons</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/xiamen-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-xiamen-marathon.jpg?v=20260628-en-runcn-covers-v1" alt="Xiamen Marathon cover">
+      <img src="/assets/home-running-16x9/xiamen-marathon.webp" alt="Xiamen Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">CN</span> RunCN · Xiamen</span><h3>Xiamen gave my 2018 season a rain-soaked, unforgettable opening</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/lanzhou-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-lanzhou-marathon.jpg?v=20260628-en-runcn-covers-v1" alt="Lanzhou Marathon cover">
+      <img src="/assets/home-running-16x9/lanzhou-marathon.webp" alt="Lanzhou Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">CN</span> RunCN · Lanzhou</span><h3>Lanzhou Strong: a marathon at the edge of the Yellow River and the Hexi dream</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/guiyang-marathon-climb-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-guiyang-marathon-climb.jpg?v=20260628-en-runcn-covers-v1" alt="Guiyang Marathon cover">
+      <img src="/assets/home-running-16x9/guiyang-marathon-climb.webp" alt="Guiyang Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">CN</span> RunCN · Guiyang</span><h3>Guiyang turned a brutal climb into a journey through Yelang, Wang Yangming, and Fanjing Mountain</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/harbin-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories">
-      <img src="https://zhennanzhang.com/assets/cover-medal-fb-harbin-marathon.jpg?v=20260628-en-runcn-20-22-v1" alt="Harbin Marathon cover">
+      <img src="/assets/home-running-16x9/harbin-marathon.webp" alt="Harbin Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">CN</span> RunCN · Harbin</span><h3>Harbin Marathon brought me back to the black soil and Songhua River</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/singapore-sundown-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runworld facebook stories trip">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-singapore-sundown-marathon.jpg?v=20260628-en-abstract" alt="Singapore Sundown Marathon cover">
+      <img src="/assets/home-running-16x9/singapore-sundown-marathon.webp" alt="Singapore Sundown Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">SG</span> RunWorld · Singapore</span><h3>Singapore brought me back to a ten-year promise and a midnight marathon</h3></span>
     </a>
 
     <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/bangkok-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runworld facebook stories trip">
-      <img src="https://zhennanzhang.com/assets/cover-medal-en-bangkok-marathon.jpg?v=20260628-en-abstract" alt="Bangkok Marathon cover">
+      <img src="/assets/home-running-16x9/bangkok-marathon.webp" alt="Bangkok Marathon cover">
       <span class="card-copy"><span class="story-meta"><span class="source-logo">TH</span> RunWorld · Bangkok</span><h3>Bangkok kept moving from temple light to marathon night</h3></span>
     </a>
 
@@ -2738,8 +2750,80 @@
       || /^(localhost|127\.0\.0\.1)$/i.test(location.hostname);
   }
 
+  // Homepage-only cover overrides; story pages keep their own artwork.
+  const HOME_RUNNING_COVERS = {
+  "kentucky-derby-marathon-2021": "/assets/home-running-16x9/kentucky-derby-marathon-2021.webp",
+  "kentucky-derby-marathon-2025": "/assets/home-running-16x9/kentucky-derby-marathon-2025.webp",
+  "kentucky-derby-marathon": "/assets/home-running-16x9/kentucky-derby-marathon.webp",
+  "louisville-marathon": "/assets/home-running-16x9/louisville-marathon.webp",
+  "cincinnati-flying-pig-marathon": "/assets/home-running-16x9/cincinnati-flying-pig-marathon.webp",
+  "cleveland-marathon": "/assets/home-running-16x9/cleveland-marathon.webp",
+  "new-york-city-marathon": "/assets/home-running-16x9/new-york-city-marathon.webp",
+  "san-francisco-marathon": "/assets/home-running-16x9/san-francisco-marathon.webp",
+  "indianapolis-monumental-marathon": "/assets/home-running-16x9/indianapolis-monumental-marathon.webp",
+  "honolulu-marathon": "/assets/home-running-16x9/honolulu-marathon.webp",
+  "atlanta-marathon": "/assets/home-running-16x9/atlanta-marathon.webp",
+  "denver-colfax-marathon": "/assets/home-running-16x9/denver-colfax-marathon.webp",
+  "anchorage-marathon": "/assets/home-running-16x9/anchorage-marathon.webp",
+  "chicago-marathon": "/assets/home-running-16x9/chicago-marathon.webp",
+  "miami-marathon": "/assets/home-running-16x9/miami-marathon.webp",
+  "disney-marathon": "/assets/home-running-16x9/disney-marathon.webp",
+  "little-rock-marathon": "/assets/home-running-16x9/little-rock-marathon.webp",
+  "green-bay-marathon": "/assets/home-running-16x9/green-bay-marathon.webp",
+  "louisiana-marathon": "/assets/home-running-16x9/louisiana-marathon.webp",
+  "louisville-marathon-2024": "/assets/home-running-16x9/louisville-marathon-2024.webp",
+  "blue-ridge-marathon": "/assets/home-running-16x9/blue-ridge-marathon.webp",
+  "fargo-marathon": "/assets/home-running-16x9/fargo-marathon.webp",
+  "mad-marathon": "/assets/home-running-16x9/mad-marathon.webp",
+  "hell-on-gravel-marathon": "/assets/home-running-16x9/hell-on-gravel-marathon.webp",
+  "michigan-meadows-marathon": "/assets/home-running-16x9/michigan-meadows-marathon.webp",
+  "nashville-marathon": "/assets/home-running-16x9/nashville-marathon.webp",
+  "new-hampshire-clarence-demar-marathon": "/assets/home-running-16x9/new-hampshire-clarence-demar-marathon.webp",
+  "arizona-phoenix-marathon": "/assets/home-running-16x9/arizona-phoenix-marathon.webp",
+  "north-carolina-oak-island-marathon": "/assets/home-running-16x9/north-carolina-oak-island-marathon.webp",
+  "pittsburgh-marathon": "/assets/home-running-16x9/pittsburgh-marathon.webp",
+  "rocket-city-marathon": "/assets/home-running-16x9/rocket-city-marathon.webp",
+  "san-antonio-marathon": "/assets/home-running-16x9/san-antonio-marathon.webp",
+  "south-carolina-marathon": "/assets/home-running-16x9/south-carolina-marathon.webp",
+  "st-joseph-marathon": "/assets/home-running-16x9/st-joseph-marathon.webp",
+  "west-virginia-marathon": "/assets/home-running-16x9/west-virginia-marathon.webp",
+  "hatfield-mccoy-marathon": "/assets/home-running-16x9/hatfield-mccoy-marathon.webp",
+  "steel-tank-story": "/assets/home-running-16x9/steel-tank-story.webp",
+  "three-city-pilgrimage": "/assets/home-running-16x9/three-city-pilgrimage.webp",
+  "xiamen-marathon": "/assets/home-running-16x9/xiamen-marathon.webp",
+  "wuhan-wuxi-marathon-notes": "/assets/home-running-16x9/wuhan-wuxi-marathon-notes.webp",
+  "wuhan-marathon-2018": "/assets/home-running-16x9/wuhan-marathon-2018.webp",
+  "xian-city-wall-marathon": "/assets/home-running-16x9/xian-city-wall-marathon.webp",
+  "lanzhou-marathon": "/assets/home-running-16x9/lanzhou-marathon.webp",
+  "guiyang-marathon-climb": "/assets/home-running-16x9/guiyang-marathon-climb.webp",
+  "haikou-marathon": "/assets/home-running-16x9/haikou-marathon.webp",
+  "wuhan-han-marathon": "/assets/home-running-16x9/wuhan-han-marathon.webp",
+  "dalian-trail": "/assets/home-running-16x9/dalian-trail.webp",
+  "wuhan-graduation": "/assets/home-running-16x9/wuhan-graduation.webp",
+  "harbin-marathon": "/assets/home-running-16x9/harbin-marathon.webp",
+  "west-lake-half-marathon": "/assets/home-running-16x9/west-lake-half-marathon.webp",
+  "singapore-sundown-marathon": "/assets/home-running-16x9/singapore-sundown-marathon.webp",
+  "bangkok-marathon": "/assets/home-running-16x9/bangkok-marathon.webp",
+  "mexico-marathon": "/assets/home-running-16x9/mexico-marathon.webp",
+  "pisa-marathon": "/assets/home-running-16x9/pisa-marathon.webp"
+};
+  function homeRunningCover(href, fallback) {
+    try {
+      const path = new URL(href, location.href).pathname;
+      if (!path.startsWith('/run50/')) return fallback;
+      const slug = path.split('/').pop().replace(/-modern-rail\.html$/, '').replace(/\.html$/, '');
+      return HOME_RUNNING_COVERS[slug] || fallback;
+    } catch (error) { return fallback; }
+  }
+
   function refreshCardList() {
     cards = Array.from(document.querySelectorAll('.feed-grid [data-card]'));
+    cards.filter(card => isRunningStoryImageCard(card) && /\/run50\/(?:wechat-en|facebook|stories\/english)\/[^/]+\.html/.test(card.href)).forEach(card => {
+      card.classList.add('home-running-story');
+      const image = card.querySelector(':scope > img');
+      const cover = homeRunningCover(card.href, image.getAttribute('src'));
+      if (image.getAttribute('src') !== cover) image.src = cover;
+    });
   }
 
   function storyVariantKey(value) {
@@ -3218,7 +3302,7 @@
     const description = card.querySelector('.desc')?.textContent.trim() || '';
     return {
       href: absoluteFrom(link, source.path),
-      img: absoluteFrom(image.getAttribute('src'), source.path),
+      img: homeRunningCover(absoluteFrom(link, source.path), absoluteFrom(image.getAttribute('src'), source.path)),
       title,
       source: `${storyNumber} · ${meta}`,
       logo: logoFromMeta(meta, series),
@@ -3360,6 +3444,11 @@
     const image = slides[activeSlide]?.querySelector('img');
     if (!image) return;
     const apply = () => {
+      if (/\/run50\/(?:wechat-en|facebook|stories\/english)\/[^/]+\.html/.test(slides[activeSlide]?.getAttribute('href') || '')) {
+        hero.style.aspectRatio = '16 / 9';
+        syncLeadSideHeight();
+        return;
+      }
       if (window.matchMedia('(max-width: 760px)').matches) {
         hero.style.aspectRatio = '';
         syncLeadSideHeight();
@@ -3503,7 +3592,7 @@
       const span = isNarrow ? 1 : placement.span;
       card.classList.add(`layout-span-${span}`);
       card.style.setProperty('grid-column', isNarrow ? '1 / -1' : `${placement.start} / span ${span}`, 'important');
-      if (!isNarrow && span >= 2 && canUseWideFeedSlot(card)) {
+      if (!isNarrow && span >= 2 && canUseWideFeedSlot(card) && !card.classList.contains('home-running-story')) {
         card.classList.add('overlay-card', 'auto-overlay');
       }
     });
