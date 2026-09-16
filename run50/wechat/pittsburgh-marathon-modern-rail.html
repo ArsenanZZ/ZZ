@@ -714,5 +714,38 @@
 </section>
 </main>
   <script src="../../assets/zz-home-button.js?v=20260703-home" defer></script>
+<script>
+// Keep copyable text neutral: WeChat does not preserve the website theme CSS.
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    var main = document.querySelector('main');
+    var originalStyles = new WeakMap();
+    var nodes = [main].concat(Array.from(main.querySelectorAll('*')));
+    nodes.forEach(function (node) { originalStyles.set(node, node.getAttribute('style')); });
+    function syncCopyColors() {
+      var dark = document.documentElement.dataset.theme === 'dark';
+      nodes.forEach(function (node) {
+        var original = originalStyles.get(node);
+        if (original === null) node.removeAttribute('style');
+        else node.setAttribute('style', original);
+      });
+      // Read first, write second, so inherited colors are measured consistently.
+      var colors = nodes.map(function (node) {
+        var rgb = getComputedStyle(node).color.match(/[\d.]+/g);
+        var bright = rgb && Number(rgb[0]) > 220 && Number(rgb[1]) > 220 && Number(rgb[2]) > 220;
+        return dark || bright ? '#ffffff' : '#333333';
+      });
+      nodes.forEach(function (node, index) {
+        node.style.setProperty('color', colors[index], 'important');
+        node.style.setProperty('text-shadow', 'none', 'important');
+        node.style.setProperty('box-shadow', 'none', 'important');
+      });
+      main.style.setProperty('background-color', dark ? '#181818' : '#ffffff', 'important');
+    }
+    syncCopyColors();
+    new MutationObserver(syncCopyColors).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  });
+})();
+</script>
 </body>
 </html>
