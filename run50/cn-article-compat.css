@@ -1,0 +1,18 @@
+/* Shared by the articles linked from /CN/. Keep clipboard text neutral. */
+.cn-article [data-cn-content], .cn-article [data-cn-content] * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+.cn-article [data-cn-content] img { border: 0 !important; max-width: 100%; height: auto; }
+html[data-theme="dark"] .cn-article [data-cn-content],
+html[data-theme="dark"] .cn-article [data-cn-content] * { color: #fff !important; }
+.cn-copy-tools { position: fixed; top: 60px; right: 12px; z-index: 10000; display: flex; gap: 6px; align-items: center; font: 13px/1.4 sans-serif; }
+.cn-copy-tools a, .cn-copy-tools button { padding: 8px 12px; border: 1px solid #888; border-radius: 6px; background: #fff; color: #222 !important; cursor: pointer; text-decoration: none; }
+.cn-copy-status { background: #fff; color: #222; max-width: 210px; }
+html[data-cn-copy="true"] .chapter-rail,
+html[data-cn-copy="true"] .reading-progress { display: none !important; }
+html[data-cn-copy="true"] .story-layout,
+html[data-cn-copy="true"] .hero,
+html[data-cn-copy="true"] .diptych { display: block !important; }
+html[data-cn-copy="true"] .page-shell { max-width: 713px; }

@@ -34,7 +34,7 @@
     }
     html body.pittsburgh-article main,
     html body.pittsburgh-article main * {
-      box-shadow: none !important;
+      box-shadow: none;
       text-shadow: none !important;
       filter: none !important;
     }
@@ -64,13 +64,13 @@
       text-shadow: none !important;
     }
   </style>
+<link rel="stylesheet" href="/run50/cn-article-compat.css?v=20260916-cn1">
 </head>
-<body class="pittsburgh-article" style="margin:0; padding:0; background:#ffffff;">
-<a class="article-copy-link" href="?wechat=1">公众号复制版</a>
+<body class="pittsburgh-article cn-article" style="margin:0; padding:0; background:#ffffff;">
 <button class="article-theme-toggle" type="button" aria-label="Toggle theme">Light</button>
   <script src="../wechat-article-theme.js?v=20260706-us-current-outline"></script>
 
-<main style="max-width: 677px; margin: 0 auto; padding: 28px 18px 42px; box-sizing: border-box; color: #26343f;">
+<main data-cn-content style="max-width: 677px; margin: 0 auto; padding: 28px 18px 42px; box-sizing: border-box; color: #26343f;">
 <section style="margin: 0 0 22px; padding-bottom: 18px; border-bottom: 4px solid #a33a2b;">
   <p style="margin: 0 0 8px; font-size: 12px; line-height: 1.4; letter-spacing: 2px; color: #a33a2b; font-weight: 800;">RUN50 DISPATCH · PENNSYLVANIA</p>
   <p style="margin: 0; font-size: 20px; line-height: 1.55; font-weight: 900; color: #17212b; letter-spacing: 0;">第19州 · 宾夕法尼亚 · Pittsburgh Marathon</p>
@@ -96,10 +96,10 @@
   <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid #b98735; font-size: 12px; line-height: 1.65; letter-spacing: 0.2px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">奖牌质感封面 · Pennsylvania</p>
 </section>
 <section class="article-map-panel" aria-label="Article map">
-  <section style="margin:0; padding:0; box-shadow:none; border:0;"><img src="https://zhennanzhang.com/assets/pittsburgh-wechat-maps/pa-dark.png" alt="Run50 Pennsylvania map — dark; 19 race cities shown in red" width="1600" height="919" style="display:block; width:100%; height:auto; margin:0; border:0; box-shadow:none; border-radius:6px;">
+  <section style="margin:0; padding:0; box-shadow: none; border:0;"><img src="https://zhennanzhang.com/assets/pittsburgh-wechat-maps/pa-dark.png" alt="Run50 Pennsylvania map — dark; 19 race cities shown in red" width="1600" height="919" style="display:block; width:100%; height:auto; margin:0; border:0; box-shadow: none; border-radius:6px;">
   <p class="article-map-caption" style="margin:9px 0 24px; padding-left:10px; border-left:3px solid #4aadd2; font-size:12px; line-height:1.6; color:#53616f;">Run50 Map - Pennsylvania &middot; Dark @Arsenan</p>
   </section>
-  <section style="margin:0; padding:0; box-shadow:none; border:0;"><img src="https://zhennanzhang.com/assets/pittsburgh-wechat-maps/pa-light.png" alt="Run50 Pennsylvania map — light; 19 race cities shown in red" width="1600" height="919" style="display:block; width:100%; height:auto; margin:0; border:0; box-shadow:none; border-radius:6px;">
+  <section style="margin:0; padding:0; box-shadow: none; border:0;"><img src="https://zhennanzhang.com/assets/pittsburgh-wechat-maps/pa-light.png" alt="Run50 Pennsylvania map — light; 19 race cities shown in red" width="1600" height="919" style="display:block; width:100%; height:auto; margin:0; border:0; box-shadow: none; border-radius:6px;">
   <p class="article-map-caption" style="margin:9px 0 24px; padding-left:10px; border-left:3px solid #4aadd2; font-size:12px; line-height:1.6; color:#53616f;">Run50 Map - Pennsylvania &middot; Light @Arsenan</p>
   </section>
 </section>
@@ -714,38 +714,6 @@
 </section>
 </main>
   <script src="../../assets/zz-home-button.js?v=20260703-home" defer></script>
-<script>
-// Keep copyable text neutral: WeChat does not preserve the website theme CSS.
-(function () {
-  document.addEventListener('DOMContentLoaded', function () {
-    var main = document.querySelector('main');
-    var originalStyles = new WeakMap();
-    var nodes = [main].concat(Array.from(main.querySelectorAll('*')));
-    nodes.forEach(function (node) { originalStyles.set(node, node.getAttribute('style')); });
-    function syncCopyColors() {
-      var dark = document.documentElement.dataset.theme === 'dark';
-      nodes.forEach(function (node) {
-        var original = originalStyles.get(node);
-        if (original === null) node.removeAttribute('style');
-        else node.setAttribute('style', original);
-      });
-      // Read first, write second, so inherited colors are measured consistently.
-      var colors = nodes.map(function (node) {
-        var rgb = getComputedStyle(node).color.match(/[\d.]+/g);
-        var bright = rgb && Number(rgb[0]) > 220 && Number(rgb[1]) > 220 && Number(rgb[2]) > 220;
-        return dark || bright ? '#ffffff' : '#333333';
-      });
-      nodes.forEach(function (node, index) {
-        node.style.setProperty('color', colors[index], 'important');
-        node.style.setProperty('text-shadow', 'none', 'important');
-        node.style.setProperty('box-shadow', 'none', 'important');
-      });
-      main.style.setProperty('background-color', dark ? '#181818' : '#ffffff', 'important');
-    }
-    syncCopyColors();
-    new MutationObserver(syncCopyColors).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-  });
-})();
-</script>
+<script src="/run50/cn-article-compat.js?v=20260916-cn1"></script>
 </body>
 </html>
