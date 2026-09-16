@@ -46,8 +46,17 @@
     })();
   </script>
   <link rel="stylesheet" href="../wechat-article-theme.css?v=20260706-us-current-outline">
+
+  <style>
+    /* This article uses white reading text on its dark background. */
+    html[data-theme="dark"] body.pittsburgh-article main,
+    html[data-theme="dark"] body.pittsburgh-article main :is(p, h1, h2, h3, h4, li, figcaption, strong, b, em, i, span, a) {
+      color: #ffffff !important;
+      text-shadow: none !important;
+    }
+  </style>
 </head>
-<body style="margin:0; padding:0; background:#ffffff;">
+<body class="pittsburgh-article" style="margin:0; padding:0; background:#ffffff;">
 <button class="article-theme-toggle" type="button" aria-label="Toggle theme">Light</button>
   <script src="../us-map-svg.js?v=20260706-us-current-outline"></script>
   <script src="../china-map-svg.js?v=20260706-us-current-outline"></script>
