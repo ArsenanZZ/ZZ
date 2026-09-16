@@ -32,13 +32,22 @@
         border-left-width: 19px !important;
       }
     }
+    html body.pittsburgh-article main,
+    html body.pittsburgh-article main * {
+      box-shadow: none !important;
+      text-shadow: none !important;
+      filter: none !important;
+    }
+    html body.pittsburgh-article main img { border: 0 !important; }
+    .article-copy-link { position: fixed; top: 14px; right: 90px; z-index: 9999; padding: 8px 12px; border-radius: 999px; background: #fff; color: #17212b; border: 1px solid #ccc; font: 800 12px/1.2 sans-serif; text-decoration: none; }
   </style>
 
   <!-- Run50 article theme and emphasis layer -->
   <script>
     (function () {
       try {
-        var saved = localStorage.getItem('run50-wechat-article-theme');
+        var forWechat = new URLSearchParams(location.search).get('wechat') === '1';
+        var saved = forWechat ? 'light' : localStorage.getItem('run50-wechat-article-theme');
         document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
       } catch (error) {
         document.documentElement.dataset.theme = 'dark';
@@ -57,19 +66,16 @@
   </style>
 </head>
 <body class="pittsburgh-article" style="margin:0; padding:0; background:#ffffff;">
+<a class="article-copy-link" href="?wechat=1">公众号复制版</a>
 <button class="article-theme-toggle" type="button" aria-label="Toggle theme">Light</button>
-  <script src="../us-map-svg.js?v=20260706-us-current-outline"></script>
-  <script src="../china-map-svg.js?v=20260706-us-current-outline"></script>
-  <script src="../wechat-article-map.js?v=20260706-us-current-outline"></script>
-
-<script src="../wechat-article-theme.js?v=20260706-us-current-outline"></script>
+  <script src="../wechat-article-theme.js?v=20260706-us-current-outline"></script>
 
 <main style="max-width: 677px; margin: 0 auto; padding: 28px 18px 42px; box-sizing: border-box; color: #26343f;">
 <section style="margin: 0 0 22px; padding-bottom: 18px; border-bottom: 4px solid #a33a2b;">
   <p style="margin: 0 0 8px; font-size: 12px; line-height: 1.4; letter-spacing: 2px; color: #a33a2b; font-weight: 800;">RUN50 DISPATCH · PENNSYLVANIA</p>
   <p style="margin: 0; font-size: 20px; line-height: 1.55; font-weight: 900; color: #17212b; letter-spacing: 0;">第19州 · 宾夕法尼亚 · Pittsburgh Marathon</p>
 </section>
-<section style="margin: 0 0 26px; position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 9px; overflow: hidden; background: linear-gradient(135deg, #122232, #a33a2b); box-shadow: 0 16px 32px rgba(15, 23, 42, .18);">
+<section style="margin: 0 0 26px; position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 9px; overflow: hidden; background: linear-gradient(135deg, #122232, #a33a2b); box-shadow: none;">
   <section style="position: absolute; inset: 0; padding: 26px; box-sizing: border-box; color: #fff;">
     <p style="margin: 0 0 12px; font-size: 12px; letter-spacing: 2.2px; font-weight: 900; color: rgba(255,255,255,.72);">16:9 VLOG</p>
     <h1 style="margin: 0; max-width: 510px; font-size: 30px; line-height: 1.28; font-weight: 900; letter-spacing: 0; color: #fff;">Run50 #第19州<br>宾夕法尼亚：匹兹堡马拉松<br>钢铁之心，拿下摇摆州！<br></h1>
@@ -90,9 +96,9 @@
   <p style="margin: 9px 0 0; padding-left: 10px; border-left: 3px solid #b98735; font-size: 12px; line-height: 1.65; letter-spacing: 0.2px; color: #6f7d89; font-family: Optima-Regular, 'PingFang SC', serif;">奖牌质感封面 · Pennsylvania</p>
 </section>
 <section class="article-map-panel" aria-label="Article map">
-  <div class="article-map-window article-map-snapshot article-map-snapshot-dark" data-map-theme="dark" data-map-kind="us" data-region="PA" data-short-label="PA" data-label="Run50 Map - Pennsylvania"></div>
+  <section style="margin:0; padding:0; box-shadow:none; border:0;"><img src="https://zhennanzhang.com/assets/pittsburgh-wechat-maps/pa-dark.png" alt="Run50 Pennsylvania map — dark; 19 race cities shown in red" width="1600" height="919" style="display:block; width:100%; height:auto; margin:0; border:0; box-shadow:none; border-radius:6px;"></section>
   <p class="article-map-caption">Run50 Map - Pennsylvania &middot; Dark @Arsenan</p>
-  <div class="article-map-window article-map-snapshot article-map-snapshot-light" data-map-theme="light" data-map-kind="us" data-region="PA" data-short-label="PA" data-label="Run50 Map - Pennsylvania"></div>
+  <section style="margin:0; padding:0; box-shadow:none; border:0;"><img src="https://zhennanzhang.com/assets/pittsburgh-wechat-maps/pa-light.png" alt="Run50 Pennsylvania map — light; 19 race cities shown in red" width="1600" height="919" style="display:block; width:100%; height:auto; margin:0; border:0; box-shadow:none; border-radius:6px;"></section>
   <p class="article-map-caption">Run50 Map - Pennsylvania &middot; Light @Arsenan</p>
 </section>
 
@@ -691,7 +697,7 @@
 
 <p style="margin: 46px 0 10px; font-size: 16px; line-height: 1.8; color: #d7e0ea; text-align: center;">- &#26412;&#25991;&#23436; -</p>
 <p style="margin: 0 0 26px; font-size: 15px; line-height: 1.9; color: #d7e0ea; text-align: center; letter-spacing: .2px;">&#25991;&#23383; | Arsenan&nbsp;&nbsp;&middot;&nbsp;&nbsp;&#25668;&#24433; | Arsenan&nbsp;&nbsp;&middot;&nbsp;&nbsp;&#35774;&#35745; | Arsenan</p>
-<section style="margin: 46px 0 0; padding: 22px 18px 20px; border-radius: 8px; background: linear-gradient(135deg, #132535 0%, #a33a2b 58%, #b98735 100%); color: #ffffff; box-shadow: 0 14px 32px rgba(19, 37, 53, 0.18);">
+<section style="margin: 46px 0 0; padding: 22px 18px 20px; border-radius: 8px; background: linear-gradient(135deg, #132535 0%, #a33a2b 58%, #b98735 100%); color: #ffffff; box-shadow: none;">
   <p style="margin: 0 0 10px; font-size: 11px; line-height: 1.4; letter-spacing: 2.2px; font-weight: 900; color: rgba(255,255,255,0.78);">RUN50 FINISH LINE</p>
   <h2 style="margin: 0 0 12px; font-size: 24px; line-height: 1.35; font-weight: 900; color: #ffffff; letter-spacing: 0;">第19州，收下。</h2>
   <p style="margin: 0; font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.92); text-align: justify;">匹兹堡这站有一种很硬的城市质感：桥、河、坡、钢铁史，还有摇摆州的现实感。跑完它，第19州不是一个数字，而是一座城市的重量。</p>
