@@ -5,6 +5,7 @@
     var forCopy = new URLSearchParams(location.search).get('wechat') === '1';
     root.dataset.cnCopy = String(forCopy);
     if (forCopy) root.dataset.theme = 'light';
+    else if (root.dataset.theme !== 'light' && root.dataset.theme !== 'dark') root.dataset.theme = 'dark';
     var containers = Array.from(document.querySelectorAll('[data-cn-content]'));
     var nodes = containers.flatMap(function (node) { return [node].concat(Array.from(node.querySelectorAll('*'))); });
     var originals = new WeakMap();
