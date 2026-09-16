@@ -16,3 +16,7 @@ html[data-cn-copy="true"] .story-layout,
 html[data-cn-copy="true"] .hero,
 html[data-cn-copy="true"] .diptych { display: block !important; }
 html[data-cn-copy="true"] .page-shell { max-width: 713px; }
+@media (max-width: 600px) {
+  .cn-copy-tools { top: auto; bottom: 12px; right: 12px; left: 12px; justify-content: flex-end; flex-wrap: wrap; }
+  .cn-article { padding-bottom: 76px !important; }
+}
