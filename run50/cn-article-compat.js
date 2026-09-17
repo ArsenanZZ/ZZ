@@ -90,12 +90,46 @@
         var to = [copy].concat(Array.from(copy.querySelectorAll('*')));
         from.forEach(function (node, index) {
           var target = to[index], computed = getComputedStyle(node);
-          properties.forEach(function (key) { target.style.setProperty(key, computed.getPropertyValue(key)); });
+          properties.forEach(function (key) {
+            // Keep authored layout units: computed auto margins become desktop-sized
+            // pixel offsets, and percentage padding must adapt to the paste target.
+            var layout = /^(margin-|padding-|top$|right$|bottom$|left$)/.test(key);
+            var authored = node.style.getPropertyValue(key);
+            target.style.setProperty(key, layout && authored ? authored : computed.getPropertyValue(key));
+          });
           target.style.setProperty('box-shadow','none'); target.style.setProperty('text-shadow','none'); target.style.setProperty('filter','none');
+          if (node.tagName === 'SECTION' || node.tagName === 'IMG') {
+            target.style.setProperty('box-sizing', 'border-box');
+            target.style.setProperty('max-width', '100%');
+          }
           if (node.tagName === 'IMG') { target.src = node.src; target.style.width = '100%'; target.style.height = 'auto'; target.removeAttribute('loading'); }
           if (node.tagName === 'A') target.href = node.href;
         });
         copy.querySelectorAll('script, style, .chapter-rail, button').forEach(function (node) { node.remove(); });
+        // Turn ratio-based text posters into normal flow for narrow rich-text editors.
+        copy.querySelectorAll('section').forEach(function (frame) {
+          var panel = frame.firstElementChild;
+          if (!/%$/.test(frame.style.paddingTop) || !panel || panel.style.position !== 'absolute') return;
+          frame.style.paddingTop = '0';
+          frame.style.height = 'auto';
+          panel.style.position = 'static';
+          panel.style.inset = 'auto';
+          panel.querySelectorAll('section').forEach(function (item) {
+            if (item.style.position !== 'absolute') return;
+            // Decorative play icon has no video action in the copied article.
+            if (item.querySelector('span') && item.style.borderRadius === '50%') { item.remove(); return; }
+            item.style.position = 'static';
+            item.style.inset = 'auto';
+            item.style.marginTop = '16px';
+          });
+        });
+        // The editor supplies the page width and outer spacing.
+        copy.style.setProperty('width', '100%');
+        copy.style.setProperty('max-width', '100%');
+        copy.style.setProperty('min-width', '0');
+        copy.style.setProperty('margin', '0');
+        copy.style.setProperty('padding', '0');
+        copy.style.setProperty('box-sizing', 'border-box');
         output.append(copy);
       });
       return output;
