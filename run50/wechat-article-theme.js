@@ -100,8 +100,10 @@
         updateButton();
       });
     }
-    colorizeExistingStrong();
-    addAutoEmphasis();
+    if (document.body.dataset.cnManualEmphasis !== 'true') {
+      colorizeExistingStrong();
+      addAutoEmphasis();
+    }
     italicizeEnglishNotes();
     addMissingCaptions();
   });

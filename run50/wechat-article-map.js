@@ -505,13 +505,13 @@
     });
   }
 
-  function paintBaseMap(svg, progressCodes, mapTheme) {
+  function paintBaseMap(svg, progressCodes, mapTheme, articleCode) {
     removeContainedPathParts(svg);
     svg.removeAttribute('width');
     svg.removeAttribute('height');
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     var progressMode = Array.isArray(progressCodes) && progressCodes.length > 0;
-    var currentCode = progressMode ? progressCodes[progressCodes.length - 1] : '';
+    var currentCode = progressMode ? (articleCode || progressCodes[progressCodes.length - 1]) : '';
     var lightMode = mapTheme === 'light';
 
     var stateIds = unique(US_SOURCE_PATHS.concat(Object.keys(US_PATHS).reduce(function (all, code) {
@@ -815,11 +815,15 @@
     if (!svg) return false;
     var code = (slot.dataset.region || '').toUpperCase();
     var progressCodes = US_PROGRESS_EXPERIMENT[code] || null;
+    // A return to Kentucky in November 2024 follows the 22nd state, New Hampshire.
+    if (currentFileName() === 'louisville-marathon-2024-modern-rail.html') {
+      progressCodes = US_PROGRESS_EXPERIMENT.NH;
+    }
     var progressMode = !!progressCodes;
     var mapTheme = slot.dataset.mapTheme === 'light' ? 'light' : 'dark';
     if (progressMode) slot.classList.add('article-map-progress-experiment');
     slot.classList.add(mapTheme === 'light' ? 'article-map-force-light' : 'article-map-force-dark');
-    paintBaseMap(svg, progressCodes, mapTheme);
+    paintBaseMap(svg, progressCodes, mapTheme, code);
     var elements = usStateGroup(svg, code);
     if (elements.length) {
       addCurrentOutline(svg, elements, progressMode, mapTheme);
