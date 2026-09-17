@@ -1,0 +1,1091 @@
+[
+  {
+    "source": "Copy #1 of M000.png",
+    "key": "M000",
+    "src": "media/hatfield-mccoy-2024/M000.webp",
+    "new": true,
+    "caption": "公路穿过阿巴拉契亚的岩壁与树林",
+    "attribution": "Arsenan",
+    "order": 1
+  },
+  {
+    "source": "Copy #1 of M0000.png",
+    "key": "M0000",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-002.webp",
+    "new": false,
+    "caption": "从空中俯瞰林间木屋",
+    "attribution": "Arsenan",
+    "order": 117
+  },
+  {
+    "source": "Copy #1 of M00000.png",
+    "key": "M00000",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-003.webp",
+    "new": false,
+    "caption": "群山环抱的木屋营地",
+    "attribution": "Arsenan",
+    "order": 118
+  },
+  {
+    "source": "Copy #1 of M000000.png",
+    "key": "M000000",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-004.webp",
+    "new": false,
+    "caption": "山谷深处的一小片屋顶",
+    "attribution": "Arsenan",
+    "order": 119
+  },
+  {
+    "source": "Copy #1 of M001.png",
+    "key": "M001",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-005.webp",
+    "new": false,
+    "caption": "傍晚停车场上空的晚霞",
+    "attribution": "Arsenan",
+    "order": 2
+  },
+  {
+    "source": "Copy #1 of M002-1.png",
+    "key": "M002-1",
+    "src": "media/hatfield-mccoy-2024/M002-1.webp",
+    "new": true,
+    "caption": "夜色里亮着灯的木屋",
+    "attribution": "Arsenan",
+    "order": 4
+  },
+  {
+    "source": "Copy #1 of M002.png",
+    "key": "M002",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-006.webp",
+    "new": false,
+    "caption": "车灯照亮通往木屋的碎石路",
+    "attribution": "Arsenan",
+    "order": 3
+  },
+  {
+    "source": "Copy #1 of M003.png",
+    "key": "M003",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-007.webp",
+    "new": false,
+    "caption": "沿着台阶走上木屋门廊",
+    "attribution": "Arsenan",
+    "order": 5
+  },
+  {
+    "source": "Copy #1 of M004.png",
+    "key": "M004",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-008.webp",
+    "new": false,
+    "caption": "木屋墙上的黑熊画像",
+    "attribution": "Arsenan",
+    "order": 6
+  },
+  {
+    "source": "Copy #1 of M005.png",
+    "key": "M005",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-009.webp",
+    "new": false,
+    "caption": "另一幅森林与黑熊的装饰画",
+    "attribution": "Arsenan",
+    "order": 7
+  },
+  {
+    "source": "Copy #1 of M006.png",
+    "key": "M006",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-010.webp",
+    "new": false,
+    "caption": "放下行李，安顿一晚",
+    "attribution": "Arsenan",
+    "order": 8
+  },
+  {
+    "source": "Copy #1 of M007.png",
+    "key": "M007",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-011.webp",
+    "new": false,
+    "caption": "清晨薄雾里的木屋和越野车",
+    "attribution": "Arsenan",
+    "order": 9
+  },
+  {
+    "source": "Copy #1 of M008.png",
+    "key": "M008",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-012.webp",
+    "new": false,
+    "caption": "晨雾中的红顶房子",
+    "attribution": "Arsenan",
+    "order": 10
+  },
+  {
+    "source": "Copy #1 of M009-1.png",
+    "key": "M009-1",
+    "src": "media/hatfield-mccoy-2024/M009-1.webp",
+    "new": true,
+    "caption": "日出照亮山谷上方的云雾",
+    "attribution": "Arsenan",
+    "order": 12
+  },
+  {
+    "source": "Copy #1 of M009.png",
+    "key": "M009",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-013.webp",
+    "new": false,
+    "caption": "隔着护栏望向雾里的山镇",
+    "attribution": "Arsenan",
+    "order": 11
+  },
+  {
+    "source": "Copy #1 of M010.png",
+    "key": "M010",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-014.webp",
+    "new": false,
+    "caption": "195 号号码布，赛事 25 周年",
+    "attribution": "Arsenan",
+    "order": 13
+  },
+  {
+    "source": "Copy #1 of M011.png",
+    "key": "M011",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-015.webp",
+    "new": false,
+    "caption": "起点遇见 Chris，先合影一张",
+    "attribution": "Arsenan",
+    "order": 14
+  },
+  {
+    "source": "Copy #1 of M012-1.png",
+    "key": "M012-1",
+    "src": "media/hatfield-mccoy-2024/M012-1.webp",
+    "new": true,
+    "caption": "群山与晨雾前的起跑队伍",
+    "attribution": "Arsenan",
+    "order": 16
+  },
+  {
+    "source": "Copy #1 of M012.png",
+    "key": "M012",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-016.webp",
+    "new": false,
+    "caption": "Food City 门前等候起跑的人群",
+    "attribution": "Arsenan",
+    "order": 15
+  },
+  {
+    "source": "Copy #1 of M013.png",
+    "key": "M013",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-017.webp",
+    "new": false,
+    "caption": "刚出发，背后还是满山晨雾",
+    "attribution": "Arsenan",
+    "order": 17
+  },
+  {
+    "source": "Copy #1 of M014.png",
+    "key": "M014",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-018.webp",
+    "new": false,
+    "caption": "晨光里一起向前的跑者",
+    "attribution": "Arsenan",
+    "order": 18
+  },
+  {
+    "source": "Copy #1 of M015.png",
+    "key": "M015",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-019.webp",
+    "new": false,
+    "caption": "路边的 Mile 1 标记",
+    "attribution": "Arsenan",
+    "order": 19
+  },
+  {
+    "source": "Copy #1 of M016.png",
+    "key": "M016",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-020.webp",
+    "new": false,
+    "caption": "太阳从前方山脊间升起",
+    "attribution": "Arsenan",
+    "order": 20
+  },
+  {
+    "source": "Copy #1 of M017.png",
+    "key": "M017",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-021.webp",
+    "new": false,
+    "caption": "经过 Mile 2",
+    "attribution": "Arsenan",
+    "order": 21
+  },
+  {
+    "source": "Copy #1 of M018.png",
+    "key": "M018",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-022.webp",
+    "new": false,
+    "caption": "继续跑向 Mile 3",
+    "attribution": "Arsenan",
+    "order": 22
+  },
+  {
+    "source": "Copy #1 of M019.png",
+    "key": "M019",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-023.webp",
+    "new": false,
+    "caption": "穿过房屋沿街排列的小镇",
+    "attribution": "Arsenan",
+    "order": 23
+  },
+  {
+    "source": "Copy #1 of M020.png",
+    "key": "M020",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-024.webp",
+    "new": false,
+    "caption": "紫衣志愿者守在路边水站",
+    "attribution": "Arsenan",
+    "order": 24
+  },
+  {
+    "source": "Copy #1 of M021-1.png",
+    "key": "M021-1",
+    "src": "media/hatfield-mccoy-2024/M021-1.webp",
+    "new": true,
+    "caption": "蓝色球衣、粉色跑鞋，跑进山谷",
+    "attribution": "赛事官方",
+    "order": 26
+  },
+  {
+    "source": "Copy #1 of M021.png",
+    "key": "M021",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-025.webp",
+    "new": false,
+    "caption": "溪水沿着白色围栏旁流过",
+    "attribution": "Arsenan",
+    "order": 25
+  },
+  {
+    "source": "Copy #1 of M022.png",
+    "key": "M022",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-026.webp",
+    "new": false,
+    "caption": "Mile 5 路牌旁的补给站",
+    "attribution": "Arsenan",
+    "order": 27
+  },
+  {
+    "source": "Copy #1 of M023.png",
+    "key": "M023",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-027.webp",
+    "new": false,
+    "caption": "坐在路边摇铃鼓加油的志愿者",
+    "attribution": "Arsenan",
+    "order": 28
+  },
+  {
+    "source": "Copy #1 of M024.png",
+    "key": "M024",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-028.webp",
+    "new": false,
+    "caption": "“Canada Beach”补给站的紫衣志愿者",
+    "attribution": "Arsenan",
+    "order": 29
+  },
+  {
+    "source": "Copy #1 of M025.png",
+    "key": "M025",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-029.webp",
+    "new": false,
+    "caption": "山脚下伸向远处的公路",
+    "attribution": "Arsenan",
+    "order": 30
+  },
+  {
+    "source": "Copy #1 of M026.png",
+    "key": "M026",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-030.webp",
+    "new": false,
+    "caption": "树梢间透下来的阳光",
+    "attribution": "Arsenan",
+    "order": 31
+  },
+  {
+    "source": "Copy #1 of M027.png",
+    "key": "M027",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-031.webp",
+    "new": false,
+    "caption": "前方跑者与路上的长长影子",
+    "attribution": "Arsenan",
+    "order": 32
+  },
+  {
+    "source": "Copy #1 of M028.png",
+    "key": "M028",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-032.webp",
+    "new": false,
+    "caption": "来到 Mile 6",
+    "attribution": "Arsenan",
+    "order": 33
+  },
+  {
+    "source": "Copy #1 of M029.png",
+    "key": "M029",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-033.webp",
+    "new": false,
+    "caption": "跑途中吃一口西瓜",
+    "attribution": "Arsenan",
+    "order": 34
+  },
+  {
+    "source": "Copy #1 of M030.png",
+    "key": "M030",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-034.webp",
+    "new": false,
+    "caption": "手表记录：已跑 6.93 英里",
+    "attribution": "Arsenan",
+    "order": 35
+  },
+  {
+    "source": "Copy #1 of M031.png",
+    "key": "M031",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-035.webp",
+    "new": false,
+    "caption": "路边的 Mile 9 牌子",
+    "attribution": "Arsenan",
+    "order": 36
+  },
+  {
+    "source": "Copy #1 of M032.png",
+    "key": "M032",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-036.webp",
+    "new": false,
+    "caption": "溪边道路旁的越野车",
+    "attribution": "Arsenan",
+    "order": 37
+  },
+  {
+    "source": "Copy #1 of M033.png",
+    "key": "M033",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-037.webp",
+    "new": false,
+    "caption": "沿着山谷里弯曲的公路前行",
+    "attribution": "Arsenan",
+    "order": 38
+  },
+  {
+    "source": "Copy #1 of M034.png",
+    "key": "M034",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-038.webp",
+    "new": false,
+    "caption": "高草边的 Mile 10 标记",
+    "attribution": "Arsenan",
+    "order": 39
+  },
+  {
+    "source": "Copy #1 of M035.png",
+    "key": "M035",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-039.webp",
+    "new": false,
+    "caption": "停在路旁建筑前的消防车",
+    "attribution": "Arsenan",
+    "order": 40
+  },
+  {
+    "source": "Copy #1 of M036.png",
+    "key": "M036",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-040.webp",
+    "new": false,
+    "caption": "戴着面具为跑者加油的志愿者",
+    "attribution": "Arsenan",
+    "order": 41
+  },
+  {
+    "source": "Copy #1 of M037.png",
+    "key": "M037",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-041.webp",
+    "new": false,
+    "caption": "经过 Mile 11",
+    "attribution": "Arsenan",
+    "order": 42
+  },
+  {
+    "source": "Copy #1 of M038.png",
+    "key": "M038",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-042.webp",
+    "new": false,
+    "caption": "Mile 12，继续向半程前进",
+    "attribution": "Arsenan",
+    "order": 43
+  },
+  {
+    "source": "Copy #1 of M039.png",
+    "key": "M039",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-043.webp",
+    "new": false,
+    "caption": "在河边护栏旁自拍一张",
+    "attribution": "Arsenan",
+    "order": 44
+  },
+  {
+    "source": "Copy #1 of M040.png",
+    "key": "M040",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-044.webp",
+    "new": false,
+    "caption": "沿着山坡下的小屋转弯",
+    "attribution": "Arsenan",
+    "order": 45
+  },
+  {
+    "source": "Copy #1 of M041-1.png",
+    "key": "M041-1",
+    "src": "media/hatfield-mccoy-2024/M041-1.webp",
+    "new": true,
+    "caption": "阳光下的 Matewan 街口",
+    "attribution": "Arsenan",
+    "order": 47
+  },
+  {
+    "source": "Copy #1 of M041.png",
+    "key": "M041",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-045.webp",
+    "new": false,
+    "caption": "跑进 Matewan 的砖房街道",
+    "attribution": "Arsenan",
+    "order": 46
+  },
+  {
+    "source": "Copy #1 of M042-1.png",
+    "key": "M042-1",
+    "src": "media/hatfield-mccoy-2024/M042-1.webp",
+    "new": true,
+    "caption": "脚下粉笔写着 Start / Finish",
+    "attribution": "Arsenan",
+    "order": 49
+  },
+  {
+    "source": "Copy #1 of M042.png",
+    "key": "M042",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-046.webp",
+    "new": false,
+    "caption": "半程交接点的 Start / Finish 拱门",
+    "attribution": "Arsenan",
+    "order": 48
+  },
+  {
+    "source": "Copy #1 of M043.png",
+    "key": "M043",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-047.webp",
+    "new": false,
+    "caption": "穿橄榄球球衣的小朋友在路边加油",
+    "attribution": "Arsenan",
+    "order": 50
+  },
+  {
+    "source": "Copy #1 of M044.png",
+    "key": "M044",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-048.webp",
+    "new": false,
+    "caption": "小镇房屋前停着的越野车",
+    "attribution": "Arsenan",
+    "order": 51
+  },
+  {
+    "source": "Copy #1 of M045.png",
+    "key": "M045",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-049.webp",
+    "new": false,
+    "caption": "树影映在绿色的 Tug Fork 河面",
+    "attribution": "Arsenan",
+    "order": 52
+  },
+  {
+    "source": "Copy #1 of M046.png",
+    "key": "M046",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-050.webp",
+    "new": false,
+    "caption": "阳光、河岸与桥边的越野车",
+    "attribution": "Arsenan",
+    "order": 53
+  },
+  {
+    "source": "Copy #1 of M047.png",
+    "key": "M047",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-051.webp",
+    "new": false,
+    "caption": "离开半程，来到 Mile 14",
+    "attribution": "Arsenan",
+    "order": 54
+  },
+  {
+    "source": "Copy #1 of M048.png",
+    "key": "M048",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-052.webp",
+    "new": false,
+    "caption": "沿着树荫与房屋间的小路继续跑",
+    "attribution": "Arsenan",
+    "order": 55
+  },
+  {
+    "source": "Copy #1 of M049.png",
+    "key": "M049",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-053.webp",
+    "new": false,
+    "caption": "Hatfield’s Hideout 河畔木屋营地门牌",
+    "attribution": "Arsenan",
+    "order": 56
+  },
+  {
+    "source": "Copy #1 of M050.png",
+    "key": "M050",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-054.webp",
+    "new": false,
+    "caption": "路边停着的一排房车",
+    "attribution": "Arsenan",
+    "order": 57
+  },
+  {
+    "source": "Copy #1 of M051.png",
+    "key": "M051",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-055.webp",
+    "new": false,
+    "caption": "从钢桥下望向河面",
+    "attribution": "Arsenan",
+    "order": 58
+  },
+  {
+    "source": "Copy #1 of M052.png",
+    "key": "M052",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-056.webp",
+    "new": false,
+    "caption": "在树荫里举杯补水",
+    "attribution": "Arsenan",
+    "order": 59
+  },
+  {
+    "source": "Copy #1 of M053.png",
+    "key": "M053",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-057.webp",
+    "new": false,
+    "caption": "从身旁经过的越野车",
+    "attribution": "Arsenan",
+    "order": 60
+  },
+  {
+    "source": "Copy #1 of M054.png",
+    "key": "M054",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-058.webp",
+    "new": false,
+    "caption": "来到 Mile 16",
+    "attribution": "Arsenan",
+    "order": 61
+  },
+  {
+    "source": "Copy #1 of M055.png",
+    "key": "M055",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-059.webp",
+    "new": false,
+    "caption": "柏油路换成了林间碎石路",
+    "attribution": "Arsenan",
+    "order": 62
+  },
+  {
+    "source": "Copy #1 of M056.png",
+    "key": "M056",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-060.webp",
+    "new": false,
+    "caption": "脚下转为带着泥泞的窄路",
+    "attribution": "Arsenan",
+    "order": 63
+  },
+  {
+    "source": "Copy #1 of M057.png",
+    "key": "M057",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-061.webp",
+    "new": false,
+    "caption": "穿过一片开阔的青草地",
+    "attribution": "Arsenan",
+    "order": 64
+  },
+  {
+    "source": "Copy #1 of M058.png",
+    "key": "M058",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-062.webp",
+    "new": false,
+    "caption": "草地尽头，吊桥就在前方",
+    "attribution": "Arsenan",
+    "order": 65
+  },
+  {
+    "source": "Copy #1 of M059.png",
+    "key": "M059",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-063.webp",
+    "new": false,
+    "caption": "走上狭窄的木板吊桥",
+    "attribution": "Arsenan",
+    "order": 66
+  },
+  {
+    "source": "Copy #1 of M060-1.png",
+    "key": "M060-1",
+    "src": "media/hatfield-mccoy-2024/M060-1.webp",
+    "new": true,
+    "caption": "在吊桥上张开双臂",
+    "attribution": "赛事官方",
+    "order": 68
+  },
+  {
+    "source": "Copy #1 of M060.png",
+    "key": "M060",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-064.webp",
+    "new": false,
+    "caption": "跑过吊桥时的自拍",
+    "attribution": "Arsenan",
+    "order": 67
+  },
+  {
+    "source": "Copy #1 of M061.png",
+    "key": "M061",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-065.webp",
+    "new": false,
+    "caption": "蓝天与河岸边起伏的绿坡",
+    "attribution": "Arsenan",
+    "order": 69
+  },
+  {
+    "source": "Copy #1 of M062.png",
+    "key": "M062",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-066.webp",
+    "new": false,
+    "caption": "抬头经过铁路桥下",
+    "attribution": "Arsenan",
+    "order": 70
+  },
+  {
+    "source": "Copy #1 of M063.png",
+    "key": "M063",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-067.webp",
+    "new": false,
+    "caption": "河岸上爬满绿藤",
+    "attribution": "Arsenan",
+    "order": 71
+  },
+  {
+    "source": "Copy #1 of M064.png",
+    "key": "M064",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-068.webp",
+    "new": false,
+    "caption": "阳光照在山脚下的河面",
+    "attribution": "Arsenan",
+    "order": 72
+  },
+  {
+    "source": "Copy #1 of M065.png",
+    "key": "M065",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-069.webp",
+    "new": false,
+    "caption": "路边的白色尖顶教堂",
+    "attribution": "Arsenan",
+    "order": 73
+  },
+  {
+    "source": "Copy #1 of M066.png",
+    "key": "M066",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-070.webp",
+    "new": false,
+    "caption": "Mile 19 的路牌",
+    "attribution": "Arsenan",
+    "order": 74
+  },
+  {
+    "source": "Copy #1 of M067.png",
+    "key": "M067",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-071.webp",
+    "new": false,
+    "caption": "路边帐篷下的补给站",
+    "attribution": "Arsenan",
+    "order": 75
+  },
+  {
+    "source": "Copy #1 of M068.png",
+    "key": "M068",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-072.webp",
+    "new": false,
+    "caption": "停下来和补给站志愿者聊两句",
+    "attribution": "Arsenan",
+    "order": 76
+  },
+  {
+    "source": "Copy #1 of M069.png",
+    "key": "M069",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-073.webp",
+    "new": false,
+    "caption": "Lucky Duck 和 Better Get Quackin’ 加油牌",
+    "attribution": "Arsenan",
+    "order": 77
+  },
+  {
+    "source": "Copy #1 of M070.png",
+    "key": "M070",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-074.webp",
+    "new": false,
+    "caption": "小黄鸭牌子上的“You Got This”",
+    "attribution": "Arsenan",
+    "order": 78
+  },
+  {
+    "source": "Copy #1 of M071.png",
+    "key": "M071",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-075.webp",
+    "new": false,
+    "caption": "继续向前，Mile 22",
+    "attribution": "Arsenan",
+    "order": 79
+  },
+  {
+    "source": "Copy #1 of M072.png",
+    "key": "M072",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-076.webp",
+    "new": false,
+    "caption": "终于看到 Mile 25",
+    "attribution": "Arsenan",
+    "order": 80
+  },
+  {
+    "source": "Copy #1 of M073.png",
+    "key": "M073",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-077.webp",
+    "new": false,
+    "caption": "太阳当头，抬头自拍一张",
+    "attribution": "Arsenan",
+    "order": 81
+  },
+  {
+    "source": "Copy #1 of M074.png",
+    "key": "M074",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-078.webp",
+    "new": false,
+    "caption": "举着加油牌和彩色泡沫棒的观众",
+    "attribution": "Arsenan",
+    "order": 82
+  },
+  {
+    "source": "Copy #1 of M075.png",
+    "key": "M075",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-079.webp",
+    "new": false,
+    "caption": "彩色气球下再喝一口补给",
+    "attribution": "Arsenan",
+    "order": 83
+  },
+  {
+    "source": "Copy #1 of M076.png",
+    "key": "M076",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-080.webp",
+    "new": false,
+    "caption": "跨过河桥，返回 Williamson",
+    "attribution": "Arsenan",
+    "order": 84
+  },
+  {
+    "source": "Copy #1 of M077.png",
+    "key": "M077",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-081.webp",
+    "new": false,
+    "caption": "在彩色壁画前留下自拍",
+    "attribution": "Arsenan",
+    "order": 85
+  },
+  {
+    "source": "Copy #1 of M078.png",
+    "key": "M078",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-082.webp",
+    "new": false,
+    "caption": "街边台阶旁的另一面壁画",
+    "attribution": "Arsenan",
+    "order": 86
+  },
+  {
+    "source": "Copy #1 of M079-1.png",
+    "key": "M079-1",
+    "src": "media/hatfield-mccoy-2024/M079-1.webp",
+    "new": true,
+    "caption": "跑进镇中心，举起双手",
+    "attribution": "赛事官方",
+    "order": 88
+  },
+  {
+    "source": "Copy #1 of M079-2.png",
+    "key": "M079-2",
+    "src": "media/hatfield-mccoy-2024/M079-2.webp",
+    "new": true,
+    "caption": "冲线前的笑容",
+    "attribution": "赛事官方",
+    "order": 89
+  },
+  {
+    "source": "Copy #1 of M079.png",
+    "key": "M079",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-083.webp",
+    "new": false,
+    "caption": "终点前的 Williamson 街道",
+    "attribution": "Arsenan",
+    "order": 87
+  },
+  {
+    "source": "Copy #1 of M080.png",
+    "key": "M080",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-084.webp",
+    "new": false,
+    "caption": "前方就是全马终点拱门",
+    "attribution": "Arsenan",
+    "order": 90
+  },
+  {
+    "source": "Copy #1 of M081-1.png",
+    "key": "M081-1",
+    "src": "media/hatfield-mccoy-2024/M081-1.webp",
+    "new": true,
+    "caption": "张开双臂跑过终点",
+    "attribution": "赛事官方",
+    "order": 91
+  },
+  {
+    "source": "Copy #1 of M081-2.png",
+    "key": "M081-2",
+    "src": "media/hatfield-mccoy-2024/M081-2.webp",
+    "new": true,
+    "caption": "完赛瞬间的近景",
+    "attribution": "赛事官方",
+    "order": 92
+  },
+  {
+    "source": "Copy #1 of M081.png",
+    "key": "M081",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-085.webp",
+    "new": false,
+    "caption": "终点和白胡子角色扮演者合影",
+    "attribution": "Arsenan",
+    "order": 97
+  },
+  {
+    "source": "Copy #1 of M082.png",
+    "key": "M082",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-086.webp",
+    "new": false,
+    "caption": "终点志愿者正在发放奖牌",
+    "attribution": "Arsenan",
+    "order": 93
+  },
+  {
+    "source": "Copy #1 of M083-1.png",
+    "key": "M083-1",
+    "src": "media/hatfield-mccoy-2024/M083-1.webp",
+    "new": true,
+    "caption": "完赛后站在小镇街头",
+    "attribution": "Arsenan",
+    "order": 94
+  },
+  {
+    "source": "Copy #1 of M083.png",
+    "key": "M083",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-087.webp",
+    "new": false,
+    "caption": "举起厚实的纪念奖牌",
+    "attribution": "Arsenan",
+    "order": 102
+  },
+  {
+    "source": "Copy #1 of M084-1.png",
+    "key": "M084-1",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-001.webp",
+    "new": false,
+    "caption": "和 Siqi、两位家族角色扮演者一起合影",
+    "attribution": "Arsenan",
+    "order": 98
+  },
+  {
+    "source": "Copy #1 of M084-2.png",
+    "key": "M084-2",
+    "src": "media/hatfield-mccoy-2024/M084-2.webp",
+    "new": true,
+    "caption": "两个人的完赛奖牌",
+    "attribution": "Arsenan",
+    "order": 96
+  },
+  {
+    "source": "Copy #1 of M084-3.png",
+    "key": "M084-3",
+    "src": "media/hatfield-mccoy-2024/M084-3.webp",
+    "new": true,
+    "caption": "Chris 和 Deborah 的完赛合影",
+    "attribution": "Arsenan",
+    "order": 100
+  },
+  {
+    "source": "Copy #1 of M084.png",
+    "key": "M084",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-088.webp",
+    "new": false,
+    "caption": "和已经完赛的 Siqi 合影",
+    "attribution": "Arsenan",
+    "order": 95
+  },
+  {
+    "source": "Copy #1 of M085.png",
+    "key": "M085",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-089.webp",
+    "new": false,
+    "caption": "赛后再和 Chris 拍一张",
+    "attribution": "Arsenan",
+    "order": 101
+  },
+  {
+    "source": "Copy #1 of M086.png",
+    "key": "M086",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-090.webp",
+    "new": false,
+    "caption": "终点旁和两位角色扮演者自拍",
+    "attribution": "Arsenan",
+    "order": 99
+  },
+  {
+    "source": "Copy #1 of M087-1.png",
+    "key": "M087-1",
+    "src": "media/hatfield-mccoy-2024/M087-1.webp",
+    "new": true,
+    "caption": "打开奖牌，里面是蓝黄两州地图",
+    "attribution": "Arsenan",
+    "order": 104
+  },
+  {
+    "source": "Copy #1 of M087-2.png",
+    "key": "M087-2",
+    "src": "media/hatfield-mccoy-2024/M087-2.webp",
+    "new": true,
+    "caption": "合上后的家族人物浮雕奖牌",
+    "attribution": "Arsenan",
+    "order": 105
+  },
+  {
+    "source": "Copy #1 of M087.png",
+    "key": "M087",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-091.webp",
+    "new": false,
+    "caption": "赛后和 Siqi 一起坐车返回",
+    "attribution": "Arsenan",
+    "order": 103
+  },
+  {
+    "source": "Copy #1 of M088.png",
+    "key": "M088",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-092.webp",
+    "new": false,
+    "caption": "赛后用披萨填饱肚子",
+    "attribution": "Arsenan",
+    "order": 107
+  },
+  {
+    "source": "Copy #1 of M089.png",
+    "key": "M089",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-093.webp",
+    "new": false,
+    "caption": "车窗外又是蜿蜒的山路",
+    "attribution": "Arsenan",
+    "order": 108
+  },
+  {
+    "source": "Copy #1 of M090.png",
+    "key": "M090",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-094.webp",
+    "new": false,
+    "caption": "回到绿树环绕的木屋小路",
+    "attribution": "Arsenan",
+    "order": 109
+  },
+  {
+    "source": "Copy #1 of M091-1.png",
+    "key": "M091-1",
+    "src": "media/hatfield-mccoy-2024/M091-1.webp",
+    "new": true,
+    "caption": "在 Food City 前再看一眼打开奖牌",
+    "attribution": "Arsenan",
+    "order": 106
+  },
+  {
+    "source": "Copy #1 of M091.png",
+    "key": "M091",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-095.webp",
+    "new": false,
+    "caption": "晚餐时在餐厅里合影",
+    "attribution": "Arsenan",
+    "order": 110
+  },
+  {
+    "source": "Copy #1 of M092-1.png",
+    "key": "M092-1",
+    "src": "media/hatfield-mccoy-2024/M092-1.webp",
+    "new": true,
+    "caption": "离开前在木屋门廊合影",
+    "attribution": "Arsenan",
+    "order": 112
+  },
+  {
+    "source": "Copy #1 of M092-2.png",
+    "key": "M092-2",
+    "src": "media/hatfield-mccoy-2024/M092-2.webp",
+    "new": true,
+    "caption": "从斜上方俯瞰木屋营地",
+    "attribution": "Arsenan",
+    "order": 114
+  },
+  {
+    "source": "Copy #1 of M092-3.png",
+    "key": "M092-3",
+    "src": "media/hatfield-mccoy-2024/M092-3.webp",
+    "new": true,
+    "caption": "森林里通向木屋的碎石路",
+    "attribution": "Arsenan",
+    "order": 115
+  },
+  {
+    "source": "Copy #1 of M092-4.png",
+    "key": "M092-4",
+    "src": "media/hatfield-mccoy-2024/M092-4.webp",
+    "new": true,
+    "caption": "白天再看并排的两栋木屋",
+    "attribution": "Arsenan",
+    "order": 113
+  },
+  {
+    "source": "Copy #1 of M092-5.png",
+    "key": "M092-5",
+    "src": "media/hatfield-mccoy-2024/M092-5.webp",
+    "new": true,
+    "caption": "从正上方看林间的一排木屋",
+    "attribution": "Arsenan",
+    "order": 116
+  },
+  {
+    "source": "Copy #1 of M092.png",
+    "key": "M092",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-096.webp",
+    "new": false,
+    "caption": "Siqi 的赛后晚餐",
+    "attribution": "Arsenan",
+    "order": 111
+  },
+  {
+    "source": "Copy #1 of M093.png",
+    "key": "M093",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-097.webp",
+    "new": false,
+    "caption": "返程路过草坡上的 Kentucky Castle",
+    "attribution": "Arsenan",
+    "order": 120
+  },
+  {
+    "source": "Copy #1 of M094.png",
+    "key": "M094",
+    "src": "../stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-098.webp",
+    "new": false,
+    "caption": "坐上车，沿着公路回家",
+    "attribution": "Arsenan",
+    "order": 121
+  }
+]
