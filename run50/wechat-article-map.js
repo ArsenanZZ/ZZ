@@ -72,7 +72,7 @@
     'disney-marathon-modern-rail.html': ['FL', 'Orlando', 28.5383, -81.3792],
     'fargo-marathon-modern-rail.html': ['ND', 'Fargo', 46.8772, -96.7898],
     'green-bay-marathon-modern-rail.html': ['WI', 'Green Bay', 44.5133, -88.0133],
-    'hatfield-mccoy-marathon-modern-rail.html': ['KY', 'Williamson', 37.6743, -82.2774],
+    'hatfield-mccoy-marathon-modern-rail.html': ['KY', 'South Williamson', 37.6720, -82.2840],
     'hell-on-gravel-marathon-modern-rail.html': ['KS', 'El Dorado', 37.8172, -96.8623],
     'honolulu-marathon-modern-rail.html': ['HI', 'Honolulu', 21.3069, -157.8583],
     'indianapolis-monumental-marathon-modern-rail.html': ['IN', 'Indianapolis', 39.7684, -86.1581],
@@ -590,7 +590,8 @@
   }
 
   function addCityMarker(svg, slot, code, elements) {
-    var race = US_CITY_BY_STATE[code] || US_CITY_BY_FILE[currentFileName()];
+    var articleRace = US_CITY_BY_FILE[currentFileName()];
+    var race = articleRace && articleRace[0] === code ? articleRace : US_CITY_BY_STATE[code];
     var p;
     var label = slot.dataset.shortLabel || code;
     if (race) {
@@ -616,6 +617,8 @@
     var dotLayer = addSvgEl(svg, 'g', { class: 'article-map-progress-dots' });
     progressCodes.forEach(function (code) {
       var race = US_PROGRESS_CITY_DOTS[code];
+      var articleRace = US_CITY_BY_FILE[currentFileName()];
+      if (code === currentCode && articleRace && articleRace[0] === code) race = articleRace;
       if (!race) return;
       var p = projectCity(race[0], race[1], race[2], race[3]);
       addSvgEl(glowLayer, 'circle', {
