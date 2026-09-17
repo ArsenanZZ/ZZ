@@ -7,10 +7,13 @@
 .cn-article [data-cn-content] img { border: 0 !important; max-width: 100%; height: auto; }
 html[data-theme="dark"] .cn-article [data-cn-content],
 html[data-theme="dark"] .cn-article [data-cn-content] * { color: #fff !important; }
-.cn-article [data-cn-emphasis] { font-weight: 800; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.cn-article [data-cn-emphasis="color"] { color: #9b3e29 !important; }
-.cn-article [data-cn-emphasis="mark"] { color: #513600 !important; background: #fff0b9; padding: 1px 3px; }
-.cn-article [data-cn-emphasis="underline"] { color: #236454 !important; border-bottom: 3px solid #dca537; padding-bottom: 2px; }
+.cn-article [data-cn-emphasis] { font-weight: 800; background: transparent !important; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.cn-article [data-cn-tone="0"] { color: #72534b; }
+.cn-article [data-cn-tone="1"] { color: #45675c; }
+.cn-article [data-cn-tone="2"] { color: #53677a; }
+.cn-article [data-cn-tone="3"] { color: #766044; }
+.cn-article [data-cn-emphasis="underline"] { border-bottom: 3px solid currentColor; padding-bottom: 2px; }
+.cn-article .cn-end-card { text-align: center; }
 .cn-article .cn-end-title { color: #b66b0d !important; }
 .cn-copy-tools { position: fixed; top: 60px; right: 12px; z-index: 10000; display: flex; gap: 6px; align-items: center; font: 13px/1.4 sans-serif; }
 .cn-copy-tools a, .cn-copy-tools button { padding: 8px 12px; border: 1px solid #888; border-radius: 6px; background: #fff; color: #222 !important; cursor: pointer; text-decoration: none; }

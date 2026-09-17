@@ -43,7 +43,9 @@
         var kind = node.getAttribute('data-cn-emphasis');
         if (!kind) return;
         var onDark = dark || isDarkBackground(node.parentElement);
-        var color = onDark ? '#ffbd9c' : '#9b3e29';
+        var tone = Number(node.getAttribute('data-cn-tone') || 0) % 4;
+        var palette = onDark ? ['#cdb7af', '#b4c9bd', '#b8c5d2', '#d0c2ac'] : ['#72534b', '#45675c', '#53677a', '#766044'];
+        var color = palette[tone];
         node.style.setProperty('font-weight', '800', 'important');
         node.style.setProperty('display', 'inline', 'important');
         node.style.removeProperty('background');
@@ -53,14 +55,8 @@
         node.style.setProperty('padding', '0', 'important');
         node.style.setProperty('box-decoration-break', 'clone');
         node.style.setProperty('-webkit-box-decoration-break', 'clone');
-        if (kind === 'mark') {
-          color = onDark ? '#fff2c2' : '#513600';
-          node.style.setProperty('background-color', onDark ? '#594512' : '#fff0b9', 'important');
-          node.style.setProperty('padding', '1px 3px', 'important');
-          node.style.setProperty('border-radius', '2px', 'important');
-        } else if (kind === 'underline') {
-          color = onDark ? '#b7e0cb' : '#236454';
-          node.style.setProperty('border-bottom', '3px solid ' + (onDark ? '#e6b652' : '#dca537'), 'important');
+        if (kind === 'underline') {
+          node.style.setProperty('border-bottom', '3px solid ' + color, 'important');
           node.style.setProperty('padding-bottom', '2px', 'important');
         }
         node.style.setProperty('color', color, 'important');
