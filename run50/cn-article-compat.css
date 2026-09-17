@@ -8,10 +8,10 @@
 html[data-theme="dark"] .cn-article [data-cn-content],
 html[data-theme="dark"] .cn-article [data-cn-content] * { color: #fff !important; }
 .cn-article [data-cn-emphasis] { font-weight: 800; background: transparent !important; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.cn-article [data-cn-tone="0"] { color: #72534b; }
-.cn-article [data-cn-tone="1"] { color: #45675c; }
-.cn-article [data-cn-tone="2"] { color: #53677a; }
-.cn-article [data-cn-tone="3"] { color: #766044; }
+.cn-article [data-cn-tone="0"] { color: #ac4336; }
+.cn-article [data-cn-tone="1"] { color: #237953; }
+.cn-article [data-cn-tone="2"] { color: #306eaa; }
+.cn-article [data-cn-tone="3"] { color: #9a681c; }
 .cn-article [data-cn-emphasis="underline"] { border-bottom: 3px solid currentColor; padding-bottom: 2px; }
 .cn-article .cn-end-card { text-align: center; }
 .cn-article .cn-end-title { color: #b66b0d !important; }

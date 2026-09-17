@@ -44,7 +44,7 @@
         if (!kind) return;
         var onDark = dark || isDarkBackground(node.parentElement);
         var tone = Number(node.getAttribute('data-cn-tone') || 0) % 4;
-        var palette = onDark ? ['#cdb7af', '#b4c9bd', '#b8c5d2', '#d0c2ac'] : ['#72534b', '#45675c', '#53677a', '#766044'];
+        var palette = onDark ? ['#e6a397', '#91cfab', '#9cc7ed', '#e3c183'] : ['#ac4336', '#237953', '#306eaa', '#9a681c'];
         var color = palette[tone];
         node.style.setProperty('font-weight', '800', 'important');
         node.style.setProperty('display', 'inline', 'important');
