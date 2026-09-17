@@ -28,3 +28,10 @@ html[data-cn-copy="true"] .page-shell { max-width: 713px; }
   .cn-copy-tools { top: auto; bottom: 12px; right: 12px; left: 12px; justify-content: flex-end; flex-wrap: wrap; }
   .cn-article { padding-bottom: 76px !important; }
 }
+
+/* Prominent copy action for articles opting into one-click WeChat export. */
+[data-cn-one-click="true"] .cn-copy-tools { max-width: calc(100vw - 24px); flex-wrap: wrap; justify-content: flex-end; }
+[data-cn-one-click="true"] .cn-copy-tools button { background: #166534; color: #fff !important; border-color: #166534; font-weight: 700; min-height: 44px; }
+[data-cn-one-click="true"] .cn-copy-tools button:disabled { opacity: .65; cursor: wait; }
+[data-cn-one-click="true"] .cn-copy-tools button:focus-visible { outline: 3px solid #e5b84a; outline-offset: 3px; }
+[data-cn-one-click="true"] .cn-copy-status:not(:empty) { padding: 8px; border-radius: 6px; }

@@ -73,11 +73,12 @@
     synchronize();
     new MutationObserver(synchronize).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
 
+    var oneClick = document.body.dataset.cnOneClick === 'true';
     var bar = document.createElement('nav');
     bar.className = 'cn-copy-tools';
     var url = new URL(location.href); url.searchParams.set('wechat', '1');
     var link = document.createElement('a'); link.href = url.href; link.textContent = '公众号复制版';
-    var button = document.createElement('button'); button.type = 'button'; button.textContent = '复制正文';
+    var button = document.createElement('button'); button.type = 'button'; button.textContent = oneClick ? '一键复制到公众号' : '复制正文';
     var status = document.createElement('span'); status.className = 'cn-copy-status'; status.setAttribute('role', 'status');
     bar.append(link, button, status); document.body.append(bar);
     var properties = ['color','background-color','background-image','font-family','font-size','font-weight','font-style','line-height','letter-spacing','text-align','text-decoration','display','padding-top','padding-right','padding-bottom','padding-left','margin-top','margin-right','margin-bottom','margin-left','border-left','border-right','border-top','border-bottom','border-radius','box-sizing','box-decoration-break','-webkit-box-decoration-break','position','top','right','bottom','left','overflow','aspect-ratio'];
@@ -102,20 +103,33 @@
     button.addEventListener('click', async function () {
       button.disabled = true;
       try {
-        var content = clipboardContent();
-        if (navigator.clipboard && window.ClipboardItem) {
-          await navigator.clipboard.write([new ClipboardItem({
-            'text/html': new Blob([content.outerHTML], {type:'text/html'}),
-            'text/plain': new Blob([content.textContent], {type:'text/plain'})
-          })]);
-        } else {
+        var themeBeforeCopy = root.dataset.theme;
+        var content;
+        try {
+          if (oneClick) { root.dataset.theme = 'light'; synchronize(); }
+          content = clipboardContent();
+        } finally {
+          if (oneClick) { root.dataset.theme = themeBeforeCopy; synchronize(); }
+        }
+        function legacyCopy() {
           var holder = document.createElement('div'); holder.style.cssText = 'position:fixed;left:-10000px;top:0;width:677px;'; holder.append(content); document.body.append(holder);
           var selection = getSelection(), previous = selection.rangeCount ? selection.getRangeAt(0).cloneRange() : null;
-          var range = document.createRange(); range.selectNodeContents(content); selection.removeAllRanges(); selection.addRange(range);
-          var copied = document.execCommand('copy'); holder.remove(); selection.removeAllRanges(); if (previous) selection.addRange(previous);
-          if (!copied) throw new Error('Clipboard unavailable');
+          try {
+            var range = document.createRange(); range.selectNodeContents(content); selection.removeAllRanges(); selection.addRange(range);
+            if (!document.execCommand('copy')) throw new Error('Clipboard unavailable');
+          } finally {
+            holder.remove(); selection.removeAllRanges(); if (previous) selection.addRange(previous);
+          }
         }
-        status.textContent = '已复制正文，可粘贴到公众号';
+        if (navigator.clipboard && window.ClipboardItem) {
+          try {
+            await navigator.clipboard.write([new ClipboardItem({
+              'text/html': new Blob([content.outerHTML], {type:'text/html'}),
+              'text/plain': new Blob([content.textContent], {type:'text/plain'})
+            })]);
+          } catch (error) { legacyCopy(); }
+        } else { legacyCopy(); }
+        status.textContent = oneClick ? '已复制图文，请到公众号编辑器粘贴' : '已复制正文，可粘贴到公众号';
       } catch (error) { status.textContent = '未能自动复制，请在复制版中手动选择正文'; }
       finally { button.disabled = false; }
     });
