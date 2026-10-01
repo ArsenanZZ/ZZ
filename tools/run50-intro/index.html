@@ -18,12 +18,12 @@
 <g fill="none" stroke="#346bc0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
 <g class="speed-lines"><path d="M52 75H93 M73 88H94 M52 185H94 M74 172H94"/></g>
 <g class="runner-body">
-<g class="arm-back"><path d="M111 108H76V137 Q65 151 79 158 Q96 156 86 141 V120H109"/></g>
-<g class="leg-back"><path d="M109 157V195H93V201H81V233H91V214H127V190H144V177"/></g>
-<g class="leg-front"><path d="M134 158H163V168H191V197H202V213H172V201H181V179H163V186H143"/></g>
-<path d="M109 103H132L156 118V157H109Z M110 158V184H143"/>
+<g class="arm-back"><path class="arm-back-path" stroke-width="11"/><path class="arm-back-path" stroke="#fbc21a" stroke-width="4"/></g>
+<g class="leg-back"><path class="leg-back-path" stroke-width="11"/><path class="leg-back-path" stroke="#fbc21a" stroke-width="4"/></g>
+<g class="leg-front"><path class="leg-front-path" stroke-width="11"/><path class="leg-front-path" stroke="#fbc21a" stroke-width="4"/></g>
+<path d="M109 103H132L156 118V157H109Z M110 158H156"/>
 <g class="head"><path d="M108 40H157V90H108Z M127 32L135 40V32L145 40V32L157 42"/><circle cx="140" cy="58" r="7" fill="#346bc0" stroke="none"/></g>
-<g class="arm-front"><path d="M143 104H170V96 Q161 84 172 78 Q186 70 189 85 Q190 92 183 97V122H139 Q127 122 129 115 Q128 108 143 108"/></g>
+<g class="arm-front"><path class="arm-front-path" stroke-width="11"/><path class="arm-front-path" stroke="#fbc21a" stroke-width="4"/></g>
 </g></g></svg></div>
 <p class="word">Run50</p>
 </div></div>
@@ -37,11 +37,28 @@ tl.from('.arcs',{scale:.6,rotation:-100,opacity:0,duration:.6,ease:'power2.out'}
   .from('.word',{y:10,scale:.95,opacity:0,duration:.45,ease:'power3.out'},1.6)
   .to('.word',{opacity:0,y:5,duration:.35,ease:'power1.in'},4.2)
   .to('.robot',{scale:.9,opacity:0,duration:.35,ease:'power2.in'},4.4);
-tl.fromTo('.leg-front',{rotation:-18},{rotation:23,svgOrigin:'134 158',duration:.24,yoyo:true,repeat:9,ease:'sine.inOut'},1.7)
-  .fromTo('.leg-back',{rotation:20},{rotation:-22,svgOrigin:'120 158',duration:.24,yoyo:true,repeat:9,ease:'sine.inOut'},1.7)
-  .fromTo('.arm-front',{rotation:12},{rotation:-24,svgOrigin:'132 108',duration:.24,yoyo:true,repeat:9,ease:'sine.inOut'},1.7)
-  .fromTo('.arm-back',{rotation:-14},{rotation:24,svgOrigin:'110 108',duration:.24,yoyo:true,repeat:9,ease:'sine.inOut'},1.7)
-  .fromTo('.runner-body',{y:0},{y:-5,duration:.12,yoyo:true,repeat:19,ease:'sine.inOut'},1.7)
-  .fromTo('.speed-lines',{x:0},{x:-5,opacity:.55,duration:.24,yoyo:true,repeat:9,ease:'sine.inOut'},1.7);
+// Articulated gait: bent recovery knee, extended landing leg, opposite arms.
+function leg(phase,x){
+ const hip=[x,157], thigh=(-6+25*Math.cos(phase))*Math.PI/180;
+ const bend=(49+34*Math.cos(phase-.5))*Math.PI/180;
+ const knee=[hip[0]-Math.sin(thigh)*29,hip[1]+Math.cos(thigh)*29];
+ const shin=thigh+bend;
+ const ankle=[knee[0]-Math.sin(shin)*28,knee[1]+Math.cos(shin)*28];
+ return `M${hip} L${knee} L${ankle} L${ankle[0]+12},${ankle[1]+2}`;
+}
+function arm(phase,x){
+ const shoulder=[x,110], angle=(12+22*Math.cos(phase))*Math.PI/180;
+ const elbow=[x-Math.sin(angle)*22,110+Math.cos(angle)*22];
+ const forearm=angle-1.65;
+ const hand=[elbow[0]-Math.sin(forearm)*22,elbow[1]+Math.cos(forearm)*22];
+ return `M${shoulder} L${elbow} L${hand} L${hand[0]+2},${hand[1]-4}`;
+}
+const parts=[['.leg-front-path',p=>leg(p,143)],['.leg-back-path',p=>leg(p+Math.PI,118)],['.arm-front-path',p=>arm(p+Math.PI,146)],['.arm-back-path',p=>arm(p,111)]];
+for(const [sel,shape] of parts){
+ gsap.set(sel,{attr:{d:shape(0)}});
+ for(let step=1;step<=36;step++)tl.to(sel,{attr:{d:shape(step*Math.PI/6)},duration:1/15,ease:'none'},1.7+(step-1)/15);
+}
+tl.fromTo('.runner-body',{y:0,rotation:0},{y:-2,rotation:1,svgOrigin:'133 150',duration:.2,yoyo:true,repeat:11,ease:'sine.inOut'},1.7)
+  .fromTo('.speed-lines',{x:0},{x:-3,opacity:.75,duration:.4,yoyo:true,repeat:5,ease:'sine.inOut'},1.7);
 window.__timelines['run50-intro']=tl;tl.seek(0);
 </script></body></html>
