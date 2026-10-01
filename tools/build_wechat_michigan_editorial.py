@@ -27,8 +27,10 @@ def render():
 <h1>__ARTICLE_TITLE__</h1>
 <p class="byline">梅多马拉松 · 大急流城<br>文字 / Arsenan</p>
 </header>
+<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/run50-robot-intro-still.png"><img src="../../assets/run50-robot-intro.gif" alt="Run50 跑步机器人片头" width="720" height="480"></picture>
 <section class="cover" aria-label="密歇根草甸赛道开篇">
 <img src="''' + PHOTO + '''img-033.webp" alt="在草甸赛道上举起双手" fetchpriority="high" width="1438" height="1310">
+<p class="hero-credit">摄影 / 赛事官方</p>
 <div class="cover-type"><span>第21州 · 密歇根</span><small>Michigan · Meadow Marathon</small></div>
 </section>
 <div class="down" aria-hidden="true">⌄<br>⌄</div>
@@ -61,11 +63,11 @@ def render():
 main{width:100%;max-width:677px;margin:auto;padding:0 16px 72px}img{max-width:100%}
 .masthead{text-align:center;padding:54px 8px 32px}.series{font-size:12px;font-weight:700;letter-spacing:4px}.issue{font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:18px}
 h1{font-family:"Songti SC",SimSun,serif;font-size:32px;line-height:1.6;font-weight:700;margin:25px 0 20px;letter-spacing:1px}.byline{font-size:12px;color:var(--muted);line-height:1.9}
-.cover{position:relative;background:#152d23}.cover img{display:block;width:100%;height:auto}.cover-type{position:absolute;bottom:0;left:0;right:0;padding:72px 24px 24px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#ffe16e}.cover-type span{display:block;font-family:KaiTi,"STKaiti",serif;font-size:clamp(30px,5.8vw,52px);font-weight:900;letter-spacing:1px}.cover-type small{display:block;font-family:Georgia,"Times New Roman",serif;font-size:15px;font-weight:400;line-height:1.5;letter-spacing:0;color:#fff;margin-top:10px}
+.brand-intro{display:block;width:280px;max-width:100%;margin:0 auto 26px}.brand-intro img{display:block;width:100%;height:auto}.hero-credit{font-size:12px;line-height:1.8;text-align:center;color:#888;margin:10px 0 0}.cover{position:relative;background:transparent}.cover img{display:block;width:100%;height:auto}.cover-type{position:static;padding:22px 8px 0;background:transparent;color:var(--ink)}.cover-type span{display:block;font-family:KaiTi,"STKaiti",serif;font-size:clamp(30px,5.8vw,52px);font-weight:900;letter-spacing:1px}.cover-type small{display:block;font-family:Georgia,"Times New Roman",serif;font-size:15px;font-weight:400;line-height:1.5;letter-spacing:0;color:#666;margin-top:8px}
 .down{text-align:center;color:#aaa;font-size:30px;line-height:12px;margin:38px 0 44px}.intro{margin:0 8px 54px;font-size:15px;line-height:2;letter-spacing:.5px}
 .chapter{margin:72px 8px 34px}.chapter-number{display:block;font-family:Arial,sans-serif;font-size:94px;line-height:1;font-weight:400;color:transparent;-webkit-text-stroke:1px var(--ink);letter-spacing:-5px}.chapter-label{font-size:11px;letter-spacing:2px;color:var(--muted);margin:18px 0 10px}.chapter h2{font-size:20px;line-height:1.65;letter-spacing:.5px;margin:0;font-weight:700}
 strong{font-weight:700}em{font-family:Georgia,serif}figure+figure{margin-top:42px}.ending{margin-top:64px;padding-top:32px;border-top:1px solid #ddd;text-align:center;font-size:14px;line-height:1.9}.end-mark{font-size:12px;color:#888;margin-bottom:44px}.ending h2{font-family:SimSun,serif;font-size:30px;margin:16px 0}.finish-stats{font-size:12px;letter-spacing:1px;color:#777}.credits{font-size:12px;line-height:2;color:#888;margin:36px 0}.closing{font-size:13px;line-height:2}
-@media(max-width:520px){main{padding:0 14px 48px}.masthead{padding-top:38px}h1{font-size:25px}.chapter{margin-top:58px}.chapter-number{font-size:80px}.chapter h2{font-size:18px}.cover-type{padding:55px 18px 20px}}
+@media(max-width:520px){main{padding:0 14px 48px}.masthead{padding-top:38px}h1{font-size:25px}.chapter{margin-top:58px}.chapter-number{font-size:80px}.chapter h2{font-size:18px}.cover-type{padding:18px 8px 0}}
 @media print{main{max-width:677px}.chapter,figure{break-inside:avoid}}
 '''
     return '<!doctype html>\n<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Run50 第21州：密歇根梅多马拉松，在大急流城的夏天六次穿越千禧公园。"><title>' + escape(data['title']) + '</title><style>' + css + '</style></head><body><main data-edition="michigan-editorial-20261001">' + '\n'.join(body).replace('__ARTICLE_TITLE__', escape(data['title'])) + '</main></body></html>\n'
