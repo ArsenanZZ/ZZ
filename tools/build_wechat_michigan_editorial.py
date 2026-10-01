@@ -27,7 +27,7 @@ def render():
 <h1>__ARTICLE_TITLE__</h1>
 <p class="byline">梅多马拉松 · 大急流城<br>文字 / Arsenan</p>
 </header>
-<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/run50-robot-intro-still.png?v=20261001-natural-jog"><img src="../../assets/run50-robot-intro.gif?v=20261001-natural-jog" alt="Run50 跑步机器人片头" width="720" height="480"></picture>
+<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/run50-robot-intro-still.png?v=20261001-static-mark"><img src="../../assets/run50-robot-intro.gif?v=20261001-static-mark" alt="Run50 跑步机器人片头" width="720" height="480"></picture>
 <section class="cover" aria-label="密歇根草甸赛道开篇">
 <img src="''' + PHOTO + '''img-033.webp" alt="在草甸赛道上举起双手" fetchpriority="high" width="1438" height="1310">
 <p class="hero-credit">摄影 / 赛事官方</p>

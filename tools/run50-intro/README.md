@@ -14,4 +14,4 @@ ffmpeg -y -framerate 20 -i <frames-directory>/frame-%03d.png -filter_complex "[0
 
 The article selects the still PNG when reduced motion is requested. Do not matte the GIF against white or black. Verify both themes before replacing the asset.
 
-The running update articulates a vector tracing of the original robot. Each leg has separate hip, knee and ankle positions; recovery knees bend while the opposite leg extends. The original bitmap is retained as the design reference.
+The original bitmap robot remains still; there is no limb animation.
