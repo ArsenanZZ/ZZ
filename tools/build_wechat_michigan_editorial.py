@@ -30,7 +30,7 @@ def render():
 <picture><source media="(prefers-reduced-motion: reduce)" srcset="../stories/chinese/Run50-Michigan-Meadows-Marathon-clean_files/img-033.webp"><img src="../../assets/michigan-wechat-hero-slideshow.gif?v=five-photos" alt="密歇根马拉松：三张比赛照、与 Siqi 合影、完赛奖牌" fetchpriority="high" width="900" height="820"></picture>
 <figcaption class="hero-credit">比赛照 / 赛事官方 · 合影、奖牌 / Arsenan</figcaption>
 </figure>
-<div class="down" aria-hidden="true">⌄</div>
+<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div>
 <section class="intro">
 <p>从肯塔基北上大急流城，先用 <strong>Parkrun</strong> 热身，再在 <strong>Millennium Park</strong> 绕六圈完成密歇根州。不是最快的一场，但很有夏天、湿地和重复路线的味道。</p>
 </section>''']
@@ -61,7 +61,7 @@ main{width:100%;max-width:677px;margin:auto;padding:0 16px 72px}img{max-width:10
 .masthead{text-align:center;padding:36px 8px 4px}.series{font-size:12px;font-weight:700;letter-spacing:4px}.issue{font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:18px}
 h1{font-family:"Songti SC",SimSun,serif;font-size:32px;line-height:1.6;font-weight:700;margin:0 0 18px;letter-spacing:1px}.byline{font-size:12px;color:var(--muted);line-height:1.9}
 .brand-intro{display:block;width:280px;max-width:100%;margin:0 auto 12px}.brand-intro img{display:block;width:100%;height:auto}.cover{margin:0 -2px}.hero-credit{margin:10px 0 0;text-align:center;font-size:12px;line-height:1.8;color:#888}.cover img{display:block;width:100%;height:auto}
-.down{text-align:center;color:#aaa;display:block;width:100%;font-size:24px;line-height:1.5;margin:24px 0 30px}.intro{margin:0 8px 54px;font-size:15px;line-height:2;letter-spacing:.5px}
+.down{text-align:center;color:#aaa;display:block;width:100%;font-size:24px;line-height:13px;margin:30px 0 36px}.intro{margin:0 8px 54px;font-size:15px;line-height:2;letter-spacing:.5px}
 .chapter{margin:72px 8px 34px}.chapter-number{display:block;font-family:Arial,sans-serif;font-size:94px;line-height:1;font-weight:400;color:transparent;-webkit-text-stroke:1px var(--ink);letter-spacing:-5px}.chapter-label{font-size:11px;letter-spacing:2px;color:var(--muted);margin:18px 0 10px}.chapter h2{font-size:20px;line-height:1.65;letter-spacing:.5px;margin:0;font-weight:700}
 strong{font-weight:700}em{font-family:Georgia,serif}figure+figure{margin-top:42px}.ending{margin-top:64px;padding-top:32px;border-top:1px solid #ddd;text-align:center;font-size:14px;line-height:1.9}.end-mark{font-size:12px;color:#888;margin-bottom:44px}.ending h2{font-family:SimSun,serif;font-size:30px;margin:16px 0}.finish-stats{font-size:12px;letter-spacing:1px;color:#777}.credits{font-size:12px;line-height:2;color:#888;margin:36px 0}.closing{font-size:13px;line-height:2}
 @media(max-width:520px){main{padding:0 14px 48px}.masthead{padding-top:28px}h1{font-size:25px}.chapter{margin-top:58px}.chapter-number{font-size:80px}.chapter h2{font-size:18px}}
@@ -72,7 +72,7 @@ html[data-theme="dark"] .ending{border-color:#444}html[data-theme="dark"] .copy-
 .copy-tools .theme-choice{background:transparent;color:inherit;border:1px solid #888;padding:9px 12px}.copy-tools .theme-choice[aria-pressed="true"]{border-color:#b99b49;box-shadow:inset 0 -2px #b99b49}
 @media print{.copy-tools{display:none}main{max-width:677px}.chapter,figure{break-inside:avoid}}
 '''
-    return '<!doctype html>\n<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Run50 第21州：密歇根梅多马拉松，在大急流城的夏天六次穿越千禧公园。"><title>' + escape(data['title']) + '</title><style>' + css + '</style></head><body><nav class="copy-tools" aria-label="公众号复制"><button class="theme-choice" data-theme-choice="light" aria-pressed="true" type="button">白底</button><button class="theme-choice" data-theme-choice="dark" aria-pressed="false" type="button">黑底</button><button id="copy-wechat" type="button">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav><main data-edition="michigan-editorial-20261001">' + '\n'.join(body).replace('__ARTICLE_TITLE__', escape(data['title'])) + '</main><script src="../../assets/michigan-wechat-copy.js?v=20261001-copy-embedded" defer></script></body></html>\n'
+    return '<!doctype html>\n<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Run50 第21州：密歇根梅多马拉松，在大急流城的夏天六次穿越千禧公园。"><title>' + escape(data['title']) + '</title><style>' + css + '</style></head><body><nav class="copy-tools" aria-label="公众号复制"><button class="theme-choice" data-theme-choice="light" aria-pressed="true" type="button">白底</button><button class="theme-choice" data-theme-choice="dark" aria-pressed="false" type="button">黑底</button><button id="copy-wechat" type="button">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav><main data-edition="michigan-editorial-20261001">' + '\n'.join(body).replace('__ARTICLE_TITLE__', escape(data['title'])) + '</main><script src="../../assets/michigan-wechat-copy.js?v=20261001-copy-ornaments" defer></script></body></html>\n'
 
 
 if __name__ == '__main__':
