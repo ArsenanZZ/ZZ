@@ -24,7 +24,7 @@ def render():
     body = ['''<header class="masthead">
 <p class="series">RUN50 · 行走五十州</p>
 <p class="issue">第二十一站 / MICHIGAN</p>
-<h1>在密歇根的夏天，<br>把同一片风景跑过六遍</h1>
+<h1>__ARTICLE_TITLE__</h1>
 <p class="byline">梅多马拉松 · 大急流城<br>文字 / Arsenan</p>
 </header>
 <section class="cover" aria-label="密歇根草甸赛道开篇">
@@ -68,7 +68,7 @@ strong{font-weight:700}em{font-family:Georgia,serif}figure+figure{margin-top:42p
 @media(max-width:520px){main{padding:0 14px 48px}.masthead{padding-top:38px}h1{font-size:25px}.chapter{margin-top:58px}.chapter-number{font-size:80px}.chapter h2{font-size:18px}.cover-type{padding:55px 18px 20px}}
 @media print{main{max-width:677px}.chapter,figure{break-inside:avoid}}
 '''
-    return '<!doctype html>\n<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Run50 第21州：密歇根梅多马拉松，在大急流城的夏天六次穿越千禧公园。"><title>' + escape(data['title']) + '</title><style>' + css + '</style></head><body><main data-edition="michigan-editorial-20261001">' + '\n'.join(body) + '</main></body></html>\n'
+    return '<!doctype html>\n<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Run50 第21州：密歇根梅多马拉松，在大急流城的夏天六次穿越千禧公园。"><title>' + escape(data['title']) + '</title><style>' + css + '</style></head><body><main data-edition="michigan-editorial-20261001">' + '\n'.join(body).replace('__ARTICLE_TITLE__', escape(data['title'])) + '</main></body></html>\n'
 
 
 if __name__ == '__main__':

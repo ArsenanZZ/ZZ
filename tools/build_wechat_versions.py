@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SLUG = "michigan-meadows-marathon"
 SOURCE = ROOT / "run50" / "stories" / "chinese" / f"{SLUG}.html"
 OUT_DIR = ROOT / "run50" / "wechat"
-WECHAT_PUBLIC_TITLE = "Run50 #第21州 密歇根 梅多马拉松 在大急流城数圈，6次穿越千禧公园！"
+WECHAT_PUBLIC_TITLE = "Run50 #第21州｜密歇根：梅多马拉松｜在大急流城数圈，6次穿越千禧公园！"
 
 
 @dataclass
