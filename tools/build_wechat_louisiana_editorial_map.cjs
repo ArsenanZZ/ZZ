@@ -20,9 +20,9 @@ const path = require('path');
     const cx=points.reduce((a,p)=>a+p[0],0)/10, cy=points.reduce((a,p)=>a+p[1],0)/10;
     // Keep the callout in the open water below the map labels.
     add('image',{href:'../assets/louisiana-map-callout-jazz.png',x:cx-55,y:cy+125,width:350,height:118});
-    const marker=add('marker',{id:'louisiana-pointer',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'7',markerHeight:'7',orient:'auto'},defs);
-    add('path',{d:'M 0 0 L 10 5 L 0 10 Z',fill:'#a87827'},marker);
-    add('path',{d:`M ${cx-33} ${cy+180} C ${cx-240} ${cy+132} ${cx-160} ${cy+48} ${cx-9} ${cy+8}`,fill:'none',stroke:'#a87827','stroke-width':'2.2','stroke-linecap':'round','marker-end':'url(#louisiana-pointer)'});
+    const marker=add('marker',{id:'louisiana-pointer',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'12',markerHeight:'12',orient:'auto'},defs);
+    add('path',{d:'M 0 0 L 10 5 L 0 10 Z',fill:'#986218'},marker);
+    add('path',{d:`M ${cx-33} ${cy+180} C ${cx-240} ${cy+132} ${cx-160} ${cy+48} ${cx-9} ${cy+8}`,fill:'none',stroke:'#986218','stroke-width':'3.4','stroke-linecap':'round','marker-end':'url(#louisiana-pointer)'});
 
 
   });
