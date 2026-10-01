@@ -24,13 +24,9 @@ const path = require('path');
     add('stop',{offset:'0%','stop-color':'#e4bc65'},gold);
     add('stop',{offset:'60%','stop-color':'#b58230'},gold);
     add('stop',{offset:'100%','stop-color':'#85551f'},gold);
-    const marker=add('marker',{id:'louisiana-pointer',viewBox:'0 0 32 28',refX:'29',refY:'14',markerWidth:'13',markerHeight:'12',orient:'auto',overflow:'visible'},defs);
-    // Curved split feather: a calligraphic arrowhead with open breathing room.
-    add('path',{d:'M 2 2 C 12 3 18 10 30 14 C 19 13 9 9 2 2 Z',fill:'url(#pointer-gold)',stroke:'#946628','stroke-width':'.65'},marker);
-    add('path',{d:'M 2 26 C 10 24 19 17 30 14 C 18 15 10 18 2 26 Z',fill:'url(#pointer-gold)',stroke:'#946628','stroke-width':'.65'},marker);
-    add('path',{d:'M 7 14 Q 20 14 30 14',fill:'none',stroke:'#a87827','stroke-width':'1.4','stroke-linecap':'round'},marker);
-    add('path',{d:`M ${cx-33} ${cy+180} C ${cx-68} ${cy+191} ${cx-67} ${cy+163} ${cx-48} ${cy+171}`,fill:'none',stroke:'#b58230','stroke-width':'2.3','stroke-linecap':'round'});
-    add('path',{d:`M ${cx-33} ${cy+180} C ${cx-125} ${cy+158} ${cx-142} ${cy+66} ${cx-9} ${cy+8}`,fill:'none',stroke:'url(#pointer-gold)','stroke-width':'3.4','stroke-linecap':'round','marker-end':'url(#louisiana-pointer)'});
+    add('path',{d:`M ${cx-33} ${cy+180} C ${cx-112} ${cy+166} ${cx-145} ${cy+124} ${cx-85} ${cy+94}`,fill:'none',stroke:'url(#pointer-gold)','stroke-width':'2.8','stroke-linecap':'round'});
+    add('image',{href:'../assets/louisiana-map-pointing-hand.png',x:cx-107,y:cy+4,width:100,height:100});
+
 
 
   });
