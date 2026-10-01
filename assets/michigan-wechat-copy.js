@@ -46,11 +46,12 @@
     const muted = dark ? '#aaaaaa' : '#888888';
     const base = 'https://zhennanzhang.com/assets/michigan-wechat-copy/';
     const wrapper = document.createElement('section');
-    wrapper.style.cssText = `padding:16px;background-color:${dark ? '#191919' : '#ffffff'};color:${ink};font-size:15px;line-height:1.95;text-align:left;font-family:Arial,"Microsoft YaHei",sans-serif;`;
+    wrapper.style.cssText = `padding:0 16px 16px;background-color:${dark ? '#191919' : '#ffffff'};color:${ink};font-size:15px;line-height:1.95;text-align:left;font-family:Arial,"Microsoft YaHei",sans-serif;`;
     function convert(node) {
       if (node.nodeType === Node.TEXT_NODE) return document.createTextNode(node.textContent);
       if (node.nodeType !== Node.ELEMENT_NODE) return document.createTextNode('');
       const tag = node.tagName.toLowerCase();
+      if (node.classList.contains('masthead') || node.classList.contains('byline')) return document.createTextNode('');
       if (['script','style','source','button'].includes(tag)) return document.createTextNode('');
       const number = node.classList.contains('chapter-number');
       const down = node.classList.contains('down');
@@ -68,6 +69,11 @@
         img.src = url;
         img.alt = number ? node.textContent.trim() : down ? '向下' : node.getAttribute('alt') || '';
         img.style.cssText = `display:block;width:100%;max-width:100%;height:auto;margin:${down ? '24px 0 30px' : '0'};border:0;`;
+        if (node.closest('.brand-intro')) {
+          img.width = 96;
+          img.height = 129;
+          img.style.cssText = 'display:inline-block;width:96px;max-width:96px;height:auto;margin:0;border:0;vertical-align:middle;';
+        }
         return img;
       }
       const inline = ['strong','b','em','i','u','span','a'].includes(tag);
@@ -89,7 +95,7 @@
         if (node.classList.contains('chapter')) out.style.margin = '58px 0 34px';
         if (node.classList.contains('chapter-label')) out.style.cssText = `margin:18px 0 10px;font-size:11px;line-height:1.8;text-align:left;color:${muted};`;
         if (node.classList.contains('intro')) out.style.marginBottom = '54px';
-        if (node.classList.contains('brand-intro')) out.style.cssText = 'width:96px;max-width:100%;margin:0 auto 4px;line-height:1.95;text-align:center;';
+        if (node.classList.contains('brand-intro')) out.style.cssText = 'margin:0 0 4px;padding:0;font-size:12px;line-height:1.5;text-align:center;';
         if (node.classList.contains('ending')) out.style.cssText = 'margin:64px 0 0;padding:32px 0 0;border-top:1px solid #888;font-size:14px;line-height:1.95;text-align:center;';
         if (node.closest('.ending')) out.style.textAlign = 'center';
       }
@@ -129,7 +135,7 @@
     try {
       const content = await buildClipboard();
       const html = content.outerHTML;
-      const text = selectedChildren().map(el => el.innerText || el.textContent).join('\n\n');
+      const text = content.textContent;
       let copied = false;
       if (navigator.clipboard && window.ClipboardItem) {
         try {
