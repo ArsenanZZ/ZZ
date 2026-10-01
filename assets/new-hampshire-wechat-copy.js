@@ -30,7 +30,7 @@
     status.textContent = '';
   }
   themeButtons.forEach(el => el.addEventListener('click', () => setTheme(el.dataset.themeChoice)));
-  const canonical = 'https://zhennanzhang.com/run50/wechat/michigan-meadows-marathon-modern-rail.html';
+  const canonical = 'https://zhennanzhang.com/run50/wechat/new-hampshire-clarence-demar-marathon-editorial.html';
   async function buildClipboard() {
     // Parse the saved document, not extension-modified live DOM.
     const response = await fetch(location.pathname, {cache: 'no-cache'});
@@ -44,7 +44,7 @@
     const theme = dark ? 'dark' : 'light';
     const ink = dark ? '#ece9e2' : '#262626';
     const muted = dark ? '#aaaaaa' : '#888888';
-    const base = 'https://zhennanzhang.com/assets/michigan-wechat-copy/';
+    const base = 'https://zhennanzhang.com/assets/new-hampshire-wechat-copy/';
     const wrapper = document.createElement('section');
     wrapper.style.cssText = `padding:0 16px 16px;background-color:${dark ? '#191919' : '#ffffff'};color:${ink};font-size:15px;line-height:1.95;text-align:left;font-family:Arial,"Microsoft YaHei",sans-serif;`;
     function convert(node) {
