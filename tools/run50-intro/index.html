@@ -13,7 +13,18 @@
 </style></head><body>
 <div id="root" data-composition-id="run50-intro" data-start="0" data-duration="5" data-width="720" data-height="480">
 <div id="scene" class="scene-content clip" data-start="0" data-duration="5" data-track-index="0">
-<div class="badge"><svg class="arcs" viewBox="0 0 204 204" aria-hidden="true"><path class="arc" d="M 22 102 A 80 80 0 0 1 102 22"/><path class="arc" d="M 182 102 A 80 80 0 0 1 102 182"/></svg><img class="robot" src="robot.png" alt="Arsenan running robot"></div>
+<div class="badge"><svg class="arcs" viewBox="0 0 204 204" aria-hidden="true"><path class="arc" d="M 22 102 A 80 80 0 0 1 102 22"/><path class="arc" d="M 182 102 A 80 80 0 0 1 102 182"/></svg><svg class="robot" viewBox="0 0 267 267" role="img" aria-label="原地小跑的蓝色机器人">
+<circle cx="133.5" cy="133.5" r="133.5" fill="#fbc21a"/>
+<g fill="none" stroke="#346bc0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+<g class="speed-lines"><path d="M52 75H93 M73 88H94 M52 185H94 M74 172H94"/></g>
+<g class="runner-body">
+<g class="arm-back"><path d="M111 108H76V137 Q65 151 79 158 Q96 156 86 141 V120H109"/></g>
+<g class="leg-back"><path d="M109 157V195H93V201H81V233H91V214H127V190H144V177"/></g>
+<g class="leg-front"><path d="M134 158H163V168H191V197H202V213H172V201H181V179H163V186H143"/></g>
+<path d="M109 103H132L156 118V157H109Z M110 158V184H143"/>
+<g class="head"><path d="M108 40H157V90H108Z M127 32L135 40V32L145 40V32L157 42"/><circle cx="140" cy="58" r="7" fill="#346bc0" stroke="none"/></g>
+<g class="arm-front"><path d="M143 104H170V96 Q161 84 172 78 Q186 70 189 85 Q190 92 183 97V122H139 Q127 122 129 115 Q128 108 143 108"/></g>
+</g></g></svg></div>
 <p class="word">Run50</p>
 </div></div>
 <script>
@@ -26,5 +37,11 @@ tl.from('.arcs',{scale:.6,rotation:-100,opacity:0,duration:.6,ease:'power2.out'}
   .from('.word',{y:10,scale:.95,opacity:0,duration:.45,ease:'power3.out'},1.6)
   .to('.word',{opacity:0,y:5,duration:.35,ease:'power1.in'},4.2)
   .to('.robot',{scale:.9,opacity:0,duration:.35,ease:'power2.in'},4.4);
+tl.fromTo('.leg-front',{rotation:-18},{rotation:23,svgOrigin:'134 158',duration:.24,yoyo:true,repeat:9,ease:'sine.inOut'},1.7)
+  .fromTo('.leg-back',{rotation:20},{rotation:-22,svgOrigin:'120 158',duration:.24,yoyo:true,repeat:9,ease:'sine.inOut'},1.7)
+  .fromTo('.arm-front',{rotation:12},{rotation:-24,svgOrigin:'132 108',duration:.24,yoyo:true,repeat:9,ease:'sine.inOut'},1.7)
+  .fromTo('.arm-back',{rotation:-14},{rotation:24,svgOrigin:'110 108',duration:.24,yoyo:true,repeat:9,ease:'sine.inOut'},1.7)
+  .fromTo('.runner-body',{y:0},{y:-5,duration:.12,yoyo:true,repeat:19,ease:'sine.inOut'},1.7)
+  .fromTo('.speed-lines',{x:0},{x:-5,opacity:.55,duration:.24,yoyo:true,repeat:9,ease:'sine.inOut'},1.7);
 window.__timelines['run50-intro']=tl;tl.seek(0);
 </script></body></html>

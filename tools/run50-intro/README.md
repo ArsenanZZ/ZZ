@@ -13,3 +13,5 @@ ffmpeg -y -framerate 20 -i <frames-directory>/frame-%03d.png -filter_complex "[0
 ```
 
 The article selects the still PNG when reduced motion is requested. Do not matte the GIF against white or black. Verify both themes before replacing the asset.
+
+The running update articulates a vector tracing of the original robot. Leg pivot-drift warnings are intentional: legs rotate around the hip, not their bounding-box center. The original bitmap is retained as the design reference.
