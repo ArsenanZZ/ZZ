@@ -18,9 +18,12 @@ const path = require('path');
     const star=svg.querySelector('#city-dots-group polygon[fill="#ffcc00"]');
     const points=star.getAttribute('points').split(' ').map(p=>p.split(',').map(Number));
     const cx=points.reduce((a,p)=>a+p[0],0)/10, cy=points.reduce((a,p)=>a+p[1],0)/10;
-    add('image',{href:'../assets/louisiana-map-callout-jazz.png',x:680,y:78,width:390,height:131});
-    add('text',{x:cx+55,y:cy+93,'font-family':'Georgia,serif','font-size':'24',fill:'#aa823a'}).textContent='♪';
-    add('path',{d:`M ${cx+60} ${cy+76} Q ${cx+50} ${cy+40} ${cx+10} ${cy+12}`,fill:'none',stroke:'#aa823a','stroke-width':'1.5','stroke-linecap':'round',opacity:'.85'});
+    // Keep the callout in the open water below the map labels.
+    add('image',{href:'../assets/louisiana-map-callout-jazz.png',x:cx-55,y:cy+125,width:350,height:118});
+    const marker=add('marker',{id:'louisiana-pointer',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'7',markerHeight:'7',orient:'auto'},defs);
+    add('path',{d:'M 0 0 L 10 5 L 0 10 Z',fill:'#a87827'},marker);
+    add('path',{d:`M ${cx-33} ${cy+180} C ${cx-240} ${cy+132} ${cx-160} ${cy+48} ${cx-9} ${cy+8}`,fill:'none',stroke:'#a87827','stroke-width':'2.2','stroke-linecap':'round','marker-end':'url(#louisiana-pointer)'});
+
 
   });
   await page.waitForTimeout(500);
