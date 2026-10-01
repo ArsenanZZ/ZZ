@@ -26,14 +26,16 @@ def render():
 <p class="byline">文字 / Arsenan</p>
 </header>
 <picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/run50-robot-intro-still.png?v=20261001-static-mark"><img src="../../assets/run50-robot-intro.gif?v=20261001-static-mark" alt="Run50 跑步机器人片头" width="720" height="480"></picture>
-<section class="cover" aria-label="密歇根 Run50 第21州海报">
-<img src="../../assets/wechat-michigan-grand-rapids-poster-20261001.png" alt="Michigan，2024，Grand Rapids，Run50 21" fetchpriority="high" width="1672" height="941">
-</section>
+<figure class="cover" aria-label="密歇根马拉松官方照片">
+<img src="../stories/chinese/Run50-Michigan-Meadows-Marathon-clean_files/img-033.webp" alt="在草甸赛道上举起双手" fetchpriority="high" width="1438" height="1310">
+<figcaption class="hero-credit">摄影 / 赛事官方</figcaption>
+</figure>
 <div class="down" aria-hidden="true">⌄<br>⌄</div>
 <section class="intro">
 <p>从肯塔基北上大急流城，先用 <strong>Parkrun</strong> 热身，再在 <strong>Millennium Park</strong> 绕六圈完成密歇根州。不是最快的一场，但很有夏天、湿地和重复路线的味道。</p>
 </section>''']
     body.append(figure('../../assets/wechat-run50-map-michigan-21-editorial.png', '密歇根手绘地图，星标大急流城', '第 21 州 · 密歇根，星标为大急流城｜制图 / Arsenan'))
+    body.append(figure('../../assets/wechat-michigan-grand-rapids-poster-20261001.png', 'Michigan，2024，Grand Rapids，Run50 21', '2024 · 大急流城 · Run50 第21州'))
     n = 0
     for block in data['blocks']:
         kind = block['kind']
@@ -58,7 +60,7 @@ def render():
 main{width:100%;max-width:677px;margin:auto;padding:0 16px 72px}img{max-width:100%}
 .masthead{text-align:center;padding:36px 8px 4px}.series{font-size:12px;font-weight:700;letter-spacing:4px}.issue{font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:18px}
 h1{font-family:"Songti SC",SimSun,serif;font-size:32px;line-height:1.6;font-weight:700;margin:0 0 18px;letter-spacing:1px}.byline{font-size:12px;color:var(--muted);line-height:1.9}
-.brand-intro{display:block;width:280px;max-width:100%;margin:0 auto 12px}.brand-intro img{display:block;width:100%;height:auto}.cover{margin:0 -2px}.cover img{display:block;width:100%;height:auto}
+.brand-intro{display:block;width:280px;max-width:100%;margin:0 auto 12px}.brand-intro img{display:block;width:100%;height:auto}.cover{margin:0 -2px}.hero-credit{margin:10px 0 0;text-align:center;font-size:12px;line-height:1.8;color:#888}.cover img{display:block;width:100%;height:auto}
 .down{text-align:center;color:#aaa;font-size:30px;line-height:12px;margin:38px 0 44px}.intro{margin:0 8px 54px;font-size:15px;line-height:2;letter-spacing:.5px}
 .chapter{margin:72px 8px 34px}.chapter-number{display:block;font-family:Arial,sans-serif;font-size:94px;line-height:1;font-weight:400;color:transparent;-webkit-text-stroke:1px var(--ink);letter-spacing:-5px}.chapter-label{font-size:11px;letter-spacing:2px;color:var(--muted);margin:18px 0 10px}.chapter h2{font-size:20px;line-height:1.65;letter-spacing:.5px;margin:0;font-weight:700}
 strong{font-weight:700}em{font-family:Georgia,serif}figure+figure{margin-top:42px}.ending{margin-top:64px;padding-top:32px;border-top:1px solid #ddd;text-align:center;font-size:14px;line-height:1.9}.end-mark{font-size:12px;color:#888;margin-bottom:44px}.ending h2{font-family:SimSun,serif;font-size:30px;margin:16px 0}.finish-stats{font-size:12px;letter-spacing:1px;color:#777}.credits{font-size:12px;line-height:2;color:#888;margin:36px 0}.closing{font-size:13px;line-height:2}
