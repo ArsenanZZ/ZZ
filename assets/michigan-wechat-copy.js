@@ -12,6 +12,12 @@
   scope.add(new Option('全文复制', 'all'));
   starts.forEach((start, i) => scope.add(new Option(i === 0 ? '分段：开篇' : children[start].classList.contains('ending') ? '分段：结尾和署名' : `分段：第 ${i} 章`, String(i))));
   button.before(scope);
+  const imageMode = document.createElement('select');
+  imageMode.setAttribute('aria-label', '图片复制方式');
+  imageMode.style.cssText = scope.style.cssText;
+  imageMode.add(new Option('带图片复制（原方式）', 'embedded'));
+  imageMode.add(new Option('图片链接（备用）', 'links'));
+  button.before(imageMode);
   function selectedChildren() {
     if (scope.value === 'all') return children;
     const i = Number(scope.value);
@@ -90,11 +96,34 @@
       return out;
     }
     for (const node of selected) wrapper.append(convert(node));
+    if (imageMode.value === 'embedded') {
+      const images = [...wrapper.querySelectorAll('img')];
+      let next = 0;
+      let completed = 0;
+      await Promise.all(Array.from({length: 4}, async () => {
+        while (next < images.length) {
+          const img = images[next++];
+          const url = new URL(img.src);
+          const result = await fetch(url.pathname + url.search);
+          if (!result.ok) throw new Error('Image unavailable');
+          const blob = await result.blob();
+          img.src = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+          status.textContent = `正在准备图片 ${++completed}/${images.length}…`;
+        }
+      }));
+    }
     return wrapper;
   }
 
   async function copyArticle() {
     button.disabled = true;
+    scope.disabled = imageMode.disabled = true;
+    themeButtons.forEach(el => { el.disabled = true; });
     status.textContent = '正在复制…';
     try {
       const content = await buildClipboard();
@@ -143,6 +172,8 @@
       status.textContent = '复制未成功，请允许剪贴板权限后重试';
     } finally {
       button.disabled = false;
+      scope.disabled = imageMode.disabled = false;
+      themeButtons.forEach(el => { el.disabled = false; });
     }
   }
   button.addEventListener('click', copyArticle);
