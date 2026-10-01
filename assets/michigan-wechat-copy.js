@@ -46,7 +46,7 @@
     const muted = dark ? '#aaaaaa' : '#888888';
     const base = 'https://zhennanzhang.com/assets/michigan-wechat-copy/';
     const wrapper = document.createElement('section');
-    wrapper.style.cssText = `padding:0 16px 16px;background-color:${dark ? '#191919' : '#ffffff'};color:${ink};font-size:15px;line-height:1.95;text-align:left;font-family:Arial,"Microsoft YaHei",sans-serif;`;
+    wrapper.style.cssText = `padding:0 4px 16px;background-color:${dark ? '#191919' : '#ffffff'};color:${ink};font-size:15px;line-height:1.95;text-align:left;font-family:Arial,"Microsoft YaHei",sans-serif;`;
     function convert(node) {
       if (node.nodeType === Node.TEXT_NODE) return document.createTextNode(node.textContent);
       if (node.nodeType !== Node.ELEMENT_NODE) return document.createTextNode('');

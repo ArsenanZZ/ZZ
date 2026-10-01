@@ -43,7 +43,7 @@ def render():
             n += 1
             body.append(f'<header class="chapter"><span class="chapter-number" aria-hidden="true">{n:02}</span><p class="chapter-label">{escape(block["label"])}</p><h2>{escape(block["title"])}</h2></header>')
         elif kind == 'paragraph':
-            body.append(block['html'].replace('<p>', '<p class="prose" style="margin:0 8px 22px;font-size:15px;line-height:1.95;letter-spacing:.5px;text-align:justify">', 1))
+            body.append(block['html'].replace('<p>', '<p class="prose" style="margin:0 0 22px;font-size:15px;line-height:1.95;letter-spacing:.5px;text-align:justify">', 1))
         elif kind == 'figure':
             body.append(figure(block['src'], block['alt'], block['caption']))
     body.append('''<footer class="ending">
@@ -57,14 +57,14 @@ def render():
     css = '''
 :root{color-scheme:light;--paper:#fff;--ink:#262626;--muted:#888;--accent:#c0a04c}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",Arial,sans-serif}
-main{width:100%;max-width:677px;margin:auto;padding:0 16px 72px}img{max-width:100%}
+main{width:100%;max-width:677px;margin:auto;padding:0 20px 72px}img{max-width:100%}
 .masthead{text-align:center;padding:36px 8px 4px}.series{font-size:12px;font-weight:700;letter-spacing:4px}.issue{font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:18px}
 h1{font-family:"Songti SC",SimSun,serif;font-size:32px;line-height:1.6;font-weight:700;margin:0 0 18px;letter-spacing:1px}.byline{font-size:12px;color:var(--muted);line-height:1.9}
-.brand-intro{display:block;width:96px;max-width:100%;margin:0 auto 4px}.brand-intro img{display:block;width:100%;height:auto}.cover{margin:0 -2px}.hero-credit{margin:10px 0 0;text-align:center;font-size:12px;line-height:1.8;color:#888}.cover img{display:block;width:100%;height:auto}
-.down{text-align:center;color:#aaa;display:block;width:100%;font-size:24px;line-height:13px;margin:30px 0 36px}.intro{margin:0 8px 54px;font-size:15px;line-height:2;letter-spacing:.5px}
-.chapter{margin:72px 8px 34px}.chapter-number{display:block;font-family:Arial,sans-serif;font-size:94px;line-height:1;font-weight:400;color:transparent;-webkit-text-stroke:1px var(--ink);letter-spacing:-5px}.chapter-label{font-size:11px;letter-spacing:2px;color:var(--muted);margin:18px 0 10px}.chapter h2{font-size:20px;line-height:1.65;letter-spacing:.5px;margin:0;font-weight:700}
+.brand-intro{display:block;width:96px;max-width:100%;margin:0 auto 4px}.brand-intro img{display:block;width:100%;height:auto}.cover{margin:0}.hero-credit{margin:10px 0 0;text-align:center;font-size:12px;line-height:1.8;color:#888}.cover img{display:block;width:100%;height:auto}
+.down{text-align:center;color:#aaa;display:block;width:100%;font-size:24px;line-height:13px;margin:30px 0 36px}.intro{margin:0 0 54px;font-size:15px;line-height:2;letter-spacing:.5px}
+.chapter{margin:72px 0 34px}.chapter-number{display:block;font-family:Arial,sans-serif;font-size:94px;line-height:1;font-weight:400;color:transparent;-webkit-text-stroke:1px var(--ink);letter-spacing:-5px}.chapter-label{font-size:11px;letter-spacing:2px;color:var(--muted);margin:18px 0 10px}.chapter h2{font-size:20px;line-height:1.65;letter-spacing:.5px;margin:0;font-weight:700}
 strong{font-weight:700}em{font-family:Georgia,serif}figure+figure{margin-top:42px}.ending{margin-top:64px;padding-top:32px;border-top:1px solid #ddd;text-align:center;font-size:14px;line-height:1.9}.end-mark{font-size:12px;color:#888;margin-bottom:44px}.ending h2{font-family:SimSun,serif;font-size:30px;margin:16px 0}.finish-stats{font-size:12px;letter-spacing:1px;color:#777}.credits{font-size:12px;line-height:2;color:#888;margin:36px 0}.closing{font-size:13px;line-height:2}
-@media(max-width:520px){main{padding:0 14px 48px}.masthead{padding-top:28px}h1{font-size:25px}.chapter{margin-top:58px}.chapter-number{font-size:80px}.chapter h2{font-size:18px}}
+@media(max-width:520px){main{padding:0 20px 48px}.masthead{padding-top:28px}h1{font-size:25px}.chapter{margin-top:58px}.chapter-number{font-size:80px}.chapter h2{font-size:18px}}
 .copy-tools{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;padding:10px 14px;background:#f7f7f5;border-bottom:1px solid #e6e6e2;font-size:12px;color:#666}.copy-tools button{padding:10px 16px;border:0;border-radius:4px;background:#2d6649;color:white;font:600 14px/1.4 "Microsoft YaHei",sans-serif;cursor:pointer}.copy-tools button:disabled{opacity:.6;cursor:wait}.copy-tools button:focus-visible{outline:3px solid #d0a32e;outline-offset:2px}
 html[data-theme="dark"]{color-scheme:dark;--paper:#191919;--ink:#ece9e2;--muted:#aaa}
 html[data-theme="dark"] figcaption,html[data-theme="dark"] .credits,html[data-theme="dark"] .end-mark,html[data-theme="dark"] .finish-stats{color:#aaa!important}
