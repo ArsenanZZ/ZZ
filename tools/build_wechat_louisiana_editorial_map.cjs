@@ -20,9 +20,16 @@ const path = require('path');
     const cx=points.reduce((a,p)=>a+p[0],0)/10, cy=points.reduce((a,p)=>a+p[1],0)/10;
     // Keep the callout in the open water below the map labels.
     add('image',{href:'../assets/louisiana-map-callout-jazz.png',x:cx-55,y:cy+125,width:350,height:118});
-    const marker=add('marker',{id:'louisiana-pointer',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'12',markerHeight:'12',orient:'auto'},defs);
-    add('path',{d:'M 0 0 L 10 5 L 0 10 Z',fill:'#986218'},marker);
-    add('path',{d:`M ${cx-33} ${cy+180} C ${cx-240} ${cy+132} ${cx-160} ${cy+48} ${cx-9} ${cy+8}`,fill:'none',stroke:'#986218','stroke-width':'3.4','stroke-linecap':'round','marker-end':'url(#louisiana-pointer)'});
+    const gold=add('linearGradient',{id:'pointer-gold',x1:'0%',y1:'0%',x2:'0%',y2:'100%'},defs);
+    add('stop',{offset:'0%','stop-color':'#e4bc65'},gold);
+    add('stop',{offset:'60%','stop-color':'#b58230'},gold);
+    add('stop',{offset:'100%','stop-color':'#85551f'},gold);
+    const marker=add('marker',{id:'louisiana-pointer',viewBox:'0 0 32 28',refX:'29',refY:'14',markerWidth:'13',markerHeight:'12',orient:'auto',overflow:'visible'},defs);
+    // Curved split feather: a calligraphic arrowhead with open breathing room.
+    add('path',{d:'M 2 2 C 12 3 18 10 30 14 C 19 13 9 9 2 2 Z',fill:'url(#pointer-gold)',stroke:'#946628','stroke-width':'.65'},marker);
+    add('path',{d:'M 2 26 C 10 24 19 17 30 14 C 18 15 10 18 2 26 Z',fill:'url(#pointer-gold)',stroke:'#946628','stroke-width':'.65'},marker);
+    add('path',{d:'M 7 14 Q 20 14 30 14',fill:'none',stroke:'#a87827','stroke-width':'1.4','stroke-linecap':'round'},marker);
+    add('path',{d:`M ${cx-33} ${cy+180} C ${cx-240} ${cy+132} ${cx-160} ${cy+48} ${cx-9} ${cy+8}`,fill:'none',stroke:'url(#pointer-gold)','stroke-width':'3.4','stroke-linecap':'round','marker-end':'url(#louisiana-pointer)'});
 
 
   });
