@@ -36,7 +36,7 @@ def render():
 <p>从肯塔基北上大急流城，先用 <strong>Parkrun</strong> 热身，再在 <strong>Millennium Park</strong> 绕六圈完成密歇根州。不是最快的一场，但很有夏天、湿地和重复路线的味道。</p>
 </section>''']
     body.append(figure('../../assets/wechat-run50-map-michigan-21-editorial.png', '密歇根手绘地图，星标大急流城', '第 21 州 · 密歇根，星标为大急流城｜制图 / Arsenan'))
-    body.append(figure('../../assets/cover-medal-zh-index-michigan-meadows-cn-flat.jpg', '密歇根金属浮雕海报：2024，大急流城，Run50 21', '2024 · 大急流城 · Run50 第21州'))
+    body.append(figure('../../assets/wechat-michigan-grand-rapids-poster-20261001.png', '密歇根金属浮雕海报：2024，大急流城，Run50 21', '2024 · 大急流城 · Run50 第21州'))
     n = 0
     for block in data['blocks']:
         kind = block['kind']
