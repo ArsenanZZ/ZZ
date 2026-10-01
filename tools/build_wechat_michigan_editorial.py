@@ -45,7 +45,16 @@ def render():
         elif kind == 'paragraph':
             body.append(block['html'].replace('<p>', '<p class="prose" style="margin:0 8px 22px;font-size:15px;line-height:1.95;letter-spacing:.5px;text-align:justify">', 1))
         elif kind == 'figure':
-            body.append(figure(block['src'], block['alt'], block['caption']))
+            src, alt, caption = block['src'], block['alt'], block['caption']
+            if src.endswith('img-081.webp'):
+                src = '../../assets/michigan-wechat-siqi-slideshow.gif'
+                alt = '我和 Siqi：从 Parkrun 到完赛后的四张合影'
+                caption = '和 Siqi 一起，从 Parkrun 到完赛｜摄影 / Arsenan'
+            elif src.endswith('img-002.webp'):
+                src = '../../assets/michigan-wechat-medal-slideshow.gif'
+                alt = '密歇根完赛奖牌实拍，全景与近景'
+                caption = '密歇根完赛奖牌｜摄影 / Arsenan'
+            body.append(figure(src, alt, caption))
     body.append('''<footer class="ending">
 <p class="end-mark">— 本文完 —</p>
 <p class="series">RUN50 · 第21州</p>
