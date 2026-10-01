@@ -15,6 +15,11 @@ for e in list(source)[4:-1]:
  elif e.tag=='p':
   for n in e.iter(): n.attrib.clear()
   blocks.append(dict(kind='paragraph',html=html.tostring(e,encoding='unicode',with_tail=False)))
+# User confirmed these post-race individual portraits were photographed by Siqi.
+siqi_photos={'va-066-0.webp','va-066-2.webp','va-067-1.webp','va-067.webp'}
+for b in blocks:
+ if b.get('src','').split('/')[-1] in siqi_photos:
+  b['caption']=b['caption'].split(' · 摄影')[0]+' · 摄影 / Siqi'
 headings=[b for b in blocks if b['kind']=='heading']
 for i,b in enumerate(headings): b['label']='前言' if i==0 else ('后记' if i==len(headings)-1 else f'Chapter {i}')
 # Only confirmed comparable landscapes are joined; individual photo records remain intact.
