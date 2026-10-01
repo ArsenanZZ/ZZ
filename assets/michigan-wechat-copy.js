@@ -58,7 +58,7 @@
       if (tag === 'img' || number || down) {
         const img = document.createElement('img');
         let url;
-        if (number || down) url = base + (number ? 'number-' + node.textContent.trim() : 'arrows') + '-' + theme + '.png';
+        if (number || down) url = base + (number ? 'number-' + node.textContent.trim() + '-universal.png' : 'arrows-' + theme + '.png');
         else {
           url = new URL(node.getAttribute('src'), canonical).href;
           const photo = url.match(/\/(img-\d+)\.webp/);
