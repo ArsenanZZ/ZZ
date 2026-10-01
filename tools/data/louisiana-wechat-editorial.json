@@ -41,16 +41,22 @@
       "caption": "从空中俯瞰水面与陆地 · 摄影 | Arsenan"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-004.webp",
-      "alt": "手机上的飞行位置",
-      "caption": "手机上的飞行位置 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-005.webp",
-      "alt": "转机途中，座椅屏幕上的航线",
-      "caption": "转机途中，座椅屏幕上的航线 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-004.webp",
+          "alt": "飞机显示屏上的飞行位置",
+          "caption": "手机上的飞行位置 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-005.webp",
+          "alt": "转机途中，座椅屏幕上的航线",
+          "caption": "转机途中，座椅屏幕上的航线 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": "飞机显示屏上的航线｜摄影 / Arsenan"
     },
     {
       "kind": "paragraph",

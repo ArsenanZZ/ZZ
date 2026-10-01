@@ -25,7 +25,7 @@ const path = require('path');
     add('stop',{offset:'60%','stop-color':'#b58230'},gold);
     add('stop',{offset:'100%','stop-color':'#85551f'},gold);
     add('path',{d:`M ${cx-33} ${cy+180} C ${cx-112} ${cy+166} ${cx-145} ${cy+124} ${cx-85} ${cy+94}`,fill:'none',stroke:'url(#pointer-gold)','stroke-width':'2.8','stroke-linecap':'round'});
-    add('image',{href:'../assets/louisiana-map-pointing-hand.png',x:cx-107,y:cy+4,width:100,height:100});
+    add('image',{href:'../assets/louisiana-map-crawfish-pointer.png',x:cx-122,y:cy+4,width:115,height:115});
 
 
 
