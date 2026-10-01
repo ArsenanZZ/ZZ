@@ -18,12 +18,12 @@ const path = require('path');
     const star=svg.querySelector('#city-dots-group polygon[fill="#ffcc00"]');
     const points=star.getAttribute('points').split(' ').map(p=>p.split(',').map(Number));
     const cx=points.reduce((a,p)=>a+p[0],0)/10, cy=points.reduce((a,p)=>a+p[1],0)/10;
-    const tx=cx-220, ty=130;
-    add('path',{d:`M ${tx+250} ${ty+36} Q ${cx+160} ${ty+150} ${cx-4} ${cy-24}`,fill:'none',stroke:'#15252c','stroke-width':'3','stroke-linecap':'round'});
-    add('path',{d:`M ${cx-13} ${cy-29} L ${cx-4} ${cy-22} L ${cx-2} ${cy-34}`,fill:'none',stroke:'#15252c','stroke-width':'3','stroke-linecap':'round'});
-    add('text',{x:tx,y:ty,'font-family':'Bahnschrift,Arial,sans-serif','font-size':'29','font-weight':'700',fill:'#14232b'}).textContent='LOUISIANA';
-    add('text',{x:tx,y:ty+27,'font-family':'Bahnschrift,Arial,sans-serif','font-size':'18',fill:'#14232b'}).textContent='BATON ROUGE / RUN50 23';
+    add('image',{href:'../assets/louisiana-map-callout-jazz.png',x:680,y:78,width:390,height:131});
+    add('text',{x:cx+55,y:cy+93,'font-family':'Georgia,serif','font-size':'24',fill:'#aa823a'}).textContent='♪';
+    add('path',{d:`M ${cx+60} ${cy+76} Q ${cx+50} ${cy+40} ${cx+10} ${cy+12}`,fill:'none',stroke:'#aa823a','stroke-width':'1.5','stroke-linecap':'round',opacity:'.85'});
+
   });
+  await page.waitForTimeout(500);
   await page.locator('#map-slot').screenshot({path:'assets/wechat-run50-map-louisiana-23-editorial.png'});
   await browser.close();
 })().catch(e=>{console.error(e);process.exit(1);});
