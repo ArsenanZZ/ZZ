@@ -84,11 +84,12 @@
         if (tag === 'h1') out.style.cssText = 'margin:0 0 18px;font-size:25px;line-height:1.6;text-align:center;font-weight:700;';
         if (tag === 'h2') out.style.cssText = 'margin:0;font-size:20px;line-height:1.65;text-align:left;font-weight:700;';
         if (tag === 'figure') out.style.margin = '32px 0 36px';
+        if (node.classList.contains('cover')) out.style.margin = '0 0 24px';
         if (tag === 'figcaption' || node.classList.contains('byline') || node.classList.contains('credits')) out.style.cssText = `margin:10px 0 22px;font-size:12px;line-height:1.9;text-align:center;color:${muted};`;
         if (node.classList.contains('chapter')) out.style.margin = '58px 0 34px';
         if (node.classList.contains('chapter-label')) out.style.cssText = `margin:18px 0 10px;font-size:11px;line-height:1.8;text-align:left;color:${muted};`;
         if (node.classList.contains('intro')) out.style.marginBottom = '54px';
-        if (node.classList.contains('brand-intro')) out.style.cssText = 'width:280px;max-width:100%;margin:0 auto 12px;line-height:1.95;text-align:center;';
+        if (node.classList.contains('brand-intro')) out.style.cssText = 'width:96px;max-width:100%;margin:0 auto 4px;line-height:1.95;text-align:center;';
         if (node.classList.contains('ending')) out.style.cssText = 'margin:64px 0 0;padding:32px 0 0;border-top:1px solid #888;font-size:14px;line-height:1.95;text-align:center;';
         if (node.closest('.ending')) out.style.textAlign = 'center';
       }
