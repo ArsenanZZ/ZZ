@@ -567,6 +567,9 @@ def render_modern(title: str, dek: str, blocks: list[Block]) -> str:
 
 
 def render_modern_variant(title: str, dek: str, blocks: list[Block], variant: str, label: str) -> str:
+    if variant == "rail":
+        from build_wechat_michigan_editorial import render
+        return render()
     blocks = blocks_for_wechat(blocks)
     dispatch_label = "RUN50 DISPATCH · MICHIGAN"
     if variant != "rail":
