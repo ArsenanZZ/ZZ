@@ -63,8 +63,8 @@
           url = new URL(node.getAttribute('src'), canonical).href;
           const photo = url.match(/\/(img-\d+)\.webp/);
           if (photo) url = base + photo[1] + '.jpg';
-          if (url.includes('wechat-run50-map-michigan-21-editorial.')) url = base + 'map.jpg';
-          if (url.includes('wechat-michigan-grand-rapids-poster-20261001.')) url = base + 'poster.jpg';
+          if (url.includes('wechat-run50-map-new-hampshire-22-editorial.')) url = base + 'map.jpg';
+          if (url.includes('wechat-new-hampshire-keene-poster.')) url = base + 'poster.jpg';
         }
         img.src = url;
         img.alt = number ? node.textContent.trim() : down ? '向下' : node.getAttribute('alt') || '';
