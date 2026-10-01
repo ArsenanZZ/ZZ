@@ -3,6 +3,13 @@
   'use strict';
   const button = document.getElementById('copy-wechat');
   const status = document.getElementById('copy-status');
+  const themeButtons = document.querySelectorAll('[data-theme-choice]');
+  function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    themeButtons.forEach(el => el.setAttribute('aria-pressed', String(el.dataset.themeChoice === theme)));
+    status.textContent = '';
+  }
+  themeButtons.forEach(el => el.addEventListener('click', () => setTheme(el.dataset.themeChoice)));
   const canonical = 'https://zhennanzhang.com/run50/wechat/michigan-meadows-marathon-modern-rail.html';
   const properties = ['display', 'box-sizing', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
     'padding-top', 'padding-right', 'padding-bottom', 'padding-left', 'font-family', 'font-size',
@@ -22,7 +29,7 @@
       properties.forEach(name => target.style.setProperty(name, style.getPropertyValue(name)));
       if (node.classList.contains('chapter-number')) {
         // WeChat may remove text-stroke: keep chapter numerals readable without it.
-        target.style.color = '#777777';
+        target.style.color = document.documentElement.dataset.theme === 'dark' ? '#aaaaaa' : '#777777';
         target.style.fontSize = '72px';
       }
       if (node.classList.contains('brand-intro')) {
@@ -53,6 +60,10 @@
     });
     const wrapper = document.createElement('section');
     wrapper.style.cssText = 'width:100%;max-width:677px;margin:0 auto;padding:0;box-sizing:border-box;background:#ffffff;color:#262626;font-family:"PingFang SC","Microsoft YaHei",Arial,sans-serif;';
+    const palette = getComputedStyle(document.body);
+    wrapper.style.backgroundColor = palette.backgroundColor;
+    wrapper.style.color = palette.color;
+    wrapper.style.padding = '16px';
     wrapper.append(...copy.childNodes);
     return wrapper;
   }
