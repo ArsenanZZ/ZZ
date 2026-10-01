@@ -61,7 +61,7 @@
         if (number || down) url = base + (number ? 'number-' + node.textContent.trim() + '-universal.png' : 'arrows-' + theme + '.png');
         else {
           url = new URL(node.getAttribute('src'), canonical).href;
-          const photo = url.match(/\/(img-\d+)\.webp/);
+          const photo = url.match(/\/(img-\d+|la-[\d-]+)\.webp/);
           if (photo) url = base + photo[1] + '.jpg';
           if (url.includes('wechat-run50-map-louisiana-23-editorial.')) url = base + 'map.jpg';
           if (url.includes('wechat-louisiana-poster.')) url = base + 'poster.jpg';
