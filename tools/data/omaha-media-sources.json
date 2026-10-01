@@ -1,0 +1,188 @@
+[
+  {
+    "id": "P007",
+    "device": "02-Luna",
+    "source_filename": "20260925_193747.jpg",
+    "frame_seconds": null
+  },
+  {
+    "id": "P022",
+    "device": "02-Luna",
+    "source_filename": "20260925_194657.jpg",
+    "frame_seconds": null
+  },
+  {
+    "id": "P033",
+    "device": "02-Luna",
+    "source_filename": "20260926_085310.jpg",
+    "frame_seconds": null
+  },
+  {
+    "id": "P037",
+    "device": "02-Luna",
+    "source_filename": "20260926_085337.jpg",
+    "frame_seconds": null
+  },
+  {
+    "id": "P092",
+    "device": "02-Luna",
+    "source_filename": "20260926_185235.jpg",
+    "frame_seconds": null
+  },
+  {
+    "id": "P098",
+    "device": "02-Luna",
+    "source_filename": "20260926_185317.jpg",
+    "frame_seconds": null
+  },
+  {
+    "id": "P111",
+    "device": "02-Luna",
+    "source_filename": "20260926_190725.jpg",
+    "frame_seconds": null
+  },
+  {
+    "id": "P125",
+    "device": "03-Google",
+    "source_filename": "20260928_145218.heic",
+    "frame_seconds": null
+  },
+  {
+    "id": "P148",
+    "device": "03-Google",
+    "source_filename": "20260928_145224_3.jpeg",
+    "frame_seconds": null
+  },
+  {
+    "id": "P181",
+    "device": "03-Google",
+    "source_filename": "20260928_145226_6.jpg",
+    "frame_seconds": null
+  },
+  {
+    "id": "P192",
+    "device": "03-Google",
+    "source_filename": "20260928_145228_10.heic",
+    "frame_seconds": null
+  },
+  {
+    "id": "P193",
+    "device": "03-Google",
+    "source_filename": "20260928_145228_11.heic",
+    "frame_seconds": null
+  },
+  {
+    "id": "P195",
+    "device": "03-Google",
+    "source_filename": "20260928_145228_2.heic",
+    "frame_seconds": null
+  },
+  {
+    "id": "P196",
+    "device": "03-Google",
+    "source_filename": "20260928_145228_3.heic",
+    "frame_seconds": null
+  },
+  {
+    "id": "P200",
+    "device": "03-Google",
+    "source_filename": "20260928_145228_7.heic",
+    "frame_seconds": null
+  },
+  {
+    "id": "P219",
+    "device": "03-Google",
+    "source_filename": "20260928_145232_1.heic",
+    "frame_seconds": null
+  },
+  {
+    "id": "P287",
+    "device": "03-Google",
+    "source_filename": "20260928_145236.jpg",
+    "frame_seconds": null
+  },
+  {
+    "id": "P306",
+    "device": "03-Google",
+    "source_filename": "20260928_145238_9.heic",
+    "frame_seconds": null
+  },
+  {
+    "id": "P118",
+    "device": "02-Luna",
+    "source_filename": "20260928_070730.jpg",
+    "frame_seconds": null
+  },
+  {
+    "id": "P123",
+    "device": "02-Luna",
+    "source_filename": "20260928_075006.jpg",
+    "frame_seconds": null
+  },
+  {
+    "id": "T001",
+    "device": "02-Luna",
+    "source_filename": "20260925_175329.mp4",
+    "frame_seconds": 5
+  },
+  {
+    "id": "T033",
+    "device": "02-Luna",
+    "source_filename": "20260926_150006.mp4",
+    "frame_seconds": 7
+  },
+  {
+    "id": "V047",
+    "device": "02-Ace Pro 2",
+    "source_filename": "VID_20260927_055313_261.mp4",
+    "frame_seconds": 5
+  },
+  {
+    "id": "V048",
+    "device": "02-Ace Pro 2",
+    "source_filename": "VID_20260927_063253_274.mp4",
+    "frame_seconds": 2
+  },
+  {
+    "id": "V014",
+    "device": "01-Go Ultra",
+    "source_filename": "VID_20260927_083407_157.mp4",
+    "frame_seconds": 4
+  },
+  {
+    "id": "V025",
+    "device": "01-Go Ultra",
+    "source_filename": "VID_20260927_101336_169.mp4",
+    "frame_seconds": 4
+  },
+  {
+    "id": "V029",
+    "device": "01-Go Ultra",
+    "source_filename": "VID_20260927_104549_173.mp4",
+    "frame_seconds": 10
+  },
+  {
+    "id": "V036",
+    "device": "01-Go Ultra",
+    "source_filename": "VID_20260927_113426_180.mp4",
+    "frame_seconds": 5
+  },
+  {
+    "id": "V039",
+    "device": "01-Go Ultra",
+    "source_filename": "VID_20260927_120015_183.mp4",
+    "frame_seconds": 3
+  },
+  {
+    "id": "V043",
+    "device": "01-Go Ultra",
+    "source_filename": "VID_20260927_124925_188.mp4",
+    "frame_seconds": 44
+  },
+  {
+    "id": "V052",
+    "device": "02-Ace Pro 2",
+    "source_filename": "VID_20260927_093600_312.mp4",
+    "frame_seconds": 3
+  }
+]
