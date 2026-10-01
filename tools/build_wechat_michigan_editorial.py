@@ -27,8 +27,8 @@ def render():
 </header>
 <picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/run50-robot-intro-still.png?v=20261001-static-mark"><img src="../../assets/run50-robot-intro.gif?v=20261001-static-mark" alt="Run50 跑步机器人片头" width="720" height="480"></picture>
 <figure class="cover" aria-label="密歇根马拉松官方照片">
-<picture><source media="(prefers-reduced-motion: reduce)" srcset="../stories/chinese/Run50-Michigan-Meadows-Marathon-clean_files/img-033.webp"><img src="../../assets/michigan-wechat-hero-slideshow.gif" alt="密歇根赛事照片轮播：举手、赛道奔跑与冲线" fetchpriority="high" width="900" height="820"></picture>
-<figcaption class="hero-credit">摄影 / 赛事官方</figcaption>
+<picture><source media="(prefers-reduced-motion: reduce)" srcset="../stories/chinese/Run50-Michigan-Meadows-Marathon-clean_files/img-033.webp"><img src="../../assets/michigan-wechat-hero-slideshow.gif?v=five-photos" alt="密歇根马拉松：三张比赛照、与 Siqi 合影、完赛奖牌" fetchpriority="high" width="900" height="820"></picture>
+<figcaption class="hero-credit">比赛照 / 赛事官方 · 合影、奖牌 / Arsenan</figcaption>
 </figure>
 <div class="down" aria-hidden="true">⌄</div>
 <section class="intro">
@@ -45,16 +45,7 @@ def render():
         elif kind == 'paragraph':
             body.append(block['html'].replace('<p>', '<p class="prose" style="margin:0 8px 22px;font-size:15px;line-height:1.95;letter-spacing:.5px;text-align:justify">', 1))
         elif kind == 'figure':
-            src, alt, caption = block['src'], block['alt'], block['caption']
-            if src.endswith('img-081.webp'):
-                src = '../../assets/michigan-wechat-siqi-slideshow.gif'
-                alt = '我和 Siqi：从 Parkrun 到完赛后的四张合影'
-                caption = '和 Siqi 一起，从 Parkrun 到完赛｜摄影 / Arsenan'
-            elif src.endswith('img-002.webp'):
-                src = '../../assets/michigan-wechat-medal-slideshow.gif'
-                alt = '密歇根完赛奖牌实拍，全景与近景'
-                caption = '密歇根完赛奖牌｜摄影 / Arsenan'
-            body.append(figure(src, alt, caption))
+            body.append(figure(block['src'], block['alt'], block['caption']))
     body.append('''<footer class="ending">
 <p class="end-mark">— 本文完 —</p>
 <p class="series">RUN50 · 第21州</p>
