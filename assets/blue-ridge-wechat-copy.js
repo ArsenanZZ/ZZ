@@ -63,7 +63,7 @@
           url = new URL(node.getAttribute('src'), canonical).href;
           const photo = url.match(/\/(va-[\d-]+)\.webp/);
           if (photo) url = base + photo[1] + '.jpg';
-          if (url.includes('us-light-cc00be9f9ec484c8.')) url = base + 'map.jpg';
+          if (url.includes('wechat-run50-map-blue-ridge-24-editorial.')) url = base + 'map.jpg';
           if (url.includes('wechat-blue-ridge-poster.')) url = base + 'poster.jpg';
         }
         img.src = url;

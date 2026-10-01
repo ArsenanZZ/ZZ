@@ -24,5 +24,56 @@ for names,caption in groups:
  ix=[i for i,b in enumerate(blocks) if b.get('src','').split('/')[-1] in names]
  assert len(ix)==len(names) and ix==list(range(ix[0],ix[0]+len(names)))
  blocks[ix[0]:ix[-1]+1]=[dict(kind='photo-strip',images=[blocks[i] for i in ix],caption=caption+'｜摄影 / Arsenan')]
+# Bring opening illustrations forward, then split long prose without changing text.
+for filename,prefix in [('va-019.webp','肯塔基周边'),('va-031.webp','弗吉尼亚（Virginia）')]:
+ image_index=next(i for i,b in enumerate(blocks) if b.get('src','').endswith(filename))
+ photo=blocks.pop(image_index)
+ paragraph_index=next(i for i,b in enumerate(blocks) if b['kind']=='paragraph' and html.fromstring(b['html']).text_content().startswith(prefix))
+ blocks.insert(paragraph_index+1,photo)
+
+def split_paragraph(markup):
+ import re
+ root=html.fromstring(markup);runs=[]
+ def walk(el,ancestors):
+  if el.text:runs.append((el.text,ancestors))
+  for child in el:
+   walk(child,ancestors+[child.tag])
+   if child.tail:runs.append((child.tail,ancestors))
+ walk(root,[])
+ text=''.join(t for t,_ in runs)
+ if len(text)<=135:return [markup]
+ ends=[];start=0
+ for match in re.finditer('[。！？；][”」]?|$',text):
+  end=match.end()
+  if end-start>=65 or end==len(text):
+   if end>start:ends.append((start,end));start=end
+ result=[]
+ for start,end in ends:
+  out=html.Element('p');pos=0
+  for text,tags in runs:
+   part=text[max(0,start-pos):max(0,min(len(text),end-pos))] if end>pos and start<pos+len(text) else ''
+   pos+=len(text)
+   if not part:continue
+   if tags:
+    parent=out
+    for tag in tags:child=html.Element(tag);parent.append(child);parent=child
+    parent.text=part
+   elif len(out):out[-1].tail=(out[-1].tail or '')+part
+   else:out.text=(out.text or '')+part
+  result.append(html.tostring(out,encoding='unicode'))
+ return result
+reflowed=[];i=0
+while i<len(blocks):
+ block=blocks[i]
+ if block['kind']!='paragraph':reflowed.append(block);i+=1;continue
+ parts=split_paragraph(block['html'])
+ following=blocks[i+1] if i+1<len(blocks) else None
+ for j,part in enumerate(parts):
+  reflowed.append(dict(kind='paragraph',html=part))
+  if j==0 and len(parts)>1 and following and following['kind'] in ('figure','photo-strip'):
+   reflowed.append(following)
+ if len(parts)>1 and following and following['kind'] in ('figure','photo-strip'):i+=1
+ i+=1
+blocks=reflowed
 data=dict(title='Run50 #第24州｜弗吉尼亚：蓝岭马拉松｜一路爬坡，跑过罗阿诺克之星',blocks=blocks)
 (ROOT/'tools/data/blue-ridge-wechat-editorial.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
