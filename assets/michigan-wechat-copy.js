@@ -17,7 +17,7 @@
     'color', 'background-color', 'border-top', 'border-right', 'border-bottom', 'border-left',
     'border-radius', 'white-space', 'overflow-wrap'];
 
-  function buildClipboard() {
+  async function buildClipboard() {
     const source = document.querySelector('main[data-edition]');
     const copy = source.cloneNode(true);
     const originals = [source, ...source.querySelectorAll('*')];
@@ -50,6 +50,40 @@
       ['loading', 'decoding', 'fetchpriority', 'width', 'height'].forEach(a => img.removeAttribute(a));
       img.style.cssText = 'display:block;width:100%;max-width:100%;height:auto;margin:0 auto;border:0;';
     });
+    const images = [...copy.querySelectorAll('img')];
+    let done = 0;
+    async function embedImage(img) {
+      // Read from this page's origin: local previews must not depend on deployment.
+      const url = new URL(img.src);
+      const response = await fetch(url.pathname + url.search);
+      if (!response.ok) throw new Error('Image unavailable');
+      let blob = await response.blob();
+      if (!/\.gif$/i.test(url.pathname)) {
+        const bitmap = await createImageBitmap(blob);
+        const canvas = document.createElement('canvas');
+        const scale = Math.min(1, 1080 / bitmap.width);
+        canvas.width = Math.round(bitmap.width * scale);
+        canvas.height = Math.round(bitmap.height * scale);
+        const context = canvas.getContext('2d');
+        context.fillStyle = '#fff';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+        bitmap.close();
+        blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.82));
+      }
+      img.src = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+      status.textContent = `正在准备图片 ${++done}/${images.length}…`;
+    }
+    // Limit decoding concurrency so long articles also work on smaller devices.
+    let next = 0;
+    await Promise.all(Array.from({length: 4}, async () => {
+      while (next < images.length) await embedImage(images[next++]);
+    }));
     copy.querySelectorAll('a[href]').forEach(a => { a.href = new URL(a.getAttribute('href'), canonical).href; });
     // Use editor-friendly section/p tags while retaining the inlined visual styles.
     [...copy.querySelectorAll('header,footer,figure,figcaption,picture')].forEach(el => {
@@ -72,7 +106,7 @@
     button.disabled = true;
     status.textContent = '正在复制…';
     try {
-      const content = buildClipboard();
+      const content = await buildClipboard();
       const html = content.outerHTML;
       const text = content.innerText || content.textContent;
       let copied = false;
