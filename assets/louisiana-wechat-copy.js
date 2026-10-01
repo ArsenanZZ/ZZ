@@ -77,7 +77,7 @@
         return img;
       }
       const inline = ['strong','b','em','i','u','span','a'].includes(tag);
-      const outputTag = ['p','br','strong','b','em','i','u','span','a','h1','h2'].includes(tag) ? tag : tag === 'figcaption' ? 'p' : 'section';
+      const outputTag = tag === 'h2' && node.closest('.ending') ? 'p' : ['p','br','strong','b','em','i','u','span','a','h1','h2'].includes(tag) ? tag : tag === 'figcaption' ? 'p' : 'section';
       const out = document.createElement(outputTag);
       if (inline) {
         if (tag === 'strong' || tag === 'b') out.style.fontWeight = '700';
@@ -98,7 +98,13 @@
         if (node.classList.contains('intro')) out.style.marginBottom = '54px';
         if (node.classList.contains('brand-intro')) out.style.cssText = 'margin:0 0 4px;padding:0;font-size:12px;line-height:1.5;text-align:center;';
         if (node.classList.contains('ending')) out.style.cssText = 'margin:64px 0 0;padding:32px 0 0;border-top:1px solid #888;font-size:14px;line-height:1.95;text-align:center;';
-        if (node.closest('.ending')) out.style.textAlign = 'center';
+        if (node.closest('.ending')) {
+          out.style.textAlign = 'center';
+          out.setAttribute('align', 'center');
+          if (tag === 'h2') out.style.cssText = 'margin:0;padding:0;font-size:24px;line-height:1.65;text-align:center;font-weight:700;';
+          if (node.classList.contains('closing')) out.style.cssText = 'margin:0;padding:24px 0 0;font-size:13px;line-height:1.9;text-align:center;';
+          if (node.classList.contains('credits')) out.style.marginTop = '36px';
+        }
       }
       for (const child of node.childNodes) out.append(convert(child));
       return out;
