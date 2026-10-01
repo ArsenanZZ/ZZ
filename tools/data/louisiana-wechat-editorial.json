@@ -236,16 +236,22 @@
       "caption": "等待出发时的自拍 · 摄影 | Arsenan"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-024.webp",
-      "alt": "跑者们向起点聚拢",
-      "caption": "跑者们向起点聚拢 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-025.webp",
-      "alt": "Louisiana Marathon 起点拱门",
-      "caption": "Louisiana Marathon 起点拱门 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-024.webp",
+          "alt": "跑者们向起点聚拢",
+          "caption": "跑者们向起点聚拢 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-025.webp",
+          "alt": "Louisiana Marathon 起点拱门",
+          "caption": "Louisiana Marathon 起点拱门 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": "起点人群与出发拱门｜摄影 / Arsenan"
     },
     {
       "kind": "figure",
@@ -396,16 +402,22 @@
       "caption": "跑过体育场旁边 · 摄影 | Arsenan"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-047.webp",
-      "alt": "路边伸来的手，为跑者加油",
-      "caption": "路边伸来的手，为跑者加油 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-048.webp",
-      "alt": "举着手工牌子的观众",
-      "caption": "举着手工牌子的观众 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-047.webp",
+          "alt": "路边伸来的手，为跑者加油",
+          "caption": "路边伸来的手，为跑者加油 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-048.webp",
+          "alt": "举着手工牌子的观众",
+          "caption": "举着手工牌子的观众 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": "沿途伸来的手与加油牌｜摄影 / Arsenan"
     },
     {
       "kind": "paragraph",
@@ -686,16 +698,22 @@
       "html": "<p>再往前跑，就能看到一座灰色的高楼拔地而起，越靠近越震撼，那就是 Louisiana State Capitol（<strong>路易斯安那州议会大厦</strong>）。</p>"
     },
     {
-      "kind": "figure",
-      "src": "/assets/louisiana-magazine-photos/la-062-1.webp",
-      "alt": "终点就在前方，州议会大厦矗立在远处",
-      "caption": "终点就在前方，州议会大厦矗立在远处 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/louisiana-magazine-photos/la-062.webp",
-      "alt": "终点前的直道与远处的州议会大厦",
-      "caption": "终点前的直道与远处的州议会大厦 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/assets/louisiana-magazine-photos/la-062-1.webp",
+          "alt": "终点就在前方，州议会大厦矗立在远处",
+          "caption": "终点就在前方，州议会大厦矗立在远处 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/assets/louisiana-magazine-photos/la-062.webp",
+          "alt": "终点前的直道与远处的州议会大厦",
+          "caption": "终点前的直道与远处的州议会大厦 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": "州议会大厦前，终点就在眼前｜摄影 / Arsenan"
     },
     {
       "kind": "paragraph",
@@ -815,16 +833,22 @@
       "html": "<p>回程路上，我们特意在 墨西哥湾（现正式名称是 Gulf of America，美国湾） 停了一下。名字的变化挺有意思，让人想起阿拉斯加最高峰从 Denali 改回 McKinley 的故事，<strong>名字背后总有一段文化与政治的拉锯</strong>。</p>"
     },
     {
-      "kind": "figure",
-      "src": "/assets/louisiana-magazine-photos/la-070.webp",
-      "alt": "回程途中，停在海湾边",
-      "caption": "回程途中，停在海湾边 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/louisiana-magazine-photos/la-071.webp",
-      "alt": "沿着海湾岸边走一走",
-      "caption": "沿着海湾岸边走一走 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/assets/louisiana-magazine-photos/la-070.webp",
+          "alt": "回程途中，停在海湾边",
+          "caption": "回程途中，停在海湾边 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/assets/louisiana-magazine-photos/la-071.webp",
+          "alt": "沿着海湾岸边走一走",
+          "caption": "沿着海湾岸边走一走 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": "返程途中，在海湾边走走｜摄影 / Arsenan"
     },
     {
       "kind": "figure",

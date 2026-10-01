@@ -16,9 +16,10 @@ for e in list(source)[4:-1]:
  elif e.tag=='p':
   for n in e.iter():n.attrib.clear()
   blocks.append(dict(kind='paragraph',html=html.tostring(e,encoding='unicode',with_tail=False)))
-for group,caption in [(['img-037.webp','img-038.webp'],'湖畔的晨光与跑者｜摄影 / Arsenan'),(['img-052.webp','img-053.webp'],'沿湖继续跑｜摄影 / Arsenan')]:
+for group,caption in [(['img-037.webp','img-038.webp'],'湖畔的晨光与跑者｜摄影 / Arsenan'),(['img-052.webp','img-053.webp'],'沿湖继续跑｜摄影 / Arsenan'),(['img-024.webp','img-025.webp'],'起点人群与出发拱门｜摄影 / Arsenan'),(['img-047.webp','img-048.webp'],'沿途伸来的手与加油牌｜摄影 / Arsenan'),(['la-062-1.webp','la-062.webp'],'州议会大厦前，终点就在眼前｜摄影 / Arsenan'),(['la-070.webp','la-071.webp'],'返程途中，在海湾边走走｜摄影 / Arsenan')]:
  ix=[i for i,b in enumerate(blocks) if b['kind']=='figure' and b['src'].split('/')[-1] in group];assert ix==list(range(ix[0],ix[0]+2))
  blocks[ix[0]:ix[-1]+1]=[dict(kind='photo-strip',images=[blocks[i] for i in ix],caption=caption)]
 p=ROOT/'tools/data/louisiana-wechat-editorial.json';data=json.loads(p.read_text(encoding='utf-8'));data['blocks']=blocks;p.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
 for p in (ROOT/'assets/louisiana-magazine-photos').glob('*.webp'):
+ if (ROOT/'assets/louisiana-wechat-copy'/(p.stem+'.jpg')).exists():continue
  subprocess.run(['ffmpeg','-y','-loglevel','error','-i',str(p),'-vf','scale=min(1080\\,iw):-1','-q:v','3',str(ROOT/'assets/louisiana-wechat-copy'/(p.stem+'.jpg'))],check=True)

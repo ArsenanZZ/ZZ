@@ -29,7 +29,8 @@ const path = require('path');
     add('path',{d:'M 2 2 C 12 3 18 10 30 14 C 19 13 9 9 2 2 Z',fill:'url(#pointer-gold)',stroke:'#946628','stroke-width':'.65'},marker);
     add('path',{d:'M 2 26 C 10 24 19 17 30 14 C 18 15 10 18 2 26 Z',fill:'url(#pointer-gold)',stroke:'#946628','stroke-width':'.65'},marker);
     add('path',{d:'M 7 14 Q 20 14 30 14',fill:'none',stroke:'#a87827','stroke-width':'1.4','stroke-linecap':'round'},marker);
-    add('path',{d:`M ${cx-33} ${cy+180} C ${cx-240} ${cy+132} ${cx-160} ${cy+48} ${cx-9} ${cy+8}`,fill:'none',stroke:'url(#pointer-gold)','stroke-width':'3.4','stroke-linecap':'round','marker-end':'url(#louisiana-pointer)'});
+    add('path',{d:`M ${cx-33} ${cy+180} C ${cx-68} ${cy+191} ${cx-67} ${cy+163} ${cx-48} ${cy+171}`,fill:'none',stroke:'#b58230','stroke-width':'2.3','stroke-linecap':'round'});
+    add('path',{d:`M ${cx-33} ${cy+180} C ${cx-125} ${cy+158} ${cx-142} ${cy+66} ${cx-9} ${cy+8}`,fill:'none',stroke:'url(#pointer-gold)','stroke-width':'3.4','stroke-linecap':'round','marker-end':'url(#louisiana-pointer)'});
 
 
   });
