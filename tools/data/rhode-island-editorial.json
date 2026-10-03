@@ -1,0 +1,887 @@
+{
+  "title": "Run50 第33州｜罗得岛：新英格兰六连赛第二天，文索基特马拉松",
+  "photo_source_folder": "Z:\\ZhennanZ Folder\\0000-ZZ-Run-2026\\20260609-0613-New England Series\\20260609-RI-Day-2-Marathon\\4-文章精修图",
+  "allowed_photo_stems": [
+    "RI-000",
+    "RI-001",
+    "RI-0010",
+    "RI-0011",
+    "RI-0012-0",
+    "RI-0012-1",
+    "RI-0012-2",
+    "RI-0013",
+    "RI-0013-1",
+    "RI-0013-2",
+    "RI-0013-3",
+    "RI-0014",
+    "RI-0015",
+    "RI-0015-1",
+    "RI-0016",
+    "RI-0017",
+    "RI-002",
+    "RI-002-1",
+    "RI-003",
+    "RI-004",
+    "RI-004-1",
+    "RI-004-2",
+    "RI-005-1",
+    "RI-005-2",
+    "RI-006",
+    "RI-006-1",
+    "RI-006-2",
+    "RI-007",
+    "RI-007-1",
+    "RI-007-2",
+    "RI-008",
+    "RI-009",
+    "RI-009-1",
+    "RI-018-3",
+    "RI-018-4",
+    "RI-019",
+    "RI-020",
+    "RI-021",
+    "RI-021-1",
+    "RI-022",
+    "RI-022-1",
+    "RI-023",
+    "RI-024",
+    "RI-025",
+    "RI-025-1",
+    "RI-026",
+    "RI-027",
+    "RI-027-0",
+    "RI-027-1",
+    "RI-027-2",
+    "RI-027-3",
+    "RI-028",
+    "RI-028-0",
+    "RI-029",
+    "RI-030",
+    "RI-031",
+    "RI-031-1",
+    "RI-031-2",
+    "RI-031-3",
+    "RI-031-4",
+    "RI-031-5",
+    "RI-032",
+    "RI-032-1",
+    "RI-032-2",
+    "RI-033"
+  ],
+  "blocks": [
+    {
+      "kind": "heading",
+      "label": "前言",
+      "title": "两天，两个全马"
+    },
+    {
+      "kind": "paragraph",
+      "html": "昨天在康涅狄格跑完了新英格兰六连赛的第一个全马，回到 Springfield 的 Airbnb 休息。今天是第二天，罗得岛的 Woonsocket，又是全马。",
+      "source_index": 5
+    },
+    {
+      "kind": "paragraph",
+      "html": "连着两天两个全马，我心里的想法很简单：悠着点。昨天 5 小时 46 分，今天不追成绩，把每一圈跑稳，慢慢适应这种连续跑的节奏。",
+      "source_index": 6
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-025.jpg",
+          "alt": "完赛后的合影与加油牌"
+        }
+      ],
+      "caption": "完赛后的合影与加油牌"
+    },
+    {
+      "kind": "heading",
+      "label": "Chapter 1",
+      "title": "罗得岛：最小的州，也是最早喊独立的殖民地"
+    },
+    {
+      "kind": "paragraph",
+      "html": "罗得岛（Rhode Island）是全美最小的州，只有大约 48 英里长、37 英里宽，外号叫“海洋之州”（The Ocean State），海岸线却有 400 多英里。",
+      "source_index": 8
+    },
+    {
+      "kind": "paragraph",
+      "html": "1636 年，罗杰·威廉斯（Roger Williams）因为主张宗教宽容、政教分离，被赶出马萨诸塞，走到这里建了普罗维登斯，也就是今天的首府。",
+      "source_index": 8
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-031-5.jpg",
+          "alt": "文索基特街头的教堂尖顶"
+        }
+      ],
+      "caption": "文索基特街头的教堂尖顶｜摄影 / Arsenan"
+    },
+    {
+      "kind": "paragraph",
+      "html": "这个小州有两个很倔的“第一”和“最后”：1776 年 5 月 4 日，它是第一个宣布不再效忠英王的殖民地，比《独立宣言》早了两个月；到了批准美国宪法的时候，它又拖到 1790 年 5 月 29 日，成了最后一个。",
+      "source_index": 9
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-033.jpg",
+          "alt": "街角的老宅"
+        }
+      ],
+      "caption": "街角的老宅｜摄影 / Arsenan"
+    },
+    {
+      "kind": "paragraph",
+      "html": "这场比赛在北边的 Woonsocket，布莱克斯通河谷（Blackstone River Valley）里的老磨坊城。十九世纪后半叶，纺织厂招来大批魁北克的法裔移民，到 1930 年，法裔后代占了全城大约七成的人口，有人叫它全美最“法国”的城市。",
+      "source_index": 10
+    },
+    {
+      "kind": "paragraph",
+      "html": "城里的 Museum of Work and Culture，就开在一座旧毛纺厂里，讲的就是这些移民的故事。",
+      "source_index": 10
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-031.jpg",
+          "alt": "文索基特街景与法语欢迎壁画"
+        },
+        {
+          "src": "/assets/rhode-island-editorial/RI-031-2.jpg",
+          "alt": "文索基特街景与法语欢迎壁画"
+        }
+      ],
+      "caption": "文索基特街景与法语欢迎壁画｜摄影 / Arsenan"
+    },
+    {
+      "kind": "heading",
+      "label": "Chapter 2",
+      "title": "凌晨 3:40 出门"
+    },
+    {
+      "kind": "paragraph",
+      "html": "今天的闹钟很早。3:40 出门，估计 4:50 左右到起点，今天还是5 点起跑。Siqi 这次不跑，她开车送我，还要负责拍照。从 Springfield 的住处开到这里，足足要 1 小时 20 分钟，比昨天还远，但来都来了，没什么好说的。",
+      "source_index": 14
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-000.jpg",
+          "alt": "天刚亮，起点的人群"
+        }
+      ],
+      "caption": "天刚亮，起点的人群｜摄影 / Arsenan"
+    },
+    {
+      "kind": "paragraph",
+      "html": "这条河的意义远不止是一条水道：1793 年，就在下游不远的帕塔基特（Pawtucket），美国第一座水力纺织厂斯莱特磨坊（Slater Mill）建成，点燃了美国工业革命的第一把火。布莱克斯通河，可以说是美国工业文明真正的起点。我们今天跑的路线，就沿着这条历史之河。",
+      "source_index": 16
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-002.jpg",
+          "alt": "清晨的步道"
+        }
+      ],
+      "caption": "清晨的步道｜摄影 / Arsenan"
+    },
+    {
+      "kind": "heading",
+      "label": "Chapter 3",
+      "title": "红帐篷、橡皮筋，和一只白色的大狗"
+    },
+    {
+      "kind": "paragraph",
+      "html": "起点在 Woonsocket 的 Davison Ave 一带。天还是紫粉色的，草地上搭着一排红帐篷，旁边停着房车，起点村已经有不少人。5 点一到，大家慢慢往前走，就跑了起来。",
+      "source_index": 18
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-001.jpg",
+          "alt": "出发前，步道上的跑者"
+        }
+      ],
+      "caption": "出发前，步道上的跑者｜摄影 / Arsenan"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-002-1.jpg",
+          "alt": "红头巾、黑色7号球衣"
+        }
+      ],
+      "caption": "红头巾、黑色7号球衣"
+    },
+    {
+      "kind": "paragraph",
+      "html": "队伍里有人牵着一只白色的大狗一起跑，还有两位穿着神奇女侠短裙的跑者，一路都很显眼。计时桌上摊着一大堆橡皮筋，应该是用来数圈的。",
+      "source_index": 22
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-004-1.jpg",
+          "alt": "穿着神奇女侠裙的跑者"
+        },
+        {
+          "src": "/assets/rhode-island-editorial/RI-004-2.jpg",
+          "alt": "穿着神奇女侠裙的跑者"
+        }
+      ],
+      "caption": "穿着神奇女侠裙的跑者｜摄影 / Siqi"
+    },
+    {
+      "kind": "heading",
+      "label": "Chapter 4",
+      "title": "铁轨边的环线，和一个扛国旗的人"
+    },
+    {
+      "kind": "paragraph",
+      "html": "路线是一条来回的步道，每一圈大约 2.4 到 2.5 公里，右手边是铁路。一边是铁丝网围着的球场，一边是木栏杆和树林，官方暂定全马 16 圈。昨天的康涅狄格几乎是平的，今天手表记下累计爬升 834 英尺，昨天只有 243 英尺，是昨天的三倍多。",
+      "source_index": 27
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-004.jpg",
+          "alt": "一圈圈跑过绿道"
+        }
+      ],
+      "caption": "一圈圈跑过绿道"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0015.jpg",
+          "alt": "路边的相机与标记"
+        }
+      ],
+      "caption": "路边的相机与标记｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0015-1.jpg",
+          "alt": "路边的相机与标记"
+        }
+      ],
+      "caption": "路边的相机与标记｜摄影 / Siqi"
+    },
+    {
+      "kind": "paragraph",
+      "html": "路上有位大叔一直扛着一面美国国旗跑，我追上他，又被他追上，一圈接一圈，几乎每一圈都能碰到。",
+      "source_index": 31
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-003.jpg",
+          "alt": "扛着国旗向前跑"
+        }
+      ],
+      "caption": "扛着国旗向前跑"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-020.jpg",
+          "alt": "从木栏杆旁看国旗跑者"
+        }
+      ],
+      "caption": "从木栏杆旁看国旗跑者｜摄影 / Siqi"
+    },
+    {
+      "kind": "heading",
+      "label": "Chapter 5",
+      "title": "Siqi 的木牌"
+    },
+    {
+      "kind": "paragraph",
+      "html": "Siqi 这天不跑，就在路边等我。她带着相机，还举着一块橙色的木牌，上面写着 Zhennan GO!!!，下面一行小字：You are freaking amazing。",
+      "source_index": 35
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-022.jpg",
+          "alt": "小鸭子和 Zhennan GO!!! 加油牌"
+        }
+      ],
+      "caption": "小鸭子和 Zhennan GO!!! 加油牌"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-024.jpg",
+          "alt": "Siqi 举着加油牌"
+        }
+      ],
+      "caption": "Siqi 举着加油牌｜摄影 / Arsenan"
+    },
+    {
+      "kind": "paragraph",
+      "html": "木牌下面还画了一个南瓜，日期和地点写得一笔不差：Tue, June 9, 2026，Woonsocket, Rhode Island。这一天她拍了好多照片，这篇里有不少都是她拍的。",
+      "source_index": 35
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-023.jpg",
+          "alt": "和 Siqi 留下自拍"
+        }
+      ],
+      "caption": "和 Siqi 留下自拍｜摄影 / Arsenan"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-027-0.jpg",
+          "alt": "河边拿着木牌的 Siqi"
+        }
+      ],
+      "caption": "河边拿着木牌的 Siqi｜摄影 / Arsenan"
+    },
+    {
+      "kind": "heading",
+      "label": "Chapter 6",
+      "title": "补给站：一桌子的瓶子"
+    },
+    {
+      "kind": "paragraph",
+      "html": "补给站和昨天一样，只有一个，每一圈都要经过。桌上摆满了瓶瓶罐罐：橙色的佳得乐大桶、水、饮料、点心，旁边还有志愿者现做三明治。补给拖车的车厢上印着 Mainly Marathons 的简介，其中一条是 No Time Limits，没有时限。",
+      "source_index": 41
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-005-1.jpg",
+          "alt": "在补给站喝水"
+        }
+      ],
+      "caption": "在补给站喝水｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-005-2.jpg",
+          "alt": "回到计时桌前"
+        }
+      ],
+      "caption": "回到计时桌前｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-030.jpg",
+          "alt": "补给拖车上的新英格兰六州"
+        }
+      ],
+      "caption": "补给拖车上的新英格兰六州｜摄影 / Arsenan"
+    },
+    {
+      "kind": "heading",
+      "label": "Chapter 7",
+      "title": "圈与圈之间，太阳越升越高"
+    },
+    {
+      "kind": "paragraph",
+      "html": "一开始还挺凉快，我甚至觉得今天可能会一直阴凉下去。可太阳很快就出来了。到了后半程，太阳已经在头顶正中，影子缩成了一小团。红头巾、黑色的 7 号球衣，晒着晒着就热了起来。",
+      "source_index": 51
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0013.jpg",
+          "alt": "树荫下的步道"
+        }
+      ],
+      "caption": "树荫下的步道｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-009.jpg",
+          "alt": "阳光下继续向前"
+        }
+      ],
+      "caption": "阳光下继续向前｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-009-1.jpg",
+          "alt": "阳光下继续向前"
+        }
+      ],
+      "caption": "阳光下继续向前｜摄影 / Siqi"
+    },
+    {
+      "kind": "paragraph",
+      "html": "这天我穿的是黑色的葡萄牙球衣，背后同样是 RONALDO 7。Siqi 蹲在路边、趴在草地里，用相机一圈一圈地拍我。她拍的照片里，有我举着拳头的，有转过身给她看背后的，还有一张在半空里跳起来。",
+      "source_index": 55
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0011.jpg",
+          "alt": "从栏杆间看见背后的7号"
+        }
+      ],
+      "caption": "从栏杆间看见背后的7号｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-008.jpg",
+          "alt": "向镜头挥手"
+        }
+      ],
+      "caption": "向镜头挥手｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0010.jpg",
+          "alt": "草坡旁跑过"
+        }
+      ],
+      "caption": "草坡旁跑过｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0013-1.jpg",
+          "alt": "绿荫里的几个瞬间"
+        }
+      ],
+      "caption": "绿荫里的几个瞬间｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0013-2.jpg",
+          "alt": "绿荫里的几个瞬间"
+        }
+      ],
+      "caption": "绿荫里的几个瞬间｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0013-3.jpg",
+          "alt": "绿荫里的几个瞬间"
+        }
+      ],
+      "caption": "绿荫里的几个瞬间｜摄影 / Siqi"
+    },
+    {
+      "kind": "paragraph",
+      "html": "这样的位置，Siqi 会换着拍：有时候站在路边，有时候蹲到木栏杆后面，从缝隙里看跑者。她还顺手拍了路边的蒲公英，和那位扛着国旗的大叔，从木栏杆的洞里看过去，像一幅小画。",
+      "source_index": 61
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-007.jpg",
+          "alt": "栏杆边的花草与赛道"
+        },
+        {
+          "src": "/assets/rhode-island-editorial/RI-007-1.jpg",
+          "alt": "栏杆边的花草与赛道"
+        }
+      ],
+      "caption": "栏杆边的花草与赛道｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0012-0.jpg",
+          "alt": "透过木栏杆看跑者"
+        },
+        {
+          "src": "/assets/rhode-island-editorial/RI-0012-1.jpg",
+          "alt": "透过木栏杆看跑者"
+        },
+        {
+          "src": "/assets/rhode-island-editorial/RI-0012-2.jpg",
+          "alt": "透过木栏杆看跑者"
+        }
+      ],
+      "caption": "透过木栏杆看跑者｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-006-2.jpg",
+          "alt": "镜片里的绿道"
+        }
+      ],
+      "caption": "镜片里的绿道"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0017.jpg",
+          "alt": "赛道旁的小花"
+        }
+      ],
+      "caption": "赛道旁的小花｜摄影 / Siqi"
+    },
+    {
+      "kind": "paragraph",
+      "html": "昨天跑完，左脚跟腱有点不舒服，本来想着今天悠着点。真跑起来，几乎感觉不到，身体比头脑更了解自己，我还是有意识地多用右腿发力，尽量保护左边。耳机里放的是一个关于缅甸妙瓦底的广播剧，挺有意思。",
+      "source_index": 68
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-007-2.jpg",
+          "alt": "树下拿着相机的 Siqi"
+        }
+      ],
+      "caption": "树下拿着相机的 Siqi｜摄影 / Arsenan"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0016.jpg",
+          "alt": "Siqi 和跑者的自拍"
+        }
+      ],
+      "caption": "Siqi 和跑者的自拍｜摄影 / Siqi"
+    },
+    {
+      "kind": "heading",
+      "label": "Chapter 8",
+      "title": "路上碰到了微信好友"
+    },
+    {
+      "kind": "paragraph",
+      "html": "今天最大的惊喜，是终于见到了吴光安。我们在小红书上认识，后来加了微信，聊了很久，一直没机会见面，没想到在 Woonsocket 的布莱克斯通河边碰上了。他专门从西雅图飞过来，今天是他的第 24 个州，是波士顿马拉松的大神，今天稳稳破 4。",
+      "source_index": 70
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-006.jpg",
+          "alt": "和吴哥在赛道合影"
+        }
+      ],
+      "caption": "和吴哥在赛道合影｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-006-1.jpg",
+          "alt": "和跑友并排跑一段"
+        }
+      ],
+      "caption": "和跑友并排跑一段｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-018-3.jpg",
+          "alt": "和跑友并排跑一段"
+        }
+      ],
+      "caption": "和跑友并排跑一段｜摄影 / Siqi"
+    },
+    {
+      "kind": "paragraph",
+      "html": "圈圈赛里，每次折返都能打个招呼，聊两句，网上认识的人，在一个异乡的早晨一起跑步，真是跑步世界的缘分。",
+      "source_index": 70
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-018-4.jpg",
+          "alt": "绿荫里迎面相逢"
+        }
+      ],
+      "caption": "绿荫里迎面相逢｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-0014.jpg",
+          "alt": "跑友经过路边"
+        }
+      ],
+      "caption": "跑友经过路边｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-019.jpg",
+          "alt": "向镜头比个赞"
+        }
+      ],
+      "caption": "向镜头比个赞｜摄影 / Siqi"
+    },
+    {
+      "kind": "heading",
+      "label": "Chapter 9",
+      "title": "热起来了，手机和耳机也没电了"
+    },
+    {
+      "kind": "paragraph",
+      "html": "后半程，天彻底亮了，也彻底热了。手机没电了，耳机也没电了，剩下的只有脚步声和太阳。我开始跑二走一，没有大树林遮阴的那几段，特别慢。表上的心率一直在 160 上下。",
+      "source_index": 76
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-021.jpg",
+          "alt": "阳光下的去程与回程"
+        }
+      ],
+      "caption": "阳光下的去程与回程｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-021-1.jpg",
+          "alt": "阳光下的去程与回程"
+        }
+      ],
+      "caption": "阳光下的去程与回程｜摄影 / Siqi"
+    },
+    {
+      "kind": "heading",
+      "label": "Chapter 10",
+      "title": "5 小时 01 分，第 33 个州"
+    },
+    {
+      "kind": "paragraph",
+      "html": "最后一个折返的时候，我一边跑一边对着镜头说：这是我的第 33 个州，罗得岛，美国最小的一个州。昨天 5 小时 46 分，今天 5 小时 01 分 38 秒，快了四十多分钟，感觉慢慢有点适应这种连续跑的节奏了。",
+      "source_index": 81
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-026.jpg",
+          "alt": "回到红帐篷前"
+        }
+      ],
+      "caption": "回到红帐篷前｜摄影 / Siqi"
+    },
+    {
+      "kind": "paragraph",
+      "html": "最终的成绩是 5 小时 01 分 38 秒，比我预期快了不少：30 公里分段 3:30:54，半马分段 2:25:49，节奏相当稳。",
+      "source_index": 82
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-022-1.jpg",
+          "alt": "手表记录的路线与数据"
+        }
+      ],
+      "caption": "手表记录的路线与数据"
+    },
+    {
+      "kind": "paragraph",
+      "html": "手表上的数据是：26.44 英里，运动时间 4 小时 39 分，平均配速每英里 10 分 33 秒，累计爬升 834 英尺，平均心率 161。总用时比运动时间长，中间在补给站停的时间都算在里面。快到终点的时候，我把红头巾又重新戴上，等着和吴哥一起冲线。",
+      "source_index": 83
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-025-1.jpg",
+          "alt": "举起奖牌和加油牌"
+        }
+      ],
+      "caption": "举起奖牌和加油牌"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-027-1.jpg",
+          "alt": "赛后在路牌旁留影"
+        },
+        {
+          "src": "/assets/rhode-island-editorial/RI-027-3.jpg",
+          "alt": "赛后在路牌旁留影"
+        }
+      ],
+      "caption": "赛后在路牌旁留影｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-027-2.jpg",
+          "alt": "Siqi 与赛道路牌"
+        }
+      ],
+      "caption": "Siqi 与赛道路牌｜摄影 / Arsenan"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-027.jpg",
+          "alt": "离开起点村"
+        }
+      ],
+      "caption": "离开起点村｜摄影 / Arsenan"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-028.jpg",
+          "alt": "在补给拖车旁留影"
+        }
+      ],
+      "caption": "在补给拖车旁留影｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-028-0.jpg",
+          "alt": "在补给拖车旁留影"
+        }
+      ],
+      "caption": "在补给拖车旁留影｜摄影 / Siqi"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-029.jpg",
+          "alt": "Siqi 与新英格兰六州横幅"
+        }
+      ],
+      "caption": "Siqi 与新英格兰六州横幅｜摄影 / Arsenan"
+    },
+    {
+      "kind": "heading",
+      "label": "Chapter 11",
+      "title": "赛后：没吃成越南菜，去了一家中餐馆"
+    },
+    {
+      "kind": "paragraph",
+      "html": "跑完我跟 Siqi 说：今天辛苦了。她说不辛苦。我们去吃饭，本来想找家越南菜，看了一圈感觉除了米粉，也没什么可点的，最后进了一家中餐馆。路上看到一块白底黑字的牌子，写着 you are beautiful，我说要在这拍一张。",
+      "source_index": 90
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-031-3.jpg",
+          "alt": "路边的牌子：you are beautiful"
+        }
+      ],
+      "caption": "路边的牌子：you are beautiful｜摄影 / Arsenan"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-031-1.jpg",
+          "alt": "赛后经过的小镇街角"
+        }
+      ],
+      "caption": "赛后经过的小镇街角｜摄影 / Arsenan"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-031-4.jpg",
+          "alt": "赛后经过的小镇街角"
+        }
+      ],
+      "caption": "赛后经过的小镇街角｜摄影 / Arsenan"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-032.jpg",
+          "alt": "翻着菜单点菜"
+        }
+      ],
+      "caption": "翻着菜单点菜｜摄影 / Arsenan"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-032-1.jpg",
+          "alt": "跑完后的这一餐"
+        }
+      ],
+      "caption": "跑完后的这一餐"
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/rhode-island-editorial/RI-032-2.jpg",
+          "alt": "跑完后的这一餐"
+        }
+      ],
+      "caption": "跑完后的这一餐"
+    },
+    {
+      "kind": "paragraph",
+      "html": "吃完回去冲了个澡，眯了一会儿。停下来之后，腿上的疲劳才慢慢涌上来。第二天是马萨诸塞的 Holyoke，起点在 Ashley Reservoir，全马，又是一个早起的日子。第 33 个州，罗得岛，拿下。",
+      "source_index": 98
+    }
+  ]
+}
