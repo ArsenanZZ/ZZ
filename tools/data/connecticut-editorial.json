@@ -1,5 +1,5 @@
 {
-  "title": "Run50 第32州｜康涅狄格：新英格兰六连赛，从辛斯伯里开始",
+  "title": "Run50 第32州｜康涅狄格：辛斯伯里马拉松｜新英格兰六连赛第1天",
   "intro": "明尼苏达之后，我报了 Mainly Marathons 的新英格兰六连赛。从肯塔基开车出发，路过尼亚加拉大瀑布，第二天转到新英格兰；6 月 8 日凌晨五点，穿着 C 罗 7 号的葡萄牙球衣，和 5 点组一起从康涅狄格的 Simsbury 起跑，5 小时 46 分完赛，拿下第 32 个州。",
   "blocks": [
     {
@@ -11,6 +11,16 @@
       "kind": "paragraph",
       "html": "明尼苏达之后，我的下一站是新英格兰。这一次不是单独一场比赛，而是 Mainly Marathons 办的<span>新英格兰系列赛</span>：6 月 8 日到 13 日，六天，六个州，康涅狄格、罗得岛、马萨诸塞、佛蒙特、新罕布什尔、缅因。",
       "source_index": 5
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/connecticut-editorial/CT-33.jpg",
+          "alt": "计时帐篷与补给站"
+        }
+      ],
+      "caption": "计时帐篷与补给站｜摄影 / Arsenan"
     },
     {
       "kind": "paragraph",
@@ -41,6 +51,16 @@
       "kind": "paragraph",
       "html": "面积不大，全美第三小，只排在罗得岛和特拉华后面，离我在特拉华跑的那场，也才过去不到两个月。",
       "source_index": 11
+    },
+    {
+      "kind": "figure",
+      "images": [
+        {
+          "src": "/assets/connecticut-editorial/CT-36-1.jpg",
+          "alt": "绿道的树荫"
+        }
+      ],
+      "caption": "绿道的树荫｜摄影 / Arsenan"
     },
     {
       "kind": "paragraph",
@@ -569,16 +589,6 @@
       "kind": "figure",
       "images": [
         {
-          "src": "/assets/connecticut-editorial/CT-33.jpg",
-          "alt": "计时帐篷与补给站"
-        }
-      ],
-      "caption": "计时帐篷与补给站｜摄影 / Arsenan"
-    },
-    {
-      "kind": "figure",
-      "images": [
-        {
           "src": "/assets/connecticut-editorial/CT-34.jpg",
           "alt": "计时帐篷与补给站"
         }
@@ -614,16 +624,6 @@
         }
       ],
       "caption": "路上遇见的跑者｜摄影 / Arsenan"
-    },
-    {
-      "kind": "figure",
-      "images": [
-        {
-          "src": "/assets/connecticut-editorial/CT-36-1.jpg",
-          "alt": "绿道的树荫"
-        }
-      ],
-      "caption": "绿道的树荫｜摄影 / Arsenan"
     },
     {
       "kind": "figure",
