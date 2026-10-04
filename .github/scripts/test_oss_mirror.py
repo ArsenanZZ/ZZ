@@ -98,6 +98,53 @@ class MirrorTests(unittest.TestCase):
                 m.mirror(self.root, '7', '1')
             self.assertEqual(uploads, [])
             self.assertEqual(remote['index.html'], b'home')
+    def smoke_fixture(self, changes=None):
+        path=self.root/'analytics.js'; path.write_bytes(b'public script')
+        digest=hashlib.md5(path.read_bytes()).hexdigest()
+        self.enterContext(patch.object(m, 'WRITE_SMOKE_MD5', digest))
+        self.enterContext(patch.object(m, 'WRITE_SMOKE_NO_TAGS_VERIFIED', True))
+        headers={'Content-Type':'application/javascript', 'Content-Length':str(path.stat().st_size), 'ETag':f'"{digest}"', 'Cache-Control':'max-age=60', 'x-oss-meta-example':'kept', 'x-oss-storage-class':'Standard'}
+        headers.update(changes or {})
+        bucket=types.SimpleNamespace()
+        bucket.head_object=unittest.mock.Mock(return_value=types.SimpleNamespace(headers=headers))
+        bucket.put_object_from_file=unittest.mock.Mock(return_value=types.SimpleNamespace(etag=digest))
+        return bucket, {'analytics.js':(path,path.stat().st_size,digest)}
+    def test_live_write_smoke_preserves_metadata_one_existing_put(self):
+        bucket,local=self.smoke_fixture()
+        m.verify_existing_write(bucket,local)
+        bucket.put_object_from_file.assert_called_once()
+        call=bucket.put_object_from_file.call_args
+        self.assertEqual(call.args[0],'analytics.js')
+        self.assertEqual(call.kwargs['headers']['content-type'],'application/javascript')
+        self.assertEqual(call.kwargs['headers']['cache-control'],'max-age=60')
+        self.assertEqual(call.kwargs['headers']['x-oss-meta-example'],'kept')
+        self.assertNotIn('content-disposition',call.kwargs['headers'])
+    def test_live_write_smoke_mismatch_and_injected_metadata_abort(self):
+        for changes in [{'ETag':'"wrong"'}, {'Content-Length':'999'}, {'x-oss-force-download':'true'}, {'x-oss-tagging-count':'1'}, {'x-oss-server-side-encryption':'AES256'}]:
+            bucket,local=self.smoke_fixture(changes)
+            with self.subTest(changes=changes), self.assertRaises(ValueError):
+                m.verify_existing_write(bucket,local)
+            bucket.put_object_from_file.assert_not_called()
+    def test_live_write_smoke_requires_known_snapshot_and_tag_state(self):
+        bucket,local=self.smoke_fixture()
+        with patch.object(m, 'WRITE_SMOKE_MD5', 'different'), self.assertRaises(ValueError):
+            m.verify_existing_write(bucket,local)
+        with patch.object(m, 'WRITE_SMOKE_NO_TAGS_VERIFIED', False), self.assertRaises(ValueError):
+            m.verify_existing_write(bucket,local)
+        bucket.put_object_from_file.assert_not_called()
+    def test_live_write_smoke_head_denied_never_writes(self):
+        bucket,local=self.smoke_fixture()
+        error=RuntimeError('denied'); error.status=403
+        bucket.head_object.side_effect=error
+        with self.assertRaises(RuntimeError): m.verify_existing_write(bucket,local)
+        bucket.put_object_from_file.assert_not_called()
+    def test_live_write_smoke_metadata_readback_failure_is_fatal(self):
+        bucket,local=self.smoke_fixture()
+        before=bucket.head_object.return_value
+        after=types.SimpleNamespace(headers=dict(before.headers, **{'Cache-Control':'changed'}))
+        bucket.head_object.side_effect=[before,after]
+        with self.assertRaises(RuntimeError): m.verify_existing_write(bucket,local)
+        bucket.put_object_from_file.assert_called_once()
     def test_retry_stops_on_auth_errors(self):
         error=RuntimeError('denied'); error.status=403
         with patch.object(m.time,'sleep') as sleep, self.assertRaises(RuntimeError):
