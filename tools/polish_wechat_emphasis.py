@@ -137,7 +137,8 @@ def number_story_cards() -> None:
                 card,
                 count=1,
             )
-            badge = f'<span class="story-number">{labels[series_id]} · {counter:02d}</span>'
+            ordinal = f'第{counter:02d}篇' if series_id == 'run50-series' else f'{counter:02d}'
+            badge = f'<span class="story-number">{labels[series_id]} · {ordinal}</span>'
             card, replacements = STORY_BODY_OPEN_RE.subn(
                 lambda match: f"{match.group(1)}\n              {badge}\n              ",
                 card,
