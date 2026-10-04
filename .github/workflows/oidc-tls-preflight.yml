@@ -1,8 +1,5 @@
 name: Verify GitHub OIDC TLS chain
 on:
-  push:
-    branches: [main]
-    paths: [.github/workflows/oidc-tls-preflight.yml]
   workflow_dispatch:
 permissions: {}
 jobs:
