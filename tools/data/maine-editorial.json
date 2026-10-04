@@ -156,20 +156,25 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-04.jpg",
-          "alt": "Siqi 和跑友们"
+          "alt": "Siqi 和新朋友们；中间是 Sabrina，一位用跑步重塑自己的跑者"
         }
       ],
-      "caption": "Siqi 和跑友们｜摄影 / Arsenan"
+      "caption": "Siqi 和新朋友们；中间是 Sabrina，一位用跑步重塑自己的跑者｜摄影 / Arsenan"
+    },
+    {
+      "kind": "paragraph",
+      "html": "穿粉色衣服的是 <strong>Sabrina</strong>，我们在这次系列赛里交到的好朋友。她用跑步重塑自己，在这几天里坚持完成了几场全马。看着她一天接一天站上起点，我们很佩服她的毅力。<strong>跑步让她变得更好，也让我们认识了彼此。</strong>",
+      "source_note": "用户于2026-10-03提供人物背景并明确指出ME-04照片"
     },
     {
       "kind": "figure",
       "images": [
         {
           "src": "/assets/maine-editorial/ME-04-1.jpg",
-          "alt": "Siqi 和跑友们"
+          "alt": "Siqi 和 Sabrina，在赛道上交到的好朋友"
         }
       ],
-      "caption": "Siqi 和跑友们｜摄影 / Arsenan"
+      "caption": "Siqi 和 Sabrina，在赛道上交到的好朋友｜摄影 / Arsenan"
     },
     {
       "kind": "paragraph",
@@ -747,10 +752,10 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-35.jpg",
-          "alt": "和跑友一起留影"
+          "alt": "和 Sabrina 一起走过补给区，她在这次系列赛里坚持完成了几场全马"
         }
       ],
-      "caption": "和跑友一起留影"
+      "caption": "和 Sabrina 一起走过补给区，她在这次系列赛里坚持完成了几场全马"
     },
     {
       "kind": "figure",
@@ -852,10 +857,10 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-38.jpg",
-          "alt": "Siqi 和跑友"
+          "alt": "Siqi 和 Sabrina，一路跑步，也一路互相鼓励"
         }
       ],
-      "caption": "Siqi 和跑友｜摄影 / Arsenan"
+      "caption": "Siqi 和 Sabrina，一路跑步，也一路互相鼓励｜摄影 / Arsenan"
     },
     {
       "kind": "figure",

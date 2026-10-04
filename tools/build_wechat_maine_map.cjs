@@ -11,8 +11,8 @@ const path=require('path');
   const star=svg.querySelector('#city-dots-group polygon[fill="#ffcc00"]');
   const pts=star.getAttribute('points').split(' ').map(x=>x.split(',').map(Number));const cx=pts.reduce((a,v)=>a+v[0],0)/10,cy=pts.reduce((a,v)=>a+v[1],0)/10;
   // Place the pine arrow over the Atlantic, with its tip linked directly to Sanford.
-  add('path',{d:`M ${cx+9} ${cy+9} Q 1615 312, 1538 412`,fill:'none',stroke:'#987335','stroke-width':3,'stroke-linecap':'round'});
-  add('image',{href:'../assets/maine-editorial/map-callout.png',x:1530,y:400,width:235,height:156.67});
+  add('path',{d:`M ${cx+10} ${cy} L 1584 298`,fill:'none',stroke:'#987335','stroke-width':3,'stroke-linecap':'round'});
+  add('image',{href:'../assets/maine-editorial/map-callout-v2.png',x:1580,y:210,width:180,height:120});
  });
  await p.waitForTimeout(500);await p.locator('#map-slot').screenshot({path:'assets/maine-editorial/map.jpg',quality:92,type:'jpeg'});
  await b.close();

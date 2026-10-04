@@ -2,7 +2,7 @@ from pathlib import Path
 import subprocess,tempfile
 r=Path.cwd()
 with tempfile.TemporaryDirectory() as td:
- for i,key in enumerate(['ME-33-2','ME-08','ME-40','ME-41-1','ME-37-1','ME-44','ME-43-1']):
+ for i,key in enumerate(['ME-33-2','ME-08','ME-25-1','ME-40','ME-41-1','ME-37-1','ME-44','ME-43-1']):
   # Every frame is a real square crop, with no padded borders.
   vf='scale=900:900:force_original_aspect_ratio=increase,crop=900:900'
   if key=='ME-37-1':vf='scale=900:900:force_original_aspect_ratio=increase,crop=900:900:0:ih-900'
