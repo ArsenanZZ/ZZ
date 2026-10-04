@@ -1,0 +1,32 @@
+name: Verify GitHub OIDC TLS chain
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/oidc-tls-preflight.yml]
+  workflow_dispatch:
+permissions: {}
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify issuer TLS identity and display public certificate chain
+        shell: bash
+        run: |
+          set -euo pipefail
+          host=token.actions.githubusercontent.com
+          openssl s_client -connect "$host:443" -servername "$host" \
+            -verify_hostname "$host" -verify_return_error -showcerts \
+            </dev/null >"$RUNNER_TEMP/chain.txt" 2>"$RUNNER_TEMP/verification.txt"
+          cat "$RUNNER_TEMP/verification.txt"
+          grep -q 'Verify return code: 0 (ok)' "$RUNNER_TEMP/chain.txt"
+          awk -v dir="$RUNNER_TEMP" '
+            /-----BEGIN CERTIFICATE-----/ { n++; file=dir "/issuer-chain-" n ".pem" }
+            file { print >file }
+            /-----END CERTIFICATE-----/ { close(file); file="" }
+          ' "$RUNNER_TEMP/chain.txt"
+          for cert in "$RUNNER_TEMP"/issuer-chain-*.pem; do
+            echo "Certificate: $(basename "$cert")"
+            openssl x509 -in "$cert" -noout -subject -issuer -dates -fingerprint -sha1
+          done
+          echo 'TLS hostname and trust-chain verification passed.'
