@@ -183,7 +183,7 @@
     },
     {
       "kind": "paragraph",
-      "html": "这几天反复遇见的国旗跑者，今天又出现了。他是一位<strong>退伍军人，每一站都坚持跑50公里</strong>，通过跑步筹款，为退役后受到心理创伤的人提供帮助。我们今天只跑5K，他还要继续一圈圈跑下去。",
+      "html": "这几天反复遇见的国旗跑者 <strong>Billy Richards</strong>，今天又出现了。他是一位退伍军人，背着<strong>45磅、约20公斤的背包，每站坚持跑50公里</strong>，为 Operation VEST 的退伍军人援助与自杀预防工作筹款。我们今天只跑5K，他还要继续一圈圈跑下去。",
       "source_note": "用户提供国旗跑者背景：退伍军人，每站50K，筹款帮助退役后受到心理创伤的人。2026-10-03"
     },
     {
@@ -191,10 +191,10 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-05.jpg",
-          "alt": "扛着国旗和背包的退伍军人，每站坚持跑50公里，为退伍军人心理创伤援助筹款"
+          "alt": "Billy Richards，背着45磅背包，为 Operation VEST 跑50K筹款"
         }
       ],
-      "caption": "扛着国旗和背包的退伍军人，每站坚持跑50公里，为退伍军人心理创伤援助筹款"
+      "caption": "Billy Richards，背着45磅背包，为 Operation VEST 跑50K筹款"
     },
     {
       "kind": "figure",
@@ -806,13 +806,21 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-37.jpg",
-          "alt": "到了缅因，他仍扛着国旗完成这一站的50公里筹款跑",
+          "alt": "到了缅因，Billy Richards 仍扛着国旗跑这一站的50K",
           "credit": "赛事官方"
         }
       ],
-      "caption": "到了缅因，他仍扛着国旗完成这一站的50公里筹款跑｜摄影 / 赛事官方",
+      "caption": "到了缅因，Billy Richards 仍扛着国旗跑这一站的50K｜摄影 / 赛事官方",
       "photo_credit": "赛事官方",
       "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
+    },
+    {
+      "kind": "paragraph",
+      "html": "后来看到 Billy 的筹款资料，才更清楚那面国旗背后的目的。<strong>Operation VEST</strong> 的全称是 Veterans Ending Suicide Together，关注退伍军人的支持与自杀预防。他在6月11日的帖子里说，希望筹款能让退伍军人的生活好一些，为减少自杀的援助服务提供支持。<a href=\"https://givebutter.com/billyrichards-vest\">他的筹款页面</a>也记录着这项挑战。",
+      "sources": [
+        "https://givebutter.com/billyrichards-vest"
+      ],
+      "source_note": "组织全称及6月11日表述来自用户提供截图。"
     },
     {
       "kind": "figure",
@@ -1175,6 +1183,10 @@
       "kind": "paragraph",
       "html": "这次系列赛报名费不便宜，每一场要 165 美元，我报晚了，早点报的话大约 100 美元。但我觉得还是值得的，很不一样，也许以后还会参加别的系列赛。",
       "source_index": 129
+    },
+    {
+      "kind": "paragraph",
+      "html": "回头看，这个系列让我愿意推荐的，是<strong>补给方便、节奏包容，还有连续几天相处出来的人情味</strong>。一圈圈碰见 Sab、扛国旗的 Billy 和其他跑友，最后已经会留意彼此跑得怎么样。倪哥跑过另外两个系列，这次我也明白了，为什么有人跑完一组，还想再报下一组。"
     },
     {
       "kind": "paragraph",

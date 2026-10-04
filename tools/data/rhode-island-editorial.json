@@ -284,7 +284,7 @@
     },
     {
       "kind": "paragraph",
-      "html": "路上有位大叔一直<strong>扛着一面美国国旗跑</strong>，我追上他，又被他追上，一圈接一圈，几乎每一圈都能碰到。他是一位退伍军人，这次系列赛<strong>每一站都跑50公里</strong>，通过跑步筹款，帮助退役后受到心理创伤的人。再碰到那面国旗时，我也记住了他坚持跑下去的原因。",
+      "html": "路上又遇到了<strong>扛着美国国旗的 Billy Richards</strong>。我追上他，又被他追上，一圈接一圈，几乎每一圈都能碰到。这位退伍军人背着<strong>45磅、约20公斤的背包</strong>，每站跑50公里，为 Operation VEST 筹款，帮助有需要的退伍军人，并支持自杀预防服务。",
       "source_index": 31
     },
     {
@@ -292,20 +292,20 @@
       "images": [
         {
           "src": "/assets/rhode-island-editorial/RI-003.jpg",
-          "alt": "每站50公里，他扛着国旗，为需要心理创伤援助的退伍军人筹款"
+          "alt": "Billy Richards：扛着国旗，负重跑50K，为退伍军人援助筹款"
         }
       ],
-      "caption": "每站50公里，他扛着国旗，为需要心理创伤援助的退伍军人筹款"
+      "caption": "Billy Richards：扛着国旗，负重跑50K，为退伍军人援助筹款"
     },
     {
       "kind": "figure",
       "images": [
         {
           "src": "/assets/rhode-island-editorial/RI-020.jpg",
-          "alt": "木栏杆旁再次遇见这位每站跑50公里的退伍军人"
+          "alt": "木栏杆旁，再次遇见 Billy Richards"
         }
       ],
-      "caption": "木栏杆旁再次遇见这位每站跑50公里的退伍军人｜摄影 / Siqi"
+      "caption": "木栏杆旁，再次遇见 Billy Richards｜摄影 / Siqi"
     },
     {
       "kind": "heading",
@@ -401,6 +401,13 @@
         }
       ],
       "caption": "补给拖车上的新英格兰六州｜摄影 / Arsenan"
+    },
+    {
+      "kind": "paragraph",
+      "html": "跑到第二天，我开始理解它为什么会让跑友愿意一来再来。<strong>每圈都能补给，也每圈都能遇到熟面孔</strong>；跑快跑慢、甚至走一段，都有人打招呼。主办方把“不落下任何跑者”写进办赛理念，欢迎步行完赛的人。这种照顾不同节奏的态度，是我觉得它好的地方。",
+      "sources": [
+        "https://mainlymarathons.com/questions/"
+      ]
     },
     {
       "kind": "heading",

@@ -13,6 +13,11 @@
       "source_index": 5
     },
     {
+      "kind": "paragraph",
+      "html": "决定来跑这个系列，<strong>是受倪哥启发</strong>。他此前参加过 Mainly Marathons 的另外两个系列，让我也动了心。这回轮到我和 Siqi，试试每天换一个州、连续几天站上起点的跑法。",
+      "source_note": "用户确认：倪哥参加过另外两个系列，启发此次报名。"
+    },
+    {
       "kind": "figure",
       "images": [
         {
@@ -21,6 +26,14 @@
         }
       ],
       "caption": "计时帐篷与补给站｜摄影 / Arsenan"
+    },
+    {
+      "kind": "paragraph",
+      "html": "Mainly Marathons 由 <strong>Clint 和 Hanne Burleson</strong> 创办。Clint 跑了多年马拉松，想把比赛办得轻松、亲切一些；和 Marathon Maniacs、50 States 跑友交流的想法，慢慢成了这种把邻近州串起来、连续多天比赛的形式。对想跑遍50州的人来说，一趟旅行就能完成好几个州。",
+      "sources": [
+        "https://mainlymarathons.com/meet-the-crew/",
+        "https://alpha.creativecirclecdn.com/mcherald/files/20211102-153628-10-5-2015.pdf"
+      ]
     },
     {
       "kind": "paragraph",
@@ -687,7 +700,7 @@
     },
     {
       "kind": "paragraph",
-      "html": "绕舞台的那段路边有一堵矮石墙，墙上摆了<span><strong>一整列橡皮小鸭</strong></span>，从这头排到那头。Mainly Marathons 好像很喜欢这种小玩意儿，后面奖牌旁边也有它们。我一跑到这里，就张开双臂朝镜头跑过去。",
+      "html": "绕舞台的那段路边有一堵矮石墙，墙上摆了<strong>一整列橡皮小鸭</strong>，从这头排到那头。这些都是<strong>赛事官方摆放的玩偶</strong>，后面几站也能见到。我们拿它们和奖牌一起拍照，Siqi 还把鸭子顶在头上玩。每圈跑回这里，看见这排小家伙，气氛都轻松了不少。",
       "source_index": 81
     },
     {
@@ -812,7 +825,7 @@
     },
     {
       "kind": "paragraph",
-      "html": "赛道上还有一位扛着美国国旗、背着大背包的跑者。他是一位<strong>退伍军人</strong>，这次系列赛<strong>每一站都跑50公里</strong>。他通过跑步筹款，帮助退役后受到心理创伤的人。接下来的几天，我们又多次在赛道上遇见他。",
+      "html": "赛道上还有一位扛着美国国旗、背着大背包的跑者，叫 <strong>Billy Richards</strong>，是一位退伍军人。这次系列赛他<strong>每站都跑50公里</strong>，背包重45磅，约20公斤。他为 <strong>Operation VEST</strong> 筹款，支持退伍军人援助与自杀预防服务。接下来的几天，我们又多次在赛道上遇见他。",
       "source_note": "用户提供国旗跑者背景：退伍军人，每站50K，筹款帮助退役后受到心理创伤的人。2026-10-03"
     },
     {
@@ -824,10 +837,10 @@
         },
         {
           "src": "/assets/connecticut-editorial/CT-46-0.jpg",
-          "alt": "赛道上的跑友；下图这位退伍军人每站跑50公里，为退役后的心理创伤援助筹款"
+          "alt": "赛道上的跑友；下图为负重跑50K、为 Operation VEST 筹款的 Billy Richards"
         }
       ],
-      "caption": "赛道上的跑友；下图这位退伍军人每站跑50公里，为退役后的心理创伤援助筹款｜摄影 / Arsenan"
+      "caption": "赛道上的跑友；下图为负重跑50K、为 Operation VEST 筹款的 Billy Richards｜摄影 / Arsenan"
     },
     {
       "kind": "figure",
