@@ -590,10 +590,13 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-26.jpg",
-          "alt": "最后一天的 RONALDO 7 球衣"
+          "alt": "最后一天的 RONALDO 7 球衣",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "最后一天的 RONALDO 7 球衣｜摄影 / Siqi"
+      "caption": "最后一天的 RONALDO 7 球衣｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "heading",
@@ -645,10 +648,13 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-25-1.jpg",
-          "alt": "和热狗帽跑友碰拳"
+          "alt": "和热狗帽跑友碰拳",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "和热狗帽跑友碰拳｜摄影 / Siqi"
+      "caption": "和热狗帽跑友碰拳｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "heading",
@@ -690,32 +696,41 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-27.jpg",
-          "alt": "这些天反复遇到的跑友"
+          "alt": "这些天反复遇到的跑友",
+          "credit": "赛事官方"
         },
         {
           "src": "/assets/maine-editorial/ME-27-1.jpg",
-          "alt": "这些天反复遇到的跑友"
+          "alt": "这些天反复遇到的跑友",
+          "credit": "赛事官方"
         },
         {
           "src": "/assets/maine-editorial/ME-27-2.jpg",
-          "alt": "这些天反复遇到的跑友"
+          "alt": "这些天反复遇到的跑友",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "这些天反复遇到的跑友"
+      "caption": "这些天反复遇到的跑友｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "figure",
       "images": [
         {
           "src": "/assets/maine-editorial/ME-33.jpg",
-          "alt": "熟悉的跑者与补给区"
+          "alt": "熟悉的跑者与补给区",
+          "credit": "赛事官方"
         },
         {
           "src": "/assets/maine-editorial/ME-33-1.jpg",
-          "alt": "熟悉的跑者与补给区"
+          "alt": "熟悉的跑者与补给区",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "熟悉的跑者与补给区"
+      "caption": "熟悉的跑者与补给区｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "paragraph",
@@ -727,10 +742,13 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-33-2.jpg",
-          "alt": "张开双臂跑过镜头"
+          "alt": "张开双臂跑过镜头",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "张开双臂跑过镜头｜摄影 / Siqi"
+      "caption": "张开双臂跑过镜头｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "figure",
@@ -752,20 +770,26 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-35.jpg",
-          "alt": "和 Sabrina 一起走过补给区，她在这次系列赛里坚持完成了几场全马"
+          "alt": "和 Sabrina 一起走过补给区，她在这次系列赛里坚持完成了几场全马",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "和 Sabrina 一起走过补给区，她在这次系列赛里坚持完成了几场全马"
+      "caption": "和 Sabrina 一起走过补给区，她在这次系列赛里坚持完成了几场全马｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "figure",
       "images": [
         {
           "src": "/assets/maine-editorial/ME-36.jpg",
-          "alt": "路上继续加油"
+          "alt": "路上继续加油",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "路上继续加油｜摄影 / Siqi"
+      "caption": "路上继续加油｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "paragraph",
@@ -777,10 +801,13 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-37.jpg",
-          "alt": "带着国旗继续跑"
+          "alt": "带着国旗继续跑",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "带着国旗继续跑"
+      "caption": "带着国旗继续跑｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "figure",
@@ -817,10 +844,13 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-29.jpg",
-          "alt": "每圈回来的补给站"
+          "alt": "每圈回来的补给站",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "每圈回来的补给站"
+      "caption": "每圈回来的补给站｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "figure",
@@ -854,7 +884,7 @@
     },
     {
       "kind": "paragraph",
-      "html": "到了最后一站，<strong>终于有了官方摄影师</strong>。这张拍到了 Siqi 和 Sab（Sabrina）一起跑过镜头，两个人都竖起了大拇指。一路跑下来，赛道上的熟面孔也成了朋友。",
+      "html": "到了最后一站，<strong>终于有了官方摄影师</strong>。我看他用的是<strong>索尼 A7M3</strong>，这一站我和 Siqi 的不少赛道照片都是他拍的。这张拍到了 Siqi 和 Sab（Sabrina）一起跑过镜头，两个人都竖起了大拇指。一路跑下来，赛道上的熟面孔也成了朋友。",
       "source_note": "用户确认ME-38为赛事官方照片，2026-10-03"
     },
     {
@@ -862,30 +892,39 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-38.jpg",
-          "alt": "Siqi 和 Sab（Sabrina）的官方赛道照片"
+          "alt": "Siqi 和 Sab（Sabrina）的官方赛道照片",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "Siqi 和 Sab（Sabrina）一起跑过镜头，给彼此加油｜摄影 / 赛事官方"
+      "caption": "Siqi 和 Sab（Sabrina）一起跑过镜头，给彼此加油｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "figure",
       "images": [
         {
           "src": "/assets/maine-editorial/ME-40.jpg",
-          "alt": "一起张开双臂"
+          "alt": "一起张开双臂",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "一起张开双臂"
+      "caption": "一起张开双臂｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "figure",
       "images": [
         {
           "src": "/assets/maine-editorial/ME-42.jpg",
-          "alt": "最后一段路一起走"
+          "alt": "最后一段路一起走",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "最后一段路一起走"
+      "caption": "最后一段路一起走｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "paragraph",
@@ -957,10 +996,13 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-29-1.jpg",
-          "alt": "为 Dave 和 Jennifer 准备的蛋糕"
+          "alt": "为 Dave 和 Jennifer 准备的蛋糕",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "为 Dave 和 Jennifer 准备的蛋糕"
+      "caption": "为 Dave 和 Jennifer 准备的蛋糕｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "heading",
@@ -1042,10 +1084,13 @@
       "images": [
         {
           "src": "/assets/maine-editorial/ME-47.jpg",
-          "alt": "六天结束，和 Siqi 合影"
+          "alt": "六天结束，和 Siqi 合影",
+          "credit": "赛事官方"
         }
       ],
-      "caption": "六天结束，和 Siqi 合影"
+      "caption": "六天结束，和 Siqi 合影｜摄影 / 赛事官方",
+      "photo_credit": "赛事官方",
+      "credit_basis": "用户确认缅因官方摄影师使用A7M3，原图EXIF为ILCE-7M3"
     },
     {
       "kind": "heading",
@@ -1141,5 +1186,24 @@
       ],
       "caption": "傍晚的归途"
     }
+  ],
+  "official_photo_stems": [
+    "ME-25-1",
+    "ME-26",
+    "ME-27",
+    "ME-27-1",
+    "ME-27-2",
+    "ME-29",
+    "ME-29-1",
+    "ME-33",
+    "ME-33-1",
+    "ME-33-2",
+    "ME-35",
+    "ME-36",
+    "ME-37",
+    "ME-38",
+    "ME-40",
+    "ME-42",
+    "ME-47"
   ]
 }
