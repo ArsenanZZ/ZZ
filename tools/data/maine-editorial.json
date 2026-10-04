@@ -551,26 +551,39 @@
     {
       "kind": "heading",
       "label": "Chapter 4",
-      "title": "缅因：全美最东北的州"
+      "title": "缅因：松树、海岸与桑福德"
     },
     {
       "kind": "paragraph",
-      "html": "缅因（Maine）是美国本土最东北的一个州，海岸线曲折，外号“<strong>松树之州</strong>”（The Pine Tree State），龙虾是它的招牌。",
-      "source_index": 54
+      "html": "缅因（Maine）在美国东北角，是<strong>新英格兰面积最大的州</strong>。西边挨着新罕布什尔，北面和东面接加拿大，东南面朝大西洋；它也是美国唯一只与另一个州接壤的州。一路从康涅狄格往北跑，到了这里，已经来到新英格兰的最东北端。",
+      "sources": [
+        "https://www.maine.gov/portal/about_me/facts.html"
+      ]
     },
     {
       "kind": "paragraph",
-      "html": "它在 1820 年才成为美国的第 23 个州，之前一直是马萨诸塞的一部分。",
-      "source_index": 54
+      "html": "它的外号是<strong>“松树之州”（The Pine Tree State）</strong>。白松是州树，森林和木材长期是当地生活的重要部分。很多人想到缅因，先想到龙虾、灯塔和曲折的海岸；往内陆走，则是大片林地、湖泊和河流。",
+      "sources": [
+        "https://mobile.maine.gov/dacf/mfs/publications/information_sheets.html"
+      ]
     },
     {
       "kind": "paragraph",
-      "html": "这场比赛在南缅因的 Sanford，起点是 Sanford Springvale YMCA，赛道是 <strong>Mousam Way Trail</strong>，柏油路，树荫多。",
-      "source_index": 55
+      "html": "历史上，缅因曾属于马萨诸塞，直到<strong>1820年3月15日</strong>才独立建州，成为美国第23州。这里的“第23州”是加入美国的顺序；对我的 Run50 来说，缅因是<strong>第35个完成全马的州</strong>。",
+      "sources": [
+        "https://www1.maine.gov/portal/about_me/history.html"
+      ]
     },
     {
       "kind": "paragraph",
-      "html": "官方写的是全马 <strong>14 圈</strong>，每圈大约 3 公里，来回跑。",
+      "html": "这次比赛所在的<strong>桑福德（Sanford）</strong>位于南缅因，是一座有纺织工业历史的城市。过去，Mousam 河的水力带动沿岸工厂运转，留下了老厂房组成的历史街区。这一站，我们来到的是缅因的内陆城镇。",
+      "sources": [
+        "https://www.maine.gov/mhpc/index.php/programs/national-register-of-historic-places/recent-listings/sanford-mills-historic-district"
+      ]
+    },
+    {
+      "kind": "paragraph",
+      "html": "比赛起点是 <strong>Sanford Springvale YMCA</strong>，赛道是 <strong>Mousam Way Trail</strong>，柏油路，树荫多。官方写的是全马<strong>14圈</strong>，每圈大约3公里，来回跑。",
       "source_index": 55
     },
     {
