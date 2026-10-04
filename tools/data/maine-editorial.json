@@ -488,11 +488,24 @@
     {
       "kind": "heading",
       "label": "Chapter 3",
-      "title": "墨西哥餐厅，然后往缅因开"
+      "title": "住到缅因州界旁，在 Rochester 吃晚饭"
     },
     {
       "kind": "paragraph",
-      "html": "参观完，我们在路边找了一家墨西哥餐厅，Siqi 点了一大盘，配着一杯奶昔。墙上是一幅彩色的壁画，有人在弹吉他。",
+      "html": "参观完，我们开车直奔靠近缅因州界的 <strong>Rochester（罗切斯特）</strong>，去今晚住的 Airbnb。这里仍在<strong>新罕布什尔州（NH）</strong>境内，离第二天缅因桑福德的比赛大约25英里，住在这里方便第二天一早出发。",
+      "source_index": 50
+    },
+    {
+      "kind": "paragraph",
+      "html": "Rochester 是一座带着新英格兰小镇气息的城市，<strong>Cocheco 河穿过市区</strong>。老城保留着市政厅兼歌剧院、公共图书馆和中央广场等历史地标。它紧挨缅因州，今晚在这里歇脚，明天就跨州去跑最后一场。",
+      "sources": [
+        "https://www.rochesternh.gov/historic-map",
+        "https://www.rochesternh.gov/home"
+      ]
+    },
+    {
+      "kind": "paragraph",
+      "html": "我们在镇上路边找了一家<strong>墨西哥餐厅 Cinco’s Cantina</strong>。Siqi 点了一大盘，配着一杯奶昔。墙上是一幅彩色的壁画，有人在弹吉他；开了一路车，终于可以坐下来好好吃顿晚饭。",
       "source_index": 50
     },
     {
@@ -514,11 +527,6 @@
         }
       ],
       "caption": "Siqi 和奶昔｜摄影 / Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "吃完，晚上开车去新罕布什尔的 Rochester，住进 Airbnb，第二天的全马，离这里只有 25 英里。",
-      "source_index": 50
     },
     {
       "kind": "figure",
