@@ -284,7 +284,7 @@
     },
     {
       "kind": "paragraph",
-      "html": "路上有位大叔一直<strong>扛着一面美国国旗跑</strong>，我追上他，又被他追上，一圈接一圈，几乎每一圈都能碰到。",
+      "html": "路上有位大叔一直<strong>扛着一面美国国旗跑</strong>，我追上他，又被他追上，一圈接一圈，几乎每一圈都能碰到。他是一位退伍军人，这次系列赛<strong>每一站都跑50公里</strong>，通过跑步筹款，帮助退役后受到心理创伤的人。再碰到那面国旗时，我也记住了他坚持跑下去的原因。",
       "source_index": 31
     },
     {
@@ -292,20 +292,20 @@
       "images": [
         {
           "src": "/assets/rhode-island-editorial/RI-003.jpg",
-          "alt": "扛着国旗向前跑"
+          "alt": "每站50公里，他扛着国旗，为需要心理创伤援助的退伍军人筹款"
         }
       ],
-      "caption": "扛着国旗向前跑"
+      "caption": "每站50公里，他扛着国旗，为需要心理创伤援助的退伍军人筹款"
     },
     {
       "kind": "figure",
       "images": [
         {
           "src": "/assets/rhode-island-editorial/RI-020.jpg",
-          "alt": "从木栏杆旁看国旗跑者"
+          "alt": "木栏杆旁再次遇见这位每站跑50公里的退伍军人"
         }
       ],
-      "caption": "从木栏杆旁看国旗跑者｜摄影 / Siqi"
+      "caption": "木栏杆旁再次遇见这位每站跑50公里的退伍军人｜摄影 / Siqi"
     },
     {
       "kind": "heading",
