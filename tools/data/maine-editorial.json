@@ -853,14 +853,19 @@
       "caption": "赛道上的自拍｜摄影 / Arsenan"
     },
     {
+      "kind": "paragraph",
+      "html": "到了最后一站，<strong>终于有了官方摄影师</strong>。这张拍到了 Siqi 和 Sab（Sabrina）一起跑过镜头，两个人都竖起了大拇指。一路跑下来，赛道上的熟面孔也成了朋友。",
+      "source_note": "用户确认ME-38为赛事官方照片，2026-10-03"
+    },
+    {
       "kind": "figure",
       "images": [
         {
           "src": "/assets/maine-editorial/ME-38.jpg",
-          "alt": "Siqi 和 Sabrina，一路跑步，也一路互相鼓励"
+          "alt": "Siqi 和 Sab（Sabrina）的官方赛道照片"
         }
       ],
-      "caption": "Siqi 和 Sabrina，一路跑步，也一路互相鼓励｜摄影 / Arsenan"
+      "caption": "Siqi 和 Sab（Sabrina）一起跑过镜头，给彼此加油｜摄影 / 赛事官方"
     },
     {
       "kind": "figure",
