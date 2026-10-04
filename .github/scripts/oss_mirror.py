@@ -16,9 +16,6 @@ from concurrent.futures import ThreadPoolExecutor
 REPOSITORY = 'ArsenanZZ/ZZ'
 BUCKET = 'zhennanzhang-web-hk'
 ENDPOINT = 'https://oss-cn-hongkong.aliyuncs.com'
-# One-shot analytics.js snapshot. Authenticated OSS console verified no tags on 2026-10-04 20:52 UTC.
-WRITE_SMOKE_MD5 = '3f7c57137ba6041d93fbb6aef42f54b8'
-WRITE_SMOKE_NO_TAGS_VERIFIED = True
 FORBIDDEN_ROOTS = {'.git', '.github', '.claude', 'scratch', 'tools', 'work', '_site'}
 
 
@@ -134,46 +131,7 @@ def retry(operation):
             time.sleep(2 ** attempt)
 
 
-def verify_existing_write(bucket, local):
-    """Optional one-object, byte-identical write test; never creates a new key."""
-    key = 'analytics.js'
-    path, size, digest = local[key]
-    if digest != WRITE_SMOKE_MD5:
-        raise ValueError('Write verification asset differs from reviewed snapshot')
-    if size > 65536:
-        raise ValueError('Write-verification asset exceeds 64 KiB')
-    before = retry(lambda: bucket.head_object(key))
-    headers = {name.lower(): value for name, value in before.headers.items()}
-    if headers.get('x-oss-force-download', '').lower() == 'true':
-        raise ValueError('Cannot establish original metadata: response headers were rewritten')
-    if (int(headers['content-length']), headers['etag'].strip('"').lower()) != (size, digest):
-        raise ValueError('Write verification requires existing byte-identical analytics.js')
-    if headers.get('x-oss-object-type', 'Normal') != 'Normal':
-        raise ValueError('Write verification only supports a normal object')
-    tag_count = headers.get('x-oss-tagging-count')
-    if tag_count is None and not WRITE_SMOKE_NO_TAGS_VERIFIED:
-        raise ValueError('No independently verified object tag state')
-    if headers.get('x-oss-server-side-encryption') or int(tag_count or '0'):
-        raise ValueError('Refusing to alter encryption or tagged-object metadata')
-    keep = {'content-type', 'cache-control', 'content-disposition', 'content-encoding',
-            'content-language', 'expires', 'x-oss-storage-class'}
-    preserved = {name: value for name, value in headers.items()
-                 if name in keep or name.startswith('x-oss-meta-')}
-    upload_headers = dict(preserved)
-    upload_headers['Content-MD5'] = base64.b64encode(bytes.fromhex(digest)).decode()
-    result = retry(lambda: bucket.put_object_from_file(key, str(path), headers=upload_headers))
-    if result.etag.strip('"').lower() != digest:
-        raise RuntimeError('Write-verification upload checksum mismatch')
-    after = retry(lambda: bucket.head_object(key))
-    after_headers = {name.lower(): value for name, value in after.headers.items()}
-    if (int(after_headers['content-length']), after_headers['etag'].strip('"').lower()) != (size, digest):
-        raise RuntimeError('Write-verification readback checksum mismatch')
-    if any(after_headers.get(name) != value for name, value in preserved.items()):
-        raise RuntimeError('Write-verification metadata readback mismatch')
-    print(f'Live PutObject verified: {key}, {size} identical bytes; MD5 {digest}; original metadata preserved')
-
-
-def mirror(root, run_id, run_attempt, verify_write=False):
+def mirror(root, run_id, run_attempt):
     import oss2
     # Never accept arbitrary endpoints/buckets through workflow inputs.
     auth = oss2.StsAuth(os.environ['ALIBABA_CLOUD_ACCESS_KEY_ID'],
@@ -195,8 +153,6 @@ def mirror(root, run_id, run_attempt, verify_write=False):
     if (str(latest['id']), str(latest['run_attempt'])) != (str(run_id), str(run_attempt)):
         print('A newer Pages deployment succeeded; skip superseded mirror')
         return
-    if verify_write:
-        verify_existing_write(bucket, local)
 
     def upload(key):
         path, _, digest = local[key]
@@ -233,11 +189,10 @@ if __name__ == '__main__':
     parser.add_argument('--site')
     parser.add_argument('--run-id')
     parser.add_argument('--run-attempt')
-    parser.add_argument('--verify-write', action='store_true')
     args = parser.parse_args()
     if args.command == 'select-run':
         select_run()
     elif args.command == 'extract':
         extract_archive(args.archive, args.site)
     else:
-        mirror(args.site, args.run_id, args.run_attempt, args.verify_write)
+        mirror(args.site, args.run_id, args.run_attempt)

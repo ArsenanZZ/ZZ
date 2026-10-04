@@ -1,21 +1,11 @@
 name: Mirror published Pages to OSS Hong Kong
 
 on:
-  # Temporary, nonce-gated setup verification; removed immediately after success.
-  push:
-    branches: [main]
-    paths: [.github/workflows/oss-mirror.yml]
   workflow_run:
     workflows: [Deploy Pages]
     types: [completed]
     branches: [main]
   workflow_dispatch:
-    inputs:
-      verify_write:
-        description: 'Verify one byte-identical analytics.js overwrite (preserves metadata)'
-        type: boolean
-        default: false
-        required: false
 
 permissions:
   contents: read
@@ -32,7 +22,6 @@ jobs:
     if: >-
       github.repository == 'ArsenanZZ/ZZ' && github.ref == 'refs/heads/main' &&
       (github.event_name == 'workflow_dispatch' ||
-       (github.event_name == 'push' && github.event.head_commit.message == 'Verify one byte-identical OSS write [oss-smoke-20261004-2047]') ||
        (github.event.workflow_run.conclusion == 'success' &&
         github.event.workflow_run.head_branch == 'main' &&
         github.event.workflow_run.head_repository.full_name == 'ArsenanZZ/ZZ' &&
@@ -89,13 +78,13 @@ jobs:
         if: steps.source.outputs.selected == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          VERIFY_WRITE: ${{ (github.event_name == 'workflow_dispatch' && inputs.verify_write) || (github.event_name == 'push' && github.event.head_commit.message == 'Verify one byte-identical OSS write [oss-smoke-20261004-2047]') }}
           SOURCE_RUN_ID: ${{ steps.source.outputs.run_id }}
           SOURCE_RUN_ATTEMPT: ${{ steps.source.outputs.run_attempt }}
           ALIBABA_CLOUD_ACCESS_KEY_ID: ${{ steps.aliyun.outputs.aliyun-access-key-id }}
           ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ steps.aliyun.outputs.aliyun-access-key-secret }}
           ALIBABA_CLOUD_SECURITY_TOKEN: ${{ steps.aliyun.outputs.aliyun-security-token }}
-        run: |
-          args=(sync --site "$RUNNER_TEMP/published-site" --run-id "$SOURCE_RUN_ID" --run-attempt "$SOURCE_RUN_ATTEMPT")
-          if [ "$VERIFY_WRITE" = 'true' ]; then args+=(--verify-write); fi
-          python .github/scripts/oss_mirror.py "${args[@]}"
+        run: >-
+          python .github/scripts/oss_mirror.py sync
+          --site "$RUNNER_TEMP/published-site"
+          --run-id "$SOURCE_RUN_ID"
+          --run-attempt "$SOURCE_RUN_ATTEMPT"
