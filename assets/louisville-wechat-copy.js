@@ -80,7 +80,16 @@
       const outputTag = ['p','br','strong','b','em','i','u','span','a','h1','h2'].includes(tag) ? tag : tag === 'figcaption' ? 'p' : 'section';
       const out = document.createElement(outputTag);
       if (inline) {
-        if (tag === 'strong' || tag === 'b') out.style.fontWeight = '700';
+        if (node.hasAttribute('data-cn-tone')) {
+          const palette = dark ? ['#f09589','#85c9a6','#91bce8','#e8c481'] : ['#ac4336','#237953','#306eaa','#9a681c'];
+          out.style.color = palette[Number(node.getAttribute('data-cn-tone'))] || palette[2];
+          out.style.fontWeight = '800';
+          if (node.getAttribute('data-cn-emphasis') === 'underline') {
+            out.style.textDecoration = 'underline';
+            out.style.textUnderlineOffset = '4px';
+          }
+        }
+        if (tag === 'strong' || tag === 'b') out.style.fontWeight = '800';
         if (tag === 'em' || tag === 'i') out.style.fontStyle = 'italic';
         if (tag === 'u') out.style.textDecoration = 'underline';
         if (tag === 'a' && node.hasAttribute('href')) out.href = new URL(node.getAttribute('href'), canonical).href;
@@ -99,6 +108,7 @@
         if (node.classList.contains('brand-intro')) out.style.cssText = 'margin:0 0 4px;padding:0;font-size:12px;line-height:1.5;text-align:center;';
         if (node.classList.contains('ending')) out.style.cssText = 'margin:64px 0 0;padding:32px 0 0;border-top:1px solid #888;font-size:14px;line-height:1.95;text-align:center;';
         if (node.closest('.ending')) out.style.textAlign = 'center';
+        if (node.classList.contains('closing')) out.style.cssText = 'margin:0;padding:24px 0 0;text-align:center;font-size:13px;line-height:1.9;';
       }
       for (const child of node.childNodes) out.append(convert(child));
       return out;
