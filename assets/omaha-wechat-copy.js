@@ -44,14 +44,14 @@
     const theme = dark ? 'dark' : 'light';
     const ink = dark ? '#ece9e2' : '#262626';
     const muted = dark ? '#aaaaaa' : '#888888';
-    const base = 'https://zhennanzhang.com/assets/blue-ridge-wechat-copy/';
+    const base = 'https://zhennanzhang.com/assets/connecticut-wechat-copy/';
     const wrapper = document.createElement('section');
     wrapper.style.cssText = `padding:0 4px 16px;background-color:${dark ? '#191919' : '#ffffff'};color:${ink};font-size:15px;line-height:1.95;text-align:left;font-family:Arial,"Microsoft YaHei",sans-serif;`;
     function convert(node) {
       if (node.nodeType === Node.TEXT_NODE) return document.createTextNode(node.textContent);
       if (node.nodeType !== Node.ELEMENT_NODE) return document.createTextNode('');
       const tag = node.tagName.toLowerCase();
-      if (node.classList.contains('masthead') || node.classList.contains('byline') || node.classList.contains('source-note')) return document.createTextNode('');
+      if (node.classList.contains('masthead') || node.classList.contains('byline')) return document.createTextNode('');
       if (['script','style','source','button'].includes(tag)) return document.createTextNode('');
       const number = node.classList.contains('chapter-number');
       const down = node.classList.contains('down');
@@ -61,10 +61,6 @@
         if (number || down) url = base + (number ? 'number-' + node.textContent.trim() + '-universal.png' : 'arrows-' + theme + '.png');
         else {
           url = new URL(node.getAttribute('src'), canonical).href;
-          const photo = url.match(/\/(va-[\d-]+)\.webp/);
-          if (photo) url = base + photo[1] + '.jpg';
-          if (url.includes('wechat-run50-map-blue-ridge-24-editorial.')) url = base + 'map.jpg';
-          if (url.includes('wechat-blue-ridge-poster.')) url = base + 'poster.jpg';
         }
         img.src = url;
         img.alt = number ? node.textContent.trim() : down ? '向下' : node.getAttribute('alt') || '';
@@ -77,10 +73,19 @@
         return img;
       }
       const inline = ['strong','b','em','i','u','span','a'].includes(tag);
-      const outputTag = tag === 'h2' && node.closest('.ending') ? 'p' : ['p','br','strong','b','em','i','u','span','a','h1','h2'].includes(tag) ? tag : tag === 'figcaption' ? 'p' : 'section';
+      const outputTag = ['p','br','strong','b','em','i','u','span','a','h1','h2'].includes(tag) ? tag : tag === 'figcaption' ? 'p' : 'section';
       const out = document.createElement(outputTag);
       if (inline) {
-        if (tag === 'strong' || tag === 'b') out.style.fontWeight = '700';
+        if (node.hasAttribute('data-cn-tone')) {
+          const palette = dark ? ['#f09589','#85c9a6','#91bce8','#e8c481'] : ['#ac4336','#237953','#306eaa','#9a681c'];
+          out.style.color = palette[Number(node.getAttribute('data-cn-tone'))] || palette[2];
+          out.style.fontWeight = '800';
+          if (node.getAttribute('data-cn-emphasis') === 'underline') {
+            out.style.textDecoration = 'underline';
+            out.style.textUnderlineOffset = '4px';
+          }
+        }
+        if (tag === 'strong' || tag === 'b') out.style.fontWeight = '800';
         if (tag === 'em' || tag === 'i') out.style.fontStyle = 'italic';
         if (tag === 'u') out.style.textDecoration = 'underline';
         if (tag === 'a' && node.hasAttribute('href')) out.href = new URL(node.getAttribute('href'), canonical).href;
@@ -98,13 +103,8 @@
         if (node.classList.contains('intro')) out.style.marginBottom = '54px';
         if (node.classList.contains('brand-intro')) out.style.cssText = 'margin:0 0 4px;padding:0;font-size:12px;line-height:1.5;text-align:center;';
         if (node.classList.contains('ending')) out.style.cssText = 'margin:64px 0 0;padding:32px 0 0;border-top:1px solid #888;font-size:14px;line-height:1.95;text-align:center;';
-        if (node.closest('.ending')) {
-          out.style.textAlign = 'center';
-          out.setAttribute('align', 'center');
-          if (tag === 'h2') out.style.cssText = 'margin:0;padding:0;font-size:24px;line-height:1.65;text-align:center;font-weight:700;';
-          if (node.classList.contains('closing')) out.style.cssText = 'margin:0;padding:24px 0 0;font-size:13px;line-height:1.9;text-align:center;';
-          if (node.classList.contains('credits')) out.style.marginTop = '36px';
-        }
+        if (node.closest('.ending')) out.style.textAlign = 'center';
+        if (node.classList.contains('closing')) out.style.cssText = 'margin:0;padding:24px 0 0;text-align:center;font-size:13px;line-height:1.9;';
       }
       for (const child of node.childNodes) out.append(convert(child));
       return out;
