@@ -4,6 +4,16 @@ from html import escape
 import json,re
 import build_wechat_louisville_editorial as template
 ROOT=Path(__file__).resolve().parents[1]
+
+def photo_layout(blocks):
+ groups=[['NE-04','NE-04-1','NE-04-2'],['NE-07-1','NE-07-2'],['NE-11','NE-11-1'],['NE-22','NE-22-1'],['NE-24','NE-25'],['NE-31','NE-32'],['NE-40-1','NE-41'],['NE-49-1','NE-50','NE-50-1'],['NE-58-0','NE-58-1']]
+ result=[];i=0
+ while i<len(blocks):
+  match=next((g for g in groups if [b.get('ids') for b in blocks[i:i+len(g)]]==[[k] for k in g]),None)
+  if match:
+   result.append({'kind':'photo-strip','photos':blocks[i:i+len(match)]});i+=len(match)
+  else:result.append(blocks[i]);i+=1
+ return result
 def emphasize(text):
  text=escape(text)
  phrases=['社区感','巴菲特','Cornhusker State','5点57分','还有三分钟','我们都有美好的未来','Huskers','7点出发','Fertile Ground','河搬家了，州界却没搬','两公里','15英里','约3公里','加量不加价','Omaha North Mill','免费的，真香','BIG EAST','Bob Kerrey Pedestrian Bridge','Looking Up','24英里','赠送里程','熟悉的鞋','4小时50分51秒','第36州，六六三十六',
@@ -22,13 +32,20 @@ def render():
  title=escape(data['title']);body=[f'<header class="masthead"><h1>{title}</h1><p class="byline">文字 / Arsenan</p></header>', '<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/run50-robot-intro-compact-still.png"><img src="../../assets/run50-robot-intro-compact.gif" alt="Run50 机器人片头" width="224" height="300"></picture>', '<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/omaha-2026/selected-20261006/hero-still.jpg"><img src="../../assets/omaha-2026/selected-20261006/hero.gif?v=20261006-full-medal" alt="奥马哈：起跑、跨州大桥、冲线、合影与奖牌" width="900" height="900"></picture><figcaption class="hero-credit">2026年9月27日 · 我和 Siqi 的奥马哈周末<br>起跑、桥与奖牌 / Arsenan · 冲线 / 赛事官方摄影</figcaption></figure>', '<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div><section class="intro"><p>中秋下班出发，去巴菲特老家跑马。领物差三分钟，比赛多跑三公里。玉米地、跨州大桥，还有第36州的两块奖牌。</p></section>']
  body.append('<figure class="photo-strip map-poster" style="margin:32px 0 36px"><img src="../../assets/omaha-2026/map.jpg" alt="Run50第36州，内布拉斯加；星标奥马哈" style="display:block;width:100%;height:auto;margin:0"><img src="../../assets/omaha-2026/poster-cn-corn-20261006.png" alt="2026 奥马哈 · RUN50 36 玉米纸质海报" style="display:block;width:100%;height:auto;margin:0"><figcaption style="margin:10px 0 0;text-align:center;font-size:12px;line-height:1.75;color:#888">第36州 · 内布拉斯加，星标为奥马哈｜制图 / Arsenan<br>2026 · 奥马哈 · Omaha Marathon</figcaption></figure>')
  n=0
- for b in data['blocks']:
+ for b in photo_layout(data['blocks']):
   if b['kind']=='heading':
    n+=1;body.append(f'<header class="chapter"><span class="chapter-number">{n:02}</span><p class="chapter-label">{escape(b["label"])}</p><h2>{escape(b["title"])}</h2></header>')
   elif b['kind']=='paragraph':body.append('<p class="prose" style="margin:0 0 22px;font-size:15px;line-height:1.95;letter-spacing:.5px;text-align:justify">'+emphasize(b['text'])+'</p>')
   else:
-   # Preserve each photograph's full native aspect; thematic horizontal pairs form seamless strips.
-   body.append('<figure class="story-photo" style="margin:28px 0 32px">'+''.join(f'<img src="../../assets/omaha-2026/{data["photo_folder"]}/{key}.webp" alt="{escape(b["caption"])}" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;margin:0">' for key in b['ids'])+'<figcaption style="margin:10px 0 0;text-align:center;font-size:12px;line-height:1.8;color:#888">'+escape(b['caption'])+('<br>'+escape(b['credit']) if b.get('credit') else '')+'</figcaption></figure>')
+   photos=b['photos'] if b['kind']=='photo-strip' else [b]
+   labels=['上','下'] if len(photos)==2 else ['上','中','下']
+   imgs=[];captions=[]
+   for j,photo in enumerate(photos):
+    key=photo['ids'][0]
+    imgs.append(f'<img src="../../assets/omaha-2026/{data["photo_folder"]}/{key}.webp" alt="{escape(photo["caption"])}" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;margin:0">')
+    captions.append((labels[j]+'：' if len(photos)>1 else '')+escape(photo['caption'])+(' · '+escape(photo['credit']) if photo.get('credit') else ''))
+   cls='story-photo photo-strip' if len(photos)>1 else 'story-photo'
+   body.append(f'<figure class="{cls}" style="margin:28px 0 32px">'+''.join(imgs)+'<figcaption style="margin:10px 0 0;text-align:center;font-size:12px;line-height:1.8;color:#888">'+'<br>'.join(captions)+'</figcaption></figure>')
  body.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUN50 · 第36州</p><h2 style="margin:16px 0 0;text-align:center">内布拉斯加，点亮</h2><p class="closing" style="margin:0;padding:24px 0 0;text-align:center;font-size:13px;line-height:1.9">玉米地、密苏里河，奥马哈的第一个马拉松周末</p><p class="credits">文字 / Arsenan</p></footer>')
  sources=[('赛事领物指南','https://omahamarathon.com/participant-guide/'),('玉米与农业','https://nebraskacorn.gov/about-us/faq/'),('Huskers 队名','https://huskers.com/news/2019/08/12/origin-of-the-cornhusker-nickname-1'),('奥马哈城市介绍','https://www.visitomaha.com/blog/post/omaha-fun-facts/'),('卡特湖历史','https://cityofcarterlake.com/departments/city-hall-department/history/'),('1892年州界判决','https://www.law.cornell.edu/supremecourt/text/143/359'),('赌场诉讼判决','https://ecf.ca8.uscourts.gov/opndir/21/08/192898P.pdf'),('Omaha North Mill','https://www.ardentmillscareers.com/our-facilities/nebraska/omaha-north-mill/'),('老面粉厂历史','https://northomahahistory.com/2025/12/26/a-history-of-the-mothers-best-flour-mill-in-north-omaha/'),('沃土壁画','https://www.megsaligman.com/murals/evolvingfaces-mjxsa'),('BIG EAST','https://www.bigeast.com/sports/2026/9/10/BE_history_090926.aspx'),('跨州大桥','https://www.visitomaha.com/bob/'),('Looking Up','https://www.iowawestfoundation.org/for-our-communities/public-art/')]
  body.append('<aside class="source-note"><p>44.97公里、4:50:51为个人轨迹记录，并非赛事官方成绩。卡特湖跨州时间依据个人轨迹与美国人口普查局州界数据估算。</p><p>延伸阅读：'+' · '.join(f'<a href="{url}">{label}</a>' for label,url in sources)+'</p></aside>')
