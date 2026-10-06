@@ -14,7 +14,7 @@ def credit(key):
     if key in OFFICIAL:return '摄影 / 赛事官方摄影'
     if key in SIQI:return '摄影 / Siqi'
     if key in SELF:return '摄影 / Arsenan'
-    return ''
+    return '摄影 / Arsenan'
 CAPTIONS={
 'NE-00':'下班出发，公路尽头的粉色天空','NE-00-1':'中秋的月亮已经升起来了',
 'NE-01':'印第安纳的傍晚','NE-01-2':'车窗外的火烧云','NE-01-3':'金黄色的天边',
@@ -65,10 +65,7 @@ def main():
     for key,center in [('NE-17-2',(.5,.4)),('NE-33',(.5,.4)),('NE-50-12',(.5,.35)),('NE-55',(.5,.3)),('NE-53',(.5,.45))]:
         with Image.open(OUT/f'{key}.webp') as im:
             if key == 'NE-53':
-                frame = Image.new('RGB', (900,900), '#f5f1e8')
-                medal = ImageOps.contain(im.convert('RGB'), (900,860), method=Image.Resampling.LANCZOS)
-                frame.paste(medal, ((900-medal.width)//2, (900-medal.height)//2))
-                frames.append(frame)
+                frames.append(ImageOps.fit(im.convert('RGB'), (900,900), method=Image.Resampling.LANCZOS, centering=(.5,1.0)))
             else:
                 frames.append(ImageOps.fit(im.convert('RGB'),(900,900),method=Image.Resampling.LANCZOS,centering=center))
     frames[0].save(OUT/'hero-still.jpg',quality=93)
