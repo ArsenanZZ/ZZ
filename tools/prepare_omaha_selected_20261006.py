@@ -7,13 +7,13 @@ ROOT=Path(__file__).resolve().parents[1]
 SOURCE=Path(r'Z:\ZhennanZ Folder\0000-ZZ-Run-2026\20260927-NE-Omaha Marathon\05-文章照片')
 OUT=ROOT/'assets/omaha-2026/selected-20261006'
 TITLE='Run50 #第36州 | 内布拉斯加州：奥马哈马拉松 | 去巴菲特老家跑马，玉米管够，公里数也多送！'
-OFFICIAL={'NE-28-8-3','NE-28-8-4','NE-28-99','NE-28-99-1','NE-50-11','NE-50-12'}
+OFFICIAL={'NE-17-1','NE-17-2','NE-18','NE-22-1-2','NE-28-8-3','NE-28-8-4','NE-28-99','NE-28-99-1','NE-50-11','NE-50-12'}
 SIQI={'NE-51','NE-51-11','NE-54','NE-54-1'}
-SELF={'NE-17-2','NE-37-1','NE-41','NE-43-1','NE-45-1','NE-52','NE-53','NE-55-1'}
 def credit(key):
     if key in OFFICIAL:return '摄影 / 赛事官方摄影'
     if key in SIQI:return '摄影 / Siqi'
-    if key in SELF:return '摄影 / Arsenan'
+    if key == 'NE-44':return '摄影 / 志愿者'
+    if key == 'NE-55':return ''
     return '摄影 / Arsenan'
 CAPTIONS={
 'NE-00':'下班出发，公路尽头的粉色天空','NE-00-1':'中秋的月亮已经升起来了',
