@@ -1,5 +1,5 @@
 {
-  "title": "Run50 #第23州｜路易斯安那：巴吞鲁日马拉松｜法兰西底色，2025 第一跑",
+  "title": "Run50 #第23州 | 路易斯安那州：巴吞鲁日马拉松 | 从新奥尔良出发，跑一场南方派对",
   "blocks": [
     {
       "kind": "heading",
@@ -65,7 +65,7 @@
     {
       "kind": "heading",
       "title": "路易斯安那的法式底色",
-      "label": "Chapter 1"
+      "label": "南方印象"
     },
     {
       "kind": "paragraph",
@@ -94,7 +94,7 @@
     {
       "kind": "heading",
       "title": "从湿地到巴吞鲁日",
-      "label": "Chapter 2"
+      "label": "赛前一天"
     },
     {
       "kind": "paragraph",
@@ -217,7 +217,7 @@
     {
       "kind": "heading",
       "title": "晨光里，跑进 LSU",
-      "label": "Chapter 3"
+      "label": "起跑时分"
     },
     {
       "kind": "paragraph",
@@ -280,16 +280,22 @@
       "html": "<p><strong>清晨的空气还有点凉</strong>，街边的教堂钟楼静静耸立，远处的云层压着天际，很有气势。沿途的志愿者们装扮成各种 coser：有老虎玩偶、有天使造型，<strong>热情地伸手和跑者击掌</strong>。</p>"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-028.webp",
-      "alt": "赛道旁的教堂尖顶",
-      "caption": "赛道旁的教堂尖顶 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-029.webp",
-      "alt": "清晨，沿着街道向前",
-      "caption": "清晨，沿着街道向前 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-028.webp",
+          "alt": "赛道旁的教堂尖顶",
+          "caption": "赛道旁的教堂尖顶 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-029.webp",
+          "alt": "清晨，沿着街道向前",
+          "caption": "清晨，沿着街道向前 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
       "kind": "figure",
@@ -308,38 +314,50 @@
       "html": "<p>太阳慢慢升起，天空被染成金橘色，云层翻滚得更有层次。1 英里路牌出现，<strong>赛道渐渐拉开</strong>。</p>"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-031.webp",
-      "alt": "天空渐亮，前方是 1 英里路牌",
-      "caption": "天空渐亮，前方是 1 英里路牌 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-033.webp",
-      "alt": "晨光下，跑者们一路向前",
-      "caption": "晨光下，跑者们一路向前 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-031.webp",
+          "alt": "天空渐亮，前方是 1 英里路牌",
+          "caption": "天空渐亮，前方是 1 英里路牌 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-033.webp",
+          "alt": "晨光下，跑者们一路向前",
+          "caption": "晨光下，跑者们一路向前 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
       "kind": "paragraph",
       "html": "<p>2 英里左右，我看见了一位身穿 “<strong>50 States Marathon Club</strong>” 背心的跑者。每一场比赛，总能遇到这些完成全美 50 州的传奇人物。</p>"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-034.webp",
-      "alt": "来到 2 英里",
-      "caption": "来到 2 英里 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-035.webp",
-      "alt": "跟着前方的跑者继续跑",
-      "caption": "跟着前方的跑者继续跑 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-036.webp",
-      "alt": "转过街角，向湖边前进",
-      "caption": "转过街角，向湖边前进 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-034.webp",
+          "alt": "来到 2 英里",
+          "caption": "来到 2 英里 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-035.webp",
+          "alt": "跟着前方的跑者继续跑",
+          "caption": "跟着前方的跑者继续跑 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-036.webp",
+          "alt": "转过街角，向湖边前进",
+          "caption": "转过街角，向湖边前进 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
       "kind": "paragraph",
@@ -364,38 +382,50 @@
       "caption": "湖畔的晨光与跑者｜摄影 / Arsenan"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-039.webp",
-      "alt": "从湖边继续跑向校园",
-      "caption": "从湖边继续跑向校园 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-040.webp",
-      "alt": "水边树影与清晨的天光",
-      "caption": "水边树影与清晨的天光 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-039.webp",
+          "alt": "从湖边继续跑向校园",
+          "caption": "从湖边继续跑向校园 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-040.webp",
+          "alt": "水边树影与清晨的天光",
+          "caption": "水边树影与清晨的天光 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
       "kind": "paragraph",
       "html": "<p>再往前，就是进入 <strong>路易斯安那州立大学</strong>（LSU） 校园的赛道。说起 LSU，我第一反应是女子篮球。前年，我们路易斯维尔大学的当家球星 Hailey Van Lith 就转学到 LSU，可惜没能带队卫冕。今年她已经加入 WNBA 芝加哥天空队了。</p>"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-043.webp",
-      "alt": "校园路边的树木与建筑",
-      "caption": "校园路边的树木与建筑 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-044.webp",
-      "alt": "沿着树荫下的道路继续跑",
-      "caption": "沿着树荫下的道路继续跑 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-045.webp",
-      "alt": "赛道沿线有人为跑者鼓劲",
-      "caption": "赛道沿线有人为跑者鼓劲 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-043.webp",
+          "alt": "校园路边的树木与建筑",
+          "caption": "校园路边的树木与建筑 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-044.webp",
+          "alt": "沿着树荫下的道路继续跑",
+          "caption": "沿着树荫下的道路继续跑 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-045.webp",
+          "alt": "赛道沿线有人为跑者鼓劲",
+          "caption": "赛道沿线有人为跑者鼓劲 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
       "kind": "paragraph",
@@ -426,20 +456,31 @@
       "caption": "沿途伸来的手与加油牌｜摄影 / Arsenan"
     },
     {
+      "kind": "heading",
+      "label": "7英里以后",
+      "title": "沿着大学湖，跑进晨光"
+    },
+    {
       "kind": "paragraph",
       "html": "<p>7 英里之后，赛道贴着湖边跑开了。这里还是 <strong>University Lake（大学湖）</strong>，紧邻 LSU 校园，水面宽阔，风吹过来，<strong>凉爽得刚刚好</strong>。摄影师早早蹲守在湖边，捕捉跑者们的英姿。</p>"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-049.webp",
-      "alt": "来到 7 英里",
-      "caption": "来到 7 英里 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-050.webp",
-      "alt": "湖面、树影和远处的房子",
-      "caption": "湖面、树影和远处的房子 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-049.webp",
+          "alt": "来到 7 英里",
+          "caption": "来到 7 英里 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-050.webp",
+          "alt": "湖面、树影和远处的房子",
+          "caption": "湖面、树影和远处的房子 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
       "kind": "figure",
@@ -482,22 +523,33 @@
       "caption": "沿湖继续跑｜摄影 / Arsenan"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-054.webp",
-      "alt": "桥下的补给点",
-      "caption": "桥下的补给点 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-054.webp",
+          "alt": "桥下的补给点",
+          "caption": "桥下的补给点 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-055.webp",
+          "alt": "在 10 英里路牌前自拍",
+          "caption": "在 10 英里路牌前自拍 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-056.webp",
+          "alt": "来到 11 英里",
+          "caption": "来到 11 英里 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-055.webp",
-      "alt": "在 10 英里路牌前自拍",
-      "caption": "在 10 英里路牌前自拍 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-056.webp",
-      "alt": "来到 11 英里",
-      "caption": "来到 11 英里 · 摄影 | Arsenan"
+      "kind": "heading",
+      "label": "11英里以后",
+      "title": "把赛道跑成邻里聚会"
     },
     {
       "kind": "paragraph",
@@ -510,34 +562,46 @@
       "caption": "蓝天下，留下一张路上自拍 · 摄影 | Arsenan"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-058.webp",
-      "alt": "12 英里的路牌",
-      "caption": "12 英里的路牌 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-058.webp",
+          "alt": "12 英里的路牌",
+          "caption": "12 英里的路牌 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-059.webp",
+          "alt": "路边递来补给的志愿者",
+          "caption": "路边递来补给的志愿者 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-060.webp",
+          "alt": "来到 14 英里",
+          "caption": "来到 14 英里 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-059.webp",
-      "alt": "路边递来补给的志愿者",
-      "caption": "路边递来补给的志愿者 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-060.webp",
-      "alt": "来到 14 英里",
-      "caption": "来到 14 英里 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-061.webp",
-      "alt": "路边的大人与孩子为跑者加油",
-      "caption": "路边的大人与孩子为跑者加油 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-062.webp",
-      "alt": "沿着住宅区的街道向前跑",
-      "caption": "沿着住宅区的街道向前跑 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-061.webp",
+          "alt": "路边的大人与孩子为跑者加油",
+          "caption": "路边的大人与孩子为跑者加油 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-062.webp",
+          "alt": "沿着住宅区的街道向前跑",
+          "caption": "沿着住宅区的街道向前跑 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
       "kind": "figure",
@@ -548,7 +612,7 @@
     {
       "kind": "heading",
       "title": "跑慢一点，也没关系",
-      "label": "Chapter 4"
+      "label": "17英里以后"
     },
     {
       "kind": "paragraph",
@@ -565,16 +629,22 @@
       "caption": "17 英里路牌旁留影 · 摄影 | 待确认"
     },
     {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-065.webp",
-      "alt": "住宅区的赛道与前方跑者",
-      "caption": "住宅区的赛道与前方跑者 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-066.webp",
-      "alt": "街边树荫下的加油点",
-      "caption": "街边树荫下的加油点 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-065.webp",
+          "alt": "住宅区的赛道与前方跑者",
+          "caption": "住宅区的赛道与前方跑者 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/run50/stories/chinese/Run50-Louisiana-Marathon-clean_files/img-066.webp",
+          "alt": "街边树荫下的加油点",
+          "caption": "街边树荫下的加油点 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
       "kind": "paragraph",
@@ -609,7 +679,7 @@
     {
       "kind": "heading",
       "title": "最后几英里",
-      "label": "Chapter 5"
+      "label": "20英里以后"
     },
     {
       "kind": "paragraph",
@@ -634,34 +704,46 @@
       "caption": "阳光下，继续向前跑 · 摄影 | 赛事官方"
     },
     {
-      "kind": "figure",
-      "src": "/assets/louisiana-magazine-photos/la-053.webp",
-      "alt": "住宅区路边的小观众",
-      "caption": "住宅区路边的小观众 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/assets/louisiana-magazine-photos/la-053.webp",
+          "alt": "住宅区路边的小观众",
+          "caption": "住宅区路边的小观众 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/assets/louisiana-magazine-photos/la-054.webp",
+          "alt": "穿着蓝色充气服装的加油者",
+          "caption": "穿着蓝色充气服装的加油者 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/assets/louisiana-magazine-photos/la-055.webp",
+          "alt": "穿着奶牛装，为跑者加油",
+          "caption": "穿着奶牛装，为跑者加油 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
-      "kind": "figure",
-      "src": "/assets/louisiana-magazine-photos/la-054.webp",
-      "alt": "穿着蓝色充气服装的加油者",
-      "caption": "穿着蓝色充气服装的加油者 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/louisiana-magazine-photos/la-055.webp",
-      "alt": "穿着奶牛装，为跑者加油",
-      "caption": "穿着奶牛装，为跑者加油 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/louisiana-magazine-photos/la-056.webp",
-      "alt": "沿途的观众伸出手来",
-      "caption": "沿途的观众伸出手来 · 摄影 | Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/louisiana-magazine-photos/la-057.webp",
-      "alt": "街边的笑脸，给后半程添点力气",
-      "caption": "街边的笑脸，给后半程添点力气 · 摄影 | Arsenan"
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/assets/louisiana-magazine-photos/la-056.webp",
+          "alt": "沿途的观众伸出手来",
+          "caption": "沿途的观众伸出手来 · 摄影 | Arsenan"
+        },
+        {
+          "kind": "figure",
+          "src": "/assets/louisiana-magazine-photos/la-057.webp",
+          "alt": "街边的笑脸，给后半程添点力气",
+          "caption": "街边的笑脸，给后半程添点力气 · 摄影 | Arsenan"
+        }
+      ],
+      "caption": ""
     },
     {
       "kind": "paragraph",

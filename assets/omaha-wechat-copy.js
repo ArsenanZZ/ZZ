@@ -26,6 +26,7 @@
   const themeButtons = document.querySelectorAll('[data-theme-choice]');
   function setTheme(theme) {
     document.documentElement.dataset.theme = theme;
+    document.querySelectorAll('.brand-intro [data-light-src]').forEach(el => el.setAttribute(el.tagName === 'SOURCE' ? 'srcset' : 'src', el.getAttribute('data-' + theme + '-src')));
     themeButtons.forEach(el => el.setAttribute('aria-pressed', String(el.dataset.themeChoice === theme)));
     status.textContent = '';
   }
@@ -60,14 +61,14 @@
         let url;
         if (number || down) url = base + (number ? 'number-' + node.textContent.trim() + '-universal.png' : 'arrows-' + theme + '.png');
         else {
-          url = new URL(node.getAttribute('src'), canonical).href;
+          url = new URL(node.getAttribute('data-' + theme + '-src') || node.getAttribute('src'), canonical).href;
         }
         img.src = url;
         img.alt = number ? node.textContent.trim() : down ? '向下' : node.getAttribute('alt') || '';
         img.style.cssText = `display:block;width:100%;max-width:100%;height:auto;margin:${down ? '24px 0 30px' : '0'};border:0;`;
         if (node.closest('.brand-intro')) {
           img.width = 96;
-          img.height = 129;
+          img.height = 103;
           img.style.cssText = 'display:inline-block;width:96px;max-width:96px;height:auto;margin:0;border:0;vertical-align:middle;';
         }
         return img;

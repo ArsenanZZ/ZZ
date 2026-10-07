@@ -26,6 +26,7 @@
   const themeButtons = document.querySelectorAll('[data-theme-choice]');
   function setTheme(theme) {
     document.documentElement.dataset.theme = theme;
+    document.querySelectorAll('.brand-intro [data-light-src]').forEach(el => el.setAttribute(el.tagName === 'SOURCE' ? 'srcset' : 'src', el.getAttribute('data-' + theme + '-src')));
     themeButtons.forEach(el => el.setAttribute('aria-pressed', String(el.dataset.themeChoice === theme)));
     status.textContent = '';
   }
@@ -58,9 +59,9 @@
       if (tag === 'img' || number || down) {
         const img = document.createElement('img');
         let url;
-        if (number || down) url = base + (number ? 'number-' + node.textContent.trim() + '-universal.png' : 'arrows-' + theme + '.png');
+        if (number || down) url = (number ? 'https://zhennanzhang.com/assets/connecticut-wechat-copy/' : base) + (number ? 'number-' + node.textContent.trim() + '-universal.png' : 'arrows-' + theme + '.png');
         else {
-          url = new URL(node.getAttribute('src'), canonical).href;
+          url = new URL(node.getAttribute('data-' + theme + '-src') || node.getAttribute('src'), canonical).href;
           const photo = url.match(/\/(img-\d+|la-[\d-]+)\.webp/);
           if (photo) url = base + photo[1] + '.jpg';
           if (url.includes('wechat-run50-map-louisiana-23-editorial.')) url = base + 'map.jpg';
@@ -71,7 +72,7 @@
         img.style.cssText = `display:block;width:100%;max-width:100%;height:auto;margin:${down ? '24px 0 30px' : '0'};border:0;`;
         if (node.closest('.brand-intro')) {
           img.width = 96;
-          img.height = 129;
+          img.height = 103;
           img.style.cssText = 'display:inline-block;width:96px;max-width:96px;height:auto;margin:0;border:0;vertical-align:middle;';
         }
         return img;
@@ -80,7 +81,17 @@
       const outputTag = tag === 'h2' && node.closest('.ending') ? 'p' : ['p','br','strong','b','em','i','u','span','a','h1','h2'].includes(tag) ? tag : tag === 'figcaption' ? 'p' : 'section';
       const out = document.createElement(outputTag);
       if (inline) {
-        if (tag === 'strong' || tag === 'b') out.style.fontWeight = '700';
+        if (node.hasAttribute('data-cn-tone')) {
+          const palette = dark ? ['#f09589','#85c9a6','#91bce8','#e8c481'] : ['#ac4336','#237953','#306eaa','#9a681c'];
+          out.style.color = palette[Number(node.getAttribute('data-cn-tone'))] || palette[2];
+          out.style.fontWeight = '800';
+          if (node.getAttribute('data-cn-emphasis') === 'underline') {
+            out.style.textDecoration = 'underline';
+            out.style.textUnderlineOffset = '4px';
+          }
+        }
+
+        if (tag === 'strong' || tag === 'b') out.style.fontWeight = '800';
         if (tag === 'em' || tag === 'i') out.style.fontStyle = 'italic';
         if (tag === 'u') out.style.textDecoration = 'underline';
         if (tag === 'a' && node.hasAttribute('href')) out.href = new URL(node.getAttribute('href'), canonical).href;
