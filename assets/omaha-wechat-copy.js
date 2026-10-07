@@ -68,7 +68,7 @@
         img.style.cssText = `display:block;width:100%;max-width:100%;height:auto;margin:${down ? '24px 0 30px' : '0'};border:0;`;
         if (node.closest('.brand-intro')) {
           img.width = 96;
-          img.height = 103;
+          img.height = 129;
           img.style.cssText = 'display:inline-block;width:96px;max-width:96px;height:auto;margin:0;border:0;vertical-align:middle;';
         }
         return img;
