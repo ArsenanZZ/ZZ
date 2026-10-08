@@ -1,0 +1,54 @@
+name: Recover Pages deployment
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Run containing the verified Pages archive
+        required: true
+      artifact_id:
+        description: Exact artifact ID to publish
+        required: true
+permissions:
+  actions: read
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.source_run_id }}
+          artifact-ids: ${{ inputs.artifact_id }}
+          merge-multiple: true
+          path: archive
+      - uses: actions/upload-artifact@v4
+        with:
+          name: recovered-pages-${{ github.run_attempt }}
+          path: archive/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
+      - name: Wait for uploaded archive to become visible
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const name = `recovered-pages-${process.env.GITHUB_RUN_ATTEMPT}`;
+            for (let attempt = 0; attempt < 12; attempt++) {
+              const result = await github.rest.actions.listWorkflowRunArtifacts({owner: context.repo.owner, repo: context.repo.repo, run_id: context.runId});
+              if (result.data.artifacts.filter(a => a.name === name).length === 1) return;
+              await new Promise(resolve => setTimeout(resolve, 5000));
+            }
+            core.setFailed('Uploaded archive did not become visible');
+      - uses: actions/deploy-pages@v5
+        id: deployment
+        with:
+          artifact_name: recovered-pages-${{ github.run_attempt }}
