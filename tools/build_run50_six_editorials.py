@@ -89,7 +89,7 @@ def render(slug,make_hero=True):
  if make_hero:hero(slug,ims,indices)
  if labels:
   for b,label in zip([b for b in d['blocks'] if b['kind']=='heading'],labels):b['label']=label
-  d.update(intro='第一次开电车跑长途，穿过雨雾抵达罗阿诺克，再跑进蓝岭山，完成第24州。',map='../../assets/wechat-run50-map-blue-ridge-24-editorial.png?v=feather-1',poster='../../assets/wechat-blue-ridge-poster.png')
+  d.update(intro='第一次开电车跑长途，穿过雨雾抵达罗阿诺克，再跑进蓝岭山，完成第24州。',map=d.get('map','../../assets/wechat-run50-map-blue-ridge-24-editorial.png?v=feather-1'),poster=d.get('poster','../../assets/wechat-blue-ridge-poster.png'))
  css=re.search(r'<style>(.*?)</style>',style.render(),re.S).group(1)
  css+='\nmain{padding-left:20px;padding-right:20px}.cover{margin-left:0;margin-right:0}.intro,.chapter{margin-left:0;margin-right:0}.photo-strip img{display:block;width:100%;height:auto;margin:0}.photo-strip figcaption{margin-top:10px;text-align:center;font-size:12px;line-height:1.75;color:#888}.photo-strip{margin:32px 0 36px}'
  brand='<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/run50-cutout-intro-light-still.png" data-light-src="../../assets/run50-cutout-intro-light-still.png" data-dark-src="../../assets/run50-cutout-intro-dark-still.png"><img src="../../assets/run50-cutout-intro-light.gif" data-light-src="../../assets/run50-cutout-intro-light.gif" data-dark-src="../../assets/run50-cutout-intro-dark.gif" alt="Run50 机器人片头" width="280" height="350"></picture>'
