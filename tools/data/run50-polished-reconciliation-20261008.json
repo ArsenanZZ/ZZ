@@ -1,0 +1,2132 @@
+{
+  "kentucky-derby-marathon-2025": {
+    "source_folder": "Z:\\ZhennanZ Folder\\000-Marathon-Story-2024-2025\\20250426-KY-Derby Marathon-My 50th\\3-Polished",
+    "source_count": 100,
+    "article_count": 100,
+    "missing": [],
+    "photos": [
+      {
+        "source_file": "Copy #1 of KY_001.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-001.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_002.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-002.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_003.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-003.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_004.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-004.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_005.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-005.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_007.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-007.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_008-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-008-1.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_006.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-006.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_009.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-009.webp",
+        "thumbnail_hash_distance": 6
+      },
+      {
+        "source_file": "Copy #1 of KY_010.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-010.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_011.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-011.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_012.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-012.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_013.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-013.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_014.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-014.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_100.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-100.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_101-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-101-1.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_101-2.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-101-2.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_101-3.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-101-3.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_101.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-101.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_104.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-104.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KY_105.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-105.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_106.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-106.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_107.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-107.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_108.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-108.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_109.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-109.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_110.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-110.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_102.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-102.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_103.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-103.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_11.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-11.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_111.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-111.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_112-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-112-1.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_112.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-112.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_113.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-113.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_114.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-114.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_115.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-115.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_116.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-116.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_117.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-117.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_118.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-118.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_119.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-119.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_120.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-120.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_121.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-121.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_122.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-122.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_123-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-123-1.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KY_123.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-123.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_124-0.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-124-0.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_124-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-124-1.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_124-2.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-124-2.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_124.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-124.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KY_125.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-125.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KY_126.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-126.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_127-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-127-1.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_127.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-127.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_128-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-128-1.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_128.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-128.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_130.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-130.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_129.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-129.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_131.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-131.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_132.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-132.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_133-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-133-1.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_133.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-133.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_134.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-134.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_135.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-135.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_136.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-136.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_137-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-137-1.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_137-2.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-137-2.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_137.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-137.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_138-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-138-1.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_138-2.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-138-2.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_138.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-138.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KY_139.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-139.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_140.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-140.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_141.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-141.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_142.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-142.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_143.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-143.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_144-0.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-144-0.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_144-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-144-1.webp",
+        "thumbnail_hash_distance": 6
+      },
+      {
+        "source_file": "Copy #1 of KY_144-2.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-144-2.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_144-3.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-144-3.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_144-4.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-144-4.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_144.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-144.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_145-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-145-1.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_145-2.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-145-2.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KY_145-3.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-145-3.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KY_145.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-145.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KY_146.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-146.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_147-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-147-1.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_147.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-147.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_148.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-148.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_149.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-149.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_150.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-150.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_151-0.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-151-0.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KY_151-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-151-1.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KY_151.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-151.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_152-1.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-152-1.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_152-2.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-152-2.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_155.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-155.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_152-0.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-152-0.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_152.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-152.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KY_153.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-153.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KY_154.png",
+        "asset": "/assets/kentucky-derby-marathon-2025-magazine-photos/ky-154.webp",
+        "thumbnail_hash_distance": 1
+      }
+    ]
+  },
+  "fargo-marathon": {
+    "source_folder": "Z:\\ZhennanZ Folder\\000-Marathon-Story-2024-2025\\20250529-ND-Fargo Marathon-25st\\4-Polished Photos",
+    "source_count": 103,
+    "article_count": 103,
+    "missing": [],
+    "photos": [
+      {
+        "source_file": "Copy #1 of Fargo_001.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-001.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of Fargo_002-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-002-1.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of Fargo_002.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-002.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_003-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-003-1.webp",
+        "thumbnail_hash_distance": 8
+      },
+      {
+        "source_file": "Copy #1 of Fargo_003-2.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-003-2.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_003.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-003.webp",
+        "thumbnail_hash_distance": 8
+      },
+      {
+        "source_file": "Copy #1 of Fargo_004.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-004.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_005.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-005.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_006.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-006.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_007.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-007.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of Fargo_008.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-008.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_009-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-009-1.webp",
+        "thumbnail_hash_distance": 18,
+        "visually_verified": true
+      },
+      {
+        "source_file": "Copy #1 of Fargo_009.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-009.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_010.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-010.webp",
+        "thumbnail_hash_distance": 14,
+        "visually_verified": true
+      },
+      {
+        "source_file": "Copy #1 of Fargo_011.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-011.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_012.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-012.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_013-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-013-1.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of Fargo_013.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-013.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_014-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-014-1.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_014-2.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-014-2.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_014-3.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-014-3.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_014.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-014.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of Fargo_015.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-015.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_016.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-016.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_017.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-017.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of Fargo_018.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-018.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_019.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-019.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_022.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-022.webp",
+        "thumbnail_hash_distance": 6
+      },
+      {
+        "source_file": "Copy #1 of Fargo_020.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-020.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_021.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-021.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of Fargo_025.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-025.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_023.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-023.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_024.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-024.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_026.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-026.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of Fargo_027.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-027.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of Fargo_028.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-028.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_029.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-029.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of Fargo_030.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-030.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of Fargo_031.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-031.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_032.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-032.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_033.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-033.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_034.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-034.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_035.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-035.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of Fargo_036.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-036.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_037.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-037.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of Fargo_038.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-038.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_039.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-039.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_040.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-040.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_041.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-041.webp",
+        "thumbnail_hash_distance": 7
+      },
+      {
+        "source_file": "Copy #1 of Fargo_042.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-042.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of Fargo_043.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-043.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_044.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-044.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_045.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-045.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_046.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-046.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_047.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-047.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of Fargo_048.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-048.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_049.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-049.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_050.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-050.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_051.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-051.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_053.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-053.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_054-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-054-1.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_054-2.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-054-2.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_054.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-054.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_055.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-055.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of Fargo_052.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-052.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_057.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-057.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_058.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-058.webp",
+        "thumbnail_hash_distance": 17,
+        "visually_verified": true
+      },
+      {
+        "source_file": "Copy #1 of Fargo_056.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-056.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_059.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-059.webp",
+        "thumbnail_hash_distance": 7
+      },
+      {
+        "source_file": "Copy #1 of Fargo_060.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-060.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_061.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-061.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_062.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-062.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of Fargo_063.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-063.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of Fargo_064.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-064.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_065.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-065.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_066.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-066.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_067-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-067-1.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of Fargo_067.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-067.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Fargo_068.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-068.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of Fargo_068-0.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-068-0.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of Fargo_068-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-068-1.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_068-2.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-068-2.webp",
+        "thumbnail_hash_distance": 11
+      },
+      {
+        "source_file": "Copy #1 of Fargo_069.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-069.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_070.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-070.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_071-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-071-1.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of Fargo_071.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-071.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of Fargo_072-1-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-072-1-1.webp",
+        "thumbnail_hash_distance": 7
+      },
+      {
+        "source_file": "Copy #1 of Fargo_072-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-072-1.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of Fargo_072-2.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-072-2.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_072.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-072.webp",
+        "thumbnail_hash_distance": 12
+      },
+      {
+        "source_file": "Copy #1 of Fargo_073-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-073-1.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of Fargo_073-2.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-073-2.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_073-3.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-073-3.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_073-4.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-073-4.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_073.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-073.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_077.PNG",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-077.webp",
+        "thumbnail_hash_distance": 9
+      },
+      {
+        "source_file": "Copy #1 of Fargo_074-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-074-1.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_074.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-074.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_074-2.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-074-2.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of Fargo_074-3.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-074-3.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of Fargo_074-4.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-074-4.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of Fargo_075-1.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-075-1.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of Fargo_075.png",
+        "asset": "/assets/fargo-marathon-magazine-photos/fargo-075.webp",
+        "thumbnail_hash_distance": 0
+      }
+    ]
+  },
+  "hell-on-gravel-marathon": {
+    "source_folder": "Z:\\ZhennanZ Folder\\000-Marathon-Story-2024-2025\\20250628-KS-Gravel on the hell-St26\\6-Polished Photos",
+    "source_count": 94,
+    "article_count": 94,
+    "missing": [],
+    "photos": [
+      {
+        "source_file": "Copy #1 of KS-001.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-004.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-002.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-005.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KS-003-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-006.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-003.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-007.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-004-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-008.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-004.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-009.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-006-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-012.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-006-2.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-013.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-006-3.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-014.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KS-006-4.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-015.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KS-006.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-016.webp",
+        "thumbnail_hash_distance": 6
+      },
+      {
+        "source_file": "Copy #1 of KS-005-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-010.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-005.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-011.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KS-007.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-020.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-007-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-017.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-007-2.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-018.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of KS-007-3.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-019.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KS-008-0.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-021.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KS-008-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-022.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of KS-008.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-023.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-009-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-024.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KS-009.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-025.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-010-.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-026.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-010.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-027.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KS-011.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-028.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-012-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-029.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-012.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-030.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-013.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-031.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-014.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-032.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-015.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-033.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-016.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-034.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-017.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-035.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KS-018-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-036.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-018.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-037.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-019.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-038.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-020.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-039.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-021-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-040.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of KS-021.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-041.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KS-022.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-042.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-023-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-043.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KS-023-2.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-044.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KS-023-3.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-045.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-023.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-046.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-024-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-047.webp",
+        "thumbnail_hash_distance": 6
+      },
+      {
+        "source_file": "Copy #1 of KS-024-2.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-048.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of KS-024.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-049.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-025.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-050.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-026.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-051.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-027.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-052.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-028-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-053.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-028.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-054.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-029-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-055.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-029-2.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-056.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-029.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-057.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-030.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-058.webp",
+        "thumbnail_hash_distance": 6
+      },
+      {
+        "source_file": "Copy #1 of KS-031-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-059.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-031-2.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-060.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-031-34.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-061.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-031.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-062.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-032-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-063.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KS-032-2.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-064.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-032-3.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-065.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-032-4.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-066.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-034-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-069.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-035-0.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-071.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KS-032.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-067.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-033.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-068.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of KS-034.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-070.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KS-000-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-001.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-000-2.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-002.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of KS-000.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-003.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-035-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-072.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-035-2.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-073.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-035-3.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-074.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-035.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-075.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-036.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-076.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-037-0.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-077.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-037-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-079.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-037-.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-082.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-037.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-083.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KS-038.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-090.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-037-1-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-078.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-037-2.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-080.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KS-037-3.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-081.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-038-5.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-088.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-038-2.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-085.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of KS-038-3.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-086.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of KS-038-4.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-087.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-038-6.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-089.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KS-038-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-084.webp",
+        "thumbnail_hash_distance": 8
+      },
+      {
+        "source_file": "Copy #1 of KS-039-1.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-091.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of KS-039.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-092.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of KS-040.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-093.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of KS-041.png",
+        "asset": "/assets/hell-on-gravel-marathon-magazine-photos/photo-094.webp",
+        "thumbnail_hash_distance": 0
+      }
+    ]
+  },
+  "mad-marathon": {
+    "source_folder": "Z:\\ZhennanZ Folder\\000-Marathon-Story-2024-2025\\20250717-VT-Mad Marathon-St27\\4-Polished Photos",
+    "source_count": 122,
+    "article_count": 122,
+    "missing": [],
+    "photos": [
+      {
+        "source_file": "Copy #1 of VA-001-1-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-001.webp",
+        "thumbnail_hash_distance": 8
+      },
+      {
+        "source_file": "Copy #2 of VA-001-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-002.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of VA-001-2.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-003.webp",
+        "thumbnail_hash_distance": 6
+      },
+      {
+        "source_file": "Copy #1 of VA-001-3.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-004.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of VA-001-4.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-005.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #3 of VA-001.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-006.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-002-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-007.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #3 of VA-002.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-008.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #3 of VA-003.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-009.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-004.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-010.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-005.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-011.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-006.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-012.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-007.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-013.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-008.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-014.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #3 of VA-009.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-022.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of VA-009-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-015.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of VA-009-2-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-016.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of VA-009-2.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-017.webp",
+        "thumbnail_hash_distance": 12
+      },
+      {
+        "source_file": "Copy #1 of VA-009-3.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-018.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of VA-009-4.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-019.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of VA-009-5.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-020.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of VA-009-6.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-021.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #2 of VA-010-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-023.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #3 of VA-010.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-024.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #3 of VA-011.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-025.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of VA-012-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-026.webp",
+        "thumbnail_hash_distance": 6
+      },
+      {
+        "source_file": "Copy #3 of VA-012.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-027.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-013.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-028.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of VA-014-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-029.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-014-2.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-030.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of VA-014-3.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-031.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-014.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-032.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of VA-015-.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-033.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-015.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-034.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-016.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-035.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-017-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-036.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-017.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-037.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-018-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-038.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-018.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-039.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #3 of VA-019.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-040.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-020-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-041.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-020.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-042.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #3 of VA-021.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-043.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-022.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-044.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-023.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-045.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #3 of VA-024.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-046.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of VA-025-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-047.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #3 of VA-025.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-048.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #3 of VA-026.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-049.webp",
+        "thumbnail_hash_distance": 7
+      },
+      {
+        "source_file": "Copy #1 of VA-027-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-050.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #3 of VA-027.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-051.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #3 of VA-028.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-052.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-029.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-053.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #3 of VA-030.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-054.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #3 of VA-031.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-055.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "VA-032-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-056.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-032.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-057.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-033-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-058.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-033.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-059.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-034.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-060.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-035.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-061.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of VA-036-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-062.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of VA-036-2.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-063.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #3 of VA-036.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-064.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #3 of VA-037.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-065.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-038.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-066.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-039.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-067.webp",
+        "thumbnail_hash_distance": 7
+      },
+      {
+        "source_file": "Copy #3 of VA-040.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-068.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #3 of VA-041.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-069.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-042.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-070.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-043.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-071.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #3 of VA-044.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-072.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #3 of VA-045-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-073.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-045.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-074.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-046-0.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-075.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #1 of VA-046-.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-076.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #3 of VA-046.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-077.webp",
+        "thumbnail_hash_distance": 9
+      },
+      {
+        "source_file": "Copy #1 of VA-047-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-078.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of VA-047-2.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-079.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-047.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-080.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of VA-048-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-081.webp",
+        "thumbnail_hash_distance": 8
+      },
+      {
+        "source_file": "Copy #1 of VA-048-2.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-082.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-048.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-083.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #3 of VA-049.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-084.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-050.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-091.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of VA-051-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-092.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-051.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-093.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of VA-050-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-085.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of VA-050-2.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-086.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of VA-050-3.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-087.webp",
+        "thumbnail_hash_distance": 11
+      },
+      {
+        "source_file": "Copy #1 of VA-050-4.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-088.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of VA-050-6.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-089.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of VA-050-7.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-090.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #3 of VA-052.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-094.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-053.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-095.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-054-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-096.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-054.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-097.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of VA-055-1-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-098.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-055-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-099.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of VA-055-2.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-100.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of VA-055-3-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-101.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of VA-055-3.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-102.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "Copy #1 of VA-055-4.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-103.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of VA-055-5.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-104.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-055.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-105.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-057-0-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-107.webp",
+        "thumbnail_hash_distance": 6
+      },
+      {
+        "source_file": "Copy #1 of VA-057-0-2.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-108.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of VA-057-0-3.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-109.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-057-0.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-110.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #3 of VA-057.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-115.webp",
+        "thumbnail_hash_distance": 6
+      },
+      {
+        "source_file": "Copy #3 of VA-056.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-106.webp",
+        "thumbnail_hash_distance": 4
+      },
+      {
+        "source_file": "Copy #1 of VA-057-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-111.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of VA-057-2.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-112.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #1 of VA-057-3.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-113.webp",
+        "thumbnail_hash_distance": 3
+      },
+      {
+        "source_file": "Copy #1 of VA-057-4.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-114.webp",
+        "thumbnail_hash_distance": 1
+      },
+      {
+        "source_file": "Copy #3 of VA-058.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-116.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #3 of VA-059.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-117.webp",
+        "thumbnail_hash_distance": 5
+      },
+      {
+        "source_file": "VA-060-1.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-118.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-060-2.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-119.webp",
+        "thumbnail_hash_distance": 2
+      },
+      {
+        "source_file": "Copy #1 of VA-060-3.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-120.webp",
+        "thumbnail_hash_distance": 10
+      },
+      {
+        "source_file": "Copy #3 of VA-060.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-121.webp",
+        "thumbnail_hash_distance": 0
+      },
+      {
+        "source_file": "Copy #3 of VA-061.png",
+        "asset": "/assets/mad-marathon-magazine-photos/photo-122.webp",
+        "thumbnail_hash_distance": 2
+      }
+    ]
+  }
+}

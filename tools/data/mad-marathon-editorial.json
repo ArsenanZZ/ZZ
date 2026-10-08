@@ -7,819 +7,490 @@
   "blocks": [
     {
       "kind": "heading",
-      "title": "去遥远的新英格兰腹地",
-      "label": "前言"
+      "label": "前言",
+      "title": "去遥远的新英格兰腹地"
     },
     {
       "kind": "paragraph",
-      "html": "<p>六月中，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\">我们刚刚北上芝加哥</strong>，看了一场 BLACKPINK 的演唱会。</p>"
+      "html": "<p>六月中，我们刚刚北上芝加哥，看了一场 <strong>BLACKPINK</strong> 的演唱会。耳朵还没从 “<strong>A-P-T, A-P-T, A-P-T</strong>” 里缓过来，六月底我们又出发了。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>耳朵还没从 “A-P-T, A-P-T, A-P-T” 里缓过来，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"2\">六月底我们又出发了</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-001.webp",
-      "alt": "Cincinnati skyline at the start of the drive",
-      "caption": "辛辛那提天际线 @Arsenan"
+      "html": "<p>这次，一路向东，驶向新英格兰的群山与森林，目的地是 <strong>佛蒙特州（Vermont）：</strong>去跑一场被称作“<strong>世界上最美的马拉松</strong>” 的 疯河谷马拉松（Mad Marathon）。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>这次，一路向东，<strong data-cn-emphasis=\"color\" data-cn-tone=\"3\">驶向新英格兰的群山</strong>与森林，</p>"
+      "html": "<p>这也是我 <strong>Run50 的第 27 个州</strong>。从蓝草到绿山，美国这些州，颜色可真多！出发前我和 Manager 闲聊：“I’m driving to Vermont this weekend for a marathon.”</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>目的地是 佛蒙特州（Vermont）：<strong data-cn-emphasis=\"bold\" data-cn-tone=\"0\">去跑一场被称作</strong></p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-002.webp",
-      "alt": "Hot-air balloon trailer on the highway",
-      "caption": "热气球拖车 @Arsenan"
+      "html": "<p>他愣了一下：“Driving? <strong>That’s crazy!</strong>”我笑了笑：“Yeah… sixteen hours, but Tesla self-driving will help.”</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>“世界上最美的马拉松” 的 疯河谷马拉松（Mad Marathon）。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这也是我 Run50 的第 27 个州。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-003.webp",
-      "alt": "Orange sunset on the road east",
-      "caption": "橙色落日 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>从蓝草到绿山，美国这些州，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\">颜色可真多</strong>！</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>出发前我和 Manager 闲聊：</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-004.webp",
-      "alt": "Night highway toward New England",
-      "caption": "夜色高速 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>“I’m driving to Vermont this weekend for a marathon.”</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>他愣了一下：“<strong data-cn-emphasis=\"color\" data-cn-tone=\"2\">Driving</strong>? That’s crazy!”</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-005.webp",
-      "alt": "Road-trip snacks in the passenger seat",
-      "caption": "路上零食 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>我笑了笑：“Yeah… sixteen hours, but Tesla self-driving will help.”</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>管理员在旁边听到，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"3\">说她完全不敢用自动驾驶</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-006.webp",
-      "alt": "Covered bridge on the way into Vermont",
-      "caption": "乡村廊桥 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p><strong data-cn-emphasis=\"underline\" data-cn-tone=\"0\">我也能理解</strong>，人工智能这玩意儿，还远远没进化完。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>但总得有人爱当那只小白鼠。<strong data-cn-emphasis=\"color\" data-cn-tone=\"1\">我们也确实感受到了生活质量的提升</strong>，</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-007.webp",
-      "alt": "Small boat on a quiet lake",
-      "caption": "湖上的小船 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>但……也真得谨慎啊…… 于是，就这样，<strong data-cn-emphasis=\"bold\" data-cn-tone=\"2\">有了自动驾驶的加持</strong>，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>哪怕是 <span data-cn-emphasis=\"underline\" data-cn-tone=\"3\">16 小时</span>的长途车程，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"0\">也不再那么恐惧了</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-008.webp",
-      "alt": "Cyclists climbing a green Vermont road",
-      "caption": "绿坡上的骑行者 @Arsenan"
+      "html": "<p>管理员在旁边听到，说她完全不敢用自动驾驶。我也能理解，<strong>人工智能这玩意儿，还远远没进化完。</strong>但总得有人爱当那只小白鼠。我们也确实感受到了生活质量的提升，但……也真得谨慎啊…… 于是，就这样，有了自动驾驶的加持，哪怕是 <strong>16 小时的长途车程</strong>，也不再那么恐惧了。</p>"
     },
     {
       "kind": "heading",
-      "title": "绿山与枫糖的州",
-      "label": "佛蒙特"
+      "label": "佛蒙特",
+      "title": "第27州 · 佛蒙特｜绿山与枫糖的州"
     },
     {
       "kind": "paragraph",
-      "html": "<p>佛蒙特（<strong data-cn-emphasis=\"color\" data-cn-tone=\"1\">Vermont</strong>）位于美国东北部，是 新英格兰六州之一。</p>"
+      "html": "<p>佛蒙特（Vermont）位于美国东北部，是 <strong>新英格兰六州之一</strong>。“Vermont” 来自法语 les monts verts，意思是“绿色的山”。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>“Vermont” 来自法语 *les monts verts，<strong data-cn-emphasis=\"bold\" data-cn-tone=\"2\">*意思是“绿色的山”</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-009.webp",
-      "alt": "White church in a village center",
-      "caption": "White church @Arsenan"
+      "html": "<p>因此，它又被称作 <strong>绿山之州（The Green Mountain State）</strong>。这是个山多林密的小州，四分之三的土地都被森林覆盖。夏天是绿的，秋天是红的，每一条乡间路都像通往一幅油画。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>因此，它又被称作 绿山之州（The Green Mountain State）。</p>"
+      "html": "<p>这里曾诞生美国政治家伯尼·桑德斯（Bernie Sanders），是自由思想与环保理念的代表州。<strong>疯河谷（Mad River Valley）</strong> 位于州中部，是这次马拉松的举办地。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>这是个山多林密的小州，四分之三的土地都被森林覆盖。夏天是绿的，秋天是红的，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"3\">每一条乡间路都像通往一幅油画</strong>。</p>"
+      "html": "<p>河流穿过农场、谷仓和牧场，路边的奶牛成了最稳定的观众。佛蒙特人对自己的土地特别自豪。这里几乎没有麦当劳，也没有沃尔玛，但遍地是手工农场、枫糖作坊和本地啤酒厂。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>这里曾诞生美国政治家伯尼·桑德斯（<strong data-cn-emphasis=\"color\" data-cn-tone=\"0\">Bernie Sanders</strong>），是自由思想与环保理念的代表州。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-010.webp",
-      "alt": "Silos and fields in the Green Mountains",
-      "caption": "田野风景 @Arsenan"
+      "html": "<p>他们相信 <strong>“Small is beautiful”，</strong>宁可慢一点、纯一点，也要活得自然。佛蒙特也是美国最大的 <strong>枫糖浆产地</strong>，切达奶酪、蜂蜜和苹果酒也闻名全美。佛蒙特没有大城市。最大城伯灵顿（Burlington）也不过五六万人，</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>疯河谷（Mad River Valley） 位于州中部，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\">是这次马拉松的举办地</strong>。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>河流穿过农场、谷仓和牧场，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"2\">路边的奶牛成了最稳定的观众</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-011.webp",
-      "alt": "Red barn and twin silos in the valley",
-      "caption": "红色谷仓 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>佛蒙特人对自己的土地特别自豪。这里几乎没有麦当劳，<strong data-cn-emphasis=\"color\" data-cn-tone=\"3\">也没有沃尔玛</strong>，但遍地是手工农场、枫糖作坊和本地啤酒厂。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>他们相信 “Small is beautiful”，宁可慢一点、纯一点，<strong data-cn-emphasis=\"bold\" data-cn-tone=\"0\">也要活得自然</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-012.webp",
-      "alt": "Weathered barn on the roadside",
-      "caption": "谷仓侧影 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>佛蒙特也是美国最大的 枫糖浆产地，切达奶酪、蜂蜜和苹果酒也闻名全美。<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\">佛蒙特没有大城市</strong>。最大城伯灵顿（Burlington）也不过五六万人，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这里，山不高，却绿得干净；风不大，却凉得恰好。正如当地人说的那句：</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-013.webp",
-      "alt": "Green lawn outside the Vermont lodging",
-      "caption": "Green lawn @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>&gt; “In Vermont, we don’t hurry. We live where the world slows down.”</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>&gt;</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-014.webp",
-      "alt": "Crowd gathering at the Mad Marathon start",
-      "caption": "起点现场 @Arsenan"
+      "html": "<p>这里，山不高，却绿得干净；风不大，却凉得恰好。正如当地人说的那句：“In Vermont, we don’t hurry. We live where the world slows down.”</p>"
     },
     {
       "kind": "heading",
-      "title": "穿越五州的公路日与夜",
-      "label": "穿过五州"
+      "label": "穿过五州",
+      "title": "穿越五州的公路日与夜"
     },
     {
       "kind": "paragraph",
-      "html": "<p>度过忙碌的周五，我和 Siqi 傍晚出发，正式踏上去佛蒙特的漫长旅程。</p>"
+      "html": "<p>度过忙碌的周五，我和 Siqi 傍晚出发，正式踏上去佛蒙特的漫长旅程。从肯塔基一路向东北，车窗外的城市一个个掠过。第一站是 <strong>辛辛那提（Cincinnati），</strong>那座城市像是被森林包围的钢铁岛。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>从肯塔基一路向东北，车窗外的城市一个个掠过。</p>"
+      "html": "<p>天色微暗，车流穿过立交桥，远处的金色楼群闪着余晖。夜色降临时，我们穿过了 <strong>哥伦布（Columbus）</strong>，公路上灯光一点点亮起，高速的尽头，是克里夫兰（Cleveland）方向的霓虹和指示牌。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-015.webp",
-      "alt": "Runners waiting in the village street",
-      "caption": "赛道跑者 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>第一站是 辛辛那提（Cincinnati），那座城市像是被森林包围的钢铁岛。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>天色微暗，车流穿过立交桥，远处的金色楼群闪着余晖。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-001.webp",
+      "alt": "公路前方出现城市天际线",
+      "caption": "公路前方出现城市天际线 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-001-1-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-016.webp",
-      "alt": "Packed corral before the start",
-      "caption": "起点人群 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>夜色降临时，我们穿过了 哥伦布（Columbus），</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>公路上灯光一点点亮起，高速的尽头，是克里夫兰（Cleveland）方向的霓虹和指示牌。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-002.webp",
+      "alt": "从另一侧看城里的高楼",
+      "caption": "从另一侧看城里的高楼 · 摄影 / Arsenan",
+      "source_file": "Copy #2 of VA-001-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-017.webp",
-      "alt": "Start banner on the small-town road",
-      "caption": "起跑拱门 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>那晚我们就在克里夫兰郊区停下，简单住一晚，为接下来的 <span data-cn-emphasis=\"bold\" data-cn-tone=\"2\">900 公里</span>养点精神。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>第二天清晨，我们迎着朝阳再次上路。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-003.webp",
+      "alt": "公路上，前车载着彩色热气球造型",
+      "caption": "公路上，前车载着彩色热气球造型 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-001-2.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-018.webp",
-      "alt": "Running past the covered bridge",
-      "caption": "乡村廊桥 · 2 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>那一刻，太阳从地平线升起，整条 I-80 被橘红色的晨雾包围，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>世界安静得只剩下风声和轮胎的摩擦声。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-004.webp",
+      "alt": "傍晚的天空染成粉色",
+      "caption": "傍晚的天空染成粉色 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-001-3.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-019.webp",
-      "alt": "Early miles with the valley ahead",
-      "caption": "前半程清晨 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>在充电站停靠时，我们顺便解决早餐。Siqi 的一份格外丰盛：三明治、沙拉，还有炸薯条。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>中午又在另一处充电站吃了快餐，</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-005.webp",
+      "alt": "天色渐暗，继续向东开",
+      "caption": "天色渐暗，继续向东开 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-001-4.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-020.webp",
-      "alt": "Official race photo in the blue kit",
-      "caption": "山谷赛道 · 赛事摄影"
+      "src": "/assets/mad-marathon-magazine-photos/photo-006.webp",
+      "alt": "长途路上，在车里休息一下",
+      "caption": "长途路上，在车里休息一下",
+      "source_file": "Copy #3 of VA-001.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>充电、吃饭、赶路、看风景，一切紧凑又有节奏。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>穿越纽约州时天色突变，下起了大雨。</p>"
+      "html": "<p>那晚我们就在克里夫兰郊区停下，简单住一晚，为接下来的 900 公里养点精神。第二天清晨，我们迎着朝阳再次上路。那一刻，太阳从地平线升起，整条 I-80 被橘红色的晨雾包围，世界安静得只剩下风声和轮胎的摩擦声。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-021.webp",
-      "alt": "Dirt road dropping toward the hills",
-      "caption": "路上风景 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>特斯拉的自动驾驶表现还不错，但为了稳妥，我还是切回了手动，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>雨刷摆动，车窗模糊，前方的绿意在雨幕里晃动，Siqi 倒在副驾睡得正香。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-007.webp",
+      "alt": "太阳贴着地平线，公路被染成橙色",
+      "caption": "太阳贴着地平线，公路被染成橙色 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-002-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-022.webp",
-      "alt": "Aid table on a farm road",
-      "caption": "补给站 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-008.webp",
+      "alt": "天还没亮，在停车场留张自拍",
+      "caption": "天还没亮，在停车场留张自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-002.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>在快进入佛蒙特前，我们在一个小镇停了一下充电。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>路边有一家复古餐厅，门口停着一辆 红色马车模型，</p>"
+      "html": "<p>在充电站停靠时，我们顺便解决早餐。Siqi 的一份格外丰盛：三明治、沙拉，还有炸薯条。中午又在另一处充电站吃了快餐，<strong>充电、吃饭、赶路、看风景</strong>，一切紧凑又有节奏。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-023.webp",
-      "alt": "Cows grazing beside the course",
-      "caption": "Cows grazing @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>车上坐着几位蜡像牛仔，车厢上写着 *The Bank of Guns* ，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>一看就知道是某种美国西部风主题装饰。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-009.webp",
+      "alt": "充电站前，伸展一下",
+      "caption": "充电站前，伸展一下 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-003.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-024.webp",
-      "alt": "Gravel lane in the Vermont hills",
-      "caption": "山路风景 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>路再往前，就是新英格兰的山谷与湖泊。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>有人在大湖上垂钓、划船、漂浮在泳圈上，</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-010.webp",
+      "alt": "坐回车里吃点东西",
+      "caption": "坐回车里吃点东西 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-004.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-025.webp",
-      "alt": "Red barn and silos on a downhill curve",
-      "caption": "乡村红屋 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>我发现，无论是在中国还是美国，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>钓鱼这件事，都有一种让时间慢下来的魔力。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-011.webp",
+      "alt": "充电时再看一眼天空",
+      "caption": "充电时再看一眼天空 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-005.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-026.webp",
-      "alt": "Orange-slice aid table on the roadside",
-      "caption": "补给桌前 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>进入佛蒙特后，景色忽然变得柔和。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>道路变窄，树木变密，路边不时有骑行者穿行在林间碎石路上。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>阳光透过叶缝洒在地上，那一刻，人与自然的边界几乎消失了。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-012.webp",
+      "alt": "路边餐厅里的一顿饭",
+      "caption": "路边餐厅里的一顿饭 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-006.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-027.webp",
-      "alt": "Tall silo beside a red barn",
-      "caption": "田野谷仓 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-013.webp",
+      "alt": "吃点东西，给长途旅行补充能量",
+      "caption": "吃点东西，给长途旅行补充能量",
+      "source_file": "Copy #3 of VA-007.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>从南方的 肯塔基丘陵 到北方的 佛蒙特绿山，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这一趟，我们跨过了 五个州：肯塔基、俄亥俄、宾夕法尼亚、纽约、佛蒙特，</p>"
+      "html": "<p>穿越纽约州时天色突变，下起了大雨。特斯拉的自动驾驶表现还不错，但为了稳妥，我还是切回了手动，雨刷摆动，车窗模糊，前方的绿意在雨幕里晃动，Siqi 倒在副驾睡得正香。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-028.webp",
-      "alt": "Twin silos and a red barn by the road",
-      "caption": "红色谷仓 · 5 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-014.webp",
+      "alt": "继续开车，向佛蒙特出发",
+      "caption": "继续开车，向佛蒙特出发",
+      "source_file": "Copy #3 of VA-008.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>看尽了城市的灯、雨中的路、还有乡间的清晨。</p>"
+      "html": "<p>在快进入佛蒙特前，我们在一个小镇停了一下充电。路边有一家复古餐厅，门口停着一辆 <strong>红色马车模型</strong>，车上坐着几位蜡像牛仔，车厢上写着 The Bank of Guns ，一看就知道是某种美国西部风主题装饰。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-022.webp",
+      "alt": "路边展示的红色老马车",
+      "caption": "路边展示的红色老马车 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-009.png"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>路再往前，就是新英格兰的山谷与湖泊。有人在大湖上垂钓、划船、漂浮在泳圈上，我发现，无论是在中国还是美国，<strong>钓鱼这件事，都有一种让时间慢下来的魔力。</strong></p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>进入佛蒙特后，景色忽然变得柔和。道路变窄，树木变密，路边不时有骑行者穿行在林间碎石路上。阳光透过叶缝洒在地上，那一刻，<strong>人与自然的边界几乎消失了</strong>。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>从南方的 <strong>肯塔基丘陵</strong> 到北方的 <strong>佛蒙特绿山</strong>，这一趟，我们跨过了 五个州：肯塔基、俄亥俄、宾夕法尼亚、纽约、佛蒙特，看尽了城市的灯、雨中的路、还有乡间的清晨。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-015.webp",
+      "alt": "跟着车流穿过一座钢架桥",
+      "caption": "跟着车流穿过一座钢架桥 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-009-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-016.webp",
+      "alt": "两位骑行者沿着绿树间的路前进",
+      "caption": "两位骑行者沿着绿树间的路前进 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-009-2-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-017.webp",
+      "alt": "平静的湖面上漂着一艘小船",
+      "caption": "平静的湖面上漂着一艘小船 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-009-2.png"
     },
     {
       "kind": "heading",
-      "title": "抵达疯河谷 · 山间小镇的夜晚",
-      "label": "抵达山谷"
+      "label": "抵达山谷",
+      "title": "抵达疯河谷 · 山间小镇的夜晚"
     },
     {
       "kind": "paragraph",
-      "html": "<p>进入佛蒙特，我们终于来到了这场“疯河谷马拉松”（Mad Marathon）的举办地：</p>"
+      "html": "<p>进入佛蒙特，我们终于来到了这场“疯河谷马拉松”（Mad Marathon）的举办地：<strong>Waitsfield 小镇。</strong>这里地处 <strong>Mad River Valley（疯河谷）</strong> 中心，被绿山山脉环抱，是个安静又充满乡村气息的小镇。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>沿路能看到一座座典型的 <strong>Vermont 谷仓（Barn）</strong>，红墙、银顶、旁边是连绵的草地与玉米地。这些谷仓几乎成了佛蒙特的视觉符号，远远望去，就像童话插画里那种“理想中的乡村”。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-029.webp",
-      "alt": "Dirt road beneath heavy clouds",
-      "caption": "路边远景 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>Waitsfield 小镇。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这里地处 Mad River Valley（疯河谷） 中心，被绿山山脉环抱，是个安静又充满乡村气息的小镇。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-018.webp",
+      "alt": "小镇街道尽头的白色教堂",
+      "caption": "小镇街道尽头的白色教堂 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-009-3.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-030.webp",
-      "alt": "Covered bridge on the course",
-      "caption": "乡村廊桥 · 3 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>沿路能看到一座座典型的 Vermont 谷仓（Barn），</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>红墙、银顶、旁边是连绵的草地与玉米地。这些谷仓几乎成了佛蒙特的视觉符号，</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-019.webp",
+      "alt": "山谷里的农田、谷仓和筒仓",
+      "caption": "山谷里的农田、谷仓和筒仓 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-009-4.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-031.webp",
-      "alt": "Official arms-wide finish photo",
-      "caption": "终点瞬间 · 赛事摄影"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>远远望去，就像童话插画里那种“理想中的乡村”。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>我们一路赶路，想在下午前赶到取装备的地点。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-020.webp",
+      "alt": "靠近红色谷仓与高高的筒仓",
+      "caption": "靠近红色谷仓与高高的筒仓 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-009-5.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-032.webp",
-      "alt": "Official finish photo with both feet up",
-      "caption": "冲线瞬间 · 赛事摄影"
+      "src": "/assets/mad-marathon-magazine-photos/photo-021.webp",
+      "alt": "路边的老谷仓",
+      "caption": "路边的老谷仓 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-009-6.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>但结果还是错过了当日的取包窗口。</p>"
+      "html": "<p>我们一路赶路，想在下午前赶到取装备的地点。但结果还是错过了当日的取包窗口。不过幸好，几经波折，我们得知，原来第二天清晨现场也能领取装备。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>不过幸好，几经波折，我们得知，原来第二天清晨现场也能领取装备。</p>"
+      "html": "<p>那一刻，我们终于松了口气。然后我们又去超市补给，买了点水果、面包和速食。然后顺着山路，来到我们预订的山顶 Airbnb。那是一栋立于山坡草地之上的一排小木屋。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>女主人一家晚些才回来，但特意给我们留了门和充电说明。果然，一推门就是山风和虫鸣。屋门上贴满了贴纸：滑雪、登山、骑行、NASA、Patagonia……一看就是户外迷之家。那一刻，我们仿佛找到了同类。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-033.webp",
-      "alt": "Official finish photo in the chute",
-      "caption": "终点挥手 · 赛事摄影"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>那一刻，我们终于松了口气。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>然后我们又去超市补给，买了点水果、面包和速食。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-023.webp",
+      "alt": "住处门廊前，两人合影",
+      "caption": "住处门廊前，两人合影",
+      "source_file": "Copy #2 of VA-010-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-034.webp",
-      "alt": "Official finish photo with arms raised",
-      "caption": "终点近照 · 赛事摄影"
+      "src": "/assets/mad-marathon-magazine-photos/photo-024.webp",
+      "alt": "房间门上贴满了比赛号码布",
+      "caption": "房间门上贴满了比赛号码布 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-010.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>然后顺着山路，来到我们预订的山顶 Airbnb。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>那是一栋立于山坡草地之上的一排小木屋。</p>"
+      "html": "<p>夜幕降临，小屋门前的灯泡一盏盏亮起。我们坐在露台上，打开带来的泡面和沙拉，边吃边看着远处山谷里零星的烟火。跑前的紧张在这一刻慢慢散开，只剩下夏夜的风，和山谷的宁静。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-035.webp",
-      "alt": "Official finish photo after the line",
-      "caption": "终点回望 · 赛事摄影"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>女主人一家晚些才回来，但特意给我们留了门和充电说明。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>果然，一推门就是山风和虫鸣。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-036.webp",
-      "alt": "Official photo against green hills",
-      "caption": "山谷赛道 · 2 · 赛事摄影"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>屋门上贴满了贴纸：</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>滑雪、登山、骑行、NASA、Patagonia……</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-037.webp",
-      "alt": "Flags lining the Mad Marathon finish area",
-      "caption": "终点现场 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>一看就是户外迷之家。那一刻，我们仿佛找到了同类。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>夜幕降临，小屋门前的灯泡一盏盏亮起。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-038.webp",
-      "alt": "Medal photo after the finish",
-      "caption": "奖牌照 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>我们坐在露台上，打开带来的泡面和沙拉，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>边吃边看着远处山谷里零星的烟火。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-039.webp",
-      "alt": "Mad Marathon finish display on the lawn",
-      "caption": "终点现场 · 2 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>跑前的紧张在这一刻慢慢散开，只剩下夏夜的风，和山谷的宁静。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-025.webp",
+      "alt": "晚上坐在门廊外吃饭",
+      "caption": "晚上坐在门廊外吃饭 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-011.png"
     },
     {
       "kind": "heading",
-      "title": "错进对出的比赛日清晨",
-      "label": "比赛日清晨"
+      "label": "比赛日清晨",
+      "title": "错进对出的比赛日清晨"
     },
     {
       "kind": "paragraph",
-      "html": "<p>天刚亮，我就在民宿门口放了无人机。</p>"
+      "html": "<p>天刚亮，我就在民宿门口放了无人机。草坡上沾着露水，空气凉凉的，是最适合跑步的天气。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-040.webp",
-      "alt": "Finish display with the Chinese flag",
-      "caption": "终点现场 · 3 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>草坡上沾着露水，空气凉凉的，是最适合跑步的天气。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>出发去起点，结果导航又带我们去了昨天的教堂。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-026.webp",
+      "alt": "住处前的绿草地上留影",
+      "caption": "住处前的绿草地上留影",
+      "source_file": "Copy #1 of VA-012-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-041.webp",
-      "alt": "Medal pose near the finish festival",
-      "caption": "街角奖牌照 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>掉个头几分钟就到了起点，就在 Mad River Green，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>一边是加油站，一边是墓地，典型的美国小镇风景。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-027.webp",
+      "alt": "在门廊旁回头看看山谷",
+      "caption": "在门廊旁回头看看山谷 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-012.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-042.webp",
-      "alt": "Full-body medal pose on the grass",
-      "caption": "阳光奖牌照 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-028.webp",
+      "alt": "草地一直伸向远处的山",
+      "caption": "草地一直伸向远处的山 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-013.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>取装备很顺利，虽然就一个志愿者。</p>"
+      "html": "<p>出发去起点，结果导航又带我们去了昨天的教堂。掉个头几分钟就到了起点，就在 <strong>Mad River Green</strong>，一边是加油站，一边是墓地，典型的美国小镇风景。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>果然不愧叫疯河谷马拉松。比赛路线 是一个典型的山谷环线。</p>"
+      "html": "<p>取装备很顺利，虽然就一个志愿者。果然不愧叫疯河谷马拉松。<strong>比赛路线</strong> 是一个典型的山谷环线。从镇中心出发，先沿着河谷往南跑到 <strong>Warren Village</strong>，再穿过几个起伏的农田小路，绕回北边的 East Warren Road 与 Brook Road。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>一路都有起有伏，坡度不至于致命，却能让你怀疑人生。官方地图上还贴心地标出了补给站：水、佳得乐、香蕉，还有几位热心村民自己搭的帐篷。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>起点区域人还挺多。<strong>全马选手</strong> 站在前排，<strong>半马选手</strong> 在后面。大家互相打量装备、调表、拉伸，氛围却一点都不紧张。这不像大城市的马拉松，更像是邻里运动会。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>起点人挺多，全马在前、半马在后。我从全马区域蹭到<strong>半马选手</strong>处，打算和Siqi一起出发。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-043.webp",
-      "alt": "Medal photo beside the village marker",
-      "caption": "奖牌照 · 2 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>从镇中心出发，先沿着河谷往南跑到 Warren Village，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>再穿过几个起伏的农田小路，绕回北边的 East Warren Road 与 Brook Road。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>一路都有起有伏，坡度不至于致命，却能让你怀疑人生。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-029.webp",
+      "alt": "起跑前，跑者聚到小镇路边",
+      "caption": "起跑前，跑者聚到小镇路边 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-014-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-044.webp",
-      "alt": "Post-race photo with Siqi",
-      "caption": "Post race @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>官方地图上还贴心地标出了补给站：</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>水、佳得乐、香蕉，还有几位热心村民自己搭的帐篷。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-030.webp",
+      "alt": "在人群中等待比赛开始",
+      "caption": "在人群中等待比赛开始 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-014-2.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-045.webp",
-      "alt": "Finish festival tents in the Mad River Valley",
-      "caption": "Finish Fest @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>起点区域人还挺多。全马选手 站在前排，半马选手 在后面。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>大家互相打量装备、调表、拉伸，氛围却一点都不紧张。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-031.webp",
+      "alt": "出发前，大家一起举起手",
+      "caption": "出发前，大家一起举起手 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-014-3.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-046.webp",
-      "alt": "Siqi with the medal in the meadow",
-      "caption": "奖牌照 · 3 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这不像大城市的马拉松，更像是邻里运动会。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>起点人挺多，全马在前、半马在后。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-047.webp",
-      "alt": "Medal pose in tall summer grass",
-      "caption": "赛后街角 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>我从全马区域蹭到半马选手处，打算和Siqi一起出发。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-032.webp",
+      "alt": "在木栏杆旁和Siqi自拍",
+      "caption": "在木栏杆旁和Siqi自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-014.png"
     },
     {
       "kind": "heading",
-      "title": "跑进绿山的怀抱",
-      "label": "跑进绿山"
+      "label": "跑进绿山",
+      "title": "跑进绿山的怀抱"
     },
     {
       "kind": "paragraph",
-      "html": "<p>终于要起跑了！</p>"
+      "html": "<p>终于要起跑了！我们先在小镇里绕了一会儿，路过加油站、咖啡店，再拐进山谷方向。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-048.webp",
-      "alt": "Close-up medal pose with the hills behind",
-      "caption": "市中心奖牌照 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>我们先在小镇里绕了一会儿，路过加油站、咖啡店，再拐进山谷方向。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>不一会儿，就看见那座有木头顶的老桥，据说这种“木头屋式”的桥是为了防止木材被雨雪腐蚀，</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-033.webp",
+      "alt": "小镇街道上的起点拱门",
+      "caption": "小镇街道上的起点拱门 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-015-.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-049.webp",
-      "alt": "Medal and green valley behind the finish",
-      "caption": "奖牌照 · 4 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-034.webp",
+      "alt": "和Siqi在起跑人群里自拍",
+      "caption": "和Siqi在起跑人群里自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-015.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>在新英格兰的老乡村很常见，也算是地标级打卡点。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>过了桥，前方是无尽的绿色。路面从柏油变成砂石，四周被森林包围，</p>"
+      "html": "<p>不一会儿，就看见那座有木头顶的老桥，据说这种“木头屋式”的桥是为了防止木材被雨雪腐蚀，在新英格兰的老乡村很常见，也算是地标级打卡点。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-050.webp",
-      "alt": "Post-race fries and drink under the tent",
-      "caption": "Post race · 2 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>偶尔还有农场的机器在嗡嗡作响，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这画面，简直像《乡村爱情·佛蒙特篇》。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-035.webp",
+      "alt": "起跑前，望望头顶的天空",
+      "caption": "起跑前，望望头顶的天空 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-016.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-051.webp",
-      "alt": "Family photo under the yellow umbrella",
-      "caption": "Family photo @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这次我带的是 Insta360 X5，360° 的画面把所有山景、草地、桥梁都收入镜头里，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>为这次 Vermont（佛蒙特）州的旅程留下了特别视角。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-036.webp",
+      "alt": "从木廊桥旁跑过",
+      "caption": "从木廊桥旁跑过 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-017-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-052.webp",
-      "alt": "Second family photo at the picnic table",
-      "caption": "Second family @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-037.webp",
+      "alt": "穿过木廊桥，身边都是跑者",
+      "caption": "穿过木廊桥，身边都是跑者 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-017.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>我穿的是阿森纳当年范佩西时代的经典战袍，</p>"
+      "html": "<p>过了桥，前方是无尽的绿色。路面从柏油变成砂石，四周被森林包围，偶尔还有农场的机器在嗡嗡作响，这画面，简直像《乡村爱情·佛蒙特篇》。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>黑蓝拼色，英超袖标还在，多年淘来的宝贝，今天终于有机会上场。</p>"
+      "html": "<p>这次我带的是 <strong>Insta360 X5</strong>，360° 的画面把所有山景、草地、桥梁都收入镜头里，为这次 Vermont（佛蒙特）州的旅程留下了特别视角。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>我穿的是阿森纳当年范佩西时代的经典战袍，黑蓝拼色，英超袖标还在，多年淘来的宝贝，今天终于有机会上场。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-053.webp",
-      "alt": "Group selfie after the race",
-      "caption": "路上自拍 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>跑到 <span data-cn-emphasis=\"underline\" data-cn-tone=\"3\">3 英里</span>左右，又见一座木桥，Pine Brook Bridge，建于1870年。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>桥下溪水潺潺，空气带着松木味，天空的云压得很低，像是下一秒就要下雨。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-038.webp",
+      "alt": "起跑后的队伍，远处是一片绿山",
+      "caption": "起跑后的队伍，远处是一片绿山 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-018-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-054.webp",
-      "alt": "Sunset road heading back south",
-      "caption": "落日时分 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p><span data-cn-emphasis=\"bold\" data-cn-tone=\"0\">5 英里</span>折返点前，路边的玉米地绿油油一片，每根秆子都长得有半人高，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>风一吹，整片田像在跟我们一起加油。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-039.webp",
+      "alt": "顺着小镇街道向前跑",
+      "caption": "顺着小镇街道向前跑 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-018.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-055.webp",
-      "alt": "Blue hour over the interstate",
-      "caption": "车窗风景 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-040.webp",
+      "alt": "第1英里，沿着路牌继续前进",
+      "caption": "第1英里，沿着路牌继续前进 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-019.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-041.webp",
+      "alt": "摄影师镜头里的蓝色球衣",
+      "caption": "摄影师镜头里的蓝色球衣 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of VA-020-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-042.webp",
+      "alt": "林间路上，比个胜利手势",
+      "caption": "林间路上，比个胜利手势 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-020.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>忽然,肚子一阵疼。没办法，只能临时“技术性暂停”，还排了个队。</p>"
+      "html": "<p>跑到 3 英里左右，又见一座木桥，<strong>Pine Brook Bridge，建于1870年。</strong>桥下溪水潺潺，空气带着松木味，天空的云压得很低，像是下一秒就要下雨。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-043.webp",
+      "alt": "绿树掩映中的木廊桥",
+      "caption": "绿树掩映中的木廊桥 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-021.png"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>5 英里折返点前，路边的玉米地绿油油一片，每根秆子都长得有半人高，风一吹，整片田像在跟我们一起加油。忽然,肚子一阵疼。没办法，只能临时“技术性暂停”，还排了个队。</p>"
     },
     {
       "kind": "paragraph",
@@ -827,13 +498,91 @@
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-056.webp",
-      "alt": "Cincinnati skyline after the Vermont trip",
-      "caption": "辛辛那提天际线 · 2 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-044.webp",
+      "alt": "农场道路旁停着工程机械",
+      "caption": "农场道路旁停着工程机械 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-022.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-045.webp",
+      "alt": "两位跑者经过开阔的草地",
+      "caption": "两位跑者经过开阔的草地 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-023.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-046.webp",
+      "alt": "在河上的小桥边自拍",
+      "caption": "在河上的小桥边自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-024.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-047.webp",
+      "alt": "碎石路一直伸向远处的山",
+      "caption": "碎石路一直伸向远处的山 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-025-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-048.webp",
+      "alt": "跟着前面的跑友穿过田野",
+      "caption": "跟着前面的跑友穿过田野 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-025.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-049.webp",
+      "alt": "玉米地旁的第5英里路牌",
+      "caption": "玉米地旁的第5英里路牌 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-026.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-050.webp",
+      "alt": "农场边的小小补给站",
+      "caption": "农场边的小小补给站 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-027-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-051.webp",
+      "alt": "从路边的志愿者手里接过补给",
+      "caption": "从路边的志愿者手里接过补给 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-027.png"
     },
     {
       "kind": "paragraph",
       "html": "<p>上完厕所，过了那个红屋顶的谷仓，Siqi 迎面跑过来，我们合了个影继续跑。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-052.webp",
+      "alt": "沿着农场小路继续向前",
+      "caption": "沿着农场小路继续向前 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-028.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-053.webp",
+      "alt": "跑过红色谷仓旁",
+      "caption": "跑过红色谷仓旁 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-029.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-054.webp",
+      "alt": "在乡间赛道上遇到 Siqi",
+      "caption": "在乡间赛道上遇到 Siqi · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-030.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-055.webp",
+      "alt": "和 Siqi 一起留张自拍",
+      "caption": "和 Siqi 一起留张自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-031.png"
     },
     {
       "kind": "paragraph",
@@ -841,92 +590,133 @@
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-057.webp",
-      "alt": "Lodging porch photo before another drive",
-      "caption": "Lodging porch @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>风景真的很治愈，绿得漫无边际，风一阵阵吹过来，凉凉的。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>路上跑者也各有特色：有人穿婚纱，有人穿梵高的《星空》，</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-056.webp",
+      "alt": "从桥边继续向前跑",
+      "caption": "从桥边继续向前跑 · 摄影 / Arsenan",
+      "source_file": "VA-032-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-058.webp",
-      "alt": "Tesla road-trip lunch in the front seat",
-      "caption": "前方长路 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-057.webp",
+      "alt": "再次跑过老木桥",
+      "caption": "再次跑过老木桥 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-032.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>还有本地人开着拖拉机在路边扬起尘土。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>当我回过神，前方的路标已经写着：“Mile 10”。</p>"
+      "html": "<p>风景真的很治愈，绿得漫无边际，风一阵阵吹过来，凉凉的。路上跑者也各有特色：有人穿婚纱，有人穿梵高的《星空》，还有本地人开着拖拉机在路边扬起尘土。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-059.webp",
-      "alt": "Race-morning parking lot under lights",
-      "caption": "清晨风景 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-058.webp",
+      "alt": "穿蓝色花纹上衣的跑友",
+      "caption": "穿蓝色花纹上衣的跑友 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-033-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-059.webp",
+      "alt": "路边的红色拖拉机",
+      "caption": "路边的红色拖拉机 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-033.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-060.webp",
+      "alt": "路过居民摆出的加油装饰",
+      "caption": "路过居民摆出的加油装饰 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-034.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>十英里，跑进了山谷深处，也跑进了佛蒙特的油画里。</p>"
+      "html": "<p>当我回过神，前方的路标已经写着：<strong>“Mile 10”</strong>。十英里，跑进了山谷深处，也跑进了佛蒙特的油画里。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-061.webp",
+      "alt": "来到 10 英里",
+      "caption": "来到 10 英里 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-035.png"
     },
     {
       "kind": "heading",
-      "title": "佛蒙特的绿野与山风",
-      "label": "山间路上"
+      "label": "山间路上",
+      "title": "佛蒙特的绿野与山风"
     },
     {
       "kind": "paragraph",
-      "html": "<p>10英里过后，赛道进入最美的一段。</p>"
+      "html": "<p>10英里过后，赛道进入最美的一段。左手边是一大片牧场，牛儿在悠闲地吃草，路边还盛开着一排淡紫色的小花。前面的跑者干脆摘了一朵插在帽子上，像是跑进了明信片。补给点也开始多起来，</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-060.webp",
-      "alt": "Sunrise over the highway",
-      "caption": "清晨风景 · 2 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>左手边是一大片牧场，牛儿在悠闲地吃草，路边还盛开着一排淡紫色的小花。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>前面的跑者干脆摘了一朵插在帽子上，像是跑进了明信片。补给点也开始多起来，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>志愿者们在桌后忙碌着，递水、递佳得乐，</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-062.webp",
+      "alt": "牛群在赛道旁的牧场吃草",
+      "caption": "牛群在赛道旁的牧场吃草 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-036-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-061.webp",
-      "alt": "Tesla charger stop after the long drive",
-      "caption": "Tesla charger @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>还有一位戴草帽的老奶奶坐在门口摇着手：“Good job, runners!”</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>那一瞬间真想也坐下喝杯茶。风有点凉，但美国跑者都很“放飞”，</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-063.webp",
+      "alt": "路上的跑友们",
+      "caption": "路上的跑友们 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-036-2.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-062.webp",
-      "alt": "Blue sky at the charging station",
-      "caption": "Blue sky @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-064.webp",
+      "alt": "牧场旁的乡间小路",
+      "caption": "牧场旁的乡间小路 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-036.png"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>志愿者们在桌后忙碌着，递水、递佳得乐，还有一位戴草帽的老奶奶坐在门口摇着手：“Good job, runners!”那一瞬间真想也坐下喝杯茶。风有点凉，但美国跑者都很“放飞”，</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-065.webp",
+      "alt": "补给点旁，和志愿者打招呼",
+      "caption": "补给点旁，和志愿者打招呼 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-037.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-066.webp",
+      "alt": "路边的居民坐着为跑者加油",
+      "caption": "路边的居民坐着为跑者加油 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-038.png"
     },
     {
       "kind": "paragraph",
       "html": "<p>不少人上衣都没穿，肌肉线条在山风里闪光。我一路在农场和绿野间穿行，</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-067.webp",
+      "alt": "草地间的红色谷仓",
+      "caption": "草地间的红色谷仓 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-039.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-068.webp",
+      "alt": "乡间道路上的跑者",
+      "caption": "乡间道路上的跑者 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-040.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-069.webp",
+      "alt": "沿着山谷的小路继续跑",
+      "caption": "沿着山谷的小路继续跑 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-041.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-070.webp",
+      "alt": "第14英里，路牌和地面都有标记",
+      "caption": "第14英里，路牌和地面都有标记 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-042.png"
     },
     {
       "kind": "paragraph",
@@ -934,37 +724,60 @@
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-063.webp",
-      "alt": "Post-race lunch at a small restaurant",
-      "caption": "Post race · 3 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>突然，一位纹身女跑者从我身边冲过，一头红紫色的头发在风中炸开，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>像只闯进森林的火烈鸟。我还没反应过来，她已经跑成了一个红色的小点。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-071.webp",
+      "alt": "路边老谷仓前的自拍",
+      "caption": "路边老谷仓前的自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-043.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-064.webp",
-      "alt": "Waffle House refuel in the white kit",
-      "caption": "Waffle House @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-072.webp",
+      "alt": "一辆绿色小车停在草地边",
+      "caption": "一辆绿色小车停在草地边 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-044.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>再跑一阵，到了 <span data-cn-emphasis=\"underline\" data-cn-tone=\"1\">20 英里</span>处的小补给站，居然还有西瓜！ 那一口甜到心里的汁水，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>比能量胶更有效，比喝水还让人感动。远处的山开始被阳光照亮，空气有点热，但脚步轻了。</p>"
+      "html": "<p>突然，一位纹身女跑者从我身边冲过，一头红紫色的头发在风中炸开，像只闯进森林的火烈鸟。我还没反应过来，她已经跑成了一个红色的小点。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-065.webp",
-      "alt": "Driving with mountains outside the window",
-      "caption": "山路转弯 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-073.webp",
+      "alt": "遇见染着红发的跑友",
+      "caption": "遇见染着红发的跑友 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-045-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-074.webp",
+      "alt": "跑者们沿乡间道路向前",
+      "caption": "跑者们沿乡间道路向前 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-045.png"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>再跑一阵，到了 20 英里处的小补给站，<strong>居然还有西瓜！</strong> 那一口甜到心里的汁水，比能量胶更有效，比喝水还让人感动。远处的山开始被阳光照亮，空气有点热，但脚步轻了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-075.webp",
+      "alt": "路边摆好的西瓜补给",
+      "caption": "路边摆好的西瓜补给 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-046-0.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-076.webp",
+      "alt": "下坡弯道前，红色谷仓与筒仓映入眼帘",
+      "caption": "下坡弯道前，红色谷仓与筒仓映入眼帘 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-046-.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-077.webp",
+      "alt": "山谷里的公路与自己",
+      "caption": "山谷里的公路与自己 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-046.png"
     },
     {
       "kind": "paragraph",
@@ -972,177 +785,284 @@
     },
     {
       "kind": "heading",
-      "title": "红色谷仓与国旗的尽头",
-      "label": "终点之前"
+      "label": "终点之前",
+      "title": "红色谷仓与国旗的尽头"
     },
     {
       "kind": "paragraph",
-      "html": "<p>跑到 <span data-cn-emphasis=\"bold\" data-cn-tone=\"2\">23 英里</span>时，前方出现了疯河谷马拉松最有名的地标：</p>"
+      "html": "<p>跑到 23 英里时，前方出现了疯河谷马拉松最有名的地标：那座<strong>红色谷仓（Skinner Barn）</strong>。它建于 19 世纪末，屋顶是典型的新英格兰折线形，后面连着三座灰白色的粮仓（silos）。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>百年来，它一直静静站在山谷边，见证四季的更替，也见证每一位跑者的经过。如今它成了疯河谷马拉松的标志，被印在奖牌、T恤、横幅上，仿佛在告诉所有人：这里的速度，不重要；重要的是你有没有看一眼那片绿。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>我放慢脚步，掏出手机拍了几张，自从有了运动相机，我很少在比赛里掏手机，但面对这幅画，手几乎是自己举起来的。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-066.webp",
-      "alt": "Stagecoach display beside the road",
-      "caption": "转场路上 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>那座红色谷仓（Skinner Barn）。它建于 19 世纪末，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>屋顶是典型的新英格兰折线形，后面连着三座灰白色的粮仓（silos）。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-078.webp",
+      "alt": "红色谷仓旁，高高的筒仓爬满绿藤",
+      "caption": "红色谷仓旁，高高的筒仓爬满绿藤 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-047-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-067.webp",
-      "alt": "Bib wall inside the room",
-      "caption": "号码布 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>百年来，它一直静静站在山谷边，见证四季的更替，也见证每一位跑者的经过。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>如今它成了疯河谷马拉松的标志，被印在奖牌、T恤、横幅上，</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-079.webp",
+      "alt": "沿着两个筒仓旁的道路继续跑",
+      "caption": "沿着两个筒仓旁的道路继续跑 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-047-2.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-068.webp",
-      "alt": "Late dinner outside the lodging",
-      "caption": "Late dinner @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-080.webp",
+      "alt": "在红色谷仓前留张自拍",
+      "caption": "在红色谷仓前留张自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-047.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>仿佛在告诉所有人：这里的速度，不重要；重要的是你有没有看一眼那片绿。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>我放慢脚步，掏出手机拍了几张，自从有了运动相机，</p>"
+      "html": "<p>再往前跑，就是 24 英里的路标，黑色的柏油路重新变成砂石小路，空气里带着点泥土味。跑过那座老木顶桥，就意味着快到终点了。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-069.webp",
-      "alt": "View from the Vermont porch",
-      "caption": "View from @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>我很少在比赛里掏手机，但面对这幅画，手几乎是自己举起来的。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>再往前跑，就是 <span data-cn-emphasis=\"underline\" data-cn-tone=\"3\">24 英里</span>的路标，黑色的柏油路重新变成砂石小路，</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-081.webp",
+      "alt": "厚厚的云层下，碎石路通向前方",
+      "caption": "厚厚的云层下，碎石路通向前方 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-048-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-070.webp",
-      "alt": "Green valley behind the lodging",
-      "caption": "Green valley @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>空气里带着点泥土味。跑过那座老木顶桥，就意味着快到终点了。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>街边的小镇重新出现，咖啡馆、邮局、加油站，还有那片我记得的墓地。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-082.webp",
+      "alt": "再一次来到木廊桥前",
+      "caption": "再一次来到木廊桥前 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-048-2.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-071.webp",
-      "alt": "Walking the gravel road with Siqi",
-      "caption": "路上风景 · 6 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>听起来有点奇怪，但这种“从乡野回到人间”的感觉，很有仪式感。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>终点前的草地上插满了各国国旗。风吹得它们猎猎作响。我看到中国国旗那一刻，心里突然一热。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-083.webp",
+      "alt": "来到 24 英里",
+      "caption": "来到 24 英里 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-048.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-072.webp",
-      "alt": "Selfie at the start crowd",
-      "caption": "路上自拍 · 2 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-084.webp",
+      "alt": "老木桥内，终点已经不远",
+      "caption": "老木桥内，终点已经不远 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-049.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>在这场不到千人的小比赛里，可能就我和 Siqi 代表中国。🇨🇳</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>那种微妙的自豪感，比成绩更实在。冲线时，我举起双手，不到五小时完赛。</p>"
+      "html": "<p>街边的小镇重新出现，咖啡馆、邮局、加油站，还有那片我记得的墓地。听起来有点奇怪，但这种“从乡野回到人间”的感觉，很有仪式感。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-073.webp",
-      "alt": "Looking up before the race begins",
-      "caption": "Looking up @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-091.webp",
+      "alt": "回到小镇的街道",
+      "caption": "回到小镇的街道 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-050.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>这赛道起伏大、坡不少，能跑完，已经是胜利。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>奖牌是一座红房子和一只公鸡，象征佛蒙特的农场精神：</p>"
+      "html": "<p>终点前的草地上插满了各国国旗。风吹得它们猎猎作响。我看到中国国旗那一刻，心里突然一热。在这场不到千人的小比赛里，可能就我和 Siqi 代表中国。🇨🇳</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-074.webp",
-      "alt": "Inside the wooden covered bridge",
-      "caption": "乡村廊桥 · 4 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>黎明前第一声啼鸣，唤醒山谷的活力。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>背后那句 “Mad River Green Crops”，是对疯河谷农业传统的致敬。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-092.webp",
+      "alt": "终点附近，各国国旗沿草地排开",
+      "caption": "终点附近，各国国旗沿草地排开 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-051-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-075.webp",
-      "alt": "Runners leaving the village street",
-      "caption": "路上跑者 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-093.webp",
+      "alt": "在终点国旗旁留张自拍",
+      "caption": "在终点国旗旁留张自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-051.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>Siqi 也顺利完赛，我们在终点草地上合了影。天空开始飘小雨，空气湿润、带点青草味。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>身边有人席地而坐、有人啃汉堡、有人举着奖牌自拍。一切都安静又生动，像是乡村油画的最后一笔。</p>"
+      "html": "<p>那种微妙的自豪感，比成绩更实在。冲线时，我举起双手，不到五小时完赛。这赛道起伏大、坡不少，能跑完，已经是胜利。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-076.webp",
-      "alt": "Mile 1 sign on the gravel road",
-      "caption": "英里牌 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>我们走回停车的地方，穿过草地公园，绿得发亮。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这场疯河谷的夏日马拉松，像是一场对自然、对人、对生活的慢节奏致敬。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-085.webp",
+      "alt": "临近终点，向两旁张开双臂",
+      "caption": "临近终点，向两旁张开双臂 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of VA-050-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-077.webp",
-      "alt": "Peace sign on the wooded climb",
-      "caption": "路边标识 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-086.webp",
+      "alt": "最后一段，跑过镜头前",
+      "caption": "最后一段，跑过镜头前 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of VA-050-2.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-087.webp",
+      "alt": "笑着跑向终点",
+      "caption": "笑着跑向终点 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of VA-050-3.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-088.webp",
+      "alt": "高举双手，完成疯河谷马拉松",
+      "caption": "高举双手，完成疯河谷马拉松 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of VA-050-4.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-089.webp",
+      "alt": "在终点前再摆个姿势",
+      "caption": "在终点前再摆个姿势 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of VA-050-6.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-090.webp",
+      "alt": "完赛镜头里的蓝衣身影",
+      "caption": "完赛镜头里的蓝衣身影 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of VA-050-7.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-094.webp",
+      "alt": "终点区的国旗迎风飘着",
+      "caption": "终点区的国旗迎风飘着 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-052.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-095.webp",
+      "alt": "草地旁的赛事装饰",
+      "caption": "草地旁的赛事装饰 · 摄影 / 赛事官方",
+      "source_file": "Copy #3 of VA-053.png"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>奖牌是一座红房子和一只公鸡，象征佛蒙特的农场精神：黎明前第一声啼鸣，唤醒山谷的活力。背后那句 “<strong>Mad River Green</strong> Crops”，是对疯河谷农业传统的致敬。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>Siqi 也顺利完赛，我们在终点草地上合了影。天空开始飘小雨，空气湿润、带点青草味。身边有人席地而坐、有人啃汉堡、有人举着奖牌自拍。一切都安静又生动，像是乡村油画的最后一笔。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-096.webp",
+      "alt": "戴着奖牌的跑友展示完赛纪念",
+      "caption": "戴着奖牌的跑友展示完赛纪念 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-054-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-097.webp",
+      "alt": "终点前，跑者陆续归来",
+      "caption": "终点前，跑者陆续归来 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-054.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-098.webp",
+      "alt": "中国国旗旁，举起谷仓造型的奖牌",
+      "caption": "中国国旗旁，举起谷仓造型的奖牌 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-055-1-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-099.webp",
+      "alt": "谷仓、筒仓和牛，都收进这块奖牌里",
+      "caption": "谷仓、筒仓和牛，都收进这块奖牌里 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-055-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-100.webp",
+      "alt": "终点草地上，戴着奖牌留影",
+      "caption": "终点草地上，戴着奖牌留影",
+      "source_file": "Copy #1 of VA-055-2.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-101.webp",
+      "alt": "奖牌在胸前，身后是熟悉的筒仓",
+      "caption": "奖牌在胸前，身后是熟悉的筒仓",
+      "source_file": "Copy #1 of VA-055-3-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-102.webp",
+      "alt": "张开双臂，和这片绿山合影",
+      "caption": "张开双臂，和这片绿山合影",
+      "source_file": "Copy #1 of VA-055-3.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-103.webp",
+      "alt": "和Siqi一起留下完赛合影",
+      "caption": "和Siqi一起留下完赛合影 · 摄影 / Siqi",
+      "source_file": "Copy #1 of VA-055-4.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-104.webp",
+      "alt": "Finish festival tents in the Mad River Valley",
+      "caption": "Finish festival tents in the Mad River Valley · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-055-5.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-105.webp",
+      "alt": "和 Siqi 的完赛自拍",
+      "caption": "和 Siqi 的完赛自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-055.png"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>我们走回停车的地方，穿过草地公园，绿得发亮。这场疯河谷的夏日马拉松，像是一场对自然、对人、对生活的慢节奏致敬。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-107.webp",
+      "alt": "夏日草地里，张开双臂",
+      "caption": "夏日草地里，张开双臂",
+      "source_file": "Copy #1 of VA-057-0-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-108.webp",
+      "alt": "把奖牌举到镜头前",
+      "caption": "把奖牌举到镜头前",
+      "source_file": "Copy #1 of VA-057-0-2.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-109.webp",
+      "alt": "戴着奖牌，在绿野里留个纪念",
+      "caption": "戴着奖牌，在绿野里留个纪念",
+      "source_file": "Copy #1 of VA-057-0-3.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-110.webp",
+      "alt": "Siqi在草地里展示奖牌",
+      "caption": "Siqi在草地里展示奖牌 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-057-0.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-115.webp",
+      "alt": "赛后，再看一眼佛蒙特的绿野",
+      "caption": "赛后，再看一眼佛蒙特的绿野 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-057.png"
     },
     {
       "kind": "heading",
-      "title": "佛蒙特的汉堡、薯条与再出发",
-      "label": "赛后小聚"
+      "label": "赛后小聚",
+      "title": "佛蒙特的汉堡、薯条与再出发"
     },
     {
       "kind": "paragraph",
@@ -1150,133 +1070,124 @@
     },
     {
       "kind": "paragraph",
-      "html": "<p>他们住在佛蒙特，也是因为工作几年间搬过不少地方。</p>"
+      "html": "<p>他们住在佛蒙特，也是因为工作几年间搬过不少地方。我们约在一家很 chill 的户外餐厅：有汉堡、有薯条、有柠檬汽水，标准的美国味儿。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>我们约在一家很 *chill* 的户外餐厅：有汉堡、有薯条、有柠檬汽水，标准的美国味儿。</p>"
+      "html": "<p>我们先到，没一会儿，他们一家就开车过来了，还有小朋友，红头发、戴着橙色 Crocs，萌得不行。原本还担心第一次见面会不会有点尴尬，结果完全多虑了。Andy 胖胖的，笑起来憨憨的，但没想到当年竟是 <strong>波士顿马拉松跑者！</strong></p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>Lindsay 特别热情，是本地的野外露营向导，她还讲起她去给 Andy 加油的事。他们说他们真的很喜欢佛蒙特，“我们这里没有麦当劳，也不需要。”</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>那一刻我突然理解了，这片土地的人，是真的热爱<strong>慢节奏的生活</strong>。我们合了影、加了 Facebook 朋友。离开的时候，挥手的那一幕让我觉得，</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-078.webp",
-      "alt": "Another covered bridge in the forest",
-      "caption": "乡村廊桥 · 5 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>我们先到，没一会儿，他们一家就开车过来了，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>还有小朋友，红头发、戴着橙色 Crocs，萌得不行。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-106.webp",
+      "alt": "绿野旁的路边指示牌",
+      "caption": "绿野旁的路边指示牌 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-056.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-079.webp",
-      "alt": "Construction pile beside the farm road",
-      "caption": "路上风景 · 7 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>原本还担心第一次见面会不会有点尴尬，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>结果完全多虑了。Andy 胖胖的，笑起来憨憨的，但没想到当年竟是 波士顿马拉松跑者！</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-111.webp",
+      "alt": "赛后一份薯条，再配一罐饮料",
+      "caption": "赛后一份薯条，再配一罐饮料 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-057-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-080.webp",
-      "alt": "Runners passing an open green field",
-      "caption": "转弯跑者 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>Lindsay 特别热情，是本地的野外露营向导，她还讲起她去给 Andy 加油的事。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>他们说他们真的很喜欢佛蒙特，“我们这里没有麦当劳，也不需要。”</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-112.webp",
+      "alt": "黄色遮阳伞下，和朋友一家合影",
+      "caption": "黄色遮阳伞下，和朋友一家合影",
+      "source_file": "Copy #1 of VA-057-2.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-081.webp",
-      "alt": "Bridge selfie over the Mad River",
-      "caption": "路上自拍 · 3 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>那一刻我突然理解了，这片土地的人，是真的热爱慢节奏的生活。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>我们合了影、加了 Facebook 朋友。离开的时候，挥手的那一幕让我觉得，</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-113.webp",
+      "alt": "野餐桌旁，再留一张合照",
+      "caption": "野餐桌旁，再留一张合照",
+      "source_file": "Copy #1 of VA-057-3.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-082.webp",
-      "alt": "Gravel road through cornfields",
-      "caption": "路上风景 · 8 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-114.webp",
+      "alt": "赛后和朋友一家自拍",
+      "caption": "赛后和朋友一家自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-057-4.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>其实在美国，交朋友并不难，只要主动一点，热情一点。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>回程路上，我们顺路在 Planet Fitness 洗了个澡，恢复一下，再继续上路。</p>"
+      "html": "<p>其实在美国，交朋友并不难，<strong>只要主动一点，热情一点</strong>。回程路上，我们顺路在 <strong>Planet Fitness</strong> 洗了个澡，恢复一下，再继续上路。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-083.webp",
-      "alt": "Mile 5 marker beside the corn",
-      "caption": "里程标识 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>路途依旧漫长，但心情已经很舒畅。我们在辛辛那提停了一下，</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>吃了顿韩餐，泡菜锅、石锅拌饭，补齐了盐分。夕阳下的高速被照得发亮，天空从金黄渐变到深蓝。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-116.webp",
+      "alt": "坐回车里，准备回家",
+      "caption": "坐回车里，准备回家 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-058.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-084.webp",
-      "alt": "Aid stop with a local volunteer",
-      "caption": "志愿者补给 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-117.webp",
+      "alt": "返程途中停靠一下",
+      "caption": "返程途中停靠一下 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-059.png"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>路途依旧漫长，<strong>但心情已经很舒畅</strong>。我们在辛辛那提停了一下，吃了顿韩餐，泡菜锅、石锅拌饭，补齐了盐分。夕阳下的高速被照得发亮，天空从金黄渐变到深蓝。</p>"
     },
     {
       "kind": "paragraph",
       "html": "<p>趁天还没有全黑的时候，我们回到了路易斯维尔的家离。</p>"
     },
     {
-      "kind": "paragraph",
-      "html": "<p>Run50 · 第27州：佛蒙特，打卡！下班啦！</p>"
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-118.webp",
+      "alt": "回程高速上的夕阳",
+      "caption": "回程高速上的夕阳 · 摄影 / Arsenan",
+      "source_file": "VA-060-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-085.webp",
-      "alt": "Farm lane leading back to the barn",
-      "caption": "谷仓旁小路 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这场比赛结束后，我就要暂别美国，时隔六年，回国一段时间了，很期待。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>Run50 系列也要按下暂停键。但我知道，这绝对不是终点。</p>"
+      "src": "/assets/mad-marathon-magazine-photos/photo-119.webp",
+      "alt": "天边的金色云层",
+      "caption": "天边的金色云层 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-060-2.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Mad-Marathon-clean_files/img-086.webp",
-      "alt": "Runner passing the red barn",
-      "caption": "红色谷仓 · 6 @Arsenan"
+      "src": "/assets/mad-marathon-magazine-photos/photo-120.webp",
+      "alt": "深蓝色暮光下继续赶路",
+      "caption": "深蓝色暮光下继续赶路 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-060-3.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-121.webp",
+      "alt": "回程途中的一顿韩餐",
+      "caption": "回程途中的一顿韩餐 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-060.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-122.webp",
+      "alt": "夜里继续开车回家",
+      "caption": "夜里继续开车回家 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-061.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>就像每次跑完一场马拉松：<span data-cn-emphasis=\"underline\" data-cn-tone=\"0\">终点线</span>，其实只是下一段旅程的起点。</p>"
+      "html": "<p><strong>Run50 · 第27州：佛蒙特，打卡！下班啦！</strong>这场比赛结束后，我就要暂别美国，时隔六年，回国一段时间了，很期待。Run50 系列也要按下暂停键。但我知道，<strong>这绝对不是终点</strong>。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>就像每次跑完一场马拉松：终点线，其实只是下一段旅程的起点。</p>"
     }
-  ]
+  ],
+  "source_folder": "Z:\\ZhennanZ Folder\\000-Marathon-Story-2024-2025\\20250717-VT-Mad Marathon-St27\\4-Polished Photos"
 }

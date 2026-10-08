@@ -7,787 +7,881 @@
   "blocks": [
     {
       "kind": "heading",
-      "title": "从蓝草到玉米地，跨越半个美国",
-      "label": "前言"
+      "label": "前言",
+      "title": "往北，去一趟大平原"
     },
     {
       "kind": "paragraph",
-      "html": "<p>这一次，我们从肯塔基的 <strong data-cn-emphasis=\"underline\" data-cn-tone=\"2\">Louisville</strong> 出发，直奔美国中北部的大平原：北达科他。</p>"
+      "html": "<p>这一次，我们从肯塔基的 Louisville 出发，直奔美国中北部的大平原：<strong>北达科他</strong>。车程十几个小时，说长不长，说短也绝对不短。傍晚上路时，天空染成一半深紫一半火红，远处一排排风车慢悠悠转着。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-001.webp",
-      "alt": "Storm clouds opening over the road north",
-      "caption": "北上路上的风暴云 @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-001.webp",
+      "alt": "乌云散开，继续向北开",
+      "caption": "乌云散开，继续向北开 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_001.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-002-1.webp",
+      "alt": "公路上的暮色与晚霞",
+      "caption": "公路上的暮色与晚霞 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_002-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-002.webp",
+      "alt": "穿过有彩绘的高架桥",
+      "caption": "穿过有彩绘的高架桥 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_002.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-003-1.webp",
+      "alt": "天边一线橙光，沿着公路继续向北",
+      "caption": "天边一线橙光，沿着公路继续向北 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_003-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-003-2.webp",
+      "alt": "暮色渐深，车灯照亮前方的路",
+      "caption": "暮色渐深，车灯照亮前方的路 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_003-2.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-003.webp",
+      "alt": "大平原上的风车与晚霞",
+      "caption": "大平原上的风车与晚霞 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_003.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>车程十几个小时，说长不长，<strong data-cn-emphasis=\"color\" data-cn-tone=\"3\">说短也绝对不短</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-002.webp",
-      "alt": "Crossing under a colorful overpass",
-      "caption": "彩色天桥下 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>傍晚上路时，天空染成一半深紫一半火红，<strong data-cn-emphasis=\"bold\" data-cn-tone=\"0\">远处一排排风车慢悠悠转着</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-003.webp",
-      "alt": "Red sunset stripe on the interstate",
-      "caption": "州际公路落日 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这趟法戈之行，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\">我们打算来个“露营+跑马”的组合玩法</strong>。白天跑步，晚上在车里露营。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-004.webp",
-      "alt": "Wind turbines at dusk on the plains",
-      "caption": "平原风车 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>露营地很安静，价格和汽车旅馆其实也差不多，但露营更好玩，<strong data-cn-emphasis=\"color\" data-cn-tone=\"2\">有点美式“公路片”的味道</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-005.webp",
-      "alt": "Exit sign under a North Dakota sunset",
-      "caption": "北达科他出口牌 @Arsenan"
-    },
-    {
-      "kind": "heading",
-      "title": "辽阔、寂静、风很大",
-      "label": "北达科他"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>北达科他（North Dakota），<strong data-cn-emphasis=\"underline\" data-cn-tone=\"3\">可能是你在地图上不太会点开的那一块</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-006.webp",
-      "alt": "Dark highway after the long drive",
-      "caption": "夜色高速路 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这州地儿是真大，人是真少。<strong data-cn-emphasis=\"underline\" data-cn-tone=\"0\">人口在全美倒数第二</strong>，放眼一望，全是地。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-007.webp",
-      "alt": "Campsite parking spot beside the trees",
-      "caption": "营地一角 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>冬天冷得能把鼻毛冻成冰柱，<strong data-cn-emphasis=\"color\" data-cn-tone=\"1\">春天也风大得能把人跑偏</strong>。Fargo 马拉松就开在这种“风吹草低见玉米”的季节。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-008.webp",
-      "alt": "Road-trip snacks in the front seat",
-      "caption": "路上零食 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>北达科他的首府叫 Bismarck，不过最大城市是 Fargo，<strong data-cn-emphasis=\"bold\" data-cn-tone=\"2\">坐落在 Red River 河畔</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-009.webp",
-      "alt": "Car lunch before reaching Fargo",
-      "caption": "车上午餐 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>很多人对这地的印象都是美剧《<strong data-cn-emphasis=\"underline\" data-cn-tone=\"3\">Fargo</strong>》，阴冷、神秘、各种奇案。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-010.webp",
-      "alt": "Flat prairie from the car window",
-      "caption": "车窗外的大平原 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>但现实版 Fargo，其实是个朴实的小城：干净、安静、天很高、风很大，街上跑着皮卡和大卡车，<strong data-cn-emphasis=\"color\" data-cn-tone=\"0\">一派“北方农场主的生活气息”</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-011.webp",
-      "alt": "RV campground selfie before race day",
-      "caption": "营地车位 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>说起这地方的居民构成，早年这片大草原主要是德国、斯堪的纳维亚移民定居下来的。<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\">现在州内还有不少德裔和北欧裔后代</strong>，还会有那种非常“老实厚道”的北欧式生活气质。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-012.webp",
-      "alt": "Campground sign at dusk",
-      "caption": "营地黄昏 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>北达科他还有几个挺特别的点：</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-013.webp",
-      "alt": "Quiet field behind the campground",
-      "caption": "营地清晨 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>农业大州：小麦、大豆、玉米、向日葵的主要产区之一。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-014.webp",
-      "alt": "Dusty gravel road through farmland",
-      "caption": "农田砂石路 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>风力发电：风大得出奇，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"2\">一路能看到一排排风车</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-015.webp",
-      "alt": "Crowd gathering outside the FargoDome",
-      "caption": "FargoDome 起点 @Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-016.webp",
-      "alt": "Fargo Marathon start sign in the morning",
-      "caption": "Fargo 起跑牌 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>冬天很狠：零下二三十度是常事，<strong data-cn-emphasis=\"color\" data-cn-tone=\"3\">暴风雪也很有名</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-017.webp",
-      "alt": "Pink kit selfie at the start",
-      "caption": "起点自拍 @Arsenan"
+      "html": "<p>这趟法戈之行，我们打算来个“<strong>露营+跑马</strong>”的组合玩法。<strong>白天跑步，晚上在车里露营</strong>。露营地很安静，价格和汽车旅馆其实也差不多，但露营更好玩，有点美式“公路片”的味道。</p>"
     },
     {
       "kind": "heading",
-      "title": "公路与营地 · 一路往北",
-      "label": "一路向北"
+      "label": "北达科他",
+      "title": "风很大，天很高"
     },
     {
       "kind": "paragraph",
-      "html": "<p>第一晚在一个房车露营地过夜。车停在草地上，旁边是树，天上挂着半轮月亮。Tesla 慢慢充着电，<strong data-cn-emphasis=\"bold\" data-cn-tone=\"0\">我们就躺在车里</strong>，不过路有点不平，半夜睡觉总往一个方向出溜。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-018.webp",
-      "alt": "Runners heading out of the FargoDome",
-      "caption": "FargoDome 外场 @Arsenan"
+      "html": "<p>北达科他（North Dakota），可能是你在地图上不太会点开的那一块。这州地儿是真大，人是真少。人口在全美倒数第二，放眼一望，全是地。冬天冷得能把鼻毛冻成冰柱，春天也<strong>风大得能把人跑偏</strong>。Fargo 马拉松就开在这种“风吹草低见玉米”的季节。北达科他的首府叫 Bismarck，不过最大城市是 Fargo，<strong>坐落在 Red River 河畔</strong>。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>第二天继续上路，周围基本就是农田、风车，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\">还有偶尔呼啸而过的大卡车</strong>。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-019.webp",
-      "alt": "Early miles under a pale sun",
-      "caption": "前半程清晨 @Arsenan"
+      "html": "<p>很多人对这地的印象都是美剧《Fargo》，阴冷、神秘、各种奇案。但现实版 Fargo，其实是个朴实的小城：<strong>干净、安静、天很高、风很大</strong>，街上跑着皮卡和大卡车，<strong>一派“北方农场主的生活气息”</strong>。说起这地方的居民构成，早年这片大草原主要是德国、斯堪的纳维亚移民定居下来的。现在州内还有不少德裔和北欧裔后代，还会有那种非常“老实厚道”的北欧式生活气质。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p><strong data-cn-emphasis=\"color\" data-cn-tone=\"2\">我们追着时间</strong>，终于傍晚终于到了法戈。赶在马拉松Expo关门前取到了参赛号码簿，然后去了法戈的露营地，营地在小镇边上，一边是一辆辆房车，一边是大卡车停靠区。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-020.webp",
-      "alt": "Official race photo in the pink jersey",
-      "caption": "粉色球衣 · 赛事摄影"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>刚一停好车，就有个卡车老奶奶过来聊天。<strong data-cn-emphasis=\"underline\" data-cn-tone=\"3\">她一听说我们从肯塔基开过来</strong>，立马兴奋了，话题直接飙到 AI、自动驾驶和特斯拉危机……信息量大得我一时都没缓过神。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-021.webp",
-      "alt": "Official race photo in the first miles",
-      "caption": "前半程赛照 · 赛事摄影"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>她说自己不太信任AI，对特斯拉最近那些事挺担心。我一边听一边点头，心里想美国老太太懂的还挺多。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-022.webp",
-      "alt": "Official photo running with the pack",
-      "caption": "队伍中奔跑 · 赛事摄影"
+      "html": "<p>北达科他还有几个挺特别的点：农业大州：小麦、大豆、玉米、向日葵的主要产区之一。风力发电：风大得出奇，<strong>一路能看到一排排风车</strong>。冬天很狠：零下二三十度是常事，暴风雪也很有名。</p>"
     },
     {
       "kind": "heading",
-      "title": "粉色天空下起跑",
-      "label": "起跑时分"
+      "label": "赛前夜",
+      "title": "车里露营，天亮开跑"
     },
     {
       "kind": "paragraph",
-      "html": "<p>第二天一早，我们在车里醒来。夜里露营的那片营地挺安静，早晨的空气有点凉，天边泛着一层淡粉色的光。洗漱简单收拾完，我们就开车去起点了。</p>"
+      "html": "<p>第一晚在一个房车露营地过夜。车停在草地上，旁边是树，天上挂着半轮月亮。Tesla 慢慢充着电，<strong>我们就躺在车里</strong>，不过路有点不平，半夜睡觉总往一个方向出溜。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-023.webp",
-      "alt": "Water stop in the early neighborhood miles",
-      "caption": "补给站 @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-004.webp",
+      "alt": "露营地里，车停在树下",
+      "caption": "露营地里，车停在树下 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_004.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-005.webp",
+      "alt": "车里吃点东西，继续赶路",
+      "caption": "车里吃点东西，继续赶路 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_005.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-006.webp",
+      "alt": "车里铺好的小窝，今晚就住这里",
+      "caption": "车里铺好的小窝，今晚就住这里 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_006.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>路两边是一望无际的农田，大片土地还没来得及种上庄稼，显得空荡荡的。太阳挂在低空，像一颗红色小球，透着一股“北方的静”。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-024.webp",
-      "alt": "Runners turning through Fargo side streets",
-      "caption": "Fargo 街区转弯 @Arsenan"
+      "html": "<p>第二天继续上路，周围基本就是<strong>农田、风车</strong>，还有偶尔呼啸而过的大卡车。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>没开多远就上了砂石路，车轮碾过扬起一片尘土，感觉有点像进了电影里的“大平原小镇”。</p>"
+      "html": "<p>我们追着时间，终于在傍晚到了法戈。<strong>赶在马拉松Expo关门前</strong>取到了参赛号码布，然后去了法戈的露营地，营地在小镇边上，一边是一辆辆房车，一边是大卡车停靠区。刚一停好车，就有个卡车老奶奶过来聊天。她一听说我们从肯塔基开过来，立马兴奋了，话题直接飙到 AI、自动驾驶和特斯拉危机……<strong>信息量大得我一时都没缓过神</strong>。她说自己不太信任AI，对特斯拉最近那些事挺担心。我一边听一边点头，心里想美国老太太懂的还挺多。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-025.webp",
-      "alt": "Mile 1 sign in front of a blue house",
-      "caption": "英里牌 @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-007.webp",
+      "alt": "清晨的露营地",
+      "caption": "清晨的露营地 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_007.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-008.webp",
+      "alt": "在营地一起留个影",
+      "caption": "在营地一起留个影 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_008.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>起点就在 Fargodome 体育馆 附近，全马马上就要开跑了，我们刚到停车场。我就想和半马的队伍一起也行，还能多感受下起跑氛围。</p>"
+      "html": "<p>第二天一早，我们在车里醒来。夜里露营的那片营地挺安静，早晨的空气有点凉，天边泛着一层淡粉色的光。洗漱简单收拾完，我们就开车去起点了。路两边是一望无际的农田，大片土地还没来得及种上庄稼，显得空荡荡的。太阳挂在低空，像一颗红色小球，透着一股“<strong>北方的静</strong>”。没开多远就上了砂石路，车轮碾过扬起一片尘土，感觉有点像进了电影里的“<strong>大平原小镇</strong>”。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-026.webp",
-      "alt": "Neighborhood crowd after mile one",
-      "caption": "Neighborhood crowd @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-009-1.webp",
+      "alt": "清晨一望无际的农田",
+      "caption": "清晨一望无际的农田 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_009-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-009.webp",
+      "alt": "露营地入口",
+      "caption": "露营地入口 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_009.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-010.webp",
+      "alt": "驶上碎石路，前往起点",
+      "caption": "驶上碎石路，前往起点 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_010.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>这次我穿的是粉红色的阿森纳球衣，在人群里挺显眼的。清晨的法戈天上带着一层淡淡的粉色。</p>"
+      "html": "<p>起点就在 Fargodome 体育馆 附近，全马马上就要开跑了，我们刚到停车场。我就想和半马的队伍一起也行，还能多感受下起跑氛围。这次我穿的是<strong>粉红色的阿森纳球衣</strong>，在人群里挺显眼的。清晨的法戈天上带着一层淡淡的粉色。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-027.webp",
-      "alt": "Half and marathon split sign at mile one",
-      "caption": "路边标识 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>起跑后，赛道先带我们进入小区。路线不复杂，就是绕着一片整洁的居民区跑，典型的美式小区：草坪修得整整齐齐，房子宽敞大方，门口摆着躺椅。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-011.webp",
+      "alt": "起点旁，跑者聚拢起来",
+      "caption": "起点旁，跑者聚拢起来 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_011.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-028.webp",
-      "alt": "Driveway musicians cheering the course",
-      "caption": "Driveway musicians @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>刚开始我还有点担心，会不会跑错路线，毕竟全马和半马的线路不一样。但没多远就遇到了全半程分流的牌子，我一个人顺着全马路线跑了上去。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-012.webp",
+      "alt": "Fargo Marathon 起点",
+      "caption": "Fargo Marathon 起点 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_012.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-029.webp",
-      "alt": "Mile 2 sign under leafy trees",
-      "caption": "里程标识 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>说是“孤独”，其实也不太准确。因为在小区里，很多居民早早就在自家门口搭好椅子、音响、烧烤炉，给跑者加油，特别有社区感。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-013-1.webp",
+      "alt": "清晨，跟着跑者们走向起点",
+      "caption": "清晨，跟着跑者们走向起点 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_013-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-030.webp",
-      "alt": "Full, 10K, and half split signs",
-      "caption": "路牌细节 @Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-031.webp",
-      "alt": "Runner ahead on a brick-paved street",
-      "caption": "赛道跑者 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这场比赛是 50 States Marathon Club 的集结赛事，所以能看到不少穿着俱乐部服装的“老江湖”们。他们的衣服背后都写着跑过的州数，一个个都是传奇人物。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-032.webp",
-      "alt": "Long straight street in the suburbs",
-      "caption": "城市街景 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>沿途的小区居民也很有意思，有的打扮成摇滚乐手、拿着吉他在门口表演；还有人全副“星战”coser 装扮；拐角处还有志愿者在打架子鼓，一路都是热闹的街坊氛围。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-033.webp",
-      "alt": "Curving sidewalk beside new houses",
-      "caption": "Curving sidewalk @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>不知不觉就跑到了第 <span data-cn-emphasis=\"bold\" data-cn-tone=\"0\">8 英里</span>，赛道渐渐从小区拐进了 Fargo 的 downtown。法戈的市中心不大，老建筑和新公寓混在一起，有一种朴素的小城工业风。这里温度明显升高了。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-034.webp",
-      "alt": "Pacers leading the neighborhood pack",
-      "caption": "Pacers leading @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-013.webp",
+      "alt": "粉色球衣，出发去跑马",
+      "caption": "粉色球衣，出发去跑马 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_013.png"
     },
     {
       "kind": "heading",
-      "title": "玉米棒子大学与友军阿森纳",
-      "label": "大学城里"
+      "label": "起跑以后",
+      "title": "从街坊的加油声里穿过去"
     },
     {
       "kind": "paragraph",
-      "html": "<p>出了 Downtown，来到第 <span data-cn-emphasis=\"underline\" data-cn-tone=\"1\">10 英里</span>标志处。</p>"
+      "html": "<p>起跑后，赛道先带我们进入小区。路线不复杂，就是绕着一片整洁的居民区跑，典型的美式小区：草坪修得整整齐齐，房子宽敞大方，门口摆着躺椅。刚开始我还有点担心，会不会跑错路线，毕竟全马和半马的线路不一样。但没多远就遇到了<strong>全半程分流</strong>的牌子，我一个人<strong>顺着全马路线</strong>跑了上去。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-035.webp",
-      "alt": "Air-guitar cheerleader in a driveway",
-      "caption": "Air guitar @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-014-1.webp",
+      "alt": "穿着粉色球衣跑过摄影点",
+      "caption": "穿着粉色球衣跑过摄影点 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of Fargo_014-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-014-2.webp",
+      "alt": "赛道照上留下了当天的完赛时间",
+      "caption": "赛道照上留下了当天的完赛时间 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of Fargo_014-2.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-014-3.webp",
+      "alt": "和身旁的跑者一起向前",
+      "caption": "和身旁的跑者一起向前 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of Fargo_014-3.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-014.webp",
+      "alt": "跟着人群跑出起点",
+      "caption": "跟着人群跑出起点 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_014.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-015.webp",
+      "alt": "蓝衣跑者举起手机拍下起跑时分",
+      "caption": "蓝衣跑者举起手机拍下起跑时分 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_015.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-016.webp",
+      "alt": "穿着粉色上衣的跑友",
+      "caption": "穿着粉色上衣的跑友 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_016.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-017.webp",
+      "alt": "来到 1 英里",
+      "caption": "来到 1 英里 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_017.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-018.webp",
+      "alt": "跑进整洁的居民区",
+      "caption": "跑进整洁的居民区 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_018.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-019.webp",
+      "alt": "全马与10K向前，半马在这里分流",
+      "caption": "全马与10K向前，半马在这里分流 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_019.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-022.webp",
+      "alt": "全马直行，10K右转",
+      "caption": "全马直行，10K右转 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_022.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>接下来是一个很有特色的路段：一个铁路下的隧道，顶上是厚重的铁轨结构，两边是混凝土墙，跑进去瞬间凉快了不少。虽然隧道不长，但出来就是一个上坡，挺累。</p>"
+      "html": "<p>说是“孤独”，其实也不太准确。因为在小区里，很多居民早早就在自家门口搭好椅子、音响、烧烤炉，给跑者加油，特别有社区感。这场比赛是 <strong>50 States Marathon Club</strong> 的集结赛事，所以能看到不少穿着俱乐部服装的“老江湖”们。他们的衣服背后都写着跑过的州数，一个个都是传奇人物。沿途的小区居民也很有意思，有的打扮成摇滚乐手、拿着吉他在门口表演；还有人全副“星战”coser 装扮；拐角处还有志愿者在打架子鼓，<strong>一路都是热闹的街坊氛围</strong>。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-036.webp",
-      "alt": "Drummer playing from the curb",
-      "caption": "Drummer playing @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-020.webp",
+      "alt": "家门口为跑者演奏的居民",
+      "caption": "家门口为跑者演奏的居民 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_020.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-021.webp",
+      "alt": "来到 2 英里",
+      "caption": "来到 2 英里 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_021.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-025.webp",
+      "alt": "绿树和草坪之间的小路",
+      "caption": "绿树和草坪之间的小路 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_025.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-023.webp",
+      "alt": "沿着居民区道路继续跑",
+      "caption": "沿着居民区道路继续跑 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_023.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-024.webp",
+      "alt": "跟着前面的跑者向前",
+      "caption": "跟着前面的跑者向前 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_024.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-026.webp",
+      "alt": "跟着穿荧光黄上衣的配速员前进",
+      "caption": "跟着穿荧光黄上衣的配速员前进 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_026.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-027.webp",
+      "alt": "穿黑色装扮的观众在路边加油",
+      "caption": "穿黑色装扮的观众在路边加油 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_027.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-028.webp",
+      "alt": "居民在路边打鼓助阵",
+      "caption": "居民在路边打鼓助阵 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_028.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-029.webp",
+      "alt": "跟着配速员向前跑",
+      "caption": "跟着配速员向前跑 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_029.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-030.webp",
+      "alt": "赛道上的自拍",
+      "caption": "赛道上的自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_030.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>上坡后就是一个补给站，一群黑人兄弟穿着统一的夹克，边加油边递水，气氛特别热烈。我跟他们一边击掌一边接水，瞬间又复活了。</p>"
+      "html": "<p>不知不觉就跑到了第 8 英里，赛道渐渐从小区拐进了 Fargo 的 downtown。法戈的市中心不大，老建筑和新公寓混在一起，有一种朴素的小城工业风。这里<strong>温度明显升高了</strong>。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-037.webp",
-      "alt": "Pacer shirts guiding the pack",
-      "caption": "Pacer shirts @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-031.webp",
+      "alt": "来到 8 英里",
+      "caption": "来到 8 英里 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_031.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-032.webp",
+      "alt": "路边喷出的水雾，给自己降降温",
+      "caption": "路边喷出的水雾，给自己降降温 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_032.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-033.webp",
+      "alt": "前面的跑者背影",
+      "caption": "前面的跑者背影 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_033.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-034.webp",
+      "alt": "与跑友一起穿过街区",
+      "caption": "与跑友一起穿过街区 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_034.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-035.webp",
+      "alt": "进入法戈市中心",
+      "caption": "进入法戈市中心 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_035.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>前面就是 Veterans Memorial Bridge（退伍军人纪念桥），跨过的这条河叫 Red River of the North（北红河），是美国和加拿大边境附近一条很有历史的河流。</p>"
+      "html": "<p>出了 Downtown，来到第 10 英里标志处。接下来是一个很有特色的路段：一个铁路下的隧道，顶上是厚重的铁轨结构，两边是混凝土墙，跑进去瞬间凉快了不少。虽然隧道不长，但出来就是一个上坡，挺累。上坡后就是一个补给站，一群黑人兄弟穿着统一的夹克，边加油边递水，气氛特别热烈。我跟他们<strong>一边击掌一边接水</strong>，<strong>瞬间又复活了</strong>。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-038.webp",
-      "alt": "Selfie in the pink Arsenal kit",
-      "caption": "路上自拍 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>它的走向很特别，是美国少有的“向北流”的河流，最后注入加拿大的温尼伯湖。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-036.webp",
+      "alt": "来到 10 英里",
+      "caption": "来到 10 英里 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_036.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-039.webp",
-      "alt": "Mile 8 sign beside the open road",
-      "caption": "路边英里牌 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>桥上还有一支穿着苏格兰裙的风笛鼓队在演奏，真是仪式感拉满。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-037.webp",
+      "alt": "高架桥下，跑者迎面相遇",
+      "caption": "高架桥下，跑者迎面相遇 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_037.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-040.webp",
-      "alt": "Sprinkler spray on a hot Fargo mile",
-      "caption": "Sprinkler spray @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>过了桥，就进入了 Moorhead, Minnesota，这已经是明尼苏达州的地界了。Fargo 和 Moorhead 就隔着这条河，相当于“跨州马拉松”，很有意思。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-038.webp",
+      "alt": "在桥下和迎面而来的跑友击掌",
+      "caption": "在桥下和迎面而来的跑友击掌 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_038.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-041.webp",
-      "alt": "Runner with mile markers behind him",
-      "caption": "路上跑者 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>在这里，我意外遇到了两年前在 肯塔基 Derby 马拉松遇到的那位阿森纳球衣跑者。他这次穿的是经典红色主场队服，我则是粉色的。我们俩在赛道上还打了个招呼，他还记得我，太巧了！</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-039.webp",
+      "alt": "沿着护栏跑上坡",
+      "caption": "沿着护栏跑上坡 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_039.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-042.webp",
-      "alt": "Pace group moving toward downtown",
-      "caption": "街角一幕 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>接下来路线跑进了一所大学校园，Concordia College（康考迪亚学院）。这所学校建于 1891 年，是一所私立文理学院，早年由挪威移民社区创办，所以有浓厚的路德宗传统。校园很有北欧小镇的味道，红砖建筑、教堂钟楼，还有绿树成荫的小道。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-040.webp",
+      "alt": "热情的志愿者递来补给",
+      "caption": "热情的志愿者递来补给 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_040.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-043.webp",
-      "alt": "Downtown Fargo stretch opens up",
-      "caption": "市中心路口 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>最逗的是，他们的吉祥物是一个巨大的“玉米棒子”，站在路边跟跑者互动。北达科他这片就是玉米地的天下，吉祥物选这个再合适不过了。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-041.webp",
+      "alt": "伸出手，和路边的小朋友击掌",
+      "caption": "伸出手，和路边的小朋友击掌 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_041.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-044.webp",
-      "alt": "Mile 10 sign by the brick wall",
-      "caption": "后半程英里牌 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>穿过校园，很快又回到了河边。桥的另一侧，有一个迷你版的自由女神像静静地矗立在街角，看着跑者从身边经过。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-042.webp",
+      "alt": "从街道继续向前",
+      "caption": "从街道继续向前 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_042.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-045.webp",
-      "alt": "High five near the underpass",
-      "caption": "High five @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>又回到北达州了，这一路：从大平原出发，穿越小镇，跨过州界，跑过钟楼和玉米地，离终点越来越近了。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-046.webp",
-      "alt": "Bridge crossing into the next section",
-      "caption": "桥上风景 @Arsenan"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-047.webp",
-      "alt": "Egg handoff at the aid table",
-      "caption": "补给桌前 @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-043.webp",
+      "alt": "来到 11 英里",
+      "caption": "来到 11 英里 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_043.png"
     },
     {
       "kind": "heading",
-      "title": "最后6英里 · 热浪，又破4了",
-      "label": "最后6英里"
+      "label": "跨过红河",
+      "title": "跨过红河，就到了另一州"
     },
     {
       "kind": "paragraph",
-      "html": "<p>进入最后<span data-cn-emphasis=\"bold\" data-cn-tone=\"2\">6英里</span>。路边出现了一支临时交响乐团：小孩拉小提琴、大人拉大提琴，还有人打着节拍。阳光照在乐器上，闪闪发亮。</p>"
+      "html": "<p>前面就是 Veterans Memorial Bridge（退伍军人纪念桥），跨过的这条河叫 Red River of the North（北红河），是美国和加拿大边境附近一条很有历史的河流。它的走向很特别，是美国少有的“向北流”的河流，最后注入加拿大的温尼伯湖。桥上还有一支穿着苏格兰裙的<strong>风笛鼓队</strong>在演奏，真是仪式感拉满。过了桥，就进入了 Moorhead, Minnesota，这已经是明尼苏达州的地界了。Fargo 和 Moorhead 就隔着这条河，相当于“<strong>跨州马拉松</strong>”，很有意思。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-048.webp",
-      "alt": "Tiny cup from a kid volunteer",
-      "caption": "Tiny cup @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-044.webp",
+      "alt": "退伍军人纪念桥的标识",
+      "caption": "退伍军人纪念桥的标识 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_044.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-045.webp",
+      "alt": "桥头的风笛演奏队",
+      "caption": "桥头的风笛演奏队 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_045.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-046.webp",
+      "alt": "跨过红河，继续跑",
+      "caption": "跨过红河，继续跑 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_046.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-047.webp",
+      "alt": "路边的观众和跑者打招呼",
+      "caption": "路边的观众和跑者打招呼 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_047.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>再往前，我又遇到了“黑人兄弟补给站”，笑容还是那么灿烂。补给点后不远，小朋友们又出场了，有的打扮成小公主，有的光着脚丫，举着果冻糖袋子，递给路过的跑者。</p>"
+      "html": "<p>在这里，我意外遇到了两年前在 肯塔基 Derby 马拉松遇到的那位阿森纳球衣跑者。他这次穿的是经典红色主场队服，我则是粉色的。我们俩在赛道上还打了个招呼，<strong>他还记得我，太巧了</strong>！</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-049.webp",
-      "alt": "Running past downtown concrete",
-      "caption": "赛前街道 @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-048.webp",
+      "alt": "遇到同穿阿森纳球衣的跑友",
+      "caption": "遇到同穿阿森纳球衣的跑友 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_048.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-049.webp",
+      "alt": "街坊带来的现场音乐",
+      "caption": "街坊带来的现场音乐 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_049.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>进入市区，阳光更足，热浪也扑面而来。街头有一段彩绘玻璃长廊，上面画着树和花，看着很清凉，但并没有望梅止渴的作用：那只是“视觉降温”，身体一点没凉快。</p>"
+      "html": "<p>接下来路线跑进了一所大学校园，<strong>Concordia College</strong>（康考迪亚学院）。这所学校建于 1891 年，是一所私立文理学院，早年由挪威移民社区创办，所以有浓厚的路德宗传统。校园很有北欧小镇的味道，红砖建筑、教堂钟楼，还有绿树成荫的小道。最逗的是，他们的吉祥物是一个巨大的“<strong>玉米棒子</strong>”，站在路边跟跑者互动。北达科他这片就是玉米地的天下，吉祥物选这个再合适不过了。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-050.webp",
-      "alt": "Mile 11 sign beside the sidewalk",
-      "caption": "关键里程 @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-050.webp",
+      "alt": "进入 Concordia College",
+      "caption": "进入 Concordia College · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_050.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-051.webp",
+      "alt": "康考迪亚学院的校园道路",
+      "caption": "康考迪亚学院的校园道路 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_051.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-053.webp",
+      "alt": "校园里的钟楼",
+      "caption": "校园里的钟楼 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_053.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-054-1.webp",
+      "alt": "跟着跑者穿过校园林荫道",
+      "caption": "跟着跑者穿过校园林荫道 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_054-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-054-2.webp",
+      "alt": "钟楼旁继续向前",
+      "caption": "钟楼旁继续向前 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_054-2.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-054.webp",
+      "alt": "经过校园里的雕塑与长椅",
+      "caption": "经过校园里的雕塑与长椅 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_054.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-055.webp",
+      "alt": "校园喷泉",
+      "caption": "校园喷泉 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_055.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-052.webp",
+      "alt": "和玉米吉祥物打个招呼",
+      "caption": "和玉米吉祥物打个招呼 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_052.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>再往前，最经典的一幕出现了：Fargo大牌子！这块蓝色的竖式霓虹牌子，挂在一栋1930年代的老剧院外墙上，是Fargo最著名的地标。</p>"
+      "html": "<p>穿过校园，很快又回到了河边。桥的另一侧，有一个<strong>迷你版的自由女神像</strong>静静地矗立在街角，看着跑者从身边经过。又回到北达州了，这一路：从大平原出发，穿越小镇，跨过州界，跑过钟楼和玉米地，<strong>离终点越来越近了</strong>。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-051.webp",
-      "alt": "Green lawn on the long residential stretch",
-      "caption": "Green lawn @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>以前这里是电影院，现在是剧院兼演出中心。几乎所有Fargo的宣传照、纪念品、甚至马拉松奖牌设计里，都会出现这块大牌子。可以说，谁没在这里留张照片，谁就算没来过Fargo。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-057.webp",
+      "alt": "跨过河上的桥",
+      "caption": "跨过河上的桥 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_057.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-052.webp",
-      "alt": "Veterans Memorial Bridge sign",
-      "caption": "桥面路段 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>热归热，还是得顶着跑。摄影师在街边拍照，我也戴上了“痛苦面具”，咬牙装酷。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-058.webp",
+      "alt": "街角的小自由女神像",
+      "caption": "街角的小自由女神像 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_058.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-053.webp",
-      "alt": "Bagpipe band on the bridge plaza",
-      "caption": "过桥瞬间 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>跑出市区又进了小区。就在快要走走停停的时候，一个美国女生跑者从身边冲过，对我喊：“Don’t stop, keep going!” 这句鼓励像是一针强心剂。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-056.webp",
+      "alt": "河边道路上的跑步自拍",
+      "caption": "河边道路上的跑步自拍 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_056.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-054.webp",
-      "alt": "Quiet road after crossing the bridge",
-      "caption": "路上风景 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>终于，终点的大拱门出现在视线里。主持人拿着话筒喊出我的名字，还伸手跟我击掌，我感觉像明星出场一样。最后成绩定格在 <span data-cn-emphasis=\"underline\" data-cn-tone=\"3\">3小时53分</span>，破四完成！</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-055.webp",
-      "alt": "Aid station pause with other runners",
-      "caption": "志愿者补给 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>Siqi已经在终点等我，我们一起拍了好多照片。奖牌拿在手里，是长方形金色设计，上面刻着Fargo大牌子的造型，线条拉射出去，像光芒一样，寓意“点亮北方小城的骄傲”。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-056.webp",
-      "alt": "Red-shirt runner friend on the course",
-      "caption": "转弯跑者 @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-059.webp",
+      "alt": "河边的草地与树林",
+      "caption": "河边的草地与树林 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_059.png"
     },
     {
       "kind": "heading",
-      "title": "欧冠决赛、星链网与充电汉堡",
-      "label": "返程路上"
+      "label": "最后6英里",
+      "title": "顶着热，跑到终点"
     },
     {
       "kind": "paragraph",
-      "html": "<p>跑完法戈马拉松，我们并没有立刻返程，而是按照“惯例”先找地方洗个澡。Fargo 这边 Planet Fitness 不多，最近的一家在一个多小时车程之外。</p>"
+      "html": "<p>进入最后6英里。路边出现了一支<strong>临时交响乐团</strong>：小孩拉小提琴、大人拉大提琴，还有人打着节拍。阳光照在乐器上，闪闪发亮。再往前，我又遇到了“黑人兄弟补给站”，笑容还是那么灿烂。补给点后不远，小朋友们又出场了，有的打扮成小公主，有的光着脚丫，举着果冻糖袋子，<strong>递给路过的跑者</strong>。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-057.webp",
-      "alt": "Front-yard band in the neighborhood",
-      "caption": "Front yard @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-060.webp",
+      "alt": "草地旁的乐队与跑者",
+      "caption": "草地旁的乐队与跑者 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_060.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-061.webp",
+      "alt": "接过志愿者递来的水",
+      "caption": "接过志愿者递来的水 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_061.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-062.webp",
+      "alt": "孩子们在路边递来补给",
+      "caption": "孩子们在路边递来补给 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_062.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-063.webp",
+      "alt": "来到 21 英里",
+      "caption": "来到 21 英里 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_063.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-064.webp",
+      "alt": "一边跑，一边享受街坊的加油声",
+      "caption": "一边跑，一边享受街坊的加油声 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_064.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-065.webp",
+      "alt": "粉色纱裙的配速员举着时间牌",
+      "caption": "粉色纱裙的配速员举着时间牌 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_065.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-066.webp",
+      "alt": "街坊与跑者互相鼓劲",
+      "caption": "街坊与跑者互相鼓劲 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_066.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>这天正好是欧冠决赛，我在车里用 Siqi 的 Starlink 星链网络，看着巴黎圣日耳曼 5:0 国际米兰，<span data-cn-emphasis=\"underline\" data-cn-tone=\"0\">第一次</span>捧得欧冠。</p>"
+      "html": "<p>进入市区，阳光更足，热浪也扑面而来。街头有一段彩绘玻璃长廊，上面画着树和花，看着很清凉，但并没有望梅止渴的作用：那只是“<strong>视觉降温</strong>”，身体一点没凉快。再往前，最经典的一幕出现了：<strong>Fargo大牌子</strong>！这块蓝色的竖式霓虹牌子，挂在一栋1930年代的老剧院外墙上，是Fargo最著名的地标。以前这里是电影院，现在是剧院兼演出中心。几乎所有Fargo的宣传照、纪念品、甚至马拉松奖牌设计里，都会出现这块大牌子。可以说，谁没在这里留张照片，谁就算没来过Fargo。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-058.webp",
-      "alt": "Concordia College sign on campus",
-      "caption": "赛道指示牌 @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-067-1.webp",
+      "alt": "重新跑进市中心的街道",
+      "caption": "重新跑进市中心的街道 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_067-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-067.webp",
+      "alt": "市中心的彩绘玻璃长廊",
+      "caption": "市中心的彩绘玻璃长廊 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_067.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-068.webp",
+      "alt": "法戈剧院的蓝色招牌",
+      "caption": "法戈剧院的蓝色招牌 · 摄影 / Arsenan",
+      "source_file": "Fargo_068.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>想着十几年前我们还得找信号差的体育台，现在跑完马拉松，在车里一边充电一边看高清直播，真的是“科技改变生活”。</p>"
+      "html": "<p>热归热，还是得顶着跑。摄影师在街边拍照，我也戴上了“痛苦面具”，咬牙装酷。跑出市区又进了小区。就在快要走走停停的时候，一个美国女生跑者从身边冲过，对我喊：“<strong>Don’t stop, keep going</strong>!” <strong>这句鼓励像是一针强心剂</strong>。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-059.webp",
-      "alt": "Cobber mascot reaching out",
-      "caption": "Cobber mascot @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-068-0.webp",
+      "alt": "法戈街头，抬手回应摄影师",
+      "caption": "法戈街头，抬手回应摄影师 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of Fargo_068-0.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-068-1.webp",
+      "alt": "经过法戈剧院前的摄影点",
+      "caption": "经过法戈剧院前的摄影点 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of Fargo_068-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-068-2.webp",
+      "alt": "张开双臂，再跑过一个街区",
+      "caption": "张开双臂，再跑过一个街区 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of Fargo_068-2.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-069.webp",
+      "alt": "来到 24 英里",
+      "caption": "来到 24 英里 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_069.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-070.webp",
+      "alt": "顶着热，继续向前",
+      "caption": "顶着热，继续向前 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_070.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>晚上我们住进了一家小旅馆，好好睡了一觉。第二天继续启程，午饭在 Buffalo Wild Wings 解决，炸鸡翅、汉堡、薯条，典型的美式跑后大餐。</p>"
+      "html": "<p>终于，终点的大拱门出现在视线里。主持人拿着话筒喊出我的名字，还伸手跟我击掌，我感觉像明星出场一样。最后成绩定格在 <strong>3小时53分</strong>，<strong>破四完成</strong>！Siqi已经在终点等我，我们一起拍了好多照片。奖牌拿在手里，是长方形金色设计，上面刻着Fargo大牌子的造型，线条拉射出去，像光芒一样，寓意“点亮北方小城的骄傲”。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-060.webp",
-      "alt": "Clock tower at Concordia College",
-      "caption": "Clock tower @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>一路往回开，晚上经过明尼阿波利斯的时候，还顺道吃了顿中餐，菜色经典，味道也很美国，环境还挺讲究的。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-071-1.webp",
+      "alt": "最后几英里，继续迈步",
+      "caption": "最后几英里，继续迈步 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of Fargo_071-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-061.webp",
-      "alt": "Flag-lined campus walkway",
-      "caption": "Flag lined @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-071.webp",
+      "alt": "最后一段路的终点指示",
+      "caption": "最后一段路的终点指示 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_071.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-062.webp",
-      "alt": "Shaded campus path toward the fountain",
-      "caption": "Shaded campus @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>从白天开到黑夜，我们就一路回到了 Louisville。自动驾驶一路护航，虽然时间长，但也不算太累。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-072-1-1.webp",
+      "alt": "张开双臂，跑进法戈终点",
+      "caption": "张开双臂，跑进法戈终点 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of Fargo_072-1-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-063.webp",
-      "alt": "Bell tower framed by yellow pennants",
-      "caption": "Bell tower @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>这次北达州之行，虽然行程紧凑，但跑马、露营、自驾、欧冠、中餐、汉堡……啥也没少，算是非常“完整”的周末了。</p>"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-072-1.webp",
+      "alt": "冲线前，向镜头挥手",
+      "caption": "冲线前，向镜头挥手 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of Fargo_072-1.png"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-064.webp",
-      "alt": "Fountain and race flags on campus",
-      "caption": "Fountain and @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-072-2.webp",
+      "alt": "举起双手，完成第25州",
+      "caption": "举起双手，完成第25州 · 摄影 / 赛事官方",
+      "source_file": "Copy #1 of Fargo_072-2.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-072.webp",
+      "alt": "完赛区里，戴着奖牌向镜头挥手",
+      "caption": "完赛区里，戴着奖牌向镜头挥手 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_072.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-073-1.webp",
+      "alt": "两人站进相框，留下完赛合影",
+      "caption": "两人站进相框，留下完赛合影",
+      "source_file": "Copy #1 of Fargo_073-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-073-2.webp",
+      "alt": "拿着法戈相框，遮着太阳留张照片",
+      "caption": "拿着法戈相框，遮着太阳留张照片",
+      "source_file": "Copy #1 of Fargo_073-2.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-073-3.webp",
+      "alt": "法戈剧院造型的金色奖牌",
+      "caption": "法戈剧院造型的金色奖牌 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_073-3.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-073-4.webp",
+      "alt": "穿过25个州，再留下一个完赛纪念",
+      "caption": "穿过25个州，再留下一个完赛纪念",
+      "source_file": "Copy #1 of Fargo_073-4.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-073.webp",
+      "alt": "法戈马拉松终点拱门",
+      "caption": "法戈马拉松终点拱门 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_073.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-077.webp",
+      "alt": "记录这次法戈马拉松的跑步轨迹",
+      "caption": "记录这次法戈马拉松的跑步轨迹 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_077.PNG"
     },
     {
       "kind": "heading",
-      "title": "Run50 半程，25州 分水岭",
-      "label": "半程回望"
+      "label": "返程路上",
+      "title": "跑完了，再慢慢回家"
     },
     {
       "kind": "paragraph",
-      "html": "<p>回头一想，这趟 50 州跑马拉松的旅程，已经整整跑了 25 个州。</p>"
+      "html": "<p>跑完法戈马拉松，我们并没有立刻返程，而是按照“惯例”先找地方洗个澡。Fargo 这边 Planet Fitness 不多，最近的一家在一个多小时车程之外。这天正好是欧冠决赛，我在车里用 Siqi 的 <strong>Starlink</strong> 星链网络，看着巴黎圣日耳曼 5:0 国际米兰，第一次捧得欧冠。想着十几年前我们还得找信号差的体育台，现在跑完马拉松，在车里一边充电一边看高清直播，真的是“<strong>科技改变生活</strong>”。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-065.webp",
-      "alt": "Hot-road selfie in the second half",
-      "caption": "路上自拍 · 2 @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-074-1.webp",
+      "alt": "充电时，在车里看欧冠直播",
+      "caption": "充电时，在车里看欧冠直播 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_074-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-074.webp",
+      "alt": "用车里的屏幕继续看比赛",
+      "caption": "用车里的屏幕继续看比赛 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_074.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>第一场，还得从 2020 年 11 月的路易斯维尔马拉松 说起。那会儿正是疫情时期，也没啥系统训练，纯靠一腔热血，戴着口罩就上了北美的赛道。那一跑，像是命运的开关被“啪”地一下按下。</p>"
+      "html": "<p>晚上我们住进了一家小旅馆，好好睡了一觉。<strong>第二天继续启程</strong>，午饭在 Buffalo Wild Wings 解决，炸鸡翅、汉堡、薯条，典型的美式跑后大餐。一路往回开，晚上经过明尼阿波利斯的时候，还顺道吃了顿中餐，菜色经典，味道也很美国，环境还挺讲究的。从白天开到黑夜，我们就<strong>一路回到了 Louisville</strong>。自动驾驶一路护航，虽然时间长，但也不算太累。</p>"
     },
     {
       "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-066.webp",
-      "alt": "Bridge back toward Fargo",
-      "caption": "桥下阴影 @Arsenan"
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-074-2.webp",
+      "alt": "墙上的车牌拼成一幅美国地图",
+      "caption": "墙上的车牌拼成一幅美国地图 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_074-2.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-074-3.webp",
+      "alt": "返程途中停靠美式餐厅",
+      "caption": "返程途中停靠美式餐厅 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_074-3.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-074-4.webp",
+      "alt": "跑后的一大份汉堡和薯条",
+      "caption": "跑后的一大份汉堡和薯条 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_074-4.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-075-1.webp",
+      "alt": "返程途中的一顿中餐",
+      "caption": "返程途中的一顿中餐",
+      "source_file": "Copy #1 of Fargo_075-1.png"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-075.webp",
+      "alt": "返程途中的一顿中餐",
+      "caption": "返程途中的一顿中餐 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_075.png"
     },
     {
       "kind": "paragraph",
-      "html": "<p>这三四年间，我和 Siqi 开着车、坐着飞机，从南到北，从东到西，一场一场地把美国地图“点亮”：</p>"
+      "html": "<p>这次北达州之行，虽然行程紧凑，但跑马、露营、自驾、欧冠、中餐、汉堡……啥也没少，算是<strong>非常“完整”的周末</strong>了。</p>"
     },
     {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-067.webp",
-      "alt": "Statue at the bridge entrance",
-      "caption": "桥边视角 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>从纽约的大城市马拉松，到夏威夷的海岛赛道；</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-068.webp",
-      "alt": "Red River bend beside the course",
-      "caption": "水边风景 @Arsenan"
+      "kind": "heading",
+      "label": "半程回望",
+      "title": "第二十五州，刚好半程"
     },
     {
       "kind": "paragraph",
-      "html": "<p>从阿拉斯加的清晨薄雾，到佛罗里达的艳阳海风；</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-069.webp",
-      "alt": "Brass band playing on the grass",
-      "caption": "Brass band @Arsenan"
+      "html": "<p>回头一想，这趟 50 州跑马拉松的旅程，<strong>已经整整跑了 25 个州</strong>。<strong>第一场</strong>，还得从 2020 年 11 月的路易斯维尔马拉松 说起。那会儿正是疫情时期，也没啥系统训练，纯靠一腔热血，戴着口罩就上了北美的赛道。那一跑，像是命运的开关被“啪”地一下按下。这三四年间，我和 Siqi 开着车、坐着飞机，从南到北，从东到西，一场一场地把美国地图“点亮”：</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>从匹兹堡的钢铁桥，到蓝岭山的疯狂爬升；</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-070.webp",
-      "alt": "Aid stop chat in the heat",
-      "caption": "水站一角 @Arsenan"
+      "html": "<p>从纽约的大城市马拉松，到夏威夷的海岛赛道；从阿拉斯加的清晨薄雾，到佛罗里达的艳阳海风；从匹兹堡的钢铁桥，到蓝岭山的疯狂爬升；从科罗拉多的高原，到北达科他的玉米地小镇……<strong>每一场都有故事</strong>，每一场也在地图上画下一个小点，<strong>每一场我都想留下文字去记录它</strong>。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>从科罗拉多的高原，到北达科他的玉米地小镇……</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-071.webp",
-      "alt": "Kids cheering on the neighborhood street",
-      "caption": "城市立面 @Arsenan"
+      "html": "<p>而这一站，Fargo，正好是第 25 州，Run50 的旅程正式跑过了“<strong>半程分水岭</strong>”。前面 25 个州，有冲动、有坚持，也有不少小插曲；<strong>后面 25 个州</strong>，还有高山、沙漠、草原、海岸在等着我们。</p>"
     },
     {
       "kind": "paragraph",
-      "html": "<p>每一场都有故事，每一场也在地图上画下一个小点，每一场我都想留下文字去记录它。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-072.webp",
-      "alt": "Mile 21 sign under the shade",
-      "caption": "英里牌 · 6 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>而这一站，Fargo，正好是第 25 州，Run50 的旅程正式跑过了“<span data-cn-emphasis=\"underline\" data-cn-tone=\"1\">半程分水岭</span>”。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-073.webp",
-      "alt": "Pink tutu runner on the curb",
-      "caption": "队伍中段 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>前面 25 个州，有冲动、有坚持，也有不少小插曲；</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-074.webp",
-      "alt": "Neighborhood cheer block near the finish",
-      "caption": "终点现场 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>后面 25 个州，还有高山、沙漠、草原、海岸在等着我们。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-075.webp",
-      "alt": "FargoDome finish road coming back",
-      "caption": "场馆起跑线 @Arsenan"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>下个州继续出发！西部世界的冒险，才刚刚开始……</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "../stories/chinese/Run50-Fargo-Marathon-clean_files/img-076.webp",
-      "alt": "Fargo, North Dakota road moment 76",
-      "caption": "路边远景 @Arsenan"
+      "html": "<p><strong>下个州继续出发</strong>！西部世界的冒险，才刚刚开始……</p>"
     }
-  ]
+  ],
+  "source_folder": "Z:\\ZhennanZ Folder\\000-Marathon-Story-2024-2025\\20250529-ND-Fargo Marathon-25st\\4-Polished Photos"
 }
