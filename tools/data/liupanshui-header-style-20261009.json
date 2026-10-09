@@ -1,0 +1,9 @@
+{
+  "scope": "Liupanshui only; use as future article header standard",
+  "layout": "map above paper poster, aligned width; textured local symbol points to city",
+  "poster_source": "C:/Users/ZZ/.codex/generated_images/01a0feac-c272-7eb3-b8b6-d94e4adb7a29/exec-07d4e018-6afe-4acc-be4c-65764574aefd.png",
+  "tool": "built-in image_gen",
+  "poster_prompt": "Preserve all original interior elements, composition and flat paper-print style. Replace bulky outside frame with slender navy/cream/ochre layered lines, stepped corners and sparse geometric motifs inspired by torch handle. No metallic embossing or new scenery.",
+  "emblem": "guizhou-map-emblem.png: image-gen transparent paper illustration of mountains, bridge and Yi torch",
+  "preserve_index_cover": true
+}

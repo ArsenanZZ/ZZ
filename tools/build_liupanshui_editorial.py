@@ -208,7 +208,7 @@ def render(d):
  f'<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}intro-light-still.png" data-light-src="{pfx}intro-light-still.png" data-dark-src="{pfx}intro-dark-still.png"><img src="{pfx}intro-light.gif" data-light-src="{pfx}intro-light.gif" data-dark-src="{pfx}intro-dark.gif" alt="RunCN 山路片头" width="280" height="280"></picture>',
  f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}hero-still.jpg"><img src="{pfx}hero.gif" width="900" height="900" alt="六盘水的比赛、草原、桥和奖牌" fetchpriority="high"></picture><figcaption>乌蒙山里跑一个周末 · 照片署名见正文</figcaption></figure>',
  '<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div>',f'<section class="intro"><p>{emphasize(d["intro"])}</p></section>',
- '<figure class="photo-strip location-poster"><img src="/assets/runcn-liupanshui-2026/map.png" alt="RunCN 中国地图，山形指引与星标定位贵州六盘水"><img src="/assets/runcn-liupanshui-cover-20261009.jpg" alt="贵州六盘水 · 2026 · RunCN 27"><figcaption>贵州 · 六盘水 · RunCN 第27站<br>封面设计 / Arsenan × AI</figcaption></figure>']
+ '<figure class="photo-strip location-poster"><img src="/assets/runcn-liupanshui-2026/map-guizhou-liupanshui.jpg" alt="RunCN 中国地图，山形指引与星标定位贵州六盘水"><img src="/assets/runcn-liupanshui-poster-print-20261009.jpg" alt="贵州六盘水 · 2026 · RunCN 27"><figcaption>贵州 · 六盘水 · RunCN 第27站<br>封面设计 / Arsenan × AI</figcaption></figure>']
  blocks=d['blocks'];i=0;n=0
  while i<len(blocks):
   b=blocks[i]
