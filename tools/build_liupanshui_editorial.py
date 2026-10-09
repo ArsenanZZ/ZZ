@@ -165,13 +165,16 @@ def assets():
   with Image.open(ASSET/f'Liu-{key}.webp') as im:
    im.thumbnail((1600,2000));im.save(preview/f'Liu-{key}.webp',quality=88,method=3)
  with ThreadPoolExecutor(max_workers=6) as pool:list(pool.map(small_photo,CAP))
+ hero_assets()
+ intro_assets()
+
+def hero_assets():
  # Only the opening montage is cropped. All body photographs retain full dimensions and aspect ratios.
  frames=[]
- for key,center in [('16-4',(.5,.05)),('08-2',(.5,.3)),('10-1-1',(.5,.45)),('17-3',(.5,.05)),('18-0',(.5,.65))]:
+ for key,center in [('15-7',(.5,.05)),('08-2',(.5,.3)),('10-1-1',(.5,.45)),('11-1',(.5,.2)),('17-3',(.5,.05)),('18-0',(.5,.65)),('18-2',(.5,0))]:
   im=Image.open(ASSET/f'Liu-{key}.webp');frames.append(ImageOps.fit(im,(900,900),centering=center))
  frames[0].save(ASSET/'hero-still.jpg',quality=95)
  frames[0].save(ASSET/'hero.gif',save_all=True,append_images=frames[1:],duration=3000,loop=0,optimize=False)
- intro_assets()
 
 def intro_assets():
  # Mountain, RunCN wordmark, then a river; no small slogan.
