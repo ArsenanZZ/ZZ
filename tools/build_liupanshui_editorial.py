@@ -106,7 +106,7 @@ OFFICIAL=set('14-1 14-2 14-2-1 14-3 14-4 14-5 14-8 14-9 15-2 15-3 15-4 15-7 16-3
 UNKNOWN=set('07-0 07-2 07-3 08-1 08-2 09 11-1 15-6 16-1 17-5 18-1 18-2'.split())
 # Each entry is a photo group inserted after the given paragraph index, maintaining the author's prose order.
 INSERT={
-'lede':{5:['00','00-1','00-2']},
+'lede':{2:['16-4'],4:['00-1','00-2'],5:['00']},
 'arrival':{1:['01','01-1','02'],2:['03'],3:['05-1','05-2'],4:['04','04-1','05']},
 'morning':{1:['06','06-1'],3:['06-2']},
 'wumeng':{2:['07'],3:['07-0','07-1'],4:['08','08-0','08-0-1'],5:['08-3','08-4'],7:['07-2','08-2'],9:['07-3','08-1','09','09-0']},
@@ -116,7 +116,7 @@ INSERT={
 'race':{1:['13-0'],2:['13-1','13-2'],3:['14-0','14-1','14-2','14-2-1'],6:['14-3','14-4'],7:['14-5','14-7'],8:['15-1','15-5'],10:['14-8','14-9','15-2']},
 'football':{2:['14-9-1'],4:['15-6'],6:['17-3','17-4','17-5']},
 'glasses':{2:['14-6'],4:['15-4']},
-'finish':{1:['15-0','15-2-1','15-2-2'],2:['15-8','16-0','16-2'],3:['15-3','15-7'],4:['16-1','16-3','16-4'],5:['17-0','17-1','17-2'],6:['18-0','18-1','18-2']},
+'finish':{1:['15-0','15-2-1','15-2-2'],2:['15-8','16-0','16-2'],3:['15-3','15-7'],4:['16-1','16-3'],5:['17-0','17-1','17-2'],6:['18-0','18-1','18-2']},
 'return':{3:['19-0'],4:['19-1','19-2'],7:['19-3']}}
 LABELS={'lede':'前言','arrival':'抵达水城','morning':'赛前清晨','wumeng':'乌蒙山里','bridge':'北盘江畔','yizu':'海坪火把季','expo':'傍晚领物','race':'清晨起跑','football':'赛道闲聊','glasses':'第一视角','finish':'30公里以后','return':'返程路上'}
 KEYS=['六盘水','乌蒙大草原','水城古镇','凤池园','北盘江','海坪','火把季','火把节','贵州','中国凉都','江南煤都','三线建设','2018 年','五小时二十分','两小时五十多分','雷鸟 V4','Meta Oakley','C 罗','西班牙','阿根廷','五百米','三十公里','四十二公里','跑跑走走','高原','凉都','时差','新鞋','摄影师','志愿者','刺梨汁','七点四十','乌蒙山连着山外山']
@@ -171,9 +171,11 @@ def assets():
   im=Image.open(ASSET/f'Liu-{key}.webp');frames.append(ImageOps.fit(im,(900,900),centering=center))
  frames[0].save(ASSET/'hero-still.jpg',quality=95)
  frames[0].save(ASSET/'hero.gif',save_all=True,append_images=frames[1:],duration=3000,loop=0,optimize=False)
- # A RunCN-specific native wordmark, revealed after a mountain-shaped running line.
+ intro_assets()
+
+def intro_assets():
+ # Mountain, RunCN wordmark, then a river; no small slogan.
  font=ImageFont.truetype('C:/Windows/Fonts/arialbd.ttf',53)
- small=ImageFont.truetype('C:/Windows/Fonts/msyh.ttc',15)
  for theme,bg,ink in [('light','#ffffff','#b8452e'),('dark','#191919','#ffd36e')]:
   frames=[]
   points=[(30,110),(65,110),(100,68),(135,110),(158,88),(190,110),(250,110)]
@@ -185,7 +187,13 @@ def assets():
     alpha=min(1,(k-11)/5)
     layer=Image.new('RGBA',(280,280));ld=ImageDraw.Draw(layer)
     ld.text((140,151),'RunCN',font=font,fill=ink,anchor='mm')
-    if k>=17:ld.text((140,202),'跑过中国 · 记下每一站',font=small,fill=ink,anchor='mm')
+    if k>=17:
+     import math
+     river=[(x,200+6*math.sin((x-60)*math.pi/70)) for x in range(60,221)]
+     end=min(len(river),int(len(river)*(k-16)/6))
+     if end>1:
+      ld.line(river[:end],fill=ink,width=3)
+      ld.line([(x,y+12) for x,y in river[:end]],fill=ink,width=2)
     if alpha<1:layer.putalpha(layer.getchannel('A').point(lambda x:int(x*alpha)))
     im=Image.alpha_composite(im.convert('RGBA'),layer).convert('RGB')
    frames.append(im)

@@ -90,26 +90,22 @@
       "html": "<p>过去这里因煤炭被称为“<strong data-cn-tone=\"3\">江南煤都</strong>”，现在更常见的标签是“<strong data-cn-tone=\"0\" data-cn-emphasis=\"underline\">中国凉都</strong>”。七月全国能跑的马拉松不算多，<strong data-cn-tone=\"1\">六盘水</strong>靠着海拔和夏季气候，成了不少跑者每年都会惦记的一站。</p>"
     },
     {
+      "kind": "figure",
+      "src": "/assets/runcn-liupanshui-2026/Liu-16-4.webp",
+      "alt": "举起双手，离终点又近一点",
+      "caption": "举起双手，离终点又近一点 · 摄影 / 赛事官方",
+      "source_file": "Liu-16-4.jpg",
+      "width": 3297,
+      "height": 4947,
+      "sha256": "1a4e9cbd136acd738ceabafbe4d8f3168b85ba60a3c1b520e6c02289cc9f0518"
+    },
+    {
       "kind": "paragraph",
       "html": "<p>这是我 2026 年回国后跑的第一场马拉松。我在 <strong data-cn-tone=\"3\">2018 年</strong>报过<strong data-cn-tone=\"1\">六盘水</strong>，当时<strong data-cn-tone=\"0\" data-cn-emphasis=\"underline\">没中签</strong>。这次算是隔了几年，把这场比赛补上。</p>"
     },
     {
       "kind": "paragraph",
       "html": "<p><strong data-cn-tone=\"3\">贵州</strong>对我来说倒不是一个全新的省份。之前已经去贵阳跑过马拉松，对<strong data-cn-tone=\"3\">贵州</strong>最直接的印象就是山多。官方资料里常把<strong data-cn-tone=\"3\">贵州</strong>称为“山地公园省”，全省绝大部分国土是山地和丘陵，喀斯特地貌也很集中。坐车在<strong data-cn-tone=\"3\">贵州</strong>走，路线很少是笔直的，基本就是上坡、下坡、隧道和桥。</p>"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>贵阳是省会，城市规模和交通都更大；<strong data-cn-tone=\"1\">六盘水</strong>在<strong data-cn-tone=\"3\">贵州</strong>西部，更靠近乌蒙山区。虽然都在<strong data-cn-tone=\"3\">贵州</strong>，但两场比赛看到的城市和赛道完全不一样。贵阳让我先认识了<strong data-cn-tone=\"3\">贵州</strong>，这次则是继续往西走。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/runcn-liupanshui-2026/Liu-00.webp",
-      "alt": "坐高铁，从广州出发",
-      "caption": "坐高铁，从广州出发 · 摄影 / Arsenan",
-      "source_file": "Liu-00.jpg",
-      "width": 3769,
-      "height": 2120,
-      "sha256": "41287e5b25df430fffd5b510313b159208dca72455624455008112f6ee8c261c"
     },
     {
       "kind": "figure",
@@ -130,6 +126,20 @@
       "width": 3840,
       "height": 2160,
       "sha256": "818391372af923498615fbea3ccf0e6b4aa4f10ea1cc5808cc05bde1d6864834"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>贵阳是省会，城市规模和交通都更大；<strong data-cn-tone=\"1\">六盘水</strong>在<strong data-cn-tone=\"3\">贵州</strong>西部，更靠近乌蒙山区。虽然都在<strong data-cn-tone=\"3\">贵州</strong>，但两场比赛看到的城市和赛道完全不一样。贵阳让我先认识了<strong data-cn-tone=\"3\">贵州</strong>，这次则是继续往西走。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/runcn-liupanshui-2026/Liu-00.webp",
+      "alt": "坐高铁，从广州出发",
+      "caption": "坐高铁，从广州出发 · 摄影 / Arsenan",
+      "source_file": "Liu-00.jpg",
+      "width": 3769,
+      "height": 2120,
+      "sha256": "41287e5b25df430fffd5b510313b159208dca72455624455008112f6ee8c261c"
     },
     {
       "kind": "heading",
@@ -1128,16 +1138,6 @@
       "width": 3548,
       "height": 5317,
       "sha256": "4ecb25714bae6e45beeb2719440b3ac3ccec7cf0361d213ea35494844f0f973f"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/runcn-liupanshui-2026/Liu-16-4.webp",
-      "alt": "举起双手，离终点又近一点",
-      "caption": "举起双手，离终点又近一点 · 摄影 / 赛事官方",
-      "source_file": "Liu-16-4.jpg",
-      "width": 3297,
-      "height": 4947,
-      "sha256": "1a4e9cbd136acd738ceabafbe4d8f3168b85ba60a3c1b520e6c02289cc9f0518"
     },
     {
       "kind": "paragraph",
