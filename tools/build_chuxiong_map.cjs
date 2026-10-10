@@ -31,6 +31,7 @@ const root=path.resolve(__dirname,'..');
   window.cityDots.forEach(([city,,lat,lon])=>{if(city!=='楚雄')add('circle',{cx:(lon-70)*11.8,cy:(55-lat)*15,r:3.7,fill:'#ef6451',stroke:'#fff8e8','stroke-width':1});});
   // Existing site projection: x=(lon-70)*11.8, y=(55-lat)*15.
   const x=(101.5458-70)*11.8,y=(55-25.0329)*15;
+  add('text',{x:x+5,y:y-22,'font-size':12,'text-anchor':'middle','font-weight':'bold',fill:'#253b46'},'云南');
   add('circle',{cx:x,cy:y,r:13,fill:'#fff4b3',opacity:.7});
   const points=Array.from({length:10},(_,i)=>{const a=-Math.PI/2+i*Math.PI/5,r=i%2?4.5:10;return (x+Math.cos(a)*r)+','+(y+Math.sin(a)*r)}).join(' ');
   add('polygon',{points,fill:'#e95532',stroke:'#fffdf0','stroke-width':1.8});
