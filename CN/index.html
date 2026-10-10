@@ -1849,7 +1849,7 @@
             <div class="eyebrow">RunCN · 中国站点</div>
             <h2>中国马拉松系列</h2>
           </div>
-          <p>20 篇 · 按站点与年份整理</p>
+          <p>21 篇 · 按站点与年份整理</p>
         </div>
 
         <div class="stories" aria-label="RunCN 中国马拉松微信公众号故事">
@@ -2073,6 +2073,17 @@
               <div class="open">Open Chinese Story →</div>
             </div>
           </a>
+          <a class="story-card" href="/run50/wechat/chuxiong-marathon-editorial.html?v=20261010-runcn">
+            <img src="/assets/runcn-chuxiong-poster-20261010.jpg" alt="云南楚雄，福塔与金色展翅鸟，2026 RunCN第28站" loading="lazy">
+            <div class="story-body">
+              <span class="story-number">RunCN · 21</span>
+              <div class="eyebrow">RUNCN DISPATCH · YUNNAN</div>
+              <h3>RunCN #第28站｜云南楚雄马拉松｜赛前逛吃到天黑，跑完赶火车</h3>
+              <div class="meta">云南楚雄 · 2026.08.02</div>
+              <p class="desc">落地昆明，再坐火车到楚雄。两块钱登福塔，彝人古镇逛到天黑；128张照片，记录一个跑完还要赶火车的周末。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
         </div>
       </section>
 
@@ -2134,9 +2145,9 @@
       </section>
 
       <section class="stats" id="stats" aria-label="Run50 statistics">
-        <div class="stat-card"><b>68</b><span>公众号版文章</span></div>
+        <div class="stat-card"><b>69</b><span>公众号版文章</span></div>
         <div class="stat-card"><b>44</b><span>Run50 故事</span></div>
-        <div class="stat-card"><b>20</b><span>RunCN 故事</span></div>
+        <div class="stat-card"><b>21</b><span>RunCN 故事</span></div>
         <div class="stat-card"><b>4</b><span>RunWorld 故事</span></div>
       </section>
     </main>
@@ -2272,6 +2283,7 @@
       };
 
       const CHINA_PROVINCES = {
+        cn_yunnan: ['云南', '#ed7553'],
         cn_heilongjiang: ['黑龙江', '#f06a4f'], cn_hubei: ['湖北', '#5fc36f'],
         cn_sichuan: ['四川', '#f4a83a'], cn_innermongolia: ['内蒙古', '#39abc0'],
         cn_shanxi: ['山西', '#add64f'], cn_hunan: ['湖南', '#a678dc'],
@@ -2284,6 +2296,7 @@
       };
 
       const CHINA_NAMES_EN = {
+        cn_yunnan: 'Yunnan',
         cn_heilongjiang: 'Heilongjiang', cn_hubei: 'Hubei', cn_sichuan: 'Sichuan',
         cn_innermongolia: 'Inner Mongolia', cn_shanxi: 'Shanxi', cn_hunan: 'Hunan',
         cn_fujian: 'Fujian', cn_gansu: 'Gansu', cn_jiangsu: 'Jiangsu', cn_guizhou: 'Guizhou',
@@ -2311,6 +2324,7 @@
         'guilin-marathon': 'Guilin',
         'hong-kong-marathon': 'Hong Kong',
         'liupanshui-marathon': 'Liupanshui',
+        'chuxiong-marathon': 'Chuxiong',
         'wuhan-graduation': 'Beijing'
       };
 
@@ -2325,6 +2339,7 @@
         return mapLanguage() === 'en';
       }
       function storyHref(slug) {
+        if (slug === 'chuxiong-marathon') return new URL('/run50/wechat/chuxiong-marathon-editorial.html?v=20261010-runcn', location.href).href;
         if (!isEnglishMap() && slug === 'louisville-marathon-2024') return new URL('/run50/wechat/louisville-marathon-2024-editorial.html?v=20261005-layouts', location.href).href;
         const base = isEnglishMap() ? WECHAT_EN_STORY_BASE : WECHAT_STORY_BASE;
         const version = isEnglishMap() ? WECHAT_EN_STORY_VERSION : WECHAT_STORY_VERSION;
@@ -2393,6 +2408,7 @@
       });
 
       const CHINA_PROVINCE_STORIES = {
+        cn_yunnan: storyHref('chuxiong-marathon'),
         cn_heilongjiang: storyHref('harbin-marathon'),
         cn_hubei: storyHref('wuhan-marathon-2018'),
         cn_sichuan: storyHref('three-city-pilgrimage'),
@@ -2428,6 +2444,7 @@
       });
 
       const CHINA_CITY_DOTS = [
+        ['楚雄', 'cn_yunnan', 25.0329, 101.5458, storyHref('chuxiong-marathon')],
         ['哈尔滨', 'cn_heilongjiang', 45.8038, 126.5350, storyHref('harbin-marathon')],
         ['鄂尔多斯', 'cn_innermongolia', 39.6086, 109.7813, storyHref('steel-tank-story')],
         ['长治', 'cn_shanxi', 36.1954, 113.1163, storyHref('steel-tank-story')],
