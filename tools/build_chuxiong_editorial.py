@@ -13,7 +13,7 @@ ASSET=ROOT/'assets/runcn-chuxiong-2026'
 DATA=ROOT/'tools/data/chuxiong-editorial.json'
 TITLE='RunCN #第28站｜云南楚雄马拉松｜赛前逛吃到天黑，跑完赶火车'
 COVER_SRC='/assets/runcn-chuxiong-poster-framed-v3-20261010.jpg'
-POSTER_SRC='/assets/runcn-chuxiong-article-poster-v4-20261010.jpg'
+POSTER_SRC='/assets/runcn-chuxiong-article-poster-v5-20261010.jpg'
 assert COVER_SRC != POSTER_SRC, 'Homepage plaque cover and article paper poster must stay separate.'
 # Captions were checked against all 128 selected photographs.
 CAPTIONS=(ROOT/'tools/data/chuxiong-captions.txt').read_text(encoding='utf-8')
