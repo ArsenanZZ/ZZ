@@ -52,6 +52,23 @@
     {
       "title": "火把节美食街",
       "url": "https://www.cxs.gov.cn/info/1011/921159.htm"
+    },
+    {
+      "title": "青龙河与滨水公园",
+      "url": "https://www.cxs.gov.cn/info/12605/344648.htm"
+    },
+    {
+      "title": "彝海公园",
+      "url": "https://www.cxs.gov.cn/info/8825/252278.htm"
+    },
+    {
+      "title": "羊汤锅与火把节",
+      "url": "https://www.weather.com.cn/yunnan/tqyw/07/1934551.shtml"
+    },
+    {
+      "title": "火把节的餐桌习俗",
+      "url": "https://mzzj.yn.gov.cn/html/2023/mzwh_0812/50880.html"
     }
-  ]
+  ],
+  "geography_medal_audit": "Added river-basin and lakeside park context. No unverified name assigned to the hill or distant buildings in CX-17-5-1. Medal front described from CX-19-1 and CX-19-2, with foldable gate mechanism confirmed by author; no invented reverse-side inscription, material, or official symbolism."
 }
