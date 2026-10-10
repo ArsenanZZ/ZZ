@@ -1,4 +1,4 @@
-"""Build the RunCN Chuxiong story from the author's Vlog transcript and 128 selected photos."""
+"""Build the RunCN Chuxiong story from the author's firsthand written draft and 128 selected photos."""
 from pathlib import Path
 from html import escape
 import json,re,hashlib
@@ -11,7 +11,7 @@ SOURCE=Path(r'Z:\ZhennanZ Folder\0000-ZZ-Run-2026\20260802-楚雄马拉松')
 SLUG='chuxiong-marathon'
 ASSET=ROOT/'assets/runcn-chuxiong-2026'
 DATA=ROOT/'tools/data/chuxiong-editorial.json'
-TITLE='RunCN #第28站｜云南楚雄马拉松｜赛前逛吃到天黑，跑完赶火车'
+TITLE='RunCN #第28站｜云南楚雄马拉松｜从凉都到火城，跑进彝乡楚雄'
 COVER_SRC='/assets/runcn-chuxiong-poster-framed-v3-20261010.jpg'
 POSTER_SRC='/assets/runcn-chuxiong-article-poster-v5-20261010.jpg'
 assert COVER_SRC != POSTER_SRC, 'Homepage plaque cover and article paper poster must stay separate.'
@@ -19,9 +19,9 @@ assert COVER_SRC != POSTER_SRC, 'Homepage plaque cover and article paper poster 
 CAPTIONS=(ROOT/'tools/data/chuxiong-captions.txt').read_text(encoding='utf-8')
 CAP=dict(line.split('|',1) for line in CAPTIONS.splitlines() if line.strip())
 OFFICIAL=set('15-1 15-2 15-2-0 15-2-1 15-3 15-4 15-5 16-2-1 16-2-2 16-4-1 16-9-1 17-2-1 17-2-2 17-4-1 17-6-3-1 18-1-1 18-3-1 18-4-1 18-5-0 18-6'.split())
-UNKNOWN=set('01-2 03-3 05-2-11 05-3 05-4 08-1 09-4-1 10-1 10-2 10-3 11-1 11-6 11-7 13-5 18-4-1-0'.split())
-KEYS=['楚雄','云南','福塔','彝人古镇','太阳历文化园','米线','昆明南','火把节','接驳车','志愿者','两块钱','五小时二十分','四小时零六分钟','二十七公里','三十五公里','四十公里','周一上班','7点50分','12点22分','能量胶','金色展翅的大鸟']
-UNDER=['跑三走一','跑一走三','最后一哆嗦','说好的雨呢','帽子忘带了','跑完赶火车','没破四','四小时零六分钟','还来得及','差点迟到了','两块钱','明天应该不会这么热吧']
+UNKNOWN=set('01-2 05-2-11 05-3 05-4 08-1 11-1 11-6 11-7 13-5 18-4-1-0'.split())
+KEYS=['楚雄','云南','中国凉都','中国火城','彝乡','福塔','彝人古镇','太阳历文化园','菌菇小火锅','坛子肉','火把节','接驳车','志愿者','两块钱','15000号','4小时15分','三十五公里','四十公里','羊汤锅一条街','7:30','能量胶','影石露娜','RunCN']
+UNDER=['来都来了','跑马打工人','一人旅行神器','火车算是稳了','4小时15分','两块钱','一点不后悔']
 
 def emphasize(text):
  parts=re.split('('+'|'.join(map(re.escape,sorted(set(KEYS+UNDER),key=len,reverse=True)))+')',text)
@@ -53,7 +53,7 @@ def prepare():
   else:original.append(line);blocks.append({'kind':'paragraph','html':'<p>'+emphasize(line)+'</p>'})
  sources={f.stem.removeprefix('CX-') for f in (SOURCE/'000-楚雄-文章照片').glob('*.jpg')}
  assert len(used)==128 and len(set(used))==128 and set(used)==set(CAP)==sources,(len(used),sources-set(used),set(used)-sources)
- d={'title':TITLE,'intro':'落地昆明，坐火车到楚雄。两块钱登福塔，彝人古镇逛到天黑；第二天跑完四十二公里，再赶火车回去上班。','source_photo_count':128,'source_subtitles':str(SOURCE/'04-成片/楚雄旅行Vlog_25分钟_中文字幕.srt'),'original_paragraphs':original,'ending_paragraphs':[],'blocks':blocks}
+ d={'title':TITLE,'intro':'从六盘水的凉都，跑到云南的火城。两块钱登福塔，夜游彝人古镇，穿过火把节的羊汤锅一条街；原本犹豫的一趟远行，最后成了RunCN里一个舍不得忘的周末。','source_photo_count':128,'source_subtitles':str(SOURCE/'04-成片/楚雄旅行Vlog_25分钟_中文字幕.srt'),'original_paragraphs':original,'ending_paragraphs':[],'blocks':blocks}
 
  DATA.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
  return d
@@ -126,10 +126,10 @@ def render(d):
    body.append('<figure class="photo-strip">'+''.join(f'<img src="{x["src"]}" srcset="{x["src"].replace("/CX-","/preview/CX-")} 1600w" sizes="(max-width:677px) calc(100vw - 40px), 637px" data-copy-src="{x["src"].replace("/CX-","/preview/CX-")}" alt="{escape(x["alt"])}" width="{x["width"]}" height="{x["height"]}" loading="lazy" decoding="async" style="display:block;width:100%;height:auto">' for x in group)+'<figcaption>'+'<br>'.join(escape(x['caption']) for x in group)+'</figcaption></figure>')
   i+=1
  for p in d['ending_paragraphs']:body.append('<p class="prose" style="font-size:15px;line-height:1.95;text-align:justify">'+emphasize(p)+'</p>')
- body.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUNCN · 第28站 · 云南楚雄</p><h2>赛前逛吃，跑完赶车</h2><p class="closing">从福塔俯看楚雄，到彝人古镇逛吃，再跑完一场晒着太阳的马拉松。</p><p class="credits">文字 / Arsenan<br>摄影 / 见图片署名</p></footer>')
- body.append('<p class="source-note">地方与赛事背景：<a href="https://www.cxs.gov.cn/info/1014/912799.htm">楚雄市政府：2026赛事路线</a> · <a href="https://www.cxs.gov.cn/info/8735/249388.htm">福塔沿革</a> · <a href="https://www.cxs.gov.cn/info/8825/252228.htm">彝人古镇</a>。旅行与比赛经历据本人视频口述整理；四小时零六分钟为当时口述，并非赛事官方计时。未标明摄影者的合影与人像，署名待核实。</p>')
+ body.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUNCN · 第28站 · 云南楚雄</p><h2>从凉都到火城，跑进彝乡楚雄</h2><p class="closing">一个新的省份，云南。这次，把楚雄的跑步故事放进RunCN地图里。</p><p class="credits">文字 / Arsenan<br>摄影 / 见图片署名</p></footer>')
+ body.append('<p class="source-note">地方与赛事背景：<a href="https://www.cxs.gov.cn/info/1014/912799.htm">2026赛事路线</a> · <a href="https://www.sohu.com/a/1055878836_121106902">赛事接驳与起跑时间</a> · <a href="https://www.cxs.gov.cn/info/egovinfo/1016/xxgkcontent/cxs001-/2023-1026015.htm">城区海拔</a> · <a href="https://www.cxs.gov.cn/info/8735/249388.htm">福塔沿革</a> · <a href="https://www.cxs.gov.cn/info/8825/252228.htm">彝人古镇</a> · <a href="https://ynck.cxz.gov.cn/info/1002/6119.htm">十月太阳历</a> · <a href="https://www.cxs.gov.cn/info/2913/103912.htm">左脚舞</a> · <a href="https://www.ynich.cn/item/41.html">白族民居彩绘</a> · <a href="https://www.cxs.gov.cn/info/1011/921159.htm">火把节美食街</a>。旅行与比赛经历据作者亲笔稿整理，完赛时间由作者确认。摄影署名见各图。</p>')
  nav='<nav class="copy-tools"><a href="/CN/#runcn-series" style="color:inherit">RunCN 目录</a><button class="theme-choice" data-theme-choice="light" aria-pressed="true" type="button">白底</button><button class="theme-choice" data-theme-choice="dark" aria-pressed="false" type="button">黑底</button><button id="copy-wechat" type="button">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
- html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="128张照片记录2026楚雄马拉松周末：福塔、彝人古镇、太阳历文化园，从赛前逛吃到完赛赶火车。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-chuxiong">'+'\n'.join(body)+'</main><script src="/assets/runcn-chuxiong-copy.js?v=20261010" defer></script></body></html>'
+ html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="从凉都到火城，跑进彝乡楚雄。128张照片与作者亲笔经历，记录福塔、彝人古镇、亚高原马拉松和赶上高铁的周末。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-chuxiong">'+'\n'.join(body)+'</main><script src="/assets/runcn-chuxiong-copy.js?v=20261010" defer></script></body></html>'
  for suffix in ['editorial','modern-rail']:(ROOT/f'run50/wechat/{SLUG}-{suffix}.html').write_text(html,encoding='utf-8')
  js=(ROOT/'assets/run50-six-editorial-copy.js').read_text(encoding='utf-8').replace('img.height = 120','img.height = 96')
  js=js.replace("if (tag === 'img' || number || down) {", "if (number) { const p=document.createElement('p'); p.textContent=node.textContent; p.style.cssText='font-family:Arial,sans-serif;font-size:74px;line-height:1;color:' + ink + ';margin:48px 0 14px;font-weight:400;'; return p; }\n      if (tag === 'img' || down) {")

@@ -3,8 +3,8 @@
   "series": "RunCN",
   "station": 28,
   "source": "Z:/ZhennanZ Folder/0000-ZZ-Run-2026/20260802-楚雄马拉松",
-  "narrative_source": "04-成片/楚雄旅行Vlog_25分钟_中文字幕.srt",
-  "provenance": "The existing Vlog production notes identify this as corrected original speech transcription. The article follows those firsthand accounts; it does not claim a new transcription of every raw video.",
+  "narrative_source": "Author firsthand written draft supplied in chat on 2026-10-10",
+  "provenance": "The author supplied the complete narrative and approved the official 07:30 start time. This written account supersedes earlier Vlog-derived prose. All 128 selected body photos and approved visual assets retained.",
   "selected_photos": 128,
   "photo_audit": "All selected CX-*.jpg files occur exactly once in the body. Original aspect ratios retained. Two non-photo TMP files excluded.",
   "gif": "9 frames, 900x900, 3000ms each. User removed CX-18-6 from opening GIF only; body photograph retained.",
@@ -13,7 +13,45 @@
   "map_emblem_original": "C:/Users/ZZ/.codex/generated_images/01a0feac-c272-7eb3-b8b6-d94e4adb7a29/exec-8e0a5fe8-b81f-4565-a9bf-c37f46fb3d14.png",
   "design": "Bright teal paper-print background, large 云南, red Futa pagoda, gold bird and geometric cultural-park entrance, small runners, bottom 2026 / 楚雄 / RUNCN 28, restrained navy/cream border.",
   "credit_policy": "Known race photography credited 赛事官方. Author-captured photos credited Arsenan. Unidentified external portraits left unattributed rather than assigning authorship incorrectly.",
-  "timing": "4h06 is the author's spoken finish estimate, not asserted as official chip time. Festival night visit is not described as attending the later ritual fire ceremony.",
+  "timing": "07:30 official start, approved by author; 4h15 author-confirmed finish. Supersedes earlier 4h06 spoken estimate.",
   "cover_asset": "/assets/runcn-chuxiong-poster-framed-v3-20261010.jpg",
-  "article_poster_asset": "/assets/runcn-chuxiong-article-poster-v5-20261010.jpg"
+  "article_poster_asset": "/assets/runcn-chuxiong-article-poster-v5-20261010.jpg",
+  "background_sources": [
+    {
+      "title": "2026赛事路线",
+      "url": "https://www.cxs.gov.cn/info/1014/912799.htm"
+    },
+    {
+      "title": "赛事接驳与起跑时间",
+      "url": "https://www.sohu.com/a/1055878836_121106902"
+    },
+    {
+      "title": "城区海拔",
+      "url": "https://www.cxs.gov.cn/info/egovinfo/1016/xxgkcontent/cxs001-/2023-1026015.htm"
+    },
+    {
+      "title": "福塔沿革",
+      "url": "https://www.cxs.gov.cn/info/8735/249388.htm"
+    },
+    {
+      "title": "彝人古镇",
+      "url": "https://www.cxs.gov.cn/info/8825/252228.htm"
+    },
+    {
+      "title": "十月太阳历",
+      "url": "https://ynck.cxz.gov.cn/info/1002/6119.htm"
+    },
+    {
+      "title": "左脚舞",
+      "url": "https://www.cxs.gov.cn/info/2913/103912.htm"
+    },
+    {
+      "title": "白族民居彩绘",
+      "url": "https://www.ynich.cn/item/41.html"
+    },
+    {
+      "title": "火把节美食街",
+      "url": "https://www.cxs.gov.cn/info/1011/921159.htm"
+    }
+  ]
 }
