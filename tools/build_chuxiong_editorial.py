@@ -67,10 +67,10 @@ def assets():
 def hero_assets():
  # Only the opening montage is cropped. All body photographs retain full dimensions and aspect ratios.
  frames=[]
- for key,center in [('18-6',(.5,.15)),('10-2',(.5,.2)),('11-6',(.5,.15)),('13-5',(1,.2)),('16-2-2',(.5,.1)),('19-1',(0,.75)),('03-3',(1,.15))]:
+ for key,center in [('18-6',(.5,.15)),('17-6-3-1',(.5,0)),('10-2',(.5,.2)),('11-6',(.5,.15)),('13-5',(1,.2)),('16-2-2',(.5,.1)),('17-4-1',(.5,0)),('19-1',(0,.75)),('03-3',(1,.15)),('19-8',(.6,.5))]:
   im=Image.open(ASSET/f'CX-{key}.webp');frames.append(ImageOps.fit(im,(900,900),centering=center))
  frames[0].save(ASSET/'hero-still.jpg',quality=95)
- frames[0].save(ASSET/'hero.gif',save_all=True,append_images=frames[1:],duration=3000,loop=0,optimize=False)
+ frames[0].save(ASSET/'hero-10photos-20261010.gif',save_all=True,append_images=frames[1:],duration=3000,loop=0,optimize=False)
 
 def intro_assets():
  # Mountain, RunCN wordmark, then a river; no small slogan.
@@ -105,7 +105,7 @@ def render(d):
  pfx='/assets/runcn-chuxiong-2026/'
  body=[f'<header class="masthead"><h1>{escape(TITLE)}</h1><p class="byline">云南楚雄 · 2026年8月2日<br>文字 / Arsenan</p></header>',
  f'<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}intro-light-still.png" data-light-src="{pfx}intro-light-still.png" data-dark-src="{pfx}intro-dark-still.png"><img src="{pfx}intro-light.gif" data-light-src="{pfx}intro-light.gif" data-dark-src="{pfx}intro-dark.gif" alt="RunCN 山路片头" width="280" height="280"></picture>',
- f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}hero-still.jpg"><img src="{pfx}hero.gif" width="900" height="900" alt="楚雄的比赛、福塔、古镇和奖牌" fetchpriority="high"></picture><figcaption>逛吃一个周末，再跑楚雄 · 照片署名见正文</figcaption></figure>',
+ f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}hero-still.jpg"><img src="{pfx}hero-10photos-20261010.gif" width="900" height="900" alt="楚雄的比赛、福塔、古镇和奖牌" fetchpriority="high"></picture><figcaption>逛吃一个周末，再跑楚雄 · 照片署名见正文</figcaption></figure>',
  '<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div>',f'<section class="intro"><p>{emphasize(d["intro"])}</p></section>',
  '<figure class="photo-strip location-poster"><img src="/assets/runcn-chuxiong-2026/map-yunnan-chuxiong.jpg" alt="RunCN 中国地图，福塔图案与星标定位云南楚雄"><img src="/assets/runcn-chuxiong-poster-framed-v3-20261010.jpg" alt="云南楚雄 · 2026 · RunCN 28"><figcaption>云南 · 楚雄 · RunCN 第28站<br>封面设计 / Arsenan × AI</figcaption></figure>']
  blocks=d['blocks'];i=0;n=0
