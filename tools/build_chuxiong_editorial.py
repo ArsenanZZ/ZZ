@@ -12,6 +12,9 @@ SLUG='chuxiong-marathon'
 ASSET=ROOT/'assets/runcn-chuxiong-2026'
 DATA=ROOT/'tools/data/chuxiong-editorial.json'
 TITLE='RunCN #第28站｜云南楚雄马拉松｜赛前逛吃到天黑，跑完赶火车'
+COVER_SRC='/assets/runcn-chuxiong-poster-framed-v3-20261010.jpg'
+POSTER_SRC='/assets/runcn-chuxiong-article-poster-v4-20261010.jpg'
+assert COVER_SRC != POSTER_SRC, 'Homepage plaque cover and article paper poster must stay separate.'
 # Captions were checked against all 128 selected photographs.
 CAPTIONS=(ROOT/'tools/data/chuxiong-captions.txt').read_text(encoding='utf-8')
 CAP=dict(line.split('|',1) for line in CAPTIONS.splitlines() if line.strip())
@@ -67,10 +70,10 @@ def assets():
 def hero_assets():
  # Only the opening montage is cropped. All body photographs retain full dimensions and aspect ratios.
  frames=[]
- for key,center in [('18-6',(.5,.15)),('17-6-3-1',(.5,0)),('10-2',(.5,.2)),('11-6',(.5,.15)),('13-5',(1,.2)),('16-2-2',(.5,.1)),('17-4-1',(.5,0)),('19-1',(0,.75)),('03-3',(1,.15)),('19-8',(.6,.5))]:
+ for key,center in [('17-6-3-1',(.5,0)),('10-2',(.5,.2)),('11-6',(.5,.15)),('13-5',(1,.2)),('16-2-2',(.5,.1)),('17-4-1',(.5,0)),('19-1',(0,.75)),('03-3',(1,.15)),('19-8',(.6,.5))]:
   im=Image.open(ASSET/f'CX-{key}.webp');frames.append(ImageOps.fit(im,(900,900),centering=center))
  frames[0].save(ASSET/'hero-still.jpg',quality=95)
- frames[0].save(ASSET/'hero-10photos-20261010.gif',save_all=True,append_images=frames[1:],duration=3000,loop=0,optimize=False)
+ frames[0].save(ASSET/'hero-9photos-20261010.gif',save_all=True,append_images=frames[1:],duration=3000,loop=0,optimize=False)
 
 def intro_assets():
  # Mountain, RunCN wordmark, then a river; no small slogan.
@@ -105,9 +108,9 @@ def render(d):
  pfx='/assets/runcn-chuxiong-2026/'
  body=[f'<header class="masthead"><h1>{escape(TITLE)}</h1><p class="byline">云南楚雄 · 2026年8月2日<br>文字 / Arsenan</p></header>',
  f'<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}intro-light-still.png" data-light-src="{pfx}intro-light-still.png" data-dark-src="{pfx}intro-dark-still.png"><img src="{pfx}intro-light.gif" data-light-src="{pfx}intro-light.gif" data-dark-src="{pfx}intro-dark.gif" alt="RunCN 山路片头" width="280" height="280"></picture>',
- f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}hero-still.jpg"><img src="{pfx}hero-10photos-20261010.gif" width="900" height="900" alt="楚雄的比赛、福塔、古镇和奖牌" fetchpriority="high"></picture><figcaption>逛吃一个周末，再跑楚雄 · 照片署名见正文</figcaption></figure>',
+ f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}hero-still.jpg"><img src="{pfx}hero-9photos-20261010.gif" width="900" height="900" alt="楚雄的比赛、福塔、古镇和奖牌" fetchpriority="high"></picture><figcaption>逛吃一个周末，再跑楚雄 · 照片署名见正文</figcaption></figure>',
  '<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div>',f'<section class="intro"><p>{emphasize(d["intro"])}</p></section>',
- '<figure class="photo-strip location-poster"><img src="/assets/runcn-chuxiong-2026/map-yunnan-chuxiong.jpg" alt="RunCN 中国地图，福塔图案与星标定位云南楚雄"><img src="/assets/runcn-chuxiong-poster-framed-v3-20261010.jpg" alt="云南楚雄 · 2026 · RunCN 28"><figcaption>云南 · 楚雄 · RunCN 第28站<br>封面设计 / Arsenan × AI</figcaption></figure>']
+ f'<figure class="photo-strip location-poster"><img src="/assets/runcn-chuxiong-2026/map-yunnan-chuxiong.jpg" alt="RunCN 中国地图，福塔图案与星标定位云南楚雄"><img src="{POSTER_SRC}" alt="云南楚雄 · 2026 · RunCN 28"><figcaption>云南 · 楚雄 · RunCN 第28站<br>封面设计 / Arsenan × AI</figcaption></figure>']
  blocks=d['blocks'];i=0;n=0
  while i<len(blocks):
   b=blocks[i]
@@ -126,7 +129,7 @@ def render(d):
  body.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUNCN · 第28站 · 云南楚雄</p><h2>赛前逛吃，跑完赶车</h2><p class="closing">从福塔俯看楚雄，到彝人古镇逛吃，再跑完一场晒着太阳的马拉松。</p><p class="credits">文字 / Arsenan<br>摄影 / 见图片署名</p></footer>')
  body.append('<p class="source-note">地方与赛事背景：<a href="https://www.cxs.gov.cn/info/1014/912799.htm">楚雄市政府：2026赛事路线</a> · <a href="https://www.cxs.gov.cn/info/8735/249388.htm">福塔沿革</a> · <a href="https://www.cxs.gov.cn/info/8825/252228.htm">彝人古镇</a>。旅行与比赛经历据本人视频口述整理；四小时零六分钟为当时口述，并非赛事官方计时。未标明摄影者的合影与人像，署名待核实。</p>')
  nav='<nav class="copy-tools"><a href="/CN/#runcn-series" style="color:inherit">RunCN 目录</a><button class="theme-choice" data-theme-choice="light" aria-pressed="true" type="button">白底</button><button class="theme-choice" data-theme-choice="dark" aria-pressed="false" type="button">黑底</button><button id="copy-wechat" type="button">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
- html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="128张照片记录2026楚雄马拉松周末：福塔、彝人古镇、太阳历文化园，从赛前逛吃到完赛赶火车。"><meta property="og:image" content="https://zhennanzhang.com/assets/runcn-chuxiong-poster-framed-v3-20261010.jpg"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-chuxiong">'+'\n'.join(body)+'</main><script src="/assets/runcn-chuxiong-copy.js?v=20261010" defer></script></body></html>'
+ html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="128张照片记录2026楚雄马拉松周末：福塔、彝人古镇、太阳历文化园，从赛前逛吃到完赛赶火车。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-chuxiong">'+'\n'.join(body)+'</main><script src="/assets/runcn-chuxiong-copy.js?v=20261010" defer></script></body></html>'
  for suffix in ['editorial','modern-rail']:(ROOT/f'run50/wechat/{SLUG}-{suffix}.html').write_text(html,encoding='utf-8')
  js=(ROOT/'assets/run50-six-editorial-copy.js').read_text(encoding='utf-8').replace('img.height = 120','img.height = 96')
  js=js.replace("if (tag === 'img' || number || down) {", "if (number) { const p=document.createElement('p'); p.textContent=node.textContent; p.style.cssText='font-family:Arial,sans-serif;font-size:74px;line-height:1;color:' + ink + ';margin:48px 0 14px;font-weight:400;'; return p; }\n      if (tag === 'img' || down) {")
