@@ -72,6 +72,7 @@
           img.height = 96;
           img.style.cssText = 'display:inline-block;width:96px;max-width:96px;height:auto;margin:0;border:0;vertical-align:middle;';
         }
+        if (node.matches('.location-poster > img:first-child')) img.style.cssText='display:block;width:97.47634%;max-width:97.47634%;height:auto;margin:0 auto;border:0;';
         return img;
       }
       const inline = ['strong','b','em','i','u','span','a'].includes(tag);
