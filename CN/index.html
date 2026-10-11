@@ -1849,7 +1849,7 @@
             <div class="eyebrow">RunCN · 中国站点</div>
             <h2>中国马拉松系列</h2>
           </div>
-          <p>22 篇 · 按站点与年份整理</p>
+          <p>23 篇 · 按站点与年份整理</p>
         </div>
 
         <div class="stories" aria-label="RunCN 中国马拉松微信公众号故事">
@@ -2095,6 +2095,17 @@
               <div class="open">Open Chinese Story →</div>
             </div>
           </a>
+          <a class="story-card" href="/run50/wechat/qinghai-xining-marathon-editorial.html?v=20261011-runcn">
+            <img src="/assets/runcn-qinghai-cover-20261011.jpg" alt="青海西宁，湖蓝盐白、茶卡小火车与经幡，2026 RunCN第30站" loading="lazy">
+            <div class="story-body">
+              <span class="story-number">RunCN · 23</span>
+              <div class="eyebrow">RUNCN DISPATCH · QINGHAI</div>
+              <h3>RunCN #第30站｜青海西宁高原马拉松｜从天空之镜到夏都，踩着盐跑完一场全马</h3>
+              <div class="meta">青海西宁 · 2026.09.06</div>
+              <p class="desc">日月山经幡、青海湖、茶卡盐湖和西宁夜色。123张照片，记录鞋里带着盐跑全马，再赶下午飞机的高原周末。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
         </div>
       </section>
 
@@ -2156,9 +2167,9 @@
       </section>
 
       <section class="stats" id="stats" aria-label="Run50 statistics">
-        <div class="stat-card"><b>70</b><span>公众号版文章</span></div>
+        <div class="stat-card"><b>71</b><span>公众号版文章</span></div>
         <div class="stat-card"><b>44</b><span>Run50 故事</span></div>
-        <div class="stat-card"><b>22</b><span>RunCN 故事</span></div>
+        <div class="stat-card"><b>23</b><span>RunCN 故事</span></div>
         <div class="stat-card"><b>4</b><span>RunWorld 故事</span></div>
       </section>
     </main>
@@ -2294,6 +2305,7 @@
       };
 
       const CHINA_PROVINCES = {
+        cn_qinghai: ['青海', '#4a83a9'],
         cn_tibet: ['西藏', '#5699cb'],
         cn_yunnan: ['云南', '#ed7553'],
         cn_heilongjiang: ['黑龙江', '#f06a4f'], cn_hubei: ['湖北', '#5fc36f'],
@@ -2308,6 +2320,7 @@
       };
 
       const CHINA_NAMES_EN = {
+        cn_qinghai: 'Qinghai',
         cn_tibet: 'Tibet',
         cn_yunnan: 'Yunnan',
         cn_heilongjiang: 'Heilongjiang', cn_hubei: 'Hubei', cn_sichuan: 'Sichuan',
@@ -2339,6 +2352,7 @@
         'liupanshui-marathon': 'Liupanshui',
         'chuxiong-marathon': 'Chuxiong',
         'lhasa-half-marathon': 'Lhasa',
+        'qinghai-xining-marathon': 'Xining',
         'wuhan-graduation': 'Beijing'
       };
 
@@ -2353,6 +2367,7 @@
         return mapLanguage() === 'en';
       }
       function storyHref(slug) {
+        if (slug === 'qinghai-xining-marathon') return new URL('/run50/wechat/qinghai-xining-marathon-editorial.html?v=20261011-runcn', location.href).href;
         if (slug === 'lhasa-half-marathon') return new URL('/run50/wechat/lhasa-half-marathon-editorial.html?v=20261011-runcn', location.href).href;
         if (slug === 'chuxiong-marathon') return new URL('/run50/wechat/chuxiong-marathon-editorial.html?v=20261011-cover', location.href).href;
         if (!isEnglishMap() && slug === 'louisville-marathon-2024') return new URL('/run50/wechat/louisville-marathon-2024-editorial.html?v=20261005-layouts', location.href).href;
@@ -2423,6 +2438,7 @@
       });
 
       const CHINA_PROVINCE_STORIES = {
+        cn_qinghai: storyHref('qinghai-xining-marathon'),
         cn_tibet: storyHref('lhasa-half-marathon'),
         cn_yunnan: storyHref('chuxiong-marathon'),
         cn_heilongjiang: storyHref('harbin-marathon'),
@@ -2460,6 +2476,7 @@
       });
 
       const CHINA_CITY_DOTS = [
+        ['西宁', 'cn_qinghai', 36.6171, 101.7782, storyHref('qinghai-xining-marathon')],
         ['拉萨', 'cn_tibet', 29.6500, 91.1300, storyHref('lhasa-half-marathon')],
         ['楚雄', 'cn_yunnan', 25.0329, 101.5458, storyHref('chuxiong-marathon')],
         ['哈尔滨', 'cn_heilongjiang', 45.8038, 126.5350, storyHref('harbin-marathon')],

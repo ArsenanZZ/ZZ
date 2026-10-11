@@ -1,0 +1,1722 @@
+[
+  {
+    "file": "QH-000-0-1.jpg",
+    "key": "000-0-1",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_084349_139.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-000-0.jpg",
+    "key": "000-0",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_075538_119.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-000-1.jpg",
+    "key": "000-1",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_084410_143.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-000-2.jpg",
+    "key": "000-2",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      3959,
+      2970
+    ],
+    "exif": {
+      "Model": "Galaxy Z Fold7",
+      "Make": "samsung"
+    }
+  },
+  {
+    "file": "QH-001-0.jpg",
+    "key": "001-0",
+    "width": 2030,
+    "height": 2560,
+    "original": [
+      2552,
+      3219
+    ],
+    "exif": {
+      "Model": "Galaxy Z Fold7",
+      "Make": "samsung"
+    }
+  },
+  {
+    "file": "QH-001-1.jpg",
+    "key": "001-1",
+    "width": 1707,
+    "height": 2560,
+    "original": [
+      4672,
+      7008
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-001-2-1.jpg",
+    "key": "001-2-1",
+    "width": 2560,
+    "height": 1980,
+    "original": [
+      6040,
+      4672
+    ],
+    "exif": {
+      "Model": "ILCE-7CM2",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-001-2-2.jpg",
+    "key": "001-2-2",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      5735,
+      4302
+    ],
+    "exif": {
+      "Model": "ILCE-7CM2",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-001-2-3.jpg",
+    "key": "001-2-3",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      6229,
+      4672
+    ],
+    "exif": {
+      "Model": "ILCE-7CM2",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-001-2-4.jpg",
+    "key": "001-2-4",
+    "width": 2380,
+    "height": 2166,
+    "original": [
+      2380,
+      2166
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_120846_332.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-001-2.jpg",
+    "key": "001-2",
+    "width": 2252,
+    "height": 1689,
+    "original": [
+      2252,
+      1689
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_104443_160.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-001-3-1.jpg",
+    "key": "001-3-1",
+    "width": 1920,
+    "height": 2560,
+    "original": [
+      1983,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_105831_180.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-001-3.jpg",
+    "key": "001-3",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_104730_176.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-001-4.jpeg",
+    "key": "001-4",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      4032,
+      3028
+    ],
+    "exif": {
+      "Model": "XRGF53",
+      "Make": "RayNeo"
+    }
+  },
+  {
+    "file": "QH-001-5.jpg",
+    "key": "001-5",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_111707_215.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-001-6.jpg",
+    "key": "001-6",
+    "width": 2560,
+    "height": 2094,
+    "original": [
+      3232,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_112033_237.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-001-7.jpg",
+    "key": "001-7",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_112445_251.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-001-8.jpg",
+    "key": "001-8",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-002-0.jpg",
+    "key": "002-0",
+    "width": 1920,
+    "height": 2560,
+    "original": [
+      3000,
+      4000
+    ],
+    "exif": {
+      "Make": "samsung",
+      "Model": "Galaxy Z Fold7"
+    }
+  },
+  {
+    "file": "QH-002-1.jpg",
+    "key": "002-1",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_175558_362.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-2.jpg",
+    "key": "002-2",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_181421_392.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-3.jpg",
+    "key": "002-3",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_181135_386.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-4-1.jpg",
+    "key": "002-4-1",
+    "width": 1879,
+    "height": 2506,
+    "original": [
+      1879,
+      2506
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_183930_418.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-4.jpg",
+    "key": "002-4",
+    "width": 1920,
+    "height": 2560,
+    "original": [
+      4262,
+      5683
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-002-5.jpg",
+    "key": "002-5",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_184046_433.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-6-1.jpg",
+    "key": "002-6-1",
+    "width": 2560,
+    "height": 1925,
+    "original": [
+      3054,
+      2296
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_184619_472.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-6-2.jpg",
+    "key": "002-6-2",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_184540_469.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-6.jpg",
+    "key": "002-6",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_184313_455.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-7-0.jpg",
+    "key": "002-7-0",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_191527_523.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-7-1-1.jpg",
+    "key": "002-7-1-1",
+    "width": 2560,
+    "height": 1712,
+    "original": [
+      6986,
+      4672
+    ],
+    "exif": {
+      "Model": "ILCE-7CM2",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-002-7-1.jpg",
+    "key": "002-7-1",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3498,
+      2627
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_191949_533.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-7-2.jpg",
+    "key": "002-7-2",
+    "width": 2560,
+    "height": 1707,
+    "original": [
+      7008,
+      4672
+    ],
+    "exif": {
+      "Model": "ILCE-7CM2",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-002-7.jpg",
+    "key": "002-7",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_185656_490.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-8-1.jpg",
+    "key": "002-8-1",
+    "width": 2560,
+    "height": 1707,
+    "original": [
+      7008,
+      4672
+    ],
+    "exif": {
+      "Model": "ILCE-7CM2",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-002-8-2-0.jpg",
+    "key": "002-8-2-0",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_193906_545.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-8-2-1.jpg",
+    "key": "002-8-2-1",
+    "width": 1765,
+    "height": 2353,
+    "original": [
+      1765,
+      2353
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_195252_574.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-8-2.jpg",
+    "key": "002-8-2",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260904_194143_558.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-002-8-3-1.jpg",
+    "key": "002-8-3-1",
+    "width": 1920,
+    "height": 2560,
+    "original": [
+      3504,
+      4672
+    ],
+    "exif": {
+      "Model": "ILCE-7CM2",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-002-8-3-2.jpg",
+    "key": "002-8-3-2",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-002-8-3.jpg",
+    "key": "002-8-3",
+    "width": 1707,
+    "height": 2560,
+    "original": [
+      4586,
+      6879
+    ],
+    "exif": {
+      "Model": "ILCE-7CM2",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-002-9-1.jpg",
+    "key": "002-9-1",
+    "width": 2560,
+    "height": 1707,
+    "original": [
+      7008,
+      4672
+    ],
+    "exif": {
+      "Model": "ILCE-7CM2",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-002-9.jpg",
+    "key": "002-9",
+    "width": 1707,
+    "height": 2560,
+    "original": [
+      4672,
+      7008
+    ],
+    "exif": {
+      "Model": "ILCE-7CM2",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-003-0-0.jpg",
+    "key": "003-0-0",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      2880,
+      2160
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-003-0-1.jpg",
+    "key": "003-0-1",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      2768,
+      2076
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-003-0.jpg",
+    "key": "003-0",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_054520_591.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-1.jpg",
+    "key": "003-1",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      3276,
+      2457
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_080506_625.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-2.jpg",
+    "key": "003-2",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-003-3.jpg",
+    "key": "003-3",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_083510_748.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-4-1.jpg",
+    "key": "003-4-1",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      3024,
+      2268
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_083657_757.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-4.jpg",
+    "key": "003-4",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_083706_758.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-5-1.jpg",
+    "key": "003-5-1",
+    "width": 2560,
+    "height": 1707,
+    "original": [
+      3240,
+      2160
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-003-5-3.jpg",
+    "key": "003-5-3",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_090651_794.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-5-4.jpg",
+    "key": "003-5-4",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_094424_807.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-5-5.jpg",
+    "key": "003-5-5",
+    "width": 2560,
+    "height": 1922,
+    "original": [
+      3376,
+      2535
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_095319_838.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-5-6.jpg",
+    "key": "003-5-6",
+    "width": 2560,
+    "height": 1707,
+    "original": [
+      3315,
+      2210
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_104024_860.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-5-7.jpg",
+    "key": "003-5-7",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-003-5.jpg",
+    "key": "003-5",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_084100_785.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-6-1.jpg",
+    "key": "003-6-1",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_110944_904.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-6-2.jpg",
+    "key": "003-6-2",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_110851_898.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-6-3.jpg",
+    "key": "003-6-3",
+    "width": 2560,
+    "height": 2048,
+    "original": [
+      3305,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_111934_966.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-6-4.jpg",
+    "key": "003-6-4",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_113317_022.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-6-5-1.jpg",
+    "key": "003-6-5-1",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-003-6-5.jpg",
+    "key": "003-6-5",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_113629_041.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-6-6.jpg",
+    "key": "003-6-6",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_115047_113.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-6-7.jpg",
+    "key": "003-6-7",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_120127_125.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-6-8.jpg",
+    "key": "003-6-8",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-003-6-9-1.jpg",
+    "key": "003-6-9-1",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      2843,
+      2132
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_122409_176.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-003-6-9.jpg",
+    "key": "003-6-9",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_121048_158.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-0.jpg",
+    "key": "007-0",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_140101_190.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-1.jpg",
+    "key": "007-1",
+    "width": 2560,
+    "height": 1910,
+    "original": [
+      3455,
+      2578
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_140221_196.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-2.jpg",
+    "key": "007-2",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_145616_237.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-3-1.jpg",
+    "key": "007-3-1",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_154421_372.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-3.jpg",
+    "key": "007-3",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_150719_282.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-4.jpg",
+    "key": "007-4",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_151609_313.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-5-1.jpg",
+    "key": "007-5-1",
+    "width": 2560,
+    "height": 1829,
+    "original": [
+      3434,
+      2453
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_155840_404.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-5-2.jpg",
+    "key": "007-5-2",
+    "width": 2560,
+    "height": 2096,
+    "original": [
+      3229,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_160618_449.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-5-3-1.jpg",
+    "key": "007-5-3-1",
+    "width": 2560,
+    "height": 1939,
+    "original": [
+      2938,
+      2225
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_162023_491.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-5-3.jpg",
+    "key": "007-5-3",
+    "width": 1707,
+    "height": 2560,
+    "original": [
+      1763,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_161509_476.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-5-4.jpg",
+    "key": "007-5-4",
+    "width": 2560,
+    "height": 2560,
+    "original": [
+      2644,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_162157_505.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-5-5.jpg",
+    "key": "007-5-5",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_164610_525.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-5-6.jpg",
+    "key": "007-5-6",
+    "width": 2560,
+    "height": 1921,
+    "original": [
+      3358,
+      2520
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_164644_531.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-5-7.jpg",
+    "key": "007-5-7",
+    "width": 2560,
+    "height": 2048,
+    "original": [
+      2905,
+      2324
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_165234_546.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-5-8.jpg",
+    "key": "007-5-8",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_165854_570.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-5-9.jpg",
+    "key": "007-5-9",
+    "width": 2560,
+    "height": 1923,
+    "original": [
+      3520,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_165842_567.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-007-5.jpg",
+    "key": "007-5",
+    "width": 1707,
+    "height": 2560,
+    "original": [
+      1763,
+      2644
+    ],
+    "exif": {
+      "ImageDescription": "IMG_20260905_160009_410.jpg",
+      "Make": "Insta360",
+      "Model": "Luna Ultra"
+    }
+  },
+  {
+    "file": "QH-008-1.jpg",
+    "key": "008-1",
+    "width": 1920,
+    "height": 2560,
+    "original": [
+      3000,
+      4000
+    ],
+    "exif": {
+      "Make": "samsung",
+      "Model": "Galaxy Z Fold7"
+    }
+  },
+  {
+    "file": "QH-008-2-1.jpg",
+    "key": "008-2-1",
+    "width": 1920,
+    "height": 2560,
+    "original": [
+      3000,
+      4000
+    ],
+    "exif": {
+      "Make": "samsung",
+      "Model": "Galaxy Z Fold7"
+    }
+  },
+  {
+    "file": "QH-008-2.jpg",
+    "key": "008-2",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      4000,
+      3000
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-009-1.jpg",
+    "key": "009-1",
+    "width": 1920,
+    "height": 2560,
+    "original": [
+      2793,
+      3724
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-009-2-0.jpg",
+    "key": "009-2-0",
+    "width": 2560,
+    "height": 1707,
+    "original": [
+      3240,
+      2160
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-009-2-1.jpg",
+    "key": "009-2-1",
+    "width": 2560,
+    "height": 1707,
+    "original": [
+      4608,
+      3072
+    ],
+    "exif": {
+      "Model": "ILCE-7CM2",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-009-2.jpg",
+    "key": "009-2",
+    "width": 2560,
+    "height": 2560,
+    "original": [
+      3672,
+      3672
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-009-3.jpg",
+    "key": "009-3",
+    "width": 1920,
+    "height": 2560,
+    "original": [
+      3221,
+      4295
+    ],
+    "exif": {
+      "Model": "ILCE-7C",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-009-4.jpg",
+    "key": "009-4",
+    "width": 1707,
+    "height": 2560,
+    "original": [
+      4000,
+      6000
+    ],
+    "exif": {
+      "Model": "ILCE-7C",
+      "Make": "SONY"
+    }
+  },
+  {
+    "file": "QH-009-5.jpg",
+    "key": "009-5",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      2880,
+      2160
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-009-6 (2).jpg",
+    "key": "009-6-alt",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      2583,
+      1937
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-009-6.jpg",
+    "key": "009-6",
+    "width": 1920,
+    "height": 2560,
+    "original": [
+      4000,
+      5333
+    ],
+    "exif": {
+      "Model": "Canon EOS R5m2",
+      "Make": "Canon"
+    }
+  },
+  {
+    "file": "QH-009-7.jpg",
+    "key": "009-7",
+    "width": 720,
+    "height": 960,
+    "original": [
+      720,
+      960
+    ],
+    "exif": {
+      "Model": "Canon EOS R8",
+      "Make": "Canon"
+    }
+  },
+  {
+    "file": "QH-009-8-1.jpg",
+    "key": "009-8-1",
+    "width": 1707,
+    "height": 2560,
+    "original": [
+      2880,
+      4320
+    ],
+    "exif": {
+      "Make": "SONY",
+      "Model": "ILCE-1M2",
+      "Artist": "gxh"
+    }
+  },
+  {
+    "file": "QH-009-8-2.jpg",
+    "key": "009-8-2",
+    "width": 2523,
+    "height": 1892,
+    "original": [
+      2523,
+      1892
+    ],
+    "exif": {
+      "Make": "Meta AI",
+      "Model": "Ray-Ban Meta Smart Glasses 2"
+    }
+  },
+  {
+    "file": "QH-009-8-3.jpg",
+    "key": "009-8-3",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      5712,
+      4284
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-009-8-4.jpg",
+    "key": "009-8-4",
+    "width": 1920,
+    "height": 2560,
+    "original": [
+      3524,
+      4698
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-009-8-5.jpg",
+    "key": "009-8-5",
+    "width": 1919,
+    "height": 2560,
+    "original": [
+      2814,
+      3753
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-009-8-6.jpg",
+    "key": "009-8-6",
+    "width": 1706,
+    "height": 2560,
+    "original": [
+      2281,
+      3422
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-009-8-7-1.jpg",
+    "key": "009-8-7-1",
+    "width": 1080,
+    "height": 1620,
+    "original": [
+      1080,
+      1620
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-009-8-7-2.jpg",
+    "key": "009-8-7-2",
+    "width": 1074,
+    "height": 1909,
+    "original": [
+      1074,
+      1909
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-009-8-7.jpg",
+    "key": "009-8-7",
+    "width": 2560,
+    "height": 1872,
+    "original": [
+      4781,
+      3497
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-009-8-8-1.jpg",
+    "key": "009-8-8-1",
+    "width": 719,
+    "height": 1080,
+    "original": [
+      719,
+      1080
+    ],
+    "exif": {
+      "Model": "Canon EOS R8",
+      "Make": "Canon"
+    }
+  },
+  {
+    "file": "QH-009-8-8-2.jpg",
+    "key": "009-8-8-2",
+    "width": 1080,
+    "height": 1920,
+    "original": [
+      1080,
+      1920
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-009-8-8.jpg",
+    "key": "009-8-8",
+    "width": 2560,
+    "height": 1921,
+    "original": [
+      4340,
+      3256
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-009-8-9.jpg",
+    "key": "009-8-9",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      4032,
+      3024
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-009-8.jpg",
+    "key": "009-8",
+    "width": 2560,
+    "height": 1919,
+    "original": [
+      2881,
+      2160
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-009-9-1.jpg",
+    "key": "009-9-1",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      5546,
+      4160
+    ],
+    "exif": {
+      "Model": "Canon EOS 6D Mark II",
+      "Make": "Canon"
+    }
+  },
+  {
+    "file": "QH-009-9-2.jpg",
+    "key": "009-9-2",
+    "width": 2560,
+    "height": 2560,
+    "original": [
+      3072,
+      3072
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-009-9.jpg",
+    "key": "009-9",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      4032,
+      3024
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-010-1.jpg",
+    "key": "010-1",
+    "width": 2560,
+    "height": 2560,
+    "original": [
+      3024,
+      3024
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-010-2.jpg",
+    "key": "010-2",
+    "width": 2560,
+    "height": 2560,
+    "original": [
+      3024,
+      3024
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-010-3.jpg",
+    "key": "010-3",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      5712,
+      4284
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-010-4-1.jpg",
+    "key": "010-4-1",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      2880,
+      2160
+    ],
+    "exif": {}
+  },
+  {
+    "file": "QH-010-4.jpg",
+    "key": "010-4",
+    "width": 2560,
+    "height": 2560,
+    "original": [
+      3672,
+      3672
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-010-5.jpg",
+    "key": "010-5",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      4032,
+      3024
+    ],
+    "exif": {
+      "Make": "Apple",
+      "Model": "iPhone 17 Pro Max"
+    }
+  },
+  {
+    "file": "QH-010-6.jpeg",
+    "key": "010-6",
+    "width": 2560,
+    "height": 1757,
+    "original": [
+      3113,
+      2136
+    ],
+    "exif": {
+      "Make": "RayNeo",
+      "Model": "XRGF53"
+    }
+  },
+  {
+    "file": "QH-010.jpg",
+    "key": "010",
+    "width": 2560,
+    "height": 1920,
+    "original": [
+      2880,
+      2160
+    ],
+    "exif": {}
+  }
+]

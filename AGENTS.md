@@ -10,3 +10,10 @@ User-confirmed preferences, 2026-10-10. Apply when creating or changing RunCN / 
 - Do not default every province title to white or every year panel to yellow. Coordinate distinct title, year-panel, city-panel and series-panel colors while keeping strong contrast.
 - Keep cover and poster paths explicitly separate in builders (`COVER_SRC`, `POSTER_SRC`); index and Open Graph use cover, map-adjacent figure uses poster. Verify these references before publishing.
 - Opening photo GIFs: actual square crops, no gray padding, preserve faces, gestures and complete medals. Add/remove only requested frames; keep body photographs unless user requests body removal.
+
+User-confirmed refinements, 2026-10-11:
+
+- RunCN covers use the approximately **16:10** plaque proportions of the Liupanshui benchmark, with a large upper-left province title and a tall three-panel year/city/RUNCN rail. Do not default to 16:9 or shrink these letters.
+- Article China maps use the current `build_lhasa_map.cjs` family: province names in KaiTi, a heavier Song-style dispatch title/current province, labels placed inside the actual province shapes, and external leaders for dense coastal municipalities. Use subdued completed-region colors and a stronger current-region color.
+- Align both the outer image edges and visible artwork edges of map/poster pairs. Any map inset must have a paper-colored backing within the full-width image box; verify white and black themes and preserve that treatment in the WeChat copy exporter.
+- Add image-specific photo captions and photography credits. Author photographs use `Arsenan`; event photographer images use `官方摄影` unless the source identifies a specific author. Never invent a photographer name. Preserve the user's actual spoken opinions and jokes when preparing articles from Vlogs.
