@@ -1849,7 +1849,7 @@
             <div class="eyebrow">RunCN · 中国站点</div>
             <h2>中国马拉松系列</h2>
           </div>
-          <p>21 篇 · 按站点与年份整理</p>
+          <p>22 篇 · 按站点与年份整理</p>
         </div>
 
         <div class="stories" aria-label="RunCN 中国马拉松微信公众号故事">
@@ -2073,14 +2073,25 @@
               <div class="open">Open Chinese Story →</div>
             </div>
           </a>
-          <a class="story-card" href="/run50/wechat/chuxiong-marathon-editorial.html?v=20261010-author">
-            <img src="/assets/runcn-chuxiong-poster-framed-v3-20261010.jpg" alt="云南楚雄，福塔与金色展翅鸟，2026 RunCN第28站" loading="lazy">
+          <a class="story-card" href="/run50/wechat/chuxiong-marathon-editorial.html?v=20261011-cover">
+            <img src="/assets/runcn-chuxiong-cover-20261011.jpg" alt="云南楚雄，福塔与金色展翅鸟，2026 RunCN第28站" loading="lazy">
             <div class="story-body">
               <span class="story-number">RunCN · 21</span>
               <div class="eyebrow">RUNCN DISPATCH · YUNNAN</div>
               <h3>RunCN #第28站｜云南楚雄马拉松｜从凉都到火城，跑进彝乡楚雄</h3>
               <div class="meta">云南楚雄 · 2026.08.02</div>
               <p class="desc">从凉都到火城，跑进彝乡楚雄。登福塔、夜游古镇、跑过羊汤锅一条街；128张照片，记录云南这一站的远行。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
+          <a class="story-card" href="/run50/wechat/lhasa-half-marathon-editorial.html?v=20261011-runcn">
+            <img src="/assets/runcn-lhasa-cover-20261011.jpg" alt="西藏拉萨，布达拉宫、抽象雪山与藏戏面具，2026 RunCN第29站" loading="lazy">
+            <div class="story-body">
+              <span class="story-number">RunCN · 22</span>
+              <div class="eyebrow">RUNCN DISPATCH · TIBET</div>
+              <h3>RunCN #第29站｜西藏拉萨半程马拉松｜在日光之城，跑到布达拉宫脚下</h3>
+              <div class="meta">西藏拉萨 · 2026.08.23</div>
+              <p class="desc">卧铺进藏，夜游布宫，相机失而复得。135张照片，记录一场三小时多的高原半马与拉萨的记忆。</p>
               <div class="open">Open Chinese Story →</div>
             </div>
           </a>
@@ -2145,9 +2156,9 @@
       </section>
 
       <section class="stats" id="stats" aria-label="Run50 statistics">
-        <div class="stat-card"><b>69</b><span>公众号版文章</span></div>
+        <div class="stat-card"><b>70</b><span>公众号版文章</span></div>
         <div class="stat-card"><b>44</b><span>Run50 故事</span></div>
-        <div class="stat-card"><b>21</b><span>RunCN 故事</span></div>
+        <div class="stat-card"><b>22</b><span>RunCN 故事</span></div>
         <div class="stat-card"><b>4</b><span>RunWorld 故事</span></div>
       </section>
     </main>
@@ -2283,6 +2294,7 @@
       };
 
       const CHINA_PROVINCES = {
+        cn_tibet: ['西藏', '#5699cb'],
         cn_yunnan: ['云南', '#ed7553'],
         cn_heilongjiang: ['黑龙江', '#f06a4f'], cn_hubei: ['湖北', '#5fc36f'],
         cn_sichuan: ['四川', '#f4a83a'], cn_innermongolia: ['内蒙古', '#39abc0'],
@@ -2296,6 +2308,7 @@
       };
 
       const CHINA_NAMES_EN = {
+        cn_tibet: 'Tibet',
         cn_yunnan: 'Yunnan',
         cn_heilongjiang: 'Heilongjiang', cn_hubei: 'Hubei', cn_sichuan: 'Sichuan',
         cn_innermongolia: 'Inner Mongolia', cn_shanxi: 'Shanxi', cn_hunan: 'Hunan',
@@ -2325,6 +2338,7 @@
         'hong-kong-marathon': 'Hong Kong',
         'liupanshui-marathon': 'Liupanshui',
         'chuxiong-marathon': 'Chuxiong',
+        'lhasa-half-marathon': 'Lhasa',
         'wuhan-graduation': 'Beijing'
       };
 
@@ -2339,7 +2353,8 @@
         return mapLanguage() === 'en';
       }
       function storyHref(slug) {
-        if (slug === 'chuxiong-marathon') return new URL('/run50/wechat/chuxiong-marathon-editorial.html?v=20261010-author', location.href).href;
+        if (slug === 'lhasa-half-marathon') return new URL('/run50/wechat/lhasa-half-marathon-editorial.html?v=20261011-runcn', location.href).href;
+        if (slug === 'chuxiong-marathon') return new URL('/run50/wechat/chuxiong-marathon-editorial.html?v=20261011-cover', location.href).href;
         if (!isEnglishMap() && slug === 'louisville-marathon-2024') return new URL('/run50/wechat/louisville-marathon-2024-editorial.html?v=20261005-layouts', location.href).href;
         const base = isEnglishMap() ? WECHAT_EN_STORY_BASE : WECHAT_STORY_BASE;
         const version = isEnglishMap() ? WECHAT_EN_STORY_VERSION : WECHAT_STORY_VERSION;
@@ -2408,6 +2423,7 @@
       });
 
       const CHINA_PROVINCE_STORIES = {
+        cn_tibet: storyHref('lhasa-half-marathon'),
         cn_yunnan: storyHref('chuxiong-marathon'),
         cn_heilongjiang: storyHref('harbin-marathon'),
         cn_hubei: storyHref('wuhan-marathon-2018'),
@@ -2444,6 +2460,7 @@
       });
 
       const CHINA_CITY_DOTS = [
+        ['拉萨', 'cn_tibet', 29.6500, 91.1300, storyHref('lhasa-half-marathon')],
         ['楚雄', 'cn_yunnan', 25.0329, 101.5458, storyHref('chuxiong-marathon')],
         ['哈尔滨', 'cn_heilongjiang', 45.8038, 126.5350, storyHref('harbin-marathon')],
         ['鄂尔多斯', 'cn_innermongolia', 39.6086, 109.7813, storyHref('steel-tank-story')],
@@ -2567,7 +2584,7 @@
           if (copy) copy.textContent = isEnglish
             ? 'Completed provinces and regions, race-city dots, and RunCN story links.'
             : '把中国跑过的省份、城市红点和 RunCN 长文入口放在同一张地图里。';
-          if (count) count.textContent = isEnglish ? '18 Regions' : '18 个地区';
+          if (count) count.textContent = isEnglish ? Object.keys(CHINA_PROVINCES).length + ' Regions' : Object.keys(CHINA_PROVINCES).length + ' 个地区';
         }
         if (usStatus) {
           usStatus.dataset.defaultText = isEnglish ? 'Click to open the full interactive map' : usStatus.dataset.zhDefault;

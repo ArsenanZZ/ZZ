@@ -12,8 +12,8 @@ SLUG='chuxiong-marathon'
 ASSET=ROOT/'assets/runcn-chuxiong-2026'
 DATA=ROOT/'tools/data/chuxiong-editorial.json'
 TITLE='RunCN #第28站｜云南楚雄马拉松｜从凉都到火城，跑进彝乡楚雄'
-COVER_SRC='/assets/runcn-chuxiong-poster-framed-v3-20261010.jpg'
-POSTER_SRC='/assets/runcn-chuxiong-article-poster-v5-20261010.jpg'
+COVER_SRC='/assets/runcn-chuxiong-cover-20261011.jpg'
+POSTER_SRC='/assets/runcn-chuxiong-article-poster-20261011.jpg'
 assert COVER_SRC != POSTER_SRC, 'Homepage plaque cover and article paper poster must stay separate.'
 # Captions were checked against all 128 selected photographs.
 CAPTIONS=(ROOT/'tools/data/chuxiong-captions.txt').read_text(encoding='utf-8')
