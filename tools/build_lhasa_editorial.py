@@ -54,7 +54,7 @@ def render(d):
  f'<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}intro-light-still.png" data-light-src="{pfx}intro-light-still.png" data-dark-src="{pfx}intro-dark-still.png"><img src="{pfx}intro-light.gif" data-light-src="{pfx}intro-light.gif" data-dark-src="{pfx}intro-dark.gif" alt="RunCN 山路片头" width="280" height="280"></picture>',
  f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}hero-still.jpg"><img src="{pfx}hero-9photos-20261011.gif" width="900" height="900" alt="进藏列车、布达拉宫、拉萨半马与藏戏奖牌" fetchpriority="high"></picture><figcaption>坐着火车进藏，跑到布达拉宫脚下<br>摄影 / Arsenan、官方摄影</figcaption></figure>',
  '<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div>',f'<section class="intro"><p>{emphasize(d["intro"])}</p></section>',
- f'<figure class="photo-strip location-poster"><img src="/assets/runcn-lhasa-2026/map-tibet-lhasa-v2.jpg" alt="RunCN 中国地图，藏戏面具与星标定位西藏拉萨"><img src="{POSTER_SRC}" alt="西藏拉萨 · 2026 · RunCN 29"><figcaption>西藏 · 拉萨 · RunCN 第29站<br>封面设计 / Arsenan × AI</figcaption></figure>']
+ f'<figure class="photo-strip location-poster"><img src="/assets/runcn-lhasa-2026/map-tibet-lhasa-v3.jpg" alt="RunCN 中国地图，藏戏面具与星标定位西藏拉萨"><img src="{POSTER_SRC}" alt="西藏拉萨 · 2026 · RunCN 29"><figcaption>西藏 · 拉萨 · RunCN 第29站<br>封面设计 / Arsenan × AI</figcaption></figure>']
  blocks=d['blocks'];i=0;n=0
  while i<len(blocks):
   b=blocks[i]

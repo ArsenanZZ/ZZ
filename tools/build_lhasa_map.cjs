@@ -38,26 +38,27 @@ const root=path.resolve(__dirname,'..');
     const s=distance-.06*Math.hypot(x-(box.x+box.width/2),y-(box.y+box.height/2));
     if(s>score){score=s;best={x,y};}
    }
-   if(best)labels.push({id,name,...best,size:short==='tibet'?22:short==='xinjiang'?17:short==='ningxia'?11:14});
+   if(best)labels.push({id,name,...best,size:short==='tibet'?25:short==='xinjiang'?20:short==='ningxia'?13:16});
   }
   window.provinceLabels=labels;
-  add('text',{x:35,y:40,'font-size':21,'font-weight':'bold',fill:'#163e47'},'RunCN · 西藏拉萨');
+  add('text',{x:35,y:40,'font-size':22,'font-family':'Noto Serif SC, SimSun, serif','font-weight':'800',fill:'#163e47'},'RunCN · 西藏拉萨');
   add('text',{x:35,y:65,'font-size':11,fill:'#365e66'},'2026.08.23 · 第29站');
   window.cityDots.forEach(([city,,lat,lon])=>{if(city!=='拉萨')add('circle',{cx:(lon-70)*11.8,cy:(55-lat)*15,r:2.8,fill:'#ba6b50',stroke:'#fff8e8','stroke-width':.9});});
-  window.provinceLabels.forEach(({id,name,x,y,size})=>add('text',{x,y,'font-size':size,'dominant-baseline':'middle','font-weight':id==='cn_tibet'?'700':'500','text-anchor':'middle',fill:id==='cn_tibet'?'#fff6df':window.provinces[id]?'#344d54':'#87918b','paint-order':'stroke',stroke:id==='cn_tibet'?'#397997':'#f5f0e4','stroke-width':id==='cn_tibet'?1:.8},name));
+  window.provinceLabels.forEach(({id,name,x,y,size})=>add('text',{x,y,'font-size':size,'dominant-baseline':'middle','font-family':id==='cn_tibet'?'Noto Serif SC, SimSun, serif':'KaiTi, STKaiti, serif','font-weight':id==='cn_tibet'?'800':'600','text-anchor':'middle',fill:id==='cn_tibet'?'#fff6df':window.provinces[id]?'#344d54':'#87918b','paint-order':'stroke',stroke:id==='cn_tibet'?'#397997':'#f5f0e4','stroke-width':id==='cn_tibet'?1:.8},name));
   // Small coastal municipalities use an uncluttered external label column.
   const external=[['北京',116.4,39.9,669,254],['天津',117.2,39.1,690,280],['上海',121.47,31.23,693,378],['香港',114.17,22.3,647,508],['澳门',113.54,22.2,647,533]];
-  external.forEach(([name,lon,lat,tx,ty])=>{const px=(lon-70)*11.8,py=(55-lat)*15;add('path',{d:`M${px} ${py} L${tx-18} ${ty} L${tx-5} ${ty}`,fill:'none',stroke:'#8e9a95','stroke-width':.75});add('text',{x:tx,y:ty,'dominant-baseline':'middle','font-size':11,fill:'#536a71'},name);});
+  external.forEach(([name,lon,lat,tx,ty])=>{const px=(lon-70)*11.8,py=(55-lat)*15;add('path',{d:`M${px} ${py} L${tx-18} ${ty} L${tx-5} ${ty}`,fill:'none',stroke:'#8e9a95','stroke-width':.75});add('text',{x:tx,y:ty,'dominant-baseline':'middle','font-size':14,'font-family':'KaiTi, STKaiti, serif',fill:'#536a71'},name);});
   // Existing site projection: x=(lon-70)*11.8, y=(55-lat)*15.
   const x=(91.1300-70)*11.8,y=(55-29.6500)*15;
-  add('text',{x:x+26,y:y-2,'font-size':13,'text-anchor':'start','font-weight':'bold',fill:'#fff6df'},'拉萨');
+  add('text',{x:x+26,y:y-2,'font-size':14,'font-family':'KaiTi, STKaiti, serif','text-anchor':'start','font-weight':'bold',fill:'#fff6df'},'拉萨');
   add('circle',{cx:x,cy:y,r:13,fill:'#fff4b3',opacity:.7});
   const points=Array.from({length:10},(_,i)=>{const a=-Math.PI/2+i*Math.PI/5,r=i%2?4.5:10;return (x+Math.cos(a)*r)+','+(y+Math.sin(a)*r)}).join(' ');
   add('polygon',{points,fill:'#e95532',stroke:'#fffdf0','stroke-width':1.8});
   add('path',{d:`M 170 495 C 220 490 240 430 ${x-10} ${y+8}`,fill:'none',stroke:'#a34723','stroke-width':2.6});
   add('image',{href:emblem,x:65,y:430,width:100,height:115});
-  add('text',{x:115,y:565,'text-anchor':'middle','font-size':22,'font-weight':'bold',fill:'#173d48'},'拉萨');
+  add('text',{x:115,y:565,'text-anchor':'middle','font-size':24,'font-family':'Noto Serif SC, SimSun, serif','font-weight':'800',fill:'#173d48'},'拉萨');
  },emblem);
- await page.locator('#map').screenshot({path:path.join(root,'assets/runcn-lhasa-2026/map-tibet-lhasa-v2.jpg')});
+ await page.evaluate(()=>document.fonts.ready);
+ await page.locator('#map').screenshot({path:path.join(root,'assets/runcn-lhasa-2026/map-tibet-lhasa-v3.jpg')});
  await browser.close();
 })();
