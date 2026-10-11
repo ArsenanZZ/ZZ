@@ -11,6 +11,7 @@ TITLE='RunCN #第29站｜西藏拉萨半程马拉松｜在日光之城，跑到�
 COVER_SRC='/assets/runcn-lhasa-cover-20261011.jpg'
 POSTER_SRC='/assets/runcn-lhasa-article-poster-20261011.jpg'
 assert COVER_SRC!=POSTER_SRC
+OFFICIAL_PHOTOS=set('18-3-1 18-5-0 18-5-1 18-5-2 18-7 19-4 19-5 19-8-0-1 20-0 20-5 21-0'.split())
 KEYS='拉萨 西藏 RunCN 布达拉宫 八廓街 大昭寺 青藏铁路 西宁 格尔木 牛肉包 雪城民宿 田村火锅鸡 藏戏面具 三十五块钱 山东小伙 警察 志愿者 三千六百六十米 二十一公里 高原 半马 氧气 拉萨河 会展中心 九公里 十四公里 十七 十八 十九 三小时多一点 奖牌 月亮 彩色流苏 煲仔饭 西瓜汁'.split()
 UNDER=['不是上山，是上宫殿了','找回来了','最喜欢的风景还是下一个公里牌','慢慢往前','都在里面','第三层台阶','也算数','高原的比赛，确实得敬畏','你们下班，我也下班','这一趟','回车上','真牛肉','也有一整段很具体的记忆','先把步子放稳','不急着','舍不得','相机可别再忘了']
 def emphasize(text):
@@ -22,7 +23,7 @@ def prepare():
  for key,c in cap.items():
   p=ASSET/f'Lhsa-{key}.webp'
   with Image.open(p) as im:w,h=im.size
-  photo[key]={'kind':'figure','src':'/assets/runcn-lhasa-2026/'+p.name,'alt':c,'caption':c,'width':w,'height':h,'source_file':f'Lhsa-{key}.jpg'}
+  photo[key]={'kind':'figure','src':'/assets/runcn-lhasa-2026/'+p.name,'alt':c,'caption':c+' · 摄影 / '+('官方摄影' if key in OFFICIAL_PHOTOS else 'Arsenan'),'width':w,'height':h,'source_file':f'Lhsa-{key}.jpg'}
  blocks=[];used=[];paras=[]
  for line in (ROOT/'tools/data/lhasa-story.txt').read_text(encoding='utf-8').splitlines():
   if not line.strip():continue
@@ -51,9 +52,9 @@ def render(d):
  pfx='/assets/runcn-lhasa-2026/'
  body=[f'<header class="masthead"><h1>{escape(TITLE)}</h1><p class="byline">西藏拉萨 · 2026年8月23日<br>文字 / Arsenan</p></header>',
  f'<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}intro-light-still.png" data-light-src="{pfx}intro-light-still.png" data-dark-src="{pfx}intro-dark-still.png"><img src="{pfx}intro-light.gif" data-light-src="{pfx}intro-light.gif" data-dark-src="{pfx}intro-dark.gif" alt="RunCN 山路片头" width="280" height="280"></picture>',
- f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}hero-still.jpg"><img src="{pfx}hero-9photos-20261011.gif" width="900" height="900" alt="进藏列车、布达拉宫、拉萨半马与藏戏奖牌" fetchpriority="high"></picture><figcaption>坐着火车进藏，跑到布达拉宫脚下</figcaption></figure>',
+ f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}hero-still.jpg"><img src="{pfx}hero-9photos-20261011.gif" width="900" height="900" alt="进藏列车、布达拉宫、拉萨半马与藏戏奖牌" fetchpriority="high"></picture><figcaption>坐着火车进藏，跑到布达拉宫脚下<br>摄影 / Arsenan、官方摄影</figcaption></figure>',
  '<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div>',f'<section class="intro"><p>{emphasize(d["intro"])}</p></section>',
- f'<figure class="photo-strip location-poster"><img src="/assets/runcn-lhasa-2026/map-tibet-lhasa.jpg" alt="RunCN 中国地图，藏戏面具与星标定位西藏拉萨"><img src="{POSTER_SRC}" alt="西藏拉萨 · 2026 · RunCN 29"><figcaption>西藏 · 拉萨 · RunCN 第29站<br>封面设计 / Arsenan × AI</figcaption></figure>']
+ f'<figure class="photo-strip location-poster"><img src="/assets/runcn-lhasa-2026/map-tibet-lhasa-v2.jpg" alt="RunCN 中国地图，藏戏面具与星标定位西藏拉萨"><img src="{POSTER_SRC}" alt="西藏拉萨 · 2026 · RunCN 29"><figcaption>西藏 · 拉萨 · RunCN 第29站<br>封面设计 / Arsenan × AI</figcaption></figure>']
  blocks=d['blocks'];i=0;n=0
  while i<len(blocks):
   b=blocks[i]
@@ -69,7 +70,7 @@ def render(d):
    body.append('<figure class="photo-strip">'+''.join(f'<img src="{x["src"]}" srcset="{x["src"].replace("/Lhsa-","/preview/Lhsa-")} 1600w" sizes="(max-width:677px) calc(100vw - 40px), 637px" data-copy-src="{x["src"].replace("/Lhsa-","/preview/Lhsa-")}" alt="{escape(x["alt"])}" width="{x["width"]}" height="{x["height"]}" loading="lazy" decoding="async" style="display:block;width:100%;height:auto">' for x in group)+'<figcaption>'+'<br>'.join(escape(x['caption']) for x in group)+'</figcaption></figure>')
   i+=1
  for p in d['ending_paragraphs']:body.append('<p class="prose" style="font-size:15px;line-height:1.95;text-align:justify">'+emphasize(p)+'</p>')
- body.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUNCN · 第29站 · 西藏拉萨</p><h2>在日光之城，跑到布达拉宫脚下</h2><p class="closing">从车窗到赛道，从失而复得的相机到藏戏奖牌，把拉萨放进RunCN地图里。</p><p class="credits">文字 / Arsenan<br>摄影 / 见图片署名</p></footer>')
+ body.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUNCN · 第29站 · 西藏拉萨</p><h2>在日光之城，跑到布达拉宫脚下</h2><p class="closing">从车窗到赛道，从失而复得的相机到藏戏奖牌，把拉萨放进RunCN地图里。</p><p class="credits">文字 / Arsenan<br>摄影 / Arsenan、官方摄影</p></footer>')
  body.append('<p class="source-note">背景资料：<a href="https://whc.unesco.org/zh/list/707">布达拉宫历史建筑群 · UNESCO</a> · <a href="https://www.runninginchina.org/event/default/414.html?action=view">拉萨半程马拉松规程与路线</a>。旅行与比赛经历根据作者Vlog中的口述整理；比赛年份由作者确认为2026年。</p>')
  nav='<nav class="copy-tools"><a href="/CN/#runcn-series" style="color:inherit">RunCN 目录</a><button class="theme-choice" data-theme-choice="light" aria-pressed="true" type="button">白底</button><button class="theme-choice" data-theme-choice="dark" aria-pressed="false" type="button">黑底</button><button id="copy-wechat" type="button">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
  html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="在日光之城，跑到布达拉宫脚下。135张照片，记录卧铺进藏、布宫夜色、相机失而复得和高原半马。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-lhasa">'+'\n'.join(body)+'</main><script src="/assets/runcn-lhasa-copy.js?v=20261011-align" defer></script></body></html>'
