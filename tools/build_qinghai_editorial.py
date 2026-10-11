@@ -37,6 +37,9 @@ def prepare():
   else:paras.append(line);blocks.append({'kind':'paragraph','html':'<p>'+emphasize(line)+'</p>'})
  sources={p.stem.removeprefix('QH-') for p in ASSET.glob('QH-*.webp')}
  assert len(used)==len(set(used))==123 and set(used)==sources==set(cap)
+ milestones={'009-6-alt':5,'009-8':8,'009-8-2':12,'009-8-4':20,'009-8-5':30,'009-8-8':36,'009-9':40,'009-9-1':42}
+ progress=[milestones[k] for k in used if k in milestones]
+ assert progress==sorted(progress),f'Race photos out of kilometer order: {progress}'
  d={'title':TITLE,'intro':'从西宁的晚霞和夜市，到日月山的经幡、青海湖和茶卡盐湖。鞋里进了盐水，第二天照样去跑全马；跑完，绿箱子和下午三点半的飞机还在等着。','source_photo_count':123,'source_subtitles':'青海这一趟 · 28分钟Vlog完整字幕','original_paragraphs':paras,'ending_paragraphs':[],'blocks':blocks}
  (ROOT/'tools/data/qinghai-editorial.json').write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
  return d
@@ -44,7 +47,7 @@ def assets():
  for name in ['intro-light.gif','intro-dark.gif','intro-light-still.png','intro-dark-still.png']:
   shutil.copyfile(ROOT/'assets/runcn-chuxiong-2026'/name,ASSET/name)
  frames=[]
- for key,center in [('009-9-1',(.5,.1)),('001-5',(0,.3)),('002-5',(.5,.3)),('003-2',(.6,.15)),('003-6-5',(.25,.5)),('007-5-1',(.5,.3)),('007-5-9',(.5,.5)),('009-8-4',(.5,.3)),('010-2',(.5,.5))]:
+ for key,center in [('001-5',(0,.3)),('002-5',(.5,.3)),('003-2',(.6,.15)),('003-6-5',(.25,.5)),('007-5-1',(.5,.3)),('007-5-9',(.5,.5)),('009-8-4',(.5,.3)),('009-9-1',(.5,.1)),('010-2',(.5,.5))]:
   with Image.open(ASSET/f'QH-{key}.webp') as im:frames.append(ImageOps.fit(im.convert('RGB'),(900,900),centering=center))
  frames[0].save(ASSET/'hero-still.jpg',quality=95)
  frames[0].save(ASSET/'hero-9photos-20261011.gif',save_all=True,append_images=frames[1:],duration=2800,loop=0,optimize=False)
