@@ -59,7 +59,7 @@ def arrange(d):
   else:chapters[-1][1].append(b)
  # Two opening photographs are previews; the journey itself keeps its source order.
  for ch in chapters:ch[1][:]=[b for b in ch[1] if b.get('id') not in ['DE-014','DE-011']]
- chapters[0][1].append(images['DE-014'])
+ chapters[0][1].insert(3,images['DE-014'])
  chapters[1][1].insert(1,images['DE-011'])
  result=[]
  for h,bs in chapters:
@@ -127,3 +127,4 @@ if __name__=='__main__':
  d=prepare()
  if '--assets' in sys.argv:assets()
  render(d)
+
