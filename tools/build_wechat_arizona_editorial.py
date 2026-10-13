@@ -49,6 +49,40 @@ def assets():
  frames[0].save(ASSET/'hero-still.jpg',quality=94)
  frames[0].save(ASSET/'hero.gif',save_all=True,append_images=frames[1:],duration=3000,loop=0,optimize=False)
 
+def arrange(d):
+ chapters=[]
+ for b in d['blocks']:
+  if b['kind']=='heading':chapters.append({'heading':b,'paras':[]})
+  elif b['kind']=='paragraph':chapters[-1]['paras'].append(b)
+ images={b['id']:b for b in d['blocks'] if b['kind']=='figure' and b['id']!=1}
+ plans={
+  0:{2:[4],5:[2]},
+  1:{3:[7],4:[8],6:[12]},
+  2:{4:[3],7:[5,6],10:[9,10,11],11:[13,14],12:[15]},
+  3:{0:[16,17],1:[18,19],2:[20,21,22,23],3:[24,25],4:[26,27],5:[29,30],6:[31,32],7:[33],8:[28,34,35],9:[36],10:[37],11:[38,39],12:[40],13:[41,42],14:[43],16:[44],17:[45,46],18:[47,48,49],19:[50,51],20:[52,53,54,55,56,57,58],21:[59,60,61],22:[62,63,64]},
+  4:{0:[65],1:[66,67],2:[68,69,70],3:[71],4:[73,74,75],5:[72],6:[76,77,78],7:[79],8:[80],10:[81,82,83],11:[84,85,86]},
+  5:{3:[87]}}
+ result=[]
+ for n,ch in enumerate(chapters):
+  result.append(ch['heading'])
+  for j,para in enumerate(ch['paras']):
+   ids=plans[n].get(j,[])
+   # Split long narration at sentence boundaries so large photo sets alternate with prose.
+   text=para['text'];sentences=re.findall(r'.*?[。！？](?:[”’])?|.+$',text)
+   if len(ids)>3 and len(sentences)>1:
+    groups=[ids[k:k+3] for k in range(0,len(ids),3)]
+    cuts=[round(k*len(sentences)/len(groups)) for k in range(len(groups)+1)]
+    for k,group in enumerate(groups):
+     part=''.join(sentences[cuts[k]:cuts[k+1]])
+     if part:result.append({'kind':'paragraph','text':part,'original_html':'<p>'+escape(part)+'</p>'})
+     result.extend(images[i] for i in group)
+   else:
+    result.append(para);result.extend(images[i] for i in ids)
+ ids=[b['id'] for b in result if b['kind']=='figure']
+ assert len(ids)==len(set(ids))==86 and set(ids)==set(images)
+ assert ''.join(b['text'] for b in result if b['kind']=='paragraph')==''.join(d['original_paragraphs'])
+ return result
+
 def render(d):
  css=re.search(r'<style>(.*?)</style>',style.render(),re.S).group(1)
  css+='''\nmain{padding-left:20px;padding-right:20px}.cover,.intro,.chapter{margin-left:0;margin-right:0}.photo-strip{margin:32px 0 36px}.photo-strip img{display:block;width:100%;height:auto;margin:0}.photo-strip figcaption,figure figcaption{margin:10px 0 0;text-align:center;font-size:12px;line-height:1.8;color:var(--muted)}.brand-intro{display:block;text-align:center;margin:0 auto 14px}.brand-intro img{display:inline-block;width:128px;height:128px}.cover img{display:block;width:100%;height:auto;aspect-ratio:1}.location-poster img{width:100%;height:auto}.location-poster img:first-child{width:100%;max-width:100%;box-sizing:border-box;padding:0 1.26183%;background:#f3efdf;margin:0}.source-note{font-size:11px;line-height:1.8;color:var(--muted);margin-top:24px}.source-note a{color:inherit}.chapter-label{color:#b8452e}html[data-theme="dark"] .chapter-label{color:#ffd36e}.byline{line-height:2}.series{letter-spacing:3px}'''
@@ -58,7 +92,7 @@ def render(d):
  f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}hero-still.jpg"><img src="{pfx}hero.gif" width="900" height="900" alt="沙漠日落、赛道、终点合影、巨人柱和奖牌" fetchpriority="high"></picture><figcaption>沙漠清晨，机场终点，2026第一跑破4<br>摄影 / Arsenan、官方摄影</figcaption></figure>',
  '<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div>',f'<section class="intro"><p>{emphasize(d["intro"])}</p></section>',
  f'<figure class="photo-strip location-poster"><img src="/assets/arizona-editorial-20261013/map-arizona.jpg" alt="Run50 美国地图，巨人柱指引与星标定位亚利桑那巴克艾"><img src="{POSTER_SRC}" alt="亚利桑那巴克艾 · 2026 · Run50 29"><figcaption>亚利桑那 · 巴克艾 · Run50 第29州<br>封面设计 / Arsenan × AI</figcaption></figure>']
- blocks=d['blocks'];i=0;n=0
+ blocks=arrange(d);i=0;n=0
  while i<len(blocks):
   b=blocks[i]
   if b['kind']=='heading':
@@ -76,7 +110,7 @@ def render(d):
  for p in d.get('ending_paragraphs',[]):body.append('<p class="prose" style="font-size:15px;line-height:1.95;text-align:justify">'+emphasize(p)+'</p>')
  body.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUN50 · 第29州 · 亚利桑那巴克艾</p><h2>亚利桑那，点亮</h2><p class="closing">亚利桑那位于美国西南部，索诺兰沙漠、巨人柱与红岩，构成了这一站的底色。</p><p class="credits">文字 / Arsenan<br>摄影 / Arsenan、官方摄影</p></footer>')
  nav='<nav class="copy-tools"><a href="/CN/#run50-series" style="color:inherit">Run50 目录</a><button class="theme-choice" data-theme-choice="light" aria-pressed="true" type="button">白底</button><button class="theme-choice" data-theme-choice="dark" aria-pressed="false" type="button">黑底</button><button id="copy-wechat" type="button">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
- html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="沙漠清晨，机场终点，2026第一跑破4。87张照片，完整保留亚利桑那巴克艾马拉松与赛后红岩、仙人掌旅行。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="arizona-editorial">'+'\n'.join(body)+'</main><script src="/assets/arizona-editorial-copy.js?v=20261013" defer></script></body></html>'
+ html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="沙漠清晨，机场终点，2026第一跑破4。86张照片，完整保留亚利桑那巴克艾马拉松与赛后红岩、仙人掌旅行。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="arizona-editorial">'+'\n'.join(body)+'</main><script src="/assets/arizona-editorial-copy.js?v=20261013" defer></script></body></html>'
  for suffix in ['editorial','modern-rail']:(ROOT/f'run50/wechat/{SLUG}-{suffix}.html').write_text(html,encoding='utf-8')
  js=(ROOT/'assets/run50-six-editorial-copy.js').read_text(encoding='utf-8').replace('img.height = 120','img.height = 96')
  js=js.replace("if (tag === 'img' || number || down) {", "if (number) { const p=document.createElement('p'); p.textContent=node.textContent; p.style.cssText='font-family:Arial,sans-serif;font-size:74px;line-height:1;color:' + ink + ';margin:48px 0 14px;font-weight:400;'; return p; }\n      if (tag === 'img' || down) {")
