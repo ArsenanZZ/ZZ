@@ -58,8 +58,10 @@ def arrange(d):
   if b['kind']=='heading':chapters.append([b,[]])
   else:chapters[-1][1].append(b)
  # Two opening photographs are previews; the journey itself keeps its source order.
- for ch in chapters:ch[1][:]=[b for b in ch[1] if b.get('id') not in ['DE-014','DE-011']]
- chapters[0][1].insert(3,images['DE-014'])
+ for ch in chapters:ch[1][:]=[b for b in ch[1] if b.get('id') not in ['DE-014','DE-011','DE-051-2','DE-005']]
+ chapters[0][1].insert(1,images['DE-005'])
+ chapters[0][1].insert(4,images['DE-051-2'])
+ chapters[0][1].append(images['DE-014'])
  chapters[1][1].insert(1,images['DE-011'])
  result=[]
  for h,bs in chapters:
@@ -70,8 +72,8 @@ def arrange(d):
    photos=[];j=i+1
    while j<len(bs) and bs[j]['kind']=='figure':photos.append(bs[j]);j+=1
    sentences=re.findall(r'.*?[。！？](?:[”’])?|.+$',b['text'])
-   groups=[photos[k:k+3] for k in range(0,len(photos),3)]
-   if len(groups)>1 and len(sentences)>=len(groups):
+   groups=[photos[k:k+2] for k in range(0,len(photos),2)]
+   if groups and len(sentences)>=len(groups):
     cuts=[round(k*len(sentences)/len(groups)) for k in range(len(groups)+1)]
     for k,g in enumerate(groups):
      t=''.join(sentences[cuts[k]:cuts[k+1]])
@@ -91,7 +93,7 @@ def render(d):
  f'<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}intro-light-still.png" data-light-src="{pfx}intro-light-still.png" data-dark-src="{pfx}intro-dark-still.png"><img src="{pfx}intro-light.gif" data-light-src="{pfx}intro-light.gif" data-dark-src="{pfx}intro-dark.gif" alt="Run50 山路片头" width="280" height="280"></picture>',
  f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{pfx}hero-still.jpg"><img src="{pfx}hero.gif" width="900" height="900" alt="朝霞、河滨合影、铁桥自拍、冲线与奖牌" fetchpriority="high"></picture><figcaption>迟到的第30州，从威尔明顿跑进湿地<br>摄影 / Arsenan、Siqi、官方摄影</figcaption></figure>',
  '<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div>',f'<section class="intro"><p>{emphasize(d["intro"])}</p></section>',
- f'<figure class="photo-strip location-poster"><img src="/run50/wechat-new/media/delaware/run50-de-star-map-20260920.png" alt="Run50 美国地图，星标定位特拉华威尔明顿"><img src="{POSTER_SRC}" alt="特拉华威尔明顿 · 2026 · Run50 30"><figcaption>特拉华 · 威尔明顿 · Run50 第30州<br>封面设计 / Arsenan × AI</figcaption></figure>']
+ f'<figure class="photo-strip location-poster"><img src="/assets/delaware-editorial-20261013/map-delaware.jpg" alt="Run50 美国地图，星标定位特拉华威尔明顿"><img src="{POSTER_SRC}" alt="特拉华威尔明顿 · 2026 · Run50 30"><figcaption>特拉华 · 威尔明顿 · Run50 第30州<br>封面设计 / Arsenan × AI</figcaption></figure>']
  blocks=arrange(d);i=0;n=0
  while i<len(blocks):
   b=blocks[i]
