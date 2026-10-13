@@ -47,7 +47,7 @@ def assets():
   source={'intro-light.gif':'run50-cutout-intro-light.gif','intro-dark.gif':'run50-cutout-intro-dark.gif','intro-light-still.png':'run50-cutout-intro-light-still.png','intro-dark-still.png':'run50-cutout-intro-dark-still.png'}[name]
   shutil.copyfile(ROOT/'assets'/source,ASSET/name)
  frames=[]
- for key,c in [(102,(.5,.3)),(114,(.5,.3)),(120,(.5,.35)),(127,(.5,.5)),(14,(.5,.5))]:
+ for key,c in [(102,(.5,0)),(114,(.5,.3)),(120,(.5,.35)),(127,(.5,.5)),(14,(.5,.5))]:
   source=next(b['src'] for b in prepare()['blocks'] if b.get('id')==key)
   with Image.open(ROOT/source.lstrip('/')) as im:frames.append(ImageOps.fit(im.convert('RGB'),(900,900),centering=c))
  frames[0].save(ASSET/'hero-still.jpg',quality=94)
