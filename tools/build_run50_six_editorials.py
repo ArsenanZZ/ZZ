@@ -55,6 +55,12 @@ def caption(s):
  s=re.sub(r'\s*@\s*(Arsenan|Siqi)\b',r' · 摄影 / \1',s)
  s=s.replace('摄影 | 待确认','家庭影像').replace('摄影 |','摄影 /').replace('赛事摄影','赛事官方摄影')
  return s
+
+def grouped_captions(lines):
+ parts=[re.fullmatch(r'(.*?)\s*·\s*(摄影 / .+)',line) for line in lines]
+ if len(lines)>1 and all(parts) and len({p[2] for p in parts})==1:
+  return [p[1].rstrip() for p in parts]+[parts[0][2]]
+ return lines
 def landscape(b):
  if b['kind']!='figure':return False
  with Image.open(local(b['src'])) as im:return im.width>=im.height*1.15
@@ -93,6 +99,9 @@ def render(slug,make_hero=True):
  css=re.search(r'<style>(.*?)</style>',style.render(),re.S).group(1)
  css+='\nmain{padding-left:20px;padding-right:20px}.cover{margin-left:0;margin-right:0}.intro,.chapter{margin-left:0;margin-right:0}.photo-strip img{display:block;width:100%;height:auto;margin:0}.photo-strip figcaption{margin-top:10px;text-align:center;font-size:12px;line-height:1.75;color:#888}.photo-strip{margin:32px 0 36px}'
  brand='<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/run50-cutout-intro-light-still.png" data-light-src="../../assets/run50-cutout-intro-light-still.png" data-dark-src="../../assets/run50-cutout-intro-dark-still.png"><img src="../../assets/run50-cutout-intro-light.gif" data-light-src="../../assets/run50-cutout-intro-light.gif" data-dark-src="../../assets/run50-cutout-intro-dark.gif" alt="Run50 机器人片头" width="280" height="350"></picture>'
+ if slug=='blue-ridge-marathon':
+  # WeChat reader dark mode cannot run our theme switcher: use gold on both backgrounds.
+  brand=brand.replace('run50-cutout-intro-light','run50-cutout-intro-dark')
  body=[f'<header class="masthead"><h1>{escape(d["title"])}</h1><p class="byline">文字 / Arsenan</p></header>',brand,f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/{slug}-editorial-hero-still.jpg?v=20261008-crop"><img src="../../assets/{slug}-editorial-hero.gif?v=20261008-crop" width="900" height="900" alt="{state}跑马与旅行"></picture><figcaption class="hero-credit">跑马与旅行 · 照片来源及署名见正文</figcaption></figure>',f'<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div><section class="intro"><p>{escape(d["intro"])}</p></section>',f'<figure class="photo-strip map-poster"><img src="{escape(d["map"])}" alt="Run50 {state}地图"><img src="{escape(d["poster"])}" alt="{state}赛事海报"><figcaption>Run50 · {state} · 第{n}州'+('番外' if n==1 else '')+'<br>制图 / Arsenan</figcaption></figure>']
  count=0;blocks=groups(d['blocks'])
  for b in blocks:
@@ -103,6 +112,7 @@ def render(slug,make_hero=True):
   else:
    lines=[caption(x.get('caption','')) for x in b['images']]
    if not any(lines):lines=[caption(b.get('caption',''))]
+   lines=grouped_captions(lines)
    body.append('<figure class="photo-strip">'+''.join(f'<img src="{escape(x["src"])}" alt="{escape(x.get("alt",""))}" loading="lazy">' for x in b['images'])+'<figcaption>'+'<br>'.join(escape(x) for x in lines if x)+'</figcaption></figure>')
  series,title,closing=ENDINGS[slug]
  body.append(f'<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUN50 · {series}</p><h2>{title}</h2><p class="closing" style="margin:0;padding:24px 0 0;text-align:center;font-size:13px;line-height:1.9">{closing}</p><p class="credits">文字 / Arsenan<br>摄影 / 见图片署名</p></footer>')
