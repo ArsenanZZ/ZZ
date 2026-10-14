@@ -30,6 +30,7 @@ jobs:
 
       - name: Prepare site artifact
         run: |
+          python3 tools/normalize_wechat_presentation.py
           mkdir -p _site
           rsync -a --delete \
             --exclude='.git/' \
