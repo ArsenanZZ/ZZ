@@ -100,8 +100,8 @@ def render(slug,make_hero=True):
  css+='\nmain{padding-left:20px;padding-right:20px}.cover{margin-left:0;margin-right:0}.intro,.chapter{margin-left:0;margin-right:0}.photo-strip img{display:block;width:100%;height:auto;margin:0}.photo-strip figcaption{margin-top:10px;text-align:center;font-size:12px;line-height:1.75;color:#888}.photo-strip{margin:32px 0 36px}'
  brand='<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/run50-cutout-intro-light-still.png" data-light-src="../../assets/run50-cutout-intro-light-still.png" data-dark-src="../../assets/run50-cutout-intro-dark-still.png"><img src="../../assets/run50-cutout-intro-light.gif" data-light-src="../../assets/run50-cutout-intro-light.gif" data-dark-src="../../assets/run50-cutout-intro-dark.gif" alt="Run50 机器人片头" width="280" height="350"></picture>'
  if slug=='blue-ridge-marathon':
-  # WeChat reader dark mode cannot run our theme switcher: use gold on both backgrounds.
-  brand=brand.replace('run50-cutout-intro-light','run50-cutout-intro-dark')
+  # Explicit preference: blue on white, yellow on dark, including clipboard export.
+  brand=brand.replace('class="brand-intro"','class="brand-intro" data-logo-theme="paired"')
  body=[f'<header class="masthead"><h1>{escape(d["title"])}</h1><p class="byline">文字 / Arsenan</p></header>',brand,f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/{slug}-editorial-hero-still.jpg?v=20261008-crop"><img src="../../assets/{slug}-editorial-hero.gif?v=20261008-crop" width="900" height="900" alt="{state}跑马与旅行"></picture><figcaption class="hero-credit">跑马与旅行 · 照片来源及署名见正文</figcaption></figure>',f'<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div><section class="intro"><p>{escape(d["intro"])}</p></section>',f'<figure class="photo-strip map-poster"><img src="{escape(d["map"])}" alt="Run50 {state}地图"><img src="{escape(d["poster"])}" alt="{state}赛事海报"><figcaption>Run50 · {state} · 第{n}州'+('番外' if n==1 else '')+'<br>制图 / Arsenan</figcaption></figure>']
  count=0;blocks=groups(d['blocks'])
  for b in blocks:

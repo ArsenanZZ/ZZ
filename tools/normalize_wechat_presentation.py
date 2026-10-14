@@ -13,7 +13,7 @@ def normalize(html):
         original = match[0]
         # RunCN uses a separate mountain wordmark with opaque themed backgrounds.
         # Keep its theme pair; this fix is for the transparent Run50 robot.
-        if 'RunCN' in original:
+        if 'RunCN' in original or 'data-logo-theme="paired"' in original:
             return original
         def media(m):
             tag = m[0]
