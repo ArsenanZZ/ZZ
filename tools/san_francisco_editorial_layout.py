@@ -173,7 +173,7 @@ def captions(d):
   if n==16:credit='摄影 / Anastasia'
   if n in {90,99}:credit='摄影 / 现场跑友'
   if n in {1,2,81}:credit='资料图 / 原文来源：Google'
-  if n in {47,48}:credit='图片提供 / Arsenan'
+  if n in {47,48}:credit='摄影 / Siqi'
   b['alt']=CAPTIONS[n-1];b['caption']=CAPTIONS[n-1]+' · '+credit
 
 def arrange(d):
