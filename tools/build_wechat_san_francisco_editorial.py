@@ -57,6 +57,13 @@ def arrange(d):
  from san_francisco_editorial_layout import arrange
  return arrange(d)
 
+def group_caption(group):
+ labels=['上','下'] if len(group)==2 else ['上','中','下']
+ parts=[x['caption'].rsplit(' · ',1) for x in group]
+ if len(group)>1 and all(len(p)==2 for p in parts) and len({p[1] for p in parts})==1:
+  return '<br>'.join(escape(labels[j]+'：'+p[0]) for j,p in enumerate(parts))+'<br>'+escape(parts[0][1])
+ return '<br>'.join((labels[j]+'：' if len(group)>1 else '')+escape(x['caption']) for j,x in enumerate(group))
+
 def render(d):
  css=re.search(r'<style>(.*?)</style>',style.render(),re.S).group(1)
  css+='''\nmain{padding-left:20px;padding-right:20px}.cover,.intro,.chapter{margin-left:0;margin-right:0}.photo-strip{margin:32px 0 36px}.photo-strip img{display:block;width:100%;height:auto;margin:0}.photo-strip figcaption,figure figcaption{margin:10px 0 0;text-align:center;font-size:12px;line-height:1.8;color:var(--muted)}.brand-intro{display:block;text-align:center;margin:0 auto 14px}.brand-intro img{display:inline-block;width:128px;height:128px}.cover img{display:block;width:100%;height:auto;aspect-ratio:1}.location-poster img{width:100%;height:auto}.location-poster img:first-child{width:100%;max-width:100%;box-sizing:border-box;padding:0;background:#f3efdf;margin:0}.source-note{font-size:11px;line-height:1.8;color:var(--muted);margin-top:24px}.source-note a{color:inherit}.chapter-label{color:#b8452e}html[data-theme="dark"] .chapter-label{color:#ffd36e}.byline{line-height:2}.series{letter-spacing:3px}'''
@@ -78,8 +85,7 @@ def render(d):
     nxt=blocks[i+1]
     if nxt['kind']!='figure':break
     group.append(nxt);i+=1
-   labels=['上','下'] if len(group)==2 else ['上','中','下']
-   body.append('<figure class="photo-strip">'+''.join(f'<img src="{x["src"]}" alt="{escape(x["alt"])}" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;margin:0">' for x in group)+'<figcaption>'+'<br>'.join((labels[j]+'：' if len(group)>1 else '')+escape(x['caption']) for j,x in enumerate(group))+'</figcaption></figure>')
+   body.append('<figure class="photo-strip">'+''.join(f'<img src="{x["src"]}" alt="{escape(x["alt"])}" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;margin:0">' for x in group)+'<figcaption>'+group_caption(group)+'</figcaption></figure>')
   i+=1
  for p in d.get('ending_paragraphs',[]):body.append('<p class="prose" style="font-size:15px;line-height:1.95;text-align:justify">'+emphasize(p)+'</p>')
  body.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUN50 · 第4州 · 加州</p><h2>加州，点亮</h2><p class="closing">太平洋的流雾与海风，穿过金门大桥，走进起伏的旧金山。</p><p class="credits">文字 / Arsenan<br>摄影 / Arsenan、Siqi、Anastasia、FinisherPix、现场跑友<br>资料图来源 / 原文标注 Google</p></footer>')
