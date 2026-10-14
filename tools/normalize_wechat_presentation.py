@@ -31,10 +31,17 @@ def normalize(html):
         def caption(m):
             lines = re.split(r'<br\s*/?>', m[2])
             parts = [re.fullmatch(r'(.*?)\s*[·|]\s*(摄影\s*[/|]\s*[^<>]+?)\s*', line, re.S) for line in lines]
-            if len(parts)<2 or not all(parts) or len({p[2].strip() for p in parts})!=1:
+            credited = [p for p in parts if p]
+            if len(credited)<2 or len({p[2].strip() for p in credited})!=1:
                 return m[0]
+            # An uncredited photo must not inherit its neighbours' attribution.
+            if not all(parts):
+                labels = ['上', '下'] if len(parts)==2 else ['上', '中', '下'] if len(parts)==3 else [str(i+1) for i in range(len(parts))]
+                credit = '、'.join(labels[i] for i,p in enumerate(parts) if p)+'图：'+credited[0][2].strip()
+            else:
+                credit = credited[0][2].strip()
             counts[1] += 1
-            return m[1]+'<br>'.join([p[1].rstrip() for p in parts]+[parts[0][2].strip()])+m[3]
+            return m[1]+'<br>'.join([p[1].rstrip() if p else line for p,line in zip(parts,lines)]+[credit])+m[3]
         return re.sub(r'(<figcaption\b[^>]*>)(.*?)(</figcaption>)', caption, original, flags=re.S)
     html = re.sub(r'<figure\b[^>]*>.*?</figure>', figure, html, flags=re.S)
     return html, counts
