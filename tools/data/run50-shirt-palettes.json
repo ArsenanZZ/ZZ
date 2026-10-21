@@ -1,0 +1,222 @@
+{
+  "arizona-phoenix-marathon": {
+    "evidence": "蓝色花纹球衣",
+    "light": "#2163b4",
+    "dark": "#77b8fa"
+  },
+  "blue-ridge-marathon": {
+    "evidence": "蓝色跑步T恤；保留用户指定的黑底黄色",
+    "light": "#3262bc",
+    "dark": "#f6c62e"
+  },
+  "connecticut-simsbury-marathon": {
+    "evidence": "红色葡萄牙球衣",
+    "light": "#bb3049",
+    "dark": "#ff8293"
+  },
+  "delaware-marathon": {
+    "evidence": "深蓝色JVC球衣",
+    "light": "#284c91",
+    "dark": "#8db5fa"
+  },
+  "fargo-marathon": {
+    "evidence": "粉色阿森纳球衣",
+    "light": "#b9477c",
+    "dark": "#f5a5ca"
+  },
+  "hell-on-gravel-marathon": {
+    "evidence": "蓝色花纹阿森纳球衣",
+    "light": "#2364a7",
+    "dark": "#7dbbf3"
+  },
+  "kentucky-derby-marathon-2025": {
+    "evidence": "橙色球衣",
+    "light": "#b65312",
+    "dark": "#ffb56e"
+  },
+  "louisiana-marathon": {
+    "evidence": "深蓝球衣、金黄字样",
+    "light": "#344c80",
+    "dark": "#e6c45e"
+  },
+  "louisville-marathon-2024": {
+    "evidence": "黑色短袖、白色胸前图案",
+    "light": "#373d48",
+    "dark": "#d0d6e1"
+  },
+  "mad-marathon": {
+    "evidence": "天蓝与深蓝拼接球衣",
+    "light": "#147d9e",
+    "dark": "#72d4ef"
+  },
+  "maine-sanford-marathon": {
+    "evidence": "红黄蓝彩色ROMA球衣，以红橙为主色",
+    "light": "#c64d32",
+    "dark": "#ffad63"
+  },
+  "massachusetts-holyoke-marathon": {
+    "evidence": "浅薄荷绿葡萄牙球衣",
+    "light": "#378279",
+    "dark": "#a0ddd3"
+  },
+  "michigan-meadows-marathon": {
+    "evidence": "米白球衣、深蓝条纹",
+    "light": "#5d6580",
+    "dark": "#e5dfc8"
+  },
+  "minnesota-med-city-marathon": {
+    "evidence": "红黄蓝几何球衣，以红色为主色",
+    "light": "#bc3651",
+    "dark": "#f78d9e"
+  },
+  "new-hampshire-clarence-demar-marathon": {
+    "evidence": "黑白阿森纳球衣",
+    "light": "#373d48",
+    "dark": "#e0e4ec"
+  },
+  "new-york-city-marathon": {
+    "evidence": "黑色衣身、蓝色袖子",
+    "light": "#315f9c",
+    "dark": "#8ab9f0"
+  },
+  "omaha-marathon": {
+    "evidence": "橙红色跑步T恤",
+    "light": "#bd4a20",
+    "dark": "#ffad76"
+  },
+  "rhode-island-woonsocket-marathon": {
+    "evidence": "黑色球衣、粉色袖口与短裤",
+    "light": "#8c345f",
+    "dark": "#ed98c0"
+  },
+  "rocket-city-marathon": {
+    "evidence": "深蓝球衣、青蓝花纹",
+    "light": "#27618a",
+    "dark": "#81c7ef"
+  },
+  "san-francisco-marathon": {
+    "evidence": "绿色球衣",
+    "light": "#16834d",
+    "dark": "#79d6a0"
+  },
+  "louisville-marathon": {
+    "evidence": "黑色跑步短袖、白色胸前图案",
+    "light": "#373d48",
+    "dark": "#d5dbe5"
+  },
+  "kentucky-derby-marathon-2021": {
+    "evidence": "黄色衣身、蓝色锯齿纹球衣",
+    "light": "#987617",
+    "dark": "#f3d754"
+  },
+  "cleveland-marathon": {
+    "evidence": "橘黄色上衣；用户确认，照片26、27、29核实",
+    "light": "#c26819",
+    "dark": "#ffbf73"
+  },
+  "indianapolis-monumental-marathon": {
+    "evidence": "蓝色衣身、黄色袖子",
+    "light": "#266fbb",
+    "dark": "#f3cf62"
+  },
+  "honolulu-marathon": {
+    "evidence": "绿色衣身、蓝黄袖子",
+    "light": "#227851",
+    "dark": "#a0d673"
+  },
+  "atlanta-marathon": {
+    "evidence": "红色葡萄牙球衣",
+    "light": "#b92c39",
+    "dark": "#f58d8d"
+  },
+  "denver-colfax-marathon": {
+    "evidence": "薄荷绿阿森纳球衣、蓝色袖子",
+    "light": "#268b83",
+    "dark": "#91ded1"
+  },
+  "anchorage-marathon": {
+    "evidence": "红色衣身、深蓝袖子",
+    "light": "#b63c43",
+    "dark": "#f58d8b"
+  },
+  "st-joseph-marathon": {
+    "evidence": "深蓝23号篮球衣、白色字样",
+    "light": "#354964",
+    "dark": "#c4d2e4"
+  },
+  "chicago-marathon": {
+    "evidence": "蓝色花纹长袖球衣",
+    "light": "#2d75ae",
+    "dark": "#87c4ed"
+  },
+  "nashville-marathon": {
+    "evidence": "深色花纹球衣、粉色肩部条纹",
+    "light": "#913a70",
+    "dark": "#ee9bc6"
+  },
+  "west-virginia-marathon": {
+    "evidence": "荧光黄绿几何球衣",
+    "light": "#63842b",
+    "dark": "#d6ec70"
+  },
+  "san-antonio-marathon": {
+    "evidence": "青蓝与粉色条纹球衣",
+    "light": "#277c98",
+    "dark": "#8fd6ea"
+  },
+  "disney-marathon": {
+    "evidence": "全马当天黄色阿森纳球衣",
+    "light": "#9b7618",
+    "dark": "#f5db66"
+  },
+  "miami-marathon": {
+    "evidence": "黄色C罗7号球衣、蓝色袖子",
+    "light": "#a07e18",
+    "dark": "#f1da5a"
+  },
+  "north-carolina-oak-island-marathon": {
+    "evidence": "荧光黄衣身、黑色波纹",
+    "light": "#718c26",
+    "dark": "#ddf377"
+  },
+  "little-rock-marathon": {
+    "evidence": "酒红色阿森纳球衣",
+    "light": "#7f3348",
+    "dark": "#d897a9"
+  },
+  "south-carolina-marathon": {
+    "evidence": "青蓝色阿森纳球衣",
+    "light": "#277e91",
+    "dark": "#8ad6e2"
+  },
+  "kentucky-derby-marathon": {
+    "evidence": "红绿白花纹球衣",
+    "light": "#b64647",
+    "dark": "#86d1ae"
+  },
+  "kentucky-derby-marathon-2023": {
+    "evidence": "蓝色与深蓝拼接、红色中间条纹",
+    "light": "#277ba5",
+    "dark": "#82c9e8"
+  },
+  "cincinnati-flying-pig-marathon": {
+    "evidence": "黑色45号篮球衣、粉色字边",
+    "light": "#9d3c6f",
+    "dark": "#f29ec9"
+  },
+  "pittsburgh-marathon": {
+    "evidence": "深灰黑色花纹球衣",
+    "light": "#485260",
+    "dark": "#cad2df"
+  },
+  "green-bay-marathon": {
+    "evidence": "金黄色衣身、深蓝袖子",
+    "light": "#987326",
+    "dark": "#e3c468"
+  },
+  "hatfield-mccoy-marathon": {
+    "evidence": "蓝色花纹球衣",
+    "light": "#315e9c",
+    "dark": "#8ab9ef"
+  }
+}

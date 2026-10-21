@@ -66,6 +66,7 @@
         img.src = url;
         img.alt = number ? node.textContent.trim() : down ? '向下' : node.getAttribute('alt') || '';
         img.style.cssText = `display:block;width:100%;max-width:100%;height:auto;margin:${down ? '24px 0 30px' : '0'};border:0;`;
+        if (node.closest('.poster-window')) img.style.cssText='display:block;width:104%;max-width:none;height:auto;margin:-2%;border:0;';
         if (node.closest('.brand-intro')) {
           img.width = 96;
           img.height = 120;
@@ -98,6 +99,7 @@
         if (tag === 'h1') out.style.cssText = 'margin:0 0 18px;font-size:25px;line-height:1.6;text-align:center;font-weight:700;';
         if (tag === 'h2') out.style.cssText = 'margin:0;font-size:20px;line-height:1.65;text-align:left;font-weight:700;';
         if (tag === 'figure') out.style.margin = '32px 0 36px';
+        if (node.classList.contains('poster-window')) out.style.cssText='overflow:hidden;border:1px solid #b7a77d;margin:0;padding:0;';
         if (node.classList.contains('cover')) out.style.margin = '0 0 24px';
         if (tag === 'figcaption' || node.classList.contains('byline') || node.classList.contains('credits')) out.style.cssText = `margin:10px 0 22px;font-size:12px;line-height:1.9;text-align:center;color:${muted};`;
         if (node.classList.contains('chapter')) out.style.margin = '58px 0 34px';

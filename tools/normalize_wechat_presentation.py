@@ -3,14 +3,28 @@
 Run after article builders, and before publishing. Uses only the standard library.
 """
 from pathlib import Path
-import re
+import re,json
 
 ROOT = Path(__file__).resolve().parents[1]
 
-def normalize(html):
+def normalize(html, page_name=''):
     counts = [0, 0]
+    palette_file=ROOT/'tools/data/run50-shirt-palettes.json'
+    palettes=json.loads(palette_file.read_text(encoding='utf-8')) if palette_file.exists() else {}
+    slug_match=re.search(r'data-edition="([^"]+)"',html)
+    shirt_slug=None
+    if page_name:
+        shirt_slug=next((s for s in sorted(palettes,key=len,reverse=True) if page_name.startswith(s+'-')),None)
+    if slug_match and not shirt_slug:
+        shirt_slug=next((s for s in sorted(palettes,key=len,reverse=True) if slug_match[1].startswith(s)),None)
+    # Some older builders use short edition IDs; match their canonical metadata.
+    if not shirt_slug:
+        shirt_slug=next((s for s in sorted(palettes,key=len,reverse=True) if re.search(re.escape(s)+r'-(?:editorial|modern-rail|d-rail)\.html',html)),None)
     def brand(match):
         original = match[0]
+        if shirt_slug:
+            base='/assets/run50-shirt-intros/'+shirt_slug+'/'
+            return '<picture class="brand-intro" data-logo-theme="shirt"><source media="(prefers-reduced-motion: reduce)" srcset="'+base+'light-still.png" data-light-src="'+base+'light-still.png" data-dark-src="'+base+'dark-still.png"><img src="'+base+'light.gif" data-light-src="'+base+'light.gif" data-dark-src="'+base+'dark.gif" alt="Run50 机器人片头" width="280" height="350"></picture>'
         # RunCN uses a separate mountain wordmark with opaque themed backgrounds.
         # Keep its theme pair; this fix is for the transparent Run50 robot.
         if 'RunCN' in original or 'data-logo-theme="paired"' in original:
@@ -51,7 +65,7 @@ if __name__ == '__main__':
     for folder in ['wechat', 'wechat-new']:
         for path in sorted((ROOT/'run50'/folder).glob('*.html')):
             original = path.read_text(encoding='utf-8')
-            updated, counts = normalize(original)
+            updated, counts = normalize(original,path.name)
             if updated != original:
                 path.write_text(updated, encoding='utf-8')
                 totals = [totals[0]+1, totals[1]+counts[0], totals[2]+counts[1]]

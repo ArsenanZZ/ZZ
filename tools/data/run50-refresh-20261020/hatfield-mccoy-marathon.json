@@ -1,0 +1,1022 @@
+{
+  "slug": "hatfield-mccoy-marathon",
+  "title": "Run50 #第1州｜肯塔基#2：哈特菲尔德–麦考伊马拉松｜阿巴拉契亚山谷的脚步声与枪声",
+  "page": "/run50/wechat/hatfield-mccoy-marathon-modern-rail.html",
+  "status": "pending",
+  "entry_fix": false,
+  "intro": "",
+  "map": "/assets/cn-article-maps/us-light-hatfield-south-williamson-20260917.png",
+  "poster": "../../assets/cover-medal-zh-index-williamson-cn-flat.jpg?v=20260704-williamson-bright-2x2pp",
+  "blocks": [
+    {
+      "kind": "heading",
+      "title": "穿过群岭，奔向边境小镇"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>在威斯康辛被热得够呛，所以六月初，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\">我们寻思找个凉快点、离家又近的地儿</strong>。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p><strong data-cn-emphasis=\"underline\" data-cn-tone=\"2\">在 Raceraves 上随手一查</strong>，看到一个口碑爆棚、评分 4.7/5 的小众赛事 ： Hatfield–McCoy Marathon，立刻心动。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>一看地点，更有意思：赛道横跨 肯塔基与西弗吉尼亚的边界，正好是那个 <strong data-cn-emphasis=\"color\" data-cn-tone=\"3\">Country Roads</strong>, take me home 唱到的 西弗吉尼亚山谷。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>这里属于 阿巴拉契亚山区，地势起伏、森林密布，矿业和铁路曾经兴盛，<strong data-cn-emphasis=\"bold\" data-cn-tone=\"0\">所以“山多”几乎是这个地方的代名词</strong>。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>说起肯塔基山区，还有一段小故事：英伟达创始人黄仁勋小时候住在 Oneida Baptist Institute 的宿舍，每天走过吊桥，到对岸的公立小学上课。那是在 Oneida，和这次跑马的 Williamson 是两个地方，却同样有山、有河、有吊桥。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>六月初的一个周五傍晚，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\">我下班就上路</strong>。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>车子先穿过 法兰克福（不是德国那个），再经过 列克星敦（也不是波士顿旁边那个），然后一路往东，<strong data-cn-emphasis=\"color\" data-cn-tone=\"2\">驶入渐渐起伏的山</strong>地。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>高速路两侧绿意蔓延，河水闪着光，公路像一条银色缎带，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"3\">缠绕进阿巴拉契亚的山谷</strong>。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M000.webp",
+      "caption": "公路穿过阿巴拉契亚的岩壁与树林 @Arsenan",
+      "alt": "公路穿过阿巴拉契亚的岩壁与树林"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-005.webp",
+      "caption": "傍晚停车场上空的晚霞 @Arsenan",
+      "alt": "傍晚停车场上空的晚霞"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>最终的目的地，是 肯塔基州的 South Williamson（Goody 区域）， <strong data-cn-emphasis=\"underline\" data-cn-tone=\"0\">这里是比赛的起点</strong>。赛道一路跑进对岸的 西弗吉尼亚州 Williamson 镇，跨州奔跑。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>这场<strong data-cn-emphasis=\"color\" data-cn-tone=\"1\">马拉松</strong>的名字，就来自美国最有名的家族世仇传说：哈特菲尔德家族与麦考伊家族的百年恩怨。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>当年两大家子隔河相望，一个在肯塔基，一个在西弗吉尼亚，<strong data-cn-emphasis=\"bold\" data-cn-tone=\"2\">本是邻居农夫</strong>，却因为 一头猪、加上南北战争的立场不同，积下梁子。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>几十年里从吵架打官司到拔枪械斗，最后死了十几个人。媒体大肆报道，把这里写成“山谷战争”，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"3\">结果越传越广</strong>，全美皆知。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>所以这场马拉松，不只是跑过群山和河谷，也像是穿进一段乡土传奇：脚步声与枪声，似乎曾在同一片山谷里回荡。</p>"
+    },
+    {
+      "kind": "heading",
+      "title": "夜宿山中 · 木屋里的熊"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>肯塔基东部、西弗吉尼亚西部的这片山区，过去和煤矿、铁路紧密相连。如今穿过一些小镇，还能看见旧产业留下的痕迹。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>这次 Siqi 订的 Airbnb 在山里。车子离开主路，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\">拐进一条狭长的林间小道</strong>。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>夜色下，前灯照着石子路，“咔咔”的声音在静夜里格外清晰。两边是黑压压的树林，感觉再往里开，就是美国版的“深山老林”。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-006.webp",
+      "caption": "车灯照亮通往木屋的碎石路 @Arsenan",
+      "alt": "车灯照亮通往木屋的碎石路"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M002-1.webp",
+      "caption": "夜色里亮着灯的木屋 @Arsenan",
+      "alt": "夜色里亮着灯的木屋"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>开到尽头，一排木屋出现了。远远看去，有点像恐怖片开场的场景，但靠近后，气氛一下子变温柔了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-007.webp",
+      "caption": "沿着台阶走上木屋门廊 @Arsenan",
+      "alt": "沿着台阶走上木屋门廊"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>屋子不大，却收拾得很精致，里面摆满了各种熊的装饰：抱枕是熊、壁画是熊、连厨房的小摆件也是熊。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-008.webp",
+      "caption": "木屋墙上的黑熊画像 @Arsenan",
+      "alt": "木屋墙上的黑熊画像"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-009.webp",
+      "caption": "另一幅森林与黑熊的装饰画 @Arsenan",
+      "alt": "另一幅森林与黑熊的装饰画"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>走进去，仿佛在提醒我们：这是熊的地盘，我们只是借宿一晚的客人。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-010.webp",
+      "caption": "放下行李，安顿一晚 @Arsenan",
+      "alt": "放下行李，安顿一晚"
+    },
+    {
+      "kind": "heading",
+      "title": "穿过晨雾，来到起点"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>第二天一早，穿过雾气弥漫的山谷，Siqi带我去了全马起点。然后她又开车去半马起点了，我俩起点还不一样。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-011.webp",
+      "caption": "清晨薄雾里的木屋和越野车 @Arsenan",
+      "alt": "清晨薄雾里的木屋和越野车"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-012.webp",
+      "caption": "晨雾中的红顶房子 @Arsenan",
+      "alt": "晨雾中的红顶房子"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-013.webp",
+      "caption": "隔着护栏望向雾里的山镇 @Arsenan",
+      "alt": "隔着护栏望向雾里的山镇"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M009-1.webp",
+      "caption": "日出照亮山谷上方的云雾 @Arsenan",
+      "alt": "日出照亮山谷上方的云雾"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>这场马拉松的全程赛道挺有意思。它不是一个大圈，而是条跨州赛道：肯塔基开跑，西弗吉尼亚收尾。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>起点在 South Williamson 的 Food City 超市，终点设在河对岸的 Williamson 镇中心。前半程穿过村镇和山谷，后半程还有碎石路、草地和吊桥；20 英里后逐渐向终点靠近。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>全马起点的对面就是云雾缭绕的山谷，空气里带着一丝凉意，和大城市赛事那种嘈杂的起点完全不一样。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>我先去领了号码布，今年正好是赛事 25 周年。醒目的“Hatfield &amp; McCoy”，又把人带回那段家族故事。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-014.webp",
+      "caption": "195 号号码布，赛事 25 周年 @Arsenan",
+      "alt": "195 号号码布，赛事 25 周年"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>正准备转身，居然碰见了老朋友 ：Chris Washington，一个我在 Louisville 跑步圈认识的朋友。他笑着冲我打招呼，<span data-cn-emphasis=\"underline\" data-cn-tone=\"3\">世界真小</span>，在深山小镇的赛道起点，还能遇见熟人。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-015.webp",
+      "caption": "起点遇见 Chris，先合影一张 @Arsenan",
+      "alt": "起点遇见 Chris，先合影一张"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>起点广场上放的背景音乐正是 《Country Roads, Take Me Home》。那句 West Virginia, mountain mama 在山谷里回荡，和眼前的雾气、群山浑然一体。跑友们三三两两地聊天热身，大家的装备五花八门，但气氛格外轻松。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-016.webp",
+      "caption": "Food City 门前等候起跑的人群 @Arsenan",
+      "alt": "Food City 门前等候起跑的人群"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M012-1.webp",
+      "caption": "群山与晨雾前的起跑队伍 @Arsenan",
+      "alt": "群山与晨雾前的起跑队伍"
+    },
+    {
+      "kind": "heading",
+      "title": "迎着日出，跑进群山"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>发令枪响，天色还没完全亮开，赛道从超市停车场延伸出去，两边是绿色的植被和灰色的岩壁。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-017.webp",
+      "caption": "刚出发，背后还是满山晨雾 @Arsenan",
+      "alt": "刚出发，背后还是满山晨雾"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-018.webp",
+      "caption": "晨光里一起向前的跑者 @Arsenan",
+      "alt": "晨光里一起向前的跑者"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>第一英里非常平缓，气温也很舒服，晨雾还没散尽，跑起来就像在呼吸山里的露水。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-019.webp",
+      "caption": "路边的 Mile 1 标记 @Arsenan",
+      "alt": "路边的 Mile 1 标记"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>过了一英里，赛道左转，迎面就是太阳从山川间缓缓升起。光线透过山顶的薄雾，柔和而安静。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-020.webp",
+      "caption": "太阳从前方山脊间升起 @Arsenan",
+      "alt": "太阳从前方山脊间升起"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-021.webp",
+      "caption": "经过 Mile 2 @Arsenan",
+      "alt": "经过 Mile 2"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-022.webp",
+      "caption": "继续跑向 Mile 3 @Arsenan",
+      "alt": "继续跑向 Mile 3"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>路边开始出现零星的房子，典型的美国乡村小屋。前方会有志愿者支起简易的桌子，热情地递上水和饮料。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-023.webp",
+      "caption": "穿过房屋沿街排列的小镇 @Arsenan",
+      "alt": "穿过房屋沿街排列的小镇"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>他们大多穿着统一的紫色志愿者T恤，虽然规模不大，但这种社区感，比大城市马拉松更真切。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-024.webp",
+      "caption": "紫衣志愿者守在路边水站 @Arsenan",
+      "alt": "紫衣志愿者守在路边水站"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-025.webp",
+      "caption": "溪水沿着白色围栏旁流过 @Arsenan",
+      "alt": "溪水沿着白色围栏旁流过"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M021-1.webp",
+      "caption": "蓝色球衣、粉色跑鞋，跑进山谷 · 赛事官方",
+      "alt": "蓝色球衣、粉色跑鞋，跑进山谷"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-026.webp",
+      "caption": "Mile 5 路牌旁的补给站 @Arsenan",
+      "alt": "Mile 5 路牌旁的补给站"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-027.webp",
+      "caption": "坐在路边摇铃鼓加油的志愿者 @Arsenan",
+      "alt": "坐在路边摇铃鼓加油的志愿者"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-028.webp",
+      "caption": "“Canada Beach”补给站的紫衣志愿者 @Arsenan",
+      "alt": "“Canada Beach”补给站的紫衣志愿者"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>不知不觉已经跑了五六英里，阳光正好从山头透出来，还不算热。跑者们渐渐拉开了距离，大部分时间只剩我一个人在山谷里前行，只有<span data-cn-emphasis=\"underline\" data-cn-tone=\"0\">自己的脚步声</span>在回荡。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-029.webp",
+      "caption": "山脚下伸向远处的公路 @Arsenan",
+      "alt": "山脚下伸向远处的公路"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-030.webp",
+      "caption": "树梢间透下来的阳光 @Arsenan",
+      "alt": "树梢间透下来的阳光"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-031.webp",
+      "caption": "前方跑者与路上的长长影子 @Arsenan",
+      "alt": "前方跑者与路上的长长影子"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-032.webp",
+      "caption": "来到 Mile 6 @Arsenan",
+      "alt": "来到 Mile 6"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>偶尔路过补给点，顺手抓块西瓜，冰凉甘甜。看一眼手表，还没到 7 英里，山里的路还长。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-033.webp",
+      "caption": "跑途中吃一口西瓜 @Arsenan",
+      "alt": "跑途中吃一口西瓜"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-034.webp",
+      "caption": "手表记录：已跑 6.93 英里 @Arsenan",
+      "alt": "手表记录：已跑 6.93 英里"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>赛道的坡度可一点不含糊：全程爬升接近 1200 英尺（约 360 米），前半程还算阴凉，后面逐渐见真章。两边是森林和溪流，偶尔一辆越野车驶过。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-035.webp",
+      "caption": "路边的 Mile 9 牌子 @Arsenan",
+      "alt": "路边的 Mile 9 牌子"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-036.webp",
+      "caption": "溪边道路旁的越野车 @Arsenan",
+      "alt": "溪边道路旁的越野车"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-037.webp",
+      "caption": "沿着山谷里弯曲的公路前行 @Arsenan",
+      "alt": "沿着山谷里弯曲的公路前行"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-038.webp",
+      "caption": "高草边的 Mile 10 标记 @Arsenan",
+      "alt": "高草边的 Mile 10 标记"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-039.webp",
+      "caption": "停在路旁建筑前的消防车 @Arsenan",
+      "alt": "停在路旁建筑前的消防车"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>再往前，连戴着搞怪面具的志愿者也来加油。一路有人递水、有人挥手，安静的山路不时热闹起来。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-040.webp",
+      "caption": "戴着面具为跑者加油的志愿者 @Arsenan",
+      "alt": "戴着面具为跑者加油的志愿者"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-041.webp",
+      "caption": "经过 Mile 11 @Arsenan",
+      "alt": "经过 Mile 11"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-042.webp",
+      "caption": "Mile 12，继续向半程前进 @Arsenan",
+      "alt": "Mile 12，继续向半程前进"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-043.webp",
+      "caption": "在河边护栏旁自拍一张 @Arsenan",
+      "alt": "在河边护栏旁自拍一张"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-044.webp",
+      "caption": "沿着山坡下的小屋转弯 @Arsenan",
+      "alt": "沿着山坡下的小屋转弯"
+    },
+    {
+      "kind": "heading",
+      "title": "半程小镇与河上的吊桥"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>跑到 13 英里左右，进入西弗吉尼亚的 Matewan，眼前出现写着“Start / Finish”的拱门。这里是半程交接点，全马还要继续向前。小镇像办起了一场中途庆典，拱门边还有一群小小橄榄球选手帮我们加油。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-045.webp",
+      "caption": "跑进 Matewan 的砖房街道 @Arsenan",
+      "alt": "跑进 Matewan 的砖房街道"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M041-1.webp",
+      "caption": "阳光下的 Matewan 街口 @Arsenan",
+      "alt": "阳光下的 Matewan 街口"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-046.webp",
+      "caption": "半程交接点的 Start / Finish 拱门 @Arsenan",
+      "alt": "半程交接点的 Start / Finish 拱门"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M042-1.webp",
+      "caption": "脚下粉笔写着 Start / Finish @Arsenan",
+      "alt": "脚下粉笔写着 Start / Finish"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-047.webp",
+      "caption": "穿橄榄球球衣的小朋友在路边加油 @Arsenan",
+      "alt": "穿橄榄球球衣的小朋友在路边加油"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-048.webp",
+      "caption": "小镇房屋前停着的越野车 @Arsenan",
+      "alt": "小镇房屋前停着的越野车"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>跑过小城，眼前出现了一条格外绿色的河流 ：Tug Fork River（塔格福克河）。水面映着树影，安静得像一幅画。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-049.webp",
+      "caption": "树影映在绿色的 Tug Fork 河面 @Arsenan",
+      "alt": "树影映在绿色的 Tug Fork 河面"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-050.webp",
+      "caption": "阳光、河岸与桥边的越野车 @Arsenan",
+      "alt": "阳光、河岸与桥边的越野车"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>很难想象，这条静静流淌的河，曾经却是 Hatfield 和 McCoy 两大家族的分界线和冲突的舞台。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-051.webp",
+      "caption": "离开半程，来到 Mile 14 @Arsenan",
+      "alt": "离开半程，来到 Mile 14"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-052.webp",
+      "caption": "沿着树荫与房屋间的小路继续跑 @Arsenan",
+      "alt": "沿着树荫与房屋间的小路继续跑"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-053.webp",
+      "caption": "Hatfield’s Hideout 河畔木屋营地门牌 @Arsenan",
+      "alt": "Hatfield’s Hideout 河畔木屋营地门牌"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-054.webp",
+      "caption": "路边停着的一排房车 @Arsenan",
+      "alt": "路边停着的一排房车"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-055.webp",
+      "caption": "从钢桥下望向河面 @Arsenan",
+      "alt": "从钢桥下望向河面"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-056.webp",
+      "caption": "在树荫里举杯补水 @Arsenan",
+      "alt": "在树荫里举杯补水"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-057.webp",
+      "caption": "从身旁经过的越野车 @Arsenan",
+      "alt": "从身旁经过的越野车"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>大约 16 英里左右，赛道从柏油路变成了砂石和泥巴小路，脚下的节奏也跟着慢了下来。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-058.webp",
+      "caption": "来到 Mile 16 @Arsenan",
+      "alt": "来到 Mile 16"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-059.webp",
+      "caption": "柏油路换成了林间碎石路 @Arsenan",
+      "alt": "柏油路换成了林间碎石路"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-060.webp",
+      "caption": "脚下转为带着泥泞的窄路 @Arsenan",
+      "alt": "脚下转为带着泥泞的窄路"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>再往前跑，视野忽然开阔。青草铺成的空地尽头，一座又长又窄的木吊桥横在眼前。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-061.webp",
+      "caption": "穿过一片开阔的青草地 @Arsenan",
+      "alt": "穿过一片开阔的青草地"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-062.webp",
+      "caption": "草地尽头，吊桥就在前方 @Arsenan",
+      "alt": "草地尽头，吊桥就在前方"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-063.webp",
+      "caption": "走上狭窄的木板吊桥 @Arsenan",
+      "alt": "走上狭窄的木板吊桥"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>桥面狭窄，还会轻轻晃动，踩在木板上嘎吱作响。我先自拍一张，又对着官方摄影师张开双臂，把这段跨桥的瞬间留了下来。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-064.webp",
+      "caption": "跑过吊桥时的自拍 @Arsenan",
+      "alt": "跑过吊桥时的自拍"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M060-1.webp",
+      "caption": "在吊桥上张开双臂 · 赛事官方",
+      "alt": "在吊桥上张开双臂"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>桥那头依旧是满眼青翠。沿着河岸跑过铁路桥，阳光落在水面上，前方又出现白色尖顶的小教堂。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-065.webp",
+      "caption": "蓝天与河岸边起伏的绿坡 @Arsenan",
+      "alt": "蓝天与河岸边起伏的绿坡"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-066.webp",
+      "caption": "抬头经过铁路桥下 @Arsenan",
+      "alt": "抬头经过铁路桥下"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-067.webp",
+      "caption": "河岸上爬满绿藤 @Arsenan",
+      "alt": "河岸上爬满绿藤"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-068.webp",
+      "caption": "阳光照在山脚下的河面 @Arsenan",
+      "alt": "阳光照在山脚下的河面"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-069.webp",
+      "caption": "路边的白色尖顶教堂 @Arsenan",
+      "alt": "路边的白色尖顶教堂"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>再往前，就是 <span data-cn-emphasis=\"underline\" data-cn-tone=\"3\">19 英里</span>的牌子。那里有个特别热闹的补给点，大妈热情得不得了，招呼着给跑者递水和西瓜。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-070.webp",
+      "caption": "Mile 19 的路牌 @Arsenan",
+      "alt": "Mile 19 的路牌"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-071.webp",
+      "caption": "路边帐篷下的补给站 @Arsenan",
+      "alt": "路边帐篷下的补给站"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-072.webp",
+      "caption": "停下来和补给站志愿者聊两句 @Arsenan",
+      "alt": "停下来和补给站志愿者聊两句"
+    },
+    {
+      "kind": "heading",
+      "title": "最后几英里 · 小镇里的终点"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p><span data-cn-emphasis=\"bold\" data-cn-tone=\"0\">20 英里</span>后，路边出现了不少小黄鸭的加油海报：“You’ve got this!”、“Lucky Duck”、“Better get quackin’…” 挺逗的，让人一看心情就轻松了不少。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-073.webp",
+      "caption": "Lucky Duck 和 Better Get Quackin’ 加油牌 @Arsenan",
+      "alt": "Lucky Duck 和 Better Get Quackin’ 加油牌"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-074.webp",
+      "caption": "小黄鸭牌子上的“You Got This” @Arsenan",
+      "alt": "小黄鸭牌子上的“You Got This”"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-075.webp",
+      "caption": "继续向前，Mile 22 @Arsenan",
+      "alt": "继续向前，Mile 22"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>再往前跑，还是一片绿色。到 <span data-cn-emphasis=\"underline\" data-cn-tone=\"1\">25 英里</span>时，太阳已经很晒了，但志愿者们依旧很热情，举着气球、递水递水果，小镇的氛围像是办了一场节日。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-076.webp",
+      "caption": "终于看到 Mile 25 @Arsenan",
+      "alt": "终于看到 Mile 25"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-077.webp",
+      "caption": "太阳当头，抬头自拍一张 @Arsenan",
+      "alt": "太阳当头，抬头自拍一张"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-078.webp",
+      "caption": "举着加油牌和彩色泡沫棒的观众 @Arsenan",
+      "alt": "举着加油牌和彩色泡沫棒的观众"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-079.webp",
+      "caption": "彩色气球下再喝一口补给 @Arsenan",
+      "alt": "彩色气球下再喝一口补给"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>过了塔格福克河，赛道回到 西弗吉尼亚的 Williamson 小镇。街道渐渐热闹起来，观众拍手、孩子伸出手击掌，前面的终点拱门就在眼前。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-080.webp",
+      "caption": "跨过河桥，返回 Williamson @Arsenan",
+      "alt": "跨过河桥，返回 Williamson"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>进城时还在彩色涂鸦墙前留了张自拍。拐回街道，终点越来越近，终于可以举起双手了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-081.webp",
+      "caption": "在彩色壁画前留下自拍 @Arsenan",
+      "alt": "在彩色壁画前留下自拍"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-082.webp",
+      "caption": "街边台阶旁的另一面壁画 @Arsenan",
+      "alt": "街边台阶旁的另一面壁画"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-083.webp",
+      "caption": "终点前的 Williamson 街道 @Arsenan",
+      "alt": "终点前的 Williamson 街道"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M079-1.webp",
+      "caption": "跑进镇中心，举起双手 · 赛事官方",
+      "alt": "跑进镇中心，举起双手"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M079-2.webp",
+      "caption": "冲线前的笑容 · 赛事官方",
+      "alt": "冲线前的笑容"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-084.webp",
+      "caption": "前方就是全马终点拱门 @Arsenan",
+      "alt": "前方就是全马终点拱门"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M081-1.webp",
+      "caption": "张开双臂跑过终点 · 赛事官方",
+      "alt": "张开双臂跑过终点"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M081-2.webp",
+      "caption": "完赛瞬间的近景 · 赛事官方",
+      "alt": "完赛瞬间的近景"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-086.webp",
+      "caption": "终点志愿者正在发放奖牌 @Arsenan",
+      "alt": "终点志愿者正在发放奖牌"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>Siqi 已经完赛，我大概用时 <span data-cn-emphasis=\"underline\" data-cn-tone=\"3\">4 小时</span> 20 多分钟。这次还跑在 Chris 前面，他平时是 <span data-cn-emphasis=\"bold\" data-cn-tone=\"0\">3 小时</span> 30 分的大高手，可见山路也能拉慢大神的脚步。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M083-1.webp",
+      "caption": "完赛后站在小镇街头 @Arsenan",
+      "alt": "完赛后站在小镇街头"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-088.webp",
+      "caption": "和已经完赛的 Siqi 合影 @Arsenan",
+      "alt": "和已经完赛的 Siqi 合影"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M084-2.webp",
+      "caption": "两个人的完赛奖牌 @Arsenan",
+      "alt": "两个人的完赛奖牌"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>终点最有地方特色的，是扮演 Hatfield 和 McCoy 两大家族的人：旧式衣服、长枪、白胡子，等着和完赛者合影。我和 Siqi 当然也要凑上去拍一张。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-085.webp",
+      "caption": "终点和白胡子角色扮演者合影 @Arsenan",
+      "alt": "终点和白胡子角色扮演者合影"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-001.webp",
+      "caption": "和 Siqi、两位家族角色扮演者一起合影 @Arsenan",
+      "alt": "和 Siqi、两位家族角色扮演者一起合影"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-090.webp",
+      "caption": "终点旁和两位角色扮演者自拍 @Arsenan",
+      "alt": "终点旁和两位角色扮演者自拍"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>Chris 的搭档 Deborah 也顺利跑完。我们原计划一起吃饭，但发现住的地方太远，就各自回去了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M084-3.webp",
+      "caption": "Chris 和 Deborah 的完赛合影 @Arsenan",
+      "alt": "Chris 和 Deborah 的完赛合影"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-089.webp",
+      "caption": "赛后再和 Chris 拍一张 @Arsenan",
+      "alt": "赛后再和 Chris 拍一张"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>奖牌又厚又大，还能掀开。外面是 Hatfield 和 McCoy 的银色浮雕，里面是肯塔基和西弗吉尼亚的地图，一蓝一黄。坐上返程的车，还是忍不住翻来覆去地看。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-087.webp",
+      "caption": "举起厚实的纪念奖牌 @Arsenan",
+      "alt": "举起厚实的纪念奖牌"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-091.webp",
+      "caption": "赛后和 Siqi 一起坐车返回 @Arsenan",
+      "alt": "赛后和 Siqi 一起坐车返回"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M087-1.webp",
+      "caption": "打开奖牌，里面是蓝黄两州地图 @Arsenan",
+      "alt": "打开奖牌，里面是蓝黄两州地图"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M087-2.webp",
+      "caption": "合上后的家族人物浮雕奖牌 @Arsenan",
+      "alt": "合上后的家族人物浮雕奖牌"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M091-1.webp",
+      "caption": "在 Food City 前再看一眼打开奖牌 @Arsenan",
+      "alt": "在 Food City 前再看一眼打开奖牌"
+    },
+    {
+      "kind": "heading",
+      "title": "再住一晚，慢慢回家"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>赛后，我和 Siqi 找了家加油站旁的小披萨店填饱肚子。因为比赛在周六，我们又在木屋住了一晚。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-092.webp",
+      "caption": "赛后用披萨填饱肚子 @Arsenan",
+      "alt": "赛后用披萨填饱肚子"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-093.webp",
+      "caption": "车窗外又是蜿蜒的山路 @Arsenan",
+      "alt": "车窗外又是蜿蜒的山路"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-094.webp",
+      "caption": "回到绿树环绕的木屋小路 @Arsenan",
+      "alt": "回到绿树环绕的木屋小路"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>晚上吃了顿中餐自助，终于不用一边跑一边算下一次补给还有多远。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-095.webp",
+      "caption": "晚餐时在餐厅里合影 @Arsenan",
+      "alt": "晚餐时在餐厅里合影"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-096.webp",
+      "caption": "Siqi 的赛后晚餐 @Arsenan",
+      "alt": "Siqi 的赛后晚餐"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>第二天一早，在门廊留了张合影。我又放起无人机，从空中看，几栋小木屋安安静静地嵌在整片绿色里。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M092-1.webp",
+      "caption": "离开前在木屋门廊合影 @Arsenan",
+      "alt": "离开前在木屋门廊合影"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M092-4.webp",
+      "caption": "白天再看并排的两栋木屋 @Arsenan",
+      "alt": "白天再看并排的两栋木屋"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M092-2.webp",
+      "caption": "从斜上方俯瞰木屋营地 @Arsenan",
+      "alt": "从斜上方俯瞰木屋营地"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M092-3.webp",
+      "caption": "森林里通向木屋的碎石路 @Arsenan",
+      "alt": "森林里通向木屋的碎石路"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/wechat/media/hatfield-mccoy-2024/M092-5.webp",
+      "caption": "从正上方看林间的一排木屋 @Arsenan",
+      "alt": "从正上方看林间的一排木屋"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-002.webp",
+      "caption": "从空中俯瞰林间木屋 @Arsenan",
+      "alt": "从空中俯瞰林间木屋"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-003.webp",
+      "caption": "群山环抱的木屋营地 @Arsenan",
+      "alt": "群山环抱的木屋营地"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-004.webp",
+      "caption": "山谷深处的一小片屋顶 @Arsenan",
+      "alt": "山谷深处的一小片屋顶"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>回家路上，还路过肯塔基城堡。蓝天绿草映在眼里，这段周末的旅程也画上了句号。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-097.webp",
+      "caption": "返程路过草坡上的 Kentucky Castle @Arsenan",
+      "alt": "返程路过草坡上的 Kentucky Castle"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Hatfield-Mccoy-Marathon-clean_files/img-098.webp",
+      "caption": "坐上车，沿着公路回家 @Arsenan",
+      "alt": "坐上车，沿着公路回家"
+    },
+    {
+      "kind": "heading",
+      "title": "穿越一段山谷传奇"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>这场 Hatfield–McCoy 马拉松和那些大城市里的赛事完全不同。没有万人起跑的壮观场面，也没有沿路无数观众的呐喊声。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>它的规模不大，但人情味特别浓：路边手绘的小黄鸭加油牌、热情递西瓜的大妈、终点处拿着猎枪的 coser，都让人记住了。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>跑在这片群山和河谷之间，记住的不只是旧房子和安静的街道，还有人们的笑容、递到手里的水，以及每一句认真的加油。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>脚步声落在阿巴拉契亚山谷里，背后是一段百年的家族仇怨；抬头望见的，是依旧绿色的群山和静静的河流。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>这是我对 肯塔基州的第二次记录。<span data-cn-emphasis=\"underline\" data-cn-tone=\"1\">第一次</span>是在蓝草之地的主场马拉松，这次则是来到边境小镇，跑进一个带着传奇色彩的山谷。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>从蓝草到仇怨，从现代到乡土，一片土地的不同侧面，都通过跑步展现在眼前。</p>"
+    },
+    {
+      "kind": "heading",
+      "title": "肯塔基 #2，收下。"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>文中黄仁勋求学经历参考：<a href=\"https://www.oneidaschool.org/about/huanghall.cfm\">Oneida Baptist Institute 官方介绍</a>。赛事摄影图片已在图注单独标明。</p>"
+    }
+  ]
+}
