@@ -1,0 +1,564 @@
+{
+  "page": "/run50/wechat/harbin-marathon-modern-rail.html",
+  "title": "RunCN #第20站｜哈尔滨马拉松：那年，我在东北老家跑哈马",
+  "ready": false,
+  "images": 59,
+  "slug": "harbin-marathon",
+  "intro": "因为 check 多跑了一次哈马。松花江、黑土地、老家和疫情前那些快活的流浪日子，都在这篇里。",
+  "map": "/assets/cn-article-maps/china-light-9c92a66c3095c160.png",
+  "poster": "../../assets/cover-medal-harbin-marathon.jpg?v=20260628-runcn-harbin-confident-v1",
+  "blocks": [
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 6px 0 15px; padding: 8px 11px; line-height: 1.65; font-size: 15px; letter-spacing: 0.3px; color: #b7791f; background: #f4f8fb; border-left: 3px solid #d4a669; font-family: Georgia, 'Times New Roman', 'PingFang SC', serif; font-style: italic;\">那年，我在东北老家跑哈马</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 6px 0 15px; padding: 8px 11px; line-height: 1.65; font-size: 15px; letter-spacing: 0.3px; color: #b7791f; background: #f4f8fb; border-left: 3px solid #d4a669; font-family: Georgia, 'Times New Roman', 'PingFang SC', serif; font-style: italic;\">黑土地，有温度</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">去年因为check，让我有机会多跑了一次哈马。一直没心情去记录，特别是错过了刚跑完的那股热乎劲儿，就更不想写了。就是觉得炒冷饭硌牙，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\" style=\"color:#237953;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #237953;padding-bottom:2px;\">我牙还不好</strong>，一上火就疼。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">病毒悄么的过来以后，聚众跑步是别想了，所以有时候会特别怀念那些到处流浪的日子。怎么跟你形容呢？那是一种刺挠儿的感觉，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"2\" style=\"color:#306eaa;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #306eaa;padding-bottom:2px;\">简单说就是</strong>，快活啊。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">翻翻手机里的老照片老视频，库存还真挺多的。疫情里总给自己做工作，手机空间可不多了，再不整理，<strong data-cn-emphasis=\"color\" data-cn-tone=\"3\" style=\"color:#9a681c;font-weight:800;background:transparent;padding:0;\">可就要爆炸了</strong>。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-001.webp",
+      "caption": "东北，老家 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 1"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">梳理梳理旧时光，放放老照片。</p>"
+    },
+    {
+      "kind": "heading",
+      "title": "回家"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">我家离哈尔滨市区几十公里，适合养老。毕业两个多月了，大多数同学都入职了，好像都挺开心的。<strong data-cn-emphasis=\"bold\" data-cn-tone=\"0\" style=\"color:#ac4336;font-weight:800;background:transparent;padding:0;\">我快成无业游民了</strong>，贸易战这会又谈崩了，小人物在大时代的背景下，深深叹息。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-002.webp",
+      "caption": "小城兴隆 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 2"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-003.webp",
+      "caption": "小城兴隆 · 2 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 3"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\"><strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\" style=\"color:#237953;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #237953;padding-bottom:2px;\">我在家里过起了养老生活</strong>，白天放放飞机，晚上看看广场舞，没事领着爷爷奶奶遛遛弯，累了躺着睡觉王者荣耀。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-004.webp",
+      "caption": "小城商城 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 4"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-005.webp",
+      "caption": "黄昏下的图书馆和广场 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 5"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-006.webp",
+      "caption": "黄昏变晚霞的小城天空 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 6"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">原本没报希望的哈马，就这样能跑了，也没训练，<strong data-cn-emphasis=\"color\" data-cn-tone=\"2\" style=\"color:#306eaa;font-weight:800;background:transparent;padding:0;\">硬着头皮去吧</strong>，冲冲喜。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">之前一直想通过一次哈马，把哈尔滨的地标都走走，然后写个大作。因为大背景不好，导致行动力不足，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"3\" style=\"color:#9a681c;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #9a681c;padding-bottom:2px;\">也就走哪算哪了</strong>。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-007.webp",
+      "caption": "哈尔滨道外清真寺 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 7"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-008.webp",
+      "caption": "音乐之都哈尔滨 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 8"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">人多的地儿，比如哈尔滨的地标索菲娅教堂，中央大街，人民英雄纪念碑，航拍心理压力太大，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"0\" style=\"color:#ac4336;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #ac4336;padding-bottom:2px;\">而且也去了太多次了</strong>。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-009.webp",
+      "caption": "防洪纪念塔@2018 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 9"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-010.webp",
+      "caption": "索菲亚大教堂@2017 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 10"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\"><strong data-cn-emphasis=\"color\" data-cn-tone=\"1\" style=\"color:#237953;font-weight:800;background:transparent;padding:0;\">哈尔滨大剧院边的湿地公园</strong>人烟稀少，黑飞不会被抓，再有就是大剧院真的太美了，简直是外星文明，非常值得探索。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-011.webp",
+      "caption": "哈尔滨大剧院湿地公园 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 11"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-012.webp",
+      "caption": "哈尔滨大剧院湿地公园 · 2 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 12"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-013.webp",
+      "caption": "哈尔滨大剧院湿地公园 · 3 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 13"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">黄昏前坐公交到湿地公园，飞机视角下的大剧院很科幻，有一种悉尼歌剧院的感觉，<strong data-cn-emphasis=\"bold\" data-cn-tone=\"2\" style=\"color:#306eaa;font-weight:800;background:transparent;padding:0;\">这里也被称为“凝固音乐的演奏者”</strong>。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-014.webp",
+      "caption": "哈尔滨大剧院 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 14"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">黑格尔说过，“音乐是流动的建筑，建筑是凝固的音乐”，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"3\" style=\"color:#9a681c;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #9a681c;padding-bottom:2px;\">而我大哈尔滨又被称为“音乐之都”</strong>，非常好的诠释。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-015.webp",
+      "caption": "航拍哈尔滨大剧院 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 15"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-016.webp",
+      "caption": "航拍哈尔滨大剧院 · 2 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 16"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">等到天色渐暗，湿地倒映的天空让我想到了大理的天空之镜，落日余晖下的城市很漂亮，也会遗憾，没有记录这座城市更多的细节。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-017.webp",
+      "caption": "航拍哈尔滨大剧院 · 3 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 17"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-018.webp",
+      "caption": "",
+      "alt": "黑龙江哈尔滨故事照片 18"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">真正的惊喜是入夜后的大剧院，她就像这座城市心中的一团火，冰冷的外边下，是火热的灵魂。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">匆匆别了这里，作为一个东北人，我始终觉得还有时间去慢慢探索这座城市。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-019.webp",
+      "caption": "记忆中的冰雪大世界@2019 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 19"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-020.webp",
+      "caption": "记忆中的冰雪大世界@2019 · 2 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 20"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-021.webp",
+      "caption": "记忆中的冰雪大世界@2019 · 3 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 21"
+    },
+    {
+      "kind": "heading",
+      "title": "哈马"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">现在回头写哈马，说实话好多细节都记不清了，不过顺着照片梳理，还是能感受到那股子东北大碴子味的热情。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-022.webp",
+      "caption": "哈尔滨马拉松博览会 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 22"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">赛前很巧的遇到老同学田鸡，一位打通马家沟的传奇人物，现在通关到哈工大的博士，我心里默念，这孩子前途无量。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-023.webp",
+      "caption": "起点with 田鸡 by 路人",
+      "alt": "起点with 田鸡 by 路人"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">哈马的起点在中央大街附近，哈尔滨的地标，这里的街道建筑包罗了文艺复兴，巴洛克等多种风格，都说品味哈尔滨从中央大街开始，我们哈马的旅程也同样始于这里。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-024.webp",
+      "caption": "起点 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 24"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">起跑后温度20度上下，很舒服，我和田鸡说说笑笑，听着赛道两边东北味十足的加油声，小风吹来，得劲的一匹。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-025.webp",
+      "caption": "起跑 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 25"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">虽然好久没跑步，但我状态还行，毕竟身经百战。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-026.webp",
+      "caption": "大妈拉拉队 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 26"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-027.webp",
+      "caption": "猴哥 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 27"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">赛道边的国旗很耀眼，马上建国60周年，国旗护卫下的赛道也比平时更加闪耀。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-028.webp",
+      "caption": "国旗 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 28"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\"><span data-cn-emphasis=\"bold\" data-cn-tone=\"0\" style=\"color:#ac4336;font-weight:800;background:transparent;padding:0;\">14公里</span>来到阳明滩大桥，在跨越松花江的所有大桥中，我最喜欢的是阳明滩了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-029.webp",
+      "caption": "阳明滩大桥补给 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 29"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">通身墨绿色的大桥，借鉴了欧洲风格，简直与哈尔滨这座城市的气质特别完美契合。边跑我就边想，有空一定要来航拍下。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-030.webp",
+      "caption": "阳明滩赛段 by 赛道摄影师 · 资料图",
+      "alt": "黑龙江哈尔滨故事照片 30"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">跑过阳明滩，我们就来到了江北，前边等着我们的是俄罗斯的美女拉拉队，哈马的特色之一。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-031.webp",
+      "caption": "俄罗斯拉拉队 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 31"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">天气热了起来，路边的消防车洒水降温，江北的路线挺无聊的，特别是<span data-cn-emphasis=\"underline\" data-cn-tone=\"1\" style=\"color:#237953;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #237953;padding-bottom:2px;\">21公里</span>之后。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-032.webp",
+      "caption": "补给点 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 32"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-033.webp",
+      "caption": "蹭个照片 by 赛道摄影师 · 资料图",
+      "alt": "黑龙江哈尔滨故事照片 33"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\"><span data-cn-emphasis=\"bold\" data-cn-tone=\"2\" style=\"color:#306eaa;font-weight:800;background:transparent;padding:0;\">30公里</span>通过一个隧道之后是一个大上坡，特别费劲，每年到这里都要掉一层皮，几个月不跑步的后遗症慢慢显现出来。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-034.webp",
+      "caption": "折返赛段 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 34"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">接下来是一大段折返，中间的亮点是哈尔滨大剧院，不过我昨天已经看过了，而且路边看并不觉得有在天上看惊艳。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-035.webp",
+      "caption": "快到了 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 35"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">其实支撑我的一直是北大桥前的饺子补给，一年前给我留下了很深的印象。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 6px 0 15px; padding: 8px 11px; line-height: 1.65; font-size: 15px; letter-spacing: 0.3px; color: #b7791f; background: #f4f8fb; border-left: 3px solid #d4a669; font-family: Georgia, 'Times New Roman', 'PingFang SC', serif; font-style: italic;\">可惜今年，没有……</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-036.webp",
+      "caption": "只能靠摄影师前摆pose坚持 by  · 资料图",
+      "alt": "黑龙江哈尔滨故事照片 36"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">过了松北大桥，终于来到太阳岛。太阳岛算哈尔滨的著名景点。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-037.webp",
+      "caption": "太阳岛 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 37"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">都说美丽的松花江像玉带从市区穿过，优雅的太阳岛则像一颗明亮的珍珠镶嵌在松花江上。而太阳岛名字中的“太阳”源自满语的谐音，意思是鳊花鱼。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-038.webp",
+      "caption": "终点领物 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 38"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">只是已经快没油的我对珍珠并不感兴趣，倒是真有点想吃鱼。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">跑过终点前突然下起了雨，还挺大，取了包之后，我赶紧去躲雨。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-039.webp",
+      "caption": "大雨 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 39"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">赛后可以坐摆渡船回起点，只是需要步行到渡口，很酸爽。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-040.webp",
+      "caption": "渡口 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 40"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">哈马虽然口碑一年不如一年，但作为家乡的赛事，回想起来还是会觉得很亲切，有缘再会。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-041.webp",
+      "caption": "摆渡回起点 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 41"
+    },
+    {
+      "kind": "heading",
+      "title": "老家"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">赛后老舅请吃了新疆菜，第二天一起回了好多年没回了的东北老家，一座小城，准确说应该是一个小镇，这里有我的半个童年。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">东北的地名比较魔幻，这里叫“乌鸦泡”。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-042.webp",
+      "caption": "航拍松花江畔的乌鸦泡 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 42"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-043.webp",
+      "caption": "航拍松花江畔的乌鸦泡 · 2 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 43"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">住久了楼房，回到村里，感觉特别舒服，住在平房的硬炕上，不去想那些烦心事，晚上还能看星星，难得的安静。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-044.webp",
+      "caption": "老乡 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 44"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-045.webp",
+      "caption": "放飞机 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 45"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">小城依傍着松花江，发源于天池的流水似从天降，所以居住江边的满族人便称它为“松嘎里乌拉”，意为“天河”。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-046.webp",
+      "caption": "航拍松花江 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 46"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-047.webp",
+      "caption": "航拍松花江 · 2 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 47"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">小时候不知道这么多故事，只知道我爸经常骑自行车载我来这里，那时候江边还有大船，现在这里已经几乎看不到年轻人了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-048.webp",
+      "caption": "小桥 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 48"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-049.webp",
+      "caption": "小桥 · 2 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 49"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">对我而言这里只是童年的一小部分，而对于爷爷奶奶那代人，这里就是整个青春。当年爷爷奶奶因为一句”祖国需要，支边光荣“。从青岛的机械厂来到北大荒，然后就是一辈子。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">我能想象在那些激情燃烧的岁月里，小镇的荣光，一车车的木材运到这里，然后支援给祖国各地。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-050.webp",
+      "caption": "大河 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 50"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">和许多东北小镇一样，这里如今似乎被遗忘了，包括整个东北似乎都被遗忘了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-051.webp",
+      "caption": "大河和小镇 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 51"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">傍晚的松花江格外美，八月末的黑土地长满了庄稼。我没事就出去瞎跑，虽然大道上也没几个人，但就是觉得舒服，最逗的就是路边总能听到纯正东北话自带笑感的嘻嘻哈哈，真得劲儿。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-052.webp",
+      "caption": "落日下的松花江和老家 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 52"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-053.webp",
+      "caption": "落日下的松花江和老家 · 2 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 53"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">最爱放飞机，然后总会围过来一群小孩，我小时候也爱玩四驱车，这是天性。金色的田野真的一点不逊色刚刚去过的新疆草原，让人觉得异常开阔。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-054.webp",
+      "caption": "田野 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 54"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-055.webp",
+      "caption": "田野 · 2 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 55"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Harbin-Marathon-clean_files/img-056.webp",
+      "caption": "田野 · 3 @Arsenan",
+      "alt": "黑龙江哈尔滨故事照片 56"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">有时候会想，难得写一次家乡，文风应该是严肃认真的，情感应该是深沉厚重的，这样才显得有深度，才像个大学生。但情绪总是适可而止。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">因为这里是东北，虽然东北这片土地真的已经很苦了，但东北人从来都是乐天派。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">这不正如这xx的2020年一样，虽然开启的异常苦涩，但疫情下的我们依旧可以无比热爱生活。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">热爱着热爱着，好的事情也许就发生了。</p>"
+    }
+  ]
+}

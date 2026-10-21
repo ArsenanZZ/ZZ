@@ -2,6 +2,7 @@
 from pathlib import Path
 from html import escape
 import json,re,sys
+from functools import lru_cache
 from bs4 import BeautifulSoup
 from PIL import Image,ImageOps,ImageDraw,ImageFont
 from normalize_wechat_presentation import normalize
@@ -10,6 +11,12 @@ DATA=ROOT/'tools/data/run50-refresh-20261020'
 SELECT=json.loads((ROOT/'tools/data/run50-refresh-selection.json').read_text(encoding='utf-8'))
 def local(src):
  return ROOT/src.lstrip('/') if src.startswith('/') else (ROOT/'run50/wechat'/src.split('?')[0]).resolve()
+@lru_cache(maxsize=None)
+def dimensions(src):
+ try:
+  with Image.open(local(src)) as im:return f' width="{im.width}" height="{im.height}"'
+ except (OSError,ValueError):return ''
+
 def tidy(html):
  s=BeautifulSoup(html,'html.parser')
  for x in s.find_all():
@@ -94,7 +101,7 @@ def render(d,hero=True):
    group=[b]
    while i+1<len(blocks) and blocks[i+1]['kind']=='figure' and len(group)<3:i+=1;group.append(blocks[i])
    labels=['上','下'] if len(group)==2 else ['上','中','下'];caps=[credit(x['caption']) for x in group]
-   body.append('<figure class="photo-strip">'+''.join(f'<img src="{escape(x["src"])}" alt="{escape(x["alt"])}" loading="lazy">' for x in group)+'<figcaption>'+'<br>'.join(escape((labels[j]+'：' if len(group)>1 else '')+c) for j,c in enumerate(caps) if c)+'</figcaption></figure>')
+   body.append('<figure class="photo-strip">'+''.join(f'<img src="{escape(x["src"])}" alt="{escape(x["alt"])}"{dimensions(x["src"])} loading="lazy">' for x in group)+'<figcaption>'+'<br>'.join(escape((labels[j]+'：' if len(group)>1 else '')+c) for j,c in enumerate(caps) if c)+'</figcaption></figure>')
   i+=1
  ending=title.split('｜')[1].split('：')[0] if '｜' in title else '这一站'
  body.append(f'<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUN50 · 第{n}州</p><h2>{escape(ending)}，点亮</h2><p class="credits">文字 / Arsenan<br>摄影 / 见图片署名</p></footer>')

@@ -1,0 +1,426 @@
+{
+  "page": "/run50/wechat/shanghai-vertical-marathon-modern-rail.html",
+  "title": "RunCN #第22站｜上海中心垂直马拉松",
+  "ready": false,
+  "images": 50,
+  "slug": "shanghai-vertical-marathon",
+  "intro": "在签证等待的特殊时期，爬上119层、3398级台阶，在632米高处俯瞰浦江两岸。",
+  "map": "/assets/cn-article-maps/china-light-0ea9280a140923ef.png",
+  "poster": "../../assets/cover-medal-shanghai-vertical-marathon.jpg?v=20260628-runcn-shanghai-ratio-v2",
+  "blocks": [
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-001.webp",
+      "caption": "登顶上海中心 · 赛事官方",
+      "alt": "登顶上海中心 · 赛事官方"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 6px 0 15px; padding: 8px 11px; line-height: 1.65; font-size: 15px; letter-spacing: 0.3px; color: #2f855a; background: #f4f8fb; border-left: 3px solid #d4a669; font-family: Georgia, 'Times New Roman', 'PingFang SC', serif; font-style: italic;\">魔都里的人间</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">上周和同济的学弟ZOOM，半夜做梦竟回到了那段特别的上海时光，在梦里被灌的很惨，还喝了不少酒，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\" style=\"color:#237953;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #237953;padding-bottom:2px;\">导致第二天都有点晕</strong>。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">也算是在魔都留下过痕迹的人，上海算是我的<strong data-cn-emphasis=\"underline\" data-cn-tone=\"2\" style=\"color:#306eaa;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #306eaa;padding-bottom:2px;\">幸运</strong>城市，虽然已经离开挺久的了，但有些故事，依旧想念。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-002.webp",
+      "caption": "魔都 @Arsenan",
+      "alt": "上海故事照片 2"
+    },
+    {
+      "kind": "heading",
+      "title": "流浪上海滩"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">因为美国签证一直下不来，<strong data-cn-emphasis=\"color\" data-cn-tone=\"3\" style=\"color:#9a681c;font-weight:800;background:transparent;padding:0;\">陈老师推荐我去同济庄老师组“交流”</strong>，说是“交流”，其实更多的是忐忑，中美局势紧张，有点看不清楚未来。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\"><strong data-cn-emphasis=\"bold\" data-cn-tone=\"0\" style=\"color:#ac4336;font-weight:800;background:transparent;padding:0;\">上海给我的第一感觉并不友好</strong>，出租车司机一副上海小男人的嘴脸，冷嘲热讽外地人的语气让人分分钟想使用武力；旅社隔壁租客胖大姐霸占洗衣机嚣张气焰咄咄逼人，和她大吵一架后直接互相看不顺眼。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">唯一让我感觉有点安慰的是同济的食堂确实还挺好吃的。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-003.webp",
+      "caption": "同济食堂盖面 @Arsenan",
+      "alt": "上海故事照片 3"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">国庆之后，上海的秋天来了，距离<strong data-cn-emphasis=\"underline\" data-cn-tone=\"1\" style=\"color:#237953;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #237953;padding-bottom:2px;\">第一次</strong>面签已经过去了半年，有同样经历的小伙伴也变得焦虑起来。摸摸自己逐渐变胖的肚子，发现又没有形象了。没事也会调侃自己，又胖又没有前途，简直咸鱼。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-004.webp",
+      "caption": "同济食堂盖饭 @Arsenan",
+      "alt": "上海故事照片 4"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">所以偶尔也会叹气，不过马上又会告诉自己，顺逆终有时，充实起来，<strong data-cn-emphasis=\"color\" data-cn-tone=\"2\" style=\"color:#306eaa;font-weight:800;background:transparent;padding:0;\">会有硬币的另一面</strong>。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">学习新知识，然后动起来。同济和复旦的操场留下了我的身影，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"3\" style=\"color:#9a681c;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #9a681c;padding-bottom:2px;\">我也成了同济健身房的常客</strong>，但始终觉得并不够劲。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-005.webp",
+      "caption": "同济操场 @Arsenan",
+      "alt": "上海故事照片 5"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-006.webp",
+      "caption": "复旦操场 @Arsenan",
+      "alt": "上海故事照片 6"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">这时候AR（addidas runner）出现了，早有耳闻的addidas跑团，我骑着单车慕名去参加，<strong data-cn-emphasis=\"underline\" data-cn-tone=\"0\" style=\"color:#ac4336;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #ac4336;padding-bottom:2px;\">第一次</strong>跟着跑了十公里，我就被拉爆了，虽然已经是最慢的组了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-007.webp",
+      "caption": "和AR一起跑外滩 @Arsenan",
+      "alt": "上海故事照片 7"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-008.webp",
+      "caption": "和AR一起跑外滩 · 2 @Arsenan",
+      "alt": "上海故事照片 8"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-009.webp",
+      "caption": "和AR一起跑外滩 by AR",
+      "alt": "和AR一起跑外滩 by AR"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">我就不信了，毕竟自己也大神过，慢慢的我发现能跟上了AR的4：30组完成<span data-cn-emphasis=\"underline\" data-cn-tone=\"1\" style=\"color:#237953;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #237953;padding-bottom:2px;\">10公里</span>了，也慢慢瘦了一些。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-010.webp",
+      "caption": "AR夜跑 by AR",
+      "alt": "AR夜跑 by AR"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-011.webp",
+      "caption": "AR夜跑 by AR · 2",
+      "alt": "AR夜跑 by AR · 2"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-012.webp",
+      "caption": "AR夜跑 by AR / AR生日派",
+      "alt": "AR夜跑 by AR / AR生日派"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-013.webp",
+      "caption": "",
+      "alt": "上海故事照片 13"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">上海外滩，西岸，世纪公园，这些上海的跑步圣地我都有跟着AR参与过，表白AR。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-014.webp",
+      "caption": "网红西岸 @Arsenan",
+      "alt": "上海故事照片 14"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-015.webp",
+      "caption": "AR的特别补给和冰姐照片 @Arsenan",
+      "alt": "上海故事照片 15"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">有了组织，我也慢慢融入同济生活，淇民带我到处浪，彬拉着我去虹口看申花，和学弟一起搞科研，跟着闽金泡图书馆，还有幸听了金老师组织的法国大佬公开课，忙起来似乎一切都在变好。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-016.webp",
+      "caption": "带我各种吃的淇民 @Arsenan",
+      "alt": "上海故事照片 16"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-017.webp",
+      "caption": "和彬虹口看申花 by 路人",
+      "alt": "和彬虹口看申花 by 路人"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-018.webp",
+      "caption": "和学弟搞科研 by 路人",
+      "alt": "和学弟搞科研 by 路人"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">十月底我在上海预约了第二次面签，撤掉了北京的申请，过程很smooth，美国白人大叔很客气，可能马上就是万圣节，大使馆里氛围很轻松。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-019.webp",
+      "caption": "万圣节 by 路人",
+      "alt": "万圣节 by 路人"
+    },
+    {
+      "kind": "heading",
+      "title": "登顶上海中心"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">接下来的事情似乎变得积极起来，面签后的一个月，通常会比较开心，有缘和武大老铁去静安寺拜佛求issue，去西湖见了好友还偶遇了大佬施一公，在湄南河边和四面佛前留下了2019年最重要的愿望，也去了趟宁波和那个女孩说再见，简直成了海螺人。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-020.webp",
+      "caption": "静安寺 @Arsenan",
+      "alt": "上海故事照片 20"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-021.webp",
+      "caption": "静安寺 · 2 @Arsenan",
+      "alt": "上海故事照片 21"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-022.webp",
+      "caption": "静安寺 · 3 @Arsenan",
+      "alt": "上海故事照片 22"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">我还报名了上海中心的垂直马拉松。爬楼居然也可以称为马拉松，很新奇所以也想经历，特别在上海机会难得，自然不要错过。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-023.webp",
+      "caption": "魔都夜景 @Arsenan",
+      "alt": "上海故事照片 23"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-024.webp",
+      "caption": "魔都夜景 · 2 @Arsenan",
+      "alt": "上海故事照片 24"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-025.webp",
+      "caption": "魔都夜景 · 3 @Arsenan",
+      "alt": "上海故事照片 25"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">上海中心大厦 Shanghai Tower，127层，建筑主体118层，3398个台阶，垂直高度632m，这是上海最高的摩天大楼。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-026.webp",
+      "caption": "右一上海中心 @Arsenan",
+      "alt": "上海故事照片 26"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">2008-2016，总高632米的上海中心在浦江之畔一路疯长，一天一天地从打蛋器进化为今天的魔都新地标，成为上海夜空中一株不灭的火树银花。无论白天还是夜晚，总有人为TA 停留，这也是世界最高的垂直马拉松了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-027.webp",
+      "caption": "上海中心起跑点 @Arsenan",
+      "alt": "上海故事照片 27"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-028.webp",
+      "caption": "起跑 （白胖子）by 摄影师 · 资料图",
+      "alt": "上海故事照片 28"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-029.webp",
+      "caption": "进楼 by 摄影师 · 资料图",
+      "alt": "上海故事照片 29"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">领物这天我迷醉于上海的夜景，反倒第二天起跑，我倒紧张起来，虽然路跑身经百战，但垂马确是实打实的<span data-cn-emphasis=\"underline\" data-cn-tone=\"2\" style=\"color:#306eaa;font-weight:800;background:transparent;padding:0;border-bottom:3px solid #306eaa;padding-bottom:2px;\">第一次</span>，每个人都是分时起跑，我比较担心的是楼梯内闷热的空气，不过跑起来才知道，原来上海中心的排风，通风系统真的很赞，有些楼层，甚至还让人感到丝丝凉意。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-030.webp",
+      "caption": "爬楼 by 摄影师 · 资料图",
+      "alt": "上海故事照片 30"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-031.webp",
+      "caption": "爬楼 by 摄影师 · 2 · 资料图",
+      "alt": "上海故事照片 31"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-032.webp",
+      "caption": "爬楼 by 摄影师 · 3 · 资料图",
+      "alt": "上海故事照片 32"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">垂马其实不用跑，大步爬楼就行，总觉得跑起来反而更容易受伤，过程中前面的选手也会礼让后来者，很和谐。部分楼层的补给和避难层也让大家不会有过分的担心，只管安心参与比赛就好。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-033.webp",
+      "caption": "补给 @Arsenan",
+      "alt": "上海故事照片 33"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">九十多层的志愿者和我们讲不用太担心完赛问题，时间够用，可以来这层拍照，风景不错。这是挺空旷的一层楼，视野很好，应该是和顶层观光中心有不同的体验。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-034.webp",
+      "caption": "上海金茂大厦 @Arsenan",
+      "alt": "上海故事照片 34"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-035.webp",
+      "caption": "上海金融中心 @Arsenan",
+      "alt": "上海故事照片 35"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">不知不觉，就这样封顶了，和路跑马拉松比，垂马确实轻松很多，观光区已经有了好多完赛跑者，透过玻璃窗，看着金茂大厦和东方明珠立在自己脚下，我想再内敛的人也会心潮澎湃吧。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-036.webp",
+      "caption": "登顶 by 摄影师 · 资料图",
+      "alt": "上海故事照片 36"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-037.webp",
+      "caption": "登顶 by 摄影师 · 2 · 资料图",
+      "alt": "上海故事照片 37"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">站的多高是挺重要的一件事，但更重要的是，好奇心，所以今天又是一个里程碑。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">登上了上海中心，上海也算是没白来了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-038.webp",
+      "caption": "奖牌+东方明珠 @Arsenan",
+      "alt": "上海故事照片 38"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-039.webp",
+      "caption": "奖牌+黄浦江 @Arsenan",
+      "alt": "上海故事照片 39"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-040.webp",
+      "caption": "奖牌+上海金融中心 @Arsenan",
+      "alt": "上海故事照片 40"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">接下来还有惊喜，赛后抽奖环节，我很幸运的中了美国心脏协会的急救课程，也是一堂很有趣的培训课。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-041.webp",
+      "caption": "急救跑者培训课 @Arsenan",
+      "alt": "上海故事照片 41"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">不知不觉，上海的冬天来了，我又找到了新的组织，悦跑上海，又是一群很棒的朋友。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-042.webp",
+      "caption": "新组织 @Arsenan",
+      "alt": "上海故事照片 42"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">十二月中，签证下来了，上海的日子也就要结束了。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">不知不觉间发现自己渐渐喜欢上了这所学校和这这群小伙伴。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-043.webp",
+      "caption": "铁锅炖 @Arsenan",
+      "alt": "上海故事照片 43"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">离开前带着同济组的老铁们来了一顿东北铁锅炖，别说，大上海的味道还真正宗。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-044.webp",
+      "caption": "同济 @Arsenan",
+      "alt": "上海故事照片 44"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-045.webp",
+      "caption": "同济 · 2 @Arsenan",
+      "alt": "上海故事照片 45"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-046.webp",
+      "caption": "同济 · 3 @Arsenan",
+      "alt": "上海故事照片 46"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/RunCN-Shanghai-Vertical-Marathon-clean_files/img-047.webp",
+      "caption": "同济 · 4 @Arsenan",
+      "alt": "上海故事照片 47"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">然后和旅社的小伙伴小夏，小小夏，沈阳妹告别，都是很nice的老铁。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">上海的时光，是特殊时期里的一段特别旅程。总觉每段经历都有它的意义，所以最近也会时常提醒自己，在被push的时候，也要充满能量。</p>"
+    }
+  ]
+}
