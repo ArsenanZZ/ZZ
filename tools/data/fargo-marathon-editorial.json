@@ -889,6 +889,13 @@
   "source_folder": "Z:\\ZhennanZ Folder\\000-Marathon-Story-2024-2025\\20250529-ND-Fargo Marathon-25st\\4-Polished Photos",
   "hero_photos": [
     {
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-073-4.webp",
+      "crop": [
+        0.5,
+        0
+      ]
+    },
+    {
       "src": "/assets/fargo-marathon-magazine-photos/fargo-068-0.webp",
       "crop": [
         0.5,
@@ -915,14 +922,7 @@
         0.75,
         0.1
       ]
-    },
-    {
-      "src": "/assets/fargo-marathon-magazine-photos/fargo-073-4.webp",
-      "crop": [
-        0.5,
-        0
-      ]
     }
   ],
-  "hero_version": "20261022-selection"
+  "hero_version": "20261022-medal-first"
 }
