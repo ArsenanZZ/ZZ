@@ -24,3 +24,4 @@ User-confirmed RunCN map and WeChat requirements, 2026-10-22:
 - Color only provinces actually visited by that article's last numbered station. Never inherit today's homepage completion map. Combined articles use their final station as the historical cutoff; later provinces and city dots remain absent.
 - Map and poster boxes use identical width and no asymmetric padding, including the WeChat copy export.
 - Full embedded WeChat copy must stay below 10 MB; target at most 9,000,000 bytes of UTF-8 HTML plus plain text, including base64 overhead. Keep GIF animation and every photo. Show actual copy size and refuse an over-budget clipboard write; do not silently remove images.
+- Copied chapter numbers must be native text with theme-appropriate ink and no background, never full-width number PNGs: WeChat can show those images as white bars in dark mode. Keep the website's outlined numbers unchanged. This applies to every numbered chapter, not only 01 and 02.

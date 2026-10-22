@@ -56,10 +56,17 @@
       if (['script','style','source','button'].includes(tag)) return document.createTextNode('');
       const number = node.classList.contains('chapter-number');
       const down = node.classList.contains('down');
-      if (tag === 'img' || number || down) {
+      // Native text survives WeChat dark mode without a full-width image background.
+      if (number) {
+        const p = document.createElement('p');
+        p.textContent = node.textContent.trim();
+        p.style.cssText = 'font-family:Arial,sans-serif;font-size:74px;line-height:1.15;color:' + ink + ';background-color:transparent;margin:0 0 14px;padding:0;font-weight:400;text-align:left;';
+        return p;
+      }
+      if (tag === 'img' || down) {
         const img = document.createElement('img');
         let url;
-        if (number || down) url = (number ? 'https://zhennanzhang.com/assets/connecticut-wechat-copy/' : base) + (number ? 'number-' + node.textContent.trim() + '-universal.png' : 'arrows-' + theme + '.png');
+        if (down) url = base + 'arrows-' + theme + '.png';
         else {
           url = new URL(node.getAttribute('data-' + theme + '-src') || node.getAttribute('src'), canonical).href;
           const photo = url.match(/\/(img-\d+|la-[\d-]+)\.webp/);
@@ -68,7 +75,7 @@
           if (url.includes('wechat-louisiana-poster.')) url = base + 'poster.jpg';
         }
         img.src = url;
-        img.alt = number ? node.textContent.trim() : down ? '向下' : node.getAttribute('alt') || '';
+        img.alt = down ? '向下' : node.getAttribute('alt') || '';
         img.style.cssText = `display:block;width:100%;max-width:100%;height:auto;margin:${down ? '24px 0 30px' : '0'};border:0;`;
         if (node.closest('.brand-intro')) {
           img.width = 96;

@@ -119,15 +119,12 @@ def render(slug,make_hero=True):
  series,title,closing=ENDINGS[slug]
  body.append(f'<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUN50 · {series}</p><h2>{title}</h2><p class="closing" style="margin:0;padding:24px 0 0;text-align:center;font-size:13px;line-height:1.9">{closing}</p><p class="credits">文字 / Arsenan<br>摄影 / 见图片署名</p></footer>')
  nav=f'<nav class="copy-tools"><a href="../../CN/" style="color:inherit">Run50 目录</a><a href="{slug}-magazine-wechat.html" style="color:inherit">旅行杂志版</a><span>摄影杂志版</span><button class="theme-choice" data-theme-choice="light" aria-pressed="true" type="button">白底</button><button class="theme-choice" data-theme-choice="dark" aria-pressed="false" type="button">黑底</button><button id="copy-wechat" type="button">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
- html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(d['title'])+'</title><style>'+css+'</style></head><body>'+nav+'<main data-edition="'+slug+'-editorial">'+'\n'.join(body)+'</main><script src="../../assets/run50-six-editorial-copy.js?v=20261022-size" defer></script></body></html>'
+ html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(d['title'])+'</title><style>'+css+'</style></head><body>'+nav+'<main data-edition="'+slug+'-editorial">'+'\n'.join(body)+'</main><script src="../../assets/run50-six-editorial-copy.js?v=20261022-text-numbers" defer></script></body></html>'
  for suffix in ['modern-rail','editorial']:(ROOT/f'run50/wechat/{slug}-{suffix}.html').write_text(html,encoding='utf-8')
  print(slug,len(ims),'photos',sum(b['kind']=='photo-strip' for b in blocks),'strips',html.count('data-cn-tone'), 'accents',html.count('data-cn-emphasis="underline"'),'underlines')
 if __name__=='__main__':
  for slug in CONFIG:render(slug)
- js=(ROOT/'assets/louisiana-wechat-copy.js').read_text(encoding='utf-8')
- js=js.replace("const canonical = 'https://zhennanzhang.com/run50/wechat/louisiana-marathon-editorial.html';","const canonical = 'https://zhennanzhang.com' + location.pathname;")
- js=re.sub(r"          const photo = url.match.*?if \(url.includes\('wechat-louisiana-poster\.'\)\) url = base \+ 'poster.jpg';\n",'',js,flags=re.S)
- (ROOT/'assets/run50-six-editorial-copy.js').write_text(js,encoding='utf-8')
+ # Shared copy exporter is maintained in assets/run50-six-editorial-copy.js.
  index=ROOT/'CN/index.html';s=index.read_text(encoding='utf-8')
  for slug in CONFIG:s=re.sub(re.escape(slug)+r'-modern-rail.html\?v=[^"\s]+',slug+'-modern-rail.html?v=20261008-complete',s)
  index.write_text(s,encoding='utf-8')
