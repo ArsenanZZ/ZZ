@@ -17,3 +17,10 @@ User-confirmed refinements, 2026-10-11:
 - Article China maps use the current `build_lhasa_map.cjs` family: province names in KaiTi, a heavier Song-style dispatch title/current province, labels placed inside the actual province shapes, and external leaders for dense coastal municipalities. Use subdued completed-region colors and a stronger current-region color.
 - Align both the outer image edges and visible artwork edges of map/poster pairs. Any map inset must have a paper-colored backing within the full-width image box; verify white and black themes and preserve that treatment in the WeChat copy exporter.
 - Add image-specific photo captions and photography credits. Author photographs use `Arsenan`; event photographer images use `官方摄影` unless the source identifies a specific author. Never invent a photographer name. Preserve the user's actual spoken opinions and jokes when preparing articles from Vlogs.
+
+User-confirmed RunCN map and WeChat requirements, 2026-10-22:
+
+- All RunCN article maps use the Liupanshui paper-map standard. Generate them with `tools/build_runcn_article_maps.cjs` and `tools/data/runcn-map-timeline.json`; preserve the shared geography, KaiTi labels, subdued historical colors, current province emphasis, city star and local landmark leader.
+- Color only provinces actually visited by that article's last numbered station. Never inherit today's homepage completion map. Combined articles use their final station as the historical cutoff; later provinces and city dots remain absent.
+- Map and poster boxes use identical width and no asymmetric padding, including the WeChat copy export.
+- Full embedded WeChat copy must stay below 10 MB; target at most 9,000,000 bytes of UTF-8 HTML plus plain text, including base64 overhead. Keep GIF animation and every photo. Show actual copy size and refuse an over-budget clipboard write; do not silently remove images.

@@ -1,0 +1,563 @@
+{
+  "stations": [
+    {
+      "station": 1,
+      "city": "远安",
+      "province": "cn_hubei",
+      "lat": 31.06,
+      "lon": 111.64
+    },
+    {
+      "station": 2,
+      "city": "武汉",
+      "province": "cn_hubei",
+      "lat": 30.5928,
+      "lon": 114.3055
+    },
+    {
+      "station": 3,
+      "city": "合肥",
+      "province": "cn_anhui",
+      "lat": 31.82,
+      "lon": 117.23
+    },
+    {
+      "station": 4,
+      "city": "长治",
+      "province": "cn_shanxi",
+      "lat": 36.1954,
+      "lon": 113.1163
+    },
+    {
+      "station": 5,
+      "city": "鄂尔多斯",
+      "province": "cn_innermongolia",
+      "lat": 39.6086,
+      "lon": 109.7813
+    },
+    {
+      "station": 6,
+      "city": "哈尔滨",
+      "province": "cn_heilongjiang",
+      "lat": 45.8038,
+      "lon": 126.535
+    },
+    {
+      "station": 7,
+      "city": "广安",
+      "province": "cn_sichuan",
+      "lat": 30.4564,
+      "lon": 106.6332
+    },
+    {
+      "station": 8,
+      "city": "宜昌",
+      "province": "cn_hubei",
+      "lat": 30.6919,
+      "lon": 111.2865
+    },
+    {
+      "station": 9,
+      "city": "长沙",
+      "province": "cn_hunan",
+      "lat": 28.2282,
+      "lon": 112.9388
+    },
+    {
+      "station": 10,
+      "city": "厦门",
+      "province": "cn_fujian",
+      "lat": 24.4798,
+      "lon": 118.0894
+    },
+    {
+      "station": 11,
+      "city": "无锡",
+      "province": "cn_jiangsu",
+      "lat": 31.4912,
+      "lon": 120.3119
+    },
+    {
+      "station": 12,
+      "city": "武汉",
+      "province": "cn_hubei",
+      "lat": 30.5928,
+      "lon": 114.3055
+    },
+    {
+      "station": 13,
+      "city": "西安",
+      "province": "cn_shaanxi",
+      "lat": 34.3416,
+      "lon": 108.9398
+    },
+    {
+      "station": 14,
+      "city": "兰州",
+      "province": "cn_gansu",
+      "lat": 36.0611,
+      "lon": 103.8343
+    },
+    {
+      "station": 15,
+      "city": "贵阳",
+      "province": "cn_guizhou",
+      "lat": 26.647,
+      "lon": 106.6302
+    },
+    {
+      "station": 16,
+      "city": "海口",
+      "province": "cn_hainan",
+      "lat": 20.044,
+      "lon": 110.1999
+    },
+    {
+      "station": 17,
+      "city": "武汉",
+      "province": "cn_hubei",
+      "lat": 30.5928,
+      "lon": 114.3055
+    },
+    {
+      "station": 18,
+      "city": "大连",
+      "province": "cn_liaoning",
+      "lat": 38.914,
+      "lon": 121.6147
+    },
+    {
+      "station": 19,
+      "city": "北京",
+      "province": "cn_beijing",
+      "lat": 40.0799,
+      "lon": 116.21
+    },
+    {
+      "station": 20,
+      "city": "哈尔滨",
+      "province": "cn_heilongjiang",
+      "lat": 45.8038,
+      "lon": 126.535
+    },
+    {
+      "station": 21,
+      "city": "杭州",
+      "province": "cn_zhejiang",
+      "lat": 30.2741,
+      "lon": 120.1551
+    },
+    {
+      "station": 22,
+      "city": "上海",
+      "province": "cn_shanghai",
+      "lat": 31.2304,
+      "lon": 121.4737
+    },
+    {
+      "station": 23,
+      "city": "宁波",
+      "province": "cn_zhejiang",
+      "lat": 29.8683,
+      "lon": 121.544
+    },
+    {
+      "station": 24,
+      "city": "襄阳",
+      "province": "cn_hubei",
+      "lat": 32.009,
+      "lon": 112.1224
+    },
+    {
+      "station": 25,
+      "city": "桂林",
+      "province": "cn_guangxi",
+      "lat": 25.2345,
+      "lon": 110.1799
+    },
+    {
+      "station": 26,
+      "city": "香港",
+      "province": "cn_hongkong",
+      "lat": 22.3193,
+      "lon": 114.1694
+    },
+    {
+      "station": 27,
+      "city": "六盘水",
+      "province": "cn_guizhou",
+      "lat": 26.59,
+      "lon": 104.83
+    },
+    {
+      "station": 28,
+      "city": "楚雄",
+      "province": "cn_yunnan",
+      "lat": 25.0329,
+      "lon": 101.5458
+    },
+    {
+      "station": 29,
+      "city": "拉萨",
+      "province": "cn_tibet",
+      "lat": 29.65,
+      "lon": 91.13
+    },
+    {
+      "station": 30,
+      "city": "西宁",
+      "province": "cn_qinghai",
+      "lat": 36.6171,
+      "lon": 101.7782
+    }
+  ],
+  "pages": [
+    {
+      "slug": "steel-tank-story",
+      "station": 6,
+      "range": "1—6",
+      "city": "哈尔滨",
+      "province": "cn_heilongjiang",
+      "lat": 45.8038,
+      "lon": 126.535,
+      "icon": "church",
+      "emblem": null
+    },
+    {
+      "slug": "three-city-pilgrimage",
+      "station": 9,
+      "range": "7—9",
+      "city": "长沙",
+      "province": "cn_hunan",
+      "lat": 28.2282,
+      "lon": 112.9388,
+      "icon": "pavilion",
+      "emblem": null
+    },
+    {
+      "slug": "xiamen-marathon",
+      "station": 10,
+      "range": "10",
+      "city": "厦门",
+      "province": "cn_fujian",
+      "lat": 24.4798,
+      "lon": 118.0894,
+      "icon": "island",
+      "emblem": null
+    },
+    {
+      "slug": "wuhan-wuxi-marathon-notes",
+      "station": 11,
+      "range": "11",
+      "city": "无锡",
+      "province": "cn_jiangsu",
+      "lat": 31.4912,
+      "lon": 120.3119,
+      "icon": "blossom",
+      "emblem": null
+    },
+    {
+      "slug": "wuhan-marathon-2018",
+      "station": 12,
+      "range": "12",
+      "city": "武汉",
+      "province": "cn_hubei",
+      "lat": 30.5928,
+      "lon": 114.3055,
+      "icon": "pavilion",
+      "emblem": null
+    },
+    {
+      "slug": "xian-city-wall-marathon",
+      "station": 13,
+      "range": "13",
+      "city": "西安",
+      "province": "cn_shaanxi",
+      "lat": 34.3416,
+      "lon": 108.9398,
+      "icon": "gate",
+      "emblem": null
+    },
+    {
+      "slug": "lanzhou-marathon",
+      "station": 14,
+      "range": "14",
+      "city": "兰州",
+      "province": "cn_gansu",
+      "lat": 36.0611,
+      "lon": 103.8343,
+      "icon": "bridge",
+      "emblem": null
+    },
+    {
+      "slug": "guiyang-marathon-climb",
+      "station": 15,
+      "range": "15",
+      "city": "贵阳",
+      "province": "cn_guizhou",
+      "lat": 26.647,
+      "lon": 106.6302,
+      "icon": "tower",
+      "emblem": null
+    },
+    {
+      "slug": "haikou-marathon",
+      "station": 16,
+      "range": "16",
+      "city": "海口",
+      "province": "cn_hainan",
+      "lat": 20.044,
+      "lon": 110.1999,
+      "icon": "palm",
+      "emblem": null
+    },
+    {
+      "slug": "wuhan-han-marathon",
+      "station": 17,
+      "range": "17",
+      "city": "武汉",
+      "province": "cn_hubei",
+      "lat": 30.5928,
+      "lon": 114.3055,
+      "icon": "pavilion",
+      "emblem": null
+    },
+    {
+      "slug": "dalian-trail",
+      "station": 18,
+      "range": "18",
+      "city": "大连",
+      "province": "cn_liaoning",
+      "lat": 38.914,
+      "lon": 121.6147,
+      "icon": "lighthouse",
+      "emblem": null
+    },
+    {
+      "slug": "wuhan-graduation",
+      "station": 19,
+      "range": "19",
+      "city": "北京",
+      "province": "cn_beijing",
+      "lat": 40.0799,
+      "lon": 116.21,
+      "icon": "greatwall",
+      "emblem": null
+    },
+    {
+      "slug": "harbin-marathon",
+      "station": 20,
+      "range": "20",
+      "city": "哈尔滨",
+      "province": "cn_heilongjiang",
+      "lat": 45.8038,
+      "lon": 126.535,
+      "icon": "church",
+      "emblem": null
+    },
+    {
+      "slug": "west-lake-half-marathon",
+      "station": 21,
+      "range": "21",
+      "city": "杭州",
+      "province": "cn_zhejiang",
+      "lat": 30.2741,
+      "lon": 120.1551,
+      "icon": "pagoda",
+      "emblem": null
+    },
+    {
+      "slug": "shanghai-vertical-marathon",
+      "station": 22,
+      "range": "22",
+      "city": "上海",
+      "province": "cn_shanghai",
+      "lat": 31.2304,
+      "lon": 121.4737,
+      "icon": "skyline",
+      "emblem": null
+    },
+    {
+      "slug": "ningbo-dongqian-lake-marathon",
+      "station": 23,
+      "range": "23",
+      "city": "宁波",
+      "province": "cn_zhejiang",
+      "lat": 29.8683,
+      "lon": 121.544,
+      "icon": "lake",
+      "emblem": null
+    },
+    {
+      "slug": "xiangyang-marathon",
+      "station": 24,
+      "range": "24",
+      "city": "襄阳",
+      "province": "cn_hubei",
+      "lat": 32.009,
+      "lon": 112.1224,
+      "icon": "gate",
+      "emblem": null
+    },
+    {
+      "slug": "guilin-marathon",
+      "station": 25,
+      "range": "25",
+      "city": "桂林",
+      "province": "cn_guangxi",
+      "lat": 25.2345,
+      "lon": 110.1799,
+      "icon": "karst",
+      "emblem": null
+    },
+    {
+      "slug": "hong-kong-marathon",
+      "station": 26,
+      "range": "26",
+      "city": "香港",
+      "province": "cn_hongkong",
+      "lat": 22.3193,
+      "lon": 114.1694,
+      "icon": "tram",
+      "emblem": null
+    },
+    {
+      "slug": "liupanshui-marathon",
+      "station": 27,
+      "range": "27",
+      "city": "六盘水",
+      "province": "cn_guizhou",
+      "lat": 26.59,
+      "lon": 104.83,
+      "icon": "guizhou",
+      "emblem": "assets/runcn-liupanshui-2026/guizhou-map-emblem.png",
+      "date": "2026.07.19"
+    },
+    {
+      "slug": "chuxiong-marathon",
+      "station": 28,
+      "range": "28",
+      "city": "楚雄",
+      "province": "cn_yunnan",
+      "lat": 25.0329,
+      "lon": 101.5458,
+      "icon": "chuxiong",
+      "emblem": "assets/runcn-chuxiong-2026/chuxiong-map-emblem.png",
+      "date": "2026.08.02"
+    },
+    {
+      "slug": "lhasa-half-marathon",
+      "station": 29,
+      "range": "29",
+      "city": "拉萨",
+      "province": "cn_tibet",
+      "lat": 29.65,
+      "lon": 91.13,
+      "icon": "lhasa",
+      "emblem": "assets/runcn-lhasa-2026/lhasa-map-emblem.png",
+      "date": "2026.08.23"
+    },
+    {
+      "slug": "qinghai-xining-marathon",
+      "station": 30,
+      "range": "30",
+      "city": "西宁",
+      "province": "cn_qinghai",
+      "lat": 36.6171,
+      "lon": 101.7782,
+      "icon": "qinghai",
+      "emblem": "assets/runcn-qinghai-2026/qinghai-map-emblem.svg",
+      "date": "2026.09.06"
+    }
+  ],
+  "provinces": {
+    "cn_heilongjiang": [
+      "黑龙江",
+      "#f06a4f"
+    ],
+    "cn_hubei": [
+      "湖北",
+      "#5fc36f"
+    ],
+    "cn_sichuan": [
+      "四川",
+      "#f4a83a"
+    ],
+    "cn_innermongolia": [
+      "内蒙古",
+      "#39abc0"
+    ],
+    "cn_shanxi": [
+      "山西",
+      "#add64f"
+    ],
+    "cn_hunan": [
+      "湖南",
+      "#a678dc"
+    ],
+    "cn_fujian": [
+      "福建",
+      "#39abc0"
+    ],
+    "cn_gansu": [
+      "甘肃",
+      "#f06a4f"
+    ],
+    "cn_jiangsu": [
+      "江苏",
+      "#add64f"
+    ],
+    "cn_guizhou": [
+      "贵州",
+      "#5fc36f"
+    ],
+    "cn_shaanxi": [
+      "陕西",
+      "#f4a83a"
+    ],
+    "cn_zhejiang": [
+      "浙江",
+      "#a678dc"
+    ],
+    "cn_hainan": [
+      "海南",
+      "#39abc0"
+    ],
+    "cn_liaoning": [
+      "辽宁",
+      "#f06a4f"
+    ],
+    "cn_shanghai": [
+      "上海",
+      "#5fc36f"
+    ],
+    "cn_guangxi": [
+      "广西",
+      "#f4a83a"
+    ],
+    "cn_hongkong": [
+      "香港",
+      "#a678dc"
+    ],
+    "cn_beijing": [
+      "北京",
+      "#e89838"
+    ],
+    "cn_anhui": [
+      "安徽",
+      "#dba850"
+    ],
+    "cn_yunnan": [
+      "云南",
+      "#ed7553"
+    ],
+    "cn_tibet": [
+      "西藏",
+      "#5699cb"
+    ],
+    "cn_qinghai": [
+      "青海",
+      "#4a83a9"
+    ]
+  }
+}
