@@ -15,7 +15,7 @@
   const imageMode = document.createElement('select');
   imageMode.setAttribute('aria-label', '图片复制方式');
   imageMode.style.cssText = scope.style.cssText;
-  imageMode.add(new Option('带图片复制（9 MB 内）', 'embedded'));
+  imageMode.add(new Option('原图复制（不压缩）', 'embedded'));
   imageMode.add(new Option('图片链接（备用）', 'links'));
   button.before(imageMode);
   function selectedChildren() {
@@ -127,11 +127,8 @@
     }
     for (const node of selected) wrapper.append(convert(node));
     if (imageMode.value === 'embedded') {
-      // Budget the actual UTF-8 clipboard HTML, including base64 expansion.
-      // Keep GIF bytes intact so the opening animations remain animated.
-      const limit = 9_000_000;
+      // Preserve the fetched image bytes, including GIF animation.
       const images = [...wrapper.querySelectorAll('img')];
-      const records = new Array(images.length);
       const asDataURL = blob => new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => resolve(reader.result);
@@ -147,40 +144,11 @@
           const result = await fetch(url.pathname + url.search);
           if (!result.ok) throw new Error('图片未能加载，请稍后重试');
           const blob = await result.blob();
-          const preserve = /image\/(gif|svg)/i.test(blob.type) || /\.(gif|svg)(?:$|\?)/i.test(url.href) || (blob.type === 'image/png' && blob.size < 24000);
-          records[index] = {img, blob, preserve};
           img.src = await asDataURL(blob);
           status.textContent = `正在准备图片 ${++completed}/${images.length}…`;
         }
       }));
-      const bytes = () => new Blob([wrapper.outerHTML, wrapper.textContent]).size;
-      // Only compress when needed; originals on the website are unchanged.
-      const levels = [[1080,.84],[960,.78],[840,.72],[720,.66],[640,.60],[560,.54],[480,.48]];
-      for (const [width, quality] of levels) {
-        if (bytes() <= limit) break;
-        status.textContent = '正在压缩公众号图片，保留 GIF 动画…';
-        next = 0;
-        await Promise.all(Array.from({length: 3}, async () => {
-          while (next < records.length) {
-            const record = records[next++];
-            if (record.preserve) continue;
-            const bitmap = await createImageBitmap(record.blob);
-            try {
-              const scale = Math.min(1, width / bitmap.width);
-              const canvas = document.createElement('canvas');
-              canvas.width = Math.max(1, Math.round(bitmap.width * scale));
-              canvas.height = Math.max(1, Math.round(bitmap.height * scale));
-              const ctx = canvas.getContext('2d');
-              ctx.fillStyle = dark ? '#191919' : '#ffffff';
-              ctx.fillRect(0, 0, canvas.width, canvas.height);
-              ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-              const compressed = canvas.toDataURL('image/jpeg', quality);
-              if (compressed.length < record.img.src.length) record.img.src = compressed;
-            } finally { bitmap.close(); }
-          }
-        }));
-      }
-      if (bytes() > limit) throw new Error('动画占用较大，全文仍超过 9 MB；请选择分段复制，图片和动画都会保留');
+
     }
     return wrapper;
   }
@@ -233,7 +201,7 @@
         }
       }
       const mb = (new Blob([html, text]).size / 1000000).toFixed(2);
-      status.textContent = `已复制 ${mb} MB` + (scope.value === 'all' ? '，可粘贴到公众号' : '，请按顺序粘贴到公众号');
+      status.textContent = `已原样复制 ${mb} MB（未压缩）` + (Number(mb) >= 10 ? '；超过公众号 10 MB 限制，请选择分章节复制' : scope.value === 'all' ? '，可粘贴到公众号' : '，请按顺序粘贴到公众号');
     } catch (error) {
       status.textContent = error.message || '复制未成功，请稍后重试';
     } finally {

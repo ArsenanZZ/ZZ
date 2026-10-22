@@ -106,7 +106,7 @@ def render(d,hero=True):
  ending=title.split('｜')[1].split('：')[0] if '｜' in title else '这一站'
  body.append(f'<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUN50 · 第{n}州</p><h2>{escape(ending)}，点亮</h2><p class="credits">文字 / Arsenan<br>摄影 / 见图片署名</p></footer>')
  nav='<nav class="copy-tools"><a href="../../CN/" style="color:inherit">Run50 目录</a><span>摄影杂志版</span><button data-theme-choice="light" aria-pressed="true">白底</button><button data-theme-choice="dark" aria-pressed="false">黑底</button><button id="copy-wechat">一键复制到公众号</button><span id="copy-status" role="status"></span></nav>'
- html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(title)+'</title><style>'+css+'</style></head><body>'+nav+'<main data-edition="'+slug+'-editorial">'+'\n'.join(body)+'</main><script src="../../assets/run50-six-editorial-copy.js?v=20261022-text-numbers" defer></script></body></html>'
+ html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(title)+'</title><style>'+css+'</style></head><body>'+nav+'<main data-edition="'+slug+'-editorial">'+'\n'.join(body)+'</main><script src="../../assets/run50-six-editorial-copy.js?v=20261022-original-copy" defer></script></body></html>'
  html,_=normalize(html,slug+'-editorial.html')
  for suffix in ['editorial','modern-rail']:(ROOT/f'run50/wechat/{slug}-{suffix}.html').write_text(html,encoding='utf-8')
  if '/wechat-new/' in d['page']:(ROOT/d['page'].lstrip('/')).write_text(html,encoding='utf-8')
