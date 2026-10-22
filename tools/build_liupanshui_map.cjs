@@ -6,9 +6,10 @@ const root=path.resolve(__dirname,'..');
  const browser=await chromium.launch({channel:'msedge',headless:true});
  const page=await browser.newPage({viewport:{width:1200,height:860},deviceScaleFactor:1.5});
  const geo=fs.readFileSync(path.join(root,'run50/china-map-svg.js'),'utf8');
- const cn=fs.readFileSync(path.join(root,'CN/index.html'),'utf8');
- const provinceBlock=cn.match(/const CHINA_PROVINCES = (\{[\s\S]*?\n      \});/)[1];
- const dotBlock=cn.match(/const CHINA_CITY_DOTS = (\[[\s\S]*?\n      \]);/)[1].replace(/storyHref\('[^']+'\)/g,'null');
+ // Historical snapshot: later homepage additions must not light future provinces.
+ const history=JSON.parse(fs.readFileSync(path.join(root,'tools/data/liupanshui-map-history.json'),'utf8'));
+ const provinceBlock=JSON.stringify(history.provinces);
+ const dotBlock=JSON.stringify(history.cityDots);
  await page.setContent('<html><head><meta charset="utf-8"><style>body{margin:0;background:#fff}#map{width:1200px;height:860px}svg{display:block;width:1200px;height:860px;font-family:"Microsoft YaHei",sans-serif}</style></head><body><div id="map"></div></body></html>');
  await page.addScriptTag({content:geo+';window.mapSvg=CHINA_MAP_SVG;window.labels=_CN_LABELS;window.provinces='+provinceBlock+';window.cityDots='+dotBlock});
  const emblem='data:image/png;base64,'+fs.readFileSync(path.join(root,'assets/runcn-liupanshui-2026/guizhou-map-emblem.png')).toString('base64');
