@@ -50,13 +50,6 @@
       "source_file": "Copy #1 of Fargo_003-2.png"
     },
     {
-      "kind": "figure",
-      "src": "/assets/fargo-marathon-magazine-photos/fargo-003.webp",
-      "alt": "大平原上的风车与晚霞",
-      "caption": "大平原上的风车与晚霞 · 摄影 / Arsenan",
-      "source_file": "Copy #1 of Fargo_003.png"
-    },
-    {
       "kind": "paragraph",
       "html": "<p>这趟法戈之行，我们打算来个“<strong>露营+跑马</strong>”的组合玩法。<strong>白天跑步，晚上在车里露营</strong>。露营地很安静，价格和汽车旅馆其实也差不多，但露营更好玩，有点美式“公路片”的味道。</p>"
     },
@@ -70,12 +63,36 @@
       "html": "<p>北达科他（North Dakota），可能是你在地图上不太会点开的那一块。这州地儿是真大，人是真少。人口在全美倒数第二，放眼一望，全是地。冬天冷得能把鼻毛冻成冰柱，春天也<strong>风大得能把人跑偏</strong>。Fargo 马拉松就开在这种“风吹草低见玉米”的季节。北达科他的首府叫 Bismarck，不过最大城市是 Fargo，<strong>坐落在 Red River 河畔</strong>。</p>"
     },
     {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-059.webp",
+      "alt": "河边的草地与树林",
+      "caption": "河边的草地与树林 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_059.png",
+      "standalone": true
+    },
+    {
       "kind": "paragraph",
       "html": "<p>很多人对这地的印象都是美剧《Fargo》，阴冷、神秘、各种奇案。但现实版 Fargo，其实是个朴实的小城：<strong>干净、安静、天很高、风很大</strong>，街上跑着皮卡和大卡车，<strong>一派“北方农场主的生活气息”</strong>。说起这地方的居民构成，早年这片大草原主要是德国、斯堪的纳维亚移民定居下来的。现在州内还有不少德裔和北欧裔后代，还会有那种非常“老实厚道”的北欧式生活气质。</p>"
     },
     {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-068.webp",
+      "alt": "法戈剧院的蓝色招牌",
+      "caption": "法戈剧院的蓝色招牌 · 摄影 / Arsenan",
+      "source_file": "Fargo_068.png",
+      "standalone": true
+    },
+    {
       "kind": "paragraph",
       "html": "<p>北达科他还有几个挺特别的点：农业大州：小麦、大豆、玉米、向日葵的主要产区之一。风力发电：风大得出奇，<strong>一路能看到一排排风车</strong>。冬天很狠：零下二三十度是常事，暴风雪也很有名。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-003.webp",
+      "alt": "大平原上的风车与晚霞",
+      "caption": "大平原上的风车与晚霞 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of Fargo_003.png",
+      "standalone": true
     },
     {
       "kind": "heading",
@@ -579,13 +596,6 @@
       "source_file": "Copy #1 of Fargo_056.png"
     },
     {
-      "kind": "figure",
-      "src": "/assets/fargo-marathon-magazine-photos/fargo-059.webp",
-      "alt": "河边的草地与树林",
-      "caption": "河边的草地与树林 · 摄影 / Arsenan",
-      "source_file": "Copy #1 of Fargo_059.png"
-    },
-    {
       "kind": "heading",
       "label": "最后6英里",
       "title": "顶着热，跑到终点"
@@ -660,13 +670,6 @@
       "alt": "市中心的彩绘玻璃长廊",
       "caption": "市中心的彩绘玻璃长廊 · 摄影 / Arsenan",
       "source_file": "Copy #1 of Fargo_067.png"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/fargo-marathon-magazine-photos/fargo-068.webp",
-      "alt": "法戈剧院的蓝色招牌",
-      "caption": "法戈剧院的蓝色招牌 · 摄影 / Arsenan",
-      "source_file": "Fargo_068.png"
     },
     {
       "kind": "paragraph",
@@ -883,5 +886,43 @@
       "html": "<p><strong>下个州继续出发</strong>！西部世界的冒险，才刚刚开始……</p>"
     }
   ],
-  "source_folder": "Z:\\ZhennanZ Folder\\000-Marathon-Story-2024-2025\\20250529-ND-Fargo Marathon-25st\\4-Polished Photos"
+  "source_folder": "Z:\\ZhennanZ Folder\\000-Marathon-Story-2024-2025\\20250529-ND-Fargo Marathon-25st\\4-Polished Photos",
+  "hero_photos": [
+    {
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-068-0.webp",
+      "crop": [
+        0.5,
+        0
+      ]
+    },
+    {
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-052.webp",
+      "crop": [
+        0,
+        0.3
+      ]
+    },
+    {
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-013.webp",
+      "crop": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-073-1.webp",
+      "crop": [
+        0.75,
+        0.1
+      ]
+    },
+    {
+      "src": "/assets/fargo-marathon-magazine-photos/fargo-073-4.webp",
+      "crop": [
+        0.5,
+        0
+      ]
+    }
+  ],
+  "hero_version": "20261022-selection"
 }

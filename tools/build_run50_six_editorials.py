@@ -62,7 +62,7 @@ def grouped_captions(lines):
   return [p[1].rstrip() for p in parts]+[parts[0][2]]
  return lines
 def landscape(b):
- if b['kind']!='figure':return False
+ if b['kind']!='figure' or b.get('standalone'):return False
  with Image.open(local(b['src'])) as im:return im.width>=im.height*1.15
 def groups(blocks):
  out=[];i=0
@@ -80,19 +80,21 @@ def groups(blocks):
    if len(ims)>1:out.append({'kind':'photo-strip','images':ims});i=j;continue
   out.append(b);i+=1
  return out
-def hero(slug,ims,indices):
+def hero(slug,ims,indices,selected=None):
  out=ROOT/f'assets/{slug}-editorial-hero.gif'
  tmp=ROOT/'tmp'/f'hero-{slug}';tmp.mkdir(exist_ok=True)
  for j,k in enumerate(indices):
-  x,y=CROPS[slug][j]
-  subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(local(ims[k]['src'])),'-vf',f'scale=900:900:force_original_aspect_ratio=increase,crop=900:900:(iw-900)*{x}:(ih-900)*{y},setsar=1','-frames:v','1',str(tmp/f'{j}.png')],check=True)
+  x,y=selected[j]['crop'] if selected else CROPS[slug][j]
+  src=selected[j]['src'] if selected else ims[k]['src']
+  subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(local(src)),'-vf',f'scale=900:900:force_original_aspect_ratio=increase,crop=900:900:(iw-900)*{x}:(ih-900)*{y},setsar=1','-frames:v','1',str(tmp/f'{j}.png')],check=True)
  subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(tmp/'0.png'),str(ROOT/f'assets/{slug}-editorial-hero-still.jpg')],check=True)
  subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-framerate','1/3','-i',str(tmp/'%d.png'),'-filter_complex','split[a][b];[a]palettegen=stats_mode=full[p];[b][p]paletteuse=dither=sierra2_4a','-loop','0',str(out)],check=True)
 def render(slug,make_hero=True):
  name,n,state,indices,labels=CONFIG[slug]
  d=json.loads((ROOT/f'tools/data/{name}-editorial.json').read_text(encoding='utf-8'))
  ims=photos(d['blocks'])
- if make_hero:hero(slug,ims,indices)
+ if make_hero:hero(slug,ims,indices,d.get('hero_photos'))
+ hero_version=d.get('hero_version','20261008-crop')
  if labels:
   for b,label in zip([b for b in d['blocks'] if b['kind']=='heading'],labels):b['label']=label
   d.update(intro='第一次开电车跑长途，穿过雨雾抵达罗阿诺克，再跑进蓝岭山，完成第24州。',map=d.get('map','../../assets/wechat-run50-map-blue-ridge-24-editorial.png?v=feather-1'),poster=d.get('poster','../../assets/wechat-blue-ridge-poster.png'))
@@ -102,7 +104,7 @@ def render(slug,make_hero=True):
  if slug=='blue-ridge-marathon':
   # Explicit preference: blue on white, yellow on dark, including clipboard export.
   brand=brand.replace('class="brand-intro"','class="brand-intro" data-logo-theme="paired"')
- body=[f'<header class="masthead"><h1>{escape(d["title"])}</h1><p class="byline">文字 / Arsenan</p></header>',brand,f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/{slug}-editorial-hero-still.jpg?v=20261008-crop"><img src="../../assets/{slug}-editorial-hero.gif?v=20261008-crop" width="900" height="900" alt="{state}跑马与旅行"></picture><figcaption class="hero-credit">跑马与旅行 · 照片来源及署名见正文</figcaption></figure>',f'<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div><section class="intro"><p>{escape(d["intro"])}</p></section>',f'<figure class="photo-strip map-poster"><img src="{escape(d["map"])}" alt="Run50 {state}地图"><img src="{escape(d["poster"])}" alt="{state}赛事海报"><figcaption>Run50 · {state} · 第{n}州'+('番外' if n==1 else '')+'<br>制图 / Arsenan</figcaption></figure>']
+ body=[f'<header class="masthead"><h1>{escape(d["title"])}</h1><p class="byline">文字 / Arsenan</p></header>',brand,f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/{slug}-editorial-hero-still.jpg?v={hero_version}"><img src="../../assets/{slug}-editorial-hero.gif?v={hero_version}" width="900" height="900" alt="{state}跑马与旅行"></picture><figcaption class="hero-credit">跑马与旅行 · 照片来源及署名见正文</figcaption></figure>',f'<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div><section class="intro"><p>{escape(d["intro"])}</p></section>',f'<figure class="photo-strip map-poster"><img src="{escape(d["map"])}" alt="Run50 {state}地图"><img src="{escape(d["poster"])}" alt="{state}赛事海报"><figcaption>Run50 · {state} · 第{n}州'+('番外' if n==1 else '')+'<br>制图 / Arsenan</figcaption></figure>']
  count=0;blocks=groups(d['blocks'])
  for b in blocks:
   if b['kind']=='heading':
