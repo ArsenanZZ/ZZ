@@ -1849,7 +1849,7 @@
             <div class="eyebrow">RunCN · 中国站点</div>
             <h2>中国马拉松系列</h2>
           </div>
-          <p>23 篇 · 按站点与年份整理</p>
+          <p>24 篇 · 按站点与年份整理</p>
         </div>
 
         <div class="stories" aria-label="RunCN 中国马拉松微信公众号故事">
@@ -2106,6 +2106,17 @@
               <div class="open">Open Chinese Story →</div>
             </div>
           </a>
+          <a class="story-card" href="/run50/wechat/harbin-marathon-2026-editorial.html?v=20261024">
+            <img src="/assets/runcn-harbin-2026/cover.jpg?v=20261024" alt="黑龙江哈尔滨，紫色雨中双桥、大剧院和防洪纪念塔，2026 RunCN31" loading="lazy">
+            <div class="story-body">
+              <span class="story-number">RunCN · 24</span>
+              <div class="eyebrow">RUNCN DISPATCH · HARBIN</div>
+              <h3>RunCN #第31站｜黑龙江哈尔滨马拉松｜红肠配格瓦斯，跑回家人身边</h3>
+              <div class="meta">黑龙江哈尔滨 · 2026.09.13</div>
+              <p class="desc">住动漫酒店，逛老道外与江边，穿紫色战袍雨中跨江。198张照片，记录跑完哈马、给妈妈戴奖牌，再和家人吃一顿包子的周末。</p>
+              <div class="open">Open Chinese Story →</div>
+            </div>
+          </a>
         </div>
       </section>
 
@@ -2167,9 +2178,9 @@
       </section>
 
       <section class="stats" id="stats" aria-label="Run50 statistics">
-        <div class="stat-card"><b>71</b><span>公众号版文章</span></div>
+        <div class="stat-card"><b>72</b><span>公众号版文章</span></div>
         <div class="stat-card"><b>44</b><span>Run50 故事</span></div>
-        <div class="stat-card"><b>23</b><span>RunCN 故事</span></div>
+        <div class="stat-card"><b>24</b><span>RunCN 故事</span></div>
         <div class="stat-card"><b>4</b><span>RunWorld 故事</span></div>
       </section>
     </main>
@@ -2353,6 +2364,7 @@
         'chuxiong-marathon': 'Chuxiong',
         'lhasa-half-marathon': 'Lhasa',
         'qinghai-xining-marathon': 'Xining',
+        'harbin-marathon-2026': 'Harbin',
         'wuhan-graduation': 'Beijing'
       };
 
@@ -2367,6 +2379,7 @@
         return mapLanguage() === 'en';
       }
       function storyHref(slug) {
+        if (slug === 'harbin-marathon-2026') return new URL('/run50/wechat/harbin-marathon-2026-editorial.html?v=20261024', location.href).href;
         if (slug === 'qinghai-xining-marathon') return new URL('/run50/wechat/qinghai-xining-marathon-editorial.html?v=20261022-maps', location.href).href;
         if (slug === 'lhasa-half-marathon') return new URL('/run50/wechat/lhasa-half-marathon-editorial.html?v=20261022-maps', location.href).href;
         if (slug === 'chuxiong-marathon') return new URL('/run50/wechat/chuxiong-marathon-editorial.html?v=20261022-maps', location.href).href;
@@ -2441,7 +2454,7 @@
         cn_qinghai: storyHref('qinghai-xining-marathon'),
         cn_tibet: storyHref('lhasa-half-marathon'),
         cn_yunnan: storyHref('chuxiong-marathon'),
-        cn_heilongjiang: storyHref('harbin-marathon'),
+        cn_heilongjiang: storyHref('harbin-marathon-2026'),
         cn_hubei: storyHref('wuhan-marathon-2018'),
         cn_sichuan: storyHref('three-city-pilgrimage'),
         cn_innermongolia: storyHref('steel-tank-story'),
@@ -2479,7 +2492,7 @@
         ['西宁', 'cn_qinghai', 36.6171, 101.7782, storyHref('qinghai-xining-marathon')],
         ['拉萨', 'cn_tibet', 29.6500, 91.1300, storyHref('lhasa-half-marathon')],
         ['楚雄', 'cn_yunnan', 25.0329, 101.5458, storyHref('chuxiong-marathon')],
-        ['哈尔滨', 'cn_heilongjiang', 45.8038, 126.5350, storyHref('harbin-marathon')],
+        ['哈尔滨', 'cn_heilongjiang', 45.8038, 126.5350, storyHref('harbin-marathon-2026')],
         ['鄂尔多斯', 'cn_innermongolia', 39.6086, 109.7813, storyHref('steel-tank-story')],
         ['长治', 'cn_shanxi', 36.1954, 113.1163, storyHref('steel-tank-story')],
         ['武汉', 'cn_hubei', 30.5928, 114.3055, storyHref('wuhan-marathon-2018')],

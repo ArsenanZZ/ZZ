@@ -1,0 +1,82 @@
+{
+  "source_videos": 712,
+  "full_audio_transcribed": 699,
+  "edited_versions": 5,
+  "unreadable_video_files": [
+    "R0009",
+    "R0011",
+    "R0033",
+    "R0041",
+    "R0093",
+    "R0117"
+  ],
+  "no_decodable_audio": [
+    "R0569",
+    "R0579"
+  ],
+  "excluded_other_trip": [
+    "R0670",
+    "R0671",
+    "R0672",
+    "R0673",
+    "R0674",
+    "R0675",
+    "R0676",
+    "R0677",
+    "R0678",
+    "R0679",
+    "R0680",
+    "R0681",
+    "R0682",
+    "R0683",
+    "R0684",
+    "R0685",
+    "R0686",
+    "R0687",
+    "R0688",
+    "R0689",
+    "R0690",
+    "R0691"
+  ],
+  "visual_review": "All available source representative frames reviewed; longer speaking clips checked against complete audio transcription; five derivative edits cross-checked with source footage and full edit subtitles.",
+  "evidence": {
+    "race_finish": [
+      "R0126",
+      "R0199"
+    ],
+    "travel_and_hotel": [
+      "R0210",
+      "R0213",
+      "R0214",
+      "R0216",
+      "R0692",
+      "R0702",
+      "R0703"
+    ],
+    "old_bridge": [
+      "R0295",
+      "R0298",
+      "R0303"
+    ],
+    "race_food": [
+      "R0167",
+      "R0594",
+      "R0598"
+    ],
+    "rain_to_sun": [
+      "R0131",
+      "R0132",
+      "R0178"
+    ],
+    "family": [
+      "R0353",
+      "R0355",
+      "R0368",
+      "R0378"
+    ]
+  },
+  "photography": "User confirmed Luna selfies (including blue-shirt portraits and family) are Arsenan; official race photographer shots credited 官方摄影; a single credit per same-author group.",
+  "cover": "User approved purple palette, no runner, old iron bridge + pointed Yangmingtan bridge, accurate victory monument, prominent Opera House, unobscured heavy 黑龙江 lettering.",
+  "generated_cover": "Built-in image_gen; final prompt: precise Northeast steel-cut lettering and clear headline, purple rainy four-landmark composition, 16:10 tall 2026/哈尔滨/RUNCN31 rail.",
+  "generated_poster": "Built-in image_gen; preserve approved cover composition, replace metallic rounded rim with thin square print border."
+}

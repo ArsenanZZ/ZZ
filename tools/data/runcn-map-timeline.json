@@ -209,6 +209,13 @@
       "province": "cn_qinghai",
       "lat": 36.6171,
       "lon": 101.7782
+    },
+    {
+      "station": 31,
+      "city": "哈尔滨",
+      "province": "cn_heilongjiang",
+      "lat": 45.8038,
+      "lon": 126.535
     }
   ],
   "pages": [
@@ -468,6 +475,18 @@
       "icon": "qinghai",
       "emblem": "assets/runcn-qinghai-2026/qinghai-map-emblem.svg",
       "date": "2026.09.06"
+    },
+    {
+      "slug": "harbin-marathon-2026",
+      "station": 31,
+      "range": "31",
+      "city": "哈尔滨",
+      "province": "cn_heilongjiang",
+      "lat": 45.8038,
+      "lon": 126.535,
+      "icon": "bridge",
+      "emblem": null,
+      "date": "2026.09.13"
     }
   ],
   "provinces": {
