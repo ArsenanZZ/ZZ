@@ -485,7 +485,7 @@
       "lat": 45.8038,
       "lon": 126.535,
       "icon": "bridge",
-      "emblem": null,
+      "emblem": "assets/runcn-harbin-2026/map-emblem.webp",
       "date": "2026.09.13"
     }
   ],

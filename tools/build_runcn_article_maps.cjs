@@ -19,7 +19,7 @@ const root=path.resolve(__dirname,'..');
  await page.goto('about:blank'); // Reset the SVG module scope for each historical snapshot.
  await page.setContent('<html><head><meta charset="utf-8"><style>body{margin:0;background:#fff}#map{width:1200px;height:860px}svg{display:block;width:1200px;height:860px;font-family:"Microsoft YaHei",sans-serif}</style></head><body><div id="map"></div></body></html>');
  await page.addScriptTag({content:geo+';window.mapSvg=CHINA_MAP_SVG;window.labels=_CN_LABELS;window.provinces='+provinceBlock+';window.cityDots='+dotBlock});
- const mime=cfg.emblem?.endsWith('.svg')?'image/svg+xml':'image/png';
+ const mime=cfg.emblem?.endsWith('.svg')?'image/svg+xml':cfg.emblem?.endsWith('.webp')?'image/webp':'image/png';
  const emblem=cfg.emblem?'data:'+mime+';base64,'+fs.readFileSync(path.join(root,cfg.emblem)).toString('base64'):'data:image/svg+xml;base64,'+Buffer.from(makeEmblem(cfg.icon)).toString('base64');
  await page.evaluate(({emblem,cfg})=>{
   const slot=document.getElementById('map');slot.innerHTML=window.mapSvg;
@@ -68,7 +68,16 @@ const root=path.resolve(__dirname,'..');
   add('text',{x:35,y:65,'font-size':11,fill:'#365e66'},(cfg.date?cfg.date+' · ':'')+'第'+cfg.range+'站'+(cfg.station<10?' · 累计至本篇最后一站':''));
   window.cityDots.forEach(([city,,lat,lon])=>{if(city!==cfg.city)add('circle',{cx:(lon-70)*11.8,cy:(55-lat)*15,r:2.8,fill:'#ba6b50',stroke:'#fff8e8','stroke-width':.9});});
   const tx=(cfg.lon-70)*11.8,ty=(55-cfg.lat)*15;
-  add('path',{d:`M 170 505 C 245 520 ${tx-75} ${ty+65} ${tx-10} ${ty+8}`,fill:'none',stroke:'#a34723','stroke-width':2.1});
+  if(cfg.slug==='harbin-marathon-2026'){
+   // A broad, quiet arc through the western/northern open areas keeps the callout off eastern labels.
+   const d=`M 224 477 C 290 420 210 250 295 170 C 390 65 550 65 ${tx-15} ${ty-10}`;
+   add('path',{d,fill:'none',stroke:'#f0ede4','stroke-width':5,'stroke-linecap':'round'});
+   add('path',{d,fill:'none',stroke:'#79558b','stroke-width':1.8,'stroke-linecap':'round'});
+   add('circle',{cx:224,cy:477,r:3,fill:'#79558b',stroke:'#f0ede4','stroke-width':1.5});
+   add('path',{d:`M ${tx-24} ${ty-10} L ${tx-14} ${ty-9} L ${tx-18} ${ty-18}`,fill:'none',stroke:'#79558b','stroke-width':1.8,'stroke-linecap':'round','stroke-linejoin':'round'});
+  }else{
+   add('path',{d:`M 170 505 C 245 520 ${tx-75} ${ty+65} ${tx-10} ${ty+8}`,fill:'none',stroke:'#a34723','stroke-width':2.1});
+  }
   if(active?.external)add('path',{d:`M${tx+12} ${ty+5}L${active.x-18} ${active.y}`,fill:'none',stroke:'#927329','stroke-width':.8});
   window.provinceLabels.forEach(({id,name,x,y,size,external})=>add('text',{x,y,'font-size':size,'dominant-baseline':'middle','font-family':id===cfg.province?'Noto Serif SC, SimSun, serif':'KaiTi, STKaiti, serif','font-weight':id===cfg.province?'800':'600','text-anchor':'middle',fill:external?'#927329':id===cfg.province?'#fff6df':window.provinces[id]?'#344d54':'#87918b','paint-order':'stroke',stroke:external?'#f5f0e4':id===cfg.province?'#927329':'#f5f0e4','stroke-width':id===cfg.province?1:.8},name));
   // Small coastal municipalities use an uncluttered external label column.
@@ -80,7 +89,7 @@ const root=path.resolve(__dirname,'..');
   const points=Array.from({length:10},(_,i)=>{const a=-Math.PI/2+i*Math.PI/5,r=i%2?4.5:10;return (x+Math.cos(a)*r)+','+(y+Math.sin(a)*r)}).join(' ');
   add('polygon',{points,fill:'#e95532',stroke:'#fffdf0','stroke-width':1.8});
 
-  add('image',{href:emblem,x:30,y:414,width:220,height:140});
+  add('image',{href:emblem,x:30,y:cfg.slug==='harbin-marathon-2026'?405:414,width:220,height:cfg.slug==='harbin-marathon-2026'?135:140});
   add('text',{x:140,y:565,'text-anchor':'middle','font-size':24,'font-family':'Noto Serif SC, SimSun, serif','font-weight':'800',fill:'#173d48'},cfg.city);
  },{emblem,cfg});
  await page.evaluate(()=>document.fonts.ready);
