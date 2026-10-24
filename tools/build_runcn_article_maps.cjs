@@ -69,12 +69,11 @@ const root=path.resolve(__dirname,'..');
   window.cityDots.forEach(([city,,lat,lon])=>{if(city!==cfg.city)add('circle',{cx:(lon-70)*11.8,cy:(55-lat)*15,r:2.8,fill:'#ba6b50',stroke:'#fff8e8','stroke-width':.9});});
   const tx=(cfg.lon-70)*11.8,ty=(55-cfg.lat)*15;
   if(cfg.slug==='harbin-marathon-2026'){
-   // A broad, quiet arc through the western/northern open areas keeps the callout off eastern labels.
-   const d=`M 224 477 C 290 420 210 250 295 170 C 390 65 550 65 ${tx-15} ${ty-10}`;
-   add('path',{d,fill:'none',stroke:'#f0ede4','stroke-width':5,'stroke-linecap':'round'});
-   add('path',{d,fill:'none',stroke:'#79558b','stroke-width':1.8,'stroke-linecap':'round'});
-   add('circle',{cx:224,cy:477,r:3,fill:'#79558b',stroke:'#f0ede4','stroke-width':1.5});
-   add('path',{d:`M ${tx-24} ${ty-10} L ${tx-14} ${ty-9} L ${tx-18} ${ty-18}`,fill:'none',stroke:'#79558b','stroke-width':1.8,'stroke-linecap':'round','stroke-linejoin':'round'});
+   // Keep the landmark callout beside Heilongjiang in the northern open space.
+   const d=`M 550 105 Q 605 86 ${tx-15} ${ty-10}`;
+   add('path',{d,fill:'none',stroke:'#f0ede4','stroke-width':4,'stroke-linecap':'round'});
+   add('path',{d,fill:'none',stroke:'#8a679b','stroke-width':1.6,'stroke-linecap':'round'});
+   add('path',{d:`M ${tx-24} ${ty-10} L ${tx-14} ${ty-9} L ${tx-18} ${ty-18}`,fill:'none',stroke:'#8a679b','stroke-width':1.6,'stroke-linecap':'round','stroke-linejoin':'round'});
   }else{
    add('path',{d:`M 170 505 C 245 520 ${tx-75} ${ty+65} ${tx-10} ${ty+8}`,fill:'none',stroke:'#a34723','stroke-width':2.1});
   }
@@ -89,8 +88,8 @@ const root=path.resolve(__dirname,'..');
   const points=Array.from({length:10},(_,i)=>{const a=-Math.PI/2+i*Math.PI/5,r=i%2?4.5:10;return (x+Math.cos(a)*r)+','+(y+Math.sin(a)*r)}).join(' ');
   add('polygon',{points,fill:'#e95532',stroke:'#fffdf0','stroke-width':1.8});
 
-  add('image',{href:emblem,x:30,y:cfg.slug==='harbin-marathon-2026'?405:414,width:220,height:cfg.slug==='harbin-marathon-2026'?135:140});
-  add('text',{x:140,y:565,'text-anchor':'middle','font-size':24,'font-family':'Noto Serif SC, SimSun, serif','font-weight':'800',fill:'#173d48'},cfg.city);
+  add('image',{href:emblem,x:cfg.slug==='harbin-marathon-2026'?330:30,y:cfg.slug==='harbin-marathon-2026'?10:414,width:220,height:140});
+  add('text',{x:cfg.slug==='harbin-marathon-2026'?440:140,y:cfg.slug==='harbin-marathon-2026'?166:565,'text-anchor':'middle','font-size':24,'font-family':'Noto Serif SC, SimSun, serif','font-weight':'800',fill:'#173d48'},cfg.city);
  },{emblem,cfg});
  await page.evaluate(()=>document.fonts.ready);
  await page.locator('#map').screenshot({path:path.join(out,cfg.slug+'.jpg')});
