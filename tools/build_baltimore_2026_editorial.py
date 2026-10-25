@@ -63,9 +63,10 @@ def render():
     print(n,'chapters',len(used),'photos')
 def hero():
     meta=json.loads((DATA/'baltimore-2026-photos.json').read_text(encoding='utf8'));frames=[]
-    for n,center in [(134,(.5,.5)),(50,(.5,.3)),(64,(.5,.25)),(88,(.5,.25)),(98,(.5,.25)),(129,(.5,.45))]:
+    for n,center in [(134,(.5,.5)),(50,(.5,.3)),(64,(.5,0)),(88,(.5,.25)),(98,(.5,.25)),(129,(.5,.45))]:
         with Image.open(ASSET/'photos'/meta[n-1]['name']) as im:frames.append(ImageOps.fit(ImageOps.exif_transpose(im).convert('RGB'),(900,900),centering=center))
     frames[0].save(ASSET/'hero-still.jpg',quality=95)
     frames[0].save(ASSET/'hero.gif',save_all=True,append_images=frames[1:],duration=3000,loop=0,optimize=False)
 if __name__=='__main__':hero();render()
+
 
