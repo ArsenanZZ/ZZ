@@ -14,7 +14,7 @@ TITLE='Run50 #第38州｜新泽西大西洋城马拉松｜背靠背跑两州，�
 COVER_SRC='/assets/run50-atlantic-city-2026/cover.jpg?v=20261025'
 POSTER_SRC='/assets/run50-atlantic-city-2026/poster.jpg?v=20261025'
 INTRO='巴尔的摩跑完，继续开往大西洋城。第二天换上绿色阿森纳，从酒店窗外的日出跑到海边木栈道，经过灯塔、摩天轮和一头大象；顶着海风，把第二枚奖牌和新泽西一起带回家。'
-KEYS=['大西洋城','新泽西','Siqi','阿森纳','第38州','Bally’s','Boardwalk','Absecon Lighthouse','Lucy','Margate','Longport','Ventnor','小海龟','金螃蟹','三十公里','二十英里','木栈道','摩天轮','Luna','Planet Fitness']
+KEYS=['花园之州','Garden State','人口密度最高','Trenton','大西洋城','新泽西','Siqi','阿森纳','第38州','Bally’s','Boardwalk','Absecon Lighthouse','Lucy','Margate','Longport','Ventnor','小海龟','金螃蟹','三十公里','二十英里','木栈道','摩天轮','Luna','Planet Fitness']
 UNDER=['背靠背','先吃点热乎的','昨天才见过','跑三走一','把帽子反过来戴','今天只要顺利完成','从金螃蟹跑到小海龟','两天，两场全马']
 
 def em(t):
@@ -52,7 +52,7 @@ def render():
     assert len(used)==len(set(used))==187 and set(used)==set(meta)==set(caps)
     assert used.index('012')<used.index('006') and used.index('122')<used.index('142')
     out.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUN50 · 第38州 · 新泽西</p><h2>两天，两场全马</h2><p class="closing">从巴尔的摩的金螃蟹，到大西洋城的小海龟。这个周末，跑过两个新的州。</p><p class="credits">文字 / Arsenan<br>摄影 / Arsenan、Siqi、官方摄影、现场跑友、路人</p></footer>')
-    out.append('<p class="source-note">本文根据作者大西洋城原始视频口述与187张选图整理。背景资料：<a href="https://www.acraceseries.com/event-information">赛事信息</a> · <a href="https://www.acraceseries.com/course">赛道与补给</a> · <a href="https://blogs.loc.gov/loc/2015/06/under-the-boardwalk/">木栈道历史</a> · <a href="https://abseconlighthouse.org/about/">Absecon 灯塔</a> · <a href="https://lucytheelephant.org/">Lucy 大象</a>。封面为地标组合插画，不表示实际空间比例。</p>')
+    out.append('<p class="source-note">本文根据作者大西洋城原始视频口述与187张选图整理。背景资料：<a href="https://www.nj.gov/nj/about/history/short_history.shtml">新泽西州历史与特色</a> · <a href="https://pubs.usgs.gov/publication/fs20223054/full">新泽西地理</a> · <a href="https://www.acraceseries.com/event-information">赛事信息</a> · <a href="https://www.acraceseries.com/course">赛道与补给</a> · <a href="https://blogs.loc.gov/loc/2015/06/under-the-boardwalk/">木栈道历史</a> · <a href="https://abseconlighthouse.org/about/">Absecon 灯塔</a> · <a href="https://lucytheelephant.org/">Lucy 大象</a>。封面为地标组合插画，不表示实际空间比例。</p>')
     nav='<nav class="copy-tools"><a href="/CN/#run50-series" style="color:inherit">Run50 目录</a><button data-theme-choice="light" aria-pressed="true">白底</button><button data-theme-choice="dark" aria-pressed="false">黑底</button><button id="copy-wechat">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
     html=f'<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{TITLE}</title><meta name="description" content="{INTRO}"><meta property="og:image" content="https://zhennanzhang.com{COVER_SRC}"><style>{css}</style></head><body>{nav}<main data-edition="run50-atlantic-city-2026" data-copy-chunks>'+'\n'.join(out)+'</main><script src="/assets/run50-six-editorial-copy.js?v=20261025-original-chunks" defer></script></body></html>'
     soup=BeautifulSoup(html,'html.parser')

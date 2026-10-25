@@ -1,5 +1,9 @@
 # Marathon article visual rules
 
+User-confirmed article requirements, 2026-10-25:
+- Every Run50 article needs a conversational introduction to its state: geography, distinctive local character, and how these relate to this trip. Place it early and interleave relevant existing photos; verify factual additions with primary sources.
+- Avoid generic lyrical summaries such as “装进这一个周末”, “把一天串起来”, or “留下来的东西是真的多”. Prefer concrete events, the author's recorded observations and jokes, and plain chapter titles.
+
 User-confirmed preferences, 2026-10-10. Apply when creating or changing RunCN / Run50 marathon story visuals. Do not silently restyle existing unrelated articles.
 
 - **Homepage cover and in-article poster are two separate assets. Never reuse one file for both roles.**
