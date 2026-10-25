@@ -21,7 +21,7 @@ def mountain_intro(slug):
  for theme,bg in [('light','#ffffff'),('dark','#191919')]:
   ink=SELECT[slug][theme];frames=[];points=[(30,110),(65,110),(100,68),(135,110),(158,88),(190,110),(250,110)]
   for k in range(24):
-   im=Image.new('RGB',(280,280),bg);dr=ImageDraw.Draw(im)
+   im=Image.new('RGBA',(280,280),(0,0,0,0));dr=ImageDraw.Draw(im)
    for j in range(min(6,(k+1)//2)):dr.line([points[j],points[j+1]],fill=ink,width=5)
    if k>=12:
     layer=Image.new('RGBA',(280,280));ld=ImageDraw.Draw(layer);ld.text((140,151),'RunCN',font=font,fill=ink,anchor='mm')
@@ -30,9 +30,18 @@ def mountain_intro(slug):
      if end>1:ld.line(river[:end],fill=ink,width=3);ld.line([(x,y+12) for x,y in river[:end]],fill=ink,width=2)
     alpha=min(1,(k-11)/5)
     if alpha<1:layer.putalpha(layer.getchannel('A').point(lambda x:int(x*alpha)))
-    im=Image.alpha_composite(im.convert('RGBA'),layer).convert('RGB')
+    im=Image.alpha_composite(im,layer)
    frames.append(im)
-  frames[-1].save(out/f'{theme}-still.png');frames[0].save(out/f'{theme}.gif',save_all=True,append_images=frames[1:],duration=[70]*23+[1600],loop=0,optimize=False)
+  frames[-1].save(out/f'{theme}-still.png')
+  # Reserve palette index 255 for transparency in every full frame. Disposal 2
+  # clears the previous frame, including at the loop boundary, without a matte.
+  indexed=[]
+  for frame in frames:
+   pal=frame.convert('RGB').quantize(colors=255)
+   pal.paste(255,mask=frame.getchannel('A').point(lambda a:255 if a<128 else 0))
+   pal.info['transparency']=255
+   indexed.append(pal)
+  indexed[0].save(out/f'{theme}.gif',save_all=True,append_images=indexed[1:],duration=[70]*23+[1600],loop=0,optimize=False,transparency=255,disposal=2)
 
 def prepare(d):
  d=dict(d);out=[];photo_count=0
