@@ -13,9 +13,9 @@ DATA=ROOT/'tools/data'
 TITLE='Run50 #第37州｜马里兰巴尔的摩马拉松｜跑过内港的风，带走一只金螃蟹'
 COVER_SRC='/assets/run50-baltimore-2026/cover.jpg?v=20261024'
 POSTER_SRC='/assets/run50-baltimore-2026/poster.jpg?v=20261024'
-INTRO='天没亮从路易维尔出发，穿黑色阿森纳跑进巴尔的摩。从公园的秋叶到内港的老船，再到后半程的坡，带走一只金螃蟹，和Siqi继续往下一站开。'
-KEYS=['切萨皮克湾','美国缩影','Annapolis','蓝蟹','巴尔的摩','马里兰','Siqi','阿森纳','第37州','Inner Harbor','Power Plant','Lake Montebello','Druid Hill Park','Clifton Park','金螃蟹','二十英里','二十一英里','四十一公里','Ravens Walk','Atlantic City','路易维尔']
-UNDER=['先拍下来再说','这趟终于开始了','腿负责向前跑，眼睛负责到处看','一个牌子一个牌子地过去','比赛本身还是挺舒服的','第37州完成了']
+INTRO='第三次来巴尔的摩，这次不开会，也不培训。我和Siqi开了一天车，来完成Run50的第37州。先把这只金螃蟹跑回来，明天还有新泽西。'
+KEYS=['切萨皮克湾','美国缩影','Annapolis','蓝蟹','巴尔的摩','马里兰','Siqi','阿森纳','第37州','Inner Harbor','Power Plant','Lake Montebello','Druid Hill Park','Clifton Park','金螃蟹','二十英里','二十一英里','四十一公里','醉心工作','尿点和充电','无缝衔接','Cold gas','Be Kind','BE KIND','金螃蟹','分苹果','Roadster','Clifton Park Valve House','Lake Montebello','Ravens Walk','Atlantic City','路易维尔']
+UNDER=['这次不开会，也不培训','尿点和充电无缝衔接','别人等起跑，我研究飞车','腿累是腿累，照片不能不拍','螃蟹奖牌能翻盖','一个trip拿下两个州','马里兰，第37州，拿下了']
 def em(t):
     parts=re.split('('+'|'.join(map(re.escape,sorted(KEYS+UNDER,key=len,reverse=True)))+')',t)
     return ''.join('<strong data-cn-tone="'+str(sum(map(ord,v))%4)+'"'+(' data-cn-emphasis="underline"' if v in UNDER else '')+'>'+escape(v)+'</strong>' if i%2 else escape(v) for i,v in enumerate(parts))
@@ -49,8 +49,8 @@ def render():
         else:out.append('<p class="prose">'+em(line)+'</p>');blocks.append({'kind':'paragraph','text':line})
     assert len(used)==len(set(used))==142 and set(used)==set(meta)==set(caps)
     assert used.index('101')<used.index('104')<used.index('124')
-    out.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUN50 · 第37州 · 马里兰</p><h2>金螃蟹收好，下一站继续</h2><p class="closing">跑过巴尔的摩，把港口、秋天和这一天的脚步，放进Run50的故事里。</p><p class="credits">文字 / Arsenan<br>摄影 / Arsenan、Siqi、官方摄影、现场跑友</p></footer>')
-    out.append('<p class="source-note">本文根据作者巴尔的摩原始视频口述与142张选图整理；完赛时间按赛后口述约4小时56分。背景资料：<a href="https://www.nps.gov/cajo/planyourvisit/maryland.htm">马里兰地理</a> · <a href="https://msa.maryland.gov/msa/mdmanual/01glance/html/symbols/crab.html">马里兰蓝蟹</a> · <a href="https://www.thebaltimoremarathon.com/Race/TheBaltimoreRunningFestival/Page/Marathon">赛事与路线</a> · <a href="https://mdstad.com/events/baltimore-running-festival-0">赛事起点</a> · <a href="https://www.bromoseltzertower.com/">Bromo Seltzer Tower</a> · <a href="https://tile.loc.gov/storage-services/master/pnp/habshaer/md/md1300/md1370/data/md1370data.pdf">Power Plant历史</a> · <a href="https://historicships.org/explore">内港历史船舶</a>。封面为地标组合插画，不表示实际空间比例。</p>')
+    out.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUN50 · 第37州 · 马里兰</p><h2>金螃蟹收好，明天接着跑</h2><p class="closing">下一站，大西洋城。一个周末，跑两个州。</p><p class="credits">文字 / Arsenan<br>摄影 / Arsenan、Siqi、官方摄影、现场跑友</p></footer>')
+    out.append('<p class="source-note">本文依据作者亲笔手稿、142张精选照片及已有视频审核记录整理。赛后视频自述用时约4小时56分，非另行核验的官方净成绩。背景资料：<a href="https://www.thebaltimoremarathon.com/Race/TheBaltimoreRunningFestival/Page/ScheduleofEvents">赛事日程与领物</a> · <a href="https://www.thebaltimoremarathon.com/Race/TheBaltimoreRunningFestival/Page/Marathon">路线与坡段</a> · <a href="https://www.nps.gov/cajo/planyourvisit/maryland.htm">马里兰地理</a> · <a href="https://msa.maryland.gov/msa/mdmanual/01glance/html/symbols/crab.html">州蓝蟹</a> · <a href="https://www.ntsb.gov/investigations/Pages/DCA24MM031.aspx">2024年大桥事故</a> · <a href="https://www.vicinityenergy.us/products-services/district-steam/">街道白汽</a> · <a href="https://www.promotionandarts.org/baltimore-mural-program/">社区壁画</a> · <a href="https://asr-group.com/news/Employees/Baltimore-Refinery-Celebrates-100-Years">Domino糖厂</a> · <a href="https://cafe.hardrock.com/baltimore/">Power Plant</a> · <a href="https://explore.baltimoreheritage.org/items/show/198">Clifton阀门房</a> · <a href="https://historicships.org/explore">内港历史船舶</a> · <a href="https://www.baltimorepolice.org/news/baltimore-police-department-releases-2025-mid-year-crime-report-and-key-highlights">近年治安数据</a> · <a href="https://www.tesla.com/roadster">Roadster</a>。未把个人经历当作全市安全判断。</p>')
     nav='<nav class="copy-tools"><a href="/CN/#run50-series" style="color:inherit">Run50 目录</a><button data-theme-choice="light" aria-pressed="true">白底</button><button data-theme-choice="dark" aria-pressed="false">黑底</button><button id="copy-wechat">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
     html=f'<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{TITLE}</title><meta name="description" content="{INTRO}"><meta property="og:image" content="https://zhennanzhang.com{COVER_SRC}"><style>{css}</style></head><body>{nav}<main data-edition="run50-baltimore-2026" data-copy-chunks>'+'\n'.join(out)+'</main><script src="/assets/run50-six-editorial-copy.js?v=20261024-original-chunks" defer></script></body></html>'
     soup=BeautifulSoup(html,'html.parser')
@@ -67,6 +67,12 @@ def hero():
         with Image.open(ASSET/'photos'/meta[n-1]['name']) as im:frames.append(ImageOps.fit(ImageOps.exif_transpose(im).convert('RGB'),(900,900),centering=center))
     frames[0].save(ASSET/'hero-still.jpg',quality=95)
     frames[0].save(ASSET/'hero.gif',save_all=True,append_images=frames[1:],duration=3000,loop=0,optimize=False)
-if __name__=='__main__':hero();render()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--rebuild-hero',action='store_true',help='Explicitly rebuild the approved hero GIF and still')
+    args=parser.parse_args()
+    if args.rebuild_hero: hero()
+    render()
 
 
