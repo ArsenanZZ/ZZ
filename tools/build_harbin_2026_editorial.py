@@ -10,9 +10,9 @@ SLUG='harbin-marathon-2026'
 ASSET=ROOT/'assets/runcn-harbin-2026'
 DATA=ROOT/'tools/data'
 TITLE='RunCN #第31站｜黑龙江哈尔滨马拉松｜红肠配格瓦斯，跑回家人身边'
-COVER_SRC='/assets/runcn-harbin-2026/cover.jpg?v=20261024-lilac'
+COVER_SRC='/assets/runcn-harbin-2026/cover.jpg?v=20261024-tall-rail'
 # User preference: homepage stays light lilac; article poster uses deeper layered purple clouds.
-POSTER_SRC='/assets/runcn-harbin-2026/poster.jpg?v=20261024-layered-purple'
+POSTER_SRC='/assets/runcn-harbin-2026/poster.jpg?v=20261024-clouds-tall-rail'
 INTRO='从顺德回哈尔滨，住进动漫酒店，逛中央大街、老道外，走上老铁桥。第二天穿紫色战袍，雨里跑过阳明滩，红肠配格瓦斯，跑完再把奖牌给妈妈戴上。'
 KEYS='哈尔滨 顺德 中央大街 防洪纪念塔 松花江 中东铁路桥 老铁桥 阳明滩大桥 张包铺 中华巴洛克 灌篮高手 Luna 狍跑 冰雪之冠 格瓦斯 红肠 哈尔滨大剧院 太阳岛 七点半 二十五公里 三十公里 三十四公里 三十七公里 四十公里 五小时零二分 紫色战袍 家乡 排骨包子 锅包肉 地三鲜 圣诞'.split()
 UNDER=['家乡的马拉松，不要太着急','慢慢吃、慢慢玩','来都来了','全国制霸','腿还是得继续动','完赛就好了','给妈妈戴上','见见家人']
