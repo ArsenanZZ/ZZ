@@ -27,8 +27,8 @@ def normalize(html, page_name=''):
         if shirt_slug:
             base='/assets/run50-shirt-intros/'+shirt_slug+'/'
             return '<picture class="brand-intro" data-logo-theme="shirt"><source media="(prefers-reduced-motion: reduce)" srcset="'+base+'light-still.png" data-light-src="'+base+'light-still.png" data-dark-src="'+base+'dark-still.png"><img src="'+base+'light.gif" data-light-src="'+base+'light.gif" data-dark-src="'+base+'dark.gif" alt="Run50 机器人片头" width="280" height="350"></picture>'
-        # RunCN uses a separate mountain wordmark with opaque themed backgrounds.
-        # Keep its theme pair; this fix is for the transparent Run50 robot.
+        # RunCN uses a transparent mountain wordmark with paired ink colors.
+        # Keep its theme pair; this replacement is for the Run50 robot.
         if 'RunCN' in original or 'data-logo-theme="paired"' in original:
             return original
         def media(m):
