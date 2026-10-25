@@ -5,12 +5,34 @@
   const status = document.getElementById('copy-status');
   const article = document.querySelector('main[data-edition]');
   const children = [...article.children];
+  // Opt-in original-byte chunks for long photo essays. The displayed groups stay intact.
+  function originalChunks(parts) {
+    const units = parts.flatMap(node => {
+      const images = node.tagName === 'FIGURE' ? [...node.querySelectorAll('img')] : [];
+      if (images.length < 2) return [node];
+      return images.map((img, index) => {
+        const figure = node.cloneNode(false);
+        figure.append(img.cloneNode(true));
+        if (index === images.length - 1 && node.querySelector('figcaption')) figure.append(node.querySelector('figcaption').cloneNode(true));
+        return figure;
+      });
+    });
+    const chunks = []; let current = [], size = 0;
+    for (const node of units) {
+      const bytes = 12000 + [...node.querySelectorAll('img')].reduce((n, img) => n + Math.ceil(Number(img.dataset.copyBytes || 0) * 4 / 3), 0);
+      if (current.length && size + bytes > 9500000) { chunks.push(current); current = []; size = 0; }
+      current.push(node); size += bytes;
+    }
+    if (current.length) chunks.push(current);
+    return chunks;
+  }
   const starts = [0, ...children.flatMap((el, i) => el.classList.contains('chapter') || el.classList.contains('ending') ? [i] : [])];
   const scope = document.createElement('select');
   scope.setAttribute('aria-label', '选择全文或分段复制');
   scope.style.cssText = 'max-width:180px;padding:9px 6px;font-size:13px;color:inherit;background:transparent;border:1px solid #888;border-radius:4px;';
   scope.add(new Option('全文复制', 'all'));
   starts.forEach((start, i) => scope.add(new Option(i === 0 ? '分段：开篇' : children[start].classList.contains('ending') ? '分段：结尾和署名' : `分段：第 ${i} 章`, String(i))));
+  if (article.hasAttribute('data-copy-chunks')) originalChunks(children).forEach((_, i, all) => scope.add(new Option(`原图小段 ${i + 1}/${all.length}（10MB内）`, 'part-' + i)));
   button.before(scope);
   const imageMode = document.createElement('select');
   imageMode.setAttribute('aria-label', '图片复制方式');
@@ -40,7 +62,7 @@
     const source = clean.querySelector('main[data-edition]');
     const parts = [...source.children];
     const boundaries = [0, ...parts.flatMap((el, i) => el.classList.contains('chapter') || el.classList.contains('ending') ? [i] : [])];
-    const selected = scope.value === 'all' ? parts : parts.slice(boundaries[Number(scope.value)], boundaries[Number(scope.value) + 1] ?? parts.length);
+    const selected = scope.value.startsWith('part-') ? originalChunks(parts)[Number(scope.value.slice(5))] : scope.value === 'all' ? parts : parts.slice(boundaries[Number(scope.value)], boundaries[Number(scope.value) + 1] ?? parts.length);
     const dark = document.documentElement.dataset.theme === 'dark';
     const theme = dark ? 'dark' : 'light';
     const ink = dark ? '#ece9e2' : '#262626';

@@ -218,5 +218,10 @@
     "evidence": "蓝色花纹球衣",
     "light": "#315e9c",
     "dark": "#8ab9ef"
+  },
+  "baltimore-marathon-2026": {
+    "evidence": "原始视频 V0364 及赛事照片：黑色阿森纳球衣、浅色字；深色模式用浅银灰保证可见",
+    "light": "#30343b",
+    "dark": "#d8dce3"
   }
 }

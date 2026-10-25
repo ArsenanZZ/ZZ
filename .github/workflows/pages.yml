@@ -55,7 +55,7 @@ jobs:
           find _site/run50/stories/chinese -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -size +90k -print0 \
             | xargs -0 -r -n 12 -P 4 mogrify -resize '1400x1400>' -quality 62 -strip
 
-          find _site/assets -type f ! -path '_site/assets/runcn-harbin-2026/*' \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) -size +250k -print0 \
+          find _site/assets -type f ! -path '_site/assets/runcn-harbin-2026/*' ! -path '_site/assets/run50-baltimore-2026/*' \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) -size +250k -print0 \
             | xargs -0 -r -n 12 -P 4 mogrify -resize '1400x1400>' -quality 72 -strip
 
           find _site/assets -type f -iname '*.png' -size +500k -print0 \
