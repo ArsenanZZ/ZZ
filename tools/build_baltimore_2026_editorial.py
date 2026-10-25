@@ -28,7 +28,7 @@ def render():
     css+='''main{padding-left:20px;padding-right:20px}.cover,.intro,.chapter{margin-left:0;margin-right:0}.photo-strip{margin:26px 0 30px}.photo-strip img{display:block;width:100%;height:auto;margin:0}.photo-strip figcaption,figure figcaption{margin:10px 0 0;text-align:center;font-size:12px;line-height:1.8;color:var(--muted)}.brand-intro{display:block;text-align:center;margin:0 auto 14px}.brand-intro img{display:inline-block;width:112px;height:140px}.cover img{display:block;width:100%;height:auto;aspect-ratio:1}.location-poster{background:#f3efdf}.location-poster img{display:block;width:100%;height:auto;margin:0;padding:0;border:0;box-sizing:border-box}.location-poster figcaption{background:var(--paper);margin:0;padding-top:10px}.source-note{font-size:11px;line-height:1.8;color:var(--muted);margin-top:24px}.source-note a{color:inherit}.chapter-label{color:#9d5930}html[data-theme="dark"] .chapter-label{color:#e5bd7e}.byline{line-height:2}.prose{margin:0 0 22px;font-size:15px;line-height:1.95;letter-spacing:.5px;text-align:justify}'''
     intro='/assets/run50-shirt-intros/'+SLUG+'/'
     out=[f'<header class="masthead"><h1>{TITLE}</h1><p class="byline">马里兰 · 巴尔的摩 · 2026年10月17日<br>文字 / Arsenan</p></header>',f'<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="{intro}light-still.png" data-light-src="{intro}light-still.png" data-dark-src="{intro}dark-still.png"><img src="{intro}light.gif" data-light-src="{intro}light.gif" data-dark-src="{intro}dark.gif" width="280" height="350" alt="黑色球衣配色的 Run50 片头"></picture>',
-    '<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/run50-baltimore-2026/hero-still.jpg"><img src="/assets/run50-baltimore-2026/hero.gif" width="900" height="900" fetchpriority="high" alt="巴尔的摩赛前合影、沿途跑步与完赛留影"></picture><figcaption>黑色阿森纳，内港边的一场马拉松<br>摄影 / Arsenan、官方摄影、现场跑友</figcaption></figure>',
+    '<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/run50-baltimore-2026/hero-still.jpg?v=20261024-medal"><img src="/assets/run50-baltimore-2026/hero.gif?v=20261024-medal" width="900" height="900" fetchpriority="high" alt="巴尔的摩赛前合影、沿途跑步与完赛留影"></picture><figcaption>黑色阿森纳，内港边的一场马拉松<br>摄影 / Arsenan、官方摄影、现场跑友</figcaption></figure>',
     '<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div>',f'<section class="intro"><p>{em(INTRO)}</p></section>',
     f'<figure class="photo-strip location-poster"><img src="/assets/run50-baltimore-2026/map.jpg" alt="截至第37州马里兰的 Run50 足迹，未点亮新泽西"><img src="{POSTER_SRC}" alt="马里兰巴尔的摩内港帆船与蓝蟹，2026 Run50 37"><figcaption>马里兰 · 巴尔的摩 · Run50 第37州<br>制图 / Arsenan · 封面设计 / Arsenan × AI</figcaption></figure>']
     used=[];blocks=[];n=0
@@ -63,8 +63,9 @@ def render():
     print(n,'chapters',len(used),'photos')
 def hero():
     meta=json.loads((DATA/'baltimore-2026-photos.json').read_text(encoding='utf8'));frames=[]
-    for n,center in [(50,(.5,.3)),(64,(.5,.25)),(88,(.5,.25)),(98,(.5,.25)),(129,(.5,.45))]:
+    for n,center in [(134,(.5,.5)),(50,(.5,.3)),(64,(.5,.25)),(88,(.5,.25)),(98,(.5,.25)),(129,(.5,.45))]:
         with Image.open(ASSET/'photos'/meta[n-1]['name']) as im:frames.append(ImageOps.fit(ImageOps.exif_transpose(im).convert('RGB'),(900,900),centering=center))
     frames[0].save(ASSET/'hero-still.jpg',quality=95)
     frames[0].save(ASSET/'hero.gif',save_all=True,append_images=frames[1:],duration=3000,loop=0,optimize=False)
 if __name__=='__main__':hero();render()
+
