@@ -35,8 +35,19 @@ def local(src):
  return ROOT/src.lstrip('/') if src.startswith('/') else (ROOT/'run50/wechat'/src).resolve()
 def photos(blocks):
  return [im for b in blocks for im in (b['images'] if b['kind']=='photo-strip' else [b] if b['kind']=='figure' else [])]
-def emphasize(html):
+def emphasize(html, accents=None):
  soup=BeautifulSoup(html,'html.parser')
+ if accents:
+  phrases=sorted(accents,key=len,reverse=True)
+  for node in list(soup.find_all(string=True)):
+   if node.parent.name in ['strong','b','a']:continue
+   chunks=re.split('('+'|'.join(map(re.escape,phrases))+')',str(node))
+   if len(chunks)>1:
+    for i,ch in enumerate(chunks):
+     if i%2:
+      tag=soup.new_tag('strong');tag.string=ch;node.insert_before(tag)
+     else:node.insert_before(ch)
+    node.extract()
  for node in list(soup.find_all(string=True)):
   if node.parent.name in ['strong','b','a']:continue
   chunks=re.split('('+KEYWORDS+r'|\d+(?:\.\d+)?\s*英里|\d+\s*公里)',str(node))
@@ -50,6 +61,13 @@ def emphasize(html):
   tag.name='strong';tag['data-cn-tone']=str(sum(map(ord,tag.get_text()))%4)
   extra=['第50个马拉松','第一次在傍晚跑跨州','最后我们一起冲线','到处都是熟面孔','公司的同事们已经在等我','三十多岁的我，还在路上','白天跑步，晚上在车里露营','风大得能把人跑偏','我们就躺在车里','赶在马拉松Expo关门前','一路都是热闹的街坊氛围','一边击掌一边接水','他还记得我，太巧了','离终点越来越近了','已经整整跑了 25 个州','每一场都有故事','16 小时的长途车程','充电、吃饭、赶路、看风景','居然还有西瓜','只要主动一点','这绝对不是终点','Run50 的第 27 个州']
   if any(x in tag.get_text() for x in UNDER+extra):tag['data-cn-emphasis']='underline'
+  if accents:
+   text=tag.get_text(); match=accents.get(text)
+   if match:
+    tag['data-cn-tone']=str(match['tone'])
+    if match.get('underline'):tag['data-cn-emphasis']='underline'
+   else:
+    tag['data-cn-tone']=str(3 if any(w in text for w in ['冠军','奖牌','金','十个人']) else 1 if any(w in text for w in ['绿','树林','草','牛']) else 2 if any(w in text for w in ['河','湖','天空','蓝','电','星链']) else 0)
  return str(soup)
 def caption(s):
  s=re.sub(r'\s*@\s*(Arsenan|Siqi)\b',r' · 摄影 / \1',s)
@@ -64,7 +82,7 @@ def grouped_captions(lines):
 def landscape(b):
  if b['kind']!='figure' or b.get('standalone'):return False
  with Image.open(local(b['src'])) as im:return im.width>=im.height*1.15
-def groups(blocks):
+def groups(blocks,bridge_paragraphs=True):
  out=[];i=0
  while i<len(blocks):
   b=blocks[i]
@@ -75,7 +93,7 @@ def groups(blocks):
    k=j;between=[]
    while k<len(blocks) and blocks[k]['kind']=='paragraph' and len(between)<2:
     between.append(blocks[k]);k+=1
-   if len(ims)==1 and between and k<len(blocks) and sum(len(BeautifulSoup(p['html'],'html.parser').get_text()) for p in between)<240 and landscape(blocks[k]):
+   if bridge_paragraphs and len(ims)==1 and between and k<len(blocks) and sum(len(BeautifulSoup(p['html'],'html.parser').get_text()) for p in between)<240 and landscape(blocks[k]):
     out.extend(between);ims.append(blocks[k]);j=k+1
    if len(ims)>1:out.append({'kind':'photo-strip','images':ims});i=j;continue
   out.append(b);i+=1
@@ -105,11 +123,11 @@ def render(slug,make_hero=True):
   # Explicit preference: blue on white, yellow on dark, including clipboard export.
   brand=brand.replace('class="brand-intro"','class="brand-intro" data-logo-theme="paired"')
  body=[f'<header class="masthead"><h1>{escape(d["title"])}</h1><p class="byline">文字 / Arsenan</p></header>',brand,f'<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="../../assets/{slug}-editorial-hero-still.jpg?v={hero_version}"><img src="../../assets/{slug}-editorial-hero.gif?v={hero_version}" width="900" height="900" alt="{state}跑马与旅行"></picture><figcaption class="hero-credit">跑马与旅行 · 照片来源及署名见正文</figcaption></figure>',f'<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div><section class="intro"><p>{escape(d["intro"])}</p></section>',f'<figure class="photo-strip map-poster"><img src="{escape(d["map"])}" alt="Run50 {state}地图"><img src="{escape(d["poster"])}" alt="{state}赛事海报"><figcaption>Run50 · {state} · 第{n}州'+('番外' if n==1 else '')+'<br>制图 / Arsenan</figcaption></figure>']
- count=0;blocks=groups(d['blocks'])
+ count=0;blocks=groups(d['blocks'],bridge_paragraphs=not d.get('preserve_interleaving',False))
  for b in blocks:
   if b['kind']=='heading':
    count+=1;body.append(f'<header class="chapter"><span class="chapter-number">{count:02}</span><p class="chapter-label">{escape(b["label"])}</p><h2>{escape(b["title"])}</h2></header>')
-  elif b['kind']=='paragraph':body.append(emphasize(b['html']).replace('<p>','<p class="prose" style="margin:0 0 22px;font-size:15px;line-height:1.95;letter-spacing:.5px;text-align:justify">',1))
+  elif b['kind']=='paragraph':body.append(emphasize(b['html'],d.get('accents')).replace('<p>','<p class="prose" style="margin:0 0 22px;font-size:15px;line-height:1.95;letter-spacing:.5px;text-align:justify">',1))
   elif b['kind']=='figure':body.append(template.figure(b['src'],b['alt'],caption(b['caption'])))
   else:
    lines=[caption(x.get('caption','')) for x in b['images']]
@@ -120,6 +138,10 @@ def render(slug,make_hero=True):
  body.append(f'<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUN50 · {series}</p><h2>{title}</h2><p class="closing" style="margin:0;padding:24px 0 0;text-align:center;font-size:13px;line-height:1.9">{closing}</p><p class="credits">文字 / Arsenan<br>摄影 / 见图片署名</p></footer>')
  nav=f'<nav class="copy-tools"><a href="../../CN/" style="color:inherit">Run50 目录</a><a href="{slug}-magazine-wechat.html" style="color:inherit">旅行杂志版</a><span>摄影杂志版</span><button class="theme-choice" data-theme-choice="light" aria-pressed="true" type="button">白底</button><button class="theme-choice" data-theme-choice="dark" aria-pressed="false" type="button">黑底</button><button id="copy-wechat" type="button">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
  html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(d['title'])+'</title><style>'+css+'</style></head><body>'+nav+'<main data-edition="'+slug+'-editorial">'+'\n'.join(body)+'</main><script src="../../assets/run50-six-editorial-copy.js?v=20261022-original-copy" defer></script></body></html>'
+ if d.get('shirt_intro'):
+  prefix='/assets/run50-shirt-intros/'+slug+'/'
+  html=re.sub(r'<picture class="brand-intro">.*?</picture>',f'<picture class="brand-intro" data-logo-theme="shirt"><source media="(prefers-reduced-motion: reduce)" srcset="{prefix}light-still.png" data-light-src="{prefix}light-still.png" data-dark-src="{prefix}dark-still.png"><img src="{prefix}light.gif" data-light-src="{prefix}light.gif" data-dark-src="{prefix}dark.gif" alt="Run50 机器人片头" width="280" height="350"></picture>',html,count=1,flags=re.S)
+  html=html.replace('</head>','<style id="shirt-size-20261020">.brand-intro img{height:auto}</style></head>')
  for suffix in ['modern-rail','editorial']:(ROOT/f'run50/wechat/{slug}-{suffix}.html').write_text(html,encoding='utf-8')
  print(slug,len(ims),'photos',sum(b['kind']=='photo-strip' for b in blocks),'strips',html.count('data-cn-tone'), 'accents',html.count('data-cn-emphasis="underline"'),'underlines')
 if __name__=='__main__':
