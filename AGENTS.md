@@ -1,5 +1,11 @@
 # Marathon article visual rules
 
+User-confirmed prose preferences, 2026-10-27:
+- Write plainly, with occasional self-deprecating humor grounded in the author's actual experience. Favor the tone of “我来得晚了一点，没有突然悟出什么大道理” and “要说自己跟当年毫无变化，多少有点嘴硬”. Do not turn every paragraph into a joke.
+- Avoid sentimental refrains and forced conclusions such as “来过，真来过”, photographs proving a visit, “为什么笑得那么开心”, and “我更舍不得丢掉的是这些”. Let specific events carry the feeling.
+- Do not label the author a 文青, including implying that he used to be one. He explicitly dislikes that label.
+- Vary reactions; do not repeatedly end anecdotes with “挺有意思”. Keep verified literary references connected to the experience and interleave photographs through longer passages.
+
 User-confirmed article requirements, 2026-10-25:
 - Every Run50 article needs a conversational introduction to its state: geography, distinctive local character, and how these relate to this trip. Place it early and interleave relevant existing photos; verify factual additions with primary sources.
 - Avoid generic lyrical summaries such as “装进这一个周末”, “把一天串起来”, or “留下来的东西是真的多”. Prefer concrete events, the author's recorded observations and jokes, and plain chapter titles.

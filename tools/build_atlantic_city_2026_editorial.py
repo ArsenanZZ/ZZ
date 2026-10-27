@@ -13,13 +13,21 @@ DATA=ROOT/'tools/data'
 TITLE='Run50 #第38州｜新泽西大西洋城马拉松｜背靠背跑两州，从金螃蟹跑到小海龟'
 COVER_SRC='/assets/run50-atlantic-city-2026/cover.jpg?v=20261025'
 POSTER_SRC='/assets/run50-atlantic-city-2026/poster.jpg?v=20261025'
-INTRO='巴尔的摩跑完，继续开往大西洋城。第二天换上绿色阿森纳，从酒店窗外的日出跑到海边木栈道，经过灯塔、摩天轮和一头大象；顶着海风，把第二枚奖牌和新泽西一起带回家。'
+INTRO='巴尔的摩跑完，继续开往大西洋城。第二天换上绿色阿森纳，从酒店窗外的日出跑到海边木栈道，经过灯塔、摩天轮和一头大象；昨天跑坡，今天顶风，两天完成两场全马。'
 KEYS=['花园之州','Garden State','人口密度最高','Trenton','大西洋城','新泽西','Siqi','阿森纳','第38州','Bally’s','Boardwalk','Absecon Lighthouse','Lucy','Margate','Longport','Ventnor','小海龟','金螃蟹','三十公里','二十英里','木栈道','摩天轮','Luna','Planet Fitness']
 UNDER=['背靠背','先吃点热乎的','昨天才见过','跑三走一','把帽子反过来戴','今天只要顺利完成','从金螃蟹跑到小海龟','两天，两场全马']
 
+SETTINGS=json.loads((DATA/'atlantic-city-2026-settings.json').read_text(encoding='utf8'))
+INTRO=SETTINGS['intro']
+KEYS=list(set(KEYS+SETTINGS['emphasis']))
+
 def em(t):
     parts=re.split('('+'|'.join(map(re.escape,sorted(KEYS+UNDER,key=len,reverse=True)))+')',t)
-    return ''.join('<strong data-cn-tone="'+str(sum(map(ord,v))%4)+'"'+(' data-cn-emphasis="underline"' if v in UNDER else '')+'>'+escape(v)+'</strong>' if i%2 else escape(v) for i,v in enumerate(parts))
+    html=''.join('<strong data-cn-tone="'+str(sum(map(ord,v))%4)+'"'+(' data-cn-emphasis="underline"' if v in UNDER else '')+'>'+escape(v)+'</strong>' if i%2 else escape(v) for i,v in enumerate(parts))
+    for label,url in SETTINGS['refs'].items():
+        html=html.replace(label,'<a href="'+escape(url,quote=True)+'">'+label+'</a>')
+    return html
+
 def render():
     caps=dict(x.split('|',1) for x in (DATA/'atlantic-city-2026-captions.txt').read_text(encoding='utf8').splitlines() if x.strip())
     meta={p['id'][1:]:p for p in json.loads((DATA/'atlantic-city-2026-photos.json').read_text(encoding='utf8'))}
@@ -59,7 +67,10 @@ def render():
     for img in soup.find_all('img'):
         candidates=[img.get('src',''),img.get('data-dark-src','')]
         img['data-copy-bytes']=str(max([0]+[(ROOT/u.split('?')[0].lstrip('/')).stat().st_size for u in candidates if u and (ROOT/u.split('?')[0].lstrip('/')).exists()]))
+    soup.select_one('.source-note').replace_with(BeautifulSoup(SETTINGS['source_note'],'html.parser'))
+    soup.select_one('footer.ending').replace_with(BeautifulSoup(SETTINGS['footer'],'html.parser'))
     html=str(soup)
+
     for suffix in ['editorial','modern-rail']:(ROOT/f'run50/wechat/{SLUG}-{suffix}.html').write_text(html,encoding='utf8')
     (DATA/'atlantic-city-2026-editorial.json').write_text(json.dumps({'slug':SLUG,'title':TITLE,'intro':INTRO,'blocks':blocks,'photo_count':187},ensure_ascii=False,indent=2),encoding='utf8')
     print(n,'chapters',len(used),'photos')
