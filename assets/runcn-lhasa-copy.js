@@ -5,17 +5,39 @@
   const status = document.getElementById('copy-status');
   const article = document.querySelector('main[data-edition]');
   const children = [...article.children];
+  // Opt-in original-byte chunks for long photo essays. The displayed groups stay intact.
+  function originalChunks(parts) {
+    const units = parts.flatMap(node => {
+      const images = node.tagName === 'FIGURE' ? [...node.querySelectorAll('img')] : [];
+      if (images.length < 2) return [node];
+      return images.map((img, index) => {
+        const figure = node.cloneNode(false);
+        figure.append(img.cloneNode(true));
+        if (index === images.length - 1 && node.querySelector('figcaption')) figure.append(node.querySelector('figcaption').cloneNode(true));
+        return figure;
+      });
+    });
+    const chunks = []; let current = [], size = 0;
+    for (const node of units) {
+      const bytes = 12000 + [...node.querySelectorAll('img')].reduce((n, img) => n + Math.ceil(Number(img.dataset.copyBytes || 0) * 4 / 3), 0);
+      if (current.length && size + bytes > 9500000) { chunks.push(current); current = []; size = 0; }
+      current.push(node); size += bytes;
+    }
+    if (current.length) chunks.push(current);
+    return chunks;
+  }
   const starts = [0, ...children.flatMap((el, i) => el.classList.contains('chapter') || el.classList.contains('ending') ? [i] : [])];
   const scope = document.createElement('select');
   scope.setAttribute('aria-label', '选择全文或分段复制');
   scope.style.cssText = 'max-width:180px;padding:9px 6px;font-size:13px;color:inherit;background:transparent;border:1px solid #888;border-radius:4px;';
   scope.add(new Option('全文复制', 'all'));
   starts.forEach((start, i) => scope.add(new Option(i === 0 ? '分段：开篇' : children[start].classList.contains('ending') ? '分段：结尾和署名' : `分段：第 ${i} 章`, String(i))));
+  if (article.hasAttribute('data-copy-chunks')) originalChunks(children).forEach((_, i, all) => scope.add(new Option(`原图小段 ${i + 1}/${all.length}（10MB内）`, 'part-' + i)));
   button.before(scope);
   const imageMode = document.createElement('select');
   imageMode.setAttribute('aria-label', '图片复制方式');
   imageMode.style.cssText = scope.style.cssText;
-  imageMode.add(new Option('带图片复制（原方式）', 'embedded'));
+  imageMode.add(new Option('原图复制（不压缩）', 'embedded'));
   imageMode.add(new Option('图片链接（备用）', 'links'));
   button.before(imageMode);
   function selectedChildren() {
@@ -40,7 +62,7 @@
     const source = clean.querySelector('main[data-edition]');
     const parts = [...source.children];
     const boundaries = [0, ...parts.flatMap((el, i) => el.classList.contains('chapter') || el.classList.contains('ending') ? [i] : [])];
-    const selected = scope.value === 'all' ? parts : parts.slice(boundaries[Number(scope.value)], boundaries[Number(scope.value) + 1] ?? parts.length);
+    const selected = scope.value.startsWith('part-') ? originalChunks(parts)[Number(scope.value.slice(5))] : scope.value === 'all' ? parts : parts.slice(boundaries[Number(scope.value)], boundaries[Number(scope.value) + 1] ?? parts.length);
     const dark = document.documentElement.dataset.theme === 'dark';
     const theme = dark ? 'dark' : 'light';
     const ink = dark ? '#ece9e2' : '#262626';
@@ -73,6 +95,7 @@
         img.src = url;
         img.alt = down ? '向下' : node.getAttribute('alt') || '';
         img.style.cssText = `display:block;width:100%;max-width:100%;height:auto;margin:${down ? '24px 0 30px' : '0'};border:0;`;
+        if (node.closest('.poster-window')) img.style.cssText='display:block;width:104%;max-width:none;height:auto;margin:-2%;border:0;';
         if (node.closest('.brand-intro')) {
           img.width = 96;
           img.height = 96;
@@ -106,6 +129,7 @@
         if (tag === 'h1') out.style.cssText = 'margin:0 0 18px;font-size:25px;line-height:1.6;text-align:center;font-weight:700;';
         if (tag === 'h2') out.style.cssText = 'margin:0;font-size:20px;line-height:1.65;text-align:left;font-weight:700;';
         if (tag === 'figure') out.style.margin = '32px 0 36px';
+        if (node.classList.contains('poster-window')) out.style.cssText='overflow:hidden;border:1px solid #b7a77d;margin:0;padding:0;';
         if (node.classList.contains('cover')) out.style.margin = '0 0 24px';
         if (tag === 'figcaption' || node.classList.contains('byline') || node.classList.contains('credits')) out.style.cssText = `margin:10px 0 22px;font-size:12px;line-height:1.9;text-align:center;color:${muted};`;
         if (node.classList.contains('chapter')) out.style.margin = '58px 0 34px';
@@ -126,25 +150,28 @@
     }
     for (const node of selected) wrapper.append(convert(node));
     if (imageMode.value === 'embedded') {
+      // Preserve the fetched image bytes, including GIF animation.
       const images = [...wrapper.querySelectorAll('img')];
-      let next = 0;
-      let completed = 0;
+      const asDataURL = blob => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+      let next = 0, completed = 0;
       await Promise.all(Array.from({length: 4}, async () => {
         while (next < images.length) {
-          const img = images[next++];
+          const index = next++;
+          const img = images[index];
           const url = new URL(img.src);
           const result = await fetch(url.pathname + url.search);
-          if (!result.ok) throw new Error('Image unavailable');
+          if (!result.ok) throw new Error('图片未能加载，请稍后重试');
           const blob = await result.blob();
-          img.src = await new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(blob);
-          });
+          img.src = await asDataURL(blob);
           status.textContent = `正在准备图片 ${++completed}/${images.length}…`;
         }
       }));
+
     }
     return wrapper;
   }
@@ -196,9 +223,10 @@
           if (previous) selection.addRange(previous);
         }
       }
-      status.textContent = scope.value === 'all' ? '已复制；如公众号截断，请选择分段复制' : '本段已复制，请按顺序粘贴到公众号';
-    } catch (_) {
-      status.textContent = '复制未成功，请允许剪贴板权限后重试';
+      const mb = (new Blob([html, text]).size / 1000000).toFixed(2);
+      status.textContent = `已原样复制 ${mb} MB（未压缩）` + (Number(mb) >= 10 ? '；超过公众号 10 MB 限制，请选择分章节复制' : scope.value === 'all' ? '，可粘贴到公众号' : '，请按顺序粘贴到公众号');
+    } catch (error) {
+      status.textContent = error.message || '复制未成功，请稍后重试';
     } finally {
       button.disabled = false;
       scope.disabled = imageMode.disabled = false;
