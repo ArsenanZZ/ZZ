@@ -17,6 +17,8 @@ KEYS='拉萨 西藏 RunCN 布达拉宫 八廓街 大昭寺 青藏铁路 西宁 �
 UNDER=['Now or 可能就是 never','半马就半马呗','这时候有多自信，后面就有多喘','先吃饭，别的等会儿再说','话不能说太早','国内领个装备跟过节似的','实力不允许啊','照片和视频','凌晨一点半','第三个派出所','惊喜，惊喜，还TM是惊喜','不舒服就退赛','来都来了，多拍几张呗','该喘还是喘','配速自然是没眼看了','照片不能太狼狈','已经关门了','闲鱼淘一块二手的','这趟没白折腾','我用手比个3','飞机等了我们','第二天继续上班','一点不后悔','云散日朗，人意山光，俱有喜态','何妨吟啸且徐行','每时每刻都是夕阳也都是旭日']
 KEYS += ['史铁生','我与地坛','徐霞客','游天台山日记','苏轼','定风波','平安跑回来','金光灿灿','能留一张是一张','硬卧','C位','天南海北','自给自足','心凉了半截','好心人','两个半小时到三个半小时','绿色阿森纳球衣','二十几个人','人生愿望清单']
 KEYS += ['郑钧','回到拉萨','韩红','天路','巴桑','屈塬','印青','赵雷','大冰','王维','仓央嘉措','龙仁青','唐东杰布','温巴','20周年']
+KEYS += ['次仁罗布','白玛娜珍','拉萨的雨','阿古顿巴','十多户人家','听老人讲','各有各想去的地方','牧场','民间艺人','雪山','寺庙','赞助商名额','绿皮火车','牛羊','经幡','戈壁滩','高原牧场','河谷','金顶','体检','血压','血氧','奶茶','咖啡天台','倒影','遥控器','磕长头','红山','红宫','白宫','牛奶墙','紫外线','蓝蓝的脸','凌晨三点半','半夜','派出所','监控','山东的号码','终点','关门时间','三个小时','摄影师','金色线条','排好队','平安','青海跑友','航空管制','凌晨两点']
+UNDER += ['已经不是文青了，也没那么年轻了','自己的拉萨故事','它们都能证明，我来过','来过，真来过']
 SOURCES = [
  ('郑钧谈《回到拉萨》创作', 'https://ent.sina.com.cn/y/2013-05-31/15533933658.shtml'),
  ('青藏铁路与唐古拉车站 · 国家铁路局', 'https://source.nra.gov.cn/tlfc/tpsy/202204/t20220405_292987.shtml'),
@@ -38,11 +40,13 @@ SOURCES = [
  ('史铁生《我与地坛》第七节', 'https://www.xuges.com/ddmj/sts/wydt/07.htm'),
  ('徐霞客《游天台山日记》', 'https://m.gushiwen.cn/guwen/bookv_ce90629b5932.aspx'),
  ('苏轼《定风波·莫听穿林打叶声》', 'https://www.gushiwen.cn/shiwenv_6b30455fdd3c.aspx'),
+ ('次仁罗布谈八廓街童年 · 《花城》访谈', 'https://www.chinawriter.com.cn/n1/2018/0111/c405057-29757610.html'),
+ ('白玛娜珍谈拉萨与乡村生活 · 藏人文化网专访', 'https://www.tibetcul.com/wx/zhuanti/zf/33423.html'),
 ]
 UNDER += ['那是一条神奇的天路','行到水穷处，坐看云起时','因为它在我心里是最远的地方','在那东山顶上，升起皎洁月亮']
 def emphasize(text):
  parts=re.split('('+'|'.join(map(re.escape,sorted(set(KEYS+UNDER),key=len,reverse=True)))+')',text)
- html=''.join(('<strong data-cn-tone="'+str(sum(map(ord,t))%4)+'"'+(' data-cn-emphasis="underline"' if t in UNDER else '')+'>'+escape(t)+'</strong>') if i%2 else escape(t) for i,t in enumerate(parts))
+ html=''.join(('<strong data-cn-tone="'+str(sum(map(ord,t))%6)+'"'+(' data-cn-emphasis="underline"' if t in UNDER else '')+'>'+escape(t)+'</strong>') if i%2 else escape(t) for i,t in enumerate(parts))
  for n,(label,url) in enumerate(SOURCES,1):
   html=html.replace(f'〔{n}〕',f'<a class="fact-ref" href="{url}" title="{escape(label)}">〔{n}〕</a>')
  return html
@@ -102,7 +106,11 @@ def render(d):
  body.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUNCN · 第29站 · 西藏拉萨</p><h2>在日光之城，跑到布达拉宫脚下</h2><p class="closing">坐过青藏铁路，走进布达拉宫，也跑到了这里的终点。</p><p class="credits">文字 / Arsenan<br>摄影 / Arsenan、官方摄影</p></footer>')
  body.append('<p class="source-note">背景资料：<br>'+ '<br>'.join(f'〔{i}〕<a href="{url}">{escape(label)}</a>' for i,(label,url) in enumerate(SOURCES,1)) + '<br>旅行与比赛经历根据作者2026年10月26日口述及原Vlog整理。</p>')
  nav='<nav class="copy-tools"><a href="/CN/#runcn-series" style="color:inherit">RunCN 目录</a><button class="theme-choice" data-theme-choice="light" aria-pressed="true" type="button">白底</button><button class="theme-choice" data-theme-choice="dark" aria-pressed="false" type="button">黑底</button><button id="copy-wechat" type="button">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
- html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="在日光之城，跑到布达拉宫脚下。135张照片，记录卧铺进藏、布宫夜色、相机失而复得和高原半马。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-lhasa">'+'\n'.join(body)+'</main><script src="/assets/runcn-lhasa-copy.js?v=20261027-natural" defer></script></body></html>'
+ light_colors=['#b53635','#237953','#306eaa','#946300','#934634','#b03878']
+ dark_colors=['#ff9992','#85c9a6','#91bce8','#f1cf78','#e9ad95','#f5a3ce']
+ css+=''.join(f'.prose [data-cn-tone="{i}"]{{color:{c}}}' for i,c in enumerate(light_colors))
+ css+=''.join(f'html[data-theme="dark"] .prose [data-cn-tone="{i}"]{{color:{c}}}' for i,c in enumerate(dark_colors))
+ html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="在日光之城，跑到布达拉宫脚下。135张照片，记录卧铺进藏、布宫夜色、相机失而复得和高原半马。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-lhasa">'+'\n'.join(body)+'</main><script src="/assets/runcn-lhasa-copy.js?v=20261027-colors" defer></script></body></html>'
  html=html.replace('<main data-edition="runcn-lhasa">','<main data-edition="runcn-lhasa" data-copy-chunks>')
  def copy_size(match):
   tag=match[0]
@@ -117,6 +125,7 @@ def render(d):
  js=js.replace("node.getAttribute('data-' + theme + '-src') || node.getAttribute('src')", "node.getAttribute('data-' + theme + '-src') || node.getAttribute('data-copy-src') || node.getAttribute('src')")
  js=js.replace("        return img;", "        if (node.matches('.location-poster > img:first-child')) img.style.cssText='display:block;width:100%;max-width:100%;height:auto;box-sizing:border-box;padding:0;background:#f3efdf;margin:0;border:0;';\n        return img;")
  js=js.replace("status.textContent = scope.value === 'all' ? '已复制；如公众号截断，请选择分段复制' : '本段已复制，请按顺序粘贴到公众号';", "const mb = new Blob([html]).size / 1000000; status.textContent = '已复制 ' + mb.toFixed(2) + ' MB（原图未压缩）' + (mb >= 10 ? '；超过10MB，请分段复制' : '');")
+ js=js.replace("['#f09589','#85c9a6','#91bce8','#e8c481']",repr(dark_colors)).replace("['#ac4336','#237953','#306eaa','#9a681c']",repr(light_colors))
  (ROOT/'assets/runcn-lhasa-copy.js').write_text(js,encoding='utf-8')
  print('Rendered',len(d['original_paragraphs']),'source paragraphs,',sum(b['kind']=='figure' for b in blocks),'photos')
 

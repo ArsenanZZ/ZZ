@@ -109,7 +109,7 @@
       const out = document.createElement(outputTag);
       if (inline) {
         if (node.hasAttribute('data-cn-tone')) {
-          const palette = dark ? ['#f09589','#85c9a6','#91bce8','#e8c481'] : ['#ac4336','#237953','#306eaa','#9a681c'];
+          const palette = dark ? ['#ff9992', '#85c9a6', '#91bce8', '#f1cf78', '#e9ad95', '#f5a3ce'] : ['#b53635', '#237953', '#306eaa', '#946300', '#934634', '#b03878'];
           out.style.color = palette[Number(node.getAttribute('data-cn-tone'))] || palette[2];
           out.style.fontWeight = '800';
           if (node.getAttribute('data-cn-emphasis') === 'underline') {
