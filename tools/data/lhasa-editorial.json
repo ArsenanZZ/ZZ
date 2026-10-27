@@ -184,6 +184,15 @@
       "html": "<p>这种冲动锤了我不下十几次。查机票，找名额，看价格，算时间，然后把自己劝退。过几天又不甘心，打开手机，再来一遍。<strong data-cn-tone=\"2\">去还是不去，这是个问题</strong>，尤其看到机票价格的时候。</p>"
     },
     {
+      "kind": "figure",
+      "src": "/assets/runcn-lhasa-2026/Lhsa-16-9.webp",
+      "alt": "绿球衣与布宫夜色",
+      "caption": "绿球衣与布宫夜色 · 摄影 / Arsenan",
+      "width": 3520,
+      "height": 2644,
+      "source_file": "Lhsa-16-9.jpg"
+    },
+    {
       "kind": "paragraph",
       "html": "<p>最后还是冲动大过了理智，找了个<strong data-cn-tone=\"3\">赞助商名额</strong>。价格算下来，其实和美国正常跑一个马拉松差不多，那就去吧，<strong data-cn-tone=\"4\" data-cn-emphasis=\"underline\">半马就半马呗</strong>。</p>"
     },
@@ -201,10 +210,6 @@
       "html": "<p>飞机票确实不便宜，我又不想全程都飞。2019年错过了<strong data-cn-tone=\"1\">青藏铁路</strong>，这次还想把这趟火车补回来。于是跟美国的领导请了一天假，路线定成广州飞<strong data-cn-tone=\"4\">西宁</strong>，再坐火车去<strong data-cn-tone=\"3\">拉萨</strong>。说去<strong data-cn-tone=\"4\">西藏</strong>，这回就真的去<strong data-cn-tone=\"3\">拉萨</strong>了。</p>"
     },
     {
-      "kind": "paragraph",
-      "html": "<p><strong data-cn-tone=\"0\">凌晨三点半</strong>就到广州机场了，安检都还没开。为了跑个步，我这作息也是够可以的。</p>"
-    },
-    {
       "kind": "figure",
       "src": "/assets/runcn-lhasa-2026/Lhsa-01-.webp",
       "alt": "飞往青海，舷窗下的山地与田野",
@@ -212,6 +217,10 @@
       "width": 3000,
       "height": 4000,
       "source_file": "Lhsa-01-.jpg"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p><strong data-cn-tone=\"0\">凌晨三点半</strong>就到广州机场了，安检都还没开。为了跑个步，我这作息也是够可以的。</p>"
     },
     {
       "kind": "paragraph",
@@ -227,6 +236,10 @@
       "source_file": "Lhsa-02-0.jpg"
     },
     {
+      "kind": "paragraph",
+      "html": "<p>今年正好是<strong data-cn-tone=\"1\">青藏铁路</strong>全线通车<strong data-cn-tone=\"4\">20周年</strong>，2006年7月1日通的车。我记得那时候新闻里一直在讲这条铁路，海拔高、冻土多，施工条件特别难。二十年过去，我也终于来坐一趟了。<a class=\"fact-ref\" href=\"https://source.nra.gov.cn/tlfc/tpsy/202204/t20220405_292987.shtml\" title=\"青藏铁路与唐古拉车站 · 国家铁路局\">〔2〕</a></p>"
+    },
+    {
       "kind": "figure",
       "src": "/assets/runcn-lhasa-2026/Lhsa-02-1.webp",
       "alt": "车站里的铁路主题画面",
@@ -234,10 +247,6 @@
       "width": 3520,
       "height": 2442,
       "source_file": "Lhsa-02-1.jpg"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>今年正好是<strong data-cn-tone=\"1\">青藏铁路</strong>全线通车<strong data-cn-tone=\"4\">20周年</strong>，2006年7月1日通的车。我记得那时候新闻里一直在讲这条铁路，海拔高、冻土多，施工条件特别难。二十年过去，我也终于来坐一趟了。<a class=\"fact-ref\" href=\"https://source.nra.gov.cn/tlfc/tpsy/202204/t20220405_292987.shtml\" title=\"青藏铁路与唐古拉车站 · 国家铁路局\">〔2〕</a></p>"
     },
     {
       "kind": "paragraph",
@@ -893,15 +902,6 @@
       "html": "<p>后来他又和<strong data-cn-tone=\"1\">大冰</strong>有了那段唱歌、住酒吧的日子。<strong data-cn-tone=\"1\">大冰</strong>在采访里讲过，他那些小酒吧也收留流浪歌手，<strong data-cn-tone=\"4\">赵雷</strong>就是其中一个。现在看他们的演唱会、直播，很难想到，当年这帮人也在<strong data-cn-tone=\"3\">拉萨</strong>为吃住发愁。<a class=\"fact-ref\" href=\"https://paper.people.com.cn/hqrw/html/2016-09/16/content_1726801.htm\" title=\"大冰谈小屋与流浪歌手 · 环球人物专访\">〔14〕</a></p>"
     },
     {
-      "kind": "heading",
-      "label": "布达拉宫",
-      "title": "远看好看，走近得爬楼"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>接着去<strong data-cn-tone=\"1\">布达拉宫</strong>，连导游在内，我们这个小团一共四个人。到了下面抬头看，今天可不只是远远拍照，真得往上爬了。</p>"
-    },
-    {
       "kind": "figure",
       "src": "/assets/runcn-lhasa-2026/Lhsa-15-0.webp",
       "alt": "白天的布达拉宫",
@@ -909,6 +909,15 @@
       "width": 2644,
       "height": 3520,
       "source_file": "Lhsa-15-0.jpg"
+    },
+    {
+      "kind": "heading",
+      "label": "布达拉宫",
+      "title": "远看好看，走近得爬楼"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>接着去<strong data-cn-tone=\"1\">布达拉宫</strong>，连导游在内，我们这个小团一共四个人。到了下面抬头看，今天可不只是远远拍照，真得往上爬了。</p>"
     },
     {
       "kind": "figure",
@@ -994,6 +1003,15 @@
       "html": "<p>到了<strong data-cn-tone=\"1\">红宫</strong>里面就不能拍照了，把相机收起来，跟着导游看。里面真的好多金色的东西，看得我直感叹。导游讲的黄金故事也不少，有些听着挺夸张，数量我就记不清了，反正这个金碧辉煌是看到了。</p>"
     },
     {
+      "kind": "figure",
+      "src": "/assets/runcn-lhasa-2026/Lhsa-16-0.webp",
+      "alt": "黄色墙面前的留影",
+      "caption": "黄色墙面前的留影 · 摄影 / Arsenan",
+      "width": 3520,
+      "height": 2644,
+      "source_file": "Lhsa-16-0.jpg"
+    },
+    {
       "kind": "paragraph",
       "html": "<p>提到历代达赖喇嘛，还有一位大家可能是从诗里认识的，六世达赖<strong data-cn-tone=\"2\">仓央嘉措</strong>。“<strong data-cn-tone=\"3\" data-cn-emphasis=\"underline\">在那东山顶上，升起皎洁月亮</strong>”，这是<strong data-cn-tone=\"0\">龙仁青</strong>译本里的两句。他也曾在这座宫殿里生活，写下的却是山、<strong data-cn-tone=\"0\">月亮</strong>，还有心里惦记的人。以前读这些诗，没怎么想过他住在哪里。这回算是把诗里的人和眼前这座宫殿对上了。<a class=\"fact-ref\" href=\"https://houtai.tibetcul.com/wx/ctwx/csgy/27193.html\" title=\"仓央嘉措诗歌新译 · 龙仁青译，花城出版社\">〔15〕</a></p>"
     },
@@ -1018,15 +1036,6 @@
       "width": 3520,
       "height": 2644,
       "source_file": "Lhsa-15-8.jpg"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/runcn-lhasa-2026/Lhsa-16-0.webp",
-      "alt": "黄色墙面前的留影",
-      "caption": "黄色墙面前的留影 · 摄影 / Arsenan",
-      "width": 3520,
-      "height": 2644,
-      "source_file": "Lhsa-16-0.jpg"
     },
     {
       "kind": "heading",
@@ -1130,24 +1139,6 @@
       "source_file": "Lhsa-16-7-1.jpg"
     },
     {
-      "kind": "figure",
-      "src": "/assets/runcn-lhasa-2026/Lhsa-16-7.webp",
-      "alt": "蹲下来，也能拍到完整宫殿",
-      "caption": "蹲下来，也能拍到完整宫殿 · 摄影 / Arsenan",
-      "width": 1983,
-      "height": 2644,
-      "source_file": "Lhsa-16-7.jpg"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/runcn-lhasa-2026/Lhsa-16-9.webp",
-      "alt": "绿球衣与布宫夜色",
-      "caption": "绿球衣与布宫夜色 · 摄影 / Arsenan",
-      "width": 3520,
-      "height": 2644,
-      "source_file": "Lhsa-16-9.jpg"
-    },
-    {
       "kind": "paragraph",
       "html": "<p>一直拍到十点多，广场准备关门了，这才收拾东西往外走。</p>"
     },
@@ -1167,6 +1158,15 @@
     {
       "kind": "paragraph",
       "html": "<p>回到凳子边，已经没了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/runcn-lhasa-2026/Lhsa-16-7.webp",
+      "alt": "蹲下来，也能拍到完整宫殿",
+      "caption": "蹲下来，也能拍到完整宫殿 · 摄影 / Arsenan",
+      "width": 1983,
+      "height": 2644,
+      "source_file": "Lhsa-16-7.jpg"
     },
     {
       "kind": "paragraph",
@@ -1202,10 +1202,6 @@
       "html": "<p><strong data-cn-tone=\"0\" data-cn-emphasis=\"underline\">惊喜，惊喜，还TM是惊喜</strong>。真的是我的Luna！</p>"
     },
     {
-      "kind": "paragraph",
-      "html": "<p>打开相机跟民警核实，这里面不都是我吗？我赶紧问是谁捡到的，一定得谢谢人家。民警帮着打电话，是<strong data-cn-tone=\"1\">山东的号码</strong>。真的特别感谢那位<strong data-cn-tone=\"0\">好心人</strong>，也感谢<strong data-cn-tone=\"4\">半夜</strong>帮我跑前跑后的民警。</p>"
-    },
-    {
       "kind": "figure",
       "src": "/assets/runcn-lhasa-2026/Lhsa-17-1.webp",
       "alt": "赛前一晚的布达拉宫",
@@ -1213,6 +1209,10 @@
       "width": 3520,
       "height": 2644,
       "source_file": "Lhsa-17-1.jpg"
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>打开相机跟民警核实，这里面不都是我吗？我赶紧问是谁捡到的，一定得谢谢人家。民警帮着打电话，是<strong data-cn-tone=\"1\">山东的号码</strong>。真的特别感谢那位<strong data-cn-tone=\"0\">好心人</strong>，也感谢<strong data-cn-tone=\"4\">半夜</strong>帮我跑前跑后的民警。</p>"
     },
     {
       "kind": "paragraph",
@@ -1857,26 +1857,8 @@
       "html": "<p>在<strong data-cn-tone=\"5\">终点</strong>又遇到陈律师，他也刚跑完不久。昨天刚认识，今天又碰到了，我们就互相拍了几张照片。</p>"
     },
     {
-      "kind": "figure",
-      "src": "/assets/runcn-lhasa-2026/Lhsa-22-5.webp",
-      "alt": "终点纪念牌前，留下这一站",
-      "caption": "终点纪念牌前，留下这一站 · 摄影 / Arsenan",
-      "width": 3473,
-      "height": 2609,
-      "source_file": "Lhsa-22-5.jpg"
-    },
-    {
       "kind": "paragraph",
       "html": "<p>后来到那个海拔纪念牌前拍照，开头的“3”居然倒了。那怎么办，<strong data-cn-tone=\"5\" data-cn-emphasis=\"underline\">我用手比个3</strong>，凑上吧，也算拍到了。</p>"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/runcn-lhasa-2026/Lhsa-22-6.webp",
-      "alt": "这场半马，终于跑完了",
-      "caption": "这场半马，终于跑完了 · 摄影 / Arsenan",
-      "width": 1983,
-      "height": 2644,
-      "source_file": "Lhsa-22-6.jpg"
     },
     {
       "kind": "paragraph",
@@ -1957,6 +1939,10 @@
       "html": "<p>到了机场，先吃个<strong data-cn-tone=\"5\">煲仔饭</strong>。折腾了一上午，总算能坐下来好好吃点东西了。</p>"
     },
     {
+      "kind": "paragraph",
+      "html": "<p>没想到返程还得再来一轮紧张。第一程飞成都，因为<strong data-cn-tone=\"5\">航空管制</strong>，晚了将近两个多小时。留给下一趟飞机的转机时间，眼看连二十分钟都不到了。我觉得没戏，估计明天还得再请假。</p>"
+    },
+    {
       "kind": "figure",
       "src": "/assets/runcn-lhasa-2026/Lhsa-23-1.webp",
       "alt": "西藏欢迎您，下次再来",
@@ -1964,10 +1950,6 @@
       "width": 2809,
       "height": 2107,
       "source_file": "Lhsa-23-1.jpg"
-    },
-    {
-      "kind": "paragraph",
-      "html": "<p>没想到返程还得再来一轮紧张。第一程飞成都，因为<strong data-cn-tone=\"5\">航空管制</strong>，晚了将近两个多小时。留给下一趟飞机的转机时间，眼看连二十分钟都不到了。我觉得没戏，估计明天还得再请假。</p>"
     },
     {
       "kind": "paragraph",
@@ -1980,6 +1962,15 @@
     {
       "kind": "paragraph",
       "html": "<p>好在赶上了，不用临时再请一天假。到了广州，又因为空中管制盘旋了一阵，落地已经接近<strong data-cn-tone=\"5\">凌晨两点</strong>。折腾回住处，睡一觉，第二天还是顺顺利利去上班了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/runcn-lhasa-2026/Lhsa-22-9-1.webp",
+      "alt": "离开前再看一次布达拉宫",
+      "caption": "离开前再看一次布达拉宫 · 摄影 / Arsenan",
+      "width": 4000,
+      "height": 2252,
+      "source_file": "Lhsa-22-9-1.jpg"
     },
     {
       "kind": "heading",
@@ -1999,6 +1990,15 @@
       "html": "<p>到了今天，我<strong data-cn-tone=\"2\" data-cn-emphasis=\"underline\">已经不是文青了，也没那么年轻了</strong>。请一天假要安排，买张机票要算账，跑个<strong data-cn-tone=\"2\">半马</strong>还被关门。要说自己跟当年毫无变化，多少有点嘴硬。</p>"
     },
     {
+      "kind": "figure",
+      "src": "/assets/runcn-lhasa-2026/Lhsa-22-6.webp",
+      "alt": "这场半马，终于跑完了",
+      "caption": "这场半马，终于跑完了 · 摄影 / Arsenan",
+      "width": 1983,
+      "height": 2644,
+      "source_file": "Lhsa-22-6.jpg"
+    },
+    {
       "kind": "paragraph",
       "html": "<p>可有些念头，也确实一直没变。听到一首歌，看到一张照片，还是会想：这个地方，我能不能也去一次？这回，只是终于<strong data-cn-tone=\"1\">没再把拉萨留给</strong>“以后”。</p>"
     },
@@ -2007,17 +2007,17 @@
       "html": "<p><strong data-cn-tone=\"2\">拉萨河</strong>、<strong data-cn-tone=\"1\">布达拉宫</strong>、寺前一遍遍俯身的人，曾经都是我对远方的想象。这里有人为信仰而来，也曾是无数文青向往的地方。我来得晚了一点，没有突然悟出什么大道理，却在河边喘着跑完了<strong data-cn-tone=\"1\">二十一公里</strong>。</p>"
     },
     {
-      "kind": "figure",
-      "src": "/assets/runcn-lhasa-2026/Lhsa-22-9-1.webp",
-      "alt": "离开前再看一次布达拉宫",
-      "caption": "离开前再看一次布达拉宫 · 摄影 / Arsenan",
-      "width": 4000,
-      "height": 2252,
-      "source_file": "Lhsa-22-9-1.jpg"
-    },
-    {
       "kind": "paragraph",
       "html": "<p>还有火车上聊天的大叔，天台上刚认识的朋友，<strong data-cn-tone=\"4\">半夜</strong>替我找相机的民警，和那个把Luna交过去的<strong data-cn-tone=\"0\">好心人</strong>。比起一张只有风景的明信片，我更舍不得丢掉的是这些。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/runcn-lhasa-2026/Lhsa-22-5.webp",
+      "alt": "终点纪念牌前，留下这一站",
+      "caption": "终点纪念牌前，留下这一站 · 摄影 / Arsenan",
+      "width": 3473,
+      "height": 2609,
+      "source_file": "Lhsa-22-5.jpg"
     },
     {
       "kind": "paragraph",

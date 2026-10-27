@@ -111,7 +111,7 @@ def render(d):
  dark_colors=['#ff9992','#85c9a6','#91bce8','#f1cf78','#e9ad95','#f5a3ce']
  css+=''.join(f'.prose [data-cn-tone="{i}"]{{color:{c}}}' for i,c in enumerate(light_colors))
  css+=''.join(f'html[data-theme="dark"] .prose [data-cn-tone="{i}"]{{color:{c}}}' for i,c in enumerate(dark_colors))
- html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="在日光之城，跑到布达拉宫脚下。135张照片，记录卧铺进藏、布宫夜色、相机失而复得和高原半马。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-lhasa">'+'\n'.join(body)+'</main><script src="/assets/runcn-lhasa-copy.js?v=20261027-story" defer></script></body></html>'
+ html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="在日光之城，跑到布达拉宫脚下。135张照片，记录卧铺进藏、布宫夜色、相机失而复得和高原半马。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-lhasa">'+'\n'.join(body)+'</main><script src="/assets/runcn-lhasa-copy.js?v=20261027-interleaved" defer></script></body></html>'
  html=html.replace('<main data-edition="runcn-lhasa">','<main data-edition="runcn-lhasa" data-copy-chunks>')
  def copy_size(match):
   tag=match[0]
