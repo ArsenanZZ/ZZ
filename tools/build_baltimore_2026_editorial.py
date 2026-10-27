@@ -46,14 +46,14 @@ UNDER += [
     '今天本来就不是来拼成绩的，后面还有一场呢。', '鼻子比地图先发现它。',
     '远看是厂房，近看又是餐厅。', '我今天跑的也是第37州。',
     '几条街之间，感觉可以差很多。', '坡开始认真跟我打招呼了。',
-    '照片里精神一点，实际怎么跑的，我自己知道，哈哈。',
+    '照片里看着还行吧，其实刚才还在走呢，哈哈。',
     '剩下还有十公里，平时觉得也没多少啊，现在怎么还这么远。',
-    '别今天把自己跑废，明天到了大西洋城只能看海。', '眼镜倒是先休息了，我还得接着跑啊。',
+    '别今天把自己跑废，明天到了大西洋城只能看海。', '拍着拍着，眼镜也没电了。',
     '累归累，看到这个还是得拍几张啊。', '先装得还挺有精神。',
-    '马里兰，第37州，拿下了！', '拍完也不用赶下一个英里牌了。',
+    '马里兰，第37州，拿下了！', '这会儿总算不用边拍边跑了。',
     '吃一顿就没了，这个能一直挂着啊，哈哈。',
     '奖牌的使用说明，最后靠路边大哥补上了。', '就是这么几句话，一块苹果，挺松弛的。',
-    '26.2英里，看的东西还真不少，腿也没少受罪。', '就是坡，真的多。',
+    '一场马拉松跑下来，比前两次来走的地方多多了。', '就是坡，真的多。',
     '一个trip拿下两个州', '金螃蟹收好，继续出发。',
 ]
 KEYS += [
@@ -76,23 +76,35 @@ UNDER += [
     '藏在螃蟹肚子里。',
 ]
 
+TONE_COUNTS=[0,0,0,0]
+TONE_CHARS=[0,0,0,0]
+
 def tone(text):
     # Meaning-based colors shared by the page and its WeChat copy exporter.
     # 0 brick red, 1 botanical green, 2 water blue, 3 medal gold.
-    if any(word in text for word in ['金螃蟹','金色','金灿灿','螃蟹','奖牌','收藏','州','周年','纪念碑']):
-        return 2 if '蓝蟹' in text else 3
-    if any(word in text for word in ['公园','动物园','企鹅','Druid','Clifton Park','叶','山地','山丘','绿','BE KIND','Be Kind']):
-        return 1
-    if any(word in text for word in ['港','湖','水','湾','海','Lake','Harbor','船','GUARD','Constellation','CHESAPEAKE','蓝','星链','Cold gas','Roadster']):
-        return 2
-    if any(word in text for word in ['黄','太阳','橘','英里','公里','分钟','小时','六分','2790']):
-        return 3
-    return 0
+    if any(word in text for word in ['金螃蟹','金色','金灿灿','螃蟹','奖牌','收藏']):
+        chosen=2 if '蓝蟹' in text else 3
+    elif any(word in text for word in ['公园','动物园','企鹅','Druid','Clifton Park','山地','山丘','绿','BE KIND','Be Kind']):
+        chosen=1
+    elif any(word in text for word in ['红砖','红色','粉红','Hard Rock','Power Plant']):
+        chosen=0
+    elif any(word in text for word in ['港','湖','水','湾','海','Lake','Harbor','船','GUARD','Constellation','蓝','星链','Cold gas','Roadster']):
+        chosen=2
+    elif any(word in text for word in ['黄','金','橘']):
+        chosen=3
+    else:
+        # Neutral names/story beats use the least represented color rather than
+        # defaulting every place, person and punchline to red. Semantic colors win.
+        chosen=min(range(4),key=lambda i:TONE_COUNTS[i]+TONE_CHARS[i]/18)
+    TONE_COUNTS[chosen]+=1
+    TONE_CHARS[chosen]+=len(text)
+    return chosen
 
 def em(t):
     parts=re.split('('+'|'.join(map(re.escape,sorted(KEYS+UNDER,key=len,reverse=True)))+')',t)
     return ''.join('<strong data-cn-tone="'+str(tone(v))+'"'+(' data-cn-emphasis="underline"' if v in UNDER else '')+'>'+escape(v)+'</strong>' if i%2 else escape(v) for i,v in enumerate(parts))
 def render():
+    TONE_COUNTS[:]=[0,0,0,0];TONE_CHARS[:]=[0,0,0,0]
     caps=dict(x.split('|',1) for x in (DATA/'baltimore-2026-captions.txt').read_text(encoding='utf8').splitlines() if x.strip())
     meta={p['id'][1:]:p for p in json.loads((DATA/'baltimore-2026-photos.json').read_text(encoding='utf8'))}
     official={f'{i:03}' for i in [63,64,68,69,98,100,114,115,116,123,124,125,126]}
