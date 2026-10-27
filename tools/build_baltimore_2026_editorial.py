@@ -76,6 +76,8 @@ UNDER += [
     '藏在螃蟹肚子里。',
 ]
 
+KEYS += ['基本都是用FSD开', '我和Siqi轮换', '红裤子', '红衣服', 'Hungry，Anything Helps', '画里的工人在挥锤干活，画外的人在举牌求助。']
+
 TONE_COUNTS=[0,0,0,0]
 TONE_CHARS=[0,0,0,0]
 
@@ -86,9 +88,9 @@ def tone(text):
         chosen=2 if '蓝蟹' in text else 3
     elif any(word in text for word in ['公园','动物园','企鹅','Druid','Clifton Park','山地','山丘','绿','BE KIND','Be Kind']):
         chosen=1
-    elif any(word in text for word in ['红砖','红色','粉红','Hard Rock','Power Plant']):
+    elif any(word in text for word in ['红砖','红色','红裤子','红衣服','粉红','Hard Rock','Power Plant']):
         chosen=0
-    elif any(word in text for word in ['港','湖','水','湾','海','Lake','Harbor','船','GUARD','Constellation','蓝','星链','Cold gas','Roadster']):
+    elif any(word in text for word in ['港','湖','水','湾','海','Lake','Harbor','船','GUARD','Constellation','蓝','星链','FSD','Cold gas','Roadster']):
         chosen=2
     elif any(word in text for word in ['黄','金','橘']):
         chosen=3
