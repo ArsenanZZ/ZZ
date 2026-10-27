@@ -79,6 +79,8 @@ UNDER += [
 KEYS += ['基本都是用FSD开', '我和Siqi轮换', '红裤子', '红衣服', 'Hungry，Anything Helps', '画里的工人在挥锤干活，画外的人在举牌求助。']
 
 TONE_COUNTS=[0,0,0,0]
+KEYS += ['蓝色药瓶', 'Mary Ann', '1925年', '一分硬币', '1941年12月7日', '檀香山港', '珍珠港', 'Cora', '705名', '1860年']
+UNDER += ['原来人家把药品广告做得这么大啊', '一起买了头真大象', '也不是照着老船样子新造的布景']
 KEYS += ['Francis Scott Key', '麦克亨利堡', '《星条旗》', '爱伦·坡', '《乌鸦》', 'Nevermore', '1996年']
 UNDER += ['平时看美国体育比赛，开场经常能听到这首歌，没想到故事就在这个港口', '文艺和体育，在这里倒是不分家啊']
 TONE_CHARS=[0,0,0,0]
@@ -146,6 +148,7 @@ def render():
     soup=BeautifulSoup(html,'html.parser')
     refs=[('赛事届数','https://www.thebaltimoremarathon.com/'),('2026奖牌主题','https://runsignup.com/Race/TheBaltimoreRunningFestival/Page/LatestNews'),('动物园150周年','https://www.marylandzoo.org/about-us/150th-anniversary/'),('非洲企鹅','https://www.marylandzoo.org/visit/zoo-experiences/penguin-encounters/'),('德鲁伊山公园','https://www.baltimorecity.gov/chap/our-work/historic-districts/maps/druid-hill-park'),('钟塔历史','https://www.bromoseltzertower.com/about'),('37号舰','https://historicships.org/explore/uscgc-cutter37'),('供水历史','https://www.baltimorecity.gov/publicworks/about-us/dpw-history/historic-dates'),('Mount Vernon纪念碑','https://mountvernonplace.org/')]
     refs += [('国歌与麦克亨利堡','https://www.nps.gov/fomc/learn/historyculture/francis-scott-key.htm'),('乌鸦队命名','https://www.baltimoreravens.com/news/ravens-kickoff-celebration-of-25th-season'),('球队与诗歌','https://www.arts.gov/stories/magazine/2015/3/art-all-around-us-connection-creativity-well-everything/leading-halftime'),('《乌鸦》原文','https://www.eapoe.org/works/poems/ravenh.htm')]
+    refs += [('星座号追截运奴船','https://historicships.org/explore/uss-constellation')]
     note=soup.select_one('.source-note')
     note.append(' 补充地标资料：')
     for label,url in refs:
