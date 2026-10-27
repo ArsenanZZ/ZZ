@@ -16,6 +16,7 @@ OFFICIAL_PHOTOS=set('18-3-1 18-5-0 18-5-1 18-5-2 18-7 19-4 19-5 19-8-0-1 20-0 20
 KEYS='拉萨 西藏 RunCN 布达拉宫 八廓街 大昭寺 青藏铁路 西宁 格尔木 牛肉包 雪城民宿 田村火锅鸡 藏戏面具 三十五块钱 山东小伙 警察 志愿者 三千六百六十米 二十一公里 高原 半马 氧气 拉萨河 会展中心 九公里 十四公里 十七 十八 十九 三小时多一点 奖牌 月亮 彩色流苏 煲仔饭 西瓜汁'.split()
 UNDER=['不是上山，是上宫殿了','找回来了','最喜欢的风景还是下一个公里牌','慢慢往前','都在里面','第三层台阶','也算数','高原的比赛，确实得敬畏','你们下班，我也下班','这一趟','回车上','真牛肉','也有一整段很具体的记忆','先把步子放稳','不急着','舍不得','相机可别再忘了']
 UNDER += ['Now，或者可能就是 Never','这时候有多自信，后面就有多喘','惊喜，惊喜，还TM是惊喜','不舒服就退赛','这个半马，跑得慢，我也认了']
+KEYS += ['郑钧','回到拉萨','韩红','天路','巴桑','屈塬','印青','赵雷','大冰','王维','仓央嘉措','龙仁青','唐东杰布','温巴','20周年']
 SOURCES = [
  ('郑钧谈《回到拉萨》创作', 'https://ent.sina.com.cn/y/2013-05-31/15533933658.shtml'),
  ('青藏铁路与唐古拉车站 · 国家铁路局', 'https://source.nra.gov.cn/tlfc/tpsy/202204/t20220405_292987.shtml'),
@@ -27,7 +28,15 @@ SOURCES = [
  ('2026拉萨半程马拉松开赛与路线 · 拉萨市政府', 'https://lasa.gov.cn/lasa/ldhd/202608/be3f762ce1834559ac0b66a44de0dde2.shtml'),
  ('藏戏及其面具艺术 · 中国非遗网', 'https://www.ihchina.cn/Article/Index/detail?id=8234'),
  ('贡嘎县自然地理 · 贡嘎县政府', 'https://www.gongga.gov.cn/zjgg/gggk/zrdl/202607/t20260727_173987.html'),
+ ('《天路》的词曲与首唱 · 央视网', 'https://www.cctv.com/performance/20060721/100912.shtml'),
+ ('韩红谈姥姥的乘车愿望 · 澎湃新闻专访', 'https://m.voc.com.cn/xhn/news/202302/15767231.html'),
+ ('赵雷谈赴拉萨经历 · 音乐财经专访', 'https://www.jiemian.com/article/1125309.html'),
+ ('大冰谈小屋与流浪歌手 · 环球人物专访', 'https://paper.people.com.cn/hqrw/html/2016-09/16/content_1726801.htm'),
+ ('仓央嘉措诗歌新译 · 龙仁青译，花城出版社', 'https://houtai.tibetcul.com/wx/ctwx/csgy/27193.html'),
+ ('唐东杰布与七姐妹的藏戏故事 · 西藏自治区文旅厅', 'https://wlt.xizang.gov.cn/xwzx_69/wlyw/wldt/202308/t20230815_370947.html'),
+ ('王维《终南别业》 · 古诗文网', 'https://www.gushiwen.cn/shiwenv_cd7027786b98.aspx'),
 ]
+UNDER += ['那是一条神奇的天路','行到水穷处，坐看云起时','因为它在我心里是最远的地方','在那东山顶上，升起皎洁月亮']
 def emphasize(text):
  parts=re.split('('+'|'.join(map(re.escape,sorted(set(KEYS+UNDER),key=len,reverse=True)))+')',text)
  html=''.join(('<strong data-cn-tone="'+str(sum(map(ord,t))%4)+'"'+(' data-cn-emphasis="underline"' if t in UNDER else '')+'>'+escape(t)+'</strong>') if i%2 else escape(t) for i,t in enumerate(parts))
@@ -90,7 +99,7 @@ def render(d):
  body.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUNCN · 第29站 · 西藏拉萨</p><h2>在日光之城，跑到布达拉宫脚下</h2><p class="closing">坐过青藏铁路，走进布达拉宫，也跑到了这里的终点。</p><p class="credits">文字 / Arsenan<br>摄影 / Arsenan、官方摄影</p></footer>')
  body.append('<p class="source-note">背景资料：<br>'+ '<br>'.join(f'〔{i}〕<a href="{url}">{escape(label)}</a>' for i,(label,url) in enumerate(SOURCES,1)) + '<br>旅行与比赛经历根据作者2026年10月26日口述及原Vlog整理。</p>')
  nav='<nav class="copy-tools"><a href="/CN/#runcn-series" style="color:inherit">RunCN 目录</a><button class="theme-choice" data-theme-choice="light" aria-pressed="true" type="button">白底</button><button class="theme-choice" data-theme-choice="dark" aria-pressed="false" type="button">黑底</button><button id="copy-wechat" type="button">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
- html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="在日光之城，跑到布达拉宫脚下。135张照片，记录卧铺进藏、布宫夜色、相机失而复得和高原半马。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-lhasa">'+'\n'.join(body)+'</main><script src="/assets/runcn-lhasa-copy.js?v=20261026-narration" defer></script></body></html>'
+ html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="在日光之城，跑到布达拉宫脚下。135张照片，记录卧铺进藏、布宫夜色、相机失而复得和高原半马。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-lhasa">'+'\n'.join(body)+'</main><script src="/assets/runcn-lhasa-copy.js?v=20261027-voice" defer></script></body></html>'
  html=html.replace('<main data-edition="runcn-lhasa">','<main data-edition="runcn-lhasa" data-copy-chunks>')
  def copy_size(match):
   tag=match[0]
