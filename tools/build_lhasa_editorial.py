@@ -19,6 +19,7 @@ KEYS += ['史铁生','我与地坛','徐霞客','游天台山日记','苏轼','�
 KEYS += ['郑钧','回到拉萨','韩红','天路','巴桑','屈塬','印青','赵雷','大冰','王维','仓央嘉措','龙仁青','唐东杰布','温巴','20周年']
 KEYS += ['次仁罗布','白玛娜珍','拉萨的雨','阿古顿巴','十多户人家','听老人讲','各有各想去的地方','牧场','民间艺人','雪山','寺庙','赞助商名额','绿皮火车','牛羊','经幡','戈壁滩','高原牧场','河谷','金顶','体检','血压','血氧','奶茶','咖啡天台','倒影','遥控器','磕长头','红山','红宫','白宫','牛奶墙','紫外线','蓝蓝的脸','凌晨三点半','半夜','派出所','监控','山东的号码','终点','关门时间','三个小时','摄影师','金色线条','排好队','平安','青海跑友','航空管制','凌晨两点']
 UNDER += ['已经不是文青了，也没那么年轻了','自己的拉萨故事','它们都能证明，我来过','来过，真来过']
+KEYS += ['强风吹拂','月亮与六便士','归来仍是少年','同一条铁路，两头都是远方','去还是不去，这是个问题','没再把拉萨留给','故事和照片都在','不只是歌里的远方']
 SOURCES = [
  ('郑钧谈《回到拉萨》创作', 'https://ent.sina.com.cn/y/2013-05-31/15533933658.shtml'),
  ('青藏铁路与唐古拉车站 · 国家铁路局', 'https://source.nra.gov.cn/tlfc/tpsy/202204/t20220405_292987.shtml'),
@@ -110,7 +111,7 @@ def render(d):
  dark_colors=['#ff9992','#85c9a6','#91bce8','#f1cf78','#e9ad95','#f5a3ce']
  css+=''.join(f'.prose [data-cn-tone="{i}"]{{color:{c}}}' for i,c in enumerate(light_colors))
  css+=''.join(f'html[data-theme="dark"] .prose [data-cn-tone="{i}"]{{color:{c}}}' for i,c in enumerate(dark_colors))
- html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="在日光之城，跑到布达拉宫脚下。135张照片，记录卧铺进藏、布宫夜色、相机失而复得和高原半马。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-lhasa">'+'\n'.join(body)+'</main><script src="/assets/runcn-lhasa-copy.js?v=20261027-colors" defer></script></body></html>'
+ html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="在日光之城，跑到布达拉宫脚下。135张照片，记录卧铺进藏、布宫夜色、相机失而复得和高原半马。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-lhasa">'+'\n'.join(body)+'</main><script src="/assets/runcn-lhasa-copy.js?v=20261027-story" defer></script></body></html>'
  html=html.replace('<main data-edition="runcn-lhasa">','<main data-edition="runcn-lhasa" data-copy-chunks>')
  def copy_size(match):
   tag=match[0]
