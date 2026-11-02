@@ -12,11 +12,53 @@
     },
     {
       "kind": "paragraph",
-      "html": "<p>六月中，我们刚刚北上芝加哥，看了一场 <strong>BLACKPINK</strong> 的演唱会。耳朵还没从 “<strong>A-P-T, A-P-T, A-P-T</strong>” 里缓过来，六月底我们又出发了。</p>"
+      "html": "<p>这个夏天，我和 Siqi 开了五个小时的车去芝加哥看 <strong>BLACKPINK</strong>。我穿了件粉色阿森纳球衣，还挺应景。</p>"
+    },
+    {
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/assets/mad-marathon-magazine-photos/blackpink-chicago-selfie.webp",
+          "alt": "看台上的我和 Siqi",
+          "caption": "上：看台上的我和 Siqi · 图片来源 / 作者相册",
+          "source_file": "IMG_3904.HEIC"
+        },
+        {
+          "kind": "figure",
+          "src": "/assets/mad-marathon-magazine-photos/blackpink-chicago-stands.webp",
+          "alt": "从看台望向舞台，观众席已经坐满了人",
+          "caption": "下：从看台望向舞台，观众席已经坐满了人 · 图片来源 / 作者相册",
+          "source_file": "20250718_212344_25e1e00c.jpg"
+        }
+      ]
     },
     {
       "kind": "paragraph",
-      "html": "<p>这次，一路向东，驶向新英格兰的群山与森林，目的地是 <strong>佛蒙特州（Vermont）：</strong>去跑一场被称作“<strong>世界上最美的马拉松</strong>” 的 疯河谷马拉松（Mad Marathon）。</p>"
+      "html": "<p>我们坐得离舞台有点远，Lisa 的表情在大屏幕上倒是看得很清楚。四个人走上延伸舞台，台下全是粉色的灯。回来以后，脑子里还是那句 <strong>A-P-T, A-P-T</strong>。</p>"
+    },
+    {
+      "kind": "photo-strip",
+      "images": [
+        {
+          "kind": "figure",
+          "src": "/assets/mad-marathon-magazine-photos/blackpink-chicago-lisa.webp",
+          "alt": "Lisa 的舞台特写，屏幕下面还能看到伴舞",
+          "caption": "上：Lisa 的舞台特写，屏幕下面还能看到伴舞 · 图片来源 / 作者相册",
+          "source_file": "IMG_3786.JPG"
+        },
+        {
+          "kind": "figure",
+          "src": "/assets/mad-marathon-magazine-photos/blackpink-chicago-stage.webp",
+          "alt": "四位成员一起走上延伸舞台",
+          "caption": "下：四位成员一起走上延伸舞台 · 图片来源 / 作者相册",
+          "source_file": "IMG_4009.JPG"
+        }
+      ]
+    },
+    {
+      "kind": "paragraph",
+      "html": "<p>去佛蒙特跑马这趟更远。我们一路向东，驶向新英格兰的群山与森林，目的地是 <strong>佛蒙特州（Vermont）：</strong>去跑一场被称作“<strong>世界上最美的马拉松</strong>” 的 疯河谷马拉松（Mad Marathon）。</p>"
     },
     {
       "kind": "paragraph",
@@ -25,6 +67,14 @@
     {
       "kind": "paragraph",
       "html": "<p>他愣了一下：“Driving? <strong>That’s crazy!</strong>”我笑了笑：“Yeah… sixteen hours, but Tesla self-driving will help.”</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-009.webp",
+      "alt": "充电站前，伸展一下",
+      "caption": "充电站前，伸展一下 · 摄影 / Arsenan",
+      "source_file": "Copy #3 of VA-003.png",
+      "standalone": true
     },
     {
       "kind": "paragraph",
@@ -40,6 +90,14 @@
       "html": "<p>佛蒙特（Vermont）位于美国东北部，是 <strong>新英格兰六州之一</strong>。“Vermont” 来自法语 les monts verts，意思是“绿色的山”。</p>"
     },
     {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-016.webp",
+      "alt": "两位骑行者沿着绿树间的路前进",
+      "caption": "两位骑行者沿着绿树间的路前进 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-009-2-1.png",
+      "standalone": true
+    },
+    {
       "kind": "paragraph",
       "html": "<p>因此，它又被称作 <strong>绿山之州（The Green Mountain State）</strong>。这是个山多林密的小州，四分之三的土地都被森林覆盖。夏天是绿的，秋天是红的，每一条乡间路都像通往一幅油画。</p>"
     },
@@ -50,6 +108,14 @@
     {
       "kind": "paragraph",
       "html": "<p>河流穿过农场、谷仓和牧场，路边的奶牛成了最稳定的观众。佛蒙特人对自己的土地特别自豪。这里几乎没有麦当劳，也没有沃尔玛，但遍地是手工农场、枫糖作坊和本地啤酒厂。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/assets/mad-marathon-magazine-photos/photo-019.webp",
+      "alt": "山谷里的农田、谷仓和筒仓",
+      "caption": "山谷里的农田、谷仓和筒仓 · 摄影 / Arsenan",
+      "source_file": "Copy #1 of VA-009-4.png",
+      "standalone": true
     },
     {
       "kind": "paragraph",
@@ -138,13 +204,6 @@
     },
     {
       "kind": "figure",
-      "src": "/assets/mad-marathon-magazine-photos/photo-009.webp",
-      "alt": "充电站前，伸展一下",
-      "caption": "充电站前，伸展一下 · 摄影 / Arsenan",
-      "source_file": "Copy #3 of VA-003.png"
-    },
-    {
-      "kind": "figure",
       "src": "/assets/mad-marathon-magazine-photos/photo-010.webp",
       "alt": "坐回车里吃点东西",
       "caption": "坐回车里吃点东西 · 摄影 / Arsenan",
@@ -214,13 +273,6 @@
     },
     {
       "kind": "figure",
-      "src": "/assets/mad-marathon-magazine-photos/photo-016.webp",
-      "alt": "两位骑行者沿着绿树间的路前进",
-      "caption": "两位骑行者沿着绿树间的路前进 · 摄影 / Arsenan",
-      "source_file": "Copy #1 of VA-009-2-1.png"
-    },
-    {
-      "kind": "figure",
       "src": "/assets/mad-marathon-magazine-photos/photo-017.webp",
       "alt": "平静的湖面上漂着一艘小船",
       "caption": "平静的湖面上漂着一艘小船 · 摄影 / Arsenan",
@@ -245,13 +297,6 @@
       "alt": "小镇街道尽头的白色教堂",
       "caption": "小镇街道尽头的白色教堂 · 摄影 / Arsenan",
       "source_file": "Copy #1 of VA-009-3.png"
-    },
-    {
-      "kind": "figure",
-      "src": "/assets/mad-marathon-magazine-photos/photo-019.webp",
-      "alt": "山谷里的农田、谷仓和筒仓",
-      "caption": "山谷里的农田、谷仓和筒仓 · 摄影 / Arsenan",
-      "source_file": "Copy #1 of VA-009-4.png"
     },
     {
       "kind": "figure",
@@ -1189,5 +1234,247 @@
       "html": "<p>就像每次跑完一场马拉松：终点线，其实只是下一段旅程的起点。</p>"
     }
   ],
-  "source_folder": "Z:\\ZhennanZ Folder\\000-Marathon-Story-2024-2025\\20250717-VT-Mad Marathon-St27\\4-Polished Photos"
+  "source_folder": "Z:\\ZhennanZ Folder\\000-Marathon-Story-2024-2025\\20250717-VT-Mad Marathon-St27\\4-Polished Photos",
+  "hero_photos": [
+    {
+      "src": "/assets/mad-marathon-magazine-photos/photo-088.webp",
+      "crop": [
+        0.5,
+        0
+      ]
+    },
+    {
+      "src": "/assets/mad-marathon-magazine-photos/photo-079.webp",
+      "crop": [
+        0.5,
+        0.4
+      ]
+    },
+    {
+      "src": "/assets/mad-marathon-magazine-photos/photo-103.webp",
+      "crop": [
+        0.5,
+        0.3
+      ]
+    },
+    {
+      "src": "/assets/mad-marathon-magazine-photos/photo-049.webp",
+      "crop": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "src": "/assets/mad-marathon-magazine-photos/photo-099.webp",
+      "crop": [
+        0.5,
+        1
+      ]
+    }
+  ],
+  "accents": {
+    "BLACKPINK": {
+      "tone": 0,
+      "underline": false
+    },
+    "中国国旗": {
+      "tone": 0,
+      "underline": true
+    },
+    "红色谷仓": {
+      "tone": 0,
+      "underline": false
+    },
+    "红墙": {
+      "tone": 0,
+      "underline": false
+    },
+    "红紫色的头发": {
+      "tone": 0,
+      "underline": false
+    },
+    "举起双手": {
+      "tone": 0,
+      "underline": false
+    },
+    "耳朵": {
+      "tone": 0,
+      "underline": false
+    },
+    "红色马车模型": {
+      "tone": 0,
+      "underline": false
+    },
+    "天空开始飘小雨": {
+      "tone": 0,
+      "underline": false
+    },
+    "绿色的山": {
+      "tone": 1,
+      "underline": true
+    },
+    "绿山之州（The Green Mountain State）": {
+      "tone": 1,
+      "underline": false
+    },
+    "群山与森林": {
+      "tone": 1,
+      "underline": true
+    },
+    "森林覆盖": {
+      "tone": 1,
+      "underline": false
+    },
+    "乡间路": {
+      "tone": 1,
+      "underline": false
+    },
+    "草地与玉米地": {
+      "tone": 1,
+      "underline": false
+    },
+    "森林包围": {
+      "tone": 1,
+      "underline": false
+    },
+    "乡村小路": {
+      "tone": 1,
+      "underline": false
+    },
+    "牧场": {
+      "tone": 1,
+      "underline": false
+    },
+    "绿野": {
+      "tone": 1,
+      "underline": false
+    },
+    "树林": {
+      "tone": 1,
+      "underline": false
+    },
+    "青草味": {
+      "tone": 1,
+      "underline": false
+    },
+    "骑行者": {
+      "tone": 1,
+      "underline": false
+    },
+    "绿色的": {
+      "tone": 1,
+      "underline": false
+    },
+    "自动驾驶": {
+      "tone": 2,
+      "underline": false
+    },
+    "充电站": {
+      "tone": 2,
+      "underline": false
+    },
+    "城市天际线": {
+      "tone": 2,
+      "underline": true
+    },
+    "穿越纽约州": {
+      "tone": 2,
+      "underline": false
+    },
+    "砂石小路": {
+      "tone": 2,
+      "underline": false
+    },
+    "湖泊": {
+      "tone": 2,
+      "underline": false
+    },
+    "佳得乐": {
+      "tone": 2,
+      "underline": false
+    },
+    "运动相机": {
+      "tone": 2,
+      "underline": true
+    },
+    "露营向导": {
+      "tone": 2,
+      "underline": false
+    },
+    "小镇街道": {
+      "tone": 2,
+      "underline": false
+    },
+    "疯河谷（Mad River Valley）": {
+      "tone": 2,
+      "underline": false
+    },
+    "16 小时的长途车程": {
+      "tone": 3,
+      "underline": true
+    },
+    "枫糖作坊": {
+      "tone": 3,
+      "underline": false
+    },
+    "本地啤酒厂": {
+      "tone": 3,
+      "underline": false
+    },
+    "切达奶酪": {
+      "tone": 3,
+      "underline": true
+    },
+    "苹果酒": {
+      "tone": 3,
+      "underline": false
+    },
+    "金色楼群": {
+      "tone": 3,
+      "underline": false
+    },
+    "取装备": {
+      "tone": 3,
+      "underline": false
+    },
+    "五个州": {
+      "tone": 3,
+      "underline": false
+    },
+    "居然还有西瓜": {
+      "tone": 3,
+      "underline": false
+    },
+    "不到五小时完赛": {
+      "tone": 3,
+      "underline": true
+    },
+    "红房子和一只公鸡": {
+      "tone": 3,
+      "underline": true
+    },
+    "汉堡": {
+      "tone": 3,
+      "underline": false
+    },
+    "薯条": {
+      "tone": 3,
+      "underline": false
+    },
+    "粉色阿森纳球衣": {
+      "tone": 3,
+      "underline": true
+    },
+    "Lisa": {
+      "tone": 0
+    },
+    "延伸舞台": {
+      "tone": 2
+    },
+    "粉色的灯": {
+      "tone": 0,
+      "underline": true
+    }
+  },
+  "shirt_intro": true
 }
