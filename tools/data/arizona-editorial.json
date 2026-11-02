@@ -504,7 +504,7 @@
     {
       "kind": "figure",
       "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-035.webp",
-      "caption": "补给站前，递过来的不只是一杯水 · 摄影 / Arsenan",
+      "caption": "补给站前，志愿者递来饮料 · 摄影 / Arsenan",
       "alt": "补给站前，递过来的不只是一杯水",
       "id": 35
     },
@@ -578,7 +578,7 @@
     {
       "kind": "figure",
       "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-042.webp",
-      "caption": "帐篷下的志愿者，把补给接力下去 · 摄影 / Arsenan",
+      "caption": "帐篷下的志愿者，忙着准备补给 · 摄影 / Arsenan",
       "alt": "帐篷下的志愿者，把补给接力下去",
       "id": 42
     },
@@ -652,7 +652,7 @@
     {
       "kind": "figure",
       "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-049.webp",
-      "caption": "跑完碰个拳，今天的距离交代清楚了 · 摄影 / Arsenan",
+      "caption": "跑完碰个拳 · 摄影 / Arsenan",
       "alt": "跑完碰个拳，今天的距离交代清楚了",
       "id": 49
     },
@@ -820,7 +820,7 @@
     {
       "kind": "figure",
       "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-068.webp",
-      "caption": "把奖牌举到红岩前，跑步和旅行接上了 · 摄影 / Arsenan",
+      "caption": "把奖牌举到红岩前，赛后再拍一张奖牌 · 摄影 / Arsenan",
       "alt": "把奖牌举到红岩前，跑步和旅行接上了",
       "id": 68
     },
@@ -939,7 +939,7 @@
     {
       "kind": "figure",
       "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-080.webp",
-      "caption": "铁桥跨过湖面，水边的节奏慢下来 · 摄影 / Arsenan",
+      "caption": "铁桥跨过湖面，桥下是开阔的水面 · 摄影 / Arsenan",
       "alt": "铁桥跨过湖面，水边的节奏慢下来",
       "id": 80
     },
@@ -1033,5 +1033,854 @@
       "original_html": "<p style=\"margin: 0 0 18px; line-height: 1.95; text-align: justify; font-size: 16px; letter-spacing: 0.2px; color: #26343f; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;\">二〇二六的第一跑，居然破 4 了，不是计划里的目标，也没刻意去追，就那么顺着状态，一路跑到了终点。这一跑，也给这一年，多添了一点期待。</p>"
     }
   ],
-  "intro": "为了躲开寒流，飞到亚利桑那。沙漠清晨起跑，机场跑道冲线，2026第一场意外破4；再和Siqi钻红岩、看巨人柱，把第29州收进地图。"
+  "intro": "上次在火箭城冻得够呛，这次和 Siqi 飞去亚利桑那，跑一场小比赛，顺便逛逛沙漠。没定成绩目标，最后居然破4了。",
+  "edited_blocks": [
+    {
+      "kind": "heading",
+      "label": "前言",
+      "title": "沙漠方向的第一跑"
+    },
+    {
+      "kind": "paragraph",
+      "text": "2026 年来了，Run50 也得继续。一月的路易斯维尔还是冷，上次在火箭城跑马，被寒潮冻得够呛。这回我想去个暖和一点的地方，亚利桑那就进入了备选。沙漠、仙人掌，还有那些 UFO 的故事，我一直想去看看。",
+      "original_html": "<p>2026 年来了，Run50 也得继续。一月的路易斯维尔还是冷，上次在火箭城跑马，被寒潮冻得够呛。这回我想去个暖和一点的地方，亚利桑那就进入了备选。沙漠、仙人掌，还有那些 UFO 的故事，我一直想去看看。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-004.webp",
+      "caption": "去观景点路上，巨人柱立在山坡之间 · 摄影 / Arsenan",
+      "alt": "去观景点路上，巨人柱立在山坡之间",
+      "id": 4
+    },
+    {
+      "kind": "paragraph",
+      "text": "比赛在凤凰城西边的巴克艾（Buckeye），规模不大，路线也不复杂。新年第一场，没给自己定什么成绩目标。能换个地方跑步，再和 Siqi 一起逛逛，就挺好。",
+      "original_html": "<p>比赛在凤凰城西边的巴克艾（Buckeye），规模不大，路线也不复杂。新年第一场，没给自己定什么成绩目标。能换个地方跑步，再和 Siqi 一起逛逛，就挺好。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-002.webp",
+      "caption": "飞往亚利桑那途中的云海与荒漠 · 摄影 / Arsenan",
+      "alt": "飞往亚利桑那途中的云海与荒漠",
+      "id": 2
+    },
+    {
+      "kind": "heading",
+      "label": "第二十九个州 · 亚利桑那",
+      "title": "沙漠与 UFO 目击"
+    },
+    {
+      "kind": "paragraph",
+      "text": "说起亚利桑那，我先想到的就是沙漠。不过从山上看凤凰城，城市还真不小，楼房、道路一直铺到远处，四周是光秃秃的山。这里在美国西南部，凤凰城是州首府，我们这趟主要就在它周边活动。",
+      "original_html": "<p>说起亚利桑那，我先想到的就是沙漠。不过从山上看凤凰城，城市还真不小，楼房、道路一直铺到远处，四周是光秃秃的山。这里在美国西南部，凤凰城是州首府，我们这趟主要就在它周边活动。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-007.webp",
+      "caption": "从南山看凤凰城，楼房铺在平原上 · 摄影 / Arsenan",
+      "alt": "从南山看凤凰城，楼房铺在平原上",
+      "id": 7
+    },
+    {
+      "kind": "paragraph",
+      "text": "很多人认识凤凰城，是因为菲尼克斯太阳队。当年史蒂夫·纳什带着球队，快攻、传球、三分，看着很过瘾。现在再说凤凰城，又经常听到半导体、工厂这些消息。篮球、芯片和沙漠，放在一个城市里还挺特别。",
+      "original_html": "<p>很多人认识凤凰城，是因为菲尼克斯太阳队。当年史蒂夫·纳什带着球队，快攻、传球、三分，看着很过瘾。现在再说凤凰城，又经常听到半导体、工厂这些消息。篮球、芯片和沙漠，放在一个城市里还挺特别。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-008.webp",
+      "caption": "红色山脊后面，天空开始变粉 · 摄影 / Arsenan",
+      "alt": "红色山脊后面，天空开始变粉",
+      "id": 8
+    },
+    {
+      "kind": "paragraph",
+      "text": "我对这边还有个兴趣，就是 UFO。那场著名的“凤凰城之光”，我一直愿意相信有点什么。来都来了，晚上也想多看看天。当然，这次先把马拉松跑了，找外星人没有具体计划。",
+      "original_html": "<p>我对这边还有个兴趣，就是 UFO。那场著名的“凤凰城之光”，我一直愿意相信有点什么。来都来了，晚上也想多看看天。当然，这次先把马拉松跑了，找外星人没有具体计划。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-012.webp",
+      "caption": "太阳退到山脊后面 · 摄影 / Arsenan",
+      "alt": "太阳退到山脊后面",
+      "id": 12
+    },
+    {
+      "kind": "heading",
+      "label": "第一章",
+      "title": "落地沙漠，日落之前"
+    },
+    {
+      "kind": "paragraph",
+      "text": "中午落地凤凰城，比路易斯维尔慢两个小时，白赚一个时辰。我们去 PreFlight，在 Turo 上租了一辆 2023 年的 Tesla Model Y，还能用辅助驾驶功能，虽然版本老一点，开起来也方便。",
+      "original_html": "<p>中午落地凤凰城，比路易斯维尔慢两个小时，白赚一个时辰。我们去 PreFlight，在 Turo 上租了一辆 2023 年的 Tesla Model Y，还能用辅助驾驶功能，虽然版本老一点，开起来也方便。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "text": "吃饭去了 Golden Corral，美式自助，先吃饱。下午到 Buckeye 的 TownePlace Suites by Marriott 领装备，场地就在酒店里，还得排一会队。一看就是小比赛，参赛包很简单，里面有一双印着赛事 logo 的袜子。号码布倒是挺好看，橙色底，配着飞机和仙人掌，写着 Race to the Runway。",
+      "original_html": "<p>吃饭去了 Golden Corral，美式自助，先吃饱。下午到 Buckeye 的 TownePlace Suites by Marriott 领装备，场地就在酒店里，还得排一会队。一看就是小比赛，参赛包很简单，里面有一双印着赛事 logo 的袜子。号码布倒是挺好看，橙色底，配着飞机和仙人掌，写着 Race to the Runway。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-003.webp",
+      "caption": "Buckeye 号码布 · 摄影 / Arsenan",
+      "alt": "Buckeye Race to the Runway 号码布",
+      "id": 3
+    },
+    {
+      "kind": "paragraph",
+      "text": "领完装备，我们开车去了 South Mountain Park。看日落的地方叫 Dobbins Lookout，可以沿山路开上去，这点对第二天要跑马的人非常友好。山顶那座石头屋子是 1938 年修的，窗洞正好朝着城市。",
+      "original_html": "<p>领完装备，我们开车去了 South Mountain Park。看日落的地方叫 Dobbins Lookout，可以沿山路开上去，这点对第二天要跑马的人非常友好。山顶那座石头屋子是 1938 年修的，窗洞正好朝着城市。<a class=\"fact-source\" href=\"https://web-prod.phoenix.gov/administration/departments/parks/activities-facilities/trails/south-mountain-parkpreserve.html\" title=\"凤凰城市政府：South Mountain\"><sup>〔资料〕</sup></a></p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-005.webp",
+      "caption": "夕阳照在Dobbins Lookout的石墙上 · 摄影 / Arsenan",
+      "alt": "夕阳照在Dobbins Lookout的石墙上",
+      "id": 5
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-006.webp",
+      "caption": "观景石屋的窗洞，把远处的城市框起来 · 摄影 / Arsenan",
+      "alt": "观景石屋的窗洞，把远处的城市框起来",
+      "id": 6
+    },
+    {
+      "kind": "paragraph",
+      "text": "一路都是高高的仙人掌，有的还伸着好几条胳膊。这种叫 Saguaro，中文叫巨人柱，长得很慢，通常要几十年才开始分枝，干旱的地方还要更久。路边这些，年纪都不小了。有没有见过外星人不知道，肯定比我们见过更多日出。",
+      "original_html": "<p>一路都是高高的仙人掌，有的还伸着好几条胳膊。这种叫 Saguaro，中文叫巨人柱，长得很慢，通常要几十年才开始分枝，干旱的地方还要更久。路边这些，年纪都不小了。有没有见过外星人不知道，肯定比我们见过更多日出。<a class=\"fact-source\" href=\"https://www.nps.gov/sagu/learn/nature/saguaro.htm\" title=\"美国国家公园管理局：巨人柱生长\"><sup>〔资料〕</sup></a></p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-009.webp",
+      "caption": "日落前，Siqi的剪影 · 摄影 / Arsenan",
+      "alt": "日落前，Siqi的剪影",
+      "id": 9
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-010.webp",
+      "caption": "背着包看日落，城市在山脚下 · 摄影 / Siqi",
+      "alt": "背着包看日落，城市在山脚下",
+      "id": 10
+    },
+    {
+      "kind": "paragraph",
+      "text": "山顶已经停了不少车，大家都在等日落。从这里能看到凤凰城的市中心，远处一排排山，红的、褐的，和肯塔基那种绿油油的山很不一样。火星估计也就这样吧，怪不得外星人愿意来。",
+      "original_html": "<p>山顶已经停了不少车，大家都在等日落。从这里能看到凤凰城的市中心，远处一排排山，红的、褐的，和肯塔基那种绿油油的山很不一样。火星估计也就这样吧，怪不得外星人愿意来。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-011.webp",
+      "caption": "山顶上的人，都在等太阳下去 · 摄影 / Arsenan",
+      "alt": "山顶上的人，都在等太阳下去",
+      "id": 11
+    },
+    {
+      "kind": "paragraph",
+      "text": "太阳落得很快，先是金色，再变橙，最后天边剩下一层粉。我和 Siqi 钻进石头屋子，架好相机拍了合影。光线暗了，人和仙人掌都成了剪影，反而挺好看。风不大，不过已经有点凉了。",
+      "original_html": "<p>太阳落得很快，先是金色，再变橙，最后天边剩下一层粉。我和 Siqi 钻进石头屋子，架好相机拍了合影。光线暗了，人和仙人掌都成了剪影，反而挺好看。风不大，不过已经有点凉了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-013.webp",
+      "caption": "我和Siqi，坐在观景石屋的窗洞里 · 摄影 / Arsenan",
+      "alt": "我和Siqi，坐在观景石屋的窗洞里",
+      "id": 13
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-014.webp",
+      "caption": "光线暗下来，合影也成了剪影 · 摄影 / Arsenan",
+      "alt": "光线暗下来，合影也成了剪影",
+      "id": 14
+    },
+    {
+      "kind": "paragraph",
+      "text": "等天黑下来，我们才下山。Airbnb 是一栋 house 后面独立的小房子，不大，挺安静，住着也舒服。第二天还得早起，回去赶紧休息。",
+      "original_html": "<p>等天黑下来，我们才下山。Airbnb 是一栋 house 后面独立的小房子，不大，挺安静，住着也舒服。第二天还得早起，回去赶紧休息。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-015.webp",
+      "caption": "从石屋里看最后一线晚霞 · 摄影 / Arsenan",
+      "alt": "从石屋里看最后一线晚霞",
+      "id": 15
+    },
+    {
+      "kind": "heading",
+      "label": "第二章",
+      "title": "干冷沙漠清晨，马拉松一路向西"
+    },
+    {
+      "kind": "paragraph",
+      "text": "全马早晨 8 点起跑，Siqi 天没亮就送我过去，起点在 Festival Foothills Elementary School。路上太阳一点点升起来，照亮前面的山。沙漠清晨还真冷，和我想象的暖和地方有点差距。",
+      "original_html": "<p>全马早晨 8 点起跑，Siqi 天没亮就送我过去，起点在 Festival Foothills Elementary School。路上太阳一点点升起来，照亮前面的山。沙漠清晨还真冷，和我想象的暖和地方有点差距。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-016.webp",
+      "caption": "赛前清晨的天色，仙人掌还在暗处 · 摄影 / Arsenan",
+      "alt": "赛前清晨的天色，仙人掌还在暗处",
+      "id": 16
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-017.webp",
+      "caption": "住处外的棕榈树，天刚刚亮 · 摄影 / Arsenan",
+      "alt": "住处外的棕榈树，天刚刚亮",
+      "id": 17
+    },
+    {
+      "kind": "paragraph",
+      "text": "这条路线从 Sun City Festival 一带出发，绕过 White Tank Mountains，最后跑到 Buckeye Municipal Airport。起终点落差有五百多英尺，整体下坡，光看路线对成绩挺友好。",
+      "original_html": "<p>这条路线从 Sun City Festival 一带出发，绕过 White Tank Mountains，最后跑到 Buckeye Municipal Airport。起终点落差有五百多英尺，整体下坡，光看路线对成绩挺友好。<a class=\"fact-source\" href=\"https://buckeyemarathon.itsyourrace.com/event.aspx\" title=\"赛事官方：2026 路线与日程\"><sup>〔资料〕</sup></a></p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-018.webp",
+      "caption": "前往起点，公路伸向远山 · 摄影 / Arsenan",
+      "alt": "前往起点，公路伸向远山",
+      "id": 18
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-019.webp",
+      "caption": "晨光照亮山坡，比赛日开始了 · 摄影 / Arsenan",
+      "alt": "晨光照亮山坡，比赛日开始了",
+      "id": 19
+    },
+    {
+      "kind": "paragraph",
+      "text": "起点不少人裹着厚衣服，原地抖腿，太阳出来也没立刻暖和。摄影师已经在拍照，我刚到没多久，比赛就开始了。先跟着人群在居民区绕一段，再往沙漠公路跑。",
+      "original_html": "<p>起点不少人裹着厚衣服，原地抖腿，太阳出来也没立刻暖和。摄影师已经在拍照，我刚到没多久，比赛就开始了。先跟着人群在居民区绕一段，再往沙漠公路跑。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-020.webp",
+      "caption": "跑友在起点集合，阳光来了，空气还冷 · 摄影 / Arsenan",
+      "alt": "跑友在起点集合，阳光来了，空气还冷",
+      "id": 20
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-021.webp",
+      "caption": "Siqi在起点附近，等着各自的比赛 · 摄影 / Arsenan",
+      "alt": "Siqi在起点附近，等着各自的比赛",
+      "id": 21
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-022.webp",
+      "caption": "起跑前，先对着镜头笑一笑 · 摄影 / Siqi",
+      "alt": "起跑前，先对着镜头笑一笑",
+      "id": 22
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-023.webp",
+      "caption": "起点拱门前，人群往前聚 · 摄影 / Arsenan",
+      "alt": "起点拱门前，人群往前聚",
+      "id": 23
+    },
+    {
+      "kind": "paragraph",
+      "text": "折返的时候，我竟然看到了 Deborah，路城的跑友。这么小众的一场比赛，跑到亚利桑那，还能碰到熟人，确实挺巧。出了居民区，眼前的路就越来越直了。",
+      "original_html": "<p>折返的时候，我竟然看到了 Deborah，路城的跑友。这么小众的一场比赛，跑到亚利桑那，还能碰到熟人，确实挺巧。出了居民区，眼前的路就越来越直了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-024.webp",
+      "caption": "起跑了，跟着人群进入赛道 · 摄影 / 官方摄影",
+      "alt": "起跑了，跟着人群进入赛道",
+      "id": 24
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-025.webp",
+      "caption": "冷清晨里的起跑人群 · 摄影 / Arsenan",
+      "alt": "冷清晨里的起跑人群",
+      "id": 25
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-026.webp",
+      "caption": "补给点前，身上的外套还没有脱掉 · 摄影 / Arsenan",
+      "alt": "补给点前，身上的外套还没有脱掉",
+      "id": 26
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-027.webp",
+      "caption": "换成蓝色阿森纳球衣，太阳也升高了 · 摄影 / Arsenan",
+      "alt": "换成蓝色阿森纳球衣，太阳也升高了",
+      "id": 27
+    },
+    {
+      "kind": "paragraph",
+      "text": "五英里左右，开始跑沙漠公路。没有树荫，两边是灌木、碎石和沙土，远处一层层的山。太阳还低，影子拉得很长，晒着也不热，就是一直有点风。",
+      "original_html": "<p>五英里左右，开始跑沙漠公路。没有树荫，两边是灌木、碎石和沙土，远处一层层的山。太阳还低，影子拉得很长，晒着也不热，就是一直有点风。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-029.webp",
+      "caption": "公路尽头的山和跑者 · 摄影 / Arsenan",
+      "alt": "公路尽头的山和跑者",
+      "id": 29
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-030.webp",
+      "caption": "太阳把影子拉得很长 · 摄影 / Arsenan",
+      "alt": "太阳把影子拉得很长",
+      "id": 30
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-031.webp",
+      "caption": "清晨阳光落在沙漠公路上 · 摄影 / Arsenan",
+      "alt": "清晨阳光落在沙漠公路上",
+      "id": 31
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-032.webp",
+      "caption": "向 Buckeye 机场方向一路下坡 · 摄影 / Arsenan",
+      "alt": "向 Buckeye 机场方向一路下坡",
+      "id": 32
+    },
+    {
+      "kind": "paragraph",
+      "text": "补给的节奏还不错，水和饮料都是凉的，也有能量胶。志愿者在路边喊加油，把水递到手里。跑这么一条空旷的公路，经过补给点，总算热闹一会儿。",
+      "original_html": "<p>补给的节奏还不错，水和饮料都是凉的，也有能量胶。志愿者在路边喊加油，把水递到手里。跑这么一条空旷的公路，经过补给点，总算热闹一会儿。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-028.webp",
+      "caption": "路边的加油声，伸手击个掌 · 摄影 / Arsenan",
+      "alt": "路边的加油声，伸手击个掌",
+      "id": 28
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-033.webp",
+      "caption": "十英里补给站，摆着水和饮料 · 摄影 / Arsenan",
+      "alt": "十英里补给站，摆着水和饮料",
+      "id": 33
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-034.webp",
+      "caption": "志愿者举着两杯水，等我们跑过去 · 摄影 / Arsenan",
+      "alt": "志愿者举着两杯水，等我们跑过去",
+      "id": 34
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-035.webp",
+      "caption": "补给站前，志愿者递来饮料 · 摄影 / Arsenan",
+      "alt": "补给站前，递过来的不只是一杯水",
+      "id": 35
+    },
+    {
+      "kind": "paragraph",
+      "text": "十英里之后，前面有个跑友穿着红衣服，背后印着罗马斗兽场。我刚去过意大利，看着这个图案，又想起那趟旅行。不过这会儿脚下只有沙漠公路，还是得接着跑。",
+      "original_html": "<p>十英里之后，前面有个跑友穿着红衣服，背后印着罗马斗兽场。我刚去过意大利，看着这个图案，又想起那趟旅行。不过这会儿脚下只有沙漠公路，还是得接着跑。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-036.webp",
+      "caption": "路城跑友在前面，异地比赛也有熟悉的背影 · 摄影 / Arsenan",
+      "alt": "路城跑友在前面，异地比赛也有熟悉的背影",
+      "id": 36
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-037.webp",
+      "caption": "沙漠蓝天下，再给自己留一张 · 摄影 / Arsenan",
+      "alt": "沙漠蓝天下，再给自己留一张",
+      "id": 37
+    },
+    {
+      "kind": "paragraph",
+      "text": "半程过后，路边开始有草地和树了，终于见到点绿色。转弯时碰到了 Siqi，她跑十秒、走十秒，按自己的节奏来，状态看着不错。这时候太阳已经升高，照在脸上有点晃眼睛。",
+      "original_html": "<p>半程过后，路边开始有草地和树了，终于见到点绿色。转弯时碰到了 Siqi，她跑十秒、走十秒，按自己的节奏来，状态看着不错。这时候太阳已经升高，照在脸上有点晃眼睛。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-038.webp",
+      "caption": "Buckeye 公路段的蓝天 · 摄影 / Arsenan",
+      "alt": "Buckeye 公路段的蓝天",
+      "id": 38
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-039.webp",
+      "caption": "赛道转弯处的荒漠视野 · 摄影 / Arsenan",
+      "alt": "赛道转弯处的荒漠视野",
+      "id": 39
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-040.webp",
+      "caption": "在赛道上看到Siqi，互相打个招呼 · 摄影 / Arsenan",
+      "alt": "在赛道上看到Siqi，互相打个招呼",
+      "id": 40
+    },
+    {
+      "kind": "paragraph",
+      "text": "我开始更认真地补给，每个站都喝点水，能量胶也吃起来。半程大概用了 1 小时 55 分，状态还可以，但当时真没想着破4，毕竟后面还有一半。",
+      "original_html": "<p>我开始更认真地补给，每个站都喝点水，能量胶也吃起来。半程大概用了 1 小时 55 分，状态还可以，但当时真没想着破4，毕竟后面还有一半。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-041.webp",
+      "caption": "赛道旁的公路和围栏，视野很开阔 · 摄影 / Arsenan",
+      "alt": "赛道旁的公路和围栏，视野很开阔",
+      "id": 41
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-042.webp",
+      "caption": "帐篷下的志愿者，忙着准备补给 · 摄影 / Arsenan",
+      "alt": "帐篷下的志愿者，把补给接力下去",
+      "id": 42
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-043.webp",
+      "caption": "欢迎来到Buckeye，城市的牌子就在路边 · 摄影 / Arsenan",
+      "alt": "欢迎来到Buckeye，城市的牌子就在路边",
+      "id": 43
+    },
+    {
+      "kind": "paragraph",
+      "text": "没想到后半程反而跑得不错。冬天的沙漠很干，温度对我来说也合适，加上赛道整体下坡，跑起来比较顺。风景变化不大，公路、沙土、围栏和远山，一直往前就行。",
+      "original_html": "<p>没想到后半程反而跑得不错。冬天的沙漠很干，温度对我来说也合适，加上赛道整体下坡，跑起来比较顺。风景变化不大，公路、沙土、围栏和远山，一直往前就行。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-044.webp",
+      "caption": "张开双臂，跑向机场终点 · 摄影 / 官方摄影",
+      "alt": "张开双臂，跑向机场终点",
+      "id": 44
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-045.webp",
+      "caption": "公路上的跑友，继续朝机场方向跑 · 摄影 / Arsenan",
+      "alt": "公路上的跑友，继续朝机场方向跑",
+      "id": 45
+    },
+    {
+      "kind": "paragraph",
+      "text": "快到 Buckeye Municipal Airport，一个右转，终点拱门就出现了。抬头还能看到有人跳伞，这个机场本来就有跳伞活动。我还在地上跑着，人家已经从天上下来了。",
+      "original_html": "<p>快到 Buckeye Municipal Airport，一个右转，终点拱门就出现了。抬头还能看到有人跳伞，这个机场本来就有跳伞活动。我还在地上跑着，人家已经从天上下来了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-046.webp",
+      "caption": "机场围栏前，赛事横幅和空中的跳伞者 · 摄影 / Arsenan",
+      "alt": "机场围栏前，赛事横幅和空中的跳伞者",
+      "id": 46
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-047.webp",
+      "caption": "终点拱门越来越近 · 摄影 / Arsenan",
+      "alt": "终点拱门越来越近",
+      "id": 47
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-048.webp",
+      "caption": "终点边的志愿者，继续为跑友加油 · 摄影 / Arsenan",
+      "alt": "终点边的志愿者，继续为跑友加油",
+      "id": 48
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-049.webp",
+      "caption": "跑完碰个拳 · 摄影 / Arsenan",
+      "alt": "跑完碰个拳，今天的距离交代清楚了",
+      "id": 49
+    },
+    {
+      "kind": "paragraph",
+      "text": "最后手表停在 3:58，居然破4了。下坡赛道帮了忙，这个我心里有数，不过赛前真没指望跑进四小时，还是很开心。拉了拉腿，等了一会儿 Siqi，她也到终点了。",
+      "original_html": "<p>最后手表停在 3:58，居然破4了。下坡赛道帮了忙，这个我心里有数，不过赛前真没指望跑进四小时，还是很开心。拉了拉腿，等了一会儿 Siqi，她也到终点了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-050.webp",
+      "caption": "Siqi跑向终点，我在旁边举起相机 · 摄影 / Arsenan",
+      "alt": "Siqi跑向终点，我在旁边举起相机",
+      "id": 50
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-051.webp",
+      "caption": "终点拱门下，她也完成了比赛 · 摄影 / Arsenan",
+      "alt": "终点拱门下，她也完成了比赛",
+      "id": 51
+    },
+    {
+      "kind": "paragraph",
+      "text": "我们喝了点饮料，Siqi 又去买了杯咖啡。终点有摄影师，我们自己也拍了不少。比赛不大，号码布和奖牌倒是都挺好看，配色很统一，小比赛也有小比赛的用心。",
+      "original_html": "<p>我们喝了点饮料，Siqi 又去买了杯咖啡。终点有摄影师，我们自己也拍了不少。比赛不大，号码布和奖牌倒是都挺好看，配色很统一，小比赛也有小比赛的用心。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-052.webp",
+      "caption": "端起两杯饮料，终点的快乐很直接 · 摄影 / Arsenan",
+      "alt": "端起两杯饮料，终点的快乐很直接",
+      "id": 52
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-053.webp",
+      "caption": "我和Siqi，在BUCKEYE大字前合影 · 摄影 / Arsenan",
+      "alt": "我和Siqi，在BUCKEYE大字前合影",
+      "id": 53
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-054.webp",
+      "caption": "两个人、两枚奖牌，近一点再来一张 · 摄影 / Arsenan",
+      "alt": "两个人、两枚奖牌，近一点再来一张",
+      "id": 54
+    },
+    {
+      "kind": "paragraph",
+      "text": "戴上奖牌，再到终点拱门和 BUCKEYE 大字前拍几张。太阳已经挺足，蓝色球衣在照片里也很显眼，和早晨裹着外套的样子完全不一样了。",
+      "original_html": "<p>戴上奖牌，再到终点拱门和 BUCKEYE 大字前拍几张。太阳已经挺足，蓝色球衣在照片里也很显眼，和早晨裹着外套的样子完全不一样了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-055.webp",
+      "caption": "气球柱旁，举起自己的奖牌 · 摄影 / Siqi",
+      "alt": "气球柱旁，举起自己的奖牌",
+      "id": 55
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-056.webp",
+      "caption": "终点拱门边，给第29州留一张 · 摄影 / Siqi",
+      "alt": "终点拱门边，给第29州留一张",
+      "id": 56
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-057.webp",
+      "caption": "Siqi也在终点前摆个姿势 · 摄影 / Arsenan",
+      "alt": "Siqi也在终点前摆个姿势",
+      "id": 57
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-058.webp",
+      "caption": "冲线后，整个人松快了一点 · 摄影 / Siqi",
+      "alt": "冲线后，整个人松快了一点",
+      "id": 58
+    },
+    {
+      "kind": "paragraph",
+      "text": "奖牌上也是飞机和跑道，配着金色绶带。我拿它对着蓝天、终点拱门换着角度拍。2026 第一场跑完，还有力气拍照，状态确实不错。",
+      "original_html": "<p>奖牌上也是飞机和跑道，配着金色绶带。我拿它对着蓝天、终点拱门换着角度拍。2026 第一场跑完，还有力气拍照，状态确实不错。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-059.webp",
+      "caption": "金色绶带和Race to the Runway奖牌 · 摄影 / Arsenan",
+      "alt": "金色绶带和Race to the Runway奖牌",
+      "id": 59
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-060.webp",
+      "caption": "蓝天、帐篷和一枚跑道主题奖牌 · 摄影 / Arsenan",
+      "alt": "蓝天、帐篷和一枚跑道主题奖牌",
+      "id": 60
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-061.webp",
+      "caption": "把奖牌放到终点拱门前 · 摄影 / Arsenan",
+      "alt": "把奖牌放到终点拱门前",
+      "id": 61
+    },
+    {
+      "kind": "paragraph",
+      "text": "回程路上起了风，沙地上卷起一小股沙柱，我和 Siqi 正好从中间穿过去。当时看着像个迷你龙卷风，更像是沙漠里常见的尘卷风。规模不大，倒也算见识了一下。",
+      "original_html": "<p>回程路上起了风，沙地上卷起一小股沙柱，我和 Siqi 正好从中间穿过去。当时看着像个迷你龙卷风，更像是沙漠里常见的尘卷风。规模不大，倒也算见识了一下。<a class=\"fact-source\" href=\"https://www.weather.gov/fgz/DustDevil\" title=\"美国国家气象局：尘卷风\"><sup>〔资料〕</sup></a></p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-062.webp",
+      "caption": "完赛后的休息区，跑友坐下来缓一缓 · 摄影 / Arsenan",
+      "alt": "完赛后的休息区，跑友坐下来缓一缓",
+      "id": 62
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-063.webp",
+      "caption": "帐篷下的现场演奏，终点还有音乐 · 摄影 / Arsenan",
+      "alt": "帐篷下的现场演奏，终点还有音乐",
+      "id": 63
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-064.webp",
+      "caption": "沙地和机场，跑完的路上再看一眼 · 摄影 / Arsenan",
+      "alt": "沙地和机场，跑完的路上再看一眼",
+      "id": 64
+    },
+    {
+      "kind": "heading",
+      "label": "第三章",
+      "title": "红岩一洞、仙人柱起飞"
+    },
+    {
+      "kind": "paragraph",
+      "text": "第二天早晨去了 Papago Park。红褐色的岩丘很醒目，远远就能看到山上的大洞，叫 Hole-in-the-Rock。这里有一条很短的步道，绕到岩丘后面，再沿台阶上去。",
+      "original_html": "<p>第二天早晨去了 Papago Park。红褐色的岩丘很醒目，远远就能看到山上的大洞，叫 Hole-in-the-Rock。这里有一条很短的步道，绕到岩丘后面，再沿台阶上去。<a class=\"fact-source\" href=\"https://www.phoenix.gov/administration/departments/parks/activities-facilities/trails/papago-park.html\" title=\"凤凰城市政府：Papago Park 步道\"><sup>〔资料〕</sup></a></p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-065.webp",
+      "caption": "Papago Park的红岩，洞口就在山顶 · 摄影 / Arsenan",
+      "alt": "Papago Park的红岩，洞口就在山顶",
+      "id": 65
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-066.webp",
+      "caption": "我站在红岩前，换上外套继续逛 · 摄影 / Siqi",
+      "alt": "我站在红岩前，换上外套继续逛",
+      "id": 66
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-067.webp",
+      "caption": "Siqi和红岩，赛后旅行接着开始 · 摄影 / Arsenan",
+      "alt": "Siqi和红岩，赛后旅行接着开始",
+      "id": 67
+    },
+    {
+      "kind": "paragraph",
+      "text": "真走起来不算累，几乎没有树荫，脚下是石头和砂砾，和我平时走的林间 trail 完全两回事。昨天刚跑完一场全马，今天这样走走，倒也合适。",
+      "original_html": "<p>真走起来不算累，几乎没有树荫，脚下是石头和砂砾，和我平时走的林间 trail 完全两回事。昨天刚跑完一场全马，今天这样走走，倒也合适。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-068.webp",
+      "caption": "把奖牌举到红岩前，赛后再拍一张奖牌 · 摄影 / Arsenan",
+      "alt": "把奖牌举到红岩前，跑步和旅行接上了",
+      "id": 68
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-069.webp",
+      "caption": "我们和山顶的洞口，同框留一张 · 摄影 / Arsenan",
+      "alt": "我们和山顶的洞口，同框留一张",
+      "id": 69
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-070.webp",
+      "caption": "Siqi站到岩洞边，后面是开阔的景色 · 摄影 / Arsenan",
+      "alt": "Siqi站到岩洞边，后面是开阔的景色",
+      "id": 70
+    },
+    {
+      "kind": "paragraph",
+      "text": "洞口形状有点像心，又没那么规整。从洞里往外看，下面是树林和水面，再远一些才是城市和山。刚才还一眼都是红石头，换个方向就绿了。",
+      "original_html": "<p>洞口形状有点像心，又没那么规整。从洞里往外看，下面是树林和水面，再远一些才是城市和山。刚才还一眼都是红石头，换个方向就绿了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-071.webp",
+      "caption": "从洞里看凤凰城，树林与水面铺在下面 · 摄影 / Arsenan",
+      "alt": "从洞里看凤凰城，树林与水面铺在下面",
+      "id": 71
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-072.webp",
+      "caption": "岩洞像个天然取景框 · 摄影 / Arsenan",
+      "alt": "岩洞像个天然取景框",
+      "id": 72
+    },
+    {
+      "kind": "paragraph",
+      "text": "站在上面多看了一会儿，棕榈树、低矮的房子、远处的山都能看见。凤凰城的景色挺特别，城区里有修整过的绿地，旁边又是大片干燥的岩丘，挨得这么近。",
+      "original_html": "<p>站在上面多看了一会儿，棕榈树、低矮的房子、远处的山都能看见。凤凰城的景色挺特别，城区里有修整过的绿地，旁边又是大片干燥的岩丘，挨得这么近。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-073.webp",
+      "caption": "红岩下面，城市和远山一层层展开 · 摄影 / Arsenan",
+      "alt": "红岩下面，城市和远山一层层展开",
+      "id": 73
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-074.webp",
+      "caption": "棕榈树、建筑和远山，都是沙漠城市的颜色 · 摄影 / Arsenan",
+      "alt": "棕榈树、建筑和远山，都是沙漠城市的颜色",
+      "id": 74
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-075.webp",
+      "caption": "从山坡往下看，路和绿地穿在一起 · 摄影 / Arsenan",
+      "alt": "从山坡往下看，路和绿地穿在一起",
+      "id": 75
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-076.webp",
+      "caption": "俯瞰绿地与水面，和身后的红岩很不一样 · 摄影 / Arsenan",
+      "alt": "俯瞰绿地与水面，和身后的红岩很不一样",
+      "id": 76
+    },
+    {
+      "kind": "paragraph",
+      "text": "离去机场还有时间，我们又到 Tempe Town Lake 逛了逛，旁边就是亚利桑那州立大学。这个湖是在盐河河道上筑坝形成的，岸边有人跑步、骑车，也有人背着相机拍照，一座铁桥从水面上跨过去。",
+      "original_html": "<p>离去机场还有时间，我们又到 Tempe Town Lake 逛了逛，旁边就是亚利桑那州立大学。这个湖是在盐河河道上筑坝形成的，岸边有人跑步、骑车，也有人背着相机拍照，一座铁桥从水面上跨过去。<a class=\"fact-source\" href=\"https://www.tempe.gov/government/community-services/tempe-town-lake\" title=\"坦佩市政府：Tempe Town Lake\"><sup>〔资料〕</sup></a></p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-077.webp",
+      "caption": "走完红岩小路，Siqi在树边停一下 · 摄影 / Arsenan",
+      "alt": "走完红岩小路，Siqi在树边停一下",
+      "id": 77
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-079.webp",
+      "caption": "Tempe Town Lake岸边，城市来到水边 · 摄影 / Arsenan",
+      "alt": "Tempe Town Lake岸边，城市来到水边",
+      "id": 79
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-080.webp",
+      "caption": "铁桥跨过湖面，桥下是开阔的水面 · 摄影 / Arsenan",
+      "alt": "铁桥跨过湖面，水边的节奏慢下来",
+      "id": 80
+    },
+    {
+      "kind": "paragraph",
+      "text": "无人机背了一路，我还是想飞一下。后来又找到一处有巨人柱的地方，人往旁边一站，才看出这些仙人掌到底有多高。我和 Siqi 轮流拍了几张，也把奖牌拿出来合个影。",
+      "original_html": "<p>无人机背了一路，我还是想飞一下。后来又找到一处有巨人柱的地方，人往旁边一站，才看出这些仙人掌到底有多高。我和 Siqi 轮流拍了几张，也把奖牌拿出来合个影。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-078.webp",
+      "caption": "人站在巨人柱旁，才看出它有多高 · 摄影 / Arsenan",
+      "alt": "人站在巨人柱旁，才看出它有多高",
+      "id": 78
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-081.webp",
+      "caption": "我站在巨人柱旁，抬头才能看到顶 · 摄影 / Siqi",
+      "alt": "我站在巨人柱旁，抬头才能看到顶",
+      "id": 81
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-082.webp",
+      "caption": "换Siqi站过去，仙人掌像一棵大树 · 摄影 / Arsenan",
+      "alt": "换Siqi站过去，仙人掌像一棵大树",
+      "id": 82
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-083.webp",
+      "caption": "仙人柱前的奖牌，给这一站再留一张 · 摄影 / Arsenan",
+      "alt": "仙人柱前的奖牌，给这一站再留一张",
+      "id": 83
+    },
+    {
+      "kind": "paragraph",
+      "text": "最后终于把无人机升起来了。风不小，好在画面还稳，从上面看人和仙人掌，又是另一种感觉。看日落、跑马、逛红岩，该看的也看了，这下可以去机场了。",
+      "original_html": "<p>最后终于把无人机升起来了。风不小，好在画面还稳，从上面看人和仙人掌，又是另一种感觉。看日落、跑马、逛红岩，该看的也看了，这下可以去机场了。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-084.webp",
+      "caption": "沙地上，一棵棵巨人柱伸出手臂 · 摄影 / Arsenan",
+      "alt": "沙地上，一棵棵巨人柱伸出手臂",
+      "id": 84
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-085.webp",
+      "caption": "我和Siqi，在巨人柱脚下合影 · 摄影 / Arsenan",
+      "alt": "我和Siqi，在巨人柱脚下合影",
+      "id": 85
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-086.webp",
+      "caption": "无人机升起来，从上面看仙人掌和人 · 摄影 / Arsenan",
+      "alt": "无人机升起来，从上面看仙人掌和人",
+      "id": 86
+    },
+    {
+      "kind": "heading",
+      "label": "后记",
+      "title": "回到路城，跑进新一年"
+    },
+    {
+      "kind": "paragraph",
+      "text": "回程的凤凰城机场人很多，安检排了好久。我们在达拉斯转机，前面有延误，最后只剩十分钟，才赶上飞回路易斯维尔的那一班。九点多落地，折腾了一天，确实有点累了。",
+      "original_html": "<p>回程的凤凰城机场人很多，安检排了好久。我们在达拉斯转机，前面有延误，最后只剩十分钟，才赶上飞回路易斯维尔的那一班。九点多落地，折腾了一天，确实有点累了。</p>"
+    },
+    {
+      "kind": "paragraph",
+      "text": "本来只是想躲开寒潮，换个暖和地方跑一场。结果沙漠清晨也冷，不过跑起来挺舒服，还意外破了4。和 Siqi 看了日落、爬了红岩，巨人柱也拍够了。2026 年第一跑，这个开头我挺满意。",
+      "original_html": "<p>本来只是想躲开寒潮，换个暖和地方跑一场。结果沙漠清晨也冷，不过跑起来挺舒服，还意外破了4。和 Siqi 看了日落、爬了红岩，巨人柱也拍够了。2026 年第一跑，这个开头我挺满意。</p>"
+    },
+    {
+      "kind": "figure",
+      "src": "/run50/stories/chinese/Run50-Arizona-Phoenix-Marathon-clean_files/img-087.webp",
+      "caption": "人、巨人柱和远山，这趟沙漠周末的收尾 · 摄影 / Siqi",
+      "alt": "人、巨人柱和远山，这趟沙漠周末的收尾",
+      "id": 87
+    }
+  ],
+  "review_sources": [
+    {
+      "title": "凤凰城市政府：South Mountain",
+      "url": "https://web-prod.phoenix.gov/administration/departments/parks/activities-facilities/trails/south-mountain-parkpreserve.html"
+    },
+    {
+      "title": "美国国家公园管理局：巨人柱生长",
+      "url": "https://www.nps.gov/sagu/learn/nature/saguaro.htm"
+    },
+    {
+      "title": "赛事官方：2026 路线与日程",
+      "url": "https://buckeyemarathon.itsyourrace.com/event.aspx"
+    },
+    {
+      "title": "美国国家气象局：尘卷风",
+      "url": "https://www.weather.gov/fgz/DustDevil"
+    },
+    {
+      "title": "凤凰城市政府：Papago Park 步道",
+      "url": "https://www.phoenix.gov/administration/departments/parks/activities-facilities/trails/papago-park.html"
+    },
+    {
+      "title": "坦佩市政府：Tempe Town Lake",
+      "url": "https://www.tempe.gov/government/community-services/tempe-town-lake"
+    },
+    {
+      "title": "Dobbins Lookout 1938 年石屋历史",
+      "url": "https://www.phoenix.gov/content/dam/phoenix/pddsite/documents/hp/pdd_hp_pdf_00201.pdf"
+    }
+  ]
 }

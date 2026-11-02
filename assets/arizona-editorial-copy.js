@@ -15,7 +15,7 @@
   const imageMode = document.createElement('select');
   imageMode.setAttribute('aria-label', '图片复制方式');
   imageMode.style.cssText = scope.style.cssText;
-  imageMode.add(new Option('带图片复制（原方式）', 'embedded'));
+  imageMode.add(new Option('原图复制（不压缩）', 'embedded'));
   imageMode.add(new Option('图片链接（备用）', 'links'));
   button.before(imageMode);
   function selectedChildren() {
@@ -78,10 +78,10 @@
           img.height = 96;
           img.style.cssText = 'display:inline-block;width:96px;max-width:96px;height:auto;margin:0;border:0;vertical-align:middle;';
         }
-        if (node.matches('.location-poster > img:first-child')) img.style.cssText='display:block;width:100%;max-width:100%;height:auto;box-sizing:border-box;padding:0 1.26183%;background:#f3efdf;margin:0;border:0;';
+        if (node.matches('.location-poster > img:first-child')) img.style.cssText='display:block;width:100%;max-width:100%;height:auto;box-sizing:border-box;padding:0;background:#f3efdf;margin:0;border:0;';
         return img;
       }
-      const inline = ['strong','b','em','i','u','span','a'].includes(tag);
+      const inline = ['strong','b','em','i','u','span','a','sup'].includes(tag);
       const outputTag = tag === 'h2' && node.closest('.ending') ? 'p' : ['p','br','strong','b','em','i','u','span','a','h1','h2'].includes(tag) ? tag : tag === 'figcaption' ? 'p' : 'section';
       const out = document.createElement(outputTag);
       if (inline) {
