@@ -9,7 +9,7 @@ import build_wechat_louisville_editorial as style
 ROOT=Path(__file__).resolve().parents[1]
 ASSET=ROOT/'assets/arizona-editorial-20261013'
 SLUG='arizona-phoenix-marathon'
-TITLE='Run50 #第29州｜亚利桑那 Buckeye Marathon：沙漠清晨，机场终点，2026 第一跑破4'
+TITLE='Run50 #第29州｜亚利桑那：巴克艾马拉松｜凤凰城的晚霞，仙人柱的长影，沙漠公路的尽头'
 COVER_SRC='/assets/cover-medal-zh-index-arizona-phoenix-cn-flat.jpg'
 POSTER_SRC='/assets/arizona-editorial-20261013/poster.jpg'
 KEYS=['亚利桑那','巴克艾','凤凰城','Siqi','Buckeye','3:58','破 4','破4','Saguaro','巨人柱','机场','Deborah','沙漠','Dobbins Lookout','Papago Park','Hole-in-the-Rock','Tempe Town Lake','阿森纳','UFO','Tesla Model Y','Run50','二〇二六','志愿者','半马','全马','自动驾驶']
