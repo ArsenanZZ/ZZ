@@ -1,0 +1,17 @@
+{
+  "method": "Built-in image_gen, not CLI",
+  "output_directory": "assets/run50-first-five-20261102",
+  "icons": {
+    "kentucky-icon.png": "Transparent isolated Kentucky horse head, antique gold horseshoe and burgundy rose; sculpted enamel relief with vintage print grain. No text or frame.",
+    "cleveland-icon.png": "Transparent Cleveland Rock and Roll Hall of Fame pyramid silhouette, orange guitar and vinyl record; enamel relief and print texture. No text or frame.",
+    "sf-icon.png": "Transparent Golden Gate Bridge with two orange suspension towers, dark teal bay waves and cream fog ribbons; enamel relief and vintage grain. No text or frame."
+  },
+  "poster_edit_prompt": "Edit this approved artwork into its matching IN-ARTICLE FLAT PAPER POSTER. Preserve exact Chinese lettering, all year/city/Run50 labels, scene, composition, distinctive palette and symbols. Remove rounded metallic outer plaque rim and all rounded/stepped label frames. Replace with very thin plain straight rectangular print border with ordinary 90-degree corners; bottom three rectangular panels full width with simple thin straight separators, all text large. Flat vintage screenprint on paper with subtle grain and restrained original dimensional lettering. Edge-to-edge art inside thin border, no outer white margins. Landscape 16:10. This is a companion poster, not a redesigned cover.",
+  "poster_references": [
+    "assets/cover-medal-zh-index-louisville-cn-flat.jpg",
+    "assets/cover-medal-zh-index-kentucky-derby-2021-cn-flat.jpg",
+    "assets/cover-medal-zh-index-cleveland-cn-flat.jpg"
+  ],
+  "retained_icon": "assets/new-york-editorial-20261013/liberty.webp",
+  "validation": "All 418 body photographs retained. 390px mobile view: no overflow or broken images, map/poster share 350px width. Six text colors plus underline exported as inline styles. Chapter numbers export as transparent native text. Existing shirt-colored intro GIFs have transparency."
+}
