@@ -86,6 +86,8 @@ def render(d):
  js=js.replace("node.getAttribute('data-' + theme + '-src') || node.getAttribute('src')", "node.getAttribute('data-' + theme + '-src') || node.getAttribute('data-copy-src') || node.getAttribute('src')")
  js=js.replace("        return img;", "        if (node.matches('.location-poster > img:first-child')) img.style.cssText='display:block;width:100%;max-width:100%;height:auto;box-sizing:border-box;padding:0;background:#f3efdf;margin:0;border:0;';\n        return img;")
  (ROOT/'assets/runcn-qinghai-copy.js').write_text(js,encoding='utf-8')
+ from refresh_qinghai_emphasis import apply as apply_emphasis
+ apply_emphasis()
  print('Rendered',len(d['original_paragraphs']),'source paragraphs,',sum(b['kind']=='figure' for b in blocks),'photos')
 
 
