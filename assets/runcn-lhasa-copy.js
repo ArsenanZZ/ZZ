@@ -4,7 +4,10 @@
   const button = document.getElementById('copy-wechat');
   const status = document.getElementById('copy-status');
   const article = document.querySelector('main[data-edition]');
+  if (!button || !status || !article) return;
   const children = [...article.children];
+  const LIMIT = 9500000;
+  const estimate = nodes => nodes.reduce((sum, node) => sum + 12000 + [...node.querySelectorAll('img')].reduce((n, img) => n + Math.ceil(Number(img.dataset.copyBytes || 0) * 4 / 3), 0), 0);
   // Opt-in original-byte chunks for long photo essays. The displayed groups stay intact.
   function originalChunks(parts) {
     const units = parts.flatMap(node => {
@@ -20,7 +23,7 @@
     const chunks = []; let current = [], size = 0;
     for (const node of units) {
       const bytes = 12000 + [...node.querySelectorAll('img')].reduce((n, img) => n + Math.ceil(Number(img.dataset.copyBytes || 0) * 4 / 3), 0);
-      if (current.length && size + bytes > 9500000) { chunks.push(current); current = []; size = 0; }
+      if (current.length && size + bytes > LIMIT) { chunks.push(current); current = []; size = 0; }
       current.push(node); size += bytes;
     }
     if (current.length) chunks.push(current);
@@ -32,15 +35,31 @@
   scope.style.cssText = 'max-width:180px;padding:9px 6px;font-size:13px;color:inherit;background:transparent;border:1px solid #888;border-radius:4px;';
   scope.add(new Option('全文复制', 'all'));
   starts.forEach((start, i) => scope.add(new Option(i === 0 ? '分段：开篇' : children[start].classList.contains('ending') ? '分段：结尾和署名' : `分段：第 ${i} 章`, String(i))));
-  if (article.hasAttribute('data-copy-chunks')) originalChunks(children).forEach((_, i, all) => scope.add(new Option(`原图小段 ${i + 1}/${all.length}（10MB内）`, 'part-' + i)));
+  if (article.hasAttribute('data-copy-chunks')) originalChunks(children).forEach((_, i, all) => scope.add(new Option(`原图小段 ${i + 1}/${all.length}（约 ${(estimate(all[i]) / 1000000).toFixed(1)} MB）`, 'part-' + i)));
   button.before(scope);
   const imageMode = document.createElement('select');
   imageMode.setAttribute('aria-label', '图片复制方式');
   imageMode.style.cssText = scope.style.cssText;
-  imageMode.add(new Option('原图复制（不压缩）', 'embedded'));
+  imageMode.add(new Option('正文图片（与网页一致）', 'displayed'));
+  imageMode.add(new Option('原始大图（不压缩）', 'embedded'));
   imageMode.add(new Option('图片链接（备用）', 'links'));
   button.before(imageMode);
+  scope.value = 'all';
+  const nextButton = document.createElement('button');
+  nextButton.type = 'button';
+  nextButton.textContent = '下一段';
+  button.after(nextButton);
+  function showSize() {
+    const mb = selectedChildren().reduce((sum, node) => sum + 12000 + [...node.querySelectorAll('img')].reduce((n, img) => n + Math.ceil(Number((imageMode.value === 'displayed' ? img.dataset.displayBytes : img.dataset.copyBytes) || img.dataset.copyBytes || 0) * 4 / 3), 0), 0) / 1000000;
+    status.textContent = imageMode.value === 'links' ? '图片链接模式：图片需由公众号另行加载；不会自动上传原图。' : `所选内容预计 ${mb.toFixed(1)} MB（复制时不再压缩）` + (mb >= 100 ? '；原始大图较大，可能导致浏览器复制失败。' : '；可整篇复制，分段仅作备用。');
+    button.disabled = false;
+    nextButton.disabled = !scope.value.startsWith('part-') || Number(scope.value.slice(5)) >= originalChunks(children).length - 1;
+  }
+  scope.addEventListener('change', showSize);
+  imageMode.addEventListener('change', showSize);
+  nextButton.addEventListener('click', () => { scope.value = 'part-' + (Number(scope.value.slice(5)) + 1); showSize(); });
   function selectedChildren() {
+    if (scope.value.startsWith('part-')) return originalChunks(children)[Number(scope.value.slice(5))];
     if (scope.value === 'all') return children;
     const i = Number(scope.value);
     return children.slice(starts[i], starts[i + 1] ?? children.length);
@@ -50,7 +69,7 @@
     document.documentElement.dataset.theme = theme;
     document.querySelectorAll('.brand-intro [data-light-src]').forEach(el => el.setAttribute(el.tagName === 'SOURCE' ? 'srcset' : 'src', el.getAttribute('data-' + theme + '-src')));
     themeButtons.forEach(el => el.setAttribute('aria-pressed', String(el.dataset.themeChoice === theme)));
-    status.textContent = '';
+    showSize();
   }
   themeButtons.forEach(el => el.addEventListener('click', () => setTheme(el.dataset.themeChoice)));
   const canonical = 'https://zhennanzhang.com' + location.pathname;
@@ -90,7 +109,7 @@
         let url;
         if (down) url = base + 'arrows-' + theme + '.png';
         else {
-          url = new URL(node.getAttribute('data-' + theme + '-src') || node.getAttribute('data-copy-src') || node.getAttribute('src'), canonical).href;
+          url = new URL(node.getAttribute('data-' + theme + '-src') || (imageMode.value === 'displayed' && node.getAttribute('srcset') ? node.getAttribute('srcset').split(',')[0].trim().split(/\s+/)[0] : node.getAttribute('data-copy-src') || node.getAttribute('src')), canonical).href;
         }
         img.src = url;
         img.alt = down ? '向下' : node.getAttribute('alt') || '';
@@ -145,11 +164,14 @@
           if (node.classList.contains('credits')) out.style.marginTop = '36px';
         }
       }
+      // Explicit ink is retained even when the destination drops the parent styles.
+      if (!out.style.color) out.style.color = ink;
+      if (node.classList.contains('chapter-label')) out.style.color = dark ? '#f1cf78' : '#946300';
       for (const child of node.childNodes) out.append(convert(child));
       return out;
     }
     for (const node of selected) wrapper.append(convert(node));
-    if (imageMode.value === 'embedded') {
+    if (imageMode.value !== 'links') {
       // Preserve the fetched image bytes, including GIF animation.
       const images = [...wrapper.querySelectorAll('img')];
       const asDataURL = blob => new Promise((resolve, reject) => {
@@ -178,6 +200,7 @@
 
   async function copyArticle() {
     button.disabled = true;
+    nextButton.disabled = true;
     scope.disabled = imageMode.disabled = true;
     themeButtons.forEach(el => { el.disabled = true; });
     status.textContent = '正在复制…';
@@ -185,6 +208,7 @@
       const content = await buildClipboard();
       const html = content.outerHTML;
       const text = content.textContent;
+      const bytes = new Blob([html, text]).size;
       let copied = false;
       if (navigator.clipboard && window.ClipboardItem) {
         try {
@@ -224,14 +248,17 @@
         }
       }
       const mb = (new Blob([html, text]).size / 1000000).toFixed(2);
-      status.textContent = `已原样复制 ${mb} MB（未压缩）` + (Number(mb) >= 10 ? '；超过公众号 10 MB 限制，请选择分章节复制' : scope.value === 'all' ? '，可粘贴到公众号' : '，请按顺序粘贴到公众号');
+      status.textContent = `已复制 ${scope.options[scope.selectedIndex].text}，实际 ${mb} MB` + (imageMode.value === 'embedded' ? '（原始大图）' : imageMode.value === 'displayed' ? '（正文图片，未二次压缩）' : '（图片链接）') + (scope.value === 'all' ? '，可粘贴到公众号。' : '，请按顺序粘贴；分段不减少整篇总大小。');
     } catch (error) {
       status.textContent = error.message || '复制未成功，请稍后重试';
     } finally {
       button.disabled = false;
+      nextButton.disabled = !scope.value.startsWith('part-') || Number(scope.value.slice(5)) >= originalChunks(children).length - 1;
       scope.disabled = imageMode.disabled = false;
       themeButtons.forEach(el => { el.disabled = false; });
     }
   }
+  button.textContent = '复制所选内容到公众号';
+  showSize();
   button.addEventListener('click', copyArticle);
 })();

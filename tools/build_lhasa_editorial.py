@@ -111,23 +111,20 @@ def render(d):
  dark_colors=['#ff9992','#85c9a6','#91bce8','#f1cf78','#e9ad95','#f5a3ce']
  css+=''.join(f'.prose [data-cn-tone="{i}"]{{color:{c}}}' for i,c in enumerate(light_colors))
  css+=''.join(f'html[data-theme="dark"] .prose [data-cn-tone="{i}"]{{color:{c}}}' for i,c in enumerate(dark_colors))
- html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="在日光之城，跑到布达拉宫脚下。135张照片，记录卧铺进藏、布宫夜色、相机失而复得和高原半马。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-lhasa">'+'\n'.join(body)+'</main><script src="/assets/runcn-lhasa-copy.js?v=20261027-interleaved" defer></script></body></html>'
+ html='<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(TITLE)+'</title><meta name="description" content="在日光之城，跑到布达拉宫脚下。135张照片，记录卧铺进藏、布宫夜色、相机失而复得和高原半马。"><meta property="og:image" content="https://zhennanzhang.com'+COVER_SRC+'"><style>'+css+'</style></head><body>'+nav+'<main data-edition="runcn-lhasa">'+'\n'.join(body)+'</main><script src="/assets/runcn-lhasa-copy.js?v=20261103-copy" defer></script></body></html>'
  html=html.replace('<main data-edition="runcn-lhasa">','<main data-edition="runcn-lhasa" data-copy-chunks>')
  def copy_size(match):
   tag=match[0]
   paths=re.findall(r'(?:src|data-copy-src|data-dark-src)="(/assets/[^"?]+)',tag)
   size=max(((ROOT/p.lstrip('/')).stat().st_size for p in paths if (ROOT/p.lstrip('/')).is_file()),default=0)
-  return tag[:-1]+f' data-copy-bytes="{size}">'
+  preview=re.search(r'srcset="([^" ]+)',tag) or re.search(r'src="([^" ]+)',tag)
+  file=ROOT/preview[1].lstrip('/').split('?')[0] if preview else ROOT/'absent'
+  display_size=file.stat().st_size if file.is_file() else 0
+  return tag[:-1]+f' data-copy-bytes="{size}" data-display-bytes="{display_size}">'
  html=re.sub(r'<img\b[^>]*>',copy_size,html)
  html=normalize(html,SLUG+'-editorial.html')[0]
  for suffix in ['editorial','modern-rail']:(ROOT/f'run50/wechat/{SLUG}-{suffix}.html').write_text(html,encoding='utf-8')
- js=(ROOT/'assets/run50-six-editorial-copy.js').read_text(encoding='utf-8').replace('img.height = 120','img.height = 96')
- js=js.replace("if (tag === 'img' || number || down) {", "if (number) { const p=document.createElement('p'); p.textContent=node.textContent; p.style.cssText='font-family:Arial,sans-serif;font-size:74px;line-height:1;color:' + ink + ';margin:48px 0 14px;font-weight:400;'; return p; }\n      if (tag === 'img' || down) {")
- js=js.replace("node.getAttribute('data-' + theme + '-src') || node.getAttribute('src')", "node.getAttribute('data-' + theme + '-src') || node.getAttribute('data-copy-src') || node.getAttribute('src')")
- js=js.replace("        return img;", "        if (node.matches('.location-poster > img:first-child')) img.style.cssText='display:block;width:100%;max-width:100%;height:auto;box-sizing:border-box;padding:0;background:#f3efdf;margin:0;border:0;';\n        return img;")
- js=js.replace("status.textContent = scope.value === 'all' ? '已复制；如公众号截断，请选择分段复制' : '本段已复制，请按顺序粘贴到公众号';", "const mb = new Blob([html]).size / 1000000; status.textContent = '已复制 ' + mb.toFixed(2) + ' MB（原图未压缩）' + (mb >= 10 ? '；超过10MB，请分段复制' : '');")
- js=js.replace("['#f09589','#85c9a6','#91bce8','#e8c481']",repr(dark_colors)).replace("['#ac4336','#237953','#306eaa','#9a681c']",repr(light_colors))
- (ROOT/'assets/runcn-lhasa-copy.js').write_text(js,encoding='utf-8')
+ (ROOT/'assets/runcn-lhasa-copy.js').write_text((ROOT/'tools/data/lhasa-copy-template.js').read_text(encoding='utf-8'),encoding='utf-8')
  print('Rendered',len(d['original_paragraphs']),'source paragraphs,',sum(b['kind']=='figure' for b in blocks),'photos')
 
 if __name__=='__main__':
