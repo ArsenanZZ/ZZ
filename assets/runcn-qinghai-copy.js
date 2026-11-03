@@ -52,6 +52,7 @@
       if (node.nodeType === Node.TEXT_NODE) return document.createTextNode(node.textContent);
       if (node.nodeType !== Node.ELEMENT_NODE) return document.createTextNode('');
       const tag = node.tagName.toLowerCase();
+      if (node.matches('.fact-ref, .reference, .source-note')) return document.createTextNode('');
       if (node.classList.contains('masthead') || node.classList.contains('byline')) return document.createTextNode('');
       if (['script','style','source','button'].includes(tag)) return document.createTextNode('');
       const number = node.classList.contains('chapter-number');

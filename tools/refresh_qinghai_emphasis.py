@@ -30,12 +30,12 @@ def enhance(html):
  st=s.new_tag('style',id='qinghai-six-colours');st.string=''.join(f'.prose [data-cn-tone="{i}"]{{color:{c};font-weight:700}}html[data-theme="dark"] .prose [data-cn-tone="{i}"]{{color:{DARK[i]}}}' for i,c in enumerate(LIGHT))+'.prose [data-cn-emphasis="underline"]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}'
  s.head.append(st)
  for script in s.select('script[src]'):
-  if 'runcn-qinghai-copy.js' in script['src']:script['src']='/assets/runcn-qinghai-copy.js?v=20261103-colours'
+  if 'runcn-qinghai-copy.js' in script['src']:script['src']='/assets/runcn-qinghai-copy.js?v=20261103-clean-copy'
  assert s.select_one('main').get_text()==before
  assert [str(x) for x in s.select('main img')]==photos
  return str(s)
 def apply():
  for suffix in ['editorial','modern-rail']:
   p=ROOT/f'run50/wechat/qinghai-xining-marathon-{suffix}.html';p.write_text(enhance(p.read_text(encoding='utf8')),encoding='utf8')
- p=ROOT/'assets/runcn-qinghai-copy.js';js=p.read_text(encoding='utf8');js=re.sub(r'const palette = dark \? \[[^\n]+? : \[[^\n]+?;', 'const palette = dark ? '+repr(DARK)+' : '+repr(LIGHT)+';',js);p.write_text(js,encoding='utf8')
+ p=ROOT/'assets/runcn-qinghai-copy.js';js=p.read_text(encoding='utf8');js=js if "node.matches('.fact-ref, .reference, .source-note')" in js else js.replace("      const tag = node.tagName.toLowerCase();\n", "      const tag = node.tagName.toLowerCase();\n      if (node.matches('.fact-ref, .reference, .source-note')) return document.createTextNode('');\n");js=re.sub(r'const palette = dark \? \[[^\n]+? : \[[^\n]+?;', 'const palette = dark ? '+repr(DARK)+' : '+repr(LIGHT)+';',js);p.write_text(js,encoding='utf8')
 if __name__=='__main__':apply()
