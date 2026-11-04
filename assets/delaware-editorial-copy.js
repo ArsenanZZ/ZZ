@@ -52,6 +52,7 @@
       if (node.nodeType === Node.TEXT_NODE) return document.createTextNode(node.textContent);
       if (node.nodeType !== Node.ELEMENT_NODE) return document.createTextNode('');
       const tag = node.tagName.toLowerCase();
+      if (node.matches('.fact-ref,.reference,.source-note')) return document.createTextNode('');
       if (node.classList.contains('masthead') || node.classList.contains('byline')) return document.createTextNode('');
       if (['script','style','source','button'].includes(tag)) return document.createTextNode('');
       const number = node.classList.contains('chapter-number');
@@ -86,7 +87,7 @@
       const out = document.createElement(outputTag);
       if (inline) {
         if (node.hasAttribute('data-cn-tone')) {
-          const palette = dark ? ['#f09589','#85c9a6','#91bce8','#e8c481'] : ['#ac4336','#237953','#306eaa','#9a681c'];
+          const palette = dark ? ['#ff9992','#85c9a6','#91bce8','#f1cf78','#e9ad95','#f5a3ce'] : ['#b53635','#237953','#306eaa','#946300','#934634','#b03878'];
           out.style.color = palette[Number(node.getAttribute('data-cn-tone'))] || palette[2];
           out.style.fontWeight = '800';
           if (node.getAttribute('data-cn-emphasis') === 'underline') {
@@ -196,7 +197,7 @@
           if (previous) selection.addRange(previous);
         }
       }
-      status.textContent = scope.value === 'all' ? '已复制；如公众号截断，请选择分段复制' : '本段已复制，请按顺序粘贴到公众号';
+      status.textContent = (scope.value === 'all' ? '全文已复制' : '本段已复制') + '（' + (new Blob([html]).size / 1024 / 1024).toFixed(1) + ' MB，图片未额外压缩）';
     } catch (_) {
       status.textContent = '复制未成功，请允许剪贴板权限后重试';
     } finally {

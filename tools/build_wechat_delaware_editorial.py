@@ -125,8 +125,5 @@ def render(d):
 
 
 if __name__=='__main__':
- import sys
- d=prepare()
- if '--assets' in sys.argv:assets()
- render(d)
-
+ from review_delaware_editorial import main
+ main()
