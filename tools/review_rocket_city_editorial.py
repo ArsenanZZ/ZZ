@@ -28,6 +28,10 @@ def main():
   if name:b['caption']=re.sub(r'\s*·?\s*摄影\s*/.*$','',b['caption']).strip()+' · 摄影 / '+name
  credits[48]['caption']='清晨，跑者从起点出发 · 摄影 / 官方摄影'
  credits[48]['alt']='清晨，跑者从起点出发'
+ for n,caption in {74:'穿着蓝毛衣，在赛道旁留影',77:'补给点前，穿着蓝毛衣继续向前'}.items():
+  credits[n]['alt']=caption
+  credits[n]['caption']=caption+' · 摄影 / Siqi'
+
  for f in main.select('figure'):
   ims=f.select('img')
   if not ims or not all(re.search(r'img-(\d+)',i.get('src','')) for i in ims):continue
