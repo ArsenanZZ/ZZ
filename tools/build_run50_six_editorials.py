@@ -108,6 +108,10 @@ def hero(slug,ims,indices,selected=None):
  subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-i',str(tmp/'0.png'),str(ROOT/f'assets/{slug}-editorial-hero-still.jpg')],check=True)
  subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-framerate','1/3','-i',str(tmp/'%d.png'),'-filter_complex','split[a][b];[a]palettegen=stats_mode=full[p];[b][p]paletteuse=dither=sierra2_4a','-loop','0',str(out)],check=True)
 def render(slug,make_hero=True):
+ if slug=='rocket-city-marathon':
+  from review_rocket_city_editorial import main as review_rocket
+  review_rocket()
+  return
  name,n,state,indices,labels=CONFIG[slug]
  d=json.loads((ROOT/f'tools/data/{name}-editorial.json').read_text(encoding='utf-8'))
  ims=photos(d['blocks'])
