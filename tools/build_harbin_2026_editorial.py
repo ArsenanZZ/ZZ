@@ -9,12 +9,12 @@ ROOT=Path(__file__).resolve().parents[1]
 SLUG='harbin-marathon-2026'
 ASSET=ROOT/'assets/runcn-harbin-2026'
 DATA=ROOT/'tools/data'
-TITLE='RunCN #第31站｜黑龙江哈尔滨马拉松｜红肠配格瓦斯，跑回家人身边'
+TITLE='RunCN #第31站｜黑龙江哈尔滨马拉松｜红肠配格瓦斯，跑完去吃排骨包'
 COVER_SRC='/assets/runcn-harbin-2026/cover.jpg?v=20261024-tall-rail'
 # User preference: homepage stays light lilac; article poster uses deeper layered purple clouds.
 POSTER_SRC='/assets/runcn-harbin-2026/poster.jpg?v=20261024-clouds-tall-rail'
 INTRO='从顺德回哈尔滨，住进动漫酒店，逛中央大街、老道外，走上老铁桥。第二天穿紫色战袍，雨里跑过阳明滩，红肠配格瓦斯，跑完再把奖牌给妈妈戴上。'
-KEYS='哈尔滨 顺德 中央大街 防洪纪念塔 松花江 中东铁路桥 老铁桥 阳明滩大桥 张包铺 中华巴洛克 灌篮高手 Luna 狍跑 冰雪之冠 格瓦斯 红肠 哈尔滨大剧院 太阳岛 七点半 二十五公里 三十公里 三十四公里 三十七公里 四十公里 五小时零二分 紫色战袍 家乡 排骨包子 锅包肉 地三鲜 圣诞'.split()
+KEYS='哈尔滨 顺德 中央大街 防洪纪念塔 松花江 中东铁路桥 老铁桥 阳明滩大桥 张包铺 中华巴洛克 灌篮高手 Luna 狍跑 冰雪之冠 格瓦斯 红肠 哈尔滨大剧院 太阳岛 七点半 二十五公里 三十公里 三十四公里 三十七公里 四十公里 五小时零二分 紫色战袍 家乡 排骨包子 锅包肉 溜肉段 木耳炒肉 圣诞'.split()
 UNDER=['家乡的马拉松，不要太着急','慢慢吃、慢慢玩','来都来了','全国制霸','腿还是得继续动','完赛就好了','给妈妈戴上','见见家人']
 def em(t):
  parts=re.split('('+'|'.join(map(re.escape,sorted(set(KEYS+UNDER),key=len,reverse=True)))+')',t)
@@ -70,8 +70,8 @@ def render():
  assert len(used)==len(set(used))==198 and set(used)==set(meta)==set(caps)
  km={'098':5,'097':6,'101':7,'106':10,'119':14,'121':17,'132':28,'137':36,'140':37,'148':42}
  progress=[km[k] for k in used if k in km];assert progress==sorted(progress)
- out.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUNCN · 第31站 · 黑龙江哈尔滨</p><h2>家乡的马拉松，不要太着急</h2><p class="closing">雨里跑过两岸，跑完见见家人。把哈尔滨的这一个周末，放进RunCN的故事里。</p><p class="credits">文字 / Arsenan<br>摄影 / Arsenan、官方摄影</p></footer>')
- out.append('<p class="source-note">旅行及比赛经历依据作者哈尔滨原始视频口述与选图整理，完赛时间为个人记录约5小时02分。背景资料：<a href="https://wlt.hlj.gov.cn/wlt/c114169/202609/c00_31972491.shtml">赛事、吉祥物及奖牌介绍</a> · <a href="https://wlt.hlj.gov.cn/wlt/c114169/202404/c00_31731149.shtml">中华巴洛克建筑</a> · <a href="https://www.weather.com.cn/heilongjiang/shtq/lyjd/05/436022.shtml">防洪纪念塔</a> · <a href="https://cdn.archilovers.com/projects/bc1fb6ff-4680-40be-9e7a-53e065a51ce0.pdf">哈尔滨大剧院设计</a>。插画为地标组合，并非实地空间比例。</p>')
+ out.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUNCN · 第31站 · 黑龙江哈尔滨</p><p class="credits">文字 / Arsenan<br>摄影 / Arsenan、官方摄影</p></footer>')
+ out.append('<p class="source-note">旅行及比赛经历依据作者哈尔滨原始视频口述与选图整理，完赛时间为个人记录约5小时02分。背景资料：<a href="https://wlt.hlj.gov.cn/wlt/c114169/202609/c00_31972491.shtml">赛事、吉祥物及奖牌介绍</a> · <a href="https://wlt.hlj.gov.cn/wlt/c114169/202404/c00_31731149.shtml">中华巴洛克建筑</a> · <a href="https://www.weather.com.cn/heilongjiang/shtq/lyjd/05/436022.shtml">防洪纪念塔</a> · <a href="https://cdn.archilovers.com/projects/bc1fb6ff-4680-40be-9e7a-53e065a51ce0.pdf">哈尔滨大剧院设计</a> · <a href="https://harbin.joyhua.cn/hebrb/20260913/mhtml/page_01_content_20260913002002.htm">四枪出发和参赛规模</a> · <a href="https://www.imharbin.com/post/51743">中央大街的面包石</a> · <a href="https://m.fx361.com/news/2010/0706/21032307.html">哈尔滨段历史洪水</a> · <a href="https://www.hrbdag.org.cn/hbfm/hbsh/2026/01/20944.html">老江桥与新铁路桥</a> · <a href="https://m.thepaper.cn/newsDetail_forward_30832900">丁香与哈尔滨</a> · <a href="https://m.thepaper.cn/newsDetail_forward_28505044">音乐长廊和沿途地标</a> · <a href="https://www.sucdri.com/case/casedetails-161.html">阳明滩大桥设计</a> · <a href="https://i-mad.cn/zh/projects/harbin-opera-house">MAD哈尔滨大剧院</a> · <a href="https://wlt.hlj.gov.cn/wlt/c114165/202307/c00_31646684.shtml">雪花摩天轮</a> · <a href="https://www.aisixiang.com/data/16911.html">迟子建《起舞》</a> · <a href="https://www.aisixiang.com/data/120166.html">鲁迅《小杂感》</a> · <a href="https://zh.wikisource.org/zh-hans/呼蘭河傳/第一章">萧红《呼兰河传》</a>。插画为地标组合，并非实地空间比例。</p>')
  nav='<nav class="copy-tools"><a href="/CN/#runcn-series" style="color:inherit">RunCN 目录</a><button data-theme-choice="light" aria-pressed="true">白底</button><button data-theme-choice="dark" aria-pressed="false">黑底</button><button id="copy-wechat">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
  html=f'<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{TITLE}</title><meta name="description" content="{INTRO}"><meta property="og:image" content="https://zhennanzhang.com{COVER_SRC}"><style>{css}</style></head><body>{nav}<main data-edition="runcn-harbin-2026">'+ '\n'.join(out)+'</main><script src="/assets/run50-six-editorial-copy.js?v=20261022-original-quality" defer></script></body></html>'
  for suffix in ['editorial','modern-rail']:(ROOT/f'run50/wechat/{SLUG}-{suffix}.html').write_text(html,encoding='utf-8')
