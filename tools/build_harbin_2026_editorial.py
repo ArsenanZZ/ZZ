@@ -13,7 +13,7 @@ TITLE='RunCN #第31站｜黑龙江哈尔滨马拉松｜红肠配格瓦斯，跑�
 COVER_SRC='/assets/runcn-harbin-2026/cover.jpg?v=20261024-tall-rail'
 # User preference: homepage stays light lilac; article poster uses deeper layered purple clouds.
 POSTER_SRC='/assets/runcn-harbin-2026/poster.jpg?v=20261120-trim'
-INTRO='从顺德回哈尔滨，住进动漫酒店，逛中央大街、老道外，走上老铁桥。第二天穿紫色战袍，雨里跑过阳明滩，红肠配格瓦斯，跑完再把奖牌给妈妈戴上。'
+INTRO='这张是我刚跑完哈马，在太阳岛拍的。前面五个多小时，一路上看见摄影师，我就冲着镜头挥个手。这回镜头是我自己转过来的，身后隔着一道栏杆，我爸我妈、大娘、表妹张鑫，还有小甜馨，都在那儿等我呢。八月初刚回东北见过一面，这才隔了一个多月，又能凑一桌吃顿饭了。一会儿这顿我请，地方也挑好了。昨天我一个人刚去吃过，今天可有机会点锅包肉了。'
 KEYS='哈尔滨 顺德 中央大街 防洪纪念塔 松花江 中东铁路桥 老铁桥 阳明滩大桥 张包铺 中华巴洛克 灌篮高手 Luna 狍跑 冰雪之冠 格瓦斯 红肠 哈尔滨大剧院 太阳岛 七点半 二十五公里 三十公里 三十四公里 三十七公里 四十公里 五小时零二分 紫色战袍 家乡 排骨包子 锅包肉 溜肉段 木耳炒肉 圣诞'.split()
 UNDER=['家乡的马拉松，不要太着急','慢慢吃、慢慢玩','来都来了','全国制霸','腿还是得继续动','完赛就好了','给妈妈戴上','见见家人']
 def em(t):
@@ -48,12 +48,13 @@ def render():
  intro='/assets/series-intros-20261020/'+SLUG+'/'
  out=[f'<header class="masthead"><h1>{TITLE}</h1><p class="byline">黑龙江哈尔滨 · 2026年9月13日<br>文字 / Arsenan</p></header>',f'<picture class="brand-intro"><source media="(prefers-reduced-motion: reduce)" srcset="{intro}light-still.png" data-light-src="{intro}light-still.png" data-dark-src="{intro}dark-still.png"><img src="{intro}light.gif" data-light-src="{intro}light.gif" data-dark-src="{intro}dark.gif" width="280" height="280" alt="紫色 RunCN 山路片头"></picture>',
  '<figure class="cover"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/runcn-harbin-2026/hero-still.jpg"><img src="/assets/runcn-harbin-2026/hero.gif?v=20261120-medal-guobaorou" width="900" height="900" fetchpriority="high" alt="哈马完赛奖牌、张包铺锅包肉、紫衣跑马和家人合影"></picture><figcaption>回哈尔滨，跑一场家乡的马拉松<br>摄影 / Arsenan、官方摄影</figcaption></figure>',
- '<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div>',f'<section class="intro"><p>{em(INTRO)}</p></section>',
- f'<figure class="photo-strip location-poster"><img src="/assets/runcn-article-maps-20261022/{SLUG}.jpg?v=20261024-north-callout" alt="RunCN 第31站历史足迹，定位黑龙江哈尔滨"><img src="{POSTER_SRC}" alt="黑龙江哈尔滨，紫色雨中双桥与大剧院，2026 RunCN31"><figcaption>黑龙江 · 哈尔滨 · RunCN 第31站<br>制图 / Arsenan · 封面设计 / Arsenan × AI</figcaption></figure>']
+ '<div class="down" aria-hidden="true">⌄<br>⌄<br>⌄</div>',f'<section class="intro"><p>{em(INTRO)}</p></section>']
+ location_poster=f'<figure class="photo-strip location-poster"><img src="/assets/runcn-article-maps-20261022/{SLUG}.jpg?v=20261024-north-callout" alt="RunCN 第31站历史足迹，定位黑龙江哈尔滨"><img src="{POSTER_SRC}" alt="黑龙江哈尔滨，紫色雨中双桥与大剧院，2026 RunCN31"><figcaption>黑龙江 · 哈尔滨 · RunCN 第31站<br>制图 / Arsenan · 封面设计 / Arsenan × AI</figcaption></figure>'
  used=[];blocks=[];n=0
  for line in (DATA/'harbin-2026-story.txt').read_text(encoding='utf-8').splitlines():
   if not line.strip():continue
   if line.startswith('# '):
+   if n==0:out.append(location_poster)
    title=line[2:];n+=1;out.append(f'<header class="chapter"><span class="chapter-number">{n:02}</span><h2>{escape(title)}</h2></header>');blocks.append({'kind':'heading','label':'','title':title})
   elif line.startswith('@'):
    keys=line[1:].split();used+=keys
