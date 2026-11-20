@@ -1,0 +1,3873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story Feed | Zhennan Zhang</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+  :root {
+    --bg: #202020;
+    --panel: #303030;
+    --panel-2: #292929;
+    --panel-3: #383838;
+    --ink: #ffffff;
+    --muted: #c8c8c8;
+    --soft: #a7a7a7;
+    --line: rgba(255, 255, 255, .10);
+    --accent: #f1a332;
+    --accent-2: #35a585;
+    --blue: #4aa3ff;
+    --danger: #e25858;
+    --radius: 8px;
+    --shadow: 0 8px 28px rgba(0, 0, 0, .28);
+  }
+
+  * { box-sizing: border-box; }
+
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button, input { font: inherit; }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: 170px minmax(240px, 560px) minmax(160px, 1fr);
+    gap: 18px;
+    align-items: center;
+    min-height: 64px;
+    padding: 0 28px;
+    background: rgba(32, 32, 32, .94);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(18px);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    font-weight: 800;
+    font-size: 20px;
+  }
+
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #ffc928;
+    color: #111;
+    font-weight: 900;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+  }
+
+  .search {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px;
+    width: 100%;
+  }
+
+  .search input {
+    min-width: 0;
+    height: 42px;
+    padding: 0 15px;
+    color: var(--ink);
+    background: #171717;
+    border: 1px solid var(--line);
+    border-right: 0;
+    border-radius: var(--radius) 0 0 var(--radius);
+    outline: none;
+  }
+
+  .search input:focus {
+    border-color: rgba(74, 163, 255, .75);
+    box-shadow: 0 0 0 2px rgba(74, 163, 255, .16);
+  }
+
+  .search button {
+    height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    background: #252525;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .top-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .action-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #252525;
+    color: var(--ink);
+    font-weight: 650;
+  }
+
+  .page {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    width: min(1960px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 18px 0 60px;
+  }
+
+  .feed-toolbar {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+  }
+
+  .tabs {
+    order: 1;
+    flex: 1 1 auto;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    min-width: 0;
+    padding: 3px 0;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar { display: none; }
+
+  .tab {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #292929;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .tab.active {
+    border-color: rgba(255, 255, 255, .18);
+    background: #404040;
+  }
+
+  .more-tabs {
+    order: 3;
+    display: none;
+    flex: 1 0 100%;
+    gap: 8px;
+    overflow-x: auto;
+    min-width: 0;
+    padding: 0 0 3px;
+    scrollbar-width: none;
+  }
+
+  .more-tabs::-webkit-scrollbar { display: none; }
+
+  body.more-mode .more-tabs { display: flex; }
+
+  .more-tab {
+    min-height: 32px;
+    padding: 0 13px;
+    color: var(--muted);
+  }
+
+  .zoom-tools {
+    order: 2;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #252525;
+  }
+
+  .zoom-tools button {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .zoom-tools button:hover { background: #363636; }
+
+  .zoom-tools button:disabled {
+    cursor: default;
+    opacity: .38;
+  }
+
+  .zoom-tools button:disabled:hover { background: transparent; }
+
+  .zoom-value {
+    min-width: 42px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .lead-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+  }
+
+  .hero-carousel {
+    grid-column: 1 / 2;
+    width: 100%;
+    max-width: 100%;
+    contain: layout paint;
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 8 / 5;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #111;
+    box-shadow: var(--shadow);
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .38s ease;
+  }
+
+  .slide.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .slide:not(.active) .slide-content {
+    visibility: hidden;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #111;
+    display: block;
+  }
+
+  .slide::after {
+    content: "";
+    position: absolute;
+    inset: 28% 0 0;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .90));
+  }
+
+  .slide-content {
+    position: absolute;
+    left: 26px;
+    right: 24px;
+    bottom: 46px;
+    z-index: 2;
+  }
+
+  .source {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 650;
+  }
+
+  .source-logo {
+    display: grid;
+    place-items: center;
+    width: 27px;
+    height: 27px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, .92);
+    color: #111;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .slide h1 {
+    max-width: min(760px, calc(100% - 40px));
+    margin: 0;
+    font-size: clamp(28px, 2.45vw, 40px);
+    line-height: 1.18;
+    letter-spacing: 0;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, .38);
+  }
+
+  body.more-mode .lead-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    gap: 22px;
+    align-items: stretch;
+  }
+
+  body.more-mode .hero-carousel {
+    aspect-ratio: 16 / 10;
+  }
+
+  body.more-mode .slide img {
+    object-fit: cover;
+    opacity: .78;
+  }
+
+  body.more-mode .slide::after {
+    inset: 38% 0 0;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .78) 46%, rgba(0, 0, 0, .94));
+  }
+
+  body.more-mode .slide-content {
+    left: 24px;
+    right: 24px;
+    bottom: 34px;
+    max-width: min(620px, calc(100% - 48px));
+  }
+
+  body.more-mode .source {
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+
+  body.more-mode .slide h1 {
+    max-width: 100%;
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: clamp(22px, 1.72vw, 30px);
+    line-height: 1.2;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  body.more-mode .dots {
+    bottom: 12px;
+    max-width: calc(100% - 140px);
+    opacity: .72;
+  }
+
+  .engagement {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 18px;
+    color: #f3f3f3;
+    font-size: 15px;
+  }
+
+  .engagement span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 72px;
+    border: 0;
+    border-radius: var(--radius);
+    background: rgba(0, 0, 0, .28);
+    color: rgba(255, 255, 255, .82);
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  .nav-arrow:hover { background: rgba(0, 0, 0, .42); }
+  .nav-arrow.prev { left: 0; }
+  .nav-arrow.next { right: 0; }
+
+  .dots {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    max-width: calc(100% - 180px);
+    overflow: hidden;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, .48);
+    transform: translateX(-50%);
+  }
+
+  .slide-count {
+    position: absolute;
+    right: 12px;
+    bottom: 16px;
+    z-index: 5;
+    min-width: 52px;
+    padding: 6px 9px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, .48);
+    color: rgba(255, 255, 255, .86);
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .dot {
+    flex: 0 0 auto;
+    width: 6px;
+    height: 6px;
+    border: 0;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, .55);
+    cursor: pointer;
+  }
+
+  .dot.active {
+    width: 26px;
+    background: #fff;
+  }
+
+  .side-stack {
+    grid-column: 2 / 4;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    align-content: stretch;
+    gap: 14px;
+    min-width: 0;
+    height: var(--lead-side-height, calc((min(1960px, 100vw - 40px) - 28px) * .3125));
+    overflow: hidden;
+  }
+
+  .side-stack > .widget:not(.rail-progress) {
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .widget {
+    min-width: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--panel);
+    box-shadow: var(--shadow);
+  }
+
+  .rail-progress {
+    display: none;
+  }
+
+  .widget-body { padding: 16px; }
+
+  .side-stack > .widget:not(.rail-progress) .widget-body {
+    height: 100%;
+    padding: 0;
+  }
+
+  .side-stack > .widget:not(.rail-progress) .widget-title {
+    display: none;
+  }
+
+  .widget-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 750;
+    text-transform: uppercase;
+  }
+
+  .score {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+    align-items: center;
+    padding: 13px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .score:first-of-type { border-top: 0; padding-top: 0; }
+  .score b { display: block; font-size: 16px; }
+  .score span { color: var(--muted); font-size: 13px; }
+  .score strong { color: #fff; font-size: 20px; }
+
+  .progress-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+    gap: 10px;
+  }
+
+  .progress-stat {
+    --tone: var(--accent);
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .02));
+  }
+
+  .progress-stat .stat-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    margin-bottom: 9px;
+  }
+
+  .progress-stat i {
+    display: grid;
+    place-items: center;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: color-mix(in srgb, var(--tone) 18%, transparent);
+    color: var(--tone);
+    font-size: 15px;
+  }
+
+  .progress-stat b {
+    display: block;
+    overflow: hidden;
+    color: var(--tone);
+    font-size: 13px;
+    line-height: 1.1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .progress-stat small {
+    display: block;
+    overflow: hidden;
+    margin-top: 2px;
+    color: var(--soft);
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .stat-value {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 8px;
+    color: var(--tone);
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 0;
+  }
+
+  .stat-value span {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .progress-meter {
+    display: block;
+    width: 100%;
+    height: 5px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .10);
+  }
+
+  .progress-meter > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--tone), color-mix(in srgb, var(--tone) 52%, #ffffff));
+  }
+
+  .progress-stat[data-tone="china"] { --tone: var(--accent-2); }
+  .progress-stat[data-tone="world"] { --tone: var(--blue); }
+  .progress-stat[data-tone="water"],
+  .progress-card[data-tone="water"] { --tone: #55b7d8; }
+  .progress-stat[data-tone="ro"],
+  .progress-card[data-tone="ro"] { --tone: #7bd4b6; }
+  .progress-stat[data-tone="nsf"],
+  .progress-card[data-tone="nsf"] { --tone: #c5a3ff; }
+  .progress-stat[data-tone="reading"],
+  .progress-card[data-tone="reading"] { --tone: #f0b85e; }
+  .progress-stat[data-tone="engineering"],
+  .progress-card[data-tone="engineering"] { --tone: #ef8f8f; }
+
+  .knowledge-panel { display: none; }
+
+  body.more-mode .running-panel { display: none; }
+  body.more-mode .knowledge-panel { display: block; }
+
+  .side-stack > .knowledge-panel .widget-body {
+    height: 100%;
+    padding: 18px;
+  }
+
+  .side-stack > .knowledge-panel .widget-title {
+    display: flex;
+  }
+
+  .knowledge-link-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    height: calc(100% - 34px);
+  }
+
+  .knowledge-link {
+    position: relative;
+    min-height: 118px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #222;
+  }
+
+  .knowledge-link img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    display: block;
+    opacity: .78;
+  }
+
+  .knowledge-link::after {
+    content: "";
+    position: absolute;
+    inset: 36% 0 0;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .88));
+  }
+
+  .knowledge-link span {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 11px;
+    z-index: 2;
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 850;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .56);
+  }
+
+  .map-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    height: 100%;
+    align-items: stretch;
+    min-width: 0;
+  }
+
+  .map-combo-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #242424;
+  }
+
+  .map-combo-card:hover {
+    border-color: rgba(255, 255, 255, .24);
+    background: #2a2a2a;
+  }
+
+  .map-preview-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #242424;
+  }
+
+  .map-preview-card:hover {
+    border-color: rgba(255, 255, 255, .24);
+    background: #2a2a2a;
+  }
+
+  .mini-map-window {
+    display: grid;
+    place-items: center;
+    flex: 1 1 auto;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 42%, rgba(74, 163, 255, .20), transparent 64%), #1b222d;
+  }
+
+  .world-summary-card,
+  .map-stack-card {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .world-map-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .world-map-panel .mini-map-window {
+    flex: 1 1 auto;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
+  .world-map-panel .map-preview-copy {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    z-index: 2;
+    padding: 0;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .72);
+    pointer-events: none;
+  }
+
+  .world-map-panel .map-preview-copy b {
+    font-size: clamp(16px, 1.4vw, 22px);
+  }
+
+  .world-map-panel .map-preview-copy span {
+    color: rgba(255, 255, 255, .76);
+    font-size: 12px;
+  }
+
+  .world-map-panel .map-preview-copy strong {
+    font-size: clamp(22px, 2vw, 32px);
+  }
+
+  .mini-map-window.world-map-window svg {
+    width: 100% !important;
+    height: 100% !important;
+    transform: none;
+    transform-origin: center center;
+  }
+
+  .map-stack-card {
+    gap: 0;
+    background: #222;
+  }
+
+  .map-stack-card .map-preview-card {
+    flex: none;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .map-stack-card .mini-map-window {
+    flex: 1 1 auto;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
+  .map-stack-card .map-preview-copy {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    z-index: 2;
+    padding: 0;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .74);
+    pointer-events: none;
+  }
+
+  .map-stack-card .map-preview-copy b {
+    font-size: clamp(15px, 1.25vw, 20px);
+  }
+
+  .map-stack-card .map-preview-copy span {
+    color: rgba(255, 255, 255, .76);
+    font-size: 11px;
+  }
+
+  .map-stack-card .map-preview-copy strong {
+    font-size: clamp(19px, 1.7vw, 28px);
+  }
+
+  .mini-map-window.us-map-window svg {
+    width: 100% !important;
+    height: 100% !important;
+    transform: none;
+    transform-origin: center center;
+  }
+
+  .mini-map-window.cn-map-window svg {
+    width: 100% !important;
+    height: 100% !important;
+    transform: none;
+    transform-origin: center center;
+  }
+
+  .map-stack-card .map-preview-card + .map-preview-card {
+    border-top: 1px solid var(--line);
+  }
+
+  .map-stack-card .map-preview-card:hover {
+    background: rgba(255, 255, 255, .025);
+  }
+
+  .mini-map-window svg {
+    display: block;
+    min-width: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none;
+  }
+
+  .map-status-badges {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    pointer-events: none;
+  }
+
+  .map-status-badges span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 7px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 999px;
+    background: rgba(20, 20, 20, .72);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    backdrop-filter: blur(8px);
+  }
+
+  .map-status-badges i {
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  .mini-map-window svg path,
+  .mini-map-window svg rect {
+    transition: fill .18s ease, opacity .18s ease, stroke .18s ease;
+  }
+
+  .map-preview-copy {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+    flex: 0 0 auto;
+    padding: 10px 12px;
+  }
+
+  .map-preview-copy b {
+    display: block;
+    color: #fff;
+    font-size: 13px;
+  }
+
+  .map-preview-copy span {
+    display: block;
+    margin-top: 2px;
+    color: var(--soft);
+    font-size: 11px;
+  }
+
+  .map-preview-copy strong {
+    color: #fff;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .lead-stat-list {
+    display: grid;
+    gap: 8px;
+    flex: none;
+    min-height: 0;
+    align-content: center;
+    padding: 12px;
+    border-top: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .012));
+  }
+
+  .lead-stat-row {
+    --tone: var(--accent);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .lead-stat-row[data-tone="china"] { --tone: var(--accent-2); }
+  .lead-stat-row[data-tone="world"] { --tone: var(--blue); }
+
+  .lead-stat-row b {
+    display: block;
+    color: var(--tone);
+    font-size: 12px;
+    line-height: 1.1;
+  }
+
+  .lead-stat-row small {
+    display: block;
+    margin-top: 2px;
+    color: var(--soft);
+    font-size: 10px;
+    line-height: 1.15;
+  }
+
+  .lead-stat-row strong {
+    color: #fff;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  .lead-stat-row .progress-meter {
+    grid-column: 1 / -1;
+    height: 4px;
+  }
+
+  .profile-card {
+    display: grid;
+    grid-template-columns: 78px minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+  }
+
+  .profile-card img {
+    width: 78px;
+    height: 78px;
+    border-radius: var(--radius);
+    object-fit: cover;
+  }
+
+  .profile-card h2 {
+    margin: 0;
+    font-size: 22px;
+  }
+
+  .profile-card p {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .feed-grid {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    --feed-columns: 5;
+    --feed-row-height: clamp(360px, 25vw, 520px);
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-rows: var(--feed-row-height);
+    grid-template-columns: repeat(var(--feed-columns), minmax(0, 1fr));
+    grid-template-rows: auto;
+    gap: 12px;
+    align-items: stretch;
+    min-width: 0;
+  }
+
+  body.more-mode .feed-grid {
+    gap: 20px;
+  }
+
+  .card {
+    display: block;
+    position: relative;
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--panel);
+    color: inherit;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .22);
+    transition: transform .16s ease, background .16s ease;
+  }
+
+  .feed-grid .card {
+    align-self: stretch;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    background: var(--panel-3);
+  }
+
+  .layout-span-1 { grid-column: span 1; }
+  .layout-span-2 { grid-column: span 2; }
+  .span-3,
+  .layout-span-3 { grid-column: span 3; }
+  .span-4,
+  .layout-span-4 { grid-column: span 4; }
+  .span-5,
+  .layout-span-5 { grid-column: span 5; }
+  .span-6,
+  .layout-span-6 { grid-column: span 6; }
+  .span-7,
+  .layout-span-7 { grid-column: span 7; }
+  .span-8,
+  .layout-span-8 { grid-column: span 8; }
+  .span-12,
+  .layout-span-12 { grid-column: span 12; }
+
+  .feed-grid .layout-span-1 { grid-column: span 1 !important; }
+  .feed-grid .layout-span-2 { grid-column: span 2 !important; }
+  .feed-grid .layout-span-3 { grid-column: span 3 !important; }
+  .feed-grid .layout-span-4 { grid-column: span 4 !important; }
+  .feed-grid .layout-span-5 { grid-column: span 5 !important; }
+  .feed-grid .layout-span-6 { grid-column: span 6 !important; }
+  .feed-grid .layout-span-7 { grid-column: span 7 !important; }
+  .feed-grid .layout-span-8 { grid-column: span 8 !important; }
+  .feed-grid .layout-span-12 { grid-column: span 12 !important; }
+
+  .feed-grid > .section-label,
+  .feed-grid > .empty {
+    grid-column: 1 / -1 !important;
+  }
+
+  .feed-grid .layout-span-1.overlay-card {
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: auto;
+  }
+
+  .feed-grid .layout-span-1.overlay-card img {
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .feed-grid .layout-span-1.overlay-card::after {
+    display: none;
+  }
+
+  .feed-grid .layout-span-1.overlay-card .card-copy {
+    position: static;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 14px 16px 16px;
+  }
+
+  .feed-grid .layout-span-1.overlay-card h3 {
+    font-size: clamp(17px, calc(18px * var(--feed-type-scale, 1)), 22px);
+    line-height: 1.32;
+    text-shadow: none;
+  }
+
+  .image-top img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    background: #151515;
+  }
+
+  .image-top.tall img { height: auto; }
+
+  .card-copy {
+    display: block;
+    padding: 16px 18px 18px;
+    min-width: 0;
+  }
+
+  .compact .card-copy { padding: 14px 16px 16px; }
+
+  .image-top:not(.overlay-card) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .feed-grid .layout-span-1.image-top:not(.overlay-card) {
+    min-height: 0;
+  }
+
+  body.more-mode .feed-grid .layout-span-1.image-top:not(.overlay-card) {
+    min-height: 0;
+  }
+
+  body.more-mode .feed-grid .layout-span-2.image-top:not(.overlay-card) {
+    min-height: 0;
+  }
+
+  body.more-mode .card {
+    background: #2d2d2d;
+  }
+
+  body.more-mode .card h3 {
+    font-size: clamp(17px, calc(19px * var(--feed-type-scale, 1)), 24px);
+    line-height: 1.34;
+  }
+
+  body.more-mode .card-copy {
+    padding: 16px 18px 20px;
+  }
+
+  body.more-mode .story-meta {
+    margin-bottom: 11px;
+    font-size: 11px;
+  }
+
+  .image-top:not(.overlay-card) .card-copy {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .image-top:not(.overlay-card) .metric-row {
+    margin-top: auto;
+    padding-top: 18px;
+  }
+
+  .card h3 {
+    margin: 0;
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: clamp(18px, calc(20px * var(--feed-type-scale, 1)), 28px);
+    line-height: 1.32;
+    letter-spacing: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: normal;
+    white-space: normal;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .compact h3 {
+    font-size: clamp(17px, calc(18px * var(--feed-type-scale, 1)), 22px);
+    line-height: 1.32;
+    -webkit-line-clamp: 2;
+  }
+
+  .span-6 h3,
+  .span-7 h3,
+  .span-8 h3 {
+    font-size: clamp(20px, calc(24px * var(--feed-type-scale, 1)), 31px);
+  }
+
+  .card p {
+    margin: 9px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .overlay-card {
+    display: block;
+    position: relative;
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+
+  .feed-grid .overlay-card {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  .overlay-card img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #151515;
+  }
+
+  .overlay-card::after {
+    content: "";
+    position: absolute;
+    inset: 34% 0 0;
+    display: block;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .88));
+  }
+
+  .overlay-card .card-copy {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    max-width: none;
+    padding: 22px 24px 22px;
+  }
+
+  .overlay-card .story-meta {
+    margin-bottom: 10px;
+  }
+
+  .overlay-card h3 {
+    font-size: clamp(20px, calc(24px * var(--feed-type-scale, 1)), 32px);
+    line-height: 1.22;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .45);
+  }
+
+  .auto-overlay .card-copy { padding: 20px 22px 20px; }
+
+  .auto-overlay h3 {
+    font-size: clamp(20px, calc(24px * var(--feed-type-scale, 1)), 30px);
+    line-height: 1.28;
+  }
+
+  .story-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 650;
+  }
+
+  .progress-card {
+    display: grid;
+    align-content: start;
+    min-height: 118px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--tone) 12%, transparent), transparent 46%),
+      var(--panel);
+  }
+
+  .progress-card[data-tone="run50"] { --tone: var(--accent); }
+  .progress-card[data-tone="china"] { --tone: var(--accent-2); }
+  .progress-card[data-tone="world"] { --tone: var(--blue); }
+
+  .progress-card .stat-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .progress-card i {
+    display: grid;
+    place-items: center;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--tone) 18%, transparent);
+    color: var(--tone);
+  }
+
+  .progress-card h3 {
+    color: var(--tone);
+    font-size: 18px;
+    -webkit-line-clamp: 2;
+  }
+
+  .progress-card small {
+    display: block;
+    margin-top: 3px;
+    color: var(--soft);
+    font-size: 12px;
+  }
+
+  .progress-card .stat-value {
+    margin-bottom: 10px;
+    font-size: 26px;
+  }
+
+  .metric-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 16px;
+    color: #eee;
+    font-size: 14px;
+  }
+
+  .metric-row span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .metric-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .metric-action:hover,
+  .metric-action.is-active {
+    color: #ffffff;
+  }
+
+  .metric-action.is-active i {
+    color: var(--accent);
+  }
+
+  .comment-panel {
+    position: fixed;
+    inset: auto 22px 22px auto;
+    z-index: 80;
+    display: none;
+    width: min(420px, calc(100vw - 32px));
+    max-height: min(660px, calc(100vh - 42px));
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #2f2f2f;
+    box-shadow: 0 22px 70px rgba(0, 0, 0, .45);
+  }
+
+  .comment-panel.open {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .comment-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 15px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .comment-head b {
+    display: block;
+    font-size: 15px;
+  }
+
+  .comment-head span {
+    display: block;
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .comment-close {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: #262626;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .comment-list {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    overflow: auto;
+    padding: 14px 16px;
+  }
+
+  .comment-item {
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: #252525;
+  }
+
+  .comment-item b {
+    display: block;
+    font-size: 13px;
+  }
+
+  .comment-item p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .comment-form {
+    display: grid;
+    gap: 9px;
+    padding: 14px 16px 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .comment-form input,
+  .comment-form textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: #191919;
+    color: var(--ink);
+    outline: none;
+  }
+
+  .comment-form input {
+    height: 36px;
+    padding: 0 10px;
+  }
+
+  .comment-form textarea {
+    min-height: 76px;
+    resize: vertical;
+    padding: 9px 10px;
+  }
+
+  .comment-form button {
+    justify-self: end;
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid var(--accent);
+    border-radius: 7px;
+    background: var(--accent);
+    color: #151515;
+    font-weight: 850;
+    cursor: pointer;
+  }
+
+  .text-module {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    padding: 20px;
+    background:
+      linear-gradient(135deg, rgba(241, 163, 50, .10), transparent 42%),
+      var(--panel);
+  }
+
+  .text-module .metric-row {
+    margin-top: auto;
+    padding-top: 18px;
+  }
+
+  .feed-grid .layout-span-1.text-module {
+    min-height: 324px;
+  }
+
+  .feed-grid .layout-span-2.text-module {
+    min-height: 324px;
+  }
+
+  .module-kicker {
+    margin-bottom: 12px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 850;
+    text-transform: uppercase;
+  }
+
+  .list-module {
+    padding: 18px;
+  }
+
+  .list-item {
+    display: grid;
+    grid-template-columns: 86px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .list-item:first-child { border-top: 0; padding-top: 0; }
+
+  .list-item img {
+    width: 86px;
+    height: 64px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+
+  .list-item b {
+    display: block;
+    font-size: 15px;
+    line-height: 1.32;
+  }
+
+  .list-item span {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .section-label {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 0 -4px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 750;
+  }
+
+  .section-label.secondary-label {
+    display: none;
+  }
+
+  .empty {
+    display: none;
+    grid-column: 1 / -1;
+    min-height: 160px;
+    place-items: center;
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    color: var(--muted);
+    background: var(--panel);
+  }
+
+  .empty.show { display: grid; }
+
+  @media (max-width: 1500px) {
+    .feed-grid { --feed-columns: 4; }
+  }
+
+  @media (max-width: 1160px) {
+    .page {
+      display: block;
+      width: min(980px, calc(100% - 28px));
+    }
+    .feed-grid { --feed-columns: 3; }
+    .feed-toolbar { margin-bottom: 14px; }
+    .lead-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .hero-carousel,
+    .side-stack,
+    .feed-grid {
+      grid-column: auto;
+      grid-row: auto;
+    }
+    .side-stack {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      height: auto !important;
+      overflow: visible;
+    }
+    .side-stack > .widget:not(.rail-progress),
+    .side-stack > .widget:not(.rail-progress) .widget-body {
+      height: auto;
+      overflow: visible;
+    }
+    .span-3, .span-4 { grid-column: span 1; }
+    .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: span 2; }
+  }
+
+  @media (max-width: 860px) {
+    .feed-grid { --feed-columns: 2; }
+  }
+
+  @media (max-width: 760px) {
+    .topbar {
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 12px 14px;
+    }
+
+    .search {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    .top-actions { display: none; }
+    .page {
+      width: auto;
+      max-width: none;
+      margin: 0 12px;
+      padding: 14px 0 38px;
+    }
+    .feed-toolbar {
+      align-items: flex-start;
+      flex-direction: column;
+      width: 100%;
+      max-width: 100%;
+      overflow: visible;
+    }
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      width: 100%;
+      max-width: 100%;
+      gap: 8px;
+      overflow: visible;
+    }
+    .tab {
+      width: 100%;
+      min-width: 0;
+      min-height: 36px;
+      padding: 0 7px;
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .zoom-tools { display: none; }
+    .hero-carousel {
+      min-height: 0;
+      height: clamp(324px, calc((100vw - 24px) * .96), 390px);
+      aspect-ratio: auto;
+    }
+    .lead-grid,
+    .hero-carousel,
+    .side-stack,
+    .widget,
+    .feed-grid,
+    .progress-stat,
+    .map-preview-card {
+      width: calc(100vw - 24px);
+      max-width: calc(100vw - 24px);
+    }
+    .slide::after { display: none; }
+    .slide img {
+      height: calc(100% - 116px);
+      object-position: center top;
+    }
+    .slide-content {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      min-height: 104px;
+      padding: 9px 12px 36px;
+      background: #111;
+    }
+    .source {
+      gap: 6px;
+      margin-bottom: 5px;
+      font-size: 11px;
+    }
+    .source-logo {
+      width: 22px;
+      height: 22px;
+      font-size: 10px;
+    }
+    .slide h1 {
+      display: -webkit-box;
+      max-width: 100%;
+      overflow: hidden;
+      font-size: 17px;
+      line-height: 1.2;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .engagement {
+      display: none;
+    }
+    .dots {
+      bottom: 9px;
+      max-width: calc(100% - 92px);
+      padding: 5px 8px;
+    }
+    .slide-count {
+      right: 8px;
+      bottom: 8px;
+      min-width: 46px;
+      padding: 5px 7px;
+      font-size: 11px;
+    }
+    .nav-arrow {
+      width: 32px;
+      height: 52px;
+    }
+    .side-stack {
+      grid-template-columns: 1fr;
+      height: auto !important;
+      overflow: visible;
+    }
+    .side-stack > .widget:not(.rail-progress) {
+      height: auto;
+      overflow: visible;
+    }
+    .side-stack > .widget:not(.rail-progress) .widget-body {
+      height: auto;
+    }
+    .progress-stats { grid-template-columns: 1fr; }
+    .map-preview-grid {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+    .world-summary-card,
+    .map-stack-card {
+      grid-template-rows: auto;
+    }
+    .world-map-panel .mini-map-window,
+    .map-stack-card .mini-map-window {
+      flex: none;
+      aspect-ratio: 16 / 9;
+    }
+    .world-summary-card {
+      min-height: 0;
+    }
+    .map-stack-card .map-preview-card {
+      min-height: 248px;
+    }
+    .map-status-badges {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      right: auto;
+    }
+    .map-preview-copy {
+      display: block;
+      padding-right: 16px;
+    }
+    .map-preview-copy strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 15px;
+    }
+    .mini-map-window svg { max-width: 100% !important; }
+    .feed-grid {
+      --feed-columns: 1;
+      grid-auto-rows: auto;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .feed-grid .card { height: auto; }
+    .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: span 1; }
+    .overlay-card .card-copy { max-width: none; }
+    .image-top img, .image-top.tall img { height: auto; }
+    .comment-panel {
+      inset: auto 10px 10px 10px;
+      width: auto;
+    }
+  }
+
+  .list-item img[src*="/home-running-16x9/"] { height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
+  /* Preserve the complete 16:9 running artwork, including its title and border. */
+  .feed-grid .card.home-running-story > img {
+    position: static;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+<a href="/" style="display:block;padding:10px 16px;color:white;background:#24282b">← Zhennan Zhang home</a>
+<header class="topbar">
+  <a class="brand" href="https://zhennanzhang.com/">
+    <span class="brand-mark">ZZ</span>
+    <span>Arsenan ZZ</span>
+  </a>
+  <form class="search" role="search">
+    <input id="searchInput" type="search" placeholder="Search stories" autocomplete="off">
+    <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
+  </form>
+  <div class="top-actions">
+    <span class="action-pill"><i class="bi bi-cloud-sun"></i> Run50 weather</span>
+    <span class="action-pill"><i class="bi bi-person-circle"></i> 42 entries</span>
+  </div>
+</header>
+
+<main class="page">
+  <div class="feed-toolbar">
+    <nav class="tabs" aria-label="Site directories">
+      <a class="tab active" data-filter="all" href="https://zhennanzhang.com/">All</a>
+      <a class="tab" data-filter="run50" href="https://zhennanzhang.com/run50/">Run50</a>
+      <a class="tab" data-filter="runcn" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2018">RunCN</a>
+      <a class="tab" data-filter="runworld" href="https://zhennanzhang.com/run50/running-map.html">RunWorld</a>
+      <a class="tab" data-filter="english" href="https://zhennanzhang.com/run50/stories/english/">English Stories</a>
+      <a class="tab" data-filter="facebook" href="https://zhennanzhang.com/run50/facebook/">Facebook</a>
+      <a class="tab" data-filter="trip" href="https://zhennanzhang.com/run50/mainly-marathons-new-england-2026-guide.html">Trips</a>
+      <a class="tab" data-filter="other" href="https://zhennanzhang.com/#more">More</a>
+    </nav>
+    <nav class="more-tabs" aria-label="Knowledge directories">
+      <button class="tab more-tab active" type="button" data-more-filter="all">All</button>
+      <button class="tab more-tab" type="button" data-more-filter="water">Water</button>
+      <button class="tab more-tab" type="button" data-more-filter="ro">RO</button>
+      <button class="tab more-tab" type="button" data-more-filter="nsf">NSF</button>
+      <button class="tab more-tab" type="button" data-more-filter="reading">Reading Skill</button>
+      <button class="tab more-tab" type="button" data-more-filter="wqa">WQA</button>
+      <button class="tab more-tab" type="button" data-more-filter="softener">Softener</button>
+      <button class="tab more-tab" type="button" data-more-filter="about">Engineering</button>
+    </nav>
+    <div class="zoom-tools" aria-label="Card zoom controls">
+      <button id="zoomOut" type="button" aria-label="Zoom out" title="Zoom out"><i class="bi bi-zoom-out"></i></button>
+      <span class="zoom-value" id="zoomValue">100%</span>
+      <button id="zoomIn" type="button" aria-label="Zoom in" title="Zoom in"><i class="bi bi-zoom-in"></i></button>
+    </div>
+  </div>
+
+  <section class="lead-grid">
+    <div class="hero-carousel" aria-label="Featured story carousel">
+      <a class="slide active" href="https://zhennanzhang.com/run50/wechat-en/miami-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 facebook stories">
+        <img src="/assets/home-running-16x9/miami-marathon.webp" alt="Miami marathon story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">50</span> Run50 · Miami</span>
+          <h1>Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi&#x27;s backyard</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>429</span><span><i class="bi bi-chat-square"></i>82</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/louisville-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
+        <img src="/assets/home-running-16x9/louisville-marathon.webp" alt="Louisville Marathon English story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">KY</span> Run50 · Louisville</span>
+          <h1>Kentucky gave me my first marathon in North America</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>88</span><span><i class="bi bi-chat-square"></i>16</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/south-carolina-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 facebook stories">
+        <img src="/assets/home-running-16x9/south-carolina-marathon.webp" alt="South Carolina marathon story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">SC</span> Run50 · Greer</span>
+          <h1>Too Slow for Boston gave me a 26.2-mile run with the stubborn mule medal</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>312</span><span><i class="bi bi-chat-square"></i>48</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/little-rock-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 facebook stories">
+        <img src="/assets/home-running-16x9/little-rock-marathon.webp" alt="Little Rock marathon story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">AR</span> Run50 · Little Rock</span>
+          <h1>Little Rock gave me a 26.2-mile run with the massive dinosaur medal</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>970</span><span><i class="bi bi-chat-square"></i>258</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/hong-kong-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="runcn facebook stories trip">
+        <img src="https://zhennanzhang.com/assets/cover-medal-fb-hk.jpg?v=20260628-en-runcn-23-26-v1" alt="Hong Kong marathon story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">HK</span> RunCN · Hong Kong</span>
+          <h1>Hong Kong turned a marathon into a tunnel-and-bridge city tour</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>429</span><span><i class="bi bi-chat-square"></i>82</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/pisa-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="runworld facebook stories trip">
+        <img src="/assets/home-running-16x9/pisa-marathon.webp" alt="Pisa marathon story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">IT</span> RunWorld · Pisa</span>
+          <h1>Pisa turned a marathon into a Tuscan art-school road trip</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>366</span><span><i class="bi bi-chat-square"></i>63</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/mexico-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="runworld facebook stories trip">
+        <img src="/assets/home-running-16x9/mexico-marathon.webp" alt="Mexico City marathon story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">MX</span> RunWorld · Mexico City</span>
+          <h1>Mexico City gave me a 26.2-mile high-altitude plateau challenge</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>284</span><span><i class="bi bi-chat-square"></i>41</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/cleveland-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
+        <img src="/assets/home-running-16x9/cleveland-marathon.webp" alt="Cleveland Marathon English story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">OH</span> Run50 · Cleveland</span>
+          <h1>Cleveland gave me a cold 26.2-mile run from night into daylight</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>122</span><span><i class="bi bi-chat-square"></i>19</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/new-york-city-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
+        <img src="/assets/home-running-16x9/new-york-city-marathon.webp" alt="New York City Marathon English story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">NY</span> Run50 · New York City</span>
+          <h1>New York turned 26.2 miles into one enormous five-borough street party</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>188</span><span><i class="bi bi-chat-square"></i>26</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/honolulu-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
+        <img src="/assets/home-running-16x9/honolulu-marathon.webp" alt="Honolulu Marathon English story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">HI</span> Run50 · Honolulu</span>
+          <h1>Honolulu made a first marathon feel like an all-day island celebration</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>203</span><span><i class="bi bi-chat-square"></i>35</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/denver-colfax-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
+        <img src="/assets/home-running-16x9/denver-colfax-marathon.webp" alt="Denver Marathon English story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">CO</span> Run50 · Denver</span>
+          <h1>Denver gave me 26.2 Mile High miles, stadium grass and mountain light</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>177</span><span><i class="bi bi-chat-square"></i>24</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/anchorage-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
+        <img src="/assets/home-running-16x9/anchorage-marathon.webp" alt="Anchorage Marathon English story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">AK</span> Run50 · Anchorage</span>
+          <h1>Alaska had no aurora, but Anchorage still gave me a wild 26.2 miles</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>96</span><span><i class="bi bi-chat-square"></i>13</span></span>
+        </span>
+      </a>
+      <a class="slide" href="https://zhennanzhang.com/run50/wechat-en/san-francisco-marathon-modern-rail.html?v=20260706-wechat-en" data-slide data-card data-tags="run50 english stories">
+        <img src="/assets/home-running-16x9/san-francisco-marathon.webp" alt="San Francisco Marathon English story cover">
+        <span class="slide-content">
+          <span class="source"><span class="source-logo">CA</span> Run50 · San Francisco</span>
+          <h1>San Francisco turned 26.2 miles into fog, bridge wind, hills and bay light</h1>
+          <span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>144</span><span><i class="bi bi-chat-square"></i>21</span></span>
+        </span>
+      </a>
+      <button class="nav-arrow prev" type="button" aria-label="Previous story"><i class="bi bi-chevron-left"></i></button>
+      <button class="nav-arrow next" type="button" aria-label="Next story"><i class="bi bi-chevron-right"></i></button>
+      <div class="dots" aria-label="Carousel slides"></div>
+      <div class="slide-count" id="slideCount">1 / ...</div>
+    </div>
+
+    <aside class="side-stack">
+      <section class="widget rail-progress running-panel">
+        <div class="widget-body">
+          <div class="widget-title"><span>Running Progress</span><i class="bi bi-activity"></i></div>
+          <div class="progress-stats" aria-label="Running progress by region">
+            <a class="progress-stat" data-tone="run50" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2020">
+              <span class="stat-head"><i class="bi bi-flag"></i><span><b>United States</b><small>Run50 states</small></span></span>
+              <span class="stat-value">35<span>/ 50</span></span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:70%"></span></span>
+            </a>
+            <a class="progress-stat" data-tone="china" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2018">
+              <span class="stat-head"><i class="bi bi-compass"></i><span><b>China</b><small>incl. HK/MO/TW</small></span></span>
+              <span class="stat-value">18<span>/ 34</span></span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:53%"></span></span>
+            </a>
+            <a class="progress-stat" data-tone="world" href="https://zhennanzhang.com/run50/run50.html">
+              <span class="stat-head"><i class="bi bi-globe-americas"></i><span><b>World</b><small>country footprint</small></span></span>
+              <span class="stat-value">6<span>/ 195</span></span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:3%"></span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="widget running-panel">
+        <div class="widget-body">
+          <div class="widget-title"><span>Interactive Maps</span><i class="bi bi-map"></i></div>
+          <div class="map-preview-grid" aria-label="Run map previews">
+            <a class="map-combo-card world-summary-card" href="https://zhennanzhang.com/run50/running-map.html">
+              <div class="world-map-panel">
+                <span class="map-status-badges"><span><i class="bi bi-check-circle-fill"></i>6 countries</span><span><i class="bi bi-geo-alt-fill"></i>64 city dots</span></span>
+                <div class="mini-map-window world-map-window" id="worldProgressMap" aria-label="RunWorld world map preview"></div>
+                <span class="map-preview-copy"><span><b>RunWorld</b><span>Countries and race cities</span></span><strong>6/195</strong></span>
+              </div>
+              <div class="lead-stat-list" aria-label="Running progress summary">
+                <span class="lead-stat-row" data-tone="run50">
+                  <span><b>Run50 Map</b><small>Completed and planned states</small></span><strong>35/50</strong>
+                  <span class="progress-meter" aria-hidden="true"><span style="width:70%"></span></span>
+                </span>
+                <span class="lead-stat-row" data-tone="china">
+                  <span><b>RunCN Map</b><small>Province-level regions incl. HK/MO/TW</small></span><strong>18/34</strong>
+                  <span class="progress-meter" aria-hidden="true"><span style="width:53%"></span></span>
+                </span>
+                <span class="lead-stat-row" data-tone="world">
+                  <span><b>RunWorld Map</b><small>Countries and race cities</small></span><strong>6/195</strong>
+                  <span class="progress-meter" aria-hidden="true"><span style="width:3%"></span></span>
+                </span>
+              </div>
+            </a>
+            <div class="map-combo-card map-stack-card" aria-label="Run50 and RunCN map previews">
+              <a class="map-preview-card" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2020">
+                <span class="map-status-badges"><span><i class="bi bi-check-circle-fill"></i>35 done</span><span><i class="bi bi-calendar2-check"></i>15 planned</span></span>
+                <div class="mini-map-window us-map-window" id="usProgressMap" aria-label="Run50 United States map preview"></div>
+                <span class="map-preview-copy"><span><b>Run50</b><span>Completed and planned states</span></span><strong>35/50</strong></span>
+              </a>
+              <a class="map-preview-card" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2018">
+                <span class="map-status-badges"><span><i class="bi bi-check-circle-fill"></i>18 done</span><span><i class="bi bi-calendar2-check"></i>16 planned</span></span>
+                <div class="mini-map-window cn-map-window" id="cnProgressMap" aria-label="RunCN China map preview"></div>
+                <span class="map-preview-copy"><span><b>RunCN</b><span>Province-level regions incl. HK/MO/TW</span></span><strong>18/34</strong></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="widget knowledge-panel">
+        <div class="widget-body">
+          <div class="widget-title"><span>Knowledge Pages</span><i class="bi bi-bookmarks"></i></div>
+          <div class="progress-stats" aria-label="Knowledge page groups">
+            <a class="progress-stat" data-tone="water" href="https://zhennanzhang.com/water/">
+              <span class="stat-head"><i class="bi bi-droplet"></i><span><b>Water</b><small>Water treatment hub</small></span></span>
+              <span class="stat-value">Hub</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+            <a class="progress-stat" data-tone="ro" href="https://zhennanzhang.com/ro/RO-Complete-Guide-EN.html">
+              <span class="stat-head"><i class="bi bi-funnel"></i><span><b>RO</b><small>Reverse osmosis guide</small></span></span>
+              <span class="stat-value">Guide</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+            <a class="progress-stat" data-tone="nsf" href="https://zhennanzhang.com/nsf/">
+              <span class="stat-head"><i class="bi bi-patch-check"></i><span><b>NSF</b><small>Standards and metrics</small></span></span>
+              <span class="stat-value">Library</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+            <a class="progress-stat" data-tone="reading" href="https://zhennanzhang.com/reading/">
+              <span class="stat-head"><i class="bi bi-journal-text"></i><span><b>Reading Skill</b><small>Books and study notes</small></span></span>
+              <span class="stat-value">Notes</span>
+              <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="widget knowledge-panel">
+        <div class="widget-body">
+          <div class="widget-title"><span>Featured Knowledge</span><i class="bi bi-grid-3x3-gap"></i></div>
+          <div class="knowledge-link-grid" aria-label="Featured knowledge pages">
+            <a class="knowledge-link" href="https://zhennanzhang.com/water-softener/">
+              <img src="https://zhennanzhang.com/assets/thumb-water-softener.jpg?v=20260626-medal-v2" alt="Water softener hub cover">
+              <span>Water Softener Hub</span>
+            </a>
+            <a class="knowledge-link" href="https://zhennanzhang.com/wqa/WQA_2026_Expo_Observation_Report_EN.html">
+              <img src="https://zhennanzhang.com/assets/thumb-wqa-expo.jpg?v=20260626-medal-v2" alt="WQA expo cover">
+              <span>WQA 2026 Expo</span>
+            </a>
+            <a class="knowledge-link" href="https://zhennanzhang.com/reading/nano-ic.html">
+              <img src="https://zhennanzhang.com/assets/thumb-nano-ic-reader.jpg?v=20260626-medal-v2" alt="Nano IC reader cover">
+              <span>Nano IC Reading</span>
+            </a>
+            <a class="knowledge-link" href="https://zhennanzhang.com/this-is-me/structural-design/">
+              <img src="https://zhennanzhang.com/assets/thumb-me-structural-design.jpg?v=20260627-me-clean-v4" alt="Structural design cover">
+              <span>Engineering Work</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </aside>
+  </section>
+
+  <section class="feed-grid">
+    <div class="section-label"><span id="feedTitle">Running front page</span><span id="visibleCount">19 items</span></div>
+
+    <a class="card progress-card" data-tone="run50" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2020" data-card data-tags="run50 progress stories">
+      <span>
+        <span class="stat-head"><i class="bi bi-flag"></i><span><h3>United States</h3><small>Run50 states</small></span></span>
+        <span class="stat-value">35<span>/ 50</span></span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:70%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="china" href="https://zhennanzhang.com/run50/run50-scripts.html#year-2018" data-card data-tags="runcn progress stories">
+      <span>
+        <span class="stat-head"><i class="bi bi-compass"></i><span><h3>China</h3><small>incl. HK/MO/TW</small></span></span>
+        <span class="stat-value">18<span>/ 34</span></span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:53%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="world" href="https://zhennanzhang.com/run50/run50.html" data-card data-tags="runworld progress stories trip">
+      <span>
+        <span class="stat-head"><i class="bi bi-globe-americas"></i><span><h3>World</h3><small>country footprint</small></span></span>
+        <span class="stat-value">6<span>/ 195</span></span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:3%"></span></span>
+    </a>
+
+    <a class="card progress-card" data-tone="water" href="https://zhennanzhang.com/water/" data-card data-tags="water knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-droplet"></i><span><h3>Water</h3><small>Treatment and product notes</small></span></span>
+        <span class="stat-value">Hub</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="ro" href="https://zhennanzhang.com/ro/RO-Complete-Guide-EN.html" data-card data-tags="water ro knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-funnel"></i><span><h3>RO</h3><small>Reverse osmosis systems</small></span></span>
+        <span class="stat-value">Guide</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="nsf" href="https://zhennanzhang.com/nsf/" data-card data-tags="water nsf knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-patch-check"></i><span><h3>NSF</h3><small>Standards library</small></span></span>
+        <span class="stat-value">Index</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+    <a class="card progress-card" data-tone="reading" href="https://zhennanzhang.com/reading/" data-card data-tags="reading knowledge">
+      <span>
+        <span class="stat-head"><i class="bi bi-journal-text"></i><span><h3>Reading Skill</h3><small>Books, notes, and study cards</small></span></span>
+        <span class="stat-value">Shelf</span>
+      </span>
+      <span class="progress-meter" aria-hidden="true"><span style="width:100%"></span></span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water/" data-card data-tags="water knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-water-softener.jpg?v=20260626-medal-v2" alt="Water knowledge hub cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">W</span> Water Hub</span>
+        <h3>Water treatment notes, softener logic, RO systems, and product research</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/ro/ro-system-explained.html" data-card data-tags="water ro knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-ro-system.jpg?v=20260626-medal-v2" alt="RO system explained cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">RO</span> System Explained</span>
+        <h3>How a reverse osmosis system works from sediment filter to storage tank</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/nsf/nsf-water-guide-codex.html" data-card data-tags="water nsf knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-nsf-standards.jpg?v=20260626-medal-v2" alt="NSF water guide cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">NSF</span> Water Guide</span>
+        <h3>NSF/ANSI drinking water standards explained for consumer product decisions</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/" data-card data-tags="reading knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-reading-home.jpg?v=20260626-medal-v2" alt="Reading skill hub cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">R</span> Reading Skill</span>
+        <h3>Reading notes, study cards, and technical learning pages collected in one shelf</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/wqa/WQA_2026_Presentations_Summary-V2.html" data-card data-tags="water wqa knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-wqa-presentations.jpg?v=20260626-medal-v2" alt="WQA presentations cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WQA</span> Presentations</span>
+        <h3>WQA 2026 presentations summary for water treatment product research</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water-softener/" data-card data-tags="water softener knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-water-softener.jpg?v=20260626-medal-v2" alt="Water softener hub cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WS</span> Softener Hub</span>
+        <h3>Water softener product logic, sizing, resin, regeneration, and valve research</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/wqa/DROP_Research_Report_EN.html" data-card data-tags="water wqa knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-wqa-expo.jpg?v=20260626-medal-v2" alt="DROP research report cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WQA</span> DROP Report</span>
+        <h3>DROP Research Report for connected water treatment products</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/wqa/EZsalt_Research_Report_2_EN.html" data-card data-tags="water wqa softener knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-wqa-presentations.jpg?v=20260626-medal-v2" alt="EZsalt research report cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WQA</span> EZsalt</span>
+        <h3>EZsalt research notes for smart salt monitoring and softener maintenance</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/Softener-Water/" data-card data-tags="water softener knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-softener.jpg?v=20260626-medal-v2" alt="Softener calculator cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WS</span> Softener Tool</span>
+        <h3>Water softener calculation and product comparison workspace</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/mechanical-testing/" data-card data-tags="about engineering knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-me-mechanical-testing.jpg?v=20260627-me-clean-v4" alt="Mechanical testing cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">Me</span> Testing</span>
+        <h3>Mechanical testing projects, methods, and lab-centered engineering work</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/little-rock-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/little-rock-marathon.webp" alt="Little Rock marathon cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">AR</span> Run50 · Little Rock</span>
+        <h3>Little Rock gave me a 26.2-mile run with the massive dinosaur medal</h3>
+        <span class="metric-row"><span><i class="bi bi-hand-thumbs-up"></i>970</span><span><i class="bi bi-chat-square"></i>258</span></span>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/hong-kong-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories trip">
+      <img src="https://zhennanzhang.com/assets/cover-medal-fb-hk.jpg?v=20260628-en-runcn-23-26-v1" alt="Hong Kong marathon cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">HK</span> RunCN · Hong Kong</span>
+        <h3>Hong Kong turned a marathon into a tunnel-and-bridge city tour</h3>
+        <span class="metric-row"><span><i class="bi bi-hand-thumbs-up"></i>312</span><span><i class="bi bi-chat-square"></i>54</span></span>
+      </span>
+    </a>
+
+    <a class="card span-6 overlay-card" href="https://zhennanzhang.com/run50/wechat-en/pisa-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runworld facebook stories trip">
+      <img src="/assets/home-running-16x9/pisa-marathon.webp" alt="Pisa marathon cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">IT</span> RunWorld · Pisa</span>
+        <h3>Pisa turned a marathon into a Tuscan art-school road trip</h3>
+        <span class="metric-row"><span><i class="bi bi-hand-thumbs-up"></i>429</span><span><i class="bi bi-chat-square"></i>82</span></span>
+      </span>
+    </a>
+
+    <a class="card span-4 text-module" href="https://zhennanzhang.com/run50/run50.html" data-card data-tags="run50 runcn runworld trip stories">
+      <div class="module-kicker">Interactive Project</div>
+      <h3>Running Map</h3>
+      <p>A global marathon footprint that connects completed countries, regions, race cities, and story links. Built as an entry point instead of a plain list.</p>
+      <span class="metric-row"><span><i class="bi bi-geo-alt"></i>64 city dots</span><span><i class="bi bi-map"></i>Open map</span></span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/run50/run50-scripts.html?v=20260702-runcn-2017-b#welcome" data-card data-tags="run50 runcn scripts stories">
+      <img src="https://zhennanzhang.com/assets/run50-home-cover-videos-ai.png?v=20260702-content-cover-ai-v1" alt="Run50 voiceover scripts cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">VO</span> Run50 · Scripts</span>
+        <h3>Voiceover script library with Run50 and RunCN map entries</h3>
+        <span class="metric-row"><span><i class="bi bi-mic"></i>Scripts</span><span><i class="bi bi-map"></i>Maps</span></span>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/louisville-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
+      <img src="/assets/home-running-16x9/louisville-marathon.webp" alt="Louisville Marathon English story cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">KY</span> Run50 · Louisville</span>
+        <h3>Kentucky gave me my first marathon in North America</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/cleveland-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
+      <img src="/assets/home-running-16x9/cleveland-marathon.webp" alt="Cleveland Marathon English story cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">OH</span> Run50 · Cleveland</span>
+        <h3>Cleveland gave me a cold 26.2-mile run from night into daylight</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/new-york-city-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
+      <img src="/assets/home-running-16x9/new-york-city-marathon.webp" alt="New York City Marathon English story cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">NY</span> Run50 · New York City</span>
+        <h3>New York turned 26.2 miles into one enormous five-borough street party</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/san-francisco-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
+      <img src="/assets/home-running-16x9/san-francisco-marathon.webp" alt="San Francisco Marathon English story cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">CA</span> Run50 · San Francisco</span>
+        <h3>San Francisco turned 26.2 miles into fog, bridge wind, hills and bay light</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/honolulu-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
+      <img src="/assets/home-running-16x9/honolulu-marathon.webp" alt="Honolulu Marathon English story cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">HI</span> Run50 · Honolulu</span>
+        <h3>Honolulu made a first marathon feel like an all-day island celebration</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/denver-colfax-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
+      <img src="/assets/home-running-16x9/denver-colfax-marathon.webp" alt="Denver Marathon English story cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">CO</span> Run50 · Denver</span>
+        <h3>Denver gave me 26.2 Mile High miles, stadium grass and mountain light</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/anchorage-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 english stories">
+      <img src="/assets/home-running-16x9/anchorage-marathon.webp" alt="Anchorage Marathon English story cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">AK</span> Run50 · Anchorage</span>
+        <h3>Alaska had no aurora, but Anchorage still gave me a wild 26.2 miles</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/nsf/" data-card data-tags="water nsf knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-nsf-standards.jpg?v=20260626-medal-v2" alt="NSF standards cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">NSF</span> Water · Library</span>
+        <h3>NSF Standards Library for drinking water metrics</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/atomic-habits-full-english.html" data-card data-tags="reading knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-atomic-full.jpg?v=20260626-medal-v2" alt="Atomic Habits cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">R</span> Reading · Book</span>
+        <h3>Atomic Habits full English reading edition</h3>
+      </span>
+    </a>
+
+    <div class="card span-5 list-module" data-card data-tags="run50 stories">
+      <div class="widget-title"><span>Run50 Latest</span><i class="bi bi-list-ul"></i></div>
+      <a class="list-item" href="https://zhennanzhang.com/run50/wechat-en/san-antonio-marathon-modern-rail.html?v=20260706-wechat-en">
+        <img src="/assets/home-running-16x9/san-antonio-marathon.webp" alt="San Antonio marathon cover">
+        <span><b>San Antonio turned a Spurs trip into my Texas marathon story</b><span>San Antonio · December 2023</span></span>
+      </a>
+      <a class="list-item" href="https://zhennanzhang.com/run50/wechat-en/west-virginia-marathon-modern-rail.html?v=20260706-wechat-en">
+        <img src="/assets/home-running-16x9/west-virginia-marathon.webp" alt="West Virginia marathon cover">
+        <span><b>West Virginia gave me a touchdown stadium finish to break 4 hours</b><span>Huntington · November 2023</span></span>
+      </a>
+      <a class="list-item" href="https://zhennanzhang.com/run50/wechat-en/nashville-marathon-modern-rail.html?v=20260706-wechat-en">
+        <img src="/assets/home-running-16x9/nashville-marathon.webp" alt="Nashville marathon cover">
+        <span><b>Scorching October sun gave me my slowest marathon of the year in Music City</b><span>Nashville · October 2023</span></span>
+      </a>
+    </div>
+
+    <a class="card span-7 overlay-card" href="https://zhennanzhang.com/ro/RO-Complete-Guide-EN.html" data-card data-tags="water ro knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-ro-guide.jpg?v=20260626-medal-v2" alt="Reverse osmosis guide cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">RO</span> Technical Guide</span>
+        <h3>Reverse Osmosis Complete Guide: system explanation, filters, membrane, and product logic</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top tall" href="https://zhennanzhang.com/this-is-me/publications/" data-card data-tags="about engineering knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-me-publications.jpg?v=20260627-me-clean-v4" alt="Publications cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">Me</span> Research</span>
+        <h3>Publications, citations, and selected academic work</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top tall" href="https://zhennanzhang.com/reading/nano-ic-manufacturing-study.html" data-card data-tags="reading semiconductor knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-nano-ic-prep.jpg?v=20260626-medal-v2" alt="Nano IC manufacturing study notes cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">IC</span> Semiconductor</span>
+        <h3>Nano IC manufacturing study notes for equipment and process prep</h3>
+      </span>
+    </a>
+
+    <a class="card span-7 text-module" href="https://zhennanzhang.com/run50/mainly-marathons-new-england-2026-guide.html" data-card data-tags="run50 trip">
+      <div class="module-kicker">Trip Planning</div>
+      <h3>Mainly Marathons New England 2026</h3>
+      <p>Six days, six states, one practical travel guide for schedule, lodging, transfer windows, and recovery.</p>
+      <span class="metric-row"><span><i class="bi bi-calendar-event"></i>2026</span><span><i class="bi bi-signpost-split"></i>6 states</span></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/san-antonio-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/san-antonio-marathon.webp" alt="San Antonio marathon cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">50</span> Run50 · San Antonio</span>
+        <h3>San Antonio turned a Spurs trip into my Texas marathon story</h3>
+        <span class="metric-row"><span><i class="bi bi-hand-thumbs-up"></i>244</span><span><i class="bi bi-chat-square"></i>37</span></span>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/west-virginia-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/west-virginia-marathon.webp" alt="West Virginia marathon cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">WV</span> Run50 · Huntington</span>
+        <h3>West Virginia gave me a touchdown stadium finish to break 4 hours</h3>
+        <span class="metric-row"><span><i class="bi bi-hand-thumbs-up"></i>219</span><span><i class="bi bi-chat-square"></i>31</span></span>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/nashville-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/nashville-marathon.webp" alt="Nashville marathon cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">TN</span> Run50 · Nashville</span>
+        <h3>Scorching October sun gave me my slowest marathon of the year in Music City</h3>
+        <span class="metric-row"><span><i class="bi bi-hand-thumbs-up"></i>198</span><span><i class="bi bi-chat-square"></i>29</span></span>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/mexico-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runworld facebook stories trip">
+      <img src="/assets/home-running-16x9/mexico-marathon.webp" alt="Mexico City marathon cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">MX</span> RunWorld · Mexico City</span>
+        <h3>Mexico City gave me a 26.2-mile high-altitude plateau challenge</h3>
+        <span class="metric-row"><span><i class="bi bi-hand-thumbs-up"></i>284</span><span><i class="bi bi-chat-square"></i>41</span></span>
+      </span>
+    </a>
+
+    <div class="section-label secondary-label" data-more-label><span>More modules</span><span>English Stories · Facebook · More</span></div>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/south-carolina-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/south-carolina-marathon.webp" alt="South Carolina marathon cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">SC</span> Run50 · Greer</span>
+        <h3>Too Slow for Boston gave me a 26.2-mile run with the stubborn mule medal</h3>
+        <span class="metric-row"><span><i class="bi bi-hand-thumbs-up"></i>312</span><span><i class="bi bi-chat-square"></i>48</span></span>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/miami-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/miami-marathon.webp" alt="Miami marathon cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">50</span> Run50 · Miami</span>
+        <h3>Miami gave me a wild 26.2 miles in a CR7 shirt, right in Messi&#x27;s backyard</h3>
+        <span class="metric-row"><span><i class="bi bi-hand-thumbs-up"></i>429</span><span><i class="bi bi-chat-square"></i>82</span></span>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/guilin-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories trip">
+      <img src="https://zhennanzhang.com/assets/cover-medal-fb-guilin.jpg?v=20260628-en-runcn-23-26-v1" alt="Guilin marathon cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">CN</span> RunCN · Guilin</span>
+        <h3>Guilin turned a beautiful marathon into a full-sun test</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 text-module" href="https://zhennanzhang.com/run50/stories/english/" data-card data-tags="run50 english stories">
+      <div class="module-kicker">English Stories</div>
+      <h3>English story archive now reaches Arizona</h3>
+      <p>Race reports, state notes, and polished English versions collected in one running shelf.</p>
+      <span class="metric-row"><span><i class="bi bi-journal-text"></i>Through AZ</span><span><i class="bi bi-arrow-right"></i>Open</span></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/indianapolis-monumental-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/indianapolis-monumental-marathon.webp" alt="Indianapolis marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">IN</span> Run50 · Indianapolis</span><h3>Indianapolis turned a rainy one-day marathon into a way back to running</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/atlanta-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/atlanta-marathon.webp" alt="Atlanta marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">GA</span> Run50 · Atlanta</span><h3>Atlanta made 26.2 miles feel like an Olympic city walk</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/kentucky-derby-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/kentucky-derby-marathon.webp" alt="Kentucky Derby marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Louisville</span><h3>Louisville turned my fourth Derby Marathon into a hometown sub-four</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/cincinnati-flying-pig-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/cincinnati-flying-pig-marathon.webp" alt="Cincinnati Flying Pig cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">OH</span> Run50 · Cincinnati</span><h3>Cincinnati&#x27;s Flying Pig turned into a Flying Fish in the rain</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/st-joseph-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/st-joseph-marathon.webp" alt="St. Joseph marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">St</span> Run50 · St. Joseph</span><h3>St. Joseph made Missouri feel like a first-edition marathon road trip</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/disney-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories trip">
+      <img src="/assets/home-running-16x9/disney-marathon.webp" alt="Disney Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Key West / Orlando</span><h3>A Florida week from Key West beaches to Disney Marathon</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/north-carolina-oak-island-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/north-carolina-oak-island-marathon.webp" alt="Oak Island marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Oak Island</span><h3>Oak Island sent Run50 toward the Atlantic with a medal bigger than my face</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/green-bay-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/green-bay-marathon.webp" alt="Green Bay marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">WI</span> Run50 · Green Bay</span><h3>The Green Bay Marathon ended inside football&#x27;s small-town cathedral</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/michigan-meadows-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/michigan-meadows-marathon.webp" alt="Michigan Meadows marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">MI</span> Run50 · Grand Rapids</span><h3>Michigan turned six meadow loops into a trial by fire</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/new-hampshire-clarence-demar-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/new-hampshire-clarence-demar-marathon.webp" alt="New Hampshire marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Keene</span><h3>Run50 State #22 | New Hampshire: Clarence DeMar Marathon</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/louisiana-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/louisiana-marathon.webp" alt="Louisiana Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Baton Rouge</span><h3>Run50 State #23 | Louisiana Marathon: Baton Rouge and the French South</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/blue-ridge-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/blue-ridge-marathon.webp" alt="Blue Ridge Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Roanoke</span><h3>Run50 State #24 | Virginia: Blue Ridge Marathon</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/fargo-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/fargo-marathon.webp" alt="Fargo Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Fargo</span><h3>Run50 State #25 | North Dakota: Fargo Marathon</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/hell-on-gravel-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/hell-on-gravel-marathon.webp" alt="Hell on Gravel Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">El</span> Run50 · El Dorado</span><h3>Run50 State #26 | Kansas: Hell on Gravel Marathon</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/mad-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/mad-marathon.webp" alt="Mad Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Warren</span><h3>Run50 State #27 | Vermont: Mad Marathon</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/arizona-phoenix-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="run50 facebook stories">
+      <img src="/assets/home-running-16x9/arizona-phoenix-marathon.webp" alt="Arizona Phoenix Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">50</span> Run50 · Buckeye / Phoenix</span><h3>Arizona turned a cold desert runway race into my first sub-four of 2026</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/steel-tank-story-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories">
+      <img src="/assets/home-running-16x9/steel-tank-story.webp" alt="Steel tank story cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">CN</span> RunCN · Harbin / Wuhan</span><h3>The steel tank story: how a heavy football kid found marathons</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/xiamen-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories">
+      <img src="/assets/home-running-16x9/xiamen-marathon.webp" alt="Xiamen Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">CN</span> RunCN · Xiamen</span><h3>Xiamen gave my 2018 season a rain-soaked, unforgettable opening</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/lanzhou-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories">
+      <img src="/assets/home-running-16x9/lanzhou-marathon.webp" alt="Lanzhou Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">CN</span> RunCN · Lanzhou</span><h3>Lanzhou Strong: a marathon at the edge of the Yellow River and the Hexi dream</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/guiyang-marathon-climb-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories">
+      <img src="/assets/home-running-16x9/guiyang-marathon-climb.webp" alt="Guiyang Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">CN</span> RunCN · Guiyang</span><h3>Guiyang turned a brutal climb into a journey through Yelang, Wang Yangming, and Fanjing Mountain</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/harbin-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runcn facebook stories">
+      <img src="/assets/home-running-16x9/harbin-marathon.webp" alt="Harbin Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">CN</span> RunCN · Harbin</span><h3>Harbin Marathon brought me back to the black soil and Songhua River</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/singapore-sundown-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runworld facebook stories trip">
+      <img src="/assets/home-running-16x9/singapore-sundown-marathon.webp" alt="Singapore Sundown Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">SG</span> RunWorld · Singapore</span><h3>Singapore brought me back to a ten-year promise and a midnight marathon</h3></span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/run50/wechat-en/bangkok-marathon-modern-rail.html?v=20260706-wechat-en" data-card data-tags="runworld facebook stories trip">
+      <img src="/assets/home-running-16x9/bangkok-marathon.webp" alt="Bangkok Marathon cover">
+      <span class="card-copy"><span class="story-meta"><span class="source-logo">TH</span> RunWorld · Bangkok</span><h3>Bangkok kept moving from temple light to marathon night</h3></span>
+    </a>
+
+    <a class="card span-3 text-module" href="https://zhennanzhang.com/run50/facebook/" data-card data-tags="run50 facebook stories">
+      <div class="module-kicker">Facebook Wall</div>
+      <h3>Friend-readable race posts with cover images</h3>
+      <p>A faster story wall for Facebook-style marathon posts, comments, and share previews.</p>
+      <span class="metric-row"><span><i class="bi bi-images"></i>Covers</span><span><i class="bi bi-chat-square"></i>Posts</span></span>
+    </a>
+
+    <a class="card span-3 text-module" href="https://zhennanzhang.com/run50/stories/english/" data-card data-tags="run50 english stories">
+      <div class="module-kicker">Story Index</div>
+      <h3>English race archive organized by state and city</h3>
+      <p>A direct path into the long-form Run50 stories, with the archive now written through Arizona.</p>
+      <span class="metric-row"><span><i class="bi bi-book"></i>Through AZ</span><span><i class="bi bi-flag"></i>35 states</span></span>
+    </a>
+
+    <a class="card span-3 text-module" href="https://zhennanzhang.com/run50/facebook/" data-card data-tags="run50 runcn runworld facebook stories">
+      <div class="module-kicker">Cover Queue</div>
+      <h3>New Facebook covers can rotate into this front page</h3>
+      <p>As new English covers publish on the same site, the carousel and feed can keep reshuffling them in.</p>
+      <span class="metric-row"><span><i class="bi bi-arrow-repeat"></i>Auto refresh</span><span><i class="bi bi-shuffle"></i>Randomized</span></span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/wqa/WQA_2026_Expo_Observation_Report_EN.html" data-card data-tags="water wqa knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-wqa-expo.jpg?v=20260626-medal-v2" alt="WQA 2026 Expo cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">W</span> WQA · Expo</span>
+        <h3>WQA 2026 Expo Observation Report</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/water-softener/softener-valve-analysis-en.html" data-card data-tags="water softener knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-softener-valve-en.jpg?v=20260626-medal-v2" alt="Water softener valve analysis cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">W</span> Softener · Research</span>
+        <h3>Water Softening: Principles & Competitor Study</h3>
+      </span>
+    </a>
+
+    <a class="card span-4 image-top compact" href="https://zhennanzhang.com/reading/atomic-habits-bloom-cards.html" data-card data-tags="reading knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-atomic-cards.jpg?v=20260626-medal-v2" alt="Atomic Habits study cards cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">R</span> Reading · Cards</span>
+        <h3>Atomic Habits Study Cards</h3>
+      </span>
+    </a>
+
+    <a class="card span-6 overlay-card" href="https://zhennanzhang.com/reading/nano-ic-manufacturing-handbook-detailed.html" data-card data-tags="reading semiconductor knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-nano-ic-handbook.jpg?v=20260626-medal-v2" alt="Nano IC handbook cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">IC</span> Semiconductor · Handbook</span>
+        <h3>Nano IC Manufacturing Detailed Handbook</h3>
+        <p>A deeper technical reading module for semiconductor manufacturing equipment and process notes.</p>
+      </span>
+    </a>
+
+    <a class="card span-6 overlay-card" href="https://zhennanzhang.com/reading/nano-ic-pages/" data-card data-tags="reading semiconductor knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-nano-ic-reader.jpg?v=20260626-medal-v2" alt="Nano-scale equipment reader cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">IC</span> Illustrated Reader</span>
+        <h3>Nano-Scale Equipment Illustrated Handbook Reader</h3>
+        <p>Image-based equipment reading with a library feel instead of a flat document list.</p>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/marathon/" data-card data-tags="about knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-me-marathon.jpg?v=20260627-me-clean-v4" alt="Marathon profile cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">Me</span> Marathon</span>
+        <h3>Marathon training and race notes</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/structural-design/" data-card data-tags="about engineering knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-me-structural-design.jpg?v=20260627-me-clean-v4" alt="Structural design cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">Me</span> Engineering</span>
+        <h3>Structural Design</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/fea-simulation/" data-card data-tags="about engineering knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-me-fea-simulation.jpg?v=20260627-me-clean-v4" alt="FEA simulation cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">Me</span> Simulation</span>
+        <h3>FEA Simulation</h3>
+      </span>
+    </a>
+
+    <a class="card span-3 image-top compact" href="https://zhennanzhang.com/this-is-me/3d-printing/" data-card data-tags="about engineering knowledge">
+      <img src="https://zhennanzhang.com/assets/thumb-me-3d-printing.jpg?v=20260627-me-clean-v4" alt="3D printing cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">Me</span> Fabrication</span>
+        <h3>3D Printing and prototypes</h3>
+      </span>
+    </a>
+
+    <div class="empty" id="emptyState">No matching stories</div>
+  </section>
+</main>
+
+<aside class="comment-panel" id="commentPanel" aria-live="polite" aria-label="Comments panel">
+  <div class="comment-head">
+    <div>
+      <b id="commentTitle">Comments</b>
+      <span id="commentSubtitle">Local prototype comments</span>
+    </div>
+    <button class="comment-close" id="commentClose" type="button" aria-label="Close comments"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <div class="comment-list" id="commentList"></div>
+  <form class="comment-form" id="commentForm">
+    <input id="commentName" type="text" maxlength="40" placeholder="Your name" autocomplete="name">
+    <textarea id="commentText" maxlength="500" placeholder="Write a comment"></textarea>
+    <button type="submit">Post comment</button>
+  </form>
+</aside>
+
+<script src="https://zhennanzhang.com/run50/us-map-svg.js?v=20260625-chinese-map"></script>
+<script src="https://zhennanzhang.com/run50/china-map-svg.js"></script>
+<script src="https://zhennanzhang.com/run50/world-map-svg.js?v=20260627-flat-panzoom-details-tuned"></script>
+<script>
+  let slides = Array.from(document.querySelectorAll('[data-slide]'));
+  const dotsWrap = document.querySelector('.dots');
+  const hero = document.querySelector('.hero-carousel');
+  const sideStack = document.querySelector('.side-stack');
+  const prev = document.querySelector('.prev');
+  const next = document.querySelector('.next');
+  const primaryTabs = Array.from(document.querySelectorAll('.tabs .tab'));
+  const moreTabs = Array.from(document.querySelectorAll('.more-tab'));
+  let cards = Array.from(document.querySelectorAll('.feed-grid [data-card]'));
+  const searchInput = document.getElementById('searchInput');
+  const visibleCount = document.getElementById('visibleCount');
+  const emptyState = document.getElementById('emptyState');
+  const slideCount = document.getElementById('slideCount');
+  const commentPanel = document.getElementById('commentPanel');
+  const commentTitle = document.getElementById('commentTitle');
+  const commentSubtitle = document.getElementById('commentSubtitle');
+  const commentList = document.getElementById('commentList');
+  const commentForm = document.getElementById('commentForm');
+  const commentName = document.getElementById('commentName');
+  const commentText = document.getElementById('commentText');
+  const commentClose = document.getElementById('commentClose');
+  const feedTitle = document.getElementById('feedTitle');
+  const moreLabel = document.querySelector('[data-more-label]');
+  const feedGrid = document.querySelector('.feed-grid');
+  const zoomOut = document.getElementById('zoomOut');
+  const zoomIn = document.getElementById('zoomIn');
+  const zoomValue = document.getElementById('zoomValue');
+  let activeSlide = 0;
+  let activeFilter = 'all';
+  let activeCommentCardId = null;
+  let activeCommentButton = null;
+  let slideTimer = null;
+  let randomizeTimer = null;
+  let masonryFrame = null;
+  let viewZoom = Number(localStorage.getItem('zz-msn-view-zoom') || 100);
+  let activeMoreFilter = 'all';
+
+  const LIVE_STORY_INDEXES = [
+    { path: '/run50/wechat-en/', tag: 'english', label: 'Running Blog', source: 'wechat-en' }
+  ];
+  const MAX_CAROUSEL_SLIDES = 60;
+  const MAX_KNOWLEDGE_CAROUSEL_SLIDES = 10;
+  const CAROUSEL_ROTATE_MS = 5500;
+  const CAROUSEL_RANDOMIZE_MS = 10 * 60 * 1000;
+  const LIVE_REFRESH_MS = 60 * 60 * 1000;
+  const ZOOM_LEVELS = [25, 50, 75, 100, 125];
+  const RUNNING_TAG_RE = /\b(run50|runcn|runworld|english|facebook|trip|stories|scripts|progress)\b/;
+  const KNOWLEDGE_TAG_RE = /\b(knowledge|water|reading|about|ro|nsf|wqa|softener|engineering|semiconductor)\b/;
+  const requestedZoom = Number(new URLSearchParams(location.search).get('zoom'));
+  if (ZOOM_LEVELS.includes(requestedZoom)) viewZoom = requestedZoom;
+
+  function canUseLiveIndexes() {
+    return /(^|\.)zhennanzhang\.com$/i.test(location.hostname)
+      || /^(localhost|127\.0\.0\.1)$/i.test(location.hostname);
+  }
+
+  // Homepage-only cover overrides; story pages keep their own artwork.
+  const HOME_RUNNING_COVERS = {
+  "xiangyang-marathon": "/assets/home-running-16x9/xiangyang-marathon-faithful-v2.webp",
+  "minnesota-med-city-marathon": "/assets/home-running-16x9/minnesota-med-city-marathon-faithful-v2.webp",
+  "kentucky-derby-marathon-2021": "/assets/home-running-16x9/kentucky-derby-marathon-2021.webp",
+  "kentucky-derby-marathon-2025": "/assets/home-running-16x9/kentucky-derby-marathon-2025.webp",
+  "kentucky-derby-marathon": "/assets/home-running-16x9/kentucky-derby-marathon.webp",
+  "louisville-marathon": "/assets/home-running-16x9/louisville-marathon.webp",
+  "cincinnati-flying-pig-marathon": "/assets/home-running-16x9/cincinnati-flying-pig-marathon.webp",
+  "cleveland-marathon": "/assets/home-running-16x9/cleveland-marathon.webp",
+  "new-york-city-marathon": "/assets/home-running-16x9/new-york-city-marathon.webp",
+  "san-francisco-marathon": "/assets/home-running-16x9/san-francisco-marathon.webp",
+  "indianapolis-monumental-marathon": "/assets/home-running-16x9/indianapolis-monumental-marathon.webp",
+  "honolulu-marathon": "/assets/home-running-16x9/honolulu-marathon.webp",
+  "atlanta-marathon": "/assets/home-running-16x9/atlanta-marathon.webp",
+  "denver-colfax-marathon": "/assets/home-running-16x9/denver-colfax-marathon.webp",
+  "anchorage-marathon": "/assets/home-running-16x9/anchorage-marathon.webp",
+  "chicago-marathon": "/assets/home-running-16x9/chicago-marathon.webp",
+  "miami-marathon": "/assets/home-running-16x9/miami-marathon.webp",
+  "disney-marathon": "/assets/home-running-16x9/disney-marathon.webp",
+  "little-rock-marathon": "/assets/home-running-16x9/little-rock-marathon.webp",
+  "green-bay-marathon": "/assets/home-running-16x9/green-bay-marathon.webp",
+  "louisiana-marathon": "/assets/home-running-16x9/louisiana-marathon.webp",
+  "louisville-marathon-2024": "/assets/home-running-16x9/louisville-marathon-2024.webp",
+  "blue-ridge-marathon": "/assets/home-running-16x9/blue-ridge-marathon.webp",
+  "fargo-marathon": "/assets/home-running-16x9/fargo-marathon.webp",
+  "mad-marathon": "/assets/home-running-16x9/mad-marathon.webp",
+  "hell-on-gravel-marathon": "/assets/home-running-16x9/hell-on-gravel-marathon.webp",
+  "michigan-meadows-marathon": "/assets/home-running-16x9/michigan-meadows-marathon.webp",
+  "nashville-marathon": "/assets/home-running-16x9/nashville-marathon.webp",
+  "new-hampshire-clarence-demar-marathon": "/assets/home-running-16x9/new-hampshire-clarence-demar-marathon.webp",
+  "arizona-phoenix-marathon": "/assets/home-running-16x9/arizona-phoenix-marathon.webp",
+  "north-carolina-oak-island-marathon": "/assets/home-running-16x9/north-carolina-oak-island-marathon.webp",
+  "pittsburgh-marathon": "/assets/home-running-16x9/pittsburgh-marathon.webp",
+  "rocket-city-marathon": "/assets/home-running-16x9/rocket-city-marathon.webp",
+  "san-antonio-marathon": "/assets/home-running-16x9/san-antonio-marathon.webp",
+  "south-carolina-marathon": "/assets/home-running-16x9/south-carolina-marathon.webp",
+  "st-joseph-marathon": "/assets/home-running-16x9/st-joseph-marathon.webp",
+  "west-virginia-marathon": "/assets/home-running-16x9/west-virginia-marathon.webp",
+  "hatfield-mccoy-marathon": "/assets/home-running-16x9/hatfield-mccoy-marathon.webp",
+  "steel-tank-story": "/assets/home-running-16x9/steel-tank-story.webp",
+  "three-city-pilgrimage": "/assets/home-running-16x9/three-city-pilgrimage.webp",
+  "xiamen-marathon": "/assets/home-running-16x9/xiamen-marathon.webp",
+  "wuhan-wuxi-marathon-notes": "/assets/home-running-16x9/wuhan-wuxi-marathon-notes.webp",
+  "wuhan-marathon-2018": "/assets/home-running-16x9/wuhan-marathon-2018.webp",
+  "xian-city-wall-marathon": "/assets/home-running-16x9/xian-city-wall-marathon.webp",
+  "lanzhou-marathon": "/assets/home-running-16x9/lanzhou-marathon.webp",
+  "guiyang-marathon-climb": "/assets/home-running-16x9/guiyang-marathon-climb.webp",
+  "haikou-marathon": "/assets/home-running-16x9/haikou-marathon.webp",
+  "wuhan-han-marathon": "/assets/home-running-16x9/wuhan-han-marathon.webp",
+  "dalian-trail": "/assets/home-running-16x9/dalian-trail.webp",
+  "wuhan-graduation": "/assets/home-running-16x9/wuhan-graduation.webp",
+  "harbin-marathon": "/assets/home-running-16x9/harbin-marathon.webp",
+  "west-lake-half-marathon": "/assets/home-running-16x9/west-lake-half-marathon.webp",
+  "singapore-sundown-marathon": "/assets/home-running-16x9/singapore-sundown-marathon.webp",
+  "bangkok-marathon": "/assets/home-running-16x9/bangkok-marathon.webp",
+  "mexico-marathon": "/assets/home-running-16x9/mexico-marathon.webp",
+  "pisa-marathon": "/assets/home-running-16x9/pisa-marathon.webp"
+};
+  function homeRunningCover(href, fallback) {
+    try {
+      const path = new URL(href, location.href).pathname;
+      if (!path.startsWith('/run50/')) return fallback;
+      const slug = path.split('/').pop().replace(/-modern-rail\.html$/, '').replace(/\.html$/, '');
+      return HOME_RUNNING_COVERS[slug] || fallback;
+    } catch (error) { return fallback; }
+  }
+
+  function refreshCardList() {
+    cards = Array.from(document.querySelectorAll('.feed-grid [data-card]'));
+    cards.filter(card => isRunningStoryImageCard(card) && /\/run50\/(?:wechat-en|facebook|stories\/english)\/[^/]+\.html/.test(card.href)).forEach(card => {
+      card.classList.add('home-running-story');
+      const image = card.querySelector(':scope > img');
+      const cover = homeRunningCover(card.href, image.getAttribute('src'));
+      if (image.getAttribute('src') !== cover) image.src = cover;
+    });
+  }
+
+  function storyVariantKey(value) {
+    try {
+      const url = new URL(value, location.href);
+      const match = url.pathname.toLowerCase().match(/\/run50\/(?:facebook|stories\/english)\/([^\/]+)\.html$/);
+      return match ? match[1].replace(/-(?:marathon|challenge|story)$/g, '') : '';
+    } catch (error) {
+      return '';
+    }
+  }
+
+  function applyStoryVariantVisibility() {
+    const groups = new Map();
+    cards.forEach(card => {
+      const key = storyVariantKey(card.getAttribute('href') || '');
+      card.dataset.storyVariantHidden = 'false';
+      if (!key) return;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(card);
+    });
+    groups.forEach(group => {
+      if (group.length < 2) return;
+      const keep = group[Math.floor(Math.random() * group.length)];
+      group.forEach(card => {
+        card.dataset.storyVariantHidden = card === keep ? 'false' : 'true';
+      });
+    });
+  }
+
+  function isKnowledgeTagSet(tags) {
+    return KNOWLEDGE_TAG_RE.test(tags) && !RUNNING_TAG_RE.test(tags);
+  }
+
+  function isRunningTagSet(tags) {
+    return RUNNING_TAG_RE.test(tags) && !isKnowledgeTagSet(tags);
+  }
+
+  function cardMatchesFilter(card, query = '', { ignoreSearch = false } = {}) {
+    if (card.dataset.storyVariantHidden === 'true') return false;
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const text = card.textContent.toLowerCase();
+    const href = card.getAttribute('href') || card.querySelector('a[href]')?.getAttribute('href') || '';
+    const isKnowledge = isKnowledgeTagSet(tags);
+    const isRunning = isRunningTagSet(tags);
+    const matchesSearch = ignoreSearch || !query || tags.includes(query) || text.includes(query);
+    let matchesFilter = false;
+
+    if (activeFilter === 'all') {
+      matchesFilter = isRunning;
+    } else if (activeFilter === 'other') {
+      matchesFilter = isKnowledge && (activeMoreFilter === 'all' || tags.includes(activeMoreFilter));
+    } else {
+      matchesFilter = isRunning && tags.includes(activeFilter);
+    }
+
+    const isCanonicalRunningBlog = card.dataset.storySource === 'wechat-en';
+    return matchesFilter && matchesSearch && (isKnowledge || isCanonicalRunningBlog || !shouldSkipStoryUrl(href));
+  }
+
+  function itemSourceType(item) {
+    const tags = (item.dataset?.tags || item.tags || '').toLowerCase();
+    const href = (item.getAttribute?.('href') || item.href || '').toLowerCase();
+    if (tags.includes('english') || href.includes('/stories/english/')) return 'english';
+    if (tags.includes('facebook') || href.includes('/facebook/')) return 'facebook';
+    return 'other';
+  }
+
+  function interleaveStoryItems(items) {
+    const buckets = { facebook: [], english: [], other: [] };
+    items.forEach(item => buckets[itemSourceType(item)].push(item));
+    const pattern = ['facebook', 'english', 'facebook', 'other'];
+    const mixed = [];
+    Object.keys(buckets).forEach(key => {
+      for (let index = buckets[key].length - 1; index > 0; index -= 1) {
+        const swapIndex = Math.floor(Math.random() * (index + 1));
+        [buckets[key][index], buckets[key][swapIndex]] = [buckets[key][swapIndex], buckets[key][index]];
+      }
+    });
+    let patternIndex = Math.floor(Math.random() * pattern.length);
+    while (buckets.facebook.length || buckets.english.length || buckets.other.length) {
+      for (let step = 0; step < pattern.length; step += 1) {
+        const key = pattern[(patternIndex + step) % pattern.length];
+        if (!buckets[key].length) continue;
+        mixed.push(buckets[key].shift());
+        patternIndex = (patternIndex + step + 1) % pattern.length;
+        break;
+      }
+    }
+    return mixed;
+  }
+
+  function isRunningStoryImageCard(card) {
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const href = (card.getAttribute('href') || '').toLowerCase();
+    const isStory = RUNNING_TAG_RE.test(tags) || /\/run50\/(facebook|stories\/english|wechat-en)\//.test(href);
+    return !isKnowledgeTagSet(tags)
+      && isStory
+      && card.matches('.card[data-card]')
+      && card.querySelector(':scope > img')
+      && !card.classList.contains('text-module')
+      && !card.classList.contains('list-module')
+      && !card.classList.contains('progress-card');
+  }
+
+  function mixStoryCards() {
+    if (!feedGrid) return;
+    const storyCards = Array.from(feedGrid.querySelectorAll(':scope > .card[data-card]')).filter(isRunningStoryImageCard);
+    if (storyCards.length < 2) return;
+    if (storyCards.every(card => card.dataset.storySource === 'wechat-en')) return;
+    const markers = storyCards.map(card => {
+      const marker = document.createComment('story-slot');
+      card.before(marker);
+      card.remove();
+      return marker;
+    });
+    interleaveStoryItems(storyCards).forEach((card, index) => markers[index].replaceWith(card));
+    refreshCardList();
+  }
+
+  function canonicalStoryKey(value) {
+    try {
+      const url = new URL(value, location.href);
+      return url.pathname.replace(/\/index\.html$/i, '/').toLowerCase();
+    } catch (error) {
+      return String(value || '').toLowerCase();
+    }
+  }
+
+  function shouldSkipStoryUrl(value) {
+    return /shanghai-vertical-marathon|chicago-marathon|\/shanghai(?:-|\/|$)|\/chicago(?:-|\/|$)/i.test(String(value || ''));
+  }
+
+  function absoluteFrom(path, basePath) {
+    return new URL(path, new URL(basePath, location.origin)).href;
+  }
+
+  const US_MAP_PATHS = {
+    IL: ['Illinois', 'Kentucky_1_'],
+    TN: ['Alabama'],
+    WV: ['West_Virginia', 'Virginia_1_'],
+    TX: ['Kansas_1_'],
+    FL: ['South_Carolina_1_'],
+    NC: ['Maryland'],
+    AR: ['Tennessee', 'Arkansas'],
+    SC: ['South_Carolina', 'Indiana_1_'],
+    KY: ['Georgia_1_', 'Kentucky'],
+    PA: ['Pensilvania', 'New_Jersey_1_'],
+    WI: ['Wisconsin', 'Illinois_1_'],
+    MI: ['Michigan', 'Ocean'],
+    NH: ['New_Hampshire', 'Maine_1_'],
+    LA: ['Arkansas_1_'],
+    VA: ['North_Carolina_1_', 'Virginia'],
+    ND: ['South_Dakota_1_', 'North_Dakota'],
+    KS: ['Kansas', 'North_Dakota_1_'],
+    VT: ['New_Hampshire_1_', 'Vermont'],
+    AL: ['alabama', 'Missispi'],
+    AZ: ['Arizona_1_', 'Utah'],
+    DE: ['Massachusets_1_'],
+    MN: ['Minnesotta', 'Wisconsin_1_'],
+    CT: ['New_York_2_', 'Connecticut'],
+    RI: ['Delaware', 'Rhode_Island'],
+    MA: ['Vermont_1_', 'Massachusets'],
+    ME: ['Michigan_1_', 'Maine'],
+    OH: ['Ohio', 'West_Virginia_1_'],
+    NY: ['Rhode_Island_1_', 'New_York'],
+    CA: ['Arizona'],
+    IN: ['Indiana', 'Ohio_1_'],
+    GA: ['Georgia', 'Florida_1_'],
+    CO: ['Texas_1_', 'Colorado'],
+    MO: ['Iowa_1_', 'Missouri'],
+    HI: ['ocean_2_'],
+    AK: ['ocean_3_']
+  };
+  const US_BOUNDARY_PATHS = {
+    ...US_MAP_PATHS,
+    ID: ['Idaho', 'Wyoming'],
+    IA: ['Minessota', 'Iowa'],
+    MS: ['Mossouri', 'Missisppi'],
+    MT: ['Washington_1_', 'Montana'],
+    NE: ['Nebraska', 'Louisiana_1_'],
+    NV: ['Nevada_41_', 'California'],
+    NJ: ['New_Jersey', 'Connecticut_1_'],
+    NM: ['Idaho_1_', 'New_Mexico_1_'],
+    OK: ['Oklahoma', 'Colorado_1_'],
+    OR: ['Nevada_1_', 'Oregon_41_'],
+    SD: ['South_Dakota', 'Nebraska_1_'],
+    UT: ['Utah_1_', 'New_Mexico'],
+    WY: ['Montana_1_', 'Wyoming_1_'],
+    MD: ['Pensilvania_1_', 'Oregon_1_'],
+    WA: ['Oklahoma_1_']
+  };
+  const US_PROGRESS_STATES = [
+    'IL', 'TX', 'FL', 'AR', 'SC', 'WV', 'TN', 'KY', 'WI', 'MI', 'NC', 'PA', 'NH',
+    'LA', 'VA', 'ND', 'KS', 'VT', 'AL', 'AZ', 'DE', 'MN', 'CT', 'RI', 'MA', 'ME',
+    'OH', 'NY', 'CA', 'IN', 'HI', 'GA', 'CO', 'AK', 'MO'
+  ];
+  const US_HOLLOW_PATHS = [
+    'South_Carolina_1_', 'Arizona', 'Michigan', 'Oklahoma_1_', 'Alabama', 'Maryland',
+    'ocean_3_', 'Kansas_1_', 'Arkansas_1_', 'Illinois', 'West_Virginia', 'South_Carolina',
+    'Pensilvania', 'Wisconsin', 'Vermont', 'New_Hampshire', 'Kansas', 'alabama',
+    'Arizona_1_', 'Minnesotta', 'Ohio', 'New_York', 'Indiana', 'Georgia', 'Alaska_1_',
+    'Idaho', 'Nebraska', 'Nevada_41_', 'Oklahoma', 'South_Dakota', 'Utah_1_',
+    'Pensilvania_1_'
+  ];
+  const CN_PROGRESS_IDS = new Set([
+    'cn_heilongjiang', 'cn_hubei', 'cn_sichuan', 'cn_innermongolia', 'cn_shanxi',
+    'cn_hunan', 'cn_fujian', 'cn_gansu', 'cn_jiangsu', 'cn_guizhou', 'cn_shaanxi',
+    'cn_zhejiang', 'cn_hainan', 'cn_liaoning', 'cn_beijing', 'cn_shanghai',
+    'cn_guangxi', 'cn_hongkong'
+  ]);
+  const WORLD_PROGRESS_IDS = new Set([
+    'wm_usa', 'wm_chn', 'wm_hkg', 'wm_mex', 'wm_sgp', 'wm_tha', 'wm_ita'
+  ]);
+
+  function renderProgressMaps() {
+    const usSlot = document.getElementById('usProgressMap');
+    const cnSlot = document.getElementById('cnProgressMap');
+    const worldSlot = document.getElementById('worldProgressMap');
+    if (usSlot && typeof US_MAP_SVG !== 'undefined') renderUsProgressMap(usSlot);
+    if (cnSlot && typeof CHINA_MAP_SVG !== 'undefined') renderChinaProgressMap(cnSlot);
+    if (worldSlot && typeof WORLD_MAP_SVG !== 'undefined') renderWorldProgressMap(worldSlot);
+  }
+
+  function renderUsProgressMap(slot) {
+    slot.innerHTML = US_MAP_SVG;
+    const svg = slot.querySelector('svg');
+    if (!svg) return;
+    svg.removeAttribute('width');
+    svg.removeAttribute('height');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    removeUsContainedSubpaths(svg);
+    const boundaryPaths = collectUsBoundaryPaths(svg);
+    svg.querySelectorAll('path').forEach(path => {
+      const id = path.id || '';
+      const baseId = id.replace(/^map_/, '');
+      const isFrame = id === 'map_USA' || id === 'map_White' || id === 'map_exterior_2_';
+      const isOcean = /ocean|atlantic|gulf|oceans/i.test(baseId);
+      path.classList.remove('run-state');
+      path.setAttribute('fill', isFrame ? '#26313b' : isOcean ? '#18232d' : '#2f3a45');
+      path.setAttribute('stroke', isFrame ? 'rgba(255,255,255,.12)' : 'none');
+      path.setAttribute('stroke-width', isFrame ? '.8' : '0');
+      path.setAttribute('stroke-linejoin', 'round');
+      path.setAttribute('stroke-linecap', 'round');
+      path.setAttribute('vector-effect', 'non-scaling-stroke');
+      path.style.paintOrder = 'stroke fill markers';
+      path.style.opacity = isFrame ? '1' : isOcean ? '.38' : '.54';
+      path.style.pointerEvents = 'none';
+    });
+    US_PROGRESS_STATES.forEach(abbr => {
+      (US_MAP_PATHS[abbr] || []).forEach(pathId => {
+        const path = svg.querySelector('#map_' + CSS.escape(pathId));
+        if (!path) return;
+        path.setAttribute('fill', '#c88f3b');
+        path.setAttribute('stroke', 'none');
+        path.setAttribute('stroke-width', '0');
+        path.style.opacity = '1';
+        path.style.pointerEvents = 'auto';
+        path.classList.add('run-state');
+        svg.appendChild(path);
+      });
+    });
+    addUsBoundaryLayer(svg, boundaryPaths);
+  }
+
+  function usPathBox(path) {
+    const pairs = (path.getAttribute('d') || '').match(/-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?/g) || [];
+    if (!pairs.length) return { xMin: 0, xMax: 0, yMin: 0, yMax: 0, area: 0 };
+    const xs = pairs.map(pair => parseFloat(pair));
+    const ys = pairs.map(pair => parseFloat(pair.split(',')[1]));
+    const xMin = Math.min(...xs);
+    const xMax = Math.max(...xs);
+    const yMin = Math.min(...ys);
+    const yMax = Math.max(...ys);
+    return { xMin, xMax, yMin, yMax, area: (xMax - xMin) * (yMax - yMin) };
+  }
+
+  function containsUsBox(outer, inner) {
+    return (
+      outer.area > inner.area * 1.08 &&
+      inner.xMin >= outer.xMin - 2 &&
+      inner.xMax <= outer.xMax + 2 &&
+      inner.yMin >= outer.yMin - 2 &&
+      inner.yMax <= outer.yMax + 2
+    );
+  }
+
+  function usBoxOverlapRatio(outer, inner) {
+    const width = Math.max(0, Math.min(outer.xMax, inner.xMax) - Math.max(outer.xMin, inner.xMin));
+    const height = Math.max(0, Math.min(outer.yMax, inner.yMax) - Math.max(outer.yMin, inner.yMin));
+    return inner.area ? (width * height) / inner.area : 0;
+  }
+
+  function visibleUsBoundaryPaths(paths) {
+    const boxed = paths.map(path => ({ path, box: usPathBox(path) }));
+    return boxed
+      .filter(item => item.box.area > 18)
+      .filter(item => !boxed.some(other => (
+        other.path !== item.path &&
+        (
+          containsUsBox(other.box, item.box) ||
+          (other.box.area > item.box.area * 1.05 && usBoxOverlapRatio(other.box, item.box) > 0.55)
+        )
+      )))
+      .map(item => item.path);
+  }
+
+  function collectUsBoundaryPaths(svg) {
+    const seen = new Set();
+    const paths = [];
+    Object.values(US_BOUNDARY_PATHS).flat().forEach(pathId => {
+      if (seen.has(pathId)) return;
+      seen.add(pathId);
+      const path = svg.querySelector('#map_' + CSS.escape(pathId));
+      if (path) paths.push(path);
+    });
+    return paths;
+  }
+
+  function addUsBoundaryLayer(svg, paths) {
+    const oldLayer = svg.querySelector('#home-us-state-boundaries');
+    if (oldLayer) oldLayer.remove();
+    const layer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    const completedIds = new Set(US_PROGRESS_STATES.flatMap(abbr => US_MAP_PATHS[abbr] || []));
+    layer.id = 'home-us-state-boundaries';
+    layer.style.pointerEvents = 'none';
+    visibleUsBoundaryPaths(paths).forEach(path => {
+      const outline = path.cloneNode(false);
+      const pathId = (path.id || '').replace(/^map_/, '');
+      const isComplete = completedIds.has(pathId);
+      outline.removeAttribute('id');
+      outline.setAttribute('fill', 'none');
+      outline.setAttribute('stroke', isComplete ? 'rgba(255,238,205,.72)' : 'rgba(255,255,255,.20)');
+      outline.setAttribute('stroke-width', isComplete ? '1.05' : '.7');
+      outline.setAttribute('stroke-linejoin', 'round');
+      outline.setAttribute('stroke-linecap', 'round');
+      outline.setAttribute('vector-effect', 'non-scaling-stroke');
+      outline.style.opacity = '1';
+      outline.style.pointerEvents = 'none';
+      layer.appendChild(outline);
+    });
+    svg.appendChild(layer);
+  }
+
+  function removeUsContainedSubpaths(svg) {
+    US_HOLLOW_PATHS.forEach(pathId => {
+      const path = svg.querySelector('#map_' + CSS.escape(pathId));
+      if (!path) return;
+      const d = path.getAttribute('d') || '';
+      const parts = [];
+      let last = 0;
+      for (let i = 1; i < d.length; i += 1) {
+        if (d[i] === 'M' && /[\s,]/.test(d[i - 1])) {
+          parts.push(d.slice(last, i).trim());
+          last = i;
+        }
+      }
+      parts.push(d.slice(last).trim());
+      if (parts.length < 2) return;
+      const boxes = parts.map(part => {
+        const coords = [...part.matchAll(/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g)];
+        if (!coords.length) return { xMin: 0, xMax: 0, yMin: 0, yMax: 0, area: 0 };
+        const xs = coords.map(match => parseFloat(match[1]));
+        const ys = coords.map(match => parseFloat(match[2]));
+        const xMin = Math.min(...xs);
+        const xMax = Math.max(...xs);
+        const yMin = Math.min(...ys);
+        const yMax = Math.max(...ys);
+        return { xMin, xMax, yMin, yMax, area: (xMax - xMin) * (yMax - yMin) };
+      });
+      const maxArea = Math.max(...boxes.map(box => box.area));
+      if (!Number.isFinite(maxArea) || maxArea <= 0) return;
+      path.removeAttribute('fill-rule');
+      path.setAttribute('d', parts.filter((_, index) => {
+        const box = boxes[index];
+        if (box.area < maxArea * 0.05) return true;
+        return !boxes.some((outer, outerIndex) => (
+          outerIndex !== index &&
+          box.xMin >= outer.xMin && box.xMax <= outer.xMax &&
+          box.yMin >= outer.yMin && box.yMax <= outer.yMax
+        ));
+      }).join(' '));
+    });
+  }
+
+  function renderChinaProgressMap(slot) {
+    slot.innerHTML = CHINA_MAP_SVG;
+    const svg = slot.querySelector('svg');
+    if (!svg) return;
+    svg.removeAttribute('width');
+    svg.removeAttribute('height');
+    svg.setAttribute('viewBox', '-64 6 934 556');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    svg.querySelectorAll('rect').forEach(rect => rect.setAttribute('fill', '#18212b'));
+    svg.querySelectorAll('path').forEach(path => {
+      const id = path.id || '';
+      const isRegion = id.startsWith('cn_');
+      const isComplete = CN_PROGRESS_IDS.has(id);
+      path.setAttribute('fill', !isRegion ? 'none' : isComplete ? '#46977f' : '#394552');
+      path.setAttribute('stroke', isComplete ? 'rgba(212,255,235,.72)' : 'rgba(255,255,255,.20)');
+      path.setAttribute('stroke-width', isComplete ? '1.05' : '.7');
+      path.setAttribute('vector-effect', 'non-scaling-stroke');
+      path.style.opacity = !isRegion ? '.18' : isComplete ? '.96' : '.58';
+    });
+  }
+
+  function renderWorldProgressMap(slot) {
+    slot.innerHTML = WORLD_MAP_SVG;
+    const svg = slot.querySelector('svg');
+    if (!svg) return;
+    svg.removeAttribute('width');
+    svg.removeAttribute('height');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    svg.querySelectorAll('rect').forEach(rect => rect.setAttribute('fill', '#16202a'));
+    svg.querySelectorAll('path').forEach(path => {
+      const id = path.id || '';
+      const isCountry = id.startsWith('wm_');
+      const isComplete = WORLD_PROGRESS_IDS.has(id);
+      path.setAttribute('fill', !isCountry ? 'none' : isComplete ? '#4aa3ff' : '#33404d');
+      path.setAttribute('stroke', isComplete ? 'rgba(210,235,255,.82)' : 'rgba(255,255,255,.15)');
+      path.setAttribute('stroke-width', isComplete ? '1.05' : '.65');
+      path.setAttribute('vector-effect', 'non-scaling-stroke');
+      path.style.opacity = !isCountry ? '.12' : isComplete ? '.96' : '.42';
+    });
+  }
+
+  function numberFromMetric(text) {
+    const match = String(text || '').match(/\d+/);
+    return match ? Number(match[0]) : 0;
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    }[char]));
+  }
+
+  function seriesFromClass(card) {
+    const seriesText = [
+      card.className || '',
+      card.querySelector('.story-number')?.textContent || '',
+      card.querySelector('.eyebrow')?.textContent || ''
+    ].join(' ').toLowerCase();
+    if (/\bruncn\b/.test(seriesText) || seriesText.includes('run-cn')) return 'runcn';
+    if (/\brunworld\b/.test(seriesText) || seriesText.includes('run-world')) return 'runworld';
+    return 'run50';
+  }
+
+  function labelForSeries(series, sourceLabel) {
+    if (sourceLabel === 'English Stories') return sourceLabel;
+    if (series === 'runcn') return 'RunCN';
+    if (series === 'runworld') return 'RunWorld';
+    return 'Run50';
+  }
+
+  function logoFromMeta(meta, series) {
+    const state = String(meta || '').match(/\b[A-Z]{2}\b/);
+    if (state) return state[0];
+    if (series === 'runcn') return 'CN';
+    if (series === 'runworld') return 'RW';
+    return '50';
+  }
+
+  function storyFromIndexCard(card, source) {
+    const link = card.getAttribute('href');
+    const image = card.querySelector('img');
+    const title = card.querySelector('.story-title,h2,h3')?.textContent.trim();
+    if (!link || !image || !title) return null;
+    const series = seriesFromClass(card);
+    const storyNumber = card.querySelector('.story-number')?.textContent.trim() || labelForSeries(series, source.label);
+    const meta = card.querySelector('.story-meta,.meta')?.textContent.trim() || storyNumber;
+    const description = card.querySelector('.desc')?.textContent.trim() || '';
+    return {
+      href: absoluteFrom(link, source.path),
+      img: homeRunningCover(absoluteFrom(link, source.path), absoluteFrom(image.getAttribute('src'), source.path)),
+      title,
+      source: `${storyNumber} · ${meta}`,
+      logo: logoFromMeta(meta, series),
+      tags: `${series} ${source.tag} stories trip`,
+      description,
+      storySource: source.source || '',
+      likes: 0,
+      comments: 0
+    };
+  }
+
+  async function fetchStoryIndex(source) {
+    const fresh = Math.floor(Date.now() / 3600000);
+    const response = await fetch(`${source.path}?fresh=${fresh}`, { cache: 'no-store' });
+    if (!response.ok) return [];
+    const html = await response.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return Array.from(doc.querySelectorAll('.story-card'))
+      .map(card => storyFromIndexCard(card, source))
+      .filter(Boolean);
+  }
+
+  function createLiveCard(story, index) {
+    const card = document.createElement('a');
+    card.className = `card ${index % 6 === 0 ? 'span-6 overlay-card' : 'span-3 image-top compact'} live-story`;
+    card.href = story.href;
+    card.dataset.card = '';
+    card.dataset.tags = story.tags;
+    card.dataset.storySource = story.storySource;
+    const description = story.description
+      ? `<p class="story-summary">${escapeHtml(story.description)}</p>`
+      : '';
+    card.innerHTML = `
+      <img src="${escapeHtml(story.img)}" alt="${escapeHtml(story.title)} cover">
+      <span class="card-copy">
+        <span class="story-meta"><span class="source-logo">${escapeHtml(story.logo)}</span> ${escapeHtml(story.source)}</span>
+        <h3>${escapeHtml(story.title)}</h3>
+        ${description}
+        <span class="metric-row"><span><i class="bi bi-hand-thumbs-up"></i>${story.likes}</span><span><i class="bi bi-chat-square"></i>${story.comments}</span></span>
+      </span>
+    `;
+    return card;
+  }
+
+  async function refreshFromLiveIndexes() {
+    if (!canUseLiveIndexes()) return false;
+    const existingKeys = new Set(cards.map(card => canonicalStoryKey(card.getAttribute('href') || '')));
+    const fetchedGroups = await Promise.allSettled(LIVE_STORY_INDEXES.map(fetchStoryIndex));
+    const freshStories = interleaveStoryItems(fetchedGroups
+      .filter(result => result.status === 'fulfilled')
+      .flatMap(result => result.value)
+      .filter(story => !existingKeys.has(canonicalStoryKey(story.href))));
+    if (!freshStories.length) return false;
+
+    const feedGrid = document.querySelector('.feed-grid');
+    const firstCard = feedGrid.querySelector('[data-card]');
+    const fragment = document.createDocumentFragment();
+    freshStories.forEach((story, index) => {
+      existingKeys.add(canonicalStoryKey(story.href));
+      fragment.append(createLiveCard(story, index));
+    });
+    feedGrid.insertBefore(fragment, firstCard);
+    refreshCardList();
+    return true;
+  }
+
+  function storyFromFeedCard(card) {
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const isKnowledge = isKnowledgeTagSet(tags);
+    const isRunning = isRunningTagSet(tags);
+    const image = card.querySelector('img');
+    const title = card.querySelector('h1,h2,h3,.card-title')?.textContent.trim();
+    const href = card.getAttribute('href') || card.querySelector('a[href]')?.getAttribute('href');
+    if (!cardMatchesFilter(card, '', { ignoreSearch: true }) || !image || !title || !href) return null;
+
+    const sourceNode = card.querySelector('.story-meta');
+    const fallbackSeries = tags.includes('runcn') ? 'runcn' : tags.includes('runworld') ? 'runworld' : 'run50';
+    const logo = sourceNode?.querySelector('.source-logo')?.textContent.trim() || logoFromMeta(sourceNode?.textContent || '', fallbackSeries);
+    let source = sourceNode?.textContent.trim() || labelForSeries(fallbackSeries, 'Facebook');
+    if (logo && source.startsWith(logo)) source = source.slice(logo.length).trim();
+    const metrics = Array.from(card.querySelectorAll('.metric-row span,.metric-row button')).map(item => item.textContent.trim());
+
+    return {
+      href,
+      img: image.currentSrc || image.getAttribute('src') || image.src,
+      title,
+      source,
+      logo,
+      likes: isRunning ? numberFromMetric(metrics[0]) : null,
+      comments: isRunning ? numberFromMetric(metrics[1]) : null,
+      isKnowledge
+    };
+  }
+
+  function createSlide(story, index) {
+    const slide = document.createElement('a');
+    slide.className = `slide${index === 0 ? ' active' : ''}`;
+    slide.href = story.href;
+    slide.dataset.slide = '';
+    const engagement = story.likes === null
+      ? ''
+      : `<span class="engagement"><span><i class="bi bi-hand-thumbs-up"></i>${story.likes}</span><span><i class="bi bi-chat-square"></i>${story.comments}</span></span>`;
+    slide.innerHTML = `
+      <img src="${escapeHtml(story.img)}" alt="${escapeHtml(story.title)} cover">
+      <span class="slide-content">
+        <span class="source"><span class="source-logo">${escapeHtml(story.logo)}</span> ${escapeHtml(story.source)}</span>
+        <h1>${escapeHtml(story.title)}</h1>
+        ${engagement}
+      </span>
+    `;
+    return slide;
+  }
+
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    slides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = `dot${index === 0 ? ' active' : ''}`;
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Show slide ${index + 1}`);
+      dot.addEventListener('click', () => showSlide(index));
+      dotsWrap.append(dot);
+    });
+  }
+
+  function showSlide(index) {
+    if (!slides.length) {
+      slideCount.textContent = '0 / 0';
+      return;
+    }
+    activeSlide = (index + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === activeSlide));
+    Array.from(dotsWrap.children).forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === activeSlide));
+    slideCount.textContent = `${activeSlide + 1} / ${slides.length}`;
+    syncHeroAspect();
+  }
+
+  function syncHeroAspect() {
+    const image = slides[activeSlide]?.querySelector('img');
+    if (!image) return;
+    const apply = () => {
+      if (/\/run50\/(?:wechat-en|facebook|stories\/english)\/[^/]+\.html/.test(slides[activeSlide]?.getAttribute('href') || '')) {
+        hero.style.aspectRatio = '16 / 9';
+        syncLeadSideHeight();
+        return;
+      }
+      if (window.matchMedia('(max-width: 760px)').matches) {
+        hero.style.aspectRatio = '';
+        syncLeadSideHeight();
+        return;
+      }
+      if (image.naturalWidth && image.naturalHeight) {
+        hero.style.aspectRatio = `${image.naturalWidth} / ${image.naturalHeight}`;
+        syncLeadSideHeight();
+      }
+    };
+    if (image.complete) apply();
+    else image.addEventListener('load', apply, { once: true });
+  }
+
+  function syncLeadSideHeight() {
+    if (!hero || !sideStack) return;
+    const height = hero.getBoundingClientRect().height;
+    if (height > 0) sideStack.style.setProperty('--lead-side-height', `${height}px`);
+  }
+
+  if (window.ResizeObserver && hero) {
+    const leadResizeObserver = new ResizeObserver(syncLeadSideHeight);
+    leadResizeObserver.observe(hero);
+  }
+
+  function shuffledStories(stories) {
+    const pool = [...stories];
+    for (let index = pool.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(Math.random() * (index + 1));
+      [pool[index], pool[swapIndex]] = [pool[swapIndex], pool[index]];
+    }
+    return pool;
+  }
+
+  function rebuildCarousel({ randomize = true } = {}) {
+    const storyPool = cards.map(storyFromFeedCard).filter(Boolean);
+    const maxSlides = activeFilter === 'other' ? MAX_KNOWLEDGE_CAROUSEL_SLIDES : MAX_CAROUSEL_SLIDES;
+    const stories = (randomize ? shuffledStories(storyPool) : storyPool).slice(0, maxSlides);
+    hero.querySelectorAll('[data-slide]').forEach(slide => slide.remove());
+    stories.forEach((story, index) => hero.insertBefore(createSlide(story, index), prev));
+    slides = Array.from(hero.querySelectorAll('[data-slide]'));
+    buildDots();
+    showSlide(0);
+    if (slideTimer) clearInterval(slideTimer);
+    if (slides.length > 1) slideTimer = setInterval(() => showSlide(activeSlide + 1), CAROUSEL_ROTATE_MS);
+  }
+
+  function feedColumnUnits() {
+    const width = feedGrid?.clientWidth || window.innerWidth;
+    const isNarrow = width <= 760;
+    const isKnowledgeMode = activeFilter === 'other';
+    let columnUnits = 5;
+    if (isNarrow) columnUnits = 1;
+    else if (width < 860) columnUnits = 2;
+    else if (width < 1180) columnUnits = 3;
+    else if (width < 1500 || isKnowledgeMode) columnUnits = 4;
+    if (feedGrid) feedGrid.style.setProperty('--feed-columns', String(columnUnits));
+    return columnUnits;
+  }
+
+  function canUseWideFeedSlot(card) {
+    return card.querySelector(':scope > img')
+      && !card.classList.contains('progress-card')
+      && !card.classList.contains('text-module')
+      && !card.classList.contains('list-module');
+  }
+
+  function syncFeedRowHeight() {
+    if (!feedGrid) return;
+    const columnUnits = feedColumnUnits();
+    if (columnUnits <= 1) {
+      feedGrid.style.setProperty('--feed-row-height', 'auto');
+      return;
+    }
+    const styles = window.getComputedStyle(feedGrid);
+    const columnGap = Number.parseFloat(styles.columnGap) || 12;
+    const availableWidth = feedGrid.clientWidth - columnGap * (columnUnits - 1);
+    const unitWidth = Math.max(0, availableWidth / columnUnits);
+    const rowHeight = Math.max(320, Math.min(560, unitWidth * 2 * 0.625));
+    feedGrid.style.setProperty('--feed-row-height', `${Math.round(rowHeight)}px`);
+  }
+
+  function placementsForCards(cardList) {
+    const placements = new Map();
+    const isNarrow = window.matchMedia('(max-width: 760px)').matches;
+    const columnUnits = feedColumnUnits();
+    if (isNarrow || columnUnits <= 1) {
+      cardList.forEach(card => placements.set(card, { span: 1, start: 1 }));
+      return placements;
+    }
+
+    let cardIndex = 0;
+
+    while (cardIndex < cardList.length) {
+      const cardsInRow = Math.min(columnUnits - 1, cardList.length - cardIndex);
+      const rowCards = cardList.slice(cardIndex, cardIndex + cardsInRow);
+      let wideIndex = rowCards.findIndex(canUseWideFeedSlot);
+      if (wideIndex < 0) wideIndex = 0;
+      let start = 1;
+
+      rowCards.forEach((card, rowIndex) => {
+        const span = rowIndex === wideIndex ? 2 : 1;
+        placements.set(card, { span, start });
+        start += span;
+      });
+      cardIndex += cardsInRow;
+    }
+    return placements;
+  }
+
+  function layoutMsnRows() {
+    if (!feedGrid) return;
+    const isNarrow = window.matchMedia('(max-width: 760px)').matches;
+    syncFeedRowHeight();
+    feedGrid.style.display = '';
+    feedGrid.style.position = '';
+    feedGrid.style.height = '';
+    cards.forEach(card => {
+      const isImageStoryCard = card.querySelector(':scope > img')
+        && !card.classList.contains('progress-card')
+        && !card.classList.contains('text-module')
+        && !card.classList.contains('list-module');
+      if (isImageStoryCard) {
+        card.classList.add('image-top', 'compact');
+        card.classList.remove('auto-overlay', 'overlay-card');
+      } else if (card.classList.contains('auto-overlay')) {
+        card.classList.remove('auto-overlay', 'overlay-card');
+      }
+      card.style.position = '';
+      card.style.width = '';
+      card.style.left = '';
+      card.style.top = '';
+      card.style.height = '';
+      card.style.removeProperty('grid-column');
+      card.classList.remove('layout-span-1', 'layout-span-2', 'layout-span-3', 'layout-span-4', 'layout-span-5', 'layout-span-6', 'layout-span-7', 'layout-span-8', 'layout-span-12');
+    });
+    const visibleCards = cards.filter(card => card.style.display !== 'none');
+    const placements = placementsForCards(visibleCards);
+    visibleCards.forEach(card => {
+      const placement = placements.get(card) || { span: 1, start: 1 };
+      const span = isNarrow ? 1 : placement.span;
+      card.classList.add(`layout-span-${span}`);
+      card.style.setProperty('grid-column', isNarrow ? '1 / -1' : `${placement.start} / span ${span}`, 'important');
+      if (!isNarrow && span >= 2 && canUseWideFeedSlot(card) && !card.classList.contains('home-running-story')) {
+        card.classList.add('overlay-card', 'auto-overlay');
+      }
+    });
+  }
+
+  function scheduleMasonry() {
+    if (masonryFrame) cancelAnimationFrame(masonryFrame);
+    masonryFrame = requestAnimationFrame(() => {
+      masonryFrame = null;
+      layoutMsnRows();
+    });
+  }
+
+  function applyViewZoom(nextZoom) {
+    const closest = ZOOM_LEVELS.includes(nextZoom)
+      ? nextZoom
+      : ZOOM_LEVELS.reduce((best, level) => Math.abs(level - nextZoom) < Math.abs(best - nextZoom) ? level : best, 100);
+    viewZoom = Math.min(ZOOM_LEVELS[ZOOM_LEVELS.length - 1], Math.max(ZOOM_LEVELS[0], closest));
+    localStorage.setItem('zz-msn-view-zoom', String(viewZoom));
+    document.documentElement.style.setProperty('--feed-type-scale', (Math.min(1.12, Math.max(0.92, viewZoom / 100))).toFixed(2));
+    if (zoomValue) zoomValue.textContent = `${viewZoom}%`;
+    if (zoomOut) zoomOut.disabled = viewZoom <= ZOOM_LEVELS[0];
+    if (zoomIn) zoomIn.disabled = viewZoom >= ZOOM_LEVELS[ZOOM_LEVELS.length - 1];
+    scheduleMasonry();
+  }
+
+  function applyFilters() {
+    const query = searchInput.value.trim().toLowerCase();
+    let shown = 0;
+    cards.forEach(card => {
+      const visible = cardMatchesFilter(card, query);
+      card.style.display = visible ? '' : 'none';
+      if (visible) shown += 1;
+    });
+    document.body.classList.toggle('more-mode', activeFilter === 'other');
+    feedTitle.textContent = activeFilter === 'other' ? 'Knowledge front page' : 'Running front page';
+    searchInput.placeholder = activeFilter === 'other'
+      ? 'Search projects'
+      : 'Search stories';
+    if (moreLabel) moreLabel.style.display = 'none';
+    visibleCount.textContent = `${shown} item${shown === 1 ? '' : 's'}`;
+    emptyState.classList.toggle('show', shown === 0);
+    rebuildCarousel({ randomize: false });
+    layoutMsnRows();
+    scheduleMasonry();
+  }
+
+  function cardIdFor(element) {
+    const card = element.closest('[data-card]');
+    const href = card?.getAttribute('href') || card?.querySelector('a[href]')?.getAttribute('href') || 'feed';
+    const title = card?.querySelector('h1,h2,h3,.card-title')?.textContent.trim() || card?.textContent.trim().slice(0, 80) || 'item';
+    return `${href}::${title}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 120);
+  }
+
+  function commentsFor(cardId) {
+    try {
+      return JSON.parse(localStorage.getItem(`zz-msn-comments-v2:${cardId}`) || '[]');
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function saveComments(cardId, comments) {
+    localStorage.setItem(`zz-msn-comments-v2:${cardId}`, JSON.stringify(comments));
+  }
+
+  function renderComments(cardId) {
+    const comments = commentsFor(cardId);
+    commentList.innerHTML = '';
+    if (!comments.length) {
+      const empty = document.createElement('div');
+      empty.className = 'comment-item';
+      empty.innerHTML = '<b>No comments yet</b><p>Be the first to leave a note on this story.</p>';
+      commentList.append(empty);
+      return;
+    }
+    comments.forEach(comment => {
+      const item = document.createElement('div');
+      item.className = 'comment-item';
+      item.innerHTML = `<b>${escapeHtml(comment.name)}</b><p>${escapeHtml(comment.text)}</p>`;
+      commentList.append(item);
+    });
+  }
+
+  function updateCommentButton(button, cardId) {
+    const count = commentsFor(cardId).length + Number(button.dataset.baseCount || 0);
+    const icon = button.querySelector('i')?.outerHTML || '<i class="bi bi-chat-square"></i>';
+    button.innerHTML = `${icon} <span>${count}</span>`;
+  }
+
+  function openComments(button) {
+    const card = button.closest('[data-card]');
+    const cardId = cardIdFor(button);
+    activeCommentCardId = cardId;
+    activeCommentButton = button;
+    const title = card?.querySelector('h1,h2,h3,.card-title')?.textContent.trim() || 'Story';
+    commentTitle.textContent = 'Comments';
+    commentSubtitle.textContent = title;
+    renderComments(cardId);
+    commentPanel.classList.add('open');
+    commentText.focus();
+  }
+
+  function closeComments() {
+    commentPanel.classList.remove('open');
+    activeCommentCardId = null;
+    activeCommentButton = null;
+  }
+
+  function setupReactions() {
+    document.querySelectorAll('.metric-row').forEach(row => {
+      const metricSpans = Array.from(row.children).filter(child => child.tagName.toLowerCase() === 'span');
+      metricSpans.forEach(span => {
+        const isLike = span.querySelector('.bi-hand-thumbs-up');
+        const isComment = span.querySelector('.bi-chat-square');
+        if (!isLike && !isComment) return;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `metric-action ${isLike ? 'like-action' : 'comment-action'}`;
+        button.innerHTML = span.innerHTML;
+        button.dataset.baseCount = String(numberFromMetric(span.textContent));
+        span.replaceWith(button);
+        const cardId = cardIdFor(button);
+        if (isLike) {
+          const liked = localStorage.getItem(`zz-msn-like-v2:${cardId}`) === '1';
+          const base = Number(button.dataset.baseCount || 0);
+          button.classList.toggle('is-active', liked);
+          button.innerHTML = `${button.querySelector('i')?.outerHTML || '<i class="bi bi-hand-thumbs-up"></i>'} <span>${base + (liked ? 1 : 0)}</span>`;
+          button.addEventListener('click', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            const next = localStorage.getItem(`zz-msn-like-v2:${cardId}`) !== '1';
+            localStorage.setItem(`zz-msn-like-v2:${cardId}`, next ? '1' : '0');
+            button.classList.toggle('is-active', next);
+            button.innerHTML = `${button.querySelector('i')?.outerHTML || '<i class="bi bi-hand-thumbs-up"></i>'} <span>${base + (next ? 1 : 0)}</span>`;
+          });
+        }
+        if (isComment) {
+          updateCommentButton(button, cardId);
+          button.addEventListener('click', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            openComments(button);
+          });
+        }
+      });
+    });
+  }
+
+  function scheduleLiveRefresh() {
+    if (!canUseLiveIndexes()) return;
+    setInterval(async () => {
+      const changed = await refreshFromLiveIndexes();
+      if (!changed) return;
+      applyStoryVariantVisibility();
+      mixStoryCards();
+      refreshCardList();
+      rebuildCarousel();
+      setupReactions();
+      applyFilters();
+      scheduleMasonry();
+    }, LIVE_REFRESH_MS);
+  }
+
+  function scheduleCarouselRandomizer() {
+    if (randomizeTimer) clearInterval(randomizeTimer);
+    randomizeTimer = setInterval(() => {
+      rebuildCarousel();
+    }, CAROUSEL_RANDOMIZE_MS);
+  }
+
+  primaryTabs.forEach(tab => {
+    tab.addEventListener('click', event => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (tab.dataset.filter !== 'other') return;
+      event.preventDefault();
+      activeFilter = 'other';
+      activeMoreFilter = 'all';
+      primaryTabs.forEach(item => item.classList.toggle('active', item === tab));
+      moreTabs.forEach(item => item.classList.toggle('active', item.dataset.moreFilter === activeMoreFilter));
+      history.replaceState(null, '', '#more');
+      applyFilters();
+    });
+  });
+
+  moreTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      activeFilter = 'other';
+      activeMoreFilter = tab.dataset.moreFilter || 'all';
+      primaryTabs.forEach(item => item.classList.toggle('active', item.dataset.filter === 'other'));
+      moreTabs.forEach(item => item.classList.toggle('active', item === tab));
+      history.replaceState(null, '', '#more');
+      applyFilters();
+    });
+  });
+
+  function applyInitialRoute() {
+    if (location.hash !== '#more') return;
+    activeFilter = 'other';
+    activeMoreFilter = 'all';
+    primaryTabs.forEach(item => item.classList.toggle('active', item.dataset.filter === 'other'));
+    moreTabs.forEach(item => item.classList.toggle('active', item.dataset.moreFilter === activeMoreFilter));
+  }
+
+  document.querySelector('.search').addEventListener('submit', event => {
+    event.preventDefault();
+    applyFilters();
+  });
+  searchInput.addEventListener('input', applyFilters);
+  window.addEventListener('resize', () => {
+    syncLeadSideHeight();
+    scheduleMasonry();
+  });
+  zoomOut?.addEventListener('click', () => {
+    const index = ZOOM_LEVELS.indexOf(viewZoom);
+    applyViewZoom(ZOOM_LEVELS[Math.max(0, index - 1)] || ZOOM_LEVELS[0]);
+  });
+  zoomIn?.addEventListener('click', () => {
+    const index = ZOOM_LEVELS.indexOf(viewZoom);
+    applyViewZoom(ZOOM_LEVELS[Math.min(ZOOM_LEVELS.length - 1, index + 1)] || ZOOM_LEVELS[ZOOM_LEVELS.length - 1]);
+  });
+  commentClose.addEventListener('click', closeComments);
+  commentForm.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!activeCommentCardId) return;
+    const name = commentName.value.trim() || 'Guest';
+    const text = commentText.value.trim();
+    if (!text) return;
+    const comments = commentsFor(activeCommentCardId);
+    comments.push({ name, text, createdAt: new Date().toISOString() });
+    saveComments(activeCommentCardId, comments);
+    commentText.value = '';
+    renderComments(activeCommentCardId);
+    if (activeCommentButton) updateCommentButton(activeCommentButton, activeCommentCardId);
+    scheduleMasonry();
+  });
+
+  async function init() {
+    applyInitialRoute();
+    refreshCardList();
+    applyStoryVariantVisibility();
+    mixStoryCards();
+    refreshCardList();
+    renderProgressMaps();
+    rebuildCarousel();
+    setupReactions();
+    applyViewZoom(viewZoom);
+    applyFilters();
+    const liveIndexChanged = await refreshFromLiveIndexes();
+    if (liveIndexChanged) {
+      applyStoryVariantVisibility();
+      mixStoryCards();
+      refreshCardList();
+      renderProgressMaps();
+      rebuildCarousel();
+      setupReactions();
+      applyFilters();
+    }
+    document.querySelectorAll('.feed-grid img').forEach(image => {
+      if (image.complete) return;
+      image.addEventListener('load', scheduleMasonry, { once: true });
+      image.addEventListener('error', scheduleMasonry, { once: true });
+    });
+    if ('ResizeObserver' in window && feedGrid) {
+      new ResizeObserver(scheduleMasonry).observe(feedGrid);
+    }
+    scheduleMasonry();
+    scheduleLiveRefresh();
+    scheduleCarouselRandomizer();
+  }
+
+  init();
+</script>
+</body>
+</html>
