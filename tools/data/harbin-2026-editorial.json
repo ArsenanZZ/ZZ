@@ -1478,7 +1478,7 @@
     },
     {
       "kind": "paragraph",
-      "text": "两个钟头左右，窗外能看见海和港口了，到了仁川。韩国我头一回来，出了飞机就去找转机口，在机场吃了碗拉面，还得接着飞旧金山。"
+      "text": "从哈尔滨飞了两个钟头，窗外那一块块田换成了海岸，仁川快到了。"
     },
     {
       "kind": "photos",
@@ -1495,7 +1495,7 @@
     },
     {
       "kind": "paragraph",
-      "text": "这次回国两个月，连2018年就报过名的六盘水都跑上了。那年没中签，一等就是八年。楚雄跑完第二天我去种牙，牙一疼，我就想想昨天过了三十五公里那会儿腿有多酸。想着想着，牙倒没那么难熬了。"
+      "text": "韩国我还是头一回来。从飞机上能看见海里的小岛和岸上的码头，落了地，我就只能在机场里转一圈了。"
     },
     {
       "kind": "photos",
@@ -1509,10 +1509,6 @@
       ]
     },
     {
-      "kind": "paragraph",
-      "text": "二十年前，我在电视上看青藏铁路通车。今年坐着它去拉萨，一觉睡醒，窗外是草地，一小群牛羊过去，又是一小群。"
-    },
-    {
       "kind": "photos",
       "ids": [
         "195"
@@ -1523,7 +1519,7 @@
     },
     {
       "kind": "paragraph",
-      "text": "到青海，在茶卡拍湖，光顾着取景，一脚下去，盐水灌进了鞋套。第二天跑全马，我可就带了这么一双鞋。"
+      "text": "先去找下一趟的登机口，再吃碗拉面，还得接着飞旧金山。"
     },
     {
       "kind": "photos",
@@ -1549,8 +1545,82 @@
     },
     {
       "kind": "paragraph",
-      "text": "从旧金山还得飞一趟亚特兰大，再转机去路易斯维尔。提上从顺德一路跟来的两个箱子，这才回到我在肯塔基的家。"
+      "text": "吃完还得往东飞。旧金山到亚特兰大，再转路易斯维尔，提着从顺德一路跟来的那两个箱子，这才回到我在肯塔基的家。"
+    },
+    {
+      "kind": "heading",
+      "label": "",
+      "title": "回国这两个月"
+    },
+    {
+      "kind": "paragraph",
+      "text": "七月回国，头一场跑的是六盘水。2018年我就报过名，那年没中签。今年总算把这块写着“中国凉都”的奖牌挂上了，一等就是八年。"
+    },
+    {
+      "kind": "recap-photo",
+      "id": "liupanshui",
+      "article": "/run50/wechat/liupanshui-marathon-editorial.html",
+      "src": "/assets/runcn-liupanshui-2026/Liu-18-0.webp",
+      "preview": "/assets/runcn-liupanshui-2026/preview/Liu-18-0.webp",
+      "width": 3024,
+      "height": 3024,
+      "caption": "六盘水马拉松完赛奖牌",
+      "credit": "Arsenan"
+    },
+    {
+      "kind": "paragraph",
+      "text": "楚雄那场的号码我现在都能一口报出来，15000，我自己挑的。跑完第二天去种牙，牙一疼，我就想想昨天过了三十五公里那会儿腿有多酸。你还别说，真能分会儿神。"
+    },
+    {
+      "kind": "recap-photo",
+      "id": "chuxiong",
+      "article": "/run50/wechat/chuxiong-marathon-editorial.html",
+      "src": "/assets/runcn-chuxiong-2026/CX-16-9-1.webp",
+      "preview": "/assets/runcn-chuxiong-2026/preview/CX-16-9-1.webp",
+      "width": 1600,
+      "height": 1972,
+      "caption": "绿白上衣，在赛道上继续跑",
+      "credit": "赛事官方"
+    },
+    {
+      "kind": "paragraph",
+      "text": "二十年前，我在电视上看青藏铁路通车。今年坐着它去拉萨，一觉睡醒，窗外是草地，一小群牛羊过去，又是一小群。"
+    },
+    {
+      "kind": "recap-photo",
+      "id": "lhasa",
+      "article": "/run50/wechat/lhasa-half-marathon-editorial.html",
+      "src": "/assets/runcn-lhasa-2026/Lhsa-03-0.webp",
+      "preview": "/assets/runcn-lhasa-2026/preview/Lhsa-03-0.webp",
+      "width": 3520,
+      "height": 2644,
+      "caption": "车窗外，草地、羊群与沙色山坡",
+      "credit": "Arsenan"
+    },
+    {
+      "kind": "paragraph",
+      "text": "那趟火车上也远远望见过青海湖。后来去西宁跑马，这回总算走到了湖边。到了茶卡，光顾着取景，一脚下去，盐水灌进了鞋套。第二天还得跑全马，我可就带了这么一双鞋。"
+    },
+    {
+      "kind": "recap-photo",
+      "id": "qinghai",
+      "article": "/run50/wechat/qinghai-xining-marathon-editorial.html",
+      "src": "/assets/runcn-qinghai-2026/QH-007-5-1.webp",
+      "preview": "/assets/runcn-qinghai-2026/preview/QH-007-5-1.webp",
+      "width": 2560,
+      "height": 1829,
+      "caption": "戴上宽檐帽，在盐白色的湖面前摆个姿势",
+      "credit": "Arsenan"
+    },
+    {
+      "kind": "paragraph",
+      "text": "最后一场留给哈尔滨。跑完还有我爸我妈在太阳岛等我，我把刚领的小皇冠给我妈戴上，娘俩合了张影。"
+    },
+    {
+      "kind": "paragraph",
+      "text": "回到肯塔基，我又报了几场马拉松。还真有点想念这边那些小小的社区比赛。再说了，在国内这两个月，马没少跑，人还吃胖了点。"
     }
   ],
-  "photo_count": 198
+  "photo_count": 202,
+  "recap_photo_count": 4
 }
