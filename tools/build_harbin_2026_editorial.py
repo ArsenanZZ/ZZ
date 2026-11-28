@@ -96,7 +96,7 @@ def recap_figure(key, photo):
     article = escape(photo['article'], quote=True)
     return (
         '<figure class="photo-strip">'
-        f'<img data-photo-id="recap-{key}" data-copy-src="{src}" data-copy-bytes="{copy_bytes(photo["src"])}" '
+        f'<img data-photo-id="recap-{key}" data-copy-src="{src}" data-copy-bytes="{copy_bytes(photo["src"])}" data-display-bytes="{copy_bytes(photo["preview"])}" '
         f'src="{src}" srcset="{preview} 1600w" sizes="(max-width:677px) calc(100vw - 40px), 637px" '
         f'width="{photo["width"]}" height="{photo["height"]}" alt="{caption}" loading="lazy" decoding="async">'
         f'<figcaption><a href="{article}">{caption}</a> · 摄影 / {credit}</figcaption></figure>'
@@ -127,7 +127,8 @@ def render():
   if line.startswith('# '):
    if n==0:out.append(location_poster)
    title=line[2:];n+=1
-   anchor=' id="china-recap"' if title=='回国这两个月' else ''
+   anchors={'从哈尔滨飞回美国':'flight-home','回国这两个月':'china-recap'}
+   anchor=f' id="{anchors[title]}"' if title in anchors else ''
    out.append(f'<header class="chapter"{anchor}><span class="chapter-number">{n:02}</span><h2>{escape(title)}</h2></header>');blocks.append({'kind':'heading','label':'','title':title})
   elif line.startswith('!'):
    key=line[1:].strip()
@@ -142,7 +143,7 @@ def render():
    for key in keys:
     p=meta[key];credit='官方摄影' if key in official else 'Arsenan';credits.append(credit)
     src='/assets/runcn-harbin-2026/photos/'+p['name'];preview='/assets/runcn-harbin-2026/preview/'+key+'.jpg'
-    images.append(f'<img data-copy-bytes="{copy_bytes(src)}" src="{src}" srcset="{preview} 1600w" sizes="(max-width:677px) calc(100vw - 40px), 637px" data-copy-src="{src}" data-photo-id="{key}" alt="{escape(caps[key])}" width="{p["width"]}" height="{p["height"]}" loading="lazy" decoding="async">')
+    images.append(f'<img data-copy-bytes="{copy_bytes(src)}" data-display-bytes="{copy_bytes(preview)}" src="{src}" srcset="{preview} 1600w" sizes="(max-width:677px) calc(100vw - 40px), 637px" data-copy-src="{src}" data-photo-id="{key}" alt="{escape(caps[key])}" width="{p["width"]}" height="{p["height"]}" loading="lazy" decoding="async">')
    if len(set(credits))==1:caption='；'.join(caps[k] for k in keys)+' · 摄影 / '+credits[0]
    else:caption='；'.join(caps[k]+' · 摄影 / '+c for k,c in zip(keys,credits))
    out.append('<figure class="photo-strip">'+''.join(images)+'<figcaption>'+escape(caption)+'</figcaption></figure>');blocks.append({'kind':'photos','ids':keys,'credits':credits})
@@ -155,7 +156,7 @@ def render():
  out.append('<footer class="ending"><p class="end-mark">本文完</p><p class="series">RUNCN · 第31站 · 黑龙江哈尔滨</p><p class="credits">文字 / Arsenan<br>摄影 / Arsenan、官方摄影</p></footer>')
  out.append('<p class="source-note">旅行及比赛经历依据作者哈尔滨原始视频口述与选图整理，完赛时间为个人记录约5小时02分。背景资料：<a href="https://wlt.hlj.gov.cn/wlt/c114169/202609/c00_31972491.shtml">赛事、吉祥物及奖牌介绍</a> · <a href="https://wlt.hlj.gov.cn/wlt/c114169/202404/c00_31731149.shtml">中华巴洛克建筑</a> · <a href="https://www.weather.com.cn/heilongjiang/shtq/lyjd/05/436022.shtml">防洪纪念塔</a> · <a href="https://cdn.archilovers.com/projects/bc1fb6ff-4680-40be-9e7a-53e065a51ce0.pdf">哈尔滨大剧院设计</a> · <a href="https://harbin.joyhua.cn/hebrb/20260913/mhtml/page_01_content_20260913002002.htm">四枪出发和参赛规模</a> · <a href="https://www.imharbin.com/post/51743">中央大街的面包石</a> · <a href="https://m.fx361.com/news/2010/0706/21032307.html">哈尔滨段历史洪水</a> · <a href="https://www.hrbdag.org.cn/hbfm/hbsh/2026/01/20944.html">老江桥与新铁路桥</a> · <a href="https://m.thepaper.cn/newsDetail_forward_30832900">丁香与哈尔滨</a> · <a href="https://m.thepaper.cn/newsDetail_forward_28505044">音乐长廊和沿途地标</a> · <a href="https://www.sucdri.com/case/casedetails-161.html">阳明滩大桥设计</a> · <a href="https://i-mad.cn/zh/projects/harbin-opera-house">MAD哈尔滨大剧院</a> · <a href="https://wlt.hlj.gov.cn/wlt/c114165/202307/c00_31646684.shtml">雪花摩天轮</a> · <a href="https://www.aisixiang.com/data/16911.html">迟子建《起舞》</a> · <a href="https://www.aisixiang.com/data/120166.html">鲁迅《小杂感》</a> · <a href="https://zh.wikisource.org/zh-hans/呼蘭河傳/第一章">萧红《呼兰河传》</a> · <a href="https://www.chinawriter.com.cn/n1/2025/1204/c404063-40617346.html">卞之琳《断章》</a> · <a href="https://www.chinawriter.com.cn/n1/2017/1214/c404014-29706815.html">汪曾祺《端午的鸭蛋》引文</a> · <a href="https://www.hljszw.org.cn/home/book/info/get_id/402175.html">中东铁路的修筑</a> · <a href="https://lzhbwg.mofcom.gov.cn/edi_ecms_web_front/thb/detail/5f9c6f49bdce4168b2e0a599dbc2f55b">华梅西餐厅沿革</a> · <a href="https://hrbcredit.harbin.gov.cn/creditMess.do?conId=f6d9f6e28c524902a94a9c351b631a54&amp;method=showDetailHtml">秋林格瓦斯与大列巴</a> · <a href="https://www.flow-er.co.jp/sd/">井上雄彦的黑板漫画《十日后》</a> · <a href="https://www.chinawriter.com.cn/n1/2022/0905/c405057-32519619.html">梁晓声谈父亲当群众演员</a> · <a href="https://zh.wikisource.org/zh-hans/他去追求职业">萧红《他去追求职业》</a> · <a href="https://wlt.hlj.gov.cn/wlt/c114172/202409/c00_31765225.shtml">王立平与两版《太阳岛上》</a> · <a href="https://www.chinawriter.com.cn/news/2014/2014-10-13/221049.html">村上春树忆第一次跑全马</a>。插画为地标组合，并非实地空间比例。</p>')
  nav='<nav class="copy-tools"><a href="/CN/#runcn-series" style="color:inherit">RunCN 目录</a><button data-theme-choice="light" aria-pressed="true">白底</button><button data-theme-choice="dark" aria-pressed="false">黑底</button><button id="copy-wechat">一键复制到公众号</button><span id="copy-status" role="status" aria-live="polite"></span></nav>'
- html=f'<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{TITLE}</title><meta name="description" content="{escape(INTRO)}"><meta property="og:image" content="https://zhennanzhang.com{COVER_SRC}"><style>{css}</style></head><body>{nav}<main data-copy-photo-count="{photo_count}" data-copy-full-links="" data-copy-chunks="" data-edition="runcn-harbin-2026">'+ '\n'.join(out)+'</main><script src="/assets/run50-six-editorial-copy.js?v=20261128-harbin-copy" defer></script></body></html>'
+ html=f'<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{TITLE}</title><meta name="description" content="{escape(INTRO)}"><meta property="og:image" content="https://zhennanzhang.com{COVER_SRC}"><style>{css}</style></head><body>{nav}<main data-copy-photo-count="{photo_count}" data-copy-displayed="" data-copy-chunks="" data-edition="runcn-harbin-2026">'+ '\n'.join(out)+'</main><script src="/assets/run50-six-editorial-copy.js?v=20261128-display-images" defer></script></body></html>'
  for suffix in ['editorial','modern-rail']:(ROOT/f'run50/wechat/{SLUG}-{suffix}.html').write_text(html,encoding='utf-8')
  (DATA/'harbin-2026-editorial.json').write_text(json.dumps({'slug':SLUG,'title':TITLE,'intro':INTRO,'blocks':blocks,'photo_count':photo_count,'recap_photo_count':len(recap_used)},ensure_ascii=False,indent=2),encoding='utf-8')
  print('Harbin:',n,'chapters;',photo_count,'photos; kilometer sequence:',progress)

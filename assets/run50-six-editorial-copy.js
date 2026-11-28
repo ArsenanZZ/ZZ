@@ -11,6 +11,7 @@
   const clipboardDocument = document.implementation.createHTMLDocument('');
   const snapshot = clipboardDocument.importNode(article, true);
   const children = Array.from(snapshot.children);
+  const useDisplayed = snapshot.hasAttribute('data-copy-displayed');
   const fullLinks = snapshot.hasAttribute('data-copy-full-links');
   const chunkTarget = 9500000;
   const oversizedFullExport = 512 * 1024 * 1024;
@@ -23,9 +24,11 @@
       !(el.tagName === 'IMG' && el.closest('.down') !== null && !el.matches('.down')));
   }
 
-  function encodedImageBytes(node) {
-    return exportImages(node).reduce((sum, el) =>
-      sum + 4 * Math.ceil(Number(el.dataset.copyBytes || 0) / 3), 0);
+  function encodedImageBytes(node, mode = 'embedded') {
+    return exportImages(node).reduce((sum, image) => {
+      const bytes = mode === 'displayed' ? image.dataset.displayBytes ?? image.dataset.copyBytes : image.dataset.copyBytes;
+      return sum + 4 * Math.ceil(Number(bytes || 0) / 3);
+    }, 0);
   }
 
   function splitLargeFigure(figure) {
@@ -96,31 +99,51 @@
   const imageMode = document.createElement('select');
   imageMode.setAttribute('aria-label', '图片复制方式');
   imageMode.style.cssText = scope.style.cssText;
-  imageMode.add(new Option('嵌入原图（不压缩）', 'embedded'));
+  if (useDisplayed) imageMode.add(new Option('正文图片（与网页一致）', 'displayed'));
+  imageMode.add(new Option('原始大图（不压缩）', 'embedded'));
   imageMode.add(new Option('带原图链接（不嵌入）', 'links'));
-  imageMode.value = fullLinks ? 'links' : 'embedded';
+  const defaultMode = useDisplayed ? 'displayed' : fullLinks ? 'links' : 'embedded';
+  imageMode.value = defaultMode;
   button.before(imageMode);
+  function showEstimate() {
+    status.textContent = '';
+    if (!useDisplayed) return;
+    if (imageMode.value === 'links') {
+      status.textContent = '仅复制图片链接，粘贴后需联网加载。';
+      return;
+    }
+    const selected = scopes.get(scope.value);
+    const total = selected.reduce((sum, node) => sum + encodedImageBytes(node, imageMode.value), 0);
+    const mb = (total / 1000000).toFixed(1);
+    status.textContent = imageMode.value === 'displayed'
+      ? `所选正文图片嵌入后约 ${mb} MB，复制时保留网页画质。`
+      : `所选原始大图嵌入后约 ${mb} MB。`;
+  }
   scope.addEventListener('change', () => {
     if (scope.value.startsWith('part-')) imageMode.value = 'embedded';
-    else if (fullLinks && scope.value === 'all') imageMode.value = 'links';
-    status.textContent = '';
+    else if (scope.value === 'all') imageMode.value = defaultMode;
+    showEstimate();
   });
-  imageMode.addEventListener('change', () => { status.textContent = ''; });
+  imageMode.addEventListener('change', showEstimate);
+  showEstimate();
   const themeButtons = document.querySelectorAll('[data-theme-choice]');
   function setTheme(theme) {
     document.documentElement.dataset.theme = theme;
     document.querySelectorAll('.brand-intro [data-light-src]').forEach(el => el.setAttribute(el.tagName === 'SOURCE' ? 'srcset' : 'src', el.getAttribute('data-' + theme + '-src')));
     themeButtons.forEach(el => el.setAttribute('aria-pressed', String(el.dataset.themeChoice === theme)));
-    status.textContent = '';
+    showEstimate();
   }
   themeButtons.forEach(el => el.addEventListener('click', () => setTheme(el.dataset.themeChoice)));
   const canonical = 'https://zhennanzhang.com' + location.pathname;
   async function buildClipboard() {
     const selected = scopes.get(scope.value);
     if (!selected) throw new Error('请选择要复制的范围');
-    if (fullLinks && scope.value === 'all' && imageMode.value === 'embedded'
+    if ((fullLinks || useDisplayed) && scope.value === 'all' && imageMode.value === 'embedded'
         && selected.reduce((sum, node) => sum + encodedImageBytes(node), 0) > oversizedFullExport) {
-      throw new Error('全文嵌入原图会超过 512 MiB。请选择原图小段按顺序粘贴，或选择带原图链接复制全文。');
+      const message = useDisplayed
+        ? '请选择“正文图片（与网页一致）”一次复制全部图文；如需原始大图，可选择“原图小段”。'
+        : '请选择原图小段按顺序粘贴，或选择带原图链接复制全文。';
+      throw new Error('全文嵌入原始大图会超过 512 MiB。' + message);
     }
     const expectedImages = selected.flatMap(exportImages);
     const dark = document.documentElement.dataset.theme === 'dark';
@@ -152,7 +175,10 @@
         let url;
         if (down) url = base + 'arrows-' + theme + '.png';
         else {
-          url = new URL(node.getAttribute('data-' + theme + '-src') || node.getAttribute('data-copy-src') || node.getAttribute('src'), canonical).href;
+          // The article builder publishes one 1600w display asset per photograph.
+          const preview = imageMode.value === 'displayed' ? node.getAttribute('srcset')?.split(',')[0].trim().split(/\s+/)[0] : null;
+          const src = node.getAttribute('data-' + theme + '-src') || preview || node.getAttribute('data-copy-src') || node.getAttribute('src');
+          url = new URL(src, canonical).href;
         }
         img.src = url;
         img.alt = down ? '向下' : node.getAttribute('alt') || '';
@@ -216,13 +242,13 @@
          wrapper.exportPhotoCount !== Number(snapshot.dataset.copyPhotoCount))) {
       throw new Error('当前文章图片不完整，请刷新后再复制。');
     }
-    if (imageMode.value === 'embedded') {
+    if (imageMode.value !== 'links') {
       const abort = new AbortController();
       let next = 0, completed = 0;
       const readImage = blob => new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => resolve(reader.result);
-        reader.onerror = () => reject(new Error('读取原图失败，请重试。'));
+        reader.onerror = () => reject(new Error('读取图片失败，请重试。'));
         reader.readAsDataURL(blob);
       });
       async function embedImages() {
@@ -230,7 +256,7 @@
           const img = images[next++];
           const url = new URL(img.src);
           const response = await fetch(url.pathname + url.search, {signal: abort.signal});
-          if (!response.ok) throw new Error('原图加载失败：' + (img.alt || url.pathname));
+          if (!response.ok) throw new Error('图片加载失败：' + (img.alt || url.pathname));
           const blob = await response.blob();
           if (!blob.size || !blob.type.startsWith('image/')) {
             throw new Error('未能读取图片：' + (img.alt || url.pathname));
@@ -238,7 +264,7 @@
           const src = await readImage(blob);
           if (abort.signal.aborted) return;
           img.src = src;
-          status.textContent = `正在准备原图 ${++completed}/${images.length}…`;
+          status.textContent = `正在准备图片 ${++completed}/${images.length}…`;
         }
       }
       try {
@@ -322,9 +348,13 @@
     const mb = (size / 1000000).toFixed(2);
     const title = scope.value === 'all' ? '全文' : scope.selectedOptions[0].text.split('（')[0];
     const count = payload.photos ? `含 ${payload.photos} 张照片` : `含 ${payload.images} 幅配图`;
-    const mode = imageMode.value === 'links' ? '图片使用原图链接' : '原图已嵌入';
+    const mode = {
+      displayed: '正文图片已嵌入',
+      embedded: '原图已嵌入',
+      links: '图片使用原图链接'
+    }[imageMode.value];
     status.textContent = `${title}已复制，${count}，${mode}（${mb} MB）。` +
-      (size >= 10000000 ? '超过 10 MB，可改用原图链接或较小的分段。' : '');
+      (imageMode.value === 'embedded' && size >= 10000000 ? '如粘贴失败，可选择较小的分段。' : '');
   }
 
   // A user-initiated keyboard copy can still write rich text in browsers that block
